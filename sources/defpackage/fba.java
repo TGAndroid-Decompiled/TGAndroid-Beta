@@ -1,68 +1,60 @@
 package defpackage;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.SerializedData;
-public final class fba {
-    public au8 a;
-    public long b;
-    public boolean c;
-    public boolean d;
-    public long e;
+import java.util.AbstractSet;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+public abstract class fba extends AbstractSet {
+    public final byte a;
 
-    public fba(au8 au8Var) {
-        this.a = au8Var;
+    @Override
+    public boolean removeAll(Collection collection) {
+        switch (this.a) {
+            case 0:
+                collection.getClass();
+                if (collection instanceof zo5) {
+                    p99 p99Var = (p99) ((zo5) collection);
+                    yo5 yo5Var = p99Var.h;
+                    if (yo5Var == null) {
+                        yo5Var = new yo5(p99Var, (byte) 1);
+                        p99Var.h = yo5Var;
+                    }
+                    collection = yo5Var;
+                }
+                boolean z = false;
+                if ((collection instanceof Set) && collection.size() > size()) {
+                    Iterator<E> it = iterator();
+                    while (it.hasNext()) {
+                        if (collection.contains(it.next())) {
+                            it.remove();
+                            z = true;
+                        }
+                    }
+                } else {
+                    for (Object obj : collection) {
+                        z |= remove(obj);
+                    }
+                }
+                return z;
+            case 1:
+                return g5f.a(this, collection);
+            default:
+                return l5f.a(this, collection);
+        }
     }
 
-    public static fba a(int i, SerializedData serializedData) {
-        long j;
-        long j2;
-        i46 a = au8.a();
-        boolean z = false;
-        String readString = serializedData.readString(false);
-        String str = "";
-        if (readString == null) {
-            readString = "";
+    @Override
+    public boolean retainAll(Collection collection) {
+        switch (this.a) {
+            case 0:
+                collection.getClass();
+                return super.retainAll(collection);
+            case 1:
+                collection.getClass();
+                return super.retainAll(collection);
+            default:
+                collection.getClass();
+                return super.retainAll(collection);
         }
-        a.c = readString;
-        a.b = serializedData.readInt32(false);
-        String readString2 = serializedData.readString(false);
-        if (readString2 == null) {
-            readString2 = "";
-        }
-        a.d = readString2;
-        String readString3 = serializedData.readString(false);
-        if (readString3 == null) {
-            readString3 = "";
-        }
-        a.e = readString3;
-        String readString4 = serializedData.readString(false);
-        if (readString4 != null) {
-            str = readString4;
-        }
-        a.f = str;
-        int i2 = 2;
-        if (i >= 2) {
-            j = serializedData.readInt64(false);
-            j2 = serializedData.readInt64(false);
-        } else {
-            j = 0;
-            j2 = 0;
-        }
-        if (i >= 3) {
-            a.o(au8.f(serializedData.readInt32(false)));
-        } else {
-            if (TextUtils.isEmpty(readString4)) {
-                i2 = 1;
-            }
-            a.o(i2);
-        }
-        fba fbaVar = new fba(a.c());
-        fbaVar.e = j2;
-        fbaVar.b = j;
-        if (j > 0) {
-            z = true;
-        }
-        fbaVar.d = z;
-        return fbaVar;
     }
 }

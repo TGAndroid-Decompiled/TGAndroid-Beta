@@ -1,48 +1,21 @@
 package defpackage;
+public final class gj2 {
+    public static final gj2 a;
+    public static final gj2[] b;
+    gj2 EF0;
 
-import android.content.Context;
-import android.content.Intent;
-import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.utils.twidget.z;
-public final class gj2 implements Runnable {
-    public final byte a = 1;
-    public final int b;
-    public final long c;
-    public final boolean d;
-    public final Object e;
-    public final Object f;
-    public final Object h;
-
-    public gj2(pj2 pj2Var, long j, mj2 mj2Var, int i, boolean z, wk4 wk4Var) {
-        this.e = pj2Var;
-        this.c = j;
-        this.f = mj2Var;
-        this.b = i;
-        this.d = z;
-        this.h = wk4Var;
+    static {
+        Enum r0 = new Enum("UNKNOWN", 0);
+        ?? r1 = new Enum("ANDROID_FIREBASE", 1);
+        a = r1;
+        b = new gj2[]{r0, r1};
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gj2.run():void");
+    public static gj2 valueOf(String str) {
+        return (gj2) Enum.valueOf(gj2.class, str);
     }
 
-    public gj2(Intent intent, TL_phone.PhoneCall phoneCall, Context context, int i, long j, boolean z) {
-        this.e = intent;
-        this.f = phoneCall;
-        this.h = context;
-        this.b = i;
-        this.c = j;
-        this.d = z;
-    }
-
-    public gj2(z zVar, int i, long j, JSONObject jSONObject, String str, boolean z) {
-        this.e = zVar;
-        this.b = i;
-        this.c = j;
-        this.f = jSONObject;
-        this.h = str;
-        this.d = z;
+    public static gj2[] values() {
+        return (gj2[]) b.clone();
     }
 }

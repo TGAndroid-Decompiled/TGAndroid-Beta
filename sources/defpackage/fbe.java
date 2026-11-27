@@ -1,96 +1,97 @@
 package defpackage;
-public final class fbe extends vid {
-    private static volatile atd zzbg;
-    private static final fbe zzbiv;
-    private int zzbb;
-    private String zzbis = "";
-    private long zzbit;
-    private long zzbiu;
-    private int zzya;
 
-    static {
-        fbe fbeVar = new fbe();
-        zzbiv = fbeVar;
-        vid.c(fbe.class, fbeVar);
-    }
+import java.math.RoundingMode;
+import java.util.Arrays;
+public final class fbe {
+    public final String a;
+    public final char[] b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final byte[] g;
+    public final boolean h;
 
-    public static ebe j() {
-        return (ebe) ((tid) zzbiv.a(5));
-    }
-
-    @Override
-    public final Object a(int i) {
-        atd atdVar;
-        switch (qbe.a[i - 1]) {
-            case 1:
-                return new fbe();
-            case 2:
-                return new tid(zzbiv);
-            case 3:
-                return new fud(zzbiv, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0005\u0000\u0000\u0000\u0001\u0004\u0000\u0002\b\u0001\u0003\u0002\u0002\u0004\u0002\u0003", new Object[]{"zzbb", "zzya", "zzbis", "zzbit", "zzbiu"});
-            case 4:
-                return zzbiv;
-            case 5:
-                atd atdVar2 = zzbg;
-                if (atdVar2 == null) {
-                    synchronized (fbe.class) {
-                        atd atdVar3 = zzbg;
-                        atdVar = atdVar3;
-                        if (atdVar3 == null) {
-                            ?? obj = new Object();
-                            zzbg = obj;
-                            atdVar = obj;
+    public fbe(String str, char[] cArr, byte[] bArr, boolean z) {
+        int numberOfLeadingZeros;
+        this.a = str;
+        cArr.getClass();
+        this.b = cArr;
+        try {
+            int length = cArr.length;
+            RoundingMode roundingMode = RoundingMode.UNNECESSARY;
+            if (length > 0) {
+                switch (jce.a[roundingMode.ordinal()]) {
+                    case 1:
+                        if (((length - 1) & length) != 0) {
+                            throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                         }
-                    }
-                    return atdVar;
+                    case 2:
+                    case 3:
+                        numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(length);
+                        break;
+                    case 4:
+                    case 5:
+                        numberOfLeadingZeros = 32 - Integer.numberOfLeadingZeros(length - 1);
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        int numberOfLeadingZeros2 = Integer.numberOfLeadingZeros(length);
+                        numberOfLeadingZeros = (31 - numberOfLeadingZeros2) + ((((-1257966797) >>> numberOfLeadingZeros2) - length) >>> 31);
+                        break;
+                    default:
+                        throw new AssertionError();
                 }
-                return atdVar2;
-            case 6:
-                return (byte) 1;
-            case 7:
-                break;
-            default:
-                fvc.b();
-                break;
+                this.d = numberOfLeadingZeros;
+                int numberOfTrailingZeros = Integer.numberOfTrailingZeros(numberOfLeadingZeros);
+                int i = 1 << (3 - numberOfTrailingZeros);
+                this.e = i;
+                this.f = numberOfLeadingZeros >> numberOfTrailingZeros;
+                this.c = length - 1;
+                this.g = bArr;
+                boolean[] zArr = new boolean[i];
+                for (int i2 = 0; i2 < this.f; i2++) {
+                    int i3 = this.d;
+                    RoundingMode roundingMode2 = RoundingMode.CEILING;
+                    zArr[t6f.a(i2 << 3, i3)] = true;
+                }
+                this.h = z;
+                return;
+            }
+            throw new IllegalArgumentException("x (0) must be > 0");
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException(uh9.k(cArr.length, "Illegal alphabet length "), e);
         }
-        return null;
     }
 
-    public final int e() {
-        return this.zzya;
-    }
-
-    public final boolean f() {
-        if ((this.zzbb & 1) == 1) {
-            return true;
+    public final boolean equals(Object obj) {
+        if (obj instanceof fbe) {
+            fbe fbeVar = (fbe) obj;
+            if (this.h == fbeVar.h && Arrays.equals(this.b, fbeVar.b)) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
 
-    public final String g() {
-        return this.zzbis;
+    public final int hashCode() {
+        int i;
+        int hashCode = Arrays.hashCode(this.b);
+        if (true != this.h) {
+            i = 1237;
+        } else {
+            i = 1231;
+        }
+        return hashCode + i;
     }
 
-    public final long h() {
-        return this.zzbit;
+    public final String toString() {
+        return this.a;
     }
 
-    public final long i() {
-        return this.zzbiu;
-    }
-
-    public final void k(String str) {
-        this.zzbb |= 2;
-        this.zzbis = str;
-    }
-
-    public final void l(long j) {
-        this.zzbb |= 4;
-        this.zzbit = j;
-    }
-
-    public final void m(long j) {
-        this.zzbb |= 8;
-        this.zzbiu = j;
+    public fbe(java.lang.String r10, char[] r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fbe.<init>(java.lang.String, char[]):void");
     }
 }

@@ -1,30 +1,30 @@
 package defpackage;
-public final class n54 implements x56, us2 {
-    public final byte a;
-    public final float b;
 
-    public n54(float f, byte b) {
-        this.a = b;
-        this.b = f;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class n54 extends c4 {
+    public static final Parcelable.Creator<n54> CREATOR = new zkd((byte) 19);
+    public String a;
 
-    @Override
-    public final void accept(Object obj) {
-        byte b = this.a;
-        float f = this.b;
-        ad8 ad8Var = (ad8) obj;
-        switch (b) {
-            case 1:
-                ad8Var.c(f);
-                return;
-            default:
-                ad8Var.R(f);
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj instanceof n54) {
+            return vue.a(this.a, ((n54) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a});
     }
 
     @Override
-    public final void invoke(Object obj) {
-        ((mc8) obj).q(this.b);
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 1, this.a);
+        bye.s(parcel, r);
     }
 }

@@ -1,28 +1,36 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-public final class hwb {
-    public TLRPC.TL_forumTopic a;
-    public up9 b;
-    public final lwb c;
-
-    public hwb(lwb lwbVar) {
-        this.c = lwbVar;
+public enum hwb extends rwb {
+    public hwb() {
+        super("BeforeDoctypeSystemIdentifier", 61);
     }
 
-    public final long a() {
-        up9 up9Var = this.b;
-        if (up9Var != null) {
-            return up9Var.a;
+    @Override
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
+            if (d != '\"') {
+                if (d != '\'') {
+                    mub mubVar = rwb.a;
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bubVar.m(this);
+                            bubVar.c = rwb.D0;
+                            return;
+                        }
+                        bubVar.l(this);
+                        bubVar.j();
+                        bubVar.c = mubVar;
+                        return;
+                    }
+                    bubVar.m(this);
+                    bubVar.j();
+                    bubVar.c = mubVar;
+                    return;
+                }
+                bubVar.c = rwb.B0;
+                return;
+            }
+            bubVar.c = rwb.A0;
         }
-        TLRPC.TL_forumTopic tL_forumTopic = this.a;
-        if (tL_forumTopic == null) {
-            return 0L;
-        }
-        int i = lwb.r0;
-        if (this.c.c) {
-            return cf3.n(tL_forumTopic.from_id);
-        }
-        return tL_forumTopic.id;
     }
 }

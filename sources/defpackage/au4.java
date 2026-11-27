@@ -1,252 +1,86 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-public final class au4 implements hy1 {
-    public final TL_stars.TL_starGiftUnique a;
-    public final du4 b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class au4 extends nx0 {
+    public final zt4 l1;
+    public ValueAnimator m1;
+    public vpa n1;
+    public Boolean o1;
+    public pcc p1;
 
-    public au4(du4 du4Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.b = du4Var;
-        this.a = tL_starGiftUnique;
+    public au4(Context context, vnb vnbVar, String str, float f) {
+        super(1, vnbVar, context, false);
+        K(-14737633);
+        zt4 zt4Var = new zt4(yac.t0, context, new x53(), f, str);
+        this.l1 = zt4Var;
+        zt4Var.H.setVisibility(8);
+        zt4Var.setMultipleOnClick(false);
+        zt4Var.setOnBackClickListener(new xt4(this, (byte) 0));
+        zt4Var.setOnSelectListener(new yt4(this, (byte) 0));
+        wma wmaVar = new wma(context, null);
+        this.b = wmaVar;
+        int i = this.u0;
+        wmaVar.setPadding(i, 0, i, 0);
+        this.b.addView(zt4Var);
     }
 
     @Override
-    public final void C0(CharSequence charSequence, boolean z, boolean z2) {
-        b(charSequence);
+    public final boolean D() {
+        return !this.l1.x;
     }
 
-    @Override
-    public final bu1 D() {
-        return null;
-    }
-
-    @Override
-    public final boolean H0() {
-        return false;
-    }
-
-    @Override
-    public final boolean M() {
-        return true;
-    }
-
-    @Override
-    public final void P0(CharSequence charSequence) {
-        b(charSequence);
-    }
-
-    @Override
-    public final boolean Q0() {
-        return false;
-    }
-
-    public final void b(CharSequence charSequence) {
-        int i;
-        boolean z;
-        du4 du4Var = this.b;
-        hn hnVar = du4Var.v1;
-        du4Var.l1.a(this.a, y6c.h(du4Var.a).e(), du4Var.r1.getTextWithEntities(), k96.M0(2131749728, null), true);
-        int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
-        du4Var.z1 = codePointCount;
-        int i2 = du4Var.y1;
-        if (i2 > 0 && (i = i2 - codePointCount) <= 15) {
-            if (i < -9999) {
-                i = -9999;
-            }
-            String E = k96.E(i, ',');
-            if (hnVar.getVisibility() == 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            hnVar.c(E, z, true);
-            if (hnVar.getVisibility() != 0) {
-                hnVar.setVisibility(0);
-                hnVar.setAlpha(0.0f);
-                hnVar.setScaleX(0.5f);
-                hnVar.setScaleY(0.5f);
-            }
-            hnVar.animate().setListener(null).cancel();
-            hnVar.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
-            if (i < 0) {
-                zkb.U(hnVar, bkb.o7, du4Var.J0);
-                return;
-            } else {
-                zkb.U(hnVar, bkb.x6, du4Var.J0);
-                return;
-            }
+    public final void E0(boolean z, xt4 xt4Var) {
+        float height;
+        zt4 zt4Var = this.l1;
+        float translationY = zt4Var.getTranslationY();
+        if (z) {
+            height = 0.0f;
+        } else {
+            height = (this.b.getHeight() - zt4Var.g()) + (hl.n * 2.5f);
         }
-        hnVar.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new im2(this, (byte) 26));
+        this.o1 = Boolean.valueOf(z);
+        if (z) {
+            vpa vpaVar = new vpa(zt4Var, vpa.p, height);
+            this.n1 = vpaVar;
+            vpaVar.m.a(0.75f);
+            this.n1.m.b(350.0f);
+            this.n1.a(new kk(this, height, xt4Var));
+            this.n1.h();
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
+        this.m1 = ofFloat;
+        ofFloat.addUpdateListener(new ch4(this, (byte) 4));
+        this.m1.addListener(new v5(this, xt4Var, (byte) 25));
+        this.m1.setDuration(450L);
+        this.m1.setInterpolator(k43.h);
+        this.m1.start();
+    }
+
+    public final void F0() {
+        super.dismiss();
     }
 
     @Override
-    public final boolean g() {
-        return false;
+    public final void dismiss() {
+        E0(false, new xt4(this, (byte) 1));
+        super.dismiss();
     }
 
     @Override
-    public final int h() {
-        return 0;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.l1.g()) {
+            dismiss();
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final TLRPC.Peer i() {
-        return null;
-    }
-
-    @Override
-    public final int o0() {
-        return 0;
-    }
-
-    @Override
-    public final TL_stories.StoryItem t0() {
-        return null;
-    }
-
-    @Override
-    public final boolean u0(long j) {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_channels_sendAsPeers v() {
-        return null;
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
-    }
-
-    @Override
-    public final void B() {
-    }
-
-    @Override
-    public final void G0() {
-    }
-
-    @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void I0() {
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void L0() {
-    }
-
-    @Override
-    public final void R0() {
-    }
-
-    @Override
-    public final void S() {
-    }
-
-    @Override
-    public final void U() {
-    }
-
-    @Override
-    public final void W0() {
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void e() {
-    }
-
-    @Override
-    public final void e1() {
-    }
-
-    @Override
-    public final void g0() {
-    }
-
-    @Override
-    public final void g1() {
-    }
-
-    @Override
-    public final void j() {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o1() {
-    }
-
-    @Override
-    public final void p1() {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void s1() {
-    }
-
-    @Override
-    public final void y() {
-    }
-
-    @Override
-    public final void f1(int i) {
-    }
-
-    @Override
-    public final void j1(boolean z) {
-    }
-
-    @Override
-    public final void k(float f) {
-    }
-
-    @Override
-    public final void m(boolean z) {
-    }
-
-    @Override
-    public final void n0(int i) {
-    }
-
-    @Override
-    public final void z(boolean z) {
-    }
-
-    @Override
-    public final void w(float f, int i) {
-    }
-
-    @Override
-    public final void O0(View view, CharSequence charSequence, boolean z) {
-    }
-
-    @Override
-    public final void u(CharSequence charSequence, boolean z, int i, int i2, long j) {
-    }
-
-    @Override
-    public final void k1(int i, int i2, int i3, long j, long j2, boolean z) {
+    public final void show() {
+        super.show();
+        E0(true, null);
     }
 }

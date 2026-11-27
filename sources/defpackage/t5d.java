@@ -1,29 +1,29 @@
 package defpackage;
-public final class t5d extends qo2 {
-    public final byte f;
-    public final so2 h;
+public final class t5d extends h6d {
+    public final byte b = 0;
+    public final Object c;
 
-    public t5d(so2 so2Var, byte b) {
-        super(so2Var, (byte) 0);
-        this.f = b;
-        this.h = so2Var;
+    public t5d(u5d u5dVar, u5d u5dVar2) {
+        super(u5dVar2);
+        this.c = u5dVar;
     }
 
     @Override
-    public final Object b(int i) {
-        byte b = this.f;
-        so2 so2Var = this.h;
+    public final void a() {
+        byte b = this.b;
+        Object obj = this.c;
         switch (b) {
             case 0:
-                Object[] objArr = so2Var.d;
-                objArr.getClass();
-                return objArr[i];
-            case 1:
-                return new k7d(so2Var, i);
+                ((u5d) obj).F0(1);
+                return;
             default:
-                Object[] objArr2 = so2Var.e;
-                objArr2.getClass();
-                return objArr2[i];
+                ((fg0) obj).a(new ws2(16, null, null));
+                return;
         }
+    }
+
+    public t5d(x5d x5dVar, g6d g6dVar, fg0 fg0Var) {
+        super(g6dVar);
+        this.c = fg0Var;
     }
 }

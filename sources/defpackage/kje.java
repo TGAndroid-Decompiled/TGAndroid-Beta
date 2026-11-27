@@ -1,21 +1,17 @@
 package defpackage;
+public final class kje implements zq7 {
+    public static final kje a = new Object();
 
-import java.nio.ByteBuffer;
-public abstract class kje {
-    public static int a(ByteBuffer byteBuffer, int i, int i2) {
-        int i3 = 0;
-        while (i < i2) {
-            int i4 = byteBuffer.get(i) & 255;
-            if (i3 >= 2 && i4 == 1) {
-                return i - 2;
-            }
-            if (i4 == 0) {
-                i3++;
-            } else {
-                i3 = 0;
-            }
-            i++;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return i2;
+        throw new ClassCastException();
     }
 }

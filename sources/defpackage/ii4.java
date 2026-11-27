@@ -1,48 +1,26 @@
 package defpackage;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.view.View;
-public final class ii4 extends View {
-    public final byte a;
-    public final mi4 b;
+import android.content.Intent;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class ii4 extends BroadcastReceiver {
+    public static final AtomicReference b = new AtomicReference();
+    public final Context a;
 
-    public ii4(mi4 mi4Var, Context context, byte b) {
-        super(context);
-        this.a = b;
-        this.b = mi4Var;
+    public ii4(Context context) {
+        this.a = context;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        byte b = this.a;
-        mi4 mi4Var = this.b;
-        switch (b) {
-            case 0:
-                mi4Var.q.reset();
-                mi4Var.b(canvas, true);
-                return;
-            default:
-                Matrix matrix = mi4Var.q;
-                matrix.reset();
-                matrix.postTranslate(-getX(), (-getY()) + gl.m);
-                matrix.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
-                mi4Var.b(canvas, false);
-                return;
+    public final void onReceive(Context context, Intent intent) {
+        synchronized (ji4.k) {
+            Iterator it = ((ks) ji4.l.values()).iterator();
+            while (it.hasNext()) {
+                ((ji4) it.next()).e();
+            }
         }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 0:
-                super.onMeasure(i, i2);
-                this.b.g();
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
+        this.a.unregisterReceiver(this);
     }
 }

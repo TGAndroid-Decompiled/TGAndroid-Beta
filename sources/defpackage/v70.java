@@ -1,60 +1,24 @@
 package defpackage;
-public final class v70 {
-    public final int a;
-    public final long b;
+public final class v70 implements zq7 {
+    public static final v70 a = new Object();
+    public static final sa4 b = sa4.c("sessionId");
+    public static final sa4 c = sa4.c("firstSessionId");
+    public static final sa4 d = sa4.c("sessionIndex");
+    public static final sa4 e = sa4.c("eventTimestampUs");
+    public static final sa4 f = sa4.c("dataCollectionStatus");
+    public static final sa4 g = sa4.c("firebaseInstallationId");
+    public static final sa4 h = sa4.c("firebaseAuthenticationToken");
 
-    public v70(int i, long j) {
-        if (i != 0) {
-            this.a = i;
-            this.b = j;
-            return;
-        }
-        fvc.f("Null status");
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof v70) {
-                v70 v70Var = (v70) obj;
-                if (ug8.c(this.a, v70Var.a) && this.b == v70Var.b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        long j = this.b;
-        return ((ug8.F(this.a) ^ 1000003) * 1000003) ^ ((int) ((j >>> 32) ^ j));
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb = new StringBuilder("BackendResponse{status=");
-        int i = this.a;
-        if (i != 1) {
-            if (i != 2) {
-                if (i != 3) {
-                    if (i != 4) {
-                        str = "null";
-                    } else {
-                        str = "INVALID_PAYLOAD";
-                    }
-                } else {
-                    str = "FATAL_ERROR";
-                }
-            } else {
-                str = "TRANSIENT_ERROR";
-            }
-        } else {
-            str = "OK";
-        }
-        sb.append(str);
-        sb.append(", nextRequestWaitMillis=");
-        return ls6.p(sb, this.b, "}");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        aaa aaaVar = (aaa) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.a(b, aaaVar.a);
+        ar7Var.a(c, aaaVar.b);
+        ar7Var.e(d, aaaVar.c);
+        ar7Var.g(e, aaaVar.d);
+        ar7Var.a(f, aaaVar.e);
+        ar7Var.a(g, aaaVar.f);
+        ar7Var.a(h, aaaVar.g);
     }
 }

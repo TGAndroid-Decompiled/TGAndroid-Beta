@@ -1,12 +1,10 @@
 package defpackage;
-
-import java.io.IOException;
-public final class ri2 extends IOException {
-    public ri2(long r4, int r6, long r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ri2.<init>(long, int, long):void");
+public final class ri2 extends Exception {
+    public ri2(java.lang.String r1, java.lang.String r2) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ri2.<init>(java.lang.String, java.lang.String):void");
     }
 
-    public ri2(int i) {
-        this(-9223372036854775807L, i, -9223372036854775807L);
+    public ri2(String str) {
+        this("android.credentials.ClearCredentialStateException.TYPE_UNKNOWN", str);
     }
 }

@@ -1,30 +1,31 @@
 package defpackage;
+
+import org.telegram.tgnet.tl.TL_feed;
 public final class xl7 implements Runnable {
     public final byte a;
-    public final im7 b;
-    public final long c;
-    public final long d;
+    public final lm7 b;
+    public final jm7 c;
 
-    public xl7(im7 im7Var, long j, long j2, byte b) {
+    public xl7(lm7 lm7Var, jm7 jm7Var, byte b) {
         this.a = b;
-        this.b = im7Var;
-        this.c = j;
-        this.d = j2;
+        this.b = lm7Var;
+        this.c = jm7Var;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        long j = this.d;
-        long j2 = this.c;
-        im7 im7Var = this.b;
+        jm7 jm7Var = this.c;
+        lm7 lm7Var = this.b;
         switch (b) {
             case 0:
-                im7Var.G = j2;
-                im7Var.H = j;
+                lm7Var.z0(jm7Var);
                 return;
             default:
-                im7Var.i(j2, j);
+                jm7Var.t = null;
+                TL_feed.TL_feed_readFeed tL_feed_readFeed = new TL_feed.TL_feed_readFeed();
+                tL_feed_readFeed.max_position = jm7Var.s;
+                lm7Var.getConnectionsManager().sendRequest(tL_feed_readFeed, new wl7(lm7Var, (byte) 1));
                 return;
         }
     }

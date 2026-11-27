@@ -1,44 +1,20 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.TextView;
-public final class mha implements View.OnClickListener {
-    public final byte a;
-    public final pha b;
+import android.content.Context;
+import android.os.Bundle;
+public final class mha extends hv1 {
+    public final eja f;
 
-    public mha(pha phaVar, byte b) {
-        this.a = b;
-        this.b = phaVar;
+    public mha(eja ejaVar, Context context, wk5 wk5Var, Bundle bundle) {
+        super(context, wk5Var, bundle);
+        this.f = ejaVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        pha phaVar = this.b;
-        switch (b) {
-            case 0:
-                if (!phaVar.H && phaVar.G) {
-                    phaVar.n(true);
-                    return;
-                }
-                c6 c6Var = phaVar.W;
-                if (c6Var != null) {
-                    c6Var.b(-1);
-                    return;
-                }
-                return;
-            default:
-                if (phaVar.s.length() != 0) {
-                    phaVar.s.setText("");
-                } else {
-                    TextView textView = phaVar.x;
-                    if (textView != null && textView.getVisibility() == 0) {
-                        phaVar.m();
-                    }
-                }
-                phaVar.s.requestFocus();
-                gl.E3(phaVar.s);
-                return;
+    public final void b(boolean z) {
+        s7 s7Var = this.f.q0;
+        if (s7Var != null) {
+            s7Var.setShowSearchProgress(z);
         }
     }
 }

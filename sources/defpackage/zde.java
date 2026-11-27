@@ -1,12 +1,17 @@
 package defpackage;
-public abstract class zde {
-    public boolean a(int i, int i2) {
-        return true;
+public final class zde implements zq7 {
+    public static final zde a = new Object();
+
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)));
     }
 
-    public abstract boolean b(int i, int i2);
-
-    public abstract int c();
-
-    public abstract int d();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

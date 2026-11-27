@@ -1,87 +1,42 @@
 package defpackage;
 
-import android.media.Rating;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class hz8 implements Parcelable {
-    public static final Parcelable.Creator<hz8> CREATOR = new hv6((byte) 12);
-    public final int a;
-    public final float b;
-    public Rating c;
+import org.telegram.ui.ActionBar.e;
+public final class hz8 implements Runnable {
+    public final byte a = 1;
+    public final String b;
+    public final pcc c;
+    public final e d;
 
-    public hz8(int i, float f) {
-        this.a = i;
-        this.b = f;
+    public hz8(String str, pcc pccVar, e eVar) {
+        this.b = str;
+        this.c = pccVar;
+        this.d = eVar;
     }
 
-    public static hz8 c(float f) {
-        if (f >= 0.0f && f <= 100.0f) {
-            return new hz8(6, f);
-        }
-        lad.c("Rating", "Invalid percentage-based rating value");
-        return null;
-    }
-
-    public static hz8 d(float f, int i) {
-        float f2;
-        if (i != 3) {
-            if (i != 4) {
-                if (i != 5) {
-                    lad.c("Rating", "Invalid rating style (" + i + ") for a star rating");
-                    return null;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        e eVar = this.d;
+        pcc pccVar = this.c;
+        String str = this.b;
+        switch (b) {
+            case 0:
+                jz8.p(eVar, 0, new hz8(str, pccVar, eVar));
+                return;
+            default:
+                if (str != null) {
+                    pccVar.a(str);
+                    return;
+                } else {
+                    d31.b0(eVar).N(ob6.M0(2131745589, null), ob6.M0(2131751070, null)).j();
+                    return;
                 }
-                f2 = 5.0f;
-            } else {
-                f2 = 4.0f;
-            }
-        } else {
-            f2 = 3.0f;
         }
-        if (f >= 0.0f && f <= f2) {
-            return new hz8(i, f);
-        }
-        lad.c("Rating", "Trying to set out of range star-based rating");
-        return null;
     }
 
-    public final float a() {
-        int i = this.a;
-        if ((i == 3 || i == 4 || i == 5) && b()) {
-            return this.b;
-        }
-        return -1.0f;
-    }
-
-    public final boolean b() {
-        if (this.b >= 0.0f) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int describeContents() {
-        return this.a;
-    }
-
-    public final String toString() {
-        String valueOf;
-        StringBuilder sb = new StringBuilder("Rating:style=");
-        sb.append(this.a);
-        sb.append(" rating=");
-        float f = this.b;
-        if (f < 0.0f) {
-            valueOf = "unrated";
-        } else {
-            valueOf = String.valueOf(f);
-        }
-        sb.append(valueOf);
-        return sb.toString();
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(this.a);
-        parcel.writeFloat(this.b);
+    public hz8(e eVar, String str, pcc pccVar) {
+        this.d = eVar;
+        this.b = str;
+        this.c = pccVar;
     }
 }

@@ -1,327 +1,259 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ozb extends FrameLayout {
-    public final ImageView a;
-    public final xw0 b;
-    public final pkb c;
-    public final TextView d;
-    public final mzb e;
-    public final View f;
-    public final View h;
-    public final rzb n;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
+public final class ozb extends vic implements xg4 {
+    public final FrameLayout W;
+    public final d79 a0;
+    public final x46 b0;
+    public final mzb c0;
+    public bcb d0;
+    public String e0;
+    public final ArrayList f0;
+    public final ArrayList g0;
+    public int h0;
+    public int i0;
+    public int j0;
+    public int k0;
+    public int l0;
+    public int m0;
+    public int n0;
+    public boolean o0;
+    public boolean p0;
+    public final z2b q0;
+    public final i69 r0;
+    public boolean s0;
+    public final bn0 t0;
+    public final pq8 u0;
+    public final ArrayList v0;
+    public final tzb w0;
 
-    public ozb(rzb rzbVar, Context context) {
-        super(context);
+    public ozb(tzb tzbVar, Context context) {
+        super(context, null);
+        this.w0 = tzbVar;
+        this.e0 = "empty";
+        this.f0 = new ArrayList();
+        this.g0 = new ArrayList();
+        this.v0 = new ArrayList();
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.W = frameLayout;
+        this.u0 = new pq8(this, (byte) 23);
+        d79 d79Var = new d79(context, null);
+        this.a0 = d79Var;
+        mzb mzbVar = new mzb(this);
+        this.c0 = mzbVar;
+        d79Var.setAdapter(mzbVar);
+        x46 x46Var = new x46();
+        this.b0 = x46Var;
+        d79Var.setLayoutManager(x46Var);
+        d79Var.setOnItemClickListener(new t39(this, (byte) 25));
+        d79Var.setOnScrollListener(new qhb(this, (byte) 4));
+        tk4 tk4Var = new tk4(context, null);
+        tk4Var.setViewType(7);
+        tk4Var.x = false;
+        tk4Var.setUseHeaderOffset(true);
+        z2b z2bVar = new z2b(context, tk4Var, 1, null);
+        this.q0 = z2bVar;
+        z2bVar.d.setText(ob6.M0(2131747898, null));
+        z2bVar.e.setVisibility(8);
+        z2bVar.setVisibility(8);
+        z2bVar.addView(tk4Var, 0);
+        z2bVar.setAnimateLayoutChange(true);
+        d79Var.setEmptyView(z2bVar);
+        d79Var.X1 = true;
+        d79Var.Y1 = false;
+        frameLayout.addView(z2bVar);
+        frameLayout.addView(d79Var);
+        O();
+        i69 i69Var = new i69(d79Var, true);
+        this.r0 = i69Var;
+        d79Var.setItemsEnterAnimator(i69Var);
+        bn0 bn0Var = new bn0(this);
+        this.t0 = bn0Var;
+        setAdapter(bn0Var);
+    }
+
+    public final void M(String str) {
         int i;
-        int i2;
-        this.n = rzbVar;
-        View view = new View(context);
-        this.f = view;
-        int i3 = bkb.g5;
-        wjb wjbVar = rzbVar.J0;
-        String str = rzbVar.t1;
-        zkb.h(i3, wjbVar, view);
-        addView(view, nme.d(-1, 44.0f, 55, 0.0f, 12.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131231243);
-        int i4 = bkb.i5;
-        wjb wjbVar2 = rzbVar.J0;
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        zkb.s(imageView, i4, wjbVar2, mode);
-        int i5 = bkb.h6;
-        ff0 f0 = bkb.f0(bkb.v0(i5, rzbVar.J0), 1, -1);
-        vkb M = zkb.M(i5);
-        wjb wjbVar3 = rzbVar.J0;
-        imageView.setBackground(f0);
-        zkb.j(imageView, f0, null, M, wjbVar3);
-        imageView.setAlpha(0.0f);
-        imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final ozb b;
+        if (this.s0) {
+            return;
+        }
+        TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+        tzb tzbVar = this.w0;
+        tL_messages_search.peer = tzbVar.getMessagesController().j1(-tzbVar.a);
+        tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
+        tL_messages_search.limit = 20;
+        tL_messages_search.q = str;
+        ArrayList arrayList = this.g0;
+        if (!arrayList.isEmpty()) {
+            tL_messages_search.offset_id = ((r47) c00.g(1, arrayList)).e1();
+        }
+        this.s0 = true;
+        i = ((e) tzbVar).currentAccount;
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_search, new isa(this, str, (byte) 17));
+    }
 
-            {
-                this.b = this;
+    public final void N(View view, int i, String str, boolean z) {
+        this.e0 = str;
+        FrameLayout frameLayout = this.W;
+        tzb tzbVar = this.w0;
+        int i2 = 0;
+        if (view == frameLayout) {
+            bcb bcbVar = this.d0;
+            if (bcbVar != null) {
+                hl.r(bcbVar);
+                this.d0 = null;
             }
-
-            @Override
-            public final void onClick(View view2) {
-                int measuredHeight;
-                boolean z;
-                String str2;
-                byte b = r2;
-                ozb ozbVar = this.b;
-                switch (b) {
-                    case 0:
-                        ozbVar.n.dismiss();
+            this.s0 = false;
+            this.p0 = false;
+            ArrayList arrayList = this.f0;
+            arrayList.clear();
+            this.g0.clear();
+            O();
+            if (TextUtils.isEmpty(str)) {
+                this.o0 = false;
+                arrayList.clear();
+                while (true) {
+                    ArrayList arrayList2 = tzbVar.b;
+                    if (i2 < arrayList2.size()) {
+                        if (((kzb) arrayList2.get(i2)).c != null) {
+                            arrayList.add(((kzb) arrayList2.get(i2)).c);
+                            ((kzb) arrayList2.get(i2)).c.searchQuery = null;
+                        }
+                        i2++;
+                    } else {
+                        O();
                         return;
-                    default:
-                        mzb mzbVar = ozbVar.e;
-                        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(ozbVar.getContext(), null);
-                        Drawable mutate = ozbVar.getContext().getDrawable(2131232569).mutate();
-                        int i6 = bkb.F8;
-                        rzb rzbVar2 = ozbVar.n;
-                        zkb.x(ozbVar, mutate, i6, rzbVar2.J0, PorterDuff.Mode.MULTIPLY);
-                        actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(mutate);
-                        Runnable[] runnableArr = new Runnable[1];
-                        List list = b1c.N;
-                        ArrayList arrayList = new ArrayList(k96.D0().N.values());
-                        int i7 = 0;
-                        while (i7 < arrayList.size()) {
-                            i96 i96Var = (i96) arrayList.get(i7);
-                            if (i96Var == null || (((str2 = i96Var.c) != null && str2.endsWith("_raw")) || !"remote".equals(i96Var.d))) {
-                                arrayList.remove(i7);
-                                i7--;
-                            }
-                            i7++;
-                        }
-                        Collections.sort(arrayList, new fx5(k96.D0().B, (byte) 1));
-                        boolean z2 = true;
-                        for (int i8 = 0; i8 < arrayList.size(); i8++) {
-                            i96 i96Var2 = (i96) arrayList.get(i8);
-                            if (!i96Var2.f.equals(rzbVar2.t1) && "remote".equals(i96Var2.d)) {
-                                TextUtils.equals(rzbVar2.u1, i96Var2.f);
-                                Context context2 = ozbVar.getContext();
-                                if (i8 == arrayList.size() - 1) {
-                                    z = true;
-                                } else {
-                                    z = false;
-                                }
-                                a8 a8Var = new a8(2, rzbVar2.J0, context2, z2, z);
-                                a8Var.setText(rzb.E0(rzb.J0(i96Var2.f, null, null)));
-                                a8Var.setChecked(TextUtils.equals(rzbVar2.u1, i96Var2.f));
-                                a8Var.setOnClickListener(new hu4(ozbVar, runnableArr, i96Var2, (byte) 23));
-                                actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var);
-                                z2 = false;
-                            }
-                        }
-                        m8 m8Var = new m8(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                        runnableArr[0] = new wn1(m8Var, (byte) 1);
-                        m8Var.e = true;
-                        m8Var.c = (short) 220;
-                        m8Var.setOutsideTouchable(true);
-                        m8Var.setClippingEnabled(true);
-                        m8Var.setAnimationStyle(2131755192);
-                        m8Var.setFocusable(true);
-                        int[] iArr = new int[2];
-                        mzbVar.getLocationInWindow(iArr);
-                        Point point = gl.q;
-                        actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(point.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));
-                        int measuredHeight2 = actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
-                        int i9 = iArr[1];
-                        if (i9 > (point.y * 0.9f) - measuredHeight2) {
-                            measuredHeight = gl.L(8.0f) + (i9 - measuredHeight2);
-                        } else {
-                            measuredHeight = (mzbVar.getMeasuredHeight() + i9) - gl.L(8.0f);
-                        }
-                        m8Var.showAtLocation(rzbVar2.b, 51, iArr[0] - gl.L(8.0f), measuredHeight);
-                        return;
+                    }
                 }
-            }
-        });
-        addView(imageView, nme.d(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
-        xw0 xw0Var = new xw0((byte) 7, context, this);
-        this.b = xw0Var;
-        zkb.X(xw0Var, i4, rzbVar.J0);
-        xw0Var.setTextSize(1, 20.0f);
-        xw0Var.setTypeface(gl.o());
-        xw0Var.setText(k96.M0(2131753763, null));
-        xw0Var.setPivotX(0.0f);
-        xw0Var.setPivotY(0.0f);
-        addView(xw0Var, nme.d(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
-        pkb pkbVar = new pkb((byte) 21, context, this);
-        this.c = pkbVar;
-        if (k96.a0) {
-            pkbVar.setGravity(5);
-        }
-        pkbVar.setPivotX(0.0f);
-        pkbVar.setPivotY(0.0f);
-        if (!TextUtils.isEmpty(str) && !"und".equals(str)) {
-            TextView textView = new TextView(context);
-            this.d = textView;
-            textView.setLines(1);
-            zkb.X(textView, bkb.Fj, rzbVar.J0);
-            textView.setTextSize(1, 14.0f);
-            textView.setText(rzb.E0(rzb.J0(str, null, null)));
-            textView.setPadding(0, gl.L(2.0f), 0, gl.L(2.0f));
-        }
-        ImageView k = tb4.k(context, 2131232687);
-        int i6 = bkb.Fj;
-        zkb.s(k, i6, rzbVar.J0, mode);
-        if (k96.a0) {
-            k.setScaleX(-1.0f);
-        }
-        mzb mzbVar = new mzb(this, context);
-        this.e = mzbVar;
-        if (k96.a0) {
-            mzbVar.setGravity(5);
-        }
-        mzbVar.b(0.25f, 350L, s33.h);
-        zkb.U(mzbVar, i6, rzbVar.J0);
-        mzbVar.setTextSize(gl.L(14.0f));
-        mzbVar.setText(rzb.E0(rzb.J0(rzbVar.u1, null, null)));
-        mzbVar.setPadding(gl.L(4.0f), gl.L(2.0f), gl.L(4.0f), gl.L(2.0f));
-        mzbVar.setOnClickListener(new View.OnClickListener(this) {
-            public final ozb b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                int measuredHeight;
-                boolean z;
-                String str2;
-                byte b = r2;
-                ozb ozbVar = this.b;
-                switch (b) {
-                    case 0:
-                        ozbVar.n.dismiss();
-                        return;
-                    default:
-                        mzb mzbVar2 = ozbVar.e;
-                        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(ozbVar.getContext(), null);
-                        Drawable mutate = ozbVar.getContext().getDrawable(2131232569).mutate();
-                        int i62 = bkb.F8;
-                        rzb rzbVar2 = ozbVar.n;
-                        zkb.x(ozbVar, mutate, i62, rzbVar2.J0, PorterDuff.Mode.MULTIPLY);
-                        actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(mutate);
-                        Runnable[] runnableArr = new Runnable[1];
-                        List list = b1c.N;
-                        ArrayList arrayList = new ArrayList(k96.D0().N.values());
-                        int i7 = 0;
-                        while (i7 < arrayList.size()) {
-                            i96 i96Var = (i96) arrayList.get(i7);
-                            if (i96Var == null || (((str2 = i96Var.c) != null && str2.endsWith("_raw")) || !"remote".equals(i96Var.d))) {
-                                arrayList.remove(i7);
-                                i7--;
-                            }
-                            i7++;
-                        }
-                        Collections.sort(arrayList, new fx5(k96.D0().B, (byte) 1));
-                        boolean z2 = true;
-                        for (int i8 = 0; i8 < arrayList.size(); i8++) {
-                            i96 i96Var2 = (i96) arrayList.get(i8);
-                            if (!i96Var2.f.equals(rzbVar2.t1) && "remote".equals(i96Var2.d)) {
-                                TextUtils.equals(rzbVar2.u1, i96Var2.f);
-                                Context context2 = ozbVar.getContext();
-                                if (i8 == arrayList.size() - 1) {
-                                    z = true;
-                                } else {
-                                    z = false;
-                                }
-                                a8 a8Var = new a8(2, rzbVar2.J0, context2, z2, z);
-                                a8Var.setText(rzb.E0(rzb.J0(i96Var2.f, null, null)));
-                                a8Var.setChecked(TextUtils.equals(rzbVar2.u1, i96Var2.f));
-                                a8Var.setOnClickListener(new hu4(ozbVar, runnableArr, i96Var2, (byte) 23));
-                                actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var);
-                                z2 = false;
-                            }
-                        }
-                        m8 m8Var = new m8(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                        runnableArr[0] = new wn1(m8Var, (byte) 1);
-                        m8Var.e = true;
-                        m8Var.c = (short) 220;
-                        m8Var.setOutsideTouchable(true);
-                        m8Var.setClippingEnabled(true);
-                        m8Var.setAnimationStyle(2131755192);
-                        m8Var.setFocusable(true);
-                        int[] iArr = new int[2];
-                        mzbVar2.getLocationInWindow(iArr);
-                        Point point = gl.q;
-                        actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(point.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(point.y, Integer.MIN_VALUE));
-                        int measuredHeight2 = actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
-                        int i9 = iArr[1];
-                        if (i9 > (point.y * 0.9f) - measuredHeight2) {
-                            measuredHeight = gl.L(8.0f) + (i9 - measuredHeight2);
-                        } else {
-                            measuredHeight = (mzbVar2.getMeasuredHeight() + i9) - gl.L(8.0f);
-                        }
-                        m8Var.showAtLocation(rzbVar2.b, 51, iArr[0] - gl.L(8.0f), measuredHeight);
-                        return;
-                }
-            }
-        });
-        boolean z = k96.a0;
-        TextView textView2 = this.d;
-        if (z) {
-            if (textView2 != null) {
-                i2 = 3;
             } else {
-                i2 = 0;
+                O();
+                this.o0 = true;
+                this.q0.e(true, true);
+                bcb bcbVar2 = new bcb(this, str, (byte) 15);
+                this.d0 = bcbVar2;
+                hl.d3(bcbVar2, 200L);
             }
-            pkbVar.addView(mzbVar, nme.t(-2, -2, 16, 0, 0, i2, 0));
-            if (this.d != null) {
-                pkbVar.addView(k, nme.t(-2, -2, 16, 0, 1, 0, 0));
-                pkbVar.addView(this.d, nme.t(-2, -2, 16, 4, 0, 0, 0));
+        } else if (view instanceof yg4) {
+            yg4 yg4Var = (yg4) view;
+            yg4Var.c.b(0, false);
+            yg4Var.h(-tzbVar.a, 0L, 0L, 0L, rh4.k3[((lzb) ((ArrayList) this.t0.b).get(i)).b], false, str, z);
+        } else if (view instanceof aw9) {
+            aw9 aw9Var = (aw9) view;
+            aw9Var.a.b(0, false);
+            aw9Var.L = str;
+            aw9Var.d(false);
+        }
+    }
+
+    public final void O() {
+        this.h0 = -1;
+        this.i0 = -1;
+        this.j0 = -1;
+        this.k0 = -1;
+        this.l0 = -1;
+        this.m0 = -1;
+        this.n0 = 0;
+        ArrayList arrayList = this.f0;
+        if (!arrayList.isEmpty()) {
+            int i = this.n0;
+            int i2 = i + 1;
+            this.n0 = i2;
+            this.h0 = i;
+            this.i0 = i2;
+            int size = arrayList.size() + i2;
+            this.n0 = size;
+            this.j0 = size;
+        }
+        ArrayList arrayList2 = this.g0;
+        if (!arrayList2.isEmpty()) {
+            int i3 = this.n0;
+            int i4 = i3 + 1;
+            this.n0 = i4;
+            this.k0 = i3;
+            this.l0 = i4;
+            int size2 = arrayList2.size() + i4;
+            this.n0 = size2;
+            this.m0 = size2;
+        }
+        this.c0.f();
+    }
+
+    @Override
+    public final boolean d(qg4 qg4Var) {
+        if (qg4Var == null) {
+            return false;
+        }
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.v0;
+            if (i >= arrayList.size()) {
+                return false;
             }
+            r47 r47Var = (r47) arrayList.get(i);
+            if (r47Var != null && r47Var.e1() == qg4Var.b && r47.B0(r47Var.k) == qg4Var.a) {
+                return true;
+            }
+            i++;
+        }
+    }
+
+    @Override
+    public final void e() {
+        a aVar;
+        aVar = ((e) this.w0).actionBar;
+        aVar.R(null, null);
+    }
+
+    @Override
+    public final void h(r47 r47Var, View view, int i) {
+        a aVar;
+        ArrayList arrayList = this.v0;
+        if (!arrayList.remove(r47Var)) {
+            arrayList.add(r47Var);
+        }
+        if (arrayList.isEmpty()) {
+            aVar = ((e) this.w0).actionBar;
+            aVar.y();
+        }
+    }
+
+    @Override
+    public final void r(r47 r47Var) {
+        int i;
+        Bundle bundle = new Bundle();
+        long B0 = r47.B0(r47Var.k);
+        boolean B = wf3.B(B0);
+        tzb tzbVar = this.w0;
+        if (B) {
+            bundle.putInt("enc_id", (int) (B0 & 4294967295L));
+        } else if (!wf3.D(B0)) {
+            i = ((e) tzbVar).currentAccount;
+            TLRPC.Chat M0 = uc7.s1(k5.a(i).a).M0(Long.valueOf(-B0));
+            if (M0 != null && M0.migrated_to != null) {
+                bundle.putLong("migrated_to", B0);
+                B0 = -M0.migrated_to.channel_id;
+            }
+            bundle.putLong("chat_id", -B0);
         } else {
-            if (textView2 != null) {
-                pkbVar.addView(textView2, nme.t(-2, -2, 16, 0, 0, 4, 0));
-                pkbVar.addView(k, nme.t(-2, -2, 16, 0, 1, 0, 0));
-            }
-            if (this.d != null) {
-                i = 3;
-            } else {
-                i = 0;
-            }
-            pkbVar.addView(mzbVar, nme.t(-2, -2, 16, i, 0, 0, 0));
+            bundle.putLong("user_id", B0);
         }
-        addView(pkbVar, nme.d(-1, -2.0f, 55, 22.0f, 43.0f, 22.0f, 0.0f));
-        View view2 = new View(context);
-        this.h = view2;
-        zkb.h(bkb.U5, rzbVar.J0, view2);
-        view2.setAlpha(0.0f);
-        addView(view2, nme.d(-1, gl.e1() / gl.N(1.0f), 55, 0.0f, 56.0f, 0.0f, 0.0f));
+        bundle.putInt("message_id", r47Var.e1());
+        tzbVar.presentFragment(new zu1(bundle));
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(78.0f), 1073741824));
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        super.setTranslationY(f);
-        float a = moe.a((f - gl.m) / gl.L(64.0f), 0.0f, 1.0f);
-        if (!this.n.I0()) {
-            a = 1.0f;
-        }
-        float interpolation = s33.g.getInterpolation(a);
-        float R1 = gl.R1(0.85f, 1.0f, interpolation);
-        xw0 xw0Var = this.b;
-        xw0Var.setScaleX(R1);
-        xw0Var.setScaleY(gl.R1(0.85f, 1.0f, interpolation));
-        xw0Var.setTranslationY(gl.R1(gl.N(-12.0f), 0.0f, interpolation));
-        boolean z = k96.a0;
-        pkb pkbVar = this.c;
-        if (!z) {
-            xw0Var.setTranslationX(gl.R1(gl.N(50.0f), 0.0f, interpolation));
-            pkbVar.setTranslationX(gl.R1(gl.N(50.0f), 0.0f, interpolation));
-        }
-        pkbVar.setTranslationY(gl.R1(gl.N(-22.0f), 0.0f, interpolation));
-        float R12 = gl.R1(0.0f, gl.N(-25.0f), interpolation);
-        ImageView imageView = this.a;
-        imageView.setTranslationX(R12);
-        float f2 = 1.0f - interpolation;
-        imageView.setAlpha(f2);
-        float R13 = gl.R1(0.0f, gl.N(22.0f), interpolation);
-        View view = this.h;
-        view.setTranslationY(R13);
-        view.setAlpha(f2);
+    public final boolean u() {
+        a aVar;
+        aVar = ((e) this.w0).actionBar;
+        return aVar.z();
     }
 }

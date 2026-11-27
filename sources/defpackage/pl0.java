@@ -1,79 +1,63 @@
 package defpackage;
+public final class pl0 implements nl0 {
+    public final byte a;
+    public final vnb b;
 
-import android.graphics.Color;
-public final class pl0 extends nl0 {
-    public final wjb s;
-
-    public pl0(wjb wjbVar, wjb wjbVar2) {
-        super(wjbVar);
-        this.s = wjbVar2;
+    public pl0(vnb vnbVar, byte b) {
+        this.a = b;
+        this.b = vnbVar;
     }
 
     @Override
-    public final int K() {
-        int a = a(this.c);
-        wjb wjbVar = this.s;
-        if (bkb.g1(wjbVar) && Color.alpha(bkb.v0(bkb.va, wjbVar)) != 0) {
-            return 0;
+    public final int l(vnb vnbVar, boolean z) {
+        float f;
+        float f2;
+        int i;
+        float f3;
+        int i2;
+        byte b = this.a;
+        vnb vnbVar2 = this.b;
+        switch (b) {
+            case 0:
+                if (!dtd.d(yac.t0, vnbVar2)) {
+                    return vm2.o(aob.v0(aob.Je, vnbVar), 255);
+                }
+                if (i86.e(262144)) {
+                    f = 0.85f;
+                } else {
+                    f = 0.76f;
+                }
+                return aob.p1(f, aob.v0(aob.Je, vnbVar));
+            case 1:
+                if (!dtd.d(yac.t0, vnbVar2)) {
+                    if (z) {
+                        i = aob.s8;
+                    } else {
+                        i = aob.Te;
+                    }
+                    return vm2.o(aob.v0(i, vnbVar), 255);
+                }
+                if (i86.e(262144)) {
+                    f2 = 0.85f;
+                } else {
+                    f2 = 0.76f;
+                }
+                return aob.p1(f2, aob.v0(aob.Te, vnbVar));
+            default:
+                if (!dtd.d(yac.t0, vnbVar2)) {
+                    if (z) {
+                        i2 = aob.s8;
+                    } else {
+                        i2 = aob.Te;
+                    }
+                    return vm2.o(aob.v0(i2, vnbVar), 255);
+                }
+                if (i86.e(262144)) {
+                    f3 = 0.85f;
+                } else {
+                    f3 = 0.76f;
+                }
+                return aob.p1(f3, aob.v0(aob.Te, vnbVar));
         }
-        return a;
-    }
-
-    @Override
-    public final float U0() {
-        return gl.N(0.6f);
-    }
-
-    @Override
-    public final int a1() {
-        wjb wjbVar = this.s;
-        if (bkb.g1(wjbVar)) {
-            return bkb.v0(bkb.xa, wjbVar);
-        }
-        return 0;
-    }
-
-    @Override
-    public final float b() {
-        if (bkb.g1(this.s)) {
-            return gl.N(1.0f);
-        }
-        return this.r;
-    }
-
-    @Override
-    public final int b0() {
-        wjb wjbVar = this.s;
-        if (bkb.g1(wjbVar)) {
-            return bkb.v0(bkb.va, wjbVar);
-        }
-        return 0;
-    }
-
-    @Override
-    public final float c() {
-        if (bkb.g1(this.s)) {
-            return gl.N(2.25f);
-        }
-        return this.n;
-    }
-
-    @Override
-    public final int d1() {
-        wjb wjbVar = this.s;
-        if (bkb.g1(wjbVar)) {
-            return bkb.v0(bkb.wa, wjbVar);
-        }
-        return a(this.b);
-    }
-
-    @Override
-    public final int k0() {
-        int a = a(this.d);
-        wjb wjbVar = this.s;
-        if (bkb.g1(wjbVar) && Color.alpha(bkb.v0(bkb.va, wjbVar)) != 0) {
-            return 0;
-        }
-        return a;
     }
 }

@@ -1,29 +1,40 @@
 package defpackage;
 
-import android.os.SystemClock;
-public final class pk5 {
-    public final int a;
-    public final fl5 b;
+import org.telegram.tgnet.TLRPC;
+public interface pk5 {
+    boolean a();
 
-    public pk5(fl5 fl5Var, int i) {
-        this.b = fl5Var;
-        this.a = i;
-    }
+    void b(boolean z, boolean z2);
 
-    public final void a(qb4 qb4Var, final String str, final long j, final long j2, final boolean z) {
-        this.b.u.put(str, new long[]{j, j2});
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = qb4Var.S;
-        if (j3 != 0 && j3 >= elapsedRealtime - 100 && j != j2) {
-            return;
-        }
-        qb4Var.S = elapsedRealtime;
-        final int i = this.a;
-        gl.c3(new Runnable() {
-            @Override
-            public final void run() {
-                kk7.f(i).k(kk7.V1, str, Long.valueOf(j), Long.valueOf(j2), Boolean.valueOf(z));
-            }
-        });
-    }
+    void c(TLRPC.ReactionCount reactionCount, boolean z, float f, float f2);
+
+    float getAlpha();
+
+    float getCheckBoxTranslation();
+
+    float getDeltaBottom();
+
+    int getHeight();
+
+    int getMeasuredHeight();
+
+    r47 getMessageObject();
+
+    float getPivotX();
+
+    float getScaleX();
+
+    float getScaleY();
+
+    float getSlidingOffsetX();
+
+    float getX();
+
+    float getY();
+
+    boolean j();
+
+    boolean m();
+
+    boolean n();
 }

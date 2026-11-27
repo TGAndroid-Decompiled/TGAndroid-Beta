@@ -1,67 +1,42 @@
 package defpackage;
 
 import android.app.Activity;
-import android.app.Application;
-import android.os.Bundle;
-import android.util.Log;
-public final class o9 implements Application.ActivityLifecycleCallbacks {
-    public Object a;
-    public Activity b;
-    public final int c;
-    public boolean d = false;
-    public boolean e = false;
-    public boolean f = false;
-
-    public o9(Activity activity) {
-        this.b = activity;
-        this.c = activity.hashCode();
-    }
-
-    @Override
-    public final void onActivityDestroyed(Activity activity) {
-        if (this.b == activity) {
-            this.b = null;
-            this.e = true;
-        }
-    }
-
-    @Override
-    public final void onActivityPaused(Activity activity) {
-        if (this.e && !this.f && !this.d) {
-            Object obj = this.a;
-            try {
-                Object obj2 = p9.c.get(activity);
-                if (obj2 == obj && activity.hashCode() == this.c) {
-                    p9.g.postAtFrontOfQueue(new rld(p9.b.get(activity), obj2, (byte) 2));
-                    this.f = true;
-                    this.a = null;
+import android.os.Build;
+import android.text.TextUtils;
+import java.util.Arrays;
+import java.util.HashSet;
+public abstract class o9 extends sr {
+    public static void v(Activity activity, String[] strArr, int i) {
+        String[] strArr2;
+        HashSet hashSet = new HashSet();
+        for (int i2 = 0; i2 < strArr.length; i2++) {
+            if (!TextUtils.isEmpty(strArr[i2])) {
+                if (Build.VERSION.SDK_INT < 33 && TextUtils.equals(strArr[i2], "android.permission.POST_NOTIFICATIONS")) {
+                    hashSet.add(Integer.valueOf(i2));
                 }
-            } catch (Throwable th) {
-                Log.e("ActivityRecreator", "Exception while fetching field values", th);
+            } else {
+                lq5.j(c00.k(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
+                return;
             }
         }
-    }
-
-    @Override
-    public final void onActivityStarted(Activity activity) {
-        if (this.b == activity) {
-            this.d = true;
+        int size = hashSet.size();
+        if (size > 0) {
+            strArr2 = new String[strArr.length - size];
+        } else {
+            strArr2 = strArr;
         }
-    }
-
-    @Override
-    public final void onActivityResumed(Activity activity) {
-    }
-
-    @Override
-    public final void onActivityStopped(Activity activity) {
-    }
-
-    @Override
-    public final void onActivityCreated(Activity activity, Bundle bundle) {
-    }
-
-    @Override
-    public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+        if (size > 0) {
+            if (size == strArr.length) {
+                return;
+            }
+            int i3 = 0;
+            for (int i4 = 0; i4 < strArr.length; i4++) {
+                if (!hashSet.contains(Integer.valueOf(i4))) {
+                    strArr2[i3] = strArr[i4];
+                    i3++;
+                }
+            }
+        }
+        activity.requestPermissions(strArr, i);
     }
 }

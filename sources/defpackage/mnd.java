@@ -1,89 +1,104 @@
 package defpackage;
 
-import android.content.Intent;
-import android.os.Bundle;
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.WeakHashMap;
-public final class mnd extends bn4 implements c16 {
-    public static final WeakHashMap m0 = new WeakHashMap();
-    public final ab8 l0 = new ab8();
+public abstract class mnd extends zdd {
+    private static Map<Object, mnd> zzjr = new ConcurrentHashMap();
+    protected t2e zzjp;
+    private int zzjq;
 
-    @Override
-    public final void A() {
-        this.V = true;
-        ab8 ab8Var = this.l0;
-        ab8Var.a = (byte) 5;
-        for (y06 y06Var : ((Map) ab8Var.b).values()) {
-            y06Var.onDestroy();
+    public mnd() {
+        this.zzex = 0;
+        this.zzjp = t2e.e;
+        this.zzjq = -1;
+    }
+
+    public static Object b(Method method, mnd mndVar, Object... objArr) {
+        Throwable e;
+        String str;
+        try {
+            return method.invoke(mndVar, objArr);
+        } catch (IllegalAccessException e2) {
+            e = e2;
+            str = "Couldn't use Java reflection to implement protocol message reflection.";
+            grb.j(str, e);
+            return null;
+        } catch (InvocationTargetException e3) {
+            e = e3.getCause();
+            if (!(e instanceof RuntimeException)) {
+                if (!(e instanceof Error)) {
+                    str = "Unexpected exception thrown by generated accessor method.";
+                    grb.j(str, e);
+                    return null;
+                }
+                throw ((Error) e);
+            }
+            throw ((RuntimeException) e);
         }
     }
 
-    @Override
-    public final void F() {
-        this.V = true;
-        ab8 ab8Var = this.l0;
-        ab8Var.a = (byte) 3;
-        for (y06 y06Var : ((Map) ab8Var.b).values()) {
-            y06Var.onResume();
+    public static void c(Class cls, mnd mndVar) {
+        zzjr.put(cls, mndVar);
+    }
+
+    public static mnd d(Class cls) {
+        String str;
+        mnd mndVar = zzjr.get(cls);
+        if (mndVar == null) {
+            try {
+                Class.forName(cls.getName(), true, cls.getClassLoader());
+                mndVar = zzjr.get(cls);
+            } catch (ClassNotFoundException e) {
+                su3.f("Class initialization cannot fail.", e);
+                return null;
+            }
         }
-    }
-
-    @Override
-    public final void G(Bundle bundle) {
-        this.l0.c(bundle);
-    }
-
-    @Override
-    public final void H() {
-        this.V = true;
-        ab8 ab8Var = this.l0;
-        ab8Var.a = (byte) 2;
-        for (y06 y06Var : ((Map) ab8Var.b).values()) {
-            y06Var.onStart();
+        if (mndVar == null) {
+            String name = cls.getName();
+            if (name.length() != 0) {
+                str = "Unable to get default instance for: ".concat(name);
+            } else {
+                str = new String("Unable to get default instance for: ");
+            }
+            throw new IllegalStateException(str);
         }
+        return mndVar;
     }
 
-    @Override
-    public final void I() {
-        this.V = true;
-        ab8 ab8Var = this.l0;
-        ab8Var.a = (byte) 4;
-        for (y06 y06Var : ((Map) ab8Var.b).values()) {
-            y06Var.onStop();
+    public abstract Object a(int i);
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-    }
-
-    @Override
-    public final void a(String str, y06 y06Var) {
-        this.l0.a(str, y06Var);
-    }
-
-    @Override
-    public final y06 b(Class cls, String str) {
-        return (y06) cls.cast(((Map) this.l0.b).get(str));
-    }
-
-    @Override
-    public final void i(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
-        super.i(str, fileDescriptor, printWriter, strArr);
-        for (y06 y06Var : ((Map) this.l0.b).values()) {
-            y06Var.dump(str, fileDescriptor, printWriter, strArr);
+        if (!((mnd) a(6)).getClass().isInstance(obj)) {
+            return false;
         }
+        jyd jydVar = jyd.c;
+        jydVar.getClass();
+        return jydVar.a(getClass()).f(this, (mnd) obj);
     }
 
-    @Override
-    public final void x(int i, int i2, Intent intent) {
-        super.x(i, i2, intent);
-        for (y06 y06Var : ((Map) this.l0.b).values()) {
-            y06Var.onActivityResult(i, i2, intent);
+    public final int hashCode() {
+        int i = this.zzex;
+        if (i != 0) {
+            return i;
         }
+        jyd jydVar = jyd.c;
+        jydVar.getClass();
+        int e = jydVar.a(getClass()).e(this);
+        this.zzex = e;
+        return e;
     }
 
-    @Override
-    public final void z(Bundle bundle) {
-        super.z(bundle);
-        this.l0.b(bundle);
+    public final String toString() {
+        String obj = super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("# ");
+        sb.append(obj);
+        bjd.b(this, sb, 0);
+        return sb.toString();
     }
 }

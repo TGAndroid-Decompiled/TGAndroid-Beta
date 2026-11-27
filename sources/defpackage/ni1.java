@@ -1,54 +1,73 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class ni1 implements TextWatcher {
-    public final zi1 a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class ni1 implements Runnable {
+    public final byte a;
+    public final ij1 b;
 
-    public ni1(zi1 zi1Var) {
-        this.a = zi1Var;
+    public ni1(ij1 ij1Var, byte b) {
+        this.a = b;
+        this.b = ij1Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long parseLong;
-        zi1 zi1Var = this.a;
-        fi1 fi1Var = zi1Var.f1;
-        ps0 ps0Var = zi1Var.O0;
-        if (zi1Var.L0) {
-            return;
+    public final void run() {
+        boolean z;
+        byte b = this.a;
+        boolean z2 = false;
+        ij1 ij1Var = this.b;
+        switch (b) {
+            case 0:
+                m01.u(ij1Var.getContext(), ob6.M0(2131748158, null));
+                return;
+            case 1:
+                m01.u(ij1Var.getContext(), ob6.M0(2131748124, null));
+                return;
+            case 2:
+                q9c q9cVar = ij1Var.X0;
+                if (q9cVar != null) {
+                    boolean z3 = ij1Var.f0;
+                    if (ij1Var.R0 != -1) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    l9c l9cVar = q9cVar.g3;
+                    if (z == ij1Var.a1.a()) {
+                        z2 = true;
+                    }
+                    l9cVar.O(z2);
+                    if (z3 && ij1Var.R0 != -1) {
+                        ij1Var.a();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                ij1Var.k1 = ij1Var.j1;
+                return;
+            case 4:
+                ij1Var.J0.setLoading(false);
+                return;
+            case 5:
+                ij1Var.Y0.setVisibility(8);
+                return;
+            case 6:
+                ij1Var.Y0.setVisibility(8);
+                return;
+            default:
+                int i = ij1Var.o0;
+                hl.r(ij1Var.s1);
+                if (ij1Var.j1 != ij1Var.k1) {
+                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+                    tL_channels_restrictSponsoredMessages.channel = uc7.s1(i).h1(-ij1Var.p0);
+                    tL_channels_restrictSponsoredMessages.restricted = ij1Var.j1;
+                    ConnectionsManager.getInstance(i).sendRequest(tL_channels_restrictSponsoredMessages, new ri1(ij1Var, (byte) 0));
+                    return;
+                }
+                return;
         }
-        if (TextUtils.isEmpty(editable)) {
-            parseLong = 0;
-        } else {
-            parseLong = Long.parseLong(editable.toString());
-        }
-        zi1Var.N0 = parseLong;
-        long j = zi1Var.D0.amount;
-        int i = (parseLong > j ? 1 : (parseLong == j ? 0 : -1));
-        boolean z = true;
-        if (i > 0) {
-            zi1Var.N0 = j;
-            zi1Var.L0 = true;
-            ps0Var.setText(Long.toString(j));
-            ps0Var.setSelection(ps0Var.getText().length());
-            zi1Var.L0 = false;
-        }
-        if (zi1Var.N0 != zi1Var.D0.amount) {
-            z = false;
-        }
-        zi1Var.M0 = z;
-        gl.r(fi1Var);
-        fi1Var.run();
-        zi1Var.M0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

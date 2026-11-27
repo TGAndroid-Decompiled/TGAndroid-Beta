@@ -27,9 +27,9 @@ public class TL_chatlists {
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.peers = Vector.deserialize(inputSerializedData, new hz6((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new bya((byte) 19), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override
@@ -66,10 +66,10 @@ public class TL_chatlists {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.filter_id = inputSerializedData.readInt32(z);
-            this.missing_peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
-            this.already_peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new hz6((byte) 11), z);
+            this.already_peers = Vector.deserialize(inputSerializedData, new hz6((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new bya((byte) 19), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override
@@ -95,9 +95,9 @@ public class TL_chatlists {
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.peers = Vector.deserialize(inputSerializedData, new hz6((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new bya((byte) 19), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override
@@ -132,9 +132,9 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.missing_peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new hz6((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new bya((byte) 19), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override
@@ -278,9 +278,9 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.invites = Vector.deserialize(inputSerializedData, new qdb((byte) 16), z);
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.invites = Vector.deserialize(inputSerializedData, new lhb((byte) 19), z);
+            this.chats = Vector.deserialize(inputSerializedData, new bya((byte) 19), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override
@@ -330,7 +330,7 @@ public class TL_chatlists {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new yw6((byte) 23));
+            return Vector.TLDeserialize(inputSerializedData, i, z, new hz6((byte) 11));
         }
 
         @Override
@@ -435,7 +435,7 @@ public class TL_chatlists {
             this.revoked = TLObject.hasFlag(readInt32, 1);
             this.title = inputSerializedData.readString(z);
             this.url = inputSerializedData.readString(z);
-            this.peers = Vector.deserialize(inputSerializedData, new yw6((byte) 23), z);
+            this.peers = Vector.deserialize(inputSerializedData, new hz6((byte) 11), z);
         }
 
         @Override

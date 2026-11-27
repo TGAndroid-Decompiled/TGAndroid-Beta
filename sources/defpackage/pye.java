@@ -1,17 +1,19 @@
 package defpackage;
-public final class pye implements zn7 {
-    public static final pye a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.os.Parcel;
+import android.os.RemoteException;
+public abstract class pye {
+    public static void a(gk5 gk5Var) {
+        if (gk5Var != null) {
+            try {
+                fk5 fk5Var = (fk5) gk5Var;
+                Parcel obtain = Parcel.obtain();
+                obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
+                obtain.writeInt(0);
+                fk5Var.a.transact(3006, obtain, null, 1);
+                obtain.recycle();
+            } catch (RemoteException unused) {
+            }
         }
-        throw new ClassCastException();
     }
 }

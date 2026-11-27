@@ -1,28 +1,52 @@
 package defpackage;
-public final class hc6 implements ed {
-    public final byte a;
-    public final mf6 b;
 
-    public hc6(mf6 mf6Var, byte b) {
+import androidx.recyclerview.widget.RecyclerView;
+public final class hc6 extends v79 {
+    public final byte a;
+    public final uc6 b;
+
+    public hc6(uc6 uc6Var, byte b) {
         this.a = b;
-        this.b = mf6Var;
+        this.b = uc6Var;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
+    public final void a(RecyclerView recyclerView, int i) {
         byte b = this.a;
-        mf6 mf6Var = this.b;
+        boolean z = true;
+        uc6 uc6Var = this.b;
         switch (b) {
             case 0:
-                mf6Var.b[mf6Var.a].e();
-                mf6Var.x1(true, true);
-                return;
-            default:
-                mf6Var.m0 = true;
-                if (mf6Var.a != 0) {
-                    mf6Var.I1(0, true, null, true);
+                if (i == 1 && uc6Var.u0 && uc6Var.v0) {
+                    hl.t1(uc6Var.getParentActivity().getCurrentFocus());
                     return;
                 }
+                return;
+            default:
+                if (i == 0) {
+                    z = false;
+                }
+                uc6Var.N = z;
+                if (!z && uc6Var.I != null) {
+                    uc6Var.I = null;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        switch (this.a) {
+            case 1:
+                uc6 uc6Var = this.b;
+                uc6Var.N0(false);
+                if (uc6Var.I != null) {
+                    uc6Var.K += i2;
+                    return;
+                }
+                return;
+            default:
                 return;
         }
     }

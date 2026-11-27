@@ -1,65 +1,45 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.ImageView;
-public final class pca extends iea {
-    public final nfa Q;
+import android.graphics.Color;
+import android.opengl.GLES20;
+import java.util.HashMap;
+public final class pca {
+    public int a;
+    public HashMap b;
 
-    public pca(nfa nfaVar, Context context) {
-        super(context);
-        this.Q = nfaVar;
+    public static void a(int i, int i2) {
+        GLES20.glUniform4f(i, Color.red(i2) / 255.0f, Color.green(i2) / 255.0f, Color.blue(i2) / 255.0f, Color.alpha(i2) / 255.0f);
     }
 
-    @Override
-    public final void setTranslationX(float f) {
-        iea ieaVar;
-        int i;
-        float translationX = getTranslationX();
-        super.setTranslationX(f);
-        nfa nfaVar = this.Q;
-        iea[] ieaVarArr = nfaVar.n0;
-        if (ieaVarArr[0] == this) {
-            float f2 = translationX - f;
-            qw4 qw4Var = nfaVar.h2;
-            if (qw4Var != null) {
-                float f3 = nfaVar.i2 + f2;
-                nfaVar.i2 = f3;
-                int i2 = (int) f3;
-                if (i2 != 0) {
-                    nfaVar.i2 = f3 - i2;
-                    qw4Var.h(i2, 0);
-                }
-            }
+    public static l09 b(int i, String str) {
+        int glCreateShader = GLES20.glCreateShader(i);
+        GLES20.glShaderSource(glCreateShader, str);
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] == 0 && f11.a) {
+            cc4.d(GLES20.glGetShaderInfoLog(glCreateShader));
         }
-        if (nfaVar.j1 && (ieaVar = ieaVarArr[0]) == this) {
-            float abs = Math.abs(ieaVar.getTranslationX()) / ieaVarArr[0].getMeasuredWidth();
-            nfaVar.g1(abs, ieaVarArr[1].F);
-            if (nfaVar.q()) {
-                byte b = nfaVar.A0;
-                if (b == 2) {
-                    nfaVar.r0 = 1.0f - abs;
-                } else if (b == 1) {
-                    nfaVar.r0 = abs;
-                }
-                nfaVar.K1(abs);
-                float U = nfaVar.U(abs);
-                nfaVar.s0 = U;
-                ImageView imageView = nfaVar.u0;
-                if (U != 0.0f && nfaVar.q() && !nfaVar.k0()) {
-                    i = 0;
-                } else {
-                    i = 4;
-                }
-                imageView.setVisibility(i);
-            } else {
-                nfaVar.r0 = 0.0f;
-            }
-            nfaVar.G1(false);
+        int i2 = iArr[0];
+        l09 l09Var = new l09((byte) 5);
+        l09Var.b = glCreateShader;
+        l09Var.c = i2;
+        return l09Var;
+    }
+
+    public static void c(int i, int i2, int i3) {
+        if (i != 0) {
+            GLES20.glDeleteShader(i);
         }
-        nfaVar.C();
-        fj3 fj3Var = nfaVar.S0;
-        if (fj3Var != null) {
-            fj3Var.setTranslationY(nfaVar.O1);
+        if (i2 != 0) {
+            GLES20.glDeleteShader(i2);
         }
+        if (i3 != 0) {
+            GLES20.glDeleteProgram(i);
+        }
+    }
+
+    public final int d(String str) {
+        return ((Integer) this.b.get(str)).intValue();
     }
 }

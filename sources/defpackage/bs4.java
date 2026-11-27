@@ -1,3 +1,3 @@
 package defpackage;
-public interface bs4 {
+public interface bs4 extends js4 {
 }

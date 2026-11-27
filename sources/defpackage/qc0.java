@@ -1,102 +1,109 @@
 package defpackage;
+public class qc0 implements zy9 {
+    public final byte a;
+    public final long b;
+    public final Object c;
 
-import java.util.List;
-public final class qc0 implements j74 {
-    public final xu7 a;
-    public final pc0 b;
-    public final boolean c;
-    public final eef d;
-    public byte e;
-    public l74 f;
-    public rc0 g;
-    public long h;
-    public ch2[] i;
-    public long j;
-    public ch2 k;
-    public int l;
-    public long m;
-    public long n;
-    public int o;
-    public boolean p;
-
-    public qc0(int i, eef eefVar) {
-        this.d = eefVar;
-        this.c = (i & 1) == 0;
-        this.a = new xu7(12);
-        this.b = new Object();
-        this.f = new o5f((byte) 22);
-        this.i = new ch2[0];
-        this.m = -1L;
-        this.n = -1L;
-        this.l = -1;
-        this.h = -9223372036854775807L;
-    }
-
-    @Override
-    public final int b(defpackage.k74 r26, defpackage.m11 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qc0.b(k74, m11):int");
-    }
-
-    @Override
-    public final boolean c(k74 k74Var) {
-        xu7 xu7Var = this.a;
-        ((ja3) k74Var).d(xu7Var.a, 0, 12, false);
-        xu7Var.N(0);
-        if (xu7Var.o() == 1179011410) {
-            xu7Var.O(4);
-            if (xu7Var.o() == 541677121) {
-                return true;
-            }
+    public qc0(long j, long j2) {
+        bz9 bz9Var;
+        this.a = (byte) 2;
+        this.b = j;
+        if (j2 == 0) {
+            bz9Var = bz9.c;
+        } else {
+            bz9Var = new bz9(0L, j2);
         }
+        this.c = new yy9(bz9Var, bz9Var);
+    }
+
+    @Override
+    public final boolean c() {
+        switch (this.a) {
+            case 0:
+            case 1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public final boolean d() {
+        byte b = this.a;
         return false;
     }
 
     @Override
-    public final void d(long j, long j2) {
-        ch2[] ch2VarArr;
-        this.j = -1L;
-        this.k = null;
-        for (ch2 ch2Var : this.i) {
-            if (ch2Var.l == 0) {
-                ch2Var.j = 0;
-            } else {
-                ch2Var.j = ch2Var.o[g8c.f(ch2Var.n, j, true)];
-            }
+    public final yy9 e(long j) {
+        long j2;
+        long j3;
+        byte b = this.a;
+        int i = 1;
+        Object obj = this.c;
+        switch (b) {
+            case 0:
+                sc0 sc0Var = (sc0) obj;
+                yy9 b2 = sc0Var.i[0].b(j);
+                while (true) {
+                    uh2[] uh2VarArr = sc0Var.i;
+                    if (i < uh2VarArr.length) {
+                        yy9 b3 = uh2VarArr[i].b(j);
+                        if (b3.a.b < b2.a.b) {
+                            b2 = b3;
+                        }
+                        i++;
+                    } else {
+                        return b2;
+                    }
+                }
+            case 1:
+                gk4 gk4Var = (gk4) obj;
+                gk4Var.k.getClass();
+                lh2 lh2Var = gk4Var.k;
+                long[] jArr = (long[]) lh2Var.b;
+                long[] jArr2 = (long[]) lh2Var.c;
+                int f = gcc.f(jArr, gcc.j((gk4Var.e * j) / 1000000, 0L, gk4Var.j - 1), false);
+                if (f == -1) {
+                    j3 = 0;
+                    j2 = 0;
+                } else {
+                    j2 = jArr[f];
+                    j3 = jArr2[f];
+                }
+                int i2 = gk4Var.e;
+                long j4 = (j2 * 1000000) / i2;
+                long j5 = this.b;
+                bz9 bz9Var = new bz9(j4, j3 + j5);
+                if (j4 != j && f != jArr.length - 1) {
+                    int i3 = f + 1;
+                    return new yy9(bz9Var, new bz9((jArr[i3] * 1000000) / i2, j5 + jArr2[i3]));
+                }
+                return new yy9(bz9Var, bz9Var);
+            default:
+                return (yy9) obj;
         }
-        if (j == 0) {
-            if (this.i.length == 0) {
-                this.e = (byte) 0;
-                return;
-            } else {
-                this.e = (byte) 3;
-                return;
-            }
+    }
+
+    @Override
+    public final long h() {
+        switch (this.a) {
+            case 0:
+                return this.b;
+            case 1:
+                return ((gk4) this.c).b();
+            default:
+                return this.b;
         }
-        this.e = (byte) 6;
     }
 
-    @Override
-    public final List e() {
-        km5 km5Var = mm5.b;
-        return w59.e;
+    public qc0(long j) {
+        this(j, 0L);
+        this.a = (byte) 2;
     }
 
-    @Override
-    public final void f(l74 l74Var) {
-        this.e = (byte) 0;
-        if (this.c) {
-            l74Var = new xf4(l74Var, this.d);
-        }
-        this.f = l74Var;
-        this.j = -1L;
-    }
-
-    @Override
-    public final j74 a() {
-        return this;
-    }
-
-    @Override
-    public final void release() {
+    public qc0(Object obj, long j, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = j;
     }
 }

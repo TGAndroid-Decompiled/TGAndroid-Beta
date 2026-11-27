@@ -1,12 +1,14 @@
 package defpackage;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class id5 extends ViewOutlineProvider {
-    @Override
-    public final void getOutline(View view, Outline outline) {
-        float L = gl.L(12.0f);
-        outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + L), L);
+import org.telegram.tgnet.TLRPC;
+public final class id5 {
+    public final boolean a;
+    public final TLRPC.TL_messages_stickerSet b;
+    public final nd5 c;
+
+    public id5(nd5 nd5Var, boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        this.c = nd5Var;
+        this.a = z;
+        this.b = tL_messages_stickerSet;
     }
 }

@@ -1,45 +1,17 @@
 package defpackage;
+public final class wmd implements zq7 {
+    public static final wmd a = new Object();
 
-import android.os.Build;
-public abstract class wmd {
-    public static int a(hj0 hj0Var, gj0 gj0Var) {
-        byte b = hj0Var.d;
-        if (b != 0) {
-            return b;
-        }
-        if (gj0Var != null) {
-            return 15;
-        }
-        return 255;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)), 5)), 6)));
     }
 
-    public static boolean b(int i) {
-        if ((i & 32768) != 0) {
-            return true;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    public static boolean c(int i) {
-        if (i != 15 && i != 255) {
-            if (i != 32768) {
-                if (i != 32783) {
-                    if (i != 33023 && i != 0) {
-                        return false;
-                    }
-                    return true;
-                }
-                int i2 = Build.VERSION.SDK_INT;
-                if (i2 >= 28 && i2 <= 29) {
-                    return false;
-                }
-                return true;
-            } else if (Build.VERSION.SDK_INT < 30) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return true;
+        throw new ClassCastException();
     }
 }

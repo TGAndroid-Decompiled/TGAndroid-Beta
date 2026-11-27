@@ -1,16 +1,24 @@
 package defpackage;
-public final class oz0 {
-    public final String a;
-    public final int b;
-    public final int c;
-    public final byte[] d;
-    public final int e;
 
-    public oz0(String str, int i, int i2, byte[] bArr, int i3) {
-        this.a = str;
-        this.b = i;
+import java.util.HashMap;
+public final class oz0 {
+    public final byte a;
+    public final byte[] b;
+    public final int c;
+    public final long d;
+    public final int e;
+    public final HashMap f;
+
+    public oz0(int i, byte[] bArr, int i2, long j, int i3, HashMap hashMap) {
+        this.a = i;
+        this.b = bArr;
         this.c = i2;
-        this.d = bArr;
+        this.d = j;
         this.e = i3;
+        this.f = hashMap;
+    }
+
+    public oz0(long j, byte[] bArr, int i, int i2) {
+        this(i, bArr, i2, j, 0, null);
     }
 }

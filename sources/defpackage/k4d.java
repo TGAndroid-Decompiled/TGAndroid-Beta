@@ -1,12 +1,30 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class k4d implements vn {
-    public final boolean equals(Object obj) {
-        return obj instanceof k4d;
+import android.os.Binder;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public abstract class k4d extends Binder implements IInterface {
+    public k4d(String str) {
+        attachInterface(this, str);
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{k4d.class});
+    public abstract boolean a(int i, Parcel parcel, Parcel parcel2, int i2);
+
+    @Override
+    public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
+        if (i > 16777215) {
+            if (super.onTransact(i, parcel, parcel2, i2)) {
+                return true;
+            }
+        } else {
+            parcel.enforceInterface(getInterfaceDescriptor());
+        }
+        return a(i, parcel, parcel2, i2);
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this;
     }
 }

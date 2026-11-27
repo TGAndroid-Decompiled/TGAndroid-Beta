@@ -1,10 +1,17 @@
 package defpackage;
+public final class god implements zq7 {
+    public static final god a = new Object();
 
-import java.util.concurrent.TimeoutException;
-public final class god extends TimeoutException {
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)));
+    }
+
     @Override
-    public final synchronized Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

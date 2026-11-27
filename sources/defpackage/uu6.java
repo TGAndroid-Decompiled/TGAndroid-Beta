@@ -1,23 +1,39 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Bundle;
-import java.util.HashMap;
-public final class uu6 {
-    public static final Object c = new Object();
-    public static final HashMap d = new HashMap();
-    public final tv6 a;
-    public qu6 b;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+public final class uu6 extends Animation {
+    public final byte a;
+    public final int b;
+    public final int c;
+    public final View d;
 
-    public uu6(Context context, String str, oc8 oc8Var, w59 w59Var, w59 w59Var2, w59 w59Var3, cff cffVar, Bundle bundle, Bundle bundle2, wj0 wj0Var) {
-        synchronized (c) {
-            HashMap hashMap = d;
-            if (!hashMap.containsKey(str)) {
-                hashMap.put(str, this);
-            } else {
-                throw new IllegalStateException("Session ID must be unique. ID=".concat(str));
-            }
+    public uu6(int i, int i2, View view, byte b) {
+        this.a = b;
+        this.b = i;
+        this.c = i2;
+        this.d = view;
+    }
+
+    @Override
+    public final void applyTransformation(float f, Transformation transformation) {
+        byte b = this.a;
+        View view = this.d;
+        int i = this.c;
+        int i2 = this.b;
+        switch (b) {
+            case 0:
+                bv6.o(i2 - ((int) ((i2 - i) * f)), view);
+                return;
+            default:
+                int i3 = i + ((int) ((i2 - i) * f));
+                int i4 = wv6.k0;
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                layoutParams.height = i3;
+                view.setLayoutParams(layoutParams);
+                return;
         }
-        this.a = new tv6(this, context, str, oc8Var, w59Var, w59Var2, w59Var3, cffVar, bundle, bundle2, wj0Var);
     }
 }

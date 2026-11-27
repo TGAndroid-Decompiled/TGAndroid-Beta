@@ -1,4 +1,4 @@
 package defpackage;
-public interface oq4 extends fq4 {
-    int getArity();
+public interface oq4 {
+    void a();
 }

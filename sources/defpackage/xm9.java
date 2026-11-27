@@ -1,38 +1,46 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class xm9 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final on9 b;
+import java.io.File;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class xm9 implements fn7 {
+    public final int a;
+    public final String b;
+    public boolean c;
 
-    public xm9(on9 on9Var, byte b) {
-        this.a = b;
-        this.b = on9Var;
+    public xm9(String str, int i) {
+        this.a = i;
+        this.b = str;
+        jn7.f(i).a(this, jn7.U1);
+        jn7.f(i).a(this, jn7.V1);
+        xb4.G(i).h0(false, 50331648, str, true);
+    }
+
+    public final void a() {
+        int i = this.a;
+        jn7.f(i).n(this, jn7.U1);
+        jn7.f(i).n(this, jn7.V1);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        on9 on9Var = this.b;
-        switch (b) {
-            case 0:
-                on9Var.n(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                on9Var.a(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 2:
-                on9Var.x0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pha phaVar = on9Var.F;
-                if (phaVar.getTitleTextView() != null) {
-                    phaVar.getTitleTextView().invalidate();
-                    return;
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.U1) {
+            String str = (String) objArr[0];
+            if (!this.c && str.equals(this.b)) {
+                TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
+                TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
+                uploadringtone.file = inputFile;
+                uploadringtone.file_name = inputFile.name;
+                String D = xb4.D(new File(inputFile.name));
+                uploadringtone.mime_type = D;
+                if ("ogg".equals(D)) {
+                    uploadringtone.mime_type = "audio/ogg";
+                } else {
+                    uploadringtone.mime_type = "audio/mpeg";
                 }
-                return;
-            default:
-                on9Var.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                on9Var.f.requestLayout();
-                return;
+                ConnectionsManager.getInstance(this.a).sendRequest(uploadringtone, new w15(this, (byte) 29));
+            }
         }
     }
 }

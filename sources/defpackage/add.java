@@ -1,41 +1,30 @@
 package defpackage;
 
-import java.util.Set;
-public abstract class add extends x8d implements Set {
-    public transient ncd f;
+import j$.util.Objects;
+import java.util.AbstractMap;
+public final class add extends kbd {
+    public final edd r;
 
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
+    public add(edd eddVar) {
+        super((byte) 2);
+        this.r = eddVar;
     }
 
     @Override
-    public final int hashCode() {
-        int i;
-        int i2 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i = obj.hashCode();
-            } else {
-                i = 0;
-            }
-            i2 += i;
-        }
-        return i2;
+    public final Object get(int i) {
+        edd eddVar = this.r;
+        d9f.a(i, eddVar.w);
+        Object[] objArr = eddVar.s;
+        int i2 = i << 1;
+        Object obj = objArr[i2];
+        Objects.requireNonNull(obj);
+        Object obj2 = objArr[i2 + 1];
+        Objects.requireNonNull(obj2);
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    }
+
+    @Override
+    public final int size() {
+        return this.r.w;
     }
 }

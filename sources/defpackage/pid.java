@@ -1,245 +1,93 @@
 package defpackage;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.charset.Charset;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-public final class pid implements ao7 {
-    public static final Charset e = Charset.forName("UTF-8");
-    public static final w84 f = new w84("key", b00.m(yjb.p(gid.class, new bgd(1))));
-    public static final w84 g = new w84("value", b00.m(yjb.p(gid.class, new bgd(2))));
-    public static final s7d h = s7d.f;
-    public OutputStream a;
-    public final HashMap b;
-    public final HashMap c;
-    public final jt8 d = new jt8(this, (byte) 3);
+import android.os.Looper;
+import j$.util.DesugarCollections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+public final class pid {
+    public static final he6 i = new he6("SessionTransController", null);
+    public final ld1 a;
+    public baa f;
+    public t91 g;
+    public haa h;
+    public final Set b = DesugarCollections.synchronizedSet(new HashSet());
+    public byte e = 0;
+    public final b99 c = new b99(Looper.getMainLooper(), (byte) 3);
+    public final bid d = new bid(this, (byte) 0);
 
-    public pid(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2) {
-        this.a = byteArrayOutputStream;
-        this.b = hashMap;
-        this.c = hashMap2;
+    public pid(ld1 ld1Var) {
+        this.a = ld1Var;
     }
 
-    public static int j(w84 w84Var) {
-        gid gidVar = (gid) w84Var.b(gid.class);
-        if (gidVar != null) {
-            return gidVar.zza();
+    public final v99 a() {
+        baa baaVar = this.f;
+        he6 he6Var = i;
+        if (baaVar == null) {
+            he6Var.b("skip transferring as SessionManager is null", new Object[0]);
+            return null;
         }
-        throw new RuntimeException("Field has no @Protobuf config");
-    }
-
-    @Override
-    public final ao7 a(w84 w84Var, Object obj) {
-        c(w84Var, obj, true);
-        return this;
-    }
-
-    public final void b(w84 w84Var, double d, boolean z) {
-        if (z && d == 0.0d) {
-            return;
+        md1 c = baaVar.c();
+        if (c == null) {
+            he6Var.b("skip transferring as CastSession is null", new Object[0]);
+            return null;
         }
-        l((j(w84Var) << 3) | 1);
-        this.a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+        xve.e("Must be called from the main thread.");
+        return c.j;
     }
 
-    public final void c(w84 w84Var, Object obj, boolean z) {
-        if (obj != null) {
-            if (obj instanceof CharSequence) {
-                CharSequence charSequence = (CharSequence) obj;
-                if (!z || charSequence.length() != 0) {
-                    l((j(w84Var) << 3) | 2);
-                    byte[] bytes = charSequence.toString().getBytes(e);
-                    l(bytes.length);
-                    this.a.write(bytes);
-                }
-            } else if (obj instanceof Collection) {
-                for (Object obj2 : (Collection) obj) {
-                    c(w84Var, obj2, false);
-                }
-            } else if (obj instanceof Map) {
-                for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    k(h, w84Var, entry, false);
-                }
-            } else if (obj instanceof Double) {
-                b(w84Var, ((Double) obj).doubleValue(), z);
-            } else if (obj instanceof Float) {
-                float floatValue = ((Float) obj).floatValue();
-                if (!z || floatValue != 0.0f) {
-                    l((j(w84Var) << 3) | 5);
-                    this.a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
-                }
-            } else if (obj instanceof Number) {
-                i(w84Var, ((Number) obj).longValue(), z);
-            } else if (obj instanceof Boolean) {
-                h(w84Var, ((Boolean) obj).booleanValue() ? 1 : 0, z);
-            } else if (obj instanceof byte[]) {
-                byte[] bArr = (byte[]) obj;
-                if (z && bArr.length == 0) {
-                    return;
-                }
-                l((j(w84Var) << 3) | 2);
-                l(bArr.length);
-                this.a.write(bArr);
-            } else {
-                zn7 zn7Var = (zn7) this.b.get(obj.getClass());
-                if (zn7Var != null) {
-                    k(zn7Var, w84Var, obj, z);
-                    return;
-                }
-                y8c y8cVar = (y8c) this.c.get(obj.getClass());
-                if (y8cVar != null) {
-                    jt8 jt8Var = this.d;
-                    jt8Var.b = false;
-                    jt8Var.d = w84Var;
-                    jt8Var.c = z;
-                    y8cVar.a(obj, jt8Var);
-                } else if (obj instanceof thd) {
-                    h(w84Var, ((thd) obj).zza(), true);
-                } else if (obj instanceof Enum) {
-                    h(w84Var, ((Enum) obj).ordinal(), true);
-                } else {
-                    k(s7d.g, w84Var, obj, z);
-                }
+    public final void b(int i2) {
+        boolean z;
+        t91 t91Var = this.g;
+        if (t91Var != null) {
+            t91Var.d = true;
+            v91 v91Var = t91Var.b;
+            if (v91Var != null && v91Var.b.cancel(true)) {
+                t91Var.a = null;
+                t91Var.b = null;
+                t91Var.c = null;
             }
         }
-    }
-
-    @Override
-    public final ao7 d(w84 w84Var, boolean z) {
-        h(w84Var, z ? 1 : 0, true);
-        return this;
-    }
-
-    @Override
-    public final ao7 e(w84 w84Var, int i) {
-        h(w84Var, i, true);
-        return this;
-    }
-
-    @Override
-    public final ao7 f(w84 w84Var, double d) {
-        b(w84Var, d, true);
-        return this;
-    }
-
-    @Override
-    public final ao7 g(w84 w84Var, long j) {
-        i(w84Var, j, true);
-        return this;
-    }
-
-    public final void h(w84 w84Var, int i, boolean z) {
-        if (!z || i != 0) {
-            gid gidVar = (gid) w84Var.b(gid.class);
-            if (gidVar != null) {
-                int ordinal = gidVar.zzb().ordinal();
-                if (ordinal != 0) {
-                    if (ordinal != 1) {
-                        if (ordinal != 2) {
-                            return;
-                        }
-                        l((gidVar.zza() << 3) | 5);
-                        this.a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(i).array());
-                        return;
+        i.b("notify failed transfer with type = %d, reason = %d", Integer.valueOf(this.e), Integer.valueOf(i2));
+        Iterator it = new HashSet(this.b).iterator();
+        while (it.hasNext()) {
+            pre preVar = (pre) it.next();
+            byte b = this.e;
+            switch (preVar.a) {
+                case 0:
+                    vwe.j.b("onTransferFailed with type = %d and reason = %d", Integer.valueOf(b), Integer.valueOf(i2));
+                    vwe vweVar = (vwe) preVar.b;
+                    vweVar.c();
+                    n8f b2 = vweVar.c.b(vweVar.g);
+                    b8f m = c8f.m(b2.d());
+                    m.c();
+                    c8f.v((c8f) m.b, b);
+                    m.c();
+                    c8f.w((c8f) m.b, i2);
+                    b2.e((c8f) m.a());
+                    vweVar.a.a((p8f) b2.a(), 232);
+                    vweVar.i = false;
+                    break;
+                default:
+                    pe8 pe8Var = new pe8(11);
+                    pe8Var.b = Integer.valueOf(i2);
+                    am2 am2Var = (am2) preVar.b;
+                    if (((ibd) am2Var.c).c == 2) {
+                        z = true;
+                    } else {
+                        z = false;
                     }
-                    l(gidVar.zza() << 3);
-                    l((i << 1) ^ (i >> 31));
-                    return;
-                }
-                l(gidVar.zza() << 3);
-                l(i);
-                return;
+                    pe8Var.c = Boolean.valueOf(z);
+                    am2.R(am2Var, new nmf(pe8Var));
+                    break;
             }
-            throw new RuntimeException("Field has no @Protobuf config");
         }
+        c();
     }
 
-    public final void i(w84 w84Var, long j, boolean z) {
-        if (!z || j != 0) {
-            gid gidVar = (gid) w84Var.b(gid.class);
-            if (gidVar != null) {
-                int ordinal = gidVar.zzb().ordinal();
-                if (ordinal != 0) {
-                    if (ordinal != 1) {
-                        if (ordinal != 2) {
-                            return;
-                        }
-                        l((gidVar.zza() << 3) | 1);
-                        this.a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putLong(j).array());
-                        return;
-                    }
-                    l(gidVar.zza() << 3);
-                    m((j << 1) ^ (j >> 63));
-                    return;
-                }
-                l(gidVar.zza() << 3);
-                m(j);
-                return;
-            }
-            throw new RuntimeException("Field has no @Protobuf config");
-        }
-    }
-
-    public final void k(zn7 zn7Var, w84 w84Var, Object obj, boolean z) {
-        n06 n06Var = new n06((byte) 3);
-        n06Var.b = 0L;
-        try {
-            OutputStream outputStream = this.a;
-            this.a = n06Var;
-            zn7Var.a(obj, this);
-            this.a = outputStream;
-            long j = n06Var.b;
-            n06Var.close();
-            if (z && j == 0) {
-                return;
-            }
-            l((j(w84Var) << 3) | 2);
-            m(j);
-            zn7Var.a(obj, this);
-        } catch (Throwable th) {
-            try {
-                n06Var.close();
-            } catch (Throwable th2) {
-                try {
-                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th, th2);
-                } catch (Exception unused) {
-                }
-            }
-            throw th;
-        }
-    }
-
-    public final void l(int i) {
-        while (true) {
-            int i2 = ((i & (-128)) > 0L ? 1 : ((i & (-128)) == 0L ? 0 : -1));
-            int i3 = i & 127;
-            OutputStream outputStream = this.a;
-            if (i2 != 0) {
-                outputStream.write(i3 | 128);
-                i >>>= 7;
-            } else {
-                outputStream.write(i3);
-                return;
-            }
-        }
-    }
-
-    public final void m(long j) {
-        while (true) {
-            int i = (((-128) & j) > 0L ? 1 : (((-128) & j) == 0L ? 0 : -1));
-            int i2 = ((int) j) & 127;
-            OutputStream outputStream = this.a;
-            if (i != 0) {
-                outputStream.write(i2 | 128);
-                j >>>= 7;
-            } else {
-                outputStream.write(i2);
-                return;
-            }
-        }
+    public final void c() {
+        this.c.removeCallbacks(this.d);
+        this.e = (byte) 0;
+        this.h = null;
     }
 }

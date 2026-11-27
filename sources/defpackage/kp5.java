@@ -1,12 +1,9 @@
 package defpackage;
-public interface kp5 {
-    Object a(u73 u73Var);
+public final class kp5 extends hk0 {
+    public String g;
 
-    Object b(fw2 fw2Var);
-
-    Object c(qp4 qp4Var, fw2 fw2Var);
-
-    hk4 d();
-
-    Object e(eq4 eq4Var, fw2 fw2Var);
+    @Override
+    public final void a(zpd zpdVar) {
+        zpdVar.j(this);
+    }
 }

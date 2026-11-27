@@ -1,33 +1,43 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import java.util.HashSet;
-public final class sx7 extends View implements tjb {
-    public Paint a;
-    public Paint b;
-    public float c;
+import j$.util.Objects;
+public final class sx7 {
+    public final Object a;
+    public final Object b;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.a);
+    public sx7(Object obj, Object obj2) {
+        this.a = obj;
+        this.b = obj2;
     }
 
-    @Override
-    public final void updateColors() {
-        try {
-            this.a.setColor(bkb.w0(null, bkb.Wi, false));
-            this.b.setColor(bkb.w0(null, bkb.Xi, false));
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof sx7)) {
+            return false;
         }
+        sx7 sx7Var = (sx7) obj;
+        if (!Objects.equals(sx7Var.a, this.a) || !Objects.equals(sx7Var.b, this.b)) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int hashCode() {
+        int hashCode;
+        int i = 0;
+        Object obj = this.a;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
+        }
+        Object obj2 = this.b;
+        if (obj2 != null) {
+            i = obj2.hashCode();
+        }
+        return hashCode ^ i;
+    }
+
+    public final String toString() {
+        return "Pair{" + this.a + " " + this.b + "}";
     }
 }

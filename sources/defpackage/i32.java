@@ -1,50 +1,72 @@
 package defpackage;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class i32 implements i8c {
-    public final byte a;
-    public final r32 b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+public final class i32 extends d79 {
+    public final byte f3;
+    public final Paint g3;
+    public final u32 h3;
 
-    public i32(r32 r32Var, byte b) {
-        this.a = b;
-        this.b = r32Var;
+    public i32(u32 u32Var, Context context, vnb vnbVar, byte b) {
+        super(context, vnbVar);
+        this.f3 = b;
+        switch (b) {
+            case 1:
+                this.h3 = u32Var;
+                super(context, vnbVar);
+                this.g3 = new Paint();
+                return;
+            default:
+                this.h3 = u32Var;
+                this.g3 = new Paint();
+                return;
+        }
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        byte b = this.a;
-        r32 r32Var = this.b;
+    public final void dispatchDraw(Canvas canvas) {
+        byte b = this.f3;
+        Paint paint = this.g3;
+        float f = 2.1474836E9f;
+        u32 u32Var = this.h3;
         switch (b) {
             case 0:
-                TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
-                String str = (String) obj2;
-                TLRPC.User user = r32Var.r;
-                if (!r32Var.L) {
-                    r32Var.J = false;
-                    if (TextUtils.equals(str, "WALLET_USER_UNAVAILABLE")) {
-                        r32Var.K = true;
+                if (u32Var.n == 2 && getChildCount() > 0) {
+                    for (int i = 0; i < getChildCount(); i++) {
+                        if (getChildAt(i).getY() < f) {
+                            f = getChildAt(i).getY();
+                        }
                     }
-                    if (walletuseraddress != null && walletuseraddress.user_id == user.id) {
-                        r32Var.H = walletuseraddress.address;
-                        r32Var.I = walletuseraddress.public_key;
-                    }
-                    r32Var.w.a(r32Var.H, user);
-                    r32Var.i0();
-                    r32Var.Y();
-                    return;
+                    paint.setColor(aob.w0(null, aob.h5, false));
                 }
+                super.dispatchDraw(canvas);
                 return;
             default:
-                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
-                String str2 = (String) obj2;
-                if (!r32Var.L && wallettransaction != null) {
-                    r32Var.h0 = wallettransaction.fee;
-                    r32Var.j0();
-                    return;
+                if (u32Var.n == 1 && getChildCount() > 0) {
+                    for (int i2 = 0; i2 < getChildCount(); i2++) {
+                        if (getChildAt(i2).getY() < f) {
+                            f = getChildAt(i2).getY();
+                        }
+                    }
+                    paint.setColor(aob.w0(null, aob.h5, false));
                 }
+                super.dispatchDraw(canvas);
                 return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f3) {
+            case 0:
+                if (this.h3.n != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

@@ -2,119 +2,151 @@ package defpackage;
 
 import android.content.Context;
 import android.content.IntentFilter;
-import android.util.SparseIntArray;
-import android.view.MenuItem;
-public abstract class yo {
-    public Object a;
-    public Object b;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.PowerManager;
+import android.util.Log;
+import java.util.Calendar;
+public final class yo extends zo {
+    public final byte c = 0;
+    public final cp d;
+    public final Object e;
 
-    public yo() {
-        this.a = new SparseIntArray();
-        this.b = new SparseIntArray();
+    public yo(cp cpVar, Context context) {
+        super(cpVar);
+        this.d = cpVar;
+        this.e = (PowerManager) context.getApplicationContext().getSystemService("power");
     }
 
-    public final void c() {
-        zj zjVar = (zj) this.a;
-        if (zjVar != null) {
-            try {
-                ((bp) this.b).e.unregisterReceiver(zjVar);
-            } catch (IllegalArgumentException unused) {
-            }
-            this.a = null;
+    @Override
+    public final IntentFilter d() {
+        switch (this.c) {
+            case 0:
+                IntentFilter intentFilter = new IntentFilter();
+                intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
+                return intentFilter;
+            default:
+                IntentFilter intentFilter2 = new IntentFilter();
+                intentFilter2.addAction("android.intent.action.TIME_SET");
+                intentFilter2.addAction("android.intent.action.TIMEZONE_CHANGED");
+                intentFilter2.addAction("android.intent.action.TIME_TICK");
+                return intentFilter2;
         }
     }
 
-    public abstract IntentFilter d();
-
-    public abstract int e();
-
-    public final MenuItem f(MenuItem menuItem) {
-        if (menuItem instanceof ybb) {
-            ybb ybbVar = (ybb) menuItem;
-            aia aiaVar = (aia) this.b;
-            if (aiaVar == null) {
-                aiaVar = new aia(0);
-                this.b = aiaVar;
-            }
-            MenuItem menuItem2 = (MenuItem) aiaVar.get(ybbVar);
-            if (menuItem2 == null) {
-                g07 g07Var = new g07((Context) this.a, ybbVar);
-                ((aia) this.b).put(ybbVar, g07Var);
-                return g07Var;
-            }
-            return menuItem2;
-        }
-        return menuItem;
-    }
-
-    public final int g(int i, int i2) {
-        int i3 = i(i);
-        int i4 = 0;
-        int i5 = 0;
-        for (int i6 = 0; i6 < i; i6++) {
-            int i7 = i(i6);
-            i4 += i7;
-            if (i4 == i2) {
-                i5++;
-                i4 = 0;
-            } else if (i4 > i2) {
-                i5++;
-                i4 = i7;
-            }
-        }
-        if (i4 + i3 > i2) {
-            return i5 + 1;
-        }
-        return i5;
-    }
-
-    public int h(int i, int i2) {
-        int i3 = i(i);
-        if (i3 != i2) {
-            int i4 = 0;
-            for (int i5 = 0; i5 < i; i5++) {
-                int i6 = i(i5);
-                i4 += i6;
-                if (i4 == i2) {
-                    i4 = 0;
-                } else if (i4 > i2) {
-                    i4 = i6;
+    @Override
+    public final int e() {
+        Location location;
+        boolean z;
+        long j;
+        Location location2;
+        byte b = this.c;
+        Object obj = this.e;
+        switch (b) {
+            case 0:
+                if (((PowerManager) obj).isPowerSaveMode()) {
+                    return 2;
                 }
-            }
-            if (i3 + i4 <= i2) {
-                return i4;
-            }
+                return 1;
+            default:
+                ko9 ko9Var = (ko9) obj;
+                qeb qebVar = (qeb) ko9Var.d;
+                LocationManager locationManager = (LocationManager) ko9Var.c;
+                if (qebVar.a > System.currentTimeMillis()) {
+                    z = qebVar.b;
+                } else {
+                    Context context = (Context) ko9Var.b;
+                    Location location3 = null;
+                    if (ive.b(context, "android.permission.ACCESS_COARSE_LOCATION") == 0) {
+                        try {
+                        } catch (Exception e) {
+                            Log.d("TwilightManager", "Failed to get last known location", e);
+                        }
+                        if (locationManager.isProviderEnabled("network")) {
+                            location2 = locationManager.getLastKnownLocation("network");
+                            location = location2;
+                        }
+                        location2 = null;
+                        location = location2;
+                    } else {
+                        location = null;
+                    }
+                    if (ive.b(context, "android.permission.ACCESS_FINE_LOCATION") == 0) {
+                        try {
+                            if (locationManager.isProviderEnabled("gps")) {
+                                location3 = locationManager.getLastKnownLocation("gps");
+                            }
+                        } catch (Exception e2) {
+                            Log.d("TwilightManager", "Failed to get last known location", e2);
+                        }
+                    }
+                    if (location3 != null && (location == null || location3.getTime() > location.getTime())) {
+                        location = location3;
+                    }
+                    z = false;
+                    if (location != null) {
+                        long currentTimeMillis = System.currentTimeMillis();
+                        s6c s6cVar = s6c.d;
+                        s6c s6cVar2 = s6cVar;
+                        if (s6cVar == null) {
+                            ?? obj2 = new Object();
+                            s6c.d = obj2;
+                            s6cVar2 = obj2;
+                        }
+                        s6c s6cVar3 = s6cVar2;
+                        s6cVar3.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
+                        s6cVar3.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
+                        if (s6cVar3.c) {
+                            z = true;
+                        }
+                        long j2 = s6cVar3.b;
+                        long j3 = s6cVar3.a;
+                        s6cVar3.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
+                        long j4 = s6cVar3.b;
+                        if (j2 != -1 && j3 != -1) {
+                            if (currentTimeMillis > j3) {
+                                j2 = j4;
+                            } else if (currentTimeMillis > j2) {
+                                j2 = j3;
+                            }
+                            j = j2 + 60000;
+                        } else {
+                            j = currentTimeMillis + 43200000;
+                        }
+                        qebVar.b = z;
+                        qebVar.a = j;
+                    } else {
+                        Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
+                        int i = Calendar.getInstance().get(11);
+                        if (i < 6 || i >= 22) {
+                            z = true;
+                        }
+                    }
+                }
+                if (z) {
+                    return 2;
+                }
+                return 1;
         }
-        return 0;
     }
 
-    public abstract int i(int i);
-
-    public final void j() {
-        ((SparseIntArray) this.a).clear();
-    }
-
-    public abstract void k();
-
-    public final void l() {
-        c();
-        IntentFilter d = d();
-        if (d.countActions() == 0) {
-            return;
+    @Override
+    public final void k() {
+        byte b = this.c;
+        cp cpVar = this.d;
+        switch (b) {
+            case 0:
+                cpVar.d(true);
+                return;
+            default:
+                cpVar.d(true);
+                return;
         }
-        zj zjVar = (zj) this.a;
-        if (zjVar == null) {
-            zjVar = new zj(this, (byte) 1);
-            this.a = zjVar;
-        }
-        ((bp) this.b).e.registerReceiver(zjVar, d);
     }
 
-    public yo(Context context) {
-        this.a = context;
-    }
-
-    public yo(bp bpVar) {
-        this.b = bpVar;
+    public yo(cp cpVar, ko9 ko9Var) {
+        super(cpVar);
+        this.d = cpVar;
+        this.e = ko9Var;
     }
 }

@@ -1,43 +1,24 @@
 package defpackage;
+public final class g0d implements m55 {
+    public final h0d a;
+    public final q0d b;
+    public final long c;
+    public final byte[] d;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class g0d extends tzc {
-    @Override
-    public final boolean a(int i, Parcel parcel, Parcel parcel2, int i2) {
-        if (i != 2) {
-            if (i != 3) {
-                if (i != 4) {
-                    if (i != 5) {
-                        return false;
-                    }
-                    Parcelable.Creator creator = Bundle.CREATOR;
-                    yzc.b(parcel);
-                    b((Bundle) yzc.a(parcel));
-                    return true;
-                }
-                Parcelable.Creator creator2 = Bundle.CREATOR;
-                yzc.b(parcel);
-                d((Bundle) yzc.a(parcel));
-                return true;
-            }
-            Parcelable.Creator creator3 = Bundle.CREATOR;
-            yzc.b(parcel);
-            c((Bundle) yzc.a(parcel));
-            return true;
-        }
-        Parcelable.Creator creator4 = Bundle.CREATOR;
-        yzc.b(parcel);
-        e((Bundle) yzc.a(parcel));
-        return true;
+    public g0d(h0d h0dVar, q0d q0dVar, long j, byte[] bArr) {
+        this.a = h0dVar;
+        this.b = q0dVar;
+        this.c = j;
+        this.d = bArr;
     }
 
-    public abstract void b(Bundle bundle);
+    @Override
+    public final void a() {
+        this.b.b(5, null, this.c);
+    }
 
-    public abstract void c(Bundle bundle);
-
-    public abstract void d(Bundle bundle);
-
-    public abstract void e(Bundle bundle);
+    @Override
+    public final void b() {
+        this.b.b(3, null, this.c);
+    }
 }

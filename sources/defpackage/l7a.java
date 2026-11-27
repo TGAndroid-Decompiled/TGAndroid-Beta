@@ -1,82 +1,19 @@
 package defpackage;
 
-import java.util.AbstractSet;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-public final class l7a extends AbstractSet {
-    public final ym5 a;
-    public final ym5 b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l7a implements RequestDelegate {
+    public final TLRPC.TL_stickers_createStickerSet a;
+    public final m7a b;
 
-    public l7a(ym5 ym5Var, ym5 ym5Var2) {
-        this.a = ym5Var;
-        this.b = ym5Var2;
+    public l7a(m7a m7aVar, TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet) {
+        this.b = m7aVar;
+        this.a = tL_stickers_createStickerSet;
     }
 
     @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.a.contains(obj) && this.b.contains(obj)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        if (this.a.containsAll(collection) && this.b.containsAll(collection)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return Collections.disjoint(this.b, this.a);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new js5(this);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final int size() {
-        int i = 0;
-        for (Object obj : this.a) {
-            if (this.b.contains(obj)) {
-                i++;
-            }
-        }
-        return i;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        hl.c3(new vp8(this, tL_error, this.a, tLObject, (byte) 18));
     }
 }

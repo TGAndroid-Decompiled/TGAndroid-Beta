@@ -1,24 +1,17 @@
 package defpackage;
-public abstract class vte {
-    public final byte a = 1;
+public final class vte implements zq7 {
+    public static final vte a = new Object();
 
-    public final int hashCode() {
-        switch (this.a) {
-            case 1:
-                return toString().hashCode();
-            default:
-                return super.hashCode();
-        }
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
     }
 
-    public final String toString() {
-        switch (this.a) {
-            case 1:
-                String b = f59.a(getClass()).b();
-                b.getClass();
-                return b;
-            default:
-                return super.toString();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

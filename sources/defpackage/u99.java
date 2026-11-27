@@ -1,25 +1,50 @@
 package defpackage;
-public final class u99 implements Runnable {
-    public final byte a;
-    public final y99 b;
 
-    public u99(y99 y99Var, byte b) {
-        this.a = b;
-        this.b = y99Var;
+import com.google.android.gms.cast.MediaError;
+import java.util.ArrayList;
+public abstract class u99 {
+    public void a() {
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        y99 y99Var = this.b;
-        switch (b) {
-            case 0:
-                y99Var.Y0();
-                return;
-            default:
-                y99Var.d2.O(true);
-                gl.d3(new u99(y99Var, (byte) 0), 150L);
-                return;
-        }
+    public void c() {
+    }
+
+    public void d() {
+    }
+
+    public void e() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void o() {
+    }
+
+    public void b(MediaError mediaError) {
+    }
+
+    public void i(int[] iArr) {
+    }
+
+    public void k(eu6[] eu6VarArr) {
+    }
+
+    public void l(int[] iArr) {
+    }
+
+    public void n(int[] iArr) {
+    }
+
+    public void j(int[] iArr, int i) {
+    }
+
+    public void m(ArrayList arrayList, ArrayList arrayList2, int i) {
+    }
+
+    public void h(String str, long j, int i, long j2, long j3) {
     }
 }

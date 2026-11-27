@@ -1,27 +1,372 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.text.Layout;
-public final class t33 {
-    public CharSequence a = null;
-    public Bitmap b = null;
-    public Layout.Alignment c = null;
-    public Layout.Alignment d = null;
-    public float e = -3.4028235E38f;
-    public int f = Integer.MIN_VALUE;
-    public int g = Integer.MIN_VALUE;
-    public float h = -3.4028235E38f;
-    public int i = Integer.MIN_VALUE;
-    public int j = Integer.MIN_VALUE;
-    public float k = -3.4028235E38f;
-    public float l = -3.4028235E38f;
-    public final float m = -3.4028235E38f;
-    public final boolean n = false;
-    public final int o = -16777216;
-    public int p = Integer.MIN_VALUE;
-    public float q;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.os.Build;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class t33 extends FrameLayout {
+    public final Paint a;
+    public final Paint b;
+    public final ImageView c;
+    public final ImageView d;
+    public final ImageView e;
+    public String f;
+    public final TextPaint h;
+    public float n;
+    public final RectF r;
+    public float s;
+    public s33 w;
 
-    public final u33 a() {
-        return new u33(this.a, this.c, this.d, this.b, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.p, this.q, 0);
+    public t33(Context context) {
+        super(context);
+        this.r = new RectF(0.0f, 0.0f, 0.0f, 0.0f);
+        Paint paint = new Paint();
+        this.a = paint;
+        Paint.Style style = Paint.Style.FILL;
+        paint.setStyle(style);
+        paint.setColor(-1);
+        paint.setAlpha(255);
+        paint.setAntiAlias(true);
+        Paint paint2 = new Paint();
+        this.b = paint2;
+        paint2.setStyle(style);
+        paint2.setColor(-11420173);
+        paint2.setAlpha(255);
+        paint2.setAntiAlias(true);
+        ImageView imageView = new ImageView(context);
+        this.e = imageView;
+        imageView.setImageResource(2131232286);
+        imageView.setBackgroundDrawable(aob.f0(1090519039, 1, -1));
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final t33 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                t33 t33Var = this.b;
+                switch (b) {
+                    case 0:
+                        s33 s33Var = t33Var.w;
+                        if (s33Var != null) {
+                            t33Var.setMirrored(s33Var.a());
+                            return;
+                        }
+                        return;
+                    case 1:
+                        s33 s33Var2 = t33Var.w;
+                        if (s33Var2 != null) {
+                            s33Var2.b();
+                            return;
+                        }
+                        return;
+                    default:
+                        s33 s33Var3 = t33Var.w;
+                        if (s33Var3 != null) {
+                            t33Var.setRotated(s33Var3.d());
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        imageView.setOnLongClickListener(new zs(this, (byte) 3));
+        imageView.setContentDescription(ob6.M0(2131754835, null));
+        addView(imageView, tre.e(70, 64, 19));
+        ImageView imageView2 = new ImageView(context);
+        this.c = imageView2;
+        imageView2.setImageResource(2131232284);
+        imageView2.setBackgroundDrawable(aob.f0(1090519039, 1, -1));
+        imageView2.setScaleType(scaleType);
+        imageView2.setOnClickListener(new View.OnClickListener(this) {
+            public final t33 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                t33 t33Var = this.b;
+                switch (b) {
+                    case 0:
+                        s33 s33Var = t33Var.w;
+                        if (s33Var != null) {
+                            t33Var.setMirrored(s33Var.a());
+                            return;
+                        }
+                        return;
+                    case 1:
+                        s33 s33Var2 = t33Var.w;
+                        if (s33Var2 != null) {
+                            s33Var2.b();
+                            return;
+                        }
+                        return;
+                    default:
+                        s33 s33Var3 = t33Var.w;
+                        if (s33Var3 != null) {
+                            t33Var.setRotated(s33Var3.d());
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        imageView2.setVisibility(8);
+        imageView2.setContentDescription(ob6.M0(2131754918, null));
+        addView(imageView2, tre.e(70, 64, 19));
+        ImageView imageView3 = new ImageView(context);
+        this.d = imageView3;
+        imageView3.setImageResource(2131232287);
+        imageView3.setBackgroundDrawable(aob.f0(1090519039, 1, -1));
+        imageView3.setScaleType(scaleType);
+        imageView3.setOnClickListener(new View.OnClickListener(this) {
+            public final t33 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                t33 t33Var = this.b;
+                switch (b) {
+                    case 0:
+                        s33 s33Var = t33Var.w;
+                        if (s33Var != null) {
+                            t33Var.setMirrored(s33Var.a());
+                            return;
+                        }
+                        return;
+                    case 1:
+                        s33 s33Var2 = t33Var.w;
+                        if (s33Var2 != null) {
+                            s33Var2.b();
+                            return;
+                        }
+                        return;
+                    default:
+                        s33 s33Var3 = t33Var.w;
+                        if (s33Var3 != null) {
+                            t33Var.setRotated(s33Var3.d());
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        imageView3.setContentDescription(ob6.M0(2131754778, null));
+        addView(imageView3, tre.e(70, 64, 21));
+        TextPaint textPaint = new TextPaint(1);
+        this.h = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTextSize(hl.L(14.0f));
+        setWillNotDraw(false);
+        b(0.0f);
+    }
+
+    public final void a(Canvas canvas, int i, float f, int i2, int i3, boolean z, Paint paint) {
+        int cos;
+        int L;
+        int i4;
+        int L2 = (int) ((i2 / 2.0f) - hl.L(70.0f));
+        int cos2 = (i2 / 2) + ((int) (Math.cos(Math.toRadians(90.0f - ((i * 5) + f))) * L2));
+        float abs = Math.abs(cos) / L2;
+        int min = Math.min(255, Math.max(0, (int) ((1.0f - (abs * abs)) * 255.0f)));
+        if (z) {
+            paint = this.b;
+        }
+        Paint paint2 = paint;
+        paint2.setAlpha(min);
+        if (z) {
+            L = hl.L(16.0f);
+            i4 = 4;
+        } else {
+            L = hl.L(12.0f);
+            i4 = 2;
+        }
+        int i5 = i4 / 2;
+        canvas.drawRect(cos2 - i5, (i3 - L) / 2, cos2 + i5, (i3 + L) / 2, paint2);
+    }
+
+    public final void b(float f) {
+        this.n = f;
+        if (Math.abs(f) < 0.099d) {
+            f = Math.abs(f);
+        }
+        this.f = String.format("%.1fº", Float.valueOf(f));
+        invalidate();
+    }
+
+    @Override
+    public float getRotation() {
+        return this.n;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        Paint paint;
+        boolean z;
+        Paint paint2;
+        boolean z2;
+        super.onDraw(canvas);
+        int width = getWidth();
+        int height = getHeight();
+        float f2 = ((-this.n) * 2.0f) % 5.0f;
+        int floor = (int) Math.floor(f / 5.0f);
+        int i = 0;
+        while (true) {
+            Paint paint3 = this.b;
+            if (i < 16) {
+                Paint paint4 = this.a;
+                if (i >= floor && (i != 0 || f2 >= 0.0f)) {
+                    paint = paint4;
+                } else {
+                    paint = paint3;
+                }
+                if (i != floor && (i != 0 || floor != -1)) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+                t33 t33Var = this;
+                Canvas canvas2 = canvas;
+                t33Var.a(canvas2, i, f2, width, height, z, paint);
+                int i2 = i;
+                if (i2 != 0) {
+                    int i3 = -i2;
+                    if (i3 > floor) {
+                        paint2 = paint3;
+                    } else {
+                        paint2 = paint4;
+                    }
+                    if (i3 == floor + 1) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    t33Var.a(canvas2, i3, f2, width, height, z2, paint2);
+                }
+                i = i2 + 1;
+                this = t33Var;
+                canvas = canvas2;
+            } else {
+                t33 t33Var2 = this;
+                Canvas canvas3 = canvas;
+                paint3.setAlpha(255);
+                RectF rectF = t33Var2.r;
+                rectF.left = (width - hl.L(2.5f)) / 2;
+                rectF.top = ik8.D(22.0f, height, 2);
+                rectF.right = (hl.L(2.5f) + width) / 2;
+                rectF.bottom = (hl.L(22.0f) + height) / 2;
+                canvas3.drawRoundRect(rectF, hl.L(2.0f), hl.L(2.0f), paint3);
+                String str = t33Var2.f;
+                TextPaint textPaint = t33Var2.h;
+                canvas3.drawText(t33Var2.f, (width - textPaint.measureText(str)) / 2.0f, hl.L(14.0f), textPaint);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), hl.L(400.0f)), 1073741824), i2);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        float x = motionEvent.getX();
+        if (actionMasked == 0) {
+            this.s = x;
+            s33 s33Var = this.w;
+            if (s33Var != null) {
+                s33Var.e();
+                return true;
+            }
+        } else if (actionMasked != 1 && actionMasked != 3) {
+            if (actionMasked == 2) {
+                float f = xnb.f(this.n, (float) ((((this.s - x) / hl.p) / 3.141592653589793d) / 1.649999976158142d), 45.0f, -45.0f);
+                if (Build.VERSION.SDK_INT >= 27) {
+                    try {
+                        if ((Math.abs(f - 45.0f) < 0.001f && Math.abs(this.n - 45.0f) >= 0.001f) || (Math.abs(f - (-45.0f)) < 0.001f && Math.abs(this.n - (-45.0f)) >= 0.001f)) {
+                            performHapticFeedback(3, 1);
+                        } else if (Math.floor(this.n / 2.5f) != Math.floor(f / 2.5f)) {
+                            hl.W3(this);
+                        }
+                    } catch (Exception unused) {
+                    }
+                }
+                if (Math.abs(f - this.n) > 0.001d) {
+                    if (Math.abs(f) < 0.05d) {
+                        f = 0.0f;
+                    }
+                    b(f);
+                    s33 s33Var2 = this.w;
+                    if (s33Var2 != null) {
+                        s33Var2.f(this.n);
+                    }
+                    this.s = x;
+                }
+            }
+        } else {
+            s33 s33Var3 = this.w;
+            if (s33Var3 != null) {
+                s33Var3.c();
+            }
+            hl.g2(String.format("%.1f°", Float.valueOf(this.n)));
+            return true;
+        }
+        return true;
+    }
+
+    public void setAspectLock(boolean z) {
+        PorterDuffColorFilter porterDuffColorFilter;
+        if (z) {
+            porterDuffColorFilter = new PorterDuffColorFilter(-11420173, PorterDuff.Mode.MULTIPLY);
+        } else {
+            porterDuffColorFilter = null;
+        }
+        this.c.setColorFilter(porterDuffColorFilter);
+    }
+
+    public void setListener(s33 s33Var) {
+        this.w = s33Var;
+    }
+
+    public void setMirrored(boolean z) {
+        PorterDuffColorFilter porterDuffColorFilter = null;
+        if (z) {
+            porterDuffColorFilter = new PorterDuffColorFilter(aob.w0(null, aob.qg, false), PorterDuff.Mode.MULTIPLY);
+        }
+        this.e.setColorFilter(porterDuffColorFilter);
+    }
+
+    public void setRotated(boolean z) {
+        PorterDuffColorFilter porterDuffColorFilter = null;
+        if (z) {
+            porterDuffColorFilter = new PorterDuffColorFilter(aob.w0(null, aob.qg, false), PorterDuff.Mode.MULTIPLY);
+        }
+        this.d.setColorFilter(porterDuffColorFilter);
+    }
+
+    public void setFreeform(boolean z) {
     }
 }

@@ -1,7 +1,18 @@
 package defpackage;
-public final class yh extends hn7 {
+
+import android.view.View;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class yh extends f8c {
+    public final AlertDialog$Builder e;
+
+    public yh(String str, AlertDialog$Builder alertDialog$Builder) {
+        super(str, (rmb) null);
+        this.e = alertDialog$Builder;
+    }
+
     @Override
-    public final CharSequence d(int i) {
-        return k96.G(i, "Hours", new Object[0]);
+    public final void onClick(View view) {
+        this.e.a.M0.run();
+        super.onClick(view);
     }
 }

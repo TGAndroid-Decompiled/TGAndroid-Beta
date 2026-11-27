@@ -1,88 +1,67 @@
 package defpackage;
 
-import java.io.IOException;
-public final class rs8 implements ip9 {
-    public final int a;
-    public final boolean b;
-    public final ts8 c;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.e;
+public final class rs8 implements kf3 {
+    public final e a;
+    public final Context b;
+    public final mr8 c;
 
-    public rs8(ts8 ts8Var, int i, boolean z) {
-        this.c = ts8Var;
-        this.a = i;
-        this.b = z;
+    public rs8(mr8 mr8Var, e eVar, Context context) {
+        this.c = mr8Var;
+        this.a = eVar;
+        this.b = context;
     }
 
     @Override
-    public final int a() {
-        if (this.b) {
-            return 4;
+    public final void k(of3 of3Var) {
+        e eVar = this.a;
+        if (eVar.getMessagesController().O1().J(of3Var.getDialogId())) {
+            eVar.getOrCreateStoryViewer().getClass();
+            eVar.getOrCreateStoryViewer().H(eVar.getContext(), of3Var.getDialogId(), new l6b(this.c));
         }
-        return 0;
     }
 
     @Override
-    public final void b() {
-        int i = this.a;
-        ts8 ts8Var = this.c;
-        ts8Var.M[i].C();
-        mv6 mv6Var = ts8Var.y;
-        int v3 = ts8Var.d.v3(ts8Var.W);
-        IOException iOException = (IOException) mv6Var.d;
-        if (iOException == null) {
-            j86 j86Var = (j86) mv6Var.c;
-            if (j86Var != null) {
-                if (v3 == Integer.MIN_VALUE) {
-                    v3 = j86Var.a;
-                }
-                IOException iOException2 = j86Var.e;
-                if (iOException2 != null && j86Var.f > v3) {
-                    throw iOException2;
-                }
-                return;
-            }
+    public final boolean m() {
+        return true;
+    }
+
+    @Override
+    public final void r() {
+        boolean z;
+        e eVar = this.a;
+        c6b O1 = eVar.getMessagesController().O1();
+        ArrayList arrayList = O1.h;
+        if (arrayList.isEmpty()) {
             return;
         }
-        throw iOException;
+        if (O1.D(0, wf3.n(((TL_stories.PeerStories) arrayList.get(0)).peer)) != 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        ArrayList arrayList2 = new ArrayList();
+        for (int i = 0; i < arrayList.size(); i++) {
+            long n = wf3.n(((TL_stories.PeerStories) arrayList.get(i)).peer);
+            if (!z || O1.D(0, n) != 0) {
+                arrayList2.add(Long.valueOf(n));
+            }
+        }
+        eVar.getOrCreateStoryViewer().K(this.b, null, arrayList2, 0, null, null, new l6b(this.c), false);
     }
 
     @Override
-    public final int h(sk4 sk4Var, z83 z83Var, int i) {
-        ts8 ts8Var = this.c;
-        if (ts8Var.C()) {
-            return -3;
-        }
-        int i2 = this.a;
-        ts8Var.w(i2);
-        int F = ts8Var.M[i2].F(sk4Var, z83Var, i, ts8Var.j0);
-        if (F == -3) {
-            ts8Var.x(i2);
-        }
-        return F;
+    public final void o(of3 of3Var) {
     }
 
     @Override
-    public final boolean j() {
-        ts8 ts8Var = this.c;
-        if (!ts8Var.C() && ts8Var.M[this.a].A(ts8Var.j0)) {
-            return true;
-        }
-        return false;
+    public final void v(of3 of3Var) {
     }
 
     @Override
-    public final int n(long j) {
-        ts8 ts8Var = this.c;
-        if (ts8Var.C()) {
-            return 0;
-        }
-        int i = this.a;
-        ts8Var.w(i);
-        gp9 gp9Var = ts8Var.M[i];
-        int x = gp9Var.x(j, ts8Var.j0);
-        gp9Var.L(x);
-        if (x == 0) {
-            ts8Var.x(i);
-        }
-        return x;
+    public final void w(of3 of3Var) {
     }
 }

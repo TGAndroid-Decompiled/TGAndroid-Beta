@@ -1,17 +1,27 @@
 package defpackage;
-public final class hld implements zn7 {
-    public static final hld a = new Object();
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class hld {
+    public static final int a = 0;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
+        hld.class.getClassLoader();
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        throw new ClassCastException();
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
+
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

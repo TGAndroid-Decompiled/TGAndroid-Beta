@@ -1,17 +1,15 @@
 package defpackage;
-public final class lhe implements zn7 {
-    public static final lhe a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.util.Calendar;
+import java.util.Locale;
+public abstract class lhe {
+    public static int a(int i) {
+        if (i < 100 && i >= 0) {
+            if (z3f.G == null) {
+                z3f.G = new z3f((byte) 15);
+            }
+            return Integer.parseInt(String.format(Locale.US, "%s%02d", bs2.n(2, 0, String.valueOf(Calendar.getInstance().get(1))), Integer.valueOf(i)));
         }
-        throw new ClassCastException();
+        return i;
     }
 }

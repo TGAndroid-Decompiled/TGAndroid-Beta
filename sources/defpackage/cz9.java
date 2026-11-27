@@ -1,142 +1,248 @@
 package defpackage;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-public class cz9 extends FrameLayout implements tjb {
-    public int a;
-    public final wjb b;
-    public final ImageView c;
-    public final TextView d;
-    public Runnable e;
-    public final ed0 f;
-    public final Paint h;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import java.util.Locale;
+public final class cz9 extends Drawable {
+    public final boolean a;
+    public final Runnable b;
+    public final Paint c = new Paint(1);
+    public final Paint d;
+    public b29 e;
+    public final Path f;
+    public final pkb g;
+    public final Path h;
+    public final Path i;
+    public boolean j;
+    public int k;
+    public final mm l;
+    public final mm m;
+    public final mm n;
+    public final mm o;
+    public final uj4 p;
+    public boolean q;
+    public final RectF r;
+    public final RectF s;
+    public float t;
+    public long u;
+    public float v;
+    public boolean w;
+    public final ux9 x;
 
-    public cz9(Context context, wjb wjbVar) {
-        super(context);
+    public cz9(Runnable runnable, boolean z) {
+        boolean z2 = true;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        Path path = new Path();
+        this.f = path;
+        this.g = new pkb(ob6.M0(2131745409, null), 14.0f, null);
+        Path path2 = new Path();
+        this.h = path2;
+        Path path3 = new Path();
+        this.i = path3;
+        this.k = 1;
+        this.r = new RectF();
+        this.s = new RectF();
+        this.x = new ux9(this, (byte) 5);
+        this.b = runnable;
+        this.a = z;
+        k43 k43Var = k43.h;
+        mm mmVar = new mm(runnable, 360L, k43Var, 0);
+        this.l = mmVar;
+        mmVar.e(true, 0.0f);
+        this.m = new mm(runnable, 320L, k43Var, 0);
+        this.n = new mm(runnable, 200L, k43Var, 0);
+        mm mmVar2 = new mm(runnable, 360L, k43Var, 0);
+        this.o = mmVar2;
+        mmVar2.e(true, 0.0f);
+        uj4 uj4Var = new uj4(runnable);
+        this.p = uj4Var;
+        uj4Var.B = 0.3f;
+        uj4Var.m(0.4f, 650L, 1.6f, k43Var);
+        uj4Var.x(hl.n1("fonts/num.otf"));
+        uj4Var.w(hl.L(16.0f));
+        c(false, 2.0f);
+        uj4Var.u(-1);
+        uj4Var.b = 17;
+        paint.setPathEffect(new CornerPathEffect(hl.L(1.66f)));
+        path2.moveTo(hl.L(8.66f), -hl.L(6.33f));
+        path2.lineTo(0.0f, 0.0f);
+        path2.lineTo(hl.L(8.66f), hl.L(6.33f));
+        path2.close();
+        path3.moveTo(0.0f, -hl.L(6.33f));
+        path3.lineTo(hl.L(8.66f), 0.0f);
+        path3.lineTo(0.0f, hl.L(6.33f));
+        path3.close();
+        this.q = (z || uc7.e1().getBoolean("seekSpeedHintShowed", false)) ? false : z2;
+        path.moveTo(-hl.L(6.5f), 0.0f);
+        path.lineTo(0.0f, -hl.L(6.33f));
+        path.lineTo(hl.L(6.5f), 0.0f);
+        path.close();
+    }
+
+    public final boolean a() {
+        if (!this.j && this.l.c <= 0.0f) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void b(boolean z) {
+        this.j = z;
+        this.b.run();
+        b29 b29Var = this.e;
+        if (b29Var != null && this.q) {
+            if (z) {
+                b29Var.C(false);
+            } else {
+                b29Var.stop();
+            }
+        }
+    }
+
+    public final void c(boolean z, float f) {
         int i;
-        float f;
-        float f2;
-        this.h = new Paint(1);
-        this.b = wjbVar;
-        TextView textView = new TextView(context);
-        this.d = textView;
-        ug8.v(textView, 1, 20.0f);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
+        if (Math.floor(this.v * 10.0f) != Math.floor(10.0f * f)) {
+            uj4 uj4Var = this.p;
+            uj4Var.a();
+            uj4Var.t(String.format(Locale.US, "%.1fx", Float.valueOf(Math.abs(f))), z, true);
+            this.v = f;
         }
-        textView.setGravity(i);
-        int i2 = bkb.i5;
-        zkb.X(textView, i2, wjbVar);
-        boolean z = k96.a0;
-        if (z) {
-            f = 16.0f;
+        if (f > 0.0f) {
+            i = 1;
         } else {
-            f = 53.0f;
+            i = -1;
         }
-        if (z) {
-            f2 = 53.0f;
-        } else {
-            f2 = 16.0f;
+        this.k = i;
+        if (!z) {
+            this.m.e(true, i);
         }
-        addView(textView, nme.d(-1, -2.0f, 23, f, 0.0f, f2, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        ed0 ed0Var = new ed0(false);
-        this.f = ed0Var;
-        imageView.setImageDrawable(ed0Var);
-        int v0 = bkb.v0(i2, wjbVar);
-        this.a = v0;
-        ed0Var.a(v0);
-        ed0Var.b(bkb.v0(i2, wjbVar));
-        ed0Var.k = 220.0f;
-        addView(imageView, nme.d(24, 24.0f, (k96.a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new ik8(this, (byte) 21));
+        this.b.run();
+        if (this.q && Math.abs(f) > 3.0f && !this.w) {
+            this.w = true;
+            hl.d3(this.x, 2500L);
+            uc7.e1().edit().putBoolean("seekSpeedHintShowed", true).apply();
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int v0 = bkb.v0(bkb.c7, this.b);
-        Paint paint = this.h;
-        paint.setColor(v0);
-        canvas.drawRect(0.0f, getHeight() - gl.e1(), getWidth(), getHeight(), paint);
-    }
-
-    public int getHeaderHeight() {
-        return gl.L(56.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
-    }
-
-    public void setBackImage(int i) {
-        this.c.setImageResource(i);
-    }
-
-    public void setCloseImageVisible(boolean z) {
-        int i;
-        float f;
-        float f2;
-        if (z) {
-            i = 0;
-        } else {
-            i = 8;
-        }
-        this.c.setVisibility(i);
-        boolean z2 = k96.a0;
-        if (!z2 && z) {
-            f = 53.0f;
-        } else {
-            f = 22.0f;
-        }
-        if (z2 && z) {
-            f2 = 53.0f;
-        } else {
-            f2 = 22.0f;
-        }
-        this.d.setLayoutParams(nme.d(-1, -2.0f, 23, f, 0.0f, f2, 0.0f));
-    }
-
-    public void setOnCloseClickListener(Runnable runnable) {
-        this.e = runnable;
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    @Override
-    public final void updateColors() {
-        ed0 ed0Var = this.f;
-        if (ed0Var != null) {
-            try {
-                int v0 = bkb.v0(bkb.i5, this.b);
-                if (v0 != this.a) {
-                    this.a = v0;
-                    ed0Var.a(v0);
-                    ed0Var.b(v0);
-                    ImageView imageView = this.c;
-                    if (imageView != null) {
-                        imageView.invalidate();
-                    }
+    public final void draw(Canvas canvas) {
+        boolean z;
+        Rect bounds = getBounds();
+        float c = this.p.c() + hl.L(46.0f);
+        float d = this.l.d(this.j);
+        float e = this.m.e(false, this.k);
+        if (d > 0.0f) {
+            float e2 = this.n.e(false, Math.abs(this.v));
+            long currentTimeMillis = System.currentTimeMillis();
+            float min = Math.min(0.016f, ((float) (currentTimeMillis - this.u)) / 1000.0f);
+            this.u = currentTimeMillis;
+            this.t = (Math.min(e2, 4.0f) * 1.5f * min) + this.t;
+            this.b.run();
+            float f = c / 2.0f;
+            this.r.set(bounds.centerX() - f, hl.L(9.0f) + bounds.top, bounds.centerX() + f, hl.L(37.0f) + bounds.top);
+            canvas.save();
+            float f2 = d * 0.4f;
+            float f3 = 0.6f + f2;
+            if (bounds.width() < hl.q.x * 0.7f) {
+                f3 *= 0.75f;
+                if (this.a) {
+                    canvas.translate(-hl.L(45.0f), 0.0f);
                 }
-            } catch (Exception e) {
-                fa4.g(e, true);
+            }
+            canvas.scale(f3, f3, this.r.centerX(), this.r.top);
+            canvas.translate(0.0f, (1.0f - d) * (-hl.L(15.0f)));
+            canvas.clipRect(this.r);
+            this.c.setColor(aob.p1(f2, -16777216));
+            RectF rectF = this.r;
+            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.r.height() / 2.0f, this.c);
+            this.p.p(this.r);
+            canvas.save();
+            float f4 = -e;
+            canvas.translate(((this.r.centerX() - f) + hl.L(9.0f)) - ((1.0f - Math.max(0.0f, f4)) * hl.L(30.0f)), this.r.centerY());
+            this.d.setColor(aob.p1(((((((float) Math.sin(this.t * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f) * Math.max(0.0f, f4) * d, -1));
+            canvas.drawPath(this.h, this.d);
+            canvas.translate(hl.L(10.66f), 0.0f);
+            this.d.setColor(aob.p1(((((((float) Math.sin((this.t + 0.17f) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f) * Math.max(0.0f, f4) * d, -1));
+            canvas.drawPath(this.h, this.d);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(((-hl.L(28.0f)) / 2.0f) * e, 0.0f);
+            uj4 uj4Var = this.p;
+            uj4Var.C = (int) (d * 255.0f);
+            uj4Var.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(((1.0f - Math.max(0.0f, e)) * hl.L(30.0f)) + ((this.r.centerX() + f) - hl.L(30.0f)), this.r.centerY());
+            this.d.setColor(aob.p1(((((((float) Math.sin(this.t * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f) * Math.max(0.0f, e) * d, -1));
+            canvas.drawPath(this.i, this.d);
+            canvas.translate(hl.L(10.66f), 0.0f);
+            this.d.setColor(aob.p1(((((((float) Math.sin((this.t - 0.17f) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f) * Math.max(0.0f, e) * d, -1));
+            canvas.drawPath(this.i, this.d);
+            canvas.restore();
+            canvas.restore();
+            mm mmVar = this.o;
+            if (this.q && this.j) {
+                z = true;
+            } else {
+                z = false;
+            }
+            float d2 = mmVar.d(z);
+            if (d2 > 0.0f) {
+                if (this.e == null) {
+                    b29 b29Var = new b29(2131624186, hl.L(24.0f), hl.L(24.0f), true, null);
+                    this.e = b29Var;
+                    b29Var.E(true);
+                    this.e.setCallback(new jn(this, (byte) 10));
+                    this.e.F(1);
+                    this.e.start();
+                }
+                float L = this.g.c + hl.L(54.0f);
+                RectF rectF2 = this.s;
+                float f5 = L / 2.0f;
+                float centerX = bounds.centerX() - f5;
+                RectF rectF3 = this.r;
+                float height = (rectF3.height() * d) + rectF3.top + hl.L(11.0f);
+                float centerX2 = bounds.centerX() + f5;
+                RectF rectF4 = this.r;
+                rectF2.set(centerX, height, centerX2, (rectF4.height() * d) + rectF4.top + hl.L(11.0f) + hl.L(32.0f));
+                canvas.save();
+                float f6 = (0.25f * d2) + 0.75f;
+                canvas.scale(f6, f6, this.s.centerX(), this.s.top);
+                this.c.setColor(aob.p1(d2 * 0.4f, -16777216));
+                canvas.save();
+                canvas.translate(this.s.centerX(), this.s.top);
+                canvas.drawPath(this.f, this.c);
+                canvas.restore();
+                canvas.drawRoundRect(this.s, hl.L(8.0f), hl.L(8.0f), this.c);
+                this.e.setBounds(hl.L(11.0f) + ((int) this.s.left), ((int) this.s.centerY()) - (hl.L(24.0f) / 2), hl.L(35.0f) + ((int) this.s.left), (hl.L(24.0f) / 2) + ((int) this.s.centerY()));
+                this.e.setAlpha((int) (255.0f * d2));
+                if (!this.e.l0) {
+                    this.e.C(true);
+                }
+                this.e.draw(canvas);
+                this.g.c(this.s.left + hl.L(39.0f), this.s.centerY(), d2, -1, canvas);
+                canvas.restore();
             }
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

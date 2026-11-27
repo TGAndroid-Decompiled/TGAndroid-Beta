@@ -1,46 +1,17 @@
 package defpackage;
+public final class h5e implements zq7 {
+    public static final h5e a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class h5e extends b4 {
-    public static final Parcelable.Creator<h5e> CREATOR = new qyd((byte) 5);
-    public final int a;
-    public final String b;
-    public final byte[] c;
-    public final String d;
-
-    public h5e(int i, String str, String str2, byte[] bArr) {
-        this.a = i;
-        this.b = str;
-        this.c = bArr;
-        this.d = str2;
-    }
-
-    public final String toString() {
-        Object valueOf;
-        byte[] bArr = this.c;
-        if (bArr == null) {
-            valueOf = "null";
-        } else {
-            valueOf = Integer.valueOf(bArr.length);
-        }
-        String obj = valueOf.toString();
-        StringBuilder sb = new StringBuilder("MessageEventParcelable[");
-        sb.append(this.a);
-        sb.append(",");
-        sb.append(this.b);
-        sb.append(", size=");
-        return b00.j(sb, obj, "]");
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)), 5)), 6)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 3, this.b);
-        jte.c(parcel, 4, this.c);
-        jte.l(parcel, 5, this.d);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

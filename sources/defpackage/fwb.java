@@ -1,48 +1,37 @@
 package defpackage;
-
-import android.widget.EditText;
-import androidx.recyclerview.widget.RecyclerView;
-public final class fwb extends i49 {
-    public final int a;
-    public final long b;
-    public final lwb c;
-
-    public fwb(lwb lwbVar, int i, long j) {
-        this.c = lwbVar;
-        this.a = i;
-        this.b = j;
+public enum fwb extends rwb {
+    public fwb() {
+        super("BetweenDoctypePublicAndSystemIdentifiers", 59);
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i) {
-        EditText editText = this.c.w;
-        if (i == 1 && editText.hasFocus()) {
-            gl.t1(editText);
-            editText.clearFocus();
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        lwb lwbVar = this.c;
-        lwbVar.o();
-        t26 t26Var = (t26) recyclerView.getLayoutManager();
-        if (t26Var != null && t26Var.M0() >= lwbVar.s.c.size() - 3) {
-            if (lwbVar.i()) {
-                lwbVar.j();
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
+            if (d != '\"') {
+                if (d != '\'') {
+                    mub mubVar = rwb.a;
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bubVar.m(this);
+                            bubVar.c = rwb.D0;
+                            return;
+                        }
+                        bubVar.l(this);
+                        bubVar.j();
+                        bubVar.c = mubVar;
+                        return;
+                    }
+                    bubVar.j();
+                    bubVar.c = mubVar;
+                    return;
+                }
+                bubVar.m(this);
+                bubVar.c = rwb.B0;
                 return;
             }
-            boolean z = lwbVar.d;
-            int i3 = this.a;
-            if (z) {
-                na7.q1(i3).D1().g(false);
-                return;
-            }
-            pub pubVar = na7.q1(i3).g4;
-            long j = -this.b;
-            if (!pubVar.e(j)) {
-                pubVar.o(j);
-            }
+            bubVar.m(this);
+            bubVar.c = rwb.A0;
         }
     }
 }

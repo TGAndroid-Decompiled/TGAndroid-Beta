@@ -1,16 +1,81 @@
 package defpackage;
+
+import java.math.RoundingMode;
 public abstract class cje {
-    public static int a(int i) {
-        return (int) (Integer.rotateLeft((int) (i * (-862048943)), 15) * 461845907);
+    public static boolean a(double d) {
+        if (hje.b(d)) {
+            if (d == 0.0d || 52 - Long.numberOfTrailingZeros(hje.a(d)) <= Math.getExponent(d)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
-    public static int b(Object obj) {
-        int hashCode;
-        if (obj == null) {
-            hashCode = 0;
-        } else {
-            hashCode = obj.hashCode();
+    public static boolean b(double d) {
+        if (d > 0.0d && hje.b(d)) {
+            long a = hje.a(d);
+            if ((a & (a - 1)) == 0) {
+                return true;
+            }
         }
-        return a(hashCode);
+        return false;
+    }
+
+    public static int c(double d) {
+        boolean z;
+        boolean b;
+        RoundingMode roundingMode = RoundingMode.CEILING;
+        boolean z2 = false;
+        if (d > 0.0d && hje.b(d)) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.e("x must be positive and finite", z);
+        int exponent = Math.getExponent(d);
+        if (Math.getExponent(d) >= -1022) {
+            switch (up3.a[roundingMode.ordinal()]) {
+                case 1:
+                    cte.b(b(d));
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    z2 = !b(d);
+                    break;
+                case 4:
+                    if (exponent < 0) {
+                        z2 = true;
+                    }
+                    b = b(d);
+                    z2 &= !b;
+                    break;
+                case 5:
+                    if (exponent >= 0) {
+                        z2 = true;
+                    }
+                    b = b(d);
+                    z2 &= !b;
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    double longBitsToDouble = Double.longBitsToDouble((Double.doubleToRawLongBits(d) & 4503599627370495L) | 4607182418800017408L);
+                    if (longBitsToDouble * longBitsToDouble > 2.0d) {
+                        z2 = true;
+                        break;
+                    }
+                    break;
+                default:
+                    lq5.f();
+                    return 0;
+            }
+            if (z2) {
+                return exponent + 1;
+            }
+            return exponent;
+        }
+        return c(d * 4.503599627370496E15d) - 52;
     }
 }

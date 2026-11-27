@@ -1,154 +1,146 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.d;
+import android.text.TextUtils;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Wallet.c;
 public final class uv1 implements Runnable {
-    public final byte a;
-    public final ChatActivityEnterView b;
+    public final byte a = 1;
+    public final long b;
+    public final boolean c;
+    public final int d;
+    public final int e;
+    public final Object f;
+    public final Object h;
 
-    public uv1(ChatActivityEnterView chatActivityEnterView, byte b) {
-        this.a = b;
-        this.b = chatActivityEnterView;
+    public uv1(jf7 jf7Var, long j, ArrayList arrayList, boolean z, int i, int i2) {
+        this.f = jf7Var;
+        this.b = j;
+        this.h = arrayList;
+        this.c = z;
+        this.d = i;
+        this.e = i2;
     }
 
     @Override
     public final void run() {
+        int[] iArr;
         byte b = this.a;
-        ChatActivityEnterView chatActivityEnterView = this.b;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = null;
+        Object obj = this.h;
+        Object obj2 = this.f;
         switch (b) {
             case 0:
-                int i = ChatActivityEnterView.r7;
-                ex1 ex1Var = chatActivityEnterView.F0;
-                if (ex1Var != null) {
-                    ex1Var.setText("");
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj2;
+                CharSequence charSequence = (CharSequence) obj;
+                int i = ChatActivityEnterView.X7;
+                chatActivityEnterView.g0 = null;
+                chatActivityEnterView.R0(true);
+                tx1 tx1Var = chatActivityEnterView.F0;
+                if (tx1Var != null) {
+                    tx1Var.setText("");
+                }
+                xy1 xy1Var = chatActivityEnterView.O3;
+                if (xy1Var != null) {
+                    xy1Var.x(charSequence, this.c, this.d, this.e, this.b);
                     return;
                 }
                 return;
             case 1:
-                int i2 = ChatActivityEnterView.r7;
-                ex1 ex1Var2 = chatActivityEnterView.F0;
-                if (ex1Var2 != null) {
-                    ex1Var2.setText("");
-                }
-                chatActivityEnterView.N(true);
-                return;
-            case 2:
-                int i3 = ChatActivityEnterView.r7;
-                j47 j47Var = chatActivityEnterView.M0;
-                if (j47Var != null) {
-                    j47Var.f(false);
-                    chatActivityEnterView.M0 = null;
-                }
-                gl.d3(new av1(chatActivityEnterView, (byte) 5), 600L);
-                return;
-            case 3:
-                int i4 = ChatActivityEnterView.r7;
-                ij.J(chatActivityEnterView.E3, chatActivityEnterView.F3.a(), new tw1(chatActivityEnterView), chatActivityEnterView.L4);
-                return;
-            case 4:
-                int i5 = ChatActivityEnterView.r7;
-                ChatActivityEnterView chatActivityEnterView2 = this.b;
-                chatActivityEnterView2.v1(true, 2147483646, 0, 0L, true);
-                j47 j47Var2 = chatActivityEnterView2.M0;
-                if (j47Var2 != null) {
-                    j47Var2.f(false);
-                    chatActivityEnterView2.M0 = null;
-                    return;
-                }
-                return;
-            case 5:
-                int i6 = ChatActivityEnterView.r7;
-                mu1 mu1Var = chatActivityEnterView.F3;
-                TL_iv.RichMessage richMessage = chatActivityEnterView.u2;
-                if (richMessage != null && chatActivityEnterView.F0 != null && mu1Var != null) {
-                    na7.q1(chatActivityEnterView.R);
-                    boolean z = w01.a;
-                    hd9 hd9Var = new hd9(richMessage);
-                    hd9Var.e = true;
-                    hd9Var.setResourceProvider(chatActivityEnterView.L4);
-                    hd9Var.K = mu1Var;
-                    hd9Var.s = mu1Var.U;
-                    hd9Var.w = mu1Var.a0;
-                    hd9Var.M = new uv1(chatActivityEnterView, (byte) 12);
-                    hd9Var.L = new uv1(chatActivityEnterView, (byte) 13);
-                    mu1Var.presentFragment(hd9Var);
-                    return;
-                }
-                return;
-            case 6:
-                int i7 = ChatActivityEnterView.r7;
-                mu1 mu1Var2 = chatActivityEnterView.F3;
-                if (mu1Var2 != null) {
-                    mu1Var2.showDialog(new jh8((d) mu1Var2, 43, true));
-                    return;
-                }
-                return;
-            case 7:
-                chatActivityEnterView.e2();
-                return;
-            case 8:
-                int i8 = ChatActivityEnterView.r7;
-                if (!chatActivityEnterView.O2 && !chatActivityEnterView.v3) {
-                    chatActivityEnterView.N(true);
-                    return;
-                }
-                return;
-            case 9:
-                int i9 = ChatActivityEnterView.r7;
-                chatActivityEnterView.b2(true, true);
-                chatActivityEnterView.W = null;
-                return;
-            case 10:
-                int i10 = ChatActivityEnterView.r7;
-                chatActivityEnterView.C2();
-                return;
-            case 11:
-                int i11 = ChatActivityEnterView.r7;
-                j47 j47Var3 = chatActivityEnterView.M0;
-                if (j47Var3 != null) {
-                    j47Var3.f(chatActivityEnterView.d6);
-                    chatActivityEnterView.M0 = null;
-                    return;
-                }
-                return;
-            case 12:
-                int i12 = ChatActivityEnterView.r7;
-                ex1 ex1Var3 = chatActivityEnterView.F0;
-                if (ex1Var3 != null) {
-                    ex1Var3.setText("");
-                    return;
-                }
-                return;
-            case 13:
-                int i13 = ChatActivityEnterView.r7;
-                ex1 ex1Var4 = chatActivityEnterView.F0;
-                if (ex1Var4 != null) {
-                    ex1Var4.setText("");
-                }
-                chatActivityEnterView.N(true);
-                return;
-            case 14:
-                int i14 = ChatActivityEnterView.r7;
-                chatActivityEnterView.x1();
-                return;
-            case 15:
-                int i15 = ChatActivityEnterView.r7;
-                chatActivityEnterView.b4 = false;
-                chatActivityEnterView.i1();
-                return;
-            case 16:
-                int i16 = ChatActivityEnterView.r7;
-                chatActivityEnterView.G();
-                return;
-            case 17:
-                int i17 = ChatActivityEnterView.r7;
-                chatActivityEnterView.m();
+                ((jf7) obj2).N0(this.d, this.e, this.b, (ArrayList) obj, this.c);
                 return;
             default:
-                int i18 = ChatActivityEnterView.r7;
-                chatActivityEnterView.p0();
+                TLObject tLObject = (TLObject) obj2;
+                String str = (String) obj;
+                boolean z = tLObject instanceof TL_stars.TL_payments_uniqueStarGift;
+                int i2 = this.d;
+                if (z) {
+                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
+                    uc7.s1(i2).j4(tL_payments_uniqueStarGift.users, false);
+                    uc7.s1(i2).c4(tL_payments_uniqueStarGift.chats, false);
+                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
+                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                        tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
+                    }
+                }
+                boolean z2 = this.c;
+                long j = this.b;
+                if (tL_starGiftUnique == null || it7.n(tL_starGiftUnique) != z2 || (z2 && j != 0 && tL_starGiftUnique.getResellAmount(pj.b).b != j)) {
+                    int i3 = this.e + 1;
+                    if (i3 < it7.b.length) {
+                        hl.d3(new tv1(i2, i3, j, str, z2), iArr[i3]);
+                        return;
+                    }
+                }
+                if (tL_starGiftUnique != null) {
+                    c.C(i2).A().i(tL_starGiftUnique);
+                    jxa.v(i2, false).b0(tL_starGiftUnique);
+                    ArrayList arrayList = nd9.c0;
+                    if (!TextUtils.isEmpty(tL_starGiftUnique.slug)) {
+                        boolean n = it7.n(tL_starGiftUnique);
+                        ArrayList arrayList2 = new ArrayList(arrayList);
+                        int size = arrayList2.size();
+                        int i4 = 0;
+                        while (i4 < size) {
+                            Object obj3 = arrayList2.get(i4);
+                            i4++;
+                            WeakReference weakReference = (WeakReference) obj3;
+                            ed9 ed9Var = (ed9) weakReference.get();
+                            if (ed9Var == null) {
+                                arrayList.remove(weakReference);
+                            } else {
+                                ArrayList arrayList3 = ed9Var.e;
+                                if (ed9Var.a == i2) {
+                                    if (ed9Var.b.contains(Long.valueOf(tL_starGiftUnique.gift_id))) {
+                                        int i5 = 0;
+                                        while (true) {
+                                            if (i5 < arrayList3.size()) {
+                                                TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) arrayList3.get(i5);
+                                                if (!tL_starGiftUnique.slug.equals(tL_starGiftUnique2.slug)) {
+                                                    i5++;
+                                                } else if (it7.n(tL_starGiftUnique2)) {
+                                                    if (!n) {
+                                                        ed9Var.q(tL_starGiftUnique2);
+                                                    } else {
+                                                        arrayList3.set(i5, tL_starGiftUnique);
+                                                        pcc pccVar = ed9Var.d;
+                                                        if (pccVar != null) {
+                                                            pccVar.a(Boolean.FALSE);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public uv1(TLObject tLObject, int i, boolean z, long j, int i2, String str) {
+        this.f = tLObject;
+        this.d = i;
+        this.c = z;
+        this.b = j;
+        this.e = i2;
+        this.h = str;
+    }
+
+    public uv1(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z, int i, int i2, long j) {
+        this.f = chatActivityEnterView;
+        this.h = charSequence;
+        this.c = z;
+        this.d = i;
+        this.e = i2;
+        this.b = j;
     }
 }

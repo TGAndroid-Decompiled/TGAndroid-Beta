@@ -1,4 +1,9 @@
 package defpackage;
-public abstract class pad {
-    public static final Object a = new Object();
+public final class pad {
+    public static final he6 b = new he6("DiscoveryManager", null);
+    public final jdd a;
+
+    public pad(jdd jddVar) {
+        this.a = jddVar;
+    }
 }

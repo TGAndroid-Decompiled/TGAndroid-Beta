@@ -1,53 +1,80 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-public final class gd2 implements Runnable {
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class gd2 implements fd, gc7, ef7 {
     public final byte a;
-    public final xd2 b;
+    public final pd2 b;
 
-    public gd2(xd2 xd2Var, byte b) {
+    public gd2(pd2 pd2Var, byte b) {
         this.a = b;
-        this.b = xd2Var;
+        this.b = pd2Var;
     }
 
     @Override
-    public final void run() {
+    public final boolean b(TLRPC.TL_error tL_error) {
         byte b = this.a;
-        xd2 xd2Var = this.b;
+        pd2 pd2Var = this.b;
+        switch (b) {
+            case 2:
+                pd2Var.p0(false);
+                return true;
+            case 3:
+                pd2Var.p0(false);
+                return true;
+            default:
+                return pd2Var.m0(tL_error);
+        }
+    }
+
+    @Override
+    public final void run(long j) {
+        this.b.l0(j);
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        TLRPC.TL_chatAdminRights d0;
+        byte b = this.a;
+        pd2 pd2Var = this.b;
         switch (b) {
             case 0:
-                xd2Var.q1.f();
+                pd2Var.n0(true);
                 return;
             case 1:
-                xd2Var.E0(true);
+                pd2 pd2Var2 = this.b;
+                pd2Var2.p0(true);
+                id2 id2Var = new id2(pd2Var2, (byte) 0);
+                if (!pd2Var2.L && !pd2Var2.M) {
+                    pd2Var2.getMessagesController().k(pd2Var2.x.id, pd2Var2.w, pd2Var2.Z0, pd2Var2, true, id2Var, new gd2(pd2Var2, (byte) 3));
+                    return;
+                }
+                uc7 messagesController = pd2Var2.getMessagesController();
+                long j = pd2Var2.x.id;
+                TLRPC.User user = pd2Var2.w;
+                if (pd2Var2.L) {
+                    d0 = pd2Var2.N;
+                } else {
+                    d0 = pd2.d0(false);
+                }
+                messagesController.d5(j, user, d0, pd2Var2.T, false, pd2Var2, pd2Var2.a1, pd2Var2.L, pd2Var2.Z0, id2Var, new gd2(pd2Var2, (byte) 2));
                 return;
             case 2:
-                mu1 mu1Var = xd2Var.u1;
-                d d0 = uxa.d0(mu1Var.getMessagesController().K0(Long.valueOf(-mu1Var.a())), true);
-                ?? obj = new Object();
-                obj.a = true;
-                d0.setResourceProvider(mu1Var.getResourceProvider());
-                obj.c = new jc((byte) 23);
-                obj.d = new gd2(xd2Var, (byte) 3);
-                obj.b = new gd2(xd2Var, (byte) 4);
-                obj.e = true;
-                xd2Var.Q1 = d0;
-                mu1Var.showAsSheet(d0, obj);
-                return;
             case 3:
-                xd2Var.I0();
+            default:
+                pd2Var.getClass();
+                pd2Var.presentFragment(new o7c(6, null));
                 return;
             case 4:
-                xd2Var.Q1 = null;
+                pd2Var.finishFragment();
                 return;
             case 5:
-                xd2Var.I0();
-                return;
-            case 6:
-                xd2Var.Q1 = null;
-                return;
-            default:
-                xd2Var.N1.c(xd2Var.z1);
+                pd2Var.getClass();
+                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                q72 q72Var = new q72(pd2Var, twoStepVerificationActivity, (byte) 5);
+                twoStepVerificationActivity.a0 = (byte) 0;
+                twoStepVerificationActivity.c0 = q72Var;
+                pd2Var.presentFragment(twoStepVerificationActivity);
                 return;
         }
     }

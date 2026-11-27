@@ -1,79 +1,37 @@
 package defpackage;
 
-import java.util.ListIterator;
-public final class i3e extends v5c implements ListIterator {
-    public final int b;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class i3e extends c4 {
+    public static final Parcelable.Creator<i3e> CREATOR = new hud((byte) 17);
+    public int a;
+    public int b;
     public int c;
-    public final u3e d;
-
-    public i3e(u3e u3eVar, int i) {
-        super((byte) 12);
-        int size = u3eVar.size();
-        p1f.b(i, size);
-        this.b = size;
-        this.c = i;
-        this.d = u3eVar;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
-    }
+    public boolean d;
+    public boolean e;
+    public float f;
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        int i2 = this.a;
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(i2);
+        int i3 = this.b;
+        bye.q(parcel, 3, 4);
+        parcel.writeInt(i3);
+        int i4 = this.c;
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(i4);
+        boolean z = this.d;
+        bye.q(parcel, 5, 4);
+        parcel.writeInt(z ? 1 : 0);
+        boolean z2 = this.e;
+        bye.q(parcel, 6, 4);
+        parcel.writeInt(z2 ? 1 : 0);
+        float f = this.f;
+        bye.q(parcel, 7, 4);
+        parcel.writeFloat(f);
+        bye.s(parcel, r);
     }
 }

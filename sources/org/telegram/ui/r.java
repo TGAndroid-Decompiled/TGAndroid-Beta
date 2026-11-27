@@ -37,13 +37,13 @@ public final class r extends AnimatorListenerAdapter {
         }
         photoViewer.G.setVisibility(0);
         if (photoViewer.j2) {
-            g98 g98Var = photoViewer.R1;
-            if (g98Var.getTag() != null) {
+            wc8 wc8Var = photoViewer.R1;
+            if (wc8Var.getTag() != null) {
                 i = 0;
             } else {
                 i = 4;
             }
-            g98Var.setVisibility(i);
+            wc8Var.setVisibility(i);
         }
         if (!photoViewer.e2 && !photoViewer.f2) {
             int i2 = photoViewer.d2;

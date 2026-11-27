@@ -1,28 +1,11 @@
 package defpackage;
-public final class u56 {
-    public final Object a;
-    public final String b;
 
-    public u56(Object obj, String str) {
-        this.a = obj;
-        this.b = str;
-    }
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface u56 {
+    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof u56) {
-                u56 u56Var = (u56) obj;
-                if (this.a == u56Var.a && this.b.equals(u56Var.b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
+    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
 
-    public final int hashCode() {
-        return this.b.hashCode() + (System.identityHashCode(this.a) * 31);
-    }
+    void c(TLObject tLObject);
 }

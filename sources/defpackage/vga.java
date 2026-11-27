@@ -1,10 +1,17 @@
 package defpackage;
-public interface vga {
-    boolean a();
 
-    void dismiss();
+import android.content.Context;
+public final class vga extends z2b {
+    public final eja L;
 
-    er3 e();
+    public vga(eja ejaVar, Context context, tga tgaVar) {
+        super(context, tgaVar, 1, null);
+        this.L = ejaVar;
+    }
 
-    void f();
+    @Override
+    public final void a() {
+        invalidate();
+        this.L.K0();
+    }
 }

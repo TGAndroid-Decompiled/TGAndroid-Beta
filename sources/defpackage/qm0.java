@@ -1,180 +1,136 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.scilab.forge.jlatexmath.ParseException;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-public final class qm0 implements ed, o8c, eia, fia, dz0, eja, r69, bha, xec, b39, gj, ll5, js4 {
-    public final byte a;
+import android.util.SparseIntArray;
+import java.util.Calendar;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.e;
+public final class qm0 implements fq7, m39, fd {
+    public final int a;
+    public final int b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public static RenderNode e(Object obj) {
-        return (RenderNode) obj;
-    }
-
-    public static Shader.TileMode f() {
-        return Shader.TileMode.DECAL;
-    }
-
-    public static void g(String str) {
-        throw new ParseException(str);
+    public qm0(int i, boolean[] zArr, TLRPC.Document document, int i2, boolean[] zArr2, pcc pccVar) {
+        this.a = i;
+        this.c = zArr;
+        this.d = document;
+        this.b = i2;
+        this.e = zArr2;
+        this.f = pccVar;
     }
 
     @Override
-    public final void C(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        Drawable t = imageReceiver.t();
-        if (t instanceof oy8) {
-            oy8 oy8Var = (oy8) t;
-            oy8Var.K(0);
-            oy8Var.stop();
-            oy8Var.O(false, 0.0f);
+    public final void i(hq7 hq7Var, int i) {
+        ki kiVar = (ki) this.c;
+        wm0 wm0Var = (wm0) this.d;
+        xm0 xm0Var = (xm0) this.e;
+        hq7 hq7Var2 = (hq7) this.f;
+        try {
+            kiVar.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        if (hq7Var.getTag() != null && hq7Var.getTag().equals("DAY")) {
+            if (hq7Var.getValue() == hq7Var.getMinValue()) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                int i2 = calendar.get(11);
+                int i3 = (calendar.get(12) / 5) + 1;
+                if (i3 > 11) {
+                    if (i2 == 23) {
+                        hq7Var.setMinValue(hq7Var.getMinValue() + 1);
+                        wm0Var.setMinValue(0);
+                    } else {
+                        wm0Var.setMinValue(i2 + 1);
+                    }
+                    xm0Var.setMinValue(0);
+                } else {
+                    wm0Var.setMinValue(i2);
+                    xm0Var.setMinValue(i3);
+                }
+            } else if (hq7Var.getValue() == hq7Var.getMaxValue()) {
+                wm0Var.setMaxValue(this.a);
+                xm0Var.setMaxValue(Math.min(this.b / 5, 11));
+            } else {
+                wm0Var.setMinValue(0);
+                xm0Var.setMinValue(0);
+                wm0Var.setMaxValue(23);
+                xm0Var.setMaxValue(11);
+            }
+        }
+        if (hq7Var.getTag() != null && hq7Var.getTag().equals("HOUR") && hq7Var2.getValue() == hq7Var2.getMinValue()) {
+            if (hq7Var.getValue() == hq7Var.getMinValue()) {
+                Calendar calendar2 = Calendar.getInstance();
+                calendar2.setTimeInMillis(System.currentTimeMillis());
+                int i4 = (calendar2.get(12) / 5) + 1;
+                if (i4 > 11) {
+                    xm0Var.setMinValue(0);
+                    return;
+                } else {
+                    xm0Var.setMinValue(i4);
+                    return;
+                }
+            }
+            xm0Var.setMinValue(0);
+            xm0Var.setMaxValue(11);
         }
     }
 
     @Override
-    public final void a(View view, RectF rectF) {
-        view.invalidate();
-    }
-
-    @Override
-    public final void b(Object obj, float f) {
-        switch (this.a) {
-            case 8:
-                ow0 ow0Var = (ow0) obj;
-                ow0Var.c = f;
-                ow0Var.f.invalidate();
-                ow0Var.Y.setAlpha(f);
-                ow0Var.J();
-                ow0Var.H();
-                return;
-            case 26:
-                ((m12) obj).setLoadProgress(f);
-                return;
-            default:
-                ((r12) obj).setSwipeOffsetY(f);
-                return;
+    public final void k(o39 o39Var, int i) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.e;
+        int[] iArr = (int[]) this.f;
+        int i2 = this.b + i;
+        int i3 = this.a;
+        ((SparseIntArray) this.c).put(i3, i2);
+        if (((fic) this.d).getCurrentItem() == i3) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f(iArr[0], i2, true);
         }
     }
 
     @Override
-    public final float c(RecyclerView recyclerView) {
-        return dha.j(recyclerView);
-    }
-
-    @Override
-    public final void call() {
-        throw null;
-    }
-
-    @Override
-    public final Boolean d(c4c c4cVar, View view, Integer num, Float f, Float f2) {
-        byte b = this.a;
-        return Boolean.FALSE;
-    }
-
-    @Override
-    public final float get(Object obj) {
-        switch (this.a) {
-            case 7:
-                return ((ow0) obj).c;
-            case 25:
-                return ((m12) obj).c;
-            default:
-                return ((r12) obj).getSwipeOffsetY();
+    public final void w(id idVar, int i) {
+        boolean[] zArr = (boolean[]) this.c;
+        TLRPC.Document document = (TLRPC.Document) this.d;
+        boolean[] zArr2 = (boolean[]) this.e;
+        pcc pccVar = (pcc) this.f;
+        int i2 = this.a;
+        if (!yac.h(i2).p()) {
+            new xk8(new e(null), 12, false).show();
+            return;
         }
-    }
-
-    @Override
-    public final RecyclerView h(View view) {
-        return ((ti1) view).a;
-    }
-
-    @Override
-    public final void k(int i) {
-        if (i == 0) {
-            gba.z(3);
-        } else if (i == 1) {
-            gba.z(0);
-        } else if (i == 2) {
-            gba.z(1);
-        } else if (i == 3) {
-            gba.z(2);
+        zArr[0] = true;
+        TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
+        TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+        tL_emojiStatus.document_id = document.id;
+        int i3 = this.b;
+        if (i3 > 0) {
+            tL_emojiStatus.flags |= 1;
+            tL_emojiStatus.until = ConnectionsManager.getInstance(i2).getCurrentTime() + i3;
         }
+        updateemojistatus.emoji_status = tL_emojiStatus;
+        ConnectionsManager.getInstance(i2).sendRequest(updateemojistatus, new lh(zArr2, pccVar, i2, updateemojistatus, (byte) 8));
     }
 
-    @Override
-    public final Object m(Object obj) {
-        Void r1 = (Void) obj;
-        gia giaVar = r12.c0;
-        return Boolean.FALSE;
+    public qm0(ki kiVar, wm0 wm0Var, xm0 xm0Var, int i, int i2, hq7 hq7Var) {
+        this.c = kiVar;
+        this.d = wm0Var;
+        this.e = xm0Var;
+        this.a = i;
+        this.b = i2;
+        this.f = hq7Var;
     }
 
-    @Override
-    public final void s(int i, int i2, boolean z) {
-        switch (this.a) {
-            case 22:
-                MediaController.w().A0(1, i, z, false);
-                return;
-            default:
-                MediaController.w().A0(1, i, z, false);
-                return;
-        }
-    }
-
-    @Override
-    public final void t(RecyclerView recyclerView) {
-        de9.d(recyclerView);
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        switch (this.a) {
-            case 0:
-                hdVar.dismiss();
-                return;
-            case 1:
-                hdVar.dismiss();
-                return;
-            case 5:
-                hdVar.dismiss();
-                return;
-            case 6:
-                hdVar.dismiss();
-                return;
-            case 13:
-                hdVar.dismiss();
-                return;
-            default:
-                hdVar.dismiss();
-                return;
-        }
-    }
-
-    public qm0(byte b) {
-        this.a = b;
-    }
-
-    public qm0(Object obj, byte b) {
-        this.a = b;
-    }
-
-    @Override
-    public final void cancel() {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void v(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public final void E(int i, Drawable drawable) {
+    public qm0(SparseIntArray sparseIntArray, int i, int i2, fic ficVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
+        this.c = sparseIntArray;
+        this.a = i;
+        this.b = i2;
+        this.d = ficVar;
+        this.e = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f = iArr;
     }
 }

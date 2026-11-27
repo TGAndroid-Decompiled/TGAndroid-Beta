@@ -1,103 +1,166 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class noa implements Runnable {
-    public final byte a;
-    public final vqa b;
-    public final String c;
+import android.media.AudioDescriptor;
+import android.media.AudioDeviceInfo;
+import android.media.AudioProfile;
+import android.os.Build;
+import j$.util.Comparator$CC;
+import j$.util.Comparator$EL;
+import j$.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
+public abstract class noa {
+    public static final j99 a = po5.u(12);
 
-    public noa(vqa vqaVar, String str, byte b) {
-        this.a = b;
-        this.b = vqaVar;
-        this.c = str;
+    public static po5 a(AudioDeviceInfo audioDeviceInfo) {
+        List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
+        TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new yz((byte) 0))));
+        for (AudioProfile audioProfile : audioProfiles) {
+            if (audioProfile.getEncapsulationType() != 1 && gcc.N(audioProfile.getFormat())) {
+                for (int i : audioProfile.getChannelMasks()) {
+                    treeSet.add(Integer.valueOf(i));
+                }
+            }
+        }
+        return po5.q(treeSet);
     }
 
-    @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                vqa vqaVar = this.b;
-                String str = this.c;
-                Context context = vqaVar.getContext();
-                d01.v(context, na7.q1(vqaVar.a).k4.G1.f + str, false);
-                return;
-            case 1:
-                vqa vqaVar2 = this.b;
-                String str2 = this.c;
-                long j = vqaVar2.S1;
-                vqaVar2.f2.setLoading(false);
-                if (!TextUtils.isEmpty(str2)) {
-                    vqaVar2.dismiss();
-                    d Q = LaunchActivity.Q();
-                    if (Q != null) {
-                        if (Q instanceof mu1) {
-                            mu1 mu1Var = (mu1) Q;
-                            if (mu1Var.a() == j) {
-                                u21.b0(mu1Var).I(2131624034, k96.M0(2131744859, null), gl.S2(k96.a0(null, null, 2131744857, cf3.s(j)))).k(true);
-                                return;
+    public static po5 b(AudioDeviceInfo audioDeviceInfo) {
+        int type;
+        po5 po5Var;
+        int speakerLayoutChannelMask;
+        boolean a2 = eie.a(audioDeviceInfo.getType());
+        j99 j99Var = a;
+        if (!a2) {
+            if (audioDeviceInfo.getType() == 1) {
+                return po5.u(4);
+            }
+            int type2 = audioDeviceInfo.getType();
+            int i = Build.VERSION.SDK_INT;
+            if (type2 == 2) {
+                if (i >= 36 && (speakerLayoutChannelMask = audioDeviceInfo.getSpeakerLayoutChannelMask()) != 0 && speakerLayoutChannelMask != 1) {
+                    return po5.u(Integer.valueOf(speakerLayoutChannelMask));
+                }
+                efd.f("SpeakerLayoutUtil", "Built-in speaker's getSpeakerLayoutChannelMask not usable, defaulting to stereo.");
+                return j99Var;
+            }
+            if (i >= 31) {
+                if (audioDeviceInfo.getType() == 10) {
+                    po5 a3 = a(audioDeviceInfo);
+                    if (!a3.isEmpty()) {
+                        return a3;
+                    }
+                    po5 l = zz.l(audioDeviceInfo.getAudioDescriptors());
+                    if (!l.isEmpty()) {
+                        return l;
+                    }
+                } else {
+                    int type3 = audioDeviceInfo.getType();
+                    if (i >= 31 && type3 == 29) {
+                        po5 a4 = a(audioDeviceInfo);
+                        if (!a4.isEmpty()) {
+                            return a4;
+                        }
+                        List<AudioDescriptor> audioDescriptors = audioDeviceInfo.getAudioDescriptors();
+                        if (i >= 34) {
+                            if (i >= 34 && audioDescriptors != null) {
+                                ArrayList arrayList = new ArrayList();
+                                for (AudioDescriptor audioDescriptor : audioDescriptors) {
+                                    AudioDescriptor a5 = xz.a(audioDescriptor);
+                                    if (a5.getStandard() == 2) {
+                                        byte[] descriptor = a5.getDescriptor();
+                                        if (descriptor.length != 3) {
+                                            efd.f("AudioDescriptorUtil", "Invalid SADB length: " + descriptor.length);
+                                        } else {
+                                            int i2 = 0;
+                                            if (Build.VERSION.SDK_INT >= 34 && descriptor.length == 3) {
+                                                byte b = descriptor[0];
+                                                if ((b & 1) != 0) {
+                                                    i2 = 12;
+                                                }
+                                                if ((b & 2) != 0) {
+                                                    i2 |= 32;
+                                                }
+                                                if ((b & 4) != 0) {
+                                                    i2 |= 16;
+                                                }
+                                                if ((b & 8) != 0) {
+                                                    i2 |= 192;
+                                                }
+                                                if ((b & 16) != 0) {
+                                                    i2 |= 1024;
+                                                }
+                                                if ((b & 32) != 0) {
+                                                    i2 |= 768;
+                                                }
+                                                if ((b & 128) != 0) {
+                                                    i2 |= 201326592;
+                                                }
+                                                byte b2 = descriptor[1];
+                                                if ((b2 & 1) != 0) {
+                                                    i2 |= 81920;
+                                                }
+                                                if ((b2 & 2) != 0) {
+                                                    i2 |= 8192;
+                                                }
+                                                if ((b2 & 4) != 0) {
+                                                    i2 |= 32768;
+                                                }
+                                                if ((b2 & 8) != 0) {
+                                                    i2 |= 6144;
+                                                }
+                                                if ((b2 & 16) != 0) {
+                                                    i2 |= 33554432;
+                                                }
+                                                if ((b2 & 32) != 0) {
+                                                    i2 |= 262144;
+                                                }
+                                                if ((b2 & 64) != 0) {
+                                                    i2 |= 6144;
+                                                }
+                                                if ((b2 & 128) != 0) {
+                                                    i2 |= 3145728;
+                                                }
+                                                byte b3 = descriptor[2];
+                                                if ((b3 & 1) != 0) {
+                                                    i2 |= 655360;
+                                                }
+                                                if ((b3 & 2) != 0) {
+                                                    i2 |= 8388608;
+                                                }
+                                                if ((b3 & 4) != 0) {
+                                                    i2 |= 20971520;
+                                                }
+                                            }
+                                            arrayList.add(Integer.valueOf(i2));
+                                        }
+                                    }
+                                }
+                                List.EL.sort(arrayList, new ta((byte) 3));
+                                po5Var = po5.q(arrayList);
+                            } else {
+                                no5 no5Var = po5.b;
+                                po5Var = j99.e;
+                            }
+                            if (!po5Var.isEmpty()) {
+                                return po5Var;
                             }
                         }
-                        kk7 f = kk7.f(vqaVar2.a);
-                        Long valueOf = Long.valueOf(j);
-                        Boolean bool = Boolean.FALSE;
-                        f.k(6, valueOf, bool);
-                        kk7.f(vqaVar2.a).k(5, Long.valueOf(j), bool);
-                        mu1 W9 = mu1.W9(j);
-                        W9.whenFullyVisible(new t7a(vqaVar2, W9, (byte) 18));
-                        Q.presentFragment(W9);
-                        return;
+                        po5 l2 = zz.l(audioDescriptors);
+                        if (!l2.isEmpty()) {
+                            return l2;
+                        }
                     }
-                    return;
                 }
-                vqaVar2.z2(0, true, null);
-                return;
-            case 2:
-                vqa vqaVar3 = this.b;
-                String str3 = this.c;
-                Context context2 = vqaVar3.getContext();
-                d01.v(context2, na7.q1(vqaVar3.a).k4.G1.f + str3, false);
-                return;
-            case 3:
-                vqa vqaVar4 = this.b;
-                String str4 = this.c;
-                Context context3 = vqaVar4.getContext();
-                d01.v(context3, na7.q1(vqaVar4.a).k4.G1.f + str4, false);
-                return;
-            case 4:
-                vqa vqaVar5 = this.b;
-                String str5 = this.c;
-                Context context4 = vqaVar5.getContext();
-                d01.v(context4, na7.q1(vqaVar5.a).k4.G1.f + str5, false);
-                return;
-            case 5:
-                vqa vqaVar6 = this.b;
-                String str6 = this.c;
-                Context context5 = vqaVar6.getContext();
-                d01.v(context5, na7.q1(vqaVar6.a).k4.G1.f + str6, false);
-                return;
-            case 6:
-                vqa vqaVar7 = this.b;
-                String str7 = this.c;
-                Context context6 = vqaVar7.getContext();
-                d01.v(context6, na7.q1(vqaVar7.a).k4.G1.f + str7, false);
-                return;
-            case 7:
-                vqa vqaVar8 = this.b;
-                gl.g(this.c);
-                m21 k = vqaVar8.j().k(false);
-                k.t = true;
-                k.j();
-                return;
-            default:
-                vqa vqaVar9 = this.b;
-                String str8 = this.c;
-                vqaVar9.dismiss();
-                Context context7 = vqaVar9.getContext();
-                d01.t(context7, "https://" + na7.q1(vqaVar9.a).N2 + "/" + str8);
-                return;
+            }
+            if (i >= 31 && ((type = audioDeviceInfo.getType()) == 11 || type == 12 || (i >= 31 && type == 22))) {
+                po5 a6 = a(audioDeviceInfo);
+                if (!a6.isEmpty()) {
+                    return a6;
+                }
+            }
         }
+        return j99Var;
     }
 }

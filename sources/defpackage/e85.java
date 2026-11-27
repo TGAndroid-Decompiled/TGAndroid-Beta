@@ -1,25 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.webrtc.RendererCommon;
-public final class e85 implements RendererCommon.RendererEvents {
-    public final h85 a;
+import android.graphics.Canvas;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.LaunchActivity;
+public final class e85 extends a {
+    public final hh2 G1;
+    public final j95 H1;
 
-    public e85(h85 h85Var) {
-        this.a = h85Var;
+    public e85(j95 j95Var, LaunchActivity launchActivity, hh2 hh2Var) {
+        super(launchActivity, null);
+        this.H1 = j95Var;
+        this.G1 = hh2Var;
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        ArrayList arrayList = this.a.m0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            gl.r((Runnable) arrayList.get(i));
-            ((Runnable) arrayList.get(i)).run();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - hl.L(1.0f));
+            hh2 hh2Var = this.G1;
+            hh2Var.f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            hh2Var.draw(canvas);
+            canvas.restore();
+            invalidate();
         }
-        arrayList.clear();
     }
 
     @Override
-    public final void onFrameResolutionChanged(int i, int i2, int i3) {
+    public final void setAlpha(float f) {
+        if (getAlpha() != f) {
+            super.setAlpha(f);
+            this.H1.b.invalidate();
+        }
     }
 }

@@ -1,16 +1,17 @@
 package defpackage;
-public final class ltd extends l13 {
-    public final ae7 b;
+public final class ltd implements zq7 {
+    public static final ltd a = new Object();
 
-    public ltd(ae7 ae7Var) {
-        super((byte) 4);
-        this.b = ae7Var;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
     }
 
     @Override
-    public final Object a(Object obj) {
-        sef b = aff.b();
-        ae7 ae7Var = this.b;
-        return new vme(ae7Var, (fab) obj, b, new aec(ae7Var.b(), (byte) 21));
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

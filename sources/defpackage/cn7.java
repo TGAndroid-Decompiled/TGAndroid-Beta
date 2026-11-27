@@ -1,24 +1,24 @@
 package defpackage;
-public final class cn7 extends yu9 {
-    public final hn7 d;
 
-    public cn7(hn7 hn7Var) {
-        this.d = hn7Var;
+import android.view.View;
+public final class cn7 implements View.OnAttachStateChangeListener {
+    public final bn7 a;
+    public final int b;
+    public final jn7 c;
+
+    public cn7(jn7 jn7Var, bn7 bn7Var, int i) {
+        this.c = jn7Var;
+        this.a = bn7Var;
+        this.b = i;
     }
 
     @Override
-    public final void c(boolean z) {
-        this.d.a(!z);
+    public final void onViewAttachedToWindow(View view) {
+        this.c.a(this.a, this.b);
     }
 
     @Override
-    public final CharSequence d() {
-        hn7 hn7Var = this.d;
-        q8c q8cVar = hn7Var.v0;
-        int i = hn7Var.I;
-        if (q8cVar != null) {
-            return (CharSequence) q8cVar.a(Integer.valueOf(i));
-        }
-        return hn7Var.d(i);
+    public final void onViewDetachedFromWindow(View view) {
+        this.c.n(this.a, this.b);
     }
 }

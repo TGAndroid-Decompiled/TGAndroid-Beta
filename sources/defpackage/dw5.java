@@ -1,145 +1,82 @@
 package defpackage;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-public final class dw5 implements Runnable {
-    public final byte a;
-    public final rw5 b;
-    public final l34 c;
+import org.telegram.tgnet.TLRPC;
+public abstract class dw5 extends nx0 {
+    public boolean l1;
 
-    public dw5(rw5 rw5Var, l34 l34Var, byte b) {
-        this.a = b;
-        this.b = rw5Var;
-        this.c = l34Var;
+    public dw5(Context context, TLRPC.Chat chat) {
+        super(context, true);
+        this.w0 = false;
+        this.v0 = false;
+        LinearLayout j = uh9.j(context, 1);
+        this.O = j;
+        de0 de0Var = new de0(context);
+        de0Var.setRoundRadius(hl.L(45.0f));
+        j.addView(de0Var, tre.t(90, 90, 49, 0, 29, 0, 0));
+        de0Var.f(chat, new rb0(chat));
+        TextView textView = new TextView(context);
+        ik8.v(textView, 1, 18.0f);
+        yob.X(textView, aob.j5, null);
+        textView.setGravity(1);
+        TextView m = ik8.m(j, textView, tre.t(-2, -2, 49, 17, 24, 17, 0), context);
+        m.setTextSize(1, 14.0f);
+        yob.X(m, aob.r5, null);
+        m.setGravity(1);
+        j.addView(m, tre.t(-2, -2, 49, 30, 8, 30, 0));
+        vc2 g1 = uc7.s1(k5.a(this.a).a).g1(chat.id, false, null);
+        if (g1 != null) {
+            if (TextUtils.isEmpty(g1.b.title)) {
+                textView.setText(chat.title);
+            } else {
+                textView.setText(g1.b.title);
+            }
+            int i = g1.b.participants_count;
+            if (i == 0) {
+                m.setText(ob6.M0(2131747917, null));
+            } else {
+                m.setText(ob6.G(i, "Participants", new Object[0]));
+            }
+        } else {
+            textView.setText(chat.title);
+            m.setText(ob6.M0(2131747917, null));
+        }
+        ?? frameLayout = new FrameLayout(context);
+        View view = new View(context);
+        frameLayout.a = view;
+        view.setBackground(rnb.f(aob.Fi, 4.0f));
+        frameLayout.addView(view, tre.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView2 = new TextView(context);
+        frameLayout.b = textView2;
+        textView2.setLines(1);
+        textView2.setSingleLine(true);
+        textView2.setGravity(1);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setGravity(17);
+        qd4.w(textView2, aob.Ji, null, 1, 14.0f);
+        frameLayout.addView(textView2, tre.e(-2, -2, 17));
+        frameLayout.setBackground(null);
+        if (xc2.W(chat)) {
+            frameLayout.setText(ob6.M0(2131743127, null));
+        } else {
+            frameLayout.setText(ob6.M0(2131743017, null));
+        }
+        view.setOnClickListener(new sa5(this, (byte) 13));
+        j.addView((View) frameLayout, tre.t(-1, 50, 51, 0, 30, 0, 0));
     }
 
+    public abstract void E0();
+
     @Override
-    public final void run() {
-        byte b = this.a;
-        final l34 l34Var = this.c;
-        final rw5 rw5Var = this.b;
-        switch (b) {
-            case 0:
-                rw5Var.s0(l34Var);
-                return;
-            case 1:
-                l34Var.m();
-                rw5Var.t0(l34Var, true);
-                return;
-            default:
-                LinearLayout linearLayout = new LinearLayout(rw5Var.getContext());
-                linearLayout.setOrientation(0);
-                TextView textView = new TextView(rw5Var.getContext());
-                int i = bkb.D8;
-                tv5 tv5Var = rw5Var.G1;
-                zkb.X(textView, i, tv5Var);
-                textView.setBackground(bkb.L0(false));
-                textView.setGravity(16);
-                textView.setPadding(gl.L(16.0f), 0, gl.L(14.0f), 0);
-                textView.setTextSize(1, 14.0f);
-                textView.setTag(0);
-                textView.setText(k96.M0(2131747479, null));
-                TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                textView.setEllipsize(truncateAt);
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        byte b2 = r3;
-                        l34 l34Var2 = l34Var;
-                        rw5 rw5Var2 = rw5Var;
-                        switch (b2) {
-                            case 0:
-                                rw5Var2.s0(l34Var2);
-                                m8 m8Var = rw5Var2.H1;
-                                if (m8Var != null && m8Var.isShowing()) {
-                                    rw5Var2.H1.d(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                ((yza) l34Var2).r(true);
-                                m8 m8Var2 = rw5Var2.H1;
-                                if (m8Var2 != null && m8Var2.isShowing()) {
-                                    rw5Var2.H1.d(true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                linearLayout.addView(textView, nme.o(-2, 48));
-                if (l34Var instanceof vhb) {
-                    TextView textView2 = new TextView(rw5Var.getContext());
-                    zkb.X(textView2, i, tv5Var);
-                    textView2.setBackground(bkb.L0(false));
-                    textView2.setGravity(16);
-                    textView2.setPadding(gl.L(16.0f), 0, gl.L(16.0f), 0);
-                    textView2.setTextSize(1, 14.0f);
-                    textView2.setEllipsize(truncateAt);
-                    textView2.setTag(1);
-                    textView2.setText(k96.M0(2131747477, null));
-                    textView2.setOnClickListener(new sv5(rw5Var, (byte) 2));
-                    linearLayout.addView(textView2, nme.o(-2, 48));
-                }
-                if (l34Var instanceof yza) {
-                    TextView textView3 = new TextView(rw5Var.getContext());
-                    zkb.X(textView3, i, tv5Var);
-                    textView3.setBackgroundDrawable(bkb.L0(false));
-                    textView3.setGravity(16);
-                    textView3.setEllipsize(truncateAt);
-                    textView3.setPadding(gl.L(14.0f), 0, gl.L(16.0f), 0);
-                    textView3.setTextSize(1, 14.0f);
-                    textView3.setTag(2);
-                    textView3.setText(k96.M0(2131750673, null));
-                    textView3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            byte b2 = r3;
-                            l34 l34Var2 = l34Var;
-                            rw5 rw5Var2 = rw5Var;
-                            switch (b2) {
-                                case 0:
-                                    rw5Var2.s0(l34Var2);
-                                    m8 m8Var = rw5Var2.H1;
-                                    if (m8Var != null && m8Var.isShowing()) {
-                                        rw5Var2.H1.d(true);
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    ((yza) l34Var2).r(true);
-                                    m8 m8Var2 = rw5Var2.H1;
-                                    if (m8Var2 != null && m8Var2.isShowing()) {
-                                        rw5Var2.H1.d(true);
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    linearLayout.addView(textView3, nme.o(-2, 48));
-                }
-                if (!(l34Var instanceof e68) && !(l34Var instanceof cc1)) {
-                    TextView textView4 = new TextView(rw5Var.getContext());
-                    zkb.X(textView4, i, tv5Var);
-                    textView4.setBackgroundDrawable(bkb.L0(false));
-                    textView4.setGravity(16);
-                    textView4.setEllipsize(truncateAt);
-                    textView4.setPadding(gl.L(14.0f), 0, gl.L(16.0f), 0);
-                    textView4.setTextSize(1, 14.0f);
-                    textView4.setTag(2);
-                    textView4.setText(k96.M0(2131747478, null));
-                    textView4.setOnClickListener(new sv5(rw5Var, (byte) 3));
-                    linearLayout.addView(textView4, nme.o(-2, 48));
-                }
-                rw5Var.I1.addView(linearLayout);
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
-                layoutParams.width = -2;
-                layoutParams.height = -2;
-                linearLayout.setLayoutParams(layoutParams);
-                return;
+    public final void H() {
+        super.H();
+        if (this.l1) {
+            E0();
         }
     }
 }

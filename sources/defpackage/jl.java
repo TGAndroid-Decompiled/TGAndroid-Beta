@@ -1,103 +1,51 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Picture;
-import android.text.TextUtils;
-public abstract class jl extends g46 implements x74 {
-    public final y74 Q0;
-    public Picture R0;
-    public float S0;
-    public int T0;
-    public Paint U0;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.a;
+public final class jl extends FrameLayout {
+    public boolean a;
+    public int b;
+    public in c;
+    public in d;
 
-    public jl(Context context) {
-        super(context);
-        this.Q0 = new y74(0, this, s33.h, 320L, 1.0f);
-        this.T0 = 0;
+    public in getSubtitleTextView() {
+        return this.d;
+    }
+
+    public in getTitle() {
+        return this.c;
     }
 
     @Override
-    public final void F(float f, int i) {
-        if (f == 1.0f) {
-            if (this.R0 != null) {
-                this.R0 = null;
-                super.setLayerType(this.T0, this.U0);
-            }
-            invalidate();
-        }
-    }
-
-    @Override
-    public int getLayerType() {
-        return this.T0;
-    }
-
-    public final void n(Canvas canvas, float f, float f2) {
-        if (f >= 1.0f && f2 == 0.0f) {
-            super.onDraw(canvas);
-            return;
-        }
-        canvas.save();
-        canvas.translate(0.0f, f2);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (f * 255.0f));
-        super.onDraw(canvas);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    public final boolean o(CharSequence charSequence, boolean z) {
-        CharSequence text = getText();
-        if (TextUtils.equals(text, charSequence)) {
-            return l(charSequence, false);
-        }
-        y74 y74Var = this.Q0;
-        if (z && isAttachedToWindow() && isLaidOut() && getVisibility() == 0 && getAlpha() > 0.0f && getWidth() > 0 && getHeight() > 0 && !TextUtils.isEmpty(text)) {
-            Picture picture = new Picture();
-            n(picture.beginRecording(getWidth(), getHeight()), 1.0f, 0.0f);
-            picture.endRecording();
-            y74Var.c(0.0f);
-            this.R0 = picture;
-            this.S0 = getTranslationX();
-            super.setLayerType(0, null);
-            y74Var.a(1.0f);
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int i5;
+        in inVar = this.d;
+        in inVar2 = this.c;
+        int D = ik8.D(42.0f, a.getCurrentActionBarHeight(), 2);
+        if (this.a) {
+            i5 = hl.m;
         } else {
-            y74Var.c(1.0f);
-            if (this.R0 != null) {
-                this.R0 = null;
-                super.setLayerType(this.T0, this.U0);
-            }
-            invalidate();
+            i5 = 0;
         }
-        invalidate();
-        return l(charSequence, false);
+        int i6 = D + i5;
+        int i7 = this.b;
+        if (inVar.getVisibility() != 8) {
+            inVar2.layout(i7, (hl.L(1.0f) + i6) - inVar2.getPaddingTop(), inVar2.getMeasuredWidth() + i7, inVar2.getPaddingBottom() + ((hl.L(1.3f) + (inVar2.getTextHeight() + i6)) - inVar2.getPaddingTop()));
+        } else {
+            inVar2.layout(i7, (hl.L(11.0f) + i6) - inVar2.getPaddingTop(), inVar2.getMeasuredWidth() + i7, inVar2.getPaddingBottom() + ((hl.L(11.0f) + (inVar2.getTextHeight() + i6)) - inVar2.getPaddingTop()));
+        }
+        inVar.layout(i7, hl.L(20.0f) + i6, inVar.getMeasuredWidth() + i7, hl.L(24.0f) + inVar.getTextHeight() + i6);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.R0 == null) {
-            super.onDraw(canvas);
-            return;
-        }
-        float f = this.Q0.f;
-        int L = gl.L(6.0f);
-        canvas.save();
-        canvas.translate(this.S0 - getTranslationX(), (-L) * f);
-        float f2 = 1.0f - f;
-        canvas.saveLayerAlpha(0.0f, 0.0f, this.R0.getWidth(), this.R0.getHeight(), (int) (255.0f * f2));
-        canvas.drawPicture(this.R0);
-        canvas.restore();
-        canvas.restore();
-        n(canvas, f, L * f2);
-    }
-
-    @Override
-    public final void setLayerType(int i, Paint paint) {
-        this.T0 = i;
-        this.U0 = paint;
-        if (this.R0 == null) {
-            super.setLayerType(i, paint);
-        }
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        in inVar = this.c;
+        int paddingRight = inVar.getPaddingRight() + size;
+        int L = paddingRight - hl.L(16.0f);
+        inVar.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(inVar.getPaddingRight() + hl.L(32.0f), Integer.MIN_VALUE));
+        this.d.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(hl.L(20.0f), Integer.MIN_VALUE));
+        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i2));
     }
 }

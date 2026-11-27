@@ -2,239 +2,376 @@ package defpackage;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class iy9 extends fy0 {
-    public TLRPC.Chat S1;
-    public final TLRPC.User T1;
-    public final eg U1;
-    public TLObject V1;
-    public final FrameLayout W1;
-    public final ay9 X1;
-    public final cy9 Y1;
-    public final hy9 Z1;
-    public final hy9 a2;
-    public final hy9 b2;
-    public final u41 c2;
-    public l5c d2;
-    public Context e2;
+import android.widget.TextView;
+public final class iy9 extends FrameLayout {
+    public final byte a;
+    public Object b;
+    public Object c;
 
-    public iy9(Activity activity, TLRPC.Chat chat, TLRPC.User user, eg egVar, wjb wjbVar) {
-        super(2, wjbVar, (Context) activity, true);
-        this.E1 = gl.L(12.0f);
-        this.Q0 = true;
-        this.S1 = chat;
-        this.T1 = user;
-        this.V1 = user;
-        this.U1 = egVar;
-        y6c.h(this.a).f();
-        FrameLayout frameLayout = new FrameLayout(activity);
-        this.W1 = frameLayout;
-        FrameLayout frameLayout2 = new FrameLayout(activity);
-        int L = gl.L(20.0f);
-        int i = bkb.N5;
-        ShapeDrawable b0 = bkb.b0(L, bkb.v0(i, this.J0));
-        vkb M = zkb.M(i);
-        frameLayout2.setBackground(b0);
-        zkb.j(frameLayout2, b0, M, null, wjbVar);
-        ImageView imageView = new ImageView(activity);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131232742);
-        int i2 = bkb.O5;
-        zkb.s(imageView, i2, wjbVar, PorterDuff.Mode.SRC_IN);
-        frameLayout2.addView(imageView, nme.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
-        ?? editTextBoldCursor = new EditTextBoldCursor(activity);
-        this.X1 = editTextBoldCursor;
-        zkb.X(editTextBoldCursor, bkb.Q5, wjbVar);
-        zkb.D(editTextBoldCursor, i2, wjbVar);
-        editTextBoldCursor.setTextSize(1, 15.0f);
-        editTextBoldCursor.setSingleLine(true);
-        editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setGravity(112);
-        editTextBoldCursor.setClipToPadding(true);
-        editTextBoldCursor.setPadding(gl.L(46.0f), 0, gl.L(16.0f), 0);
-        editTextBoldCursor.setTranslationY(-gl.L(0.66f));
-        editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 524288);
-        editTextBoldCursor.setImeOptions(33554435);
-        editTextBoldCursor.setTextIsSelectable(false);
-        editTextBoldCursor.setOnEditorActionListener(new j(this, (byte) 23));
-        editTextBoldCursor.addTextChangedListener(new by9(this));
-        editTextBoldCursor.setHint(k96.M0(2131745565, null));
-        frameLayout2.addView((View) editTextBoldCursor, nme.e(-1, -1, 119));
-        frameLayout.addView(frameLayout2, nme.d(-1, 40.0f, 23, 11.0f, 0.0f, 11.0f, 0.0f));
-        ViewGroup viewGroup = this.b;
-        int max = Math.max(0, viewGroup.indexOfChild(this.o1));
-        float f = this.u0 / gl.p;
-        viewGroup.addView(frameLayout, max, nme.d(-1, 64.0f, 55, f, 0.0f, f, 0.0f));
-        ?? frameLayout3 = new FrameLayout(activity);
-        this.Y1 = frameLayout3;
-        be0 be0Var = new be0(activity);
-        be0Var.setImageDrawable(new oy8(2131624314, gl.L(130.0f), gl.L(130.0f)));
-        frameLayout3.addView(be0Var, nme.e(130, 130, 17));
-        hy9 hy9Var = new hy9(this.a, chat.id, new TLRPC.TL_channelParticipantsAdmins());
-        hy9Var.e.add(new zk9(this, (byte) 21));
-        this.Z1 = hy9Var;
-        hy9 hy9Var2 = new hy9(this.a, chat.id, new TLRPC.TL_channelParticipantsRecent());
-        hy9Var2.e.add(new zk9(this, (byte) 21));
-        this.a2 = hy9Var2;
-        hy9 hy9Var3 = new hy9(this.a, chat.id, new TLRPC.TL_channelParticipantsSearch());
-        hy9Var3.e.add(new zk9(this, (byte) 21));
-        this.b2 = hy9Var3;
-        o39 o39Var = this.n1;
-        int i3 = this.u0;
-        o39Var.setPadding(i3, 0, i3, gl.L(68.0f));
-        this.n1.setClipToPadding(false);
-        this.n1.setOnItemClickListener(new f09(this, (byte) 4));
-        dy9 dy9Var = new dy9(this);
-        dy9Var.m = false;
-        dy9Var.C = false;
-        dy9Var.o(s33.h);
-        dy9Var.n(350L);
-        this.n1.setItemAnimator(dy9Var);
-        this.n1.addOnLayoutChangeListener(new ey9(this));
-        this.n1.j(new fy9(this));
-        this.b.addView(new gy9(this, getContext()), nme.e(-1, 68, 87));
-        u41 u41Var = new u41(wjbVar, getContext(), true);
-        u41Var.setRoundRadius(24);
-        this.c2 = u41Var;
-        u41Var.setColor(bkb.v0(bkb.q7, this.J0));
-        Z0(false);
-        ViewGroup viewGroup2 = this.b;
-        float f2 = (this.u0 / gl.p) + 10.0f;
-        viewGroup2.addView(u41Var, nme.d(-1, 48.0f, 87, f2, 10.0f, f2, 10.0f));
-        u41Var.setOnClickListener(new ik8(this, (byte) 20));
-        l5c l5cVar = this.d2;
-        if (l5cVar != null) {
-            l5cVar.O(false);
+    public iy9(Context context, byte b) {
+        super(context);
+        this.a = b;
+        switch (b) {
+            case 3:
+                super(context);
+                ImageView imageView = new ImageView(context);
+                this.b = imageView;
+                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                addView(imageView, tre.d(24, 24.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+                TextView textView = new TextView(context);
+                this.c = textView;
+                textView.setTypeface(hl.o());
+                textView.setTextSize(1, 12.0f);
+                textView.setTextColor(-1);
+                textView.setGravity(17);
+                addView(textView, tre.d(-1, -2.0f, 49, 4.0f, 35.0f, 4.0f, 0.0f));
+                return;
+            default:
+                return;
         }
-        hy9Var.b();
-        hy9Var2.b();
+    }
+
+    public final void a(int i, CharSequence charSequence, boolean z) {
+        ImageView imageView = (ImageView) this.b;
+        if (z) {
+            hl.L3(imageView, i);
+        } else {
+            imageView.setImageResource(i);
+        }
+        ((TextView) this.c).setText(charSequence);
+        requestLayout();
     }
 
     @Override
-    public final n39 G0(o39 o39Var) {
-        l5c l5cVar = new l5c(o39Var, getContext(), this.a, 0, false, new tf8(this, (byte) 16), this.J0);
-        this.d2 = l5cVar;
-        return l5cVar;
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.a) {
+            case 7:
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final CharSequence J0() {
-        return k96.M0(2131754207, null);
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        Rect rect;
+        switch (this.a) {
+            case 0:
+                Path path = (Path) this.b;
+                ky9 ky9Var = (ky9) this.c;
+                RectF rectF = ky9Var.S;
+                if (view != ky9Var.O && view != ky9Var.y) {
+                    if (view == ky9Var.Q) {
+                        canvas.save();
+                        path.rewind();
+                        path.addCircle(rectF.centerX() + ky9Var.O.getX(), rectF.centerY() + ky9Var.O.getY(), rectF.width() / 2.0f, Path.Direction.CW);
+                        canvas.clipPath(path);
+                        canvas.clipRect(0.0f, hl.R1(ky9Var.U, 0.0f, ky9Var.s), getWidth(), hl.R1(ky9Var.V, getHeight(), ky9Var.s));
+                        canvas.translate(-ky9Var.Q.getX(), -ky9Var.Q.getY());
+                        canvas.translate(ky9Var.O.getX() + rectF.left, ky9Var.O.getY() + rectF.top);
+                        canvas.scale(rectF.width() / ky9Var.Q.getMeasuredWidth(), rectF.height() / ky9Var.Q.getMeasuredHeight(), ky9Var.Q.getX(), ky9Var.Q.getY());
+                        boolean drawChild = super.drawChild(canvas, view, j);
+                        canvas.restore();
+                        return drawChild;
+                    }
+                    return super.drawChild(canvas, view, j);
+                }
+                canvas.save();
+                canvas.clipRect(0.0f, hl.R1(ky9Var.U, 0.0f, ky9Var.s), getWidth(), hl.R1(ky9Var.V, getHeight(), ky9Var.s));
+                boolean drawChild2 = super.drawChild(canvas, view, j);
+                canvas.restore();
+                return drawChild2;
+            case 1:
+                if (view == ((n1a) this.c).i0 && ri5.b && ri5.f) {
+                    for (int i = 0; i < ((n1a) this.c).i0.getChildCount(); i++) {
+                        View childAt = ((n1a) this.c).i0.getChildAt(i);
+                        if (childAt instanceof w0a) {
+                            w0a w0aVar = (w0a) childAt;
+                            if (w0aVar.getAnimatedScale() == 1.0f) {
+                                ((Rect) this.b).set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                                canvas.save();
+                                canvas.clipRect((Rect) this.b);
+                                super.drawChild(canvas, view, j);
+                                canvas.restore();
+                            } else if (w0aVar.getAnimatedScale() > 0.0f) {
+                                ((Rect) this.b).set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                                ((Rect) this.b).set((int) (rect.centerX() - (w0aVar.getAnimatedScale() * (((Rect) this.b).width() / 2.0f))), (int) (((Rect) this.b).centerY() - (w0aVar.getAnimatedScale() * (((Rect) this.b).height() / 2.0f))), (int) ((w0aVar.getAnimatedScale() * (((Rect) this.b).width() / 2.0f)) + ((Rect) this.b).centerX()), (int) ((w0aVar.getAnimatedScale() * (((Rect) this.b).height() / 2.0f)) + ((Rect) this.b).centerY()));
+                                canvas.save();
+                                canvas.clipRect((Rect) this.b);
+                                canvas.scale(w0aVar.getAnimatedScale(), w0aVar.getAnimatedScale(), ((Rect) this.b).centerX(), ((Rect) this.b).centerY());
+                                super.drawChild(canvas, view, j);
+                                canvas.restore();
+                            }
+                        } else if ((childAt instanceof TextView) || (childAt instanceof r0a) || (childAt instanceof q0a) || (childAt instanceof s0a)) {
+                            ((Rect) this.b).set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                            canvas.save();
+                            canvas.clipRect((Rect) this.b);
+                            super.drawChild(canvas, view, j);
+                            canvas.restore();
+                        }
+                    }
+                    return false;
+                }
+                return super.drawChild(canvas, view, j);
+            case 7:
+                uqc uqcVar = (uqc) this.c;
+                if (view == uqcVar.v0 && uqcVar.G) {
+                    int save = canvas.save();
+                    canvas.concat(uqcVar.J);
+                    boolean drawChild3 = super.drawChild(canvas, view, j);
+                    canvas.restoreToCount(save);
+                    return drawChild3;
+                }
+                return super.drawChild(canvas, view, j);
+            default:
+                return super.drawChild(canvas, view, j);
+        }
     }
 
-    public final void Y0(TLRPC.User user, TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity) {
-        TLRPC.InputCheckPasswordSRP tL_inputCheckPasswordEmpty;
-        if (getContext() != null) {
-            this.e2 = getContext();
-        }
-        if (this.e2 != null) {
-            if (tL_inputCheckPasswordSRP != null && !hc2.T(this.S1)) {
-                d S = LaunchActivity.S();
-                if (S == null) {
+    @Override
+    public final void invalidate() {
+        switch (this.a) {
+            case 5:
+                super.invalidate();
+                l7 l7Var = ((pqb) this.c).v0;
+                if (l7Var != null) {
+                    l7Var.invalidate();
                     return;
                 }
-                na7.q1(this.a).P(this.e2, this.S1.id, S, new lt(this, user, tL_inputCheckPasswordSRP, twoStepVerificationActivity, (byte) 19), null);
                 return;
-            }
-            TLRPC.TL_channels_editCreator tL_channels_editCreator = new TLRPC.TL_channels_editCreator();
-            if (hc2.T(this.S1)) {
-                TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
-                tL_channels_editCreator.channel = tL_inputChannel;
-                TLRPC.Chat chat = this.S1;
-                tL_inputChannel.channel_id = chat.id;
-                tL_inputChannel.access_hash = chat.access_hash;
-            } else {
-                tL_channels_editCreator.channel = new TLRPC.TL_inputChannelEmpty();
-            }
-            if (tL_inputCheckPasswordSRP != null) {
-                tL_inputCheckPasswordEmpty = tL_inputCheckPasswordSRP;
-            } else {
-                tL_inputCheckPasswordEmpty = new TLRPC.TL_inputCheckPasswordEmpty();
-            }
-            tL_channels_editCreator.password = tL_inputCheckPasswordEmpty;
-            tL_channels_editCreator.user_id = na7.q1(this.a).o1(user);
-            ConnectionsManager.getInstance(this.a).sendRequest(tL_channels_editCreator, new fn0(this, tL_inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator, (byte) 15));
+            default:
+                super.invalidate();
+                return;
         }
-    }
-
-    public final void Z0(boolean z) {
-        int i;
-        int L;
-        String str;
-        if (hc2.V(this.S1)) {
-            i = 2131748811;
-        } else {
-            i = 2131748802;
-        }
-        float L2 = gl.L(32.0f);
-        u41 u41Var = this.c2;
-        if (u41Var.getWidth() > 0) {
-            L = u41Var.getWidth();
-        } else {
-            L = gl.q.x - gl.L(20.0f);
-        }
-        float max = Math.max(L2, (L - gl.L(16.0f)) - u41Var.getTextPaint().measureText(k96.M0(i, null)));
-        TLObject tLObject = this.V1;
-        if (tLObject instanceof TLRPC.User) {
-            str = l7c.l((TLRPC.User) tLObject);
-        } else if (tLObject instanceof TLRPC.Chat) {
-            str = ((TLRPC.Chat) tLObject).title;
-        } else {
-            str = "";
-        }
-        u41Var.i(k96.a0(null, null, i, TextUtils.ellipsize(str, u41Var.getTextPaint(), max, TextUtils.TruncateAt.MIDDLE)), z, true);
-    }
-
-    public final void a1() {
-        float f = -gl.L(64.0f);
-        int i = 0;
-        while (true) {
-            o39 o39Var = this.n1;
-            if (i >= o39Var.getChildCount()) {
-                break;
-            }
-            View childAt = o39Var.getChildAt(i);
-            if (childAt.getId() == 3) {
-                f = childAt.getY();
-                break;
-            }
-            i++;
-        }
-        this.W1.setTranslationY(f);
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.Z1.a();
-        this.a2.a();
-        this.b2.a();
+    public final void onAttachedToWindow() {
+        switch (this.a) {
+            case 7:
+                super.onAttachedToWindow();
+                getViewTreeObserver().addOnPreDrawListener((es1) this.b);
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
     }
 
     @Override
-    public final void p0() {
-        try {
-            super.p0();
-            u41 u41Var = this.c2;
-            if (u41Var != null) {
-                u41Var.setColor(bkb.v0(bkb.q7, this.J0));
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final void onDetachedFromWindow() {
+        switch (this.a) {
+            case 7:
+                getViewTreeObserver().removeOnPreDrawListener((es1) this.b);
+                super.onDetachedFromWindow();
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
         }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.a) {
+            case 4:
+                int intrinsicHeight = aob.i3.getIntrinsicHeight();
+                aob.i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                aob.i3.draw(canvas);
+                Paint paint = (Paint) this.b;
+                paint.setColor(((pqb) this.c).getThemedColor(aob.Je));
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), paint);
+                return;
+            case 5:
+                int[] iArr = (int[]) this.b;
+                pqb pqbVar = (pqb) this.c;
+                if (!hl.D) {
+                    getLocationInWindow(iArr);
+                    float translationY = pqbVar.u0.getTranslationY();
+                    int i = iArr[1];
+                    if (translationY != i) {
+                        pqbVar.u0.setTranslationY(-i);
+                        pqbVar.v0.invalidate();
+                    }
+                    if (SystemClock.elapsedRealtime() < pqbVar.R) {
+                        invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 6:
+                canvas.save();
+                clc clcVar = ((dlc) this.c).b;
+                canvas.scale(clcVar.getScaleX(), clcVar.getScaleY(), clcVar.getPivotX() + clcVar.getLeft(), clcVar.getPivotY() + clcVar.getTop());
+                Drawable drawable = (Drawable) this.b;
+                drawable.setBounds(clcVar.getLeft() - hl.L(2.0f), clcVar.getTop() - hl.L(2.0f), hl.L(2.0f) + clcVar.getRight(), hl.L(2.0f) + clcVar.getBottom());
+                drawable.draw(canvas);
+                canvas.restore();
+                super.onDraw(canvas);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        boolean z;
+        int i3;
+        int i4;
+        float f;
+        boolean z2;
+        float f2;
+        float f3;
+        StaticLayout staticLayout;
+        float f4;
+        switch (this.a) {
+            case 3:
+                float f5 = 8.0f;
+                int size = View.MeasureSpec.getSize(i) - hl.L(8.0f);
+                TextView textView = (TextView) this.c;
+                CharSequence text = textView.getText();
+                if (size > 0 && !TextUtils.isEmpty(text)) {
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
+                    TextPaint textPaint = new TextPaint(textView.getPaint());
+                    textPaint.setTextSize(hl.L(12.0f));
+                    float measureText = textPaint.measureText(text, 0, text.length());
+                    float f6 = size;
+                    if (measureText > f6) {
+                        textPaint.setTextSize(hl.L(11.0f));
+                        String[] split = text.toString().split("\\s+");
+                        int length = split.length;
+                        int i5 = 0;
+                        while (true) {
+                            if (i5 < length) {
+                                if (textPaint.measureText(split[i5]) > f6) {
+                                    staticLayout = null;
+                                    z = true;
+                                    f4 = 12.0f;
+                                    i3 = 2;
+                                } else {
+                                    i5++;
+                                }
+                            } else {
+                                f4 = 12.0f;
+                                z = true;
+                                i3 = 2;
+                                staticLayout = new StaticLayout(text, textPaint, size, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                            }
+                        }
+                        if (staticLayout != null && staticLayout.getLineCount() <= i3) {
+                            i4 = i3;
+                            f = 11.0f;
+                        } else {
+                            f = Math.max(8.0f, (f6 * f4) / measureText);
+                            i4 = z ? 1 : 0;
+                        }
+                    } else {
+                        z = true;
+                        i3 = 2;
+                        i4 = 1;
+                        f = 12.0f;
+                    }
+                    textView.setTextSize(z ? 1 : 0, f);
+                    textView.setMaxLines(i4);
+                    if (i4 == z) {
+                        z2 = z ? 1 : 0;
+                    } else {
+                        z2 = false;
+                    }
+                    textView.setSingleLine(z2);
+                    if (i4 == i3) {
+                        f2 = 0.85f;
+                    } else {
+                        f2 = 1.0f;
+                    }
+                    textView.setLineSpacing(0.0f, f2);
+                    if (i4 == i3) {
+                        z = false;
+                    }
+                    textView.setIncludeFontPadding(z);
+                    if (i4 == i3) {
+                        f3 = 29.0f;
+                    } else {
+                        f3 = 35.0f;
+                    }
+                    layoutParams.topMargin = hl.L(f3);
+                    FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ((ImageView) this.b).getLayoutParams();
+                    if (i4 == i3) {
+                        f5 = 4.0f;
+                    }
+                    layoutParams2.topMargin = hl.L(f5);
+                }
+                super.onMeasure(i, i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    public iy9(dlc dlcVar, Context context, Drawable drawable) {
+        super(context);
+        this.a = (byte) 6;
+        this.c = dlcVar;
+        this.b = drawable;
+    }
+
+    public iy9(uqc uqcVar, Context context) {
+        super(context);
+        this.a = (byte) 7;
+        this.c = uqcVar;
+        this.b = new es1(this, (byte) 7);
+    }
+
+    public iy9(n1a n1aVar, Context context) {
+        super(context);
+        this.a = (byte) 1;
+        this.c = n1aVar;
+        this.b = new Rect();
+    }
+
+    public iy9(pqb pqbVar, Context context, byte b) {
+        super(context);
+        this.a = b;
+        switch (b) {
+            case 5:
+                this.c = pqbVar;
+                super(context);
+                this.b = new int[2];
+                return;
+            default:
+                this.c = pqbVar;
+                this.b = new Paint();
+                return;
+        }
+    }
+
+    public iy9(ky9 ky9Var, Activity activity) {
+        super(activity);
+        this.a = (byte) 0;
+        this.c = ky9Var;
+        this.b = new Path();
     }
 }

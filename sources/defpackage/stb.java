@@ -1,18 +1,21 @@
 package defpackage;
-public final class stb extends cja {
-    public boolean m0;
+public final class stb extends iu5 {
+    public final StringBuilder e;
+    public final StringBuilder f;
+    public final StringBuilder g;
+
+    public stb() {
+        super(1, (byte) 2);
+        this.e = new StringBuilder();
+        this.f = new StringBuilder();
+        this.g = new StringBuilder();
+    }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        Q();
-        if (getKeyboardHeight() == 0 && !this.m0) {
-            int i3 = na7.b1().getInt("kbd_height", gl.L(200.0f));
-            this.f = i3;
-            setPadding(0, 0, 0, i3);
-        } else {
-            this.m0 = true;
-            setPadding(0, 0, 0, 0);
-        }
-        super.onMeasure(i, i2);
+    public final iu5 s() {
+        iu5.t(this.e);
+        iu5.t(this.f);
+        iu5.t(this.g);
+        return this;
     }
 }

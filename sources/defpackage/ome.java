@@ -1,3 +1,5 @@
 package defpackage;
-public final class ome extends ezc implements iwe {
+
+import android.os.IInterface;
+public interface ome extends IInterface {
 }

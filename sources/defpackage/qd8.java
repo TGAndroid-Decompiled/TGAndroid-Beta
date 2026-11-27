@@ -1,110 +1,232 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.a;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
-public final class qd8 extends ld8 implements Drawable.Callback, x74 {
-    public final String b;
-    public final Drawable d;
-    public final ih2 f;
-    public kd8 h;
-    public TLRPC.WebPage n;
-    public final fm0 r;
-    public final fm0 s;
-    public final kp c = new kp((byte) 11, false);
-    public final Paint e = new Paint(1);
+import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.PhotoViewer;
+public abstract class qd8 extends FrameLayout {
+    public TLRPC.WebPage E;
+    public float F;
+    public boolean G;
+    public boolean H;
+    public int I;
+    public int J;
+    public float K;
+    public boolean L;
+    public x38 M;
+    public int a;
+    public PhotoViewer b;
+    public LinearLayout c;
+    public TextView d;
+    public TextView e;
+    public ev3 f;
+    public tb h;
+    public RadialProgressView n;
+    public b8 r;
+    public String s;
+    public ArrayList w;
+    public String x;
+    public boolean y;
 
-    public qd8(String str) {
-        ih2 ih2Var = new ih2(-1);
-        this.f = ih2Var;
-        s33 s33Var = s33.h;
-        this.r = new fm0(0, this, s33Var, 320L, false);
-        this.s = new fm0(0, this, s33Var, 320L, false);
-        this.b = str;
-        this.a.q0(gl.L(7.0f));
-        this.d = b00.d(a.b, 2131231749);
-        ih2Var.setCallback(this);
-        ih2Var.b(bkb.w0(null, bkb.n7, false));
-        ih2Var.a = gl.L(15.0f);
-    }
-
-    @Override
-    public final void a(View view) {
-        super.a(view);
-        this.h = (kd8) view;
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        this.h = null;
-    }
-
-    @Override
-    public final void c(Canvas canvas, int i, int i2) {
-        float f = i;
-        float f2 = i2;
-        ImageReceiver imageReceiver = this.a;
-        imageReceiver.i0(0.0f, 0.0f, f, f2);
-        imageReceiver.h(canvas, null);
-        ih2 ih2Var = this.f;
-        ih2Var.setBounds(0, 0, i, i2);
-        int w0 = bkb.w0(null, bkb.Z6, false);
-        fm0 fm0Var = this.s;
-        int f3 = bm2.f(fm0Var.e, w0, 1073741824);
-        Paint paint = this.e;
-        paint.setColor(f3);
-        canvas.drawRoundRect(0.0f, 0.0f, f, f2, gl.L(7.0f), gl.L(7.0f), paint);
-        int f4 = bm2.f(fm0Var.e, bkb.w0(null, bkb.n7, false), -1);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        kp kpVar = this.c;
-        kpVar.getClass();
-        PorterDuffColorFilter porterDuffColorFilter = (PorterDuffColorFilter) kpVar.c;
-        if (porterDuffColorFilter == null || kpVar.b != f4 || ((PorterDuff.Mode) kpVar.d) != mode) {
-            porterDuffColorFilter = new PorterDuffColorFilter(f4, mode);
-            kpVar.c = porterDuffColorFilter;
-            kpVar.b = f4;
-            kpVar.d = mode;
-        }
-        Drawable drawable = this.d;
-        drawable.setColorFilter(porterDuffColorFilter);
-        kq3.e(this.d, f / 2.0f, f2 / 2.0f, gl.L(24.0f), gl.L(24.0f), 17);
-        fm0 fm0Var2 = this.r;
-        kq3.b(canvas, drawable, 1.0f - fm0Var2.e);
-        kq3.b(canvas, ih2Var, fm0Var2.e);
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        kd8 kd8Var = this.h;
-        if (kd8Var != null) {
-            kd8Var.invalidate();
+    public final void a(boolean z) {
+        x38 x38Var = this.M;
+        boolean z2 = this.H;
+        if (!z) {
+            if (z2) {
+                hl.d3(x38Var, 500L);
+            }
+        } else if (!z2) {
+            hl.r(x38Var);
         }
     }
 
+    public final java.lang.String b(int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qd8.b(int):java.lang.String");
+    }
+
+    public final boolean c() {
+        if (this.y && "inapp".equals(uc7.s1(this.a).k4.Q0.f)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        if (this.n.getVisibility() != 0) {
+            me8 a = fc3.b().a();
+            if (a != null) {
+                a.b();
+                hl.d3(new md8(this, (byte) 0), 300L);
+                return true;
+            }
+            this.h.setVisibility(0);
+            PhotoViewer photoViewer = this.b;
+            if (photoViewer.E != null && photoViewer.g0 != null) {
+                photoViewer.V();
+                photoViewer.U8.i(photoViewer.E, null, true);
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
-        kd8 kd8Var = this.h;
-        if (kd8Var != null) {
-            kd8Var.invalidate();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.L) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public final void e() {
+        if (this.H && this.y) {
+            h("pauseVideo();");
+            this.H = false;
+            a(true);
         }
     }
 
-    @Override
-    public final void F(float f, int i) {
+    public final void f() {
+        if (!this.H && this.y) {
+            h("playVideo();");
+            this.H = true;
+            a(false);
+        }
+    }
+
+    public final void g(String str) {
+        String str2;
+        double ceil;
+        int videoDuration = getVideoDuration() / 1000;
+        ArrayList arrayList = this.w;
+        arrayList.clear();
+        if (videoDuration > 15) {
+            String[] split = str.split("\\|");
+            String k = c00.k(new StringBuilder(), split[0].split("\\$")[0], "2/");
+            String str3 = split[0].split("\\$N")[1];
+            if (split.length == 3) {
+                str2 = split[2].split("M#")[1];
+            } else if (split.length == 2) {
+                str2 = split[1].split("t#")[1];
+            } else {
+                str2 = split[3].split("M#")[1];
+            }
+            if (videoDuration <= 100) {
+                ceil = Math.ceil(videoDuration / 25.0f);
+            } else if (videoDuration <= 250) {
+                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
+            } else if (videoDuration <= 500) {
+                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
+            } else if (videoDuration <= 1000) {
+                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
+            } else {
+                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
+            }
+            int i = (int) ceil;
+            for (int i2 = 0; i2 < i; i2++) {
+                Locale locale = Locale.ROOT;
+                arrayList.add(k + "M" + i2 + str3 + "&sigh=" + str2);
+            }
+        }
+    }
+
+    public float getBufferedPosition() {
+        return this.K;
+    }
+
+    public int getCurrentPosition() {
+        return this.J;
+    }
+
+    public int getEmbedHeight() {
+        TLRPC.WebPage webPage = this.E;
+        if (webPage != null) {
+            return webPage.embed_height;
+        }
+        return 0;
+    }
+
+    public int getEmbedWidth() {
+        TLRPC.WebPage webPage = this.E;
+        if (webPage != null) {
+            return webPage.embed_width;
+        }
+        return 0;
+    }
+
+    public int getVideoDuration() {
+        return this.I;
+    }
+
+    public WebView getWebView() {
+        return this.f;
+    }
+
+    public final void h(String str) {
+        this.f.evaluateJavascript(str, null);
+    }
+
+    public final void i(long j) {
+        boolean z = this.H;
+        this.J = (int) j;
+        if (z) {
+            e();
+            hl.d3(new kt(this, j, (byte) 25), 100L);
+            return;
+        }
+        h("seekTo(" + Math.round(((float) j) / 1000.0f) + ", true);");
     }
 
     @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    public final void onMeasure(int i, int i2) {
+        ev3 ev3Var = this.f;
+        if (ev3Var.getParent() == this) {
+            TLRPC.WebPage webPage = this.E;
+            int i3 = webPage.embed_width;
+            int i4 = 100;
+            if (i3 == 0) {
+                i3 = 100;
+            }
+            int i5 = webPage.embed_height;
+            if (i5 != 0) {
+                i4 = i5;
+            }
+            int size = View.MeasureSpec.getSize(i);
+            int size2 = View.MeasureSpec.getSize(i2);
+            float f = i3;
+            float f2 = i4;
+            float min = Math.min(size / f, size2 / f2);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) ev3Var.getLayoutParams();
+            int i6 = (int) (f * min);
+            layoutParams.width = i6;
+            int i7 = (int) (f2 * min);
+            layoutParams.height = i7;
+            layoutParams.topMargin = (size2 - i7) / 2;
+            layoutParams.leftMargin = (size - i6) / 2;
+        }
+        super.onMeasure(i, i2);
     }
 
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+    public void setPlaybackSpeed(float f) {
+        this.F = f;
+        if (this.n.getVisibility() != 0) {
+            if (this.y) {
+                h("setPlaybackSpeed(" + f + ");");
+                return;
+            }
+            return;
+        }
+        this.G = true;
+    }
+
+    public void setTouchDisabled(boolean z) {
+        this.L = z;
     }
 }

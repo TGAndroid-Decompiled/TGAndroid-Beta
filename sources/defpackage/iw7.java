@@ -1,47 +1,68 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.CancellationSignal;
-import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public abstract class iw7 {
-    public static void a(Context context, int i, i8c i8cVar) {
-        if (!w01.i) {
-            return;
-        }
-        context.getClass();
-        p13 p13Var = new p13(context, (byte) 0);
-        hd hdVar = new hd(3, null, context);
-        hdVar.q(500L);
-        ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new hc((byte) 0), new u15(hdVar, i8cVar, p13Var, context, i));
+import java.util.List;
+import org.telegram.ui.ActionBar.e;
+public final class iw7 implements Runnable {
+    public final byte a;
+    public final dx7 b;
+
+    public iw7(dx7 dx7Var, byte b) {
+        this.a = b;
+        this.b = dx7Var;
     }
 
-    public static void b(boolean[] zArr, ef6 ef6Var, boolean z, p13 p13Var, Context context, int i, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
-        if (zArr[0]) {
-            return;
-        }
-        if (tL_error != null) {
-            ef6Var.a(0L, null, tL_error.text);
-            return;
-        }
-        try {
-            bt4 bt4Var = new bt4(new JSONObject(passkeyloginoptions.options.data).getJSONObject("publicKey").toString());
-            ArrayList arrayList = new ArrayList();
-            arrayList.add(bt4Var);
-            ws4 ws4Var = new ws4(yk2.k(arrayList), !z);
-            try {
-                CancellationSignal cancellationSignal = new CancellationSignal();
-                p13Var.d(context, ws4Var, cancellationSignal, context.getMainExecutor(), new gw7(ef6Var, context, i));
-                runnableArr[0] = new s54(cancellationSignal, (byte) 16);
-            } catch (Exception e) {
-                ef6Var.a(0L, null, e.getMessage());
-            }
-        } catch (Exception e2) {
-            fa4.g(e2, true);
-            ef6Var.a(0L, null, e2.getMessage());
+    @Override
+    public final void run() {
+        int d;
+        byte b = this.a;
+        dx7 dx7Var = this.b;
+        switch (b) {
+            case 0:
+                gx7 gx7Var = dx7Var.N0;
+                if (gx7Var != null) {
+                    gx7Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                new xk8((e) new qu0(dx7Var, (byte) 8), 14, true).show();
+                return;
+            case 2:
+                gx7 gx7Var2 = dx7Var.N0;
+                if (gx7Var2 != null) {
+                    gx7Var2.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                dx7Var.y0(false);
+                return;
+            default:
+                boolean z = a78.e(dx7Var.p1).k;
+                int i = 0;
+                while (true) {
+                    List list = u01.c;
+                    if (i < list.size()) {
+                        u01 u01Var = (u01) list.get(i);
+                        if (z) {
+                            d = u01Var.l();
+                        } else {
+                            d = u01Var.d();
+                        }
+                        String m = u01Var.m();
+                        l65 l65Var = new l65(dx7Var, u01Var, d, (byte) 20);
+                        bx7 bx7Var = new bx7(dx7Var, dx7Var.getContext());
+                        bx7Var.setIcon(d);
+                        bx7Var.setText(m);
+                        bx7Var.setSelected(false);
+                        bx7Var.setOnClickListener(new am7(l65Var, (byte) 3));
+                        bx7Var.setOnLongClickListener(new zs(dx7Var, (byte) 6));
+                        dx7Var.s1.a(bx7Var, tre.o(-1, 48));
+                        i++;
+                    } else {
+                        return;
+                    }
+                }
         }
     }
 }

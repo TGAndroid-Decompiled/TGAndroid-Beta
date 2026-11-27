@@ -1,152 +1,118 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.d;
-public final class bx7 {
-    public final TLRPC.SecureValueType a;
-    public final boolean b;
-    public final int c;
-    public final vx7 d;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class bx7 extends LinearLayout {
+    public final TextView a;
+    public final tt b;
+    public ImageView c;
+    public ImageView d;
+    public float e;
+    public boolean f;
+    public ValueAnimator h;
+    public final ImageView n;
+    public final dx7 r;
 
-    public bx7(vx7 vx7Var, TLRPC.SecureValueType secureValueType, boolean z, int i) {
-        this.d = vx7Var;
-        this.a = secureValueType;
-        this.b = z;
-        this.c = i;
+    public bx7(dx7 dx7Var, Context context) {
+        super(context);
+        this.r = dx7Var;
+        setOrientation(0);
+        int i = aob.i6;
+        uk5 uk5Var = dx7Var.q1;
+        setBackground(aob.f0(aob.v0(i, uk5Var), 2, -1));
+        tt ttVar = new tt(this, context);
+        this.b = ttVar;
+        addView(ttVar, tre.t(-2, -2, 19, 16, 0, 16, 0));
+        ImageView imageView = new ImageView(context);
+        this.c = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        ImageView imageView2 = this.c;
+        int i2 = aob.E8;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
+        yob.s(imageView2, i2, uk5Var, mode);
+        ttVar.addView(this.c, tre.e(-2, -2, 17));
+        ImageView imageView3 = new ImageView(context);
+        this.d = imageView3;
+        imageView3.setScaleType(scaleType);
+        yob.s(this.d, i2, uk5Var, mode);
+        this.d.setVisibility(8);
+        ttVar.addView(this.d, tre.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.a = textView;
+        yob.X(textView, i2, uk5Var);
+        textView.setTextSize(1, 16.0f);
+        addView(textView, tre.t(-2, -2, 19, 0, 0, 16, 0));
+        ImageView imageView4 = new ImageView(context);
+        this.n = imageView4;
+        imageView4.setImageResource(2131232403);
+        imageView4.setScaleType(scaleType);
+        yob.s(imageView4, aob.h7, uk5Var, PorterDuff.Mode.MULTIPLY);
+        imageView4.setVisibility(8);
+        addView(imageView4, tre.o(50, -1));
     }
 
-    public static TLRPC.InputSecureFile a(uu9 uu9Var) {
-        if (uu9Var.d != null) {
-            TLRPC.TL_inputSecureFileUploaded tL_inputSecureFileUploaded = new TLRPC.TL_inputSecureFileUploaded();
-            TLRPC.TL_inputFile tL_inputFile = uu9Var.d;
-            tL_inputSecureFileUploaded.id = tL_inputFile.id;
-            tL_inputSecureFileUploaded.parts = tL_inputFile.parts;
-            tL_inputSecureFileUploaded.md5_checksum = tL_inputFile.md5_checksum;
-            tL_inputSecureFileUploaded.file_hash = uu9Var.f;
-            tL_inputSecureFileUploaded.secret = uu9Var.e;
-            return tL_inputSecureFileUploaded;
-        }
-        TLRPC.TL_inputSecureFile tL_inputSecureFile = new TLRPC.TL_inputSecureFile();
-        TLRPC.TL_secureFile tL_secureFile = uu9Var.b;
-        tL_inputSecureFile.id = tL_secureFile.id;
-        tL_inputSecureFile.access_hash = tL_secureFile.access_hash;
-        return tL_inputSecureFile;
-    }
-
-    public static void b(uu9 uu9Var, TLRPC.TL_secureFile tL_secureFile) {
-        ba4.G(y6c.t0);
-        File I = ba4.I(uu9Var);
-        ba4.G(y6c.t0);
-        File I2 = ba4.I(tL_secureFile);
-        I.renameTo(I2);
-        fl5.z().O(uu9Var.b.dc_id + "_" + uu9Var.b.id, tL_secureFile.dc_id + "_" + tL_secureFile.id, null);
-    }
-
-    public final void c(TLRPC.TL_secureRequiredType tL_secureRequiredType, String str, String str2, TLRPC.TL_secureRequiredType tL_secureRequiredType2, String str3, ArrayList arrayList, uu9 uu9Var, ArrayList arrayList2, uu9 uu9Var2, uu9 uu9Var3, Runnable runnable, wk4 wk4Var) {
-        TLRPC.TL_inputSecureValue tL_inputSecureValue;
-        TLRPC.TL_securePlainPhone tL_securePlainPhone;
-        TLRPC.TL_inputSecureValue tL_inputSecureValue2;
-        int i;
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        vx7 vx7Var = this.d;
-        if (!isEmpty) {
-            tL_inputSecureValue = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue.type = tL_secureRequiredType.type;
-            tL_inputSecureValue.flags |= 1;
-            gl2 c1 = vx7Var.c1(gl.g1(str2));
-            TLRPC.TL_secureData tL_secureData = new TLRPC.TL_secureData();
-            tL_inputSecureValue.data = tL_secureData;
-            tL_secureData.data = (byte[]) c1.d;
-            tL_secureData.data_hash = (byte[]) c1.e;
-            tL_secureData.secret = (byte[]) c1.b;
-        } else if (!TextUtils.isEmpty(str)) {
-            TLRPC.SecureValueType secureValueType = this.a;
-            if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
-                TLRPC.TL_securePlainEmail tL_securePlainEmail = new TLRPC.TL_securePlainEmail();
-                tL_securePlainEmail.email = str;
-                tL_securePlainPhone = tL_securePlainEmail;
-            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
-                TLRPC.TL_securePlainPhone tL_securePlainPhone2 = new TLRPC.TL_securePlainPhone();
-                tL_securePlainPhone2.phone = str;
-                tL_securePlainPhone = tL_securePlainPhone2;
-            } else {
+    public final void a(int i, boolean z, boolean z2) {
+        if (z2) {
+            ValueAnimator valueAnimator = this.h;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.h = null;
+                a(i, false, false);
                 return;
             }
-            TLRPC.TL_inputSecureValue tL_inputSecureValue3 = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue3.type = tL_secureRequiredType.type;
-            tL_inputSecureValue3.flags |= 32;
-            tL_inputSecureValue3.plain_data = tL_securePlainPhone;
-            tL_inputSecureValue = tL_inputSecureValue3;
-        } else {
-            tL_inputSecureValue = null;
-        }
-        boolean z = this.b;
-        if (!z && tL_inputSecureValue == null) {
-            if (wk4Var != null) {
-                wk4Var.a0(null, null);
-                return;
-            }
+            this.f = z;
+            this.d.setImageResource(i);
+            this.d.setVisibility(0);
+            this.d.setAlpha(1.0f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.h = ofFloat;
+            ofFloat.addUpdateListener(new e20((byte) 7, this, z));
+            this.h.addListener(new ad5(this, (byte) 22));
+            this.h.setInterpolator(k43.h);
+            this.h.setDuration(420L);
+            this.h.start();
             return;
         }
-        if (tL_secureRequiredType2 != null) {
-            TLRPC.TL_inputSecureValue tL_inputSecureValue4 = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue4.type = tL_secureRequiredType2.type;
-            if (!TextUtils.isEmpty(str3)) {
-                tL_inputSecureValue4.flags |= 1;
-                gl2 c12 = vx7Var.c1(gl.g1(str3));
-                TLRPC.TL_secureData tL_secureData2 = new TLRPC.TL_secureData();
-                tL_inputSecureValue4.data = tL_secureData2;
-                tL_secureData2.data = (byte[]) c12.d;
-                tL_secureData2.data_hash = (byte[]) c12.e;
-                tL_secureData2.secret = (byte[]) c12.b;
-            }
-            if (uu9Var2 != null) {
-                tL_inputSecureValue4.front_side = a(uu9Var2);
-                tL_inputSecureValue4.flags |= 2;
-            }
-            if (uu9Var3 != null) {
-                tL_inputSecureValue4.reverse_side = a(uu9Var3);
-                tL_inputSecureValue4.flags |= 4;
-            }
-            if (uu9Var != null) {
-                tL_inputSecureValue4.selfie = a(uu9Var);
-                tL_inputSecureValue4.flags |= 8;
-            }
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                tL_inputSecureValue4.flags |= 64;
-                int size = arrayList2.size();
-                for (int i2 = 0; i2 < size; i2++) {
-                    tL_inputSecureValue4.translation.add(a((uu9) arrayList2.get(i2)));
-                }
-            }
-            if (arrayList != null && !arrayList.isEmpty()) {
-                tL_inputSecureValue4.flags |= 16;
-                int size2 = arrayList.size();
-                for (int i3 = 0; i3 < size2; i3++) {
-                    tL_inputSecureValue4.files.add(a((uu9) arrayList.get(i3)));
-                }
-            }
-            if (z) {
-                tL_inputSecureValue = tL_inputSecureValue4;
-            } else {
-                tL_inputSecureValue2 = tL_inputSecureValue4;
-                TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
-                savesecurevalue.value = tL_inputSecureValue;
-                savesecurevalue.secure_secret_id = vx7Var.c1;
-                i = ((d) vx7Var).currentAccount;
-                ConnectionsManager.getInstance(i).sendRequest(savesecurevalue, new ax7(this, wk4Var, str, savesecurevalue, tL_secureRequiredType2, tL_secureRequiredType, arrayList, uu9Var, uu9Var2, uu9Var3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
-            }
+        this.c.setImageResource(i);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean performClick() {
+        dx7 dx7Var = this.r;
+        n8 n8Var = dx7Var.r1;
+        if (n8Var != null && n8Var.isShowing()) {
+            dx7Var.r1.d(true);
         }
-        tL_inputSecureValue2 = null;
-        TL_account.saveSecureValue savesecurevalue2 = new TL_account.saveSecureValue();
-        savesecurevalue2.value = tL_inputSecureValue;
-        savesecurevalue2.secure_secret_id = vx7Var.c1;
-        i = ((d) vx7Var).currentAccount;
-        ConnectionsManager.getInstance(i).sendRequest(savesecurevalue2, new ax7(this, wk4Var, str, savesecurevalue2, tL_secureRequiredType2, tL_secureRequiredType, arrayList, uu9Var, uu9Var2, uu9Var3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
+        return super.performClick();
+    }
+
+    public void setIcon(int i) {
+        a(i, true, false);
+    }
+
+    @Override
+    public void setSelected(boolean z) {
+        int i;
+        if (z) {
+            i = 0;
+        } else {
+            i = 8;
+        }
+        this.n.setVisibility(i);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.a.setText(charSequence);
     }
 }

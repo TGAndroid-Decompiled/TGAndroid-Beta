@@ -1,32 +1,36 @@
 package defpackage;
 
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLObject;
-public final class hhc implements Runnable {
-    public final byte a;
-    public final TLObject b;
-    public final ArrayList c;
-    public final ArrayList d;
-    public final Runnable e;
+import java.util.WeakHashMap;
+public final class hhc {
+    public static final ArrayList d = new ArrayList();
+    public WeakHashMap a;
+    public SparseArray b;
+    public WeakReference c;
 
-    public hhc(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable, byte b) {
-        this.a = b;
-        this.b = tLObject;
-        this.c = arrayList;
-        this.d = arrayList2;
-        this.e = runnable;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                VoIPService.lambda$startConferenceGroupCall$51(this.b, this.c, this.d, this.e);
-                return;
-            default:
-                VoIPService.lambda$startConferenceGroupCall$43(this.b, this.c, this.d, this.e);
-                return;
+    public final View a(View view) {
+        int size;
+        WeakHashMap weakHashMap = this.a;
+        if (weakHashMap != null && weakHashMap.containsKey(view)) {
+            if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
+                for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
+                    View a = a(viewGroup.getChildAt(childCount));
+                    if (a != null) {
+                        return a;
+                    }
+                }
+            }
+            ArrayList arrayList = (ArrayList) view.getTag(2131296697);
+            if (arrayList != null && arrayList.size() - 1 >= 0) {
+                arrayList.get(size).getClass();
+                grb.o();
+            }
         }
+        return null;
     }
 }

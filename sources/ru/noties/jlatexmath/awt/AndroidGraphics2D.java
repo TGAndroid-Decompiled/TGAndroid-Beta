@@ -155,7 +155,7 @@ public class AndroidGraphics2D implements Graphics2D {
         if (this.canvas == affineTransform.getCanvas()) {
             this.transform = affineTransform.restore();
         } else {
-            sc8.j("Supplied transform has different Canvas attached");
+            grb.i("Supplied transform has different Canvas attached");
         }
     }
 

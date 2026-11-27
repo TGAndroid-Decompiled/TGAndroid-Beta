@@ -1,34 +1,42 @@
 package defpackage;
 
-import org.telegram.ui.LaunchActivity;
-public final class my5 implements p8c {
-    public final byte a;
-    public final y0a b;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class my5 extends zu1 {
+    public final wy5 Jd;
 
-    public my5(y0a y0aVar, byte b) {
-        this.a = b;
-        this.b = y0aVar;
+    public my5(wy5 wy5Var) {
+        super(null);
+        this.Jd = wy5Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        y0a y0aVar = this.b;
-        String str = (String) obj;
-        switch (b) {
-            case 0:
-                String str2 = LaunchActivity.C1;
-                if (y0aVar != null && "paid".equals(str)) {
-                    y0aVar.run();
-                    return;
-                }
-                return;
-            default:
-                if (y0aVar != null && "paid".equals(str)) {
-                    y0aVar.run();
-                    return;
-                }
-                return;
-        }
+    public final boolean Y7() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        return hl.W(this.Jd.getContext());
+    }
+
+    @Override
+    public final vnb getResourceProvider() {
+        return this.Jd.A1;
+    }
+
+    @Override
+    public final TLRPC.User h() {
+        return yac.h(this.currentAccount).f();
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
     }
 }

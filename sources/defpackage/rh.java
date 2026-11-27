@@ -1,36 +1,25 @@
 package defpackage;
 
-import android.app.Activity;
-import android.widget.FrameLayout;
-public final class rh extends FrameLayout {
-    public final byte a;
-    public final ag2[] b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Region;
+public final class rh extends de0 {
+    public final Path H;
 
-    public rh(Activity activity, ag2[] ag2VarArr, byte b) {
-        super(activity);
-        this.a = b;
-        this.b = ag2VarArr;
+    public rh(Context context) {
+        super(context);
+        this.H = new Path();
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        byte b = this.a;
-        ag2[] ag2VarArr = this.b;
-        switch (b) {
-            case 0:
-                super.onMeasure(i, i2);
-                if (ag2VarArr[0] != null) {
-                    setMeasuredDimension(getMeasuredWidth(), gl.L(7.0f) + ag2VarArr[0].getMeasuredHeight() + getMeasuredHeight());
-                    return;
-                }
-                return;
-            default:
-                super.onMeasure(i, i2);
-                if (ag2VarArr[0] != null) {
-                    setMeasuredDimension(getMeasuredWidth(), gl.L(7.0f) + ag2VarArr[0].getMeasuredHeight() + getMeasuredHeight());
-                    return;
-                }
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.H;
+        path.rewind();
+        path.addCircle(hl.L(54.0f), hl.L(53.0f), hl.L(14.0f), Path.Direction.CW);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+        super.onDraw(canvas);
+        canvas.restore();
     }
 }

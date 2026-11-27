@@ -1,91 +1,63 @@
 package defpackage;
 
-import android.content.Context;
-public final class n84 extends er4 {
-    public final byte j0;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class n84 implements TextView.OnEditorActionListener {
+    public final m84 a;
+    public final int b;
+    public final r47 c;
+    public final boolean d;
+    public final id[] e;
+    public final View f;
+    public final q84 g;
 
-    public n84(ei8 ei8Var, Context context, int i, int i2, Context context2) {
-        super(context, i, i2);
-        this.j0 = (byte) 4;
+    public n84(q84 q84Var, m84 m84Var, int i, r47 r47Var, boolean z, id[] idVarArr, View view) {
+        this.g = q84Var;
+        this.a = m84Var;
+        this.b = i;
+        this.c = r47Var;
+        this.d = z;
+        this.e = idVarArr;
+        this.f = view;
     }
 
     @Override
-    public final void g() {
-        switch (this.j0) {
-            case 4:
-                boolean z = w01.a;
-                return;
-            default:
-                return;
+    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        String charSequence;
+        if (i != 6) {
+            return false;
         }
-    }
-
-    @Override
-    public final void n() {
-        switch (this.j0) {
-            case 5:
-                return;
-            default:
-                super.n();
-                return;
+        m84 m84Var = this.a;
+        if (m84Var.getText().toString().length() > this.b) {
+            hl.z3(m84Var);
+            return true;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        switch (this.j0) {
-            case 0:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 2:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 3:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        CharSequence[] charSequenceArr = {m84Var.getText()};
+        q84 q84Var = this.g;
+        tL_textWithEntities.entities = ls6.d0(q84Var.a).Y(charSequenceArr, true, true);
+        CharSequence charSequence2 = charSequenceArr[0];
+        if (charSequence2 == null) {
+            charSequence = "";
+        } else {
+            charSequence = charSequence2.toString();
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.j0) {
-            case 0:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 1:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 3:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
+        tL_textWithEntities.text = charSequence;
+        q84Var.a(this.c, tL_textWithEntities, this.d);
+        id[] idVarArr = this.e;
+        id idVar = idVarArr[0];
+        if (idVar != null) {
+            idVar.dismiss();
         }
-    }
-
-    public n84(Context context, int i, int i2, byte b) {
-        super(context, i, i2);
-        this.j0 = b;
-    }
-
-    private final void p() {
+        if (idVarArr[0] == q84.i) {
+            q84.i = null;
+        }
+        View view = this.f;
+        if (view != null) {
+            view.requestFocus();
+        }
+        return true;
     }
 }

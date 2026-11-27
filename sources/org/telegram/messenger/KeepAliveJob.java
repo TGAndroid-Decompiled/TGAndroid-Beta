@@ -7,19 +7,19 @@ public class KeepAliveJob extends JobIntentService {
     public static volatile CountDownLatch a;
     public static volatile boolean b;
     public static final Object c = new Object();
-    public static final ql3 d = new ql3((byte) 16);
+    public static final jm3 d = new jm3((byte) 18);
 
     public static void a() {
         synchronized (c) {
             if (a != null) {
-                if (w01.a) {
-                    fa4.b("finish keep-alive job");
+                if (f11.a) {
+                    cc4.b("finish keep-alive job");
                 }
                 a.countDown();
             }
             if (b) {
-                if (w01.a) {
-                    fa4.b("finish queued keep-alive job");
+                if (f11.a) {
+                    cc4.b("finish queued keep-alive job");
                 }
                 b = false;
             }
@@ -33,8 +33,8 @@ public class KeepAliveJob extends JobIntentService {
                 return;
             }
             a = new CountDownLatch(1);
-            if (w01.a) {
-                fa4.b("started keep-alive job");
+            if (f11.a) {
+                cc4.b("started keep-alive job");
             }
             Utilities.e.d(d, 60000L);
             try {
@@ -45,8 +45,8 @@ public class KeepAliveJob extends JobIntentService {
             synchronized (c) {
                 a = null;
             }
-            if (w01.a) {
-                fa4.b("ended keep-alive job");
+            if (f11.a) {
+                cc4.b("ended keep-alive job");
             }
         }
     }

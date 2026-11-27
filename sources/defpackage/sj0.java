@@ -1,53 +1,142 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import java.lang.ref.WeakReference;
-public final class sj0 {
-    public WeakReference a;
-    public long b;
-    public boolean c = true;
+import android.util.SparseArray;
+import java.lang.reflect.Array;
+public final class sj0 implements uy0 {
+    public final byte a = 2;
+    public int b;
+    public int c;
+    public final Object d;
 
-    public final boolean a(Bitmap bitmap) {
-        Bitmap bitmap2;
-        long j;
-        if (!this.c) {
-            WeakReference weakReference = this.a;
-            if (weakReference != null) {
-                bitmap2 = (Bitmap) weakReference.get();
-            } else {
-                bitmap2 = null;
+    public sj0(vh7 vh7Var, ko4 ko4Var) {
+        ey7 ey7Var = vh7Var.e;
+        this.d = ey7Var;
+        ey7Var.N(12);
+        int E = ey7Var.E();
+        if ("audio/raw".equals(ko4Var.t)) {
+            int u = gcc.u(ko4Var.Q) * ko4Var.N;
+            if (E % u != 0) {
+                efd.f("BoxParsers", "Audio sample size mismatch. stsd sample size: " + u + ", stsz sample size: " + E);
+                E = u;
             }
-            if (bitmap2 == bitmap) {
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    j = bitmap.getGenerationId();
-                } else {
-                    j = 0;
-                }
-                if (j != this.b) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
         }
-        return true;
+        this.b = E == 0 ? -1 : E;
+        this.c = ey7Var.E();
     }
 
-    public final void b(Bitmap bitmap) {
-        WeakReference weakReference;
-        long j;
-        if (bitmap != null) {
-            weakReference = new WeakReference(bitmap);
-        } else {
-            weakReference = null;
+    @Override
+    public final int a() {
+        return this.b;
+    }
+
+    @Override
+    public final int b() {
+        return this.c;
+    }
+
+    @Override
+    public final int c() {
+        int i = this.b;
+        if (i == -1) {
+            return ((ey7) this.d).E();
         }
-        this.a = weakReference;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            j = bitmap.getGenerationId();
-        } else {
-            j = 0;
+        return i;
+    }
+
+    public final int d() {
+        return ((((byte[]) this.d).length - this.b) << 3) - this.c;
+    }
+
+    public final byte e(int i, int i2) {
+        return ((byte[][]) this.d)[i2][i];
+    }
+
+    public final int f(int i) {
+        byte[] bArr = (byte[]) this.d;
+        int i2 = 0;
+        if (i >= 1 && i <= 32 && i <= d()) {
+            int i3 = this.c;
+            if (i3 > 0) {
+                int i4 = 8 - i3;
+                int min = Math.min(i, i4);
+                int i5 = i4 - min;
+                int i6 = this.b;
+                int i7 = (bArr[i6] & ((255 >> (8 - min)) << i5)) >> i5;
+                i -= min;
+                int i8 = this.c + min;
+                this.c = i8;
+                if (i8 == 8) {
+                    this.c = 0;
+                    this.b = i6 + 1;
+                }
+                i2 = i7;
+            }
+            if (i > 0) {
+                while (i >= 8) {
+                    int i9 = this.b;
+                    i2 = (i2 << 8) | (bArr[i9] & 255);
+                    this.b = i9 + 1;
+                    i -= 8;
+                }
+                if (i > 0) {
+                    int i10 = 8 - i;
+                    int i11 = (i2 << i) | ((bArr[this.b] & ((255 >> i10) << i10)) >> i10);
+                    this.c += i;
+                    return i11;
+                }
+                return i2;
+            }
+            return i2;
         }
-        this.b = j;
-        this.c = false;
+        lq5.j(String.valueOf(i));
+        return 0;
+    }
+
+    public final void g(int i, int i2, int i3) {
+        ((byte[][]) this.d)[i2][i] = (byte) i3;
+    }
+
+    public final String toString() {
+        switch (this.a) {
+            case 2:
+                int i = this.b;
+                int i2 = this.c;
+                StringBuilder sb = new StringBuilder(((i << 1) * i2) + 2);
+                for (int i3 = 0; i3 < i2; i3++) {
+                    byte[] bArr = ((byte[][]) this.d)[i3];
+                    for (int i4 = 0; i4 < i; i4++) {
+                        byte b = bArr[i4];
+                        if (b != 0) {
+                            if (b != 1) {
+                                sb.append("  ");
+                            } else {
+                                sb.append(" 1");
+                            }
+                        } else {
+                            sb.append(" 0");
+                        }
+                    }
+                    sb.append('\n');
+                }
+                return sb.toString();
+            default:
+                return super.toString();
+        }
+    }
+
+    public sj0(byte[] bArr) {
+        this.d = bArr;
+    }
+
+    public sj0(int i, int i2, SparseArray sparseArray) {
+        this.b = i;
+        this.c = i2;
+        this.d = sparseArray;
+    }
+
+    public sj0(int i, int i2) {
+        this.d = (byte[][]) Array.newInstance(Byte.TYPE, i2, i);
+        this.b = i;
+        this.c = i2;
     }
 }

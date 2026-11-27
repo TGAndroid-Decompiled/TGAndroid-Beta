@@ -1,32 +1,56 @@
 package defpackage;
-
-import android.support.v4.media.session.MediaSessionCompat$Token;
 public final class sy0 {
-    public final boolean a;
-    public final int b;
-    public boolean c;
-    public boolean d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
+    public final int a;
+    public int b;
+    public int c;
+    public long d;
+    public final boolean e;
+    public final ey7 f;
+    public final ey7 g;
+    public int h;
+    public int i;
 
-    public sy0(ugb ugbVar, int i, sy0 sy0Var, ud3 ud3Var, boolean z) {
-        this.c = true;
-        this.d = false;
-        this.e = ugbVar;
-        this.b = i;
-        this.a = z;
-        this.f = sy0Var;
-        this.g = ud3Var;
+    public sy0(ey7 ey7Var, ey7 ey7Var2, boolean z) {
+        this.g = ey7Var;
+        this.f = ey7Var2;
+        this.e = z;
+        ey7Var2.N(12);
+        this.a = ey7Var2.E();
+        ey7Var.N(12);
+        this.i = ey7Var.E();
+        pke.a("first_chunk must be 1", ey7Var.m() == 1);
+        this.b = -1;
     }
 
-    public sy0(boolean z, int i, String str, String str2, MediaSessionCompat$Token mediaSessionCompat$Token, boolean z2, boolean z3) {
-        this.a = z;
-        this.b = i;
-        this.f = str;
-        this.g = str2;
-        this.e = mediaSessionCompat$Token;
-        this.c = z2;
-        this.d = z3;
+    public final boolean a() {
+        long C;
+        int i;
+        int i2 = this.b + 1;
+        this.b = i2;
+        if (i2 == this.a) {
+            return false;
+        }
+        boolean z = this.e;
+        ey7 ey7Var = this.f;
+        if (z) {
+            C = ey7Var.G();
+        } else {
+            C = ey7Var.C();
+        }
+        this.d = C;
+        if (this.b == this.h) {
+            ey7 ey7Var2 = this.g;
+            this.c = ey7Var2.E();
+            ey7Var2.O(4);
+            int i3 = this.i - 1;
+            this.i = i3;
+            if (i3 > 0) {
+                i = ey7Var2.E() - 1;
+            } else {
+                i = -1;
+            }
+            this.h = i;
+        }
+        return true;
     }
 }

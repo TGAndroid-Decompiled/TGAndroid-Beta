@@ -1,15 +1,22 @@
 package defpackage;
-public final class mw2 {
-    public final byte a;
-    public final String b;
 
-    public mw2(int i) {
-        this.a = i;
-        this.b = null;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class mw2 extends n8 {
+    public final nw2 o;
+
+    public mw2(nw2 nw2Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.o = nw2Var;
     }
 
-    public mw2(String str) {
-        this.a = (byte) 1;
-        this.b = str;
+    @Override
+    public final void dismiss() {
+        d(true);
+        rw2 rw2Var = this.o.a;
+        rw2Var.k = null;
+        rw2Var.K = false;
+        if (rw2Var.R) {
+            rw2Var.b();
+        }
     }
 }

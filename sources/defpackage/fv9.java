@@ -1,10 +1,29 @@
 package defpackage;
-public interface fv9 {
-    boolean c();
 
-    boolean d();
+import j$.util.Objects;
+public final class fv9 {
+    public static final fv9 b;
+    public final bp5 a;
 
-    ev9 f(long j);
+    static {
+        k09 k09Var = new k09((byte) 7);
+        k09Var.b = bp5.p(2, 1, 5);
+        b = new fv9(k09Var);
+    }
 
-    long h();
+    public fv9(k09 k09Var) {
+        this.a = (bp5) k09Var.b;
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof fv9) && this.a.equals(((fv9) obj).a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        Boolean bool = Boolean.TRUE;
+        return Objects.hash(this.a, null, null, bool, bool, bool, bool, bool);
+    }
 }

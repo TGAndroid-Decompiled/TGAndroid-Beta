@@ -1,31 +1,44 @@
 package defpackage;
 
-import android.text.TextUtils;
-import j$.util.Objects;
-public final class tz9 {
-    public boolean a = true;
-    public boolean b;
-    public String c;
+import android.animation.ValueAnimator;
+public final class tz9 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final n1a b;
+    public final boolean c;
 
-    public final boolean equals(Object obj) {
-        boolean z;
-        if (this != obj) {
-            if (obj != null && tz9.class == obj.getClass()) {
-                tz9 tz9Var = (tz9) obj;
-                if ((TextUtils.isEmpty(this.c) && TextUtils.isEmpty(tz9Var.c)) || Objects.equals(this.c, tz9Var.c)) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (this.a != tz9Var.a || this.b != tz9Var.b || !z) {
-                }
-            }
-            return false;
-        }
-        return true;
+    public tz9(n1a n1aVar, boolean z, byte b) {
+        this.a = b;
+        this.b = n1aVar;
+        this.c = z;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.a), Boolean.valueOf(this.b), this.c);
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        boolean z = this.c;
+        n1a n1aVar = this.b;
+        switch (b) {
+            case 0:
+                k0a k0aVar = n1aVar.i0;
+                a0a a0aVar = n1aVar.j0;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!z) {
+                    floatValue = 1.0f - floatValue;
+                }
+                float f = 1.0f - floatValue;
+                k0aVar.setAlpha(f);
+                k0aVar.setTranslationY(hl.L(8.0f) * floatValue);
+                a0aVar.setAlpha(floatValue);
+                a0aVar.setTranslationY(hl.L(8.0f) * f);
+                n1aVar.k0.setAlpha(a0aVar.getAlpha() * floatValue);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!z) {
+                    floatValue2 = 1.0f - floatValue2;
+                }
+                n1aVar.k0.setAlpha(n1aVar.j0.getAlpha() * floatValue2);
+                return;
+        }
     }
 }

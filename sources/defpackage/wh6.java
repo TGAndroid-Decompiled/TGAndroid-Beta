@@ -1,30 +1,43 @@
 package defpackage;
-public final class wh6 implements e36 {
-    public final f36 a;
-    public final xh6 b;
 
-    public wh6(xh6 xh6Var, f36 f36Var) {
-        this.b = xh6Var;
-        this.a = f36Var;
-    }
+import java.math.RoundingMode;
+public abstract class wh6 {
+    public static final int[] a;
 
-    @Override
-    public final void c() {
-        this.b.d.j0();
-    }
-
-    @Override
-    public final void i() {
-        yh6 yh6Var = this.b.d;
-        yh6Var.m0 = new zq5(this.a.getContext(), yh6Var.e, yh6Var.d, yh6Var.l0, yh6Var, yh6Var.n, true, yh6Var.h);
-        yh6Var.m0.show();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void k() {
+    static {
+        int[] iArr = new int[RoundingMode.values().length];
+        a = iArr;
+        try {
+            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            a[RoundingMode.DOWN.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            a[RoundingMode.FLOOR.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            a[RoundingMode.UP.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[RoundingMode.CEILING.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[RoundingMode.HALF_DOWN.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            a[RoundingMode.HALF_UP.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
+        try {
+            a[RoundingMode.HALF_EVEN.ordinal()] = 8;
+        } catch (NoSuchFieldError unused8) {
+        }
     }
 }

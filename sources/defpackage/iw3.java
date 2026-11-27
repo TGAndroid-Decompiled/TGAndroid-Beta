@@ -1,4 +1,12 @@
 package defpackage;
-public abstract class iw3 {
-    public abstract void a();
+
+import android.widget.FrameLayout;
+public abstract class iw3 extends FrameLayout {
+    public int a;
+
+    public abstract void a(int i);
+
+    public abstract float b();
+
+    public abstract void c();
 }

@@ -1,31 +1,34 @@
 package defpackage;
-public final class j90 {
-    public int a;
-    public String b;
-    public String c;
-    public boolean d;
-    public byte e;
+public final class j90 extends vz2 {
+    public final String a;
+    public final String b;
 
-    public final k90 a() {
-        String str;
-        String str2;
-        if (this.e == 3 && (str = this.b) != null && (str2 = this.c) != null) {
-            return new k90(this.a, str, str2, this.d);
+    public j90(String str, String str2) {
+        this.a = str;
+        this.b = str2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        StringBuilder sb = new StringBuilder();
-        if ((this.e & 1) == 0) {
-            sb.append(" platform");
+        if (obj instanceof vz2) {
+            j90 j90Var = (j90) ((vz2) obj);
+            if (this.a.equals(j90Var.a) && this.b.equals(j90Var.b)) {
+                return true;
+            }
         }
-        if (this.b == null) {
-            sb.append(" version");
-        }
-        if (this.c == null) {
-            sb.append(" buildVersion");
-        }
-        if ((this.e & 2) == 0) {
-            sb.append(" jailbroken");
-        }
-        sc8.j(ir2.o("Missing required properties:", sb));
-        return null;
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode();
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("RolloutVariant{rolloutId=");
+        sb.append(this.a);
+        sb.append(", variantId=");
+        return c00.k(sb, this.b, "}");
     }
 }

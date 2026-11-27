@@ -1,11 +1,20 @@
 package defpackage;
-public abstract class aod {
-    public void b() {
+public final class aod implements Runnable {
+    public final jtd a;
+    public final prd b;
+
+    public aod(jtd jtdVar, prd prdVar) {
+        this.a = jtdVar;
+        this.b = prdVar;
     }
 
-    public void c(fj0 fj0Var) {
-    }
-
-    public void a(int i, CharSequence charSequence) {
+    @Override
+    public final void run() {
+        if (this.a.a == this) {
+            prd prdVar = this.b;
+            if (rod.h.f(this.a, this, jtd.h(prdVar))) {
+                jtd.j(this.a);
+            }
+        }
     }
 }

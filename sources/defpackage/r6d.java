@@ -1,165 +1,118 @@
 package defpackage;
 
-import j$.util.List;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-import java.util.function.UnaryOperator;
-public abstract class r6d extends kzc implements List, RandomAccess, j$.util.List {
-    public static final b6d n = new b6d(b8d.w, 0);
+import android.os.SystemClock;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+public final class r6d implements OnCompleteListener {
+    public final n05 a;
+    public final char b;
+    public final ho c;
+    public final long d;
+    public final long e;
 
-    @Override
-    public final void add(int i, Object obj) {
-        throw new UnsupportedOperationException();
+    public r6d(n05 n05Var, int i, ho hoVar, long j, long j2) {
+        this.a = n05Var;
+        this.b = i;
+        this.c = hoVar;
+        this.d = j;
+        this.e = j2;
+    }
+
+    public static defpackage.ys2 a(defpackage.l6d r4, defpackage.hg0 r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r6d.a(l6d, hg0, int):ys2");
     }
 
     @Override
-    public final boolean addAll(int i, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        Object next;
-        Object next2;
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i = 0; i < size; i++) {
-                            Object obj2 = get(i);
-                            Object obj3 = list.get(i);
-                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
-                            }
+    public final void onComplete(Task task) {
+        boolean z;
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        long j;
+        long j2;
+        n05 n05Var = this.a;
+        if (n05Var.f()) {
+            an9 an9Var = (an9) zm9.I0().b;
+            if (an9Var == null || an9Var.b) {
+                l6d l6dVar = (l6d) n05Var.s.get(this.c);
+                if (l6dVar != null) {
+                    d05 d05Var = l6dVar.b;
+                    if (d05Var instanceof hg0) {
+                        d05 d05Var2 = d05Var;
+                        long j3 = this.d;
+                        int i6 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+                        boolean z2 = true;
+                        int i7 = 0;
+                        if (i6 > 0) {
+                            z = true;
+                        } else {
+                            z = false;
                         }
-                        return true;
-                    }
-                    b6d listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
-                                break;
+                        short s = d05Var2.v;
+                        if (an9Var != null) {
+                            z &= an9Var.c;
+                            i = an9Var.d;
+                            i3 = an9Var.e;
+                            i2 = an9Var.a;
+                            if (d05Var2.B != null && !d05Var2.r()) {
+                                ys2 a = a(l6dVar, d05Var2, this.b);
+                                if (a != null) {
+                                    if (!a.c || i6 <= 0) {
+                                        z2 = false;
+                                    }
+                                    i3 = a.e;
+                                    z = z2;
+                                } else {
+                                    return;
+                                }
                             }
-                        } else if (!it.hasNext()) {
-                            return true;
+                        } else {
+                            i = 5000;
+                            i2 = 0;
+                            i3 = 100;
                         }
+                        int i8 = i;
+                        int i9 = -1;
+                        if (task.isSuccessful()) {
+                            i5 = 0;
+                        } else if (task.isCanceled()) {
+                            i7 = -1;
+                            i5 = 100;
+                        } else {
+                            Exception exception = task.getException();
+                            if (exception instanceof ao) {
+                                Status status = ((ao) exception).getStatus();
+                                i4 = status.a;
+                                ws2 ws2Var = status.d;
+                                if (ws2Var != null) {
+                                    i5 = i4;
+                                    i7 = ws2Var.b;
+                                }
+                            } else {
+                                i4 = 101;
+                            }
+                            i5 = i4;
+                            i7 = -1;
+                        }
+                        if (z) {
+                            long j4 = this.e;
+                            long currentTimeMillis = System.currentTimeMillis();
+                            i9 = (int) (SystemClock.elapsedRealtime() - j4);
+                            j2 = currentTimeMillis;
+                            j = j3;
+                        } else {
+                            j = 0;
+                            j2 = 0;
+                        }
+                        s6d s6dVar = new s6d(new bg7(this.b, i5, i7, j, j2, null, null, s, i9), i2, i8, i3);
+                        b99 b99Var = n05Var.y;
+                        b99Var.sendMessage(b99Var.obtainMessage(18, s6dVar));
                     }
                 }
             }
-            return false;
         }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        int size = size();
-        int i = 1;
-        for (int i2 = 0; i2 < size; i2++) {
-            i = (i * 31) + get(i2).hashCode();
-        }
-        return i;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            if (obj.equals(get(i))) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public int p(Object[] objArr) {
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            objArr[i] = get(i);
-        }
-        return size;
-    }
-
-    @Override
-    public final Object remove(int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void replaceAll(UnaryOperator unaryOperator) {
-        List.CC.$default$replaceAll(this, unaryOperator);
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void sort(Comparator comparator) {
-        List.CC.$default$sort(this, comparator);
-    }
-
-    @Override
-    public r6d subList(int i, int i2) {
-        k4f.c(i, i2, size());
-        int i3 = i2 - i;
-        if (i3 == size()) {
-            return this;
-        }
-        if (i3 == 0) {
-            return b8d.w;
-        }
-        return new j6d(this, i, i3);
-    }
-
-    @Override
-    public final b6d listIterator(int i) {
-        k4f.b(i, size());
-        if (isEmpty()) {
-            return n;
-        }
-        return new b6d(this, i);
     }
 }

@@ -43,7 +43,7 @@ public class TeXFormulaParser {
             if ("false".equals(str)) {
                 return Boolean.FALSE;
             }
-            k93.g("PredefinedTeXFormulas.xml", "Argument", "value", b00.i("has an invalid '", str2, "'-value : '", str, "'!"));
+            da3.b("PredefinedTeXFormulas.xml", "Argument", "value", c00.j("has an invalid '", str2, "'-value : '", str, "'!"));
             return null;
         }
     }
@@ -58,7 +58,7 @@ public class TeXFormulaParser {
             if (str.length() == 1) {
                 return new Character(str.charAt(0));
             }
-            k93.g("PredefinedTeXFormulas.xml", "Argument", "value", "must have a value that consists of exactly 1 character!");
+            da3.b("PredefinedTeXFormulas.xml", "Argument", "value", "must have a value that consists of exactly 1 character!");
             return null;
         }
     }
@@ -73,7 +73,7 @@ public class TeXFormulaParser {
             try {
                 return Color.class.getDeclaredField(str).get(null);
             } catch (Exception e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("has an unknown color constant name as value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", qd4.y("has an unknown color constant name as value : '", str, "'!"), e);
             }
         }
     }
@@ -98,13 +98,13 @@ public class TeXFormulaParser {
                 for (Object obj : argumentValues) {
                     str = str + "Created object: " + obj + "\n";
                 }
-                StringBuilder p = ug8.p("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
+                StringBuilder p = ik8.p("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
                 p.append(TeXFormulaParser.this.formulaName);
                 p.append("'!\n");
                 p.append(str);
                 throw new XMLResourceParseException(p.toString());
             } catch (Exception e) {
-                StringBuilder p2 = ug8.p("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
+                StringBuilder p2 = ik8.p("Error creating the temporary command '", attrValueAndCheckIfNotNull, "' while constructing the predefined command '");
                 p2.append(TeXFormulaParser.this.formulaName);
                 p2.append("'!\n");
                 p2.append(e.toString());
@@ -126,7 +126,7 @@ public class TeXFormulaParser {
             try {
                 TeXFormulaParser.this.tempFormulas.put(attrValueAndCheckIfNotNull, (TeXFormula) TeXFormula.class.getConstructor(argumentClasses).newInstance(argumentValues));
             } catch (Exception e) {
-                StringBuilder p = ug8.p("Error creating the temporary TeXFormula '", attrValueAndCheckIfNotNull, "' while constructing the predefined TeXFormula '");
+                StringBuilder p = ik8.p("Error creating the temporary TeXFormula '", attrValueAndCheckIfNotNull, "' while constructing the predefined TeXFormula '");
                 p.append(TeXFormulaParser.this.formulaName);
                 p.append("'!\n");
                 p.append(e.toString());
@@ -145,7 +145,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Float.parseFloat(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b00.i("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c00.j("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
@@ -160,7 +160,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Integer.parseInt(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b00.i("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c00.j("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
@@ -181,14 +181,14 @@ public class TeXFormulaParser {
                     TeXFormula.class.getMethod(attrValueAndCheckIfNotNull, argumentClasses).invoke((TeXFormula) obj, TeXFormulaParser.this.getArgumentValues(elementsByTagName));
                     return;
                 } catch (Exception e) {
-                    StringBuilder l = yjb.l("Error invoking the method '", attrValueAndCheckIfNotNull, "' on the temporary TeXFormula '", attrValueAndCheckIfNotNull2, "' while constructing the predefined TeXFormula '");
+                    StringBuilder l = xnb.l("Error invoking the method '", attrValueAndCheckIfNotNull, "' on the temporary TeXFormula '", attrValueAndCheckIfNotNull2, "' while constructing the predefined TeXFormula '");
                     l.append(TeXFormulaParser.this.formulaName);
                     l.append("'!\n");
                     l.append(e.toString());
                     throw new XMLResourceParseException(l.toString());
                 }
             }
-            k93.g("PredefinedTeXFormulas.xml", "Argument", "formula", tb4.y("has an unknown temporary TeXFormula name as value : '", attrValueAndCheckIfNotNull2, "'!"));
+            da3.b("PredefinedTeXFormulas.xml", "Argument", "formula", qd4.y("has an unknown temporary TeXFormula name as value : '", attrValueAndCheckIfNotNull2, "'!"));
         }
     }
 
@@ -206,7 +206,7 @@ public class TeXFormulaParser {
                 TeXFormulaParser.this.result = obj;
                 return;
             }
-            StringBuilder p = ug8.p("contains an unknown temporary TeXFormula variable name '", attrValueAndCheckIfNotNull, "' for the predefined TeXFormula '");
+            StringBuilder p = ik8.p("contains an unknown temporary TeXFormula variable name '", attrValueAndCheckIfNotNull, "' for the predefined TeXFormula '");
             p.append(TeXFormulaParser.this.formulaName);
             p.append("'!");
             throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Return", "name", p.toString());
@@ -223,7 +223,7 @@ public class TeXFormulaParser {
             try {
                 return Integer.valueOf(TeXConstants.class.getDeclaredField(str).getInt(null));
             } catch (Exception e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("has an unknown constant name as value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", qd4.y("has an unknown constant name as value : '", str, "'!"), e);
             }
         }
     }
@@ -241,7 +241,7 @@ public class TeXFormulaParser {
             if (obj != null) {
                 return (TeXFormula) obj;
             }
-            k93.g("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("has an unknown temporary TeXFormula name as value : '", str, "'!"));
+            da3.b("PredefinedTeXFormulas.xml", "Argument", "value", qd4.y("has an unknown temporary TeXFormula name as value : '", str, "'!"));
             return null;
         }
     }
@@ -292,7 +292,7 @@ public class TeXFormulaParser {
         if (!str.equals("")) {
             return;
         }
-        k93.g("PredefinedTeXFormulas.xml", "Argument", "value", tb4.y("is required for an argument of type '", str2, "'!"));
+        da3.b("PredefinedTeXFormulas.xml", "Argument", "value", qd4.y("is required for an argument of type '", str2, "'!"));
     }
 
     public static Class<?>[] getArgumentClasses(NodeList nodeList) {
@@ -304,7 +304,7 @@ public class TeXFormulaParser {
                 clsArr[i] = cls;
                 i++;
             } else {
-                k93.g("PredefinedTeXFormulas.xml", "Argument", "type", "has an invalid class name value!");
+                da3.b("PredefinedTeXFormulas.xml", "Argument", "type", "has an invalid class name value!");
                 return null;
             }
         }
@@ -328,7 +328,7 @@ public class TeXFormulaParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        k93.g("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
+        da3.b("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
         return null;
     }
 

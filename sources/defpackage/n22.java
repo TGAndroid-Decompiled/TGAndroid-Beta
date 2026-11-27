@@ -1,59 +1,42 @@
 package defpackage;
 
-import java.io.File;
-import java.util.Comparator;
-public final class n22 implements Comparator {
-    public final byte a;
-    public final d32 b;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class n22 implements t69, s22 {
+    public final b32 a;
 
-    public n22(d32 d32Var, byte b) {
-        this.a = b;
-        this.b = d32Var;
+    public n22(b32 b32Var) {
+        this.a = b32Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        byte b = this.a;
-        d32 d32Var = this.b;
-        w22 w22Var = (w22) obj;
-        w22 w22Var2 = (w22) obj2;
-        switch (b) {
-            case 0:
-                File file = w22Var.f;
-                if (file != null) {
-                    if (w22Var2.f == null) {
-                        return 1;
-                    }
-                    boolean isDirectory = file.isDirectory();
-                    if (isDirectory != w22Var2.f.isDirectory()) {
-                        if (!isDirectory) {
-                            return 1;
-                        }
-                    } else if (!isDirectory && !d32Var.d0) {
-                        int i = (w22Var.f.lastModified() > w22Var2.f.lastModified() ? 1 : (w22Var.f.lastModified() == w22Var2.f.lastModified() ? 0 : -1));
-                        if (i == 0) {
-                            return 0;
-                        }
-                        if (i <= 0) {
-                            return 1;
-                        }
-                    } else {
-                        return w22Var.f.getName().compareToIgnoreCase(w22Var2.f.getName());
-                    }
-                }
-                return -1;
-            default:
-                if (d32Var.d0) {
-                    return w22Var.f.getName().compareToIgnoreCase(w22Var2.f.getName());
-                }
-                int i2 = (w22Var.f.lastModified() > w22Var2.f.lastModified() ? 1 : (w22Var.f.lastModified() == w22Var2.f.lastModified() ? 0 : -1));
-                if (i2 == 0) {
-                    return 0;
-                }
-                if (i2 <= 0) {
-                    return 1;
-                }
-                return -1;
+    public final void b(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j) {
+        b32 b32Var = this.a;
+        b32Var.b.a(true);
+        b32Var.K.b(tL_userContact_old2, z, i, j);
+    }
+
+    @Override
+    public final boolean e(int i, View view) {
+        Object O;
+        b32 b32Var = this.a;
+        j79 adapter = b32Var.s.getAdapter();
+        x22 x22Var = b32Var.G;
+        if (adapter == x22Var) {
+            O = x22Var.E(i);
+        } else {
+            v22 v22Var = b32Var.F;
+            O = v22Var.O(v22Var.S(i), v22Var.Q(i));
         }
+        if (O != null) {
+            b32Var.P((a32) view, O);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void a(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2) {
     }
 }

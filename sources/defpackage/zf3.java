@@ -1,198 +1,310 @@
 package defpackage;
 
-import android.os.Bundle;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.util.Property;
+import android.util.SparseIntArray;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.CheckBox;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class zf3 implements View.OnClickListener {
-    public final byte a;
-    public final cj3 b;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+public final class zf3 extends FrameLayout {
+    public int a;
+    public boolean b;
+    public boolean c;
+    public int d;
+    public int e;
+    public VelocityTracker f;
+    public boolean h;
+    public final bg3 n;
 
-    public zf3(cj3 cj3Var, byte b) {
-        this.a = b;
-        this.b = cj3Var;
+    public zf3(bg3 bg3Var, Context context) {
+        super(context);
+        this.n = bg3Var;
+    }
+
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zf3.a():boolean");
+    }
+
+    public final boolean b(MotionEvent motionEvent, boolean z) {
+        int i;
+        a aVar;
+        bg3 bg3Var = this.n;
+        ag3[] ag3VarArr = bg3Var.f;
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = bg3Var.e;
+        SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.P;
+        int i2 = scrollSlidingTextTabStrip.n;
+        if (z) {
+            i = 1;
+        } else {
+            i = -1;
+        }
+        int i3 = sparseIntArray.get(i2 + i, -1);
+        if (i3 < 0) {
+            return false;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.c = false;
+        this.b = true;
+        this.d = (int) motionEvent.getX();
+        aVar = ((e) bg3Var).actionBar;
+        aVar.setEnabled(false);
+        bg3Var.e.setEnabled(false);
+        ag3 ag3Var = ag3VarArr[1];
+        ag3Var.f = i3;
+        ag3Var.setVisibility(0);
+        bg3Var.r = z;
+        bg3Var.q0(true);
+        if (z) {
+            ag3VarArr[1].setTranslationX(ag3VarArr[0].getMeasuredWidth());
+            return true;
+        }
+        ag3VarArr[1].setTranslationX(-ag3VarArr[0].getMeasuredWidth());
+        return true;
     }
 
     @Override
-    public final void onClick(View view) {
-        ArrayList arrayList;
-        CharSequence charSequence;
-        oh3 oh3Var;
-        oh3 oh3Var2;
-        int i = 0;
-        switch (this.a) {
-            case 0:
-                cj3 cj3Var = this.b;
-                if (cj3Var.x3() && (arrayList = cj3Var.F2) != null && !arrayList.isEmpty() && cj3Var.getParentActivity() != null) {
-                    jm6 jm6Var = (jm6) cj3Var.F2.get(0);
-                    hh3 hh3Var = cj3Var.D1;
-                    if (hh3Var != null) {
-                        charSequence = hh3Var.getFieldText();
-                    } else {
-                        charSequence = jm6Var.a;
-                    }
-                    ArrayList arrayList2 = cj3Var.F2;
-                    int size = arrayList2.size();
-                    while (i < size) {
-                        Object obj = arrayList2.get(i);
-                        i++;
-                        ((jm6) obj).a = charSequence;
-                    }
-                    PhotoViewer.r0().T1(null, cj3Var, cj3Var.getResourceProvider());
-                    PhotoViewer.r0().u7 = true;
-                    PhotoViewer.r0().v7 = charSequence;
-                    ArrayList arrayList3 = new ArrayList(cj3Var.F2);
-                    boolean[] zArr = new boolean[cj3Var.F2.size()];
-                    Arrays.fill(zArr, true);
-                    PhotoViewer.r0().o1(arrayList3, 0, 0, false, new ci3(cj3Var, zArr), null);
-                    PhotoViewer r0 = PhotoViewer.r0();
-                    r0.f4 = true;
-                    CheckBox checkBox = r0.O0;
-                    if (checkBox != null) {
-                        checkBox.setVisibility(8);
-                    }
-                    PhotoViewer.CounterView counterView = r0.P0;
-                    if (counterView != null) {
-                        counterView.setVisibility(8);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                cj3 cj3Var2 = this.b;
-                if (cj3Var2.H0 && (oh3Var = cj3Var2.F0) != null && !oh3Var.g()) {
-                    cj3Var2.N4(true, true);
-                    return;
-                } else {
-                    cj3Var2.h5();
-                    return;
-                }
-            case 2:
-                cj3 cj3Var3 = this.b;
-                if (cj3Var3.H0 && (oh3Var2 = cj3Var3.F0) != null && !oh3Var2.g()) {
-                    cj3Var3.N4(true, true);
-                    return;
-                } else {
-                    cj3Var3.h5();
-                    return;
-                }
-            case 3:
-                cj3 cj3Var4 = this.b;
-                cj3Var4.g5(true, false, true, false);
-                cj3Var4.Z.b(true);
-                gl.d3(new wf3(cj3Var4, (byte) 16), 100L);
-                return;
-            case 4:
-                cj3 cj3Var5 = this.b;
-                Bundle bundle = new Bundle();
-                bundle.putLong("community_id", cj3Var5.a3);
-                cj3Var5.presentFragment(new pn2(bundle));
-                return;
-            case 5:
-                cj3 cj3Var6 = this.b;
-                ArrayList arrayList4 = cj3Var6.K2;
-                if (cj3Var6.E2 != null && !arrayList4.isEmpty()) {
-                    cj3Var6.O2 = false;
-                    ArrayList arrayList5 = new ArrayList();
-                    while (i < arrayList4.size()) {
-                        arrayList5.add(zc7.a(((Long) arrayList4.get(i)).longValue(), 0L));
-                        i++;
-                    }
-                    cj3Var6.E2.r(cj3Var6, arrayList5, cj3Var6.D1.getFieldText(), false, cj3Var6.L2, cj3Var6.M2, cj3Var6.N2, null);
-                    return;
-                }
-                return;
-            case 6:
-                this.b.y3(true);
-                return;
-            case 7:
-                this.b.finishPreviewFragment();
-                return;
-            case 8:
-                cj3 cj3Var7 = this.b;
-                cj3Var7.A0.setIsEditing(false);
-                cj3Var7.Z4(false);
-                return;
-            case 9:
-                cj3 cj3Var8 = this.b;
-                cj3Var8.showDialog(new jh8((d) cj3Var8, 2, true));
-                return;
-            case 10:
-                cj3 cj3Var9 = this.b;
-                cj3Var9.getContactsController().B();
-                cj3Var9.b5();
-                return;
-            case 11:
-                this.b.A4(view);
-                return;
-            case 12:
-                this.b.e4();
-                return;
-            case 13:
-                this.b.j4();
-                return;
-            case 14:
-                this.b.l4();
-                return;
-            case 15:
-                cj3 cj3Var10 = this.b;
-                cj3Var10.showDialog((fx0) ij.l(cj3Var10.getParentActivity(), k96.M0(2131751226, null), k96.M0(2131751231, null), null, new yf3(cj3Var10, (byte) 1), new sg3(cj3Var10, (byte) 12), false, false, cj3Var10.getResourceProvider()).a);
-                return;
-            case 16:
-                this.b.o4();
-                return;
-            case 17:
-                this.b.p4();
-                return;
-            case 18:
-                cj3 cj3Var11 = this.b;
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment.k0 = true;
-                cj3Var11.presentFragment(premiumPreviewFragment);
-                gl.d3(new wf3(cj3Var11, (byte) 10), 250L);
-                return;
-            case 19:
-                this.b.f4();
-                return;
-            case 20:
-                cj3 cj3Var12 = this.b;
-                PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment2.k0 = true;
-                cj3Var12.presentFragment(premiumPreviewFragment2);
-                gl.d3(new sg3(cj3Var12, (byte) 8), 250L);
-                return;
-            case 21:
-                cj3 cj3Var13 = this.b;
-                cj3Var13.presentFragment(new r61());
-                gl.d3(new sg3(cj3Var13, (byte) 6), 250L);
-                return;
-            case 22:
-                this.b.B4();
-                return;
-            case 23:
-                this.b.s4();
-                return;
-            case 24:
-                this.b.g4();
-                return;
-            case 25:
-                cj3 cj3Var14 = this.b;
-                d01.t(cj3Var14.getParentActivity(), cj3Var14.getMessagesController().k4.o2.f);
-                return;
-            case 26:
-                this.b.h4();
-                return;
-            case 27:
-                this.b.C4();
-                return;
-            default:
-                this.b.M3();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        wk5 wk5Var;
+        wk5 wk5Var2;
+        a aVar;
+        a aVar2;
+        super.dispatchDraw(canvas);
+        bg3 bg3Var = this.n;
+        wk5Var = ((e) bg3Var).parentLayout;
+        if (wk5Var != null) {
+            wk5Var2 = ((e) bg3Var).parentLayout;
+            aVar = ((e) bg3Var).actionBar;
+            int measuredHeight = aVar.getMeasuredHeight();
+            aVar2 = ((e) bg3Var).actionBar;
+            ((ActionBarLayout) wk5Var2).o(canvas, measuredHeight + ((int) aVar2.getTranslationY()));
         }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        a aVar;
+        a aVar2;
+        bg3 bg3Var = this.n;
+        Paint paint = bg3Var.d;
+        paint.setColor(aob.w0(null, aob.d6, false));
+        aVar = ((e) bg3Var).actionBar;
+        aVar2 = ((e) bg3Var).actionBar;
+        canvas.drawRect(0.0f, aVar2.getTranslationY() + aVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), paint);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!a() && !this.n.e.I && !onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        a aVar;
+        a aVar2;
+        a aVar3;
+        setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+        bg3 bg3Var = this.n;
+        ag3[] ag3VarArr = bg3Var.f;
+        aVar = ((e) bg3Var).actionBar;
+        measureChildWithMargins(aVar, i, 0, i2, 0);
+        aVar2 = ((e) bg3Var).actionBar;
+        int measuredHeight = aVar2.getMeasuredHeight();
+        this.h = true;
+        for (int i3 = 0; i3 < ag3VarArr.length; i3++) {
+            ag3 ag3Var = ag3VarArr[i3];
+            if (ag3Var != null) {
+                d79 d79Var = ag3Var.d;
+                if (d79Var != null) {
+                    d79Var.setPadding(0, measuredHeight, 0, 0);
+                }
+                gw9 gw9Var = ag3VarArr[i3].e;
+                if (gw9Var != null) {
+                    gw9Var.setPadding(0, measuredHeight, 0, 0);
+                }
+            }
+        }
+        this.h = false;
+        int childCount = getChildCount();
+        for (int i4 = 0; i4 < childCount; i4++) {
+            View childAt = getChildAt(i4);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                aVar3 = ((e) bg3Var).actionBar;
+                if (childAt != aVar3) {
+                    measureChildWithMargins(childAt, i, 0, i2, 0);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        wk5 wk5Var;
+        float f;
+        float f2;
+        a aVar;
+        boolean z;
+        float measuredWidth;
+        ag3 ag3Var;
+        ag3 ag3Var2;
+        int measuredWidth2;
+        ag3 ag3Var3;
+        ag3 ag3Var4;
+        boolean z2;
+        boolean z3;
+        int i;
+        bg3 bg3Var = this.n;
+        ag3[] ag3VarArr = bg3Var.f;
+        wk5Var = ((e) bg3Var).parentLayout;
+        boolean z4 = false;
+        if (((ActionBarLayout) wk5Var).h() || a()) {
+            return false;
+        }
+        if (motionEvent != null) {
+            VelocityTracker velocityTracker = this.f;
+            if (velocityTracker == null) {
+                velocityTracker = VelocityTracker.obtain();
+                this.f = velocityTracker;
+            }
+            velocityTracker.addMovement(motionEvent);
+        }
+        if (motionEvent != null && motionEvent.getAction() == 0 && !this.b && !this.c) {
+            this.a = motionEvent.getPointerId(0);
+            this.c = true;
+            this.d = (int) motionEvent.getX();
+            this.e = (int) motionEvent.getY();
+            this.f.clear();
+        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.a) {
+            int x = (int) (motionEvent.getX() - this.d);
+            int abs = Math.abs(((int) motionEvent.getY()) - this.e);
+            if (this.b && (!bg3Var.r ? x < 0 : x > 0)) {
+                if (x < 0) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                if (!b(motionEvent, z3)) {
+                    this.c = true;
+                    this.b = false;
+                    ag3VarArr[0].setTranslationX(0.0f);
+                    ag3 ag3Var5 = ag3VarArr[1];
+                    if (bg3Var.r) {
+                        i = ag3VarArr[0].getMeasuredWidth();
+                    } else {
+                        i = -ag3VarArr[0].getMeasuredWidth();
+                    }
+                    ag3Var5.setTranslationX(i);
+                    bg3Var.e.i(0.0f, ag3VarArr[1].f);
+                }
+            }
+            if (this.c && !this.b) {
+                if (Math.abs(x) >= hl.Z0(true, 0.3f) && Math.abs(x) > abs) {
+                    if (x < 0) {
+                        z4 = true;
+                    }
+                    b(motionEvent, z4);
+                }
+            } else if (this.b) {
+                ag3VarArr[0].setTranslationX(x);
+                if (bg3Var.r) {
+                    ag3VarArr[1].setTranslationX(ag3VarArr[0].getMeasuredWidth() + x);
+                } else {
+                    ag3VarArr[1].setTranslationX(x - ag3VarArr[0].getMeasuredWidth());
+                }
+                bg3Var.e.i(Math.abs(x) / ag3VarArr[0].getMeasuredWidth(), ag3VarArr[1].f);
+            }
+        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.a && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+            this.f.computeCurrentVelocity(1000, bg3Var.w);
+            if (motionEvent != null && motionEvent.getAction() != 3) {
+                f = this.f.getXVelocity();
+                f2 = this.f.getYVelocity();
+                if (!this.b && Math.abs(f) >= 3000.0f && Math.abs(f) > Math.abs(f2)) {
+                    if (f < 0.0f) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    b(motionEvent, z2);
+                }
+            } else {
+                f = 0.0f;
+                f2 = 0.0f;
+            }
+            if (this.b) {
+                float x2 = ag3VarArr[0].getX();
+                bg3Var.h = new AnimatorSet();
+                if (Math.abs(x2) < ag3VarArr[0].getMeasuredWidth() / 3.0f && (Math.abs(f) < 3500.0f || Math.abs(f) < Math.abs(f2))) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                bg3Var.s = z;
+                Property property = View.TRANSLATION_X;
+                if (z) {
+                    measuredWidth = Math.abs(x2);
+                    boolean z5 = bg3Var.r;
+                    AnimatorSet animatorSet = bg3Var.h;
+                    if (z5) {
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(ag3VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(ag3VarArr[1], property, ag3Var4.getMeasuredWidth()));
+                    } else {
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(ag3VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(ag3VarArr[1], property, -ag3Var3.getMeasuredWidth()));
+                    }
+                } else {
+                    measuredWidth = ag3VarArr[0].getMeasuredWidth() - Math.abs(x2);
+                    boolean z6 = bg3Var.r;
+                    AnimatorSet animatorSet2 = bg3Var.h;
+                    if (z6) {
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(ag3VarArr[0], property, -ag3Var2.getMeasuredWidth()), ObjectAnimator.ofFloat(ag3VarArr[1], property, 0.0f));
+                    } else {
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(ag3VarArr[0], property, ag3Var.getMeasuredWidth()), ObjectAnimator.ofFloat(ag3VarArr[1], property, 0.0f));
+                    }
+                }
+                bg3Var.h.setInterpolator(bg3.y);
+                int measuredWidth3 = getMeasuredWidth();
+                float f3 = measuredWidth3 / 2;
+                float I = (hl.I(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f3) + f3;
+                float abs2 = Math.abs(f);
+                if (abs2 > 0.0f) {
+                    measuredWidth2 = Math.round(Math.abs(I / abs2) * 1000.0f) << 2;
+                } else {
+                    measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
+                }
+                bg3Var.h.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
+                bg3Var.h.addListener(new cn2(this, (byte) 5));
+                bg3Var.h.start();
+                bg3Var.n = true;
+                this.b = false;
+            } else {
+                this.c = false;
+                aVar = ((e) bg3Var).actionBar;
+                aVar.setEnabled(true);
+                bg3Var.e.setEnabled(true);
+            }
+            VelocityTracker velocityTracker2 = this.f;
+            if (velocityTracker2 != null) {
+                velocityTracker2.recycle();
+                this.f = null;
+            }
+        }
+        return this.b;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.h) {
+            return;
+        }
+        super.requestLayout();
     }
 }

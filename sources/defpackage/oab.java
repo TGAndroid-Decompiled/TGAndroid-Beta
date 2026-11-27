@@ -1,15 +1,11 @@
 package defpackage;
-public final class oab implements Comparable {
-    public final long a;
-    public final byte[] b;
 
-    public oab(long j, byte[] bArr) {
-        this.a = j;
-        this.b = bArr;
-    }
+import android.app.Activity;
+public final class oab extends y8b {
+    public final rbb E;
 
-    @Override
-    public final int compareTo(Object obj) {
-        return Long.compare(this.a, ((oab) obj).a);
+    public oab(rbb rbbVar, Activity activity) {
+        super(activity);
+        this.E = rbbVar;
     }
 }

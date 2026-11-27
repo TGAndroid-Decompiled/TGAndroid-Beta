@@ -1,43 +1,51 @@
 package defpackage;
 
-import android.content.pm.PackageInfo;
-import android.os.Build;
-import java.lang.reflect.InvocationTargetException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class kuc extends co {
-    public final Pattern d;
+import android.content.Intent;
+import android.net.Uri;
+import java.util.ArrayList;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kuc implements rl3, fd {
+    public final muc a;
 
-    public kuc() {
-        super("ALGORITHMIC_DARKENING", "ALGORITHMIC_DARKENING");
-        this.d = Pattern.compile("\\A\\d+");
+    public kuc(muc mucVar) {
+        this.a = mucVar;
     }
 
     @Override
-    public final boolean b() {
-        int i;
-        PackageInfo packageInfo;
-        boolean b = super.b();
-        if (b && (i = Build.VERSION.SDK_INT) < 29) {
-            boolean z = juc.a;
-            if (i >= 26) {
-                packageInfo = no5.c();
-            } else {
-                try {
-                    packageInfo = juc.b();
-                } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
-                    packageInfo = null;
+    public final void a(zh6 zh6Var, ArrayList arrayList) {
+        muc mucVar = this.a;
+        ArrayList arrayList2 = mucVar.s;
+        if (!mucVar.r) {
+            arrayList2.clear();
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                sl3 sl3Var = (sl3) obj;
+                TLObject tLObject = sl3Var.a;
+                if ((tLObject instanceof TLRPC.User) && muc.d0((TLRPC.User) tLObject)) {
+                    arrayList2.add((TLRPC.User) sl3Var.a);
                 }
             }
-            if (packageInfo == null) {
-                return false;
+            wa waVar = mucVar.a;
+            if (waVar != null) {
+                waVar.g3.O(true);
             }
-            Matcher matcher = this.d.matcher(packageInfo.versionName);
-            if (!matcher.find() || Integer.parseInt(packageInfo.versionName.substring(matcher.start(), matcher.end())) < 105) {
-                return false;
-            }
-            return true;
         }
-        return b;
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        muc mucVar = this.a;
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + a.b.getPackageName()));
+            mucVar.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
     }
 }

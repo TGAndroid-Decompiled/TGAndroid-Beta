@@ -1,42 +1,99 @@
 package defpackage;
-public final class gc6 implements Runnable {
-    public final byte a = 1;
-    public final mf6 b;
-    public final boolean c;
-    public final boolean d;
-    public final boolean e;
 
-    public gc6(mf6 mf6Var, int i, boolean z, boolean z2) {
-        this.b = mf6Var;
-        this.c = i;
-        this.d = z;
-        this.e = z2;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class gc6 implements RequestDelegate {
+    public final byte a;
+    public final tc6 b;
+
+    public gc6(tc6 tc6Var, byte b) {
+        this.a = b;
+        this.b = tc6Var;
     }
 
     @Override
-    public final void run() {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         byte b = this.a;
-        boolean z = this.e;
-        boolean z2 = this.d;
-        boolean z3 = this.c;
-        mf6 mf6Var = this.b;
+        final tc6 tc6Var = this.b;
         switch (b) {
             case 0:
-                mf6Var.K1(z3, z2, z);
+                tc6Var.getClass();
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        tc6 tc6Var2 = tc6Var;
+                        switch (b2) {
+                            case 0:
+                                tc6Var2.b.b(false);
+                                if (tL_error2 != null) {
+                                    d31.e0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    xnb.x(null, 2131743534, d31.b0(tc6Var2), null);
+                                    return;
+                                } else {
+                                    tc6Var2.finishFragment();
+                                    return;
+                                }
+                            default:
+                                if (tL_error2 != null) {
+                                    tc6Var2.b.b(false);
+                                    d31.e0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    tc6Var2.b.b(false);
+                                    xnb.x(null, 2131743534, d31.b0(tc6Var2), null);
+                                    return;
+                                } else {
+                                    tc6Var2.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
                 return;
             default:
-                boolean z4 = mf6Var.K;
-                mf6Var.K = z3;
-                mf6Var.K1(z2, z, true);
-                mf6Var.K = z4;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r4;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        tc6 tc6Var2 = tc6Var;
+                        switch (b2) {
+                            case 0:
+                                tc6Var2.b.b(false);
+                                if (tL_error2 != null) {
+                                    d31.e0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    xnb.x(null, 2131743534, d31.b0(tc6Var2), null);
+                                    return;
+                                } else {
+                                    tc6Var2.finishFragment();
+                                    return;
+                                }
+                            default:
+                                if (tL_error2 != null) {
+                                    tc6Var2.b.b(false);
+                                    d31.e0(tL_error2);
+                                    return;
+                                } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
+                                    tc6Var2.b.b(false);
+                                    xnb.x(null, 2131743534, d31.b0(tc6Var2), null);
+                                    return;
+                                } else {
+                                    tc6Var2.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public gc6(mf6 mf6Var, boolean z, boolean z2, boolean z3) {
-        this.b = mf6Var;
-        this.c = z;
-        this.d = z2;
-        this.e = z3;
     }
 }

@@ -1,61 +1,123 @@
 package defpackage;
-public final class t84 extends x1 {
-    public final s84 a;
-    public String b;
-    public final StringBuilder c;
 
-    public t84(char c, int i, int i2) {
-        ?? tg6Var = new tg6();
-        this.a = tg6Var;
-        this.c = new StringBuilder();
-        tg6Var.g = c;
-        tg6Var.h = i;
-        tg6Var.i = i2;
+import android.animation.ValueAnimator;
+import android.os.Build;
+import android.os.Looper;
+import android.util.Log;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+public final class t84 {
+    public final byte a;
+    public final s84 b;
+    public Interpolator c;
+    public long d;
+    public byte e;
+    public float f;
+    public float g;
+    public boolean h;
+    public ValueAnimator i;
+
+    public t84(int i, s84 s84Var, Interpolator interpolator, long j, float f) {
+        this.a = i;
+        this.b = s84Var;
+        this.c = interpolator;
+        this.d = j;
+        this.f = f;
     }
 
-    @Override
-    public final void a(CharSequence charSequence) {
-        if (this.b == null) {
-            this.b = charSequence.toString();
-            return;
-        }
-        StringBuilder sb = this.c;
-        sb.append(charSequence);
-        sb.append('\n');
-    }
-
-    @Override
-    public final void d() {
-        String a = z34.a(this.b.trim());
-        s84 s84Var = this.a;
-        s84Var.j = a;
-        s84Var.k = this.c.toString();
-    }
-
-    @Override
-    public final gk0 e() {
-        return this.a;
-    }
-
-    @Override
-    public final vj2 h(vo3 vo3Var) {
-        int i = vo3Var.e;
-        int i2 = vo3Var.b;
-        String str = vo3Var.a;
-        int i3 = vo3Var.g;
-        s84 s84Var = this.a;
-        if (i3 < 4) {
-            char c = s84Var.g;
-            int i4 = s84Var.h;
-            int b = lqe.b(c, str, i, str.length()) - i;
-            if (b >= i4 && lqe.c(i + b, str.length(), str) == str.length()) {
-                return new vj2(-1, -1, true);
+    public final void a(float f) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            if (this.h) {
+                b();
+            }
+            float f2 = this.f;
+            int i = (f2 > f ? 1 : (f2 == f ? 0 : -1));
+            byte b = this.a;
+            s84 s84Var = this.b;
+            if (i == 0) {
+                s84Var.v0(f2, b);
+                return;
+            }
+            if (!this.h) {
+                this.h = true;
+            }
+            float f3 = f - f2;
+            long j = this.d;
+            if (Build.VERSION.SDK_INT >= 26 && !ValueAnimator.areAnimatorsEnabled()) {
+                j = 0;
+            }
+            if (j <= 0) {
+                d(f, 1.0f);
+                if (this.h) {
+                    this.h = false;
+                }
+                s84Var.v0(f, b);
+                return;
+            }
+            this.g = f;
+            DecelerateInterpolator decelerateInterpolator = un.a;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.i = ofFloat;
+            ofFloat.setDuration(j);
+            this.i.setInterpolator(this.c);
+            this.i.addUpdateListener(new gy1(this, f2, f3, (byte) 3));
+            this.i.addListener(new r84(this, f2, f3, (byte) 0));
+            long j2 = this.e;
+            if (j2 != 0) {
+                this.i.setStartDelay(j2);
+            }
+            try {
+                this.i.start();
+                return;
+            } catch (Throwable th) {
+                Log.e("tgx", "Cannot start animation", th);
+                c(f);
+                return;
             }
         }
-        int length = str.length();
-        for (int i5 = s84Var.i; i5 > 0 && i2 < length && str.charAt(i2) == ' '; i5--) {
-            i2++;
+        lq5.f();
+    }
+
+    public final boolean b() {
+        if (this.h) {
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                if (this.h) {
+                    this.h = false;
+                }
+                ValueAnimator valueAnimator = this.i;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.i = null;
+                    return true;
+                }
+                return true;
+            }
+            lq5.f();
         }
-        return vj2.a(i2);
+        return false;
+    }
+
+    public final void c(float f) {
+        boolean b = b();
+        if (!d(f, 1.0f) && !b) {
+            return;
+        }
+        this.b.v0(f, this.a);
+    }
+
+    public final boolean d(float f, float f2) {
+        if (this.f != f) {
+            this.f = f;
+            this.b.t(this.a, f, f2, this);
+            return true;
+        }
+        return false;
+    }
+
+    public t84(int i, s84 s84Var, Interpolator interpolator, long j) {
+        this.a = i;
+        this.b = s84Var;
+        this.c = interpolator;
+        this.d = j;
     }
 }

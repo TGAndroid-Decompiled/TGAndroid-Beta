@@ -1,17 +1,15 @@
 package defpackage;
-public final class lxd implements zn7 {
-    public static final lxd a = new Object();
+public abstract class lxd {
+    public static final exd a;
+    public static final exd b;
 
     static {
-        yjb.y(yjb.q(kkd.class, new cjd(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+        exd exdVar = null;
+        try {
+            exdVar = (exd) Class.forName("com.google.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(null).newInstance(null);
+        } catch (Exception unused) {
         }
-        throw new ClassCastException();
+        a = exdVar;
+        b = new Object();
     }
 }

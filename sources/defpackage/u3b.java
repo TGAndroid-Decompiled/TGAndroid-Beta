@@ -1,167 +1,151 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.io.Closeable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeMap;
-import org.telegram.ui.Dictation.DictationAsr;
-public final class u3b {
-    public static xl3 A;
-    public static final long[] y = {30000, 90000};
-    public static String z;
-    public final String b;
-    public final s3b c;
-    public final Runnable e;
-    public xl3 f;
-    public int g;
-    public boolean h;
-    public long l;
-    public long m;
-    public q3b n;
-    public boolean o;
-    public boolean p;
-    public boolean q;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class u3b extends FrameLayout {
+    public static int H;
+    public float E;
+    public boolean F;
+    public float G;
+    public final byte a;
+    public float b;
+    public boolean c;
+    public boolean d;
+    public final de0 e;
+    public final ImageView f;
+    public final c19 h;
+    public final View n;
     public boolean r;
-    public p3b t;
-    public wb1 u;
-    public float v;
-    public il1 w;
-    public r1b x;
-    public final Set a = DesugarCollections.synchronizedSet(new HashSet());
-    public int d = -1;
-    public final TreeMap i = new TreeMap();
-    public final HashMap j = new HashMap();
-    public long k = Long.MAX_VALUE;
-    public final ArrayList s = new ArrayList();
+    public final int s;
+    public ggb w;
+    public boolean x;
+    public ValueAnimator y;
 
-    public u3b(s3b s3bVar, long j, long j2, Runnable runnable) {
-        this.c = s3bVar;
-        this.e = runnable;
-        this.l = j;
-        this.m = j2;
-        String str = s3bVar.g() + "|" + j;
-        this.b = str;
-        if (str.equals(z)) {
-            this.f = A;
+    public u3b(Context context, int i) {
+        super(context);
+        this.a = i;
+        int i2 = H;
+        H = i2 + 1;
+        this.s = i2;
+        if (i == 2) {
+            de0 de0Var = new de0(getContext());
+            this.e = de0Var;
+            de0Var.setLayerNum(1);
+            de0Var.setAspectFit(false);
+            de0Var.setRoundRadius(hl.L(6.0f));
+            addView(de0Var, tre.e(26, 26, 17));
+            this.n = de0Var;
+        } else if (i == 1) {
+            ImageView imageView = new ImageView(context);
+            this.f = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            addView(imageView, tre.e(24, 24, 17));
+            this.n = imageView;
         } else {
-            new Thread(new n30(this, j, j2, s3bVar, (byte) 16), "StoryCaptions").start();
+            de0 de0Var2 = new de0(getContext());
+            this.e = de0Var2;
+            de0Var2.setLayerNum(1);
+            de0Var2.setAspectFit(true);
+            de0Var2.setRoundRadius(hl.L(6.0f));
+            addView(de0Var2, tre.e(26, 26, 17));
+            this.n = de0Var2;
         }
+        c19 c19Var = new c19(context, (byte) 5);
+        this.h = c19Var;
+        c19Var.addOnLayoutChangeListener(new pk1(this, (byte) 7));
+        c19Var.setLines(1);
+        c19Var.setEllipsize(TextUtils.TruncateAt.END);
+        c19Var.setTextSize(1, 11.0f);
+        c19Var.setGravity(1);
+        yob.X(c19Var, aob.G6, null);
+        addView(c19Var, tre.d(-1, -2.0f, 81, 8.0f, 0.0f, 8.0f, 10.0f));
+        c19Var.setVisibility(8);
     }
 
-    public static int a(long j) {
-        return (int) (Math.max(0L, j) / 30000);
-    }
-
-    public static long d(int[] iArr, int i) {
-        return iArr[((i + 1) << 2) + 2] - iArr[(i << 2) + 3];
-    }
-
-    public static int g(int i, int i2, float[] fArr) {
-        int max = Math.max(0, i);
-        int min = Math.min(fArr.length, i2);
-        int max2 = Math.max(0, Math.min(fArr.length, (max + min) / 2));
-        double d = Double.MAX_VALUE;
-        while (true) {
-            int i3 = max + 1600;
-            if (i3 <= min) {
-                double d2 = 0.0d;
-                for (int i4 = max; i4 < i3; i4++) {
-                    float f = fArr[i4];
-                    d2 += f * f;
-                }
-                if (d2 < d) {
-                    max2 = max + 800;
-                    d = d2;
-                }
-                max += 800;
+    public final void a(float f) {
+        float f2;
+        float f3;
+        byte b = this.a;
+        if (b == 2) {
+            return;
+        }
+        boolean z = this.r;
+        View view = this.n;
+        if (z) {
+            if (b == 1) {
+                f2 = 24.0f;
+                f3 = 38.0f;
             } else {
-                return max2;
+                f2 = 26.0f;
+                f3 = 44.0f;
             }
+            int i = xu9.u0;
+            float f4 = 1.0f - f;
+            view.setTranslationY((((hl.L(36.0f - f2) / 2.0f) - (hl.L(86.0f - f3) / 2.0f)) * f4) - (hl.L(8.0f) * f));
+            view.setTranslationX(((hl.L(33.0f - f2) / 2.0f) - (hl.L(64.0f - f3) / 2.0f)) * f4);
+            float max = Math.max(0.0f, (f - 0.5f) / 0.5f);
+            c19 c19Var = this.h;
+            c19Var.setAlpha(max);
+            c19Var.setTranslationY((-hl.L(40.0f)) * f4);
+            c19Var.setTranslationX((-hl.L(12.0f)) * f4);
+            view.setPivotX(0.0f);
+            view.setPivotY(0.0f);
+            float f5 = ((f2 / f3) * f4) + f;
+            view.setScaleX(f5);
+            view.setScaleY(f5);
+            return;
         }
+        view.setTranslationX(0.0f);
+        view.setTranslationY(0.0f);
+        view.setScaleX(1.0f);
+        view.setScaleY(1.0f);
     }
 
-    public static float k(float[] fArr, float[] fArr2, int i, int i2) {
-        return (fArr[i2 + 1] - fArr[i]) - fArr2[i];
+    public float getTextWidth() {
+        return this.G;
     }
 
-    public final float[] b(defpackage.s3b r37, long r38, long r40, long[] r42) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.u3b.b(s3b, long, long, long[]):float[]");
-    }
-
-    public final void c() {
+    public void setExpanded(boolean z) {
+        float f;
+        float f2;
+        float f3;
         int i;
-        Closeable[] closeableArr;
-        this.h = true;
-        i();
-        synchronized (this.a) {
-            closeableArr = (Closeable[]) this.a.toArray(new Closeable[0]);
-        }
-        for (Closeable closeable : closeableArr) {
-            try {
-                closeable.close();
-            } catch (Throwable unused) {
+        byte b = this.a;
+        if (b != 2) {
+            this.r = z;
+            if (b == 1) {
+                f = 24.0f;
+                f2 = 38.0f;
+            } else {
+                f = 26.0f;
+                f2 = 44.0f;
             }
-        }
-    }
-
-    public final boolean e(int i) {
-        o3b o3bVar = (o3b) this.i.get(Integer.valueOf(i));
-        if ((o3bVar != null && o3bVar.c) || i * 30000 >= this.k) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void f() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.u3b.f():void");
-    }
-
-    public final void h(long j, long j2, p3b p3bVar) {
-        this.t = p3bVar;
-        if (this.f != null) {
-            this.l = j;
-            this.m = j2;
-            this.o = true;
-            this.r = false;
-            ArrayList arrayList = this.s;
-            if (!arrayList.isEmpty()) {
-                p3bVar.a(arrayList);
+            View view = this.n;
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (z) {
+                f3 = f2;
+            } else {
+                f3 = f;
             }
-            f();
-        }
-    }
-
-    public final void i() {
-        this.g++;
-        il1 il1Var = this.w;
-        if (il1Var != null) {
-            il1Var.run();
-            this.w = null;
-        }
-        Iterator it = this.i.values().iterator();
-        while (it.hasNext()) {
-            if (!((o3b) it.next()).c) {
-                it.remove();
+            layoutParams.width = hl.L(f3);
+            ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
+            if (z) {
+                f = f2;
             }
-        }
-        this.p = false;
-        this.o = false;
-        j();
-        this.t = null;
-    }
-
-    public final void j() {
-        r1b r1bVar = this.x;
-        if (r1bVar != null) {
-            DictationAsr.T(r1bVar);
-            this.x = null;
-            p3b p3bVar = this.t;
-            if (p3bVar != null) {
-                p3bVar.d(0L, 0L, false);
+            layoutParams2.height = hl.L(f);
+            if (z) {
+                i = 0;
+            } else {
+                i = 8;
+            }
+            this.h.setVisibility(i);
+            if (b != 1 && this.x) {
+                this.e.setRoundRadius(hl.L(view.getLayoutParams().width / 2.0f));
             }
         }
     }

@@ -1,26 +1,17 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-public abstract class qk5 {
-    public static final int[] a;
+import android.app.Activity;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class qk5 extends ActionBarLayout {
+    public final m0 z1;
 
-    static {
-        Bitmap.CompressFormat compressFormat;
-        int[] iArr = new int[Bitmap.CompressFormat.values().length];
-        a = iArr;
-        try {
-            iArr[Bitmap.CompressFormat.WEBP.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            int[] iArr2 = a;
-            compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
-            iArr2[compressFormat.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            a[Bitmap.CompressFormat.WEBP_LOSSLESS.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
+    public qk5(Activity activity, m0 m0Var) {
+        super(activity, false);
+        this.z1 = m0Var;
+    }
+
+    @Override
+    public final nx0 getBottomSheet() {
+        return ((nx0[]) this.z1.b)[0];
     }
 }

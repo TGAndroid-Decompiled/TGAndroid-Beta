@@ -1,12 +1,9 @@
 package defpackage;
-public final class sh4 extends iq {
-    public static final sh4 e;
+public final class sh4 extends i0b {
+    public final Throwable b;
 
-    static {
-        int[] iArr = new int[32];
-        for (int i = 0; i < 32; i++) {
-            iArr[i] = 5;
-        }
-        e = new iq(iArr);
+    public sh4(Throwable th) {
+        super(Integer.MAX_VALUE);
+        this.b = th;
     }
 }

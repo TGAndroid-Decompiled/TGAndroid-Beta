@@ -1,12 +1,10 @@
 package defpackage;
 public final class i4 {
-    public final char a;
-    public final int b;
-    public final int c;
-
-    public i4(int i, int i2, int i3) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-    }
+    public boolean a;
+    public int b;
+    public int c;
+    public boolean d;
+    public int e;
+    public int f;
+    public int g;
 }

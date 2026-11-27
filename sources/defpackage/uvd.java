@@ -1,17 +1,18 @@
 package defpackage;
-public final class uvd implements zn7 {
-    public static final uvd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.io.Closeable;
+public abstract class uvd {
+    public static final void a(Closeable closeable, Throwable th) {
+        if (closeable != null) {
+            if (th == null) {
+                closeable.close();
+                return;
+            }
+            try {
+                closeable.close();
+            } catch (Throwable th2) {
+                kke.a(th, th2);
+            }
         }
-        throw new ClassCastException();
     }
 }

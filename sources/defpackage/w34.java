@@ -1,20 +1,22 @@
 package defpackage;
-public enum w34 {
-    L(1),
-    M(0),
-    Q(3),
-    H(2);
-    
-    public static final w34[] e;
-    public final byte a;
 
-    static {
-        w34 w34Var;
-        w34 w34Var2 = L;
-        e = new w34[]{M, w34Var2, H, w34Var};
+import android.text.InputFilter;
+import android.text.Spanned;
+public final class w34 extends InputFilter.LengthFilter {
+    public final y34 a;
+
+    public w34(y34 y34Var) {
+        super(128);
+        this.a = y34Var;
     }
 
-    w34(int i) {
-        this.a = i;
+    @Override
+    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+        CharSequence filter = super.filter(charSequence, i, i2, spanned, i3, i4);
+        if (filter != null && filter.length() == 0) {
+            hl.z3(this.a.a);
+            yw0.APP_ERROR.a();
+        }
+        return filter;
     }
 }

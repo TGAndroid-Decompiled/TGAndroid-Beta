@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class acf {
+public final class acf extends v3d {
 }

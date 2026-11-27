@@ -1,51 +1,291 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.Build;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-public final class jd implements no7, cha {
-    public final byte a;
-    public final FrameLayout b;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.TextView;
+import androidx.appcompat.app.AlertController$RecycleListView;
+import androidx.core.widget.NestedScrollView;
+import java.util.WeakHashMap;
+public class jd extends ep implements DialogInterface {
+    public final tc f;
 
-    public jd(FrameLayout frameLayout, byte b) {
-        this.a = b;
-        this.b = frameLayout;
+    public jd(ContextThemeWrapper contextThemeWrapper, int i) {
+        super(contextThemeWrapper, e(contextThemeWrapper, i));
+        this.f = new tc(getContext(), this, getWindow());
     }
 
-    @Override
-    public final vxc W(View view, vxc vxcVar) {
-        Rect rect = new Rect();
-        int i = Build.VERSION.SDK_INT;
-        sxc sxcVar = vxcVar.a;
-        if (i >= 30) {
-            io5 f = sxcVar.f(527);
-            rect.set(f.a, f.b, f.c, f.d);
-        } else {
-            rect.set(sxcVar.i().a, sxcVar.i().b, sxcVar.i().c, sxcVar.i().d);
+    public static int e(Context context, int i) {
+        if (((i >>> 24) & 255) >= 1) {
+            return i;
         }
-        FrameLayout frameLayout = this.b;
-        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + gl.n);
-        frameLayout.requestLayout();
-        return vxcVar;
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(2130968615, typedValue, true);
+        return typedValue.resourceId;
     }
 
     @Override
-    public final void m(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        byte b = this.a;
-        FrameLayout frameLayout = this.b;
-        switch (b) {
-            case 1:
-                o39 o39Var = (o39) recyclerView;
-                tk0.a(o39Var, canvas, rectF, o39Var, frameLayout);
-                return;
-            default:
-                o39 o39Var2 = (o39) recyclerView;
-                tk0.a(o39Var2, canvas, rectF, o39Var2, frameLayout);
-                return;
+    public void onCreate(Bundle bundle) {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        int i;
+        boolean z4;
+        ListAdapter listAdapter;
+        int i2;
+        int i3;
+        View view;
+        View findViewById;
+        super.onCreate(bundle);
+        tc tcVar = this.f;
+        tcVar.b.setContentView(tcVar.u);
+        Context context = tcVar.a;
+        Window window = tcVar.c;
+        View findViewById2 = window.findViewById(2131296592);
+        View findViewById3 = findViewById2.findViewById(2131296724);
+        View findViewById4 = findViewById2.findViewById(2131296404);
+        View findViewById5 = findViewById2.findViewById(2131296355);
+        ViewGroup viewGroup = (ViewGroup) findViewById2.findViewById(2131296408);
+        View view2 = tcVar.f;
+        if (view2 == null) {
+            view2 = null;
+        }
+        int i4 = 0;
+        if (view2 != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (!z || !tc.a(view2)) {
+            window.setFlags(131072, 131072);
+        }
+        if (z) {
+            FrameLayout frameLayout = (FrameLayout) window.findViewById(2131296407);
+            frameLayout.addView(view2, new ViewGroup.LayoutParams(-1, -1));
+            if (tcVar.g) {
+                frameLayout.setPadding(0, 0, 0, 0);
+            }
+            if (tcVar.e != null) {
+                ((LinearLayout.LayoutParams) ((r46) viewGroup.getLayoutParams())).weight = 0.0f;
+            }
+        } else {
+            viewGroup.setVisibility(8);
+        }
+        View findViewById6 = viewGroup.findViewById(2131296724);
+        View findViewById7 = viewGroup.findViewById(2131296404);
+        View findViewById8 = viewGroup.findViewById(2131296355);
+        ViewGroup b = tc.b(findViewById6, findViewById3);
+        ViewGroup b2 = tc.b(findViewById7, findViewById4);
+        ViewGroup b3 = tc.b(findViewById8, findViewById5);
+        NestedScrollView nestedScrollView = (NestedScrollView) window.findViewById(2131296633);
+        tcVar.m = nestedScrollView;
+        nestedScrollView.setFocusable(false);
+        tcVar.m.setNestedScrollingEnabled(false);
+        TextView textView = (TextView) b2.findViewById(16908299);
+        tcVar.q = textView;
+        if (textView != null) {
+            textView.setVisibility(8);
+            tcVar.m.removeView(tcVar.q);
+            if (tcVar.e != null) {
+                ViewGroup viewGroup2 = (ViewGroup) tcVar.m.getParent();
+                int indexOfChild = viewGroup2.indexOfChild(tcVar.m);
+                viewGroup2.removeViewAt(indexOfChild);
+                viewGroup2.addView(tcVar.e, indexOfChild, new ViewGroup.LayoutParams(-1, -1));
+            } else {
+                b2.setVisibility(8);
+            }
+        }
+        Button button = (Button) b3.findViewById(16908313);
+        tcVar.h = button;
+        h6 h6Var = tcVar.A;
+        button.setOnClickListener(h6Var);
+        tcVar.h.setVisibility(8);
+        Button button2 = (Button) b3.findViewById(16908314);
+        tcVar.i = button2;
+        button2.setOnClickListener(h6Var);
+        boolean isEmpty = TextUtils.isEmpty(tcVar.j);
+        Button button3 = tcVar.i;
+        if (isEmpty) {
+            button3.setVisibility(8);
+            z2 = false;
+        } else {
+            button3.setText(tcVar.j);
+            tcVar.i.setVisibility(0);
+            z2 = true;
+        }
+        Button button4 = (Button) b3.findViewById(16908315);
+        tcVar.l = button4;
+        button4.setOnClickListener(h6Var);
+        tcVar.l.setVisibility(8);
+        TypedValue typedValue = new TypedValue();
+        context.getTheme().resolveAttribute(2130968613, typedValue, true);
+        if (typedValue.data != 0) {
+            if (z2) {
+                Button button5 = tcVar.h;
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) button5.getLayoutParams();
+                layoutParams.gravity = 1;
+                layoutParams.weight = 0.5f;
+                button5.setLayoutParams(layoutParams);
+            } else if (z2) {
+                Button button6 = tcVar.i;
+                LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) button6.getLayoutParams();
+                layoutParams2.gravity = 1;
+                layoutParams2.weight = 0.5f;
+                button6.setLayoutParams(layoutParams2);
+            }
+        }
+        if (!z2) {
+            b3.setVisibility(8);
+        }
+        if (tcVar.r != null) {
+            b.addView(tcVar.r, 0, new ViewGroup.LayoutParams(-1, -2));
+            window.findViewById(2131296718).setVisibility(8);
+        } else {
+            tcVar.o = (ImageView) window.findViewById(16908294);
+            if (!TextUtils.isEmpty(tcVar.d) && tcVar.y) {
+                TextView textView2 = (TextView) window.findViewById(2131296334);
+                tcVar.p = textView2;
+                textView2.setText(tcVar.d);
+                Drawable drawable = tcVar.n;
+                if (drawable != null) {
+                    tcVar.o.setImageDrawable(drawable);
+                } else {
+                    tcVar.p.setPadding(tcVar.o.getPaddingLeft(), tcVar.o.getPaddingTop(), tcVar.o.getPaddingRight(), tcVar.o.getPaddingBottom());
+                    tcVar.o.setVisibility(8);
+                }
+            } else {
+                window.findViewById(2131296718).setVisibility(8);
+                tcVar.o.setVisibility(8);
+                b.setVisibility(8);
+            }
+        }
+        if (viewGroup.getVisibility() != 8) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        if (b != null && b.getVisibility() != 8) {
+            i = 1;
+        } else {
+            i = 0;
+        }
+        if (b3.getVisibility() != 8) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (!z4 && (findViewById = b2.findViewById(2131296706)) != null) {
+            findViewById.setVisibility(0);
+        }
+        if (i != 0) {
+            NestedScrollView nestedScrollView2 = tcVar.m;
+            if (nestedScrollView2 != null) {
+                nestedScrollView2.setClipToPadding(true);
+            }
+            if (tcVar.e != null) {
+                view = b.findViewById(2131296717);
+            } else {
+                view = null;
+            }
+            if (view != null) {
+                view.setVisibility(0);
+            }
+        } else {
+            View findViewById9 = b2.findViewById(2131296707);
+            if (findViewById9 != null) {
+                findViewById9.setVisibility(0);
+            }
+        }
+        AlertController$RecycleListView alertController$RecycleListView = tcVar.e;
+        if (alertController$RecycleListView != null) {
+            alertController$RecycleListView.getClass();
+            if (!z4 || i == 0) {
+                int paddingLeft = alertController$RecycleListView.getPaddingLeft();
+                if (i != 0) {
+                    i2 = alertController$RecycleListView.getPaddingTop();
+                } else {
+                    i2 = alertController$RecycleListView.a;
+                }
+                int paddingRight = alertController$RecycleListView.getPaddingRight();
+                if (z4) {
+                    i3 = alertController$RecycleListView.getPaddingBottom();
+                } else {
+                    i3 = alertController$RecycleListView.b;
+                }
+                alertController$RecycleListView.setPadding(paddingLeft, i2, paddingRight, i3);
+            }
+        }
+        if (!z3) {
+            View view3 = tcVar.e;
+            if (view3 == null) {
+                view3 = tcVar.m;
+            }
+            if (view3 != null) {
+                if (z4) {
+                    i4 = 2;
+                }
+                View findViewById10 = window.findViewById(2131296632);
+                View findViewById11 = window.findViewById(2131296631);
+                WeakHashMap weakHashMap = ihc.a;
+                bhc.b(view3, i | i4, 3);
+                if (findViewById10 != null) {
+                    b2.removeView(findViewById10);
+                }
+                if (findViewById11 != null) {
+                    b2.removeView(findViewById11);
+                }
+            }
+        }
+        AlertController$RecycleListView alertController$RecycleListView2 = tcVar.e;
+        if (alertController$RecycleListView2 != null && (listAdapter = tcVar.s) != null) {
+            alertController$RecycleListView2.setAdapter(listAdapter);
+            int i5 = tcVar.t;
+            if (i5 > -1) {
+                alertController$RecycleListView2.setItemChecked(i5, true);
+                alertController$RecycleListView2.setSelection(i5);
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int i, KeyEvent keyEvent) {
+        NestedScrollView nestedScrollView = this.f.m;
+        if (nestedScrollView != null && nestedScrollView.h(keyEvent)) {
+            return true;
+        }
+        return super.onKeyDown(i, keyEvent);
+    }
+
+    @Override
+    public boolean onKeyUp(int i, KeyEvent keyEvent) {
+        NestedScrollView nestedScrollView = this.f.m;
+        if (nestedScrollView != null && nestedScrollView.h(keyEvent)) {
+            return true;
+        }
+        return super.onKeyUp(i, keyEvent);
+    }
+
+    @Override
+    public final void setTitle(CharSequence charSequence) {
+        super.setTitle(charSequence);
+        tc tcVar = this.f;
+        tcVar.d = charSequence;
+        TextView textView = tcVar.p;
+        if (textView != null) {
+            textView.setText(charSequence);
         }
     }
 }

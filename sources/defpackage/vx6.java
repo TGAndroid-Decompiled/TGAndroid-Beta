@@ -1,16 +1,13 @@
 package defpackage;
 
-import java.io.IOException;
-public interface vx6 {
-    void O(int i, rx6 rx6Var, f86 f86Var, fr6 fr6Var, int i2);
+import android.os.Handler;
+import android.os.Looper;
+public final class vx6 extends Handler {
+    public yg6 a;
+    public final yx6 b;
 
-    void j(int i, rx6 rx6Var, fr6 fr6Var);
-
-    void k(int i, rx6 rx6Var, fr6 fr6Var);
-
-    void s(int i, rx6 rx6Var, f86 f86Var, fr6 fr6Var);
-
-    void u(int i, rx6 rx6Var, f86 f86Var, fr6 fr6Var);
-
-    void w(int i, rx6 rx6Var, f86 f86Var, fr6 fr6Var, IOException iOException, boolean z);
+    public vx6(yx6 yx6Var, Looper looper) {
+        super(looper);
+        this.b = yx6Var;
+    }
 }

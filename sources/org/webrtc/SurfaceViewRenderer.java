@@ -84,7 +84,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
             sb.append(", frame size: ");
             sb.append(this.rotatedFrameWidth);
             sb.append("x");
-            ir2.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            bs2.w(sb, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb.append(min2);
             sb.append(", old surface size: ");
             sb.append(this.surfaceWidth);
@@ -152,7 +152,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (i3 == 0 || i3 == 180) {
             i = i2;
         }
-        postOrRun(new bt(this, i4, i, (byte) 16));
+        postOrRun(new bt(this, i4, i, (byte) 15));
     }
 
     @Override
@@ -165,7 +165,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
     @Override
     public void onMeasure(int i, int i2) {
         ThreadUtils.checkIsOnMainThread();
-        Point measure = this.videoLayoutMeasure.measure(true, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
+        Point measure = this.videoLayoutMeasure.measure(i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
         setMeasuredDimension(measure.x, measure.y);
         logD("onMeasure(). New size: " + measure.x + "x" + measure.y);
     }
@@ -233,10 +233,6 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         this.eglRenderer = surfaceEglRenderer;
         getHolder().addCallback(this);
         getHolder().addCallback(surfaceEglRenderer);
-    }
-
-    @Override
-    public final void setParentSink(VideoSink videoSink) {
     }
 
     @Override

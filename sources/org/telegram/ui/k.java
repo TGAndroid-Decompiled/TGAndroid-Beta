@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.view.MotionEvent;
-public final class k extends gec {
-    public final pv x0;
+public final class k extends fic {
+    public final qv x0;
 
-    public k(pv pvVar, Activity activity) {
+    public k(qv qvVar, Activity activity) {
         super(activity);
-        this.x0 = pvVar;
+        this.x0 = qvVar;
     }
 
     @Override

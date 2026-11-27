@@ -1,50 +1,24 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class n5b extends v5b {
-    public final t5b N;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+public final class n5b extends TL_stories.StoryItem {
+    public final o5b a;
 
-    public n5b(t5b t5bVar, Context context, wjb wjbVar, l5b l5bVar) {
-        super(context, wjbVar, l5bVar);
-        this.N = t5bVar;
-    }
-
-    @Override
-    public final void setContainerHeight(float f) {
-        int paddingTop;
-        super.setContainerHeight(f);
-        t5b t5bVar = this.N;
-        l35 l35Var = t5bVar.E;
-        float y = getY();
-        FrameLayout frameLayout = t5bVar.e;
-        if (frameLayout == null) {
-            paddingTop = 0;
-        } else {
-            paddingTop = frameLayout.getPaddingTop();
+    public n5b(o5b o5bVar, long j, TL_bots.botPreviewMedia botpreviewmedia) {
+        this.a = o5bVar;
+        this.dialogId = j;
+        TLRPC.MessageMedia messageMedia = botpreviewmedia.media;
+        this.media = messageMedia;
+        TLRPC.Document document = messageMedia.document;
+        if (document != null) {
+            document.date = botpreviewmedia.date;
+            return;
         }
-        l35Var.setTranslationY((Math.min(gl.L(150.0f), this.K) + (y - paddingTop)) - 1.0f);
-        if (frameLayout != null) {
-            frameLayout.invalidate();
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        int paddingTop;
-        super.setTranslationY(f);
-        t5b t5bVar = this.N;
-        l35 l35Var = t5bVar.E;
-        float y = getY();
-        FrameLayout frameLayout = t5bVar.e;
-        if (frameLayout == null) {
-            paddingTop = 0;
-        } else {
-            paddingTop = frameLayout.getPaddingTop();
-        }
-        l35Var.setTranslationY((Math.min(gl.L(150.0f), this.K) + (y - paddingTop)) - 1.0f);
-        if (frameLayout != null) {
-            frameLayout.invalidate();
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo != null) {
+            photo.date = botpreviewmedia.date;
         }
     }
 }

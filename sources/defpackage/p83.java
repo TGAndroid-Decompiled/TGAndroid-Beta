@@ -1,36 +1,28 @@
 package defpackage;
+public final class p83 {
+    public static final e03 b = new Object();
+    public static final String c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
+    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
+    public static final uy2 e = new uy2((byte) 14);
+    public final rb9 a;
 
-import android.content.DialogInterface;
-public final class p83 implements DialogInterface.OnClickListener {
-    public final byte a;
-    public final int b;
-
-    public p83(int i, byte b) {
-        this.a = b;
-        this.b = i;
+    public p83(rb9 rb9Var) {
+        this.a = rb9Var;
     }
 
-    @Override
-    public final void onClick(DialogInterface dialogInterface, int i) {
-        switch (this.a) {
-            case 0:
-                int i2 = 2 - i;
-                if (i2 == this.b) {
-                    gba.v(-1);
-                    return;
-                } else {
-                    gba.v(i2);
-                    return;
+    public static String a(String str, String str2) {
+        int length = str.length() - str2.length();
+        if (length >= 0 && length <= 1) {
+            StringBuilder sb = new StringBuilder(str2.length() + str.length());
+            for (int i = 0; i < str.length(); i++) {
+                sb.append(str.charAt(i));
+                if (str2.length() > i) {
+                    sb.append(str2.charAt(i));
                 }
-            default:
-                int i3 = 2 - i;
-                if (i3 == this.b) {
-                    gba.v(-1);
-                    return;
-                } else {
-                    gba.v(i3);
-                    return;
-                }
+            }
+            return sb.toString();
         }
+        lq5.j("Invalid input received");
+        return null;
     }
 }

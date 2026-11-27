@@ -1,23 +1,15 @@
 package defpackage;
 
-import android.view.MotionEvent;
-public final class wy4 {
-    public final byte a;
-    public final st b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public interface wy4 {
+    int a();
 
-    public wy4(st stVar, byte b) {
-        this.a = b;
-        this.b = stVar;
-    }
+    void d(float f, float f2, int i, Canvas canvas, RectF rectF);
 
-    public final Boolean a(MotionEvent motionEvent) {
-        byte b = this.a;
-        st stVar = this.b;
-        switch (b) {
-            case 0:
-                return stVar.c(motionEvent);
-            default:
-                return stVar.d(motionEvent);
-        }
-    }
+    int f();
+
+    int g();
+
+    boolean h();
 }

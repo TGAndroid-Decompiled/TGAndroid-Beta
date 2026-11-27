@@ -1,41 +1,45 @@
 package defpackage;
-public final class yb7 implements Runnable {
-    public final byte a;
-    public final ad7 b;
-    public final int c;
-    public final long d;
-    public final long e;
 
-    public yb7(ad7 ad7Var, long j, int i, long j2) {
-        this.a = (byte) 2;
-        this.b = ad7Var;
-        this.d = j;
-        this.c = i;
-        this.e = j2;
-    }
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class yb7 {
+    public final int a;
+    public final long b;
+    public boolean c;
+    public boolean d;
+    public final ArrayList e;
+    public int f;
+    public int g;
 
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yb7.a():void");
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yb7.run():void");
-    }
-
-    public yb7(ad7 ad7Var, int i, long j, long j2, byte b) {
-        this.a = b;
-        this.b = ad7Var;
-        this.c = i;
-        this.d = j;
-        this.e = j2;
-    }
-
-    public yb7(ad7 ad7Var, long j, long j2, int i, byte b) {
-        this.a = b;
-        this.b = ad7Var;
-        this.d = j;
-        this.e = j2;
-        this.c = i;
+    public yb7(int i, long j) {
+        long j2;
+        int i2;
+        ArrayList arrayList = new ArrayList();
+        this.e = arrayList;
+        this.f = -1;
+        this.a = i;
+        this.b = j;
+        if (!this.c && !this.d) {
+            boolean isEmpty = arrayList.isEmpty();
+            this.c = true;
+            TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
+            tL_messages_getCommonChats.user_id = uc7.s1(i).o1(j);
+            if (arrayList.isEmpty()) {
+                j2 = 0;
+            } else {
+                j2 = ((TLRPC.Chat) c00.g(1, arrayList)).id;
+            }
+            tL_messages_getCommonChats.max_id = j2;
+            if (isEmpty) {
+                i2 = 15;
+            } else {
+                i2 = 30;
+            }
+            tL_messages_getCommonChats.limit = i2;
+            int sendRequest = ConnectionsManager.getInstance(i).sendRequest(tL_messages_getCommonChats, new vi1(this, r7, isEmpty, (byte) 9));
+            this.f = sendRequest;
+            int[] iArr = {sendRequest};
+        }
     }
 }

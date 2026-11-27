@@ -1,17 +1,21 @@
 package defpackage;
-public final class g60 implements zn7 {
+public final class g60 implements zq7 {
     public static final g60 a = new Object();
-    public static final w84 b = w84.c("name");
-    public static final w84 c = w84.c("importance");
-    public static final w84 d = w84.c("frames");
+    public static final sa4 b = sa4.c("type");
+    public static final sa4 c = sa4.c("reason");
+    public static final sa4 d = sa4.c("frames");
+    public static final sa4 e = sa4.c("causedBy");
+    public static final sa4 f = sa4.c("overflowCount");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        uy2 uy2Var = (uy2) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ((y80) uy2Var).a);
-        y80 y80Var = (y80) uy2Var;
-        ao7Var.e(c, y80Var.b);
-        ao7Var.a(d, y80Var.c);
+        mz2 mz2Var = (mz2) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.a(b, ((y80) mz2Var).a);
+        y80 y80Var = (y80) mz2Var;
+        ar7Var.a(c, y80Var.b);
+        ar7Var.a(d, y80Var.c);
+        ar7Var.a(e, y80Var.d);
+        ar7Var.e(f, y80Var.e);
     }
 }

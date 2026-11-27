@@ -1,159 +1,92 @@
 package defpackage;
 
-import android.net.Uri;
-import j$.util.concurrent.ConcurrentHashMap;
-import j$.util.concurrent.ConcurrentMap$EL;
-import java.io.File;
-import java.io.RandomAccessFile;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class kb4 implements o63, m94 {
-    public static final ConcurrentHashMap I = new ConcurrentHashMap();
-    public static final ConcurrentHashMap J = new ConcurrentHashMap();
-    public boolean E = true;
-    public final ArrayList F = new ArrayList(1);
-    public int G;
-    public u63 H;
-    public l94 a;
-    public Uri b;
-    public long c;
-    public long d;
-    public long e;
-    public boolean f;
-    public long h;
-    public CountDownLatch n;
-    public RandomAccessFile r;
-    public TLRPC.TL_document s;
-    public Object w;
-    public int x;
-    public File y;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class kb4 implements Runnable {
+    public final byte a = 1;
+    public final long b;
+    public final boolean c;
+    public final long d;
+    public final Object e;
+    public final Object f;
+    public final Object h;
 
-    public static Uri j(int i, Object obj, TLRPC.Document document) {
-        String r = ba4.r(null, document);
-        ba4.G(i);
-        File I2 = ba4.I(document);
-        if (I2 != null && I2.exists()) {
-            return Uri.fromFile(I2);
-        }
-        try {
-            StringBuilder sb = new StringBuilder("?account=");
-            sb.append(i);
-            sb.append("&id=");
-            sb.append(document.id);
-            sb.append("&hash=");
-            sb.append(document.access_hash);
-            sb.append("&dc=");
-            sb.append(document.dc_id);
-            sb.append("&size=");
-            sb.append(document.size);
-            sb.append("&mime=");
-            sb.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-            sb.append("&rid=");
-            sb.append(ba4.G(i).F(obj));
-            sb.append("&name=");
-            sb.append(URLEncoder.encode(ba4.B(document), "UTF-8"));
-            sb.append("&reference=");
-            byte[] bArr = document.file_reference;
-            if (bArr == null) {
-                bArr = new byte[0];
-            }
-            sb.append(Utilities.f(bArr));
-            String sb2 = sb.toString();
-            return Uri.parse("tg://" + r + sb2);
-        } catch (UnsupportedEncodingException e) {
-            fa4.g(e, true);
-            return null;
-        }
+    public kb4(xb4 xb4Var, boolean z, String str, long j, long j2, Float f) {
+        this.e = xb4Var;
+        this.c = z;
+        this.f = str;
+        this.b = j;
+        this.d = j2;
+        this.h = f;
     }
 
     @Override
-    public final void a() {
-        CountDownLatch countDownLatch = this.n;
-        this.n = null;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
+    public final void run() {
+        nd4 nd4Var;
+        switch (this.a) {
+            case 0:
+                xb4 xb4Var = (xb4) this.e;
+                boolean z = this.c;
+                String str = (String) this.f;
+                long j = this.b;
+                long j2 = this.d;
+                Float f = (Float) this.h;
+                if (z) {
+                    nd4Var = (nd4) xb4Var.n.get(str);
+                } else {
+                    nd4Var = (nd4) xb4Var.h.get(str);
+                }
+                nd4 nd4Var2 = nd4Var;
+                if (nd4Var2 != null) {
+                    Utilities.d.c(new o30(nd4Var2, f, j2, j, (byte) 3));
+                    return;
+                } else if (j2 != 0) {
+                    xb4Var.y.put(str, Long.valueOf(j2));
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                c6b c6bVar = (c6b) this.e;
+                long j3 = this.b;
+                boolean z2 = this.c;
+                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.f;
+                long j4 = this.d;
+                TLObject tLObject = (TLObject) this.h;
+                c6bVar.D.remove(Long.valueOf(j3));
+                if (!z2) {
+                    peerStories = c6bVar.x(j4);
+                }
+                if (peerStories != null) {
+                    if (tLObject instanceof TL_stories.TL_stories_stories) {
+                        TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                        for (int i = 0; i < tL_stories_stories.stories.size(); i++) {
+                            for (int i2 = 0; i2 < peerStories.stories.size(); i2++) {
+                                if (peerStories.stories.get(i2).id == tL_stories_stories.stories.get(i).id) {
+                                    peerStories.stories.set(i2, tL_stories_stories.stories.get(i));
+                                    c6bVar.Y(j4, tL_stories_stories.stories.get(i));
+                                }
+                            }
+                        }
+                        if (!z2) {
+                            o6b o6bVar = c6bVar.k;
+                            o6bVar.b.a.c(new n6b(o6bVar, peerStories, (byte) 0));
+                        }
+                    }
+                    jn7.f(c6bVar.a).k(328, new Object[0]);
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void addTransferListener(vyb vybVar) {
-        vybVar.getClass();
-        ArrayList arrayList = this.F;
-        if (!arrayList.contains(vybVar)) {
-            arrayList.add(vybVar);
-            this.G++;
-        }
-    }
-
-    @Override
-    public final void close() {
-        fa4.d("FileStreamLoadOperation " + this.s.id + " close me=" + this);
-        l94 l94Var = this.a;
-        if (l94Var != null) {
-            Utilities.d.c(new h94(l94Var, this, (byte) 0));
-        }
-        RandomAccessFile randomAccessFile = this.r;
-        if (randomAccessFile != null) {
-            try {
-                randomAccessFile.close();
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
-            this.r = null;
-        }
-        this.b = null;
-        I.remove(Long.valueOf(this.s.id));
-        if (this.f) {
-            this.f = false;
-            u63 u63Var = this.H;
-            String str = g8c.a;
-            for (int i = 0; i < this.G; i++) {
-                ((s93) ((vyb) this.F.get(i))).g(u63Var, this.E);
-            }
-            this.H = null;
-        }
-        CountDownLatch countDownLatch = this.n;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-            this.n = null;
-        }
-    }
-
-    public final void e(int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb4.e(int):void");
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return Collections.EMPTY_MAP;
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.b;
-    }
-
-    public final int i() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(J, Long.valueOf(this.s.id), null);
-        if (num != null) {
-            return num.intValue();
-        }
-        return 3;
-    }
-
-    @Override
-    public final long open(defpackage.u63 r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb4.open(u63):long");
-    }
-
-    @Override
-    public final int read(byte[] r27, int r28, int r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb4.read(byte[], int, int):int");
+    public kb4(c6b c6bVar, long j, boolean z, TL_stories.PeerStories peerStories, long j2, TLObject tLObject) {
+        this.e = c6bVar;
+        this.b = j;
+        this.c = z;
+        this.f = peerStories;
+        this.d = j2;
+        this.h = tLObject;
     }
 }

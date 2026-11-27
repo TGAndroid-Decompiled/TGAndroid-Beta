@@ -1,8 +1,20 @@
 package defpackage;
 
-import android.media.MediaFormat;
-public final class uc3 implements sac {
-    @Override
-    public final void c(long j, long j2, fm4 fm4Var, MediaFormat mediaFormat) {
+import android.graphics.Insets;
+import android.view.WindowInsetsAnimation;
+import android.view.animation.Interpolator;
+public abstract class uc3 {
+    public static WindowInsetsAnimation.Bounds a(Insets insets, Insets insets2) {
+        return new WindowInsetsAnimation.Bounds(insets, insets2);
+    }
+
+    public static WindowInsetsAnimation b(int i, Interpolator interpolator, long j) {
+        return new WindowInsetsAnimation(i, interpolator, j);
+    }
+
+    public static void c() {
+    }
+
+    public static void d() {
     }
 }

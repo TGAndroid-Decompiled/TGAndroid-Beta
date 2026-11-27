@@ -1,72 +1,34 @@
 package defpackage;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-public final class ik7 extends ArrayList {
-    public HashSet a;
+import java.util.HashMap;
+import java.util.Iterator;
+public final class ik7 implements Iterable {
+    public final HashMap a = new HashMap();
+    public final ArrayList b = new ArrayList();
 
-    @Override
-    public final boolean add(Object obj) {
-        if (this.a.add(obj)) {
-            return super.add(obj);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        boolean z = false;
-        for (Object obj : collection) {
-            if (add(obj)) {
-                z = true;
+    public ik7(HashMap hashMap) {
+        String str = (String) hashMap.get("cookie");
+        if (str != null) {
+            for (String str2 : str.split(";")) {
+                String[] split = str2.trim().split("=");
+                if (split.length == 2) {
+                    this.a.put(split[0], split[1]);
+                }
             }
         }
-        return z;
     }
 
-    @Override
-    public final void clear() {
-        this.a.clear();
-        super.clear();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.a.contains(obj);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        if (this.a.remove(obj)) {
-            return super.remove(obj);
+    public final void h() {
+        Iterator it = this.b.iterator();
+        if (!it.hasNext()) {
+            return;
         }
-        return false;
+        throw qu6.l(it);
     }
 
     @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void add(int i, Object obj) {
-        if (this.a.add(obj)) {
-            super.add(i, obj);
-        }
-    }
-
-    @Override
-    public final Object remove(int i) {
-        Object remove = super.remove(i);
-        if (remove != null) {
-            this.a.remove(remove);
-        }
-        return remove;
-    }
-
-    @Override
-    public final boolean addAll(int i, Collection collection) {
-        throw new UnsupportedOperationException();
+    public final Iterator iterator() {
+        return this.a.keySet().iterator();
     }
 }

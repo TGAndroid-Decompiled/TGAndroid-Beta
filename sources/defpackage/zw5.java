@@ -1,4 +1,8 @@
 package defpackage;
-public interface zw5 {
-    void a(String str);
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface zw5 {
+    String[] names();
 }

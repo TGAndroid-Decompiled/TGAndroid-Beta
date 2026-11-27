@@ -1,20 +1,21 @@
 package defpackage;
 
-import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class aj2 extends b4 {
-    public static final Parcelable.Creator<aj2> CREATOR = new t4d((byte) 1);
-    public final Intent a;
+public final class aj2 extends c4 {
+    public static final Parcelable.Creator<aj2> CREATOR = new g31((byte) 9);
+    public final boolean a;
 
-    public aj2(Intent intent) {
-        this.a = intent;
+    public aj2(boolean z) {
+        this.a = z;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 1, this.a, i);
-        jte.s(parcel, r);
+        parcel.getClass();
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

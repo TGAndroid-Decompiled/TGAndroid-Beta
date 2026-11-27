@@ -1,12 +1,9 @@
 package defpackage;
-
-import android.widget.FrameLayout;
-public abstract class g11 extends FrameLayout implements l11 {
-    @Override
-    public final void a() {
-    }
+public final class g11 extends c76 {
+    public char g;
 
     @Override
-    public final void b() {
+    public final void a(zpd zpdVar) {
+        zpdVar.b(this);
     }
 }

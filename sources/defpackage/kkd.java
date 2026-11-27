@@ -1,6 +1,14 @@
 package defpackage;
-public @interface kkd {
-    int zza();
+public abstract class kkd {
+    public static final akd a = new Object();
+    public static final akd b;
 
-    ekd zzb() default ekd.a;
+    static {
+        akd akdVar = null;
+        try {
+            akdVar = (akd) Class.forName("com.google.protobuf.ExtensionSchemaFull").getDeclaredConstructor(null).newInstance(null);
+        } catch (Exception unused) {
+        }
+        b = akdVar;
+    }
 }

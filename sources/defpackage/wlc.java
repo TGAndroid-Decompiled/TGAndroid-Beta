@@ -1,36 +1,32 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class wlc extends FrameLayout {
-    public View a;
-    public float b;
-    public int c;
-    public final qr1 d;
-    public final hmc e;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wlc implements RequestDelegate {
+    public final byte a;
+    public final VoIPService b;
+    public final jf7 c;
 
-    public wlc(hmc hmcVar, Context context) {
-        super(context);
-        this.e = hmcVar;
-        this.d = new qr1(this, (byte) 8);
+    public wlc(VoIPService voIPService, jf7 jf7Var, byte b) {
+        this.a = b;
+        this.b = voIPService;
+        this.c = jf7Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        getViewTreeObserver().addOnPreDrawListener(this.d);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        getViewTreeObserver().removeOnPreDrawListener(this.d);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.e.X0();
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        jf7 jf7Var = this.c;
+        VoIPService voIPService = this.b;
+        switch (b) {
+            case 0:
+                voIPService.lambda$startOutgoingCall$11(jf7Var, tLObject, tL_error);
+                return;
+            default:
+                voIPService.lambda$acceptIncomingCall$100(jf7Var, tLObject, tL_error);
+                return;
+        }
     }
 }

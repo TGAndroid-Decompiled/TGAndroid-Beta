@@ -1,33 +1,31 @@
 package defpackage;
 
-import android.util.SparseArray;
-public final class ev8 {
-    public static final ev8 a;
-    public static final ev8[] b;
+import org.telegram.ui.ProfileActivity;
+public final class ev8 implements Runnable {
+    public final byte a;
+    public final ProfileActivity b;
 
-    static {
-        ?? r0 = new Enum("DEFAULT", 0);
-        a = r0;
-        Enum r1 = new Enum("UNMETERED_ONLY", 1);
-        Enum r3 = new Enum("UNMETERED_OR_DAILY", 2);
-        Enum r5 = new Enum("FAST_IF_RADIO_AWAKE", 3);
-        Enum r7 = new Enum("NEVER", 4);
-        Enum r9 = new Enum("UNRECOGNIZED", 5);
-        b = new ev8[]{r0, r1, r3, r5, r7, r9};
-        SparseArray sparseArray = new SparseArray();
-        sparseArray.put(0, r0);
-        sparseArray.put(1, r1);
-        sparseArray.put(2, r3);
-        sparseArray.put(3, r5);
-        sparseArray.put(4, r7);
-        sparseArray.put(-1, r9);
+    public ev8(ProfileActivity profileActivity, byte b) {
+        this.a = b;
+        this.b = profileActivity;
     }
 
-    public static ev8 valueOf(String str) {
-        return (ev8) Enum.valueOf(ev8.class, str);
-    }
-
-    public static ev8[] values() {
-        return (ev8[]) b.clone();
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ProfileActivity profileActivity = this.b;
+        switch (b) {
+            case 0:
+                profileActivity.k3(true);
+                return;
+            default:
+                gr8 gr8Var = profileActivity.O;
+                if (gr8Var != null) {
+                    gr8Var.f1(14);
+                    profileActivity.k3(false);
+                    return;
+                }
+                return;
+        }
     }
 }

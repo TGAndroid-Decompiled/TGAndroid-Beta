@@ -1,51 +1,33 @@
 package defpackage;
-public abstract class n01 {
-    private int flags;
 
-    public final void addFlag(int i) {
-        this.flags |= i;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class n01 extends TLObject {
+    public long a;
+    public long b;
+    public String c;
+    public wxc d;
+
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+        this.a = inputSerializedData.readInt64(z);
+        this.b = inputSerializedData.readInt64(z);
+        this.c = inputSerializedData.readString(z);
+        wxc wxcVar = new wxc();
+        this.d = wxcVar;
+        wxcVar.readParams(inputSerializedData, z);
     }
 
-    public void clear() {
-        this.flags = 0;
-    }
-
-    public final void clearFlag(int i) {
-        this.flags &= ~i;
-    }
-
-    public final boolean getFlag(int i) {
-        if ((this.flags & i) == i) {
-            return true;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt64(this.a);
+        outputSerializedData.writeInt64(this.b);
+        String str = this.c;
+        if (str == null) {
+            str = "";
         }
-        return false;
-    }
-
-    public final boolean hasSupplementalData() {
-        return getFlag(268435456);
-    }
-
-    public final boolean isEndOfStream() {
-        return getFlag(4);
-    }
-
-    public final boolean isFirstSample() {
-        return getFlag(134217728);
-    }
-
-    public final boolean isKeyFrame() {
-        return getFlag(1);
-    }
-
-    public final boolean isLastSample() {
-        return getFlag(536870912);
-    }
-
-    public final boolean notDependedOn() {
-        return getFlag(67108864);
-    }
-
-    public final void setFlags(int i) {
-        this.flags = i;
+        outputSerializedData.writeString(str);
+        this.d.serializeToStream(outputSerializedData);
     }
 }

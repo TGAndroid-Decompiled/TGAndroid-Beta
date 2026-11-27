@@ -27,11 +27,11 @@ public class RadioButton extends View {
 
     public RadioButton(Context context) {
         super(context);
-        this.h = gl.L(16.0f);
+        this.h = hl.L(16.0f);
         if (s == null) {
             Paint paint = new Paint(1);
             s = paint;
-            paint.setStrokeWidth(gl.L(2.0f));
+            paint.setStrokeWidth(hl.L(2.0f));
             s.setStyle(Paint.Style.STROKE);
             x = new Paint(1);
             Paint paint2 = new Paint(1);
@@ -116,19 +116,19 @@ public class RadioButton extends View {
             x.setColor(rgb);
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float f4 = (this.h / 2) - ((f + 1.0f) * gl.p);
+        float f4 = (this.h / 2) - ((f + 1.0f) * hl.p);
         canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4, s);
         if (this.r == null) {
             if (this.c <= 0.5f) {
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4 - gl.L(1.0f), x);
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (1.0f - f) * (f4 - gl.L(1.0f)), w);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f4 - hl.L(1.0f), x);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (1.0f - f) * (f4 - hl.L(1.0f)), w);
             } else {
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, tb4.A(f4 - gl.L(1.0f), this.h / 4, f, this.h / 4), x);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, qd4.A(f4 - hl.L(1.0f), this.h / 4, f, this.h / 4), x);
             }
         }
         canvas.restore();
         if (this.r != null) {
-            int f5 = bm2.f(Utilities.i(this.c, 1.0f, 0.0f), this.b, this.a);
+            int f5 = vm2.f(Utilities.i(this.c, 1.0f, 0.0f), this.b, this.a);
             if (this.n != f5) {
                 Drawable drawable = this.r;
                 this.n = f5;

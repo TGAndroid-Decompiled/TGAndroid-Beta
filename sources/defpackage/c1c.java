@@ -1,3 +1,33 @@
 package defpackage;
-public final class c1c extends Exception {
+
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class c1c extends Drawable {
+    public Paint a;
+    public RectF b;
+
+    @Override
+    public final void draw(Canvas canvas) {
+        RectF rectF = this.b;
+        rectF.set(getBounds());
+        rectF.inset(hl.L(1.0f), (rectF.height() - hl.L(28.0f)) / 2.0f);
+        canvas.drawRoundRect(rectF, hl.L(14.0f), hl.L(14.0f), this.a);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.a.setAlpha(i);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
 }

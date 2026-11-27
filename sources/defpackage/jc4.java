@@ -1,71 +1,42 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class jc4 implements TextWatcher {
-    public final byte a;
-    public boolean b;
-    public final EditTextBoldCursor c;
+import android.net.Uri;
+import androidx.core.content.FileProvider;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+public final class jc4 {
+    public final String a;
+    public final HashMap b = new HashMap();
 
-    public jc4(EditTextBoldCursor editTextBoldCursor, byte b) {
-        this.a = b;
-        this.c = editTextBoldCursor;
+    public jc4(String str) {
+        this.a = str;
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        byte b = this.a;
-        EditTextBoldCursor editTextBoldCursor = this.c;
-        switch (b) {
-            case 0:
-                if (!this.b && editable.length() > 32) {
-                    this.b = true;
-                    editable.delete(32, editable.length());
-                    gl.z3(editTextBoldCursor);
-                    try {
-                        editTextBoldCursor.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
+    public final File a(Uri uri) {
+        String encodedPath = uri.getEncodedPath();
+        int indexOf = encodedPath.indexOf(47, 1);
+        if (indexOf != -1) {
+            String decode = Uri.decode(encodedPath.substring(1, indexOf));
+            String decode2 = Uri.decode(encodedPath.substring(indexOf + 1));
+            File file = (File) this.b.get(decode);
+            if (file != null) {
+                File file2 = new File(file, decode2);
+                try {
+                    File canonicalFile = file2.getCanonicalFile();
+                    if (FileProvider.e(canonicalFile.getPath()).startsWith(FileProvider.e(file.getPath()).concat("/"))) {
+                        return canonicalFile;
                     }
-                    this.b = false;
-                    return;
+                    throw new SecurityException("Resolved path jumped beyond configured root");
+                } catch (IOException unused) {
+                    lq5.q(file2, "Failed to resolve canonical path for ");
+                    return null;
                 }
-                return;
-            default:
-                if (!this.b && editable.length() > 40) {
-                    this.b = true;
-                    editable.delete(40, editable.length());
-                    gl.z3(editTextBoldCursor);
-                    try {
-                        editTextBoldCursor.performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                    this.b = false;
-                    return;
-                }
-                return;
+            }
+            lq5.q(uri, "Unable to find configured root for ");
+            return null;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    private final void a(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
+        lq5.q(uri, "Unable to find path from root: ");
+        return null;
     }
 }

@@ -1,38 +1,28 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class de7 extends uj5 {
-    public final int b;
+import java.util.ArrayList;
+public final class de7 implements Runnable {
+    public final byte a;
+    public final jf7 b;
     public final int c;
-    public final int d;
-    public final int[] e;
-    public final int[] f;
+    public final ArrayList d;
 
-    public de7(int i, int i2, int i3, int[] iArr, int[] iArr2) {
-        super("MLLT");
-        this.b = i;
-        this.c = i2;
-        this.d = i3;
-        this.e = iArr;
-        this.f = iArr2;
+    public de7(jf7 jf7Var, ArrayList arrayList, int i) {
+        this.a = (byte) 2;
+        this.b = jf7Var;
+        this.d = arrayList;
+        this.c = i;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && de7.class == obj.getClass()) {
-                de7 de7Var = (de7) obj;
-                if (this.b == de7Var.b && this.c == de7Var.c && this.d == de7Var.d && Arrays.equals(this.e, de7Var.e) && Arrays.equals(this.f, de7Var.f)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.de7.run():void");
     }
 
-    public final int hashCode() {
-        int hashCode = Arrays.hashCode(this.e);
-        return Arrays.hashCode(this.f) + ((hashCode + ((((((527 + this.b) * 31) + this.c) * 31) + this.d) * 31)) * 31);
+    public de7(jf7 jf7Var, int i, ArrayList arrayList, byte b) {
+        this.a = b;
+        this.b = jf7Var;
+        this.c = i;
+        this.d = arrayList;
     }
 }

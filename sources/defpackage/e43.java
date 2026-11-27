@@ -1,27 +1,75 @@
 package defpackage;
 
-import android.database.Cursor;
-import android.widget.Filter;
-public final class e43 extends Filter {
-    public d43 a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class e43 extends Drawable {
+    public final Drawable a;
+    public final Drawable b;
+    public float c;
+    public float d = 255.0f;
 
-    @Override
-    public final CharSequence convertResultToString(Object obj) {
-        return this.a.c((Cursor) obj);
-    }
-
-    @Override
-    public final android.widget.Filter.FilterResults performFiltering(java.lang.CharSequence r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.e43.performFiltering(java.lang.CharSequence):android.widget.Filter$FilterResults");
-    }
-
-    @Override
-    public final void publishResults(CharSequence charSequence, Filter.FilterResults filterResults) {
-        d43 d43Var = this.a;
-        Cursor cursor = d43Var.c;
-        Object obj = filterResults.values;
-        if (obj != null && obj != cursor) {
-            d43Var.b((Cursor) obj);
+    public e43(Drawable drawable, Drawable drawable2) {
+        this.a = drawable;
+        this.b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new d43(this, (byte) 0));
         }
+        if (drawable2 != null) {
+            drawable2.setCallback(new d43(this, (byte) 1));
+        }
+    }
+
+    public final void a(float f) {
+        this.c = f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i = (int) ((1.0f - this.c) * this.d);
+        Drawable drawable = this.a;
+        drawable.setAlpha(i);
+        int i2 = (int) (this.d * this.c);
+        Drawable drawable2 = this.b;
+        drawable2.setAlpha(i2);
+        if (i > 0) {
+            drawable.draw(canvas);
+        }
+        if (i2 > 0) {
+            drawable2.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.a.setBounds(rect);
+        this.b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.d = i;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
     }
 }

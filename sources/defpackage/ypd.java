@@ -1,25 +1,17 @@
 package defpackage;
+public final class ypd implements zq7 {
+    public static final ypd a = new Object();
 
-import java.util.LinkedHashMap;
-public final class ypd {
-    public static lpd a(Object obj, Object obj2) {
-        lpd lpdVar = (lpd) obj;
-        lpd lpdVar2 = (lpd) obj2;
-        if (!lpdVar2.isEmpty()) {
-            if (!lpdVar.a) {
-                if (lpdVar.isEmpty()) {
-                    lpdVar = new lpd();
-                } else {
-                    ?? linkedHashMap = new LinkedHashMap(lpdVar);
-                    linkedHashMap.a = true;
-                    lpdVar = linkedHashMap;
-                }
-            }
-            lpdVar.b();
-            if (!lpdVar2.isEmpty()) {
-                lpdVar.putAll(lpdVar2);
-            }
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return lpdVar;
+        throw new ClassCastException();
     }
 }

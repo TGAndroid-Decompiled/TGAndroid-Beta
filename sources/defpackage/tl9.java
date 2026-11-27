@@ -1,20 +1,55 @@
 package defpackage;
-public final class tl9 {
-    public final int a;
-    public final long b;
-    public final long c;
-    public final char d;
-    public final boolean e;
-    public final boolean f;
-    public final boolean g;
 
-    public tl9(int i, long j, long j2, long j3, boolean z, boolean z2, boolean z3) {
-        this.a = i;
-        this.b = j;
-        this.c = j2;
-        this.d = (int) j3;
-        this.e = z;
-        this.f = z2;
-        this.g = z3;
+import android.graphics.Rect;
+import android.text.Layout;
+import org.telegram.tgnet.tl.TL_iv;
+public final class tl9 implements kmb {
+    public final Layout a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final TL_iv.pageTableCell e;
+
+    public tl9(Layout layout, int i, int i2, int i3, TL_iv.pageTableCell pagetablecell) {
+        this.a = layout;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = pagetablecell;
+    }
+
+    @Override
+    public final Layout a() {
+        return this.a;
+    }
+
+    @Override
+    public final Rect c() {
+        return null;
+    }
+
+    @Override
+    public final CharSequence getPrefix() {
+        return null;
+    }
+
+    @Override
+    public final int getRow() {
+        return this.d;
+    }
+
+    @Override
+    public final CharSequence getText() {
+        return ajb.h(this.e);
+    }
+
+    @Override
+    public final int getX() {
+        return this.b;
+    }
+
+    @Override
+    public final int getY() {
+        return this.c;
     }
 }

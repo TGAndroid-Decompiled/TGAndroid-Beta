@@ -1,59 +1,28 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public abstract class yu1 extends FrameLayout {
-    public yc a;
-    public wu1 b;
-    public boolean c;
+import android.app.Activity;
+import org.telegram.ui.Components.NumberTextView;
+public final class yu1 extends ema {
+    public boolean N0;
+    public final zu1 O0;
 
-    public final void a(wu1 wu1Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.b == null) {
-            this.b = wu1Var;
-            wu1Var.setVisibility(8);
-            addView(wu1Var, layoutParams);
-        }
+    public yu1(zu1 zu1Var, Activity activity) {
+        super(activity);
+        this.O0 = zu1Var;
+        this.N0 = true;
     }
 
-    public final void b(yc ycVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.a == null) {
-            this.a = ycVar;
-            addView(ycVar, layoutParams);
+    @Override
+    public final void d(int i) {
+        super.d(i);
+        if (this.N0 && getVisibility() == 0) {
+            int L = hl.L(4.0f) + getTextWidth();
+            zu1 zu1Var = this.O0;
+            zu1Var.V2 = L;
+            NumberTextView numberTextView = zu1Var.U2;
+            if (numberTextView != null) {
+                numberTextView.setTranslationX(L);
+            }
         }
-    }
-
-    public wu1 getEditView() {
-        return this.b;
-    }
-
-    public View getReplyView() {
-        return this.a;
-    }
-
-    public void setEditMode(boolean z) {
-        int i;
-        this.c = z;
-        yc ycVar = this.a;
-        int i2 = 0;
-        if (z) {
-            i = 8;
-        } else {
-            i = 0;
-        }
-        ycVar.setVisibility(i);
-        wu1 wu1Var = this.b;
-        if (!z) {
-            i2 = 8;
-        }
-        wu1Var.setVisibility(i2);
-    }
-
-    public void setEditSuggestionMode(boolean z) {
-        setEditMode(z);
-        if (z) {
-            this.a.setVisibility(0);
-        }
-        this.b.a[0].setOnlyIconMode(z);
-        this.b.a[1].setOnlyIconMode(z);
     }
 }

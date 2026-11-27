@@ -1,26 +1,35 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class w6b implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final t7b b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public final class w6b extends FrameLayout {
+    public o68 a;
+    public long b;
+    public ArrayList c;
+    public boolean d;
+    public final acb e;
 
-    public w6b(t7b t7bVar, byte b) {
-        this.a = b;
-        this.b = t7bVar;
+    public w6b(acb acbVar, Context context) {
+        super(context);
+        this.e = acbVar;
+    }
+
+    public final void a(boolean z) {
+        if (this.d != z) {
+            this.d = z;
+            invalidate();
+            this.a.setIsVisible(z);
+            this.e.A();
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        t7b t7bVar = this.b;
-        switch (b) {
-            case 0:
-                t7bVar.d1.m();
-                return;
-            default:
-                t7bVar.m0();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        if (!this.d) {
+            return;
         }
+        super.dispatchDraw(canvas);
     }
 }

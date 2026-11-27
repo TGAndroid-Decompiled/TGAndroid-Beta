@@ -1,464 +1,598 @@
 package defpackage;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.UsersSelectActivity;
-public final class s8 extends ViewGroup {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+public final class s8 extends d6 {
     public final byte a;
     public final Object b;
 
-    public s8(byte b, Context context, Object obj) {
-        super(context);
+    public s8(Object obj, byte b) {
         this.a = b;
         this.b = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.a) {
-            case 1:
-                canvas.save();
-                sj4 sj4Var = (sj4) this.b;
-                canvas.scale(sj4Var.x / sj4Var.i.getWidth(), sj4Var.y / sj4Var.i.getHeight());
-                super.draw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        switch (this.a) {
-            case 3:
-                boolean drawChild = super.drawChild(canvas, view, j);
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.b;
-                if (view == usersSelectActivity.d || view == usersSelectActivity.f) {
-                    ((ActionBarLayout) UsersSelectActivity.Y(usersSelectActivity)).o(canvas, usersSelectActivity.a.getMeasuredHeight());
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        float f;
-        float f2;
-        int measuredWidth;
+    public final void b(int i) {
+        String str;
+        r47 r47Var;
+        d31 b0;
+        jla jlaVar;
+        int i2;
+        int i3;
         byte b = this.a;
         Object obj = this.b;
         switch (b) {
             case 0:
-                u8 u8Var = (u8) obj;
-                if (u8.a0(u8Var) != null) {
-                    u8.c0(u8Var).layout(0, 0, i3, u8.b0(u8Var).getMeasuredHeight());
-                }
-                int i5 = i3 - i;
-                int i6 = i4 - i2;
-                byte b2 = u8Var.w;
-                if (b2 != 0) {
-                    if (b2 != 3) {
-                        if (b2 != 5) {
-                            if (b2 == 6) {
-                                ry8 ry8Var = u8Var.a;
-                                if (i3 > i4) {
-                                    int measuredHeight = (i6 - ry8Var.getMeasuredHeight()) / 2;
-                                    float f3 = i5;
-                                    int measuredWidth2 = ((int) ((0.5f * f3) - u8Var.a.getMeasuredWidth())) / 2;
-                                    ry8 ry8Var2 = u8Var.a;
-                                    ry8Var2.layout(measuredWidth2, measuredHeight, ry8Var2.getMeasuredWidth() + measuredWidth2, u8Var.a.getMeasuredHeight() + measuredHeight);
-                                    float f4 = 0.4f * f3;
-                                    int i7 = (int) f4;
-                                    float f5 = i6;
-                                    int i8 = (int) (0.14f * f5);
-                                    TextView textView = u8Var.e;
-                                    textView.layout(i7, i8, textView.getMeasuredWidth() + i7, u8Var.e.getMeasuredHeight() + i8);
-                                    int i9 = (int) (0.31f * f5);
-                                    TextView textView2 = u8Var.f;
-                                    textView2.layout(i7, i9, textView2.getMeasuredWidth() + i7, u8Var.f.getMeasuredHeight() + i9);
-                                    int z2 = (int) oo1.z(f3 * 0.6f, u8Var.c.getMeasuredWidth(), 2.0f, f4);
-                                    int i10 = (int) (f5 * 0.78f);
-                                    t8 t8Var = u8Var.c;
-                                    t8Var.layout(z2, i10, t8Var.getMeasuredWidth() + z2, u8Var.c.getMeasuredHeight() + i10);
-                                    return;
-                                }
-                                int i11 = (int) (i6 * 0.3f);
-                                int measuredWidth3 = (i5 - ry8Var.getMeasuredWidth()) / 2;
-                                ry8 ry8Var3 = u8Var.a;
-                                ry8Var3.layout(measuredWidth3, i11, ry8Var3.getMeasuredWidth() + measuredWidth3, u8Var.a.getMeasuredHeight() + i11);
-                                int w = de9.w(24.0f, u8Var.a.getMeasuredHeight(), i11);
-                                TextView textView3 = u8Var.e;
-                                textView3.layout(0, w, textView3.getMeasuredWidth(), u8Var.e.getMeasuredHeight() + w);
-                                int textSize = (int) (u8Var.e.getTextSize() + gl.L(16.0f) + w);
-                                TextView textView4 = u8Var.f;
-                                textView4.layout(0, textSize, textView4.getMeasuredWidth(), u8Var.f.getMeasuredHeight() + textSize);
-                                int measuredWidth4 = (i5 - u8Var.c.getMeasuredWidth()) / 2;
-                                int measuredHeight2 = (i6 - u8Var.c.getMeasuredHeight()) - gl.L(48.0f);
-                                t8 t8Var2 = u8Var.c;
-                                t8Var2.layout(measuredWidth4, measuredHeight2, t8Var2.getMeasuredWidth() + measuredWidth4, u8Var.c.getMeasuredHeight() + measuredHeight2);
-                                return;
-                            }
-                            return;
-                        } else if (i3 > i4) {
-                            int measuredHeight3 = (i6 - u8Var.a.getMeasuredHeight()) / 2;
-                            ry8 ry8Var4 = u8Var.a;
-                            ry8Var4.layout(0, measuredHeight3, ry8Var4.getMeasuredWidth(), u8Var.a.getMeasuredHeight() + measuredHeight3);
-                            float f6 = i5;
-                            float f7 = 0.4f * f6;
-                            int i12 = (int) f7;
-                            float f8 = i6;
-                            int i13 = (int) (0.08f * f8);
-                            TextView textView5 = u8Var.e;
-                            textView5.layout(i12, i13, textView5.getMeasuredWidth() + i12, u8Var.e.getMeasuredHeight() + i13);
-                            float f9 = f6 * 0.6f;
-                            int z3 = (int) oo1.z(f9, u8Var.h.getMeasuredWidth(), 2.0f, f7);
-                            int i14 = (int) (0.25f * f8);
-                            LinearLayout linearLayout = u8Var.h;
-                            linearLayout.layout(z3, i14, linearLayout.getMeasuredWidth() + z3, u8Var.h.getMeasuredHeight() + i14);
-                            int z4 = (int) oo1.z(f9, u8Var.c.getMeasuredWidth(), 2.0f, f7);
-                            int i15 = (int) (f8 * 0.78f);
-                            t8 t8Var3 = u8Var.c;
-                            t8Var3.layout(z4, i15, t8Var3.getMeasuredWidth() + z4, u8Var.c.getMeasuredHeight() + i15);
-                            return;
-                        } else {
-                            int i16 = gl.q.y;
-                            ry8 ry8Var5 = u8Var.a;
-                            if (i16 < 1800) {
-                                f = i6;
-                                int i17 = (int) (0.06f * f);
-                                ry8Var5.layout(0, i17, ry8Var5.getMeasuredWidth(), u8Var.a.getMeasuredHeight() + i17);
-                                int i18 = (int) (0.463f * f);
-                                TextView textView6 = u8Var.e;
-                                textView6.layout(0, i18, textView6.getMeasuredWidth(), u8Var.e.getMeasuredHeight() + i18);
-                                f2 = 0.543f;
-                            } else {
-                                f = i6;
-                                int i19 = (int) (0.148f * f);
-                                ry8Var5.layout(0, i19, ry8Var5.getMeasuredWidth(), u8Var.a.getMeasuredHeight() + i19);
-                                int i20 = (int) (0.551f * f);
-                                TextView textView7 = u8Var.e;
-                                textView7.layout(0, i20, textView7.getMeasuredWidth(), u8Var.e.getMeasuredHeight() + i20);
-                                f2 = 0.631f;
-                            }
-                            int i21 = (int) (f * f2);
-                            int measuredWidth5 = (getMeasuredWidth() - u8Var.h.getMeasuredWidth()) / 2;
-                            LinearLayout linearLayout2 = u8Var.h;
-                            linearLayout2.layout(measuredWidth5, i21, linearLayout2.getMeasuredWidth() + measuredWidth5, u8Var.h.getMeasuredHeight() + i21);
-                            int measuredWidth6 = (i5 - u8Var.c.getMeasuredWidth()) / 2;
-                            int i22 = (int) (i6 * 0.853f);
-                            t8 t8Var4 = u8Var.c;
-                            t8Var4.layout(measuredWidth6, i22, t8Var4.getMeasuredWidth() + measuredWidth6, u8Var.c.getMeasuredHeight() + i22);
-                            return;
-                        }
-                    }
-                    ry8 ry8Var6 = u8Var.a;
-                    if (i3 > i4) {
-                        float f10 = i6;
-                        int measuredHeight4 = ((int) ((0.95f * f10) - ry8Var6.getMeasuredHeight())) / 2;
-                        int width = (int) ((getWidth() * 0.35f) - u8Var.a.getMeasuredWidth());
-                        ry8 ry8Var7 = u8Var.a;
-                        ry8Var7.layout(width, measuredHeight4, ry8Var7.getMeasuredWidth() + width, u8Var.a.getMeasuredHeight() + measuredHeight4);
-                        float f11 = i5;
-                        float f12 = 0.4f * f11;
-                        int i23 = (int) f12;
-                        int i24 = (int) (0.12f * f10);
-                        TextView textView8 = u8Var.e;
-                        textView8.layout(i23, i24, textView8.getMeasuredWidth() + i23, u8Var.e.getMeasuredHeight() + i24);
-                        int i25 = (int) (0.24f * f10);
-                        TextView textView9 = u8Var.f;
-                        textView9.layout(i23, i25, textView9.getMeasuredWidth() + i23, u8Var.f.getMeasuredHeight() + i25);
-                        float f13 = f11 * 0.6f;
-                        int z5 = (int) oo1.z(f13, u8Var.c.getMeasuredWidth(), 2.0f, f12);
-                        int i26 = (int) (f10 * 0.8f);
-                        t8 t8Var5 = u8Var.c;
-                        t8Var5.layout(z5, i26, t8Var5.getMeasuredWidth() + z5, u8Var.c.getMeasuredHeight() + i26);
-                        int z6 = (int) oo1.z(f13, u8Var.d.getMeasuredWidth(), 2.0f, f12);
-                        int B = ug8.B(16.0f, u8Var.d.getMeasuredHeight(), i26);
-                        TextView textView10 = u8Var.d;
-                        textView10.layout(z6, B, textView10.getMeasuredWidth() + z6, u8Var.d.getMeasuredHeight() + B);
-                        return;
-                    }
-                    int i27 = (int) (i6 * 0.3f);
-                    int measuredWidth7 = (i5 - ry8Var6.getMeasuredWidth()) / 2;
-                    ry8 ry8Var8 = u8Var.a;
-                    ry8Var8.layout(measuredWidth7, i27, ry8Var8.getMeasuredWidth() + measuredWidth7, u8Var.a.getMeasuredHeight() + i27);
-                    int w2 = de9.w(24.0f, u8Var.a.getMeasuredHeight(), i27);
-                    TextView textView11 = u8Var.e;
-                    textView11.layout(0, w2, textView11.getMeasuredWidth(), u8Var.e.getMeasuredHeight() + w2);
-                    int textSize2 = (int) (u8Var.e.getTextSize() + gl.L(16.0f) + w2);
-                    TextView textView12 = u8Var.f;
-                    textView12.layout(0, textSize2, textView12.getMeasuredWidth(), u8Var.f.getMeasuredHeight() + textSize2);
-                    int measuredWidth8 = (i5 - u8Var.c.getMeasuredWidth()) / 2;
-                    int measuredHeight5 = (i6 - u8Var.c.getMeasuredHeight()) - gl.L(48.0f);
-                    t8 t8Var6 = u8Var.c;
-                    t8Var6.layout(measuredWidth8, measuredHeight5, t8Var6.getMeasuredWidth() + measuredWidth8, u8Var.c.getMeasuredHeight() + measuredHeight5);
-                    int measuredWidth9 = (i5 - u8Var.d.getMeasuredWidth()) / 2;
-                    int B2 = ug8.B(32.0f, u8Var.d.getMeasuredHeight(), measuredHeight5);
-                    TextView textView13 = u8Var.d;
-                    textView13.layout(measuredWidth9, B2, textView13.getMeasuredWidth() + measuredWidth9, u8Var.d.getMeasuredHeight() + B2);
+                if (i == -1) {
+                    ((v8) obj).finishFragment();
                     return;
                 }
-                ry8 ry8Var9 = u8Var.a;
-                if (i3 > i4) {
-                    int measuredHeight6 = (i6 - ry8Var9.getMeasuredHeight()) / 2;
-                    ry8 ry8Var10 = u8Var.a;
-                    ry8Var10.layout(0, measuredHeight6, ry8Var10.getMeasuredWidth(), u8Var.a.getMeasuredHeight() + measuredHeight6);
-                    float f14 = i5;
-                    float f15 = 0.4f * f14;
-                    int i28 = (int) f15;
-                    float f16 = i6;
-                    int i29 = (int) (0.22f * f16);
-                    TextView textView14 = u8Var.e;
-                    textView14.layout(i28, i29, textView14.getMeasuredWidth() + i28, u8Var.e.getMeasuredHeight() + i29);
-                    int i30 = (int) (0.39f * f16);
-                    TextView textView15 = u8Var.f;
-                    textView15.layout(i28, i30, textView15.getMeasuredWidth() + i28, u8Var.f.getMeasuredHeight() + i30);
-                    int z7 = (int) oo1.z(f14 * 0.6f, u8Var.c.getMeasuredWidth(), 2.0f, f15);
-                    int i31 = (int) (f16 * 0.69f);
-                    t8 t8Var7 = u8Var.c;
-                    t8Var7.layout(z7, i31, t8Var7.getMeasuredWidth() + z7, u8Var.c.getMeasuredHeight() + i31);
-                    return;
-                }
-                float f17 = i6;
-                int i32 = (int) (0.188f * f17);
-                ry8Var9.layout(0, i32, ry8Var9.getMeasuredWidth(), u8Var.a.getMeasuredHeight() + i32);
-                int i33 = (int) (0.651f * f17);
-                TextView textView16 = u8Var.e;
-                textView16.layout(0, i33, textView16.getMeasuredWidth(), u8Var.e.getMeasuredHeight() + i33);
-                int i34 = (int) (0.731f * f17);
-                TextView textView17 = u8Var.f;
-                textView17.layout(0, i34, textView17.getMeasuredWidth(), u8Var.f.getMeasuredHeight() + i34);
-                int measuredWidth10 = (i5 - u8Var.c.getMeasuredWidth()) / 2;
-                int i35 = (int) (f17 * 0.853f);
-                t8 t8Var8 = u8Var.c;
-                t8Var8.layout(measuredWidth10, i35, t8Var8.getMeasuredWidth() + measuredWidth10, u8Var.c.getMeasuredHeight() + i35);
                 return;
             case 1:
-                sj4 sj4Var = (sj4) obj;
-                sj4Var.i.layout(0, 0, sj4Var.x, sj4Var.y);
+                if (i == -1) {
+                    ((ds) obj).finishFragment();
+                    return;
+                }
                 return;
             case 2:
-                p3c p3cVar = (p3c) obj;
-                p3c.a0(p3cVar).layout(0, 0, i3, p3c.Z(p3cVar).getMeasuredHeight());
-                int i36 = i3 - i;
-                int i37 = i4 - i2;
-                ry8 ry8Var11 = p3cVar.a;
-                if (i3 > i4) {
-                    int measuredHeight7 = (i37 - ry8Var11.getMeasuredHeight()) / 2;
-                    ry8 ry8Var12 = p3cVar.a;
-                    ry8Var12.layout(0, measuredHeight7, ry8Var12.getMeasuredWidth(), p3cVar.a.getMeasuredHeight() + measuredHeight7);
-                    float f18 = i36;
-                    float f19 = 0.4f * f18;
-                    int i38 = (int) f19;
-                    float f20 = i37;
-                    int i39 = (int) (0.22f * f20);
-                    TextView textView18 = p3cVar.c;
-                    textView18.layout(i38, i39, textView18.getMeasuredWidth() + i38, p3cVar.c.getMeasuredHeight() + i39);
-                    int i40 = (int) (0.39f * f20);
-                    wla wlaVar = p3cVar.d;
-                    wlaVar.layout(i38, i40, wlaVar.getMeasuredWidth() + i38, p3cVar.d.getMeasuredHeight() + i40);
-                    int z8 = (int) oo1.z(f18 * 0.6f, p3cVar.b.getMeasuredWidth(), 2.0f, f19);
-                    int i41 = (int) (f20 * 0.64f);
-                    TextView textView19 = p3cVar.b;
-                    textView19.layout(z8, i41, textView19.getMeasuredWidth() + z8, p3cVar.b.getMeasuredHeight() + i41);
+                if (i == -1) {
+                    ((is) obj).finishFragment();
                     return;
                 }
-                int i42 = (int) (i37 * 0.3f);
-                int measuredWidth11 = (i36 - ry8Var11.getMeasuredWidth()) / 2;
-                ry8 ry8Var13 = p3cVar.a;
-                ry8Var13.layout(measuredWidth11, i42, ry8Var13.getMeasuredWidth() + measuredWidth11, p3cVar.a.getMeasuredHeight() + i42);
-                int w3 = de9.w(16.0f, p3cVar.a.getMeasuredHeight(), i42);
-                TextView textView20 = p3cVar.c;
-                textView20.layout(0, w3, textView20.getMeasuredWidth(), p3cVar.c.getMeasuredHeight() + w3);
-                int w4 = de9.w(12.0f, p3cVar.c.getMeasuredHeight(), w3);
-                wla wlaVar2 = p3cVar.d;
-                wlaVar2.layout(0, w4, wlaVar2.getMeasuredWidth(), p3cVar.d.getMeasuredHeight() + w4);
-                int measuredWidth12 = (i36 - p3cVar.b.getMeasuredWidth()) / 2;
-                int measuredHeight8 = (i37 - p3cVar.b.getMeasuredHeight()) - gl.L(48.0f);
-                TextView textView21 = p3cVar.b;
-                textView21.layout(measuredWidth12, measuredHeight8, textView21.getMeasuredWidth() + measuredWidth12, p3cVar.b.getMeasuredHeight() + measuredHeight8);
                 return;
-            default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) obj;
-                xc xcVar = usersSelectActivity.a;
-                xcVar.layout(0, 0, xcVar.getMeasuredWidth(), usersSelectActivity.a.getMeasuredHeight());
-                usersSelectActivity.d.layout(0, usersSelectActivity.a.getMeasuredHeight(), usersSelectActivity.d.getMeasuredWidth(), usersSelectActivity.d.getMeasuredHeight() + usersSelectActivity.a.getMeasuredHeight());
-                usersSelectActivity.f.layout(0, usersSelectActivity.a.getMeasuredHeight(), usersSelectActivity.f.getMeasuredWidth(), usersSelectActivity.f.getMeasuredHeight() + usersSelectActivity.a.getMeasuredHeight());
-                usersSelectActivity.e.layout(0, usersSelectActivity.a.getMeasuredHeight(), usersSelectActivity.f.getMeasuredWidth(), usersSelectActivity.e.getMeasuredHeight() + usersSelectActivity.a.getMeasuredHeight());
-                un4 un4Var = usersSelectActivity.r;
-                if (un4Var != null) {
-                    boolean z9 = k96.a0;
-                    FrameLayout.LayoutParams layoutParams = usersSelectActivity.s;
-                    if (z9) {
-                        measuredWidth = layoutParams.leftMargin;
-                    } else {
-                        measuredWidth = ((i3 - i) - layoutParams.rightMargin) - un4Var.getMeasuredWidth();
+            case 3:
+                j20 j20Var = (j20) obj;
+                if (i == -1) {
+                    j20Var.dismiss();
+                    return;
+                } else {
+                    j20Var.K0(i);
+                    return;
+                }
+            case 4:
+                if (i == -1) {
+                    ((kp9) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 5:
+                if (i == -1) {
+                    ((x60) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                dd0 dd0Var = (dd0) obj;
+                if (i == -1) {
+                    if (dd0Var.onBackPressed(true)) {
+                        dd0Var.finishFragment();
+                        return;
                     }
-                    int measuredHeight9 = ((i4 - i2) - usersSelectActivity.s.bottomMargin) - usersSelectActivity.r.getMeasuredHeight();
-                    un4 un4Var2 = usersSelectActivity.r;
-                    un4Var2.layout(measuredWidth, measuredHeight9, un4Var2.getMeasuredWidth() + measuredWidth, usersSelectActivity.r.getMeasuredHeight() + measuredHeight9);
+                    return;
+                } else if (i == 1) {
+                    dd0Var.b0();
+                    return;
+                } else {
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        int L;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i);
-                int size2 = View.MeasureSpec.getSize(i2);
-                u8 u8Var = (u8) obj;
-                byte b2 = u8Var.w;
-                if (u8.Y(u8Var) != null) {
-                    u8.Z(u8Var).measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
-                }
-                if (b2 != 0) {
-                    if (b2 != 3) {
-                        if (b2 != 5) {
-                            if (b2 == 6) {
-                                ry8 ry8Var = u8Var.a;
-                                if (b2 == 6) {
-                                    ry8Var.measure(View.MeasureSpec.makeMeasureSpec(gl.L(140.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(140.0f), 1073741824));
-                                } else {
-                                    ry8Var.measure(View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), 1073741824));
+            case 7:
+                dm0 dm0Var = (dm0) obj;
+                HashSet hashSet = dm0Var.y;
+                if (i == -1) {
+                    if (dm0.c0(dm0Var).z()) {
+                        dm0.d0(dm0Var).y();
+                        hashSet.clear();
+                        hl.d0(dm0Var.a, new bm0((byte) 0));
+                        return;
+                    }
+                    dm0Var.finishFragment();
+                    return;
+                } else if (i == 2131296496) {
+                    HashSet hashSet2 = new HashSet();
+                    ArrayList arrayList = new ArrayList();
+                    HashSet hashSet3 = new HashSet();
+                    Iterator it = hashSet.iterator();
+                    while (it.hasNext()) {
+                        int intValue = ((Integer) it.next()).intValue();
+                        ArrayList arrayList2 = dm0Var.e.a;
+                        int size = arrayList2.size();
+                        int i4 = 0;
+                        while (true) {
+                            if (i4 < size) {
+                                Object obj2 = arrayList2.get(i4);
+                                i4++;
+                                r47Var = (r47) obj2;
+                                if (r47Var == null || r47Var.e1() != intValue) {
                                 }
-                                TextView textView = u8Var.e;
-                                if (size > size2) {
-                                    int i4 = (int) (size * 0.6f);
-                                    textView.measure(View.MeasureSpec.makeMeasureSpec(i4, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    u8Var.f.measure(View.MeasureSpec.makeMeasureSpec(i4, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    u8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i4, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
-                                } else {
-                                    textView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    u8Var.f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    t8 t8Var = u8Var.c;
-                                    if (b2 == 6) {
-                                        t8Var.measure(ug8.f(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
-                                    } else {
-                                        t8Var.measure(ug8.f(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
+                            } else {
+                                r47Var = null;
+                            }
+                        }
+                        db dbVar = dm0Var.f;
+                        if (dbVar != null && r47Var == null) {
+                            ArrayList arrayList3 = dbVar.a;
+                            int size2 = arrayList3.size();
+                            int i5 = 0;
+                            while (true) {
+                                if (i5 < size2) {
+                                    Object obj3 = arrayList3.get(i5);
+                                    i5++;
+                                    r47 r47Var2 = (r47) obj3;
+                                    if (r47Var2 != null && r47Var2.e1() == intValue) {
+                                        r47Var = r47Var2;
                                     }
                                 }
                             }
-                        } else {
-                            ry8 ry8Var2 = u8Var.a;
-                            if (size > size2) {
-                                float f = size;
-                                ry8Var2.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
-                                int i5 = (int) (f * 0.6f);
-                                u8Var.e.measure(View.MeasureSpec.makeMeasureSpec(i5, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                u8Var.h.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                u8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
-                            } else {
-                                ry8Var2.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
-                                u8Var.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                u8Var.h.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                u8Var.c.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
-                            }
                         }
-                    } else {
-                        u8Var.a.measure(View.MeasureSpec.makeMeasureSpec(gl.L(150.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(150.0f), 1073741824));
-                        if (size > size2) {
-                            float f2 = size;
-                            u8Var.d.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f2), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            int i6 = (int) (f2 * 0.6f);
-                            u8Var.e.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            u8Var.f.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            u8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i6, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
-                        } else {
-                            u8Var.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            u8Var.f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            u8Var.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            u8Var.c.measure(ug8.f(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
+                        if (r47Var != null) {
+                            arrayList.add(r47Var);
+                            hashSet3.add(Integer.valueOf(r47Var.e1()));
+                            hashSet2.add(fb.a(r47Var));
                         }
                     }
-                } else {
-                    ry8 ry8Var3 = u8Var.a;
-                    if (size > size2) {
-                        float f3 = size;
-                        ry8Var3.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f3), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
-                        int i7 = (int) (f3 * 0.6f);
-                        u8Var.e.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        u8Var.f.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        u8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, dm0Var.getResourceProvider(), dm0Var.getParentActivity());
+                    String G = ob6.G(hashSet3.size(), "DeleteOptionsTitle", new Object[0]);
+                    id idVar = alertDialog$Builder.a;
+                    idVar.S = G;
+                    if (hashSet3.size() == 1) {
+                        str = "AreYouSureUnsaveSingleMessage";
                     } else {
-                        ry8Var3.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
-                        u8Var.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        u8Var.f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                        u8Var.c.measure(ug8.f(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
+                        str = "AreYouSureUnsaveFewMessages";
                     }
-                }
-                setMeasuredDimension(size, size2);
-                return;
-            case 1:
-                setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-                sj4 sj4Var = (sj4) obj;
-                sj4Var.i.measure(View.MeasureSpec.makeMeasureSpec(sj4Var.x, 1073741824), View.MeasureSpec.makeMeasureSpec(sj4Var.y, 1073741824));
-                return;
-            case 2:
-                int size3 = View.MeasureSpec.getSize(i);
-                int size4 = View.MeasureSpec.getSize(i2);
-                p3c p3cVar = (p3c) obj;
-                p3c.j0(p3cVar).measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), i2);
-                if (size3 > size4) {
-                    float f4 = size3;
-                    p3cVar.a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f4), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size4 * 0.68f), 1073741824));
-                    int i8 = (int) (f4 * 0.6f);
-                    p3cVar.c.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    p3cVar.d.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    p3cVar.e.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    p3cVar.b.measure(View.MeasureSpec.makeMeasureSpec(i8, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gl.L(42.0f), 1073741824));
+                    idVar.U = ob6.N0(str);
+                    alertDialog$Builder.j(ob6.M0(2131751563, null), new o(dm0Var, hashSet3, (byte) 18));
+                    alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+                    alertDialog$Builder.c(-1);
+                    alertDialog$Builder.o();
+                    return;
+                } else if (i == 2131296500) {
+                    dm0Var.g0();
+                    return;
                 } else {
-                    if (p3cVar.P == 7) {
-                        i3 = 160;
-                    } else {
-                        i3 = 140;
-                    }
-                    float f5 = i3;
-                    p3cVar.a.measure(View.MeasureSpec.makeMeasureSpec(gl.L(f5), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(f5), 1073741824));
-                    p3cVar.c.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    p3cVar.d.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    p3cVar.e.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    p3cVar.b.measure(ug8.f(48.0f, size3, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(50.0f), 1073741824));
+                    return;
                 }
-                setMeasuredDimension(size3, size4);
-                return;
-            default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) obj;
-                int size5 = View.MeasureSpec.getSize(i);
-                int size6 = View.MeasureSpec.getSize(i2);
-                setMeasuredDimension(size5, size6);
-                if (!gl.O1() && size6 <= size5) {
-                    L = gl.L(56.0f);
-                } else {
-                    L = gl.L(144.0f);
-                }
-                usersSelectActivity.a.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
-                usersSelectActivity.d.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.a.getMeasuredHeight(), 1073741824));
-                usersSelectActivity.f.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.a.getMeasuredHeight(), 1073741824));
-                usersSelectActivity.e.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.a.getMeasuredHeight(), 1073741824));
-                un4 un4Var = usersSelectActivity.r;
-                if (un4Var != null) {
-                    int i9 = usersSelectActivity.s.width;
-                    un4Var.measure(View.MeasureSpec.makeMeasureSpec(i9, 1073741824), View.MeasureSpec.makeMeasureSpec(i9, 1073741824));
+            case 8:
+                if (i == -1) {
+                    ((vo0) obj).finishFragment();
                     return;
                 }
                 return;
+            case 9:
+                ((rr0) obj).f0(i);
+                return;
+            case 10:
+                if (i == -1) {
+                    ((at0) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 11:
+                if (i == -1) {
+                    ((ny0) obj).dismiss();
+                    return;
+                }
+                return;
+            case 12:
+                g41 g41Var = (g41) obj;
+                if (i == -1) {
+                    if (g41Var.onBackPressed(true)) {
+                        g41Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i == 1) {
+                    g41Var.j0();
+                    return;
+                } else {
+                    return;
+                }
+            case 13:
+                if (i == -1) {
+                    ((d61) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 14:
+                z61 z61Var = (z61) obj;
+                if (i == -1) {
+                    if (z61.Y(z61Var).z()) {
+                        d71 d71Var = z61Var.e0;
+                        if (d71Var != null) {
+                            d71Var.d();
+                        }
+                        l61 l61Var = z61Var.N;
+                        if (l61Var != null) {
+                            l61Var.f(false);
+                            z61Var.N.e();
+                            return;
+                        }
+                        return;
+                    }
+                    z61Var.finishFragment();
+                    return;
+                } else if (i == 1) {
+                    z61Var.h0();
+                    return;
+                } else if (i == 3) {
+                    z61Var.g0(false);
+                    return;
+                } else if (i == 4) {
+                    z61Var.g0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 15:
+                j81 j81Var = (j81) obj;
+                if (i == -1) {
+                    if (j81Var.Q == 0 && j81Var.R == 0 && !j81Var.H) {
+                        j81Var.finishFragment();
+                        return;
+                    }
+                    j81Var.H = false;
+                    j81Var.Q = 0;
+                    j81Var.R = 0;
+                    j81Var.B0();
+                    j81Var.r0();
+                    return;
+                }
+                return;
+            case 16:
+                i91 i91Var = (i91) obj;
+                if (i == -1) {
+                    jlaVar = ((e) i91Var).simpleActionBar;
+                    if (jlaVar.z()) {
+                        i91Var.d0(true);
+                        return;
+                    } else {
+                        i91Var.finishFragment();
+                        return;
+                    }
+                } else if (i == 2) {
+                    i91Var.m0(false);
+                    return;
+                } else if (i == 3) {
+                    i91Var.m0(true);
+                    return;
+                } else if (i == 4) {
+                    i91Var.k0(false);
+                    if (i91Var.s) {
+                        b0 = d31.Y();
+                    } else {
+                        b0 = d31.b0(i91Var);
+                    }
+                    v21 J = b0.J(2131623990, hl.S2(ob6.M0(2131749213, null)), ob6.M0(2131743540, null), 5000, true, new fv0(this, (byte) 14));
+                    J.j = 5000;
+                    J.j();
+                    return;
+                } else {
+                    return;
+                }
+            case 17:
+                if (i == -1) {
+                    ((la1) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 18:
+                ie1 ie1Var = (ie1) obj;
+                if (i == -1) {
+                    ie1Var.finishFragment();
+                    return;
+                } else if (i == 1 && ie1Var.a.getText().length() != 0) {
+                    ie1Var.Y();
+                    ie1Var.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            case 19:
+                ve1 ve1Var = (ve1) obj;
+                if (i == -1) {
+                    ve1Var.finishFragment();
+                    return;
+                } else if (i == 1) {
+                    ve1Var.k0();
+                    ve1Var.j0();
+                    return;
+                } else {
+                    return;
+                }
+            case 20:
+                if (i == -1) {
+                    ((wf1) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 21:
+                wh1 wh1Var = (wh1) obj;
+                if (i == -1) {
+                    if (wh1Var.b >= wh1Var.Z0() && wh1Var.U0()) {
+                        wh1Var.c1();
+                        return;
+                    } else {
+                        wh1Var.finishFragment();
+                        return;
+                    }
+                } else if (i == 1) {
+                    FrameLayout frameLayout = (FrameLayout) wh1Var.getParentActivity().getWindow().getDecorView();
+                    Bitmap createBitmap = Bitmap.createBitmap(frameLayout.getWidth(), frameLayout.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    wh1Var.M.setAlpha(0.0f);
+                    frameLayout.draw(canvas);
+                    wh1Var.M.setAlpha(1.0f);
+                    Paint paint = new Paint(1);
+                    paint.setColor(-16777216);
+                    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                    Paint paint2 = new Paint(1);
+                    paint2.setFilterBitmap(true);
+                    int[] iArr = new int[2];
+                    wh1Var.M.getLocationInWindow(iArr);
+                    float f = iArr[0];
+                    float f2 = iArr[1];
+                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                    paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
+                    gh1 gh1Var = new gh1(wh1Var, wh1Var.getParentActivity(), canvas, (wh1Var.M.getMeasuredWidth() / 2.0f) + f, (wh1Var.M.getMeasuredHeight() / 2.0f) + f2, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + hl.n, paint, createBitmap, paint2, f, f2, (byte) 0);
+                    wh1Var.n0 = gh1Var;
+                    gh1Var.setOnTouchListener(new q8((byte) 25));
+                    wh1Var.o0 = 0.0f;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    wh1Var.p0 = ofFloat;
+                    ofFloat.addUpdateListener(new hh1(wh1Var, (byte) 0));
+                    wh1Var.p0.addListener(new jb1(wh1Var, (byte) 4));
+                    wh1Var.p0.setDuration(400L);
+                    wh1Var.p0.setInterpolator(dt3.e);
+                    wh1Var.p0.start();
+                    frameLayout.addView(wh1Var.n0, new ViewGroup.LayoutParams(-1, -1));
+                    hl.c3(new bh1(wh1Var, (byte) 1));
+                    return;
+                } else {
+                    return;
+                }
+            case 22:
+                gi1 gi1Var = (gi1) obj;
+                long j = gi1Var.k0;
+                xh1 xh1Var = gi1Var.x0;
+                if (i == -1) {
+                    if (gi1Var.t0) {
+                        gi1Var.j0();
+                        return;
+                    } else {
+                        gi1Var.finishFragment();
+                        return;
+                    }
+                } else if (i == 1) {
+                    int i6 = gi1Var.j0;
+                    if (i6 == 0) {
+                        if (gi1Var.getParentActivity() != null) {
+                            if (gi1Var.t0) {
+                                gi1Var.j0();
+                                return;
+                            } else if (gi1Var.d.a.length() == 0) {
+                                Vibrator vibrator = (Vibrator) gi1Var.getParentActivity().getSystemService("vibrator");
+                                if (vibrator != null) {
+                                    vibrator.vibrate(200L);
+                                }
+                                hl.z3(gi1Var.d);
+                                return;
+                            } else {
+                                gi1Var.t0 = true;
+                                hl.d3(xh1Var, 200L);
+                                if (!gi1Var.x.g()) {
+                                    i3 = ((e) gi1Var).currentAccount;
+                                    gi1Var.u0 = Integer.valueOf(uc7.s1(i3).S(gi1Var.d.getText().toString(), new ArrayList(), gi1Var.y.getText().toString(), 2, false, null, null, -1, gi1Var));
+                                    return;
+                                }
+                                gi1Var.s0 = true;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (i6 == 1) {
+                        if (!gi1Var.c0) {
+                            if (gi1Var.y.length() == 0) {
+                                AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(gi1Var.getParentActivity());
+                                String M0 = ob6.M0(2131752286, null);
+                                id idVar2 = alertDialog$Builder2.a;
+                                idVar2.S = M0;
+                                idVar2.U = ob6.M0(2131752287, null);
+                                alertDialog$Builder2.j(ob6.M0(2131752006, null), null);
+                                gi1Var.showDialog(idVar2);
+                                return;
+                            } else if (!gi1Var.b0) {
+                                Vibrator vibrator2 = (Vibrator) gi1Var.getParentActivity().getSystemService("vibrator");
+                                if (vibrator2 != null) {
+                                    vibrator2.vibrate(200L);
+                                }
+                                hl.z3(gi1Var.W);
+                                return;
+                            } else {
+                                hl.d3(xh1Var, 200L);
+                                i2 = ((e) gi1Var).currentAccount;
+                                uc7 s1 = uc7.s1(i2);
+                                long j2 = gi1Var.k0;
+                                String str2 = gi1Var.Z;
+                                Runnable runnable = new Runnable(this) {
+                                    public final s8 b;
+
+                                    {
+                                        this.b = this;
+                                    }
+
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r2;
+                                        s8 s8Var = this.b;
+                                        switch (b2) {
+                                            case 0:
+                                                gi1 gi1Var2 = (gi1) s8Var.b;
+                                                gi1Var2.l0(false);
+                                                icc iccVar = gi1Var2.v0;
+                                                if (iccVar != null) {
+                                                    iccVar.a(gi1Var2, Long.valueOf(gi1Var2.k0));
+                                                    return;
+                                                }
+                                                return;
+                                            default:
+                                                gi1 gi1Var3 = (gi1) s8Var.b;
+                                                gi1Var3.l0(false);
+                                                icc iccVar2 = gi1Var3.v0;
+                                                if (iccVar2 != null) {
+                                                    iccVar2.a(gi1Var3, Long.valueOf(gi1Var3.k0));
+                                                    return;
+                                                }
+                                                return;
+                                        }
+                                    }
+                                };
+                                Runnable runnable2 = new Runnable(this) {
+                                    public final s8 b;
+
+                                    {
+                                        this.b = this;
+                                    }
+
+                                    @Override
+                                    public final void run() {
+                                        byte b2 = r2;
+                                        s8 s8Var = this.b;
+                                        switch (b2) {
+                                            case 0:
+                                                gi1 gi1Var2 = (gi1) s8Var.b;
+                                                gi1Var2.l0(false);
+                                                icc iccVar = gi1Var2.v0;
+                                                if (iccVar != null) {
+                                                    iccVar.a(gi1Var2, Long.valueOf(gi1Var2.k0));
+                                                    return;
+                                                }
+                                                return;
+                                            default:
+                                                gi1 gi1Var3 = (gi1) s8Var.b;
+                                                gi1Var3.l0(false);
+                                                icc iccVar2 = gi1Var3.v0;
+                                                if (iccVar2 != null) {
+                                                    iccVar2.a(gi1Var3, Long.valueOf(gi1Var3.k0));
+                                                    return;
+                                                }
+                                                return;
+                                        }
+                                    }
+                                };
+                                TLRPC.TL_channels_updateUsername tL_channels_updateUsername = new TLRPC.TL_channels_updateUsername();
+                                tL_channels_updateUsername.channel = s1.h1(j2);
+                                tL_channels_updateUsername.username = str2;
+                                s1.getConnectionsManager().sendRequest(tL_channels_updateUsername, new v97(s1, j2, str2, runnable, gi1Var, tL_channels_updateUsername, runnable2), 64);
+                            }
+                        } else {
+                            icc iccVar = gi1Var.v0;
+                            if (iccVar != null) {
+                                iccVar.a(gi1Var, Long.valueOf(j));
+                            }
+                        }
+                        if (gi1Var.v0 == null) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("step", 2);
+                            bundle.putLong("chatId", j);
+                            bundle.putInt("chatType", 2);
+                            gi1Var.presentFragment(new rc5(bundle), true);
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            case 23:
+                n12 n12Var = (n12) obj;
+                f12 f12Var = n12Var.v2;
+                if (i == -1) {
+                    if (!f12Var.k()) {
+                        n12Var.dismiss();
+                        return;
+                    }
+                    return;
+                }
+                f12Var.x(i);
+                return;
+            case 24:
+                t82 t82Var = (t82) obj;
+                if (i == -1 && !t82Var.c0(true)) {
+                    t82Var.finishFragment();
+                    return;
+                }
+                return;
+            case 25:
+                g92 g92Var = (g92) obj;
+                if (i == -1) {
+                    if (g92Var.b0(true)) {
+                        g92Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i == 1) {
+                    g92Var.n0();
+                    return;
+                } else {
+                    return;
+                }
+            case 26:
+                if (i == -1) {
+                    ((na2) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 27:
+                if (i == -1) {
+                    ((ed2) obj).finishFragment();
+                    return;
+                }
+                return;
+            case 28:
+                pd2 pd2Var = (pd2) obj;
+                if (i == -1) {
+                    if (pd2Var.b0(true)) {
+                        pd2Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i == 1) {
+                    pd2Var.n0(true);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                bg2 bg2Var = (bg2) obj;
+                if (i == -1) {
+                    if (bg2Var.g0(true)) {
+                        bg2Var.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i == 1) {
+                    bg2Var.y0();
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 }

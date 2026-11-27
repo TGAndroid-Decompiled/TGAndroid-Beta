@@ -1,36 +1,51 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.tgnet.tl.TL_stats;
-public final class vxa extends be0 {
-    public final wjb H;
-    public final xxa I;
+import org.telegram.ui.ActionBar.e;
+public final class vxa implements Runnable {
+    public final byte a;
+    public final nx0[] b;
+    public final Context c;
 
-    public vxa(xxa xxaVar, Context context, wjb wjbVar) {
-        super(context);
-        this.I = xxaVar;
-        this.H = wjbVar;
+    public vxa(Context context, nx0[] nx0VarArr) {
+        this.a = (byte) 0;
+        this.c = context;
+        this.b = nx0VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int L;
-        xxa xxaVar = this.I;
-        u2b u2bVar = xxaVar.r;
-        rxa rxaVar = xxaVar.w;
-        if (rxaVar != null && (rxaVar.a instanceof TL_stats.TL_postInteractionCountersStory)) {
-            float L2 = gl.L(1.0f);
-            u2bVar.F.set(L2, L2, getMeasuredWidth() - L, getMeasuredHeight() - L);
-            u2bVar.a = false;
-            u2bVar.b = false;
-            u2bVar.v = true;
-            u2bVar.o = false;
-            u2bVar.z = 1;
-            u2bVar.J = this.H;
-            x2b.h(0L, canvas, this.a, u2bVar);
-            return;
+    public final void run() {
+        nx0 nx0Var;
+        e eVar;
+        byte b = this.a;
+        Context context = this.c;
+        nx0[] nx0VarArr = this.b;
+        switch (b) {
+            case 0:
+                wqa wqaVar = new wqa(context);
+                if (!hl.O1() && !hl.s1(nx0VarArr[0].i1) && (nx0Var = nx0VarArr[0]) != null && (eVar = nx0Var.i1) != null) {
+                    wqaVar.X(eVar);
+                }
+                wqaVar.show();
+                return;
+            case 1:
+                nx0VarArr[0].dismiss();
+                m01.u(context, ob6.M0(2131752000, null));
+                return;
+            case 2:
+                nx0VarArr[0].dismiss();
+                m01.w(context, ob6.M0(2131751995, null), false);
+                return;
+            default:
+                nx0VarArr[0].dismiss();
+                m01.u(context, ob6.M0(2131751992, null));
+                return;
         }
-        super.onDraw(canvas);
+    }
+
+    public vxa(nx0[] nx0VarArr, Context context, byte b) {
+        this.a = b;
+        this.b = nx0VarArr;
+        this.c = context;
     }
 }

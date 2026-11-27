@@ -1,118 +1,55 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ListAdapter;
-public final class cq extends o56 implements eq {
-    public CharSequence T;
-    public zp U;
-    public final Rect V;
-    public int W;
-    public final fq X;
+import android.widget.PopupWindow;
+public final class cq implements PopupWindow.OnDismissListener {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public cq(fq fqVar, Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968938);
-        this.X = fqVar;
-        this.V = new Rect();
-        this.F = fqVar;
-        this.O = true;
-        this.P.setFocusable(true);
-        this.G = new aq(this, (byte) 0);
+    public cq(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
     }
 
     @Override
-    public final CharSequence d() {
-        return this.T;
-    }
-
-    @Override
-    public final void h(CharSequence charSequence) {
-        this.T = charSequence;
-    }
-
-    @Override
-    public final void l(int i) {
-        this.W = i;
-    }
-
-    @Override
-    public final void m(int i, int i2) {
-        ViewTreeObserver viewTreeObserver;
-        np npVar = this.P;
-        boolean isShowing = npVar.isShowing();
-        s();
-        npVar.setInputMethodMode(2);
-        f();
-        er3 er3Var = this.c;
-        er3Var.setChoiceMode(1);
-        wp.d(er3Var, i);
-        wp.c(er3Var, i2);
-        fq fqVar = this.X;
-        int selectedItemPosition = fqVar.getSelectedItemPosition();
-        er3 er3Var2 = this.c;
-        if (npVar.isShowing() && er3Var2 != null) {
-            er3Var2.setListSelectionHidden(false);
-            er3Var2.setSelection(selectedItemPosition);
-            if (er3Var2.getChoiceMode() != 0) {
-                er3Var2.setItemChecked(selectedItemPosition, true);
-            }
+    public final void onDismiss() {
+        View view;
+        byte b = this.a;
+        Object obj = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                ViewTreeObserver viewTreeObserver = ((dq) obj2).X.getViewTreeObserver();
+                if (viewTreeObserver != null) {
+                    viewTreeObserver.removeGlobalOnLayoutListener((vp) obj);
+                    return;
+                }
+                return;
+            default:
+                fu5 fu5Var = (fu5) obj2;
+                fu5Var.m = null;
+                fu5Var.v((ViewGroup) obj);
+                View view2 = fu5Var.v0;
+                if (view2 != null) {
+                    view2.setPressed(false);
+                    fu5Var.v0 = null;
+                }
+                if (fu5Var.u0 != null && (view = fu5Var.f) != null) {
+                    view.setOnTouchListener(null);
+                }
+                fu5Var.u0 = null;
+                fu5Var.O();
+                Runnable runnable = fu5Var.p;
+                if (runnable != null) {
+                    runnable.run();
+                    fu5Var.p = null;
+                    return;
+                }
+                return;
         }
-        if (!isShowing && (viewTreeObserver = fqVar.getViewTreeObserver()) != null) {
-            up upVar = new up(this, (byte) 1);
-            viewTreeObserver.addOnGlobalLayoutListener(upVar);
-            npVar.setOnDismissListener(new bq(this, upVar, (byte) 0));
-        }
-    }
-
-    @Override
-    public final void o(ListAdapter listAdapter) {
-        super.o(listAdapter);
-        this.U = (zp) listAdapter;
-    }
-
-    public final void s() {
-        int i;
-        int i2;
-        np npVar = this.P;
-        Drawable background = npVar.getBackground();
-        fq fqVar = this.X;
-        Rect rect = fqVar.n;
-        if (background != null) {
-            background.getPadding(rect);
-            if (gfc.a(fqVar)) {
-                i = rect.right;
-            } else {
-                i = -rect.left;
-            }
-        } else {
-            i = 0;
-            rect.right = 0;
-            rect.left = 0;
-        }
-        int paddingLeft = fqVar.getPaddingLeft();
-        int paddingRight = fqVar.getPaddingRight();
-        int width = fqVar.getWidth();
-        int i3 = fqVar.h;
-        if (i3 == -2) {
-            int a = fqVar.a(this.U, npVar.getBackground());
-            int i4 = (fqVar.getContext().getResources().getDisplayMetrics().widthPixels - rect.left) - rect.right;
-            if (a > i4) {
-                a = i4;
-            }
-            r(Math.max(a, (width - paddingLeft) - paddingRight));
-        } else if (i3 == -1) {
-            r((width - paddingLeft) - paddingRight);
-        } else {
-            r(i3);
-        }
-        if (gfc.a(fqVar)) {
-            i2 = (((width - paddingRight) - this.e) - this.W) + i;
-        } else {
-            i2 = paddingLeft + this.W + i;
-        }
-        this.f = i2;
     }
 }

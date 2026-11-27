@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
-public final class k extends s64 {
+public final class k extends m74 {
     public final l o;
 
     public k(l lVar, l lVar2) {
@@ -14,11 +14,11 @@ public final class k extends s64 {
     @Override
     public final int g(float f, float f2) {
         l lVar = this.o;
-        ChatActivityEnterView chatActivityEnterView = lVar.Q0;
-        if (chatActivityEnterView.h5 && chatActivityEnterView.D2 != null && chatActivityEnterView.H4.contains(f, f2)) {
+        ChatActivityEnterView chatActivityEnterView = lVar.U0;
+        if (chatActivityEnterView.j5 && chatActivityEnterView.C2 != null && chatActivityEnterView.G4.contains(f, f2)) {
             return 2;
         }
-        if (chatActivityEnterView.Q && chatActivityEnterView.D2 != null && chatActivityEnterView.c5 > 0.1f && lVar.K.contains(f, f2)) {
+        if (chatActivityEnterView.Q && chatActivityEnterView.C2 != null && chatActivityEnterView.b5 > 0.1f && lVar.K.contains(f, f2)) {
             return 4;
         }
         return -1;
@@ -26,11 +26,11 @@ public final class k extends s64 {
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.o.Q0;
-        if (chatActivityEnterView.h5) {
+        ChatActivityEnterView chatActivityEnterView = this.o.U0;
+        if (chatActivityEnterView.j5) {
             arrayList.add(2);
         }
-        if (chatActivityEnterView.Q && chatActivityEnterView.D2 != null && chatActivityEnterView.c5 > 0.1f) {
+        if (chatActivityEnterView.Q && chatActivityEnterView.C2 != null && chatActivityEnterView.b5 > 0.1f) {
             arrayList.add(4);
         }
     }
@@ -41,33 +41,33 @@ public final class k extends s64 {
     }
 
     @Override
-    public final void l(int i, u4 u4Var) {
+    public final void l(int i, v4 v4Var) {
         int i2;
         int i3;
         l lVar = this.o;
-        ChatActivityEnterView chatActivityEnterView = lVar.Q0;
+        ChatActivityEnterView chatActivityEnterView = lVar.U0;
         if (i == 2) {
-            Rect rect = chatActivityEnterView.J4;
-            RectF rectF = chatActivityEnterView.H4;
+            Rect rect = chatActivityEnterView.I4;
+            RectF rectF = chatActivityEnterView.G4;
             rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            u4Var.h(chatActivityEnterView.J4);
-            if (chatActivityEnterView.e5 > 0.5f) {
-                i3 = 2131754927;
+            v4Var.h(chatActivityEnterView.I4);
+            if (chatActivityEnterView.d5 > 0.5f) {
+                i3 = 2131754923;
             } else {
-                i3 = 2131754930;
+                i3 = 2131754926;
             }
-            u4Var.o(k96.M0(i3, null));
+            v4Var.o(ob6.M0(i3, null));
         } else if (i == 4) {
-            Rect rect2 = chatActivityEnterView.J4;
+            Rect rect2 = chatActivityEnterView.I4;
             RectF rectF2 = lVar.K;
             rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
-            u4Var.h(chatActivityEnterView.J4);
+            v4Var.h(chatActivityEnterView.I4);
             if (chatActivityEnterView.P) {
-                i2 = 2131754934;
+                i2 = 2131754930;
             } else {
-                i2 = 2131754935;
+                i2 = 2131754931;
             }
-            u4Var.o(k96.M0(i2, null));
+            v4Var.o(ob6.M0(i2, null));
         }
     }
 }

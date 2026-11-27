@@ -1,150 +1,148 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.tgnet.TLRPC;
-public final class gi8 {
-    public final TLRPC.TL_premiumSubscriptionOption a;
-    public int b;
-    public long c;
-    public long d;
-    public long e;
-    public kl8 f;
-    public jl8 g;
-    public int h;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public final class gi8 extends FrameLayout {
+    public final byte a;
+    public final ji8 b;
 
-    public gi8(TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption) {
-        this.a = tL_premiumSubscriptionOption;
+    public gi8(ji8 ji8Var, Activity activity, byte b) {
+        super(activity);
+        this.a = b;
+        this.b = ji8Var;
     }
 
-    public final void a() {
-        kl8 kl8Var = this.f;
-        if (kl8Var != null && this.g == null) {
-            ArrayList arrayList = kl8Var.h;
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                jl8 jl8Var = (jl8) obj;
-                String str = ((hl8) jl8Var.b.a.get(0)).d;
-                int i2 = this.a.months;
-                if (i2 == 12) {
-                    if (str.equals("P1Y")) {
-                        this.g = jl8Var;
-                        return;
-                    }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        wb2 wb2Var;
+        switch (this.a) {
+            case 0:
+                ji8 ji8Var = this.b;
+                if (ji8Var.E > 0.0f && ji8Var.x != null) {
+                    ji8Var.y.reset();
+                    float width = getWidth() / ji8Var.s.getWidth();
+                    ji8Var.y.postScale(width, width);
+                    ji8Var.w.setLocalMatrix(ji8Var.y);
+                    ji8Var.x.setAlpha((int) (ji8Var.E * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), ji8Var.x);
                 } else {
-                    Locale locale = Locale.ROOT;
-                    if (str.equals("P" + i2 + "M")) {
-                        this.g = jl8Var;
-                        return;
+                    canvas2 = canvas;
+                }
+                if (ji8Var.P && (wb2Var = ji8Var.M) != null) {
+                    wb2Var.d6 = ji8Var.Q;
+                    wb2Var.invalidate();
+                    ji8Var.P = false;
+                }
+                super.dispatchDraw(canvas2);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        switch (this.a) {
+            case 0:
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    this.b.b(true);
+                    return true;
+                }
+                return super.dispatchKeyEventPreIme(keyEvent);
+            default:
+                return super.dispatchKeyEventPreIme(keyEvent);
+        }
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        switch (this.a) {
+            case 1:
+                ji8 ji8Var = this.b;
+                if (view != ji8Var.L && view != ji8Var.K) {
+                    return super.drawChild(canvas, view, j);
+                }
+                canvas.save();
+                canvas.clipRect(0.0f, hl.R1(ji8Var.N, 0.0f, ji8Var.E), getWidth(), hl.R1(ji8Var.O, getHeight(), ji8Var.E));
+                boolean drawChild = super.drawChild(canvas, view, j);
+                canvas.restore();
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        switch (this.a) {
+            case 0:
+                super.onLayout(z, i, i2, i3, i4);
+                this.b.d();
+                return;
+            default:
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.a) {
+            case 2:
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                ji8 ji8Var = this.b;
+                ji8Var.e();
+                for (int i3 = 0; i3 < getChildCount(); i3++) {
+                    View childAt = getChildAt(i3);
+                    ViewGroup viewGroup = ji8Var.U;
+                    if (childAt == viewGroup) {
+                        float f = ji8Var.V;
+                        if (f > 0.0f) {
+                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    ViewGroup viewGroup2 = ji8Var.S;
+                    if (childAt == viewGroup2) {
+                        float f2 = ji8Var.T;
+                        if (f2 > 0.0f) {
+                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f2), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
+                    }
+                    i49 i49Var = ji8Var.R;
+                    if (childAt == i49Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(i49Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
                 }
-            }
+                setMeasuredDimension(size, size2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
         }
     }
 
-    public final String b() {
-        boolean b = w01.b();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.a;
-        if (!b && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f != null) {
-                a();
-                jl8 jl8Var = this.g;
-                if (jl8Var == null) {
-                    return "";
-                }
-                return ((hl8) jl8Var.b.a.get(0)).c;
-            }
-            return "";
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        switch (this.a) {
+            case 0:
+                super.onSizeChanged(i, i2, i3, i4);
+                ji8 ji8Var = this.b;
+                uk0.c(ji8Var.G, ji8Var.c);
+                ji8Var.H.d();
+                return;
+            default:
+                super.onSizeChanged(i, i2, i3, i4);
+                return;
         }
-        return tL_premiumSubscriptionOption.currency;
-    }
-
-    public final int c() {
-        if (this.b == 0) {
-            if (h() == 0) {
-                return 0;
-            }
-            if (this.e != 0) {
-                int i = (int) ((1.0d - (i() / this.e)) * 100.0d);
-                this.b = i;
-                if (i == 0) {
-                    this.b = -1;
-                }
-            }
-        }
-        return this.b;
-    }
-
-    public final String d() {
-        if (!w01.b() && this.a.store_product != null) {
-            if (this.f == null) {
-                return "";
-            }
-            ci0.h();
-            return ci0.f(b(), 6, g(), false);
-        }
-        return ci0.h().e(g(), b());
-    }
-
-    public final String e() {
-        if (!w01.b() && this.a.store_product != null) {
-            if (this.f == null) {
-                return "";
-            }
-            ci0.h();
-            return ci0.f(b(), 6, h(), false);
-        }
-        return ci0.h().e(h(), b());
-    }
-
-    public final String f() {
-        if (!w01.b() && this.a.store_product != null) {
-            if (this.f == null) {
-                return "";
-            }
-            ci0.h();
-            return ci0.f(b(), 6, i(), false);
-        }
-        return ci0.h().e(i(), b());
-    }
-
-    public final long g() {
-        boolean b = w01.b();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.a;
-        if (!b && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f != null) {
-                a();
-                jl8 jl8Var = this.g;
-                if (jl8Var == null) {
-                    return 0L;
-                }
-                return ((hl8) jl8Var.b.a.get(0)).b;
-            }
-            return 0L;
-        }
-        return tL_premiumSubscriptionOption.amount;
-    }
-
-    public final long h() {
-        if (this.c == 0) {
-            long g = g();
-            if (g != 0) {
-                this.c = g / this.a.months;
-            }
-        }
-        return this.c;
-    }
-
-    public final long i() {
-        if (this.d == 0) {
-            long g = g();
-            if (g != 0) {
-                this.d = (long) ((g / this.a.months) * 12.0d);
-            }
-        }
-        return this.d;
     }
 }

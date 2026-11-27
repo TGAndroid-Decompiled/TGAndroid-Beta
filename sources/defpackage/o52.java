@@ -1,30 +1,28 @@
 package defpackage;
-public final class o52 implements Runnable {
-    public final byte a;
-    public final k62 b;
-    public final int c;
 
-    public o52(k62 k62Var, int i, byte b) {
-        this.a = b;
-        this.b = k62Var;
-        this.c = i;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class o52 extends y46 {
+    public final ar0 r;
+
+    public o52(ar0 ar0Var, Context context) {
+        super(context);
+        this.r = ar0Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        k62 k62Var = this.b;
-        switch (b) {
-            case 0:
-                k62Var.h0(i, null);
-                return;
-            case 1:
-                k62Var.d0(i);
-                return;
-            default:
-                k62Var.h0(i, null);
-                return;
-        }
+    public final int k(int i, View view) {
+        int topScrollOffset;
+        int k = super.k(i, view);
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.r.R;
+        int paddingTop = chatAttachAlertPhotoLayout.F.getPaddingTop();
+        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
+        return k - (paddingTop - topScrollOffset);
+    }
+
+    @Override
+    public final int m(int i) {
+        return super.m(i) << 1;
     }
 }

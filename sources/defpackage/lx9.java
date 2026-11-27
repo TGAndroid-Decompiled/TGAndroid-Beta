@@ -1,49 +1,25 @@
 package defpackage;
 
-import android.view.View;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-public final class lx9 implements Runnable {
+import androidx.recyclerview.widget.RecyclerView;
+public final class lx9 extends v79 {
     public final byte a;
-    public final px9 b;
-    public final Integer c;
+    public final bn0 b;
 
-    public lx9(px9 px9Var, Integer num, byte b) {
+    public lx9(bn0 bn0Var, byte b) {
         this.a = b;
-        this.b = px9Var;
-        this.c = num;
+        this.b = bn0Var;
     }
 
     @Override
-    public final void run() {
+    public final void b(RecyclerView recyclerView, int i, int i2) {
         byte b = this.a;
-        px9 px9Var = this.b;
+        bn0 bn0Var = this.b;
         switch (b) {
             case 0:
-                px9Var.d(this.c);
+                ((bj3) bn0Var.c).U();
                 return;
             default:
-                Integer num = this.c;
-                if (num != null) {
-                    try {
-                        px9Var.Q.performHapticFeedback(0, 1);
-                    } catch (Exception unused) {
-                    }
-                    jw9 jw9Var = (jw9) px9Var;
-                    tx9 tx9Var = jw9Var.T.e;
-                    List list = tx9.b2;
-                    tx9Var.k();
-                    TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-                    View view = jw9Var.R;
-                    long j = ((dx9) view).e.documentId;
-                    tL_emojiStatus.document_id = j;
-                    tx9Var.o(view, Long.valueOf(j), ((dx9) jw9Var.R).e.document, jw9Var.S, num);
-                    if (jw9Var.S == null) {
-                        hq6.d0(tx9Var.W).E1(tL_emojiStatus);
-                        return;
-                    }
-                    return;
-                }
+                ((bj3) bn0Var.c).U();
                 return;
         }
     }

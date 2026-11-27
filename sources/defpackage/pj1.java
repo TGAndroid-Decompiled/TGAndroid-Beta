@@ -1,23 +1,27 @@
 package defpackage;
-public final class pj1 extends wj1 {
-    public final wj1 a;
-    public final wj1 b;
+public final class pj1 {
+    public static final oj1 b = new Object();
+    public final Object a;
 
-    public pj1(wj1 wj1Var, wj1 wj1Var2) {
-        this.a = wj1Var;
-        wj1Var2.getClass();
-        this.b = wj1Var2;
-    }
-
-    @Override
-    public final boolean b(char c) {
-        if (this.a.b(c) && this.b.b(c)) {
+    public final boolean equals(Object obj) {
+        if (obj instanceof pj1) {
+            if (!this.a.equals(((pj1) obj).a)) {
+                return false;
+            }
             return true;
         }
         return false;
     }
 
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
+
     public final String toString() {
-        return "CharMatcher.and(" + this.a + ", " + this.b + ")";
+        Object obj = this.a;
+        if (obj instanceof nj1) {
+            return ((nj1) obj).toString();
+        }
+        return "Value(" + obj + ')';
     }
 }

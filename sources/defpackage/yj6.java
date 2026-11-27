@@ -1,140 +1,34 @@
 package defpackage;
 
 import android.content.Context;
-import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
-public final class yj6 extends nfa {
-    public final zj6 x2;
+public final class yj6 extends kea {
+    public final zj6 U2;
 
-    public yj6(zj6 zj6Var, Context context, long j, ffa ffaVar, TLRPC.ChatFull chatFull, TLRPC.UserFull userFull, int i, zj6 zj6Var2, xj6 xj6Var, wjb wjbVar, kl0 kl0Var) {
-        super(context, j, ffaVar, 0, null, chatFull, userFull, i, 0, zj6Var2, xj6Var, 0, wjbVar, kl0Var);
-        this.x2 = zj6Var;
+    public yj6(zj6 zj6Var, Context context, String str, String str2, vnb vnbVar) {
+        super(context, null, str, false, str2, false, vnbVar);
+        this.U2 = zj6Var;
     }
 
     @Override
-    public final boolean H() {
-        zj6 zj6Var = this.x2;
-        if (!zj6Var.c0() && zj6Var.a != 3) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void J0(SparseArray sparseArray) {
-        boolean z;
-        int size = sparseArray.size();
-        zj6 zj6Var = this.x2;
-        zj6Var.w = sparseArray;
-        u41 u41Var = zj6Var.O;
-        if (u41Var != null) {
-            if (size > 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            u41Var.setEnabled(z);
-            zj6Var.O.c(size, true);
-            if (zj6Var.S.getClosestTab() == 8) {
-                zj6Var.O.i(k96.G(size, "ArchiveStories", new Object[0]), true, true);
-            }
-        }
-    }
-
-    @Override
-    public final void R0(boolean z) {
-        zj6 zj6Var = this.x2;
-        gl.y2(zj6Var.getParentActivity(), zj6.Z(zj6Var));
-    }
-
-    @Override
-    public final void S0() {
-        super.S0();
-        this.x2.e0();
-    }
-
-    @Override
-    public final void T0(float f) {
-        int i;
-        zj6 zj6Var = this.x2;
-        if (zj6Var.a != 1) {
+    public final void M0(zh6 zh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        String a0;
+        ck6 ck6Var = this.U2.L;
+        if (!z) {
             return;
         }
-        if (Math.round(f - 8.0f) > 0) {
-            i = 1;
+        if (zh6Var != null && zh6Var.m() == 1) {
+            long j = ((TLRPC.Dialog) zh6Var.n(0)).id;
+            if (j != 0 && j != ck6Var.getUserConfig().e()) {
+                a0 = ob6.a0(null, null, 2131748938, ck6Var.getMessagesController().A1(j, true));
+            } else {
+                a0 = ob6.M0(2131748939, null);
+            }
         } else {
-            i = 0;
+            a0 = ob6.a0(null, null, 2131748941, ob6.G(i, "Chats", new Object[0]));
         }
-        ch6 ch6Var = zj6Var.K;
-        if (ch6Var != null && zj6Var.M != i) {
-            zj6Var.M = i;
-            ch6Var.r(zj6Var.L[i], true);
-        }
-        zj6Var.f0(true);
-    }
-
-    @Override
-    public final int getInitialTab() {
-        return this.x2.T;
-    }
-
-    @Override
-    public final String getStoriesHashtag() {
-        return this.x2.h;
-    }
-
-    @Override
-    public final String getStoriesHashtagUsername() {
-        return this.x2.n;
-    }
-
-    @Override
-    public final boolean h0() {
-        zj6 zj6Var = this.x2;
-        if (zj6Var.a == 0 && zj6Var.e == zj6Var.getUserConfig().e() && zj6Var.f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean i0() {
-        return this.x2.c0();
-    }
-
-    @Override
-    public final boolean k0() {
-        if (this.x2.a == 2) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void l1(boolean z) {
-        if (this.F1 != z) {
-            super.l1(z);
-            zj6 zj6Var = this.x2;
-            if (zj6Var.c0()) {
-                if (z) {
-                    r1(null);
-                }
-                this.P1 = z;
-            }
-            fm0 fm0Var = zj6Var.P;
-            if (fm0Var != null) {
-                fm0Var.a(z, true);
-            }
-        }
-    }
-
-    @Override
-    public final boolean q() {
-        return !this.x2.c0();
-    }
-
-    @Override
-    public final boolean s0() {
-        return this.x2.c0();
+        v21 Q = d31.b0(ck6Var).Q(2131624029, 36, hl.S2(a0));
+        Q.s = false;
+        Q.k(true);
     }
 }

@@ -1,6 +1,6 @@
 package defpackage;
-public abstract class fy8 {
-    public static final int[] a = {16843036, 16843156, 16843157, 16843158, 16843532, 16843533};
-    public static final int[] b = {16842960, 16843161};
-    public static final int[] c = {16843161, 16843849, 16843850, 16843851};
+
+import java.util.List;
+public interface fy8 {
+    void a(gi0 gi0Var, List list);
 }

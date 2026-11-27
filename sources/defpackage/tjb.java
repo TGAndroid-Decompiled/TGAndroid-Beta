@@ -1,8 +1,6 @@
 package defpackage;
-
-import java.util.HashSet;
-public interface tjb {
-    void addColorKeys(HashSet hashSet);
-
-    void updateColors();
+public final class tjb extends hy7 {
+    public tjb(String str) {
+        super(str, null, false, 1);
+    }
 }

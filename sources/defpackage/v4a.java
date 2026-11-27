@@ -1,62 +1,66 @@
 package defpackage;
 
-import java.util.ArrayDeque;
-import java.util.concurrent.Executor;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.logging.Logger;
-public final class v4a implements Executor {
-    public static final Logger f = Logger.getLogger(v4a.class.getName());
-    public final Executor a;
-    public final ArrayDeque b = new ArrayDeque();
-    public int c = 1;
-    public long d = 0;
-    public final tq4 e = new tq4(this);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.Editable;
+import org.telegram.tgnet.TLRPC;
+public final class v4a extends ot3 {
+    public final jl0 F;
+    public final int G;
+    public final a5a H;
 
-    public v4a(Executor executor) {
-        fre.h(executor);
-        this.a = executor;
+    public v4a(a5a a5aVar, Context context, wma wmaVar, String str, int i, vnb vnbVar, jl0 jl0Var, int i2) {
+        super(context, wmaVar, str, true, i, vnbVar);
+        this.H = a5aVar;
+        this.F = jl0Var;
+        this.G = i2;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        fre.h(runnable);
-        synchronized (this.b) {
-            int i = this.c;
-            if (i != 4 && i != 3) {
-                long j = this.d;
-                boolean z = true;
-                xo9 xo9Var = new xo9(runnable, (byte) 1);
-                this.b.add(xo9Var);
-                this.c = 2;
-                try {
-                    this.a.execute(this.e);
-                    if (this.c == 2) {
-                        synchronized (this.b) {
-                            if (this.d == j && this.c == 2) {
-                                this.c = 3;
-                            }
-                        }
-                        return;
-                    }
-                    return;
-                } catch (Error | RuntimeException e) {
-                    synchronized (this.b) {
-                        int i2 = this.c;
-                        if ((i2 != 1 && i2 != 2) || !this.b.removeLastOccurrence(xo9Var)) {
-                            z = false;
-                        }
-                        if (!(e instanceof RejectedExecutionException) || z) {
-                            throw e;
-                        }
-                    }
-                    return;
-                }
-            }
-            this.b.add(runnable);
+    public final void b(Editable editable) {
+        TLRPC.TL_textWithEntities tL_textWithEntities;
+        a5a a5aVar = this.H;
+        r47 r47Var = a5aVar.h2;
+        TLRPC.MessageAction messageAction = a5aVar.g2;
+        if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
+            tL_textWithEntities = new TLRPC.TL_textWithEntities();
+            ((TLRPC.TL_messageActionStarGift) messageAction).message = tL_textWithEntities;
+        } else if (messageAction instanceof TLRPC.TL_messageActionGiftCode) {
+            TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = (TLRPC.TL_messageActionGiftCode) messageAction;
+            tL_messageActionGiftCode.flags |= 16;
+            tL_textWithEntities = new TLRPC.TL_textWithEntities();
+            tL_messageActionGiftCode.message = tL_textWithEntities;
+        } else if (messageAction instanceof TLRPC.TL_messageActionGiftPremium) {
+            TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium = (TLRPC.TL_messageActionGiftPremium) messageAction;
+            tL_messageActionGiftPremium.flags |= 16;
+            tL_textWithEntities = new TLRPC.TL_textWithEntities();
+            tL_messageActionGiftPremium.message = tL_textWithEntities;
+        } else {
+            return;
         }
+        CharSequence[] charSequenceArr = {a5aVar.o2.getText()};
+        tL_textWithEntities.entities = ls6.d0(this.G).Y(charSequenceArr, true, true);
+        tL_textWithEntities.text = charSequenceArr[0].toString();
+        r47Var.K5();
+        a5aVar.f2.i0(r47Var, true);
+        a5aVar.p2.O(true);
+        a5aVar.c1(true);
     }
 
-    public final String toString() {
-        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.a + "}";
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int L = hl.L(10.0f);
+        int measuredWidth = getMeasuredWidth() - hl.L(10.0f);
+        int measuredHeight = getMeasuredHeight();
+        jl0 jl0Var = this.F;
+        jl0Var.setBounds(L, 0, measuredWidth, measuredHeight);
+        jl0Var.draw(canvas);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        setPadding(hl.L(16.0f), 0, hl.L(12.0f), 0);
+        super.onMeasure(i, i2);
     }
 }

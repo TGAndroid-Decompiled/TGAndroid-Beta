@@ -1,129 +1,242 @@
 package defpackage;
+public final class r7e {
+    public static final r7e b = new r7e((byte) 0);
+    public static final r7e c = new r7e((byte) 1);
+    public static final r7e d = new r7e((byte) 2);
+    public static final r7e e = new r7e((byte) 3);
+    public static final r7e f = new r7e((byte) 4);
+    public static final r7e g = new r7e((byte) 5);
+    public static final r7e h = new r7e((byte) 6);
+    public static final r7e i = new r7e((byte) 7);
+    public final byte a;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-public final class r7e extends LinkedHashMap {
-    public static final r7e b;
-    public boolean a = true;
-
-    static {
-        r7e r7eVar = new r7e();
-        b = r7eVar;
-        r7eVar.a = false;
+    public r7e(byte b2) {
+        this.a = b2;
     }
 
-    public static int b(Object obj) {
-        if (obj instanceof byte[]) {
-            byte[] bArr = (byte[]) obj;
-            int length = bArr.length;
-            Charset charset = h3e.a;
-            int i = length;
-            for (byte b2 : bArr) {
-                i = (i * 31) + b2;
-            }
-            if (i == 0) {
-                return 1;
-            }
-            return i;
-        } else if (!(obj instanceof dke)) {
-            return obj.hashCode();
-        } else {
-            fvc.b();
-            return 0;
-        }
-    }
-
-    public final void c() {
-        if (this.a) {
-            return;
-        }
-        fvc.b();
-    }
-
-    @Override
-    public final void clear() {
-        c();
-        super.clear();
-    }
-
-    @Override
-    public final Set entrySet() {
-        if (isEmpty()) {
-            return Collections.EMPTY_SET;
-        }
-        return super.entrySet();
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        boolean equals;
-        if (obj instanceof Map) {
-            Map map = (Map) obj;
-            if (this != map) {
-                if (size() == map.size()) {
-                    for (Map.Entry entry : entrySet()) {
-                        if (map.containsKey(entry.getKey())) {
-                            Object value = entry.getValue();
-                            Object obj2 = map.get(entry.getKey());
-                            if ((value instanceof byte[]) && (obj2 instanceof byte[])) {
-                                equals = Arrays.equals((byte[]) value, (byte[]) obj2);
-                                continue;
-                            } else {
-                                equals = value.equals(obj2);
-                                continue;
-                            }
-                            if (!equals) {
-                                return false;
+    public final boolean a(int i2) {
+        sse sseVar = null;
+        switch (this.a) {
+            case 0:
+                if (i2 != 0) {
+                    if (i2 != 1) {
+                        if (i2 != 2) {
+                            if (i2 == 3) {
+                                sseVar = t5e.REASON_INVALID;
                             }
                         } else {
-                            return false;
+                            sseVar = t5e.REASON_UPGRADE;
                         }
+                    } else {
+                        sseVar = t5e.REASON_MISSING;
                     }
-                    return true;
+                } else {
+                    sseVar = t5e.REASON_UNKNOWN;
                 }
-                return false;
-            }
-            return true;
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            case 1:
+                if (i2 != 0) {
+                    if (i2 != 1) {
+                        if (i2 != 2) {
+                            if (i2 == 3) {
+                                sseVar = v5e.RESULT_SKIPPED;
+                            }
+                        } else {
+                            sseVar = v5e.RESULT_FAIL;
+                        }
+                    } else {
+                        sseVar = v5e.RESULT_SUCCESS;
+                    }
+                } else {
+                    sseVar = v5e.RESULT_UNKNOWN;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            case 2:
+                if (i2 != 0) {
+                    if (i2 != 1) {
+                        if (i2 == 2) {
+                            sseVar = y5e.CLASSIFICATION_ALL;
+                        }
+                    } else {
+                        sseVar = y5e.CLASSIFICATION_NONE;
+                    }
+                } else {
+                    sseVar = y5e.CLASSIFICATION_UNKNOWN;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            case 3:
+                if (i2 != 0) {
+                    if (i2 != 1) {
+                        if (i2 != 2) {
+                            if (i2 == 3) {
+                                sseVar = z5e.LANDMARK_CONTOUR;
+                            }
+                        } else {
+                            sseVar = z5e.LANDMARK_ALL;
+                        }
+                    } else {
+                        sseVar = z5e.LANDMARK_NONE;
+                    }
+                } else {
+                    sseVar = z5e.LANDMARK_UNKNOWN;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            case 4:
+                if (i2 != 0) {
+                    if (i2 != 1) {
+                        if (i2 != 2) {
+                            if (i2 == 3) {
+                                sseVar = a6e.MODE_SELFIE;
+                            }
+                        } else {
+                            sseVar = a6e.MODE_FAST;
+                        }
+                    } else {
+                        sseVar = a6e.MODE_ACCURATE;
+                    }
+                } else {
+                    sseVar = a6e.MODE_UNKNOWN;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            case 5:
+                if (i2 != 0) {
+                    if (i2 != 1) {
+                        if (i2 != 2) {
+                            if (i2 == 3) {
+                                sseVar = f6e.FORMAT_MONOCHROME;
+                            }
+                        } else {
+                            sseVar = f6e.FORMAT_RGB8;
+                        }
+                    } else {
+                        sseVar = f6e.FORMAT_LUMINANCE;
+                    }
+                } else {
+                    sseVar = f6e.FORMAT_UNKNOWN;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            case 6:
+                switch (i2) {
+                    case 0:
+                        sseVar = qge.UNRECOGNIZED;
+                        break;
+                    case 1:
+                        sseVar = qge.CODE_128;
+                        break;
+                    case 2:
+                        sseVar = qge.CODE_39;
+                        break;
+                    case 3:
+                        sseVar = qge.CODE_93;
+                        break;
+                    case 4:
+                        sseVar = qge.CODABAR;
+                        break;
+                    case 5:
+                        sseVar = qge.DATA_MATRIX;
+                        break;
+                    case 6:
+                        sseVar = qge.EAN_13;
+                        break;
+                    case 7:
+                        sseVar = qge.EAN_8;
+                        break;
+                    case 8:
+                        sseVar = qge.ITF;
+                        break;
+                    case 9:
+                        sseVar = qge.QR_CODE;
+                        break;
+                    case 10:
+                        sseVar = qge.UPC_A;
+                        break;
+                    case 11:
+                        sseVar = qge.UPC_E;
+                        break;
+                    case 12:
+                        sseVar = qge.PDF417;
+                        break;
+                    case 13:
+                        sseVar = qge.AZTEC;
+                        break;
+                    case 14:
+                        sseVar = qge.DATABAR;
+                        break;
+                    case 16:
+                        sseVar = qge.TEZ_CODE;
+                        break;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
+            default:
+                switch (i2) {
+                    case 0:
+                        sseVar = ihe.UNKNOWN_FORMAT;
+                        break;
+                    case 1:
+                        sseVar = ihe.CONTACT_INFO;
+                        break;
+                    case 2:
+                        sseVar = ihe.EMAIL;
+                        break;
+                    case 3:
+                        sseVar = ihe.ISBN;
+                        break;
+                    case 4:
+                        sseVar = ihe.PHONE;
+                        break;
+                    case 5:
+                        sseVar = ihe.PRODUCT;
+                        break;
+                    case 6:
+                        sseVar = ihe.SMS;
+                        break;
+                    case 7:
+                        sseVar = ihe.TEXT;
+                        break;
+                    case 8:
+                        sseVar = ihe.URL;
+                        break;
+                    case 9:
+                        sseVar = ihe.WIFI;
+                        break;
+                    case 10:
+                        sseVar = ihe.GEO;
+                        break;
+                    case 11:
+                        sseVar = ihe.CALENDAR_EVENT;
+                        break;
+                    case 12:
+                        sseVar = ihe.DRIVER_LICENSE;
+                        break;
+                    case 13:
+                        sseVar = ihe.BOARDING_PASS;
+                        break;
+                }
+                if (sseVar == null) {
+                    return false;
+                }
+                return true;
         }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        int i = 0;
-        for (Map.Entry entry : entrySet()) {
-            i += b(entry.getKey()) ^ b(entry.getValue());
-        }
-        return i;
-    }
-
-    @Override
-    public final Object put(Object obj, Object obj2) {
-        c();
-        Charset charset = h3e.a;
-        obj.getClass();
-        obj2.getClass();
-        return super.put(obj, obj2);
-    }
-
-    @Override
-    public final void putAll(Map map) {
-        c();
-        for (Object obj : map.keySet()) {
-            Charset charset = h3e.a;
-            obj.getClass();
-            map.get(obj).getClass();
-        }
-        super.putAll(map);
-    }
-
-    @Override
-    public final Object remove(Object obj) {
-        c();
-        return super.remove(obj);
     }
 }

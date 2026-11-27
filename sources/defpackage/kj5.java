@@ -1,16 +1,28 @@
 package defpackage;
 
-import android.os.Build;
-public abstract class kj5 {
-    public static final ym5 a;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class kj5 implements mj5, IInterface {
+    public final IBinder a;
 
-    static {
-        ym5 s;
-        if (Build.VERSION.SDK_INT < 32) {
-            s = ym5.p(4, 12, 252, 6396, 4);
-        } else {
-            s = ym5.s(12, 252, 6396, 4, 3145980, 82172, 737532, 9126140, 33904892, 202070268, 744444, 67108860, 743676, 3152124, 88316, 81980, 205215996, 3890172);
+    public kj5(IBinder iBinder) {
+        this.a = iBinder;
+    }
+
+    public final void a(Parcel parcel, int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            this.a.transact(i, parcel, obtain, 0);
+            obtain.readException();
+        } finally {
+            parcel.recycle();
+            obtain.recycle();
         }
-        a = s;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

@@ -1,25 +1,25 @@
 package defpackage;
-public final class jt3 implements Runnable {
-    public final byte a;
-    public final lt3 b;
+public final class jt3 {
+    public static final jt3 a;
+    public static final jt3 b;
+    public static final jt3 c;
+    public static final jt3[] d;
 
-    public jt3(lt3 lt3Var, byte b) {
-        this.a = b;
-        this.b = lt3Var;
+    static {
+        ?? r0 = new Enum("NONE", 0);
+        a = r0;
+        ?? r1 = new Enum("VERTICAL", 1);
+        b = r1;
+        ?? r3 = new Enum("FULL", 2);
+        c = r3;
+        d = new jt3[]{r0, r1, r3};
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        lt3 lt3Var = this.b;
-        switch (b) {
-            case 0:
-                lt3Var.post(new jt3(lt3Var, (byte) 1));
-                return;
-            default:
-                lt3Var.h();
-                lt3Var.d();
-                return;
-        }
+    public static jt3 valueOf(String str) {
+        return (jt3) Enum.valueOf(jt3.class, str);
+    }
+
+    public static jt3[] values() {
+        return (jt3[]) d.clone();
     }
 }

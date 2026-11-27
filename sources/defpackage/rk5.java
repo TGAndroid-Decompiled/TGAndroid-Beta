@@ -1,24 +1,22 @@
 package defpackage;
-public final class rk5 implements Runnable {
-    public final byte a;
-    public final sk5 b;
+public final class rk5 {
+    public static final rk5 a;
+    public static final rk5 b;
+    public static final rk5[] c;
 
-    public rk5(sk5 sk5Var, byte b) {
-        this.a = b;
-        this.b = sk5Var;
+    static {
+        ?? r0 = new Enum("BACK", 0);
+        a = r0;
+        ?? r1 = new Enum("MENU", 1);
+        b = r1;
+        c = new rk5[]{r0, r1};
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        sk5 sk5Var = this.b;
-        switch (b) {
-            case 0:
-                sk5Var.e.P(true);
-                return;
-            default:
-                sk5Var.e.P(true);
-                return;
-        }
+    public static rk5 valueOf(String str) {
+        return (rk5) Enum.valueOf(rk5.class, str);
+    }
+
+    public static rk5[] values() {
+        return (rk5[]) c.clone();
     }
 }

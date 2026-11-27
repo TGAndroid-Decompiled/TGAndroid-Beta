@@ -1,73 +1,58 @@
 package defpackage;
 
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.os.Build;
-import android.view.View;
-import android.view.WindowInsets;
-public abstract class bdc {
-    public static void a(WindowInsets windowInsets, View view) {
-        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296700);
-        if (onApplyWindowInsetsListener != null) {
-            onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
-        }
-    }
+import android.graphics.RectF;
+public final class bdc {
+    public final RectF e = new RectF();
+    public final adc a = new adc(0.0f);
+    public final adc b = new adc(0.0f);
+    public final adc c = new adc(0.0f);
+    public final adc d = new adc(0.0f);
 
-    public static vxc b(View view, vxc vxcVar, Rect rect) {
-        WindowInsets g = vxcVar.g();
-        if (g != null) {
-            return vxc.h(view, view.computeSystemWindowInsets(g, rect));
-        }
-        rect.setEmpty();
-        return vxcVar;
-    }
-
-    public static ColorStateList c(View view) {
-        return view.getBackgroundTintList();
-    }
-
-    public static PorterDuff.Mode d(View view) {
-        return view.getBackgroundTintMode();
-    }
-
-    public static float e(View view) {
-        return view.getElevation();
-    }
-
-    public static void f(View view, ColorStateList colorStateList) {
-        view.setBackgroundTintList(colorStateList);
-    }
-
-    public static void g(View view, PorterDuff.Mode mode) {
-        view.setBackgroundTintMode(mode);
-    }
-
-    public static void h(View view, float f) {
-        view.setElevation(f);
-    }
-
-    public static void i(View view, no7 no7Var) {
-        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener;
-        if (no7Var != null) {
-            onApplyWindowInsetsListener = new adc(view, no7Var);
+    public final boolean a(float f) {
+        boolean z;
+        boolean z2;
+        boolean a = this.a.a(f);
+        if (!this.b.a(f) && !a) {
+            z = false;
         } else {
-            onApplyWindowInsetsListener = null;
+            z = true;
         }
-        if (Build.VERSION.SDK_INT < 30) {
-            view.setTag(2131296689, onApplyWindowInsetsListener);
-        }
-        if (view.getTag(2131296688) != null) {
-            return;
-        }
-        if (onApplyWindowInsetsListener != null) {
-            view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
+        if (!this.c.a(f) && !z) {
+            z2 = false;
         } else {
-            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296700));
+            z2 = true;
         }
+        if (this.d.a(f) || z2) {
+            return true;
+        }
+        return false;
     }
 
-    public static void j(View view) {
-        view.stopNestedScroll();
+    public final boolean b(float f, float f2, float f3, float f4) {
+        if (!this.a.b(f) && !this.b.b(f2) && !this.c.b(f3) && !this.d.b(f4)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void c(boolean z) {
+        this.a.c(z);
+        this.b.c(z);
+        this.c.c(z);
+        this.d.c(z);
+    }
+
+    public final void d(float f, float f2, float f3, float f4) {
+        this.a.d(f);
+        this.b.d(f2);
+        this.c.d(f3);
+        this.d.d(f4);
+    }
+
+    public final void e(float f, float f2, float f3, float f4) {
+        this.a.c = f;
+        this.b.c = f2;
+        this.c.c = f3;
+        this.d.c = f4;
     }
 }

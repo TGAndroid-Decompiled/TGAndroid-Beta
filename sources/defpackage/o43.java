@@ -1,7 +1,14 @@
 package defpackage;
-public abstract class o43 extends tg6 {
-    @Override
-    public final void a(ild ildVar) {
-        ildVar.d(this);
-    }
+public interface o43 {
+    long a(long j);
+
+    boolean b(p43 p43Var, long j);
+
+    po5 c(long j);
+
+    void clear();
+
+    long d(long j);
+
+    void e(long j);
 }

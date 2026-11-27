@@ -1,4 +1,9 @@
 package defpackage;
 public abstract class e2f {
-    public static final int a = 0;
+    public static boolean a(byte b) {
+        if (b > -65) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,17 +1,25 @@
 package defpackage;
-public final class ayd implements zn7 {
-    public static final ayd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+import android.content.Context;
+public final class ayd extends e23 {
+    public final jg7 b;
+
+    public ayd(jg7 jg7Var) {
+        super((byte) 4);
+        this.b = jg7Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final Object a(Object obj) {
+        ggd q31Var;
+        lm5 lm5Var = (lm5) obj;
+        Context b = this.b.b();
+        j05.b.getClass();
+        if (c15.a(b) >= 204700000) {
+            q31Var = new qoc(b, lm5Var);
+        } else {
+            q31Var = new q31(b, lm5Var);
         }
-        throw new ClassCastException();
+        return new ahe(lm5Var, q31Var, caf.c());
     }
 }

@@ -1,24 +1,17 @@
 package defpackage;
+public final class lrd implements zq7 {
+    public static final lrd a = new Object();
 
-import android.os.Parcel;
-import android.os.ParcelFileDescriptor;
-import android.os.Parcelable;
-public final class lrd extends b4 {
-    public static final Parcelable.Creator<lrd> CREATOR = new rpd((byte) 5);
-    public final int a;
-    public final ParcelFileDescriptor b;
-
-    public lrd(int i, ParcelFileDescriptor parcelFileDescriptor) {
-        this.a = i;
-        this.b = parcelFileDescriptor;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.k(parcel, 3, this.b, i);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

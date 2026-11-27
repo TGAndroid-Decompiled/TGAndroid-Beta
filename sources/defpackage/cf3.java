@@ -1,454 +1,53 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.RectF;
+import android.os.Bundle;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public abstract class cf3 {
-    public static boolean A(TLRPC.EmojiStatus emojiStatus) {
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return false;
+import org.telegram.ui.ProfileActivity;
+public final class cf3 extends b5b {
+    public final qx6 J;
+
+    public cf3(Context context, long j, qx6 qx6Var) {
+        super(context);
+        this.J = qx6Var;
+        this.a = new RectF();
+        this.f = 0.0f;
+        hn hnVar = new hn(false, true, true);
+        this.r = hnVar;
+        hn hnVar2 = new hn(false, true, false);
+        this.s = hnVar2;
+        hnVar.setCallback(this);
+        hnVar2.setCallback(this);
+        this.n = Long.valueOf(j);
+        rb0 rb0Var = new rb0((vnb) null);
+        rb0Var.p = 1.5f;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.h = imageReceiver;
+        imageReceiver.p0(this);
+        if (j == Long.MAX_VALUE) {
+            this.w = ob6.M0(2131752628, null);
+            rb0Var.f(14);
+            imageReceiver.U(null, rb0Var, null);
+            return;
         }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        if ((tL_emojiStatusCollectible.flags & 1) != 0 && tL_emojiStatusCollectible.until <= ((int) (System.currentTimeMillis() / 1000))) {
-            return false;
-        }
-        return true;
+        String G = wf3.G(imageReceiver, rb0Var, uc7.s1(yac.t0).b2(j));
+        this.w = G;
+        this.w = pv3.m(G, null, false, null, 0);
     }
 
-    public static boolean B(long j) {
-        if ((4611686018427387904L & j) != 0 && (j & Long.MIN_VALUE) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean C(long j) {
-        if ((2305843009213693952L & j) != 0 && (j & Long.MIN_VALUE) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean D(long j) {
-        if (!B(j) && !C(j) && j > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static long E(long j) {
-        return (j & 4294967295L) | 4611686018427387904L;
-    }
-
-    public static long F(int i) {
-        return i | 2305843009213693952L;
-    }
-
-    public static String G(ImageReceiver imageReceiver, pb0 pb0Var, TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            if (l7c.B(user)) {
-                String M0 = k96.M0(2131746073, null);
-                if (pb0Var != null) {
-                    pb0Var.f(12);
-                }
-                if (imageReceiver != null) {
-                    imageReceiver.U(null, pb0Var, null);
-                }
-                return M0;
-            } else if (l7c.D(user)) {
-                String M02 = k96.M0(2131745709, null);
-                if (pb0Var != null) {
-                    pb0Var.f(1);
-                }
-                if (imageReceiver != null) {
-                    imageReceiver.U(null, pb0Var, null);
-                }
-                return M02;
-            } else {
-                String r = l7c.r(user);
-                if (pb0Var != null) {
-                    pb0Var.q(user);
-                }
-                if (imageReceiver != null) {
-                    imageReceiver.U(tLObject, pb0Var, null);
-                }
-                return r;
-            }
-        } else if (tLObject instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-            String str = chat.title;
-            if (pb0Var != null) {
-                pb0Var.p(chat);
-            }
-            if (imageReceiver != null) {
-                imageReceiver.U(tLObject, pb0Var, null);
-            }
-            return str;
+    @Override
+    public final void b() {
+        qx6 qx6Var = this.J;
+        z61 z61Var = (z61) qx6Var.c;
+        z61Var.a0.dismiss();
+        Bundle bundle = new Bundle();
+        long j = ((t61) qx6Var.b).a;
+        if (j > 0) {
+            bundle.putLong("user_id", j);
         } else {
-            return "";
+            bundle.putLong("chat_id", -j);
         }
-    }
-
-    public static double H(String str, String str2) {
-        if (str.length() < str2.length()) {
-            str2 = str;
-            str = str2;
-        }
-        int length = str.length();
-        if (length == 0) {
-            return 1.0d;
-        }
-        String lowerCase = str.toLowerCase();
-        String lowerCase2 = str2.toLowerCase();
-        int[] iArr = new int[lowerCase2.length() + 1];
-        for (int i = 0; i <= lowerCase.length(); i++) {
-            int i2 = i;
-            for (int i3 = 0; i3 <= lowerCase2.length(); i3++) {
-                if (i == 0) {
-                    iArr[i3] = i3;
-                } else if (i3 > 0) {
-                    int i4 = i3 - 1;
-                    int i5 = iArr[i4];
-                    if (lowerCase.charAt(i - 1) != lowerCase2.charAt(i4)) {
-                        i5 = Math.min(Math.min(i5, i2), iArr[i3]) + 1;
-                    }
-                    iArr[i4] = i2;
-                    i2 = i5;
-                }
-            }
-            if (i > 0) {
-                iArr[lowerCase2.length()] = i2;
-            }
-        }
-        return (length - iArr[lowerCase2.length()]) / length;
-    }
-
-    public static boolean a(TLRPC.EmojiStatus emojiStatus, TLRPC.EmojiStatus emojiStatus2) {
-        if (f(emojiStatus) == f(emojiStatus2) && e(emojiStatus) == e(emojiStatus2) && g(emojiStatus) == g(emojiStatus2)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static TLRPC.TL_username b(String str, ArrayList arrayList) {
-        if (arrayList == null) {
-            return null;
-        }
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            TLRPC.TL_username tL_username = (TLRPC.TL_username) obj;
-            if (tL_username != null && TextUtils.equals(tL_username.username, str)) {
-                return tL_username;
-            }
-        }
-        return null;
-    }
-
-    public static long c(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).bot_verification_icon;
-        }
-        if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).bot_verification_icon;
-        }
-        return 0L;
-    }
-
-    public static long d(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).id;
-        }
-        if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).id;
-        }
-        return 0L;
-    }
-
-    public static long e(TLRPC.EmojiStatus emojiStatus) {
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return 0L;
-        }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        if ((tL_emojiStatusCollectible.flags & 1) != 0 && tL_emojiStatusCollectible.until <= ((int) (System.currentTimeMillis() / 1000))) {
-            return 0L;
-        }
-        return tL_emojiStatusCollectible.collectible_id;
-    }
-
-    public static long f(TLRPC.EmojiStatus emojiStatus) {
-        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
-            TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
-            if ((tL_emojiStatus.flags & 1) != 0 && tL_emojiStatus.until <= ((int) (System.currentTimeMillis() / 1000))) {
-                return 0L;
-            }
-            return tL_emojiStatus.document_id;
-        } else if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return 0L;
-        } else {
-            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-            if ((tL_emojiStatusCollectible.flags & 1) != 0 && tL_emojiStatusCollectible.until <= ((int) (System.currentTimeMillis() / 1000))) {
-                return 0L;
-            }
-            return tL_emojiStatusCollectible.document_id;
-        }
-    }
-
-    public static int g(TLRPC.EmojiStatus emojiStatus) {
-        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
-            TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
-            if ((tL_emojiStatus.flags & 1) != 0) {
-                return tL_emojiStatus.until;
-            }
-            return 0;
-        } else if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-            if ((tL_emojiStatusCollectible.flags & 1) != 0) {
-                return tL_emojiStatusCollectible.until;
-            }
-            return 0;
-        } else {
-            return 0;
-        }
-    }
-
-    public static int h(long j) {
-        return (int) (j & 4294967295L);
-    }
-
-    public static long i(TLRPC.Dialog dialog, TLRPC.DraftMessage draftMessage) {
-        int i;
-        if (draftMessage != null && (i = draftMessage.date) >= dialog.last_message_date) {
-            return i;
-        }
-        return dialog.last_message_date;
-    }
-
-    public static long j(TL_account.RequirementToContact requirementToContact) {
-        if (requirementToContact instanceof TL_account.requirementToContactPaidMessages) {
-            return ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
-        }
-        return 0L;
-    }
-
-    public static String k(int i, long j) {
-        return l(na7.q1(i).Z1(j));
-    }
-
-    public static String l(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            return gl.C2(gl.A2(l7c.r((TLRPC.User) tLObject)));
-        }
-        if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).title;
-        }
-        return "";
-    }
-
-    public static long m(TLRPC.InputPeer inputPeer) {
-        if (inputPeer == null) {
-            return 0L;
-        }
-        long j = inputPeer.user_id;
-        if (j != 0) {
-            return j;
-        }
-        long j2 = inputPeer.chat_id;
-        if (j2 != 0) {
-            return -j2;
-        }
-        return -inputPeer.channel_id;
-    }
-
-    public static long n(TLRPC.Peer peer) {
-        if (peer == null) {
-            return 0L;
-        }
-        long j = peer.user_id;
-        if (j != 0) {
-            return j;
-        }
-        long j2 = peer.chat_id;
-        if (j2 != 0) {
-            return -j2;
-        }
-        return -peer.channel_id;
-    }
-
-    public static String o(String str, ArrayList arrayList) {
-        if (!TextUtils.isEmpty(str)) {
-            return str;
-        }
-        if (arrayList != null) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) arrayList.get(i);
-                if (tL_username != null && ((tL_username.active || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
-                    return tL_username.username;
-                }
-            }
-        }
-        TextUtils.isEmpty(str);
-        return null;
-    }
-
-    public static String p(String str, TLObject tLObject) {
-        if (tLObject instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-            String str2 = chat.username;
-            ArrayList<TLRPC.TL_username> arrayList = chat.usernames;
-            if (str == null) {
-                return o(str2, arrayList);
-            }
-            return u(str2, arrayList, str);
-        } else if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            String str3 = user.username;
-            ArrayList<TLRPC.TL_username> arrayList2 = user.usernames;
-            if (str == null) {
-                return o(str3, arrayList2);
-            }
-            return u(str3, arrayList2, str);
-        } else {
-            return null;
-        }
-    }
-
-    public static String q(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-            return o(chat.username, chat.usernames);
-        } else if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            return o(user.username, user.usernames);
-        } else {
-            return null;
-        }
-    }
-
-    public static String r(int i, long j) {
-        return t(na7.q1(i).Z1(j));
-    }
-
-    public static String s(long j) {
-        return t(na7.q1(y6c.t0).Z1(j));
-    }
-
-    public static String t(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            return gl.C2(gl.A2(l7c.l((TLRPC.User) tLObject)));
-        }
-        if (tLObject instanceof TLRPC.Chat) {
-            return gl.C2(gl.A2(((TLRPC.Chat) tLObject).title));
-        }
-        return "";
-    }
-
-    public static String u(String str, ArrayList arrayList, String str2) {
-        double H;
-        double d = 0.0d;
-        double d2 = -1.0d;
-        String str3 = null;
-        if (arrayList != null) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) arrayList.get(i);
-                if (tL_username != null && tL_username.active && !TextUtils.isEmpty(tL_username.username)) {
-                    if (d2 < 0.0d) {
-                        H = 0.0d;
-                    } else {
-                        H = H(tL_username.username, str2);
-                    }
-                    if (H > d2) {
-                        str3 = tL_username.username;
-                        d2 = H;
-                    }
-                }
-            }
-        }
-        if (!TextUtils.isEmpty(str)) {
-            if (d2 >= 0.0d) {
-                d = H(str, str2);
-            }
-            if (d > d2) {
-                return str;
-            }
-        }
-        return str3;
-    }
-
-    public static String v(long j) {
-        int i = y6c.t0;
-        TLObject Z1 = na7.q1(i).Z1(j);
-        if (Z1 instanceof TLRPC.User) {
-            return k96.d0(i, (TLRPC.User) Z1, null, null);
-        }
-        if (Z1 instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) Z1;
-            if (chat.participants_count > 1) {
-                boolean V = hc2.V(chat);
-                int i2 = chat.participants_count;
-                if (V) {
-                    return k96.H(',', "Subscribers", i2);
-                }
-                return k96.H(',', "Members", i2);
-            } else if (hc2.V(chat)) {
-                return k96.M0(2131751378, null);
-            } else {
-                return k96.M0(2131754876, null);
-            }
-        }
-        return "";
-    }
-
-    public static void w(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.id == 0) {
-            if (dialog instanceof TLRPC.TL_dialog) {
-                TLRPC.Peer peer = dialog.peer;
-                if (peer != null) {
-                    long j = peer.user_id;
-                    if (j != 0) {
-                        dialog.id = j;
-                        return;
-                    }
-                    long j2 = peer.chat_id;
-                    if (j2 != 0) {
-                        dialog.id = -j2;
-                    } else {
-                        dialog.id = -peer.channel_id;
-                    }
-                }
-            } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.id = ((TLRPC.TL_dialogFolder) dialog).folder.id | 2305843009213693952L;
-            } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.id = -dialog.community_id;
-            }
-        }
-    }
-
-    public static boolean x(TLRPC.Dialog dialog) {
-        if (dialog != null && (dialog.flags & 1) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean y(long j) {
-        if (!B(j) && !C(j) && j < 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean z() {
-        TLRPC.User V1 = na7.q1(y6c.t0).V1(0L);
-        if (V1 == null) {
-            return false;
-        }
-        return A(V1.emoji_status);
+        z61Var.presentFragment(new ProfileActivity(bundle, null));
     }
 }

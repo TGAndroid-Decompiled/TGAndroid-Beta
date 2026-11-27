@@ -17,9 +17,9 @@ public final class c extends AnimatorListenerAdapter {
         oVar.v0[1].a();
         oVar.v0[1].setVisibility(8);
         oVar.Q0.Q(oVar.v0[0].b);
-        fib fibVar = oVar.Q0;
+        amb ambVar = oVar.Q0;
         m[] mVarArr = oVar.v0;
-        fibVar.z0 = mVarArr[0].d;
+        ambVar.z0 = mVarArr[0].d;
         boolean z = this.a;
         mVarArr[z ? 1 : 0].setBackgroundDrawable(null);
         oVar.v0[z ? 1 : 0].setLayerType(0, null);

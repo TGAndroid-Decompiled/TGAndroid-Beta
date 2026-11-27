@@ -11,39 +11,39 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ThemeEditorView;
-public class BubbleActivity extends tg0 implements qi5 {
+public class BubbleActivity extends ug0 implements sk5 {
     public static BubbleActivity b0;
     public boolean Q;
     public final ArrayList R = new ArrayList();
-    public yv7 S;
+    public fz7 S;
     public ActionBarLayout T;
-    public mq3 U;
+    public dr3 U;
     public Intent V;
     public boolean W;
     public int X;
     public boolean Y;
-    public o1 Z;
+    public p1 Z;
     public long a0;
 
     public final void A() {
         if (this.S == null) {
             return;
         }
-        gba.w = true;
+        xea.w = true;
         if (SecretMediaViewer.e() && SecretMediaViewer.d().s) {
             SecretMediaViewer.d().c(false, false);
-        } else if (PhotoViewer.C0() && PhotoViewer.r0().V0()) {
-            PhotoViewer.r0().B(false, true);
+        } else if (PhotoViewer.C0() && PhotoViewer.q0().V0()) {
+            PhotoViewer.q0().A(false, true);
         } else if (o.F() && o.u().W) {
             o.u().l(false, true);
         }
         this.S.m(false, -1, -1, null);
-        gba.B = true;
-        this.S.setDelegate(new sg0(this, (byte) 15));
+        xea.B = true;
+        this.S.setDelegate(new tg0(this, (byte) 16));
     }
 
     @Override
-    public final boolean h(org.telegram.ui.ActionBar.d dVar, ActionBarLayout actionBarLayout) {
+    public final boolean h(org.telegram.ui.ActionBar.e eVar, ActionBarLayout actionBarLayout) {
         return true;
     }
 
@@ -58,9 +58,9 @@ public class BubbleActivity extends tg0 implements qi5 {
             return true;
         }
         if (!this.Q) {
-            o1 o1Var = this.Z;
-            if (o1Var != null) {
-                gl.r(o1Var);
+            p1 p1Var = this.Z;
+            if (p1Var != null) {
+                hl.r(p1Var);
                 this.Z = null;
             }
             this.Q = true;
@@ -71,21 +71,21 @@ public class BubbleActivity extends tg0 implements qi5 {
     }
 
     @Override
-    public final boolean l(ActionBarLayout actionBarLayout, ri5 ri5Var) {
-        org.telegram.ui.ActionBar.d dVar = ri5Var.a;
+    public final boolean l(ActionBarLayout actionBarLayout, tk5 tk5Var) {
+        org.telegram.ui.ActionBar.e eVar = tk5Var.a;
         return true;
     }
 
     @Override
     public final void onActivityResult(int i, int i2, Intent intent) {
-        gl2 gl2Var;
+        am2 am2Var;
         super.onActivityResult(i, i2, intent);
         ThemeEditorView themeEditorView = ThemeEditorView.p;
-        if (themeEditorView != null && (gl2Var = themeEditorView.m) != null) {
-            gl2Var.E(i, i2, intent);
+        if (themeEditorView != null && (am2Var = themeEditorView.m) != null) {
+            am2Var.E(i, i2, intent);
         }
         if (!this.T.getFragmentStack().isEmpty()) {
-            ((org.telegram.ui.ActionBar.d) this.T.getFragmentStack().get(this.T.getFragmentStack().size() - 1)).onActivityResultFragment(i, i2, intent);
+            ((org.telegram.ui.ActionBar.e) this.T.getFragmentStack().get(this.T.getFragmentStack().size() - 1)).onActivityResultFragment(i, i2, intent);
         }
     }
 
@@ -95,8 +95,8 @@ public class BubbleActivity extends tg0 implements qi5 {
             super.onBackPressed();
         } else if (this.S.getVisibility() == 0) {
             finish();
-        } else if (PhotoViewer.r0().V0()) {
-            PhotoViewer.r0().B(true, false);
+        } else if (PhotoViewer.q0().V0()) {
+            PhotoViewer.q0().A(true, false);
         } else {
             this.T.G();
         }
@@ -104,8 +104,8 @@ public class BubbleActivity extends tg0 implements qi5 {
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
-        gl.v(this, configuration);
-        gl.r3(getWindow());
+        hl.v(this, configuration);
+        hl.r3(getWindow());
         super.onConfigurationChanged(configuration);
     }
 
@@ -115,40 +115,40 @@ public class BubbleActivity extends tg0 implements qi5 {
         org.telegram.messenger.a.v();
         requestWindowFeature(1);
         setTheme(2131755318);
-        getWindow().setBackgroundDrawable(new x9((byte) 0));
-        if (!gba.r.isEmpty() && !gba.z) {
+        getWindow().setBackgroundDrawable(new y9((byte) 0));
+        if (!xea.r.isEmpty() && !xea.z) {
             try {
                 getWindow().setFlags(8192, 8192);
-                gl.f2();
+                hl.f2();
             } catch (Exception e) {
-                fa4.g(e, true);
+                cc4.g(e, true);
             }
         }
         super.onCreate(bundle);
-        if (!gba.r.isEmpty() && gba.w) {
-            gba.A = (int) (SystemClock.elapsedRealtime() / 1000);
+        if (!xea.r.isEmpty() && xea.w) {
+            xea.A = (int) (SystemClock.elapsedRealtime() / 1000);
         }
-        Typeface typeface = gl.a;
-        bkb.S(this);
-        bkb.J(this, false);
+        Typeface typeface = hl.a;
+        aob.S(this);
+        aob.J(this, false);
         ActionBarLayout actionBarLayout = new ActionBarLayout(this, false);
         this.T = actionBarLayout;
         actionBarLayout.setInBubbleMode(true);
         this.T.setRemoveActionBarExtraHeight(true);
-        mq3 mq3Var = new mq3(this);
-        this.U = mq3Var;
-        setContentView(mq3Var, new ViewGroup.LayoutParams(-1, -1));
+        dr3 dr3Var = new dr3(this);
+        this.U = dr3Var;
+        setContentView(dr3Var, new ViewGroup.LayoutParams(-1, -1));
         RelativeLayout relativeLayout = new RelativeLayout(this);
-        this.U.addView(relativeLayout, nme.c(-1.0f, -1));
-        relativeLayout.addView(this.T.getView(), nme.w(-1, -1));
+        this.U.addView(relativeLayout, tre.c(-1.0f, -1));
+        relativeLayout.addView(this.T.getView(), tre.w(-1, -1));
         this.U.setParentActionBarLayout(this.T);
         this.T.setDrawerLayoutContainer(this.U);
         this.T.setFragmentStack(this.R);
         this.T.setDelegate(this);
-        yv7 yv7Var = new yv7(this);
-        this.S = yv7Var;
-        this.U.addView(yv7Var, nme.c(-1.0f, -1));
-        kk7.e().k(kk7.m4, this);
+        fz7 fz7Var = new fz7(this);
+        this.S = fz7Var;
+        this.U.addView(fz7Var, tre.c(-1.0f, -1));
+        jn7.e().k(jn7.n4, this);
         this.T.Z();
         Intent intent = getIntent();
         if (bundle != null) {
@@ -156,7 +156,7 @@ public class BubbleActivity extends tg0 implements qi5 {
         } else {
             z = false;
         }
-        z(intent, false, z, false, y6c.t0);
+        z(intent, false, z, false, yac.t0);
         b0 = this;
     }
 
@@ -165,13 +165,13 @@ public class BubbleActivity extends tg0 implements qi5 {
         super.onDestroy();
         int i = this.P;
         if (i != -1) {
-            im7.l0.c(new ko2((gk7) im7.n(j5.a(i).a), false, this.a0, (byte) 1));
-            ConnectionsManager.getInstance(j5.a(this.P).a).setAppPaused(false, false);
+            ip7.l0.c(new dp2((fn7) ip7.n(k5.a(i).a), false, this.a0, (byte) 1));
+            ConnectionsManager.getInstance(k5.a(this.P).a).setAppPaused(false, false);
         }
         if (!this.Q) {
-            o1 o1Var = this.Z;
-            if (o1Var != null) {
-                gl.r(o1Var);
+            p1 p1Var = this.Z;
+            if (p1Var != null) {
+                hl.r(p1Var);
                 this.Z = null;
             }
             this.Q = true;
@@ -189,7 +189,7 @@ public class BubbleActivity extends tg0 implements qi5 {
     @Override
     public final void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        z(intent, true, false, false, y6c.t0);
+        z(intent, true, false, false, yac.t0);
     }
 
     @Override
@@ -197,30 +197,30 @@ public class BubbleActivity extends tg0 implements qi5 {
         super.onPause();
         this.T.M();
         org.telegram.messenger.a.E = true;
-        o1 o1Var = this.Z;
-        if (o1Var != null) {
-            gl.r(o1Var);
+        p1 p1Var = this.Z;
+        if (p1Var != null) {
+            hl.r(p1Var);
             this.Z = null;
         }
-        if (!gba.r.isEmpty()) {
-            gba.A = (int) (SystemClock.elapsedRealtime() / 1000);
-            o1 o1Var2 = new o1(this, (byte) 10);
-            this.Z = o1Var2;
-            if (gba.w) {
-                gl.d3(o1Var2, 1000L);
+        if (!xea.r.isEmpty()) {
+            xea.A = (int) (SystemClock.elapsedRealtime() / 1000);
+            p1 p1Var2 = new p1(this, (byte) 10);
+            this.Z = p1Var2;
+            if (xea.w) {
+                hl.d3(p1Var2, 1000L);
             } else {
-                int i = gba.x;
+                int i = xea.x;
                 if (i != 0) {
-                    gl.d3(o1Var2, (i * 1000) + 1000);
+                    hl.d3(p1Var2, (i * 1000) + 1000);
                 }
             }
         } else {
-            gba.A = 0;
+            xea.A = 0;
         }
-        gba.x();
-        yv7 yv7Var = this.S;
-        if (yv7Var != null) {
-            yv7Var.k();
+        xea.x();
+        fz7 fz7Var = this.S;
+        if (fz7Var != null) {
+            fz7Var.k();
         }
         b0 = null;
     }
@@ -232,9 +232,9 @@ public class BubbleActivity extends tg0 implements qi5 {
             return;
         }
         if (!this.T.getFragmentStack().isEmpty()) {
-            ((org.telegram.ui.ActionBar.d) this.T.getFragmentStack().get(this.T.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i, strArr, iArr);
+            ((org.telegram.ui.ActionBar.e) this.T.getFragmentStack().get(this.T.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i, strArr, iArr);
         }
-        hgc.h(iArr, i);
+        mkc.h(iArr, i);
     }
 
     @Override
@@ -242,17 +242,17 @@ public class BubbleActivity extends tg0 implements qi5 {
         super.onResume();
         this.T.N();
         org.telegram.messenger.a.E = false;
-        o1 o1Var = this.Z;
-        if (o1Var != null) {
-            gl.r(o1Var);
+        p1 p1Var = this.Z;
+        if (p1Var != null) {
+            hl.r(p1Var);
             this.Z = null;
         }
-        if (gl.n2(true)) {
+        if (hl.n2(true)) {
             A();
         }
-        if (gba.A != 0) {
-            gba.A = 0;
-            gba.x();
+        if (xea.A != 0) {
+            xea.A = 0;
+            xea.x();
         }
         int visibility = this.S.getVisibility();
         ActionBarLayout actionBarLayout = this.T;
@@ -266,19 +266,19 @@ public class BubbleActivity extends tg0 implements qi5 {
     }
 
     public final void z(Intent intent, boolean z, boolean z2, boolean z3, int i) {
-        mu1 mu1Var;
-        if (!z3 && (gl.n2(true) || gba.B)) {
+        zu1 zu1Var;
+        if (!z3 && (hl.n2(true) || xea.B)) {
             A();
             this.V = intent;
             this.W = z;
             this.Y = z2;
             this.X = i;
-            y6c.h(i).u(false);
+            yac.h(i).u(false);
             return;
         }
-        int intExtra = intent.getIntExtra("currentAccount", y6c.t0);
+        int intExtra = intent.getIntExtra("currentAccount", yac.t0);
         this.P = intExtra;
-        if (!y6c.q(intExtra)) {
+        if (!yac.q(intExtra)) {
             finish();
             return;
         }
@@ -293,21 +293,21 @@ public class BubbleActivity extends tg0 implements qi5 {
                 this.a0 = -longExtra;
                 bundle.putLong("chat_id", longExtra);
             }
-            mu1Var = new mu1(bundle);
-            mu1Var.setInBubbleMode(true);
-            mu1Var.setCurrentAccount(this.P);
+            zu1Var = new zu1(bundle);
+            zu1Var.setInBubbleMode(true);
+            zu1Var.setCurrentAccount(this.P);
         } else {
-            mu1Var = null;
+            zu1Var = null;
         }
-        if (mu1Var == null) {
+        if (zu1Var == null) {
             finish();
             return;
         }
-        kk7.f(this.P).k(kk7.s, Long.valueOf(this.a0));
+        jn7.f(this.P).k(jn7.s, Long.valueOf(this.a0));
         this.T.Z();
-        this.T.b(-1, mu1Var);
-        im7.l0.c(new ko2((gk7) im7.n(j5.a(this.P).a), true, this.a0, (byte) 1));
-        ConnectionsManager.getInstance(j5.a(this.P).a).setAppPaused(false, false);
+        this.T.b(-1, zu1Var);
+        ip7.l0.c(new dp2((fn7) ip7.n(k5.a(this.P).a), true, this.a0, (byte) 1));
+        ConnectionsManager.getInstance(k5.a(this.P).a).setAppPaused(false, false);
         this.T.e0();
     }
 

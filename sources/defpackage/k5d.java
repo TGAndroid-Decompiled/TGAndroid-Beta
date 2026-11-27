@@ -1,5 +1,4 @@
 package defpackage;
-
-import java.util.RandomAccess;
-public final class k5d extends l3 implements RandomAccess {
+public abstract class k5d extends u3d implements m5d {
+    public static final int b = 0;
 }

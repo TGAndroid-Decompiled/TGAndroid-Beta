@@ -1,18 +1,15 @@
 package defpackage;
+public final class vcd {
+    public static final vcd a;
+    public static final vcd[] b;
 
-import com.google.android.gms.common.api.Status;
-public final class vcd implements ua9 {
-    public final byte a;
-    public final Status b;
-
-    public vcd(Status status, byte b) {
-        this.a = b;
-        this.b = status;
+    static {
+        ?? r0 = new Enum("DEFAULT", 0);
+        a = r0;
+        b = new vcd[]{r0, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
-    @Override
-    public final Status a() {
-        byte b = this.a;
-        return this.b;
+    public static vcd[] values() {
+        return (vcd[]) b.clone();
     }
 }

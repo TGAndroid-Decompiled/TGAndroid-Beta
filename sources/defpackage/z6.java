@@ -1,25 +1,32 @@
 package defpackage;
-
-import android.view.View;
-public final class z6 implements View.OnClickListener {
+public final class z6 implements Runnable {
     public final byte a;
-    public final a8 b;
+    public final s7 b;
+    public final int c;
 
-    public z6(a8 a8Var, byte b) {
+    public z6(s7 s7Var, int i, byte b) {
         this.a = b;
-        this.b = a8Var;
+        this.b = s7Var;
+        this.c = i;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         byte b = this.a;
-        a8 a8Var = this.b;
+        int i = this.c;
+        s7 s7Var = this.b;
         switch (b) {
             case 0:
-                a8Var.b();
+                if (s7Var.b.getSwipeBack() != null) {
+                    s7Var.b.getSwipeBack().e(i);
+                    return;
+                }
                 return;
             default:
-                a8Var.b();
+                if (s7Var.b.getSwipeBack() != null) {
+                    s7Var.b.getSwipeBack().e(i);
+                    return;
+                }
                 return;
         }
     }

@@ -1,4 +1,11 @@
 package defpackage;
-public abstract class wzc {
-    public static final yn a = new yn("Fpnv.API", new op5((byte) 1), new Object());
+
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+public interface wzc {
+    Bitmap canvasBitmap(int i);
+
+    Paint font(int i);
+
+    Bitmap image(int i);
 }

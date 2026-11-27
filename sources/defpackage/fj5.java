@@ -1,3 +1,4 @@
 package defpackage;
-public interface fj5 {
+public final class fj5 {
+    public byte[] a;
 }

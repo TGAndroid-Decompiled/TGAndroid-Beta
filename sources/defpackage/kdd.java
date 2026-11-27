@@ -1,56 +1,26 @@
 package defpackage;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-public abstract class kdd {
-    public static final Object a = new Object();
-    public static ckc b;
-
-    public static void a(Context context) {
-        if (b == null) {
-            ckc ckcVar = new ckc(context);
-            b = ckcVar;
-            synchronized (ckcVar.a) {
-                ckcVar.g = true;
-            }
+public final class kdd implements tq2, us3 {
+    @Override
+    public final rc0 a(Context context, String str, ts3 ts3Var) {
+        rc0 rc0Var = new rc0();
+        int a = ts3Var.a(context, str, true);
+        rc0Var.b = a;
+        if (a != 0) {
+            rc0Var.c = 1;
+            return rc0Var;
         }
+        int b = ts3Var.b(context, str);
+        rc0Var.a = b;
+        if (b != 0) {
+            rc0Var.c = -1;
+        }
+        return rc0Var;
     }
 
-    public static void b(Intent intent) {
-        synchronized (a) {
-            if (b != null && intent.getBooleanExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false)) {
-                intent.putExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false);
-                b.c();
-            }
-        }
-    }
-
-    public static void c(Context context, oyc oycVar, Intent intent) {
-        synchronized (a) {
-            a(context);
-            boolean booleanExtra = intent.getBooleanExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false);
-            intent.putExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", true);
-            if (!booleanExtra) {
-                b.a();
-            }
-            oycVar.b(intent).addOnCompleteListener(new dkc(intent, (byte) 0));
-        }
-    }
-
-    public static ComponentName d(Context context, Intent intent) {
-        synchronized (a) {
-            a(context);
-            boolean booleanExtra = intent.getBooleanExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", false);
-            intent.putExtra("com.google.firebase.iid.WakeLockHolder.wakefulintent", true);
-            ComponentName startService = context.startService(intent);
-            if (startService == null) {
-                return null;
-            }
-            if (!booleanExtra) {
-                b.a();
-            }
-            return startService;
-        }
+    @Override
+    public final Object b0(am2 am2Var) {
+        return new q54(am2Var.d(lg7.class));
     }
 }

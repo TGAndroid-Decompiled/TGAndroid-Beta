@@ -6,14 +6,14 @@ import android.location.LocationManager;
 public final class rq0 implements LocationListener {
     public final LocationManager a;
     public final LocationListener[] b;
-    public final p8c c;
+    public final pcc c;
     public final tq0 d;
 
-    public rq0(tq0 tq0Var, LocationManager locationManager, LocationListener[] locationListenerArr, p8c p8cVar) {
+    public rq0(tq0 tq0Var, LocationManager locationManager, LocationListener[] locationListenerArr, pcc pccVar) {
         this.d = tq0Var;
         this.a = locationManager;
         this.b = locationListenerArr;
-        this.c = p8cVar;
+        this.c = pccVar;
     }
 
     @Override

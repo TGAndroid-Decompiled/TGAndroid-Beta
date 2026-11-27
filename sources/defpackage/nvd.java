@@ -1,17 +1,17 @@
 package defpackage;
-public final class nvd implements zn7 {
-    public static final nvd a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class nvd {
+    public static final boolean a(char c, char c2, boolean z) {
+        if (c == c2) {
+            return true;
         }
-        throw new ClassCastException();
+        if (!z) {
+            return false;
+        }
+        char upperCase = Character.toUpperCase(c);
+        char upperCase2 = Character.toUpperCase(c2);
+        if (upperCase == upperCase2 || Character.toLowerCase(upperCase) == Character.toLowerCase(upperCase2)) {
+            return true;
+        }
+        return false;
     }
 }

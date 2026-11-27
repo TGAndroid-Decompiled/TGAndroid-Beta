@@ -1,3 +1,4 @@
 package defpackage;
-public final class wn {
+public interface wn {
+    public static final vn g = new Object();
 }

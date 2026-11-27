@@ -1,62 +1,47 @@
 package defpackage;
 
-import android.os.SystemClock;
-public final class ie2 implements ck6 {
-    public long a;
-    public long b;
-    public boolean c;
-    public Object d;
-    public Object e;
+import org.telegram.tgnet.TLRPC;
+public final class ie2 implements hqb {
+    public final oe2 a;
 
-    public final void a(long j) {
-        this.a = j;
-        if (this.c) {
-            ((adb) this.d).getClass();
-            this.b = SystemClock.elapsedRealtime();
-        }
+    public ie2(oe2 oe2Var) {
+        this.a = oe2Var;
     }
 
     @Override
-    public final void b(zb8 zb8Var) {
-        if (this.c) {
-            a(h());
-        }
-        this.e = zb8Var;
-    }
-
-    public final void c() {
-        if (!this.c) {
-            ((adb) this.d).getClass();
-            this.b = SystemClock.elapsedRealtime();
-            this.c = true;
-        }
+    public final boolean a() {
+        return this.a.G1;
     }
 
     @Override
-    public final zb8 g() {
-        return (zb8) this.e;
+    public final boolean s() {
+        return true;
     }
 
     @Override
-    public final long h() {
-        long j;
-        long j2 = this.a;
-        if (this.c) {
-            ((adb) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.b;
-            zb8 zb8Var = (zb8) this.e;
-            if (zb8Var.a == 1.0f) {
-                j = g8c.T(elapsedRealtime);
+    public final void w(boolean z) {
+        TLRPC.WallPaper wallPaper;
+        oe2 oe2Var = this.a;
+        zu1 zu1Var = oe2Var.u1;
+        oe2Var.G1 = !oe2Var.G1;
+        if (oe2Var.F1 != null) {
+            oe2Var.I1 = true;
+            zu1Var.w7 = true;
+            if (oe2Var.K0()) {
+                wallPaper = null;
             } else {
-                j = elapsedRealtime * zb8Var.c;
+                wallPaper = oe2Var.r1.g;
             }
-            return j + j2;
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            ez3 ez3Var = oe2Var.F1.a;
+            boolean z2 = ez3Var.a;
+            xu1 xu1Var = oe2Var.r1;
+            if (z2) {
+                xu1Var.q(null, wallPaper2, z, Boolean.valueOf(oe2Var.G1), false);
+            } else {
+                xu1Var.q(ez3Var, wallPaper2, z, Boolean.valueOf(oe2Var.G1), false);
+            }
+            zu1Var.w7 = false;
         }
-        return j2;
-    }
-
-    @Override
-    public final boolean i() {
-        return false;
     }
 }

@@ -1,50 +1,53 @@
 package defpackage;
 
-import java.lang.ref.WeakReference;
-public final class zi0 implements Runnable {
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
+public final class zi0 implements Executor {
     public final byte a;
-    public final WeakReference b;
+    public final Handler b;
 
-    public zi0(lj0 lj0Var, byte b) {
+    public zi0(byte b) {
         this.a = b;
         switch (b) {
-            case 2:
-                this.b = new WeakReference(lj0Var);
+            case 1:
+                this.b = new Handler(Looper.getMainLooper());
                 return;
             default:
-                this.b = new WeakReference(lj0Var);
+                this.b = new Handler(Looper.getMainLooper());
                 return;
         }
     }
 
     @Override
-    public final void run() {
+    public final void execute(Runnable runnable) {
         byte b = this.a;
-        WeakReference weakReference = this.b;
+        Handler handler = this.b;
         switch (b) {
             case 0:
-                if (weakReference.get() != null) {
-                    ((aj0) weakReference.get()).Y();
-                    return;
-                }
+                handler.post(runnable);
                 return;
             case 1:
-                if (weakReference.get() != null) {
-                    ((lj0) weakReference.get()).n = false;
+                handler.post(runnable);
+                return;
+            case 2:
+                runnable.getClass();
+                if (handler.post(runnable)) {
                     return;
                 }
-                return;
+                throw new RejectedExecutionException(handler + " is shutting down");
             default:
-                if (weakReference.get() != null) {
-                    ((lj0) weakReference.get()).o = false;
+                runnable.getClass();
+                if (handler.post(runnable)) {
                     return;
                 }
-                return;
+                throw new RejectedExecutionException(handler + " is shutting down");
         }
     }
 
-    public zi0(aj0 aj0Var) {
-        this.a = (byte) 0;
-        this.b = new WeakReference(aj0Var);
+    public zi0(Handler handler, byte b) {
+        this.a = b;
+        this.b = handler;
     }
 }

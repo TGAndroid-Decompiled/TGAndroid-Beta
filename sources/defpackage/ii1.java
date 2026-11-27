@@ -1,110 +1,94 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stats;
-public final class ii1 implements RequestDelegate {
+import java.util.List;
+import org.json.JSONObject;
+public final class ii1 extends yfb implements is4 {
     public final byte a;
-    public final zi1 b;
+    public boolean b;
+    public Object c;
+    public final Object d;
 
-    public ii1(zi1 zi1Var, byte b) {
+    public ii1(Object obj, Object obj2, zw2 zw2Var, byte b) {
+        super(2, zw2Var);
         this.a = b;
-        this.b = zi1Var;
+        this.c = obj;
+        this.d = obj2;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final zw2 create(Object obj, zw2 zw2Var) {
         byte b = this.a;
-        final zi1 zi1Var = this.b;
+        Object obj2 = this.d;
         switch (b) {
             case 0:
-                if (tL_error != null) {
-                    gl.c3(new ki1(tL_error, (byte) 0));
-                    return;
-                } else if (tLObject instanceof TLRPC.Updates) {
-                    gl.c3(new ei1(zi1Var, (byte) 3));
-                    na7.q1(zi1Var.o0).R3((TLRPC.Updates) tLObject, false);
-                    return;
-                } else {
-                    return;
-                }
+                ii1 ii1Var = new ii1((ji1) obj2, zw2Var, (byte) 0);
+                ii1Var.c = obj;
+                return ii1Var;
             case 1:
-                gl.c3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r3;
-                        TLObject tLObject2 = tLObject;
-                        zi1 zi1Var2 = zi1Var;
-                        switch (b2) {
-                            case 0:
-                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
-                                    TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
-                                    zi1Var2.l1 = uxa.f0(tL_payments_starsRevenueStats.top_hours_graph, k96.M0(2131748210, null), 0, false);
-                                    TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
-                                    if (statsGraph != null) {
-                                        statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
-                                    }
-                                    zi1Var2.m1 = uxa.f0(statsGraph, k96.M0(2131748209, null), 2, false);
-                                    gxa gxaVar = zi1Var2.l1;
-                                    if (gxaVar != null) {
-                                        gxaVar.n = true;
-                                    }
-                                    zi1Var2.g1 = tL_payments_starsRevenueStats.usd_rate;
-                                    zi1Var2.M(true, tL_payments_starsRevenueStats.status);
-                                    zi1Var2.Y0.animate().alpha(0.0f).setDuration(380L).setInterpolator(s33.h).withEndAction(new ei1(zi1Var2, (byte) 5)).start();
-                                    zi1Var2.F();
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
-                                    zi1Var2.E((TLRPC.TL_payments_starsRevenueStats) tLObject2);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+                ii1 ii1Var2 = new ii1((ji1) obj2, zw2Var, (byte) 1);
+                ii1Var2.c = obj;
+                return ii1Var2;
+            case 2:
+                ii1 ii1Var3 = new ii1((o4a) obj2, zw2Var, (byte) 2);
+                ii1Var3.c = obj;
+                return ii1Var3;
+            case 3:
+                ii1 ii1Var4 = new ii1((List) obj2, zw2Var, (byte) 3);
+                ii1Var4.c = obj;
+                return ii1Var4;
+            case 4:
+                return new ii1((is4) this.c, (k63) obj2, zw2Var, (byte) 4);
+            case 5:
+                ii1 ii1Var5 = new ii1((o83) obj2, zw2Var, (byte) 5);
+                ii1Var5.c = obj;
+                return ii1Var5;
+            case 6:
+                return new ii1((av5) this.c, (ur4) obj2, zw2Var, (byte) 6);
+            case 7:
+                ii1 ii1Var6 = new ii1((aa9) obj2, zw2Var, (byte) 7);
+                ii1Var6.c = obj;
+                return ii1Var6;
             default:
-                gl.c3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r3;
-                        TLObject tLObject2 = tLObject;
-                        zi1 zi1Var2 = zi1Var;
-                        switch (b2) {
-                            case 0:
-                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
-                                    TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
-                                    zi1Var2.l1 = uxa.f0(tL_payments_starsRevenueStats.top_hours_graph, k96.M0(2131748210, null), 0, false);
-                                    TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
-                                    if (statsGraph != null) {
-                                        statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
-                                    }
-                                    zi1Var2.m1 = uxa.f0(statsGraph, k96.M0(2131748209, null), 2, false);
-                                    gxa gxaVar = zi1Var2.l1;
-                                    if (gxaVar != null) {
-                                        gxaVar.n = true;
-                                    }
-                                    zi1Var2.g1 = tL_payments_starsRevenueStats.usd_rate;
-                                    zi1Var2.M(true, tL_payments_starsRevenueStats.status);
-                                    zi1Var2.Y0.animate().alpha(0.0f).setDuration(380L).setInterpolator(s33.h).withEndAction(new ei1(zi1Var2, (byte) 5)).start();
-                                    zi1Var2.F();
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
-                                    zi1Var2.E((TLRPC.TL_payments_starsRevenueStats) tLObject2);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+                ii1 ii1Var7 = new ii1((nm4) obj2, zw2Var, (byte) 8);
+                ii1Var7.c = obj;
+                return ii1Var7;
         }
+    }
+
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        byte b = this.a;
+        f9c f9cVar = f9c.a;
+        switch (b) {
+            case 0:
+                return ((ii1) create((so8) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 1:
+                return ((ii1) create((nm4) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 2:
+                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 3:
+                return ((ii1) create((r73) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 4:
+                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 5:
+                return ((ii1) create((k37) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 6:
+                return ((ii1) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 7:
+                return ((ii1) create((JSONObject) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            default:
+                return ((ii1) create(obj, (zw2) obj2)).invokeSuspend(f9cVar);
+        }
+    }
+
+    @Override
+    public final java.lang.Object invokeSuspend(java.lang.Object r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ii1.invokeSuspend(java.lang.Object):java.lang.Object");
+    }
+
+    public ii1(Object obj, zw2 zw2Var, byte b) {
+        super(2, zw2Var);
+        this.a = b;
+        this.d = obj;
     }
 }

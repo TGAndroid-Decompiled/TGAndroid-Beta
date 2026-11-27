@@ -1,3 +1,8 @@
 package defpackage;
-public final class v78 extends ss3 {
+
+import java.util.ArrayList;
+public interface v78 {
+    void m(ArrayList arrayList);
+
+    void y0();
 }

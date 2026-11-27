@@ -1,157 +1,130 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class kac extends TextureView implements TextureView.SurfaceTextureListener {
-    public lbc a;
-    public td4 b;
-    public final l29 c;
-    public int d;
-    public int e;
-    public e4b f;
-    public jac h;
-    public int n;
-    public int r;
-    public sl0 s;
+import android.app.Activity;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.io.File;
+import org.telegram.messenger.ApplicationLoaderImpl;
+import org.telegram.messenger.a;
+import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.IUpdateLayout;
+public final class kac extends IUpdateLayout {
+    public FrameLayout a;
+    public RadialProgress2 b;
+    public qg2 c;
+    public final Activity d;
+    public final ViewGroup e;
 
-    public kac(lbc lbcVar, Context context) {
-        super(context);
-        this.c = new Object();
-        this.a = lbcVar;
-        setSurfaceTextureListener(this);
-    }
-
-    public final void a(float f, float f2, float f3, float f4) {
-        l29 l29Var = this.c;
-        l29Var.a = f;
-        l29Var.b = f2;
-        l29Var.c = f3;
-        l29Var.d = f4;
-    }
-
-    public Bitmap getUiBlurBitmap() {
-        xl0 xl0Var;
-        td4 td4Var = this.b;
-        if (td4Var == null || (xl0Var = td4Var.J) == null) {
-            return null;
-        }
-        synchronized (xl0Var.n) {
-            if (!xl0Var.q) {
-                return null;
-            }
-            return xl0Var.p;
-        }
-    }
-
-    public int getVideoHeight() {
-        return this.e;
-    }
-
-    public int getVideoWidth() {
-        return this.d;
+    public kac(Activity activity, ViewGroup viewGroup) {
+        super(activity, viewGroup);
+        this.d = activity;
+        this.e = viewGroup;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-        int i3;
-        if (this.b == null && surfaceTexture != null && this.a != null) {
-            td4 td4Var = new td4(surfaceTexture, new hza(this, (byte) 26), this.f, this.s, i, i2);
-            this.b = td4Var;
-            td4Var.f(this.n, this.r);
-            td4 td4Var2 = this.b;
-            sl0 sl0Var = this.s;
-            xl0 xl0Var = td4Var2.J;
-            if (xl0Var != null) {
-                sl0 sl0Var2 = xl0Var.t;
-                if (sl0Var2 != null && sl0Var2.m != null) {
-                    sl0Var2.m = null;
-                }
-                xl0Var.t = sl0Var;
-                if (sl0Var != null && sl0Var.m != xl0Var) {
-                    sl0Var.m = xl0Var;
-                    sl0Var.d();
-                }
-            }
-            int i4 = this.d;
-            if (i4 != 0 && (i3 = this.e) != 0) {
-                td4 td4Var3 = this.b;
-                td4Var3.getClass();
-                td4Var3.postRunnable(new qd4(td4Var3, i4, i3, (byte) 0));
-            }
-            this.b.b(true, true, false);
-            jac jacVar = this.h;
-            if (jacVar != null) {
-                jacVar.a(this.b);
-            }
+    public final void createUpdateUI(int i) {
+        ViewGroup viewGroup = this.e;
+        if (viewGroup != null && this.a == null) {
+            Activity activity = this.d;
+            FrameLayout frameLayout = new FrameLayout(activity);
+            this.a = frameLayout;
+            frameLayout.setVisibility(4);
+            this.a.setTranslationY(hl.L(44.0f));
+            this.a.setBackground(aob.f0(1090519039, 2, -1));
+            viewGroup.addView(this.a, tre.e(-1, 44, 83));
+            this.a.setOnClickListener(new w0(this, i, (byte) 27));
+            qg2 qg2Var = new qg2(this, activity);
+            this.c = qg2Var;
+            qg2Var.setTextSize(hl.L(15.0f));
+            this.c.setTypeface(hl.o());
+            this.c.setTextColor(-1);
+            this.c.setGravity(17);
+            this.a.addView(this.c, tre.g());
+            this.c.c(ob6.M0(2131754222, null), false, true);
+            RadialProgress2 radialProgress2 = new RadialProgress2(this.c, null);
+            this.b = radialProgress2;
+            int i2 = aob.Fi;
+            radialProgress2.setColors(-1, -1, aob.w0(null, i2, false), aob.w0(null, i2, false));
+            this.b.p(0, 0, hl.L(22.0f), hl.L(22.0f));
+            this.b.setCircleRadius(hl.L(11.0f));
+            this.b.setAsMini();
         }
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        td4 td4Var = this.b;
-        if (td4Var != null) {
-            td4Var.postRunnable(new rd4(td4Var, (byte) 0));
-            this.b = null;
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-        td4 td4Var = this.b;
-        if (td4Var != null) {
-            td4Var.postRunnable(new qd4(td4Var, i, i2, (byte) 1));
-            this.b.b(false, true, false);
-            this.b.postRunnable(new cib(this, (byte) 25));
-        }
-    }
-
-    public void setDelegate(jac jacVar) {
-        this.h = jacVar;
-        td4 td4Var = this.b;
-        if (td4Var != null) {
-            if (jacVar == null) {
-                td4Var.c(null);
+    public final void updateAppUpdateViews(int i, boolean z) {
+        mh0 mh0Var;
+        int i2;
+        if (this.e != null) {
+            ((ApplicationLoaderImpl) a.a).getClass();
+            ph0 e = ph0.e();
+            String str = e.a;
+            if (str != null && (i2 = e.b) != 0) {
+                mh0Var = new mh0(str, i2, e.c);
             } else {
-                jacVar.a(td4Var);
+                mh0Var = null;
+            }
+            if (mh0Var != null) {
+                createUpdateUI(i);
+                File g = a.a.g();
+                if (g != null && g.exists()) {
+                    this.b.setIcon(15, true, z);
+                    this.c.c(ob6.M0(2131754218, null), z, true);
+                } else {
+                    ((ApplicationLoaderImpl) a.a).getClass();
+                    boolean z2 = ph0.e().j;
+                    RadialProgress2 radialProgress2 = this.b;
+                    if (z2) {
+                        radialProgress2.setIcon(3, true, z);
+                        RadialProgress2 radialProgress22 = this.b;
+                        ((ApplicationLoaderImpl) a.a).getClass();
+                        radialProgress22.o(true, ph0.e().k);
+                        ((ApplicationLoaderImpl) a.a).getClass();
+                        this.c.c(ob6.a0(null, null, 2131754219, Integer.valueOf((int) (ph0.e().k * 100.0f))), z, true);
+                    } else {
+                        radialProgress2.setIcon(2, true, z);
+                        this.c.c(ob6.M0(2131754222, null), z, true);
+                    }
+                }
+                if (this.a.getTag() == null) {
+                    this.a.setVisibility(0);
+                    this.a.setTag(1);
+                    FrameLayout frameLayout = this.a;
+                    if (z) {
+                        frameLayout.animate().translationY(0.0f).setInterpolator(k43.g).setListener(null).setDuration(180L).start();
+                        return;
+                    } else {
+                        frameLayout.setTranslationY(0.0f);
+                        return;
+                    }
+                }
+                return;
+            }
+            FrameLayout frameLayout2 = this.a;
+            if (frameLayout2 != null && frameLayout2.getTag() != null) {
+                this.a.setTag(null);
+                FrameLayout frameLayout3 = this.a;
+                if (z) {
+                    frameLayout3.animate().translationY(hl.L(44.0f)).setInterpolator(k43.g).setListener(new omb(this, (byte) 12)).setDuration(180L).start();
+                    return;
+                }
+                frameLayout3.setTranslationY(hl.L(44.0f));
+                this.a.setVisibility(4);
             }
         }
     }
 
-    public void setHDRInfo(e4b e4bVar) {
-        this.f = e4bVar;
-        td4 td4Var = this.b;
-        if (td4Var != null) {
-            td4Var.postRunnable(new vc4(td4Var, e4bVar, (byte) 4));
-        }
-    }
-
     @Override
-    public void setTransform(Matrix matrix) {
-        super.setTransform(matrix);
-        td4 td4Var = this.b;
-        if (td4Var != null) {
-            int width = getWidth();
-            int height = getHeight();
-            xl0 xl0Var = td4Var.J;
-            if (xl0Var != null) {
-                Matrix matrix2 = xl0Var.v;
-                matrix.invert(matrix2);
-                float f = width;
-                float f2 = height;
-                matrix2.preScale(f, f2);
-                matrix2.postScale(1.0f / f, 1.0f / f2);
-                xl0Var.c(matrix2);
-                td4Var.b(false, false, false);
+    public final void updateFileProgress(Object[] objArr) {
+        if (this.a != null && this.c != null) {
+            ((ApplicationLoaderImpl) a.a).getClass();
+            if (ph0.e().j) {
+                ((ApplicationLoaderImpl) a.a).getClass();
+                float f = ph0.e().k;
+                this.b.o(true, f);
+                this.c.setText(ob6.a0(null, null, 2131754219, Integer.valueOf((int) (f * 100.0f))));
+                this.a.invalidate();
             }
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

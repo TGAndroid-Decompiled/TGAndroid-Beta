@@ -1,148 +1,135 @@
 package defpackage;
 
 import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.CancellationSignal;
-import android.util.Log;
-import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
-import com.android.billingclient.api.Purchase;
-import com.google.android.gms.tasks.OnFailureListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class kh implements fn7, ts2, ed, OnFailureListener, wu8, g8b, eq6, bi0 {
-    public final Object a;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.UndoView;
+public final class kh implements fd, fy8, ci0 {
+    public final byte a;
     public final Object b;
     public final Object c;
     public final Object d;
     public final Object e;
+    public final Object f;
+    public final Object h;
 
-    public kh(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        this.a = obj;
-        this.b = obj2;
-        this.c = obj3;
-        this.d = obj4;
-        this.e = obj5;
+    public kh(di0 di0Var, Activity activity, k5 k5Var, TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, List list, ekd ekdVar) {
+        this.a = (byte) 1;
+        this.c = di0Var;
+        this.d = activity;
+        this.b = k5Var;
+        this.e = inputStorePaymentPurpose;
+        this.f = list;
+        this.h = ekdVar;
     }
 
     @Override
-    public final void a(fi0 fi0Var, List list) {
-        gl.c3(new i87((ve6) this.a, fi0Var, list, (String) this.b, (TLRPC.TL_inputStorePaymentAuthCode) this.c, (TLRPC.TL_payments_canPurchaseStore) this.d, (e45) this.e, (byte) 13));
+    public final void a(defpackage.gi0 r14, java.util.List r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kh.a(gi0, java.util.List):void");
     }
 
     @Override
-    public final void b(fi0 fi0Var, List list) {
-        gl.c3(new i87((gta) this.a, list, (et4) this.b, (TLRPC.TL_inputStorePaymentStarsGift) this.c, (TL_stars.TL_starsGiftOption) this.d, fi0Var, (Activity) this.e, (byte) 19));
-    }
-
-    @Override
-    public final void d(fi0 fi0Var) {
-        Purchase purchase = (Purchase) this.a;
-        ArrayList arrayList = (ArrayList) this.b;
-        String str = (String) this.c;
-        AtomicInteger atomicInteger = (AtomicInteger) this.d;
-        e57 e57Var = (e57) this.e;
-        if (fi0Var.a == 0) {
-            fa4.b("BillingController.launchBillingFlow, consumed " + purchase.b() + ": OK");
-            arrayList.add(str);
-            if (atomicInteger.get() == arrayList.size()) {
-                e57Var.run();
+    public final void c(gi0 gi0Var, List list) {
+        byte b = this.a;
+        Object obj = this.h;
+        Object obj2 = this.f;
+        Object obj3 = this.e;
+        Object obj4 = this.d;
+        Object obj5 = this.b;
+        Object obj6 = this.c;
+        switch (b) {
+            case 2:
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) obj6;
+                to8 a = ((wo8) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiftCode.currency = a.c;
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, di0.h().g(((TLRPC.TL_premiumGiftCodeOption) obj5).currency)) * (a.b / 1000000.0d));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
+                ((ConnectionsManager) obj4).sendRequest(tL_payments_canPurchaseStore, new mn0((pcc) obj3, list, gi0Var, (pcc) obj2, (e) obj, tL_inputStorePaymentPremiumGiftCode, (byte) 1));
                 return;
-            }
-            return;
-        }
-        fa4.b("BillingController.launchBillingFlow, consumed " + purchase.b() + ": " + fi0Var.a + " " + fi0Var.c);
-        arrayList.add(null);
-        if (atomicInteger.get() == arrayList.size()) {
-            e57Var.run();
+            default:
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) obj6;
+                to8 a2 = ((wo8) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiveaway.currency = a2.c;
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, di0.h().g(((TLRPC.TL_premiumGiftCodeOption) obj5).currency)) * (a2.b / 1000000.0d));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
+                ((ConnectionsManager) obj4).sendRequest(tL_payments_canPurchaseStore2, new mn0((tn0) obj3, list, gi0Var, (tn0) obj2, (e) obj, tL_inputStorePaymentPremiumGiveaway, (byte) 0));
+                return;
         }
     }
 
     @Override
-    public final void f(String str, ArrayList arrayList) {
-        TLRPC.TL_availableReaction tL_availableReaction;
-        tx9 tx9Var = (tx9) this.a;
-        LinkedHashSet linkedHashSet = (LinkedHashSet) this.b;
-        HashMap hashMap = (HashMap) this.c;
-        ArrayList arrayList2 = (ArrayList) this.d;
-        Runnable runnable = (Runnable) this.e;
-        for (int i = 0; i < arrayList.size(); i++) {
-            try {
-                if (((dq6) arrayList.get(i)).a.startsWith("animated_")) {
-                    linkedHashSet.add(Long.valueOf(Long.parseLong(((dq6) arrayList.get(i)).a.substring(9))));
+    public final void w(id idVar, int i) {
+        byte b = this.a;
+        Object obj = this.h;
+        Object obj2 = this.f;
+        Object obj3 = this.e;
+        Object obj4 = this.d;
+        Object obj5 = this.b;
+        Object obj6 = this.c;
+        switch (b) {
+            case 0:
+                TLRPC.User user = (TLRPC.User) obj6;
+                k5 k5Var = (k5) obj5;
+                zu1 zu1Var = (zu1) obj4;
+                TLRPC.Chat chat = (TLRPC.Chat) obj3;
+                r47 r47Var = (r47) obj2;
+                sg2[] sg2VarArr = (sg2[]) obj;
+                if (user != null) {
+                    jf7 Y = jf7.Y(k5Var.a);
+                    Y.a.c(new xd7(Y, zu1Var.a(), user.id, (byte) 3));
                 } else {
-                    int i2 = tx9Var.a0;
-                    if ((i2 == 1 || i2 == 11 || i2 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((dq6) arrayList.get(i)).a)) != null) {
-                        arrayList2.add(h19.c(tL_availableReaction));
+                    jf7 Y2 = jf7.Y(k5Var.a);
+                    Y2.a.c(new xd7(Y2, zu1Var.a(), -chat.id, (byte) 3));
+                }
+                TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
+                tL_contacts_blockFromReplies.msg_id = r47Var.e1();
+                tL_contacts_blockFromReplies.delete_message = true;
+                tL_contacts_blockFromReplies.delete_history = true;
+                if (sg2VarArr[0].b()) {
+                    tL_contacts_blockFromReplies.report_spam = true;
+                    if (zu1Var.getParentActivity() != null) {
+                        zu1Var.i6();
+                        UndoView undoView = zu1Var.N3;
+                        if (undoView != null) {
+                            undoView.j(74, 0L, null);
+                        }
                     }
                 }
-            } catch (Exception unused) {
-            }
+                ConnectionsManager.getInstance(k5Var.a).sendRequest(tL_contacts_blockFromReplies, new ye(k5Var, (byte) 0));
+                return;
+            default:
+                m08 m08Var = (m08) obj6;
+                b18 b18Var = m08Var.a;
+                b18Var.Z[0].setText((String) obj5);
+                b18Var.Z[1].setText((String) obj4);
+                b18Var.Z[2].setText((String) obj3);
+                b18Var.Q1(true, true);
+                m08Var.c((fe7) obj2, (um4) obj);
+                return;
         }
-        runnable.run();
     }
 
-    @Override
-    public final void g(float f, Canvas canvas, RectF rectF, boolean z) {
-        pj4 pj4Var = (pj4) this.a;
-        RectF rectF2 = (RectF) this.b;
-        zr8 zr8Var = (zr8) this.c;
-        RectF rectF3 = (RectF) this.d;
-        zr8 zr8Var2 = (zr8) this.e;
-        RectF rectF4 = zr8Var.m;
-        rectF2.set(rectF4);
-        RectF rectF5 = zr8Var2.m;
-        rectF3.set(rectF5);
-        rectF4.set(rectF);
-        try {
-            float width = rectF.width() / rectF2.width();
-            float centerX = rectF.centerX() - ((((1.0f - f) * 2.0f) + width) * (rectF2.centerX() - rectF3.centerX()));
-            float centerY = rectF.centerY();
-            float width2 = (rectF3.width() / 2.0f) * width;
-            float height = (rectF3.height() / 2.0f) * width;
-            rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
-        } catch (Exception unused) {
-        }
-        int i = ProfileStoriesView.t0;
-        ((an8) pj4Var.b).a(canvas, zr8Var, zr8Var2);
-        rectF4.set(rectF2);
-        rectF5.set(rectF3);
+    public kh(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
+        this.d = obj3;
+        this.e = obj4;
+        this.f = obj5;
+        this.h = obj6;
     }
 
-    @Override
-    public final void i(hn7 hn7Var, int i) {
-        ij.c((u41) this.a, (hn7) this.b, (hn7) this.c, (hn7) this.d, (hn7) this.e);
-    }
-
-    @Override
-    public final void onFailure(Exception exc) {
-        ws4 ws4Var = (ws4) this.a;
-        ss4 ss4Var = (ss4) this.b;
-        o13 o13Var = (o13) this.c;
-        Executor executor = (Executor) this.d;
-        CancellationSignal cancellationSignal = (CancellationSignal) this.e;
-        exc.getClass();
-        CredentialProviderPlayServicesImpl.Companion.getClass();
-        ws4Var.getClass();
-        for (r13 r13Var : ws4Var.a) {
-        }
-        Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
-        new w13(ss4Var.e).g(ws4Var, cancellationSignal, executor, o13Var);
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        qx0 qx0Var = (qx0) this.a;
-        ((boolean[]) this.b)[0] = true;
-        qx0Var.h(qx0Var.x, (px0) this.c, true);
-        ((p8c) this.d).a(Boolean.TRUE);
-        ((hd[]) this.e)[0].dismiss();
+    public kh(TLRPC.User user, k5 k5Var, zu1 zu1Var, TLRPC.Chat chat, r47 r47Var, sg2[] sg2VarArr, vnb vnbVar) {
+        this.a = (byte) 0;
+        this.c = user;
+        this.b = k5Var;
+        this.d = zu1Var;
+        this.e = chat;
+        this.f = r47Var;
+        this.h = sg2VarArr;
     }
 }

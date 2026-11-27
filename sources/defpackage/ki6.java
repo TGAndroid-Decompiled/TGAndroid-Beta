@@ -1,24 +1,40 @@
 package defpackage;
+public abstract class ki6 {
+    public final int a;
+    public final int b;
 
-import java.util.Map;
-public final class ki6 extends m3 {
-    public final Map.Entry b;
-    public final ni6 c;
-
-    public ki6(Map.Entry entry, ni6 ni6Var) {
-        super((byte) 0, false);
-        this.b = entry;
-        this.c = ni6Var;
+    public ki6(int i, int i2) {
+        this.a = i;
+        this.b = i2;
     }
 
-    @Override
-    public final Object getKey() {
-        return this.b.getKey();
-    }
+    public abstract byte[] a();
 
-    @Override
-    public final Object getValue() {
-        Map.Entry entry = this.b;
-        return this.c.e(entry.getKey(), entry.getValue());
+    public abstract byte[] b(int i, byte[] bArr);
+
+    public final String toString() {
+        char c;
+        int i = this.a;
+        byte[] bArr = new byte[i];
+        int i2 = this.b;
+        StringBuilder sb = new StringBuilder((i + 1) * i2);
+        for (int i3 = 0; i3 < i2; i3++) {
+            bArr = b(i3, bArr);
+            for (int i4 = 0; i4 < i; i4++) {
+                int i5 = bArr[i4] & 255;
+                if (i5 < 64) {
+                    c = '#';
+                } else if (i5 < 128) {
+                    c = '+';
+                } else if (i5 < 192) {
+                    c = '.';
+                } else {
+                    c = ' ';
+                }
+                sb.append(c);
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
     }
 }

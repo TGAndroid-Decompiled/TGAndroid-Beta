@@ -1,58 +1,111 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class vba implements Runnable {
-    public final byte a = 0;
-    public final nfa b;
-    public final wjb c;
-    public final k27 d;
-    public final int e;
+import java.util.concurrent.atomic.AtomicReference;
+public final class vba extends yfb implements is4 {
+    public final byte a;
+    public boolean b;
+    public final xba c;
 
-    public vba(nfa nfaVar, wjb wjbVar, int i, k27 k27Var) {
-        this.b = nfaVar;
-        this.c = wjbVar;
-        this.e = i;
-        this.d = k27Var;
+    public vba(xba xbaVar, zw2 zw2Var, byte b) {
+        super(2, zw2Var);
+        this.a = b;
+        this.c = xbaVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
+    public final zw2 create(Object obj, zw2 zw2Var) {
+        byte b = this.a;
+        xba xbaVar = this.c;
+        switch (b) {
             case 0:
-                hd[] hdVarArr = {new hd(3, this.c, this.b.getContext())};
-                int i = this.e;
-                int v0 = z3a.B(i).v0(this.d, null, new wh0(hdVarArr, (byte) 9));
-                if (v0 != 0) {
-                    gl.d3(new fca(hdVarArr, i, v0, (byte) 0), 500L);
-                    return;
-                }
-                return;
+                return new vba(xbaVar, zw2Var, (byte) 0);
             default:
-                nfa nfaVar = this.b;
-                Context context = nfaVar.getContext();
-                wjb wjbVar = this.c;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar, context);
-                hd hdVar = alertDialog$Builder.a;
-                hdVar.Q0 = false;
-                k27 k27Var = this.d;
-                if (k27Var.b4()) {
-                    hdVar.S = k96.M0(2131744587, null);
-                    hdVar.U = k96.M0(2131744588, null);
-                } else {
-                    hdVar.S = k96.M0(2131744592, null);
-                    hdVar.U = k96.M0(2131744593, null);
-                }
-                alertDialog$Builder.j(k96.M0(2131744604, null), new zm(nfaVar, wjbVar, k27Var, this.e, (byte) 10));
-                ug8.y(null, 2131752577, alertDialog$Builder, null);
-                return;
+                return new vba(xbaVar, zw2Var, (byte) 1);
         }
     }
 
-    public vba(nfa nfaVar, wjb wjbVar, k27 k27Var, int i) {
-        this.b = nfaVar;
-        this.c = wjbVar;
-        this.d = k27Var;
-        this.e = i;
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        byte b = this.a;
+        f9c f9cVar = f9c.a;
+        ux2 ux2Var = (ux2) obj;
+        zw2 zw2Var = (zw2) obj2;
+        switch (b) {
+            case 0:
+                return ((vba) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+            default:
+                return ((vba) create(ux2Var, zw2Var)).invokeSuspend(f9cVar);
+        }
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        byte b = this.a;
+        xba xbaVar = this.c;
+        vx2 vx2Var = vx2.a;
+        switch (b) {
+            case 0:
+                boolean z = this.b;
+                if (z) {
+                    if (z) {
+                        ixe.b(obj);
+                    } else {
+                        grb.i("call to 'resume' before 'invoke' with coroutine");
+                        return null;
+                    }
+                } else {
+                    ixe.b(obj);
+                    mm4 data = xbaVar.b.getData();
+                    final AtomicReference atomicReference = xbaVar.c;
+                    nm4 nm4Var = new nm4() {
+                        @Override
+                        public final Object c(Object obj2, zw2 zw2Var) {
+                            atomicReference.set((l9a) obj2);
+                            return f9c.a;
+                        }
+
+                        public final boolean equals(Object obj2) {
+                            if ((obj2 instanceof nm4) && (obj2 instanceof uba)) {
+                                return new ga(atomicReference).equals(new ga(atomicReference));
+                            }
+                            return false;
+                        }
+
+                        public final int hashCode() {
+                            int i;
+                            AtomicReference atomicReference2 = atomicReference;
+                            if (atomicReference2 != null) {
+                                i = atomicReference2.hashCode();
+                            } else {
+                                i = 0;
+                            }
+                            return ((((((((((AtomicReference.class.hashCode() + (i * 31)) * 31) + 113762) * 31) - 869290769) * 31) + 1237) * 31) + 2) * 31) + 2;
+                        }
+                    };
+                    this.b = true;
+                    if (data.k(nm4Var, this) == vx2Var) {
+                        return vx2Var;
+                    }
+                }
+                return f9c.a;
+            default:
+                boolean z2 = this.b;
+                if (z2) {
+                    if (z2) {
+                        ixe.b(obj);
+                        return obj;
+                    }
+                    grb.i("call to 'resume' before 'invoke' with coroutine");
+                    return null;
+                }
+                ixe.b(obj);
+                mm4 data2 = xbaVar.b.getData();
+                this.b = true;
+                Object a = qme.a(data2, this);
+                if (a == vx2Var) {
+                    return vx2Var;
+                }
+                return a;
+        }
     }
 }

@@ -1,55 +1,45 @@
 package defpackage;
 
-import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d;
-public final class v18 implements t22 {
-    public final y28 a;
-
-    public v18(y28 y28Var) {
-        this.a = y28Var;
-    }
-
-    @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2) {
-        j5 accountInstance;
-        boolean z3;
-        y28 y28Var = this.a;
-        TL_stories.StoryItem storyItem = y28Var.E1.a;
-        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            accountInstance = y28Var.getAccountInstance();
-            z3a.U(i, y28Var.r1, 0L, j2, 0L, accountInstance, null, null, null, null, null, null, null, null, str, null, arrayList, arrayList, null, null, null, null, storyItem, z, false);
-            if (j2 <= 0) {
-                z3 = true;
-            } else {
-                z3 = false;
-            }
-            y28Var.a0(z3);
-        }
-    }
+public final class v18 extends c4 {
+    public static final Parcelable.Creator<v18> CREATOR = new m9d((byte) 9);
+    public boolean a;
+    public boolean b;
+    public cd1 c;
+    public boolean d;
+    public eka e;
+    public ArrayList f;
+    public c38 h;
+    public m2c n;
+    public boolean r;
+    public String s;
+    public Bundle w;
 
     @Override
-    public final void z() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-            intent.setType("*/*");
-            d dVar = this.a.z0.f;
-            if (dVar.getParentActivity() == null) {
-                return;
-            }
-            dVar.getParentActivity().startActivityForResult(intent, 21);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void S() {
-    }
-
-    @Override
-    public final void m(ArrayList arrayList, boolean z, int i, long j) {
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        boolean z = this.a;
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(z ? 1 : 0);
+        boolean z2 = this.b;
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(z2 ? 1 : 0);
+        bye.k(parcel, 3, this.c, i);
+        boolean z3 = this.d;
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(z3 ? 1 : 0);
+        bye.k(parcel, 5, this.e, i);
+        bye.h(parcel, 6, this.f);
+        bye.k(parcel, 7, this.h, i);
+        bye.k(parcel, 8, this.n, i);
+        boolean z4 = this.r;
+        bye.q(parcel, 9, 4);
+        parcel.writeInt(z4 ? 1 : 0);
+        bye.l(parcel, 10, this.s);
+        bye.b(parcel, 11, this.w);
+        bye.s(parcel, r);
     }
 }

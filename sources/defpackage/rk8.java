@@ -1,12 +1,14 @@
 package defpackage;
-
-import org.webrtc.RendererCommon;
-public final class rk8 implements RendererCommon.RendererEvents {
+public final class rk8 extends dm8 {
     @Override
-    public final void onFirstFrameRendered() {
-    }
-
-    @Override
-    public final void onFrameResolutionChanged(int i, int i2, int i3) {
+    public final void setOffset(float f) {
+        boolean z;
+        if (f == 0.0f) {
+            z = true;
+        } else {
+            z = false;
+        }
+        setAutoPlayEnabled(z);
+        super.setOffset(f);
     }
 }

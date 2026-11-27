@@ -1,6 +1,3 @@
 package defpackage;
-public interface i35 {
-    void a();
-
-    void b();
+public final class i35 extends Exception {
 }

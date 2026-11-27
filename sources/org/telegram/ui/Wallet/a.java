@@ -1,7 +1,7 @@
 package org.telegram.ui.Wallet;
 public final class a {
     public String a;
-    public y05 b;
+    public c35 b;
     public byte[] c;
     public final c d;
 
@@ -10,12 +10,12 @@ public final class a {
     }
 
     public final void a() {
-        y05 y05Var = this.b;
+        c35 c35Var = this.b;
         this.b = null;
         try {
-            this.d.c0(y05Var, false, new u05(this, (byte) 0));
+            this.d.e0(c35Var, false, new y25(this, (byte) 0));
         } finally {
-            y05Var.close();
+            c35Var.close();
         }
     }
 }

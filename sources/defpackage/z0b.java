@@ -1,28 +1,12 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.NumberTextView;
-public final class z0b implements TextWatcher {
-    public final NumberTextView a;
-    public final y0b b;
-
-    public z0b(NumberTextView numberTextView, y0b y0bVar) {
-        this.a = numberTextView;
-        this.b = y0bVar;
-    }
-
+import android.graphics.Canvas;
+public final class z0b extends z1b {
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
-        this.b.setErrorText(null);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public final void onDraw(Canvas canvas) {
+        if (getTranslationY() != 0.0f) {
+            canvas.drawColor(aob.w0(null, aob.d6, false));
+        }
+        super.onDraw(canvas);
     }
 }

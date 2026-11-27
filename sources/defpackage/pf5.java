@@ -1,191 +1,114 @@
 package defpackage;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
-public final class pf5 implements ip9 {
-    public final int a;
-    public final tf5 b;
-    public int c = -1;
+public final class pf5 extends y1 {
+    public final byte a;
+    public final hk0 b;
+    public final Serializable c;
 
-    public pf5(tf5 tf5Var, int i) {
-        this.b = tf5Var;
-        this.a = i;
+    public pf5() {
+        this.a = (byte) 1;
+        this.b = new yi6();
+        this.c = new ArrayList();
     }
 
     @Override
-    public final int a() {
-        return 0;
+    public final void a(CharSequence charSequence) {
+        switch (this.a) {
+            case 1:
+                ((ArrayList) this.c).add(charSequence);
+                return;
+            default:
+                return;
+        }
     }
 
     @Override
-    public final void b() {
-        int i = this.c;
-        tf5 tf5Var = this.b;
-        if (i != -2) {
-            if (i == -1) {
-                tf5Var.C();
-                return;
-            } else if (i != -3) {
-                tf5Var.C();
-                tf5Var.M[i].C();
-                return;
-            } else {
-                return;
-            }
-        }
-        tf5Var.b();
-        throw new IOException(tb4.y("Unable to bind a sample queue to TrackGroup with MIME type ", tf5Var.Z.a(this.a).d[0].t, "."));
-    }
-
-    public final void c() {
-        boolean z;
-        if (this.c == -1) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.f(z);
-        tf5 tf5Var = this.b;
-        tf5Var.b();
-        tf5Var.b0.getClass();
-        int[] iArr = tf5Var.b0;
-        int i = this.a;
-        int i2 = iArr[i];
-        if (i2 == -1) {
-            if (tf5Var.a0.contains(tf5Var.Z.a(i))) {
-                i2 = -3;
-            }
-            i2 = -2;
-        } else {
-            boolean[] zArr = tf5Var.e0;
-            if (!zArr[i2]) {
-                zArr[i2] = true;
-            }
-            i2 = -2;
-        }
-        this.c = i2;
-    }
-
-    public final boolean d() {
-        int i = this.c;
-        if (i != -1 && i != -3 && i != -2) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h(sk4 sk4Var, z83 z83Var, int i) {
-        fm4 fm4Var;
-        if (this.c == -3) {
-            z83Var.addFlag(4);
-            return -4;
-        }
-        if (d()) {
-            int i2 = this.c;
-            tf5 tf5Var = this.b;
-            ArrayList arrayList = tf5Var.E;
-            if (!tf5Var.A()) {
-                int i3 = 0;
-                if (!arrayList.isEmpty()) {
-                    int i4 = 0;
-                    loop0: while (i4 < arrayList.size() - 1) {
-                        int i5 = ((te5) arrayList.get(i4)).w;
-                        int length = tf5Var.M.length;
-                        for (int i6 = 0; i6 < length; i6++) {
-                            if (tf5Var.e0[i6] && tf5Var.M[i6].E() == i5) {
-                                break loop0;
-                            }
-                        }
-                        i4++;
-                    }
-                    g8c.Y(0, i4, arrayList);
-                    te5 te5Var = (te5) arrayList.get(0);
-                    fm4 fm4Var2 = te5Var.d;
-                    if (!fm4Var2.equals(tf5Var.X)) {
-                        tf5Var.w.i(tf5Var.b, fm4Var2, te5Var.e, te5Var.f, te5Var.h);
-                    }
-                    tf5Var.X = fm4Var2;
-                }
-                if (arrayList.isEmpty() || ((te5) arrayList.get(0)).h()) {
-                    int F = tf5Var.M[i2].F(sk4Var, z83Var, i, tf5Var.k0);
-                    if (F == -5) {
-                        fm4 fm4Var3 = (fm4) sk4Var.c;
-                        fm4Var3.getClass();
-                        if (i2 == tf5Var.S) {
-                            int b = gle.b(tf5Var.M[i2].E());
-                            while (i3 < arrayList.size() && ((te5) arrayList.get(i3)).w != b) {
-                                i3++;
-                            }
-                            if (i3 < arrayList.size()) {
-                                fm4Var = ((te5) arrayList.get(i3)).d;
+    public final void d() {
+        int i;
+        switch (this.a) {
+            case 1:
+                ArrayList arrayList = (ArrayList) this.c;
+                int size = arrayList.size();
+                while (true) {
+                    size--;
+                    if (size >= 0) {
+                        CharSequence charSequence = (CharSequence) arrayList.get(size);
+                        int length = charSequence.length();
+                        int i2 = 0;
+                        while (true) {
+                            if (i2 < length) {
+                                char charAt = charSequence.charAt(i2);
+                                if (charAt != ' ') {
+                                    switch (charAt) {
+                                    }
+                                }
+                                i2++;
                             } else {
-                                fm4Var = tf5Var.W;
-                                fm4Var.getClass();
+                                i2 = -1;
                             }
-                            fm4Var3 = fm4Var3.d(fm4Var);
                         }
-                        sk4Var.c = fm4Var3;
+                        if (i2 == -1) {
+                        }
                     }
-                    return F;
                 }
-            }
+                StringBuilder sb = new StringBuilder();
+                for (i = 0; i < size + 1; i++) {
+                    sb.append((CharSequence) arrayList.get(i));
+                    sb.append('\n');
+                }
+                ((kp5) this.b).g = sb.toString();
+                return;
+            default:
+                return;
         }
-        return -3;
     }
 
     @Override
-    public final boolean j() {
-        if (this.c != -3) {
-            if (d()) {
-                int i = this.c;
-                tf5 tf5Var = this.b;
-                if (tf5Var.A() || !tf5Var.M[i].A(tf5Var.k0)) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+    public final hk0 e() {
+        byte b = this.a;
+        hk0 hk0Var = this.b;
+        switch (b) {
+            case 0:
+                return (of5) hk0Var;
+            default:
+                return (kp5) hk0Var;
         }
-        return true;
     }
 
     @Override
-    public final int n(long j) {
-        Object next;
-        Object obj;
-        if (d()) {
-            int i = this.c;
-            tf5 tf5Var = this.b;
-            if (!tf5Var.A()) {
-                sf5 sf5Var = tf5Var.M[i];
-                int x = sf5Var.x(j, tf5Var.k0);
-                ArrayList arrayList = tf5Var.E;
-                if (arrayList != null) {
-                    if (!arrayList.isEmpty()) {
-                        obj = b00.f(1, arrayList);
-                    }
-                    obj = null;
-                } else {
-                    Iterator it = arrayList.iterator();
-                    if (it.hasNext()) {
-                        do {
-                            next = it.next();
-                        } while (it.hasNext());
-                        obj = next;
-                    }
-                    obj = null;
-                }
-                te5 te5Var = (te5) obj;
-                if (te5Var != null && !te5Var.h()) {
-                    x = Math.min(x, te5Var.g(i) - sf5Var.v());
-                }
-                sf5Var.L(x);
-                return x;
-            }
-            return 0;
+    public final void g(tp5 tp5Var) {
+        switch (this.a) {
+            case 0:
+                tp5Var.a((String) this.c, (of5) this.b);
+                return;
+            default:
+                return;
         }
-        return 0;
+    }
+
+    @Override
+    public final qk2 h(mp3 mp3Var) {
+        switch (this.a) {
+            case 0:
+                return null;
+            default:
+                if (mp3Var.g >= 4) {
+                    return new qk2(-1, mp3Var.c + 4, false);
+                }
+                if (!mp3Var.h) {
+                    return null;
+                }
+                return qk2.a(mp3Var.e);
+        }
+    }
+
+    public pf5(int i, String str) {
+        this.a = (byte) 0;
+        ?? yi6Var = new yi6();
+        this.b = yi6Var;
+        yi6Var.g = i;
+        this.c = str;
     }
 }

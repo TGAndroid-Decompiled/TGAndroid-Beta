@@ -1,85 +1,103 @@
 package defpackage;
 
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import java.security.SecureRandom;
-import org.telegram.messenger.Utilities;
-public final class g75 {
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public Shader g;
-    public final byte i;
-    public float a = -1.0f;
-    public float b = -1.0f;
-    public final Matrix h = new Matrix();
+import android.graphics.Canvas;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+public final class g75 extends mb5 {
+    public final j95 R0;
 
-    public g75(int i) {
-        this.i = i;
+    public g75(j95 j95Var, LaunchActivity launchActivity, t85 t85Var, c75 c75Var, ArrayList arrayList, vc2 vc2Var, j95 j95Var2) {
+        super(launchActivity, t85Var, c75Var, arrayList, vc2Var, j95Var2);
+        this.R0 = j95Var;
     }
 
-    public final void a() {
-        byte b = this.i;
-        if (h75.h1(b)) {
-            this.a = ls6.d(Utilities.b.nextInt(100), 0.2f, 100.0f, 0.85f);
-            this.b = 1.0f;
-        } else if (b == 1) {
-            SecureRandom secureRandom = Utilities.b;
-            this.a = ls6.d(secureRandom.nextInt(100), 0.3f, 100.0f, 0.2f);
-            this.b = ls6.d(secureRandom.nextInt(100), 0.3f, 100.0f, 0.7f);
-        } else {
-            SecureRandom secureRandom2 = Utilities.b;
-            this.a = b00.A(secureRandom2.nextInt(100), 100.0f, 0.2f, 0.8f);
-            this.b = secureRandom2.nextInt(100) / 100.0f;
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        if (view == this.R0.O4) {
+            return true;
         }
+        return super.drawChild(canvas, view, j);
     }
 
-    public final void b(int i, int i2, int i3, long j, float f) {
-        float f2;
-        if (this.g == null) {
+    @Override
+    public final void g(boolean z) {
+        j95 j95Var = this.R0;
+        e85 e85Var = j95Var.H1;
+        t85 t85Var = j95Var.J1;
+        p95 p95Var = j95Var.h4;
+        g75 g75Var = j95Var.T3;
+        c75 c75Var = j95Var.e4;
+        j95Var.l2 = z;
+        int i = 0;
+        if (j95.v5) {
+            if (!z && g75Var.b) {
+                j95Var.g4.H(j95Var.f4, false, true);
+                return;
+            }
             return;
         }
-        float f3 = this.e;
-        if (f3 == 0.0f || this.f >= f3) {
-            this.e = Utilities.b.nextInt(200) + 1500;
-            this.f = 0.0f;
-            if (this.a == -1.0f) {
-                a();
+        if (z) {
+            j95Var.c2[0].d(1, false);
+            g75Var.L0[0].d(2, false);
+            if (!g75Var.b) {
+                t85Var.setVisibility(0);
+                e85Var.setVisibility(0);
             }
-            this.c = this.a;
-            this.d = this.b;
-            a();
-        }
-        float f4 = (float) j;
-        float f5 = 1.0f;
-        float f6 = (f4 * 0.02f * f) + (f4 * 1.0f) + this.f;
-        this.f = f6;
-        float f7 = this.e;
-        if (f6 > f7) {
-            this.f = f7;
-            f6 = f7;
-        }
-        float interpolation = s33.g.getInterpolation(f6 / f7);
-        float f8 = i3;
-        float f9 = this.c;
-        float f10 = (((((this.a - f9) * interpolation) + f9) * f8) + i2) - 200.0f;
-        float f11 = this.d;
-        float f12 = (((((this.b - f11) * interpolation) + f11) * f8) + i) - 200.0f;
-        byte b = this.i;
-        if (!h75.h1(b)) {
-            if (b == 1) {
-                f2 = 4.0f;
+            j95Var.M1(true, false);
+            j95Var.o1.requestLayout();
+            if (c75Var.getVisibility() != 0) {
+                c75Var.setVisibility(0);
+                p95Var.F(c75Var, true);
+                p95Var.G(c75Var, false);
             } else {
-                f2 = 2.5f;
+                p95Var.F(c75Var, true);
+                j95Var.E0(true);
             }
-            f5 = f2;
+        } else {
+            if (!g75Var.b) {
+                c75Var.setVisibility(8);
+                p95Var.F(c75Var, false);
+            } else {
+                e85Var.setVisibility(8);
+                t85Var.setVisibility(8);
+            }
+            if (c75Var.getVisibility() == 0) {
+                for (int i2 = 0; i2 < c75Var.getChildCount(); i2++) {
+                    View childAt = c75Var.getChildAt(i2);
+                    childAt.setAlpha(1.0f);
+                    childAt.setScaleX(1.0f);
+                    childAt.setScaleY(1.0f);
+                    childAt.setTranslationX(0.0f);
+                    childAt.setTranslationY(0.0f);
+                    ((o95) childAt).setProgressToFullscreen(g75Var.c);
+                }
+            }
         }
-        float L = (gl.L(122.0f) / 400.0f) * f5;
-        Matrix matrix = this.h;
-        matrix.reset();
-        matrix.postTranslate(f10, f12);
-        matrix.postScale(L, L, f10 + 200.0f, f12 + 200.0f);
-        this.g.setLocalMatrix(matrix);
+        View view = j95Var.A4;
+        if (!z) {
+            i = 8;
+        }
+        view.setVisibility(i);
+        if (!j95Var.l2) {
+            j95Var.E0(true);
+        }
+    }
+
+    @Override
+    public final void j() {
+        float f;
+        invalidate();
+        j95 j95Var = this.R0;
+        float f2 = j95Var.N3;
+        g75 g75Var = j95Var.T3;
+        if (g75Var == null) {
+            f = 0.0f;
+        } else {
+            f = g75Var.c;
+        }
+        j95Var.H0 = hl.R0(Math.max(f2, f), 1.0f, aob.w0(null, aob.ah, false), aob.w0(null, aob.Xg, false));
+        j95Var.b.invalidate();
+        j95Var.v1(j95Var.N3);
     }
 }

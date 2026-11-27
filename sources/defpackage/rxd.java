@@ -1,17 +1,14 @@
 package defpackage;
-public final class rxd implements zn7 {
-    public static final rxd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
+import android.os.IInterface;
+public interface rxd extends IInterface {
+    boolean getBooleanFlagValue(String str, boolean z, int i);
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    int getIntFlagValue(String str, int i, int i2);
+
+    long getLongFlagValue(String str, long j, int i);
+
+    String getStringFlagValue(String str, String str2, int i);
+
+    void init(al5 al5Var);
 }

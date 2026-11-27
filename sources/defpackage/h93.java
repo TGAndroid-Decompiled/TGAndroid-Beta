@@ -1,35 +1,31 @@
 package defpackage;
 
-import android.view.View;
-public final class h93 implements x56, e39 {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class h93 implements RequestDelegate {
     public final byte a;
-    public final Object b;
+    public final k93 b;
 
-    public h93(tj tjVar, int i, nc8 nc8Var, nc8 nc8Var2) {
-        this.b = tjVar;
-        this.a = i;
+    public h93(k93 k93Var, byte b) {
+        this.a = b;
+        this.b = k93Var;
     }
 
     @Override
-    public final boolean d(int i, View view) {
-        s09 s09Var;
-        t09 t09Var = (t09) this.b;
-        if (this.a == 5 || (s09Var = t09Var.h0) == null || !(view instanceof r09)) {
-            return false;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        k93 k93Var = this.b;
+        switch (b) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                k93Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new h93(k93Var, (byte) 1));
+                return;
+            default:
+                k93Var.getMessagesController().a3(true);
+                return;
         }
-        s09Var.q(t09Var, ((r09) view).e, true, false);
-        return true;
-    }
-
-    @Override
-    public final void invoke(Object obj) {
-        uj ujVar = (uj) obj;
-        ujVar.getClass();
-        ujVar.y((tj) this.b, this.a);
-    }
-
-    public h93(t09 t09Var, int i) {
-        this.b = t09Var;
-        this.a = i;
     }
 }

@@ -1,46 +1,32 @@
 package defpackage;
 
-import java.util.Calendar;
-public final class om0 implements dn7 {
+import android.text.SpannableStringBuilder;
+public final class om0 implements Runnable {
     public final byte a;
-    public final long b;
-    public final Calendar c;
-    public final int d;
+    public final SpannableStringBuilder b;
 
-    public om0(long j, Calendar calendar, int i, byte b) {
+    public om0(SpannableStringBuilder spannableStringBuilder, byte b) {
         this.a = b;
-        this.b = j;
-        this.c = calendar;
-        this.d = i;
+        this.b = spannableStringBuilder;
     }
 
     @Override
-    public final String c(int i) {
+    public final void run() {
         byte b = this.a;
-        int i2 = this.d;
-        Calendar calendar = this.c;
-        long j = this.b;
+        SpannableStringBuilder spannableStringBuilder = this.b;
         switch (b) {
             case 0:
-                if (i == 0) {
-                    return k96.M0(2131748339, "MessageScheduleToday");
+                d31 Y = d31.Y();
+                if (Y != null) {
+                    Y.Q(2131624029, 30, spannableStringBuilder).j();
+                    return;
                 }
-                long j2 = (i * 86400000) + j;
-                calendar.setTimeInMillis(j2);
-                if (calendar.get(1) == i2) {
-                    return k96.D0().v0().format(j2);
-                }
-                return k96.D0().x0().format(j2);
+                return;
             default:
-                if (i == 0) {
-                    return k96.M0(2131748339, null);
-                }
-                long j3 = (i * 86400000) + j;
-                calendar.setTimeInMillis(j3);
-                if (calendar.get(1) == i2) {
-                    return k96.D0().z0().format(j3) + " " + k96.D0().v0().format(j3);
-                }
-                return k96.D0().x0().format(j3);
+                v21 I = vs7.h().I(2131623990, ob6.M0(2131749527, null), spannableStringBuilder);
+                I.u = true;
+                I.j();
+                return;
         }
     }
 }

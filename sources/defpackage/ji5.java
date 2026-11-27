@@ -1,11 +1,19 @@
 package defpackage;
 
-import android.os.IBinder;
-public final class ji5 implements li5 {
-    public IBinder a;
+import java.util.Map;
+public abstract class ji5 {
+    public final String a;
+    public final int b;
+    public final Map c;
+    public int d = -1;
 
-    @Override
-    public final IBinder asBinder() {
-        return this.a;
+    public ji5(int i, String str, Map map) {
+        this.a = str;
+        this.b = i;
+        this.c = map;
+    }
+
+    public Map a() {
+        return this.c;
     }
 }

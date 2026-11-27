@@ -1,60 +1,41 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public interface ku0 {
-    or0 A();
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class ku0 implements pcc {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
 
-    void a();
+    public ku0(ChatActivityEnterView chatActivityEnterView, r47 r47Var, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, TLRPC.User user) {
+        this.a = (byte) 3;
+        this.b = chatActivityEnterView;
+        this.c = r47Var;
+        this.e = tL_buttonTypeRequestPeer;
+        this.d = user;
+    }
 
-    void b();
+    @Override
+    public final void a(java.lang.Object r36) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ku0.a(java.lang.Object):void");
+    }
 
-    void c();
+    public ku0(Object obj, String str, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.d = str;
+        this.c = obj2;
+        this.e = obj3;
+    }
 
-    void d(TLRPC.Document document);
-
-    void e(String str);
-
-    void f(ArrayList arrayList);
-
-    String g(boolean z, boolean z2);
-
-    boolean h();
-
-    void i(boolean z);
-
-    void j();
-
-    void k(boolean z);
-
-    void l(boolean z, boolean z2, String str, long j, int i, int i2, boolean z3, boolean z4, String str2);
-
-    void m(int i);
-
-    void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
-
-    void o(int i, boolean z);
-
-    void p(boolean z);
-
-    void q(boolean z, boolean z2, String str, long j, int i, int i2, boolean z3, boolean z4);
-
-    void r(int i);
-
-    void s();
-
-    void t(boolean z);
-
-    void u(int i, int i2, boolean z);
-
-    void v(TLRPC.User user, String str, ArrayList arrayList);
-
-    void w(boolean z);
-
-    void x(int i);
-
-    void y(boolean z);
-
-    void z();
+    public ku0(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+        this.d = obj3;
+        this.e = obj4;
+    }
 }

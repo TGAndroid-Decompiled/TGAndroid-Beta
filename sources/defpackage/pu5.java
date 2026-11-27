@@ -1,20 +1,37 @@
 package defpackage;
 
-import j$.util.DesugarTimeZone;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-public final class pu5 implements y8c {
-    public static final SimpleDateFormat a;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public final class pu5 implements Iterator {
+    public static final pu5 a;
+    public static final pu5[] b;
 
     static {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-        a = simpleDateFormat;
-        simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
+        ?? r0 = new Enum("INSTANCE", 0);
+        a = r0;
+        b = new pu5[]{r0};
+    }
+
+    public static pu5 valueOf(String str) {
+        return (pu5) Enum.valueOf(pu5.class, str);
+    }
+
+    public static pu5[] values() {
+        return (pu5[]) b.clone();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ((z8c) obj2).b(a.format((Date) obj));
+    public final boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final void remove() {
+        yve.o("no calls to next() since the last call to remove()", false);
     }
 }

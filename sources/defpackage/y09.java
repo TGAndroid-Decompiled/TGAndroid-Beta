@@ -1,185 +1,106 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class y09 extends d implements gk7 {
-    public o39 a;
-    public u09 b;
-    public boolean c;
-    public int d;
-    public int e;
-    public int f;
-    public wtc h;
-    public w09 n;
+public final class y09 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final long c;
+    public final Object d;
+    public final Object e;
 
-    public y09() {
-        super(null);
-        this.d = -1;
+    public y09(r9b r9bVar, TLRPC.Chat chat, jf7 jf7Var, long j) {
+        this.a = (byte) 14;
+        this.d = r9bVar;
+        this.e = chat;
+        this.b = jf7Var;
+        this.c = j;
     }
 
-    public static int b0(y09 y09Var) {
-        return y09Var.currentAccount;
-    }
-
-    public static int c0(y09 y09Var) {
-        return y09Var.currentAccount;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setTitle(k96.M0(2131746194, null));
-        this.simpleActionBar.setBackButtonImage(2131231243);
-        this.simpleActionBar.setActionBarMenuOnItemClick(new kk8(this, (byte) 6));
-        FrameLayout frameLayout = new FrameLayout(context);
-        o39 o39Var = new o39(context, null);
-        this.a = o39Var;
-        o39Var.r1();
-        this.a.setSectionsDrawBackground(true);
-        ((gb3) this.a.getItemAnimator()).m = false;
-        this.a.setLayoutManager(new t26());
-        o39 o39Var2 = this.a;
-        u09 u09Var = new u09(this, context);
-        this.b = u09Var;
-        o39Var2.setAdapter(u09Var);
-        this.a.setOnItemClickListener(new f09(this, (byte) 1));
-        frameLayout.addView(this.a, nme.c(-1.0f, -1));
-        this.fragmentView = frameLayout;
-        this.b.f();
-        g0();
-        return frameLayout;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i2 == this.currentAccount) {
-            if (i == kk7.X4) {
-                this.b.f();
-            } else if (i == kk7.h5) {
-                g0();
-                this.b.f();
+    private final void a() {
+        qyb qybVar = (qyb) this.d;
+        TLObject tLObject = (TLObject) this.b;
+        d0c d0cVar = (d0c) this.e;
+        qybVar.getClass();
+        ArrayList arrayList = new ArrayList();
+        Object obj = null;
+        Object obj2 = null;
+        int i = 0;
+        if (tLObject instanceof TLRPC.TL_messages_forumTopics) {
+            TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
+            zh6 zh6Var = new zh6();
+            for (int i2 = 0; i2 < tL_messages_forumTopics.messages.size(); i2++) {
+                zh6Var.k(tL_messages_forumTopics.messages.get(i2).id, tL_messages_forumTopics.messages.get(i2));
             }
-        }
-    }
-
-    public final void f0(View view) {
-        int i;
-        int i2;
-        Point point;
-        if (view instanceof va0) {
-            va0 va0Var = (va0) view;
-            if (va0Var.n && !getUserConfig().p()) {
-                showDialog(new jh8((d) this, 4, true));
-                return;
+            qybVar.getMessagesController().j4(tL_messages_forumTopics.users, false);
+            qybVar.getMessagesController().c4(tL_messages_forumTopics.chats, false);
+            ArrayList<TLRPC.TL_forumTopic> arrayList2 = tL_messages_forumTopics.topics;
+            long j = this.c;
+            qybVar.u(j, arrayList2, zh6Var, false, 2, -1);
+            qybVar.getMessagesStorage().z1(qybVar.getConnectionsManager().getCurrentTime(), -j, (List) qybVar.a.f(j), true);
+            qybVar.getMessagesStorage().g1(tL_messages_forumTopics.messages, false, true, false, 0, false, 0, 0L);
+            ArrayList<TLRPC.TL_forumTopic> arrayList3 = tL_messages_forumTopics.topics;
+            int size = arrayList3.size();
+            int i3 = 0;
+            while (i3 < size) {
+                TLRPC.TL_forumTopic tL_forumTopic = arrayList3.get(i3);
+                i3++;
+                TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
+                TLRPC.TL_forumTopic f = qybVar.f(j, tL_forumTopic2.id);
+                if (f != null) {
+                    tL_forumTopic2 = f;
+                }
+                arrayList.add(tL_forumTopic2);
             }
-            hq6.d0(this.currentAccount).c2(va0Var.f.reaction);
-            this.a.getAdapter().l(0, this.a.getAdapter().b());
-        } else if (view instanceof x09) {
-            x09 x09Var = (x09) view;
-            if (this.n == null) {
-                kx9[] kx9VarArr = new kx9[1];
-                tl tlVar = x09Var.a;
-                if (tlVar != null) {
-                    tlVar.f();
-                    x09Var.b();
-                    Rect rect = gl.Q;
-                    rect.set(tlVar.getBounds());
-                    i2 = (-(x09Var.getHeight() - rect.centerY())) - gl.L(16.0f);
-                    i = rect.centerX() - ((gl.q.x - gl.L(12.0f)) - ((int) Math.min(gl.L(324.0f), point.x * 0.95f)));
-                } else {
-                    i = 0;
-                    i2 = 0;
+            int i4 = tL_messages_forumTopics.count;
+            if (!tL_messages_forumTopics.topics.isEmpty()) {
+                TLRPC.TL_forumTopic tL_forumTopic3 = (TLRPC.TL_forumTopic) c00.g(1, tL_messages_forumTopics.topics);
+                TLRPC.Message message = (TLRPC.Message) zh6Var.f(tL_forumTopic3.top_message);
+                ?? obj3 = new Object();
+                if (tL_messages_forumTopics.order_by_create_date) {
+                    i = tL_forumTopic3.date;
+                } else if (message != null) {
+                    i = message.date;
                 }
-                v09 v09Var = new v09(this, this, getParentActivity(), Integer.valueOf(i), x09Var, kx9VarArr);
-                String S = getMediaDataController().S();
-                if (S != null && S.startsWith("animated_")) {
-                    try {
-                        v09Var.setSelected(Long.valueOf(Long.parseLong(S.substring(9))));
-                    } catch (Exception unused) {
-                    }
-                }
-                ArrayList arrayList = getMediaDataController().h;
-                ArrayList arrayList2 = new ArrayList(20);
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    ?? obj = new Object();
-                    obj.f = ((TLRPC.TL_availableReaction) arrayList.get(i3)).reaction;
-                    arrayList2.add(obj);
-                }
-                v09Var.setRecentReactions(arrayList2);
-                v09Var.setSaveState(3);
-                v09Var.y(tlVar, x09Var);
-                w09 w09Var = new w09(this, v09Var);
-                this.n = w09Var;
-                kx9VarArr[0] = w09Var;
-                w09Var.showAsDropDown(x09Var, 0, i2, 53);
-                kx9VarArr[0].a();
+                obj3.a = i;
+                obj3.b = tL_forumTopic3.top_message;
+                obj3.c = tL_forumTopic3.id;
+                obj2 = obj3;
             }
+            i = i4;
+            obj = obj2;
         }
-    }
-
-    public final void g0() {
-        this.f = 2;
-        this.c = true;
-        if (y6c.h(this.currentAccount).p()) {
-            this.d = -1;
-            int i = this.f;
-            this.f = i + 1;
-            this.e = i;
-            return;
-        }
-        this.e = -1;
-        this.d = this.f;
+        d0cVar.a(arrayList, obj, Integer.valueOf(i));
     }
 
     @Override
-    public final o39 getListViewForSimpleGlass() {
-        return this.a;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.y09.run():void");
     }
 
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        return hue.a(new t00(this, (byte) 16), bkb.c6, bkb.F6, bkb.y6, bkb.h6, bkb.Z6, bkb.A6, bkb.o7, bkb.e6, bkb.f6, bkb.N6, bkb.O6, bkb.P6, bkb.Q6);
+    public y09(Object obj, long j, TLObject tLObject, Object obj2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.c = j;
+        this.b = tLObject;
+        this.e = obj2;
     }
 
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public y09(Object obj, Object obj2, long j, Object obj3, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = obj2;
+        this.c = j;
+        this.e = obj3;
     }
 
-    @Override
-    public final boolean onFragmentCreate() {
-        wtc wtcVar = this.h;
-        if (wtcVar != null) {
-            wtcVar.a();
-            this.h = null;
-        }
-        kk7 notificationCenter = getNotificationCenter();
-        notificationCenter.getClass();
-        wtc wtcVar2 = new wtc(notificationCenter, this);
-        wtcVar2.b(kk7.X4);
-        wtcVar2.b(kk7.h5);
-        this.h = wtcVar2;
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        wtc wtcVar = this.h;
-        if (wtcVar != null) {
-            wtcVar.a();
-            this.h = null;
-        }
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public y09(Object obj, Object obj2, Object obj3, long j, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = obj2;
+        this.e = obj3;
+        this.c = j;
     }
 }

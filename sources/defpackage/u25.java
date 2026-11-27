@@ -1,62 +1,44 @@
 package defpackage;
 
-import android.util.Base64;
-import org.json.JSONObject;
+import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
-public final class u25 {
-    public final String a;
-    public final String b;
+import org.telegram.ui.Wallet.c;
+public final class u25 implements Runnable {
+    public volatile boolean a;
+    public Runnable b;
     public final String c;
-    public final String d;
-    public final long e;
-    public final boolean f;
+    public final TL_wallet.nftItem d;
+    public final String e;
+    public final icc f;
+    public final c h;
 
-    public u25(JSONObject jSONObject) {
-        String str;
-        String str2;
-        String string = jSONObject.getString("address");
-        this.a = string;
-        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
-            this.f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
-            Object obj = jSONObject.get("amount");
-            if (obj instanceof String) {
-                String str3 = (String) obj;
-                if (str3.matches("[0-9]+")) {
-                    long parseLong = Long.parseLong(str3);
-                    this.e = parseLong;
-                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
-                        w26.j("Extra currencies are not supported");
-                        throw null;
-                    } else if (parseLong >= 0) {
-                        if (jSONObject.has("payload")) {
-                            str = jSONObject.getString("payload");
-                        } else {
-                            str = null;
-                        }
-                        this.b = str;
-                        if (jSONObject.has("stateInit")) {
-                            str2 = jSONObject.getString("stateInit");
-                        } else {
-                            str2 = null;
-                        }
-                        this.c = str2;
-                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (str2 != null && !WalletEngine2.isValidCellBoc(str2))) {
-                            w26.j("Invalid transaction cell");
-                            throw null;
-                        } else {
-                            this.d = WalletEngine2.textCommentFromBody(str);
-                            return;
-                        }
-                    } else {
-                        w26.j("Transfer amount must not be negative");
-                        throw null;
-                    }
+    public u25(c cVar, String str, TL_wallet.nftItem nftitem, String str2, icc iccVar) {
+        this.h = cVar;
+        this.c = str;
+        this.d = nftitem;
+        this.e = str2;
+        this.f = iccVar;
+    }
+
+    @Override
+    public final synchronized void run() {
+        try {
+            try {
+                if (this.a) {
+                    return;
                 }
+                WalletEngine2 walletEngine2 = this.h.b;
+                String str = this.c;
+                TL_wallet.nftItem nftitem = this.d;
+                String str2 = nftitem.address;
+                String str3 = this.e;
+                this.b = walletEngine2.emulateSendNFT(str, str2, str3, new nu0(this, nftitem, str3, this.f, (byte) 6));
+            } catch (Throwable th) {
+                th = th;
+                throw th;
             }
-            w26.j("Invalid transfer amount");
-            throw null;
+        } catch (Throwable th2) {
+            th = th2;
         }
-        w26.j("Expected a friendly destination address");
-        throw null;
     }
 }

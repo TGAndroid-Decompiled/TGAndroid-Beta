@@ -1,11 +1,19 @@
 package defpackage;
-public abstract class wpb {
-    public static final kia b = new kia(null, 0, 0);
-    public final wpb a;
 
-    public wpb(wpb wpbVar) {
-        this.a = wpbVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wpb extends AnimatorListenerAdapter {
+    public final pqb a;
+
+    public wpb(pqb pqbVar) {
+        this.a = pqbVar;
     }
 
-    public abstract void a(pj0 pj0Var, byte[] bArr);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        pqb pqbVar = this.a;
+        if (pqbVar.Y0 == null) {
+            pqbVar.L0[0].setVisibility(4);
+        }
+    }
 }

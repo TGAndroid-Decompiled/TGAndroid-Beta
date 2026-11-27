@@ -1,37 +1,43 @@
 package defpackage;
+public final class adc {
+    public float a;
+    public float b;
+    public float c;
 
-import android.os.Build;
-import android.view.View;
-import android.view.WindowInsets;
-import java.util.WeakHashMap;
-public final class adc implements View.OnApplyWindowInsetsListener {
-    public vxc a = null;
-    public final View b;
-    public final no7 c;
-
-    public adc(View view, no7 no7Var) {
-        this.b = view;
-        this.c = no7Var;
+    public adc(float f) {
+        d(f);
     }
 
-    @Override
-    public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        vxc h = vxc.h(view, windowInsets);
-        int i = Build.VERSION.SDK_INT;
-        no7 no7Var = this.c;
-        if (i < 30) {
-            bdc.a(windowInsets, this.b);
-            if (h.equals(this.a)) {
-                return no7Var.W(view, h).g();
-            }
+    public final boolean a(float f) {
+        float f2 = this.b;
+        float A = qd4.A(this.c, f2, f, f2);
+        if (this.a != A) {
+            this.a = A;
+            return true;
         }
-        this.a = h;
-        vxc W = no7Var.W(view, h);
-        if (i >= 30) {
-            return W.g();
+        return false;
+    }
+
+    public final boolean b(float f) {
+        if (this.c != f) {
+            return true;
         }
-        WeakHashMap weakHashMap = jdc.a;
-        zcc.c(view);
-        return W.g();
+        return false;
+    }
+
+    public final void c(boolean z) {
+        if (z) {
+            float f = this.c;
+            this.a = f;
+            this.b = f;
+            return;
+        }
+        this.b = this.a;
+    }
+
+    public final void d(float f) {
+        this.b = f;
+        this.c = f;
+        this.a = f;
     }
 }

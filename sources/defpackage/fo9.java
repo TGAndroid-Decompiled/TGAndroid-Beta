@@ -1,29 +1,12 @@
 package defpackage;
+public final class fo9 extends rc0 {
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public final int h;
 
-import java.nio.ByteBuffer;
-public final class fo9 extends rf0 {
-    public int d;
-
-    @Override
-    public final void b(ByteBuffer byteBuffer) {
-        this.d = hle.a(byteBuffer.get());
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && fo9.class == obj.getClass() && this.d == ((fo9) obj).d) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.d;
-    }
-
-    public final String toString() {
-        return "SLConfigDescriptor{predefined=" + this.d + '}';
+    public fo9(boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fo9.<init>(boolean, boolean):void");
     }
 }

@@ -1,14 +1,15 @@
 package defpackage;
-public final class l29 {
-    public float a;
-    public float b;
-    public float c;
-    public float d;
+public abstract class l29 {
+    public static final s3 a;
 
-    public l29(float f, float f2, float f3, float f4) {
-        this.a = f;
-        this.b = f2;
-        this.c = f3;
-        this.d = f4;
+    static {
+        w84 w84Var;
+        Integer num = su5.a;
+        if (num != null && num.intValue() < 34) {
+            w84Var = new w84();
+        } else {
+            w84Var = new Object();
+        }
+        a = w84Var;
     }
 }

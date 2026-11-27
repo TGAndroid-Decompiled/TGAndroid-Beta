@@ -1,19 +1,26 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-public final class mjd {
-    public static final mjd d = new mjd();
-    public final Runnable a;
-    public final Executor b;
-    public mjd c;
+import java.io.Serializable;
+import java.util.Arrays;
+public final class mjd implements Serializable {
+    public final Object a;
 
-    public mjd() {
-        this.a = null;
-        this.b = null;
+    public mjd(Object obj) {
+        this.a = obj;
     }
 
-    public mjd(Runnable runnable, Executor executor) {
-        this.a = runnable;
-        this.b = executor;
+    public final boolean equals(Object obj) {
+        if (obj instanceof mjd) {
+            return y4f.a(this.a, ((mjd) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a});
+    }
+
+    public final String toString() {
+        return qd4.y("Suppliers.ofInstance(", this.a.toString(), ")");
     }
 }

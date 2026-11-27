@@ -1,19 +1,30 @@
 package defpackage;
-public final class v7f extends vef {
+public final class v7f extends ljf {
     private static final v7f zzb;
     private int zzd;
     private int zze;
-    private int zzf;
-    private e7f zzg;
+    private boolean zzf;
+    private int zzg;
+    private boolean zzh;
+    private tjf zzi;
+    private tjf zzj;
+    private String zzk;
 
     static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(v7f.class, vefVar);
+        v7f v7fVar = new v7f();
+        zzb = v7fVar;
+        ljf.e(v7f.class, v7fVar);
+    }
+
+    public v7f() {
+        hlf hlfVar = hlf.d;
+        this.zzi = hlfVar;
+        this.zzj = hlfVar;
+        this.zzk = "";
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
+    public final Object h(int i, ljf ljfVar) {
         int i2 = i - 1;
         if (i2 != 0) {
             if (i2 != 2) {
@@ -24,11 +35,11 @@ public final class v7f extends vef {
                         }
                         return zzb;
                     }
-                    return new uef(zzb);
+                    return new kjf(zzb);
                 }
-                return new vef();
+                return new v7f();
             }
-            return new sgf(zzb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001င\u0000\u0002င\u0001\u0003ဉ\u0002", new Object[]{"zzd", "zze", "zzf", "zzg"});
+            return new ilf(zzb, "\u0001\u0007\u0000\u0001\u0001\t\u0007\u0000\u0002\u0000\u0001᠌\u0000\u0002ဇ\u0001\u0003᠌\u0002\u0004ဇ\u0003\u0007\u001b\b\u001b\tဈ\u0004", new Object[]{"zzd", "zze", rg7.h, "zzf", "zzg", rj2.r, "zzh", "zzi", odf.class, "zzj", odf.class, "zzk"});
         }
         return (byte) 1;
     }

@@ -1,521 +1,1011 @@
 package defpackage;
 
-import android.view.animation.Interpolator;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import android.graphics.PointF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
-public final class x46 implements Iterable {
-    public final t46 a;
-    public final y74 c;
-    public final w46 d;
-    public boolean f;
-    public final ArrayList b = new ArrayList();
-    public final ArrayList e = new ArrayList();
+import java.util.WeakHashMap;
+public class x46 extends q79 {
+    public int A;
+    public w46 B;
+    public final t46 C;
+    public final u46 D;
+    public byte E;
+    public final int[] F;
+    public boolean G;
+    public boolean H;
+    public boolean o;
+    public v46 p;
+    public vr2 q;
+    public boolean r;
+    public boolean s;
+    public boolean t;
+    public boolean u;
+    public boolean v;
+    public boolean w;
+    public final boolean x;
+    public int y;
+    public boolean z;
 
-    public x46(t46 t46Var, Interpolator interpolator, long j) {
-        this.a = t46Var;
-        this.d = new w46(this, t46Var);
-        if (interpolator != null && j > 0) {
-            this.c = new y74(0, new z24(this, (byte) 12), interpolator, j);
-        } else {
-            this.c = null;
-        }
+    public x46(int i, boolean z) {
+        this.o = true;
+        this.r = false;
+        this.t = false;
+        this.u = false;
+        this.v = false;
+        this.w = false;
+        this.x = true;
+        this.y = -1;
+        this.z = true;
+        this.A = Integer.MIN_VALUE;
+        this.B = null;
+        ?? obj = new Object();
+        obj.c();
+        this.C = obj;
+        this.D = new Object();
+        this.E = (byte) 2;
+        this.F = new int[2];
+        this.G = true;
+        this.H = true;
+        i1(i);
+        j1(z);
     }
 
-    public final void h(float f) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        boolean z5;
-        boolean z6;
-        boolean z7;
-        boolean z8;
-        boolean z9;
-        w46 w46Var = this.d;
-        boolean a = w46Var.b.a(f);
-        if (!w46Var.d.a(f) && !a) {
-            z = false;
-        } else {
+    public final int A0(c89 c89Var) {
+        if (r() != 0) {
+            F0();
+            vr2 vr2Var = this.q;
+            boolean z = this.x;
+            boolean z2 = !z;
+            View J0 = J0(z2);
+            View I0 = I0(z2);
+            if (r() != 0 && c89Var.b() != 0 && J0 != null && I0 != null) {
+                if (!z) {
+                    return Math.abs(((r79) J0.getLayoutParams()).b() - ((r79) I0.getLayoutParams()).b()) + 1;
+                }
+                return Math.min(vr2Var.k(), vr2Var.a(I0) - vr2Var.d(J0));
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public final int B0(c89 c89Var) {
+        int max;
+        if (r() != 0) {
+            F0();
+            vr2 vr2Var = this.q;
+            boolean z = this.x;
+            boolean z2 = !z;
+            View J0 = J0(z2);
+            View I0 = I0(z2);
+            boolean z3 = this.v;
+            if (r() != 0 && c89Var.b() != 0 && J0 != null && I0 != null) {
+                int min = Math.min(((r79) J0.getLayoutParams()).b(), ((r79) I0.getLayoutParams()).b());
+                int max2 = Math.max(((r79) J0.getLayoutParams()).b(), ((r79) I0.getLayoutParams()).b());
+                if (z3) {
+                    max = Math.max(0, (c89Var.b() - max2) - 1);
+                } else {
+                    max = Math.max(0, min);
+                }
+                if (!z) {
+                    return max;
+                }
+                return Math.round((max * (Math.abs(vr2Var.a(I0) - vr2Var.d(J0)) / (Math.abs(((r79) J0.getLayoutParams()).b() - ((r79) I0.getLayoutParams()).b()) + 1))) + (vr2Var.j() - vr2Var.d(J0)));
+            }
+        }
+        return 0;
+    }
+
+    public final int C0(c89 c89Var) {
+        if (r() != 0) {
+            F0();
+            vr2 vr2Var = this.q;
+            boolean z = this.x;
+            boolean z2 = !z;
+            View J0 = J0(z2);
+            View I0 = I0(z2);
+            if (r() != 0 && c89Var.b() != 0 && J0 != null && I0 != null) {
+                if (!z) {
+                    return c89Var.b();
+                }
+                return (int) (((vr2Var.a(I0) - vr2Var.d(J0)) / (Math.abs(((r79) J0.getLayoutParams()).b() - ((r79) I0.getLayoutParams()).b()) + 1)) * c89Var.b());
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public final PointF D0(int i) {
+        if (r() == 0) {
+            return null;
+        }
+        boolean z = false;
+        int i2 = 1;
+        if (i < q79.G(q(0))) {
             z = true;
         }
-        if (!w46Var.e.a(f) && !z) {
-            z2 = false;
-        } else {
-            z2 = true;
+        if (z != this.v) {
+            i2 = -1;
         }
-        if (!w46Var.f.a(f) && !z2) {
-            z3 = false;
-        } else {
-            z3 = true;
+        if (!this.o) {
+            return new PointF(i2, 0.0f);
         }
-        if (!w46Var.g.a(f) && !z3) {
-            z4 = false;
-        } else {
-            z4 = true;
-        }
-        if (!w46Var.c.a(f) && !z4) {
-            z5 = false;
-        } else {
-            z5 = true;
-        }
-        if (!w46Var.a.n(f) && !z5) {
-            z6 = false;
-        } else {
-            z6 = true;
-        }
-        ArrayList arrayList = this.b;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            u46 u46Var = (u46) obj;
-            boolean a2 = u46Var.c.a(f);
-            if (!u46Var.d.a(f) && !a2) {
-                z7 = false;
-            } else {
-                z7 = true;
-            }
-            if (!u46Var.e.a(f) && !z7) {
-                z8 = false;
-            } else {
-                z8 = true;
-            }
-            if (!u46Var.f.a(f) && !z8) {
-                z9 = false;
-            } else {
-                z9 = true;
-            }
-            Object obj2 = u46Var.a;
-            if (obj2 instanceof b9c) {
-                if (!((b9c) obj2).a(f) && !z9) {
-                    z9 = false;
+        return new PointF(0.0f, i2);
+    }
+
+    public final int E0(int i) {
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 17) {
+                    if (i != 33) {
+                        if (i != 66) {
+                            if (i != 130 || !this.o) {
+                                return Integer.MIN_VALUE;
+                            }
+                        } else if (this.o) {
+                            return Integer.MIN_VALUE;
+                        }
+                    } else if (!this.o) {
+                        return Integer.MIN_VALUE;
+                    } else {
+                        return -1;
+                    }
+                } else if (this.o) {
+                    return Integer.MIN_VALUE;
                 } else {
-                    z9 = true;
+                    return -1;
                 }
+            } else if (!this.o && X0()) {
+                return -1;
             }
-            if (!z9 && !z6) {
-                z6 = false;
-            } else {
-                z6 = true;
-            }
+        } else if (this.o || !X0()) {
+            return -1;
         }
-        if (z6) {
-            this.a.F();
-            if (f == 1.0f) {
-                l(true);
-            }
+        return 1;
+    }
+
+    public final void F0() {
+        if (this.p == null) {
+            ?? obj = new Object();
+            obj.a = true;
+            obj.h = 0;
+            obj.i = 0;
+            obj.k = null;
+            this.p = obj;
         }
     }
 
-    public final u46 i(int i) {
-        return (u46) this.b.get(i);
+    public final int G0(oh2 oh2Var, v46 v46Var, c89 c89Var, boolean z) {
+        int i = v46Var.c;
+        int i2 = v46Var.g;
+        if (i2 != Integer.MIN_VALUE) {
+            if (i < 0) {
+                v46Var.g = i2 + i;
+            }
+            b1(oh2Var, v46Var);
+        }
+        int i3 = v46Var.c + v46Var.h;
+        while (true) {
+            if ((!v46Var.l && i3 <= 0) || !v46Var.b(c89Var)) {
+                break;
+            }
+            u46 u46Var = this.D;
+            u46Var.a = 0;
+            u46Var.b = false;
+            u46Var.c = false;
+            u46Var.d = false;
+            Y0(oh2Var, c89Var, v46Var, u46Var);
+            if (!u46Var.b) {
+                int i4 = v46Var.b;
+                int i5 = u46Var.a;
+                v46Var.b = (v46Var.f * i5) + i4;
+                if (!u46Var.c || v46Var.k != null || !c89Var.g) {
+                    v46Var.c -= i5;
+                    i3 -= i5;
+                }
+                int i6 = v46Var.g;
+                if (i6 != Integer.MIN_VALUE) {
+                    int i7 = i6 + i5;
+                    v46Var.g = i7;
+                    int i8 = v46Var.c;
+                    if (i8 < 0) {
+                        v46Var.g = i7 + i8;
+                    }
+                    b1(oh2Var, v46Var);
+                }
+                if (z && u46Var.d) {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        return i - v46Var.c;
+    }
+
+    public final int H0() {
+        View O0 = O0(0, r(), true, false);
+        if (O0 == null) {
+            return -1;
+        }
+        return ((r79) O0.getLayoutParams()).b();
+    }
+
+    public final View I0(boolean z) {
+        if (this.v) {
+            return O0(0, r(), z, true);
+        }
+        return O0(r() - 1, -1, z, true);
+    }
+
+    public final View J0(boolean z) {
+        if (this.v) {
+            return O0(r() - 1, -1, z, true);
+        }
+        return O0(0, r(), z, true);
+    }
+
+    public final int K0() {
+        View O0 = O0(0, r(), false, true);
+        if (O0 == null) {
+            return -1;
+        }
+        return ((r79) O0.getLayoutParams()).b();
+    }
+
+    public final int L0() {
+        View O0 = O0(r() - 1, -1, true, false);
+        if (O0 == null) {
+            return -1;
+        }
+        return ((r79) O0.getLayoutParams()).b();
+    }
+
+    public final int M0() {
+        View O0 = O0(r() - 1, -1, false, true);
+        if (O0 == null) {
+            return -1;
+        }
+        return ((r79) O0.getLayoutParams()).b();
+    }
+
+    public final View N0(int i, int i2) {
+        int i3;
+        int i4;
+        F0();
+        if (i2 > i || i2 < i) {
+            if (this.q.d(q(i)) < this.q.j()) {
+                i3 = 16644;
+                i4 = 16388;
+            } else {
+                i3 = 4161;
+                i4 = 4097;
+            }
+            if (!this.o) {
+                return this.c.x(i, i2, i3, i4);
+            }
+            return this.d.x(i, i2, i3, i4);
+        }
+        return q(i);
+    }
+
+    public final View O0(int i, int i2, boolean z, boolean z2) {
+        int i3;
+        F0();
+        int i4 = 320;
+        if (z) {
+            i3 = 24579;
+        } else {
+            i3 = 320;
+        }
+        if (!z2) {
+            i4 = 0;
+        }
+        if (!this.o) {
+            return this.c.x(i, i2, i3, i4);
+        }
+        return this.d.x(i, i2, i3, i4);
+    }
+
+    public View P0(oh2 oh2Var, c89 c89Var, int i, int i2, int i3) {
+        int j;
+        int i4;
+        F0();
+        if (this.r) {
+            j = 0;
+        } else {
+            j = this.q.j();
+        }
+        int f = this.q.f();
+        if (i2 > i) {
+            i4 = 1;
+        } else {
+            i4 = -1;
+        }
+        View view = null;
+        View view2 = null;
+        while (i != i2) {
+            View q = q(i);
+            int G = q79.G(q);
+            if (G >= 0 && G < i3) {
+                if (((r79) q.getLayoutParams()).a.j()) {
+                    if (view2 == null) {
+                        view2 = q;
+                    }
+                } else if (this.q.d(q) < f && this.q.a(q) >= j) {
+                    return q;
+                } else {
+                    if (view == null) {
+                        view = q;
+                    }
+                }
+            }
+            i += i4;
+        }
+        if (view != null) {
+            return view;
+        }
+        return view2;
     }
 
     @Override
-    public final Iterator iterator() {
-        return this.b.iterator();
-    }
-
-    public final void j(boolean z) {
-        ArrayList arrayList;
-        boolean z2;
-        ArrayList arrayList2 = this.e;
-        int size = arrayList2.size();
-        int i = 0;
-        int i2 = 0;
-        int i3 = 0;
-        int i4 = 0;
-        int i5 = 0;
-        while (i5 < size) {
-            Object obj = arrayList2.get(i5);
-            i5++;
-            u46 u46Var = (u46) obj;
-            Object obj2 = u46Var.a;
-            a9c a9cVar = u46Var.f;
-            b9c b9cVar = u46Var.e;
-            if (obj2 instanceof v46) {
-                v46 v46Var = (v46) obj2;
-                if (u46Var.b == 0) {
-                    z2 = true;
+    public View Q(View view, int i, oh2 oh2Var, c89 c89Var) {
+        int E0;
+        View N0;
+        View T0;
+        e1();
+        if (r() != 0 && (E0 = E0(i)) != Integer.MIN_VALUE) {
+            F0();
+            l1(E0, (int) (this.q.k() * 0.33333334f), false, c89Var);
+            v46 v46Var = this.p;
+            v46Var.g = Integer.MIN_VALUE;
+            v46Var.a = false;
+            G0(oh2Var, v46Var, c89Var, true);
+            boolean z = this.v;
+            if (E0 == -1) {
+                if (z) {
+                    N0 = N0(r() - 1, -1);
                 } else {
-                    z2 = false;
+                    N0 = N0(0, r());
                 }
-                arrayList2.size();
-                int b = v46Var.b(z2);
-                int width = v46Var.getWidth();
-                int height = v46Var.getHeight();
-                int i6 = b + width + i;
-                int i7 = i2 + b + height;
-                if (z && u46Var.c() > 0.0f) {
-                    float f = i;
-                    float f2 = i2;
-                    float f3 = i6;
-                    arrayList = arrayList2;
-                    float f4 = i7;
-                    if (b9cVar.b(f, f2, f3, f4)) {
-                        k();
-                        b9cVar.e(f, f2, f3, f4);
-                    }
-                    float f5 = b;
-                    if (a9cVar.b(f5)) {
-                        k();
-                        a9cVar.c = f5;
-                    }
-                } else {
-                    arrayList = arrayList2;
-                    b9cVar.d(i, i2, i6, i7);
-                    a9cVar.d(b);
-                }
-                i3 = Math.max(i3, width);
-                i4 = Math.max(i4, height);
-                i2 = i7;
-                i = i6;
+            } else if (z) {
+                N0 = N0(0, r());
             } else {
-                arrayList = arrayList2;
+                N0 = N0(r() - 1, -1);
             }
-            arrayList2 = arrayList;
-        }
-        ArrayList arrayList3 = this.b;
-        if (z) {
-            int size2 = arrayList3.size();
-            int i8 = 0;
-            while (i8 < size2) {
-                Object obj3 = arrayList3.get(i8);
-                i8++;
-                Object obj4 = ((u46) obj3).a;
+            if (E0 == -1) {
+                T0 = U0();
+            } else {
+                T0 = T0();
             }
-        }
-        int size3 = arrayList3.size();
-        int i9 = 0;
-        while (i9 < size3) {
-            Object obj5 = arrayList3.get(i9);
-            i9++;
-            Object obj6 = ((u46) obj5).a;
-        }
-        w46 w46Var = this.d;
-        if (z) {
-            a9c a9cVar2 = w46Var.f;
-            t46 t46Var = w46Var.a;
-            a9c a9cVar3 = w46Var.e;
-            a9c a9cVar4 = w46Var.d;
-            a9c a9cVar5 = w46Var.g;
-            float f6 = i;
-            if (a9cVar2.b(f6)) {
-                k();
-                w46Var.f.c = f6;
-            }
-            float f7 = i2;
-            if (a9cVar5.b(f7)) {
-                k();
-                a9cVar5.c = f7;
-            }
-            float f8 = i3;
-            if (a9cVar4.b(f8)) {
-                k();
-                a9cVar4.c = f8;
-            }
-            float f9 = i4;
-            if (a9cVar3.b(f9)) {
-                k();
-                a9cVar3.c = f9;
-            }
-            if (t46Var.m()) {
-                k();
-                t46Var.p();
-                return;
-            }
-            return;
-        }
-        w46Var.f.d(i);
-        w46Var.g.d(i2);
-        w46Var.d.d(i3);
-        w46Var.e.d(i4);
-        w46Var.a.c();
-    }
-
-    public final void k() {
-        if (!this.f) {
-            this.f = true;
-            y74 y74Var = this.c;
-            if (y74Var != null) {
-                y74Var.b();
-                l(false);
-                y74Var.c(0.0f);
-                return;
-            }
-            l(false);
-        }
-    }
-
-    public final void l(boolean z) {
-        ArrayList arrayList = this.b;
-        boolean z2 = false;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            u46 u46Var = (u46) arrayList.get(size);
-            u46Var.a(z);
-            if (u46Var.c() == 0.0f && u46Var.h) {
-                arrayList.remove(size);
-                Object obj = u46Var.a;
-                if (obj instanceof be3) {
-                    ((be3) obj).a();
+            if (T0.hasFocusable()) {
+                if (N0 != null) {
+                    return T0;
                 }
-                z2 = true;
+            } else {
+                return N0;
             }
         }
-        if (z2) {
-            arrayList.trimToSize();
-        }
-        w46 w46Var = this.d;
-        w46Var.b.c(z);
-        w46Var.d.c(z);
-        w46Var.e.c(z);
-        w46Var.f.c(z);
-        w46Var.g.c(z);
-        w46Var.c.c(z);
-        w46Var.a.k(z);
+        return null;
     }
 
-    public final void m(List list, boolean z) {
-        boolean isEmpty;
-        boolean z2;
-        boolean z3;
+    public int Q0() {
+        return 0;
+    }
+
+    public final int R0(int i, oh2 oh2Var, c89 c89Var, boolean z) {
+        int f;
+        int f2;
+        if (this.G && this.H && (f = this.q.f() - i) > 0) {
+            int i2 = -f1(-f, oh2Var, c89Var);
+            int i3 = i + i2;
+            if (z && (f2 = this.q.f() - i3) > 0) {
+                this.q.p(f2);
+                return f2 + i2;
+            }
+            return i2;
+        }
+        return 0;
+    }
+
+    public final int S0(int i, oh2 oh2Var, c89 c89Var, boolean z) {
+        int W0;
+        int j;
+        if (this.G && (W0 = i - W0()) > 0) {
+            int i2 = -f1(W0, oh2Var, c89Var);
+            int i3 = i + i2;
+            if (z && (j = i3 - this.q.j()) > 0) {
+                this.q.p(-j);
+                return i2 - j;
+            }
+            return i2;
+        }
+        return 0;
+    }
+
+    public final View T0() {
+        int r;
+        if (this.v) {
+            r = 0;
+        } else {
+            r = r() - 1;
+        }
+        return q(r);
+    }
+
+    public final View U0() {
         int i;
-        boolean z4;
+        if (this.v) {
+            i = r() - 1;
+        } else {
+            i = 0;
+        }
+        return q(i);
+    }
+
+    public int V0(c89 c89Var) {
+        if (c89Var.a != -1) {
+            return this.q.k();
+        }
+        return 0;
+    }
+
+    public int W0() {
+        return this.q.j();
+    }
+
+    public boolean X0() {
+        RecyclerView recyclerView = this.b;
+        WeakHashMap weakHashMap = ihc.a;
+        if (recyclerView.getLayoutDirection() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public void Y0(oh2 oh2Var, c89 c89Var, v46 v46Var, u46 u46Var) {
+        boolean z;
+        int i;
         int i2;
-        y74 y74Var = this.c;
-        w46 w46Var = this.d;
-        ArrayList arrayList = this.e;
-        ArrayList arrayList2 = this.b;
-        if (!z) {
-            if (y74Var != null) {
-                y74Var.b();
-                l(false);
-                y74Var.c(0.0f);
-            } else {
-                l(false);
-            }
-            for (int size = arrayList2.size() - 1; size >= 0; size--) {
-                Object obj = ((u46) arrayList2.get(size)).a;
-                if (obj instanceof be3) {
-                    ((be3) obj).a();
-                }
-            }
-            arrayList2.clear();
-            arrayList.clear();
-            if (list != null) {
-                i2 = list.size();
-            } else {
-                i2 = 0;
-            }
-            if (i2 > 0) {
-                arrayList2.ensureCapacity(i2);
-                arrayList.ensureCapacity(i2);
-                for (Object obj2 : list) {
-                    u46 u46Var = new u46(arrayList.size(), obj2, true);
-                    arrayList2.add(u46Var);
-                    arrayList.add(u46Var);
-                }
-                arrayList2.trimToSize();
-                arrayList.trimToSize();
-            }
-            w46Var.a(i2, false);
-            j(false);
-            this.a.F();
+        int i3;
+        int i4;
+        boolean z2;
+        View c = v46Var.c(oh2Var);
+        if (c == null) {
+            u46Var.b = true;
             return;
         }
-        if (list != null && !list.isEmpty()) {
-            if (arrayList.size() == list.size()) {
-                for (int i3 = 0; i3 < list.size(); i3++) {
-                    if (((u46) arrayList.get(i3)).equals(list.get(i3))) {
-                    }
-                }
-                isEmpty = true;
+        r79 r79Var = (r79) c.getLayoutParams();
+        List list = v46Var.k;
+        boolean z3 = this.v;
+        int i5 = v46Var.f;
+        if (list == null) {
+            if (i5 == -1) {
+                z2 = true;
+            } else {
+                z2 = false;
             }
-            isEmpty = false;
-            break;
+            if (z3 == z2) {
+                a(-1, c, false);
+            } else {
+                a(0, c, false);
+            }
+        } else {
+            if (i5 == -1) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (z3 == z) {
+                a(-1, c, true);
+            } else {
+                a(0, c, true);
+            }
         }
-        isEmpty = arrayList.isEmpty();
-        if (!isEmpty) {
-            k();
-            if (list != null && !list.isEmpty()) {
-                boolean z5 = false;
-                int i4 = 0;
-                boolean z6 = false;
-                for (int i5 = 0; i5 < arrayList2.size(); i5++) {
-                    u46 u46Var2 = (u46) arrayList2.get(i5);
-                    Object obj3 = u46Var2.a;
-                    a9c a9cVar = u46Var2.d;
-                    a9c a9cVar2 = u46Var2.c;
-                    int indexOf = list.indexOf(obj3);
-                    if (indexOf != -1) {
-                        i4++;
-                        float f = indexOf;
-                        if (a9cVar2.b(f)) {
-                            k();
-                            a9cVar2.c = f;
-                        }
-                        if (u46Var2.b != indexOf) {
-                            u46Var2.b = indexOf;
-                            if (!z5 && u46Var2.h) {
-                                z5 = false;
-                            } else {
-                                z5 = true;
-                            }
-                            z6 = true;
-                        }
-                        if (a9cVar.b(1.0f)) {
-                            k();
-                            a9cVar.c = 1.0f;
-                            u46Var2.h = false;
-                            arrayList.add(u46Var2);
-                            w46Var.a(arrayList.size(), true);
-                            z5 = true;
-                        }
-                    } else if (a9cVar.b(0.0f)) {
-                        k();
-                        a9cVar.c = 0.0f;
-                        u46Var2.h = true;
-                        if (z5) {
-                            z4 = arrayList.remove(u46Var2);
-                        } else {
-                            int binarySearch = Collections.binarySearch(arrayList, u46Var2);
-                            if (binarySearch >= 0) {
-                                arrayList.remove(binarySearch);
-                                z4 = true;
-                            } else {
-                                z4 = false;
-                            }
-                        }
-                        if (z4) {
-                            w46Var.a(arrayList.size(), true);
-                        } else {
-                            sc8.e();
-                            return;
-                        }
-                    } else {
-                        continue;
-                    }
-                }
-                if (z5) {
-                    Collections.sort(arrayList);
-                }
-                if (i4 < list.size()) {
-                    arrayList2.ensureCapacity((list.size() - i4) + arrayList2.size());
-                    int i6 = 0;
-                    for (Object obj4 : list) {
-                        if (obj4 == null) {
-                            int size2 = arrayList2.size();
-                            i = 0;
-                            int i7 = 0;
-                            while (i7 < size2) {
-                                Object obj5 = arrayList2.get(i7);
-                                i7++;
-                                if (((u46) obj5).a == null) {
-                                    break;
-                                }
-                                i++;
-                            }
-                            i = -1;
-                        } else {
-                            int size3 = arrayList2.size();
-                            i = 0;
-                            int i8 = 0;
-                            while (i8 < size3) {
-                                Object obj6 = arrayList2.get(i8);
-                                i8++;
-                                if (obj4.equals(((u46) obj6).a)) {
-                                    break;
-                                }
-                                i++;
-                            }
-                            i = -1;
-                        }
-                        if (i == -1) {
-                            if (i6 != arrayList2.size()) {
-                                z6 = true;
-                            }
-                            k();
-                            u46 u46Var3 = new u46(i6, obj4, false);
-                            u46Var3.d.c = 1.0f;
-                            u46Var3.h = false;
-                            arrayList2.add(u46Var3);
-                            int binarySearch2 = Collections.binarySearch(arrayList, u46Var3);
-                            if (binarySearch2 < 0) {
-                                arrayList.add((-binarySearch2) - 1, u46Var3);
-                                w46Var.a(arrayList.size(), true);
-                            } else {
-                                w26.j("Element already exists in list");
+        O(c);
+        u46Var.a = this.q.b(c);
+        if (this.o) {
+            if (X0()) {
+                i4 = this.m - D();
+                i2 = i4 - this.q.c(c);
+            } else {
+                int C = C();
+                i4 = this.q.c(c) + C;
+                i2 = C;
+            }
+            int i6 = v46Var.f;
+            i3 = v46Var.b;
+            int i7 = u46Var.a;
+            if (i6 == -1) {
+                int i8 = i3 - i7;
+                i = i3;
+                i3 = i8;
+            } else {
+                i = i7 + i3;
+            }
+        } else {
+            int E = E();
+            int c2 = this.q.c(c) + E;
+            int i9 = v46Var.f;
+            int i10 = v46Var.b;
+            int i11 = u46Var.a;
+            if (i9 == -1) {
+                int i12 = i10 - i11;
+                i4 = i10;
+                i3 = E;
+                i = c2;
+                i2 = i12;
+            } else {
+                int i13 = i10 + i11;
+                i = c2;
+                i2 = i10;
+                i3 = E;
+                i4 = i13;
+            }
+        }
+        q79.N(c, i2, i3, i4, i);
+        if (r79Var.a.j() || r79Var.a.m()) {
+            u46Var.c = true;
+        }
+        u46Var.d = c.hasFocusable();
+    }
+
+    @Override
+    public void a0(defpackage.oh2 r18, defpackage.c89 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.x46.a0(oh2, c89):void");
+    }
+
+    public void a1(View view, View view2, int i, int i2) {
+        boolean z;
+        b("Cannot drop a view during a scroll or layout calculation");
+        F0();
+        e1();
+        int G = q79.G(view);
+        int G2 = q79.G(view2);
+        if (G < G2) {
+            z = true;
+        } else {
+            z = true;
+        }
+        boolean z2 = this.v;
+        vr2 vr2Var = this.q;
+        if (z2) {
+            if (z) {
+                g1(G2, vr2Var.f() - (this.q.b(view) + this.q.d(view2)));
+                return;
+            }
+            g1(G2, vr2Var.f() - this.q.a(view2));
+        } else if (z) {
+            g1(G2, vr2Var.d(view2));
+        } else {
+            g1(G2, vr2Var.a(view2) - this.q.b(view));
+        }
+    }
+
+    @Override
+    public final void b(String str) {
+        RecyclerView recyclerView;
+        if (this.B == null && (recyclerView = this.b) != null) {
+            recyclerView.l(str);
+        }
+    }
+
+    @Override
+    public void b0(c89 c89Var) {
+        this.B = null;
+        this.y = -1;
+        this.A = Integer.MIN_VALUE;
+        this.C.c();
+    }
+
+    public final void b1(oh2 oh2Var, v46 v46Var) {
+        f89 U;
+        f89 U2;
+        if (v46Var.a && !v46Var.l) {
+            int i = v46Var.g;
+            int i2 = v46Var.i;
+            if (v46Var.f == -1) {
+                int r = r();
+                if (i >= 0) {
+                    int e = (this.q.e() - i) + i2;
+                    if (this.v) {
+                        for (int i3 = 0; i3 < r; i3++) {
+                            View q = q(i3);
+                            if (q != null && (U2 = this.b.U(q)) != null && !U2.r() && (this.q.d(q) < e || this.q.m(q) < e)) {
+                                c1(oh2Var, 0, i3);
                                 return;
                             }
                         }
-                        i6++;
+                        return;
                     }
-                }
-                z3 = z6;
-                z2 = true;
-            } else {
-                if (!this.f) {
-                    int size4 = arrayList2.size();
-                    int i9 = 0;
-                    while (true) {
-                        if (i9 >= size4) {
-                            break;
-                        }
-                        Object obj7 = arrayList2.get(i9);
-                        i9++;
-                        if (((u46) obj7).d.b(0.0f)) {
-                            k();
-                            break;
+                    int i4 = r - 1;
+                    for (int i5 = i4; i5 >= 0; i5--) {
+                        View q2 = q(i5);
+                        if (q2 != null && (U = this.b.U(q2)) != null && !U.r() && (this.q.d(q2) < e || this.q.m(q2) < e)) {
+                            c1(oh2Var, i4, i5);
+                            return;
                         }
                     }
+                    return;
                 }
-                if (this.f) {
-                    int size5 = arrayList2.size();
-                    int i10 = 0;
-                    while (i10 < size5) {
-                        Object obj8 = arrayList2.get(i10);
-                        i10++;
-                        u46 u46Var4 = (u46) obj8;
-                        if (u46Var4.d.b(0.0f)) {
-                            k();
-                            u46Var4.d.c = 0.0f;
-                            u46Var4.h = true;
-                            int binarySearch3 = Collections.binarySearch(arrayList, u46Var4);
-                            if (binarySearch3 >= 0) {
-                                arrayList.remove(binarySearch3);
-                            }
-                            w46Var.a(arrayList.size(), true);
-                        }
-                    }
-                }
-                z2 = true;
-                z3 = false;
+                return;
             }
-            if (z3) {
-                Collections.sort(arrayList2);
-            }
-            j(z2);
-            if (this.f) {
-                this.f = false;
-                if (y74Var != null) {
-                    y74Var.a(1.0f);
+            d1(oh2Var, i, i2);
+        }
+    }
+
+    public final void c1(oh2 oh2Var, int i, int i2) {
+        if (i != i2) {
+            if (i2 > i) {
+                for (int i3 = i2 - 1; i3 >= i; i3--) {
+                    h0(i3, oh2Var);
                 }
-            } else if (y74Var == null) {
-                int size6 = arrayList2.size();
-                int i11 = 0;
-                while (i11 < size6) {
-                    Object obj9 = arrayList2.get(i11);
-                    i11++;
-                    u46 u46Var5 = (u46) obj9;
-                    a9c a9cVar3 = u46Var5.d;
-                    a9cVar3.b = a9cVar3.a;
-                    a9c a9cVar4 = u46Var5.c;
-                    a9cVar4.b = a9cVar4.a;
+                return;
+            }
+            while (i > i2) {
+                h0(i, oh2Var);
+                i--;
+            }
+        }
+    }
+
+    @Override
+    public final boolean d() {
+        if (!this.u && !this.o) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final w46 d0() {
+        w46 w46Var = this.B;
+        if (w46Var != null) {
+            ?? obj = new Object();
+            obj.a = w46Var.a;
+            obj.b = w46Var.b;
+            obj.c = w46Var.c;
+            return obj;
+        }
+        ?? obj2 = new Object();
+        if (r() > 0) {
+            F0();
+            boolean z = this.s ^ this.v;
+            obj2.c = z;
+            if (z) {
+                View T0 = T0();
+                obj2.b = this.q.f() - this.q.a(T0);
+                obj2.a = ((r79) T0.getLayoutParams()).b();
+                return obj2;
+            }
+            View U0 = U0();
+            obj2.a = q79.G(U0);
+            obj2.b = this.q.d(U0) - this.q.j();
+            return obj2;
+        }
+        obj2.a = -1;
+        return obj2;
+    }
+
+    public void d1(oh2 oh2Var, int i, int i2) {
+        f89 U;
+        f89 U2;
+        if (i >= 0) {
+            int i3 = i - i2;
+            int r = r();
+            if (this.v) {
+                int i4 = r - 1;
+                for (int i5 = i4; i5 >= 0; i5--) {
+                    View q = q(i5);
+                    if (q != null && (U2 = this.b.U(q)) != null && !U2.r() && (this.q.a(q) > i3 || this.q.l(q) > i3)) {
+                        c1(oh2Var, i4, i5);
+                        return;
+                    }
+                }
+                return;
+            }
+            for (int i6 = 0; i6 < r; i6++) {
+                View q2 = q(i6);
+                if (q2 != null && (U = this.b.U(q2)) != null && !U.r() && (this.q.a(q2) > i3 || this.q.l(q2) > i3)) {
+                    c1(oh2Var, 0, i6);
+                    return;
                 }
             }
         }
+    }
+
+    @Override
+    public boolean e() {
+        if (!this.u && this.o) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void e1() {
+        if (!this.o && X0()) {
+            this.v = !this.t;
+        } else {
+            this.v = this.t;
+        }
+    }
+
+    public final int f1(int i, oh2 oh2Var, c89 c89Var) {
+        int i2;
+        if (r() == 0 || i == 0) {
+            return 0;
+        }
+        F0();
+        this.p.a = true;
+        if (i > 0) {
+            i2 = 1;
+        } else {
+            i2 = -1;
+        }
+        int abs = Math.abs(i);
+        l1(i2, abs, true, c89Var);
+        v46 v46Var = this.p;
+        int G0 = G0(oh2Var, v46Var, c89Var, false) + v46Var.g;
+        if (G0 < 0) {
+            return 0;
+        }
+        if (abs > G0) {
+            i = i2 * G0;
+        }
+        this.q.p(-i);
+        this.p.j = i;
+        return i;
+    }
+
+    public void g1(int i, int i2) {
+        h1(i, i2, this.v);
+    }
+
+    @Override
+    public int h(c89 c89Var) {
+        return B0(c89Var);
+    }
+
+    public void h1(int i, int i2, boolean z) {
+        if (this.y == i && this.A == i2 && this.z == z) {
+            return;
+        }
+        this.y = i;
+        this.A = i2;
+        this.z = z;
+        w46 w46Var = this.B;
+        if (w46Var != null) {
+            w46Var.a = -1;
+        }
+        k0();
+    }
+
+    @Override
+    public int i(c89 c89Var) {
+        return C0(c89Var);
+    }
+
+    public final void i1(int i) {
+        gu7 gu7Var;
+        if (i != 0 && i != 1) {
+            lq5.j(uh9.k(i, "invalid orientation:"));
+            return;
+        }
+        b(null);
+        if (i == this.o && this.q != null) {
+            return;
+        }
+        if (i != 0) {
+            if (i == 1) {
+                gu7Var = new gu7(this, (byte) 1);
+            } else {
+                lq5.j("invalid orientation");
+                return;
+            }
+        } else {
+            gu7Var = new gu7(this, (byte) 0);
+        }
+        this.q = gu7Var;
+        this.C.a = gu7Var;
+        this.o = i;
+        k0();
+    }
+
+    @Override
+    public int j(c89 c89Var) {
+        return A0(c89Var);
+    }
+
+    public void j1(boolean z) {
+        b(null);
+        if (z == this.t) {
+            return;
+        }
+        this.t = z;
+        k0();
+    }
+
+    @Override
+    public int k(c89 c89Var) {
+        return B0(c89Var);
+    }
+
+    public void k1(boolean z) {
+        b(null);
+        if (this.w == z) {
+            return;
+        }
+        this.w = z;
+        k0();
+    }
+
+    @Override
+    public int l(c89 c89Var) {
+        return C0(c89Var);
+    }
+
+    @Override
+    public int l0(int i, oh2 oh2Var, c89 c89Var) {
+        if (this.o) {
+            return 0;
+        }
+        return f1(i, oh2Var, c89Var);
+    }
+
+    public final void l1(int i, int i2, boolean z, c89 c89Var) {
+        boolean z2;
+        int i3;
+        int j;
+        v46 v46Var = this.p;
+        boolean z3 = false;
+        int i4 = 1;
+        if (this.q.h() == 0 && this.q.e() == 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        v46Var.l = z2;
+        this.p.f = i;
+        int[] iArr = this.F;
+        iArr[0] = 0;
+        iArr[1] = 0;
+        y0(c89Var, iArr);
+        int max = Math.max(0, iArr[0]);
+        int max2 = Math.max(0, iArr[1]);
+        if (i == 1) {
+            z3 = true;
+        }
+        v46 v46Var2 = this.p;
+        if (z3) {
+            i3 = max2;
+        } else {
+            i3 = max;
+        }
+        v46Var2.h = i3;
+        if (!z3) {
+            max = max2;
+        }
+        v46Var2.i = max;
+        if (z3) {
+            v46Var2.h = this.q.g() + i3;
+            View T0 = T0();
+            v46 v46Var3 = this.p;
+            if (this.v) {
+                i4 = -1;
+            }
+            v46Var3.e = i4;
+            int G = q79.G(T0);
+            v46 v46Var4 = this.p;
+            v46Var3.d = G + v46Var4.e;
+            v46Var4.b = this.q.a(T0);
+            j = this.q.a(T0) - this.q.f();
+        } else {
+            View U0 = U0();
+            v46 v46Var5 = this.p;
+            v46Var5.h = this.q.j() + v46Var5.h;
+            v46 v46Var6 = this.p;
+            if (!this.v) {
+                i4 = -1;
+            }
+            v46Var6.e = i4;
+            int G2 = q79.G(U0);
+            v46 v46Var7 = this.p;
+            v46Var6.d = G2 + v46Var7.e;
+            v46Var7.b = this.q.d(U0);
+            j = (-this.q.d(U0)) + this.q.j();
+        }
+        v46 v46Var8 = this.p;
+        v46Var8.c = i2;
+        if (z) {
+            v46Var8.c = i2 - j;
+        }
+        v46Var8.g = j;
+    }
+
+    @Override
+    public final void m0(int i) {
+        this.y = i;
+        this.A = Integer.MIN_VALUE;
+        w46 w46Var = this.B;
+        if (w46Var != null) {
+            w46Var.a = -1;
+        }
+        k0();
+    }
+
+    public final void m1(int i, int i2) {
+        int i3;
+        this.p.c = this.q.f() - i2;
+        v46 v46Var = this.p;
+        if (this.v) {
+            i3 = -1;
+        } else {
+            i3 = 1;
+        }
+        v46Var.e = i3;
+        v46Var.d = i;
+        v46Var.f = 1;
+        v46Var.b = i2;
+        v46Var.g = Integer.MIN_VALUE;
+    }
+
+    @Override
+    public int n0(int i, oh2 oh2Var, c89 c89Var) {
+        if (!this.o) {
+            return 0;
+        }
+        return f1(i, oh2Var, c89Var);
+    }
+
+    public final void n1(int i, int i2) {
+        int i3;
+        this.p.c = i2 - this.q.j();
+        v46 v46Var = this.p;
+        v46Var.d = i;
+        if (this.v) {
+            i3 = 1;
+        } else {
+            i3 = -1;
+        }
+        v46Var.e = i3;
+        v46Var.f = -1;
+        v46Var.b = i2;
+        v46Var.g = Integer.MIN_VALUE;
+    }
+
+    @Override
+    public boolean x0() {
+        if (this.B == null && this.s == this.w) {
+            return true;
+        }
+        return false;
+    }
+
+    public void y0(c89 c89Var, int[] iArr) {
+        int i;
+        int V0 = V0(c89Var);
+        if (this.p.f == -1) {
+            i = 0;
+        } else {
+            i = V0;
+            V0 = 0;
+        }
+        iArr[0] = V0;
+        iArr[1] = i;
+    }
+
+    public void z0(c89 c89Var, v46 v46Var, pn pnVar) {
+        int i = v46Var.d;
+        if (i >= 0 && i < c89Var.b()) {
+            pnVar.b(i, Math.max(0, v46Var.g));
+        }
+    }
+
+    public x46() {
+        this(1, false);
+    }
+
+    public void Z0(oh2 oh2Var, c89 c89Var, t46 t46Var, int i) {
     }
 }

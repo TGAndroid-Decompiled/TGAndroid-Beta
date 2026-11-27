@@ -1,11 +1,22 @@
 package defpackage;
 public final class mla {
-    public float a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public float g;
-    public int h;
+    public static final mla a;
+    public static final mla b;
+    public static final mla[] c;
+
+    static {
+        ?? r0 = new Enum("GLASS", 0);
+        a = r0;
+        ?? r1 = new Enum("ACCENT", 1);
+        b = r1;
+        c = new mla[]{r0, r1};
+    }
+
+    public static mla valueOf(String str) {
+        return (mla) Enum.valueOf(mla.class, str);
+    }
+
+    public static mla[] values() {
+        return (mla[]) c.clone();
+    }
 }

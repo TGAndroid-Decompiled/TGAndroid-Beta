@@ -1,76 +1,195 @@
 package defpackage;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
 import android.util.SparseArray;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-public class q4 {
-    public static final View.AccessibilityDelegate c = new View.AccessibilityDelegate();
-    public final View.AccessibilityDelegate a;
-    public final p4 b;
+import java.util.WeakHashMap;
+public final class q4 extends View.AccessibilityDelegate {
+    public final r4 a;
 
-    public q4(View.AccessibilityDelegate accessibilityDelegate) {
-        this.a = accessibilityDelegate;
-        this.b = new p4(this);
+    public q4(r4 r4Var) {
+        this.a = r4Var;
     }
 
-    public l69 a(View view) {
-        AccessibilityNodeProvider accessibilityNodeProvider = this.a.getAccessibilityNodeProvider(view);
-        if (accessibilityNodeProvider != null) {
-            return new l69(accessibilityNodeProvider, (byte) 3);
+    @Override
+    public final boolean dispatchPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        return this.a.a.dispatchPopulateAccessibilityEvent(view, accessibilityEvent);
+    }
+
+    @Override
+    public final AccessibilityNodeProvider getAccessibilityNodeProvider(View view) {
+        ri6 a = this.a.a(view);
+        if (a != null) {
+            return (AccessibilityNodeProvider) a.b;
         }
         return null;
     }
 
-    public void b(View view, AccessibilityEvent accessibilityEvent) {
-        this.a.onInitializeAccessibilityEvent(view, accessibilityEvent);
+    @Override
+    public final void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        this.a.b(view, accessibilityEvent);
     }
 
-    public void c(View view, u4 u4Var) {
-        this.a.onInitializeAccessibilityNodeInfo(view, u4Var.a);
-    }
-
-    public boolean d(View view, int i, Bundle bundle) {
-        WeakReference weakReference;
-        ClickableSpan clickableSpan;
-        ClickableSpan[] clickableSpanArr;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        Object tag;
+        boolean z;
+        Object tag2;
+        Object tag3;
+        Object obj;
+        int i;
+        v4 v4Var = new v4(accessibilityNodeInfo);
+        WeakHashMap weakHashMap = ihc.a;
+        ClickableSpan[] clickableSpanArr = null;
+        if (Build.VERSION.SDK_INT >= 28) {
+            tag = Boolean.valueOf(dhc.c(view));
+        } else {
+            tag = view.getTag(2131296692);
+            if (!Boolean.class.isInstance(tag)) {
+                tag = null;
+            }
+        }
+        Boolean bool = (Boolean) tag;
+        boolean z2 = true;
+        if (bool != null && bool.booleanValue()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        v4Var.n(z);
+        if (Build.VERSION.SDK_INT >= 28) {
+            tag2 = Boolean.valueOf(dhc.b(view));
+        } else {
+            tag2 = view.getTag(2131296686);
+            if (!Boolean.class.isInstance(tag2)) {
+                tag2 = null;
+            }
+        }
+        Boolean bool2 = (Boolean) tag2;
+        v4Var.k((bool2 == null || !bool2.booleanValue()) ? false : false);
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 28) {
+            tag3 = dhc.a(view);
+        } else {
+            tag3 = view.getTag(2131296687);
+            if (!CharSequence.class.isInstance(tag3)) {
+                tag3 = null;
+            }
+        }
+        v4Var.m((CharSequence) tag3);
+        if (i2 >= 30) {
+            obj = fhc.b(view);
+        } else {
+            Object tag4 = view.getTag(2131296693);
+            if (CharSequence.class.isInstance(tag4)) {
+                obj = tag4;
+            } else {
+                obj = null;
+            }
+        }
+        CharSequence charSequence = (CharSequence) obj;
+        if (i2 >= 30) {
+            mka.v(accessibilityNodeInfo, charSequence);
+        } else {
+            accessibilityNodeInfo.getExtras().putCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.STATE_DESCRIPTION_KEY", charSequence);
+        }
+        this.a.c(view, v4Var);
+        CharSequence text = accessibilityNodeInfo.getText();
+        if (i2 < 26) {
+            accessibilityNodeInfo.getExtras().remove("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY");
+            accessibilityNodeInfo.getExtras().remove("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_END_KEY");
+            accessibilityNodeInfo.getExtras().remove("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_FLAGS_KEY");
+            accessibilityNodeInfo.getExtras().remove("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ID_KEY");
+            SparseArray sparseArray = (SparseArray) view.getTag(2131296685);
+            if (sparseArray != null) {
+                ArrayList arrayList = new ArrayList();
+                for (int i3 = 0; i3 < sparseArray.size(); i3++) {
+                    if (((WeakReference) sparseArray.valueAt(i3)).get() == null) {
+                        arrayList.add(Integer.valueOf(i3));
+                    }
+                }
+                for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                    sparseArray.remove(((Integer) arrayList.get(i4)).intValue());
+                }
+            }
+            if (text instanceof Spanned) {
+                clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
+            }
+            if (clickableSpanArr != null && clickableSpanArr.length > 0) {
+                accessibilityNodeInfo.getExtras().putInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ACTION_ID_KEY", 2131296271);
+                SparseArray sparseArray2 = (SparseArray) view.getTag(2131296685);
+                if (sparseArray2 == null) {
+                    sparseArray2 = new SparseArray();
+                    view.setTag(2131296685, sparseArray2);
+                }
+                for (int i5 = 0; i5 < clickableSpanArr.length; i5++) {
+                    ClickableSpan clickableSpan = clickableSpanArr[i5];
+                    int i6 = 0;
+                    while (true) {
+                        if (i6 < sparseArray2.size()) {
+                            if (clickableSpan.equals((ClickableSpan) ((WeakReference) sparseArray2.valueAt(i6)).get())) {
+                                i = sparseArray2.keyAt(i6);
+                                break;
+                            }
+                            i6++;
+                        } else {
+                            i = v4.c;
+                            v4.c = i + 1;
+                            break;
+                        }
+                    }
+                    sparseArray2.put(i, new WeakReference(clickableSpanArr[i5]));
+                    ClickableSpan clickableSpan2 = clickableSpanArr[i5];
+                    Spanned spanned = (Spanned) text;
+                    v4Var.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY").add(Integer.valueOf(spanned.getSpanStart(clickableSpan2)));
+                    v4Var.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_END_KEY").add(Integer.valueOf(spanned.getSpanEnd(clickableSpan2)));
+                    v4Var.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_FLAGS_KEY").add(Integer.valueOf(spanned.getSpanFlags(clickableSpan2)));
+                    v4Var.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ID_KEY").add(Integer.valueOf(i));
+                }
+            }
+        }
         List list = (List) view.getTag(2131296684);
         if (list == null) {
             list = Collections.EMPTY_LIST;
         }
-        for (int i2 = 0; i2 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((r4) list.get(i2)).a).getId() != i; i2++) {
+        for (int i7 = 0; i7 < list.size(); i7++) {
+            v4Var.b((s4) list.get(i7));
         }
-        boolean performAccessibilityAction = this.a.performAccessibilityAction(view, i, bundle);
-        if (!performAccessibilityAction && i == 2131296271 && bundle != null) {
-            int i3 = bundle.getInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", -1);
-            SparseArray sparseArray = (SparseArray) view.getTag(2131296685);
-            if (sparseArray != null && (weakReference = (WeakReference) sparseArray.get(i3)) != null && (clickableSpan = (ClickableSpan) weakReference.get()) != null) {
-                CharSequence text = view.createAccessibilityNodeInfo().getText();
-                if (text instanceof Spanned) {
-                    clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
-                } else {
-                    clickableSpanArr = null;
-                }
-                for (int i4 = 0; clickableSpanArr != null && i4 < clickableSpanArr.length; i4++) {
-                    if (clickableSpan.equals(clickableSpanArr[i4])) {
-                        clickableSpan.onClick(view);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        return performAccessibilityAction;
     }
 
-    public q4() {
-        this(c);
+    @Override
+    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        this.a.a.onPopulateAccessibilityEvent(view, accessibilityEvent);
+    }
+
+    @Override
+    public final boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent) {
+        return this.a.a.onRequestSendAccessibilityEvent(viewGroup, view, accessibilityEvent);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(View view, int i, Bundle bundle) {
+        return this.a.d(view, i, bundle);
+    }
+
+    @Override
+    public final void sendAccessibilityEvent(View view, int i) {
+        this.a.a.sendAccessibilityEvent(view, i);
+    }
+
+    @Override
+    public final void sendAccessibilityEventUnchecked(View view, AccessibilityEvent accessibilityEvent) {
+        this.a.a.sendAccessibilityEventUnchecked(view, accessibilityEvent);
     }
 }

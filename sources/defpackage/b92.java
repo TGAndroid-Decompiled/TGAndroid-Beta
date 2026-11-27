@@ -1,96 +1,48 @@
 package defpackage;
 
-import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-public final class b92 extends ju5 {
-    public final Context x;
-    public final f92 y;
+public final class b92 implements Runnable {
+    public final byte a;
+    public final g92 b;
 
-    public b92(f92 f92Var, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.y = f92Var;
-        this.x = context2;
+    public b92(g92 g92Var, byte b) {
+        this.a = b;
+        this.b = g92Var;
     }
 
     @Override
-    public final boolean a(final boolean z, hu5 hu5Var) {
-        TLRPC.ChatFull chatFull;
-        int i;
-        String str;
-        wjb wjbVar;
-        f92 f92Var = this.y;
-        if (!f92Var.W || (chatFull = f92Var.Z) == null || (i = chatFull.invitesCount) == 0) {
-            return true;
-        }
-        if (f92Var.b0) {
-            if (z) {
-                str = "ApproveNewMembersEnableForLinksChannel";
-            } else {
-                str = "ApproveNewMembersDisableForLinksChannel";
-            }
-        } else if (z) {
-            str = "ApproveNewMembersEnableForLinks";
-        } else {
-            str = "ApproveNewMembersDisableForLinks";
-        }
-        Context context = this.x;
-        wjbVar = ((d) f92Var).resourceProvider;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar, context);
-        String M0 = k96.M0(2131754201, null);
-        hd hdVar = alertDialog$Builder.a;
-        hdVar.S = M0;
-        hdVar.U = gl.S2(k96.G(i, str, new Object[0]));
-        alertDialog$Builder.j(k96.M0(2131754203, null), new ed(this) {
-            public final b92 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void u(hd hdVar2, int i2) {
-                byte b = r3;
-                boolean z2 = z;
-                b92 b92Var = this.b;
-                switch (b) {
-                    case 0:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = true;
-                        return;
-                    default:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = false;
-                        return;
+    public final void run() {
+        byte b = this.a;
+        g92 g92Var = this.b;
+        switch (b) {
+            case 0:
+                g92Var.k0();
+                return;
+            case 1:
+                g92Var.j0();
+                return;
+            case 2:
+                g92Var.b.dismiss();
+                g92Var.finishFragment();
+                return;
+            case 3:
+                g92Var.N.setChecked(g92Var.x0.autotranslation);
+                return;
+            default:
+                g92Var.e.setImageDrawable(g92Var.r);
+                g92Var.c0.o(2131232052, ob6.M0(2131752177, "ChatSetPhotoOrVideo"), true);
+                TLRPC.User user = g92Var.D0;
+                if (user != null) {
+                    user.photo = null;
+                    g92Var.getMessagesController().i4(g92Var.D0, true, false);
                 }
-            }
-        });
-        alertDialog$Builder.g(k96.M0(2131754202, null), new ed(this) {
-            public final b92 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void u(hd hdVar2, int i2) {
-                byte b = r3;
-                boolean z2 = z;
-                b92 b92Var = this.b;
-                switch (b) {
-                    case 0:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = true;
-                        return;
-                    default:
-                        b92Var.setJoinRequest(z2);
-                        b92Var.y.X = false;
-                        return;
+                g92Var.P0 = true;
+                if (g92Var.S0 == null) {
+                    g92Var.S0 = new b29(2131623965, hl.L(50.0f), hl.L(50.0f), false, null);
                 }
-            }
-        });
-        f92Var.showDialog(hdVar);
-        return false;
+                g92Var.c0.e.setTranslationX(-hl.L(8.0f));
+                g92Var.c0.e.setAnimation(g92Var.S0);
+                return;
+        }
     }
 }

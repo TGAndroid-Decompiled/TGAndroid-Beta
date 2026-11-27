@@ -1,471 +1,321 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.util.SparseArray;
-import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.regex.Pattern;
-import org.telegram.messenger.MediaController;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.o;
-public final class aq1 extends c6 {
-    public final Context a;
-    public final mu1 b;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.UndoView;
+public final class aq1 implements Runnable {
+    public final byte a;
+    public final int b;
+    public final int c;
+    public final Object d;
+    public final Object e;
 
-    public aq1(mu1 mu1Var, Context context) {
-        this.b = mu1Var;
-        this.a = context;
+    public aq1(jn7 jn7Var, int i, Object[] objArr, int i2) {
+        this.a = (byte) 11;
+        this.d = jn7Var;
+        this.b = i;
+        this.e = objArr;
+        this.c = i2;
     }
 
     @Override
-    public final void b(int i) {
-        boolean z;
-        boolean z2;
-        TLRPC.User user;
-        TLRPC.ChatFull chatFull;
-        TLRPC.User V1;
-        boolean z3;
-        boolean z4;
+    public final void run() {
+        int i;
+        int[] iArr;
+        kg5 kg5Var;
         int i2;
-        wjb wjbVar;
         int i3;
+        float f;
         int i4;
-        boolean z5;
-        long j;
         int i5;
-        int i6;
-        long j2;
-        int i7;
-        int i8;
-        boolean z6;
-        TLRPC.User user2;
-        a aVar;
-        lwb lwbVar;
-        mu1 mu1Var = this.b;
-        SparseArray[] sparseArrayArr = mu1Var.q6;
-        SparseArray[] sparseArrayArr2 = mu1Var.p6;
-        SparseArray[] sparseArrayArr3 = mu1Var.o6;
-        if (i != -2 && i != 75 && i != -1 && (lwbVar = mu1Var.n0) != null && lwbVar.y > 0.0f) {
-            lwbVar.d();
-        }
-        boolean z7 = true;
-        if (i == -1) {
-            if (!mu1Var.fd.f) {
-                aVar = ((d) mu1Var).actionBar;
-                if (aVar.y()) {
-                    mu1Var.F5(false);
-                    return;
-                } else if (mu1Var.g4 == 5 && (mu1Var.M6.isEmpty() || mu1Var.s4 == 0)) {
-                    mu1Var.hc();
-                    return;
-                } else if (mu1Var.g4 == 6 && mu1Var.a0.A()) {
-                    mu1Var.Mb(new Runnable(this) {
-                        public final aq1 b;
-
-                        {
-                            this.b = this;
-                        }
-
-                        @Override
-                        public final void run() {
-                            byte b = r2;
-                            aq1 aq1Var = this.b;
-                            switch (b) {
-                                case 0:
-                                    aq1Var.b.finishFragment();
-                                    return;
-                                default:
-                                    mu1 mu1Var2 = aq1Var.b;
-                                    Intent intent = new Intent(mu1Var2.getParentActivity(), LaunchActivity.class);
-                                    intent.setAction("android.intent.action.SEND");
-                                    intent.setType("text/plain");
-                                    intent.putExtra("android.intent.extra.TEXT", mu1Var2.e4.link);
-                                    mu1Var2.startActivityForResult(intent, 500);
-                                    return;
-                            }
-                        }
-                    });
-                    return;
-                } else if (!mu1Var.d5(true, true)) {
-                    mu1Var.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
-            }
-            mu1Var.za();
-        } else if (i == 59) {
-            if (mu1Var.getUserConfig().e() == mu1Var.l6) {
-                mu1Var.getMessagesController().T4(true);
-                mu1Var.p1.e(false, true);
+        byte b = this.a;
+        int i6 = 0;
+        int i7 = this.b;
+        int i8 = this.c;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        switch (b) {
+            case 0:
+                ((zu1) obj2).didReceivedNotification(i7, i8, (Object[]) obj);
                 return;
-            }
-            pub pubVar = mu1Var.getMessagesController().g4;
-            pubVar.getClass();
-            TLRPC.TL_channels_toggleViewForumAsMessages tL_channels_toggleViewForumAsMessages = new TLRPC.TL_channels_toggleViewForumAsMessages();
-            tL_channels_toggleViewForumAsMessages.channel_id = pubVar.getMessagesController().f1(-mu1Var.l6);
-            tL_channels_toggleViewForumAsMessages.enabled = false;
-            pubVar.getConnectionsManager().sendRequest(tL_channels_toggleViewForumAsMessages, new wx9(pubVar, (byte) 14));
-            qvb.L0(mu1Var);
-        } else {
-            String str = null;
-            k27 k27Var = null;
-            if (i == 10) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                long j3 = 0;
-                for (int i9 = 1; i9 >= 0; i9--) {
-                    ArrayList arrayList = new ArrayList();
-                    for (int i10 = 0; i10 < sparseArrayArr2[i9].size(); i10++) {
-                        arrayList.add(Integer.valueOf(sparseArrayArr2[i9].keyAt(i10)));
-                    }
-                    if (mu1Var.h == null) {
-                        Collections.sort(arrayList);
-                    } else {
-                        Collections.sort(arrayList, Collections.reverseOrder());
-                    }
-                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        k27 k27Var2 = (k27) sparseArrayArr2[i9].get(((Integer) arrayList.get(i11)).intValue());
-                        if (spannableStringBuilder.length() != 0) {
-                            spannableStringBuilder.append((CharSequence) "\n\n");
-                        }
-                        if (arrayList.size() != 1 && ((user2 = mu1Var.f) == null || !user2.self)) {
-                            z6 = true;
-                        } else {
-                            z6 = false;
-                        }
-                        spannableStringBuilder.append((CharSequence) mu1.R6(j3, k27Var2, z6));
-                        j3 = k27Var2.Z0();
-                    }
-                }
-                if (spannableStringBuilder.length() != 0) {
-                    gl.g(spannableStringBuilder);
-                    mu1Var.b6();
-                    mu1Var.N3.j(58, 0L, null);
-                }
-                mu1Var.F5(false);
-            } else if (i == 12) {
-                if (mu1Var.getParentActivity() != null) {
-                    mu1Var.M5(null, null, false);
-                }
-            } else if (i == 11) {
-                mu1Var.ga(true);
-            } else if (i == 69) {
-                mu1Var.Gb();
-            } else if (i == 70) {
-                TLRPC.Chat chat = mu1Var.e;
-                if (chat != null) {
-                    mu1Var.presentFragment(mu1.W9(-chat.linked_monoforum_id));
-                }
-            } else if (i == 72) {
-                long j4 = mu1Var.l6;
-                if (hc2.p0(mu1Var.e)) {
-                    i8 = ((d) mu1Var).currentAccount;
-                    if (hc2.A(i8, mu1Var.e, 24)) {
-                        j4 = mu1Var.s4;
-                        j2 = mu1Var.l6;
-                        long j5 = j4;
-                        i7 = ((d) mu1Var).currentAccount;
-                        gta.v(i7, false).g0(j5, j2, false, false);
-                    }
-                }
-                j2 = 0;
-                long j52 = j4;
-                i7 = ((d) mu1Var).currentAccount;
-                gta.v(i7, false).g0(j52, j2, false, false);
-            } else if (i == 71) {
-                long j6 = mu1Var.l6;
-                if (hc2.p0(mu1Var.e)) {
-                    i6 = ((d) mu1Var).currentAccount;
-                    if (hc2.A(i6, mu1Var.e, 24)) {
-                        j6 = mu1Var.s4;
-                        j = mu1Var.l6;
-                        long j7 = j6;
-                        i5 = ((d) mu1Var).currentAccount;
-                        gta.v(i5, false).z(j7, j, new um1(this, j7, j, (byte) 1));
-                    }
-                }
-                j = 0;
-                long j72 = j6;
-                i5 = ((d) mu1Var).currentAccount;
-                gta.v(i5, false).z(j72, j, new um1(this, j72, j, (byte) 1));
-            } else if (i == 28) {
-                if (mu1Var.Bb == null) {
-                    mu1Var.lc();
+            case 1:
+                r47 messageObject = ((dl1) obj).getMessageObject();
+                zu1 zu1Var = ((dt1) obj2).a.R;
+                int e1 = messageObject.e1();
+                if (r47.B0(messageObject.k) == zu1Var.d7) {
+                    i = 1;
                 } else {
-                    mu1Var.C7();
+                    i = 0;
                 }
-            } else if (i == 25) {
-                ArrayList arrayList2 = new ArrayList();
-                for (int i12 = 1; i12 >= 0; i12--) {
-                    for (int i13 = 0; i13 < sparseArrayArr3[i12].size(); i13++) {
-                        arrayList2.add((k27) sparseArrayArr3[i12].valueAt(i13));
+                zu1Var.tb(this.b, e1, true, i, true, 0, Integer.valueOf(i8), null, null);
+                return;
+            case 2:
+                wb2 wb2Var = (wb2) obj;
+                zu1 zu1Var2 = ((ju1) obj2).a;
+                if (zu1Var2.P1 != null) {
+                    wb2Var.getLocationInWindow(new int[2]);
+                    zu1Var2.P1.setTranslationY(c00.A(520.0f, iArr[1] - kg5Var.getTop(), i7));
+                    zu1Var2.P1.o(0.0f, (-hl.L(16.0f)) + iArr[0] + i8);
+                    zu1Var2.P1.v();
+                    return;
+                }
+                return;
+            case 3:
+                ConnectionsManager.lambda$onIntegrityCheckClassic$27(i7, (String) obj2, (String) obj, i8);
+                return;
+            case 4:
+                final sj3 sj3Var = (sj3) obj2;
+                TLRPC.Dialog dialog = (TLRPC.Dialog) obj;
+                tj3 tj3Var = sj3Var.h;
+                uj3 uj3Var = sj3Var.i;
+                ArrayList arrayList = uj3Var.T1;
+                if (arrayList != null) {
+                    arrayList.remove(dialog);
+                    int i9 = dialog.pinnedNum;
+                    uj3Var.Y0 = null;
+                    tj3Var.a.invalidate();
+                    int M0 = tj3Var.c.M0();
+                    if (M0 == i7 - 1) {
+                        tj3Var.c.m(M0).requestLayout();
                     }
-                    sparseArrayArr3[i12].clear();
-                    sparseArrayArr2[i12].clear();
-                    sparseArrayArr[i12].clear();
-                }
-                if (mu1Var.x6 > 0) {
-                    z5 = true;
-                } else {
-                    z5 = false;
-                }
-                mu1Var.u7();
-                mu1Var.Uc(0, true);
-                mu1Var.ud(false);
-                MediaController.f0(mu1Var.getParentActivity(), mu1Var.getAccountInstance(), arrayList2, new yp1((byte) 0, this, z5));
-            } else if (i == 13) {
-                if (mu1Var.getParentActivity() != null) {
-                    mu1Var.showDialog(ij.S(mu1Var.getParentActivity(), mu1Var.h, mu1Var.Ba).a);
-                }
-            } else if (i != 15 && i != 16 && i != 26) {
-                if (i == 17) {
-                    if (mu1Var.f != null && mu1Var.getParentActivity() != null) {
-                        TextView textView = mu1Var.a2;
-                        if (textView != null && textView.getTag() != null) {
-                            mu1Var.Hb(((Integer) mu1Var.a2.getTag()).intValue(), null);
-                            return;
-                        }
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("user_id", mu1Var.f.id);
-                        bundle.putBoolean("addContact", true);
-                        mu1Var.presentFragment(new it2(bundle));
-                    }
-                } else if (i == 18) {
-                    mu1Var.vc(false);
-                } else if (i == 24) {
-                    try {
-                        hq6 mediaDataController = mu1Var.getMediaDataController();
-                        long j8 = mu1Var.f.id;
-                        Pattern pattern = hq6.U1;
-                        mediaDataController.z0(j8, 0, null);
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                    }
-                } else if (i == 29) {
-                    if (hc2.N(mu1Var.e)) {
-                        lo0 lo0Var = new lo0(mu1Var.l6);
-                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = mu1Var.S1;
-                        lo0Var.U = tL_premium_boostsStatus;
-                        if (tL_premium_boostsStatus != null) {
-                            lo0Var.getMessagesController().E0().b(lo0Var.S, lo0Var.U, new co0(lo0Var, (byte) 0));
-                        }
-                        mu1Var.presentFragment(lo0Var);
+                    if (uj3Var.getMessagesController().G2(dialog.id, false)) {
+                        uj3Var.getMessagesController().g2();
+                        tj3Var.y.D();
+                        tj3Var.b(true);
                         return;
                     }
-                    mu1Var.getNotificationCenter().k(kk7.o3, Long.valueOf(mu1Var.l6));
-                } else if (i == 21) {
-                    int i14 = b89.v1;
-                    int currentAccount = mu1Var.getCurrentAccount();
-                    Activity parentActivity = mu1Var.getParentActivity();
-                    long a = mu1Var.a();
-                    if (parentActivity != null) {
-                        b89.D0(currentAccount, parentActivity, a, false, false, new ArrayList(), null, null, new byte[0], null, null);
-                    }
-                } else if (i == 22) {
-                    for (int i15 = 0; i15 < 2; i15++) {
-                        for (int i16 = 0; i16 < sparseArrayArr[i15].size(); i16++) {
-                            k27 k27Var3 = (k27) sparseArrayArr[i15].valueAt(i16);
-                            mu1Var.getMediaDataController().d(2, k27Var3, k27Var3.F0(), (int) (System.currentTimeMillis() / 1000), !mu1Var.r6);
-                        }
-                    }
-                    mu1Var.F5(false);
-                } else if (i == 23) {
-                    for (int i17 = 1; i17 >= 0; i17--) {
-                        if (k27Var == null && sparseArrayArr3[i17].size() == 1) {
-                            ArrayList arrayList3 = new ArrayList();
-                            for (int i18 = 0; i18 < sparseArrayArr3[i17].size(); i18++) {
-                                arrayList3.add(Integer.valueOf(sparseArrayArr3[i17].keyAt(i18)));
-                            }
-                            k27Var = (k27) mu1Var.G6[i17].get(((Integer) arrayList3.get(0)).intValue());
-                        }
-                        sparseArrayArr3[i17].clear();
-                        sparseArrayArr2[i17].clear();
-                        sparseArrayArr[i17].clear();
-                    }
-                    if (k27Var != null && k27Var.C4()) {
-                        mu1Var.v5 = k27Var;
-                        mu1Var.Ja(109);
+                    uc7 messagesController = uj3Var.getMessagesController();
+                    long j = dialog.id;
+                    if (uj3Var.Y2 == 0) {
+                        i2 = 1;
                     } else {
-                        mu1Var.qc(k27Var, false);
+                        i2 = 0;
                     }
-                    mu1Var.u7();
-                    mu1Var.Uc(0, true);
-                    mu1Var.ud(false);
-                } else if (i == 64) {
-                    i3 = ((d) mu1Var).currentAccount;
-                    nx8 c = ox8.f(i3).c(mu1Var.W6());
-                    Activity parentActivity2 = mu1Var.getParentActivity();
-                    i4 = ((d) mu1Var).currentAccount;
-                    kx8.g0(parentActivity2, i4, mu1Var.f4, c, mu1Var.getResourceProvider(), new x0(this, c, (byte) 24));
-                } else if (i == 14) {
-                    a8 a8Var = new a8(0, mu1Var.getResourceProvider(), this.a, true, true);
-                    a8Var.j(k96.M0(2131753950, null), 2131231498, null);
-                    a8Var.setOnClickListener(new x91(this, (byte) 6));
-                    r7 r7Var = mu1Var.j0;
-                    q6 q6Var = mu1Var.g0;
-                    q6Var.a();
-                    r7Var.U(a8Var, q6Var.m);
-                } else if (i == 30) {
-                    mu1Var.getSendMessagesHelper().q0(x3a.b("/help", mu1Var.l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                } else if (i == 31) {
-                    mu1Var.getSendMessagesHelper().q0(x3a.b("/settings", mu1Var.l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                } else if (i == 40) {
-                    if (mu1Var.Z7()) {
-                        str = "";
+                    int b2 = messagesController.b(i2, -1, j);
+                    if (b2 != 2 || i8 != 0) {
+                        tj3Var.y.D();
+                        tj3Var.b(true);
                     }
-                    mu1Var.ra(str);
-                } else if (i == 62) {
-                    mu1Var.getMessagesController().i4.J(mu1Var.a(), false, true);
-                    if (!mu1Var.getMessagesController().i4.K(mu1Var.a(), true)) {
-                        mu1Var.nd(true);
-                    }
-                } else if (i != 32 && i != 33) {
-                    if (i == 27) {
-                        mu1Var.Nb();
-                    } else if (i == 60) {
-                        if (mu1Var.r4 != null) {
-                            pub pubVar2 = mu1Var.getMessagesController().g4;
-                            long j9 = mu1Var.e.id;
-                            TLRPC.TL_forumTopic tL_forumTopic = mu1Var.r4;
-                            int i19 = tL_forumTopic.id;
-                            tL_forumTopic.closed = true;
-                            pubVar2.z(i19, j9, true);
-                            mu1Var.od();
-                            mu1Var.Dc(false);
-                            mu1Var.nd(true);
-                        }
-                    } else if (i == 61) {
-                        qvb.L0(mu1Var);
-                    } else if (i == 65) {
-                        gl.g(mu1Var.e4.link);
-                        u21.b0(LaunchActivity.Q()).k(false).j();
-                    } else if (i == 66) {
-                        Runnable runnable = new Runnable(this) {
-                            public final aq1 b;
-
-                            {
-                                this.b = this;
+                    if (uj3Var.Y2 == 0) {
+                        if (b2 == 2) {
+                            boolean z = xea.m1;
+                            if (z) {
+                                xea.m1 = !z;
+                                SharedPreferences.Editor edit = uc7.e1().edit();
+                                edit.putBoolean("archiveHidden", xea.m1);
+                                edit.apply();
                             }
-
-                            @Override
-                            public final void run() {
-                                byte b = r2;
-                                aq1 aq1Var = this.b;
-                                switch (b) {
-                                    case 0:
-                                        aq1Var.b.finishFragment();
-                                        return;
-                                    default:
-                                        mu1 mu1Var2 = aq1Var.b;
-                                        Intent intent = new Intent(mu1Var2.getParentActivity(), LaunchActivity.class);
-                                        intent.setAction("android.intent.action.SEND");
-                                        intent.setType("text/plain");
-                                        intent.putExtra("android.intent.extra.TEXT", mu1Var2.e4.link);
-                                        mu1Var2.startActivityForResult(intent, 500);
-                                        return;
+                            tj3Var.y.D();
+                            if (i8 == 0) {
+                                uj3Var.U4(true, true);
+                                tj3Var.b(true);
+                                uj3Var.I2();
+                            } else {
+                                tj3Var.b(true);
+                                if (!xea.m1 && tj3Var.c.K0() == 0) {
+                                    uj3Var.g2 = true;
+                                    qj3 qj3Var = tj3Var.a;
+                                    if (xea.l1) {
+                                        f = 76.0f;
+                                    } else {
+                                        f = 70.0f;
+                                    }
+                                    qj3Var.y0(0, -hl.L(f), null);
                                 }
                             }
-                        };
-                        if (mu1Var.a0.A()) {
-                            mu1Var.Mb(runnable);
-                        } else {
-                            runnable.run();
+                            i4 = ((e) uj3Var).currentAccount;
+                            uj3Var.T1.add(0, (TLRPC.Dialog) uj3Var.o3(i4, tj3Var.s, uj3Var.Y2, false).get(0));
+                            tj3Var.b(true);
+                            hl.d3(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    byte b3 = r2;
+                                    sj3 sj3Var2 = sj3Var;
+                                    switch (b3) {
+                                        case 0:
+                                            sj3Var2.i.U4(false, true);
+                                            return;
+                                        default:
+                                            sj3Var2.i.U4(false, true);
+                                            return;
+                                    }
+                                }
+                            }, 300L);
+                        } else if (b2 == 1) {
+                            f89 L = tj3Var.a.L(0);
+                            if (L != null) {
+                                View view = L.a;
+                                if (view instanceof of3) {
+                                    of3 of3Var = (of3) view;
+                                    if (of3Var.b2.n == 2) {
+                                        of3Var.c2 = true;
+                                        of3Var.d2 = 0.0f;
+                                        aob.u1.O(true, 0.0f);
+                                        aob.u1.start();
+                                        of3Var.invalidate();
+                                    }
+                                }
+                            }
+                            hl.d3(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    byte b3 = r2;
+                                    sj3 sj3Var2 = sj3Var;
+                                    switch (b3) {
+                                        case 0:
+                                            sj3Var2.i.U4(false, true);
+                                            return;
+                                        default:
+                                            sj3Var2.i.U4(false, true);
+                                            return;
+                                    }
+                                }
+                            }, 300L);
                         }
-                    } else if (i == 67) {
-                        Activity parentActivity3 = mu1Var.getParentActivity();
-                        i2 = ((d) mu1Var).currentAccount;
-                        TL_account.TL_businessChatLink tL_businessChatLink = mu1Var.e4;
-                        wjbVar = ((d) mu1Var).resourceProvider;
-                        f41.f0(parentActivity3, i2, tL_businessChatLink, wjbVar);
-                    } else if (i == 68) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, mu1Var.getResourceProvider(), mu1Var.getParentActivity());
-                        String M0 = k96.M0(2131752695, null);
-                        hd hdVar = alertDialog$Builder.a;
-                        hdVar.S = M0;
-                        hdVar.U = k96.M0(2131752696, null);
-                        alertDialog$Builder.j(k96.M0(2131746128, null), new rh1(this, (byte) 6));
-                        alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                        mu1Var.showDialog(hdVar);
-                        TextView textView2 = (TextView) hdVar.c(-1);
-                        if (textView2 != null) {
-                            zkb.X(textView2, bkb.p7, mu1Var.getResourceProvider());
+                        SharedPreferences e12 = uc7.e1();
+                        if (e12.getBoolean("archivehint_l", false) || xea.m1) {
+                            i6 = 1;
                         }
-                    } else if (i == 75) {
-                        if (mu1Var.b8() && mu1Var.v6() != null) {
-                            gl.t1(mu1Var.m1);
-                            mu1Var.n0.requestLayout();
-                            lwb lwbVar2 = mu1Var.n0;
-                            lwbVar2.n();
-                            lwbVar2.a(1.0f, 0.0f);
+                        if (i6 == 0) {
+                            e12.edit().putBoolean("archivehint_l", true).commit();
                         }
-                    } else if (i == 73) {
-                        vtb e0 = vtb.e0(-mu1Var.l6, 0L);
-                        e0.E = mu1Var;
-                        mu1Var.presentFragment(e0);
-                    } else if (i == 888) {
-                        mu1Var.dumpCanvas();
-                    } else if (i == 889) {
-                        HashSet hashSet = o.d1;
-                        u21.b0(mu1Var).t("No rich message copied", null).j();
+                        UndoView w3 = uj3Var.w3();
+                        if (w3 != null) {
+                            long j2 = dialog.id;
+                            if (i6 != 0) {
+                                i3 = 2;
+                            } else {
+                                i3 = 3;
+                            }
+                            w3.l(j2, i3, null, new ze7(sj3Var, dialog, i9, (byte) 19));
+                        }
                     }
-                } else if (mu1Var.f != null && mu1Var.getParentActivity() != null) {
-                    TLRPC.User user3 = mu1Var.f;
-                    if (i == 33) {
-                        z3 = true;
-                    } else {
-                        z3 = false;
-                    }
-                    TLRPC.UserFull userFull = mu1Var.s8;
-                    if (userFull != null && userFull.video_calls_available) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
-                    rgc.m(user3, z3, z4, mu1Var.getParentActivity(), mu1Var.getMessagesController().W1(mu1Var.f.id), mu1Var.getAccountInstance());
-                }
-            } else if (mu1Var.getParentActivity() != null) {
-                if (i == 15 && hc2.p0(mu1Var.e)) {
-                    if (mu1Var.s4 != 0 && (V1 = mu1Var.getMessagesController().V1(Long.valueOf(mu1Var.s4))) != null) {
-                        ij.q(mu1Var, -1, V1, mu1Var.e, true, new q31(this, V1, (byte) 16), mu1Var.getResourceProvider());
+                    if (uj3Var.Y2 != 0 && uj3Var.T1.isEmpty()) {
+                        tj3Var.a.setEmptyView(null);
+                        tj3Var.x.setVisibility(4);
                         return;
                     }
                     return;
                 }
-                TLRPC.ChatFull chatFull2 = mu1Var.r8;
-                if (chatFull2 != null && chatFull2.can_delete_channel) {
-                    z = true;
-                } else {
-                    z = false;
+                return;
+            case 5:
+                s64 s64Var = ((n64) obj2).a;
+                Surface surface = new Surface((SurfaceTexture) obj);
+                s64Var.q1(surface);
+                s64Var.U = surface;
+                s64Var.f1(i7, i8);
+                return;
+            case 6:
+                String str = (String) obj;
+                in5 in5Var = ((sm5) obj2).b;
+                if (i7 != 1) {
+                    in5Var.s.c(new mm5(in5Var, str, (byte) 2));
                 }
-                if (i != 26 && (i != 15 || mu1Var.h != null || (((user = mu1Var.f) == null || l7c.D(user) || l7c.z(mu1Var.f)) && ((chatFull = mu1Var.r8) == null || !chatFull.can_delete_channel)))) {
-                    if (i == 15) {
-                        z2 = true;
+                jn7.f(i8).k(144, str, Integer.valueOf(i7));
+                return;
+            case 7:
+                uc7 uc7Var = (uc7) obj2;
+                uc7Var.i1.clear();
+                uc7Var.p1.clear();
+                jf7 messagesStorage = uc7Var.getMessagesStorage();
+                messagesStorage.G();
+                uc7Var.A4(true, messagesStorage.w, ((TLRPC.updates_Difference) obj).pts, this.b, this.c);
+                uc7Var.O1().p();
+                return;
+            case 8:
+                dc7 dc7Var = (dc7) obj2;
+                TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) obj;
+                dc7Var.h.j4(photos_photos.users, false);
+                dc7Var.d(i7, i8, photos_photos);
+                return;
+            case 9:
+                dc7 dc7Var2 = (dc7) obj2;
+                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
+                uc7 uc7Var2 = dc7Var2.h;
+                uc7Var2.j4(messages_messages.users, false);
+                uc7Var2.c4(messages_messages.chats, false);
+                TLRPC.TL_photos_photos tL_photos_photos = new TLRPC.TL_photos_photos();
+                tL_photos_photos.count = messages_messages.count;
+                int i10 = 0;
+                while (i6 < messages_messages.messages.size()) {
+                    TLRPC.MessageAction messageAction = messages_messages.messages.get(i6).action;
+                    if (messageAction != null) {
+                        TLRPC.Photo photo = messageAction.photo;
+                        if (photo instanceof TLRPC.TL_photo) {
+                            tL_photos_photos.photos.add(photo);
+                            i6++;
+                        }
+                    }
+                    i10++;
+                    i6++;
+                }
+                if (i7 == 0 && messages_messages.messages.size() >= messages_messages.count) {
+                    tL_photos_photos.count -= i10;
+                }
+                dc7Var2.d(i7, i8, tL_photos_photos);
+                return;
+            case 10:
+                jf7 jf7Var = (jf7) obj2;
+                byte[] bArr = (byte[]) obj;
+                try {
+                    SQLitePreparedStatement executeFast = jf7Var.b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
+                    executeFast.bindInteger(1, i7);
+                    executeFast.bindInteger(2, i8);
+                    if (bArr != null) {
+                        i5 = bArr.length;
                     } else {
-                        z2 = false;
+                        i5 = 1;
                     }
-                    TLRPC.Chat chat2 = mu1Var.e;
-                    boolean z8 = z2;
-                    TLRPC.User user4 = mu1Var.f;
-                    if (mu1Var.h == null) {
-                        z7 = false;
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(i5);
+                    if (bArr != null) {
+                        nativeByteBuffer.writeBytes(bArr);
                     }
-                    ij.r(mu1Var, z8, chat2, user4, z7, true, false, z, new jh(this, i, z));
+                    executeFast.bindByteBuffer(3, nativeByteBuffer);
+                    executeFast.step();
+                    executeFast.dispose();
+                    nativeByteBuffer.reuse();
+                    return;
+                } catch (Exception e) {
+                    jf7Var.n(e, true);
                     return;
                 }
-                ij.q(mu1Var, -1, mu1Var.f, mu1Var.e, z, new zp1(this, z), mu1Var.getResourceProvider());
-            }
+            default:
+                jn7 jn7Var = (jn7) obj2;
+                jn7Var.l((Object[]) obj, i7, false);
+                jn7Var.q.remove(i8);
+                return;
         }
+    }
+
+    public aq1(int i, int i2, String str, String str2) {
+        this.a = (byte) 3;
+        this.b = i;
+        this.d = str;
+        this.e = str2;
+        this.c = i2;
+    }
+
+    public aq1(Object obj, int i, int i2, Object obj2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = i;
+        this.c = i2;
+        this.e = obj2;
+    }
+
+    public aq1(Object obj, Object obj2, int i, int i2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = obj2;
+        this.b = i;
+        this.c = i2;
     }
 }

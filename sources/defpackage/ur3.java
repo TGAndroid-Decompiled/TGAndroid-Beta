@@ -1,19 +1,18 @@
 package defpackage;
 
-import android.util.SparseArray;
-public final class ur3 {
-    public final int a;
-    public final int b;
-    public final SparseArray c = new SparseArray();
-    public final SparseArray d = new SparseArray();
-    public final SparseArray e = new SparseArray();
-    public final SparseArray f = new SparseArray();
-    public final SparseArray g = new SparseArray();
-    public pr3 h;
-    public rj0 i;
+import android.widget.AbsListView;
+import java.lang.reflect.Field;
+public abstract class ur3 {
+    public static final Field a;
 
-    public ur3(int i, int i2) {
-        this.a = i;
-        this.b = i2;
+    static {
+        Field field = null;
+        try {
+            field = AbsListView.class.getDeclaredField("mIsChildViewEnabled");
+            field.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        a = field;
     }
 }

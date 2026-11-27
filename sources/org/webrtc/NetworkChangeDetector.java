@@ -33,15 +33,17 @@ public interface NetworkChangeDetector {
         public final long handle;
         public final IPAddress[] ipAddresses;
         public final String name;
+        public final NetworkSlice slice;
         public final ConnectionType type;
         public final ConnectionType underlyingTypeForVpn;
 
-        public NetworkInformation(String str, ConnectionType connectionType, ConnectionType connectionType2, long j, IPAddress[] iPAddressArr) {
+        public NetworkInformation(String str, ConnectionType connectionType, ConnectionType connectionType2, long j, IPAddress[] iPAddressArr, NetworkSlice networkSlice) {
             this.name = str;
             this.type = connectionType;
             this.underlyingTypeForVpn = connectionType2;
             this.handle = j;
             this.ipAddresses = iPAddressArr;
+            this.slice = networkSlice;
         }
 
         private ConnectionType getConnectionType() {
@@ -60,19 +62,38 @@ public interface NetworkChangeDetector {
             return this.name;
         }
 
+        private int getSliceAsInt() {
+            return this.slice.code;
+        }
+
         private ConnectionType getUnderlyingConnectionTypeForVpn() {
             return this.underlyingTypeForVpn;
         }
     }
 
-    public interface Observer {
-        void onConnectionTypeChanged(ConnectionType connectionType);
+    public enum NetworkSlice {
+        NO_SLICE(0),
+        UNIFIED_COMMUNICATIONS(1);
+        
+        public final int code;
 
-        void onNetworkConnect(NetworkInformation networkInformation);
+        NetworkSlice(int i) {
+            this.code = i;
+        }
+    }
 
-        void onNetworkDisconnect(long j);
+    public static abstract class Observer {
+        public String getFieldTrialsString() {
+            return "";
+        }
 
-        void onNetworkPreference(List<ConnectionType> list, int i);
+        public abstract void onConnectionTypeChanged(ConnectionType connectionType);
+
+        public abstract void onNetworkConnect(NetworkInformation networkInformation);
+
+        public abstract void onNetworkDisconnect(long j);
+
+        public abstract void onNetworkPreference(List<ConnectionType> list, int i);
     }
 
     void destroy();

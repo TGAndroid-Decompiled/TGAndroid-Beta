@@ -1,116 +1,200 @@
 package defpackage;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.io.IOException;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.a;
+import android.os.SystemClock;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Random;
 public final class la4 {
-    public co3 a;
-    public final int b;
-    public SQLiteDatabase c;
-    public File d;
-    public File e;
-    public final ConcurrentHashMap f = new ConcurrentHashMap();
-    public final ka4 g = new Object();
-    public boolean h;
+    public static final Random g = new Random();
+    public final String a;
+    public final da4 b;
+    public boolean e;
+    public final HashMap c = new HashMap();
+    public ArrayList d = new ArrayList();
+    public long f = SystemClock.uptimeMillis();
 
-    public la4(int i) {
-        this.b = i;
+    public la4(su3 su3Var, String str, da4 da4Var) {
+        this.a = str;
+        this.b = da4Var;
     }
 
-    public final void a() {
-        File h = a.h();
-        int i = this.b;
-        if (i != 0) {
-            File file = new File(h, tb4.n(i, "account", "/"));
-            file.mkdirs();
-            h = file;
+    public final void a(ka4 ka4Var, long j) {
+        ka4Var.a(j);
+        ka4Var.f = -1L;
+        ga4 ga4Var = ka4Var.a;
+        this.c.remove(ga4Var.a());
+        ia4 ia4Var = null;
+        if (!ka4Var.h && ka4Var.d >= 300) {
+            ArrayList arrayList = new ArrayList(ka4Var.i);
+            arrayList.add(new float[]{ka4Var.l, ka4Var.m});
+            float f = ka4Var.j;
+            Collections.sort(arrayList, new f03((byte) 16));
+            int size = arrayList.size();
+            float f2 = 0.0f;
+            int i = 0;
+            float f3 = 0.0f;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                float[] fArr = (float[]) obj;
+                float max = Math.max(fArr[0], f3);
+                float min = Math.min(fArr[1], f);
+                if (min > max) {
+                    f2 = (min - max) + f2;
+                }
+                f3 = Math.max(f3, min);
+            }
+            ia4 ia4Var2 = new ia4(ga4Var.c, ga4Var.e, ka4Var.b, (int) Math.min(ka4Var.d, 300000L), (int) Math.min(ka4Var.e, 300000L), Math.round((ka4Var.j / ka4Var.k) * 1000.0f), Math.round((f2 / ka4Var.j) * 1000.0f), ga4Var.j, ka4Var.q.a);
+            ia4Var2.a = ga4Var.a;
+            ia4Var2.b = ga4Var.b;
+            ia4Var = ia4Var2;
         }
-        File file2 = new File(h, "file_to_path_backup.db");
-        try {
-            gl.E(this.d, file2);
-            fa4.b("file db backup created " + file2.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (ia4Var != null) {
+            da4 da4Var = this.b;
+            ia4Var.l = ea4.g(da4Var.b);
+            ArrayList arrayList2 = da4Var.d;
+            if (arrayList2.isEmpty()) {
+                hl.d3(da4Var.e, 1000L);
+            }
+            arrayList2.add(ia4Var);
         }
     }
 
-    public final void b(int r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la4.b(int, boolean):void");
+    public final void b(boolean z) {
+        if (this.e != z) {
+            this.e = z;
+            if (!z) {
+                long uptimeMillis = SystemClock.uptimeMillis();
+                ArrayList arrayList = new ArrayList(this.c.values());
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    a((ka4) obj, uptimeMillis);
+                }
+                return;
+            }
+            this.f = SystemClock.uptimeMillis();
+            d(this.d);
+        }
     }
 
     public final void c() {
-        if (!this.h) {
-            if (!gi7.a) {
-                int i = 0;
-                while (!gi7.a) {
-                    try {
-                        Thread.sleep(1000L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    i++;
-                    if (i > 5) {
-                        break;
+        boolean z;
+        boolean z2;
+        ka4 ka4Var;
+        long uptimeMillis = SystemClock.uptimeMillis();
+        HashMap hashMap = this.c;
+        ArrayList arrayList = new ArrayList(hashMap.values());
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ka4 ka4Var2 = (ka4) obj;
+            if (!ka4Var2.h && ka4Var2.f >= 0 && uptimeMillis - ka4Var2.c >= 300000) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (z || (ka4Var2.f < 0 && uptimeMillis - ka4Var2.g >= 300)) {
+                a(ka4Var2, uptimeMillis);
+            }
+            if (z) {
+                ArrayList arrayList2 = this.d;
+                int size2 = arrayList2.size();
+                int i2 = 0;
+                while (i2 < size2) {
+                    Object obj2 = arrayList2.get(i2);
+                    i2++;
+                    ga4 ga4Var = (ga4) obj2;
+                    if (ga4Var.a().equals(ka4Var2.a.a())) {
+                        if (uptimeMillis - this.f > 15000) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                        ka4Var2.h = z2;
+                        ka4Var2.f = uptimeMillis;
+                        String a = ga4Var.a();
+                        if (ka4Var2.h) {
+                            ka4Var = ka4Var2;
+                        } else {
+                            ka4Var = new ka4(this, ga4Var, uptimeMillis);
+                        }
+                        hashMap.put(a, ka4Var);
                     }
                 }
             }
-            b(0, false);
-            this.h = true;
         }
     }
 
-    public final void d() {
-        if (this.a == null) {
-            synchronized (this) {
-                if (this.a == null) {
-                    co3 co3Var = new co3("files_database_queue_" + this.b);
-                    this.a = co3Var;
-                    co3Var.setPriority(10);
+    public final void d(ArrayList arrayList) {
+        this.d = arrayList;
+        if (this.e) {
+            long uptimeMillis = SystemClock.uptimeMillis();
+            HashSet hashSet = new HashSet();
+            int size = arrayList.size();
+            int i = 0;
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList.get(i2);
+                i2++;
+                hashSet.add(((ga4) obj).a());
+            }
+            HashMap hashMap = this.c;
+            for (ka4 ka4Var : hashMap.values()) {
+                if (ka4Var.f >= 0 && !hashSet.contains(ka4Var.a.a())) {
+                    ka4Var.a(uptimeMillis);
+                    ka4Var.f = -1L;
+                    ka4Var.g = uptimeMillis;
+                }
+            }
+            int size2 = arrayList.size();
+            while (i < size2) {
+                Object obj2 = arrayList.get(i);
+                i++;
+                ga4 ga4Var = (ga4) obj2;
+                ka4 ka4Var2 = (ka4) hashMap.get(ga4Var.a());
+                if (ka4Var2 != null && !Objects.equals(ka4Var2.a.j, ga4Var.j)) {
+                    a(ka4Var2, uptimeMillis);
+                    ka4Var2 = null;
+                }
+                if (ka4Var2 == null) {
+                    hashMap.put(ga4Var.a(), new ka4(this, ga4Var, uptimeMillis));
+                } else {
+                    if (ka4Var2.f < 0) {
+                        ka4Var2.f = uptimeMillis;
+                    }
+                    ka4Var2.b(ga4Var, uptimeMillis);
                 }
             }
         }
     }
 
-    public final defpackage.ka4 e(java.io.File r11, defpackage.ka4 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la4.e(java.io.File, ka4):ka4");
-    }
-
-    public final java.lang.String f(final int r22, final int r23, final long r24, boolean r26) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.la4.f(int, int, long, boolean):java.lang.String");
-    }
-
-    public final void g(int i) {
-        if (i == 1) {
-            ir2.y(this.c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
-            ir2.y(this.c, "PRAGMA user_version = 2");
-            i = 2;
+    public final void e() {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        HashMap hashMap = this.c;
+        for (ka4 ka4Var : hashMap.values()) {
+            ka4Var.a(uptimeMillis);
         }
-        if (i == 2) {
-            ir2.y(this.c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
-            ir2.y(this.c, "PRAGMA user_version = 3");
-            i = 3;
+        this.f = uptimeMillis;
+        if (this.e) {
+            ArrayList arrayList = this.d;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ga4 ga4Var = (ga4) obj;
+                if (hashMap.get(ga4Var.a()) != null && ((ka4) hashMap.get(ga4Var.a())).h) {
+                    hashMap.put(ga4Var.a(), new ka4(this, ga4Var, uptimeMillis));
+                }
+            }
         }
-        if (i == 3) {
-            ir2.y(this.c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
-            ir2.y(this.c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
-            ir2.y(this.c, "PRAGMA user_version = 4");
-            i = 4;
-        }
-        if (i != 4 && i != 5 && i != 6) {
-            return;
-        }
-        try {
-            this.c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
-        } catch (Throwable th) {
-            fa4.g(th, true);
-        }
-        ir2.y(this.c, "PRAGMA user_version = 7");
-    }
-
-    public final void h(Runnable runnable) {
-        d();
-        this.a.c(runnable);
     }
 }

@@ -3,11 +3,11 @@ package defpackage;
 import android.view.View;
 public final class mt implements Runnable {
     public final byte a = 0;
-    public final bw b;
+    public final cw b;
     public final View c;
 
-    public mt(bw bwVar, View view) {
-        this.b = bwVar;
+    public mt(cw cwVar, View view) {
+        this.b = cwVar;
         this.c = view;
     }
 
@@ -15,21 +15,21 @@ public final class mt implements Runnable {
     public final void run() {
         byte b = this.a;
         View view = this.c;
-        bw bwVar = this.b;
+        cw cwVar = this.b;
         switch (b) {
             case 0:
-                view.post(new mt(bwVar, view));
+                view.post(new mt(cwVar, view));
                 return;
             default:
-                bwVar.J.clear();
-                bwVar.L.set(null);
+                cwVar.J.clear();
+                cwVar.L.set(null);
                 view.invalidate();
                 return;
         }
     }
 
-    public mt(View view, bw bwVar) {
+    public mt(View view, cw cwVar) {
         this.c = view;
-        this.b = bwVar;
+        this.b = cwVar;
     }
 }

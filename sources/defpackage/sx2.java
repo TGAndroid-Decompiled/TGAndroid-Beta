@@ -1,41 +1,31 @@
 package defpackage;
+public final class sx2 {
+    public static final sx2 a;
+    public static final sx2 b;
+    public static final sx2 c;
+    public static final sx2 d;
+    public static final sx2 e;
+    public static final sx2[] f;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class sx2 implements oo4, no7 {
-    public final xx2 a;
-
-    public sx2(xx2 xx2Var) {
-        this.a = xx2Var;
+    static {
+        ?? r0 = new Enum("CPU_ACQUIRED", 0);
+        a = r0;
+        ?? r1 = new Enum("BLOCKING", 1);
+        b = r1;
+        ?? r3 = new Enum("PARKING", 2);
+        c = r3;
+        ?? r5 = new Enum("DORMANT", 3);
+        d = r5;
+        ?? r7 = new Enum("TERMINATED", 4);
+        e = r7;
+        f = new sx2[]{r0, r1, r3, r5, r7};
     }
 
-    @Override
-    public final vxc W(View view, vxc vxcVar) {
-        boolean z;
-        WindowInsets g = vxcVar.g();
-        xx2 xx2Var = this.a;
-        xx2Var.q0(g);
-        fm0 fm0Var = xx2Var.T1;
-        if (vxcVar.a.f(8).d > 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        fm0Var.a(z, true);
-        return vxc.b;
+    public static sx2 valueOf(String str) {
+        return (sx2) Enum.valueOf(sx2.class, str);
     }
 
-    @Override
-    public final void a(int i) {
-        int min = Math.min(i, gl.L(144.0f));
-        if (i > 0) {
-            min -= gl.L(8.0f);
-        }
-        xx2 xx2Var = this.a;
-        if (xx2Var.g2 != min) {
-            xx2Var.g2 = min;
-            xx2Var.S1.a(min);
-            xx2Var.c2.postOnAnimation(new mk2(xx2Var, (byte) 12));
-        }
+    public static sx2[] values() {
+        return (sx2[]) f.clone();
     }
 }

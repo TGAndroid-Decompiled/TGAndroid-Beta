@@ -1,20 +1,67 @@
 package defpackage;
-public interface ru6 {
-    void a(int i, p5a p5aVar);
 
-    void b(int i);
+import android.view.animation.Animation;
+import androidx.mediarouter.app.OverlayListView;
+import java.util.ArrayList;
+public final class ru6 implements Animation.AnimationListener {
+    public final byte a;
+    public final bv6 b;
 
-    void c(int i, int i2, int i3);
+    public ru6(bv6 bv6Var, byte b) {
+        this.a = b;
+        this.b = bv6Var;
+    }
 
-    void d(int i, q06 q06Var);
+    @Override
+    public final void onAnimationEnd(Animation animation) {
+        switch (this.a) {
+            case 0:
+                this.b.j(true);
+                return;
+            default:
+                return;
+        }
+    }
 
-    void e();
+    @Override
+    public final void onAnimationRepeat(Animation animation) {
+        byte b = this.a;
+    }
 
-    void f(int i, kc8 kc8Var);
+    @Override
+    public final void onAnimationStart(Animation animation) {
+        switch (this.a) {
+            case 0:
+                return;
+            default:
+                bv6 bv6Var = this.b;
+                OverlayListView overlayListView = bv6Var.V;
+                ArrayList arrayList = overlayListView.a;
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    nu7 nu7Var = (nu7) obj;
+                    if (!nu7Var.j) {
+                        nu7Var.i = overlayListView.getDrawingTime();
+                        nu7Var.j = true;
+                    }
+                }
+                bv6Var.V.postDelayed(bv6Var.F0, bv6Var.y0);
+                return;
+        }
+    }
 
-    void g(int i, o6a o6aVar);
+    private final void a(Animation animation) {
+    }
 
-    void h(int i, wc8 wc8Var, kc8 kc8Var, boolean z, boolean z2);
+    private final void b(Animation animation) {
+    }
 
-    void i(int i, l6a l6aVar, boolean z, boolean z2, int i2);
+    private final void c(Animation animation) {
+    }
+
+    private final void d(Animation animation) {
+    }
 }

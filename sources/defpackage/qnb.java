@@ -1,39 +1,49 @@
 package defpackage;
-public final class qnb implements ip9 {
-    public final ip9 a;
-    public final long b;
 
-    public qnb(ip9 ip9Var, long j) {
-        this.a = ip9Var;
-        this.b = j;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class qnb extends Drawable {
+    public final RectF a = new RectF();
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final float f;
+
+    public qnb(int i, int i2, int i3, int i4, float f) {
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
+        this.f = f;
     }
 
     @Override
-    public final int a() {
-        return this.a.a();
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.a;
+        rectF.set(bounds);
+        rectF.left += this.b;
+        rectF.top += this.c;
+        rectF.right -= this.d;
+        rectF.bottom -= this.e;
+        float f = this.f;
+        canvas.drawRoundRect(rectF, f, f, aob.z);
     }
 
     @Override
-    public final void b() {
-        this.a.b();
+    public final int getOpacity() {
+        return 0;
     }
 
     @Override
-    public final int h(sk4 sk4Var, z83 z83Var, int i) {
-        int h = this.a.h(sk4Var, z83Var, i);
-        if (h == -4) {
-            z83Var.e += this.b;
-        }
-        return h;
+    public final void setAlpha(int i) {
     }
 
     @Override
-    public final boolean j() {
-        return this.a.j();
-    }
-
-    @Override
-    public final int n(long j) {
-        return this.a.n(j - this.b);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

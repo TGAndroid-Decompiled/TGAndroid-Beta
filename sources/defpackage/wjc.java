@@ -1,170 +1,88 @@
 package defpackage;
-public final class wjc implements jd7 {
-    public final String a;
-    public final String b;
 
-    public wjc(String str, String str2) {
-        this.a = smd.d(str);
-        this.b = str2;
+import android.view.View;
+import android.view.WindowInsets;
+import android.widget.FrameLayout;
+import org.telegram.messenger.voip.VoIPService;
+public final class wjc implements fd, tjc, nr7, bnc {
+    public final byte a;
+    public final mkc b;
+
+    public wjc(mkc mkcVar, byte b) {
+        this.a = b;
+        this.b = mkcVar;
     }
 
     @Override
-    public final fm4 a() {
-        return null;
-    }
-
-    @Override
-    public final void b(hr6 hr6Var) {
-        String str = this.a;
-        str.getClass();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -1935137620:
-                if (str.equals("TOTALTRACKS")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -215998278:
-                if (str.equals("TOTALDISCS")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case -113312716:
-                if (str.equals("TRACKNUMBER")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 62359119:
-                if (str.equals("ALBUM")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case 67703139:
-                if (str.equals("GENRE")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case 79833656:
-                if (str.equals("TITLE")) {
-                    c = 5;
-                    break;
-                }
-                break;
-            case 428414940:
-                if (str.equals("DESCRIPTION")) {
-                    c = 6;
-                    break;
-                }
-                break;
-            case 905239725:
-                if (str.equals("DISCSUBTITLE")) {
-                    c = 7;
-                    break;
-                }
-                break;
-            case 993300766:
-                if (str.equals("DISCNUMBER")) {
-                    c = '\b';
-                    break;
-                }
-                break;
-            case 1746739798:
-                if (str.equals("ALBUMARTIST")) {
-                    c = '\t';
-                    break;
-                }
-                break;
-            case 1939198791:
-                if (str.equals("ARTIST")) {
-                    c = '\n';
-                    break;
-                }
-                break;
+    public final l2d S(View view, l2d l2dVar) {
+        WindowInsets g = l2dVar.g();
+        mkc mkcVar = this.b;
+        mkcVar.r0 = g;
+        ((FrameLayout.LayoutParams) mkcVar.j0.getLayoutParams()).bottomMargin = mkcVar.r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) mkcVar.f0.getLayoutParams()).bottomMargin = mkcVar.r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) mkcVar.I.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) mkcVar.J.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) mkcVar.L.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop() + hl.L(56.0f);
+        ((FrameLayout.LayoutParams) mkcVar.Y.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop() + hl.L(135.0f);
+        ((FrameLayout.LayoutParams) mkcVar.O.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop() + hl.L(17.0f);
+        ((FrameLayout.LayoutParams) mkcVar.E.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop() + hl.L(93.0f);
+        ((FrameLayout.LayoutParams) mkcVar.P.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) mkcVar.S.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop() + hl.L(118.0f);
+        ((FrameLayout.LayoutParams) mkcVar.R.getLayoutParams()).topMargin = mkcVar.r0.getSystemWindowInsetTop() + hl.L(380.0f);
+        ((FrameLayout.LayoutParams) mkcVar.a0.getLayoutParams()).bottomMargin = mkcVar.r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) mkcVar.M0.getLayoutParams()).bottomMargin = mkcVar.r0.getSystemWindowInsetBottom();
+        mkcVar.Z.setInsets(mkcVar.r0);
+        mkcVar.a0.setInsets(mkcVar.r0);
+        mkcVar.s.requestLayout();
+        gkc gkcVar = mkcVar.o0;
+        if (gkcVar != null) {
+            gkcVar.setBottomPadding(mkcVar.r0.getSystemWindowInsetBottom());
         }
-        String str2 = this.b;
-        switch (c) {
-            case 0:
-                Integer f = gle.f(str2);
-                if (f != null) {
-                    hr6Var.p = f;
-                    return;
-                }
-                return;
-            case 1:
-                Integer f2 = gle.f(str2);
-                if (f2 != null) {
-                    hr6Var.E = f2;
-                    return;
-                }
-                return;
-            case 2:
-                Integer f3 = gle.f(str2);
-                if (f3 != null) {
-                    hr6Var.o = f3;
-                    return;
-                }
-                return;
-            case 3:
-                hr6Var.c = str2;
-                return;
+        return l2d.b;
+    }
+
+    @Override
+    public final void c(cnc cncVar) {
+        int i;
+        byte b = this.a;
+        mkc mkcVar = this.b;
+        switch (b) {
             case 4:
-                hr6Var.F = str2;
-                return;
-            case 5:
-                hr6Var.a = str2;
-                return;
-            case 6:
-                hr6Var.g = str2;
-                return;
-            case 7:
-                hr6Var.C = str2;
-                return;
-            case '\b':
-                Integer f4 = gle.f(str2);
-                if (f4 != null) {
-                    hr6Var.D = f4;
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    hl.r(mkcVar.S0);
+                    mkcVar.R0 = false;
+                    boolean isMicMute = sharedInstance.isMicMute();
+                    boolean z = !isMicMute;
+                    if (mkcVar.w0.isTouchExplorationEnabled()) {
+                        if (!isMicMute) {
+                            i = 2131754724;
+                        } else {
+                            i = 2131754723;
+                        }
+                        cncVar.announceForAccessibility(ob6.M0(i, null));
+                    }
+                    sharedInstance.setMicMute(z, false, true);
+                    mkcVar.q0 = mkcVar.p0;
+                    mkcVar.y();
                     return;
                 }
-                return;
-            case '\t':
-                hr6Var.d = str2;
-                return;
-            case '\n':
-                hr6Var.b = str2;
                 return;
             default:
-                return;
+                hl.r(mkcVar.S0);
+                mkcVar.R0 = false;
+                if (mkcVar.b.checkSelfPermission("android.permission.CAMERA") != 0) {
+                    mkcVar.b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
+                    return;
+                } else {
+                    mkcVar.t();
+                    return;
+                }
         }
     }
 
     @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && wjc.class == obj.getClass()) {
-            wjc wjcVar = (wjc) obj;
-            if (this.a.equals(wjcVar.a) && this.b.equals(wjcVar.b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.b.hashCode() + ir2.j(527, 31, this.a);
-    }
-
-    public final String toString() {
-        return "VC: " + this.a + "=" + this.b;
+    public final void w(id idVar, int i) {
+        this.b.u0.b();
     }
 }

@@ -1,39 +1,38 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.view.View;
 import org.telegram.ui.ActionBar.a;
-public final class s5 extends AnimatorListenerAdapter {
+public final class s5 implements View.OnClickListener {
     public final byte a;
-    public final boolean b;
-    public final a c;
+    public final a b;
 
-    public s5(a aVar, boolean z, byte b) {
+    public s5(a aVar, byte b) {
         this.a = b;
-        this.c = aVar;
-        this.b = z;
+        this.b = aVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void onClick(View view) {
+        Runnable runnable;
         byte b = this.a;
-        float f = 0.0f;
-        boolean z = this.b;
-        a aVar = this.c;
+        a aVar = this.b;
         switch (b) {
             case 0:
-                if (z) {
-                    f = 1.0f;
+                if (!aVar.o0 && (runnable = aVar.k0) != null) {
+                    runnable.run();
+                    return;
                 }
-                aVar.E1 = f;
-                aVar.i();
                 return;
             default:
-                if (z) {
-                    f = 1.0f;
+                if (!aVar.K && aVar.o0) {
+                    aVar.o(true);
+                    return;
                 }
-                aVar.E1 = f;
-                aVar.i();
+                d6 d6Var = aVar.v0;
+                if (d6Var != null) {
+                    d6Var.b(-1);
+                    return;
+                }
                 return;
         }
     }

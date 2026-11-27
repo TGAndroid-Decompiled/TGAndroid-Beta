@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.nio.ByteBuffer;
 public class DataChannel {
-    private long nativeDataChannel;
+    private final NativeLifecycleLock lifecycleLock;
     private long nativeObserver;
 
     public static class Buffer {
@@ -48,6 +48,24 @@ public class DataChannel {
         }
     }
 
+    public interface Natives {
+        long bufferedAmount(DataChannel dataChannel);
+
+        void close(DataChannel dataChannel);
+
+        int id(DataChannel dataChannel);
+
+        String label(DataChannel dataChannel);
+
+        long registerObserver(DataChannel dataChannel, Observer observer);
+
+        boolean send(DataChannel dataChannel, byte[] bArr, boolean z);
+
+        State state(DataChannel dataChannel);
+
+        void unregisterObserver(DataChannel dataChannel, long j);
+    }
+
     public interface Observer {
         void onBufferedAmountChange(long j);
 
@@ -68,86 +86,90 @@ public class DataChannel {
     }
 
     public DataChannel(long j) {
-        this.nativeDataChannel = j;
+        this.lifecycleLock = new NativeLifecycleLock("DataChannel", j);
     }
 
-    private void checkDataChannelExists() {
-        if (this.nativeDataChannel != 0) {
-            return;
+    public Long lambda$bufferedAmount$5() {
+        return Long.valueOf(DataChannelJni.get().bufferedAmount(this));
+    }
+
+    public void lambda$close$6() {
+        DataChannelJni.get().close(this);
+    }
+
+    public Integer lambda$id$3() {
+        return Integer.valueOf(DataChannelJni.get().id(this));
+    }
+
+    public String lambda$label$2() {
+        return DataChannelJni.get().label(this);
+    }
+
+    public void lambda$registerObserver$0(Observer observer) {
+        if (this.nativeObserver != 0) {
+            DataChannelJni.get().unregisterObserver(this, this.nativeObserver);
         }
-        sc8.j("DataChannel has been disposed.");
+        this.nativeObserver = DataChannelJni.get().registerObserver(this, observer);
     }
 
-    private native long nativeBufferedAmount();
+    public Boolean lambda$send$7(Buffer buffer) {
+        byte[] bArr = new byte[buffer.data.remaining()];
+        buffer.data.get(bArr);
+        return Boolean.valueOf(DataChannelJni.get().send(this, bArr, buffer.binary));
+    }
 
-    private native void nativeClose();
+    public State lambda$state$4() {
+        return DataChannelJni.get().state(this);
+    }
 
-    private native int nativeId();
-
-    private native String nativeLabel();
-
-    private native long nativeRegisterObserver(Observer observer);
-
-    private native boolean nativeSend(byte[] bArr, boolean z);
-
-    private native State nativeState();
-
-    private native void nativeUnregisterObserver(long j);
+    public void lambda$unregisterObserver$1() {
+        DataChannelJni.get().unregisterObserver(this, this.nativeObserver);
+        this.nativeObserver = 0L;
+    }
 
     public long bufferedAmount() {
-        checkDataChannelExists();
-        return nativeBufferedAmount();
+        return ((Long) this.lifecycleLock.call(new o63(this, (byte) 5))).longValue();
     }
 
     public void close() {
-        checkDataChannelExists();
-        nativeClose();
+        this.lifecycleLock.runIfAlive(new o63(this, (byte) 0));
     }
 
     public void dispose() {
-        checkDataChannelExists();
-        JniCommon.nativeReleaseRef(this.nativeDataChannel);
-        this.nativeDataChannel = 0L;
+        if (this.lifecycleLock.isDisposed()) {
+            return;
+        }
+        if (this.nativeObserver != 0) {
+            unregisterObserver();
+        }
+        this.lifecycleLock.dispose(new uy2((byte) 13));
     }
 
     public long getNativeDataChannel() {
-        return this.nativeDataChannel;
+        return this.lifecycleLock.getNativePointer();
     }
 
     public int id() {
-        checkDataChannelExists();
-        return nativeId();
+        return ((Integer) this.lifecycleLock.call(new o63(this, (byte) 4))).intValue();
     }
 
     public String label() {
-        checkDataChannelExists();
-        return nativeLabel();
+        return (String) this.lifecycleLock.call(new o63(this, (byte) 3));
     }
 
     public void registerObserver(Observer observer) {
-        checkDataChannelExists();
-        long j = this.nativeObserver;
-        if (j != 0) {
-            nativeUnregisterObserver(j);
-        }
-        this.nativeObserver = nativeRegisterObserver(observer);
+        this.lifecycleLock.run(new q72(this, observer, (byte) 16));
     }
 
     public boolean send(Buffer buffer) {
-        checkDataChannelExists();
-        byte[] bArr = new byte[buffer.data.remaining()];
-        buffer.data.get(bArr);
-        return nativeSend(bArr, buffer.binary);
+        return ((Boolean) this.lifecycleLock.call(new q72(this, buffer, (byte) 17))).booleanValue();
     }
 
     public State state() {
-        checkDataChannelExists();
-        return nativeState();
+        return (State) this.lifecycleLock.call(new o63(this, (byte) 1));
     }
 
     public void unregisterObserver() {
-        checkDataChannelExists();
-        nativeUnregisterObserver(this.nativeObserver);
-        this.nativeObserver = 0L;
+        this.lifecycleLock.runIfAlive(new o63(this, (byte) 2));
     }
 }

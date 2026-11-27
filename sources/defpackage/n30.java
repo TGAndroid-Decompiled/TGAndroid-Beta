@@ -1,39 +1,33 @@
 package defpackage;
-
-import org.telegram.tgnet.TLObject;
 public final class n30 implements Runnable {
     public final byte a;
-    public final long b;
-    public final long c;
-    public final Object d;
-    public final Object e;
+    public final lh2 b;
+    public final qf5 c;
 
-    public n30(Object obj, long j, long j2, Object obj2, byte b) {
+    public n30(lh2 lh2Var, qf5 qf5Var, byte b) {
         this.a = b;
-        this.d = obj;
-        this.b = j;
-        this.c = j2;
-        this.e = obj2;
+        this.b = lh2Var;
+        this.c = qf5Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.n30.run():void");
-    }
-
-    public n30(Object obj, long j, TLObject tLObject, long j2, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.b = j;
-        this.e = tLObject;
-        this.c = j2;
-    }
-
-    public n30(Object obj, Object obj2, long j, long j2, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.b = j;
-        this.c = j2;
+        byte b = this.a;
+        qf5 qf5Var = this.c;
+        lh2 lh2Var = this.b;
+        switch (b) {
+            case 0:
+                String str = gcc.a;
+                ea3 ea3Var = ((n64) ((p30) lh2Var.c)).a.s;
+                uj U = ea3Var.U();
+                ea3Var.V(U, 1032, new da3(U, qf5Var, (byte) 5));
+                return;
+            default:
+                String str2 = gcc.a;
+                ea3 ea3Var2 = ((n64) ((p30) lh2Var.c)).a.s;
+                uj U2 = ea3Var2.U();
+                ea3Var2.V(U2, 1031, new aa3(U2, qf5Var, (byte) 18));
+                return;
+        }
     }
 }

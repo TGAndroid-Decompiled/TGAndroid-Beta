@@ -1,187 +1,193 @@
 package defpackage;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class j67 implements RequestDelegate {
-    public final byte a;
-    public final boolean b;
-    public final long c;
-    public final Object d;
-    public final Object e;
+import org.telegram.ui.ActionBar.e;
+public final class j67 implements h49 {
+    public final e a;
+    public final q67 b;
 
-    public j67(fu5 fu5Var, long j, boolean z, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        this.a = (byte) 2;
-        this.d = fu5Var;
-        this.c = j;
-        this.b = z;
-        this.e = tL_messages_importChatInvite;
+    public j67(q67 q67Var, e eVar) {
+        this.b = q67Var;
+        this.a = eVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        ArrayList arrayList;
-        TLRPC.MessageAction tL_messageActionChatAddUser;
-        byte b = this.a;
-        boolean z = this.b;
-        Object obj = this.e;
-        Object obj2 = this.d;
-        switch (b) {
-            case 0:
-                na7 na7Var = (na7) obj2;
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) tLObject;
-                if (tL_channels_channelParticipant != null) {
-                    TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipant.participant;
-                    if (channelParticipant instanceof TLRPC.TL_channelParticipantSelf) {
-                        TLRPC.TL_channelParticipantSelf tL_channelParticipantSelf = (TLRPC.TL_channelParticipantSelf) channelParticipant;
-                        if (chat.megagroup) {
-                            ad7 messagesStorage = na7Var.getMessagesStorage();
-                            long j = chat.id;
-                            messagesStorage.getClass();
-                            CountDownLatch countDownLatch = new CountDownLatch(1);
-                            boolean[] zArr = new boolean[1];
-                            messagesStorage.a.c(new gb7(messagesStorage, j, zArr, countDownLatch, (byte) 0));
-                            try {
-                                countDownLatch.await();
-                            } catch (Exception e) {
-                                messagesStorage.n(e, true);
+    public final void e(View view, w49 w49Var, boolean z, boolean z2) {
+        boolean z3;
+        long j;
+        boolean z4;
+        TLRPC.TL_availableEffect Z0;
+        w49 w49Var2;
+        e eVar;
+        boolean z5;
+        long j2;
+        boolean z6;
+        w49 w49Var3;
+        w49 w49Var4 = w49Var;
+        if (w49Var4 != null) {
+            q67 q67Var = this.b;
+            i67 i67Var = q67Var.e0;
+            g67 g67Var = q67Var.a0;
+            int i = q67Var.c;
+            if (i67Var != null) {
+                if (!yac.h(i).p() && w49Var4.d) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                wb2 wb2Var = q67Var.Q;
+                if (wb2Var != null) {
+                    r47 messageObject = wb2Var.getMessageObject();
+                    if (messageObject != null) {
+                        TLRPC.Message message = messageObject.k;
+                        long j3 = message.effect;
+                        long j4 = w49Var4.c;
+                        int i2 = (j4 > j3 ? 1 : (j4 == j3 ? 0 : -1));
+                        int i3 = message.flags2;
+                        if (i2 == 0) {
+                            message.flags2 = i3 & (-5);
+                            message.effect = 0L;
+                            z5 = true;
+                        } else {
+                            message.flags2 = i3 | 4;
+                            message.effect = j4;
+                            z5 = false;
+                        }
+                        if (!z3) {
+                            wb2 wb2Var2 = q67Var.Q;
+                            j2 = j3;
+                            m47 j5 = q67Var.j(messageObject);
+                            if (q67Var.N.size() > 1) {
+                                z6 = true;
+                            } else {
+                                z6 = false;
                             }
-                            if (zArr[0]) {
-                                return;
+                            wb2Var2.z3(messageObject, j5, z6, false, false, false);
+                            i67 i67Var2 = q67Var.e0;
+                            if (z5) {
+                                w49Var3 = null;
+                            } else {
+                                w49Var3 = w49Var4;
+                            }
+                            i67Var2.setSelectedReactionAnimated(w49Var3);
+                            if (q67Var.e0.getReactionsWindow() != null && q67Var.e0.getReactionsWindow().m != null) {
+                                a53 a53Var = q67Var.e0.getReactionsWindow().m;
+                                if (z5) {
+                                    w49Var4 = null;
+                                }
+                                a53Var.setSelectedReaction(w49Var4);
+                                q67Var.e0.getReactionsWindow().a.invalidate();
+                            }
+                        } else {
+                            j2 = j3;
+                        }
+                        g67Var.c();
+                        if (!z5) {
+                            g67Var.n(q67Var.Q, 0, false, false);
+                        }
+                        if (z3) {
+                            TLRPC.Message message2 = messageObject.k;
+                            message2.effect = j2;
+                            if (j2 == 0) {
+                                message2.flags2 &= -5;
                             }
                         }
-                        gl.c3(new t67(na7Var, tL_channels_channelParticipant, (byte) 4));
-                        na7Var.getMessagesStorage().j1(tL_channels_channelParticipant.users, tL_channels_channelParticipant.chats, true, true);
-                        long j2 = this.c;
-                        if (z && Math.abs(na7Var.getConnectionsManager().getCurrentTime() - tL_channels_channelParticipant.participant.date) < 86400) {
-                            ad7 messagesStorage2 = na7Var.getMessagesStorage();
-                            messagesStorage2.getClass();
-                            CountDownLatch countDownLatch2 = new CountDownLatch(1);
-                            boolean[] zArr2 = new boolean[1];
-                            messagesStorage2.a.c(new gb7(messagesStorage2, j2, zArr2, countDownLatch2, (byte) 1));
-                            try {
-                                countDownLatch2.await();
-                            } catch (Exception e2) {
-                                messagesStorage2.n(e2, true);
-                            }
-                            if (!zArr2[0]) {
-                                TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-                                tL_messageService.flags = 256;
-                                int i = na7Var.getUserConfig().i();
-                                tL_messageService.id = i;
-                                tL_messageService.local_id = i;
-                                tL_messageService.date = tL_channels_channelParticipant.participant.date;
-                                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                                tL_messageService.from_id = tL_peerUser;
-                                tL_peerUser.user_id = tL_channels_channelParticipant.participant.inviter_id;
-                                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                                tL_messageService.peer_id = tL_peerChannel;
-                                tL_peerChannel.channel_id = j2;
-                                tL_messageService.media_unread = true;
-                                tL_messageService.unread = true;
-                                tL_messageService.post = true;
-                                if (tL_channelParticipantSelf.via_invite && tL_channelParticipantSelf.inviter_id == na7Var.getUserConfig().e()) {
-                                    tL_messageActionChatAddUser = new TLRPC.TL_messageActionChatJoinedByRequest();
-                                    tL_messageService.action = tL_messageActionChatAddUser;
-                                } else {
-                                    tL_messageActionChatAddUser = new TLRPC.TL_messageActionChatAddUser();
-                                    tL_messageService.action = tL_messageActionChatAddUser;
-                                }
-                                tL_messageActionChatAddUser.users.add(Long.valueOf(na7Var.getUserConfig().e()));
-                                tL_messageService.dialog_id = -j2;
-                                na7Var.getUserConfig().u(false);
-                                arrayList = new ArrayList();
-                                ArrayList arrayList2 = new ArrayList();
-                                ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
-                                for (int i2 = 0; i2 < tL_channels_channelParticipant.users.size(); i2++) {
-                                    TLRPC.User user = tL_channels_channelParticipant.users.get(i2);
-                                    concurrentHashMap.put(Long.valueOf(user.id), user);
-                                }
-                                arrayList2.add(tL_messageService);
-                                arrayList.add(new k27(na7Var.currentAccount, (TLRPC.Message) tL_messageService, (AbstractMap) concurrentHashMap, (AbstractMap) null, true, false));
-                                if (tL_messageService.from_id.user_id != na7Var.getUserConfig().e()) {
-                                    na7Var.getMessagesStorage().a.c(new f57(na7Var, arrayList, (byte) 3));
-                                }
-                                na7Var.getMessagesStorage().g1(arrayList2, true, true, false, 0, false, 0, 0L);
-                                ArrayList arrayList3 = arrayList;
-                                ad7 messagesStorage3 = na7Var.getMessagesStorage();
-                                messagesStorage3.a.c(new sa7(messagesStorage3, tL_channels_channelParticipant.participant.inviter_id, j2, (byte) 2));
-                                gl.c3(new m77(na7Var, j2, arrayList3, tL_channels_channelParticipant, (byte) 16));
-                                return;
+                        h67 h67Var = q67Var.X;
+                        if (h67Var != null) {
+                            h67Var.setEffect(messageObject.k.effect);
+                        }
+                        q67Var.m(messageObject.k.effect);
+                    } else {
+                        return;
+                    }
+                } else if (q67Var.l0 != null) {
+                    long j6 = w49Var4.c;
+                    if (j6 == q67Var.I) {
+                        q67Var.I = 0L;
+                        z4 = true;
+                        j = 0;
+                    } else {
+                        q67Var.I = j6;
+                        j = j6;
+                        z4 = false;
+                    }
+                    h67 h67Var2 = q67Var.X;
+                    if (h67Var2 != null) {
+                        h67Var2.setEffect(j);
+                    }
+                    q67Var.m(q67Var.I);
+                    if (!z3) {
+                        if (q67Var.I == 0) {
+                            Z0 = null;
+                        } else {
+                            Z0 = uc7.s1(i).Z0(q67Var.I);
+                        }
+                        ul ulVar = q67Var.J;
+                        if (ulVar != null) {
+                            if (q67Var.I != 0 && Z0 != null) {
+                                ulVar.g(pv3.g(Z0.emoticon), true);
+                            } else {
+                                ulVar.g(null, true);
                             }
                         }
-                        arrayList = null;
-                        ArrayList arrayList32 = arrayList;
-                        ad7 messagesStorage32 = na7Var.getMessagesStorage();
-                        messagesStorage32.a.c(new sa7(messagesStorage32, tL_channels_channelParticipant.participant.inviter_id, j2, (byte) 2));
-                        gl.c3(new m77(na7Var, j2, arrayList32, tL_channels_channelParticipant, (byte) 16));
-                        return;
+                        i67 i67Var3 = q67Var.e0;
+                        if (z4) {
+                            w49Var2 = null;
+                        } else {
+                            w49Var2 = w49Var4;
+                        }
+                        i67Var3.setSelectedReactionAnimated(w49Var2);
+                        if (q67Var.e0.getReactionsWindow() != null && q67Var.e0.getReactionsWindow().m != null) {
+                            a53 a53Var2 = q67Var.e0.getReactionsWindow().m;
+                            if (z4) {
+                                w49Var4 = null;
+                            }
+                            a53Var2.setSelectedReaction(w49Var4);
+                            q67Var.e0.getReactionsWindow().a.invalidate();
+                        }
                     }
-                    return;
-                }
-                return;
-            case 1:
-                ss0 ss0Var = (ss0) obj2;
-                ss0Var.getClass();
-                gl.c3(new ms0(ss0Var, tL_error, tLObject, (TwoStepVerificationActivity) obj, this.b, this.c));
-                return;
-            case 2:
-                fu5 fu5Var = (fu5) obj2;
-                TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = (TLRPC.TL_messages_importChatInvite) obj;
-                if (tLObject instanceof TLRPC.TL_chatInviteJoinResultOk) {
-                    na7.q1(fu5Var.a).R3(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
-                } else if (tLObject instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-                    gl.c3(new au5(fu5Var, (TLRPC.TL_chatInviteJoinResultWebView) tLObject, this.c, (byte) 0));
-                }
-                gl.c3(new rg(fu5Var, tL_error, this.b, tL_messages_importChatInvite, (byte) 22));
-                return;
-            case 3:
-                gl.c3(new ms0((a46) obj2, tLObject, this.c, (String) obj, this.b, tL_error));
-                return;
-            default:
-                na7 na7Var2 = (na7) obj2;
-                TLRPC.User user2 = (TLRPC.User) obj;
-                if (tL_error == null) {
-                    if (tLObject instanceof TLRPC.Updates) {
-                        na7Var2.R3((TLRPC.Updates) tLObject, false);
+                    g67Var.c();
+                    if (!z4) {
+                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                        long j7 = q67Var.I;
+                        tL_message.effect = j7;
+                        if (j7 != 0) {
+                            tL_message.flags2 |= 4;
+                        }
+                        q67Var.a0.d(null, 0, null, new r47(i, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
-                    if (z && !l7c.D(user2)) {
-                        gl.d3(new r57(na7Var2, this.c, (byte) 11), 1000L);
-                        return;
-                    }
-                    return;
                 }
-                return;
+                if (z3 && (eVar = this.a) != null) {
+                    new d31(q67Var.G, q67Var.b).Q(2131624211, 36, hl.N2(ob6.M0(2131754246, null), -1, 2, new yv1(eVar, (byte) 3), null)).j();
+                }
+                q67Var.H.invalidate();
+            }
         }
     }
 
-    public j67(byte b, long j, gk7 gk7Var, Object obj, boolean z) {
-        this.a = b;
-        this.d = gk7Var;
-        this.e = obj;
-        this.b = z;
-        this.c = j;
+    @Override
+    public final boolean j() {
+        return true;
     }
 
-    public j67(a46 a46Var, long j, String str, boolean z) {
-        this.a = (byte) 3;
-        this.d = a46Var;
-        this.c = j;
-        this.e = str;
-        this.b = z;
+    @Override
+    public final boolean k() {
+        return false;
     }
 
-    public j67(na7 na7Var, boolean z, TLRPC.User user, long j) {
-        this.a = (byte) 4;
-        this.d = na7Var;
-        this.b = z;
-        this.e = user;
-        this.c = j;
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
     }
 }

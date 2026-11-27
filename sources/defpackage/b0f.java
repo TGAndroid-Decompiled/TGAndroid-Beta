@@ -1,14 +1,7 @@
 package defpackage;
+public abstract class b0f {
+    public abstract void a(boolean z);
 
-import android.content.ComponentName;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-public final class b0f implements ServiceConnection {
-    @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-    }
-
-    @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+    public void b() {
     }
 }

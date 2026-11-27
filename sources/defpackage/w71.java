@@ -1,388 +1,322 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.d;
-public final class w71 extends GestureDetector.SimpleOnGestureListener {
-    public final Context a;
-    public final y71 b;
+import java.util.HashSet;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.PhotoViewer;
+public abstract class w71 extends FrameLayout implements snb, cl7 {
+    public static final int H = 0;
+    public boolean E;
+    public final gb F;
+    public l71 G;
+    public final gd0 a;
+    public final ArrayList b;
+    public final FrameLayout c;
+    public final uic d;
+    public final e e;
+    public final ArrayList f;
+    public d71 h;
+    public final vic n;
+    public final u71[] r;
+    public k71 s;
+    public int w;
+    public final wka x;
+    public int y;
 
-    public w71(y71 y71Var, Context context) {
-        this.b = y71Var;
-        this.a = context;
+    public w71(Context context, e eVar, vy4 vy4Var, wka wkaVar) {
+        super(context);
+        vic h79Var;
+        float f;
+        this.b = new ArrayList();
+        this.f = new ArrayList();
+        u71[] u71VarArr = new u71[5];
+        this.r = u71VarArr;
+        this.F = new gb(this, (byte) 1);
+        this.e = eVar;
+        this.x = wkaVar;
+        if (wkaVar != null) {
+            setClipChildren(false);
+            setClipToPadding(false);
+        }
+        u71VarArr[0] = new u71(ob6.M0(2131750761, null), 0, new m71(this));
+        u71VarArr[1] = new u71(ob6.M0(2131748405, null), 1, new r71(this));
+        u71VarArr[2] = new u71(ob6.M0(2131745142, null), 2, new o71(this));
+        u71VarArr[3] = new u71(ob6.M0(2131748073, null), 3, new t71(this));
+        int i = 0;
+        while (true) {
+            u71[] u71VarArr2 = this.r;
+            if (i >= u71VarArr2.length) {
+                break;
+            }
+            u71 u71Var = u71VarArr2[i];
+            if (u71Var != null) {
+                this.f.add(i, u71Var);
+            }
+            i++;
+        }
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.c = frameLayout;
+        if (wkaVar == null) {
+            h79Var = new vic(getContext(), null);
+        } else {
+            h79Var = new h79(context, eVar.getResourceProvider(), wkaVar);
+        }
+        this.n = h79Var;
+        h79Var.setAllowDisallowInterceptTouch(false);
+        if (vy4Var != null) {
+            vy4Var.c(h79Var);
+        }
+        if (vy4Var == null && wkaVar == null) {
+            f = 48.0f;
+        } else {
+            f = 0.0f;
+        }
+        addView(h79Var, tre.d(-1, -1.0f, 48, 0.0f, f, 0.0f, 0.0f));
+        uic l = h79Var.l(vy4Var != null ? -2 : 3, true);
+        this.d = l;
+        frameLayout.addView(l, tre.c(48.0f, -1));
+        if (vy4Var != null) {
+            frameLayout.setPadding(hl.L(4.0f), hl.L(4.0f), hl.L(4.0f), hl.L(4.0f));
+        }
+        addView(frameLayout, tre.d(-1, -2.0f, 48, -4.0f, 0.0f, -4.0f, 0.0f));
+        h79Var.setAdapter(new h71(this, context, vy4Var, eVar, wkaVar));
+        LinearLayout linearLayout = new LinearLayout(context);
+        yob.h(aob.d6, null, linearLayout);
+        linearLayout.setAlpha(0.0f);
+        linearLayout.setClickable(true);
+        addView(linearLayout, tre.c(48.0f, -1));
+        hl.T3(linearLayout, false, 1.0f, true, false);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        gd0 gd0Var = new gd0(true);
+        this.a = gd0Var;
+        imageView.setImageDrawable(gd0Var);
+        int i2 = aob.y8;
+        gd0Var.a(aob.w0(null, i2, false));
+        int i3 = aob.z8;
+        hf0 f0 = aob.f0(aob.w0(null, i3, false), 1, -1);
+        uob M = yob.M(i3);
+        imageView.setBackground(f0);
+        yob.j(imageView, f0, null, M, null);
+        imageView.setContentDescription(ob6.M0(2131752006, null));
+        linearLayout.addView(imageView, new LinearLayout.LayoutParams(hl.L(54.0f), -1));
+        this.b.add(imageView);
+        imageView.setOnClickListener(new View.OnClickListener(this) {
+            public final w71 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                w71 w71Var = this.b;
+                switch (b) {
+                    case 0:
+                        w71Var.G.v();
+                        return;
+                    default:
+                        w71Var.G.clear();
+                        return;
+                }
+            }
+        });
+        in inVar = new in(context, true, true, true);
+        inVar.setTextSize(hl.L(18.0f));
+        inVar.setTypeface(hl.o());
+        yob.U(inVar, i2, null);
+        linearLayout.addView(inVar, tre.m(1.0f, 0, -1, 18, 0, 0));
+        this.b.add(inVar);
+        s7 s7Var = new s7(context, null, aob.w0(null, i3, false), aob.w0(null, i2, false), false, null);
+        s7Var.setIcon(2131232097);
+        if (s7Var.getBackground() != null) {
+            Drawable background = s7Var.getBackground();
+            uob M2 = yob.M(i3);
+            s7Var.setBackground(background);
+            yob.j(s7Var, background, null, M2, null);
+        }
+        if (s7Var.getIconView() != null) {
+            yob.s(s7Var.getIconView(), i2, null, PorterDuff.Mode.SRC_IN);
+        }
+        s7Var.setContentDescription(ob6.M0(2131751563, null));
+        s7Var.setDuplicateParentStateEnabled(false);
+        linearLayout.addView(s7Var, new LinearLayout.LayoutParams(hl.L(54.0f), -1));
+        this.b.add(s7Var);
+        s7Var.setOnClickListener(new View.OnClickListener(this) {
+            public final w71 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                w71 w71Var = this.b;
+                switch (b) {
+                    case 0:
+                        w71Var.G.v();
+                        return;
+                    default:
+                        w71Var.G.clear();
+                        return;
+                }
+            }
+        });
     }
 
-    public final z71 a(float f, float f2) {
-        z71 z71Var;
-        y71 y71Var = this.b;
-        if (y71Var.n != null) {
-            int i = y71Var.e;
-            float measuredWidth = y71Var.getMeasuredWidth() / 7.0f;
-            float L = gl.L(52.0f);
-            int L2 = gl.L(44.0f) / 2;
-            int i2 = 0;
-            for (int i3 = 0; i3 < y71Var.d; i3++) {
-                float f3 = (measuredWidth / 2.0f) + (i * measuredWidth);
-                float L3 = (L / 2.0f) + (i2 * L) + gl.L(44.0f);
-                float f4 = L2;
-                if (f >= f3 - f4 && f <= f3 + f4 && f2 >= L3 - f4 && f2 <= L3 + f4 && (z71Var = (z71) y71Var.n.get(i3, null)) != null) {
-                    return z71Var;
+    public final d79 a(View view) {
+        if (view == null) {
+            return null;
+        }
+        if (view instanceof v71) {
+            return ((v71) view).a;
+        }
+        return (d79) view;
+    }
+
+    public final void b(c71 c71Var, n71 n71Var) {
+        boolean z;
+        d79 listView = getListView();
+        if (n71Var.e == 2) {
+            if (listView.getAdapter() instanceof o71) {
+                o71 o71Var = (o71) listView.getAdapter();
+                PhotoViewer q0 = PhotoViewer.q0();
+                e eVar = this.e;
+                q0.T1(null, eVar, null);
+                k71 k71Var = this.s;
+                if (k71Var == null) {
+                    k71Var = new k71(this);
+                    this.s = k71Var;
+                }
+                k71Var.a = listView;
+                File file = c71Var.a;
+                File file2 = c71Var.a;
+                String lowerCase = file.getName().toLowerCase();
+                if (!file.getName().endsWith("mp4") && !file.getName().endsWith(".jpg") && !lowerCase.endsWith(".jpeg") && !lowerCase.endsWith(".png") && !lowerCase.endsWith(".gif")) {
+                    hl.s2(file2, file2.getName(), null, eVar.getParentActivity(), null, false);
+                } else {
+                    ArrayList arrayList = new ArrayList();
+                    String path = file2.getPath();
+                    if (c71Var.d == 1) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    arrayList.add(new no6(0, path, 0, z, 0, 0));
+                    PhotoViewer.q0().o1(arrayList, 0, -1, false, this.s, null);
+                }
+            } else {
+                return;
+            }
+        }
+        if (n71Var.e == 3) {
+            if (MediaController.z().H(c71Var.f)) {
+                if (!MediaController.z().G()) {
+                    MediaController.z().U(c71Var.f, true);
+                    return;
+                } else {
+                    MediaController.z().V(c71Var.f);
+                    return;
+                }
+            }
+            MediaController.z().V(c71Var.f);
+        }
+    }
+
+    public final void c(p71 p71Var, r71 r71Var, d79 d79Var) {
+        ArrayList arrayList = r71Var.e;
+        PhotoViewer.q0().T1(null, this.e, null);
+        k71 k71Var = this.s;
+        if (k71Var == null) {
+            k71Var = new k71(this);
+            this.s = k71Var;
+        }
+        k71Var.a = d79Var;
+        if (arrayList.indexOf(p71Var) >= 0) {
+            PhotoViewer.q0().o1(r71Var.r, arrayList.indexOf(p71Var), -1, false, this.s, null);
+        }
+    }
+
+    public final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.w71.d():void");
+    }
+
+    public final void e() {
+        int i = 0;
+        while (true) {
+            vic vicVar = this.n;
+            if (i < vicVar.getViewPages().length) {
+                d79 a = a(vicVar.getViewPages()[i]);
+                if (a != null) {
+                    hl.V3(a);
                 }
                 i++;
-                if (i >= 7) {
-                    i2++;
-                    i = 0;
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        final z71 a;
-        ui5 ui5Var;
-        super.onLongPress(motionEvent);
-        y71 y71Var = this.b;
-        b81 b81Var = y71Var.y;
-        if (b81Var.f0 == 0 && !gl.O1() && (a = a(motionEvent.getX(), motionEvent.getY())) != null) {
-            try {
-                y71Var.performHapticFeedback(0);
-            } catch (Exception unused) {
-            }
-            Bundle bundle = new Bundle();
-            long j = b81Var.y;
-            if (j > 0) {
-                bundle.putLong("user_id", j);
             } else {
-                bundle.putLong("chat_id", -j);
+                return;
             }
-            bundle.putInt("start_from_date", a.h);
-            bundle.putBoolean("need_remove_previous_same_chat_activity", false);
-            mu1 mu1Var = new mu1(bundle);
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232569, 0, b81Var.getResourceProvider(), b81Var.getParentActivity());
-            zkb.h(bkb.F8, b81Var.getResourceProvider(), actionBarPopupWindow$ActionBarPopupWindowLayout);
-            a8 a8Var = new a8(b81Var.getParentActivity(), true, false);
-            a8Var.j(k96.M0(2131748873, null), 2131232229, null);
-            a8Var.setMinimumWidth(160);
-            a8Var.setOnClickListener(new View.OnClickListener(this) {
-                public final w71 b;
+        }
+    }
 
-                {
-                    this.b = this;
-                }
+    public d79 getListView() {
+        return a(this.n.getCurrentView());
+    }
 
-                @Override
-                public final void onClick(View view) {
-                    ui5 ui5Var2;
-                    ui5 ui5Var3;
-                    ui5 ui5Var4;
-                    ui5 ui5Var5;
-                    byte b = r3;
-                    z71 z71Var = a;
-                    w71 w71Var = this.b;
-                    switch (b) {
-                        case 0:
-                            b81 b81Var2 = w71Var.b.y;
-                            ui5Var2 = ((d) b81Var2).parentLayout;
-                            if (ui5Var2 != null) {
-                                ui5Var3 = ((d) b81Var2).parentLayout;
-                                if (ui5Var3.getFragmentStack().size() >= 3) {
-                                    ui5Var4 = ((d) b81Var2).parentLayout;
-                                    List fragmentStack = ui5Var4.getFragmentStack();
-                                    ui5Var5 = ((d) b81Var2).parentLayout;
-                                    d dVar = (d) fragmentStack.get(ui5Var5.getFragmentStack().size() - 3);
-                                    if (dVar instanceof mu1) {
-                                        gl.d3(new fv0(w71Var, (mu1) dVar, z71Var, (byte) 11), 300L);
-                                    }
-                                }
-                            }
-                            b81Var2.finishPreviewFragment();
-                            return;
-                        default:
-                            b81 b81Var3 = w71Var.b.y;
-                            int i = z71Var.h;
-                            b81Var3.R = i;
-                            b81Var3.Q = i;
-                            b81Var3.H = true;
-                            b81Var3.A0();
-                            b81Var3.r0();
-                            b81Var3.finishPreviewFragment();
-                            return;
-                    }
-                }
-            });
-            actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var);
-            if (b81Var.e0) {
-                a8 a8Var2 = new a8(b81Var.getParentActivity(), false, false);
-                a8Var2.j(k96.M0(2131745458, null), 2131232362, null);
-                a8Var2.setMinimumWidth(160);
-                a8Var2.setOnClickListener(new View.OnClickListener(this) {
-                    public final w71 b;
+    public vic getViewPager() {
+        return this.n;
+    }
 
-                    {
-                        this.b = this;
-                    }
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.F);
+    }
 
-                    @Override
-                    public final void onClick(View view) {
-                        ui5 ui5Var2;
-                        ui5 ui5Var3;
-                        ui5 ui5Var4;
-                        ui5 ui5Var5;
-                        byte b = r3;
-                        z71 z71Var = a;
-                        w71 w71Var = this.b;
-                        switch (b) {
-                            case 0:
-                                b81 b81Var2 = w71Var.b.y;
-                                ui5Var2 = ((d) b81Var2).parentLayout;
-                                if (ui5Var2 != null) {
-                                    ui5Var3 = ((d) b81Var2).parentLayout;
-                                    if (ui5Var3.getFragmentStack().size() >= 3) {
-                                        ui5Var4 = ((d) b81Var2).parentLayout;
-                                        List fragmentStack = ui5Var4.getFragmentStack();
-                                        ui5Var5 = ((d) b81Var2).parentLayout;
-                                        d dVar = (d) fragmentStack.get(ui5Var5.getFragmentStack().size() - 3);
-                                        if (dVar instanceof mu1) {
-                                            gl.d3(new fv0(w71Var, (mu1) dVar, z71Var, (byte) 11), 300L);
-                                        }
-                                    }
-                                }
-                                b81Var2.finishPreviewFragment();
-                                return;
-                            default:
-                                b81 b81Var3 = w71Var.b.y;
-                                int i = z71Var.h;
-                                b81Var3.R = i;
-                                b81Var3.Q = i;
-                                b81Var3.H = true;
-                                b81Var3.A0();
-                                b81Var3.r0();
-                                b81Var3.finishPreviewFragment();
-                                return;
-                        }
-                    }
-                });
-                actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var2);
-                a8 a8Var3 = new a8(b81Var.getParentActivity(), false, true);
-                a8Var3.j(k96.M0(2131752077, null), 2131232113, null);
-                a8Var3.setMinimumWidth(160);
-                a8Var3.setOnClickListener(new View.OnClickListener(this) {
-                    public final w71 b;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        getViewTreeObserver().removeOnPreDrawListener(this.F);
+    }
 
-                    {
-                        this.b = this;
-                    }
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+    }
 
-                    @Override
-                    public final void onClick(View view) {
-                        ui5 ui5Var2;
-                        ui5 ui5Var3;
-                        ui5 ui5Var4;
-                        byte b = r2;
-                        w71 w71Var = this.b;
-                        switch (b) {
-                            case 0:
-                                b81 b81Var2 = w71Var.b.y;
-                                ui5Var2 = ((d) b81Var2).parentLayout;
-                                if (ui5Var2.getFragmentStack().size() >= 3) {
-                                    ui5Var3 = ((d) b81Var2).parentLayout;
-                                    List fragmentStack = ui5Var3.getFragmentStack();
-                                    ui5Var4 = ((d) b81Var2).parentLayout;
-                                    d dVar = (d) fragmentStack.get(ui5Var4.getFragmentStack().size() - 3);
-                                    if (dVar instanceof mu1) {
-                                        ij.q(b81Var2, 1, b81Var2.getMessagesController().V1(Long.valueOf(b81Var2.y)), null, false, new tg2(w71Var, (mu1) dVar, false, (byte) 13), null);
-                                    }
-                                }
-                                b81Var2.finishPreviewFragment();
-                                return;
-                            default:
-                                w71Var.b.y.finishPreviewFragment();
-                                return;
-                        }
-                    }
-                });
-                actionBarPopupWindow$ActionBarPopupWindowLayout.addView(a8Var3);
-            }
-            actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
-            b81Var.w = new sb((byte) 3, this.a, this);
-            b81Var.w.setOnClickListener(new View.OnClickListener(this) {
-                public final w71 b;
+    public void setCacheModel(d71 d71Var) {
+        this.h = d71Var;
+        d();
+    }
 
-                {
-                    this.b = this;
-                }
+    public void setDelegate(l71 l71Var) {
+        this.G = l71Var;
+    }
 
-                @Override
-                public final void onClick(View view) {
-                    ui5 ui5Var2;
-                    ui5 ui5Var3;
-                    ui5 ui5Var4;
-                    byte b = r2;
-                    w71 w71Var = this.b;
-                    switch (b) {
-                        case 0:
-                            b81 b81Var2 = w71Var.b.y;
-                            ui5Var2 = ((d) b81Var2).parentLayout;
-                            if (ui5Var2.getFragmentStack().size() >= 3) {
-                                ui5Var3 = ((d) b81Var2).parentLayout;
-                                List fragmentStack = ui5Var3.getFragmentStack();
-                                ui5Var4 = ((d) b81Var2).parentLayout;
-                                d dVar = (d) fragmentStack.get(ui5Var4.getFragmentStack().size() - 3);
-                                if (dVar instanceof mu1) {
-                                    ij.q(b81Var2, 1, b81Var2.getMessagesController().V1(Long.valueOf(b81Var2.y)), null, false, new tg2(w71Var, (mu1) dVar, false, (byte) 13), null);
-                                }
-                            }
-                            b81Var2.finishPreviewFragment();
-                            return;
-                        default:
-                            w71Var.b.y.finishPreviewFragment();
-                            return;
-                    }
-                }
-            });
-            b81Var.w.setVisibility(8);
-            b81Var.w.setFitsSystemWindows(true);
-            ui5Var = ((d) b81Var).parentLayout;
-            ui5Var.getOverlayContainerView().addView(b81Var.w, nme.c(-1.0f, -1));
-            b81Var.w0();
-            b81Var.presentFragmentAsPreviewWithMenu(mu1Var, actionBarPopupWindow$ActionBarPopupWindowLayout);
+    public void setTargetTabsPosition(int i) {
+        this.y = i;
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.a.a(aob.w0(null, aob.y8, false));
+            invalidate();
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
     }
 
     @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        ui5 ui5Var;
-        ui5 ui5Var2;
-        ui5 ui5Var3;
-        ui5 ui5Var4;
-        ui5 ui5Var5;
-        z71 a;
-        k27 k27Var;
-        v39 v39Var;
-        y71 y71Var = this.b;
-        b81 b81Var = y71Var.y;
-        ui5Var = ((d) b81Var).parentLayout;
-        if (ui5Var != null) {
-            if (((b81Var.f0 == 1 && y71Var.n != null) || b81Var.g0 != null) && (a = a(motionEvent.getX(), motionEvent.getY())) != null && (k27Var = a.a) != null && (v39Var = b81Var.N) != null) {
-                if (b81Var.g0 != null) {
-                    m8b orCreateStoryViewer = b81Var.getOrCreateStoryViewer();
-                    Context context = y71Var.getContext();
-                    k27 k27Var2 = a.a;
-                    TL_stories.StoryItem storyItem = k27Var2.l;
-                    int e1 = k27Var2.e1();
-                    y1b y1bVar = b81Var.g0;
-                    i4d i4dVar = b81Var.h0;
-                    orCreateStoryViewer.h = y6c.t0;
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(Long.valueOf(y1bVar.d));
-                    orCreateStoryViewer.P0 = e1;
-                    orCreateStoryViewer.K(context, storyItem, arrayList, 0, y1bVar, null, i4dVar, true);
-                } else {
-                    int e12 = k27Var.e1();
-                    int i = a.c;
-                    nfa nfaVar = (nfa) v39Var.b;
-                    cfa[] cfaVarArr = nfaVar.w1;
-                    int i2 = -1;
-                    for (int i3 = 0; i3 < cfaVarArr[0].a.size(); i3++) {
-                        if (((k27) cfaVarArr[0].a.get(i3)).e1() == e12) {
-                            i2 = i3;
-                        }
-                    }
-                    iea P = nfaVar.P(0);
-                    if (i2 >= 0 && P != null) {
-                        P.x.g1(i2, 0);
-                    } else {
-                        nfaVar.v0(0, e12, i, true);
-                    }
-                    if (P != null) {
-                        P.J = e12;
-                        P.K = false;
-                    }
-                    b81Var.finishFragment();
-                }
-            }
-            if (y71Var.n != null) {
-                if (b81Var.H) {
-                    z71 a2 = a(motionEvent.getX(), motionEvent.getY());
-                    if (a2 != null) {
-                        ValueAnimator valueAnimator = b81Var.S;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
-                            b81Var.S = null;
-                        }
-                        int i4 = b81Var.Q;
-                        if (i4 == 0 && b81Var.R == 0) {
-                            int i5 = a2.h;
-                            b81Var.R = i5;
-                            b81Var.Q = i5;
-                        } else {
-                            int i6 = a2.h;
-                            int i7 = b81Var.R;
-                            if (i4 == i6) {
-                                if (i7 == i6) {
-                                    b81Var.R = 0;
-                                    b81Var.Q = 0;
-                                } else {
-                                    b81Var.Q = i7;
-                                }
-                            } else if (i7 == i6) {
-                                b81Var.R = i4;
-                            } else if (i4 == i7) {
-                                if (i6 > i7) {
-                                    b81Var.R = i6;
-                                } else {
-                                    b81Var.Q = i6;
-                                }
-                            } else {
-                                b81Var.R = i6;
-                                b81Var.Q = i6;
-                            }
-                        }
-                        b81Var.A0();
-                        b81Var.r0();
-                        return false;
-                    }
-                } else {
-                    z71 a3 = a(motionEvent.getX(), motionEvent.getY());
-                    if (a3 != null) {
-                        ui5Var2 = ((d) b81Var).parentLayout;
-                        if (ui5Var2 != null) {
-                            ui5Var3 = ((d) b81Var).parentLayout;
-                            if (ui5Var3.getFragmentStack().size() >= 2) {
-                                ui5Var4 = ((d) b81Var).parentLayout;
-                                List fragmentStack = ui5Var4.getFragmentStack();
-                                ui5Var5 = ((d) b81Var).parentLayout;
-                                d dVar = (d) fragmentStack.get(ui5Var5.getFragmentStack().size() - 2);
-                                if (dVar instanceof mu1) {
-                                    b81Var.finishFragment();
-                                    ((mu1) dVar).c8(a3.h);
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                    if (a3 != null && b81Var.O != null) {
-                        b81Var.finishFragment();
-                        b81Var.O.c8(a3.h);
-                    }
-                }
-            }
-        }
-        return false;
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

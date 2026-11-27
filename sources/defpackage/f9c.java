@@ -1,29 +1,8 @@
 package defpackage;
+public final class f9c {
+    public static final f9c a = new Object();
 
-import org.telegram.tgnet.InputSerializedData;
-public final class f9c implements q8c {
-    public final byte a;
-    public final InputSerializedData b;
-
-    public f9c(InputSerializedData inputSerializedData, byte b) {
-        this.a = b;
-        this.b = inputSerializedData;
-    }
-
-    @Override
-    public final Object a(Object obj) {
-        byte b = this.a;
-        InputSerializedData inputSerializedData = this.b;
-        boolean booleanValue = ((Boolean) obj).booleanValue();
-        switch (b) {
-            case 0:
-                return Long.valueOf(inputSerializedData.readInt64(booleanValue));
-            case 1:
-                return Integer.valueOf(inputSerializedData.readInt32(booleanValue));
-            case 2:
-                return inputSerializedData.readString(booleanValue);
-            default:
-                return inputSerializedData.readByteArray(booleanValue);
-        }
+    public final String toString() {
+        return "kotlin.Unit";
     }
 }

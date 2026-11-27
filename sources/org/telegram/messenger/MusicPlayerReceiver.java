@@ -16,24 +16,24 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                         if (keyCode != 88) {
                             if (keyCode != 126) {
                                 if (keyCode == 127) {
-                                    MediaController.w().Q(MediaController.w().v0, true);
+                                    MediaController.z().U(MediaController.z().v0, true);
                                     return;
                                 }
                                 return;
                             }
-                            MediaController.w().R(MediaController.w().v0);
+                            MediaController.z().V(MediaController.z().v0);
                             return;
                         }
-                        MediaController.w().U();
+                        MediaController.z().Y();
                         return;
                     }
-                    MediaController.w().T(false);
+                    MediaController.z().X(false);
                     return;
-                } else if (MediaController.w().C()) {
-                    MediaController.w().R(MediaController.w().v0);
+                } else if (MediaController.z().G()) {
+                    MediaController.z().V(MediaController.z().v0);
                     return;
                 } else {
-                    MediaController.w().Q(MediaController.w().v0, true);
+                    MediaController.z().U(MediaController.z().v0, true);
                     return;
                 }
             }
@@ -94,30 +94,30 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         switch (c) {
             case 0:
-                gba.D((gba.O0 + 1) % 3);
+                xea.D((xea.O0 + 1) % 3);
                 return;
             case 1:
-                MediaController.w().l(true, true, false, false);
+                MediaController.z().m(true, true, false, false);
                 return;
             case 2:
             case 5:
-                MediaController.w().Q(MediaController.w().v0, true);
+                MediaController.z().U(MediaController.z().v0, true);
                 return;
             case 3:
-                MediaController.w().T(false);
+                MediaController.z().X(false);
                 return;
             case 4:
-                MediaController.w().R(MediaController.w().v0);
+                MediaController.z().V(MediaController.z().v0);
                 return;
             case 6:
-                MediaController.w().U();
+                MediaController.z().Y();
                 return;
             case 7:
-                if (gba.J0) {
-                    MediaController.w().k0(0);
+                if (xea.J0) {
+                    MediaController.z().n0(0);
                     return;
                 } else {
-                    MediaController.w().k0(2);
+                    MediaController.z().n0(2);
                     return;
                 }
             default:

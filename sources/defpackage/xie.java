@@ -1,19 +1,17 @@
 package defpackage;
+public final class xie implements zq7 {
+    public static final xie a = new Object();
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-public abstract class xie {
-    public abstract void b();
-
-    public abstract void c(Canvas canvas);
-
-    public boolean d() {
-        return false;
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)), 4)), 5)), 6)));
     }
 
-    public abstract void e(float f);
-
-    public void a(Rect rect, RectF rectF) {
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

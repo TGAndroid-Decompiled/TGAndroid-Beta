@@ -1,143 +1,157 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class pr0 implements RequestDelegate {
-    public final byte a = 0;
-    public final int b;
-    public final long c;
+import android.animation.AnimatorSet;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.PowerManager;
+import android.util.Log;
+import com.google.firebase.messaging.FirebaseMessaging;
+import java.io.IOException;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import org.telegram.utils.twidget.z;
+public final class pr0 implements Runnable {
+    public final byte a;
+    public final long b;
+    public final Object c;
     public final Object d;
     public final Object e;
-    public final Object f;
-    public final Object g;
-    public final Object h;
 
-    public pr0(int i, hd hdVar, Context context, long j, wjb wjbVar, st0 st0Var, p pVar) {
-        this.b = i;
-        this.d = hdVar;
-        this.e = context;
-        this.c = j;
-        this.f = wjbVar;
-        this.g = st0Var;
-        this.h = pVar;
+    public pr0(FirebaseMessaging firebaseMessaging, long j) {
+        this.a = (byte) 1;
+        this.e = new ThreadPoolExecutor(0, 1, 30L, TimeUnit.SECONDS, new LinkedBlockingQueue(), new kq7("firebase-iid-executor"));
+        this.d = firebaseMessaging;
+        this.b = j;
+        PowerManager.WakeLock newWakeLock = ((PowerManager) firebaseMessaging.b.getSystemService("power")).newWakeLock(1, "fiid-sync");
+        this.c = newWakeLock;
+        newWakeLock.setReferenceCounted(false);
+    }
+
+    public final boolean a() {
+        NetworkInfo networkInfo;
+        ConnectivityManager connectivityManager = (ConnectivityManager) ((FirebaseMessaging) this.d).b.getSystemService("connectivity");
+        if (connectivityManager != null) {
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+        } else {
+            networkInfo = null;
+        }
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean b() {
+        try {
+            if (((FirebaseMessaging) this.d).a() == null) {
+                Log.e("FirebaseMessaging", "Token retrieval failed: null");
+                return false;
+            } else if (Log.isLoggable("FirebaseMessaging", 3)) {
+                Log.d("FirebaseMessaging", "Token successfully retrieved");
+                return true;
+            } else {
+                return true;
+            }
+        } catch (IOException e) {
+            String message = e.getMessage();
+            if (!"SERVICE_NOT_AVAILABLE".equals(message) && !"INTERNAL_SERVER_ERROR".equals(message) && !"InternalServerError".equals(message)) {
+                if (e.getMessage() == null) {
+                    Log.w("FirebaseMessaging", "Token retrieval failed without exception message. Will retry token retrieval");
+                    return false;
+                }
+                throw e;
+            }
+            Log.w("FirebaseMessaging", "Token retrieval failed: " + e.getMessage() + ". Will retry token retrieval");
+            return false;
+        } catch (SecurityException unused) {
+            Log.w("FirebaseMessaging", "Token retrieval failed with SecurityException. Will retry token retrieval");
+            return false;
+        }
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        int i = this.b;
-        Object obj = this.h;
-        Object obj2 = this.g;
-        Object obj3 = this.e;
-        Object obj4 = this.f;
-        Object obj5 = this.d;
-        switch (b) {
+    public final void run() {
+        String str;
+        switch (this.a) {
             case 0:
-                gl.c3(new sr0(tLObject, this.b, (hd) obj5, (Context) obj3, this.c, (wjb) obj4, (st0) obj2, (p) obj));
-                return;
-            case 1:
-                gl.c3(new sr0(this.b, tL_error, (is0) obj5, (TLRPC.TL_inputCheckPasswordSRP) obj3, (TwoStepVerificationActivity) obj4, (wy) obj2, (d) obj, this.c));
-                return;
-            case 2:
-                h75 h75Var = (h75) obj5;
-                HashSet hashSet = (HashSet) obj3;
-                AtomicInteger atomicInteger = (AtomicInteger) obj4;
-                fc2 fc2Var = (fc2) obj2;
-                String str = (String) obj;
-                boolean z = tLObject instanceof TLRPC.Updates;
-                long j = this.c;
-                if (z) {
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    na7.q1(h75Var.a).R3(updates, false);
-                    gl.c3(new de2(h75Var, updates, j, (byte) 24));
-                } else {
-                    h75Var.getClass();
-                    if (tL_error != null && "USER_PRIVACY_RESTRICTED".equalsIgnoreCase(tL_error.text)) {
-                        hashSet.add(Long.valueOf(j));
+                rr0 rr0Var = (rr0) this.e;
+                if (rr0Var.y == ((AnimatorSet) this.c)) {
+                    sr0 sr0Var = rr0Var.d;
+                    q0d q0dVar = sr0Var.w;
+                    if (q0dVar != null && !q0dVar.e()) {
+                        z zVar = sr0Var.w.e;
+                        if (zVar == null) {
+                            str = null;
+                        } else {
+                            str = zVar.U;
+                        }
+                        if (str == null && System.currentTimeMillis() - this.b < 250) {
+                            hl.d3(this, 16L);
+                            return;
+                        }
                     }
-                }
-                if (atomicInteger.incrementAndGet() == i && !hashSet.isEmpty()) {
-                    gl.c3(new e45(h75Var, hashSet, fc2Var, str, (byte) 1));
+                    ((es6) this.d).run();
                     return;
                 }
-                return;
-            case 3:
-                String str2 = LaunchActivity.C1;
-                gl.c3(new sr0((LaunchActivity) obj5, tLObject, this.b, (String) obj3, (String) obj4, (TLRPC.User) obj2, (String) obj, this.c));
                 return;
             default:
-                Activity activity = (Activity) obj5;
-                wjb wjbVar = (wjb) obj4;
-                byte[] bArr = (byte[]) obj3;
-                mu1 mu1Var = (mu1) obj2;
-                k27 k27Var = (k27) obj;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        gl.c3(new rp6((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) tLObject, activity, wjbVar, this.c, bArr, mu1Var, k27Var, (byte) 4));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        gl.d3(new r79(mu1Var, activity, wjbVar, k27Var, (byte) 0), 200L);
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        gl.d3(new jo1(mu1Var, i, k27Var), 200L);
-                        return;
-                    } else {
-                        return;
+                PowerManager.WakeLock wakeLock = (PowerManager.WakeLock) this.c;
+                u8a v = u8a.v();
+                FirebaseMessaging firebaseMessaging = (FirebaseMessaging) this.d;
+                if (v.x(firebaseMessaging.b)) {
+                    wakeLock.acquire();
+                }
+                try {
+                    try {
+                        synchronized (firebaseMessaging) {
+                            firebaseMessaging.k = true;
+                        }
+                        if (!firebaseMessaging.i.e()) {
+                            firebaseMessaging.f(false);
+                            if (!u8a.v().x(firebaseMessaging.b)) {
+                                return;
+                            }
+                        } else if (u8a.v().w(firebaseMessaging.b) && !a()) {
+                            qgb qgbVar = new qgb();
+                            qgbVar.c = this;
+                            qgbVar.a();
+                            if (!u8a.v().x(firebaseMessaging.b)) {
+                                return;
+                            }
+                        } else {
+                            if (b()) {
+                                firebaseMessaging.f(false);
+                            } else {
+                                firebaseMessaging.i(this.b);
+                            }
+                            if (!u8a.v().x(firebaseMessaging.b)) {
+                                return;
+                            }
+                        }
+                    } catch (IOException e) {
+                        Log.e("FirebaseMessaging", "Topic sync or token retrieval failed on hard failure exceptions: " + e.getMessage() + ". Won't retry the operation.");
+                        firebaseMessaging.f(false);
+                        if (!u8a.v().x(firebaseMessaging.b)) {
+                            return;
+                        }
                     }
-                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    gl.d3(new r79(mu1Var, activity, wjbVar, k27Var, (byte) 1), 200L);
+                    wakeLock.release();
                     return;
-                } else {
-                    return;
+                } catch (Throwable th) {
+                    if (u8a.v().x(firebaseMessaging.b)) {
+                        wakeLock.release();
+                    }
+                    throw th;
                 }
         }
     }
 
-    public pr0(int i, is0 is0Var, TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, wy wyVar, d dVar, long j) {
-        this.b = i;
-        this.d = is0Var;
-        this.e = tL_inputCheckPasswordSRP;
-        this.f = twoStepVerificationActivity;
-        this.g = wyVar;
-        this.h = dVar;
-        this.c = j;
-    }
-
-    public pr0(h75 h75Var, long j, HashSet hashSet, AtomicInteger atomicInteger, int i, fc2 fc2Var, String str) {
-        this.d = h75Var;
-        this.c = j;
-        this.e = hashSet;
-        this.f = atomicInteger;
-        this.b = i;
-        this.g = fc2Var;
-        this.h = str;
-    }
-
-    public pr0(Activity activity, wjb wjbVar, long j, byte[] bArr, mu1 mu1Var, k27 k27Var, int i) {
-        this.d = activity;
-        this.f = wjbVar;
-        this.c = j;
-        this.e = bArr;
-        this.g = mu1Var;
-        this.h = k27Var;
-        this.b = i;
-    }
-
-    public pr0(LaunchActivity launchActivity, int i, String str, String str2, TLRPC.User user, String str3, long j) {
-        this.d = launchActivity;
-        this.b = i;
-        this.e = str;
-        this.f = str2;
-        this.g = user;
-        this.h = str3;
-        this.c = j;
+    public pr0(rr0 rr0Var, AnimatorSet animatorSet, long j, es6 es6Var) {
+        this.a = (byte) 0;
+        this.e = rr0Var;
+        this.c = animatorSet;
+        this.b = j;
+        this.d = es6Var;
     }
 }

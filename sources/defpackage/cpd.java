@@ -1,32 +1,4 @@
 package defpackage;
-
-import java.util.Arrays;
-public final class cpd {
-    public final yse a;
-    public final Boolean b;
-    public final kxe c;
-
-    public cpd(rod rodVar) {
-        this.a = (yse) rodVar.b;
-        this.b = (Boolean) rodVar.c;
-        this.c = (kxe) rodVar.d;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof cpd)) {
-            return false;
-        }
-        cpd cpdVar = (cpd) obj;
-        if (cqe.a(this.a, cpdVar.a) && cqe.a(this.b, cpdVar.b) && cqe.a(null, null) && cqe.a(this.c, cpdVar.c)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b, null, this.c});
-    }
+public abstract class cpd {
+    public static final a94[] a = {new a94("name_ulr_private", 1), new a94("name_sleep_segment_request", 1), new a94("get_last_activity_feature_id", 1), new a94("support_context_feature_id", 1), new a94("get_current_location", 2), new a94("get_last_location_with_request", 1), new a94("set_mock_mode_with_callback", 1), new a94("set_mock_location_with_callback", 1), new a94("inject_location_with_callback", 1), new a94("location_updates_with_callback", 1), new a94("use_safe_parcelable_in_intents", 1)};
 }

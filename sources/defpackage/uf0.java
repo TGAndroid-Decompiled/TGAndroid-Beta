@@ -1,27 +1,47 @@
 package defpackage;
-public final class uf0 extends vf0 {
-    public uf0(java.lang.String r2, java.lang.String r3) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uf0.<init>(java.lang.String, java.lang.String):void");
+
+import java.util.Arrays;
+public final class uf0 {
+    public final String a;
+    public final char[] b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final byte[] g;
+    public final boolean h;
+
+    public uf0(java.lang.String r5, char[] r6, byte[] r7, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uf0.<init>(java.lang.String, char[], byte[], boolean):void");
     }
 
-    @Override
-    public final void b(StringBuilder sb, byte[] bArr, int i) {
-        int i2 = 0;
-        gre.n(0, i, bArr.length);
-        for (int i3 = i; i3 >= 3; i3 -= 3) {
-            int i4 = i2 + 2;
-            i2 += 3;
-            int i5 = ((bArr[i2] & 255) << 16) | ((bArr[i2 + 1] & 255) << 8) | (bArr[i4] & 255);
-            sf0 sf0Var = this.a;
-            char[] cArr = sf0Var.b;
-            char[] cArr2 = sf0Var.b;
-            sb.append(cArr[i5 >>> 18]);
-            sb.append(cArr2[(i5 >>> 12) & 63]);
-            sb.append(cArr2[(i5 >>> 6) & 63]);
-            sb.append(cArr2[i5 & 63]);
+    public final boolean equals(Object obj) {
+        if (obj instanceof uf0) {
+            uf0 uf0Var = (uf0) obj;
+            if (this.h == uf0Var.h && Arrays.equals(this.b, uf0Var.b)) {
+                return true;
+            }
+            return false;
         }
-        if (i2 < i) {
-            a(i2, i - i2, sb, bArr);
+        return false;
+    }
+
+    public final int hashCode() {
+        int i;
+        int hashCode = Arrays.hashCode(this.b);
+        if (this.h) {
+            i = 1231;
+        } else {
+            i = 1237;
         }
+        return hashCode + i;
+    }
+
+    public final String toString() {
+        return this.a;
+    }
+
+    public uf0(java.lang.String r10, char[] r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uf0.<init>(java.lang.String, char[]):void");
     }
 }

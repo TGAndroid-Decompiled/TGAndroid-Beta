@@ -1,8 +1,7 @@
 package defpackage;
-public abstract class ko3 {
-    public static final xb3 a = xb3.d;
-
-    static {
-        int i = q4c.c;
-    }
+public final class ko3 {
+    public int a;
+    public int b;
+    public int c;
+    public int d;
 }

@@ -22,7 +22,7 @@ import java.util.zip.ZipFile;
 public class WidgetEngineService extends Service {
     public static volatile String b;
     public static String c;
-    public static final ThreadPoolExecutor d = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new x20((byte) 11));
+    public static final ThreadPoolExecutor d = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new y20((byte) 11));
     public static volatile boolean e;
     public static boolean f;
     public static volatile boolean h;
@@ -31,26 +31,26 @@ public class WidgetEngineService extends Service {
     public static final class Forked extends WidgetEngineService {
     }
 
-    public static byte[] c(dkc dkcVar, String str) {
+    public static byte[] c(ftb ftbVar, String str) {
         if (!str.contains("..") && !str.startsWith("/")) {
-            InputStream b2 = dkcVar.b("WidgetJS/".concat(str));
+            InputStream l = ftbVar.l("WidgetJS/".concat(str));
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 byte[] bArr = new byte[16384];
                 while (true) {
-                    int read = b2.read(bArr);
+                    int read = l.read(bArr);
                     if (read != -1) {
                         byteArrayOutputStream.write(bArr, 0, read);
                     } else {
                         byte[] byteArray = byteArrayOutputStream.toByteArray();
-                        b2.close();
+                        l.close();
                         return byteArray;
                     }
                 }
             } catch (Throwable th) {
-                if (b2 != null) {
+                if (l != null) {
                     try {
-                        b2.close();
+                        l.close();
                     } catch (Throwable th2) {
                         th.addSuppressed(th2);
                     }
@@ -58,7 +58,7 @@ public class WidgetEngineService extends Service {
                 throw th;
             }
         } else {
-            w26.j("Invalid bundle path");
+            lq5.j("Invalid bundle path");
             return null;
         }
     }
@@ -93,7 +93,7 @@ public class WidgetEngineService extends Service {
         if (WidgetSandboxNative.available()) {
             ZipFile zipFile = new ZipFile(str);
             try {
-                f(new dkc(zipFile, (byte) 7));
+                f(new ftb(zipFile, (byte) 21));
                 zipFile.close();
                 String[] strArr = {"WidgetEngineBackend", "WidgetSandboxBackend", "WidgetSandboxIntl", "WidgetPng", "IWidgetEngine$Stub", "IWidgetEngineCallback$Stub$Proxy"};
                 for (int i = 0; i < 6; i++) {
@@ -113,15 +113,15 @@ public class WidgetEngineService extends Service {
                 throw th;
             }
         }
-        sc8.j("libtwidget is missing");
+        grb.i("libtwidget is missing");
     }
 
     public static native void exitNow(int i);
 
-    public static synchronized String f(dkc dkcVar) {
+    public static synchronized String f(ftb ftbVar) {
         String[] strArr;
         int i;
-        dkc dkcVar2 = dkcVar;
+        ftb ftbVar2 = ftbVar;
         synchronized (WidgetEngineService.class) {
             String str = c;
             if (str != null) {
@@ -129,10 +129,10 @@ public class WidgetEngineService extends Service {
             }
             try {
                 try {
-                    InputStream b2 = dkcVar2.b("manifest.txt");
+                    InputStream l = ftbVar2.l("manifest.txt");
                     try {
-                        String a = hwc.a(b2);
-                        b2.close();
+                        String a = w0d.a(l);
+                        l.close();
                         String[] split = a.split("\n");
                         int length = split.length;
                         byte[] bArr = null;
@@ -146,7 +146,7 @@ public class WidgetEngineService extends Service {
                                 i = length;
                             } else {
                                 String[] split2 = str2.split(" ", 2);
-                                byte[] c2 = c(dkcVar2, split2[1]);
+                                byte[] c2 = c(ftbVar2, split2[1]);
                                 StringBuilder sb = new StringBuilder();
                                 byte[] digest = MessageDigest.getInstance("SHA-256").digest(c2);
                                 int length2 = digest.length;
@@ -178,7 +178,7 @@ public class WidgetEngineService extends Service {
                                 }
                             }
                             i2++;
-                            dkcVar2 = dkcVar;
+                            ftbVar2 = ftbVar;
                             split = strArr;
                             length = i;
                         }
@@ -195,9 +195,9 @@ public class WidgetEngineService extends Service {
                         }
                         throw new IllegalStateException("Widget bundles are missing");
                     } catch (Throwable th) {
-                        if (b2 != null) {
+                        if (l != null) {
                             try {
-                                b2.close();
+                                l.close();
                             } catch (Throwable th2) {
                                 th.addSuppressed(th2);
                             }
@@ -231,10 +231,10 @@ public class WidgetEngineService extends Service {
                 f = true;
                 h = !z;
                 SystemClock.uptimeMillis();
-                odd.a();
+                gid.a();
                 d.prestartCoreThread();
                 try {
-                    f(new dkc(assets, (byte) 8));
+                    f(new ftb(assets, (byte) 22));
                 } catch (RuntimeException e2) {
                     Log.e("WidgetEngine", "bundles", e2);
                 }
@@ -266,7 +266,7 @@ public class WidgetEngineService extends Service {
         if (WidgetSandboxNative.available()) {
             SystemClock.uptimeMillis();
         } else {
-            sc8.j("libtwidget is missing");
+            grb.i("libtwidget is missing");
         }
     }
 

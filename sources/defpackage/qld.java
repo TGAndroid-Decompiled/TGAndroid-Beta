@@ -1,17 +1,18 @@
 package defpackage;
-public final class qld implements zn7 {
-    public static final qld a = new Object();
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class qld {
+    public static final int a = 0;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)));
+        qld.class.getClassLoader();
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        throw new ClassCastException();
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

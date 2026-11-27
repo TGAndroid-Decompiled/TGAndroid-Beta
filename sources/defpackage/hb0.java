@@ -1,39 +1,61 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class hb0 {
-    public int a;
-    public boolean b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.e;
+public final class hb0 extends n1a {
+    public boolean f2;
+    public final ob0 g2;
 
-    public final hb0 a() {
-        ?? obj = new Object();
-        obj.c = this.c;
-        obj.d = this.d;
-        obj.e = this.e;
-        obj.f = this.f;
-        obj.b = this.b;
-        return obj;
+    public hb0(ob0 ob0Var, ob0 ob0Var2, Activity activity, int i) {
+        super(ob0Var2, activity, false, null, 4, true, null, 16, i);
+        this.g2 = ob0Var;
+        this.f2 = true;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void o(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i;
+        TLRPC.TL_emojiList tL_emojiList;
+        boolean z;
+        long j;
+        int i2;
+        boolean z2 = this.S;
+        ob0 ob0Var = this.g2;
+        if (z2) {
+            i2 = ((e) ob0Var).currentAccount;
+            tL_emojiList = ls6.d0(i2).M1;
+        } else {
+            i = ((e) ob0Var).currentAccount;
+            tL_emojiList = ls6.d0(i).N1;
         }
-        if (!(obj instanceof hb0)) {
-            return false;
+        long j2 = 0;
+        if (tL_emojiList != null) {
+            if (document != null) {
+                j = document.id;
+            } else if (l != null) {
+                j = l.longValue();
+            } else {
+                j = 0;
+            }
+            z = tL_emojiList.document_id.contains(Long.valueOf(j));
+        } else {
+            z = false;
         }
-        hb0 hb0Var = (hb0) obj;
-        if (this.c == hb0Var.c && this.d == hb0Var.d && this.e == hb0Var.e && this.f == hb0Var.f) {
-            return true;
+        if (l != null) {
+            j2 = l.longValue();
         }
-        return false;
+        ob0Var.l0(z, j2, document);
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.a), Integer.valueOf(this.c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f));
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (this.f2) {
+            this.f2 = false;
+            this.g2.b.r(null);
+        }
     }
 }

@@ -1,26 +1,26 @@
 package defpackage;
 
-import java.util.List;
-public final class oe5 extends pg0 {
-    public final List d;
-    public final long e;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class oe5 extends c4 {
+    public static final Parcelable.Creator<oe5> CREATOR = new zkd((byte) 3);
+    public final String a;
+    public final byte[] b;
+    public final int c;
 
-    public oe5(long j, List list) {
-        super(0L, list.size() - 1);
-        this.e = j;
-        this.d = list;
+    public oe5(int i, String str, byte[] bArr) {
+        this.a = str;
+        this.b = bArr;
+        this.c = i;
     }
 
     @Override
-    public final long a() {
-        b();
-        return this.e + ((bf5) this.d.get((int) this.c)).e;
-    }
-
-    @Override
-    public final long h() {
-        b();
-        bf5 bf5Var = (bf5) this.d.get((int) this.c);
-        return this.e + bf5Var.e + bf5Var.c;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 2, this.a);
+        bye.c(parcel, 3, this.b);
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(this.c);
+        bye.s(parcel, r);
     }
 }

@@ -1,56 +1,66 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.HashSet;
-public final class g12 extends FrameLayout implements tjb {
-    public final wjb a;
-    public final TextView b;
-    public final TextView c;
+import org.telegram.tgnet.TLRPC;
+public final class g12 extends i12 {
+    public TLRPC.User b;
+    public TLRPC.TL_attachMenuBot c;
+    public final n12 d;
 
-    public g12(Context context, wjb wjbVar) {
+    public g12(n12 n12Var, Context context) {
         super(context);
-        this.a = wjbVar;
-        setPadding(0, gl.L(42.0f), 0, gl.L(42.0f));
-        setTag(-33024);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, nme.r(-1, -2, 17));
-        be0 be0Var = new be0(context);
-        be0Var.setImageDrawable(new oy8(2131624314, gl.L(120.0f), gl.L(120.0f)));
-        linearLayout.addView(be0Var, nme.t(120, 120, 17, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.b = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(gl.o());
-        textView.setGravity(17);
-        TextView m = ug8.m(linearLayout, textView, nme.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.c = m;
-        m.setTextSize(1, 14.0f);
-        m.setGravity(17);
-        linearLayout.addView(m, nme.t(-1, -2, 17, 32, 0, 32, 0));
-        updateColors();
+        this.d = n12Var;
+        setWillNotDraw(false);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        int i = n12.G4;
+        vnb vnbVar = n12Var.J0;
+        uz4 uz4Var = new uz4(context);
+        uz4Var.d = vnbVar;
+        uz4Var.R = true;
+        TextView textView = uz4Var.a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(hl.L(8.0f), 0, hl.L(8.0f), 0);
+        uz4Var.b.setVisibility(8);
+        uz4Var.b(false);
+        de0 de0Var = new de0(context);
+        uz4Var.c = de0Var;
+        uz4Var.addView(de0Var, tre.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        uz4Var.x = aob.v0(aob.Tl, vnbVar);
+        uz4Var.s = aob.v0(aob.Rl, vnbVar);
+        uz4Var.w = aob.v0(aob.Sl, vnbVar);
+        uz4Var.a();
+        this.a = uz4Var;
+        uz4Var.getBackupImageView().a.h1 = new rm0((byte) 29);
+        addView(this.a, tre.c(-1.0f, -1));
+    }
+
+    public final void a(boolean z) {
+        boolean z2;
+        if (this.c != null && (-this.b.id) == this.d.T2) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        this.a.f(z2, z);
+        b29 y = this.a.getBackupImageView().getImageReceiver().y();
+        if (z) {
+            if (z2 && y != null) {
+                y.F(0);
+                y.K(-1);
+                y.O(false, 0.0f);
+                y.start();
+            }
+        } else if (y != null) {
+            y.stop();
+            y.O(false, 0.0f);
+        }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.F6));
-        hashSet.add(Integer.valueOf(bkb.x6));
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-    }
-
-    @Override
-    public final void updateColors() {
-        int i = bkb.F6;
-        wjb wjbVar = this.a;
-        this.b.setTextColor(bkb.v0(i, wjbVar));
-        this.c.setTextColor(bkb.v0(bkb.x6, wjbVar));
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a(false);
     }
 }

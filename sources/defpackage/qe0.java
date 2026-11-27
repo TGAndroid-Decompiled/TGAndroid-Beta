@@ -2,22 +2,26 @@ package defpackage;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class qe0 extends b4 {
-    public static final Parcelable.Creator<qe0> CREATOR = new qyd((byte) 9);
-    public int a;
+public final class qe0 extends c4 {
+    public static final Parcelable.Creator<qe0> CREATOR = new hud((byte) 16);
+    public ue0 a;
     public String b;
     public String c;
-    public String d;
+    public ve0[] d;
+    public se0[] e;
+    public String[] f;
+    public ne0[] h;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        int i2 = this.a;
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(i2);
-        jte.l(parcel, 3, this.b);
-        jte.l(parcel, 4, this.c);
-        jte.l(parcel, 5, this.d);
-        jte.s(parcel, r);
+        int r = bye.r(parcel, 20293);
+        bye.k(parcel, 2, this.a, i);
+        bye.l(parcel, 3, this.b);
+        bye.l(parcel, 4, this.c);
+        bye.o(parcel, 5, this.d, i);
+        bye.o(parcel, 6, this.e, i);
+        bye.m(parcel, 7, this.f);
+        bye.o(parcel, 8, this.h, i);
+        bye.s(parcel, r);
     }
 }

@@ -1,47 +1,68 @@
 package defpackage;
+
+import java.util.Arrays;
+import java.util.Set;
+import java.util.SortedSet;
 public abstract class qye {
-    public static void a(int i, int i2) {
-        String a;
-        if (i >= 0 && i < i2) {
-            return;
-        }
-        if (i >= 0) {
-            if (i2 < 0) {
-                w26.j(de9.k(i2, "negative size: "));
-                return;
+    public static boolean a(Set set, Object obj) {
+        if (set != obj) {
+            if (obj instanceof Set) {
+                Set set2 = (Set) obj;
+                try {
+                    if (set.size() == set2.size()) {
+                        if (set.containsAll(set2)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                } catch (ClassCastException | NullPointerException unused) {
+                    return false;
+                }
             }
-            a = rye.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
-        } else {
-            a = rye.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
+            return false;
         }
-        throw new IndexOutOfBoundsException(a);
+        return true;
     }
 
-    public static void b(int i, int i2, int i3) {
-        String c;
-        if (i >= 0 && i2 >= i && i2 <= i3) {
-            return;
+    public static dba b(Set set, pj8 pj8Var) {
+        if (set instanceof SortedSet) {
+            SortedSet sortedSet = (SortedSet) set;
+            if (sortedSet instanceof dba) {
+                dba dbaVar = (dba) sortedSet;
+                pj8 pj8Var2 = dbaVar.b;
+                pj8Var2.getClass();
+                return new dba((SortedSet) dbaVar.a, new qj8(Arrays.asList(pj8Var2, pj8Var)));
+            }
+            return new dba(sortedSet, pj8Var);
+        } else if (set instanceof dba) {
+            dba dbaVar2 = (dba) set;
+            pj8 pj8Var3 = dbaVar2.b;
+            pj8Var3.getClass();
+            return new dba(dbaVar2.a, new qj8(Arrays.asList(pj8Var3, pj8Var)));
+        } else {
+            set.getClass();
+            return new dba(set, pj8Var);
         }
-        if (i >= 0 && i <= i3) {
-            if (i2 >= 0 && i2 <= i3) {
-                c = rye.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
+    }
+
+    public static int c(Set set) {
+        int i;
+        int i2 = 0;
+        for (Object obj : set) {
+            if (obj != null) {
+                i = obj.hashCode();
             } else {
-                c = c(i2, i3, "end index");
+                i = 0;
             }
-        } else {
-            c = c(i, i3, "start index");
+            i2 = ~(~(i2 + i));
         }
-        throw new IndexOutOfBoundsException(c);
+        return i2;
     }
 
-    public static String c(int i, int i2, String str) {
-        if (i < 0) {
-            return rye.a("%s (%s) must not be negative", str, Integer.valueOf(i));
-        }
-        if (i2 >= 0) {
-            return rye.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
-        }
-        w26.j(de9.k(i2, "negative size: "));
-        return null;
+    public static cba d(bp5 bp5Var, bp5 bp5Var2) {
+        yve.l(bp5Var, "set1");
+        yve.l(bp5Var2, "set2");
+        return new cba(bp5Var, bp5Var2);
     }
 }

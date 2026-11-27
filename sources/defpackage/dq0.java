@@ -25,9 +25,9 @@ public final class dq0 extends Drawable {
         this.c = paint2;
         this.d = new Paint();
         this.e = 255;
-        Drawable d = b00.d(context, 2131232163);
-        this.a = d;
-        d.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
+        Drawable e = c00.e(context, 2131232163);
+        this.a = e;
+        e.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
         paint.setShader(new RadialGradient(400.0f, 213.0f, 500.0f, -4811527, -9674273, Shader.TileMode.CLAMP));
         paint2.setColor(-1);
         paint2.setStyle(Paint.Style.STROKE);
@@ -122,12 +122,12 @@ public final class dq0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return gl.L(427.0f);
+        return hl.L(427.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return gl.L(800.0f);
+        return hl.L(800.0f);
     }
 
     @Override

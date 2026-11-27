@@ -1,35 +1,35 @@
 package defpackage;
-public final class de3 {
-    public static final de3 c = new de3(new ie7((byte) 18));
-    public static final String d;
-    public static final String e;
-    public final int a = 0;
-    public final int b = 0;
 
-    static {
-        String str = g8c.a;
-        d = "1";
-        e = "2";
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class de3 extends b4 implements ScheduledFuture {
+    public final ScheduledFuture n;
+
+    public de3(ce3 ce3Var) {
+        this.n = ce3Var.a(new z8d(this, (byte) 28));
     }
 
-    public de3(ie7 ie7Var) {
+    @Override
+    public final int compareTo(Delayed delayed) {
+        return this.n.compareTo(delayed);
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof de3) {
-                de3 de3Var = (de3) obj;
-                if (this.a == de3Var.a && this.b == de3Var.b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void d() {
+        boolean z;
+        ScheduledFuture scheduledFuture = this.n;
+        Object obj = this.a;
+        if ((obj instanceof u3) && ((u3) obj).a) {
+            z = true;
+        } else {
+            z = false;
         }
-        return true;
+        scheduledFuture.cancel(z);
     }
 
-    public final int hashCode() {
-        return (((16337 + this.a) * 31) + this.b) * 31;
+    @Override
+    public final long getDelay(TimeUnit timeUnit) {
+        return this.n.getDelay(timeUnit);
     }
 }

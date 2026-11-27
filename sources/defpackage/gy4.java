@@ -1,16 +1,7 @@
 package defpackage;
-
-import java.util.Collections;
-import java.util.Set;
-import java.util.WeakHashMap;
-public abstract class gy4 {
-    public static final Set a = Collections.newSetFromMap(new WeakHashMap());
-
-    public boolean a(v3d v3dVar) {
-        throw new UnsupportedOperationException();
-    }
-
-    public void b() {
-        throw new UnsupportedOperationException();
+public final class gy4 extends Exception {
+    public gy4(String str, j99 j99Var) {
+        super(str);
+        po5.q(j99Var);
     }
 }

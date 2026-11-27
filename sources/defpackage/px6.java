@@ -1,62 +1,61 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.webrtc.JniCommon;
-public final class px6 implements Runnable {
-    public final byte a;
-    public final long b;
+import android.media.session.MediaSession;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class px6 implements Parcelable {
+    public static final Parcelable.Creator<px6> CREATOR = new mx6((byte) 2);
+    public final MediaSession.Token b;
+    public nk5 c;
+    public final Object a = new Object();
+    public aec d = null;
 
-    public px6(byte b, long j) {
-        this.a = b;
-        this.b = j;
+    public px6(MediaSession.Token token, fx6 fx6Var) {
+        this.b = token;
+        this.c = fx6Var;
+    }
+
+    public final nk5 a() {
+        nk5 nk5Var;
+        synchronized (this.a) {
+            nk5Var = this.c;
+        }
+        return nk5Var;
+    }
+
+    public final void b(nk5 nk5Var) {
+        synchronized (this.a) {
+            this.c = nk5Var;
+        }
+    }
+
+    public final void c(aec aecVar) {
+        synchronized (this.a) {
+            this.d = aecVar;
+        }
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        long j = this.b;
-        switch (b) {
-            case 0:
-                JniCommon.nativeReleaseRef(j);
-                return;
-            case 1:
-                d S = LaunchActivity.S();
-                if (S != null) {
-                    S.presentFragment(mu1.W9(j));
-                    return;
-                }
-                return;
-            case 2:
-                d S2 = LaunchActivity.S();
-                if (S2 != null) {
-                    S2.presentFragment(mu1.W9(j));
-                    return;
-                }
-                return;
-            case 3:
-                gb8.d.remove(Long.valueOf(j));
-                return;
-            case 4:
-                d S3 = LaunchActivity.S();
-                if (S3 != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", j);
-                    bundle.putBoolean("my_profile", true);
-                    bundle.putBoolean("open_gifts", true);
-                    S3.presentFragment(new ProfileActivity(bundle, null));
-                    return;
-                }
-                return;
-            default:
-                d S4 = LaunchActivity.S();
-                if (S4 != null) {
-                    S4.presentFragment(mu1.W9(j));
-                    return;
-                }
-                return;
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof px6)) {
+            return false;
+        }
+        return this.b.equals(((px6) obj).b);
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(this.b, i);
     }
 }

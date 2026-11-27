@@ -1,177 +1,162 @@
 package defpackage;
 
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.Trace;
-import android.util.SparseIntArray;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.text.Layout;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.LaunchActivity;
-public final class sv implements Runnable {
-    public static final sv b = new sv((byte) 14);
-    public final byte a;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.o;
+public final class sv extends View implements zlb, ew {
+    public final xi5 a;
+    public final ex b;
+    public cw c;
+    public int d;
+    public int e;
+    public TL_iv.pageBlockSubtitle f;
 
-    public sv(u39 u39Var, int i) {
-        this.a = (byte) 1;
+    public sv(Activity activity, xi5 xi5Var, ex exVar) {
+        super(activity);
+        this.a = xi5Var;
+        this.b = exVar;
     }
 
     @Override
-    public final void run() {
-        boolean z = true;
-        switch (this.a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return;
-            case 6:
-                ArrayList arrayList = eo3.j;
-                if (arrayList != null && !arrayList.isEmpty()) {
-                    ArrayList arrayList2 = eo3.j;
-                    eo3.j = null;
-                    if (eo3.k == null) {
-                        int max = Math.max(1, Runtime.getRuntime().availableProcessors());
-                        ?? obj = new Object();
-                        obj.a = new ArrayList(10);
-                        obj.b = new SparseIntArray();
-                        obj.c = new ArrayList(10);
-                        obj.i = new o1(obj, (byte) 24);
-                        obj.d = max;
-                        obj.f = Utilities.b.nextInt();
-                        eo3.k = obj;
-                    }
-                    Utilities.e.c(new re(arrayList2, (byte) 4));
-                    return;
-                }
-                eo3.j = null;
-                return;
-            case 7:
-                try {
-                    int i = mxb.a;
-                    Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
-                    if (lw3.j == null) {
-                        z = false;
-                    }
-                    if (z) {
-                        lw3.a().c();
-                    }
-                    Trace.endSection();
-                    return;
-                } catch (Throwable th) {
-                    int i2 = mxb.a;
-                    Trace.endSection();
-                    throw th;
-                }
-            case 8:
-                return;
-            case 9:
-                String[] strArr = MediaController.W1;
-                return;
-            case 10:
-                Utilities.b.nextInt();
-                kz4[] kz4VarArr = x2b.a;
-                kk7.f(y6c.t0).k(2, 0);
-                gl.d3(x2b.o, 1000L);
-                LaunchActivity.Q().getFragmentView();
-                return;
-            case 11:
-                bkb.j = false;
-                bkb.l(false);
-                return;
-            case 12:
-                bkb.k = false;
-                bkb.l(true);
-                return;
-            case 13:
-                xgc xgcVar = xgc.U;
-                if (xgcVar != null) {
-                    wgc wgcVar = xgcVar.b;
-                    int i3 = wgc.h;
-                    gl.r(wgcVar.f.O);
-                    return;
-                }
-                return;
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-            default:
-                return;
+    public int getBoundLeft() {
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
+        }
+        int i = cwVar.s;
+        return ik8.h(this.a, 18.0f, cwVar.k() + i);
+    }
+
+    @Override
+    public int getBoundRight() {
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
+        }
+        int i = cwVar.s;
+        return ik8.C(this.a, 18.0f, cwVar.l() + i);
+    }
+
+    @Override
+    public int getLastLineBoundRight() {
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
+        }
+        int i = cwVar.s;
+        return ik8.C(this.a, 18.0f, cwVar.m() + i);
+    }
+
+    public int getMinWidth() {
+        return ik8.a(this);
+    }
+
+    @Override
+    public final void k(ArrayList arrayList) {
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            arrayList.add(cwVar);
         }
     }
 
-    public sv(x43 x43Var, String str, Bundle bundle, byte b2) {
-        this.a = b2;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.i(this);
+        }
     }
 
-    public sv(Binder binder, Object obj, byte b2) {
-        this.a = b2;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.f(this);
+        }
     }
 
-    public sv(Object obj, byte b2) {
-        this.a = b2;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f != null && this.c != null) {
+            canvas.save();
+            canvas.translate(this.d, this.e);
+            o.s(this.a, canvas, this, 0);
+            this.c.d(canvas, this);
+            canvas.restore();
+        }
     }
 
-    public sv(byte b2) {
-        this.a = b2;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return;
+        }
+        accessibilityNodeInfo.setText(o.f(2131754858, o.g(this.a, this.b, cwVar)));
     }
 
-    public sv(x43 x43Var, int i, Bundle bundle) {
-        this.a = (byte) 2;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        sv svVar;
+        int i3;
+        Layout.Alignment alignment;
+        int size = View.MeasureSpec.getSize(i);
+        xi5 xi5Var = this.a;
+        xi5Var.getClass();
+        this.d = hl.L(18.0f);
+        xi5Var.getClass();
+        this.e = hl.L(8.0f);
+        TL_iv.pageBlockSubtitle pageblocksubtitle = this.f;
+        if (pageblocksubtitle != null) {
+            TL_iv.RichText richText = pageblocksubtitle.text;
+            xi5 xi5Var2 = this.a;
+            int h = ik8.h(xi5Var2, 36.0f, size);
+            TL_iv.pageBlockSubtitle pageblocksubtitle2 = this.f;
+            ex exVar = this.b;
+            if (exVar != null && exVar.H) {
+                alignment = o0b.a();
+            } else {
+                alignment = Layout.Alignment.ALIGN_NORMAL;
+            }
+            svVar = this;
+            cw n = o.n(xi5Var2, svVar, null, richText, h, 0, pageblocksubtitle2, alignment, 0, this.b);
+            svVar.c = n;
+            if (n != null) {
+                xi5Var.getClass();
+                i3 = svVar.c.d.getHeight() + hl.L(16.0f);
+                cw cwVar = svVar.c;
+                cwVar.s = svVar.d;
+                cwVar.w = svVar.e;
+            } else {
+                i3 = 0;
+            }
+        } else {
+            svVar = this;
+            i3 = 1;
+        }
+        svVar.setMeasuredDimension(size, i3);
     }
 
-    private final void a() {
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
-    }
-
-    private final void e() {
-    }
-
-    private final void f() {
-    }
-
-    private final void g() {
-    }
-
-    private final void h() {
-    }
-
-    private final void i() {
-    }
-
-    private final void j() {
-    }
-
-    private final void k() {
-    }
-
-    private final void l() {
-    }
-
-    private final void m() {
-    }
-
-    private final void n() {
-    }
-
-    private final void o() {
-    }
-
-    private final void p() {
+    public void setBlock(TL_iv.pageBlockSubtitle pageblocksubtitle) {
+        this.f = pageblocksubtitle;
+        requestLayout();
     }
 }

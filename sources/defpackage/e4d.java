@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
-public abstract class e4d extends kzc implements List, RandomAccess, j$.util.List {
-    public static final b4d n = new b4d(g4d.w, 0);
+public abstract class e4d extends b4d implements List, RandomAccess, j$.util.List {
+    public static final c4d n = new c4d(f4d.s, 0);
 
     @Override
     public final void add(int i, Object obj) {
@@ -47,7 +47,7 @@ public abstract class e4d extends kzc implements List, RandomAccess, j$.util.Lis
                         }
                         return true;
                     }
-                    b4d listIterator = listIterator(0);
+                    c4d listIterator = listIterator(0);
                     Iterator it = list.iterator();
                     while (true) {
                         if (listIterator.hasNext()) {
@@ -63,6 +63,15 @@ public abstract class e4d extends kzc implements List, RandomAccess, j$.util.Lis
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            objArr[i] = get(i);
+        }
+        return size;
     }
 
     @Override
@@ -92,15 +101,6 @@ public abstract class e4d extends kzc implements List, RandomAccess, j$.util.Lis
     @Override
     public final Iterator iterator() {
         return listIterator(0);
-    }
-
-    @Override
-    public int l(Object[] objArr) {
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            objArr[i] = get(i);
-        }
-        return size;
     }
 
     @Override
@@ -143,27 +143,27 @@ public abstract class e4d extends kzc implements List, RandomAccess, j$.util.Lis
 
     @Override
     public e4d subList(int i, int i2) {
-        yye.b(i, i2, size());
+        i3f.b(i, i2, size());
         int i3 = i2 - i;
         if (i3 == size()) {
             return this;
         }
         if (i3 == 0) {
-            return g4d.w;
+            return f4d.s;
         }
         return new d4d(this, i, i3);
     }
 
     @Override
-    public final b4d listIterator(int i) {
+    public final c4d listIterator(int i) {
         int size = size();
         if (i >= 0 && i <= size) {
             if (isEmpty()) {
                 return n;
             }
-            return new b4d(this, i);
+            return new c4d(this, i);
         }
-        k93.i(yye.c(i, size, "index"));
+        su3.g(i3f.c(i, size, "index"));
         return null;
     }
 }

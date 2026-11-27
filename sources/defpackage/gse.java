@@ -1,8 +1,17 @@
 package defpackage;
+public final class gse implements zq7 {
+    public static final gse a = new Object();
 
-import android.os.IInterface;
-public interface gse extends IInterface {
-    void t(w5e w5eVar);
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
+    }
 
-    void zze();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

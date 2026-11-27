@@ -1,24 +1,28 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.List;
-public final class mgb extends b4 {
-    public static final Parcelable.Creator<mgb> CREATOR = new b1d((byte) 0);
-    public final int a;
-    public List b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.Switch;
+public final class mgb extends AnimatorListenerAdapter {
+    public final byte a;
+    public final Switch b;
 
-    public mgb(int i, List list) {
-        this.a = i;
-        this.b = list;
+    public mgb(Switch r1, byte b) {
+        this.a = b;
+        this.b = r1;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        jte.p(parcel, 2, this.b);
-        jte.s(parcel, r);
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        Switch r1 = this.b;
+        switch (b) {
+            case 0:
+                r1.d = null;
+                return;
+            default:
+                r1.e = null;
+                return;
+        }
     }
 }

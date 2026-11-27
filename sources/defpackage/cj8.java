@@ -1,25 +1,29 @@
 package defpackage;
-public final class cj8 {
-    public static final cj8 a;
-    public static final cj8 b;
-    public static final cj8 c;
-    public static final cj8[] d;
 
-    static {
-        ?? r0 = new Enum("DEFAULT", 0);
-        a = r0;
-        ?? r1 = new Enum("VERY_LOW", 1);
-        b = r1;
-        ?? r3 = new Enum("HIGHEST", 2);
-        c = r3;
-        d = new cj8[]{r0, r1, r3};
+import android.animation.ValueAnimator;
+public final class cj8 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final fj8 b;
+
+    public cj8(fj8 fj8Var, byte b) {
+        this.a = b;
+        this.b = fj8Var;
     }
 
-    public static cj8 valueOf(String str) {
-        return (cj8) Enum.valueOf(cj8.class, str);
-    }
-
-    public static cj8[] values() {
-        return (cj8[]) d.clone();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        fj8 fj8Var = this.b;
+        switch (b) {
+            case 0:
+                fj8Var.b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fj8Var.c(true);
+                return;
+            default:
+                fj8Var.getClass();
+                fj8Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fj8Var.c(true);
+                return;
+        }
     }
 }

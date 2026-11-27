@@ -1,135 +1,130 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class k21 extends g11 implements tjb {
-    public final wjb a;
-    public Runnable b;
-    public Runnable c;
-    public m21 d;
-    public final TextView e;
-    public boolean f;
-    public final Drawable h;
-    public final Drawable n;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.Utilities;
+public final class k21 extends GestureDetector.SimpleOnGestureListener {
+    public final z11 a;
+    public final l11 b;
 
-    public k21(wjb wjbVar, Context context, boolean z, boolean z2) {
-        super(context);
-        int w0;
-        float f;
-        float f2;
-        this.a = wjbVar;
-        int i = bkb.wj;
-        if (wjbVar != null) {
-            w0 = wjbVar.h(i);
+    public k21(l11 l11Var, z11 z11Var) {
+        this.b = l11Var;
+        this.a = z11Var;
+    }
+
+    @Override
+    public final boolean onDown(MotionEvent motionEvent) {
+        l11 l11Var = this.b;
+        if (l11Var.s) {
+            return false;
+        }
+        vk4 vk4Var = z11.IN_OUT_OFFSET_Y;
+        z11 z11Var = this.a;
+        l11Var.w = z11Var.c(true);
+        l11Var.x = z11Var.c(false);
+        return true;
+    }
+
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        boolean z;
+        if (Math.abs(f) <= 2000.0f) {
+            return false;
+        }
+        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
+        l11 l11Var = this.b;
+        if ((i < 0 && l11Var.w) || (f > 0.0f && l11Var.x)) {
+            z = true;
         } else {
-            w0 = bkb.w0(null, i, false);
+            z = false;
         }
+        float signum = Math.signum(f);
+        z11 z11Var = this.a;
+        vpa vpaVar = new vpa(z11Var, vpa.o, signum * z11Var.getWidth() * 2.0f);
+        if (!z) {
+            vpaVar.a(new ps3(this) {
+                public final k21 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void a(vpa vpaVar2, boolean z2, float f3, float f4) {
+                    byte b = r2;
+                    k21 k21Var = this.b;
+                    switch (b) {
+                        case 0:
+                            k21Var.b.E.b();
+                            return;
+                        default:
+                            k21Var.b.E.b();
+                            return;
+                    }
+                }
+            });
+            vpaVar.b(new i10(z11Var, (byte) 2));
+        }
+        vpaVar.m.a(1.0f);
+        vpaVar.m.b(100.0f);
+        vpaVar.a = f;
+        vpaVar.h();
         if (z) {
-            TextView textView = new TextView(context);
-            this.e = textView;
-            textView.setBackground(bkb.f0((w0 & 16777215) | 419430400, 7, -1));
-            this.h = textView.getBackground();
-            ir2.t(textView, 1, 14.0f);
-            ug8.x(textView, i, wjbVar, null, 2131743646);
-            textView.setGravity(16);
-            if (z2) {
-                f = 34.0f;
-            } else {
-                f = 12.0f;
-            }
-            if (k96.a0) {
-                f2 = 12.0f;
-            } else {
-                f2 = f;
-                f = 12.0f;
-            }
-            txe.a(textView, f2, 8.0f, f, 8.0f);
-            addView(textView, nme.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+            vpa vpaVar2 = new vpa((Object) z11Var, (vk4) vpa.v, 0.0f);
+            vpaVar2.a(new ps3(this) {
+                public final k21 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void a(vpa vpaVar22, boolean z2, float f3, float f4) {
+                    byte b = r2;
+                    k21 k21Var = this.b;
+                    switch (b) {
+                        case 0:
+                            k21Var.b.E.b();
+                            return;
+                        default:
+                            k21Var.b.E.b();
+                            return;
+                    }
+                }
+            });
+            vpaVar2.b(new Object());
+            vpaVar.m.a(1.0f);
+            vpaVar.m.b(10.0f);
+            vpaVar.a = f;
+            vpaVar2.h();
         }
-        if (z2) {
-            ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource(2131231003);
-            zkb.s(imageView, i, wjbVar, PorterDuff.Mode.MULTIPLY);
-            if (!z) {
-                imageView.setBackground(bkb.f0((w0 & 16777215) | 419430400, 1, -1));
-                this.n = imageView.getBackground();
-            }
-            txe.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, nme.h(56.0f, 48.0f, 16));
-        }
-        setOnClickListener(new j1(this, (byte) 22));
+        l11Var.s = true;
+        return true;
     }
 
     @Override
-    public final void c() {
-        this.d = null;
-        Runnable runnable = this.c;
-        if (runnable != null && !this.f) {
-            runnable.run();
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        l11 l11Var = this.b;
+        float f3 = l11Var.h + f;
+        l11Var.h = f3;
+        float f4 = l11Var.n + f2;
+        l11Var.n = f4;
+        if (Utilities.t(0.0f, 0.0f, f3, f4) > hl.e) {
+            l11Var.r = true;
         }
-    }
-
-    @Override
-    public final void d(m21 m21Var) {
-        this.d = m21Var;
-    }
-
-    public final void e(String str) {
-        TextView textView = this.e;
-        if (textView != null) {
-            textView.setText(str);
+        if (!l11Var.d) {
+            return false;
         }
-    }
-
-    public final void f() {
-        if (this.d != null) {
-            this.f = true;
-            Runnable runnable = this.b;
-            if (runnable != null) {
-                runnable.run();
-            }
-            m21 m21Var = this.d;
-            if (m21Var != null) {
-                m21Var.b();
-            }
+        float f5 = l11Var.f - f;
+        l11Var.f = f5;
+        z11 z11Var = this.a;
+        z11Var.setTranslationX(f5);
+        float f6 = l11Var.f;
+        int i = (f6 > 0.0f ? 1 : (f6 == 0.0f ? 0 : -1));
+        if (i != 0 && ((f6 >= 0.0f || !l11Var.w) && (i <= 0 || !l11Var.x))) {
+            return true;
         }
-    }
-
-    @Override
-    public final void updateColors() {
-        int w0;
-        Drawable drawable;
-        try {
-            int i = bkb.wj;
-            wjb wjbVar = this.a;
-            if (wjbVar != null) {
-                w0 = wjbVar.h(i);
-            } else {
-                w0 = bkb.w0(null, i, false);
-            }
-            int i2 = (w0 & 16777215) | 419430400;
-            TextView textView = this.e;
-            if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
-                bkb.F1(drawable, i2, true);
-            }
-            Drawable drawable2 = this.n;
-            if (drawable2 != null) {
-                bkb.F1(drawable2, i2, true);
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    public k21(wjb wjbVar, Context context, boolean z) {
-        this(wjbVar, context, z, !z);
+        z11Var.setAlpha(1.0f - (Math.abs(f6) / z11Var.getWidth()));
+        return true;
     }
 }

@@ -1,35 +1,38 @@
 package defpackage;
 
-import org.telegram.messenger.voip.VoIPService;
-public final class uhc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-
-    public uhc(VoIPService voIPService, byte b) {
-        this.a = b;
-        this.b = voIPService;
+import android.view.View;
+import java.util.ArrayList;
+public final class uhc implements View.OnAttachStateChangeListener {
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        thc a;
+        vhc vhcVar = (vhc) view.getTag(2131296699);
+        if (vhcVar != null && (a = n2f.a(view, vhcVar)) != null) {
+            ArrayList arrayList = vhcVar.a;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((r89) a.a.b).add((my4) obj);
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$updateConnectionState$78();
-                return;
-            case 1:
-                voIPService.lambda$updateConnectionState$79();
-                return;
-            case 2:
-                voIPService.lambda$onConnectionStateChanged$113();
-                return;
-            case 3:
-                voIPService.lambda$onConnectionStateChanged$114();
-                return;
-            default:
-                voIPService.lambda$playConnectedSound$84();
-                return;
+    public final void onViewDetachedFromWindow(View view) {
+        thc thcVar;
+        vhc vhcVar = (vhc) view.getTag(2131296699);
+        if (vhcVar != null && (thcVar = vhcVar.b) != null) {
+            ArrayList arrayList = vhcVar.a;
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ((r89) thcVar.a.b).remove((my4) obj);
+            }
+            vhcVar.b = null;
         }
     }
 }

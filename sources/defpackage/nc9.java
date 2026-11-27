@@ -1,60 +1,31 @@
 package defpackage;
-public final class nc9 implements Runnable {
-    public final byte a;
-    public final hd9 b;
 
-    public nc9(hd9 hd9Var, byte b) {
-        this.a = b;
-        this.b = hd9Var;
+import android.os.Bundle;
+import org.telegram.tgnet.tl.TL_stars;
+public final class nc9 extends zu1 {
+    public boolean Jd;
+    public final TL_stars.TL_starGiftUnique Kd;
+    public final long Ld;
+
+    public nc9(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j) {
+        super(bundle);
+        this.Kd = tL_starGiftUnique;
+        this.Ld = j;
+        this.Jd = false;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        hd9 hd9Var = this.b;
-        switch (b) {
-            case 0:
-                hd9Var.F0();
-                return;
-            case 1:
-                if (hd9Var.L0 != 0) {
-                    hd9Var.b0.setVisibility(8);
-                    return;
-                }
-                return;
-            case 2:
-                if (hd9Var.L0 != 1) {
-                    hd9Var.i0.setVisibility(8);
-                    return;
-                }
-                return;
-            case 3:
-                if (hd9Var.L0 != 2) {
-                    hd9Var.w0.setVisibility(8);
-                    return;
-                }
-                return;
-            case 4:
-                hd9Var.m0();
-                return;
-            case 5:
-                hd9Var.v0(2147483646, 0, true);
-                j47 j47Var = hd9Var.P0;
-                if (j47Var != null) {
-                    j47Var.f(false);
-                    hd9Var.P0 = null;
-                    return;
-                }
-                return;
-            default:
-                hd9Var.v0(0, 0, false);
-                j47 j47Var2 = hd9Var.P0;
-                if (j47Var2 != null) {
-                    j47Var2.f(true);
-                    hd9Var.P0 = null;
-                    return;
-                }
-                return;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Jd) {
+            this.Jd = true;
+            v21 O = d31.b0(this).O(this.Kd.getDocument(), ob6.M0(2131752866, null), ob6.a0(null, null, 2131752867, wf3.r(this.currentAccount, this.Ld)));
+            O.s = false;
+            O.j();
+            tj4 tj4Var = this.J9;
+            if (tj4Var != null) {
+                tj4Var.c(true);
+            }
         }
     }
 }

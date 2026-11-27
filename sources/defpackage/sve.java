@@ -1,17 +1,17 @@
 package defpackage;
-public final class sve implements zn7 {
-    public static final sve a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.util.ArrayList;
+public abstract class sve {
+    public static final void a(int i, int i2, o8a o8aVar) {
+        o8aVar.getClass();
+        ArrayList arrayList = new ArrayList();
+        int i3 = i2 & (~i);
+        for (int i4 = 0; i4 < 32; i4++) {
+            if ((i3 & 1) != 0) {
+                arrayList.add(o8aVar.g(i4));
+            }
+            i3 >>>= 1;
         }
-        throw new ClassCastException();
+        throw new ig7(o8aVar.a(), arrayList);
     }
 }

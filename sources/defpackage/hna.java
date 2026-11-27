@@ -1,87 +1,84 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.tl.TL_stars;
-public final class hna extends b4c {
-    static {
-        b4c.h(new b4c());
+import java.util.ArrayList;
+import java.util.Collections;
+public final class hna {
+    public static final qq7 g = new qq7((byte) 29);
+    public static final fna h = new fna((byte) 0);
+    public int d;
+    public int e;
+    public int f;
+    public final gna[] b = new gna[5];
+    public final ArrayList a = new ArrayList();
+    public int c = -1;
+
+    public final void a(float f, int i) {
+        gna gnaVar;
+        int i2 = this.c;
+        ArrayList arrayList = this.a;
+        if (i2 != 1) {
+            Collections.sort(arrayList, g);
+            this.c = 1;
+        }
+        int i3 = this.f;
+        gna[] gnaVarArr = this.b;
+        if (i3 > 0) {
+            int i4 = i3 - 1;
+            this.f = i4;
+            gnaVar = gnaVarArr[i4];
+        } else {
+            gnaVar = new Object();
+        }
+        int i5 = this.d;
+        this.d = i5 + 1;
+        gnaVar.a = i5;
+        gnaVar.b = i;
+        gnaVar.c = f;
+        arrayList.add(gnaVar);
+        this.e += i;
+        while (true) {
+            int i6 = this.e;
+            if (i6 > 2000) {
+                int i7 = i6 - 2000;
+                gna gnaVar2 = (gna) arrayList.get(0);
+                int i8 = gnaVar2.b;
+                if (i8 <= i7) {
+                    this.e -= i8;
+                    arrayList.remove(0);
+                    int i9 = this.f;
+                    if (i9 < 5) {
+                        this.f = i9 + 1;
+                        gnaVarArr[i9] = gnaVar2;
+                    }
+                } else {
+                    gnaVar2.b = i8 - i7;
+                    this.e -= i7;
+                }
+            } else {
+                return;
+            }
+        }
     }
 
-    public static c4c i(int i, gna gnaVar) {
-        c4c K = c4c.K(hna.class);
-        K.v = 1;
-        K.A = i;
-        K.H = gnaVar;
-        return K;
-    }
-
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        boolean z2;
-        String str;
-        ina inaVar = (ina) view;
-        gna gnaVar = (gna) c4cVar.H;
-        int i = c4cVar.A;
-        Integer[] numArr = new Integer[1];
-        if (i == 0) {
-            z2 = true;
-        } else {
-            z2 = false;
+    public final float b() {
+        int i = this.c;
+        ArrayList arrayList = this.a;
+        if (i != 0) {
+            Collections.sort(arrayList, h);
+            this.c = 0;
         }
-        inaVar.s = z2;
-        be0 be0Var = inaVar.d;
-        TextView textView = inaVar.e;
-        kv4 kv4Var = inaVar.c;
-        inaVar.w = gnaVar;
-        if (i == 0) {
-            kv4Var.d(null);
-            kv4Var.e(null);
-            TL_stars.starGiftAttributeModel stargiftattributemodel = gnaVar.c;
-            textView.setText(stargiftattributemodel.name);
-            inaVar.b(80, c4cVar.H, stargiftattributemodel.document, true);
-            be0Var.setColorFilter(null);
-            kv4Var.y = bkb.Ei;
-            str = vqa.z1(stargiftattributemodel.rarity, numArr);
-        } else if (i == 1) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = gnaVar.a;
-            TL_stars.starGiftAttributePattern stargiftattributepattern = gnaVar.b;
-            kv4Var.d(stargiftattributebackdrop);
-            kv4Var.e(stargiftattributepattern);
-            kv4Var.y = bkb.c6;
-            textView.setText(stargiftattributebackdrop.name);
-            inaVar.b(48, c4cVar.H, stargiftattributepattern.document, false);
-            be0Var.setColorFilter(new PorterDuffColorFilter(bm2.o(stargiftattributebackdrop.pattern_color, 64), PorterDuff.Mode.SRC_IN));
-            str = vqa.z1(stargiftattributebackdrop.rarity, numArr);
-        } else if (i == 2) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2 = gnaVar.a;
-            TL_stars.starGiftAttributePattern stargiftattributepattern2 = gnaVar.b;
-            kv4Var.d(stargiftattributebackdrop2);
-            kv4Var.e(stargiftattributepattern2);
-            kv4Var.y = bkb.c6;
-            textView.setText(stargiftattributepattern2.name);
-            inaVar.b(64, c4cVar.H, stargiftattributepattern2.document, false);
-            be0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            str = vqa.z1(stargiftattributepattern2.rarity, numArr);
-        } else {
-            str = "";
+        float f = 0.5f * this.e;
+        int i2 = 0;
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            gna gnaVar = (gna) arrayList.get(i3);
+            i2 += gnaVar.b;
+            if (i2 >= f) {
+                return gnaVar.c;
+            }
         }
-        if (i == 0) {
-            zkb.X(textView, bkb.i5, inaVar.a);
-        } else {
-            zkb.q(textView);
-            textView.setTextColor(-1);
+        if (arrayList.isEmpty()) {
+            return Float.NaN;
         }
-        inaVar.f.setText(str);
-        inaVar.h = numArr[0];
-        inaVar.a();
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new ina(context, wjbVar);
+        return ((gna) c00.g(1, arrayList)).c;
     }
 }

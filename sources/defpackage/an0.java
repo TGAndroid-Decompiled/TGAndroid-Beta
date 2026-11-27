@@ -6,26 +6,34 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.MotionEvent;
-public final class an0 extends wec {
+public final class an0 extends vic {
     public final Path W;
     public final Paint a0;
     public boolean b0;
     public boolean c0;
     public final boolean d0;
-    public final zy9 e0;
-    public final wjb f0;
+    public final t2a e0;
+    public final vnb f0;
     public final ao0 g0;
     public final dn0 h0;
 
-    public an0(dn0 dn0Var, Context context, zy9 zy9Var, wjb wjbVar, ao0 ao0Var) {
+    public an0(dn0 dn0Var, Context context, t2a t2aVar, vnb vnbVar, ao0 ao0Var) {
         super(context, null);
         this.h0 = dn0Var;
-        this.e0 = zy9Var;
-        this.f0 = wjbVar;
+        this.e0 = t2aVar;
+        this.f0 = vnbVar;
         this.g0 = ao0Var;
         this.W = new Path();
         this.a0 = new Paint(1);
-        this.d0 = gl.O1();
+        this.d0 = hl.O1();
+    }
+
+    @Override
+    public final boolean c(MotionEvent motionEvent) {
+        if (this.h0.l1.getCurrentPosition() == 1) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -35,23 +43,23 @@ public final class an0 extends wec {
         float f;
         dn0 dn0Var = this.h0;
         an0 an0Var = dn0Var.l1;
-        int v0 = bkb.v0(bkb.g5, this.f0);
+        int v0 = aob.v0(aob.h5, this.f0);
         Paint paint = this.a0;
         paint.setColor(v0);
         if (this.b0) {
-            int i3 = -gl.L(16.0f);
+            int i3 = -hl.L(16.0f);
             ao0 ao0Var = this.g0;
             int i4 = ao0Var.n2;
             if (ao0Var.o1.getVisibility() == 0) {
-                i = gl.L(16.0f) + gl.m;
+                i = hl.L(16.0f) + hl.m;
             } else {
                 i = 0;
             }
-            int L = gl.L(10.0f) + Math.max(i3, i4 - i);
-            zy9 zy9Var = this.e0;
-            int i5 = zy9Var.o2;
-            if (zy9Var.h2.c == 1.0f) {
-                i2 = gl.m;
+            int L = hl.L(10.0f) + Math.max(i3, i4 - i);
+            t2a t2aVar = this.e0;
+            int i5 = t2aVar.o2;
+            if (t2aVar.h2.c == 1.0f) {
+                i2 = hl.m;
             } else {
                 i2 = 0;
             }
@@ -73,9 +81,9 @@ public final class an0 extends wec {
                 }
             }
             int i6 = (int) f;
-            float L2 = gl.L(14.0f);
-            RectF rectF = gl.P;
-            rectF.set(0.0f, i6, getWidth(), gl.L(8.0f) + getHeight());
+            float L2 = hl.L(14.0f);
+            RectF rectF = hl.P;
+            rectF.set(0.0f, i6, getWidth(), hl.L(8.0f) + getHeight());
             canvas.drawRoundRect(rectF, L2, L2, paint);
             canvas.save();
             Path path = this.W;
@@ -90,14 +98,6 @@ public final class an0 extends wec {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
         super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean g(MotionEvent motionEvent) {
-        if (this.h0.l1.getCurrentPosition() == 1) {
-            return true;
-        }
-        return false;
     }
 
     @Override
@@ -116,19 +116,19 @@ public final class an0 extends wec {
         if (z2 != z3) {
             this.c0 = z3;
             if (z3) {
-                this.e0.e1(true);
+                this.e0.f1(true);
             }
         }
     }
 
     @Override
-    public final void u() {
+    public final void v() {
         this.b0 = false;
         this.h0.l1.invalidate();
     }
 
     @Override
-    public final void w(boolean z) {
+    public final void x(boolean z) {
         dn0 dn0Var = this.h0;
         an0 an0Var = dn0Var.l1;
         float positionAnimated = an0Var.getPositionAnimated();
@@ -136,7 +136,7 @@ public final class an0 extends wec {
             if (!this.b0) {
                 this.b0 = true;
                 if (dn0Var.d) {
-                    gl.t1(dn0Var.m1.b);
+                    hl.t1(dn0Var.m1.b);
                 }
             }
         } else {

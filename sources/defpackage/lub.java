@@ -1,10 +1,11 @@
 package defpackage;
+public enum lub extends rwb {
+    public lub() {
+        super("ScriptDataEndTagName", 18);
+    }
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class lub implements RequestDelegate {
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void c(bub bubVar, ik1 ik1Var) {
+        rwb.b(bubVar, ik1Var, rwb.f);
     }
 }

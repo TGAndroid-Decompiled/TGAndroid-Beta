@@ -1,20 +1,19 @@
 package defpackage;
-public final class m73 extends gw2 {
-    public v73 a;
-    public int b;
-    public Object c;
-    public final v73 d;
-    public int e;
 
-    public m73(v73 v73Var, gw2 gw2Var) {
-        super(gw2Var);
-        this.d = v73Var;
-    }
+import android.net.Uri;
+import java.util.Map;
+public final class m73 {
+    public Uri a;
+    public byte b;
+    public byte[] c;
+    public Map d;
+    public long e;
+    public long f;
+    public String g;
+    public byte h;
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.f(this);
+    public final n73 a() {
+        yve.l(this.a, "The uri must be set.");
+        return new n73(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h);
     }
 }

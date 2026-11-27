@@ -1,97 +1,51 @@
 package defpackage;
 
 import android.net.Uri;
-import android.util.Base64;
-import java.net.URLDecoder;
+import android.text.TextUtils;
+import j$.util.DesugarTimeZone;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-public final class h63 extends qf0 {
-    public u63 a;
-    public byte[] b;
-    public int c;
-    public int d;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class h63 implements iy7 {
+    public static final Pattern a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
     @Override
-    public final void close() {
-        if (this.b != null) {
-            this.b = null;
-            transferEnded();
-        }
-        this.a = null;
-    }
-
-    @Override
-    public final Uri getUri() {
-        u63 u63Var = this.a;
-        if (u63Var != null) {
-            return u63Var.a;
-        }
-        return null;
-    }
-
-    @Override
-    public final long open(u63 u63Var) {
-        byte[] decode;
-        transferInitializing(u63Var);
-        this.a = u63Var;
-        Uri uri = u63Var.a;
-        long j = u63Var.f;
-        Uri normalizeScheme = uri.normalizeScheme();
-        String scheme = normalizeScheme.getScheme();
-        gre.h("data".equals(scheme), "Unsupported scheme: %s", scheme);
-        String schemeSpecificPart = normalizeScheme.getSchemeSpecificPart();
-        String str = g8c.a;
-        String[] split = schemeSpecificPart.split(",", -1);
-        if (split.length == 2) {
-            String str2 = split[1];
-            if (split[0].contains(";base64")) {
-                try {
-                    decode = Base64.decode(str2, 0);
-                    this.b = decode;
-                } catch (IllegalArgumentException e) {
-                    throw new av7(b00.h("Error while parsing Base64 encoded string: ", str2), e, true, 0);
+    public final Object I(Uri uri, l73 l73Var) {
+        long j;
+        long parseLong;
+        String readLine = new BufferedReader(new InputStreamReader(l73Var, StandardCharsets.UTF_8)).readLine();
+        try {
+            Matcher matcher = a.matcher(readLine);
+            if (matcher.matches()) {
+                String group = matcher.group(1);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+                simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
+                long time = simpleDateFormat.parse(group).getTime();
+                if (!"Z".equals(matcher.group(2))) {
+                    if ("+".equals(matcher.group(4))) {
+                        j = 1;
+                    } else {
+                        j = -1;
+                    }
+                    long parseLong2 = Long.parseLong(matcher.group(5));
+                    String group2 = matcher.group(7);
+                    if (TextUtils.isEmpty(group2)) {
+                        parseLong = 0;
+                    } else {
+                        parseLong = Long.parseLong(group2);
+                    }
+                    time -= (((parseLong2 * 60) + parseLong) * 60000) * j;
                 }
-            } else {
-                decode = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
-                this.b = decode;
+                return Long.valueOf(time);
             }
-            long j2 = u63Var.e;
-            if (j2 <= decode.length) {
-                int i = (int) j2;
-                this.c = i;
-                int length = decode.length - i;
-                this.d = length;
-                int i2 = (j > (-1L) ? 1 : (j == (-1L) ? 0 : -1));
-                if (i2 != 0) {
-                    this.d = (int) Math.min(length, j);
-                }
-                transferStarted(u63Var);
-                if (i2 != 0) {
-                    return j;
-                }
-                return this.d;
-            }
-            this.b = null;
-            throw new r63(2008);
+            throw hy7.b("Couldn't parse timestamp: " + readLine, null);
+        } catch (ParseException e) {
+            throw hy7.b(null, e);
         }
-        throw new av7("Unexpected URI format: " + normalizeScheme, null, true, 0);
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        if (i2 == 0) {
-            return 0;
-        }
-        int i3 = this.d;
-        if (i3 == 0) {
-            return -1;
-        }
-        int min = Math.min(i2, i3);
-        byte[] bArr2 = this.b;
-        String str = g8c.a;
-        System.arraycopy(bArr2, this.c, bArr, i, min);
-        this.c += min;
-        this.d -= min;
-        bytesTransferred(min);
-        return min;
     }
 }

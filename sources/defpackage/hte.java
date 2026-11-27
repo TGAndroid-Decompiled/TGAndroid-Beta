@@ -1,17 +1,52 @@
 package defpackage;
-public final class hte implements zn7 {
-    public static final hte a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
+public abstract class hte {
+    public static Integer a(String str) {
+        if (str != null) {
+            switch (str.hashCode()) {
+                case -1118317585:
+                    if (str.equals("REPEAT_ALL_AND_SHUFFLE")) {
+                        return 3;
+                    }
+                    return null;
+                case -962896020:
+                    if (str.equals("REPEAT_SINGLE")) {
+                        return 2;
+                    }
+                    return null;
+                case 1645938909:
+                    if (str.equals("REPEAT_ALL")) {
+                        return 1;
+                    }
+                    return null;
+                case 1645952171:
+                    if (str.equals("REPEAT_OFF")) {
+                        return 0;
+                    }
+                    return null;
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static String b(Integer num) {
+        if (num != null) {
+            int intValue = num.intValue();
+            if (intValue != 0) {
+                if (intValue != 1) {
+                    if (intValue != 2) {
+                        if (intValue != 3) {
+                            return null;
+                        }
+                        return "REPEAT_ALL_AND_SHUFFLE";
+                    }
+                    return "REPEAT_SINGLE";
+                }
+                return "REPEAT_ALL";
+            }
+            return "REPEAT_OFF";
         }
-        throw new ClassCastException();
+        return null;
     }
 }

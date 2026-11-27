@@ -1,37 +1,24 @@
 package defpackage;
-public abstract class qbe {
-    public static final int[] a;
+public final class qbe extends ybd {
+    public static final qbe n = new qbe(null, new Object[0], 0);
+    public final transient Object e;
+    public final transient Object[] f;
+    public final transient int h;
 
-    static {
-        int[] iArr = new int[7];
-        a = iArr;
-        try {
-            iArr[3] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            a[4] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            a[2] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            a[5] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            a[6] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            a[0] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            a[1] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+    public qbe(Object obj, Object[] objArr, int i) {
+        super((byte) 4);
+        this.e = obj;
+        this.f = objArr;
+        this.h = i;
+    }
+
+    @Override
+    public final java.lang.Object get(java.lang.Object r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qbe.get(java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public final int size() {
+        return this.h;
     }
 }

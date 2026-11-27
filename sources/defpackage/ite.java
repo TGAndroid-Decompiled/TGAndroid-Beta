@@ -1,45 +1,18 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-public final class ite {
-    public static ate a(Object obj, Object obj2) {
-        ate ateVar = (ate) obj;
-        ate ateVar2 = (ate) obj2;
-        if (!ateVar2.isEmpty()) {
-            if (!ateVar.a) {
-                if (ateVar.isEmpty()) {
-                    ateVar = new ate();
-                } else {
-                    ?? linkedHashMap = new LinkedHashMap(ateVar);
-                    linkedHashMap.a = true;
-                    ateVar = linkedHashMap;
-                }
-            }
-            ateVar.c();
-            if (!ateVar2.isEmpty()) {
-                ateVar.putAll(ateVar2);
-            }
+import android.media.MediaFormat;
+import java.nio.ByteBuffer;
+import java.util.List;
+public abstract class ite {
+    public static void a(MediaFormat mediaFormat, String str, int i) {
+        if (i != -1) {
+            mediaFormat.setInteger(str, i);
         }
-        return ateVar;
     }
 
-    public static void b(Object obj, Object obj2) {
-        ate ateVar = (ate) obj;
-        if (obj2 == null) {
-            if (!ateVar.isEmpty()) {
-                Iterator it = ateVar.entrySet().iterator();
-                if (!it.hasNext()) {
-                    return;
-                }
-                Map.Entry entry = (Map.Entry) it.next();
-                entry.getKey();
-                entry.getValue();
-                throw new NoSuchMethodError();
-            }
-            return;
+    public static void b(MediaFormat mediaFormat, List list) {
+        for (int i = 0; i < list.size(); i++) {
+            mediaFormat.setByteBuffer(uh9.k(i, "csd-"), ByteBuffer.wrap((byte[]) list.get(i)));
         }
-        fyb.g();
     }
 }

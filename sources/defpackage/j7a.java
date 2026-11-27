@@ -1,18 +1,19 @@
 package defpackage;
-public final class j7a extends gw2 {
-    public Object a;
-    public final k7a b;
-    public int c;
 
-    public j7a(k7a k7aVar, gw2 gw2Var) {
-        super(gw2Var);
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class j7a implements RequestDelegate {
+    public final Runnable a;
+    public final k7a b;
+
+    public j7a(k7a k7aVar, Runnable runnable) {
         this.b = k7aVar;
+        this.a = runnable;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.a = obj;
-        this.c |= Integer.MIN_VALUE;
-        return this.b.b(this);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        hl.c3(new jr9(this, tLObject, this.a, (byte) 9));
     }
 }

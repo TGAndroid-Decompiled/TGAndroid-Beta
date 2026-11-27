@@ -1,18 +1,12 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
 public abstract class pgd {
-    public static final int a = 0;
-
-    static {
-        pgd.class.getClassLoader();
-    }
-
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
+    public static Task a(BasePendingResult basePendingResult, s68 s68Var) {
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        basePendingResult.b(new x7d(basePendingResult, taskCompletionSource, s68Var));
+        return taskCompletionSource.getTask();
     }
 }

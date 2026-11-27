@@ -1,12 +1,12 @@
 package defpackage;
+public final class ake {
+    public final Long a;
+    public final sle b;
+    public final Boolean c;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class ake {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
-        }
-        return null;
+    public ake(htd htdVar) {
+        this.a = (Long) htdVar.b;
+        this.b = (sle) htdVar.c;
+        this.c = (Boolean) htdVar.d;
     }
 }

@@ -1,33 +1,67 @@
 package defpackage;
 
-import android.view.animation.Interpolator;
-public final class wk implements Interpolator {
-    public final double a;
-    public final double b;
-    public final double c;
-    public final double d;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class wk extends ClickableSpan {
+    public final byte a;
+    public final Runnable b;
 
-    public wk(double d, double d2, double d3, double d4) {
-        this.a = d;
-        this.b = d2;
-        this.c = d3;
-        this.d = d4;
+    public wk(Runnable runnable, byte b) {
+        this.a = b;
+        this.b = runnable;
     }
 
     @Override
-    public final float getInterpolation(float f) {
-        double exp;
-        double d = this.a;
-        int i = (d > 1.0d ? 1 : (d == 1.0d ? 0 : -1));
-        double d2 = this.d;
-        double d3 = this.b;
-        if (i < 0) {
-            double exp2 = Math.exp((-f) * d * d3);
-            double d4 = this.c * f;
-            exp = ((Math.sin(d4) * d2) + (Math.cos(d4) * 1.0d)) * exp2;
-        } else {
-            exp = Math.exp((-f) * d3) * ((d2 * f) + 1.0d);
+    public final void onClick(View view) {
+        byte b = this.a;
+        Runnable runnable = this.b;
+        switch (b) {
+            case 0:
+                runnable.run();
+                return;
+            case 1:
+                runnable.run();
+                return;
+            case 2:
+                runnable.run();
+                return;
+            case 3:
+                runnable.run();
+                return;
+            case 4:
+                runnable.run();
+                return;
+            default:
+                runnable.run();
+                return;
         }
-        return (float) (1.0d - exp);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.a) {
+            case 0:
+                textPaint.setUnderlineText(false);
+                textPaint.setColor(textPaint.linkColor);
+                return;
+            case 1:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 2:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 3:
+                textPaint.setUnderlineText(false);
+                return;
+            case 4:
+                textPaint.setUnderlineText(false);
+                return;
+            default:
+                textPaint.setUnderlineText(false);
+                return;
+        }
     }
 }

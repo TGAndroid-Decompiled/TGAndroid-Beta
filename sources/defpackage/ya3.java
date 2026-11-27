@@ -1,26 +1,26 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class ya3 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final gb3 b;
+import java.util.ArrayDeque;
+public final class ya3 {
+    public final byte[] a = new byte[8];
+    public final ArrayDeque b = new ArrayDeque();
+    public final cdc c = new cdc();
+    public v34 d;
+    public byte e;
+    public int f;
+    public long g;
 
-    public ya3(gb3 gb3Var, s49 s49Var, byte b) {
-        this.a = b;
-        this.b = gb3Var;
+    public final boolean a(defpackage.cb3 r39) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ya3.a(cb3):boolean");
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        gb3 gb3Var = this.b;
-        switch (b) {
-            case 0:
-                gb3Var.Q();
-                return;
-            default:
-                gb3Var.M();
-                return;
+    public final long b(cb3 cb3Var, int i) {
+        byte[] bArr = this.a;
+        cb3Var.c(bArr, 0, i, false);
+        long j = 0;
+        for (int i2 = 0; i2 < i; i2++) {
+            j = (j << 8) | (bArr[i2] & 255);
         }
+        return j;
     }
 }

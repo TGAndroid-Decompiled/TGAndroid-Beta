@@ -2,279 +2,216 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.graphics.Paint;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.UsersSelectActivity;
-public final class l7 extends EditTextBoldCursor {
-    public final byte M1;
-    public final Object N1;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class l7 extends FrameLayout {
+    public final byte a;
+    public boolean b;
+    public final Object c;
 
-    public l7(Context context) {
+    public l7(Context context, CharSequence charSequence, String str, int i, boolean z) {
         super(context);
-        this.M1 = (byte) 11;
-        this.N1 = new xl3((byte) 7);
+        this.a = (byte) 2;
+        Paint paint = new Paint(1);
+        this.c = paint;
+        this.b = z;
+        setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        textView.setText(charSequence);
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(i);
+        textView.setSingleLine(true);
+        textView.setGravity(16);
+        if (str != null) {
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            linearLayout.setGravity(16);
+            linearLayout.addView(textView, tre.o(-2, -2));
+            TextView textView2 = new TextView(context);
+            SpannableStringBuilder append = new SpannableStringBuilder(str).append((CharSequence) " >");
+            append.setSpan(new zm3(), append.length() - 1, append.length(), 33);
+            textView2.setText(append);
+            textView2.setTextSize(1, 13.0f);
+            textView2.setTextColor(aob.p1(0.55f, i));
+            textView2.setSingleLine(true);
+            linearLayout.addView(textView2, tre.k(0.0f, 1.0f, 0.0f, 0.0f, -2, -2));
+            addView(linearLayout, tre.d(-2, -1.0f, 3, 18.0f, 0.0f, 44.0f, 0.0f));
+        } else {
+            addView(textView, tre.d(-2, -1.0f, 3, 18.0f, 0.0f, 44.0f, 0.0f));
+        }
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(hl.N(1.75f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setColor(i);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.M1) {
-            case 11:
-                xl3 xl3Var = (xl3) this.N1;
-                if (length() == 0) {
-                    super.onDraw(canvas);
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.a) {
+            case 2:
+                Paint paint = (Paint) this.c;
+                super.dispatchDraw(canvas);
+                float height = getHeight() / 2.0f;
+                if (this.b) {
+                    float width = getWidth() - hl.L(26.0f);
+                    canvas.drawLine(width - hl.L(5.0f), height, width - hl.L(1.5f), height + hl.L(3.5f), paint);
+                    canvas.drawLine(width - hl.L(1.5f), hl.L(3.5f) + height, width + hl.L(5.5f), height - hl.L(4.0f), paint);
                     return;
                 }
-                canvas.saveLayerAlpha(getScrollX(), 0.0f, getWidth() + getScrollX(), getHeight(), 255, 31);
-                super.onDraw(canvas);
-                RectF rectF = gl.P;
-                rectF.set(getScrollX(), 0.0f, gl.L(12.0f) + getScrollX(), getHeight());
-                xl3Var.s(canvas, rectF, 0, 1.0f);
-                rectF.set((getWidth() + getScrollX()) - gl.L(12.0f), 0.0f, getWidth() + getScrollX(), getHeight());
-                xl3Var.s(canvas, rectF, 2, 1.0f);
-                canvas.restore();
                 return;
             default:
-                super.onDraw(canvas);
+                super.dispatchDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public final void onFocusChanged(boolean z, int i, Rect rect) {
-        float f;
-        byte b = this.M1;
-        Object obj = this.N1;
-        switch (b) {
-            case 2:
-                super.onFocusChanged(z, i, rect);
-                if (!z) {
-                    gl.t1(((xv3) obj).e);
-                    return;
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        int i;
+        switch (this.a) {
+            case 3:
+                boolean drawChild = super.drawChild(canvas, view, j);
+                pqb pqbVar = (pqb) this.c;
+                if (view == pqbVar.u0 && pqb.L0(pqbVar) != null) {
+                    wk5 M0 = pqb.M0(pqbVar);
+                    if (pqbVar.u0.getVisibility() == 0) {
+                        i = (int) (pqbVar.u0.getTranslationY() + pqbVar.u0.getMeasuredHeight());
+                    } else {
+                        i = 0;
+                    }
+                    ((ActionBarLayout) M0).o(canvas, i);
                 }
-                return;
-            case 5:
-                super.onFocusChanged(z, i, rect);
-                dr7 dr7Var = (dr7) obj;
-                if (!z && !isFocused()) {
-                    f = 0.0f;
-                } else {
-                    f = 1.0f;
-                }
-                dr7Var.b(f, f, true);
-                return;
+                return drawChild;
             default:
-                super.onFocusChanged(z, i, rect);
-                return;
+                return super.drawChild(canvas, view, j);
         }
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.M1) {
+        switch (this.a) {
+            case 2:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setCheckable(true);
+                accessibilityNodeInfo.setChecked(this.b);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        switch (this.a) {
+            case 0:
+                s7 s7Var = (s7) this.c;
+                super.onLayout(z, i, i2, i3, i4);
+                int i5 = 0;
+                if (!ob6.a0 && s7Var.h.getVisibility() == 0) {
+                    i5 = hl.L(4.0f) + s7Var.h.getMeasuredWidth();
+                }
+                if (s7Var.f.getVisibility() == 0) {
+                    i5 += s7Var.f.getMeasuredWidth();
+                }
+                m7 m7Var = s7Var.e;
+                m7Var.layout(i5, m7Var.getTop(), s7Var.e.getMeasuredWidth() + i5, s7Var.e.getBottom());
+                return;
+            default:
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.l7.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final void requestLayout() {
+        switch (this.a) {
+            case 0:
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
             case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                StringBuilder sb = new StringBuilder();
-                sb.append((CharSequence) getText());
-                f92 f92Var = (f92) this.N1;
-                z82 z82Var = f92Var.h;
-                if (z82Var != null && z82Var.getTextView() != null && !TextUtils.isEmpty(f92Var.h.getTextView().getText())) {
-                    sb.append("\n");
-                    sb.append(f92Var.h.getTextView().getText());
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
                 }
-                accessibilityNodeInfo.setText(sb);
                 return;
+            case 2:
             default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onKeyDown(int i, KeyEvent keyEvent) {
-        TextView textView;
-        byte b = this.M1;
-        Object obj = this.N1;
-        switch (b) {
-            case 0:
-                r7 r7Var = (r7) obj;
-                if (i == 67 && r7Var.e.length() == 0 && ((r7Var.h.getVisibility() == 0 && r7Var.h.length() > 0) || r7Var.s())) {
-                    if (r7Var.s()) {
-                        rf4 rf4Var = (rf4) b00.f(1, r7Var.h0);
-                        n7 n7Var = r7Var.I;
-                        if (n7Var != null) {
-                            n7Var.j(rf4Var);
-                        }
-                        r7Var.J(rf4Var);
-                        return true;
-                    }
-                    r7Var.s.callOnClick();
-                    return true;
-                }
-                return super.onKeyDown(i, keyEvent);
-            case 3:
-                no4 no4Var = (no4) obj;
-                if (i == 67 && no4Var.r.length() == 0 && no4Var.d()) {
-                    if (!no4Var.d()) {
-                        return true;
-                    }
-                    rf4 rf4Var2 = (rf4) b00.f(1, no4Var.G);
-                    mo4 mo4Var = no4Var.I;
-                    if (mo4Var != null) {
-                        ((di3) mo4Var).a(rf4Var2);
-                    }
-                    no4Var.f(rf4Var2);
-                    return true;
-                }
-                return super.onKeyDown(i, keyEvent);
-            case 7:
-                pha phaVar = (pha) obj;
-                if (i == 67 && length() == 0 && (textView = phaVar.x) != null && textView.getVisibility() == 0) {
-                    phaVar.m();
-                    return true;
-                }
-                return super.onKeyDown(i, keyEvent);
-            default:
-                return super.onKeyDown(i, keyEvent);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.M1) {
-            case 0:
-                super.onMeasure(i, i2);
-                setMeasuredDimension(gl.L(3.0f) + Math.max(View.MeasureSpec.getSize(i), getMeasuredWidth()), getMeasuredHeight());
+                super.requestLayout();
                 return;
             case 3:
-                super.onMeasure(i, i2);
-                setPivotX(getPaddingLeft());
-                setPivotY(getMeasuredHeight() / 2.0f);
-                return;
-            default:
-                super.onMeasure(i, i2);
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
                 return;
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        boolean z;
-        switch (this.M1) {
-            case 10:
-                super.onTextChanged(charSequence, i, i2, i3);
-                iw1 iw1Var = ((ojc) this.N1).b;
-                if (iw1Var != null) {
-                    ChatActivityEnterView chatActivityEnterView = iw1Var.b;
-                    int i4 = ChatActivityEnterView.r7;
-                    ow1 ow1Var = chatActivityEnterView.K0;
-                    if (ow1Var != null) {
-                        if (chatActivityEnterView.K1 && chatActivityEnterView.U1) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        ow1Var.setIconDimmed(z);
-                        return;
-                    }
+    public final void setAlpha(float f) {
+        switch (this.a) {
+            case 0:
+                super.setAlpha(f);
+                s7 s7Var = (s7) this.c;
+                d7 d7Var = s7Var.s;
+                if (d7Var != null && d7Var.getTag() != null) {
+                    s7Var.s.setAlpha(f);
+                    s7Var.s.setScaleX(f);
+                    s7Var.s.setScaleY(f);
                     return;
                 }
                 return;
             default:
-                super.onTextChanged(charSequence, i, i2, i3);
+                super.setAlpha(f);
                 return;
         }
     }
 
     @Override
-    public final boolean onTextContextMenuItem(int i) {
-        switch (this.M1) {
-            case 4:
-                if (i == 16908322 || i == 16908337) {
-                    ((qd6) this.N1).E = true;
-                    postDelayed(new ql3(this, (byte) 26), 1000L);
-                }
-                return super.onTextContextMenuItem(i);
-            default:
-                return super.onTextContextMenuItem(i);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        byte b = this.M1;
-        Object obj = this.N1;
-        switch (b) {
+    public final void setVisibility(int i) {
+        switch (this.a) {
             case 0:
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (motionEvent.getAction() == 1 && !gl.E3(this)) {
-                    clearFocus();
-                    requestFocus();
+                super.setVisibility(i);
+                s7 s7Var = (s7) this.c;
+                d7 d7Var = s7Var.s;
+                if (d7Var != null) {
+                    d7Var.setVisibility(i);
                 }
-                return onTouchEvent;
-            case 2:
-                l7 l7Var = ((xv3) obj).e;
-                if (!l7Var.isEnabled()) {
-                    return super.onTouchEvent(motionEvent);
+                View view = s7Var.x;
+                if (view != null) {
+                    view.setVisibility(i);
                 }
-                if (motionEvent.getAction() == 0) {
-                    l7Var.requestFocus();
-                    gl.E3(l7Var);
+                FrameLayout frameLayout = s7Var.a;
+                if (frameLayout != null) {
+                    frameLayout.setVisibility(i);
+                    return;
                 }
-                return super.onTouchEvent(motionEvent);
-            case 6:
-                hz9 hz9Var = (hz9) obj;
-                ya5 ya5Var = hz9Var.f;
-                if (ya5Var != null) {
-                    ya5Var.a();
-                    hz9Var.f = null;
-                }
-                if (motionEvent.getAction() == 0 && !gl.E3(this)) {
-                    hz9Var.fullScroll(130);
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            case 8:
-                v5b v5bVar = (v5b) obj;
-                ya5 ya5Var2 = v5bVar.f;
-                if (ya5Var2 != null) {
-                    ya5Var2.a();
-                    v5bVar.f = null;
-                }
-                if (motionEvent.getAction() == 0 && !gl.E3(this)) {
-                    v5bVar.fullScroll(130);
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            case 9:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) obj;
-                ya5 ya5Var3 = usersSelectActivity.R;
-                if (ya5Var3 != null) {
-                    ya5Var3.a();
-                    usersSelectActivity.R = null;
-                }
-                if (motionEvent.getAction() == 0 && !gl.E3(this)) {
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                super.setVisibility(i);
+                return;
         }
     }
 
     public l7(byte b, Context context, Object obj) {
         super(context);
-        this.M1 = b;
-        this.N1 = obj;
+        this.a = b;
+        this.c = obj;
     }
 }

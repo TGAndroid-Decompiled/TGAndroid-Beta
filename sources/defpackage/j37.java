@@ -1,208 +1,168 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class j37 extends View implements tjb {
-    public final ArrayList a;
-    public float b;
-    public final wjb c;
-    public final Paint d;
-    public int e;
-    public int f;
-    public Drawable h;
-    public float n;
-    public float r;
-    public final RectF s;
-    public p8c w;
+import android.util.LongSparseArray;
+import java.nio.ByteBuffer;
+import java.util.List;
+public final class j37 implements at9 {
+    public final aw8 a;
+    public final aw8 b;
+    public final ym4 c = new ym4((byte) 1, false);
+    public final s93 d = new s93(1, 0);
+    public final LongSparseArray e = new LongSparseArray();
+    public final int f;
+    public byte[] h;
+    public long n;
+    public boolean r;
+    public boolean s;
 
-    public j37(Context context, wjb wjbVar) {
-        super(context);
-        this.a = new ArrayList();
-        this.d = new Paint(1);
-        this.n = gl.L(14.0f);
-        this.r = gl.L(0.0f);
-        this.s = new RectF();
-        this.c = wjbVar;
-        b();
-    }
-
-    public final void a(int i, String str) {
-        this.a.add(new i37(i, str));
+    public j37(aw8 aw8Var, aw8 aw8Var2, ko4 ko4Var) {
+        int i;
+        this.a = aw8Var;
+        this.b = aw8Var2;
+        int i2 = ko4Var.v;
+        if (i2 != -1) {
+            i = i2 + 2;
+        } else {
+            i = 18;
+        }
+        this.f = i;
+        this.n = -9223372036854775807L;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.De));
-    }
-
-    public final void b() {
-        int[] iArr;
-        boolean o = bkb.I.o();
-        Paint paint = this.d;
-        if (o) {
-            this.e = -1862270977;
-            this.f = -1325400065;
-            paint.setColor(285212671);
-            return;
-        }
-        int i = bkb.De;
-        wjb wjbVar = this.c;
-        int v0 = bkb.v0(i, wjbVar);
-        if ((wjbVar instanceof ku1) && (((ku1) wjbVar).l() instanceof ye7) && (iArr = ((ye7) ((ku1) wjbVar).l()).a) != null) {
-            v0 = gl.w0(gl.w0(iArr[0], iArr[1]), gl.w0(iArr[2], iArr[3]));
-        }
-        this.e = bkb.b(-1606201797, v0);
-        this.f = bkb.b(-448573893, v0);
-        paint.setColor(bkb.b(814980216, v0));
+    public final int a() {
+        return this.a.a();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void g() {
+        this.a.g();
+        if (!this.r) {
+            this.b.g();
+        }
+    }
+
+    @Override
+    public final int i(ym4 ym4Var, s93 s93Var, int i) {
+        byte[] bArr;
         boolean z;
-        ArrayList arrayList = this.a;
-        boolean z2 = true;
-        if (arrayList.size() > 1) {
-            float f = this.b;
-            double d = f;
-            int floor = (int) Math.floor(d);
-            if (floor >= 0 && floor < arrayList.size()) {
-                z = true;
-            } else {
-                z = false;
-            }
-            int ceil = (int) Math.ceil(d);
-            z2 = (ceil < 0 || ceil >= arrayList.size()) ? false : false;
-            RectF rectF = this.s;
-            if (z) {
-                if (z2) {
-                    gl.X1(((i37) arrayList.get(floor)).c, ((i37) arrayList.get(ceil)).c, f - floor, rectF);
-                } else {
-                    rectF.set(((i37) arrayList.get(floor)).c);
+        int i2;
+        int i3;
+        int i4 = this.a.i(ym4Var, s93Var, i);
+        if (i4 == -4 && !s93Var.isEndOfStream() && (i & 4) == 0) {
+            boolean z2 = true;
+            if ((i & 1) == 0 && !this.r) {
+                long j = s93Var.e;
+                boolean z3 = this.s;
+                byte[] bArr2 = null;
+                LongSparseArray longSparseArray = this.e;
+                if (!z3) {
+                    while (true) {
+                        s93 s93Var2 = this.d;
+                        s93Var2.clear();
+                        aw8 aw8Var = this.b;
+                        ym4 ym4Var2 = this.c;
+                        int i5 = aw8Var.i(ym4Var2, s93Var2, 0);
+                        if (i5 == -3) {
+                            break;
+                        } else if (i5 != -5) {
+                            if (s93Var2.isEndOfStream()) {
+                                this.s = z2;
+                                break;
+                            }
+                            long j2 = s93Var2.e;
+                            long j3 = this.n;
+                            if (j3 != -9223372036854775807L && j2 < j3) {
+                                this.r = z2;
+                                longSparseArray.clear();
+                                this.h = bArr2;
+                            }
+                            this.n = j2;
+                            ByteBuffer byteBuffer = s93Var2.c;
+                            if (!this.r && byteBuffer != null) {
+                                s93Var2.d();
+                                ko4 ko4Var = (ko4) ym4Var2.c;
+                                if (ko4Var != null) {
+                                    List list = ko4Var.w;
+                                    z = z2;
+                                    i2 = 0;
+                                    for (int i6 = 0; i6 < list.size(); i6++) {
+                                        i2 += ((byte[]) list.get(i6)).length;
+                                    }
+                                } else {
+                                    z = z2;
+                                    i2 = 0;
+                                }
+                                byte[] bArr3 = new byte[byteBuffer.remaining() + i2];
+                                if (ko4Var != null) {
+                                    List list2 = ko4Var.w;
+                                    i3 = 0;
+                                    for (int i7 = 0; i7 < list2.size(); i7++) {
+                                        byte[] bArr4 = (byte[]) list2.get(i7);
+                                        System.arraycopy(bArr4, 0, bArr3, i3, bArr4.length);
+                                        i3 += bArr4.length;
+                                    }
+                                } else {
+                                    i3 = 0;
+                                }
+                                byteBuffer.get(bArr3, i3, byteBuffer.remaining());
+                                longSparseArray.put(j2, bArr3);
+                                while (longSparseArray.size() > this.f) {
+                                    longSparseArray.removeAt(0);
+                                }
+                            } else {
+                                z = z2;
+                            }
+                            if (j2 > j) {
+                                break;
+                            }
+                            z2 = z;
+                            bArr2 = null;
+                        }
+                    }
                 }
-            } else if (z2) {
-                rectF.set(((i37) arrayList.get(ceil)).c);
-            }
-            Drawable drawable = this.h;
-            if (drawable != null) {
-                drawable.draw(canvas);
-            }
-            if (z || z2) {
-                canvas.drawRoundRect(rectF, gl.L(13.0f), gl.L(13.0f), this.d);
-            }
-            for (int i = 0; i < arrayList.size(); i++) {
-                i37 i37Var = (i37) arrayList.get(i);
-                i37Var.b.c(i37Var.c.left + this.n, getMeasuredHeight() / 2.0f, 1.0f, bm2.f(1.0f - Math.abs(f - i), this.e, this.f), canvas);
-            }
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        byte b;
-        p8c p8cVar;
-        ArrayList arrayList = this.a;
-        if (arrayList.size() > 1) {
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
-            int i = 0;
-            while (true) {
-                if (i < arrayList.size()) {
-                    if (((i37) arrayList.get(i)).d.contains(x, y)) {
-                        b = ((i37) arrayList.get(i)).a;
+                long j4 = s93Var.e;
+                int size = longSparseArray.size() - 1;
+                while (true) {
+                    if (size >= 0) {
+                        if (longSparseArray.keyAt(size) <= j4) {
+                            bArr = (byte[]) longSparseArray.valueAt(size);
+                            break;
+                        }
+                        size--;
+                    } else {
+                        bArr = null;
                         break;
                     }
-                    i++;
-                } else {
-                    b = -1;
-                    break;
+                }
+                if (bArr != null) {
+                    this.h = bArr;
+                }
+                byte[] bArr5 = this.h;
+                if (bArr5 != null) {
+                    int length = bArr5.length;
+                    ByteBuffer byteBuffer2 = s93Var.f;
+                    if (byteBuffer2 != null && byteBuffer2.capacity() >= length) {
+                        s93Var.f.clear();
+                    } else {
+                        s93Var.f = ByteBuffer.allocate(length);
+                    }
+                    s93Var.f.put(bArr5);
+                    s93Var.addFlag(268435456);
+                    return i4;
                 }
             }
-            if (motionEvent.getAction() == 0) {
-                if (b != -1) {
-                    return true;
-                }
-            } else if (motionEvent.getAction() == 1 && b != -1 && (p8cVar = this.w) != null) {
-                p8cVar.a(Integer.valueOf(b));
-            }
         }
-        return false;
-    }
-
-    public int getColor() {
-        return this.e;
+        return i4;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        ArrayList arrayList;
-        super.onMeasure(i, i2);
-        this.n = gl.L(14.0f);
-        float f = 0.0f;
-        this.r = gl.L(0.0f);
-        int i3 = 0;
-        while (true) {
-            arrayList = this.a;
-            if (i3 >= arrayList.size()) {
-                break;
-            }
-            if (i3 > 0) {
-                f += this.r;
-            }
-            f += ((i37) arrayList.get(i3)).b.j() + this.n + this.n;
-            i3++;
-        }
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        float L = (measuredHeight - gl.L(26.0f)) / 2.0f;
-        float L2 = (gl.L(26.0f) + measuredHeight) / 2.0f;
-        float f2 = measuredWidth;
-        float f3 = (f2 - f) / 2.0f;
-        float f4 = f3;
-        for (int i4 = 0; i4 < arrayList.size(); i4++) {
-            float j = ((i37) arrayList.get(i4)).b.j() + this.n + this.n;
-            ((i37) arrayList.get(i4)).c.set(f4, L, f4 + j, L2);
-            ((i37) arrayList.get(i4)).d.set(((i37) arrayList.get(i4)).c);
-            ((i37) arrayList.get(i4)).d.inset((-this.r) / 2.0f, -L);
-            f4 += j + this.r;
-        }
-        Drawable drawable = this.h;
-        if (drawable != null) {
-            Rect rect = gl.Q;
-            drawable.getPadding(rect);
-            int i5 = measuredHeight / 2;
-            this.h.setBounds((((int) f3) - gl.L(3.0f)) - rect.left, (i5 - gl.L(16.0f)) - rect.top, gl.L(3.0f) + ((int) ((f2 + f) / 2.0f)) + rect.right, gl.L(16.0f) + i5 + rect.bottom);
-        }
+    public final boolean k() {
+        return this.a.k();
     }
 
     @Override
-    public void setBackground(Drawable drawable) {
-        this.h = drawable;
-    }
-
-    public void setOnTabClick(p8c p8cVar) {
-        this.w = p8cVar;
-    }
-
-    public void setSelectedTab(float f) {
-        this.b = f;
-        invalidate();
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            b();
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public final int o(long j) {
+        return this.a.o(j);
     }
 }

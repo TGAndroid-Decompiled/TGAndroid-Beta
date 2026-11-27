@@ -8,16 +8,16 @@ import android.widget.TextView;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class r implements q8c {
+public final class r implements qcc {
     public final byte a;
     public final Object b;
     public final Object c;
     public final Object d;
 
-    public r(Context context, wjb wjbVar, EditTextBoldCursor editTextBoldCursor) {
+    public r(Context context, vnb vnbVar, EditTextBoldCursor editTextBoldCursor) {
         this.a = (byte) 4;
         this.d = context;
-        this.c = wjbVar;
+        this.c = vnbVar;
         this.b = editTextBoldCursor;
     }
 
@@ -30,211 +30,211 @@ public final class r implements q8c {
         Object obj4 = this.d;
         switch (b) {
             case 0:
-                final a1 a1Var = (a1) obj2;
-                final wjb wjbVar = (wjb) obj3;
+                final b1 b1Var = (b1) obj2;
+                final vnb vnbVar = (vnb) obj3;
                 Context context = (Context) obj4;
-                y0 y0Var = (y0) obj;
-                TL_aicompose.AiComposeTone aiComposeTone = y0Var.e;
+                z0 z0Var = (z0) obj;
+                TL_aicompose.AiComposeTone aiComposeTone = z0Var.e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
-                    cs5 G = cs5.G(a1Var.c, wjbVar, y0Var);
-                    G.X(bkb.b0(gl.L(12.0f), bkb.v0(bkb.c6, wjbVar)));
-                    G.k(2131232121, k96.M0(2131754996, null), new Runnable() {
+                    fu5 G = fu5.G(b1Var.c, vnbVar, z0Var);
+                    G.X(aob.b0(hl.L(12.0f), aob.v0(aob.d6, vnbVar)));
+                    G.k(2131232121, ob6.M0(2131754993, null), new Runnable() {
                         @Override
                         public final void run() {
                             boolean z;
                             byte b2 = r4;
                             TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = tL_aiComposeTone;
-                            wjb wjbVar2 = wjbVar;
-                            a1 a1Var2 = a1Var;
+                            vnb vnbVar2 = vnbVar;
+                            b1 b1Var2 = b1Var;
                             switch (b2) {
                                 case 0:
-                                    r0 r0Var = new r0(a1Var2.getContext(), wjbVar2);
-                                    r0Var.e2 = tL_aiComposeTone2;
-                                    r0Var.c2 = Long.valueOf(tL_aiComposeTone2.emoji_id);
-                                    r0Var.a1();
-                                    r0Var.V1.setText(r0Var.e2.title);
-                                    r0Var.W1.setText(r0Var.e2.prompt);
-                                    if (r0Var.e2.author_id != 0) {
+                                    s0 s0Var = new s0(b1Var2.getContext(), vnbVar2);
+                                    s0Var.e2 = tL_aiComposeTone2;
+                                    s0Var.c2 = Long.valueOf(tL_aiComposeTone2.emoji_id);
+                                    s0Var.b1();
+                                    s0Var.V1.setText(s0Var.e2.title);
+                                    s0Var.W1.setText(s0Var.e2.prompt);
+                                    if (s0Var.e2.author_id != 0) {
                                         z = true;
                                     } else {
                                         z = false;
                                     }
-                                    r0Var.Y1.a(z, false);
-                                    r0Var.o1.setTitle(k96.M0(2131754996, null));
-                                    r0Var.b2.setText(k96.M0(2131754979, null));
-                                    r0Var.Z0();
-                                    r0Var.i2.O(false);
-                                    r0Var.g2 = new h(a1Var2, (byte) 2);
-                                    r0Var.show();
+                                    s0Var.Y1.a(z, false);
+                                    s0Var.o1.setTitle(ob6.M0(2131754993, null));
+                                    s0Var.b2.setText(ob6.M0(2131754976, null));
+                                    s0Var.a1();
+                                    s0Var.i2.O(false);
+                                    s0Var.g2 = new h(b1Var2, (byte) 2);
+                                    s0Var.show();
                                     return;
                                 default:
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar2, a1Var2.getContext());
-                                    String M0 = k96.M0(2131754998, null);
-                                    hd hdVar = alertDialog$Builder.a;
-                                    hdVar.S = M0;
-                                    hdVar.U = k96.M0(2131754997, null);
-                                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                                    alertDialog$Builder.j(k96.M0(2131751586, null), new o(a1Var2, tL_aiComposeTone2, (byte) 0));
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vnbVar2, b1Var2.getContext());
+                                    String M0 = ob6.M0(2131754995, null);
+                                    id idVar = alertDialog$Builder.a;
+                                    idVar.S = M0;
+                                    idVar.U = ob6.M0(2131754994, null);
+                                    alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+                                    alertDialog$Builder.j(ob6.M0(2131751563, null), new o(b1Var2, tL_aiComposeTone2, (byte) 0));
                                     alertDialog$Builder.c(-1);
                                     alertDialog$Builder.o();
                                     return;
                             }
                         }
                     }, tL_aiComposeTone.creator);
-                    G.b(2131232368, k96.M0(2131754983, null), new s67(a1Var, tL_aiComposeTone, context, wjbVar, (byte) 5), false);
-                    G.l(2131232113, new ee2(a1Var, tL_aiComposeTone, (byte) 15), k96.M0(2131754985, null), !tL_aiComposeTone.creator, true);
+                    G.b(2131232368, ob6.M0(2131754980, null), new o97(b1Var, tL_aiComposeTone, context, vnbVar, (byte) 5), false);
+                    G.l(2131232113, new ve2(b1Var, tL_aiComposeTone, (byte) 15), ob6.M0(2131754982, null), !tL_aiComposeTone.creator, true);
                     G.l(2131232113, new Runnable() {
                         @Override
                         public final void run() {
                             boolean z;
                             byte b2 = r4;
                             TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = tL_aiComposeTone;
-                            wjb wjbVar2 = wjbVar;
-                            a1 a1Var2 = a1Var;
+                            vnb vnbVar2 = vnbVar;
+                            b1 b1Var2 = b1Var;
                             switch (b2) {
                                 case 0:
-                                    r0 r0Var = new r0(a1Var2.getContext(), wjbVar2);
-                                    r0Var.e2 = tL_aiComposeTone2;
-                                    r0Var.c2 = Long.valueOf(tL_aiComposeTone2.emoji_id);
-                                    r0Var.a1();
-                                    r0Var.V1.setText(r0Var.e2.title);
-                                    r0Var.W1.setText(r0Var.e2.prompt);
-                                    if (r0Var.e2.author_id != 0) {
+                                    s0 s0Var = new s0(b1Var2.getContext(), vnbVar2);
+                                    s0Var.e2 = tL_aiComposeTone2;
+                                    s0Var.c2 = Long.valueOf(tL_aiComposeTone2.emoji_id);
+                                    s0Var.b1();
+                                    s0Var.V1.setText(s0Var.e2.title);
+                                    s0Var.W1.setText(s0Var.e2.prompt);
+                                    if (s0Var.e2.author_id != 0) {
                                         z = true;
                                     } else {
                                         z = false;
                                     }
-                                    r0Var.Y1.a(z, false);
-                                    r0Var.o1.setTitle(k96.M0(2131754996, null));
-                                    r0Var.b2.setText(k96.M0(2131754979, null));
-                                    r0Var.Z0();
-                                    r0Var.i2.O(false);
-                                    r0Var.g2 = new h(a1Var2, (byte) 2);
-                                    r0Var.show();
+                                    s0Var.Y1.a(z, false);
+                                    s0Var.o1.setTitle(ob6.M0(2131754993, null));
+                                    s0Var.b2.setText(ob6.M0(2131754976, null));
+                                    s0Var.a1();
+                                    s0Var.i2.O(false);
+                                    s0Var.g2 = new h(b1Var2, (byte) 2);
+                                    s0Var.show();
                                     return;
                                 default:
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar2, a1Var2.getContext());
-                                    String M0 = k96.M0(2131754998, null);
-                                    hd hdVar = alertDialog$Builder.a;
-                                    hdVar.S = M0;
-                                    hdVar.U = k96.M0(2131754997, null);
-                                    alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                                    alertDialog$Builder.j(k96.M0(2131751586, null), new o(a1Var2, tL_aiComposeTone2, (byte) 0));
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vnbVar2, b1Var2.getContext());
+                                    String M0 = ob6.M0(2131754995, null);
+                                    id idVar = alertDialog$Builder.a;
+                                    idVar.S = M0;
+                                    idVar.U = ob6.M0(2131754994, null);
+                                    alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+                                    alertDialog$Builder.j(ob6.M0(2131751563, null), new o(b1Var2, tL_aiComposeTone2, (byte) 0));
                                     alertDialog$Builder.c(-1);
                                     alertDialog$Builder.o();
                                     return;
                             }
                         }
-                    }, k96.M0(2131754998, null), tL_aiComposeTone.creator, true);
+                    }, ob6.M0(2131754995, null), tL_aiComposeTone.creator, true);
                     G.a0();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
             case 1:
                 View view = (View) obj;
-                k27 k27Var = ((td8) obj4).b;
-                return od8.d(view, (String) obj2, (String) obj3, k27Var.F0(), k27Var);
+                r47 r47Var = ((hh8) obj4).b;
+                return ch8.d(view, (String) obj2, (String) obj3, r47Var.F0(), r47Var);
             case 2:
-                wt7 wt7Var = (wt7) obj2;
+                dx7 dx7Var = (dx7) obj2;
                 boolean[] zArr = (boolean[]) obj3;
-                mt7 mt7Var = (mt7) obj4;
-                ww0 ww0Var = mt7Var.c;
+                tw7 tw7Var = (tw7) obj4;
+                ex0 ex0Var = tw7Var.c;
                 Integer num = (Integer) obj;
-                st7 st7Var = wt7Var.H0;
-                si5 si5Var = wt7Var.w1;
+                zw7 zw7Var = dx7Var.B0;
+                uk5 uk5Var = dx7Var.q1;
                 if (num.intValue() == 0) {
                     zArr[0] = false;
-                    wt7Var.L0(null, new ur4(wt7Var, (byte) 25));
+                    dx7Var.K0(null, new yt4(dx7Var, (byte) 25));
                     return Boolean.TRUE;
                 } else if (num.intValue() == 5) {
                     zArr[0] = false;
-                    rqe.c(2131624120, 2131747109, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ra((byte) 10, new ra((byte) 9, new x15(wt7Var, mt7Var, (byte) 15), true), true));
+                    jve.c(2131624120, 2131747029, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new sa((byte) 10, new sa((byte) 9, new v35(dx7Var, tw7Var, (byte) 16), true), true));
                     return Boolean.FALSE;
                 } else if (num.intValue() == 6) {
-                    yb1 yb1Var = wt7Var.a2;
-                    if (yb1Var != null) {
-                        yb1Var.a();
+                    gc1 gc1Var = dx7Var.U1;
+                    if (gc1Var != null) {
+                        gc1Var.a();
                     }
                     return Boolean.TRUE;
                 } else if (num.intValue() == 2) {
-                    mt7Var.dismiss();
-                    t7b t7bVar = ((x6b) wt7Var).u2;
-                    t7bVar.d1.M.b(true);
-                    t7bVar.u();
-                    t7bVar.r(true);
-                    t7bVar.c(true);
+                    tw7Var.dismiss();
+                    rbb rbbVar = ((vab) dx7Var).o2;
+                    rbbVar.d1.M.b(true);
+                    rbbVar.u();
+                    rbbVar.r(true);
+                    rbbVar.c(true);
                     return Boolean.TRUE;
                 } else if (num.intValue() == 1) {
                     zArr[0] = false;
-                    yx9 yx9Var = new yx9(wt7Var.getContext(), false, null, new zf7(wt7Var, (byte) 7), new f53());
-                    yx9Var.n(new ct7(wt7Var, (byte) 3));
-                    yx9Var.show();
+                    r1a r1aVar = new r1a(dx7Var.getContext(), false, null, new ii7(dx7Var, (byte) 8), new x53());
+                    r1aVar.n(new iw7(dx7Var, (byte) 3));
+                    r1aVar.show();
                     return Boolean.TRUE;
                 } else if (num.intValue() == 3) {
-                    wt7Var.f2 = true;
-                    wt7Var.a0(wt7Var.i0(true));
+                    dx7Var.Z1 = true;
+                    dx7Var.a0(dx7Var.i0(true));
                     return Boolean.TRUE;
                 } else if (num.intValue() == 4) {
-                    if (!y6c.h(wt7Var.v1).p()) {
+                    if (!yac.h(dx7Var.p1).p()) {
                         try {
-                            ww0Var.performHapticFeedback(3);
+                            ex0Var.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
-                        new u21(ww0Var, si5Var).Q(2131624211, 36, gl.N2(k96.M0(2131744395, null), -1, 2, new ct7(wt7Var, (byte) 1), null)).k(true);
+                        new d31(ex0Var, uk5Var).Q(2131624211, 36, hl.N2(ob6.M0(2131744289, null), -1, 2, new iw7(dx7Var, (byte) 1), null)).k(true);
                         return Boolean.FALSE;
                     }
                     int i = 0;
-                    for (int i2 = 0; i2 < st7Var.getChildCount(); i2++) {
-                        if (st7Var.getChildAt(i2) instanceof o46) {
+                    for (int i2 = 0; i2 < zw7Var.getChildCount(); i2++) {
+                        if (zw7Var.getChildAt(i2) instanceof s66) {
                             i++;
                         }
                     }
                     if (i >= 3) {
-                        new u21(ww0Var, si5Var).I(2131624080, k96.M0(2131744398, null), k96.G(3, "StoryLinkLimitMessage", new Object[0])).k(true);
+                        new d31(ex0Var, uk5Var).I(2131624080, ob6.M0(2131744292, null), ob6.G(3, "StoryLinkLimitMessage", new Object[0])).k(true);
                         return Boolean.FALSE;
                     }
                     zArr[0] = false;
-                    wt7Var.K0(null);
-                    mt7Var.dismiss();
+                    dx7Var.J0(null);
+                    tw7Var.dismiss();
                     return Boolean.TRUE;
                 } else {
                     return Boolean.FALSE;
                 }
             case 3:
-                o39 o39Var = (o39) obj2;
-                q8c q8cVar = (q8c) obj3;
+                d79 d79Var = (d79) obj2;
+                qcc qccVar = (qcc) obj3;
                 SparseIntArray sparseIntArray = (SparseIntArray) obj4;
                 View view2 = (View) obj;
                 try {
-                    if (view2.getParent() != o39Var) {
+                    if (view2.getParent() != d79Var) {
                         return Boolean.FALSE;
                     }
-                    Boolean bool = (Boolean) q8cVar.a(view2);
+                    Boolean bool = (Boolean) qccVar.a(view2);
                     boolean booleanValue = bool.booleanValue();
-                    s49 T = o39Var.T(view2);
-                    if (T != null) {
-                        sparseIntArray.put(T.f, booleanValue ? 1 : 0);
+                    f89 U = d79Var.U(view2);
+                    if (U != null) {
+                        sparseIntArray.put(U.f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {
                     return Boolean.FALSE;
                 }
             default:
-                wjb wjbVar2 = (wjb) obj3;
+                vnb vnbVar2 = (vnb) obj3;
                 TextView textView = new TextView((Context) obj4);
                 textView.setGravity(17);
                 textView.setTextSize(1, 13.0f);
-                textView.setTypeface(gl.o());
-                int i3 = bkb.Ei;
-                zkb.X(textView, i3, wjbVar2);
-                ShapeDrawable b0 = bkb.b0(gl.L(13.0f), bkb.p1(0.15f, bkb.v0(i3, wjbVar2)));
-                vkb K = zkb.K(0.15f, i3);
+                textView.setTypeface(hl.o());
+                int i3 = aob.Fi;
+                yob.X(textView, i3, vnbVar2);
+                ShapeDrawable b0 = aob.b0(hl.L(13.0f), aob.p1(0.15f, aob.v0(i3, vnbVar2)));
+                uob K = yob.K(0.15f, i3);
                 textView.setBackground(b0);
-                zkb.j(textView, b0, K, null, wjbVar2);
-                textView.setText(jva.Q0(jva.J0(l.longValue()) + " 💎", 0.75f));
-                ote.a(textView);
-                textView.setOnClickListener(new b99((EditTextBoldCursor) obj2, (Long) obj, (byte) 10));
+                yob.j(textView, b0, K, null, vnbVar2);
+                textView.setText(nza.R0(nza.K0(l.longValue()) + " 💎", 0.75f));
+                iye.a(textView);
+                textView.setOnClickListener(new jy8((EditTextBoldCursor) obj2, (Long) obj, (byte) 13));
                 return textView;
         }
     }

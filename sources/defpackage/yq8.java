@@ -1,12 +1,15 @@
 package defpackage;
+public final class yq8 extends uc6 {
+    public final byte X0;
 
-import android.graphics.Canvas;
-public interface yq8 {
-    void a(k88 k88Var, Canvas canvas);
+    public yq8(int i, byte b) {
+        super(i);
+        this.X0 = b;
+    }
 
-    void b(float f);
-
-    void c(float f);
-
-    void d(int i, int i2);
+    @Override
+    public final boolean i0() {
+        byte b = this.X0;
+        return true;
+    }
 }

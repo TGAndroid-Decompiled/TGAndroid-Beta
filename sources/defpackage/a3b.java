@@ -1,35 +1,51 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-public final class a3b extends FrameLayout {
-    public y28 a;
-    public long b;
-    public ArrayList c;
-    public boolean d;
-    public final c8b e;
+public final class a3b extends de0 implements fn7 {
+    public final int H;
+    public int I;
+    public String J;
 
-    public a3b(c8b c8bVar, Context context) {
+    public a3b(Context context, int i) {
         super(context);
-        this.e = c8bVar;
+        this.J = "tg_placeholders_android";
+        this.H = i;
     }
 
-    public final void a(boolean z) {
-        if (this.d != z) {
-            this.d = z;
-            invalidate();
-            this.a.setIsVisible(z);
-            this.e.A();
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.y0) {
+            if (this.J.equals((String) objArr[0])) {
+                u();
+            }
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (!this.d) {
-            return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        u();
+        jn7.f(this.H).b(this, jn7.y0);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        jn7.f(this.H).n(this, jn7.y0);
+    }
+
+    public void setStickerNum(int i) {
+        if (this.I != i) {
+            this.I = i;
+            u();
         }
-        super.dispatchDraw(canvas);
+    }
+
+    public void setStickerPackName(String str) {
+        this.J = str;
+    }
+
+    public final void u() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.a3b.u():void");
     }
 }

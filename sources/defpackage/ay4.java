@@ -1,13 +1,18 @@
 package defpackage;
 
-import android.os.Looper;
-public final class ay4 {
-    public static final ay4 c = new ay4(new eef((byte) 13), Looper.getMainLooper());
-    public final eef a;
-    public final Looper b;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class ay4 extends FrameLayout {
+    public View a;
+    public TextView b;
 
-    public ay4(eef eefVar, Looper looper) {
-        this.a = eefVar;
-        this.b = looper;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.b.setText(charSequence);
     }
 }

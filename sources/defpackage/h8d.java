@@ -1,30 +1,48 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.util.AbstractMap;
-public final class h8d extends r6d {
-    public final l8d r;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
+import com.google.android.gms.common.api.Status;
+public final class h8d extends h05 {
+    public static final zn m = new zn("Auth.Api.Identity.SignIn.API", new rr5((byte) 8), new Object());
+    public final String l;
 
-    public h8d(l8d l8dVar) {
-        super((byte) 2);
-        this.r = l8dVar;
+    public h8d(Context context, b9d b9dVar) {
+        super(context, m, b9dVar, g05.c);
+        this.l = j8d.a();
     }
 
-    @Override
-    public final Object get(int i) {
-        l8d l8dVar = this.r;
-        k4f.a(i, l8dVar.w);
-        Object[] objArr = l8dVar.s;
-        int i2 = i << 1;
-        Object obj = objArr[i2];
-        Objects.requireNonNull(obj);
-        Object obj2 = objArr[i2 + 1];
-        Objects.requireNonNull(obj2);
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override
-    public final int size() {
-        return this.r.w;
+    public static yka f(Intent intent) {
+        qs9 a;
+        Status status = Status.h;
+        if (intent != null) {
+            Parcelable.Creator<Status> creator = Status.CREATOR;
+            byte[] byteArrayExtra = intent.getByteArrayExtra("status");
+            qs9 qs9Var = null;
+            if (byteArrayExtra == null) {
+                a = null;
+            } else {
+                a = dye.a(byteArrayExtra, creator);
+            }
+            Status status2 = (Status) a;
+            if (status2 != null) {
+                if (status2.b()) {
+                    Parcelable.Creator<yka> creator2 = yka.CREATOR;
+                    byte[] byteArrayExtra2 = intent.getByteArrayExtra("sign_in_credential");
+                    if (byteArrayExtra2 != null) {
+                        qs9Var = dye.a(byteArrayExtra2, creator2);
+                    }
+                    yka ykaVar = (yka) qs9Var;
+                    if (ykaVar != null) {
+                        return ykaVar;
+                    }
+                    throw new ao(status);
+                }
+                throw new ao(status2);
+            }
+            throw new ao(Status.r);
+        }
+        throw new ao(status);
     }
 }

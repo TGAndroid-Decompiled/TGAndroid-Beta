@@ -1,16 +1,46 @@
 package defpackage;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class j2d extends bgb {
-    public final agb d;
-
-    public j2d(agb agbVar, f84[] f84VarArr, boolean z, int i) {
-        super(f84VarArr, z, i);
-        this.d = agbVar;
-    }
-
-    @Override
-    public final void c(xx4 xx4Var, TaskCompletionSource taskCompletionSource) {
-        this.d.a.accept(xx4Var, taskCompletionSource);
+import android.view.WindowInsets;
+public abstract class j2d {
+    public static int a(int i) {
+        int statusBars;
+        int i2 = 0;
+        for (int i3 = 1; i3 <= 512; i3 <<= 1) {
+            if ((i & i3) != 0) {
+                if (i3 != 1) {
+                    if (i3 != 2) {
+                        if (i3 != 4) {
+                            if (i3 != 8) {
+                                if (i3 != 16) {
+                                    if (i3 != 32) {
+                                        if (i3 != 64) {
+                                            if (i3 == 128) {
+                                                statusBars = WindowInsets.Type.displayCutout();
+                                            }
+                                        } else {
+                                            statusBars = WindowInsets.Type.tappableElement();
+                                        }
+                                    } else {
+                                        statusBars = WindowInsets.Type.mandatorySystemGestures();
+                                    }
+                                } else {
+                                    statusBars = WindowInsets.Type.systemGestures();
+                                }
+                            } else {
+                                statusBars = WindowInsets.Type.ime();
+                            }
+                        } else {
+                            statusBars = WindowInsets.Type.captionBar();
+                        }
+                    } else {
+                        statusBars = WindowInsets.Type.navigationBars();
+                    }
+                } else {
+                    statusBars = WindowInsets.Type.statusBars();
+                }
+                i2 |= statusBars;
+            }
+        }
+        return i2;
     }
 }

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import java.util.HashSet;
-public class RadialProgressView extends View implements tjb {
+public class RadialProgressView extends View implements snb {
     public float E;
     public float F;
     public int G;
@@ -17,7 +17,7 @@ public class RadialProgressView extends View implements tjb {
     public boolean I;
     public float J;
     public boolean K;
-    public final wjb L;
+    public final vnb L;
     public int M;
     public int N;
     public long a;
@@ -34,22 +34,22 @@ public class RadialProgressView extends View implements tjb {
     public final Paint x;
     public int y;
 
-    public RadialProgressView(Context context, wjb wjbVar) {
+    public RadialProgressView(Context context, vnb vnbVar) {
         super(context);
         this.f = new RectF();
         this.K = true;
-        int i = bkb.g6;
+        int i = aob.h6;
         this.M = i;
-        this.L = wjbVar;
-        this.y = gl.L(40.0f);
-        this.r = bkb.v0(i, wjbVar);
+        this.L = vnbVar;
+        this.y = hl.L(40.0f);
+        this.r = aob.v0(i, vnbVar);
         this.s = new DecelerateInterpolator();
         this.w = new AccelerateInterpolator();
         Paint paint = new Paint(1);
         this.x = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(gl.L(3.0f));
+        paint.setStrokeWidth(hl.L(3.0f));
         paint.setColor(this.r);
         this.N = this.r;
     }
@@ -157,7 +157,7 @@ public class RadialProgressView extends View implements tjb {
                     this.H = f9;
                     this.G = 0;
                 } else {
-                    this.H = (gl.F.getInterpolation(f12 / 200.0f) * f11) + f10;
+                    this.H = (hl.F.getInterpolation(f12 / 200.0f) * f11) + f10;
                 }
             }
             this.c = Math.max(4.0f, this.H * 360.0f);
@@ -221,7 +221,7 @@ public class RadialProgressView extends View implements tjb {
 
     public void setProgressColorKey(int i) {
         this.M = i;
-        setProgressColor(bkb.v0(i, this.L));
+        setProgressColor(aob.v0(i, this.L));
         this.N = this.r;
     }
 
@@ -231,7 +231,7 @@ public class RadialProgressView extends View implements tjb {
     }
 
     public void setStrokeWidth(float f) {
-        this.x.setStrokeWidth(gl.L(f));
+        this.x.setStrokeWidth(hl.L(f));
     }
 
     public void setUseSelfAlpha(boolean z) {
@@ -244,7 +244,7 @@ public class RadialProgressView extends View implements tjb {
         if (paint != null) {
             try {
                 if (this.r == this.N) {
-                    int v0 = bkb.v0(this.M, this.L);
+                    int v0 = aob.v0(this.M, this.L);
                     this.N = v0;
                     if (v0 != this.r) {
                         int alpha = paint.getAlpha();
@@ -257,7 +257,7 @@ public class RadialProgressView extends View implements tjb {
                     }
                 }
             } catch (Exception e) {
-                fa4.g(e, true);
+                cc4.g(e, true);
             }
         }
     }

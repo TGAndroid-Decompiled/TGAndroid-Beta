@@ -1,57 +1,48 @@
 package defpackage;
+public final class wib {
+    public static final wib e = new wib(false, new tib(Integer.MIN_VALUE, -2147483647), zib.T, 0.0f);
+    public final boolean a;
+    public final tib b;
+    public final lib c;
+    public final float d;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class wib extends MetricAffectingSpan {
-    public final int a;
-    public final vib b;
-
-    public wib(vib vibVar, int i) {
-        this.b = vibVar;
-        if (i > 0) {
-            this.a = i;
-        }
+    public wib(boolean z, tib tibVar, lib libVar, float f) {
+        this.a = z;
+        this.b = tibVar;
+        this.c = libVar;
+        this.d = f;
     }
 
-    public final void a(TextPaint textPaint) {
-        vib vibVar = this.b;
-        if (fod.a(vibVar.a, 49152)) {
-            float textSize = textPaint.getTextSize();
-            textPaint.setTextSize(0.75f * textSize);
-            if (fod.a(vibVar.a, 32768)) {
-                textPaint.baselineShift -= (int) (textSize * 0.35f);
-            } else if (fod.a(vibVar.a, 16384)) {
-                textPaint.baselineShift += (int) (textSize * 0.12f);
+    public final lib a(boolean z) {
+        lib libVar = zib.T;
+        lib libVar2 = this.c;
+        if (libVar2 != libVar) {
+            return libVar2;
+        }
+        if (this.d == 0.0f) {
+            if (z) {
+                return zib.U;
             }
+            return zib.V;
         }
+        return zib.W;
     }
 
-    public final boolean b() {
-        if ((this.b.a & 256) > 0) {
-            return true;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && wib.class == obj.getClass()) {
+                wib wibVar = (wib) obj;
+                if (this.c.equals(wibVar.c) && this.b.equals(wibVar.b)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        return false;
+        return true;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i = this.a;
-        if (i != 0) {
-            textPaint.setTextSize(i);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.b.a(textPaint);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        int i = this.a;
-        if (i != 0) {
-            textPaint.setTextSize(i);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.b.a(textPaint);
+    public final int hashCode() {
+        return this.c.hashCode() + (this.b.hashCode() * 31);
     }
 }

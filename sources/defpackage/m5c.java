@@ -1,20 +1,25 @@
 package defpackage;
+public final class m5c implements vma {
+    public int a;
+    public boolean b;
+    public final n5c c;
 
-import android.view.View;
-import java.io.Serializable;
-public final class m5c implements n8c, o8c {
-    public final n5c a;
-
-    @Override
-    public final Boolean d(c4c c4cVar, View view, Integer num, Float f, Float f2) {
-        return Boolean.valueOf(this.a.b0(c4cVar, view));
+    public m5c(n5c n5cVar) {
+        this.c = n5cVar;
     }
 
     @Override
-    public final void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        Integer num = (Integer) number;
-        Float f = (Float) serializable;
-        Float f2 = (Float) serializable2;
-        this.a.a0((c4c) obj, (View) obj2);
+    public final void L(int i, boolean z) {
+        if (this.a != i || this.b != z) {
+            this.a = i;
+            this.b = z;
+            if (i > hl.L(20.0f)) {
+                n5c n5cVar = this.c;
+                if (!n5cVar.h0) {
+                    n5cVar.o0.r0 = false;
+                    n5cVar.h0 = true;
+                }
+            }
+        }
     }
 }

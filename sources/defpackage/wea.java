@@ -1,113 +1,68 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.Calendar;
-import org.telegram.tgnet.TLRPC;
-public final class wea extends n39 {
-    public final Context c;
-    public final int d;
-    public final wjb e;
-    public final uea f;
-    public final ArrayList h = new ArrayList(10);
-    public final ArrayList n = new ArrayList();
-    public sca r;
-    public final nfa s;
+import android.text.TextUtils;
+import org.telegram.tgnet.SerializedData;
+public final class wea {
+    public jx8 a;
+    public long b;
+    public boolean c;
+    public boolean d;
+    public long e;
 
-    public wea(nfa nfaVar, Context context, int i, wjb wjbVar) {
-        this.s = nfaVar;
-        this.c = context;
-        this.d = i;
-        this.e = wjbVar;
-        this.f = new uea(this, i, wjbVar);
-        E();
+    public wea(jx8 jx8Var) {
+        this.a = jx8Var;
     }
 
-    @Override
-    public final boolean D(s49 s49Var) {
-        return false;
-    }
-
-    public final void E() {
-        ArrayList arrayList = this.n;
-        arrayList.clear();
-        ArrayList c = this.s.w1[8].c();
-        int i = 0;
-        for (int i2 = 0; i2 < c.size(); i2++) {
-            k27 k27Var = (k27) c.get(i2);
-            if (k27Var.X != i) {
-                int i3 = k27Var.k.date;
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                long j = i3;
-                tL_message.message = k96.u(j, false);
-                tL_message.id = 0;
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(j * 1000);
-                calendar.set(11, 0);
-                calendar.set(12, 0);
-                calendar.set(13, 0);
-                calendar.set(14, 0);
-                tL_message.date = (int) (calendar.getTimeInMillis() / 1000);
-                k27 k27Var2 = new k27(this.d, tL_message, false, false);
-                k27Var2.D = 10;
-                k27Var2.U = 1;
-                k27Var2.l0 = true;
-                arrayList.add(k27Var2);
-                i = k27Var.X;
+    public static wea a(int i, SerializedData serializedData) {
+        long j;
+        long j2;
+        m66 a = jx8.a();
+        boolean z = false;
+        String readString = serializedData.readString(false);
+        String str = "";
+        if (readString == null) {
+            readString = "";
+        }
+        a.c = readString;
+        a.b = serializedData.readInt32(false);
+        String readString2 = serializedData.readString(false);
+        if (readString2 == null) {
+            readString2 = "";
+        }
+        a.d = readString2;
+        String readString3 = serializedData.readString(false);
+        if (readString3 == null) {
+            readString3 = "";
+        }
+        a.e = readString3;
+        String readString4 = serializedData.readString(false);
+        if (readString4 != null) {
+            str = readString4;
+        }
+        a.f = str;
+        int i2 = 2;
+        if (i >= 2) {
+            j = serializedData.readInt64(false);
+            j2 = serializedData.readInt64(false);
+        } else {
+            j = 0;
+            j2 = 0;
+        }
+        if (i >= 3) {
+            a.o(jx8.f(serializedData.readInt32(false)));
+        } else {
+            if (TextUtils.isEmpty(readString4)) {
+                i2 = 1;
             }
-            arrayList.add(k27Var);
+            a.o(i2);
         }
-    }
-
-    @Override
-    public final int b() {
-        return this.n.size();
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i >= 0) {
-            ArrayList arrayList = this.n;
-            if (i < arrayList.size()) {
-                return ((k27) arrayList.get(i)).U;
-            }
-            return 0;
+        wea weaVar = new wea(a.c());
+        weaVar.e = j2;
+        weaVar.b = j;
+        if (j > 0) {
+            z = true;
         }
-        return 0;
-    }
-
-    @Override
-    public final void f() {
-        E();
-        super.f();
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        if (i >= 0) {
-            ArrayList arrayList = this.n;
-            if (i < arrayList.size()) {
-                k27 k27Var = (k27) arrayList.get(i);
-                int i2 = s49Var.f;
-                View view = s49Var.a;
-                if (i2 == 0) {
-                    ((gb2) view).z3(k27Var, null, false, false, false, false);
-                } else {
-                    ((uk1) view).setMessageObject(k27Var);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        if (i == 0) {
-            vea veaVar = new vea(this.c, this.d, false, null, this.e);
-            veaVar.setDelegate(this.f);
-            return new s49(veaVar);
-        }
-        return new s49(new uk1(this.e, this.c, false));
+        weaVar.d = z;
+        return weaVar;
     }
 }

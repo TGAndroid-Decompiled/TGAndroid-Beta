@@ -1,56 +1,45 @@
 package defpackage;
+public final class pi0 extends xtb {
+    public final int c;
+    public final int d;
 
-import java.util.Arrays;
-public final class pi0 {
-    public final int a;
-    public final CharSequence b;
-
-    public pi0(int i, CharSequence charSequence) {
-        this.a = i;
-        this.b = charSequence;
+    public pi0(xtb xtbVar, int i, int i2) {
+        super(xtbVar);
+        this.c = i;
+        this.d = i2;
     }
 
-    public final boolean equals(Object obj) {
-        String str;
-        if (obj instanceof pi0) {
-            pi0 pi0Var = (pi0) obj;
-            if (this.a == pi0Var.a) {
-                CharSequence charSequence = pi0Var.b;
-                String str2 = null;
-                CharSequence charSequence2 = this.b;
-                if (charSequence2 != null) {
-                    str = charSequence2.toString();
-                } else {
-                    str = null;
-                }
-                if (charSequence != null) {
-                    str2 = charSequence.toString();
-                }
-                if (str == null) {
-                    if (str2 == null) {
-                        return true;
+    @Override
+    public final void a(qj0 qj0Var, byte[] bArr) {
+        int i = 0;
+        while (true) {
+            int i2 = this.d;
+            if (i < i2) {
+                if (i == 0 || (i == 31 && i2 <= 62)) {
+                    qj0Var.b(31, 5);
+                    if (i2 > 62) {
+                        qj0Var.b(i2 - 31, 16);
+                    } else if (i == 0) {
+                        qj0Var.b(Math.min(i2, 31), 5);
+                    } else {
+                        qj0Var.b(i2 - 31, 5);
                     }
-                    return false;
-                } else if (str.equals(str2)) {
-                    return true;
-                } else {
-                    return false;
                 }
+                qj0Var.b(bArr[this.c + i], 8);
+                i++;
+            } else {
+                return;
             }
-            return false;
         }
-        return false;
     }
 
-    public final int hashCode() {
-        String str;
-        Integer valueOf = Integer.valueOf(this.a);
-        CharSequence charSequence = this.b;
-        if (charSequence != null) {
-            str = charSequence.toString();
-        } else {
-            str = null;
-        }
-        return Arrays.hashCode(new Object[]{valueOf, str});
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("<");
+        int i = this.c;
+        sb.append(i);
+        sb.append("::");
+        sb.append((i + this.d) - 1);
+        sb.append('>');
+        return sb.toString();
     }
 }

@@ -1,16 +1,13 @@
 package defpackage;
+public final class lga extends yc8 {
+    public final eja a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-public final class lga extends b4 {
-    public static final Parcelable.Creator<lga> CREATOR = new t4d((byte) 22);
-    public ArrayList a;
+    public lga(eja ejaVar) {
+        this.a = ejaVar;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.n(parcel, 1, this.a);
-        jte.s(parcel, r);
+    public final defpackage.fd8 M(defpackage.r47 r18, org.telegram.tgnet.TLRPC.FileLocation r19, int r20, boolean r21, boolean r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lga.M(r47, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):fd8");
     }
 }

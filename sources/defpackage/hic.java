@@ -1,190 +1,135 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class hic extends View {
-    public boolean E;
-    public boolean F;
-    public int G;
-    public boolean H;
-    public final lfc I;
-    public final Paint J;
-    public final Rect K;
-    public final boolean L;
-    public final sjc[] a;
-    public final sjc[] b;
-    public ValueAnimator c;
-    public int d;
-    public int e;
-    public int f;
-    public int h;
-    public int n;
-    public int r;
-    public int s;
-    public int w;
-    public int x;
-    public int y;
+import android.view.ViewGroup;
+import org.telegram.ui.ActionBar.e;
+public final class hic extends vic {
+    public boolean W;
+    public final Path a0;
+    public final iic b0;
 
-    public hic(Activity activity, TLRPC.User user, lfc lfcVar) {
-        super(activity);
-        Paint paint = new Paint(1);
-        this.J = paint;
-        this.K = new Rect();
-        boolean e = e66.e(512);
-        this.L = e;
-        this.I = lfcVar;
-        if (!e) {
-            return;
-        }
-        this.a = new sjc[]{new sjc(user, this, gl.L(32.0f)), new sjc(user, this, gl.L(28.0f)), new sjc(user, this, gl.L(35.0f)), new sjc(user, this, gl.L(28.0f)), new sjc(user, this, gl.L(26.0f))};
-        this.b = new sjc[]{new sjc(user, this, gl.L(32.0f)), new sjc(user, this, gl.L(28.0f)), new sjc(user, this, gl.L(35.0f)), new sjc(user, this, gl.L(28.0f)), new sjc(user, this, gl.L(26.0f))};
-        lfcVar.a(this);
-        setLayerType(2, null);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    public hic(iic iicVar, Context context) {
+        super(context, null);
+        this.b0 = iicVar;
+        this.a0 = new Path();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        sjc[] sjcVarArr;
-        sjc[] sjcVarArr2;
-        super.onAttachedToWindow();
-        if (this.L) {
-            for (sjc sjcVar : this.a) {
-                tl tlVar = sjcVar.a;
-                if (tlVar != null) {
-                    tlVar.a();
-                    ValueAnimator valueAnimator = sjcVar.b;
-                    if (valueAnimator != null) {
-                        valueAnimator.start();
-                    }
-                }
-            }
-            for (sjc sjcVar2 : this.b) {
-                tl tlVar2 = sjcVar2.a;
-                if (tlVar2 != null) {
-                    tlVar2.a();
-                    ValueAnimator valueAnimator2 = sjcVar2.b;
-                    if (valueAnimator2 != null) {
-                        valueAnimator2.start();
-                    }
-                }
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.W) {
+            Path path = this.a0;
+            path.rewind();
+            float N = hl.N(24.0f);
+            RectF rectF = hl.P;
+            rectF.set(0.0f, hl.m, getWidth(), getHeight());
+            path.addRoundRect(rectF, N, N, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
+        }
+        super.dispatchDraw(canvas);
+        if (this.W) {
+            canvas.restore();
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        sjc[] sjcVarArr;
-        sjc[] sjcVarArr2;
-        super.onDetachedFromWindow();
-        if (this.L) {
-            for (sjc sjcVar : this.a) {
-                tl tlVar = sjcVar.a;
-                if (tlVar != null) {
-                    ValueAnimator valueAnimator = sjcVar.b;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                        sjcVar.b = null;
-                    }
-                    tlVar.b();
-                }
-            }
-            for (sjc sjcVar2 : this.b) {
-                tl tlVar2 = sjcVar2.a;
-                if (tlVar2 != null) {
-                    ValueAnimator valueAnimator2 = sjcVar2.b;
-                    if (valueAnimator2 != null) {
-                        valueAnimator2.cancel();
-                        sjcVar2.b = null;
-                    }
-                    tlVar2.b();
-                }
-            }
-            ValueAnimator valueAnimator3 = this.c;
-            if (valueAnimator3 != null) {
-                valueAnimator3.cancel();
-            }
+    public final boolean f(MotionEvent motionEvent) {
+        e b0 = ((fj6) this.b0).b0();
+        if (!(b0 instanceof ej6)) {
+            return false;
         }
+        return ((ej6) b0).W(motionEvent, false);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (!this.L || this.H) {
-            return;
+    public float getAvailableTranslationX() {
+        return getMeasuredWidth();
+    }
+
+    @Override
+    public long getManualScrollDuration() {
+        return 320L;
+    }
+
+    @Override
+    public final boolean i(MotionEvent motionEvent) {
+        e b0 = ((fj6) this.b0).b0();
+        if (b0 instanceof ej6) {
+            return ((ej6) b0).W(motionEvent, true);
         }
-        int width = getWidth();
-        int height = getHeight();
-        Rect rect = this.K;
-        rect.set(0, 0, width, height);
-        float x = getX();
-        float y = getY();
-        lfc lfcVar = this.I;
-        lfcVar.d(x, y);
-        int measuredWidth = getMeasuredWidth() / 2;
-        sjc[] sjcVarArr = this.a;
-        sjcVarArr[0].b((measuredWidth - gl.L(120.0f)) - this.d, gl.L(120.0f) - this.r);
-        sjcVarArr[1].b((measuredWidth - gl.L(180.0f)) - this.e, gl.L(150.0f) - this.s);
-        sjcVarArr[2].b((measuredWidth - gl.L(150.0f)) - this.f, gl.L(185.0f) - this.w);
-        sjcVarArr[3].b((measuredWidth - gl.L(176.0f)) - this.h, gl.L(240.0f) - this.x);
-        sjcVarArr[4].b((measuredWidth - gl.L(130.0f)) - this.n, gl.L(265.0f) - this.y);
-        for (sjc sjcVar : sjcVarArr) {
-            sjcVar.a(canvas);
-        }
-        sjc[] sjcVarArr2 = this.b;
-        sjcVarArr2[0].b(gl.L(50.0f) + measuredWidth + this.d, gl.L(120.0f) - this.r);
-        sjcVarArr2[1].b(gl.L(110.0f) + measuredWidth + this.e, gl.L(150.0f) - this.s);
-        sjcVarArr2[2].b(gl.L(80.0f) + measuredWidth + this.f, gl.L(185.0f) - this.w);
-        sjcVarArr2[3].b(gl.L(106.0f) + measuredWidth + this.h, gl.L(240.0f) - this.x);
-        sjcVarArr2[4].b(gl.L(60.0f) + measuredWidth + this.n, gl.L(265.0f) - this.y);
-        for (sjc sjcVar2 : sjcVarArr2) {
-            sjcVar2.a(canvas);
-        }
-        int alpha = lfcVar.b().getAlpha();
-        Paint paint = this.J;
-        paint.setAlpha(255);
-        canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint, 31);
-        lfcVar.b().setAlpha(255);
-        canvas.drawRect(rect, lfcVar.b());
-        lfcVar.b().setAlpha(alpha);
-        if (lfcVar.e) {
-            int alpha2 = ((Paint) lfcVar.d.a).getAlpha();
-            ((Paint) lfcVar.d.a).setAlpha(255);
-            canvas.drawRect(rect, (Paint) lfcVar.d.a);
-            ((Paint) lfcVar.d.a).setAlpha(alpha2);
-        }
-        canvas.restore();
+        return false;
     }
 
     @Override
     public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        sjc[] sjcVarArr;
-        sjc[] sjcVarArr2;
         super.onLayout(z, i, i2, i3, i4);
-        if (this.L) {
-            for (sjc sjcVar : this.a) {
-                int measuredWidth = getMeasuredWidth();
-                getMeasuredHeight();
-                sjcVar.o = measuredWidth;
-                sjcVar.k.invalidate();
-            }
-            for (sjc sjcVar2 : this.b) {
-                int measuredWidth2 = getMeasuredWidth();
-                getMeasuredHeight();
-                sjcVar2.o = measuredWidth2;
-                sjcVar2.k.invalidate();
-            }
-        }
     }
 
-    public void setState(boolean z) {
-        this.H = z;
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        super.setLayoutParams(layoutParams);
+    }
+
+    public void setTabletLayout(boolean z) {
+        if (this.W == z) {
+            return;
+        }
+        this.W = z;
         invalidate();
+    }
+
+    @Override
+    public final void t(View view, View view2, int i, int i2) {
+        this.b0.Y();
+    }
+
+    @Override
+    public final void v() {
+        uj3 uj3Var;
+        iic iicVar = this.b0;
+        fj6 fj6Var = (fj6) iicVar;
+        if (fj6Var.I != null) {
+            fj6Var.t0(fj6Var.c.getCurrentPosition(), true);
+            fj6Var.u0(false, 0.0f);
+        }
+        fj6Var.c0();
+        hic hicVar = fj6Var.c;
+        if (hicVar != null) {
+            int currentPosition = hicVar.getCurrentPosition();
+            fj6Var.h0(true);
+            if (currentPosition != 3) {
+                fj6Var.a0(3);
+            }
+            Integer num = fj6Var.L;
+            if (num != null && currentPosition == 0 && (uj3Var = fj6Var.M) != null) {
+                uj3Var.Q4(num.intValue());
+                fj6Var.L = null;
+            }
+        }
+        iicVar.Y();
+    }
+
+    @Override
+    public final void x(boolean z) {
+        iic iicVar = this.b0;
+        fj6 fj6Var = (fj6) iicVar;
+        boolean z2 = !z;
+        if (fj6Var.I != null) {
+            float positionAnimated = fj6Var.c.getPositionAnimated();
+            fj6Var.u0(z2, positionAnimated);
+            if (!z) {
+                fj6Var.t0(Math.round(positionAnimated), true);
+            }
+        }
+        fj6Var.i0();
+        fj6Var.c0();
+        fj6Var.b.invalidate();
+        iicVar.Y();
+        iicVar.checkSystemBarColors();
     }
 }

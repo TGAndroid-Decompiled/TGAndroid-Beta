@@ -1,4 +1,7 @@
 package defpackage;
-public interface fia {
-    void b(Object obj, float f);
+public final class fia extends uc6 {
+    @Override
+    public final boolean i0() {
+        return true;
+    }
 }

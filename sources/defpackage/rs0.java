@@ -1,96 +1,130 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.FrameLayout;
+import android.app.Activity;
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-public final class rs0 extends FrameLayout {
-    public final int a;
-    public final ArrayList b;
-    public final q5c c;
-    public String d;
-    public boolean e;
-    public boolean f;
-    public boolean h;
-    public final oz n;
-    public final ss0 r;
+import java.util.HashSet;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class rs0 implements RequestDelegate {
+    public final byte a;
+    public final long b;
+    public final boolean c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public rs0(ss0 ss0Var, Context context, int i) {
-        super(context);
-        int i2;
-        wjb wjbVar;
-        qw4 qw4Var;
-        this.r = ss0Var;
-        this.b = new ArrayList();
-        this.d = "";
-        this.n = new oz(this, (byte) 27);
-        this.a = i;
-        setClipChildren(false);
-        setClipToPadding(false);
-        i2 = ((d) ss0Var).currentAccount;
-        int classGuid = ss0Var.getClassGuid();
-        f fVar = new f(this, (byte) 18);
-        sg0 sg0Var = new sg0(this, (byte) 11);
-        wjbVar = ((d) ss0Var).resourceProvider;
-        q5c q5cVar = new q5c(context, i2, classGuid, true, fVar, sg0Var, null, wjbVar);
-        this.c = q5cVar;
-        q5cVar.s1(gl.L(12.0f), gl.L(16.0f), false);
-        q5cVar.g3.r = false;
-        q5cVar.setCaptureSectionsDecoratorAllowed(true);
-        q5cVar.setClipToPadding(false);
-        q5cVar.setOverScrollMode(0);
-        addView(q5cVar, nme.c(-1.0f, -1));
-        qw4Var = ((d) ss0Var).glassEngine;
-        qw4Var.b(q5cVar);
-        q5cVar.j(new y(this, (byte) 8));
+    public rs0(at0 at0Var, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z, long j) {
+        this.a = (byte) 0;
+        this.d = at0Var;
+        this.e = twoStepVerificationActivity;
+        this.f = activity;
+        this.c = z;
+        this.b = j;
     }
 
-    public final void a() {
-        boolean z;
-        int i;
-        int i2;
-        int i3;
-        ss0 ss0Var = this.r;
-        if (!ss0Var.P && !this.e && !this.f && !this.h) {
-            boolean z2 = true;
-            this.e = true;
-            TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
-            tL_payments_getStarsTransactions.ton = true;
-            int i4 = this.a;
-            if (i4 == 1) {
-                z = true;
-            } else {
-                z = false;
-            }
-            tL_payments_getStarsTransactions.inbound = z;
-            if (i4 != 2) {
-                z2 = false;
-            }
-            tL_payments_getStarsTransactions.outbound = z2;
-            i = ((d) ss0Var).currentAccount;
-            tL_payments_getStarsTransactions.peer = na7.q1(i).h1(ss0Var.b);
-            String str = this.d;
-            tL_payments_getStarsTransactions.offset = str;
-            tL_payments_getStarsTransactions.limit = 20;
-            this.c.g3.O(false);
-            i2 = ((d) ss0Var).currentAccount;
-            int sendRequest = ConnectionsManager.getInstance(i2).sendRequest(tL_payments_getStarsTransactions, new pl(this, str, (byte) 6));
-            i3 = ((d) ss0Var).currentAccount;
-            ConnectionsManager.getInstance(i3).bindRequestToGuid(sendRequest, ss0Var.getClassGuid());
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        Object obj = this.f;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        switch (b) {
+            case 0:
+                hl.c3(new ss0((at0) obj3, tL_error, (TwoStepVerificationActivity) obj2, (Activity) obj, this.c, this.b, tLObject));
+                return;
+            case 1:
+                hl.c3(new re2((af2) obj3, tLObject, this.b, this.c, (String) obj2, (kc) obj));
+                return;
+            case 2:
+                u07 u07Var = (u07) obj3;
+                u07Var.getClass();
+                hl.c3(new ss0(u07Var, tL_error, tLObject, (TLRPC.TL_chatInviteImporter) obj2, this.c, this.b, (w07) obj));
+                return;
+            case 3:
+                uc7 uc7Var = (uc7) obj3;
+                zh6 zh6Var = (zh6) obj2;
+                qc7 qc7Var = (qc7) obj;
+                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = null;
+                if (tLObject != null) {
+                    TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers2 = (TLRPC.TL_channels_sendAsPeers) tLObject;
+                    if (!tL_channels_sendAsPeers2.peers.isEmpty()) {
+                        hl.c3(new t87(uc7Var, tL_channels_sendAsPeers2, (byte) 3));
+                        tL_channels_sendAsPeers = tL_channels_sendAsPeers2;
+                    }
+                }
+                hl.c3(new us0(uc7Var, tL_channels_sendAsPeers, zh6Var, this.b, qc7Var, this.c, (byte) 4));
+                return;
+            case 4:
+                lm7 lm7Var = (lm7) obj3;
+                TLRPC.TL_channels_editChannelNews tL_channels_editChannelNews = (TLRPC.TL_channels_editChannelNews) obj2;
+                j61 j61Var = (j61) obj;
+                boolean z = tLObject instanceof TLRPC.Updates;
+                long j = this.b;
+                boolean z2 = this.c;
+                if (z) {
+                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                    ArrayList<TLRPC.Chat> arrayList = updates.chats;
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        TLRPC.Chat chat = arrayList.get(i);
+                        i++;
+                        TLRPC.Chat chat2 = chat;
+                        if (chat2.id == j) {
+                            chat2.in_news = z2;
+                        }
+                    }
+                    lm7Var.getMessagesController().Y3(updates, false);
+                }
+                hl.c3(new ss0(lm7Var, tL_error, tLObject, tL_channels_editChannelNews, j, z2, j61Var));
+                return;
+            case 5:
+                hl.c3(new us0((c6b) obj3, tL_error, this.c, this.b, (pcc) obj2, (vnb) obj));
+                return;
+            case 6:
+                hl.c3(new us0((qyb) obj3, tLObject, this.c, this.b, (HashSet) obj2, (o30) obj));
+                return;
+            default:
+                hl.c3(new ss0((a5c) obj3, (w4c) obj2, tLObject, this.c, tL_error, this.b, (HashSet) obj));
+                return;
         }
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        post(this.n);
+    public rs0(rf0 rf0Var, Object obj, boolean z, long j, Object obj2, byte b) {
+        this.a = b;
+        this.d = rf0Var;
+        this.e = obj;
+        this.c = z;
+        this.b = j;
+        this.f = obj2;
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        removeCallbacks(this.n);
-        super.onDetachedFromWindow();
+    public rs0(uc7 uc7Var, zh6 zh6Var, long j, qc7 qc7Var, boolean z) {
+        this.a = (byte) 3;
+        this.d = uc7Var;
+        this.e = zh6Var;
+        this.b = j;
+        this.f = qc7Var;
+        this.c = z;
+    }
+
+    public rs0(Object obj, long j, boolean z, Object obj2, Runnable runnable, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = j;
+        this.c = z;
+        this.e = obj2;
+        this.f = runnable;
+    }
+
+    public rs0(Object obj, boolean z, long j, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.c = z;
+        this.b = j;
+        this.e = obj2;
+        this.f = obj3;
     }
 }

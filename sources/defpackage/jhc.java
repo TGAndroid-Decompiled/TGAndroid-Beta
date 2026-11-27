@@ -1,30 +1,37 @@
 package defpackage;
 
-import android.media.AudioManager;
-import org.telegram.messenger.voip.VoIPService;
-public final class jhc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-    public final AudioManager c;
+import android.content.Context;
+import android.os.Build;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.ViewConfiguration;
+import java.lang.reflect.Method;
+public abstract class jhc {
+    public static final Method a;
 
-    public jhc(VoIPService voIPService, AudioManager audioManager, byte b) {
-        this.a = b;
-        this.b = voIPService;
-        this.c = audioManager;
+    static {
+        if (Build.VERSION.SDK_INT == 25) {
+            try {
+                a = ViewConfiguration.class.getDeclaredMethod("getScaledScrollFactor", null);
+            } catch (Exception unused) {
+                Log.i("ViewConfigCompat", "Could not find method getScaledScrollFactor() on ViewConfiguration");
+            }
+        }
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        AudioManager audioManager = this.c;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$configureDeviceForCall$107(audioManager);
-                return;
-            default:
-                voIPService.lambda$configureDeviceForCall$108(audioManager);
-                return;
+    public static float a(ViewConfiguration viewConfiguration, Context context) {
+        Method method;
+        if (Build.VERSION.SDK_INT >= 25 && (method = a) != null) {
+            try {
+                return ((Integer) method.invoke(viewConfiguration, null)).intValue();
+            } catch (Exception unused) {
+                Log.i("ViewConfigCompat", "Could not find method getScaledScrollFactor() on ViewConfiguration");
+            }
         }
+        TypedValue typedValue = new TypedValue();
+        if (context.getTheme().resolveAttribute(16842829, typedValue, true)) {
+            return typedValue.getDimension(context.getResources().getDisplayMetrics());
+        }
+        return 0.0f;
     }
 }

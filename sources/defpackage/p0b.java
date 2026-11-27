@@ -1,18 +1,28 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class p0b extends xya {
-    public final q0b P;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class p0b implements RequestDelegate {
+    public final byte a;
+    public final w1b b;
 
-    public p0b(q0b q0bVar, Context context, wjb wjbVar) {
-        super(wjbVar, context, false);
-        this.P = q0bVar;
+    public p0b(w1b w1bVar, byte b) {
+        this.a = b;
+        this.b = w1bVar;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        u0b u0bVar = this.P.r;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(u0bVar.I1, 1073741824), View.MeasureSpec.makeMeasureSpec(u0bVar.I1, 1073741824));
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        w1b w1bVar = this.b;
+        switch (b) {
+            case 0:
+                w1bVar.h0(tLObject);
+                return;
+            default:
+                w1bVar.i0(tLObject);
+                return;
+        }
     }
 }

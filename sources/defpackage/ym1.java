@@ -1,113 +1,265 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.ArrayList;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.LaunchActivity;
-public final class ym1 implements he8, wi3 {
-    public final boolean a;
-    public final int b;
-    public final Object c;
-    public final Object d;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ym1 implements RequestDelegate {
+    public final byte a;
+    public final zu1 b;
 
-    public ym1(mu1 mu1Var, boolean z, k27 k27Var, int i) {
-        this.c = mu1Var;
-        this.a = z;
-        this.d = k27Var;
-        this.b = i;
+    public ym1(zu1 zu1Var, byte b) {
+        this.a = b;
+        this.b = zu1Var;
     }
 
     @Override
-    public final boolean G() {
-        return false;
-    }
-
-    @Override
-    public final void c(TLRPC.MessageMedia messageMedia) {
-        int i;
-        mu1 mu1Var = (mu1) this.c;
-        k27 k27Var = (k27) this.d;
-        if (this.a) {
-            TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
-            tL_messages_appendTodoList.peer = mu1Var.getMessagesController().h1(k27.B0(k27Var.k));
-            tL_messages_appendTodoList.msg_id = k27Var.e1();
-            if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
-                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
-                int i2 = 0;
-                int i3 = 0;
-                while (true) {
-                    i = this.b;
-                    if (i2 >= i) {
-                        break;
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        final zu1 zu1Var = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z = false;
+                        switch (r3) {
+                            case 0:
+                                zu1Var.o9(tLObject);
+                                return;
+                            case 1:
+                                zu1 zu1Var2 = zu1Var;
+                                TLObject tLObject2 = tLObject;
+                                zu1Var2.G5 = 0;
+                                if (tLObject2 == null && zu1Var2.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, zu1Var2.Ba, zu1Var2.getParentActivity());
+                                    alertDialog$Builder.a.S = ob6.M0(2131689472, null);
+                                    alertDialog$Builder.a.U = ob6.M0(2131751236, null);
+                                    alertDialog$Builder.j(ob6.M0(2131747558, null), null);
+                                    zu1Var2.showDialog(alertDialog$Builder.a);
+                                    nr1 nr1Var = zu1Var2.a0;
+                                    if (nr1Var != null) {
+                                        nr1Var.N1(null, null, false);
+                                        zu1Var2.E7(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                zu1 zu1Var3 = zu1Var;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) a.b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (d31.a(zu1Var3)) {
+                                            d31 b0 = d31.b0(zu1Var3);
+                                            if (!zu1Var3.k8() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z = true;
+                                            }
+                                            b0.k(z).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        cc4.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                zu1Var.u8(tLObject);
+                                return;
+                        }
                     }
-                    i3 = Math.max(i3, tL_messageMediaToDo.todo.list.get(i2).id);
-                    i2++;
-                }
-                while (i < tL_messageMediaToDo.todo.list.size()) {
-                    TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i);
-                    if (todoItem.id <= i3) {
-                        todoItem.id = i3 + 1;
+                });
+                return;
+            case 1:
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z = false;
+                        switch (r3) {
+                            case 0:
+                                zu1Var.o9(tLObject);
+                                return;
+                            case 1:
+                                zu1 zu1Var2 = zu1Var;
+                                TLObject tLObject2 = tLObject;
+                                zu1Var2.G5 = 0;
+                                if (tLObject2 == null && zu1Var2.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, zu1Var2.Ba, zu1Var2.getParentActivity());
+                                    alertDialog$Builder.a.S = ob6.M0(2131689472, null);
+                                    alertDialog$Builder.a.U = ob6.M0(2131751236, null);
+                                    alertDialog$Builder.j(ob6.M0(2131747558, null), null);
+                                    zu1Var2.showDialog(alertDialog$Builder.a);
+                                    nr1 nr1Var = zu1Var2.a0;
+                                    if (nr1Var != null) {
+                                        nr1Var.N1(null, null, false);
+                                        zu1Var2.E7(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                zu1 zu1Var3 = zu1Var;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) a.b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (d31.a(zu1Var3)) {
+                                            d31 b0 = d31.b0(zu1Var3);
+                                            if (!zu1Var3.k8() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z = true;
+                                            }
+                                            b0.k(z).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        cc4.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                zu1Var.u8(tLObject);
+                                return;
+                        }
                     }
-                    tL_messages_appendTodoList.list.add(todoItem);
-                    i3 = Math.max(i3, todoItem.id);
-                    i++;
+                });
+                return;
+            case 2:
+                if (tL_error != null) {
+                    zu1Var.getClass();
+                    return;
+                } else {
+                    zu1Var.getMessagesController().Y3((TLRPC.Updates) tLObject, false);
+                    return;
                 }
-                TLRPC.MessageMedia messageMedia2 = k27Var.k.media;
-                if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
-                    tL_messageMediaToDo.completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
-                }
-            }
-            k27Var.k.media = messageMedia;
-            mu1Var.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
-            return;
+            case 3:
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z = false;
+                        switch (r3) {
+                            case 0:
+                                zu1Var.o9(tLObject);
+                                return;
+                            case 1:
+                                zu1 zu1Var2 = zu1Var;
+                                TLObject tLObject2 = tLObject;
+                                zu1Var2.G5 = 0;
+                                if (tLObject2 == null && zu1Var2.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, zu1Var2.Ba, zu1Var2.getParentActivity());
+                                    alertDialog$Builder.a.S = ob6.M0(2131689472, null);
+                                    alertDialog$Builder.a.U = ob6.M0(2131751236, null);
+                                    alertDialog$Builder.j(ob6.M0(2131747558, null), null);
+                                    zu1Var2.showDialog(alertDialog$Builder.a);
+                                    nr1 nr1Var = zu1Var2.a0;
+                                    if (nr1Var != null) {
+                                        nr1Var.N1(null, null, false);
+                                        zu1Var2.E7(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                zu1 zu1Var3 = zu1Var;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) a.b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (d31.a(zu1Var3)) {
+                                            d31 b0 = d31.b0(zu1Var3);
+                                            if (!zu1Var3.k8() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z = true;
+                                            }
+                                            b0.k(z).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        cc4.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                zu1Var.u8(tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 4:
+                zu1Var.E8(tLObject);
+                return;
+            default:
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z = false;
+                        switch (r3) {
+                            case 0:
+                                zu1Var.o9(tLObject);
+                                return;
+                            case 1:
+                                zu1 zu1Var2 = zu1Var;
+                                TLObject tLObject2 = tLObject;
+                                zu1Var2.G5 = 0;
+                                if (tLObject2 == null && zu1Var2.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, zu1Var2.Ba, zu1Var2.getParentActivity());
+                                    alertDialog$Builder.a.S = ob6.M0(2131689472, null);
+                                    alertDialog$Builder.a.U = ob6.M0(2131751236, null);
+                                    alertDialog$Builder.j(ob6.M0(2131747558, null), null);
+                                    zu1Var2.showDialog(alertDialog$Builder.a);
+                                    nr1 nr1Var = zu1Var2.a0;
+                                    if (nr1Var != null) {
+                                        nr1Var.N1(null, null, false);
+                                        zu1Var2.E7(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                zu1 zu1Var3 = zu1Var;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) a.b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (d31.a(zu1Var3)) {
+                                            d31 b0 = d31.b0(zu1Var3);
+                                            if (!zu1Var3.k8() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z = true;
+                                            }
+                                            b0.k(z).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e) {
+                                        cc4.g(e, true);
+                                        return;
+                                    }
+                                }
+                                return;
+                            default:
+                                zu1Var.u8(tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
-            TLRPC.MessageMedia messageMedia3 = k27Var.k.media;
-            if (messageMedia3 instanceof TLRPC.TL_messageMediaToDo) {
-                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia3).completions;
-            }
-        }
-        k27Var.k.media = messageMedia;
-        mu1Var.getSendMessagesHelper().s(k27Var, null, null, null, null, null, null, null, false, false, null);
-    }
-
-    @Override
-    public final boolean r(cj3 cj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, qvb qvbVar) {
-        LaunchActivity launchActivity = (LaunchActivity) this.c;
-        String str = (String) this.d;
-        String str2 = LaunchActivity.C1;
-        long j = ((zc7) arrayList.get(0)).a;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.a);
-        if (cf3.B(j)) {
-            bundle.putInt("enc_id", (int) (4294967295L & j));
-        } else if (cf3.D(j)) {
-            bundle.putLong("user_id", j);
-        } else {
-            bundle.putLong("chat_id", -j);
-        }
-        int i3 = this.b;
-        if (!na7.q1(i3).A(bundle, cj3Var, null, null)) {
-            return true;
-        }
-        kk7.f(i3).k(kk7.s, new Object[0]);
-        hq6.d0(i3).T1(j, 0L, str, null, null, null, null, 0L, false, false, null);
-        ui5 N = launchActivity.N();
-        ((ActionBarLayout) N).U(new mu1(bundle), true, false);
-        return true;
-    }
-
-    @Override
-    public final boolean t(cj3 cj3Var) {
-        return false;
-    }
-
-    public ym1(LaunchActivity launchActivity, boolean z, int i, String str) {
-        this.c = launchActivity;
-        this.a = z;
-        this.b = i;
-        this.d = str;
     }
 }

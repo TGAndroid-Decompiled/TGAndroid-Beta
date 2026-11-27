@@ -1,22 +1,25 @@
 package defpackage;
 
-import android.os.SystemClock;
-import java.util.concurrent.atomic.AtomicLong;
-public final class q20 {
-    public static final AtomicLong d = new AtomicLong(1);
-    public final long a = d.getAndIncrement();
-    public final long b = SystemClock.elapsedRealtime();
-    public final d30 c;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public interface q20 {
+    public static final ByteBuffer a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
 
-    public q20(d30 d30Var) {
-        this.c = d30Var;
-    }
+    boolean a();
 
-    public final void a(String str, Throwable th) {
-        this.c.o("AudioRecorder[" + this.a + "] t+" + (SystemClock.elapsedRealtime() - this.b) + "ms [" + Thread.currentThread().getName() + "] " + str, th);
-    }
+    ByteBuffer b();
 
-    public final void b(String str) {
-        this.c.d("AudioRecorder[" + this.a + "] t+" + (SystemClock.elapsedRealtime() - this.b) + "ms [" + Thread.currentThread().getName() + "] " + str);
-    }
+    void c(o20 o20Var);
+
+    void d(ByteBuffer byteBuffer);
+
+    m20 e(m20 m20Var);
+
+    void f();
+
+    long g(long j);
+
+    boolean isActive();
+
+    void reset();
 }

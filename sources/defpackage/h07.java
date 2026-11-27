@@ -1,45 +1,24 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.view.View;
-public interface h07 {
-    boolean a();
+import java.util.ArrayList;
+public final class h07 implements a07 {
+    public final ml6 a;
+    public int d;
+    public boolean e;
+    public final ArrayList c = new ArrayList();
+    public final Object b = new Object();
 
-    void b(zha zhaVar, r7 r7Var);
+    public h07(rg0 rg0Var, boolean z) {
+        this.a = new ml6(rg0Var, z);
+    }
 
-    boolean c(r7 r7Var, RectF rectF);
+    @Override
+    public final Object a() {
+        return this.b;
+    }
 
-    boolean e();
-
-    boolean f();
-
-    boolean g();
-
-    int getButtonsGlassBackgroundColor();
-
-    al0 getButtonsGlassColorProvider();
-
-    int getMenuAnchorTint();
-
-    int getMenuDimAlpha();
-
-    int getMenuExtraBelow();
-
-    al0 getMenuGlassColorProvider();
-
-    View getMenuHostView();
-
-    int getMenuMaxHeight();
-
-    wjb getMenuResourcesProvider();
-
-    int getMenuRise();
-
-    View getMenuView();
-
-    zha getOpenMenuOverlay();
-
-    il0 h(zha zhaVar);
-
-    void setMenuGlassFrostedProgress(float f);
+    @Override
+    public final asb b() {
+        return this.a.o;
+    }
 }

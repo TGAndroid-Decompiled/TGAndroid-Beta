@@ -1,28 +1,38 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class fu7 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final gu7 b;
+import android.os.Build;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+public final class fu7 {
+    public final LaunchActivity a;
+    public final ArrayList b = new ArrayList();
+    public int c = Integer.MIN_VALUE;
 
-    public fu7(gu7 gu7Var, byte b) {
-        this.a = b;
-        this.b = gu7Var;
+    public fu7(LaunchActivity launchActivity) {
+        this.a = launchActivity;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        gu7 gu7Var = this.b;
-        switch (b) {
-            case 0:
-                gu7Var.K = null;
-                gu7Var.f.f(new oq7(this, (byte) 2));
+    public final void a() {
+        boolean isEmpty = this.b.isEmpty();
+        LaunchActivity launchActivity = this.a;
+        try {
+            if (!isEmpty && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (Build.VERSION.SDK_INT < 24 || !launchActivity.isInMultiWindowMode())) {
+                if (this.c == Integer.MIN_VALUE) {
+                    this.c = launchActivity.getRequestedOrientation();
+                }
+                if (launchActivity.getRequestedOrientation() != 1) {
+                    launchActivity.setRequestedOrientation(1);
+                    return;
+                }
                 return;
-            default:
-                gu7Var.f.f(new oq7(this, (byte) 3));
-                return;
+            }
+            int i = this.c;
+            if (i != Integer.MIN_VALUE) {
+                launchActivity.setRequestedOrientation(i);
+                this.c = Integer.MIN_VALUE;
+            }
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
     }
 }

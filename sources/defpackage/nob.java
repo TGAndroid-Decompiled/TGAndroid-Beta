@@ -1,20 +1,36 @@
 package defpackage;
-public final class nob extends rq9 implements Runnable {
-    public final long f;
 
-    public nob(long j, fw2 fw2Var) {
-        super(fw2Var, fw2Var.getContext());
-        this.f = j;
+import android.content.Context;
+import java.util.HashSet;
+import org.telegram.ui.d0;
+public final class nob extends cz0 implements snb {
+    public int e;
+    public final d0 f;
+
+    public nob(d0 d0Var, Context context) {
+        super(context);
+        this.f = d0Var;
     }
 
     @Override
-    public final String D() {
-        return super.D() + "(timeMillis=" + this.f + ')';
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.Mj));
     }
 
     @Override
-    public final void run() {
-        jde.b(this.d);
-        i(new mob("Timed out waiting for " + this.f + " ms", this));
+    public final void updateColors() {
+        bz0 bz0Var = this.d;
+        if (bz0Var != null) {
+            try {
+                int w0 = aob.w0(null, aob.Mj, false);
+                if (w0 != this.e) {
+                    this.e = w0;
+                    bz0Var.setOuterColor(w0);
+                    bz0Var.invalidate();
+                }
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        }
     }
 }

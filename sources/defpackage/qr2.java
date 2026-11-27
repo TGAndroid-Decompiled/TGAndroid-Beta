@@ -1,10 +1,29 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-public final class qr2 {
-    public final HashMap a = new HashMap();
-    public final HashSet b = new HashSet();
-    public final ArrayList c = new ArrayList();
+import org.telegram.messenger.voip.ConferenceCall;
+public final class qr2 implements Runnable {
+    public final byte a;
+    public final ConferenceCall b;
+
+    public qr2(ConferenceCall conferenceCall, byte b) {
+        this.a = b;
+        this.b = conferenceCall;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ConferenceCall conferenceCall = this.b;
+        switch (b) {
+            case 0:
+                ConferenceCall.e(conferenceCall);
+                return;
+            case 1:
+                ConferenceCall.c(conferenceCall);
+                return;
+            default:
+                ConferenceCall.a(conferenceCall);
+                return;
+        }
+    }
 }

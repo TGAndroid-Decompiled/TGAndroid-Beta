@@ -1,31 +1,76 @@
 package defpackage;
 
-import android.app.Activity;
-public final class mt9 extends bl3 {
-    public final cj3 J0;
-    public final Activity K0;
-    public final hi3 L0;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class mt9 {
+    public long a;
+    public boolean b;
+    public int c;
+    public r47 d;
+    public int e;
+    public long f;
+    public long g;
+    public long h;
+    public boolean i;
+    public int j;
+    public int k;
 
-    public mt9(hi3 hi3Var, Activity activity, cj3 cj3Var, int i, int i2, gb3 gb3Var, boolean z, cj3 cj3Var2, Activity activity2) {
-        super(activity, cj3Var, i, i2, gb3Var, z);
-        this.L0 = hi3Var;
-        this.J0 = cj3Var2;
-        this.K0 = activity2;
+    public static mt9 a(int i, TLRPC.Message message) {
+        ?? obj = new Object();
+        obj.a = r47.Q1(yac.h(i).e(), message);
+        obj.b = false;
+        obj.c = message.id;
+        obj.d = new r47(i, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
+        return obj;
     }
 
-    @Override
-    public final void f() {
-        ns9 ns9Var;
-        int i = this.C0;
-        super.f();
-        hi3 hi3Var = this.L0;
-        if (!hi3Var.L0 && (ns9Var = hi3Var.b0) != null) {
-            ns9Var.w0(0);
-            hi3Var.L0 = true;
+    public static mt9 b(int i, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
+        TLRPC.Message message;
+        ?? obj = new Object();
+        obj.a = wf3.n(saveddialog.peer);
+        obj.b = saveddialog.pinned;
+        obj.c = saveddialog.top_message;
+        obj.f = saveddialog.unread_count;
+        obj.g = saveddialog.read_inbox_max_id;
+        obj.h = saveddialog.read_outbox_max_id;
+        int i2 = 0;
+        while (true) {
+            if (i2 < arrayList.size()) {
+                message = (TLRPC.Message) arrayList.get(i2);
+                if (obj.c == message.id) {
+                    break;
+                }
+                i2++;
+            } else {
+                message = null;
+                break;
+            }
         }
-        if (b() != 0 || i == 0 || this.E0 > 0) {
-            return;
+        TLRPC.Message message2 = message;
+        if (message2 != null) {
+            obj.d = new r47(i, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
         }
-        hi3Var.c0.e(false, false);
+        return obj;
+    }
+
+    public final int c() {
+        TLRPC.Message message;
+        r47 r47Var = this.d;
+        if (r47Var != null && (message = r47Var.k) != null) {
+            if ((message.flags & 32768) != 0) {
+                return message.edit_date;
+            }
+            return message.date;
+        }
+        return this.j;
+    }
+
+    public final boolean d() {
+        TLRPC.Message message;
+        r47 r47Var = this.d;
+        if (r47Var != null && (message = r47Var.k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
+            return true;
+        }
+        return false;
     }
 }

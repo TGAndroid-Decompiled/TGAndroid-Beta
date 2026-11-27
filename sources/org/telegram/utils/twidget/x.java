@@ -22,7 +22,7 @@ import org.telegram.utils.twidget.WidgetEngineService;
 import org.telegram.utils.twidget.x;
 public final class x extends b {
     public static final x v = new x();
-    public static final hc w = new hc((byte) 1);
+    public static final ic w = new ic((byte) 1);
     public static volatile int x = -1;
     public static volatile boolean y = true;
     public int e;
@@ -36,8 +36,8 @@ public final class x extends b {
     public boolean q;
     public Boolean r;
     public volatile boolean s;
-    public final wvc t;
-    public final wvc u;
+    public final l0d t;
+    public final l0d u;
     public final Object a = new Object();
     public final Handler b = new Handler(Looper.getMainLooper());
     public final ArrayList c = new ArrayList();
@@ -67,7 +67,7 @@ public final class x extends b {
                     }
                     while (xVar.d.size() > i) {
                         ArrayList arrayList = xVar.d;
-                        xVar.o((yvc) arrayList.get(arrayList.size() - 1));
+                        xVar.o((n0d) arrayList.get(arrayList.size() - 1));
                     }
                     xVar.u();
                 }
@@ -89,9 +89,9 @@ public final class x extends b {
                                 while (i < size) {
                                     Object obj = arrayList.get(i);
                                     i++;
-                                    yvc yvcVar = (yvc) obj;
-                                    if (yvcVar.e == 0) {
-                                        xVar.o(yvcVar);
+                                    n0d n0dVar = (n0d) obj;
+                                    if (n0dVar.e == 0) {
+                                        xVar.o(n0dVar);
                                     }
                                 }
                                 return;
@@ -119,7 +119,7 @@ public final class x extends b {
                     }
                     while (xVar.d.size() > i) {
                         ArrayList arrayList = xVar.d;
-                        xVar.o((yvc) arrayList.get(arrayList.size() - 1));
+                        xVar.o((n0d) arrayList.get(arrayList.size() - 1));
                     }
                     xVar.u();
                 }
@@ -141,9 +141,9 @@ public final class x extends b {
                                 while (i < size) {
                                     Object obj = arrayList.get(i);
                                     i++;
-                                    yvc yvcVar = (yvc) obj;
-                                    if (yvcVar.e == 0) {
-                                        xVar.o(yvcVar);
+                                    n0d n0dVar = (n0d) obj;
+                                    if (n0dVar.e == 0) {
+                                        xVar.o(n0dVar);
                                     }
                                 }
                                 return;
@@ -157,17 +157,17 @@ public final class x extends b {
 
     @Override
     public final void a(long j, long j2, int i, byte[] bArr) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        hj5 hj5Var2 = hj5Var;
-        if (hj5Var2 != null) {
+        jl5 jl5Var2 = jl5Var;
+        if (jl5Var2 != null) {
             try {
-                hj5Var2.l(wVar.c, j2, i, bArr);
+                jl5Var2.l(wVar.c, j2, i, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -180,16 +180,16 @@ public final class x extends b {
 
     @Override
     public final void c(long j, byte[] bArr) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        if (hj5Var != null) {
+        if (jl5Var != null) {
             try {
-                hj5Var.s(wVar.c, bArr);
+                jl5Var.s(wVar.c, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -199,10 +199,10 @@ public final class x extends b {
     public final void d(long j) {
         w wVar = (w) this.g.remove(Long.valueOf(j));
         if (wVar != null) {
-            hj5 hj5Var = wVar.a.d;
-            if (hj5Var != null) {
+            jl5 jl5Var = wVar.a.d;
+            if (jl5Var != null) {
                 try {
-                    hj5Var.r(wVar.c);
+                    jl5Var.r(wVar.c);
                 } catch (RemoteException unused) {
                 }
             }
@@ -214,17 +214,17 @@ public final class x extends b {
 
     @Override
     public final void e(long j, int i, float f, float f2, int i2) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        hj5 hj5Var2 = hj5Var;
-        if (hj5Var2 != null) {
+        jl5 jl5Var2 = jl5Var;
+        if (jl5Var2 != null) {
             try {
-                hj5Var2.K(wVar.c, i, f, f2, i2);
+                jl5Var2.K(wVar.c, i, f, f2, i2);
             } catch (RemoteException unused) {
             }
         }
@@ -240,16 +240,16 @@ public final class x extends b {
 
     @Override
     public final void g(long j) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        if (hj5Var != null) {
+        if (jl5Var != null) {
             try {
-                hj5Var.H(wVar.c);
+                jl5Var.H(wVar.c);
             } catch (RemoteException unused) {
             }
         }
@@ -257,16 +257,16 @@ public final class x extends b {
 
     @Override
     public final void h(long j, byte[] bArr) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        if (hj5Var != null) {
+        if (jl5Var != null) {
             try {
-                hj5Var.M(wVar.c, bArr);
+                jl5Var.M(wVar.c, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -274,16 +274,16 @@ public final class x extends b {
 
     @Override
     public final void i(long j, byte[] bArr) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        if (hj5Var != null) {
+        if (jl5Var != null) {
             try {
-                hj5Var.u(wVar.c, bArr);
+                jl5Var.u(wVar.c, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -291,17 +291,17 @@ public final class x extends b {
 
     @Override
     public final void j(long j, float f, boolean z, boolean z2, boolean z3) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        hj5 hj5Var2 = hj5Var;
-        if (hj5Var2 != null) {
+        jl5 jl5Var2 = jl5Var;
+        if (jl5Var2 != null) {
             try {
-                hj5Var2.k(wVar.c, f, z, z2, z3);
+                jl5Var2.k(wVar.c, f, z, z2, z3);
             } catch (RemoteException unused) {
             }
         }
@@ -309,17 +309,17 @@ public final class x extends b {
 
     @Override
     public final void k(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        hj5 hj5Var2 = hj5Var;
-        if (hj5Var2 != null) {
+        jl5 jl5Var2 = jl5Var;
+        if (jl5Var2 != null) {
             try {
-                hj5Var2.x(wVar.c, i, f, f2, i2, z, z2, i3, i4);
+                jl5Var2.x(wVar.c, i, f, f2, i2, z, z2, i3, i4);
             } catch (RemoteException unused) {
             }
         }
@@ -327,16 +327,16 @@ public final class x extends b {
 
     @Override
     public final void l(long j, boolean z) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        if (hj5Var != null) {
+        if (jl5Var != null) {
             try {
-                hj5Var.A(wVar.c, z);
+                jl5Var.A(wVar.c, z);
             } catch (RemoteException unused) {
             }
         }
@@ -344,77 +344,77 @@ public final class x extends b {
 
     @Override
     public final void m(long j, float f) {
-        hj5 hj5Var;
+        jl5 jl5Var;
         w wVar = (w) this.g.get(Long.valueOf(j));
         if (wVar == null) {
-            hj5Var = null;
+            jl5Var = null;
         } else {
-            hj5Var = wVar.a.d;
+            jl5Var = wVar.a.d;
         }
-        if (hj5Var != null) {
+        if (jl5Var != null) {
             try {
-                hj5Var.D(wVar.c, f);
+                jl5Var.D(wVar.c, f);
             } catch (RemoteException unused) {
             }
         }
     }
 
-    public final defpackage.yvc n(java.util.ArrayList r22, long r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.x.n(java.util.ArrayList, long):yvc");
+    public final defpackage.n0d n(java.util.ArrayList r22, long r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.x.n(java.util.ArrayList, long):n0d");
     }
 
-    public final void o(yvc yvcVar) {
-        if (yvcVar.n) {
+    public final void o(n0d n0dVar) {
+        if (n0dVar.n) {
             return;
         }
-        yvcVar.n = true;
-        if (yvcVar.d != null && yvcVar.d.asBinder().isBinderAlive()) {
+        n0dVar.n = true;
+        if (n0dVar.d != null && n0dVar.d.asBinder().isBinderAlive()) {
             this.p = SystemClock.elapsedRealtime() + 1000;
         }
-        yvcVar.d = null;
-        this.c.remove(yvcVar);
-        this.d.remove(yvcVar);
-        this.b.removeCallbacks(yvcVar.y);
+        n0dVar.d = null;
+        this.c.remove(n0dVar);
+        this.d.remove(n0dVar);
+        this.b.removeCallbacks(n0dVar.y);
         try {
-            this.j.unbindService(yvcVar);
+            this.j.unbindService(n0dVar);
         } catch (RuntimeException unused) {
         }
         this.a.notifyAll();
     }
 
-    public final void p(yvc yvcVar, String str) {
+    public final void p(n0d n0dVar, String str) {
         String str2 = "";
         try {
-            List<ApplicationExitInfo> historicalProcessExitReasons = ((ActivityManager) this.j.getSystemService("activity")).getHistoricalProcessExitReasons(this.j.getPackageName(), yvcVar.w, 1);
+            List<ApplicationExitInfo> historicalProcessExitReasons = ((ActivityManager) this.j.getSystemService("activity")).getHistoricalProcessExitReasons(this.j.getPackageName(), n0dVar.w, 1);
             if (!historicalProcessExitReasons.isEmpty()) {
-                ApplicationExitInfo a = ho9.a(historicalProcessExitReasons.get(0));
+                ApplicationExitInfo a = vr9.a(historicalProcessExitReasons.get(0));
                 str2 = ": exit reason " + a.getReason() + ", status " + a.getStatus() + ", " + a.getDescription() + ", rss " + (a.getRss() >> 10) + " MB";
             }
         } catch (Exception unused) {
         }
-        Log.w("WidgetEngine", "process " + yvcVar.a + str2);
-        fa4.b(str.concat(str2));
+        Log.w("WidgetEngine", "process " + n0dVar.a + str2);
+        cc4.b(str.concat(str2));
     }
 
-    public final void q(yvc yvcVar, String str) {
+    public final void q(n0d n0dVar, String str) {
         ArrayList arrayList = new ArrayList();
         synchronized (this.a) {
-            if (yvcVar.n) {
+            if (n0dVar.n) {
                 return;
             }
             Iterator it = this.g.entrySet().iterator();
             while (it.hasNext()) {
                 w wVar = (w) ((Map.Entry) it.next()).getValue();
-                if (wVar.a == yvcVar) {
+                if (wVar.a == n0dVar) {
                     arrayList.add(wVar);
                     it.remove();
                 }
             }
             if (str != null) {
-                if (yvcVar.d == null && yvcVar.b) {
+                if (n0dVar.d == null && n0dVar.b) {
                     this.q = false;
                 }
-                if (!yvcVar.h) {
+                if (!n0dVar.h) {
                     int i = this.n + 1;
                     this.n = i;
                     if (i >= 3) {
@@ -422,15 +422,15 @@ public final class x extends b {
                     }
                 }
             }
-            o(yvcVar);
+            o(n0dVar);
             u();
             if (str != null) {
-                String str2 = "widget engine process " + yvcVar.a + " " + str + " with " + arrayList.size() + " sessions";
+                String str2 = "widget engine process " + n0dVar.a + " " + str + " with " + arrayList.size() + " sessions";
                 Log.w("WidgetEngine", str2);
-                if (Build.VERSION.SDK_INT >= 30 && yvcVar.w != 0 && this.j != null) {
-                    Utilities.e.d(new wbc(this, yvcVar, str2, (byte) 23), 700L);
+                if (Build.VERSION.SDK_INT >= 30 && n0dVar.w != 0 && this.j != null) {
+                    Utilities.e.d(new jwc(this, n0dVar, str2), 700L);
                 } else {
-                    fa4.b(str2);
+                    cc4.b(str2);
                 }
             }
             int size = arrayList.size();
@@ -465,7 +465,7 @@ public final class x extends b {
             }
             if (bool == null || !bool.booleanValue()) {
                 try {
-                    i = na7.q1(y6c.t0).k4.t0.f();
+                    i = uc7.s1(yac.t0).k4.B0.f();
                 } catch (Exception unused) {
                     i = 6;
                 }
@@ -475,31 +475,31 @@ public final class x extends b {
         return 1;
     }
 
-    public final void s(yvc yvcVar) {
-        boolean z = yvcVar.n;
-        frc frcVar = yvcVar.y;
+    public final void s(n0d n0dVar) {
+        boolean z = n0dVar.n;
+        olc olcVar = n0dVar.y;
         if (!z) {
-            int i = yvcVar.e - 1;
-            yvcVar.e = i;
+            int i = n0dVar.e - 1;
+            n0dVar.e = i;
             if (i <= 0) {
                 this.a.notifyAll();
                 Handler handler = this.b;
-                handler.removeCallbacks(frcVar);
+                handler.removeCallbacks(olcVar);
                 if (r() <= 1) {
                     if (!this.k || !this.l) {
-                        handler.postDelayed(frcVar, 30000L);
+                        handler.postDelayed(olcVar, 30000L);
                     }
-                } else if (yvcVar.s != 0) {
-                    handler.postDelayed(frcVar, 5000L);
+                } else if (n0dVar.s != 0) {
+                    handler.postDelayed(olcVar, 5000L);
                 } else {
-                    o(yvcVar);
+                    o(n0dVar);
                     u();
                 }
             }
         }
     }
 
-    public final yvc t(boolean z) {
+    public final n0d t(boolean z) {
         boolean z2;
         boolean z3;
         Class cls;
@@ -516,8 +516,8 @@ public final class x extends b {
         }
         int i = this.m + 1;
         this.m = i;
-        yvc yvcVar = new yvc(this, i, z2, z3);
-        yvcVar.r = z;
+        n0d n0dVar = new n0d(this, i, z2, z3);
+        n0dVar.r = z;
         Context context = this.j;
         if (z2) {
             cls = WidgetEngineService.Forked.class;
@@ -526,33 +526,33 @@ public final class x extends b {
         }
         Intent intent = new Intent(context, cls);
         intent.putExtra("shared", z3);
-        boolean z5 = w01.a;
+        boolean z5 = f11.a;
         try {
             int i2 = Build.VERSION.SDK_INT;
             Context context2 = this.j;
             if (i2 >= 29) {
-                z4 = context2.bindIsolatedService(intent, 65, "w" + yvcVar.a, w, yvcVar);
+                z4 = context2.bindIsolatedService(intent, 65, "w" + n0dVar.a, w, n0dVar);
             } else {
-                z4 = context2.bindService(intent, yvcVar, 65);
+                z4 = context2.bindService(intent, n0dVar, 65);
             }
         } catch (RuntimeException e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             z4 = false;
         }
         if (!z4) {
             try {
-                this.j.unbindService(yvcVar);
+                this.j.unbindService(n0dVar);
             } catch (RuntimeException unused) {
             }
             if (z2) {
                 this.q = false;
                 return t(z);
             }
-            sc8.j("Widget engine service is unavailable");
+            grb.i("Widget engine service is unavailable");
             return null;
         }
-        this.c.add(yvcVar);
-        return yvcVar;
+        this.c.add(n0dVar);
+        return n0dVar;
     }
 
     public final void u() {
@@ -583,7 +583,7 @@ public final class x extends b {
                     }
                 }
             } catch (RuntimeException e) {
-                fa4.g(e, true);
+                cc4.g(e, true);
             }
         }
     }

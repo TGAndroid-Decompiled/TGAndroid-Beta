@@ -1,53 +1,31 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-public final class zx0 extends vi7 {
-    public final boolean s0;
-    public final fy0 t0;
+import android.animation.ValueAnimator;
+public final class zx0 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final gy0 b;
 
-    public zx0(fy0 fy0Var, Context context, boolean z, boolean z2) {
-        super(context);
-        this.t0 = fy0Var;
-        this.s0 = z;
+    public zx0(gy0 gy0Var, byte b) {
+        this.a = b;
+        this.b = gy0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        fy0 fy0Var = this.t0;
-        fy0Var.R0(canvas, this);
-        super.dispatchDraw(canvas);
-        fy0Var.Q0(canvas, this);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            float y = motionEvent.getY();
-            fy0 fy0Var = this.t0;
-            if (y < fy0Var.s0.getBounds().top) {
-                fy0Var.dismiss();
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        gy0 gy0Var = this.b;
+        switch (b) {
+            case 0:
+                gy0Var.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gy0Var.invalidate();
+                return;
+            case 1:
+                gy0Var.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            default:
+                gy0Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gy0Var.invalidate();
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        return super.drawChild(canvas, view, j);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i2);
-        fy0 fy0Var = this.t0;
-        fy0Var.q1 = size;
-        fy0Var.N0(i, i2);
-        if (this.s0) {
-            i2 = View.MeasureSpec.makeMeasureSpec(fy0Var.q1, 1073741824);
-        }
-        super.onMeasure(i, i2);
     }
 }

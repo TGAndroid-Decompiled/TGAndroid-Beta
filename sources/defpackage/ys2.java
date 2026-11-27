@@ -1,53 +1,37 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class ys2 implements Runnable {
-    public final byte a;
-    public final it2 b;
-    public final TLRPC.User c;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ys2 extends c4 {
+    public static final Parcelable.Creator<ys2> CREATOR = new ime((byte) 24);
+    public final an9 a;
+    public final boolean b;
+    public final boolean c;
+    public final int[] d;
+    public final int e;
+    public final int[] f;
 
-    public ys2(it2 it2Var, TLRPC.User user, byte b) {
-        this.a = b;
-        this.b = it2Var;
-        this.c = user;
+    public ys2(an9 an9Var, boolean z, boolean z2, int[] iArr, int i, int[] iArr2) {
+        this.a = an9Var;
+        this.b = z;
+        this.c = z2;
+        this.d = iArr;
+        this.e = i;
+        this.f = iArr2;
     }
 
     @Override
-    public final void run() {
-        String str;
-        byte b = this.a;
-        TLRPC.User user = this.c;
-        it2 it2Var = this.b;
-        switch (b) {
-            case 0:
-                if (user != null && it2Var.N == null && it2Var.O == null) {
-                    if (user.phone == null && (str = it2Var.M) != null) {
-                        user.phone = p38.h(str, false);
-                    }
-                    it2Var.b.setText(user.first_name);
-                    ht3 ht3Var = it2Var.b.d;
-                    ht3Var.setSelection(ht3Var.length());
-                    it2Var.c.setText(user.last_name);
-                }
-                TLRPC.UserFull W1 = it2Var.getMessagesController().W1(it2Var.I);
-                if (W1 != null) {
-                    TLRPC.TL_textWithEntities tL_textWithEntities = W1.note;
-                    it3 it3Var = it2Var.d;
-                    if (tL_textWithEntities != null) {
-                        it3Var.setText(tL_textWithEntities);
-                    } else {
-                        it3Var.setText("");
-                    }
-                }
-                if (it2Var.K) {
-                    it2Var.d.d.requestFocus();
-                    gl.E3(it2Var.d.d);
-                    return;
-                }
-                return;
-            default:
-                it2Var.c0(user);
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.k(parcel, 1, this.a, i);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.b ? 1 : 0);
+        bye.q(parcel, 3, 4);
+        parcel.writeInt(this.c ? 1 : 0);
+        bye.g(parcel, 4, this.d);
+        bye.q(parcel, 5, 4);
+        parcel.writeInt(this.e);
+        bye.g(parcel, 6, this.f);
+        bye.s(parcel, r);
     }
 }

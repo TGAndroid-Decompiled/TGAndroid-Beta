@@ -1,63 +1,35 @@
 package defpackage;
-
-import java.util.AbstractList;
-import java.util.ArrayList;
-public final class ztd extends dad {
-    public static final ztd c;
-    public final ArrayList b;
+public final class ztd extends s6e {
+    private static final ztd zzb;
+    private int zzd;
+    private dvd zze;
+    private dvd zzf;
+    private int zzg;
 
     static {
-        ztd ztdVar = new ztd(new ArrayList(10));
-        c = ztdVar;
-        ztdVar.a = false;
-    }
-
-    public ztd(ArrayList arrayList) {
-        this.b = arrayList;
+        ?? s6eVar = new s6e();
+        zzb = s6eVar;
+        s6e.k(ztd.class, s6eVar);
     }
 
     @Override
-    public final void add(int i, Object obj) {
-        h();
-        this.b.add(i, obj);
-        ((AbstractList) this).modCount++;
-    }
-
-    @Override
-    public final mkd f(int i) {
-        ArrayList arrayList = this.b;
-        if (i >= arrayList.size()) {
-            ArrayList arrayList2 = new ArrayList(i);
-            arrayList2.addAll(arrayList);
-            return new ztd(arrayList2);
+    public final Object d(int i) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 == 5) {
+                            return zzb;
+                        }
+                        throw null;
+                    }
+                    return new u4e(zzb);
+                }
+                return new s6e();
+            }
+            return new lfe(zzb, "\u0004\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001ဉ\u0000\u0002ဉ\u0001\u0003᠌\u0002", new Object[]{"zzd", "zze", "zzf", "zzg", ovd.b});
         }
-        sc8.e();
-        return null;
-    }
-
-    @Override
-    public final Object get(int i) {
-        return this.b.get(i);
-    }
-
-    @Override
-    public final Object remove(int i) {
-        h();
-        Object remove = this.b.remove(i);
-        ((AbstractList) this).modCount++;
-        return remove;
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        h();
-        Object obj2 = this.b.set(i, obj);
-        ((AbstractList) this).modCount++;
-        return obj2;
-    }
-
-    @Override
-    public final int size() {
-        return this.b.size();
+        return (byte) 1;
     }
 }

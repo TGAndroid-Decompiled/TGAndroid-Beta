@@ -1,30 +1,69 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class bh7 extends b4c {
-    public static final int b = 0;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+public final class bh7 extends zme implements ScheduledFuture, x76, Future {
+    public final u2 b;
+    public final ScheduledFuture c;
 
-    static {
-        b4c.h(new b4c());
+    public bh7(u2 u2Var, ScheduledFuture scheduledFuture) {
+        this.b = u2Var;
+        this.c = scheduledFuture;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ch7 ch7Var = (ch7) view;
-        ch7Var.a(c4cVar.d, c4cVar.A, (f4b) c4cVar.H);
-        ch7Var.b(c4cVar.e, false);
-        boolean z2 = c4cVar.f;
-        if (ch7Var.h != z2) {
-            ch7Var.h = z2;
-            ch7Var.G.a(z2);
-            ch7Var.invalidate();
+    public final void b(Runnable runnable, Executor executor) {
+        this.b.b(runnable, executor);
+    }
+
+    @Override
+    public final boolean cancel(boolean z) {
+        boolean e = e(z);
+        if (e) {
+            this.c.cancel(z);
         }
-        ch7Var.setOnCheckboxClick(c4cVar.E);
+        return e;
     }
 
     @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new ch7(context, wjbVar);
+    public final int compareTo(Delayed delayed) {
+        return this.c.compareTo(delayed);
+    }
+
+    @Override
+    public final Object d() {
+        return this.b;
+    }
+
+    public final boolean e(boolean z) {
+        return this.b.cancel(z);
+    }
+
+    @Override
+    public final Object get() {
+        return this.b.get();
+    }
+
+    @Override
+    public final long getDelay(TimeUnit timeUnit) {
+        return this.c.getDelay(timeUnit);
+    }
+
+    @Override
+    public final boolean isCancelled() {
+        return this.b.isCancelled();
+    }
+
+    @Override
+    public final boolean isDone() {
+        return this.b.isDone();
+    }
+
+    @Override
+    public final Object get(long j, TimeUnit timeUnit) {
+        return this.b.get(j, timeUnit);
     }
 }

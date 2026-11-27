@@ -1,51 +1,71 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.TextView;
-public final class a42 extends sa6 {
-    public final byte E = 0;
-    public final gk7 F;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class a42 implements Runnable {
+    public final byte a;
+    public final h42 b;
 
-    public a42(qa6 qa6Var, Context context, wjb wjbVar, boolean z) {
-        super(wjbVar, context, false, z);
-        this.F = qa6Var;
+    public a42(h42 h42Var, byte b) {
+        this.a = b;
+        this.b = h42Var;
     }
 
     @Override
-    public final void f() {
-        byte b = this.E;
-        gk7 gk7Var = this.F;
+    public final void run() {
+        byte b = this.a;
+        h42 h42Var = this.b;
         switch (b) {
             case 0:
-                c42 c42Var = (c42) gk7Var;
-                a42 a42Var = c42Var.O;
-                r7 r7Var = c42Var.x;
-                if (r7Var != null) {
-                    r7Var.setShowSearchProgress(a42Var.w);
+                h42Var.Y();
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = h42Var.T;
+                if (!h42Var.L && !h42Var.O0 && !h42Var.b.J && h42Var.M0 && h42Var.U0 == null && editTextBoldCursor.hasFocus() && h42Var.isShown()) {
+                    hl.E3(editTextBoldCursor);
+                    return;
                 }
-                TextView textView = c42Var.w;
-                if (textView != null) {
-                    textView.setText(k96.a0(null, null, 2131747973, a42Var.h));
+                return;
+            case 2:
+                if (!h42Var.L && h42Var.M0 && h42Var.isShown()) {
+                    h42Var.b0();
+                    return;
                 }
-                super.f();
+                return;
+            case 3:
+                if (!h42Var.L) {
+                    float f = h42Var.n0;
+                    if (f < 1.0f && h42Var.m0 == null) {
+                        vpa vpaVar = new vpa(new xk4(f));
+                        h42Var.m0 = vpaVar;
+                        wpa wpaVar = new wpa(1.0f);
+                        wpaVar.a(0.55f);
+                        wpaVar.b(65.0f);
+                        vpaVar.m = wpaVar;
+                        h42Var.m0.f(0.001f);
+                        h42Var.m0.b(new i10(h42Var, (byte) 4));
+                        h42Var.m0.a(new iw0(h42Var, (byte) 4));
+                        h42Var.m0.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                if (h42Var.M0 && !h42Var.L) {
+                    h42Var.a0();
+                    if (h42Var.N0) {
+                        h42Var.b0();
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                qa6 qa6Var = (qa6) gk7Var;
-                xha xhaVar = qa6Var.r;
-                if (xhaVar != null) {
-                    xhaVar.setShowSearchProgress(qa6Var.T.w);
+                if (!h42Var.q0) {
+                    h42Var.p0.setVisibility(4);
+                    return;
                 }
-                TextView textView2 = qa6Var.n;
-                if (textView2 != null) {
-                    textView2.setText(k96.a0(null, null, 2131747973, qa6Var.T.h));
-                }
-                super.f();
                 return;
         }
-    }
-
-    public a42(c42 c42Var, Context context, wjb wjbVar, boolean z) {
-        super(wjbVar, context, z, false);
-        this.F = c42Var;
     }
 }

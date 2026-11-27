@@ -1,72 +1,71 @@
 package defpackage;
 
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import java.util.HashMap;
-import java.util.List;
-public final class ib3 implements b16 {
-    public final byte a;
-    public final Object b;
-    public final Object c;
+import androidx.appcompat.widget.ActionBarContextView;
+import java.util.ArrayList;
+public final class ib3 implements cjc {
+    public static final int[] d = {8, 13, 11, 2, 0, 1, 7};
+    public boolean a;
+    public byte b;
+    public Object c;
 
-    public ib3(Object obj) {
-        this.a = (byte) 2;
-        this.b = obj;
-        rh2 rh2Var = rh2.c;
-        Class<?> cls = obj.getClass();
-        ph2 ph2Var = (ph2) rh2Var.a.get(cls);
-        this.c = ph2Var == null ? rh2Var.a(cls, null) : ph2Var;
-    }
-
-    @Override
-    public final void b(e16 e16Var, u06 u06Var) {
-        Handler handler;
-        byte b = this.a;
-        Object obj = this.b;
-        Object obj2 = this.c;
-        switch (b) {
-            case 0:
-                mw3 mw3Var = (mw3) obj;
-                int i = hb3.a[u06Var.ordinal()];
-                if (i != 3) {
-                    if (i == 7) {
-                        w26.j("ON_ANY must not been send by anybody");
-                        return;
-                    }
-                } else {
-                    if (Build.VERSION.SDK_INT >= 28) {
-                        handler = tq2.a(Looper.getMainLooper());
-                    } else {
-                        handler = new Handler(Looper.getMainLooper());
-                    }
-                    handler.postDelayed(new sv((byte) 7), 500L);
-                    mw3Var.a.b(mw3Var);
+    public static void d(int i, ArrayList arrayList) {
+        int i2 = 0;
+        while (true) {
+            if (i2 < 7) {
+                if (d[i2] == i) {
+                    break;
                 }
-                b16 b16Var = (b16) obj2;
-                if (b16Var != null) {
-                    b16Var.b(e16Var, u06Var);
-                    return;
-                }
-                return;
-            case 1:
-                if (u06Var == u06.ON_START) {
-                    ((w06) obj).b(this);
-                    ((oo) obj2).g();
-                    return;
-                }
-                return;
-            default:
-                HashMap hashMap = ((ph2) obj2).a;
-                ph2.a((List) hashMap.get(u06Var), e16Var, u06Var, obj);
-                ph2.a((List) hashMap.get(u06.ON_ANY), e16Var, u06Var, obj);
-                return;
+                i2++;
+            } else {
+                i2 = -1;
+                break;
+            }
+        }
+        if (i2 != -1 && !arrayList.contains(Integer.valueOf(i))) {
+            arrayList.add(Integer.valueOf(i));
         }
     }
 
-    public ib3(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
+    @Override
+    public final void a() {
+        this.a = true;
+    }
+
+    @Override
+    public final void b() {
+        super/*android.view.ViewGroup*/.setVisibility(0);
+        this.a = false;
+    }
+
+    @Override
+    public final void c() {
+        if (this.a) {
+            return;
+        }
+        ActionBarContextView actionBarContextView = (ActionBarContextView) this.c;
+        actionBarContextView.f = null;
+        super/*android.view.ViewGroup*/.setVisibility(this.b);
+    }
+
+    public final ko4 e(ko4 ko4Var) {
+        String str;
+        if (this.a && ((uif) this.c).j(ko4Var)) {
+            jo4 a = ko4Var.a();
+            String str2 = ko4Var.l;
+            a.s = dg7.n("application/x-media3-cues");
+            a.T = ((uif) this.c).y(ko4Var);
+            StringBuilder sb = new StringBuilder();
+            sb.append(ko4Var.t);
+            if (str2 != null) {
+                str = " ".concat(str2);
+            } else {
+                str = "";
+            }
+            sb.append(str);
+            a.k = sb.toString();
+            a.x = Long.MAX_VALUE;
+            return new ko4(a);
+        }
+        return ko4Var;
     }
 }

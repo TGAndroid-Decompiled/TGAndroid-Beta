@@ -2,19 +2,18 @@ package defpackage;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-public final class gi6 extends b4 {
-    public static final Parcelable.Creator<gi6> CREATOR = new qyd((byte) 22);
-    public final String a;
-
-    public gi6(String str) {
-        fre.i(str, "json must not be null");
-        this.a = str;
-    }
+public final class gi6 extends c4 {
+    public static final Parcelable.Creator<gi6> CREATOR = new ime((byte) 10);
+    public String a;
+    public hi6 b;
+    public prb c;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.s(parcel, r);
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 2, this.a);
+        bye.k(parcel, 3, this.b, i);
+        bye.k(parcel, 5, this.c, i);
+        bye.s(parcel, r);
     }
 }

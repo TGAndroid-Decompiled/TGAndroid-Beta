@@ -1,12 +1,8 @@
 package defpackage;
+public interface m6c {
+    void a(int i, ey7 ey7Var);
 
-import android.text.SpannableStringBuilder;
-public final class m6c extends u41 {
-    public SpannableStringBuilder m0;
+    void c(usb usbVar, g84 g84Var, l6c l6cVar);
 
-    public void setLvlRequiredState(int i) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) this.m0).append((CharSequence) k96.G(i, "ReactionLevelRequiredBtn", new Object[0]));
-        g(spannableStringBuilder, true);
-    }
+    void d();
 }

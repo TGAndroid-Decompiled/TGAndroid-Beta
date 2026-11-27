@@ -1,64 +1,193 @@
 package defpackage;
 
-import android.app.Activity;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class xj3 extends l5c {
-    public final int Q;
-    public final int R;
-    public final ArrayList S;
-    public final ArrayList T;
-    public final ArrayList U;
-    public final ArrayList V;
-    public boolean W;
-    public boolean X;
-    public final ArrayList Y;
-    public boolean Z;
-    public boolean a0;
-    public boolean b0;
-    public int c0;
-    public int d0;
-    public String e0;
-    public final li3 f0;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.ui.Components.FragmentContextView;
+public class xj3 extends pm implements snb {
+    public FragmentContextView E;
+    public boolean F;
+    public boolean G;
+    public jl0 s;
+    public final Path w;
+    public final RectF x;
+    public int y;
 
-    public xj3(o39 o39Var, Activity activity, int i, int i2) {
-        super(o39Var, activity, i, 0, false, null, null);
-        this.S = new ArrayList();
-        this.T = new ArrayList();
-        this.U = new ArrayList();
-        this.V = new ArrayList();
-        this.Y = new ArrayList();
-        ot9 ot9Var = (ot9) this;
-        this.f0 = new li3(ot9Var, (byte) 4);
-        this.w = new w72(ot9Var, (byte) 20);
-        this.Q = i;
-        this.R = i2;
-        O(false);
+    public xj3(Context context) {
+        super(context);
+        this.w = new Path();
+        this.x = new RectF();
+        this.y = 24;
+        setOrientation(1);
+        updateColors();
     }
 
-    public final void W(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xj3.W(boolean):void");
-    }
-
-    public final void X() {
-        ArrayList arrayList = new ArrayList();
-        int i = this.Q;
-        ArrayList arrayList2 = na7.q1(i).y;
-        int size = arrayList2.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList2.get(i2);
-            i2++;
-            TLRPC.Chat K0 = na7.q1(i).K0(Long.valueOf(-((TLRPC.Dialog) obj).id));
-            if (K0 != null && hc2.V(K0) && hc2.t0(K0) && !hc2.r0(K0)) {
-                arrayList.add(K0);
-                if (arrayList.size() >= 100) {
-                    break;
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        boolean z;
+        int currentStyle;
+        FragmentContextView fragmentContextView;
+        Canvas canvas2 = canvas;
+        if (getMetadata().c.a != 0.0f) {
+            jl0 jl0Var = this.s;
+            if (jl0Var != null) {
+                jl0Var.draw(canvas2);
+            }
+            FragmentContextView fragmentContextView2 = this.E;
+            b76 b76Var = this.c;
+            View view = null;
+            if (fragmentContextView2 != null && ((currentStyle = fragmentContextView2.getCurrentStyle()) == 3 || currentStyle == 1)) {
+                int entriesCount = getEntriesCount();
+                for (int i = 0; i < entriesCount; i++) {
+                    y66 i2 = b76Var.i(i);
+                    float paddingTop = getPaddingTop() + i2.b().top;
+                    View view2 = ((om) i2.a).a;
+                    float c = i2.c();
+                    if (c > 0.0f && (fragmentContextView = this.E) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
+                        cb1 capsuleBlobDrawable = this.E.getCapsuleBlobDrawable();
+                        int L = hl.L(1.0f) + ((int) capsuleBlobDrawable.d());
+                        int i3 = -L;
+                        capsuleBlobDrawable.setBounds(getPaddingLeft() - L, i3, (getMeasuredWidth() - getPaddingRight()) + L, hl.L(36.0f) + (L << 1) + i3);
+                        capsuleBlobDrawable.setAlpha((int) (c * 255.0f));
+                        canvas2.save();
+                        canvas2.translate(0.0f, paddingTop);
+                        capsuleBlobDrawable.draw(canvas2);
+                        canvas2.restore();
+                        view = view2;
+                    }
                 }
             }
+            View view3 = view;
+            canvas2.save();
+            canvas2.clipPath(this.w);
+            int entriesCount2 = getEntriesCount();
+            int i4 = 0;
+            while (i4 < entriesCount2) {
+                y66 i5 = b76Var.i(i4);
+                float paddingTop2 = getPaddingTop() + i5.b().top;
+                View view4 = ((om) i5.a).a;
+                float min = Math.min(1.0f, i5.c.a) * i5.c();
+                if (min > 0.0f && view3 != view4) {
+                    int alpha = aob.j0.getAlpha();
+                    aob.j0.setAlpha((int) (alpha * min));
+                    float f = 1.0f - min;
+                    canvas2.drawLine(getPaddingLeft() + (hl.L(16.0f) * f), paddingTop2, getWidth() - ((hl.L(16.0f) * f) + getPaddingRight()), paddingTop2, aob.j0);
+                    aob.j0.setAlpha(alpha);
+                }
+                i4++;
+                canvas2 = canvas;
+            }
+            if (view3 != null) {
+                z = true;
+            } else {
+                z = false;
+            }
+            this.F = z;
+            this.G = false;
+            super.dispatchDraw(canvas);
+            canvas.restore();
+            if (view3 != null) {
+                this.G = true;
+                this.F = false;
+                super.dispatchDraw(canvas);
+            }
         }
-        ArrayList arrayList3 = this.Y;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        jl0 jl0Var;
+        if (!super.dispatchTouchEvent(motionEvent)) {
+            if (motionEvent.getAction() != 0 || (jl0Var = this.s) == null || !jl0Var.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        FragmentContextView fragmentContextView = this.E;
+        if (fragmentContextView != null && (fragmentContextView == view || fragmentContextView.getParent() == view)) {
+            if (this.F) {
+                return false;
+            }
+        } else if (this.G) {
+            return false;
+        }
+        return super.drawChild(canvas, view, j);
+    }
+
+    @Override
+    public final void f() {
+        k();
+        invalidate();
+    }
+
+    public final void k() {
+        float f = getMetadata().g.a;
+        float f2 = getMetadata().c.a;
+        RectF rectF = this.x;
+        rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f);
+        float min = Math.min(hl.L(this.y), Math.min(rectF.width(), rectF.height()) / 2.0f);
+        Path path = this.w;
+        path.rewind();
+        path.addRoundRect(rectF, min, min, Path.Direction.CW);
+        jl0 jl0Var = this.s;
+        if (jl0Var != null) {
+            jl0Var.setAlpha((int) (f2 * 255.0f));
+            this.s.setBounds(hl.L(4.0f), hl.L(14.0f), getMeasuredWidth() - hl.L(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f)) - hl.L(14.0f));
+            this.s.r(Math.min(hl.L(this.y), f / 2.0f));
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        k();
+    }
+
+    public void setBlurredBackground(jl0 jl0Var) {
+        this.s = jl0Var;
+    }
+
+    public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
+        this.E = fragmentContextView;
+        fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
+    }
+
+    public void setDefaultRadiusDp(int i) {
+        this.y = i;
+    }
+
+    @Override
+    public final void updateColors() {
+        jl0 jl0Var = this.s;
+        if (jl0Var != null) {
+            jl0Var.updateColors();
+        }
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable)) {
+            FragmentContextView fragmentContextView = this.E;
+            if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

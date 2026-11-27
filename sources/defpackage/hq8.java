@@ -1,48 +1,31 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
+import android.graphics.Paint;
 import org.telegram.ui.ProfileActivity;
-public final class hq8 implements p8c {
+public final class hq8 extends Paint {
     public final byte a;
-    public final pq8 b;
-    public final TL_stars.SavedStarGift c;
+    public final Object b;
 
-    public hq8(pq8 pq8Var, TL_stars.SavedStarGift savedStarGift, byte b) {
+    public hq8(Object obj, byte b) {
+        super(1);
         this.a = b;
-        this.b = pq8Var;
-        this.c = savedStarGift;
+        this.b = obj;
     }
 
     @Override
-    public final void a(Object obj) {
+    public final void setAlpha(int i) {
         byte b = this.a;
-        TL_stars.SavedStarGift savedStarGift = this.c;
-        pq8 pq8Var = this.b;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                pq8Var.a.e.b(new hq8(pq8Var, savedStarGift, (byte) 1), (String) obj);
+                super.setAlpha(i);
+                ((ProfileActivity) obj).fragmentView.invalidate();
                 return;
             default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                lca lcaVar = pq8Var.a;
-                wsa wsaVar = lcaVar.e;
-                int i = tL_starGiftCollection.collection_id;
-                wsaVar.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(savedStarGift);
-                wsaVar.a(i, arrayList);
-                lcaVar.f(true);
-                vec vecVar = lcaVar.n;
-                int i2 = tL_starGiftCollection.collection_id;
-                vecVar.e(i2, lcaVar.e.f(i2) + 1);
-                d dVar = lcaVar.a;
-                if (dVar instanceof ProfileActivity) {
-                    ((ProfileActivity) dVar).j3(true);
-                }
-                lcaVar.o();
-                u21.b0(dVar).R(savedStarGift.gift.getDocument(), gl.S2(k96.a0(null, null, 2131750377, vqa.t1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                super.setAlpha(i);
+                lo9 lo9Var = (lo9) obj;
+                lo9Var.a.setAlpha(Math.round(i * 0.2f));
+                lo9Var.invalidate();
                 return;
         }
     }

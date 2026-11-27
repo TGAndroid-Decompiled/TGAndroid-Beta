@@ -1,31 +1,26 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class m04 {
-    public final TLRPC.StickerSetCovered a;
-    public final TLRPC.TL_messages_stickerSet b;
-    public final TLRPC.StickerSet c;
-    public final ArrayList d;
-    public final TLRPC.Document e;
+import android.content.Context;
+public final class m04 extends y46 {
+    public final int r;
 
-    public m04(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
-        TLRPC.Document document = null;
-        this.a = null;
-        this.b = tL_messages_stickerSet;
-        this.c = tL_messages_stickerSet.set;
-        this.d = arrayList;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            document = (TLRPC.Document) arrayList.get(0);
-        }
-        this.e = document;
+    public m04(Context context, int i) {
+        super(context);
+        this.r = i;
     }
 
-    public m04(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
-        this.a = stickerSetCovered;
-        this.b = null;
-        this.c = stickerSetCovered.set;
-        this.d = arrayList;
-        this.e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
+    @Override
+    public final int i(int i, int i2, int i3, int i4, int i5) {
+        return super.i(i, i2, i3, i4, i5) + this.r;
+    }
+
+    @Override
+    public final int m(int i) {
+        return super.m(i) << 4;
+    }
+
+    @Override
+    public final int p() {
+        return -1;
     }
 }

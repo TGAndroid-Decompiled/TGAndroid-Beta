@@ -1,60 +1,41 @@
 package defpackage;
+public final class edf extends ljf {
+    private static final edf zzb;
+    private int zzd;
+    private long zze;
+    private rjf zzf;
+    private rjf zzg;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.RunnableFuture;
-import java.util.concurrent.locks.LockSupport;
-public final class edf extends vbf implements RunnableFuture {
-    public volatile h2c n;
+    static {
+        edf edfVar = new edf();
+        zzb = edfVar;
+        ljf.e(edf.class, edfVar);
+    }
 
-    public edf(Callable callable) {
-        this.n = new h2c(this, callable);
+    public edf() {
+        pkf pkfVar = pkf.d;
+        this.zzf = pkfVar;
+        this.zzg = pkfVar;
     }
 
     @Override
-    public final String a() {
-        h2c h2cVar = this.n;
-        if (h2cVar != null) {
-            return tb4.y("task=[", h2cVar.toString(), "]");
-        }
-        return super.a();
-    }
-
-    @Override
-    public final void d() {
-        h2c h2cVar;
-        Object obj = this.a;
-        if ((obj instanceof nbf) && ((nbf) obj).a && (h2cVar = this.n) != null) {
-            sv svVar = h2c.h;
-            sv svVar2 = h2c.f;
-            Runnable runnable = (Runnable) h2cVar.get();
-            if (runnable instanceof Thread) {
-                jcf jcfVar = new jcf(h2cVar);
-                jcf.a(jcfVar, Thread.currentThread());
-                if (h2cVar.compareAndSet(runnable, jcfVar)) {
-                    try {
-                        Thread thread = (Thread) runnable;
-                        thread.interrupt();
-                        if (((Runnable) h2cVar.getAndSet(svVar2)) == svVar) {
-                            LockSupport.unpark(thread);
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
                         }
-                    } catch (Throwable th) {
-                        if (((Runnable) h2cVar.getAndSet(svVar2)) == svVar) {
-                            LockSupport.unpark((Thread) runnable);
-                        }
-                        throw th;
+                        return zzb;
                     }
+                    return new kjf(zzb);
                 }
+                return new edf();
             }
+            return new ilf(zzb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0002\u0000\u0001စ\u0000\u0002\u0017\u0003\u0017", new Object[]{"zzd", "zze", "zzf", "zzg"});
         }
-        this.n = null;
-    }
-
-    @Override
-    public final void run() {
-        h2c h2cVar = this.n;
-        if (h2cVar != null) {
-            h2cVar.run();
-        }
-        this.n = null;
+        return (byte) 1;
     }
 }

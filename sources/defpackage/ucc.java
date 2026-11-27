@@ -1,71 +1,48 @@
 package defpackage;
-public final class ucc {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
 
-    public final boolean a() {
-        int i;
-        int i2;
-        int i3;
-        int i4 = this.a;
-        int i5 = 2;
-        if ((i4 & 7) != 0) {
-            int i6 = this.d;
-            int i7 = this.b;
-            if (i6 > i7) {
-                i3 = 1;
-            } else if (i6 == i7) {
-                i3 = 2;
-            } else {
-                i3 = 4;
-            }
-            if ((i3 & i4) == 0) {
-                return false;
-            }
+import android.os.Looper;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicLong;
+public abstract class ucc {
+    public static final ExecutorService a;
+
+    static {
+        wc3 wc3Var = new wc3(new AtomicLong(1L), (byte) 1);
+        ThreadPoolExecutor.DiscardPolicy discardPolicy = new ThreadPoolExecutor.DiscardPolicy();
+        ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), wc3Var, discardPolicy));
+        Runtime.getRuntime().addShutdownHook(new Thread(new r54(unconfigurableExecutorService, (byte) 1), "Crashlytics Shutdown Hook for awaitEvenIfOnMainThread task continuation executor"));
+        a = unconfigurableExecutorService;
+    }
+
+    public static void a(Task task) {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        task.continueWith(a, new ftb(countDownLatch, (byte) 8));
+        Looper mainLooper = Looper.getMainLooper();
+        Looper myLooper = Looper.myLooper();
+        TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+        if (mainLooper == myLooper) {
+            countDownLatch.await(3000L, timeUnit);
+        } else {
+            countDownLatch.await(4000L, timeUnit);
         }
-        if ((i4 & 112) != 0) {
-            int i8 = this.d;
-            int i9 = this.c;
-            if (i8 > i9) {
-                i2 = 1;
-            } else if (i8 == i9) {
-                i2 = 2;
-            } else {
-                i2 = 4;
+        if (task.isSuccessful()) {
+            task.getResult();
+        } else if (!task.isCanceled()) {
+            if (task.isComplete()) {
+                vr9.l(task.getException());
+                return;
             }
-            if (((i2 << 4) & i4) == 0) {
-                return false;
-            }
+            throw new TimeoutException();
+        } else {
+            throw new CancellationException("Task is already canceled");
         }
-        if ((i4 & 1792) != 0) {
-            int i10 = this.e;
-            int i11 = this.b;
-            if (i10 > i11) {
-                i = 1;
-            } else if (i10 == i11) {
-                i = 2;
-            } else {
-                i = 4;
-            }
-            if (((i << 8) & i4) == 0) {
-                return false;
-            }
-        }
-        if ((i4 & 28672) != 0) {
-            int i12 = this.e;
-            int i13 = this.c;
-            if (i12 > i13) {
-                i5 = 1;
-            } else if (i12 != i13) {
-                i5 = 4;
-            }
-            if ((i4 & (i5 << 12)) == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

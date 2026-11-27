@@ -1,5 +1,10 @@
 package defpackage;
 
-import android.os.IInterface;
-public interface pff extends IInterface {
+import java.util.logging.Logger;
+public abstract class pff {
+    public static final int a = 0;
+
+    static {
+        Logger.getLogger(pff.class.getName());
+    }
 }

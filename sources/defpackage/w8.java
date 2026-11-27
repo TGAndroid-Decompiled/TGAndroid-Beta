@@ -1,73 +1,406 @@
 package defpackage;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.view.ActionProvider;
+import android.view.ContextMenu;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
-import androidx.appcompat.view.menu.ActionMenuItemView;
-public final class w8 extends pm4 {
-    public final byte s = 1;
-    public final View w;
+public final class w8 implements ufb {
+    public CharSequence a;
+    public CharSequence b;
+    public Intent c;
+    public char d;
+    public int e;
+    public char f;
+    public int g;
+    public Drawable h;
+    public Context i;
+    public CharSequence j;
+    public CharSequence k;
+    public ColorStateList l;
+    public PorterDuff.Mode m;
+    public boolean n;
+    public boolean o;
+    public int p;
 
-    public w8(ActionMenuItemView actionMenuItemView) {
-        super(actionMenuItemView);
-        this.w = actionMenuItemView;
+    @Override
+    public final ufb a(k27 k27Var) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final vga b() {
-        y8 y8Var;
-        byte b = this.s;
-        View view = this.w;
-        switch (b) {
-            case 0:
-                x8 x8Var = ((ActionMenuItemView) view).y;
-                if (x8Var == null || (y8Var = ((z8) x8Var).a.K) == null) {
-                    return null;
+    public final k27 b() {
+        return null;
+    }
+
+    public final void c() {
+        Drawable drawable = this.h;
+        if (drawable != null) {
+            if (this.n || this.o) {
+                this.h = drawable;
+                Drawable mutate = drawable.mutate();
+                this.h = mutate;
+                if (this.n) {
+                    mutate.setTintList(this.l);
                 }
-                return y8Var.a();
-            default:
-                y8 y8Var2 = ((a9) view).d.J;
-                if (y8Var2 == null) {
-                    return null;
+                if (this.o) {
+                    this.h.setTintMode(this.m);
                 }
-                return y8Var2.a();
+            }
         }
     }
 
     @Override
-    public final boolean c() {
-        vga b;
-        byte b2 = this.s;
-        View view = this.w;
-        switch (b2) {
-            case 0:
-                ActionMenuItemView actionMenuItemView = (ActionMenuItemView) view;
-                xz6 xz6Var = actionMenuItemView.w;
-                if (xz6Var != null && xz6Var.a(actionMenuItemView.n) && (b = b()) != null && b.a()) {
-                    return true;
-                }
-                return false;
-            default:
-                ((a9) view).d.l();
-                return true;
-        }
+    public final boolean collapseActionView() {
+        return false;
     }
 
     @Override
-    public final boolean d() {
-        switch (this.s) {
-            case 1:
-                b9 b9Var = ((a9) this.w).d;
-                if (b9Var.L != null) {
-                    return false;
-                }
-                b9Var.e();
-                return true;
-            default:
-                return super.d();
-        }
+    public final boolean expandActionView() {
+        return false;
     }
 
-    public w8(a9 a9Var, a9 a9Var2) {
-        super(a9Var2);
-        this.w = a9Var;
+    @Override
+    public final ActionProvider getActionProvider() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final View getActionView() {
+        return null;
+    }
+
+    @Override
+    public final int getAlphabeticModifiers() {
+        return this.g;
+    }
+
+    @Override
+    public final char getAlphabeticShortcut() {
+        return this.f;
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        return this.j;
+    }
+
+    @Override
+    public final int getGroupId() {
+        return 0;
+    }
+
+    @Override
+    public final Drawable getIcon() {
+        return this.h;
+    }
+
+    @Override
+    public final ColorStateList getIconTintList() {
+        return this.l;
+    }
+
+    @Override
+    public final PorterDuff.Mode getIconTintMode() {
+        return this.m;
+    }
+
+    @Override
+    public final Intent getIntent() {
+        return this.c;
+    }
+
+    @Override
+    public final int getItemId() {
+        return 16908332;
+    }
+
+    @Override
+    public final ContextMenu.ContextMenuInfo getMenuInfo() {
+        return null;
+    }
+
+    @Override
+    public final int getNumericModifiers() {
+        return this.e;
+    }
+
+    @Override
+    public final char getNumericShortcut() {
+        return this.d;
+    }
+
+    @Override
+    public final int getOrder() {
+        return 0;
+    }
+
+    @Override
+    public final SubMenu getSubMenu() {
+        return null;
+    }
+
+    @Override
+    public final CharSequence getTitle() {
+        return this.a;
+    }
+
+    @Override
+    public final CharSequence getTitleCondensed() {
+        CharSequence charSequence = this.b;
+        if (charSequence != null) {
+            return charSequence;
+        }
+        return this.a;
+    }
+
+    @Override
+    public final CharSequence getTooltipText() {
+        return this.k;
+    }
+
+    @Override
+    public final boolean hasSubMenu() {
+        return false;
+    }
+
+    @Override
+    public final boolean isActionViewExpanded() {
+        return false;
+    }
+
+    @Override
+    public final boolean isCheckable() {
+        if ((this.p & 1) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isChecked() {
+        if ((this.p & 2) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isEnabled() {
+        if ((this.p & 16) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isVisible() {
+        if ((this.p & 8) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final MenuItem setActionProvider(ActionProvider actionProvider) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final MenuItem setActionView(View view) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final MenuItem setAlphabeticShortcut(char c, int i) {
+        this.f = Character.toLowerCase(c);
+        this.g = KeyEvent.normalizeMetaState(i);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setCheckable(boolean z) {
+        this.p = (this.p & (-2)) | (z ? 1 : 0);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setChecked(boolean z) {
+        int i;
+        int i2 = this.p & (-3);
+        if (z) {
+            i = 2;
+        } else {
+            i = 0;
+        }
+        this.p = i2 | i;
+        return this;
+    }
+
+    @Override
+    public final ufb setContentDescription(CharSequence charSequence) {
+        this.j = charSequence;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setEnabled(boolean z) {
+        int i;
+        int i2 = this.p & (-17);
+        if (z) {
+            i = 16;
+        } else {
+            i = 0;
+        }
+        this.p = i2 | i;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setIcon(int i) {
+        this.h = this.i.getDrawable(i);
+        c();
+        return this;
+    }
+
+    @Override
+    public final MenuItem setIconTintList(ColorStateList colorStateList) {
+        this.l = colorStateList;
+        this.n = true;
+        c();
+        return this;
+    }
+
+    @Override
+    public final MenuItem setIconTintMode(PorterDuff.Mode mode) {
+        this.m = mode;
+        this.o = true;
+        c();
+        return this;
+    }
+
+    @Override
+    public final MenuItem setIntent(Intent intent) {
+        this.c = intent;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setNumericShortcut(char c, int i) {
+        this.d = c;
+        this.e = KeyEvent.normalizeMetaState(i);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setOnActionExpandListener(MenuItem.OnActionExpandListener onActionExpandListener) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final MenuItem setShortcut(char c, char c2, int i, int i2) {
+        this.d = c;
+        this.e = KeyEvent.normalizeMetaState(i);
+        this.f = Character.toLowerCase(c2);
+        this.g = KeyEvent.normalizeMetaState(i2);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setTitle(int i) {
+        this.a = this.i.getResources().getString(i);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setTitleCondensed(CharSequence charSequence) {
+        this.b = charSequence;
+        return this;
+    }
+
+    @Override
+    public final ufb setTooltipText(CharSequence charSequence) {
+        this.k = charSequence;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setVisible(boolean z) {
+        int i = 8;
+        int i2 = this.p & 8;
+        if (z) {
+            i = 0;
+        }
+        this.p = i2 | i;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setContentDescription(CharSequence charSequence) {
+        this.j = charSequence;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setTooltipText(CharSequence charSequence) {
+        this.k = charSequence;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setActionView(int i) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final MenuItem setNumericShortcut(char c) {
+        this.d = c;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setIcon(Drawable drawable) {
+        this.h = drawable;
+        c();
+        return this;
+    }
+
+    @Override
+    public final MenuItem setAlphabeticShortcut(char c) {
+        this.f = Character.toLowerCase(c);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setTitle(CharSequence charSequence) {
+        this.a = charSequence;
+        return this;
+    }
+
+    @Override
+    public final MenuItem setShortcut(char c, char c2) {
+        this.d = c;
+        this.f = Character.toLowerCase(c2);
+        return this;
+    }
+
+    @Override
+    public final MenuItem setOnMenuItemClickListener(MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
+        return this;
+    }
+
+    @Override
+    public final void setShowAsAction(int i) {
+    }
+
+    @Override
+    public final MenuItem setShowAsActionFlags(int i) {
+        return this;
     }
 }

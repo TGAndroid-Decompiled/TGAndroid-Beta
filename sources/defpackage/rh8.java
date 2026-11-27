@@ -1,40 +1,51 @@
 package defpackage;
 
-import android.text.style.ClickableSpan;
+import android.content.Context;
+import android.view.ActionMode;
 import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class rh8 implements k46 {
-    public final byte a;
-    public final fy0 b;
+public final class rh8 extends zh8 {
+    public final uh8 G;
 
-    public rh8(fy0 fy0Var, byte b) {
-        this.a = b;
-        this.b = fy0Var;
+    public rh8(uh8 uh8Var, Context context, int i) {
+        super(context, i, null, null);
+        this.G = uh8Var;
     }
 
     @Override
-    public final void a(ClickableSpan clickableSpan) {
-        byte b = this.a;
-        fy0 fy0Var = this.b;
-        switch (b) {
-            case 0:
-                xh8 xh8Var = (xh8) fy0Var;
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(xh8Var.x2);
-                hu0 hu0Var = new hu0(xh8Var, (byte) 10);
-                d dVar = xh8Var.o2;
-                if (dVar != null) {
-                    hu0Var.setParentFragment(dVar);
-                }
-                new uh8(xh8Var, hu0Var, xh8Var.getContext(), xh8Var.J0, arrayList).show();
-                return;
-            default:
-                c0c c0cVar = (c0c) fy0Var;
-                if (clickableSpan != null) {
-                    clickableSpan.onClick(c0cVar.b);
-                    return;
-                }
-                return;
+    public final void j(boolean z) {
+        this.G.d.n0(this, z);
+    }
+
+    @Override
+    public final void k(zh8 zh8Var) {
+        this.G.d.o0(zh8Var);
+    }
+
+    @Override
+    public final boolean m(ArrayList arrayList) {
+        wh8 wh8Var = this.G.d;
+        if (arrayList.isEmpty()) {
+            return false;
         }
+        qy qyVar = this.d;
+        qyVar.getText().replace(qyVar.getSelectionStart(), qyVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i = 0;
+        while (!arrayList.isEmpty() && i < wh8Var.n) {
+            for (int length = wh8Var.w.length - 1; length > i; length--) {
+                CharSequence[] charSequenceArr = wh8Var.w;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            wh8Var.w[i] = (CharSequence) arrayList.remove(0);
+            wh8Var.E++;
+            i++;
+        }
+        wh8Var.u0();
+        wh8Var.h0 = (wh8Var.o0 + i) - 1;
+        wh8Var.b.f();
+        return true;
+    }
+
+    @Override
+    public final void h(qy qyVar, ActionMode actionMode) {
     }
 }

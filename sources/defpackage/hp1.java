@@ -1,22 +1,46 @@
 package defpackage;
 
-import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class hp1 extends i92 {
-    public final mu1 N;
+import org.telegram.ui.Components.UndoView;
+public final class hp1 implements a70 {
+    public final zu1 a;
 
-    public hp1(mu1 mu1Var, Activity activity, int i, TLRPC.Document document, wjb wjbVar) {
-        super(activity, i, document, wjbVar);
-        this.N = mu1Var;
+    public hp1(zu1 zu1Var) {
+        this.a = zu1Var;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        float y = getY();
-        mu1 mu1Var = this.N;
-        float y2 = mu1Var.g1.getY() + y;
-        this.K = mu1Var.m1.getBackgroundSizeY();
-        this.J = y2;
+    public final void H(int i, int i2) {
+        int i3;
+        zu1 zu1Var = this.a;
+        zu1Var.getMessagesController().V4(i, zu1Var.l6);
+        if (zu1Var.s8 != null || zu1Var.r8 != null) {
+            zu1Var.i6();
+            UndoView undoView = zu1Var.N3;
+            if (undoView == null) {
+                return;
+            }
+            long j = zu1Var.l6;
+            TLRPC.User user = zu1Var.f;
+            TLRPC.UserFull userFull = zu1Var.s8;
+            if (userFull != null) {
+                i3 = userFull.ttl_period;
+            } else {
+                i3 = zu1Var.r8.ttl_period;
+            }
+            undoView.k(j, i2, user, Integer.valueOf(i3), null, null);
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        n8 n8Var = this.a.g9;
+        if (n8Var != null) {
+            n8Var.dismiss();
+        }
+    }
+
+    @Override
+    public final void N() {
     }
 }

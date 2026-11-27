@@ -1,44 +1,63 @@
 package defpackage;
 
-import android.app.Activity;
-public final class r79 implements Runnable {
-    public final byte a;
-    public final mu1 b;
-    public final Activity c;
-    public final wjb d;
-    public final k27 e;
+import android.content.Context;
+import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.view.ViewGroup;
+public class r79 extends ViewGroup.MarginLayoutParams {
+    public f89 a;
+    public final Rect b;
+    public boolean c;
+    public boolean d;
 
-    public r79(mu1 mu1Var, Activity activity, wjb wjbVar, k27 k27Var, byte b) {
-        this.a = b;
-        this.b = mu1Var;
-        this.c = activity;
-        this.d = wjbVar;
-        this.e = k27Var;
+    public r79(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+        this.b = new Rect();
+        this.c = true;
+        this.d = false;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        k27 k27Var = this.e;
-        wjb wjbVar = this.d;
-        Activity activity = this.c;
-        mu1 mu1Var = this.b;
-        switch (b) {
-            case 0:
-                u21.b0(mu1Var).c(gl.N2(k96.M0(2131754484, null), -1, 2, new m9(activity, (byte) 3), wjbVar)).j();
-                mu1Var.Pa(k27Var);
-                mu1Var.Ra(k27Var);
-                return;
-            case 1:
-                u21.b0(mu1Var).c(gl.N2(k96.M0(2131754484, null), -1, 2, new m9(activity, (byte) 2), wjbVar)).j();
-                mu1Var.Pa(k27Var);
-                mu1Var.Ra(k27Var);
-                return;
-            default:
-                u21.b0(mu1Var).c(gl.N2(k96.M0(2131754484, null), -1, 2, new m9(activity, (byte) 4), wjbVar)).j();
-                mu1Var.Pa(k27Var);
-                mu1Var.Ra(k27Var);
-                return;
+    public final int a() {
+        f89 f89Var = this.a;
+        if (f89Var == null) {
+            return -1;
         }
+        return f89Var.b();
+    }
+
+    public final int b() {
+        f89 f89Var = this.a;
+        if (f89Var == null) {
+            return -1;
+        }
+        return f89Var.c();
+    }
+
+    public r79(int i, int i2) {
+        super(i, i2);
+        this.b = new Rect();
+        this.c = true;
+        this.d = false;
+    }
+
+    public r79(ViewGroup.MarginLayoutParams marginLayoutParams) {
+        super(marginLayoutParams);
+        this.b = new Rect();
+        this.c = true;
+        this.d = false;
+    }
+
+    public r79(ViewGroup.LayoutParams layoutParams) {
+        super(layoutParams);
+        this.b = new Rect();
+        this.c = true;
+        this.d = false;
+    }
+
+    public r79(r79 r79Var) {
+        super((ViewGroup.LayoutParams) r79Var);
+        this.b = new Rect();
+        this.c = true;
+        this.d = false;
     }
 }

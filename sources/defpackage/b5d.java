@@ -1,56 +1,63 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-public abstract class b5d {
-    public static final dc6 a = new dc6("MetadataUtils", null);
-    public static final String[] b;
-    public static final String c;
-
-    static {
-        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
-        b = strArr;
-        c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
-    }
-
-    public static java.util.Calendar a(java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.b5d.a(java.lang.String):java.util.Calendar");
-    }
-
-    public static JSONArray b(ArrayList arrayList) {
-        arrayList.getClass();
-        JSONArray jSONArray = new JSONArray();
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            vsc vscVar = (vsc) obj;
-            vscVar.getClass();
-            JSONObject jSONObject = new JSONObject();
-            try {
-                jSONObject.put("url", vscVar.b.toString());
-                jSONObject.put("width", vscVar.c);
-                jSONObject.put("height", vscVar.d);
-            } catch (JSONException unused) {
-            }
-            jSONArray.put(jSONObject);
+import android.os.IBinder;
+import android.os.IInterface;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.Set;
+public final class b5d extends d05 {
+    @Override
+    public final IInterface b(IBinder iBinder) {
+        iBinder.getClass();
+        int i = k5d.b;
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.firebase.pnv.internal.IFpnvService");
+        if (queryLocalInterface instanceof m5d) {
+            return (m5d) queryLocalInterface;
         }
-        return jSONArray;
+        return new i5d(iBinder);
     }
 
-    public static void c(ArrayList arrayList, JSONArray jSONArray) {
-        try {
-            arrayList.clear();
-            for (int i = 0; i < jSONArray.length(); i++) {
-                try {
-                    arrayList.add(new vsc(jSONArray.getJSONObject(i)));
-                } catch (IllegalArgumentException unused) {
-                }
-            }
-        } catch (JSONException unused2) {
+    @Override
+    public final void e(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+        if (fileDescriptor != null && strArr != null) {
+            super.e(str, fileDescriptor, printWriter, strArr);
         }
+    }
+
+    @Override
+    public final a94[] f() {
+        return kid.b;
+    }
+
+    @Override
+    public final int i() {
+        return 17895000;
+    }
+
+    @Override
+    public final void j(wi5 wi5Var, Set set) {
+        if (set != null) {
+            super.j(wi5Var, set);
+        }
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.firebase.pnv.internal.IFpnvService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.firebase.fpnv.service.START";
+    }
+
+    @Override
+    public final boolean p() {
+        return true;
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
     }
 }

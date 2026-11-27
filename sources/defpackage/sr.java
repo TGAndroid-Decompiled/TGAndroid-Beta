@@ -1,48 +1,240 @@
 package defpackage;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.RemoteInput;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.content.LocusId;
+import android.graphics.Insets;
+import android.media.AudioAttributes;
+import android.media.AudioFormat;
+import android.media.AudioTrack;
+import android.media.MediaCodecInfo;
+import android.os.Binder;
 import android.os.Build;
-public final class sr {
-    public final String a;
-    public final xj b;
-
-    public sr(String str, xj xjVar) {
-        String str2 = Build.MODEL;
-        String str3 = Build.VERSION.RELEASE;
-        str.getClass();
-        str2.getClass();
-        str3.getClass();
-        this.a = str;
-        this.b = xjVar;
+import android.os.Handler;
+import android.os.Process;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.List;
+import java.util.concurrent.Executor;
+public abstract class sr {
+    public static int a(MediaCodecInfo.VideoCapabilities videoCapabilities, int i, int i2, double d) {
+        boolean z;
+        int i3;
+        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints();
+        if (supportedPerformancePoints != null && !supportedPerformancePoints.isEmpty()) {
+            vk1.n();
+            MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(i, i2, (int) d);
+            int i4 = 0;
+            while (true) {
+                z = true;
+                if (i4 < supportedPerformancePoints.size()) {
+                    if (lq5.e(supportedPerformancePoints.get(i4)).covers(performancePoint)) {
+                        i3 = 2;
+                        break;
+                    }
+                    i4++;
+                } else {
+                    i3 = 1;
+                    break;
+                }
+            }
+            if (i3 == 1 && fte.a == null) {
+                int i5 = Build.VERSION.SDK_INT;
+                if (i5 < 37) {
+                    int d2 = d(true);
+                    if (i5 < 35) {
+                        fte.a = Boolean.valueOf(z);
+                        if (!z) {
+                        }
+                    } else {
+                        fte.a = Boolean.valueOf(z);
+                        if (!z) {
+                        }
+                    }
+                }
+                z = false;
+                fte.a = Boolean.valueOf(z);
+                if (!z) {
+                }
+            }
+            return i3;
+        }
+        return 0;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof sr) {
-                sr srVar = (sr) obj;
-                if (rp5.a(this.a, srVar.a)) {
-                    String str = Build.MODEL;
-                    if (rp5.a(str, str)) {
-                        String str2 = Build.VERSION.RELEASE;
-                        if (!rp5.a(str2, str2) || !this.b.equals(srVar.b)) {
-                            return false;
+    public static int b(Context context, String str) {
+        if (str != null) {
+            if (Build.VERSION.SDK_INT < 33 && TextUtils.equals("android.permission.POST_NOTIFICATIONS", str)) {
+                if (new oo7(context).a()) {
+                    return 0;
+                }
+                return -1;
+            }
+            return context.checkPermission(str, Process.myPid(), Process.myUid());
+        }
+        p3d.h("permission must be non-null");
+        return 0;
+    }
+
+    public static LocusId c(String str) {
+        return new LocusId(str);
+    }
+
+    public static int d(boolean z) {
+        MediaCodecInfo.VideoCapabilities videoCapabilities;
+        List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
+        try {
+            jo4 jo4Var = new jo4();
+            jo4Var.s = dg7.n("video/avc");
+            ko4 ko4Var = new ko4(jo4Var);
+            if (ko4Var.t != null) {
+                j99 g = wm6.g(ko4Var, z, false);
+                for (int i = 0; i < g.d; i++) {
+                    if (((nm6) g.get(i)).d != null && (videoCapabilities = ((nm6) g.get(i)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
+                        vk1.n();
+                        MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
+                        for (int i2 = 0; i2 < supportedPerformancePoints.size(); i2++) {
+                            if (lq5.e(supportedPerformancePoints.get(i2)).covers(performancePoint)) {
+                                return 2;
+                            }
                         }
+                        return 1;
+                    }
+                }
+            }
+        } catch (tm6 unused) {
+        }
+        return 0;
+    }
+
+    public static android.content.res.ColorStateList e(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sr.e(android.content.Context, int):android.content.res.ColorStateList");
+    }
+
+    public static j99 f(oz ozVar) {
+        mo5 p = po5.p();
+        to5 to5Var = sz.h;
+        bp5 bp5Var = to5Var.b;
+        if (bp5Var == null) {
+            bp5Var = to5Var.d();
+            to5Var.b = bp5Var;
+        }
+        v9c n = bp5Var.n();
+        while (n.hasNext()) {
+            Integer num = (Integer) n.next();
+            int intValue = num.intValue();
+            if (Build.VERSION.SDK_INT >= gcc.s(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), ozVar.b())) {
+                p.c(num);
+            }
+        }
+        p.c(2);
+        return p.f();
+    }
+
+    public static Executor g(Context context) {
+        if (Build.VERSION.SDK_INT >= 28) {
+            return go.i(context);
+        }
+        return new zi0(new Handler(context.getMainLooper()), (byte) 2);
+    }
+
+    public static int h(int i, int i2, oz ozVar) {
+        for (int i3 = 10; i3 > 0; i3--) {
+            int t = gcc.t(i3);
+            if (t != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i).setSampleRate(i2).setChannelMask(t).build(), ozVar.b())) {
+                return i3;
+            }
+        }
+        return 0;
+    }
+
+    public static String i(Context context) {
+        return context.getOpPackageName();
+    }
+
+    public static void j(android.content.Context r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sr.j(android.content.Context):void");
+    }
+
+    public static boolean k(Context context) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            if (Binder.getCallingUid() == context.getApplicationInfo().uid) {
+                if ("com.google.android.gms".equals(((NotificationManager) context.getSystemService(NotificationManager.class)).getNotificationDelegate())) {
+                    if (Log.isLoggable("FirebaseMessaging", 3)) {
+                        Log.d("FirebaseMessaging", "GMS core is set for proxying");
                         return true;
                     }
-                    return false;
+                    return true;
                 }
+            } else {
+                Log.e("FirebaseMessaging", "error retrieving notification delegate for package " + context.getPackageName());
                 return false;
             }
-            return false;
+        } else if (Log.isLoggable("FirebaseMessaging", 3)) {
+            Log.d("FirebaseMessaging", "Platform doesn't support proxying.");
         }
-        return true;
+        return false;
     }
 
-    public final int hashCode() {
-        int j = ir2.j((((Build.MODEL.hashCode() + (this.a.hashCode() * 31)) * 31) + 48517567) * 31, 31, Build.VERSION.RELEASE);
-        return this.b.hashCode() + ((vb6.LOG_ENVIRONMENT_PROD.hashCode() + j) * 31);
+    public static String l(Context context) {
+        String str = context.getApplicationContext().getPackageName() + ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION";
+        if (ive.b(context, str) != 0) {
+            if (Build.VERSION.SDK_INT >= 29) {
+                str = context.getOpPackageName() + ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION";
+                if (ive.b(context, str) == 0) {
+                    return str;
+                }
+            }
+            xi4.l(qd4.y("Permission ", str, " is required by your application to receive broadcasts, please add it to your manifest"));
+            return null;
+        }
+        return str;
     }
 
-    public final String toString() {
-        return "ApplicationInfo(appId=" + this.a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=3.0.8, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + vb6.LOG_ENVIRONMENT_PROD + ", androidAppInfo=" + this.b + ')';
+    public static Insets m(int i, int i2, int i3, int i4) {
+        return Insets.of(i, i2, i3, i4);
+    }
+
+    public static void n(Context context, BroadcastReceiver broadcastReceiver, IntentFilter intentFilter) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 33) {
+            qq5.g(context, broadcastReceiver, intentFilter, 2);
+        } else if (i >= 26) {
+            j00.h(context, broadcastReceiver, intentFilter, 2);
+        } else {
+            context.registerReceiver(broadcastReceiver, intentFilter, null, null);
+        }
+    }
+
+    public static void o(Notification.Builder builder, boolean z) {
+        builder.setAllowSystemGeneratedContextualActions(z);
+    }
+
+    public static void p(AudioAttributes.Builder builder, int i) {
+        builder.setAllowedCapturePolicy(i);
+    }
+
+    public static void q(Notification.Builder builder, Notification.BubbleMetadata bubbleMetadata) {
+        builder.setBubbleMetadata(bubbleMetadata);
+    }
+
+    public static void r(Notification.Action.Builder builder) {
+        builder.setContextual(false);
+    }
+
+    public static void s(RemoteInput.Builder builder) {
+        builder.setEditChoicesBeforeSending(0);
+    }
+
+    public static void t(AudioAttributes.Builder builder, boolean z) {
+        builder.setHapticChannelsMuted(z);
+    }
+
+    public static void u(Notification.Builder builder, Object obj) {
+        builder.setLocusId((LocusId) obj);
     }
 }

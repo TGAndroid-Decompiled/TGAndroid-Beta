@@ -1,19 +1,35 @@
 package defpackage;
 
-import android.content.Context;
-public final class kaa extends waa {
-    public final maa O;
+import android.media.session.MediaSession;
+import android.os.Bundle;
+public final class kaa {
+    public static final String b;
+    public static final String c;
+    public final laa a;
 
-    public kaa(maa maaVar, Context context, wjb wjbVar) {
-        super(0, wjbVar, context);
-        this.O = maaVar;
+    static {
+        gt6.a("media3.session");
+        String str = gcc.a;
+        b = "0";
+        c = "1";
     }
 
-    @Override
-    public final String a() {
-        if (this.O.f.V1) {
-            return k96.M0(2131745991, null);
+    public kaa(int i, String str, sz6 sz6Var, Bundle bundle, MediaSession.Token token) {
+        this.a = new laa(i, str, sz6Var, bundle, token);
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof kaa)) {
+            return false;
         }
-        return k96.M0(2131750472, null);
+        return this.a.equals(((kaa) obj).a);
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
+
+    public final String toString() {
+        return this.a.toString();
     }
 }

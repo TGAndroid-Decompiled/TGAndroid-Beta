@@ -1,45 +1,51 @@
 package defpackage;
 
-import android.util.Log;
 import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
-public final class yn4 {
-    public boolean a = false;
-    public final CopyOnWriteArrayList b = new CopyOnWriteArrayList();
-    public op4 c;
-    public final go4 d;
+public final class yn4 implements pt2 {
+    public final byte a;
+    public final Object b;
 
-    public yn4(go4 go4Var) {
-        this.d = go4Var;
+    public yn4(mt2 mt2Var, nt2 nt2Var) {
+        this.a = (byte) 3;
+        this.b = nt2Var;
     }
 
-    public final void a() {
-        boolean K = go4.K(3);
-        go4 go4Var = this.d;
-        if (K) {
-            Log.d("FragmentManager", "handleOnBackCancelled. PREDICTIVE_BACK = true fragment manager " + go4Var);
+    @Override
+    public final void accept(Object obj) {
+        switch (this.a) {
+            case 0:
+                zn4 zn4Var = (zn4) obj;
+                if (zn4Var == null) {
+                    zn4Var = new zn4(-3);
+                }
+                ((qx6) this.b).F(zn4Var);
+                return;
+            case 1:
+                zn4 zn4Var2 = (zn4) obj;
+                synchronized (ao4.c) {
+                    vla vlaVar = ao4.d;
+                    ArrayList arrayList = (ArrayList) vlaVar.get((String) this.b);
+                    if (arrayList != null) {
+                        vlaVar.remove((String) this.b);
+                        for (int i = 0; i < arrayList.size(); i++) {
+                            ((pt2) arrayList.get(i)).accept(zn4Var2);
+                        }
+                        return;
+                    }
+                    return;
+                }
+            case 2:
+                ArrayList arrayList2 = new ArrayList();
+                ((ci0) ((tg0) this.b).b).c((gi0) obj, arrayList2);
+                return;
+            default:
+                ((nt2) this.b).e((gi0) obj);
+                return;
         }
-        if (go4.K(3)) {
-            Log.d("FragmentManager", "cancelBackStackTransition for transition " + go4Var.h);
-        }
-        id0 id0Var = go4Var.h;
-        if (id0Var != null) {
-            id0Var.r = false;
-            id0Var.d();
-            id0 id0Var2 = go4Var.h;
-            s54 s54Var = new s54(go4Var, (byte) 24);
-            ArrayList arrayList = id0Var2.p;
-            if (arrayList == null) {
-                arrayList = new ArrayList();
-                id0Var2.p = arrayList;
-            }
-            arrayList.add(s54Var);
-            go4Var.h.e(false, true);
-            go4Var.i = true;
-            go4Var.A(true);
-            go4Var.E();
-            go4Var.i = false;
-            go4Var.h = null;
-        }
+    }
+
+    public yn4(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 }

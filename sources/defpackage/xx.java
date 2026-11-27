@@ -1,84 +1,64 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class xx extends View {
-    public final ImageReceiver a;
-    public final Drawable b;
-    public final Paint c;
-    public final Paint d;
+import org.telegram.tgnet.ConnectionsManager;
+public final class xx implements una {
+    public final byte a = 2;
+    public final long b;
+    public final int c;
+    public final byte d;
 
-    public xx(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        this.d = new Paint(1);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.a = imageReceiver;
-        imageReceiver.setAlpha(0.0f);
-        imageReceiver.h1 = new l0(this, (byte) 21);
-        this.b = context.getDrawable(2131231498).mutate().getConstantState().newDrawable();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gl.L(3.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    public xx(int i, long j, int i2) {
+        this.c = i;
+        this.b = j;
+        this.d = i2;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.a.I();
+    public final boolean a(int i, int i2) {
+        byte b = this.d;
+        if (b != 1) {
+            if ((b == 2 || b == 3) && ConnectionsManager.getInstance(i).getCurrentTime() >= this.b) {
+                return false;
+            }
+        } else if (this.c >= i2) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.a.K();
+    public final int b() {
+        byte b = this.d;
+        if (b != 2) {
+            if (b != 3) {
+                return 14;
+            }
+            return 16;
+        }
+        return 15;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        RectF rectF = gl.P;
-        rectF.set(0.0f, 0.0f, getWidth(), gl.L(10.0f) + getHeight());
-        canvas.drawRoundRect(rectF, gl.L(10.0f), gl.L(10.0f), this.d);
-        ImageReceiver imageReceiver = this.a;
-        imageReceiver.i0((getWidth() / 2.0f) - gl.L(66.0f), (getHeight() / 2.0f) - (gl.L(42.0f) / 2.0f), gl.L(42.0f), gl.L(42.0f));
-        imageReceiver.h(canvas, null);
-        Paint paint = this.c;
-        canvas.drawLine((getWidth() / 2.0f) - gl.L(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + gl.L(8.0f), getHeight() / 2.0f, paint);
-        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - gl.L(8.0f), getWidth() / 2.0f, gl.L(8.0f) + (getHeight() / 2.0f), paint);
-        int L = gl.L(24.0f);
-        int L2 = gl.L(66.0f);
-        int L3 = gl.L(42.0f) / 2;
-        Drawable drawable = this.b;
-        drawable.setBounds(L + (getWidth() / 2), (getHeight() / 2) - (gl.L(42.0f) / 2), L2 + (getWidth() / 2), L3 + (getHeight() / 2));
-        drawable.draw(canvas);
-    }
-
-    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
-        TLRPC.TL_attachMenuBotIcon l0 = hq6.l0(tL_attachMenuBot);
-        if (l0 != null) {
-            this.a.d0(gl5.b(l0.icon), "42_42", uo3.f(l0.icon, bkb.p5, 1.0f, null), "svg", tL_attachMenuBot, 0);
+    public final String toString() {
+        switch (this.a) {
+            case 0:
+                StringBuilder sb = new StringBuilder("AtomSizeTooSmall{type=");
+                sb.append(gcc.f0(this.c));
+                sb.append(", size=");
+                sb.append(this.b);
+                sb.append(", minHeaderSize=");
+                return uh9.l(sb, this.d, "}");
+            default:
+                return super.toString();
         }
     }
 
-    @Override
-    public void setBackgroundColor(int i) {
-        this.d.setColor(i);
+    public xx(long j, int i, int i2) {
+        this.b = j;
+        this.c = i;
+        this.d = i2;
     }
 
-    public void setColor(int i) {
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.b.setColorFilter(i, mode);
-        this.c.setColor(i);
-        this.a.p1 = new PorterDuffColorFilter(i, mode);
+    public xx(int i, int i2, long j) {
+        this.d = i;
+        this.b = j;
+        this.c = i2;
     }
 }

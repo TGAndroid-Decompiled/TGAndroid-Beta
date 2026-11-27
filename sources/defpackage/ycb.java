@@ -1,43 +1,42 @@
 package defpackage;
+public final class ycb {
+    public static final ycb e;
+    public boolean a;
+    public boolean b;
+    public boolean c;
+    public boolean d;
 
-import java.io.Serializable;
-public final class ycb implements d06, Serializable {
-    public op4 a;
-    public volatile Object b;
-    public final Object c;
-
-    public ycb(op4 op4Var) {
-        op4Var.getClass();
-        this.a = op4Var;
-        this.b = pd5.d;
-        this.c = this;
+    static {
+        ?? obj = new Object();
+        obj.a = true;
+        obj.b = true;
+        obj.c = false;
+        obj.d = false;
+        e = obj;
+        obj.a = true;
+        obj.b = true;
+        obj.c = false;
+        obj.d = false;
     }
 
-    @Override
-    public final Object getValue() {
-        Object obj;
-        Object obj2 = this.b;
-        pd5 pd5Var = pd5.d;
-        if (obj2 != pd5Var) {
-            return obj2;
+    public static String a(String str, Class cls, boolean z) {
+        if (cls == null) {
+            return "ANONYMOUS";
         }
-        synchronized (this.c) {
-            obj = this.b;
-            if (obj == pd5Var) {
-                op4 op4Var = this.a;
-                op4Var.getClass();
-                obj = op4Var.invoke();
-                this.b = obj;
-                this.a = null;
+        if (cls.isArray()) {
+            Class<?> componentType = cls.getComponentType();
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append(a(componentType.getName(), componentType, z));
+            stringBuffer.append("[]");
+            return stringBuffer.toString();
+        } else if (z) {
+            int lastIndexOf = str.lastIndexOf(46);
+            if (lastIndexOf != -1) {
+                str = str.substring(lastIndexOf + 1);
             }
+            return str.replace('$', '.');
+        } else {
+            return str.replace('$', '.');
         }
-        return obj;
-    }
-
-    public final String toString() {
-        if (this.b != pd5.d) {
-            return String.valueOf(getValue());
-        }
-        return "Lazy value not initialized yet.";
     }
 }

@@ -1,40 +1,44 @@
 package defpackage;
 
-import java.util.HashMap;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.Utilities;
-public final class ku2 implements Runnable {
-    public final byte a;
-    public final qu2 b;
-    public final HashMap c;
-    public final HashMap d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ku2 implements TextWatcher {
+    public final EditTextBoldCursor a;
 
-    public ku2(qu2 qu2Var, HashMap hashMap, HashMap hashMap2, byte b) {
-        this.a = b;
-        this.b = qu2Var;
-        this.c = hashMap;
-        this.d = hashMap2;
+    public ku2(EditTextBoldCursor editTextBoldCursor) {
+        this.a = editTextBoldCursor;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                qu2 qu2Var = this.b;
-                Utilities.e.c(new ku2(qu2Var, this.c, this.d, (byte) 1));
-                if (!qu2Var.e) {
-                    qu2Var.e = true;
-                    ad7 messagesStorage = qu2Var.getMessagesStorage();
-                    messagesStorage.a.c(new cc7(messagesStorage, false, (byte) 0));
-                    return;
+    public final void afterTextChanged(Editable editable) {
+        try {
+            String obj = editable.toString();
+            if (!obj.isEmpty()) {
+                int intValue = Utilities.z(obj).intValue();
+                EditTextBoldCursor editTextBoldCursor = this.a;
+                if (intValue < 0) {
+                    editTextBoldCursor.setText("0");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (intValue > 300) {
+                    editTextBoldCursor.setText("300");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (!obj.equals(String.valueOf(intValue))) {
+                    editTextBoldCursor.setText(String.valueOf(intValue));
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 }
-                return;
-            default:
-                qu2 qu2Var2 = this.b;
-                HashMap hashMap = this.c;
-                HashMap hashMap2 = this.d;
-                qu2Var2.l0 = hashMap;
-                qu2Var2.m0 = hashMap2;
-                return;
+            }
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

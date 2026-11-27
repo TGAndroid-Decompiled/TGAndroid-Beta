@@ -1,31 +1,10 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class be8 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final ie8 b;
+import android.view.TextureView;
+public interface be8 {
+    TextureView D();
 
-    public be8(ie8 ie8Var, byte b) {
-        this.a = b;
-        this.b = ie8Var;
-    }
+    void J(r47 r47Var);
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        ie8 ie8Var = this.b;
-        switch (b) {
-            case 0:
-                ie8Var.S.setTranslationY(0.0f);
-                return;
-            case 1:
-                ie8Var.S.setTranslationY(0.0f);
-                return;
-            default:
-                ie8Var.S.setTranslationY(0.0f);
-                ie8Var.m0();
-                return;
-        }
-    }
+    void k(r47 r47Var);
 }

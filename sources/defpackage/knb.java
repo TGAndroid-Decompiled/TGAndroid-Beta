@@ -1,55 +1,36 @@
 package defpackage;
 
-import android.os.Bundle;
-import j$.util.Objects;
-public final class knb extends fz8 {
-    public static final String d;
-    public static final String e;
-    public final boolean b;
-    public final boolean c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class knb extends Drawable {
+    public final int a;
+    public final int b;
 
-    static {
-        String str = g8c.a;
-        d = "1";
-        e = "2";
-    }
-
-    public knb() {
-        this.b = false;
-        this.c = false;
+    public knb(int i, int i2) {
+        this.a = i;
+        this.b = i2;
     }
 
     @Override
-    public final boolean b() {
-        return this.b;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int i = this.a;
+        int i2 = this.b;
+        canvas.drawCircle((bounds.centerX() - i) + i2, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i + i2, aob.z);
     }
 
     @Override
-    public final Bundle c() {
-        Bundle bundle = new Bundle();
-        bundle.putInt(fz8.a, 3);
-        bundle.putBoolean(d, this.b);
-        bundle.putBoolean(e, this.c);
-        return bundle;
+    public final int getOpacity() {
+        return 0;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof knb) {
-            knb knbVar = (knb) obj;
-            if (this.c == knbVar.c && this.b == knbVar.b) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    @Override
+    public final void setAlpha(int i) {
     }
 
-    public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.b), Boolean.valueOf(this.c));
-    }
-
-    public knb(boolean z) {
-        this.b = true;
-        this.c = z;
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

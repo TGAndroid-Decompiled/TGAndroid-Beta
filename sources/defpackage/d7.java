@@ -1,51 +1,152 @@
 package defpackage;
 
-import android.widget.FrameLayout;
-public final class d7 extends wi2 {
-    public final byte h;
-    public final Object i;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.Components.p;
+import org.telegram.ui.PhotoViewer;
+public final class d7 extends ImageView {
+    public final byte a;
+    public final Object b;
 
-    public d7(h14 h14Var) {
-        super(1.25f);
-        this.h = (byte) 2;
-        this.i = h14Var;
-        this.f = gl.L(7.0f);
+    public d7(byte b, Context context, Object obj) {
+        super(context);
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final int a() {
-        byte b = this.h;
-        Object obj = this.i;
-        switch (b) {
+    public final void draw(Canvas canvas) {
+        switch (this.a) {
             case 0:
-                return ((r7) obj).c.b.s0;
-            case 1:
-                return bkb.v0(bkb.Af, (wjb) obj);
-            case 2:
-                return bkb.v0(bkb.Af, ((h14) obj).H.a2);
-            case 3:
-                return bkb.v0(bkb.P5, ((js9) obj).e);
+                getBackground().draw(canvas);
+                super.draw(canvas);
+                return;
             default:
-                return bkb.v0(bkb.Af, ((lw9) obj).G.a1);
+                super.draw(canvas);
+                return;
         }
     }
 
-    public d7(FrameLayout frameLayout, byte b) {
-        this.h = b;
-        this.i = frameLayout;
+    @Override
+    public final void invalidate() {
+        switch (this.a) {
+            case 2:
+                super.invalidate();
+                g75 g75Var = (g75) this.b;
+                g75Var.g0.invalidate();
+                g75Var.invalidate();
+                return;
+            default:
+                super.invalidate();
+                return;
+        }
     }
 
-    public d7(wjb wjbVar) {
-        super(1.25f);
-        this.h = (byte) 1;
-        this.i = wjbVar;
-        this.f = gl.L(7.0f);
+    @Override
+    public final void onDetachedFromWindow() {
+        switch (this.a) {
+            case 0:
+                super.onDetachedFromWindow();
+                clearAnimation();
+                Object tag = getTag();
+                s7 s7Var = (s7) this.b;
+                d7 d7Var = s7Var.s;
+                if (tag == null) {
+                    d7Var.setVisibility(4);
+                    s7Var.s.setAlpha(0.0f);
+                    s7Var.s.setRotation(45.0f);
+                    s7Var.s.setScaleX(0.0f);
+                    s7Var.s.setScaleY(0.0f);
+                    return;
+                }
+                d7Var.setAlpha(1.0f);
+                s7Var.s.setRotation(0.0f);
+                s7Var.s.setScaleX(1.0f);
+                s7Var.s.setScaleY(1.0f);
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
     }
 
-    public d7(lw9 lw9Var) {
-        super(1.25f);
-        this.h = (byte) 4;
-        this.i = lw9Var;
-        this.f = gl.L(7.0f);
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.a) {
+            case 4:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                boolean z = true;
+                accessibilityNodeInfo.setCheckable(true);
+                if (((o7c) this.b).n.getTransformationMethod() != null) {
+                    z = false;
+                }
+                accessibilityNodeInfo.setChecked(z);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.a) {
+            case 2:
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(a.getCurrentActionBarHeight(), 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f) {
+        switch (this.a) {
+            case 1:
+                super.setAlpha(f);
+                ((p) this.b).y.invalidate();
+                return;
+            default:
+                super.setAlpha(f);
+                return;
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f) {
+        switch (this.a) {
+            case 3:
+                super.setTranslationY(f);
+                PhotoViewer photoViewer = (PhotoViewer) this.b;
+                ArrayList arrayList = photoViewer.i1;
+                if (arrayList != null) {
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        ((kg5) obj).setTranslationY(f);
+                    }
+                }
+                nb8 nb8Var = photoViewer.h1;
+                if (nb8Var != null) {
+                    nb8Var.setTranslationY(f);
+                }
+                s96 s96Var = photoViewer.g1;
+                if (s96Var != null) {
+                    s96Var.setTranslationY(f);
+                    return;
+                }
+                return;
+            default:
+                super.setTranslationY(f);
+                return;
+        }
     }
 }

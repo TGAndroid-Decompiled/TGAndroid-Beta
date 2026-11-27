@@ -1,39 +1,40 @@
 package defpackage;
-public final class zvb implements Runnable {
-    public final byte a;
-    public final lwb b;
-
-    public zvb(lwb lwbVar, byte b) {
-        this.a = b;
-        this.b = lwbVar;
+public enum zvb extends rwb {
+    public zvb() {
+        super("AfterDoctypePublicKeyword", 54);
     }
 
     @Override
-    public final void run() {
-        t26 t26Var;
-        byte b = this.a;
-        lwb lwbVar = this.b;
-        switch (b) {
-            case 0:
-                lwbVar.P = null;
-                lwbVar.j();
-                return;
-            default:
-                long j = lwbVar.b;
-                if (!lwbVar.d && lwbVar.y > 0.0f && (t26Var = (t26) lwbVar.r.getLayoutManager()) != null && t26Var.M0() >= lwbVar.s.c.size() - 3) {
-                    if (lwbVar.i()) {
-                        lwbVar.j();
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
+            if (d != '\"') {
+                if (d != '\'') {
+                    mub mubVar = rwb.a;
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bubVar.m(this);
+                            bubVar.c = rwb.D0;
+                            return;
+                        }
+                        bubVar.l(this);
+                        bubVar.j();
+                        bubVar.c = mubVar;
                         return;
                     }
-                    pub pubVar = na7.q1(lwbVar.a).g4;
-                    long j2 = -j;
-                    if (!pubVar.e(j2)) {
-                        pubVar.o(j2);
-                        return;
-                    }
+                    bubVar.m(this);
+                    bubVar.j();
+                    bubVar.c = mubVar;
                     return;
                 }
+                bubVar.m(this);
+                bubVar.c = rwb.v0;
                 return;
+            }
+            bubVar.m(this);
+            bubVar.c = rwb.u0;
+            return;
         }
+        bubVar.c = rwb.t0;
     }
 }

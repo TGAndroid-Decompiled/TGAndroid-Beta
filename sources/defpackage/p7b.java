@@ -1,6 +1,9 @@
 package defpackage;
 
-import android.view.MotionEvent;
+import android.media.MediaExtractor;
+import java.io.Closeable;
 public interface p7b {
-    boolean h(MotionEvent motionEvent);
+    String g();
+
+    Closeable j(MediaExtractor mediaExtractor);
 }

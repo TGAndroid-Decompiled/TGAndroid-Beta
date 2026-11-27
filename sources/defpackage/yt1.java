@@ -1,96 +1,65 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Collections;
-public final class yt1 extends View {
-    public final ArrayList a;
-    public final ArrayList b;
-    public final mu1 c;
+public final class yt1 implements mcc {
+    public final byte a;
+    public final rbb b;
+    public final View c;
+    public final nx0 d;
 
-    public yt1(mu1 mu1Var, Context context) {
-        super(context);
-        this.c = mu1Var;
-        this.a = new ArrayList();
-        this.b = new ArrayList();
-    }
-
-    public final void a() {
-        ArrayList arrayList = this.a;
-        arrayList.clear();
-        mu1 mu1Var = this.c;
-        arrayList.add(mu1Var.Z1);
-        arrayList.add(mu1Var.A0);
-        arrayList.add(mu1Var.Z);
-        arrayList.add(mu1Var.Z3);
-        arrayList.add(mu1Var.X1);
-        arrayList.add(mu1Var.m3);
-        arrayList.add(mu1Var.a0);
-        arrayList.add(mu1Var.y1);
-        arrayList.add(mu1Var.U);
-        arrayList.add(mu1Var.g2);
-        arrayList.removeAll(Collections.singleton(null));
+    public yt1(nx0 nx0Var, rbb rbbVar, View view, byte b) {
+        this.a = b;
+        this.d = nx0Var;
+        this.b = rbbVar;
+        this.c = view;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mu1 mu1Var = this.c;
-        mu1Var.ad = true;
-        ArrayList arrayList = this.b;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((View) obj).setVisibility(0);
-        }
-        arrayList.clear();
-        mu1Var.ad = false;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        a();
-        mu1 mu1Var = this.c;
-        mu1Var.ad = true;
-        ArrayList arrayList = this.a;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            View view = (View) obj;
-            if (view.getVisibility() == 0) {
-                view.setVisibility(8);
-                this.b.add(view);
-            }
-        }
-        mu1Var.ad = false;
-    }
-
-    @Override
-    public void setTranslationX(float f) {
-        super.setTranslationX(f);
-        a();
-        ArrayList arrayList = this.a;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            View view = (View) obj;
-            if (view != null) {
-                view.setTranslationX(f);
-            }
+    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+        byte b = this.a;
+        kbb kbbVar = null;
+        View view = this.c;
+        rbb rbbVar = this.b;
+        nx0 nx0Var = this.d;
+        switch (b) {
+            case 0:
+                du1 du1Var = (du1) nx0Var;
+                Long l = (Long) obj;
+                Runnable runnable = (Runnable) obj2;
+                Long l2 = (Long) obj4;
+                if (((Boolean) obj3).booleanValue()) {
+                    hl.c3(new jj1(du1Var, l2, (byte) 23));
+                    du1Var.dismiss();
+                    rbbVar.X(null);
+                } else {
+                    if ((view instanceof nea) && view.isAttachedToWindow()) {
+                        kbbVar = mbb.b((nea) view);
+                    }
+                    rbbVar.X(kbbVar);
+                }
+                hl.c3(runnable);
+                return;
+            default:
+                wua wuaVar = (wua) nx0Var;
+                Long l3 = (Long) obj;
+                Runnable runnable2 = (Runnable) obj2;
+                Long l4 = (Long) obj4;
+                if (((Boolean) obj3).booleanValue()) {
+                    hl.c3(new ida(wuaVar, l4, (byte) 11));
+                    rbbVar.X(null);
+                    zsa zsaVar = wuaVar.U2;
+                    if (zsaVar != null) {
+                        zsaVar.dismiss();
+                        wuaVar.U2 = null;
+                    }
+                } else {
+                    if ((view instanceof nea) && view.isAttachedToWindow()) {
+                        kbbVar = mbb.b((nea) view);
+                    }
+                    rbbVar.X(kbbVar);
+                }
+                hl.c3(runnable2);
+                return;
         }
     }
 }

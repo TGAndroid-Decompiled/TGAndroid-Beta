@@ -1,60 +1,87 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-public final class lhb extends mhb {
-    public Drawable E;
-    public int F;
-    public boolean G;
-    public final wjb x;
-    public ColorDrawable y;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_aicompose;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_chatlists;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.tgnet.tl.TL_feed;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class lhb implements Vector.TLDeserializer {
+    public final byte a;
 
-    public lhb(Context context, wjb wjbVar) {
-        super(context, wjbVar);
-        this.x = wjbVar;
-    }
-
-    public void setBackground(boolean z) {
-        int i;
-        Context context = getContext();
-        if (z) {
-            i = 2131231233;
-        } else {
-            i = 2131231232;
-        }
-        int i2 = bkb.a7;
-        wjb wjbVar = this.x;
-        Drawable V0 = bkb.V0(context, i, bkb.v0(i2, wjbVar));
-        ColorDrawable colorDrawable = new ColorDrawable(bkb.v0(bkb.Z6, wjbVar));
-        this.y = colorDrawable;
-        this.E = V0;
-        fm2 fm2Var = new fm2(colorDrawable, V0, 0, 0);
-        fm2Var.x = true;
-        setBackground(fm2Var);
+    public lhb(byte b) {
+        this.a = b;
     }
 
     @Override
-    public final void updateColors() {
-        super.updateColors();
-        try {
-            ColorDrawable colorDrawable = this.y;
-            wjb wjbVar = this.x;
-            if (colorDrawable != null) {
-                colorDrawable.setColor(bkb.v0(bkb.Z6, wjbVar));
-            }
-            if (this.E != null) {
-                int v0 = bkb.v0(bkb.a7, wjbVar);
-                if (v0 != this.F || !this.G) {
-                    this.F = v0;
-                    this.G = true;
-                    this.E.setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.MULTIPLY));
-                }
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        switch (this.a) {
+            case 0:
+                return TL_account.Passkey.TLdeserialize(inputSerializedData, i, z);
+            case 1:
+                return TL_account.TL_businessWeeklyOpen.TLdeserialize(inputSerializedData, i, z);
+            case 2:
+                return TLRPC.EmojiStatus.TLdeserialize(inputSerializedData, i, z);
+            case 3:
+                return TLRPC.Theme.TLdeserialize(inputSerializedData, i, z);
+            case 4:
+                return TLRPC.WallPaper.TLdeserialize(inputSerializedData, i, z);
+            case 5:
+                return TL_account.WebDomainException.TLdeserialize(inputSerializedData, i, z);
+            case 6:
+                return TLRPC.ChatTheme.TLdeserialize(inputSerializedData, i, z);
+            case 7:
+                return TLRPC.TL_secureValue.TLdeserialize(inputSerializedData, i, z);
+            case 8:
+                return TLRPC.SecureValueError.TLdeserialize(inputSerializedData, i, z);
+            case 9:
+                return TLRPC.TL_authorization.TLdeserialize(inputSerializedData, i, z);
+            case 10:
+                return TL_account.TL_businessChatLink.TLdeserialize(inputSerializedData, i, z);
+            case 11:
+                return TL_account.TL_connectedBot.TLdeserialize(inputSerializedData, i, z);
+            case 12:
+                return TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, i, z);
+            case 13:
+                return TL_account.RequirementToContact.TLdeserialize(inputSerializedData, i, z);
+            case 14:
+                return TLRPC.PrivacyRule.TLdeserialize(inputSerializedData, i, z);
+            case 15:
+                return TLRPC.TL_webAuthorization.TLdeserialize(inputSerializedData, i, z);
+            case 16:
+                return TL_aicompose.AiComposeTone.TLdeserialize(inputSerializedData, i, z);
+            case 17:
+                return TLRPC.BotCommand.TLdeserialize(inputSerializedData, i, z);
+            case 18:
+                return TL_bots.botPreviewMedia.TLdeserialize(inputSerializedData, i, z);
+            case 19:
+                return TL_chatlists.TL_exportedChatlistInvite.TLdeserialize(inputSerializedData, i, z);
+            case 20:
+                return TL_communities.CommunityPeerRequest.TLdeserialize(inputSerializedData, i, z);
+            case 21:
+                return TL_feed.FeedItem.TLdeserialize(inputSerializedData, i, z);
+            case 22:
+                return TL_feed.InterestCategory.TLdeserialize(inputSerializedData, i, z);
+            case 23:
+                return TL_iv.PageBlock.TLdeserialize(inputSerializedData, i, z);
+            case 24:
+                return TLRPC.InputPhoto.TLdeserialize(inputSerializedData, i, z);
+            case 25:
+                return TL_keyboard.PageButton.TLdeserialize(inputSerializedData, i, z);
+            case 26:
+                return TL_iv.PageListItem.TLdeserialize(inputSerializedData, i, z);
+            case 27:
+                return TL_iv.PageListOrderedItem.TLdeserialize(inputSerializedData, i, z);
+            case 28:
+                return TL_iv.pageRelatedArticle.TLdeserialize(inputSerializedData, i, z);
+            default:
+                return TL_iv.pageTableRow.TLdeserialize(inputSerializedData, i, z);
         }
     }
 }

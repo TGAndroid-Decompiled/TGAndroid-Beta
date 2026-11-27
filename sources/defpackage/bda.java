@@ -1,18 +1,25 @@
 package defpackage;
+public abstract class bda {
+    public final boolean a;
+    public boolean b;
+    public boolean c;
+    public float d;
+    public float e;
 
-import android.content.Context;
-import org.telegram.ui.Components.ClippingImageView;
-public final class bda extends ClippingImageView {
-    public final sca S;
-
-    public bda(Context context, sca scaVar) {
-        super(context);
-        this.S = scaVar;
+    public bda(int i) {
+        this.b = true;
+        this.c = true;
+        this.a = true;
+        a();
     }
 
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.S.invalidate();
+    public abstract void a();
+
+    public abstract void b(float f, float f2);
+
+    public bda() {
+        this.b = true;
+        this.c = true;
+        a();
     }
 }

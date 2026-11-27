@@ -1,16 +1,44 @@
 package defpackage;
-public final class jk4 extends gw2 {
-    public ik4 a;
-    public fl8 b;
-    public p01 c;
-    public boolean d;
-    public Object e;
-    public int f;
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.e = obj;
-        this.f |= Integer.MIN_VALUE;
-        return wge.a(null, null, false, this);
+import java.io.File;
+import java.util.ArrayList;
+import java.util.logging.Level;
+public final class jk4 {
+    public final ArrayList a;
+
+    public jk4(byte b) {
+        switch (b) {
+            case 1:
+                File file = new File(System.getProperty("java.io.tmpdir"));
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
+                this.a = new ArrayList();
+                return;
+            default:
+                this.a = new ArrayList();
+                return;
+        }
+    }
+
+    public final void a() {
+        ArrayList arrayList = this.a;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            if (obj != null) {
+                grb.o();
+                return;
+            }
+            try {
+                throw null;
+                break;
+            } catch (Exception e) {
+                nk7.d.log(Level.WARNING, "could not delete file ", (Throwable) e);
+            }
+        }
+        arrayList.clear();
     }
 }

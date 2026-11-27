@@ -1,4 +1,3 @@
 package defpackage;
-public interface mef {
-    void a(qx qxVar);
+public abstract class mef {
 }

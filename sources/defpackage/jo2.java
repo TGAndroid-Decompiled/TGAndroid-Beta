@@ -1,68 +1,22 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class jo2 implements i8c {
-    public final byte a;
-    public final mo2 b;
+import android.content.Context;
+import android.view.View;
+public final class jo2 extends a8c {
+    public static final int b = 0;
 
-    public jo2(mo2 mo2Var, byte b) {
-        this.a = b;
-        this.b = mo2Var;
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        byte b = this.a;
-        boolean z = false;
-        mo2 mo2Var = this.b;
-        switch (b) {
-            case 0:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                mo2Var.q.dismiss();
-                mo2Var.q = null;
-                mo2Var.r = 0;
-                if (tL_error != null) {
-                    mo2Var.c.g0(tL_error, false);
-                    return;
-                }
-                lo2 lo2Var = mo2Var.h;
-                if (lo2Var != null) {
-                    lo2Var.close();
-                    return;
-                }
-                return;
-            case 1:
-                TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                mo2Var.m = false;
-                if (peerLinkRequests != null) {
-                    mo2Var.j.addAll(peerLinkRequests.requests);
-                    String str = peerLinkRequests.next_offset;
-                    mo2Var.k = str;
-                    mo2Var.l = peerLinkRequests.total_count;
-                    if (str == null) {
-                        z = true;
-                    }
-                    mo2Var.n = z;
-                    mo2Var.a();
-                    lo2 lo2Var2 = mo2Var.h;
-                    if (lo2Var2 != null) {
-                        lo2Var2.U0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                if (tL_error3 != null) {
-                    mo2Var.c.g0(tL_error3, false);
-                    return;
-                }
-                return;
-        }
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        long j = b8cVar.C;
+        ((ko2) view).a((int) j, (int) (j >>> 32), b8cVar.k, b8cVar.m, b8cVar.o, b8cVar.r);
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new ko2(vnbVar, context, false);
     }
 }

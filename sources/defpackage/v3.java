@@ -1,14 +1,11 @@
 package defpackage;
-
-import java.util.concurrent.Executor;
 public final class v3 {
-    public static final v3 d = new v3(null, null);
-    public final Runnable a;
-    public final Executor b;
-    public v3 c;
+    public static final v3 b = new v3(new j2("Failure occurred while trying to finish a future.", (byte) 1));
+    public final Throwable a;
 
-    public v3(Runnable runnable, Executor executor) {
-        this.a = runnable;
-        this.b = executor;
+    public v3(Throwable th) {
+        boolean z = b4.d;
+        th.getClass();
+        this.a = th;
     }
 }

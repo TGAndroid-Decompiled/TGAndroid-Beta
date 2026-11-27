@@ -1,8 +1,12 @@
 package defpackage;
-public final class sb6 {
-    public final int a;
 
-    public sb6(int i) {
-        this.a = i;
-    }
+import java.util.Locale;
+public interface sb6 {
+    String a();
+
+    Object b();
+
+    Locale get(int i);
+
+    int size();
 }

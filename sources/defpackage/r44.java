@@ -1,30 +1,20 @@
 package defpackage;
+public enum r44 {
+    L(1),
+    M(0),
+    Q(3),
+    H(2);
+    
+    public static final r44[] e;
+    public final byte a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class r44 extends b4 {
-    public static final Parcelable.Creator<r44> CREATOR = new igd((byte) 19);
-    public String a;
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof r44) {
-            return cqe.a(this.a, ((r44) obj).a);
-        }
-        return false;
+    static {
+        r44 r44Var;
+        r44 r44Var2 = L;
+        e = new r44[]{M, r44Var2, H, r44Var};
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 1, this.a);
-        jte.s(parcel, r);
+    r44(int i) {
+        this.a = i;
     }
 }

@@ -1,35 +1,29 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import android.view.View;
-public final class gy9 extends View {
-    public final Paint a;
-    public int b;
-    public LinearGradient c;
-    public final iy9 d;
+public final class gy9 implements View.OnClickListener {
+    public final byte a;
+    public final ky9 b;
 
-    public gy9(iy9 iy9Var, Context context) {
-        super(context);
-        this.d = iy9Var;
-        this.a = new Paint(1);
-        this.b = bkb.v0(bkb.g5, iy9Var.J0);
-        this.c = new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(68.0f), new int[]{bkb.p1(0.0f, this.b), this.b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public gy9(ky9 ky9Var, byte b) {
+        this.a = b;
+        this.b = ky9Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int v0 = bkb.v0(bkb.g5, this.d.J0);
-        if (v0 != this.b) {
-            this.b = v0;
-            this.c = new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(68.0f), new int[]{bkb.p1(0.0f, v0), v0}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public final void onClick(View view) {
+        byte b = this.a;
+        ky9 ky9Var = this.b;
+        switch (b) {
+            case 0:
+                if (ky9Var.Z == null) {
+                    ky9Var.dismiss();
+                    return;
+                }
+                return;
+            default:
+                ky9Var.dismiss();
+                return;
         }
-        LinearGradient linearGradient = this.c;
-        Paint paint = this.a;
-        paint.setShader(linearGradient);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

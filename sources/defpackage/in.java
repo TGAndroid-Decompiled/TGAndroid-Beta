@@ -1,193 +1,248 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
-public final class in implements Drawable.Callback {
-    public final byte a;
-    public Object b;
+import android.view.accessibility.AccessibilityNodeInfo;
+public class in extends View {
+    public boolean a;
+    public Drawable b;
+    public final hn c;
+    public int d;
+    public int e;
+    public CharSequence f;
+    public boolean h;
+    public boolean n;
+    public boolean r;
 
-    public in(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public in(Context context, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
+        super(context);
+        this.n = true;
+        this.r = true;
+        hn hnVar = new hn(z, z2, z3, z4, z5);
+        this.c = hnVar;
+        hnVar.setCallback(this);
+        hnVar.J = new c1(this, (byte) 17);
+    }
+
+    public final void a() {
+        this.c.a();
+    }
+
+    public final void b(float f, long j, k43 k43Var) {
+        this.c.n(f, j, k43Var);
+    }
+
+    public final void c(CharSequence charSequence, boolean z, boolean z2) {
+        boolean z3;
+        if (!this.r && z) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        this.r = false;
+        hn hnVar = this.c;
+        if (z3 && !TextUtils.equals(charSequence, hnVar.i)) {
+            if (hnVar.K) {
+                ValueAnimator valueAnimator = hnVar.t;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    hnVar.t = null;
+                }
+            } else if (hnVar.h()) {
+                this.f = charSequence;
+                this.h = z2;
+                return;
+            }
+        }
+        hnVar.setBounds(getPaddingLeft(), getPaddingTop(), this.d - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        hnVar.t(charSequence, z3, z2);
+        float e = (int) hnVar.e();
+        if (e >= hnVar.e() && (z3 || e == hnVar.e())) {
+            return;
+        }
+        requestLayout();
+    }
+
+    public final int d() {
+        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.c.c()));
+    }
+
+    public hn getDrawable() {
+        return this.c;
+    }
+
+    public TextPaint getPaint() {
+        return this.c.a;
+    }
+
+    public float getRightPadding() {
+        return this.c.O;
+    }
+
+    public Drawable getSizeableBackground() {
+        return this.b;
+    }
+
+    public CharSequence getText() {
+        return this.c.i;
+    }
+
+    public int getTextColor() {
+        return this.c.a.getColor();
+    }
+
+    public int getTextHeight() {
+        return getPaint().getFontMetricsInt().descent - getPaint().getFontMetricsInt().ascent;
     }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.a) {
-            case 0:
-                ((ln) this.b).invalidateSelf();
-                return;
-            case 1:
-                ((ql0) this.b).invalidateSelf();
-                return;
-            case 2:
-                ((mg2) this.b).invalidateSelf();
-                return;
-            case 3:
-                ((ni2) this.b).invalidateSelf();
-                return;
-            case 4:
-                return;
-            case 5:
-                ((yv4) this.b).c.invalidate();
-                return;
-            case 6:
-                ((aw4) this.b).c.invalidate();
-                return;
-            case 7:
-                uk1 uk1Var = ((uo8) this.b).g;
-                if (uk1Var != null) {
-                    uk1Var.invalidate();
-                    return;
-                }
-                return;
-            case 8:
-                f19 f19Var = (f19) this.b;
-                View view = f19Var.V;
-                if (view != null) {
-                    view.invalidate();
-                    if (f19Var.Q && view.getParent() != null && (view.getParent().getParent() instanceof View)) {
-                        ((View) view.getParent().getParent()).invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 9:
-                ((ac9) this.b).b.invalidate();
-                return;
-            case 10:
-                ((iv9) this.b).b.run();
-                return;
-            case 11:
-                ((jqa) this.b).h.invalidate();
-                return;
-            default:
-                ((tyb) this.b).invalidateSelf();
-                return;
-        }
+        super.invalidateDrawable(drawable);
+        invalidate();
     }
 
     @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
-        switch (this.a) {
-            case 0:
-                ((ln) this.b).scheduleSelf(runnable, j);
-                return;
-            case 1:
-                ((ql0) this.b).scheduleSelf(runnable, j);
-                return;
-            case 2:
-                ((mg2) this.b).scheduleSelf(runnable, j);
-                return;
-            case 3:
-                ((ni2) this.b).scheduleSelf(runnable, j);
-                return;
-            case 4:
-                Drawable.Callback callback = (Drawable.Callback) this.b;
-                if (callback != null) {
-                    callback.scheduleDrawable(drawable, runnable, j);
-                    return;
-                }
-                return;
-            case 5:
-                ((yv4) this.b).c.invalidate();
-                return;
-            case 6:
-                ((aw4) this.b).c.invalidate();
-                return;
-            case 7:
-                return;
-            case 8:
-                View view = ((f19) this.b).V;
-                if (view != null) {
-                    view.scheduleDrawable(drawable, runnable, j);
-                    return;
-                }
-                return;
-            case 9:
-            case 10:
-            case 11:
-            default:
-                return;
+    public void onDraw(Canvas canvas) {
+        int i;
+        Drawable drawable = this.b;
+        hn hnVar = this.c;
+        if (drawable != null && (!this.a || hnVar.i() > 0.0f)) {
+            int c = (int) (hnVar.c() + getPaddingLeft() + getPaddingRight());
+            int i2 = hnVar.b & 7;
+            if (i2 == 5) {
+                i = getWidth() - c;
+            } else if (i2 == 1) {
+                i = (getWidth() - c) / 2;
+            } else {
+                i = 0;
+            }
+            this.b.setBounds(i, 0, c + i, getHeight());
+            this.b.draw(canvas);
         }
+        hnVar.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        hnVar.draw(canvas);
     }
 
     @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.a) {
-            case 0:
-                ((ln) this.b).unscheduleSelf(runnable);
-                return;
-            case 1:
-                ((ql0) this.b).unscheduleSelf(runnable);
-                return;
-            case 2:
-                ((mg2) this.b).unscheduleSelf(runnable);
-                return;
-            case 3:
-                ((ni2) this.b).unscheduleSelf(runnable);
-                return;
-            case 4:
-                Drawable.Callback callback = (Drawable.Callback) this.b;
-                if (callback != null) {
-                    callback.unscheduleDrawable(drawable, runnable);
-                    return;
-                }
-                return;
-            case 5:
-                ((yv4) this.b).c.invalidate();
-                return;
-            case 6:
-                ((aw4) this.b).c.invalidate();
-                return;
-            case 7:
-                return;
-            case 8:
-                View view = ((f19) this.b).V;
-                if (view != null) {
-                    view.unscheduleDrawable(drawable, runnable);
-                    return;
-                }
-                return;
-            case 9:
-            case 10:
-            case 11:
-            default:
-                return;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(getText());
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        int i3 = this.e;
+        if (i3 > 0) {
+            size = Math.min(size, i3);
         }
+        int i4 = this.d;
+        hn hnVar = this.c;
+        if (i4 != size && getLayoutParams().width != 0) {
+            hnVar.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
+            hnVar.t(hnVar.i, false, true);
+        }
+        this.d = size;
+        if (this.n && View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
+            size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(hnVar.e()));
+        }
+        setMeasuredDimension(size, size2);
     }
 
-    private final void a(Drawable drawable) {
+    public void setAllowCancel(boolean z) {
+        this.c.K = z;
     }
 
-    private final void g(Drawable drawable, Runnable runnable) {
+    public void setEllipsizeByGradient(boolean z) {
+        this.c.q(z);
     }
 
-    private final void h(Drawable drawable, Runnable runnable) {
+    public void setEmojiCacheType(int i) {
+        this.c.p = i;
     }
 
-    private final void i(Drawable drawable, Runnable runnable) {
+    public void setEmojiColor(int i) {
+        hn hnVar = this.c;
+        if (hnVar.a0 != i) {
+            hnVar.a0 = i;
+            hnVar.b0 = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+        }
+        invalidate();
     }
 
-    private final void j(Drawable drawable, Runnable runnable) {
+    public void setEmojiColorFilter(ColorFilter colorFilter) {
+        this.c.b0 = colorFilter;
+        invalidate();
     }
 
-    private final void k(Drawable drawable, Runnable runnable) {
+    public void setGravity(int i) {
+        this.c.b = i;
     }
 
-    private final void b(Drawable drawable, Runnable runnable, long j) {
+    public void setHideBackgroundIfEmpty(boolean z) {
+        this.a = z;
     }
 
-    private final void c(Drawable drawable, Runnable runnable, long j) {
+    public void setIgnoreRTL(boolean z) {
+        this.c.L = z;
     }
 
-    private final void d(Drawable drawable, Runnable runnable, long j) {
+    public void setIncludeFontPadding(boolean z) {
+        this.c.T = z;
     }
 
-    private final void e(Drawable drawable, Runnable runnable, long j) {
+    public void setMaxWidth(int i) {
+        this.e = i;
     }
 
-    private final void f(Drawable drawable, Runnable runnable, long j) {
+    public void setOnWidthUpdatedListener(Runnable runnable) {
+        this.c.c0 = runnable;
+    }
+
+    public void setRightPadding(float f) {
+        hn hnVar = this.c;
+        hnVar.O = f;
+        hnVar.invalidateSelf();
+    }
+
+    public void setScaleProperty(float f) {
+        this.c.B = f;
+    }
+
+    public void setSizeableBackground(Drawable drawable) {
+        this.b = drawable;
+        invalidate();
+    }
+
+    public void setText(CharSequence charSequence) {
+        c(charSequence, true, true);
+    }
+
+    public void setTextColor(int i) {
+        this.c.u(i);
+        invalidate();
+    }
+
+    public void setTextSize(float f) {
+        this.c.w(f);
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.c.x(typeface);
+    }
+
+    public in(Context context, boolean z, boolean z2, boolean z3) {
+        this(context, z, z2, z3, false, false);
     }
 }

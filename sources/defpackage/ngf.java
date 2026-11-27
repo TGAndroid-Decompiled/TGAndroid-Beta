@@ -1,3 +1,3 @@
 package defpackage;
-public final class ngf {
+public abstract class ngf {
 }

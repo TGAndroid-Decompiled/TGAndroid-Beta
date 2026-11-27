@@ -1,68 +1,33 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-public final class o92 implements alb {
-    public final byte a;
+import android.content.Context;
+public final class o92 implements h56 {
+    public final Context a;
+    public final v92 b;
 
-    public o92(d dVar, byte b) {
-        this.a = b;
+    public o92(v92 v92Var, Context context) {
+        this.b = v92Var;
+        this.a = context;
     }
 
     @Override
-    public final void a(float f) {
-        byte b = this.a;
+    public final void d() {
+        this.b.c0(true);
+    }
+
+    @Override
+    public final void f() {
+        v92 v92Var = this.b;
+        bt5 bt5Var = new bt5(this.a, v92Var.m0, v92Var.Z, v92Var.p0, v92Var, v92Var.a0, true, xc2.T(v92Var.Y));
+        v92Var.q0 = bt5Var;
+        bt5Var.show();
     }
 
     @Override
     public final void b() {
-        byte b = this.a;
     }
 
-    private final void c() {
-    }
-
-    private final void d() {
-    }
-
-    private final void e() {
-    }
-
-    private final void f() {
-    }
-
-    private final void g() {
-    }
-
-    private final void h() {
-    }
-
-    private final void i() {
-    }
-
-    private final void j() {
-    }
-
-    private final void k(float f) {
-    }
-
-    private final void l(float f) {
-    }
-
-    private final void m(float f) {
-    }
-
-    private final void n(float f) {
-    }
-
-    private final void o(float f) {
-    }
-
-    private final void p(float f) {
-    }
-
-    private final void q(float f) {
-    }
-
-    private final void r(float f) {
+    @Override
+    public final void h() {
     }
 }

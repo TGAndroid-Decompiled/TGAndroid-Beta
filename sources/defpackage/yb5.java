@@ -1,92 +1,151 @@
 package defpackage;
-public final class yb5 implements gu3 {
-    public static final double[] r = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
-    public String a;
-    public wxb b;
-    public final uv9 c;
-    public final String d;
-    public final xu7 e;
-    public final oh7 f;
-    public final boolean[] g = new boolean[4];
-    public final xb5 h;
-    public long i;
-    public boolean j;
-    public boolean k;
-    public long l;
-    public long m;
-    public long n;
-    public long o;
-    public boolean p;
-    public boolean q;
 
-    public yb5(uv9 uv9Var, String str) {
-        this.c = uv9Var;
-        this.d = str;
-        ?? obj = new Object();
-        obj.a = new byte[128];
-        this.h = obj;
-        if (uv9Var != null) {
-            this.f = new oh7(178);
-            this.e = new xu7();
-        } else {
-            this.f = null;
-            this.e = null;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class yb5 {
+    public float a;
+    public float b;
+    public float c;
+    public boolean e;
+    public final gk0 f;
+    public final gk0 g;
+    public boolean h;
+    public byte i;
+    public float d = 0.0f;
+    public float j = 0.0f;
+
+    public yb5(int i, int i2) {
+        gk0 gk0Var = new gk0(6);
+        this.f = gk0Var;
+        gk0 gk0Var2 = new gk0(8);
+        this.g = gk0Var2;
+        float f = i;
+        gk0Var.a = f;
+        float f2 = i2;
+        gk0Var.b = f2;
+        gk0Var2.a = f;
+        gk0Var2.b = f2;
+        gk0Var.b();
+        gk0Var2.b();
+        int i3 = aob.hh;
+        gk0Var.d.setColor(vm2.o(aob.w0(null, i3, false), 38));
+        gk0Var2.d.setColor(vm2.o(aob.w0(null, i3, false), 38));
+    }
+
+    public final void a(Canvas canvas, float f, float f2, View view) {
+        int i;
+        gk0 gk0Var = this.f;
+        Paint paint = gk0Var.d;
+        if (i86.e(512)) {
+            float f3 = (this.a * 0.4f) + 0.8f;
+            if (this.e || this.d != 0.0f) {
+                canvas.save();
+                float interpolation = k43.f.getInterpolation(this.d) * f3;
+                canvas.scale(interpolation, interpolation, f, f2);
+                if (!this.h) {
+                    byte b = this.i;
+                    float f4 = this.j;
+                    if (b != 1) {
+                        if (f4 != 1.0f) {
+                            float f5 = f4 + 0.10666667f;
+                            this.j = f5;
+                            if (f5 > 1.0f) {
+                                this.j = 1.0f;
+                            }
+                        }
+                    } else if (f4 != 0.0f) {
+                        float f6 = f4 - 0.10666667f;
+                        this.j = f6;
+                        if (f6 < 0.0f) {
+                            this.j = 0.0f;
+                        }
+                    }
+                    int w0 = aob.w0(null, aob.hh, false);
+                    if (this.i == 2) {
+                        i = aob.jh;
+                    } else {
+                        i = aob.gh;
+                    }
+                    paint.setColor(vm2.o(vm2.f(this.j, w0, aob.w0(null, i, false)), 38));
+                }
+                gk0Var.e(this.a, 1.0f);
+                gk0Var.a(f, f2, canvas, paint);
+                float f7 = this.a;
+                gk0 gk0Var2 = this.g;
+                gk0Var2.e(f7, 1.0f);
+                gk0Var2.a(f, f2, canvas, paint);
+                canvas.restore();
+            }
+            if (this.d != 0.0f) {
+                view.invalidate();
+            }
         }
-        this.m = -9223372036854775807L;
-        this.o = -9223372036854775807L;
     }
 
-    @Override
-    public final void b(defpackage.xu7 r23) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yb5.b(xu7):void");
+    public final float b() {
+        float interpolation = k43.g.getInterpolation(this.d);
+        return qd4.A(1.0f, interpolation, 1.0f, ((this.a * 0.2f) + 0.9f) * interpolation);
     }
 
-    @Override
-    public final void d() {
-        yad.a(this.g);
-        xb5 xb5Var = this.h;
-        xb5Var.d = false;
-        xb5Var.b = 0;
-        xb5Var.c = 0;
-        oh7 oh7Var = this.f;
-        if (oh7Var != null) {
-            oh7Var.c();
+    public final void c(double d) {
+        float f = ((float) d) / 80.0f;
+        float f2 = 0.0f;
+        if (!this.e) {
+            f = 0.0f;
         }
-        this.i = 0L;
-        this.j = false;
-        this.m = -9223372036854775807L;
-        this.o = -9223372036854775807L;
+        if (f > 1.0f) {
+            f2 = 1.0f;
+        } else if (f >= 0.0f) {
+            f2 = f;
+        }
+        this.b = f2;
+        this.c = (f2 - this.a) / 200.0f;
     }
 
-    @Override
+    public final void d(int i) {
+        this.h = true;
+        this.f.d.setColor(i);
+    }
+
+    public final void e(View view, boolean z) {
+        if (this.e != z) {
+            view.invalidate();
+        }
+        this.e = z;
+    }
+
     public final void f() {
-        this.b.getClass();
-        long j = this.o;
-        if (j != -9223372036854775807L) {
-            boolean z = this.p;
-            this.b.a(j, z ? 1 : 0, (int) (this.i - this.n), 0, null);
+        float f = this.b;
+        float f2 = this.a;
+        if (f != f2) {
+            float f3 = this.c;
+            float f4 = (16.0f * f3) + f2;
+            this.a = f4;
+            if (f3 > 0.0f) {
+                if (f4 > f) {
+                    this.a = f;
+                }
+            } else if (f4 < f) {
+                this.a = f;
+            }
         }
-    }
-
-    @Override
-    public final void g(int i, long j) {
-        this.m = j;
-    }
-
-    @Override
-    public final void h(l74 l74Var, l2c l2cVar) {
-        l2cVar.a();
-        l2cVar.b();
-        this.a = l2cVar.e;
-        l2cVar.b();
-        this.b = l74Var.S(l2cVar.d, 2);
-        uv9 uv9Var = this.c;
-        if (uv9Var != null) {
-            uv9Var.b(l74Var, l2cVar);
+        boolean z = this.e;
+        float f5 = this.d;
+        if (z) {
+            if (f5 != 1.0f) {
+                float f6 = f5 + 0.045714285f;
+                this.d = f6;
+                if (f6 > 1.0f) {
+                    this.d = 1.0f;
+                }
+            }
+        } else if (f5 != 0.0f) {
+            float f7 = f5 - 0.045714285f;
+            this.d = f7;
+            if (f7 < 0.0f) {
+                this.d = 0.0f;
+            }
         }
-    }
-
-    @Override
-    public final void e() {
     }
 }

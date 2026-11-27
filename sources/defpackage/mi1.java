@@ -1,127 +1,53 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.p;
-public final class mi1 implements RequestDelegate {
-    public final byte a;
-    public final boolean b;
-    public final Object c;
-    public final Object d;
+import android.view.View;
+import java.io.Serializable;
+public final class mi1 implements ska, fd, ncc {
+    public final ij1 a;
 
-    public mi1(Object obj, Object obj2, boolean z, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.b = z;
+    public mi1(ij1 ij1Var) {
+        this.a = ij1Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        byte b = this.a;
-        int i = 0;
-        Object obj = this.d;
-        Object obj2 = this.c;
-        switch (b) {
-            case 0:
-                gl.c3(new z77((zi1) obj2, tL_error, tLObject, (TwoStepVerificationActivity) obj, this.b, (byte) 6));
-                return;
-            case 1:
-                gl.c3(new rg((fc2) obj2, this.b, tLObject, (TL_phone.getGroupParticipants) obj, (byte) 12));
-                return;
-            case 2:
-                gl.c3(new z77((mi3) obj2, tL_error, tLObject, (String) obj, this.b, (byte) 8));
-                return;
-            case 3:
-                gl.c3(new rg((lv3) obj2, tLObject, (String) obj, this.b, (byte) 16));
-                return;
-            case 4:
-                gl.c3(new rg((h75) obj2, tLObject, (TLRPC.ChatFull) obj, this.b, (byte) 20));
-                return;
-            case 5:
-                yh6 yh6Var = (yh6) obj2;
-                TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) obj;
-                if (tL_error == null) {
-                    TLRPC.TL_messages_exportedChatInvites tL_messages_exportedChatInvites = (TLRPC.TL_messages_exportedChatInvites) tLObject;
-                    if (tL_messages_exportedChatInvites.invites.size() > 0 && tL_chatInviteExported2 != null) {
-                        while (i < tL_messages_exportedChatInvites.invites.size()) {
-                            if (((TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i)).link.equals(tL_chatInviteExported2.link)) {
-                                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.remove(i);
-                                gl.c3(new lh6(yh6Var, tL_chatInviteExported, tL_error, tLObject, this.b, (byte) 0));
-                                return;
-                            }
-                            i++;
-                        }
-                    }
-                }
-                tL_chatInviteExported = null;
-                gl.c3(new lh6(yh6Var, tL_chatInviteExported, tL_error, tLObject, this.b, (byte) 0));
-                return;
-            case 6:
-                gl.c3(new rg((hq6) obj2, tL_error, tLObject, (String) obj, this.b));
-                return;
-            case 7:
-                gl.c3(new rg((hq6) obj2, tLObject, (SharedPreferences) obj, this.b, (byte) 27));
-                return;
-            case 8:
-                na7 na7Var = (na7) obj2;
-                na7Var.getClass();
-                gl.c3(new rg(na7Var, tLObject, this.b, (TLRPC.TL_contacts_getBlocked) obj, (byte) 29));
-                return;
-            case 9:
-                gl.c3(new d97((r97) obj2, (int[]) obj, tLObject, this.b, (byte) 1));
-                return;
-            case 10:
-                gl.c3(new z77((p) obj2, tL_error, this.b, tLObject, (String) obj, (byte) 16));
-                return;
-            case 11:
-                zr9 zr9Var = (zr9) obj2;
-                String str = (String) obj;
-                vf6 vf6Var = zr9Var.h;
-                ArrayList arrayList = zr9Var.g;
-                int i2 = zr9Var.m;
-                if (tL_error == null) {
-                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-                    zr9Var.n = str.toLowerCase();
-                    na7.q1(i2).b4(tL_channels_channelParticipants.users, false);
-                    na7.q1(i2).V3(tL_channels_channelParticipants.chats, false);
-                    arrayList.clear();
-                    vf6Var.b();
-                    arrayList.addAll(tL_channels_channelParticipants.participants);
-                    long e = y6c.h(i2).e();
-                    int size = tL_channels_channelParticipants.participants.size();
-                    while (i < size) {
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i);
-                        long B1 = k27.B1(channelParticipant.peer);
-                        if (!this.b && B1 == e) {
-                            arrayList.remove(channelParticipant);
-                        } else {
-                            vf6Var.k(channelParticipant, B1);
-                        }
-                        i++;
-                    }
+    public final int c() {
+        return this.a.R0;
+    }
+
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        ij1 ij1Var = this.a;
+        ni1 ni1Var = ij1Var.s1;
+        int i = ij1Var.o0;
+        long j = ij1Var.p0;
+        int i2 = ((b8c) obj).d;
+        if (i2 == 1) {
+            if (ij1Var.r0 < uc7.s1(i).k4.b2.f()) {
+                if (ij1Var.q0 != null) {
+                    w1b w1bVar = ij1Var.m0;
+                    l46 l46Var = new l46(30, ij1Var.o0, ij1Var.n0, ij1Var.getContext(), w1bVar);
+                    l46Var.t1(j);
+                    l46Var.r1(ij1Var.q0, true);
+                    uc7.s1(i).G0().b(j, ij1Var.q0, new y0(ij1Var, l46Var, (byte) 16));
                     return;
                 }
                 return;
-            case 12:
-                gl.c3(new d97((xsa) obj2, (int[]) obj, tLObject, this.b, (byte) 14));
-                return;
-            default:
-                gl.c3(new d97((j0b) obj2, tLObject, this.b, (hd) obj, (byte) 15));
-                return;
+            }
+            ij1Var.j1 = !ij1Var.j1;
+            hl.r(ni1Var);
+            hl.d3(ni1Var, 1000L);
+            ij1Var.X0.g3.O(true);
+        } else if (i2 == 4) {
+            ij1Var.m0.presentFragment(new ng1(j));
         }
     }
 
-    public mi1(Object obj, boolean z, Object obj2, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = z;
-        this.d = obj2;
+    @Override
+    public final void w(id idVar, int i) {
+        this.a.m0.presentFragment(new o7c(6, null));
     }
 }

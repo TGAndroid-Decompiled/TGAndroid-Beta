@@ -1,38 +1,35 @@
 package defpackage;
+public final class xe3 {
+    public static final xe3 c = new xe3(new rg7((byte) 18));
+    public static final String d;
+    public static final String e;
+    public final int a = 0;
+    public final int b = 0;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.widget.ImageView;
-import org.telegram.ui.PhotoViewer;
-public final class xe3 implements DialogInterface.OnDismissListener {
-    public final byte a;
-    public final Object b;
-
-    public xe3(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    static {
+        String str = gcc.a;
+        d = "1";
+        e = "2";
     }
 
-    @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                ze3 ze3Var = (ze3) obj;
-                Dialog dialog = ze3Var.w0;
-                if (dialog != null) {
-                    ze3Var.onDismiss(dialog);
-                    return;
+    public xe3(rg7 rg7Var) {
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof xe3) {
+                xe3 xe3Var = (xe3) obj;
+                if (this.a == xe3Var.a && this.b == xe3Var.b) {
+                    return true;
                 }
-                return;
-            default:
-                ImageView imageView = ((PhotoViewer) obj).E3;
-                if (imageView != null) {
-                    imageView.animate().alpha(0.0f).withEndAction(new oq7(this, (byte) 26)).setDuration(150L).start();
-                    return;
-                }
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return (((16337 + this.a) * 31) + this.b) * 31;
     }
 }

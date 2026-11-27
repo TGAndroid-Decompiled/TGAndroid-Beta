@@ -1,32 +1,45 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_wallet;
-public final class gpc implements p8c {
+import android.text.TextUtils;
+public final class gpc implements pcc {
     public final byte a;
-    public final qpc b;
+    public final c51 b;
+    public final nx0 c;
+    public final vnb d;
 
-    public gpc(qpc qpcVar, byte b) {
+    public gpc(c51 c51Var, nx0 nx0Var, vnb vnbVar, byte b) {
         this.a = b;
-        this.b = qpcVar;
+        this.b = c51Var;
+        this.c = nx0Var;
+        this.d = vnbVar;
     }
 
     @Override
     public final void a(Object obj) {
         byte b = this.a;
-        qpc qpcVar = this.b;
+        vnb vnbVar = this.d;
+        nx0 nx0Var = this.c;
+        c51 c51Var = this.b;
+        String str = (String) obj;
         switch (b) {
             case 0:
-                qpcVar.q0((String) obj);
-                return;
-            case 1:
-                qpcVar.r0 = (TL_wallet.walletTransaction) obj;
-                return;
-            case 2:
-                qpcVar.r0 = (TL_wallet.walletTransaction) obj;
-                return;
+                c51Var.setLoading(false);
+                if (!TextUtils.isEmpty(str)) {
+                    new d31(nx0Var.F, vnbVar).f0(str, false);
+                    return;
+                } else {
+                    nx0Var.dismiss();
+                    return;
+                }
             default:
-                qpcVar.r0 = (TL_wallet.walletTransaction) obj;
-                return;
+                c51Var.setLoading(false);
+                if (str != null) {
+                    new d31(nx0Var.F, vnbVar).f0(str, false);
+                    return;
+                } else {
+                    nx0Var.dismiss();
+                    return;
+                }
         }
     }
 }

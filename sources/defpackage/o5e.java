@@ -1,29 +1,67 @@
 package defpackage;
+public final class o5e extends ese {
+    private static final o5e zzf;
+    private static volatile u0f zzg;
+    private int zzc;
+    private String zzd = "";
+    private String zze = "";
 
-import java.util.AbstractMap;
-public final class o5e extends u3e {
-    public final u5e r;
+    static {
+        o5e o5eVar = new o5e();
+        zzf = o5eVar;
+        ese.g(o5e.class, o5eVar);
+    }
 
-    public o5e(u5e u5eVar) {
-        super((byte) 5);
-        this.r = u5eVar;
+    public static n5e k() {
+        return (n5e) ((ase) zzf.d(5));
     }
 
     @Override
-    public final Object get(int i) {
-        u5e u5eVar = this.r;
-        p1f.a(i, u5eVar.x);
-        Object[] objArr = u5eVar.w;
-        int i2 = i << 1;
-        Object obj = objArr[i2];
-        obj.getClass();
-        Object obj2 = objArr[i2 + 1];
-        obj2.getClass();
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    public final Object d(int i) {
+        u0f u0fVar;
+        switch (b7e.a[i - 1]) {
+            case 1:
+                return new o5e();
+            case 2:
+                return new ase(zzf);
+            case 3:
+                return new j1f(zzf, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဈ\u0001", new Object[]{"zzc", "zzd", "zze"});
+            case 4:
+                return zzf;
+            case 5:
+                u0f u0fVar2 = zzg;
+                if (u0fVar2 == null) {
+                    synchronized (o5e.class) {
+                        u0f u0fVar3 = zzg;
+                        u0fVar = u0fVar3;
+                        if (u0fVar3 == null) {
+                            ?? obj = new Object();
+                            zzg = obj;
+                            u0fVar = obj;
+                        }
+                    }
+                    return u0fVar;
+                }
+                return u0fVar2;
+            case 6:
+                return (byte) 1;
+            case 7:
+                break;
+            default:
+                p3d.a();
+                break;
+        }
+        return null;
     }
 
-    @Override
-    public final int size() {
-        return this.r.x;
+    public final void j(String str) {
+        str.getClass();
+        this.zzc |= 1;
+        this.zzd = str;
+    }
+
+    public final void m(String str) {
+        this.zzc |= 2;
+        this.zze = str;
     }
 }

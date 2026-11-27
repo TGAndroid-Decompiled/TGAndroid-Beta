@@ -1,131 +1,192 @@
 package defpackage;
 
-import j$.util.SortedSet;
-import java.util.Collections;
+import j$.util.List;
+import java.util.Collection;
 import java.util.Comparator;
-import java.util.NavigableSet;
-public abstract class vjd extends mid implements NavigableSet, Iterable, SortedSet {
-    public final transient Comparator s;
-    public transient vjd w;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+import java.util.function.UnaryOperator;
+public abstract class vjd extends ejd implements List, RandomAccess, j$.util.List {
+    public static final jjd b = new jjd(emd.e, 0);
 
-    public vjd(Comparator comparator) {
-        super((byte) 4);
-        this.s = comparator;
-    }
-
-    public static yld E(Comparator comparator) {
-        if (cld.b != comparator) {
-            dgd dgdVar = xhd.n;
-            return new yld(old.w, comparator);
+    public static emd o(int i, Object[] objArr) {
+        if (i == 0) {
+            return emd.e;
         }
-        return yld.y;
+        return new emd(i, objArr);
     }
 
-    @Override
-    public final vjd descendingSet() {
-        yld yldVar = this.w;
-        if (yldVar == null) {
-            yld yldVar2 = (yld) this;
-            Comparator reverseOrder = Collections.reverseOrder(yldVar2.s);
-            if (yldVar2.isEmpty()) {
-                yldVar = E(reverseOrder);
-            } else {
-                yldVar = new yld(yldVar2.x.y(), reverseOrder);
+    public static vjd p(List list) {
+        if (list instanceof ejd) {
+            vjd k = ((ejd) list).k();
+            if (k.l()) {
+                Object[] array = k.toArray(ejd.a);
+                return o(array.length, array);
             }
-            this.w = yldVar;
-            yldVar.w = this;
+            return k;
         }
-        return yldVar;
+        Object[] array2 = list.toArray();
+        int length = array2.length;
+        k5f.a(length, array2);
+        return o(length, array2);
     }
 
     @Override
-    public final yld subSet(Object obj, boolean z, Object obj2, boolean z2) {
-        obj.getClass();
-        obj2.getClass();
-        if (this.s.compare(obj, obj2) <= 0) {
-            yld yldVar = (yld) this;
-            yld H = yldVar.H(yldVar.G(obj, z), yldVar.x.size());
-            return H.H(0, H.F(obj2, z2));
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
         }
-        sc8.e();
-        return null;
+        return false;
     }
 
-    public final void addFirst(Object obj) {
+    @Override
+    public final boolean equals(Object obj) {
+        Object next;
+        Object next2;
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i = 0; i < size; i++) {
+                            Object obj2 = get(i);
+                            Object obj3 = list.get(i);
+                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
+                            }
+                        }
+                        return true;
+                    }
+                    jjd listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            objArr[i] = get(i);
+        }
+        return size;
+    }
+
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
+        }
+        return i;
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            if (obj.equals(get(i))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public vjd subList(int i, int i2) {
+        k4f.c(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == size()) {
+            return this;
+        }
+        if (i3 == 0) {
+            return emd.e;
+        }
+        return new qjd(this, i, i3);
+    }
+
+    @Override
+    public final jjd listIterator(int i) {
+        k4f.b(i, size());
+        if (isEmpty()) {
+            return b;
+        }
+        return new jjd(this, i);
+    }
+
+    @Override
+    public final Object remove(int i) {
         throw new UnsupportedOperationException();
     }
 
-    public final void addLast(Object obj) {
+    @Override
+    public final void replaceAll(UnaryOperator unaryOperator) {
+        List.CC.$default$replaceAll(this, unaryOperator);
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public final Comparator comparator() {
-        return this.s;
+    public final void sort(Comparator comparator) {
+        List.CC.$default$sort(this, comparator);
     }
 
     @Override
-    public abstract Object first();
-
-    public final Object getFirst() {
-        return first();
-    }
-
-    public final Object getLast() {
-        return last();
-    }
-
-    @Override
-    public final java.util.SortedSet headSet(Object obj) {
-        obj.getClass();
-        yld yldVar = (yld) this;
-        return yldVar.H(0, yldVar.F(obj, false));
-    }
-
-    @Override
-    public abstract Object last();
-
-    @Override
-    public final Object pollFirst() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object pollLast() {
-        throw new UnsupportedOperationException();
-    }
-
-    public final Object removeFirst() {
-        throw new UnsupportedOperationException();
-    }
-
-    public final Object removeLast() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final java.util.SortedSet subSet(Object obj, Object obj2) {
-        return subSet(obj, true, obj2, false);
-    }
-
-    @Override
-    public final java.util.SortedSet tailSet(Object obj) {
-        obj.getClass();
-        yld yldVar = (yld) this;
-        return yldVar.H(yldVar.G(obj, true), yldVar.x.size());
-    }
-
-    @Override
-    public final NavigableSet headSet(Object obj, boolean z) {
-        obj.getClass();
-        yld yldVar = (yld) this;
-        return yldVar.H(0, yldVar.F(obj, z));
-    }
-
-    @Override
-    public final NavigableSet tailSet(Object obj, boolean z) {
-        obj.getClass();
-        yld yldVar = (yld) this;
-        return yldVar.H(yldVar.G(obj, z), yldVar.x.size());
+    public final vjd k() {
+        return this;
     }
 }

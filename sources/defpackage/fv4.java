@@ -1,9 +1,8 @@
 package defpackage;
+public final class fv4 extends j23 {
+    public final String e;
 
-import android.view.View;
-public final class fv4 extends gb3 {
-    @Override
-    public final float A(View view) {
-        return 0.3f;
+    public fv4(java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fv4.<init>(java.lang.String):void");
     }
 }

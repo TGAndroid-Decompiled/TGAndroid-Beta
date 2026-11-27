@@ -1,178 +1,1076 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import android.util.SparseArray;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.concurrent.CountDownLatch;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 import org.telegram.messenger.Utilities;
-public final class xb4 extends View {
-    public final Paint a;
-    public final Paint b;
-    public final Path c;
-    public int d;
-    public int e;
-    public tgb[] f;
-    public RectF[] h;
-    public float n;
-    public xz7 r;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class xb4 extends rf0 {
+    public static Pattern J;
+    public static volatile to3 K = new to3("fileUploadQueue");
+    public static SparseArray L = null;
+    public static final xb4[] M = new xb4[4];
+    public static final pb4 N = new Object();
+    public final HashMap E;
+    public sm5 F;
+    public int G;
+    public final ConcurrentHashMap H;
+    public final qb4 I;
+    public int a;
+    public final zb4[] b;
+    public final zb4[] c;
+    public final ic4 d;
+    public final LinkedList e;
+    public final LinkedList f;
+    public final ConcurrentHashMap h;
+    public final ConcurrentHashMap n;
+    public int r;
     public int s;
+    public final ConcurrentHashMap w;
+    public final ConcurrentHashMap x;
+    public final HashMap y;
 
-    public xb4(Context context) {
-        super(context);
-        this.a = new Paint(1);
-        this.b = new Paint(1);
-        this.c = new Path();
-        this.d = -1;
-        this.e = -1;
-        this.s = -1;
-    }
-
-    public final void a(float f, int i, int i2, Canvas canvas) {
-        tgb[] tgbVarArr = this.f;
-        int length = tgbVarArr.length;
-        int i3 = 0;
-        float f2 = f;
-        while (i3 < length) {
-            tgb tgbVar = tgbVarArr[i3];
-            int i4 = i2;
-            tgbVar.c(f2, i / 2.0f, 1.0f, i4, canvas);
-            f2 += tgbVar.j() + gl.L(24.0f);
-            i3++;
-            i2 = i4;
+    public xb4(int i) {
+        super(i);
+        this.b = new zb4[5];
+        this.c = new zb4[5];
+        this.e = new LinkedList();
+        this.f = new LinkedList();
+        this.h = new ConcurrentHashMap();
+        this.n = new ConcurrentHashMap();
+        this.r = 0;
+        this.s = 0;
+        this.w = new ConcurrentHashMap();
+        this.x = new ConcurrentHashMap(10, 1.0f, 2);
+        this.y = new HashMap();
+        this.E = new HashMap();
+        this.F = null;
+        this.H = new ConcurrentHashMap();
+        this.I = new qb4(this, (byte) 0);
+        this.d = new ic4(i);
+        int i2 = 0;
+        while (true) {
+            zb4[] zb4VarArr = this.b;
+            if (i2 >= zb4VarArr.length) {
+                break;
+            }
+            zb4VarArr[i2] = new zb4(i, 0, K);
+            this.c[i2] = new zb4(i, 1, K);
+            i2++;
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        if (this.f == null) {
+        if (!f11.a) {
             return;
         }
-        int width = getWidth();
-        int height = getHeight();
-        float f2 = 4.0f;
-        int L = gl.L(4.0f) + de9.y(24.0f, this.f.length, gl.L(4.0f));
-        int i = 0;
-        while (true) {
-            tgb[] tgbVarArr = this.f;
-            if (i >= tgbVarArr.length) {
-                break;
-            }
-            L = (int) (tgbVarArr[i].j() + L);
-            i++;
-        }
-        float L2 = (height - gl.L(36.0f)) / 2.0f;
-        float L3 = (gl.L(36.0f) + height) / 2.0f;
-        float f3 = (width - L) / 2.0f;
-        float L4 = gl.L(16.0f) + f3;
-        RectF rectF = gl.P;
-        rectF.set(f3, L2, L + f3, L3);
-        canvas.drawRoundRect(rectF, gl.L(18.0f), gl.L(18.0f), this.a);
-        float L5 = f3 + gl.L(16.0f);
-        int i2 = 0;
-        while (i2 < this.f.length) {
-            this.h[i2].set(L5 - gl.L(16.0f), L2, this.f[i2].j() + L5 + gl.L(16.0f), L3);
-            L5 += this.f[i2].j() + gl.L(24.0f);
-            i2++;
-            f2 = f2;
-        }
-        gl.L(f2);
-        int j = Utilities.j((int) Math.floor(this.n), this.f.length - 1, 0);
-        int j2 = Utilities.j((int) Math.ceil(this.n), this.f.length - 1, 0);
-        float L6 = this.h[j].left + gl.L(f);
-        float L7 = this.h[j2].left + gl.L(f);
-        float f4 = this.n;
-        float R1 = gl.R1(L6, L7, (float) (f4 - Math.floor(f4)));
-        float L8 = this.h[j].right - gl.L(f);
-        float L9 = this.h[j2].right - gl.L(f);
-        float f5 = this.n;
-        float R12 = gl.R1(L8, L9, (float) (f5 - Math.floor(f5)));
-        RectF rectF2 = gl.P;
-        rectF2.set(R1, (height - gl.L(28.0f)) / 2.0f, R12, (gl.L(28.0f) + height) / 2.0f);
-        Path path = this.c;
-        path.rewind();
-        path.addRoundRect(rectF2, gl.L(15.0f), gl.L(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, gl.L(15.0f), gl.L(15.0f), this.b);
-        a(L4, height, this.d, canvas);
-        canvas.save();
-        canvas.clipPath(path);
-        a(L4, height, this.e, canvas);
-        canvas.restore();
+        K.a(this.I);
+        K.d(this.I, 10000L);
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        vq1 vq1Var;
-        int i = 0;
-        if (this.f == null || this.h == null) {
-            return false;
+    public static String A(TLRPC.Document document) {
+        String str;
+        String B = B(document);
+        int lastIndexOf = B.lastIndexOf(46);
+        if (lastIndexOf != -1) {
+            str = B.substring(lastIndexOf + 1);
+        } else {
+            str = null;
         }
-        while (true) {
-            RectF[] rectFArr = this.h;
-            if (i < rectFArr.length) {
-                if (rectFArr[i].contains(motionEvent.getX(), motionEvent.getY())) {
-                    break;
+        if (str == null || str.length() == 0) {
+            str = document.mime_type;
+        }
+        if (str == null) {
+            str = "";
+        }
+        return str.toUpperCase();
+    }
+
+    public static String B(TLRPC.Document document) {
+        String str = null;
+        if (document == null) {
+            return null;
+        }
+        String str2 = document.file_name_fixed;
+        if (str2 != null) {
+            return str2;
+        }
+        String str3 = document.file_name;
+        if (str3 == null) {
+            for (int i = 0; i < document.attributes.size(); i++) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+                if (documentAttribute instanceof TLRPC.TL_documentAttributeFilename) {
+                    str = documentAttribute.file_name;
                 }
-                i++;
-            } else {
-                i = -1;
-                break;
+            }
+            str3 = str;
+        }
+        String q = q(str3);
+        if (q != null) {
+            return q;
+        }
+        return "";
+    }
+
+    public static String C(String str) {
+        if (str != null) {
+            char c = 65535;
+            switch (str.hashCode()) {
+                case 187091926:
+                    if (str.equals("audio/ogg")) {
+                        c = 0;
+                        break;
+                    }
+                    break;
+                case 1331848029:
+                    if (str.equals("video/mp4")) {
+                        c = 1;
+                        break;
+                    }
+                    break;
+                case 2039520277:
+                    if (str.equals("video/x-matroska")) {
+                        c = 2;
+                        break;
+                    }
+                    break;
+            }
+            switch (c) {
+                case 0:
+                    return ".ogg";
+                case 1:
+                    return ".mp4";
+                case 2:
+                    return ".mkv";
+                default:
+                    return "";
             }
         }
-        if (i >= 0 && i != this.s) {
-            this.s = i;
-            xz7 xz7Var = this.r;
-            if (xz7Var != null && (vq1Var = xz7Var.b.J) != null) {
-                vq1Var.E(i);
+        return "";
+    }
+
+    public static String D(File file) {
+        String name = file.getName();
+        try {
+            return name.substring(name.lastIndexOf(46) + 1);
+        } catch (Exception unused) {
+            return "";
+        }
+    }
+
+    public static hc4 E(Object obj) {
+        if (obj instanceof String) {
+            String str = (String) obj;
+            if (str.startsWith("sent_")) {
+                Pattern pattern = J;
+                if (pattern == null) {
+                    pattern = Pattern.compile("sent_.*_([0-9]+)_([0-9]+)_([0-9]+)_([0-9]+)");
+                    J = pattern;
+                }
+                try {
+                    Matcher matcher = pattern.matcher(str);
+                    if (matcher.matches()) {
+                        ?? obj2 = new Object();
+                        obj2.b = Integer.parseInt(matcher.group(1));
+                        obj2.a = Long.parseLong(matcher.group(2));
+                        obj2.c = Integer.parseInt(matcher.group(3));
+                        obj2.d = Long.parseLong(matcher.group(4));
+                        return obj2;
+                    }
+                    return null;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return null;
+                }
+            }
+            return null;
+        } else if (obj instanceof r47) {
+            r47 r47Var = (r47) obj;
+            ?? obj3 = new Object();
+            obj3.b = r47Var.e1();
+            obj3.a = r47.B0(r47Var.k);
+            obj3.c = r47Var.D;
+            obj3.d = r47Var.S1();
+            return obj3;
+        } else if (obj instanceof TL_stories.StoryItem) {
+            ?? obj4 = new Object();
+            obj4.a = ((TL_stories.StoryItem) obj).dialogId;
+            obj4.c = 23;
+            return obj4;
+        } else {
+            return null;
+        }
+    }
+
+    public static xb4 G(int i) {
+        xb4 xb4Var;
+        xb4[] xb4VarArr = M;
+        xb4 xb4Var2 = xb4VarArr[i];
+        if (xb4Var2 == null) {
+            synchronized (xb4.class) {
+                xb4Var = xb4VarArr[i];
+                if (xb4Var == null) {
+                    xb4Var = new xb4(i);
+                    xb4VarArr[i] = xb4Var;
+                }
+            }
+            return xb4Var;
+        }
+        return xb4Var2;
+    }
+
+    public static String H(String str) {
+        int lastIndexOf = str.lastIndexOf(47);
+        if (lastIndexOf != -1) {
+            return str.substring(lastIndexOf + 1);
+        }
+        return "";
+    }
+
+    public static File I(TLObject tLObject) {
+        return J(tLObject, null, false, true);
+    }
+
+    public static java.io.File J(org.telegram.tgnet.TLObject r11, java.lang.String r12, boolean r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xb4.J(org.telegram.tgnet.TLObject, java.lang.String, boolean, boolean):java.io.File");
+    }
+
+    public static File K(TLObject tLObject, boolean z) {
+        return J(tLObject, null, z, true);
+    }
+
+    public static File L(TLRPC.Message message) {
+        return M(message, false, true);
+    }
+
+    public static File M(TLRPC.Message message, boolean z, boolean z2) {
+        TLRPC.PhotoSize w;
+        TLRPC.PhotoSize w2;
+        TLRPC.PhotoSize w3;
+        if (message == null) {
+            return new File("");
+        }
+        boolean z3 = false;
+        if (message instanceof TLRPC.TL_messageService) {
+            TLRPC.Photo photo = message.action.photo;
+            if (photo != null) {
+                ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
+                if (arrayList.size() > 0 && (w3 = w(arrayList, hl.Y0(false), false, null, false)) != null) {
+                    return J(w3, null, z, z2);
+                }
+            }
+        } else if (r47.n1(message) instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.Document document = r47.n1(message).document;
+            if (z || r47.n1(message).ttl_seconds != 0) {
+                z3 = true;
+            }
+            return J(document, null, z3, z2);
+        } else if (r47.n1(message) instanceof TLRPC.TL_messageMediaPhoto) {
+            ArrayList<TLRPC.PhotoSize> arrayList2 = r47.n1(message).photo.sizes;
+            if (arrayList2.size() > 0 && (w2 = w(arrayList2, hl.Y0(true), false, null, true)) != null) {
+                if (z || r47.n1(message).ttl_seconds != 0) {
+                    z3 = true;
+                }
+                return J(w2, null, z3, z2);
+            }
+        } else if (r47.n1(message) instanceof TLRPC.TL_messageMediaWebPage) {
+            if (r47.n1(message).webpage.document != null) {
+                return J(r47.n1(message).webpage.document, null, z, z2);
+            }
+            if (r47.n1(message).webpage.photo != null) {
+                ArrayList<TLRPC.PhotoSize> arrayList3 = r47.n1(message).webpage.photo.sizes;
+                if (arrayList3.size() > 0 && (w = w(arrayList3, hl.Y0(false), false, null, false)) != null) {
+                    return J(w, null, z, z2);
+                }
+            }
+        } else if (r47.n1(message) instanceof TLRPC.TL_messageMediaInvoice) {
+            return J(((TLRPC.TL_messageMediaInvoice) r47.n1(message)).photo, null, true, z2);
+        }
+        return new File("");
+    }
+
+    public static File N(TLRPC.Message message) {
+        return M(message, false, true);
+    }
+
+    public static TLRPC.TL_photoStrippedSize Q(ArrayList arrayList) {
+        if (arrayList == null) {
+            return null;
+        }
+        for (int i = 0; i < arrayList.size(); i++) {
+            TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) arrayList.get(i);
+            if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
+                return (TLRPC.TL_photoStrippedSize) photoSize;
             }
         }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.s = -1;
+        return null;
+    }
+
+    public static TLRPC.VideoSize R(TLRPC.Photo photo) {
+        if (photo != null && photo.video_sizes != null) {
+            for (int i = 0; i < photo.video_sizes.size(); i++) {
+                TLRPC.VideoSize videoSize = photo.video_sizes.get(i);
+                if ((videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup) || (videoSize instanceof TLRPC.TL_videoSizeStickerMarkup)) {
+                    return videoSize;
+                }
+            }
         }
-        if (motionEvent.getAction() == 0 && i >= 0) {
+        return null;
+    }
+
+    public static boolean U(TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, TLRPC.Photo photo) {
+        if (tL_fileLocationToBeDeprecated != null && (photo instanceof TLRPC.TL_photo)) {
+            int size = photo.sizes.size();
+            for (int i = 0; i < size; i++) {
+                TLRPC.FileLocation fileLocation = photo.sizes.get(i).location;
+                if (fileLocation != null && fileLocation.local_id == tL_fileLocationToBeDeprecated.local_id && fileLocation.volume_id == tL_fileLocationToBeDeprecated.volume_id) {
+                    return true;
+                }
+            }
+            if ((-tL_fileLocationToBeDeprecated.volume_id) == photo.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void a(CountDownLatch countDownLatch, boolean z) {
+        try {
+            countDownLatch.await();
+        } catch (Exception e) {
+            cc4.g(e, false);
+            if (z) {
+                a(countDownLatch, false);
+            }
+        }
+    }
+
+    public static File j(int i) {
+        return (File) L.get(i);
+    }
+
+    public static boolean m(int i, long j) {
+        boolean p = yac.h(k5.a(i).a).p();
+        if (j >= 2097152000) {
+            if (j >= 4194304000L || !p) {
+                return false;
+            }
             return true;
         }
-        return super.onTouchEvent(motionEvent);
+        return true;
     }
 
-    @Override
-    public void setBackgroundColor(int i) {
-        this.a.setColor(i);
-        invalidate();
+    public static void o(GZIPInputStream gZIPInputStream, File file) {
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        byte[] bArr = new byte[4096];
+        int i = 0;
+        do {
+            int read = gZIPInputStream.read(bArr);
+            if (read <= 0) {
+                break;
+            }
+            Thread.yield();
+            fileOutputStream.write(bArr, 0, read);
+            i += read;
+        } while (i < 2097152);
+        fileOutputStream.getFD().sync();
+        fileOutputStream.close();
     }
 
-    public void setSelected(float f) {
-        if (Math.abs(f - this.n) > 0.001f) {
-            invalidate();
+    public static void p(int i, ArrayList arrayList) {
+        if (arrayList.isEmpty()) {
+            return;
         }
-        this.n = f;
+        K.c(new mb4(arrayList, i));
     }
 
-    public void setSelectedColor(int i) {
-        this.b.setColor(i);
-        invalidate();
-    }
-
-    public void setSelectedTextColor(int i) {
-        this.e = i;
-        invalidate();
-    }
-
-    public void setTabs(CharSequence... charSequenceArr) {
-        this.f = new tgb[charSequenceArr.length];
-        this.h = new RectF[charSequenceArr.length];
-        for (int i = 0; i < charSequenceArr.length; i++) {
-            this.f[i] = new tgb(charSequenceArr[i], 14.0f, gl.o());
-            this.h[i] = new RectF();
+    public static String q(String str) {
+        if (str != null) {
+            return str.replaceAll("[\u0001-\u001f<>\u202e:\"/\\\\|?*\u007f]+", "").trim();
         }
-        invalidate();
+        return str;
     }
 
-    public void setTextColor(int i) {
-        this.d = i;
-        invalidate();
+    public static String r(String str, TLObject tLObject) {
+        String str2 = "";
+        if (tLObject instanceof TLRPC.Document) {
+            TLRPC.Document document = (TLRPC.Document) tLObject;
+            String B = B(document);
+            int lastIndexOf = B.lastIndexOf(46);
+            if (lastIndexOf != -1) {
+                str2 = B.substring(lastIndexOf);
+            }
+            if (str2.length() <= 1) {
+                str2 = C(document.mime_type);
+            }
+            int length = str2.length();
+            int i = document.dc_id;
+            if (length > 1) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(i);
+                sb.append("_");
+                return qu6.p(sb, document.id, str2);
+            }
+            return i + "_" + document.id;
+        } else if (tLObject instanceof oy9) {
+            TLRPC.TL_secureFile tL_secureFile = ((oy9) tLObject).b;
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(tL_secureFile.dc_id);
+            sb2.append("_");
+            return qu6.p(sb2, tL_secureFile.id, ".jpg");
+        } else if (tLObject instanceof TLRPC.TL_secureFile) {
+            TLRPC.TL_secureFile tL_secureFile2 = (TLRPC.TL_secureFile) tLObject;
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append(tL_secureFile2.dc_id);
+            sb3.append("_");
+            return qu6.p(sb3, tL_secureFile2.id, ".jpg");
+        } else if (tLObject instanceof jxc) {
+            jxc jxcVar = (jxc) tLObject;
+            return Utilities.a(jxcVar.a) + "." + in5.x(jxcVar.a, H(jxcVar.e));
+        } else {
+            if (tLObject instanceof TLRPC.PhotoSize) {
+                TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
+                TLRPC.FileLocation fileLocation = photoSize.location;
+                if (fileLocation != null && !(fileLocation instanceof TLRPC.TL_fileLocationUnavailable)) {
+                    StringBuilder sb4 = new StringBuilder();
+                    sb4.append(photoSize.location.volume_id);
+                    sb4.append("_");
+                    sb4.append(photoSize.location.local_id);
+                    sb4.append(".");
+                    if (str == null) {
+                        str = "jpg";
+                    }
+                    sb4.append(str);
+                    return sb4.toString();
+                }
+            } else if (tLObject instanceof TLRPC.TL_videoSize) {
+                TLRPC.TL_videoSize tL_videoSize = (TLRPC.TL_videoSize) tLObject;
+                TLRPC.FileLocation fileLocation2 = tL_videoSize.location;
+                if (fileLocation2 != null && !(fileLocation2 instanceof TLRPC.TL_fileLocationUnavailable)) {
+                    StringBuilder sb5 = new StringBuilder();
+                    sb5.append(tL_videoSize.location.volume_id);
+                    sb5.append("_");
+                    sb5.append(tL_videoSize.location.local_id);
+                    sb5.append(".");
+                    if (str == null) {
+                        str = "mp4";
+                    }
+                    sb5.append(str);
+                    return sb5.toString();
+                }
+            } else if (tLObject instanceof TLRPC.FileLocation) {
+                if (!(tLObject instanceof TLRPC.TL_fileLocationUnavailable)) {
+                    TLRPC.FileLocation fileLocation3 = (TLRPC.FileLocation) tLObject;
+                    StringBuilder sb6 = new StringBuilder();
+                    sb6.append(fileLocation3.volume_id);
+                    sb6.append("_");
+                    sb6.append(fileLocation3.local_id);
+                    sb6.append(".");
+                    if (str == null) {
+                        str = "jpg";
+                    }
+                    sb6.append(str);
+                    return sb6.toString();
+                }
+            } else if (tLObject instanceof TLRPC.UserProfilePhoto) {
+                TLRPC.UserProfilePhoto userProfilePhoto = (TLRPC.UserProfilePhoto) tLObject;
+                if (userProfilePhoto.photo_small != null) {
+                    if ("s".equals("s")) {
+                        return r(str, userProfilePhoto.photo_small);
+                    }
+                    return r(str, userProfilePhoto.photo_big);
+                }
+                StringBuilder sb7 = new StringBuilder();
+                sb7.append(userProfilePhoto.photo_id);
+                sb7.append("_s.");
+                if (str == null) {
+                    str = "jpg";
+                }
+                sb7.append(str);
+                return sb7.toString();
+            } else if (tLObject instanceof TLRPC.ChatPhoto) {
+                TLRPC.ChatPhoto chatPhoto = (TLRPC.ChatPhoto) tLObject;
+                if (chatPhoto.photo_small != null) {
+                    if ("s".equals(null)) {
+                        return r(str, chatPhoto.photo_small);
+                    }
+                    return r(str, chatPhoto.photo_big);
+                }
+                StringBuilder sb8 = new StringBuilder();
+                sb8.append(chatPhoto.photo_id);
+                sb8.append("_null.");
+                if (str == null) {
+                    str = "jpg";
+                }
+                sb8.append(str);
+                return sb8.toString();
+            }
+            return "";
+        }
+    }
+
+    public static String s(TLObject tLObject) {
+        return r(null, tLObject);
+    }
+
+    public static TLRPC.PhotoSize u(int i, ArrayList arrayList) {
+        return w(arrayList, i, false, null, false);
+    }
+
+    public static TLRPC.PhotoSize v(int i, ArrayList arrayList, boolean z) {
+        return w(arrayList, i, z, null, false);
+    }
+
+    public static org.telegram.tgnet.TLRPC.PhotoSize w(java.util.ArrayList r8, int r9, boolean r10, org.telegram.tgnet.TLRPC.PhotoSize r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xb4.w(java.util.ArrayList, int, boolean, org.telegram.tgnet.TLRPC$PhotoSize, boolean):org.telegram.tgnet.TLRPC$PhotoSize");
+    }
+
+    public static TLRPC.VideoSize x(int i, ArrayList arrayList) {
+        TLRPC.FileLocation fileLocation;
+        TLRPC.VideoSize videoSize = null;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            int i2 = 0;
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                TLRPC.VideoSize videoSize2 = (TLRPC.VideoSize) arrayList.get(i3);
+                if (videoSize2 != null && !(videoSize2 instanceof TLRPC.TL_videoSizeEmojiMarkup) && !(videoSize2 instanceof TLRPC.TL_videoSizeStickerMarkup)) {
+                    int max = Math.max(videoSize2.w, videoSize2.h);
+                    if (videoSize == null || ((i > 100 && (fileLocation = videoSize.location) != null && fileLocation.dc_id == Integer.MIN_VALUE) || (max <= i && i2 < max))) {
+                        videoSize = videoSize2;
+                        i2 = max;
+                    }
+                }
+            }
+        }
+        return videoSize;
+    }
+
+    public static File z(int i) {
+        File file = (File) L.get(i);
+        if (file == null && i != 4) {
+            file = (File) L.get(4);
+        }
+        if (f11.b && file != null) {
+            try {
+                if (!file.isDirectory()) {
+                    file.mkdirs();
+                }
+            } catch (Exception unused) {
+            }
+        }
+        return file;
+    }
+
+    public final int F(Object obj) {
+        int i = this.G;
+        this.G = i + 1;
+        this.H.put(Integer.valueOf(i), obj);
+        return i;
+    }
+
+    public final int O(int i) {
+        int i2;
+        int i3;
+        if (i == 4) {
+            return Integer.MAX_VALUE;
+        }
+        if (i == 3) {
+            i2 = this.a;
+            this.a = i2 + 1;
+            i3 = 1048577;
+        } else if (i == 2) {
+            i2 = this.a;
+            this.a = i2 + 1;
+            i3 = 65537;
+        } else if (i == 1) {
+            return 65536;
+        } else {
+            return 0;
+        }
+        return i2 + i3;
+    }
+
+    public final void P(ArrayList arrayList) {
+        arrayList.clear();
+        arrayList.addAll(getDownloadController().I);
+        for (int i = 0; i < arrayList.size(); i++) {
+            ((r47) arrayList.get(i)).Q = true;
+        }
+    }
+
+    public final boolean S(String str) {
+        if (str != null && this.x.containsKey(str)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean T(TLRPC.Document document, boolean z) {
+        String str;
+        if (document != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(r(null, document));
+            if (z) {
+                str = "p";
+            } else {
+                str = "";
+            }
+            sb.append(str);
+            if (this.E.containsKey(sb.toString())) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void V(jn5 jn5Var, Object obj, String str, int i, int i2) {
+        int i3;
+        if (jn5Var == null) {
+            return;
+        }
+        if (i2 == 0 && (jn5Var.c != null || (jn5Var.k != null && jn5Var.r() == 0))) {
+            i3 = 1;
+        } else {
+            i3 = i2;
+        }
+        W(jn5Var.i, jn5Var.h, jn5Var.v, jn5Var.f, jn5Var, obj, str, jn5Var.r(), i, i3);
+    }
+
+    public final void W(final TLRPC.Document document, final oy9 oy9Var, final jxc jxcVar, final TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, final jn5 jn5Var, final Object obj, final String str, final long j, final int i, final int i2) {
+        String str2;
+        if (tL_fileLocationToBeDeprecated != null) {
+            str2 = r(str, tL_fileLocationToBeDeprecated);
+        } else {
+            str2 = null;
+            if (document != null) {
+                str2 = r(null, document);
+            } else if (jxcVar != null) {
+                str2 = r(null, jxcVar);
+            }
+        }
+        String str3 = str2;
+        ?? r0 = new Runnable() {
+            @Override
+            public final void run() {
+                xb4.this.Y(document, oy9Var, jxcVar, tL_fileLocationToBeDeprecated, jn5Var, obj, str, j, i, null, 0L, false, i2);
+            }
+        };
+        if (i2 != 10 && !TextUtils.isEmpty(str3) && !str3.contains("-2147483648")) {
+            ?? obj2 = new Object();
+            obj2.a = r0;
+            this.x.put(str3, obj2);
+        }
+        K.c(r0);
+    }
+
+    public final void X(TLRPC.Document document, Object obj, int i, int i2) {
+        int i3;
+        if (document == null) {
+            return;
+        }
+        if (i2 == 0 && document.key != null) {
+            i3 = 1;
+        } else {
+            i3 = i2;
+        }
+        W(document, null, null, null, null, obj, null, 0L, i, i3);
+    }
+
+    public final defpackage.hb4 Y(org.telegram.tgnet.TLRPC.Document r33, defpackage.oy9 r34, defpackage.jxc r35, org.telegram.tgnet.TLRPC.TL_fileLocationToBeDeprecated r36, defpackage.jn5 r37, java.lang.Object r38, java.lang.String r39, long r40, int r42, defpackage.ib4 r43, long r44, boolean r46, int r47) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xb4.Y(org.telegram.tgnet.TLRPC$Document, oy9, jxc, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, jn5, java.lang.Object, java.lang.String, long, int, ib4, long, boolean, int):hb4");
+    }
+
+    public final void Z(TLRPC.Document document, boolean z, boolean z2) {
+        if (document == null) {
+            return;
+        }
+        if (z2) {
+            hl.c3(new rb4(this, document, z, (byte) 1));
+        } else {
+            a0(document, z);
+        }
+    }
+
+    public final void a0(TLRPC.Document document, boolean z) {
+        String str;
+        String r = r(null, document);
+        StringBuilder r2 = qd4.r(r);
+        if (z) {
+            str = "p";
+        } else {
+            str = "";
+        }
+        r2.append(str);
+        if (this.E.remove(r2.toString()) != null) {
+            getNotificationCenter().k(jn7.h1, r);
+        }
+    }
+
+    public final void b(String str, boolean z) {
+        if (str == null) {
+            return;
+        }
+        K.c(new ds6(this, z, str, (byte) 19));
+    }
+
+    public final void b0(TLRPC.Document document, boolean z, boolean z2) {
+        if (document == null) {
+            return;
+        }
+        if (z2) {
+            hl.c3(new rb4(this, document, z, (byte) 0));
+        } else {
+            d0(document, z);
+        }
+    }
+
+    public final void c() {
+        ob4 ob4Var;
+        for (String str : this.x.keySet()) {
+            wb4 wb4Var = (wb4) this.x.get(str);
+            if (wb4Var != null) {
+                ob4Var = wb4Var.a;
+            } else {
+                ob4Var = null;
+            }
+            if (ob4Var != null) {
+                K.a(ob4Var);
+            }
+            K.c(new nb4(this, str, (byte) 0));
+        }
+    }
+
+    public final void c0(TLRPC.Document document, boolean z) {
+        String str;
+        if (document != null) {
+            String r = r(null, document);
+            StringBuilder r2 = qd4.r(r);
+            String str2 = "p";
+            if (!z) {
+                str = "p";
+            } else {
+                str = "";
+            }
+            r2.append(str);
+            String sb = r2.toString();
+            HashMap hashMap = this.E;
+            if (hashMap.containsKey(sb)) {
+                StringBuilder r3 = qd4.r(r);
+                if (!z) {
+                    str2 = "";
+                }
+                r3.append(str2);
+                hashMap.put(r3.toString(), Boolean.TRUE);
+                getNotificationCenter().k(jn7.h1, r);
+            }
+        }
+    }
+
+    public final void d(TLRPC.Document document) {
+        f(document);
+    }
+
+    public final void d0(TLRPC.Document document, boolean z) {
+        String str;
+        String r = r(null, document);
+        StringBuilder r2 = qd4.r(r);
+        if (z) {
+            str = "p";
+        } else {
+            str = "";
+        }
+        r2.append(str);
+        this.E.put(r2.toString(), Boolean.TRUE);
+        getNotificationCenter().k(jn7.h1, r);
+    }
+
+    public final void e(TLRPC.Document document, oy9 oy9Var, jxc jxcVar, TLRPC.FileLocation fileLocation, String str, String str2) {
+        boolean z;
+        if (fileLocation != null || document != null || jxcVar != null || oy9Var != null || !TextUtils.isEmpty(str2)) {
+            ob4 ob4Var = null;
+            if (fileLocation != null) {
+                str2 = r(str, fileLocation);
+            } else if (document != null) {
+                str2 = r(null, document);
+            } else if (oy9Var != null) {
+                str2 = r(null, oy9Var);
+            } else if (jxcVar != null) {
+                str2 = r(null, jxcVar);
+            }
+            wb4 wb4Var = (wb4) this.x.remove(str2);
+            if (wb4Var != null) {
+                ob4Var = wb4Var.a;
+                z = true;
+            } else {
+                z = false;
+            }
+            if (ob4Var != null) {
+                K.a(ob4Var);
+            }
+            K.c(new nb4(this, str2, (byte) 1));
+            if (z && document != null) {
+                hl.c3(new qb4(this, (byte) 1));
+            }
+        }
+    }
+
+    public final void e0(String str, TLObject tLObject) {
+        boolean z = tLObject instanceof TLRPC.Document;
+        ic4 ic4Var = this.d;
+        int i = 4;
+        if (z) {
+            TLRPC.Document document = (TLRPC.Document) tLObject;
+            if (document.key == null) {
+                if (r47.P4(document)) {
+                    i = 1;
+                } else if (r47.J4(document)) {
+                    i = 2;
+                } else {
+                    i = 3;
+                }
+            }
+            int i2 = i;
+            long j = document.id;
+            int i3 = document.dc_id;
+            ic4Var.getClass();
+            ic4Var.h(new gc4(ic4Var, j, i3, i2, str, 1));
+        } else if (tLObject instanceof TLRPC.PhotoSize) {
+            TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
+            if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
+                TLRPC.FileLocation fileLocation = photoSize.location;
+                if (fileLocation != null && fileLocation.key == null && ((fileLocation.volume_id != -2147483648L || fileLocation.local_id >= 0) && photoSize.size >= 0)) {
+                    i = 0;
+                }
+                ic4Var.getClass();
+                ic4Var.h(new gc4(ic4Var, fileLocation.volume_id, fileLocation.dc_id + (fileLocation.local_id << 16), i, str, 1));
+            }
+        }
+    }
+
+    public final void f(TLRPC.Document document) {
+        e(document, null, null, null, null, null);
+    }
+
+    public final void f0(final pcc pccVar, final String str) {
+        final vx3 vx3Var = new vx3(this, r0, (byte) 17);
+        fn7[] fn7VarArr = {new fn7() {
+            @Override
+            public final void didReceivedNotification(int i, int i2, Object[] objArr) {
+                int i3 = jn7.U1;
+                String str2 = str;
+                pcc pccVar2 = pccVar;
+                vx3 vx3Var2 = vx3Var;
+                if (i == i3) {
+                    if (objArr[0] == str2) {
+                        pccVar2.a((TLRPC.InputFile) objArr[1]);
+                        vx3Var2.run();
+                    }
+                } else if (i == jn7.V1 && objArr[0] == str2) {
+                    pccVar2.a(null);
+                    vx3Var2.run();
+                }
+            }
+        }};
+        getNotificationCenter().a(fn7VarArr[0], jn7.U1);
+        getNotificationCenter().a(fn7VarArr[0], jn7.V1);
+        h0(false, 67108864, str, false);
+    }
+
+    public final void g(ArrayList arrayList) {
+        int size = arrayList.size();
+        for (int i = 0; i < size; i++) {
+            e(null, null, null, null, null, (String) arrayList.get(i));
+        }
+    }
+
+    public final void g0(final String str, final boolean z, final boolean z2, final long j, final int i, final boolean z3) {
+        if (str == null) {
+            return;
+        }
+        K.c(new Runnable() {
+            @Override
+            public final void run() {
+                long j2;
+                xb4 xb4Var = xb4.this;
+                HashMap hashMap = xb4Var.y;
+                ConcurrentHashMap concurrentHashMap = xb4Var.h;
+                ConcurrentHashMap concurrentHashMap2 = xb4Var.n;
+                boolean z4 = z;
+                String str2 = str;
+                if (z4) {
+                    if (concurrentHashMap2.containsKey(str2)) {
+                        return;
+                    }
+                } else if (concurrentHashMap.containsKey(str2)) {
+                    return;
+                }
+                long j3 = j;
+                int i2 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+                if (i2 != 0 && ((Long) hashMap.get(str2)) != null) {
+                    hashMap.remove(str2);
+                    j2 = 0;
+                } else {
+                    j2 = j3;
+                }
+                String str3 = str2;
+                nd4 nd4Var = new nd4(xb4Var.currentAccount, i, j2, str3, z4);
+                sm5 sm5Var = xb4Var.F;
+                if (sm5Var != null && i2 != 0) {
+                    sm5Var.a(nd4Var, str3, 0L, j3, z4);
+                    nd4Var = nd4Var;
+                    str3 = str3;
+                    z4 = z4;
+                }
+                if (z4) {
+                    concurrentHashMap2.put(str3, nd4Var);
+                } else {
+                    concurrentHashMap.put(str3, nd4Var);
+                }
+                if (z3) {
+                    nd4Var.E = true;
+                }
+                boolean z5 = z2;
+                nd4Var.o = new ub4(xb4Var, z4, str3, z5);
+                if (z5) {
+                    int i3 = xb4Var.s;
+                    if (i3 < 1) {
+                        xb4Var.s = i3 + 1;
+                        nd4Var.c();
+                        return;
+                    }
+                    xb4Var.f.add(nd4Var);
+                    return;
+                }
+                int i4 = xb4Var.r;
+                if (i4 < 1) {
+                    xb4Var.r = i4 + 1;
+                    nd4Var.c();
+                    return;
+                }
+                xb4Var.e.add(nd4Var);
+            }
+        });
+    }
+
+    public final void h(int i, TLRPC.Document document, oy9 oy9Var, jxc jxcVar, TLRPC.FileLocation fileLocation, String str) {
+        String str2;
+        if (fileLocation == null && document == null && jxcVar == null && oy9Var == null) {
+            return;
+        }
+        if (fileLocation != null) {
+            str2 = r(str, fileLocation);
+        } else if (document != null) {
+            str2 = r(null, document);
+        } else if (oy9Var != null) {
+            str2 = r(null, oy9Var);
+        } else if (jxcVar != null) {
+            str2 = r(null, jxcVar);
+        } else {
+            str2 = null;
+        }
+        K.c(new sb4(this, str2, i, (byte) 0));
+    }
+
+    public final void h0(boolean z, int i, String str, boolean z2) {
+        g0(str, z, z2, 0L, i, false);
+    }
+
+    public final void i() {
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList(getDownloadController().I);
+        for (int i = 0; i < arrayList2.size(); i++) {
+            ((r47) arrayList2.get(i)).K(true);
+            if (((r47) arrayList2.get(i)).z0) {
+                arrayList.add((r47) arrayList2.get(i));
+            }
+        }
+        if (!arrayList.isEmpty()) {
+            hl.c3(new vx3(this, arrayList, (byte) 19));
+        }
+    }
+
+    public final boolean k(String str) {
+        hb4 hb4Var;
+        if (str == null || (hb4Var = (hb4) this.w.get(str)) == null || !hb4Var.l) {
+            return false;
+        }
+        hb4Var.l = false;
+        return true;
+    }
+
+    public final void l(ArrayList arrayList) {
+        ic4 ic4Var = this.d;
+        ic4Var.getClass();
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            CountDownLatch countDownLatch = new CountDownLatch(1);
+            long currentTimeMillis = System.currentTimeMillis();
+            long[] jArr = new long[1];
+            ao1 ao1Var = new ao1(ic4Var, arrayList2, jArr, countDownLatch, (byte) 17);
+            ic4Var.d();
+            to3 to3Var = ic4Var.a;
+            Handler handler = to3Var.a;
+            if (handler != null) {
+                handler.postAtFrontOfQueue(ao1Var);
+            } else {
+                synchronized (to3Var.b) {
+                    ArrayList arrayList3 = to3Var.c;
+                    if (arrayList3 != null) {
+                        arrayList3.add(new so3(1, 0L, ao1Var));
+                    } else {
+                        to3Var.a.postAtFrontOfQueue(ao1Var);
+                    }
+                }
+            }
+            try {
+                countDownLatch.await();
+            } catch (InterruptedException e) {
+                cc4.g(e, true);
+            }
+            StringBuilder sb = new StringBuilder("checkMediaExistance size=");
+            sb.append(arrayList.size());
+            sb.append(" time=");
+            sb.append(System.currentTimeMillis() - currentTimeMillis);
+            sb.append(" thread_time=");
+            ik8.q(jArr[0], sb);
+            boolean z = f11.a;
+            if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
+                cc4.g(new Exception("warning, not allowed in main thread"), true);
+            }
+        }
+    }
+
+    public final void n(String str, boolean z, long j, long j2, Float f) {
+        K.c(new kb4(this, z, str, j, j2, f));
+    }
+
+    public final float t(String str, float f) {
+        hb4 hb4Var;
+        if (!TextUtils.isEmpty(str) && (hb4Var = (hb4) this.w.get(str)) != null) {
+            ArrayList arrayList = hb4Var.N;
+            long j = hb4Var.b0;
+            if (j != 0 && arrayList != null) {
+                return (((float) hb4Var.f((int) (((float) j) * f), j, arrayList)) / ((float) hb4Var.b0)) + f;
+            }
+        }
+        return 0.0f;
+    }
+
+    public final void y(ArrayList arrayList) {
+        arrayList.clear();
+        arrayList.addAll(getDownloadController().H);
+        for (int i = 0; i < arrayList.size(); i++) {
+            ((r47) arrayList.get(i)).Q = true;
+        }
     }
 }

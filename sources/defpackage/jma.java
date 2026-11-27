@@ -1,28 +1,14 @@
 package defpackage;
-
-import android.graphics.Paint;
-public final class jma extends k26 {
-    public final Paint q;
-    public int r;
-    public final wjb s;
-
-    public jma(ek1 ek1Var, wjb wjbVar) {
-        super(ek1Var, false, null);
-        Paint paint = new Paint();
-        this.q = paint;
-        this.r = 0;
-        this.s = wjbVar;
-        this.c.setStrokeWidth(gl.N(1.0f));
-        Paint paint2 = this.c;
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        paint.setStyle(style);
-        this.c.setAntiAlias(false);
+public final class jma extends yfb implements is4 {
+    @Override
+    public final zw2 create(Object obj, zw2 zw2Var) {
+        return new yfb(2, zw2Var);
     }
 
     @Override
-    public final void a() {
-        super.a();
-        this.r = bm2.f(0.3f, bkb.v0(bkb.c6, this.s), this.m);
+    public final Object invoke(Object obj, Object obj2) {
+        f9c f9cVar = f9c.a;
+        ((jma) create((nm4) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+        return f9cVar;
     }
 }

@@ -1,76 +1,96 @@
 package defpackage;
+public final class r67 implements fu9 {
+    public final ju4 a;
+    public final t9c b;
+    public final w74 c;
 
-import android.util.SparseArray;
-public final class r67 implements Runnable {
-    public final byte a;
-    public final na7 b;
-    public final SparseArray c;
-
-    public r67(na7 na7Var, SparseArray sparseArray, byte b) {
-        this.a = b;
-        this.b = na7Var;
-        this.c = sparseArray;
+    public r67(t9c t9cVar, w74 w74Var, ju4 ju4Var) {
+        this.b = t9cVar;
+        w74Var.getClass();
+        this.c = w74Var;
+        this.a = ju4Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        SparseArray sparseArray = this.c;
-        na7 na7Var = this.b;
-        char c = 2;
-        switch (b) {
-            case 0:
-                int i = 0;
-                while (i < sparseArray.size()) {
-                    int keyAt = sparseArray.keyAt(i);
-                    long[] jArr = (long[]) sparseArray.valueAt(i);
-                    na7Var.getSendMessagesHelper().c0((int) jArr[1]);
-                    kk7 notificationCenter = na7Var.getNotificationCenter();
-                    Integer valueOf = Integer.valueOf((int) jArr[1]);
-                    Integer valueOf2 = Integer.valueOf(keyAt);
-                    Long valueOf3 = Long.valueOf(jArr[0]);
-                    Boolean bool = Boolean.FALSE;
-                    char c2 = c;
-                    Object[] objArr = new Object[7];
-                    objArr[0] = valueOf;
-                    objArr[1] = valueOf2;
-                    objArr[c2] = null;
-                    objArr[3] = valueOf3;
-                    objArr[4] = 0L;
-                    objArr[5] = -1;
-                    objArr[6] = bool;
-                    notificationCenter.k(21, objArr);
-                    kk7 notificationCenter2 = na7Var.getNotificationCenter();
-                    Integer valueOf4 = Integer.valueOf((int) jArr[1]);
-                    Integer valueOf5 = Integer.valueOf(keyAt);
-                    Long valueOf6 = Long.valueOf(jArr[0]);
-                    Object[] objArr2 = new Object[7];
-                    objArr2[0] = valueOf4;
-                    objArr2[1] = valueOf5;
-                    objArr2[c2] = null;
-                    objArr2[3] = valueOf6;
-                    objArr2[4] = 0L;
-                    objArr2[5] = -1;
-                    objArr2[6] = bool;
-                    notificationCenter2.k(22, objArr2);
-                    i++;
-                    c = c2;
-                }
-                return;
-            default:
-                for (int i2 = 0; i2 < sparseArray.size(); i2++) {
-                    int keyAt2 = sparseArray.keyAt(i2);
-                    long[] jArr2 = (long[]) sparseArray.valueAt(i2);
-                    na7Var.getSendMessagesHelper().c0((int) jArr2[1]);
-                    kk7 notificationCenter3 = na7Var.getNotificationCenter();
-                    Integer valueOf7 = Integer.valueOf((int) jArr2[1]);
-                    Integer valueOf8 = Integer.valueOf(keyAt2);
-                    Long valueOf9 = Long.valueOf(jArr2[0]);
-                    Boolean bool2 = Boolean.FALSE;
-                    notificationCenter3.k(21, valueOf7, valueOf8, null, valueOf9, 0L, -1, bool2);
-                    na7Var.getNotificationCenter().k(22, Integer.valueOf((int) jArr2[1]), Integer.valueOf(keyAt2), null, Long.valueOf(jArr2[0]), 0L, -1, bool2);
-                }
-                return;
+    public final ju4 a() {
+        ju4 ju4Var = this.a;
+        if (ik8.A(ju4Var)) {
+            return ju4Var.i();
         }
+        return ((hu4) ju4Var.c(5)).b();
+    }
+
+    @Override
+    public final void b(Object obj, Object obj2) {
+        iu9.k(this.b, obj, obj2);
+    }
+
+    @Override
+    public final void c(Object obj) {
+        this.b.getClass();
+        s9c s9cVar = ((ju4) obj).unknownFields;
+        if (s9cVar.e) {
+            s9cVar.e = false;
+        }
+        this.c.getClass();
+        bs2.u(obj);
+        throw null;
+    }
+
+    @Override
+    public final boolean d(Object obj) {
+        this.c.getClass();
+        bs2.u(obj);
+        throw null;
+    }
+
+    @Override
+    public final boolean e(ju4 ju4Var, ju4 ju4Var2) {
+        this.b.getClass();
+        if (!ju4Var.unknownFields.equals(ju4Var2.unknownFields)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int f(ju4 ju4Var) {
+        this.b.getClass();
+        return ju4Var.unknownFields.hashCode();
+    }
+
+    @Override
+    public final void g(Object obj, z8d z8dVar) {
+        this.c.getClass();
+        bs2.u(obj);
+        throw null;
+    }
+
+    @Override
+    public final int h(ju4 ju4Var) {
+        this.b.getClass();
+        s9c s9cVar = ju4Var.unknownFields;
+        int i = s9cVar.d;
+        if (i != -1) {
+            return i;
+        }
+        int i2 = 0;
+        for (int i3 = 0; i3 < s9cVar.a; i3++) {
+            int h = xk2.h(s9cVar.b[i3] >>> 3) + xk2.g(2);
+            int g = xk2.g(3);
+            int size = ((n51) s9cVar.c[i3]).size();
+            i2 += xk2.h(size) + size + g + h + (xk2.g(1) << 1);
+        }
+        s9cVar.d = i2;
+        return i2;
+    }
+
+    @Override
+    public final void i(Object obj, cf0 cf0Var, v74 v74Var) {
+        this.b.getClass();
+        t9c.a(obj);
+        this.c.getClass();
+        obj.getClass();
+        throw new ClassCastException();
     }
 }

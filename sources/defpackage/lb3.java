@@ -1,100 +1,140 @@
 package defpackage;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.Map;
+import android.net.Uri;
+import android.os.SystemClock;
+import java.util.HashMap;
+import java.util.Iterator;
 public final class lb3 {
-    public static final w59 q;
-    public final znb a;
-    public final xnb b;
-    public final af0 c;
-    public final long d;
-    public final long e;
-    public final long f;
-    public final long g;
-    public final long h;
-    public final long i;
-    public final long j;
-    public final long k;
-    public final boolean l;
-    public final long m;
-    public final qm5 n;
-    public final ConcurrentHashMap o;
-    public long p;
+    public final qh5 a;
+    public final HashMap b;
+    public final boolean c;
+    public final mb3 d;
 
-    static {
-        km5 km5Var = mm5.b;
-        Object[] objArr = {"file", "content", "data", "android.resource", "rawresource", "asset"};
-        xpe.a(6, objArr);
-        q = mm5.o(6, objArr);
-    }
-
-    public lb3(af0 af0Var, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, boolean z, Map map) {
-        a(i5, 0, "bufferForPlaybackMs", "0");
-        a(i6, 0, "bufferForPlaybackForLocalPlaybackMs", "0");
-        a(i7, 0, "bufferForPlaybackAfterRebufferMs", "0");
-        a(i8, 0, "bufferForPlaybackAfterRebufferForLocalPlaybackMs", "0");
-        a(i, i5, "minBufferMs", "bufferForPlaybackMs");
-        a(i2, i6, "minBufferForLocalPlaybackMs", "bufferForPlaybackForLocalPlaybackMs");
-        a(i, i7, "minBufferMs", "bufferForPlaybackAfterRebufferMs");
-        a(i2, i8, "minBufferForLocalPlaybackMs", "bufferForPlaybackAfterRebufferForLocalPlaybackMs");
-        a(i3, i, "maxBufferMs", "minBufferMs");
-        a(i4, i2, "maxBufferForLocalPlaybackMs", "minBufferForLocalPlaybackMs");
-        a(0, 0, "backBufferDurationMs", "0");
-        this.a = new znb();
-        this.b = new xnb();
-        this.c = af0Var;
-        this.d = g8c.T(i);
-        this.e = g8c.T(i2);
-        this.f = g8c.T(i3);
-        this.g = g8c.T(i4);
-        this.h = g8c.T(i5);
-        this.i = g8c.T(i6);
-        this.j = g8c.T(i7);
-        this.k = g8c.T(i8);
-        this.l = z;
-        this.m = g8c.T(0L);
-        this.o = new ConcurrentHashMap();
-        this.n = qm5.b(map);
-        this.p = -1L;
-    }
-
-    public static void a(int i, int i2, String str, String str2) {
-        boolean z;
-        if (i >= i2) {
-            z = true;
-        } else {
-            z = false;
+    public lb3(mb3 mb3Var, qh5 qh5Var, boolean z) {
+        this.d = mb3Var;
+        this.a = qh5Var;
+        HashMap hashMap = new HashMap();
+        v9c n = qh5Var.a().n();
+        while (n.hasNext()) {
+            String str = (String) n.next();
+            Uri uri = (Uri) qh5Var.b.get(str);
+            uri.getClass();
+            hashMap.put(uri, new kb3(this.d, uri, str));
         }
-        gre.i(z, "%s cannot be less than %s", str, str2);
+        this.b = hashMap;
+        this.c = z;
     }
 
-    public final int b(uc8 uc8Var) {
-        int i;
-        kb3 kb3Var = (kb3) this.o.get(uc8Var);
+    public final boolean a(long j, Uri uri, String str) {
+        Uri uri2;
+        HashMap hashMap = this.b;
+        yve.p(hashMap.containsKey(uri));
+        kb3 kb3Var = (kb3) hashMap.get(uri);
         kb3Var.getClass();
-        synchronized (kb3Var) {
-            i = kb3Var.d;
+        kb3Var.r = SystemClock.elapsedRealtime() + j;
+        mb3 mb3Var = this.d;
+        ug5 ug5Var = mb3Var.y;
+        if (((ug5Var == null || !ug5Var.k || str != null) && f(str, false)) || ((uri2 = mb3Var.I) != null && !uri.equals(uri2))) {
+            return true;
         }
-        return i << 16;
-    }
-
-    public final boolean c(defpackage.b86 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lb3.c(b86):boolean");
-    }
-
-    public final void d() {
-        boolean isEmpty = this.o.isEmpty();
-        af0 af0Var = this.c;
-        int i = 0;
-        if (isEmpty) {
-            synchronized (af0Var) {
-                af0Var.C(0);
+        po5 po5Var = mb3Var.E;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        for (int i = 0; i < po5Var.size(); i++) {
+            Uri b = ((qh5) po5Var.get(i)).b();
+            lb3 lb3Var = (lb3) mb3Var.d.get(b);
+            lb3Var.getClass();
+            if (!lb3Var.c(elapsedRealtime, b)) {
+                mb3Var.I = b;
+                lb3Var.d(b, mb3Var.d(b));
+                return true;
             }
-            return;
         }
-        for (kb3 kb3Var : this.o.values()) {
-            i += kb3Var.c;
+        return false;
+    }
+
+    public final fh5 b(Uri uri) {
+        HashMap hashMap = this.b;
+        yve.p(hashMap.containsKey(uri));
+        kb3 kb3Var = (kb3) hashMap.get(uri);
+        kb3Var.getClass();
+        return kb3Var.e;
+    }
+
+    public final boolean c(long j, Uri uri) {
+        HashMap hashMap = this.b;
+        yve.p(hashMap.containsKey(uri));
+        kb3 kb3Var = (kb3) hashMap.get(uri);
+        kb3Var.getClass();
+        if (j <= kb3Var.r) {
+            return true;
         }
-        af0Var.C(i);
+        return false;
+    }
+
+    public final void d(Uri uri, Uri uri2) {
+        HashMap hashMap = this.b;
+        yve.p(hashMap.containsKey(uri));
+        kb3 kb3Var = (kb3) hashMap.get(uri);
+        kb3Var.getClass();
+        kb3Var.c(uri2);
+    }
+
+    public final void e(Uri uri, boolean z) {
+        Uri uri2;
+        HashMap hashMap = this.b;
+        yve.p(hashMap.containsKey(uri));
+        kb3 kb3Var = (kb3) hashMap.get(uri);
+        kb3Var.getClass();
+        if (z) {
+            uri2 = kb3Var.a();
+        } else {
+            uri2 = kb3Var.a;
+        }
+        kb3Var.c(uri2);
+    }
+
+    public final boolean f(String str, boolean z) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        qh5 qh5Var = this.a;
+        HashMap hashMap = this.b;
+        if (str != null) {
+            for (kb3 kb3Var : hashMap.values()) {
+                if (kb3Var.b.contains(str)) {
+                    kb3Var.r = 0L;
+                }
+            }
+        } else {
+            Iterator it = hashMap.values().iterator();
+            while (true) {
+                if (it.hasNext()) {
+                    kb3 kb3Var2 = (kb3) it.next();
+                    if (!kb3Var2.b.contains(qh5Var.d) && elapsedRealtime > kb3Var2.r) {
+                        str = (String) kb3Var2.b.iterator().next();
+                        break;
+                    }
+                } else {
+                    str = null;
+                    break;
+                }
+            }
+        }
+        if (str == null) {
+            return false;
+        }
+        Uri b = qh5Var.b();
+        yve.p(qh5Var.b.containsKey(str));
+        qh5Var.d = str;
+        Uri b2 = qh5Var.b();
+        mb3 mb3Var = this.d;
+        if (b.equals(mb3Var.I)) {
+            mb3Var.i(b2, z);
+        }
+        kb3 kb3Var3 = (kb3) hashMap.get(b);
+        kb3Var3.getClass();
+        kb3 kb3Var4 = (kb3) hashMap.get(b2);
+        kb3Var4.getClass();
+        kb3Var4.x = kb3Var3.x;
+        kb3Var3.x = false;
+        return true;
     }
 }

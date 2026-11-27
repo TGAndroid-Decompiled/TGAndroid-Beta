@@ -1,5 +1,9 @@
 package defpackage;
+public final class ei5 extends hk0 {
+    public String g;
 
-import android.os.IInterface;
-public interface ei5 extends IInterface {
+    @Override
+    public final void a(zpd zpdVar) {
+        zpdVar.h(this);
+    }
 }

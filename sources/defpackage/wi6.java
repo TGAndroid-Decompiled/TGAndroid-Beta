@@ -1,6 +1,8 @@
 package defpackage;
+public final class wi6 extends i51 {
+    public int d;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class wi6 extends TL_iv.RichText {
-    public int a;
+    public final String toString() {
+        return qu6.p(new StringBuilder("mp3[pos="), this.b, "]");
+    }
 }

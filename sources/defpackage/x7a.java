@@ -1,37 +1,38 @@
 package defpackage;
 
-import android.content.Context;
 import android.view.View;
-public final class x7a extends b4c {
-    public static final int b = 0;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class x7a extends v79 {
+    public final ix1 a;
 
-    static {
-        b4c.h(new b4c());
+    public x7a(ix1 ix1Var) {
+        this.a = ix1Var;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ((y7a) view).set(c4cVar.A);
-    }
-
-    @Override
-    public final boolean c(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.A == c4cVar2.A) {
-            return true;
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        boolean z;
+        float f;
+        ix1 ix1Var = this.a;
+        View view = ix1Var.u;
+        if (ix1Var.w.H0() != 0) {
+            z = true;
+        } else {
+            z = false;
         }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new y7a(context, wjbVar);
-    }
-
-    @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.d == c4cVar2.d) {
-            return true;
+        Boolean bool = ix1Var.x;
+        if (bool != null && z == bool.booleanValue()) {
+            return;
         }
-        return false;
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        animate.alpha(f).setDuration(150L).start();
+        ix1Var.x = Boolean.valueOf(z);
     }
 }

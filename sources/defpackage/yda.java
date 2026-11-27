@@ -1,163 +1,152 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class yda extends fs5 {
-    public sca e;
-    public final nfa f;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class yda extends FrameLayout {
+    public final View a;
+    public final ema b;
+    public final ema c;
+    public final nf9 d;
+    public boolean e;
+    public AnimatorSet f;
+    public final Paint h;
+    public final RectF n;
+    public final kea r;
 
-    public yda(nfa nfaVar) {
-        this.f = nfaVar;
-    }
+    public yda(kea keaVar, Context context) {
+        super(context);
+        this.r = keaVar;
+        this.h = new Paint(1);
+        this.n = new RectF();
+        View view = new View(context);
+        this.a = view;
+        int L = hl.L(18.0f);
+        int i = aob.O5;
+        int i2 = kea.T2;
+        Drawable b0 = aob.b0(L, aob.v0(i, keaVar.J0));
+        uob M = yob.M(i);
+        vnb vnbVar = keaVar.J0;
+        view.setBackground(b0);
+        yob.j(view, b0, M, null, vnbVar);
+        addView(view, tre.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
+        nf9 nf9Var = new nf9((byte) 6, context, this);
+        this.d = nf9Var;
+        addView(nf9Var, tre.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
+        ema emaVar = new ema(context);
+        this.c = emaVar;
+        int i3 = aob.eh;
+        yob.W(emaVar, i3, keaVar.J0);
+        emaVar.setTextSize(13);
+        emaVar.setLeftDrawable(2131232401);
+        emaVar.l(ob6.M0(2131743027, null), false);
+        emaVar.setGravity(17);
+        addView(emaVar, tre.d(-1, -1.0f, 51, 14.0f, 0.0f, 0.0f, 0.0f));
+        emaVar.setOnClickListener(new View.OnClickListener(this) {
+            public final yda b;
 
-    @Override
-    public final void a(RecyclerView recyclerView, s49 s49Var) {
-        super.a(recyclerView, s49Var);
-        s49Var.a.setPressed(false);
-    }
-
-    @Override
-    public final int f(RecyclerView recyclerView, s49 s49Var) {
-        kfa kfaVar;
-        w39 adapter = recyclerView.getAdapter();
-        sca scaVar = null;
-        if (adapter instanceof kfa) {
-            kfaVar = (kfa) adapter;
-        } else {
-            kfaVar = null;
-        }
-        if (l() && kfaVar != null && kfaVar.M(s49Var.b())) {
-            iea ieaVar = this.f.n0[0];
-            if (ieaVar != null) {
-                scaVar = ieaVar.h;
+            {
+                this.b = this;
             }
-            this.e = scaVar;
-            if (scaVar != null) {
-                scaVar.setItemAnimator(ieaVar.d);
-            }
-            return fs5.m(15, 0);
-        }
-        return fs5.m(0, 0);
-    }
 
-    @Override
-    public final boolean l() {
-        nfa nfaVar = this.f;
-        if (!nfaVar.F1) {
-            oca ocaVar = nfaVar.c0;
-            if (ocaVar == null || !ocaVar.f) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean o(RecyclerView recyclerView, s49 s49Var, s49 s49Var2) {
-        kfa kfaVar;
-        y1b y1bVar;
-        ArrayList arrayList;
-        w39 adapter = recyclerView.getAdapter();
-        if (adapter instanceof kfa) {
-            kfaVar = (kfa) adapter;
-        } else {
-            kfaVar = null;
-        }
-        if (kfaVar == null || !kfaVar.M(s49Var.b()) || !kfaVar.M(s49Var2.b())) {
-            return false;
-        }
-        int b = s49Var.b();
-        int b2 = s49Var2.b();
-        ArrayList arrayList2 = kfaVar.E;
-        if (!kfaVar.h && (y1bVar = kfaVar.s) != null && b >= 0 && b < y1bVar.i.size() && b2 >= 0 && b2 < kfaVar.s.i.size()) {
-            if (!(kfaVar.s instanceof s1b) && kfaVar.n <= 0) {
-                arrayList = new ArrayList(kfaVar.s.g);
-            } else {
-                arrayList = new ArrayList();
-                for (int i = 0; i < kfaVar.s.i.size(); i++) {
-                    arrayList.add(Integer.valueOf(((k27) kfaVar.s.i.get(i)).e1()));
+            @Override
+            public final void onClick(View view2) {
+                byte b = r2;
+                yda ydaVar = this.b;
+                switch (b) {
+                    case 0:
+                        ydaVar.a(0);
+                        return;
+                    default:
+                        ydaVar.a(1);
+                        return;
                 }
             }
-            if (!kfaVar.F) {
-                arrayList2.clear();
-                arrayList2.addAll(arrayList);
-                kfaVar.F = true;
-            }
-            k27 k27Var = (k27) kfaVar.s.i.get(b);
-            k27 k27Var2 = (k27) kfaVar.s.i.get(b2);
-            arrayList.remove(Integer.valueOf(k27Var.e1()));
-            arrayList.add(Utilities.j(b2, arrayList.size(), 0), Integer.valueOf(k27Var.e1()));
-            kfaVar.s.C(arrayList, false);
-            kfaVar.j(b, b2);
-        }
-        return true;
-    }
+        });
+        ema emaVar2 = new ema(context);
+        this.b = emaVar2;
+        yob.W(emaVar2, i3, keaVar.J0);
+        emaVar2.setTextSize(13);
+        emaVar2.setLeftDrawable(2131232402);
+        emaVar2.l(ob6.M0(2131743026, null), false);
+        emaVar2.setGravity(17);
+        addView(emaVar2, tre.d(-1, -1.0f, 51, 0.0f, 0.0f, 14.0f, 0.0f));
+        emaVar2.setOnClickListener(new View.OnClickListener(this) {
+            public final yda b;
 
-    @Override
-    public final void q(s49 s49Var, int i) {
-        y1b y1bVar;
-        ArrayList arrayList;
-        boolean z;
-        sca scaVar = this.e;
-        if (scaVar != null && s49Var != null) {
-            scaVar.e1(false);
-        }
-        sca scaVar2 = this.e;
-        if (i == 0) {
-            if (scaVar2 != null && (scaVar2.getAdapter() instanceof kfa)) {
-                kfa kfaVar = (kfa) this.e.getAdapter();
-                ArrayList arrayList2 = kfaVar.E;
-                if (!kfaVar.h && (y1bVar = kfaVar.s) != null && kfaVar.F) {
-                    if (!(y1bVar instanceof s1b) && kfaVar.n <= 0) {
-                        arrayList = y1bVar.g;
-                    } else {
-                        arrayList = new ArrayList();
-                        for (int i2 = 0; i2 < kfaVar.s.i.size(); i2++) {
-                            arrayList.add(Integer.valueOf(((k27) kfaVar.s.i.get(i2)).e1()));
-                        }
-                    }
-                    if (arrayList2.size() != arrayList.size()) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    if (!z) {
-                        int i3 = 0;
-                        while (true) {
-                            if (i3 >= arrayList2.size()) {
-                                break;
-                            } else if (arrayList2.get(i3) != arrayList.get(i3)) {
-                                z = true;
-                                break;
-                            } else {
-                                i3++;
-                            }
-                        }
-                    }
-                    if (z) {
-                        kfaVar.s.C(arrayList, true);
-                    }
-                    kfaVar.F = false;
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view2) {
+                byte b = r2;
+                yda ydaVar = this.b;
+                switch (b) {
+                    case 0:
+                        ydaVar.a(0);
+                        return;
+                    default:
+                        ydaVar.a(1);
+                        return;
                 }
             }
-            sca scaVar3 = this.e;
-            if (scaVar3 != null) {
-                scaVar3.setItemAnimator(null);
-                return;
-            }
+        });
+    }
+
+    public final void a(int i) {
+        float measuredWidth;
+        if (this.e == i) {
             return;
         }
-        if (scaVar2 != null) {
-            scaVar2.J0(false);
+        this.e = i;
+        AnimatorSet animatorSet = this.f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
-        if (s49Var != null) {
-            s49Var.a.setPressed(true);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f = animatorSet2;
+        boolean z = this.e;
+        nf9 nf9Var = this.d;
+        if (!z) {
+            measuredWidth = 0.0f;
+        } else {
+            measuredWidth = nf9Var.getMeasuredWidth();
         }
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(nf9Var, View.TRANSLATION_X, measuredWidth));
+        this.f.setDuration(180L);
+        this.f.setInterpolator(k43.g);
+        this.f.addListener(new po9(this, (byte) 11));
+        this.f.start();
+        this.r.W0();
     }
 
     @Override
-    public final void r(s49 s49Var) {
+    public final void onMeasure(int i, int i2) {
+        float f;
+        int size = (View.MeasureSpec.getSize(i) - hl.L(28.0f)) / 2;
+        ((FrameLayout.LayoutParams) this.c.getLayoutParams()).width = size;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.b.getLayoutParams();
+        layoutParams.width = size;
+        layoutParams.leftMargin = hl.L(14.0f) + size;
+        nf9 nf9Var = this.d;
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) nf9Var.getLayoutParams();
+        layoutParams2.width = size;
+        AnimatorSet animatorSet = this.f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        if (!this.e) {
+            f = 0.0f;
+        } else {
+            f = layoutParams2.width;
+        }
+        nf9Var.setTranslationX(f);
+        super.onMeasure(i, i2);
     }
 }

@@ -1,23 +1,38 @@
 package defpackage;
 
-import android.view.animation.OvershootInterpolator;
-public abstract class rn {
-    public static final OvershootInterpolator a = new OvershootInterpolator(1.9f);
-    public static final pn b = new pn("alpha", (byte) 0);
-    public static final pm c;
-    public static final pn d;
-    public static final pn e;
-    public static final pm f;
-    public static final pm g;
-    public static final pm h;
+import android.util.Property;
+public abstract class rn extends Property {
+    public final byte a;
 
-    static {
-        new pn("color", (byte) 1);
-        c = new pm("currentAlpha", (byte) 1);
-        d = new pn("alpha", (byte) 2);
-        e = new pn("alpha", (byte) 3);
-        f = new pm("animationProgress", (byte) 2);
-        g = new pm("animationValue", (byte) 3);
-        h = new pm("clipProgress", (byte) 4);
+    public rn(String str, byte b) {
+        super(Float.class, str);
+        this.a = b;
+        switch (b) {
+            case 1:
+                super(Integer.class, str);
+                return;
+            default:
+                return;
+        }
+    }
+
+    public final void a(Object obj, Float f) {
+        c(obj, f.floatValue());
+    }
+
+    public abstract void b(int i, Object obj);
+
+    public abstract void c(Object obj, float f);
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.a) {
+            case 0:
+                c(obj, ((Float) obj2).floatValue());
+                return;
+            default:
+                b(((Integer) obj2).intValue(), obj);
+                return;
+        }
     }
 }

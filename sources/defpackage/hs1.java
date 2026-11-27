@@ -1,45 +1,39 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class hs1 extends i98 {
-    public final ArrayList a;
-    public final boolean[] b;
-    public final mu1 c;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class hs1 implements h49 {
+    public final zu1 a;
 
-    public hs1(mu1 mu1Var, ArrayList arrayList, boolean[] zArr) {
-        this.c = mu1Var;
-        this.a = arrayList;
-        this.b = zArr;
+    public hs1(zu1 zu1Var) {
+        this.a = zu1Var;
     }
 
     @Override
-    public final void L(int i, oac oacVar, boolean z, int i2, int i3, boolean z2) {
-        ArrayList arrayList = this.a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.b[size]) {
-                arrayList.remove(size);
-            }
-        }
-        this.c.rb(i2, arrayList, z, z2);
+    public final void e(android.view.View r23, defpackage.w49 r24, boolean r25, boolean r26) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hs1.e(android.view.View, w49, boolean, boolean):void");
     }
 
     @Override
-    public final boolean T() {
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
         return false;
     }
 
     @Override
-    public final jl5 k(int i) {
-        return null;
+    public final boolean p() {
+        return false;
     }
 
     @Override
-    public final boolean w(int i) {
-        return this.b[i];
+    public final void n() {
     }
 
     @Override
-    public final int D(int i, oac oacVar) {
-        return i;
+    public final void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
     }
 }

@@ -1,67 +1,50 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class m7c implements Runnable {
-    public final byte a;
-    public final s7c b;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+public final class m7c extends d6 {
+    public final o7c a;
 
-    public m7c(s7c s7cVar, byte b) {
-        this.a = b;
-        this.b = s7cVar;
+    public m7c(o7c o7cVar) {
+        this.a = o7cVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        s7c s7cVar = this.b;
-        switch (b) {
-            case 0:
-                s7cVar.c1(true);
-                return;
-            case 1:
-                s7cVar.Y1.setVisibility(8);
-                return;
-            case 2:
-                s7cVar.Y0();
-                s7cVar.g1(true, false);
-                return;
-            case 3:
-                dg7 dg7Var = s7cVar.U1;
-                dg7Var.b.r(k96.M0(2131745644, null), true);
-                return;
-            case 4:
-                dg7 dg7Var2 = s7cVar.U1;
-                dg7Var2.b.r(k96.M0(2131749478, null), true);
-                return;
-            case 5:
-                s7cVar.Y0();
-                s7cVar.g1(true, false);
-                return;
-            case 6:
-                ArrayList arrayList = s7cVar.d2;
-                if (arrayList.isEmpty()) {
-                    arrayList.addAll(hq6.d0(s7cVar.a).j1);
-                    s7cVar.f1(true, true);
+    public final void b(int i) {
+        String M0;
+        wk5 wk5Var;
+        o7c o7cVar = this.a;
+        if (i == -1) {
+            if (o7cVar.H >= 0) {
+                wk5Var = ((e) o7cVar).parentLayout;
+                if (wk5Var.getFragmentStack().size() == 1) {
+                    o7cVar.N0();
                     return;
                 }
-                return;
-            case 7:
-                s7cVar.Y1.setVisibility(8);
-                return;
-            case 8:
-                s7cVar.Y0();
-                s7cVar.g1(true, false);
-                return;
-            case 9:
-                s7cVar.f1(true, true);
-                return;
-            case 10:
-                s7cVar.dismiss();
-                return;
-            default:
-                s7cVar.Y0();
-                s7cVar.g1(true, false);
-                return;
+            }
+            o7cVar.finishFragment();
+        } else if (i == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o7cVar.getParentActivity());
+            TL_account.Password password = o7cVar.V;
+            if (password != null && password.has_password) {
+                M0 = ob6.M0(2131752567, null);
+            } else {
+                M0 = ob6.M0(2131752559, null);
+            }
+            String M02 = ob6.M0(2131752566, null);
+            String M03 = ob6.M0(2131754946, null);
+            id idVar = alertDialog$Builder.a;
+            idVar.U = M0;
+            idVar.S = M02;
+            alertDialog$Builder.j(M03, new ftb(this, (byte) 3));
+            alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+            o7cVar.showDialog(idVar);
+            TextView textView = (TextView) idVar.c(-1);
+            if (textView != null) {
+                yob.X(textView, aob.q7, null);
+            }
         }
     }
 }

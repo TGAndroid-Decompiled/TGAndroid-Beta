@@ -1,17 +1,29 @@
 package defpackage;
-public final class oid implements zn7 {
-    public static final oid a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
+import java.util.AbstractMap;
+public final class oid extends ted {
+    public final tid h;
+
+    public oid(tid tidVar) {
+        super((byte) 0);
+        this.h = tidVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object get(int i) {
+        tid tidVar = this.h;
+        d7f.a(i, tidVar.r ? 1 : 0);
+        Object[] objArr = tidVar.n;
+        int i2 = i << 1;
+        Object obj = objArr[i2];
+        obj.getClass();
+        Object obj2 = objArr[i2 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    }
+
+    @Override
+    public final int size() {
+        return this.h.r ? 1 : 0;
     }
 }

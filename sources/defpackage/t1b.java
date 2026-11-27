@@ -1,129 +1,51 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stories;
-public final class t1b extends y1b {
-    public final String C;
-    public final String D;
-    public final TL_stories.MediaArea E;
-    public final ArrayList F;
-    public boolean G;
-    public String H;
-    public int I;
-    public int J;
+import org.telegram.tgnet.tl.TL_stats;
+public final class t1b {
+    public TL_stats.PostInteractionCounters a;
+    public r47 b;
 
-    public t1b(int i, String str, String str2) {
-        super(i, 0L, 3, -1, null);
-        this.F = new ArrayList();
-        this.H = "";
-        this.C = str2;
-        this.D = str;
-        this.E = null;
-    }
-
-    @Override
-    public final k27 f(int i) {
-        if (i >= 0) {
-            ArrayList arrayList = this.i;
-            if (i < arrayList.size()) {
-                return (k27) arrayList.get(i);
-            }
-            return null;
+    public final int a() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
         }
-        return null;
-    }
-
-    @Override
-    public final int g() {
-        return this.J;
-    }
-
-    @Override
-    public final ArrayList h() {
-        return this.F;
-    }
-
-    @Override
-    public final int i() {
-        return this.i.size();
-    }
-
-    @Override
-    public final boolean k() {
-        return this.G;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean q(int i, List list, boolean z) {
-        if (this.G || this.H == null) {
-            return false;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
         }
-        TL_stories.TL_stories_searchPosts tL_stories_searchPosts = new TL_stories.TL_stories_searchPosts();
-        tL_stories_searchPosts.offset = this.H;
-        tL_stories_searchPosts.limit = i;
-        String str = this.C;
-        if (str != null) {
-            tL_stories_searchPosts.flags |= 1;
-            tL_stories_searchPosts.hashtag = str;
+        return 0;
+    }
+
+    public final int b() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
         }
-        TL_stories.MediaArea mediaArea = this.E;
-        if (mediaArea != null) {
-            tL_stories_searchPosts.flags |= 2;
-            tL_stories_searchPosts.area = mediaArea;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
         }
-        this.G = true;
-        String str2 = this.D;
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        TLObject tLObject = null;
-        int i2 = this.c;
-        if (!isEmpty) {
-            TLObject a2 = na7.q1(i2).a2(str2);
-            if (a2 == null) {
-                na7.q1(i2).Y1().a(str2, null, new p22(this, z, i, list));
-                return true;
-            }
-            tLObject = a2;
+        return 0;
+    }
+
+    public final int c() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
         }
-        if (tLObject != null) {
-            tL_stories_searchPosts.flags |= 4;
-            tL_stories_searchPosts.peer = na7.i1(tLObject);
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
         }
-        this.I = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_searchPosts, new wx9(this, (byte) 9));
-        return true;
+        return 0;
     }
 
-    @Override
-    public final boolean r(int i) {
-        return false;
-    }
-
-    @Override
-    public final void j() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void x() {
-    }
-
-    public t1b(int i, TL_stories.MediaArea mediaArea) {
-        super(i, 0L, 3, -1, null);
-        this.F = new ArrayList();
-        this.H = "";
-        this.C = null;
-        this.D = null;
-        this.E = mediaArea;
+    public final int d() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
+        }
+        return 0;
     }
 }

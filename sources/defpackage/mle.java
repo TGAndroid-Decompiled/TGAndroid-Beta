@@ -1,19 +1,18 @@
 package defpackage;
+public enum mle implements qcd {
+    TYPE_UNKNOWN(0),
+    TYPE_THIN(1),
+    TYPE_THICK(2),
+    TYPE_GMV(3);
+    
+    public final byte a;
 
-import java.io.Serializable;
-import java.util.Arrays;
-public abstract class mle {
-    public static final Object a(ih7 ih7Var, lg8 lg8Var, Serializable serializable) {
-        ih7Var.getClass();
-        lg8Var.getClass();
-        Object obj = ih7Var.a.get(lg8Var);
-        if (obj instanceof byte[]) {
-            byte[] bArr = (byte[]) obj;
-            obj = Arrays.copyOf(bArr, bArr.length);
-        }
-        if (obj == null) {
-            return serializable;
-        }
-        return obj;
+    mle(int i) {
+        this.a = i;
+    }
+
+    @Override
+    public final int zza() {
+        return this.a;
     }
 }

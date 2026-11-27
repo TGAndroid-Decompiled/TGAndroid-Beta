@@ -1,66 +1,62 @@
 package defpackage;
 
-import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_aicompose;
-public final class ll3 {
-    public static final kl3 c = new kl3(null, 0, null, true);
-    public final int a;
-    public int b = -1;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ll3 implements rl3, t69 {
+    public final tl3 a;
 
-    public ll3(int i) {
-        this.a = i;
-        try {
-            na7.q1(i).O1().b();
-        } catch (Exception unused) {
-        }
+    public ll3(tl3 tl3Var) {
+        this.a = tl3Var;
     }
 
-    public final void a(kl3 kl3Var, String str, jl3 jl3Var) {
-        b();
-        boolean z = kl3Var.d;
-        TL_aicompose.AiComposeTone aiComposeTone = kl3Var.c;
-        if (!z && aiComposeTone == null) {
-            gl.c3(new li3(jl3Var, (byte) 8));
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = new TLRPC.TL_messages_composeMessageWithAI();
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        tL_textWithEntities.text = str;
-        tL_messages_composeMessageWithAI.text = tL_textWithEntities;
-        if (kl3Var.d) {
-            tL_messages_composeMessageWithAI.tone = TL_aicompose.InputAiComposeTone.fromDefault("voice");
-        } else {
-            tL_messages_composeMessageWithAI.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
-        }
-        boolean[] zArr = new boolean[1];
-        gl.d3(new mg3(this, zArr, jl3Var, (byte) 6), 25000L);
-        this.b = ConnectionsManager.getInstance(this.a).sendRequestTyped(tL_messages_composeMessageWithAI, new hc((byte) 0), new il3(this, zArr, currentTimeMillis, jl3Var));
-    }
-
-    public final void b() {
-        if (this.b >= 0) {
-            ConnectionsManager.getInstance(this.a).cancelRequest(this.b, true);
-            this.b = -1;
-        }
-    }
-
-    public final ArrayList c() {
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = na7.q1(this.a).O1().b;
-        int size = arrayList2.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList2.get(i);
-            i++;
-            TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-            if (aiComposeTone != null && !TextUtils.isEmpty(aiComposeTone.title)) {
-                arrayList.add(new kl3(aiComposeTone.title, aiComposeTone.emoji_id, aiComposeTone, false));
+    @Override
+    public final void a(zh6 zh6Var, ArrayList arrayList) {
+        tl3 tl3Var = this.a;
+        int i = tl3Var.t0;
+        tl3Var.u0 = arrayList;
+        tl3Var.y0 = zh6Var;
+        for (int i2 = 0; i2 < tl3Var.u0.size(); i2++) {
+            sl3 sl3Var = (sl3) tl3Var.u0.get(i2);
+            TLObject tLObject = sl3Var.a;
+            if (tLObject instanceof TLRPC.User) {
+                uc7.s1(i).i4((TLRPC.User) sl3Var.a, true, false);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                uc7.s1(i).a4((TLRPC.Chat) sl3Var.a, true);
+            } else if (tLObject instanceof TLRPC.EncryptedChat) {
+                uc7.s1(i).f4((TLRPC.EncryptedChat) sl3Var.a, true);
             }
         }
-        return arrayList;
+        tl3Var.G(null);
+        tl3Var.f();
+    }
+
+    @Override
+    public final boolean e(int i, View view) {
+        TLRPC.User X1;
+        dj3 dj3Var = this.a.V;
+        if (dj3Var != null) {
+            Long l = (Long) view.getTag();
+            long longValue = l.longValue();
+            uj3 uj3Var = dj3Var.a;
+            if (uj3Var.getParentActivity() != null && (X1 = uj3Var.getMessagesController().X1(l)) != null) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uj3Var.getParentActivity());
+                String M0 = ob6.M0(2131752199, null);
+                id idVar = alertDialog$Builder.a;
+                idVar.S = M0;
+                idVar.U = hl.S2(ob6.a0("ChatHintsDeleteAlert", null, 2131752200, lv2.m(0, X1.first_name, X1.last_name)));
+                alertDialog$Builder.j(ob6.M0(2131744512, null), new i02(dj3Var, longValue, (byte) 2));
+                alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+                uj3Var.showDialog(idVar);
+                TextView textView = (TextView) idVar.c(-1);
+                if (textView != null) {
+                    yob.X(textView, aob.q7, uj3Var.getResourceProvider());
+                }
+            }
+        }
+        return true;
     }
 }

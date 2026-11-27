@@ -1,20 +1,12 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class b9d {
-    public static final int a = 0;
-
-    static {
-        b9d.class.getClassLoader();
+import java.util.Arrays;
+public final class b9d implements wn {
+    public final boolean equals(Object obj) {
+        return obj instanceof b9d;
     }
 
-    public static Parcelable a(Parcel parcel) {
-        Parcelable.Creator creator = Bundle.CREATOR;
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{b9d.class});
     }
 }

@@ -1,83 +1,20 @@
 package defpackage;
-
-import java.util.ListIterator;
-public final class t2f extends v5c implements ListIterator {
-    public final int b;
-    public int c;
-    public final f7f d;
-
-    public t2f(f7f f7fVar, int i) {
-        super((byte) 3);
-        int size = f7fVar.size();
-        if (i >= 0 && i <= size) {
-            this.b = size;
-            this.c = i;
-            this.d = f7fVar;
-            return;
-        }
-        k93.i(q1f.c(i, size, "index"));
-        throw null;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
-    }
+public final class t2f implements zq7 {
+    public static final t2f a = new Object();
+    public static final sa4 b = new sa4("isForegroundConfidenceMaskEnabled", c00.n(xnb.p(xmd.class, new skd(1))));
+    public static final sa4 c = new sa4("isForegroundBitmapEnabled", c00.n(xnb.p(xmd.class, new skd(2))));
+    public static final sa4 d = new sa4("isMultipleSubjectsEnabled", c00.n(xnb.p(xmd.class, new skd(3))));
+    public static final sa4 e = new sa4("isSubjectConfidenceMaskEnabled", c00.n(xnb.p(xmd.class, new skd(4))));
+    public static final sa4 f = new sa4("isSubjectBitmapEnabled", c00.n(xnb.p(xmd.class, new skd(5))));
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final void a(Object obj, Object obj2) {
+        ehf ehfVar = (ehf) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.a(b, ehfVar.a);
+        ar7Var.a(c, ehfVar.b);
+        ar7Var.a(d, ehfVar.c);
+        ar7Var.a(e, ehfVar.d);
+        ar7Var.a(f, ehfVar.e);
     }
 }

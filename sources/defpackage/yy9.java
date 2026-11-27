@@ -1,20 +1,42 @@
 package defpackage;
+public final class yy9 {
+    public final bz9 a;
+    public final bz9 b;
 
-import android.content.Context;
-public final class yy9 extends hz9 {
-    public final zy9 L;
-
-    public yy9(zy9 zy9Var, Context context, wjb wjbVar) {
-        super(context, wjbVar);
-        this.L = zy9Var;
+    public yy9(bz9 bz9Var, bz9 bz9Var2) {
+        this.a = bz9Var;
+        this.b = bz9Var2;
     }
 
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        int measuredHeight = getMeasuredHeight();
-        zy9 zy9Var = this.L;
-        zy9Var.k2 = gl.L(78.0f) + measuredHeight;
-        zy9Var.j2.G();
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && yy9.class == obj.getClass()) {
+                yy9 yy9Var = (yy9) obj;
+                if (this.a.equals(yy9Var.a) && this.b.equals(yy9Var.b)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode() + (this.a.hashCode() * 31);
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder("[");
+        bz9 bz9Var = this.a;
+        sb.append(bz9Var);
+        bz9 bz9Var2 = this.b;
+        if (bz9Var.equals(bz9Var2)) {
+            str = "";
+        } else {
+            str = ", " + bz9Var2;
+        }
+        return c00.k(sb, str, "]");
     }
 }

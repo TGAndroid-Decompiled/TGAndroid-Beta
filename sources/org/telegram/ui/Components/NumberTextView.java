@@ -58,7 +58,7 @@ public class NumberTextView extends View {
         }
         float height = ((StaticLayout) arrayList.get(0)).getHeight();
         if (this.h) {
-            f = gl.L(4.0f);
+            f = hl.L(4.0f);
         } else {
             f = height;
         }
@@ -128,7 +128,7 @@ public class NumberTextView extends View {
             if (staticLayout2 != null) {
                 lineWidth = staticLayout2.getLineWidth(0);
             } else {
-                lineWidth = staticLayout.getLineWidth(0) + gl.L(1.0f);
+                lineWidth = staticLayout.getLineWidth(0) + hl.L(1.0f);
             }
             canvas.translate(lineWidth, 0.0f);
             if (staticLayout2 != null && staticLayout != null) {
@@ -156,7 +156,7 @@ public class NumberTextView extends View {
     }
 
     public void setTextSize(int i) {
-        this.c.setTextSize(gl.L(i));
+        this.c.setTextSize(hl.L(i));
         this.b.clear();
         this.a.clear();
         a(this.f, false);
@@ -169,6 +169,6 @@ public class NumberTextView extends View {
         a(this.f, false);
     }
 
-    public void setOnTextWidthProgressChangedListener(in7 in7Var) {
+    public void setOnTextWidthProgressChangedListener(iq7 iq7Var) {
     }
 }

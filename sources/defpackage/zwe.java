@@ -1,26 +1,12 @@
 package defpackage;
-
-import android.content.Context;
-import java.util.ArrayList;
-public final class zwe implements oxe {
-    public final ArrayList a;
-
-    public zwe(Context context, hwe hweVar) {
-        ArrayList arrayList = new ArrayList();
-        this.a = arrayList;
-        hweVar.getClass();
-        arrayList.add(new tye(context, hweVar));
-    }
-
-    @Override
-    public final void a(qx qxVar) {
-        ArrayList arrayList = this.a;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((oxe) obj).a(qxVar);
+public abstract class zwe {
+    public static boolean a(float[] fArr) {
+        if (fArr != null && fArr.length == 8) {
+            float f = fArr[0];
+            if (f == fArr[1] && f == fArr[2] && f == fArr[3] && f == fArr[4] && f == fArr[5] && f == fArr[6] && f == fArr[7]) {
+                return true;
+            }
         }
+        return false;
     }
 }

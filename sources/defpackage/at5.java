@@ -1,21 +1,30 @@
 package defpackage;
 
-import java.io.Serializable;
-public enum at5 {
-    VOID(Void.class, null),
-    INT(Integer.class, 0),
-    LONG(Long.class, 0L),
-    FLOAT(Float.class, Float.valueOf(0.0f)),
-    DOUBLE(Double.class, Double.valueOf(0.0d)),
-    BOOLEAN(Boolean.class, Boolean.FALSE),
-    STRING(String.class, ""),
-    BYTE_STRING(f51.class, f51.c),
-    ENUM(Integer.class, null),
-    MESSAGE(Object.class, null);
-    
-    public final Class a;
+import android.content.Context;
+public final class at5 extends ilb {
+    public final bt5 E;
+    public final zz3 x;
+    public boolean y;
 
-    at5(Class cls, Serializable serializable) {
-        this.a = cls;
+    public at5(bt5 bt5Var, Context context) {
+        super(context);
+        this.E = bt5Var;
+        this.x = new zz3(this, (byte) 16);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        zz3 zz3Var = this.x;
+        hl.r(zz3Var);
+        if (this.y) {
+            hl.d3(zz3Var, 500L);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        hl.r(this.x);
     }
 }

@@ -4,30 +4,26 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class al extends ClickableSpan {
-    public final boolean a;
-    public final int b;
-    public final wjb c;
-    public final Runnable d;
+    public final int a;
+    public final Runnable b;
 
-    public al(boolean z, int i, wjb wjbVar, Runnable runnable) {
-        this.a = z;
-        this.b = i;
-        this.c = wjbVar;
-        this.d = runnable;
+    public al(int i, Runnable runnable) {
+        this.a = i;
+        this.b = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        this.d.run();
+        Runnable runnable = this.b;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
         textPaint.setUnderlineText(false);
-        if (this.a) {
-            textPaint.setTypeface(gl.o());
-        }
-        textPaint.setColor(bkb.v0(this.b, this.c));
+        textPaint.setColor(this.a);
     }
 }

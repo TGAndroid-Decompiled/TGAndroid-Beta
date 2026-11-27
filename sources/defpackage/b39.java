@@ -1,3 +1,19 @@
 package defpackage;
-public interface b39 {
+
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b39 {
+    public final TLObject a;
+    public final long b;
+    public int c;
+
+    public b39(int i, TLObject tLObject) {
+        this.a = tLObject;
+        this.c = i;
+        if (tLObject instanceof TLRPC.User) {
+            this.b = ((TLRPC.User) tLObject).id;
+        } else if (tLObject instanceof TLRPC.Chat) {
+            this.b = -((TLRPC.Chat) tLObject).id;
+        }
+    }
 }

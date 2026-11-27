@@ -1,521 +1,415 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Environment;
-import android.os.ProfilingManager;
-import android.os.ProfilingResult;
-import android.os.ProfilingTrigger;
-import android.os.StatFs;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import android.util.Base64;
-import android.util.Log;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.android.gms.tasks.Tasks;
-import j$.util.DesugarCollections;
-import j$.util.Objects;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.NavigableSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicMarkableReference;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
 public final class dy2 {
-    public static final yx2 r = new yx2((byte) 1);
-    public static final Charset s = Charset.forName("UTF-8");
-    public final Context a;
-    public final w53 b;
-    public final tg2 c;
-    public final jb4 d;
-    public final mv6 e;
-    public final wj5 f;
-    public final jb4 g;
-    public final dr h;
-    public final tg2 i;
-    public final fy2 j;
-    public final rj k;
-    public final zx2 l;
-    public final n6a m;
-    public oz2 n;
-    public final TaskCompletionSource o = new TaskCompletionSource();
-    public final TaskCompletionSource p = new TaskCompletionSource();
-    public final TaskCompletionSource q = new TaskCompletionSource();
+    public float A;
+    public float B;
+    public boolean C;
+    public float D;
+    public final boolean E;
+    public boolean F;
+    public View G;
+    public final vnb I;
+    public boolean a;
+    public Paint d;
+    public boolean g;
+    public int h;
+    public String i;
+    public boolean j;
+    public ValueAnimator k;
+    public float m;
+    public StaticLayout n;
+    public StaticLayout o;
+    public StaticLayout p;
+    public StaticLayout q;
+    public int r;
+    public int s;
+    public int t;
+    public int u;
+    public int x;
+    public int y;
+    public float b = 1.0f;
+    public int c = -1;
+    public TextPaint e = new TextPaint(1);
+    public final RectF f = new RectF();
+    public float l = 1.0f;
+    public int v = aob.jg;
+    public int w = aob.kg;
+    public int z = 17;
+    public byte H = 0;
 
-    public dy2(Context context, wj5 wj5Var, w53 w53Var, jb4 jb4Var, tg2 tg2Var, dr drVar, jb4 jb4Var2, tg2 tg2Var2, n6a n6aVar, fy2 fy2Var, rj rjVar, zx2 zx2Var, mv6 mv6Var) {
-        new AtomicBoolean(false);
-        this.a = context;
-        this.f = wj5Var;
-        this.b = w53Var;
-        this.g = jb4Var;
-        this.c = tg2Var;
-        this.h = drVar;
-        this.d = jb4Var2;
-        this.i = tg2Var2;
-        this.j = fy2Var;
-        this.k = rjVar;
-        this.l = zx2Var;
-        this.m = n6aVar;
-        this.e = mv6Var;
+    public dy2(View view, boolean z, vnb vnbVar) {
+        this.G = view;
+        this.I = vnbVar;
+        this.E = z;
+        if (z) {
+            Paint paint = new Paint(1);
+            this.d = paint;
+            paint.setColor(-16777216);
+        }
+        this.e.setTypeface(hl.o());
+        this.e.setTextSize(hl.L(13.0f));
     }
 
-    public final void a(boolean r32, defpackage.dv8 r33, boolean r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dy2.a(boolean, dv8, boolean):void");
-    }
-
-    public final void b(String str, Boolean bool) {
-        int i;
-        String str2;
-        String str3;
-        String str4;
-        String str5;
-        int i2;
-        Integer num;
-        long currentTimeMillis = System.currentTimeMillis() / 1000;
-        String h = b00.h("Opening a new session with ID ", str);
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", h, null);
-        }
-        Locale locale = Locale.US;
-        wj5 wj5Var = this.f;
-        dr drVar = this.h;
-        String str6 = wj5Var.c;
-        String str7 = drVar.f;
-        String str8 = drVar.g;
-        String str9 = wj5Var.c().a;
-        if (drVar.d != null) {
-            i = 4;
-        } else {
-            i = 1;
-        }
-        na0 na0Var = new na0(str6, str7, str8, str9, ir2.h(i), drVar.h);
-        String str10 = Build.VERSION.RELEASE;
-        String str11 = Build.VERSION.CODENAME;
-        pa0 pa0Var = new pa0(pm2.i());
-        Context context = this.a;
-        StatFs statFs = new StatFs(Environment.getDataDirectory().getPath());
-        long blockCount = statFs.getBlockCount() * statFs.getBlockSize();
-        nm2 nm2Var = nm2.a;
-        String str12 = Build.CPU_ABI;
-        if (TextUtils.isEmpty(str12)) {
-            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                Log.v("FirebaseCrashlytics", "Architecture#getValue()::Build.CPU_ABI returned null or empty", null);
+    public final void a(Canvas canvas) {
+        float A;
+        float f;
+        boolean z;
+        int L;
+        Paint paint;
+        float interpolation;
+        byte b = this.H;
+        boolean z2 = true;
+        if (b != 1 && b != 2) {
+            int i = this.v;
+            vnb vnbVar = this.I;
+            int v0 = aob.v0(i, vnbVar);
+            int v02 = aob.v0(this.w, vnbVar);
+            if (this.u != v0) {
+                this.u = v0;
+                this.e.setColor(v0);
             }
-        } else {
-            nm2 nm2Var2 = (nm2) nm2.b.get(str12.toLowerCase(locale));
-            if (nm2Var2 != null) {
-                nm2Var = nm2Var2;
+            Paint paint2 = this.d;
+            if (paint2 != null && this.t != v02) {
+                this.t = v02;
+                paint2.setColor(v02);
             }
         }
-        int ordinal = nm2Var.ordinal();
-        String str13 = Build.MODEL;
-        int availableProcessors = Runtime.getRuntime().availableProcessors();
-        long a = pm2.a(context);
-        boolean h2 = pm2.h();
-        int d = pm2.d();
-        String str14 = Build.MANUFACTURER;
-        String str15 = Build.PRODUCT;
-        this.j.d(str, currentTimeMillis, new ma0(na0Var, pa0Var, new oa0(ordinal, availableProcessors, d, a, blockCount, h2)));
-        if (bool.booleanValue() && str != null) {
-            jb4 jb4Var = this.d;
-            synchronized (((String) jb4Var.a)) {
-                jb4Var.a = str;
-                str4 = str15;
-                str5 = str13;
-                str2 = str11;
-                str3 = str14;
-                i2 = 4;
-                ((pz2) ((mv6) jb4Var.c).c).a(new exa((Object) jb4Var, str, (Object) ((qv5) ((AtomicMarkableReference) ((xf4) jb4Var.d).b).getReference()).a(), (Object) ((yg2) jb4Var.f).g(), (byte) 20));
-            }
-        } else {
-            str2 = str11;
-            str3 = str14;
-            str4 = str15;
-            str5 = str13;
-            i2 = 4;
-        }
-        tg2 tg2Var = this.i;
-        ((ga4) tg2Var.c).a();
-        tg2Var.c = tg2.f;
-        if (str != null) {
-            tg2Var.c = new dx8(((jb4) tg2Var.b).b(str, "userlog"));
-        }
-        this.l.b(str);
-        n6a n6aVar = this.m;
-        iz2 iz2Var = n6aVar.a;
-        Charset charset = hz2.a;
-        ?? obj = new Object();
-        obj.a = "20.1.1";
-        dr drVar2 = iz2Var.c;
-        String str16 = drVar2.a;
-        if (str16 != null) {
-            obj.b = str16;
-            wj5 wj5Var2 = iz2Var.b;
-            String str17 = wj5Var2.c().a;
-            if (str17 != null) {
-                obj.d = str17;
-                obj.e = wj5Var2.c().b;
-                obj.f = wj5Var2.c().c;
-                String str18 = drVar2.f;
-                if (str18 != null) {
-                    obj.h = str18;
-                    String str19 = drVar2.g;
-                    if (str19 != null) {
-                        obj.i = str19;
-                        obj.c = i2;
-                        obj.m = (byte) (obj.m | 1);
-                        ?? obj2 = new Object();
-                        obj2.f = false;
-                        obj2.d = currentTimeMillis;
-                        obj2.m = (byte) (((byte) (obj2.m | 2)) | 1);
-                        if (str != null) {
-                            obj2.b = str;
-                            String str20 = iz2.g;
-                            if (str20 != null) {
-                                obj2.a = str20;
-                                String str21 = wj5Var2.c;
-                                if (str21 != null) {
-                                    lv6 lv6Var = drVar2.h;
-                                    String str22 = wj5Var2.c().a;
-                                    ce3 ce3Var = (ce3) lv6Var.c;
-                                    if (ce3Var == null) {
-                                        ce3Var = new ce3(lv6Var);
-                                        lv6Var.c = ce3Var;
-                                    }
-                                    ce3 ce3Var2 = ce3Var;
-                                    String str23 = ce3Var.b;
-                                    if (ce3Var2 == null) {
-                                        ce3Var2 = new ce3(lv6Var);
-                                        lv6Var.c = ce3Var2;
-                                    }
-                                    obj2.g = new m80(str21, str18, str19, str22, str23, ce3Var2.c);
-                                    ?? obj3 = new Object();
-                                    obj3.a = 3;
-                                    obj3.e = (byte) (obj3.e | 1);
-                                    if (str10 != null) {
-                                        obj3.b = str10;
-                                        if (str2 != null) {
-                                            obj3.c = str2;
-                                            obj3.d = pm2.i();
-                                            obj3.e = (byte) (obj3.e | 2);
-                                            obj2.i = obj3.a();
-                                            StatFs statFs2 = new StatFs(Environment.getDataDirectory().getPath());
-                                            int i3 = 7;
-                                            if (!TextUtils.isEmpty(str12) && (num = (Integer) iz2.f.get(str12.toLowerCase(locale))) != null) {
-                                                i3 = num.intValue();
-                                            }
-                                            int availableProcessors2 = Runtime.getRuntime().availableProcessors();
-                                            long a2 = pm2.a(iz2Var.a);
-                                            long blockCount2 = statFs2.getBlockCount() * statFs2.getBlockSize();
-                                            boolean h3 = pm2.h();
-                                            int d2 = pm2.d();
-                                            ?? obj4 = new Object();
-                                            obj4.a = i3;
-                                            byte b = (byte) (obj4.j | 1);
-                                            obj4.j = b;
-                                            if (str5 != null) {
-                                                obj4.b = str5;
-                                                obj4.c = availableProcessors2;
-                                                obj4.d = a2;
-                                                obj4.e = blockCount2;
-                                                obj4.f = h3;
-                                                obj4.g = d2;
-                                                obj4.j = (byte) (((byte) (((byte) (((byte) (((byte) (b | 2)) | 4)) | 8)) | 16)) | 32);
-                                                String str24 = str3;
-                                                if (str24 != null) {
-                                                    obj4.h = str24;
-                                                    String str25 = str4;
-                                                    if (str25 != null) {
-                                                        obj4.i = str25;
-                                                        obj2.j = obj4.a();
-                                                        obj2.l = 3;
-                                                        obj2.m = (byte) (obj2.m | 4);
-                                                        obj.j = obj2.a();
-                                                        a80 a3 = obj.a();
-                                                        jb4 jb4Var2 = n6aVar.b.b;
-                                                        l80 l80Var = a3.k;
-                                                        if (l80Var == null) {
-                                                            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                                                                Log.d("FirebaseCrashlytics", "Could not get session for report", null);
-                                                                return;
-                                                            }
-                                                            return;
-                                                        }
-                                                        String str26 = l80Var.b;
-                                                        try {
-                                                            nz2.g.getClass();
-                                                            nz2.g(jb4Var2.b(str26, "report"), lz2.a.q(a3));
-                                                            File b2 = jb4Var2.b(str26, "start-time");
-                                                            long j = l80Var.d;
-                                                            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(b2), nz2.e);
-                                                            outputStreamWriter.write("");
-                                                            b2.setLastModified(j * 1000);
-                                                            outputStreamWriter.close();
-                                                            return;
-                                                        } catch (IOException e) {
-                                                            String h4 = b00.h("Could not persist report for session ", str26);
-                                                            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                                                                Log.d("FirebaseCrashlytics", h4, e);
-                                                                return;
-                                                            }
-                                                            return;
-                                                        }
-                                                    }
-                                                    fvc.f("Null modelClass");
-                                                    return;
-                                                }
-                                                fvc.f("Null manufacturer");
-                                                return;
-                                            }
-                                            fvc.f("Null model");
-                                            return;
-                                        }
-                                        fvc.f("Null buildVersion");
-                                        return;
-                                    }
-                                    fvc.f("Null version");
-                                    return;
-                                }
-                                fvc.f("Null identifier");
-                                return;
-                            }
-                            fvc.f("Null generator");
-                            return;
-                        }
-                        fvc.f("Null identifier");
-                        return;
-                    }
-                    fvc.f("Null displayVersion");
-                    return;
+        float f2 = this.l;
+        if (f2 != 1.0f) {
+            int i2 = this.c;
+            if (i2 != 0 && i2 != 1) {
+                float f3 = f2 * 2.0f;
+                if (f3 > 1.0f) {
+                    f3 = 1.0f;
                 }
-                fvc.f("Null buildVersion");
+                float L2 = (this.x - hl.L(23.0f)) / 2.0f;
+                int i3 = this.s;
+                int i4 = this.r;
+                if (i3 == i4) {
+                    A = i3;
+                } else {
+                    A = qd4.A(1.0f, f3, i4, i3 * f3);
+                }
+                e(A);
+                if (this.j) {
+                    float f4 = this.l;
+                    if (f4 <= 0.5f) {
+                        interpolation = k43.g.getInterpolation(f4 * 2.0f);
+                    } else {
+                        interpolation = k43.i.getInterpolation(1.0f - ((f4 - 0.5f) * 2.0f));
+                    }
+                    f = (interpolation * 0.1f) + 1.0f;
+                } else {
+                    f = 1.0f;
+                }
+                float f5 = this.B;
+                RectF rectF = this.f;
+                rectF.set(f5, L2, A + f5 + hl.L(11.0f), hl.L(23.0f) + L2);
+                canvas.save();
+                canvas.scale(f, f, rectF.centerX(), rectF.centerY());
+                if (this.b != 1.0f) {
+                    canvas.save();
+                    float f6 = this.b;
+                    canvas.scale(f6, f6, rectF.centerX(), rectF.centerY());
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (this.E && (paint = this.d) != null) {
+                    float f7 = hl.p * 11.5f;
+                    canvas.drawRoundRect(rectF, f7, f7, paint);
+                    if (this.g && aob.b1()) {
+                        float f8 = 11.5f * hl.p;
+                        canvas.drawRoundRect(rectF, f8, f8, aob.h2);
+                    }
+                }
+                if (z) {
+                    canvas.restore();
+                }
+                canvas.clipRect(rectF);
+                if (this.C == this.j) {
+                    z2 = false;
+                }
+                if (this.q != null) {
+                    canvas.save();
+                    float f9 = this.A;
+                    float L3 = hl.L(4.0f) + L2;
+                    int L4 = hl.L(13.0f);
+                    if (!z2) {
+                        L4 = -L4;
+                    }
+                    canvas.translate(f9, qd4.A(1.0f, f3, L4, L3));
+                    this.e.setAlpha((int) (f3 * 255.0f));
+                    this.q.draw(canvas);
+                    canvas.restore();
+                } else if (this.n != null) {
+                    canvas.save();
+                    float f10 = this.A;
+                    float L5 = hl.L(4.0f) + L2;
+                    int L6 = hl.L(13.0f);
+                    if (!z2) {
+                        L6 = -L6;
+                    }
+                    canvas.translate(f10, qd4.A(1.0f, f3, L6, L5));
+                    this.e.setAlpha((int) (f3 * 255.0f));
+                    this.n.draw(canvas);
+                    canvas.restore();
+                }
+                if (this.o != null) {
+                    canvas.save();
+                    float f11 = this.A;
+                    float L7 = hl.L(4.0f) + L2;
+                    if (z2) {
+                        L = -hl.L(13.0f);
+                    } else {
+                        L = hl.L(13.0f);
+                    }
+                    canvas.translate(f11, (L * f3) + L7);
+                    this.e.setAlpha((int) ((1.0f - f3) * 255.0f));
+                    this.o.draw(canvas);
+                    canvas.restore();
+                }
+                if (this.p != null) {
+                    canvas.save();
+                    canvas.translate(this.A, L2 + hl.L(4.0f));
+                    this.e.setAlpha(255);
+                    this.p.draw(canvas);
+                    canvas.restore();
+                }
+                this.e.setAlpha(255);
+                canvas.restore();
                 return;
             }
-            fvc.f("Null installationUuid");
+            e(this.s);
+            float f12 = (this.s / 2.0f) + this.A;
+            float f13 = this.x / 2.0f;
+            canvas.save();
+            int i5 = this.c;
+            float f14 = this.l;
+            if (i5 != 0) {
+                f14 = 1.0f - f14;
+            }
+            canvas.scale(f14, f14, f12, f13);
+            b(canvas);
+            canvas.restore();
             return;
         }
-        fvc.f("Null gmpAppId");
+        b(canvas);
     }
 
-    public final void c(String str) {
-        ExecutorService executorService = ((pz2) this.e.c).a;
-        ProfilingManager profilingManager = (ProfilingManager) this.a.getSystemService(ProfilingManager.class);
-        Object[] objArr = {new ProfilingTrigger.Builder(7).build(), new ProfilingTrigger.Builder(8).build()};
-        ArrayList arrayList = new ArrayList(2);
-        for (int i = 0; i < 2; i++) {
-            Object obj = objArr[i];
-            Objects.requireNonNull(obj);
-            arrayList.add(obj);
-        }
-        profilingManager.addProfilingTriggers(DesugarCollections.unmodifiableList(arrayList));
-        profilingManager.registerForAllProfilingResults(executorService, new ay2(this, str, (byte) 0));
-    }
-
-    public final boolean d(dv8 dv8Var) {
+    public final void b(Canvas canvas) {
         boolean z;
-        mv6.s();
-        oz2 oz2Var = this.n;
-        if (oz2Var != null && oz2Var.e.get()) {
-            z = true;
-        } else {
-            z = false;
-        }
-        c6e c6eVar = c6e.b;
-        if (z) {
-            c6eVar.l("Skipping session finalization because a crash has already occurred.", null);
-            return false;
-        }
-        c6eVar.k("Finalizing previously open sessions.");
-        try {
-            a(true, dv8Var, true);
-            c6eVar.k("Closed all previously open sessions.");
-            return true;
-        } catch (Exception e) {
-            Log.e("FirebaseCrashlytics", "Unable to finalize previously open sessions.", e);
-            return false;
-        }
-    }
-
-    public final String e() {
-        NavigableSet d = this.m.b.d();
-        if (!d.isEmpty()) {
-            return (String) d.first();
-        }
-        return null;
-    }
-
-    public final String f() {
-        String string;
-        InputStream resourceAsStream;
-        Context context = this.a;
-        int e = pm2.e(context, "com.google.firebase.crashlytics.version_control_info", "string");
-        if (e == 0) {
-            string = null;
-        } else {
-            string = context.getResources().getString(e);
-        }
-        if (string != null) {
-            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", "Read version control info from string resource", null);
+        float L = (this.x - hl.L(23.0f)) / 2.0f;
+        e(this.s);
+        float f = this.B;
+        RectF rectF = this.f;
+        rectF.set(f, L, this.s + f + hl.L(11.0f), hl.L(23.0f) + L);
+        if (this.d != null && this.E) {
+            if (this.b != 1.0f) {
+                canvas.save();
+                float f2 = this.b;
+                canvas.scale(f2, f2, rectF.centerX(), rectF.centerY());
+                z = true;
+            } else {
+                z = false;
             }
-            return Base64.encodeToString(string.getBytes(s), 0);
+            float f3 = hl.p * 11.5f;
+            canvas.drawRoundRect(rectF, f3, f3, this.d);
+            if (this.g && aob.b1()) {
+                float f4 = 11.5f * hl.p;
+                canvas.drawRoundRect(rectF, f4, f4, aob.h2);
+            }
+            if (z) {
+                canvas.restore();
+            }
         }
-        ClassLoader classLoader = dy2.class.getClassLoader();
-        if (classLoader == null) {
-            Log.w("FirebaseCrashlytics", "Couldn't get Class Loader", null);
-            resourceAsStream = null;
+        if (this.n != null) {
+            canvas.save();
+            canvas.translate(this.A, L + hl.L(4.0f));
+            this.n.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    public final void c(int i, boolean z) {
+        String valueOf;
+        boolean z2;
+        boolean z3;
+        View view;
+        View view2;
+        if (this.a) {
+            valueOf = hl.o0(i, 0);
         } else {
-            resourceAsStream = classLoader.getResourceAsStream("META-INF/version-control-info.textproto");
+            valueOf = String.valueOf(i);
         }
-        if (resourceAsStream != null) {
-            try {
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "Read version control info from file", null);
+        String str = valueOf;
+        if (!TextUtils.equals(str, this.i)) {
+            ValueAnimator valueAnimator = this.k;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (i > 0 && this.F && (view2 = this.G) != null) {
+                view2.setVisibility(0);
+            }
+            if (Math.abs(i - this.h) > 99) {
+                z2 = false;
+            } else {
+                z2 = z;
+            }
+            float f = 0.0f;
+            if (!z2) {
+                this.h = i;
+                this.i = str;
+                if (i == 0) {
+                    if (this.F && (view = this.G) != null) {
+                        view.setVisibility(8);
+                        return;
+                    }
+                    return;
                 }
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                byte[] bArr = new byte[1024];
-                while (true) {
-                    int read = resourceAsStream.read(bArr);
-                    if (read != -1) {
-                        byteArrayOutputStream.write(bArr, 0, read);
+                this.s = Math.max(hl.L(12.0f), (int) Math.ceil(this.e.measureText(str.toString())));
+                StaticLayout staticLayout = new StaticLayout(str, this.e, this.s, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.n = staticLayout;
+                if (staticLayout.getLineCount() >= 1) {
+                    f = this.n.getLineWidth(0);
+                }
+                this.m = f;
+                View view3 = this.G;
+                if (view3 != null) {
+                    view3.invalidate();
+                    return;
+                }
+                return;
+            }
+            if (z2) {
+                ValueAnimator valueAnimator2 = this.k;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                }
+                this.l = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.k = ofFloat;
+                ofFloat.addUpdateListener(new az1(this, (byte) 15));
+                this.k.addListener(new cn2(this, (byte) 1));
+                if (this.h <= 0) {
+                    this.c = 0;
+                    this.k.setDuration(220L);
+                    this.k.setInterpolator(new OvershootInterpolator());
+                } else if (i == 0) {
+                    this.c = 1;
+                    this.k.setDuration(150L);
+                    this.k.setInterpolator(k43.f);
+                } else {
+                    this.c = 2;
+                    this.k.setDuration(430L);
+                    this.k.setInterpolator(k43.f);
+                }
+                if (this.n != null) {
+                    String str2 = this.i;
+                    if (str2.length() == str.length()) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str2);
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
+                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(str);
+                        for (int i2 = 0; i2 < str2.length(); i2++) {
+                            if (str2.charAt(i2) == str.charAt(i2)) {
+                                int i3 = i2 + 1;
+                                spannableStringBuilder.setSpan(new fy2((byte) 1), i2, i3, 0);
+                                spannableStringBuilder2.setSpan(new fy2((byte) 1), i2, i3, 0);
+                            } else {
+                                spannableStringBuilder3.setSpan(new fy2((byte) 1), i2, i2 + 1, 0);
+                            }
+                        }
+                        int max = Math.max(hl.L(12.0f), (int) Math.ceil(this.e.measureText(str2.toString())));
+                        TextPaint textPaint = this.e;
+                        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                        this.o = new StaticLayout(spannableStringBuilder, textPaint, max, alignment, 1.0f, 0.0f, false);
+                        this.p = new StaticLayout(spannableStringBuilder3, this.e, max, alignment, 1.0f, 0.0f, false);
+                        this.q = new StaticLayout(spannableStringBuilder2, this.e, max, alignment, 1.0f, 0.0f, false);
                     } else {
-                        byte[] byteArray = byteArrayOutputStream.toByteArray();
-                        byteArrayOutputStream.close();
-                        String encodeToString = Base64.encodeToString(byteArray, 0);
-                        resourceAsStream.close();
-                        return encodeToString;
+                        this.o = this.n;
                     }
                 }
-            } catch (Throwable th) {
-                try {
-                    resourceAsStream.close();
-                } catch (Throwable th2) {
-                    th.addSuppressed(th2);
+                this.r = this.s;
+                if (i > this.h) {
+                    z3 = true;
+                } else {
+                    z3 = false;
                 }
-                throw th;
+                this.j = z3;
+                this.k.start();
             }
-        } else {
-            if (resourceAsStream != null) {
-                resourceAsStream.close();
+            if (i > 0) {
+                this.s = Math.max(hl.L(12.0f), (int) Math.ceil(this.e.measureText(str.toString())));
+                StaticLayout staticLayout2 = new StaticLayout(str, this.e, this.s, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                this.n = staticLayout2;
+                if (staticLayout2.getLineCount() >= 1) {
+                    f = this.n.getLineWidth(0);
+                }
+                this.m = f;
             }
-            Log.i("FirebaseCrashlytics", "No version control information found", null);
-            return null;
+            this.h = i;
+            this.i = str;
+            View view4 = this.G;
+            if (view4 != null) {
+                view4.invalidate();
+            }
         }
     }
 
-    public final void g(String str, ProfilingResult profilingResult) {
-        String str2;
-        int triggerType = profilingResult.getTriggerType();
-        if (triggerType == 8) {
-            str2 = "trigger-type-anomaly";
-        } else if (triggerType == 7) {
-            str2 = "trigger-type-oom";
-        } else {
-            str2 = "trigger-type-unknown";
-        }
-        try {
-            if (!this.g.b(str, str2).createNewFile()) {
-                String str3 = "Trigger file " + str2 + " exists for session: " + str;
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", str3, null);
-                }
-            }
-        } catch (IOException unused) {
-            Log.e("FirebaseCrashlytics", "Unable to touch trigger file ".concat(str2), null);
-        }
-    }
-
-    public final Task h() {
-        Task call;
-        ArrayList arrayList = new ArrayList();
-        for (File file : jb4.e(((File) this.g.c).listFiles(r))) {
-            try {
-                long parseLong = Long.parseLong(file.getName().substring(3));
-                try {
-                    Class.forName("com.google.firebase.crash.FirebaseCrash");
-                    Log.w("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, FirebaseCrash exists", null);
-                    call = Tasks.forResult(null);
-                } catch (ClassNotFoundException unused) {
-                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                        Log.d("FirebaseCrashlytics", "Logging app exception event to Firebase Analytics", null);
-                    }
-                    call = Tasks.call(new ScheduledThreadPoolExecutor(1), new cy2(this, parseLong));
-                }
-                arrayList.add(call);
-            } catch (NumberFormatException unused2) {
-                Log.w("FirebaseCrashlytics", "Could not parse app exception timestamp from file " + file.getName(), null);
-            }
-            file.delete();
-        }
-        return Tasks.whenAll(arrayList);
-    }
-
-    public final void i() {
+    public final void d(int i, int i2) {
         boolean z;
-        try {
-            String f = f();
-            if (f != null) {
-                try {
-                    ((xf4) this.d.e).H("com.crashlytics.version-control-info", f);
-                } catch (IllegalArgumentException e) {
-                    Context context = this.a;
-                    if (context != null) {
-                        if ((context.getApplicationInfo().flags & 2) != 0) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        if (z) {
-                            throw e;
-                        }
-                    }
-                    Log.e("FirebaseCrashlytics", "Attempting to set custom attribute with null key, ignoring.", null);
-                }
-                Log.i("FirebaseCrashlytics", "Saved version control info", null);
+        if (i != this.x) {
+            int i3 = this.h;
+            this.h = -1;
+            if (this.c == 0) {
+                z = true;
+            } else {
+                z = false;
             }
-        } catch (IOException e2) {
-            Log.w("FirebaseCrashlytics", "Unable to save version control info", e2);
+            c(i3, z);
+            this.x = i;
         }
+        this.y = i2;
     }
 
-    public final void j(Task task) {
-        Task task2;
-        Task c;
-        TaskCompletionSource taskCompletionSource = this.o;
-        jb4 jb4Var = this.m.b.b;
-        if (jb4.e(((File) jb4Var.e).listFiles()).isEmpty() && jb4.e(((File) jb4Var.f).listFiles()).isEmpty() && jb4.e(((File) jb4Var.g).listFiles()).isEmpty()) {
-            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                Log.v("FirebaseCrashlytics", "No crash reports are available to be sent.", null);
-            }
-            taskCompletionSource.trySetResult(Boolean.FALSE);
-            return;
-        }
-        c6e c6eVar = c6e.b;
-        c6eVar.k("Crash reports are available to be sent.");
-        w53 w53Var = this.b;
-        if (w53Var.a()) {
-            c6eVar.g("Automatic data collection is enabled. Allowing upload.");
-            taskCompletionSource.trySetResult(Boolean.FALSE);
-            c = Tasks.forResult(Boolean.TRUE);
+    public final void e(float f) {
+        float f2;
+        float f3;
+        if (this.E) {
+            f2 = hl.L(5.5f);
         } else {
-            c6eVar.g("Automatic data collection is disabled.");
-            c6eVar.k("Notifying that unsent reports are available.");
-            taskCompletionSource.trySetResult(Boolean.TRUE);
-            synchronized (w53Var.c) {
-                task2 = w53Var.d.getTask();
-            }
-            Task onSuccessTask = task2.onSuccessTask(new ie7((byte) 16));
-            c6eVar.g("Waiting for send/deleteUnsentReports to be called.");
-            c = rp5.c(onSuccessTask, this.p.getTask());
+            f2 = 0.0f;
         }
-        c.onSuccessTask((pz2) this.e.b, new lv6(this, task, (byte) 16));
+        int i = this.z;
+        if (i == 5) {
+            float f4 = this.y - f2;
+            this.A = f4;
+            float f5 = this.D;
+            if (f5 != 0.0f) {
+                f3 = f4 - Math.max((f / 2.0f) + f5, f);
+                this.A = f3;
+            } else {
+                f3 = f4 - f;
+                this.A = f3;
+            }
+        } else if (i == 3) {
+            this.A = f2;
+            f3 = f2;
+        } else {
+            f3 = (int) ((this.y - f) / 2.0f);
+            this.A = f3;
+        }
+        this.B = f3 - f2;
     }
 }

@@ -1,32 +1,33 @@
 package defpackage;
 public final class fzb implements Runnable {
     public final byte a;
-    public final i8c b;
-    public final String c;
+    public final gzb b;
 
-    public fzb(i8c i8cVar, String str, byte b) {
+    public fzb(gzb gzbVar, byte b) {
         this.a = b;
-        this.b = i8cVar;
-        this.c = str;
+        this.b = gzbVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        String str = this.c;
-        i8c i8cVar = this.b;
+        gzb gzbVar = this.b;
         switch (b) {
             case 0:
-                i8cVar.a(str, Boolean.FALSE);
-                return;
-            case 1:
-                i8cVar.a(null, str);
-                return;
-            case 2:
-                i8cVar.a(null, str);
+                gzbVar.F = null;
+                if (gzbVar.G != -1) {
+                    gzbVar.H.getNotificationCenter().j(gzbVar.G);
+                    gzbVar.G = -1;
+                    return;
+                }
                 return;
             default:
-                i8cVar.a(null, str);
+                gzbVar.F = null;
+                if (gzbVar.G != -1) {
+                    gzbVar.H.getNotificationCenter().j(gzbVar.G);
+                    gzbVar.G = -1;
+                    return;
+                }
                 return;
         }
     }

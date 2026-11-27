@@ -1,36 +1,50 @@
 package defpackage;
 
-import androidx.appcompat.widget.Toolbar;
-public final class btb implements Runnable {
-    public final byte a;
-    public final Toolbar b;
+import java.nio.ByteBuffer;
+public final class btb extends ef0 {
+    public final byte i;
 
-    public btb(Toolbar toolbar, byte b) {
-        this.a = b;
-        this.b = toolbar;
+    public btb(byte b) {
+        this.i = b;
+    }
+
+    public static void m(int i, ByteBuffer byteBuffer) {
+        int floatToIntBits;
+        float f = (float) (i * 4.656612875245797E-10d);
+        if (Float.isNaN(f)) {
+            floatToIntBits = 0;
+        } else {
+            floatToIntBits = Float.floatToIntBits(f);
+        }
+        byteBuffer.putInt(floatToIntBits);
     }
 
     @Override
-    public final void run() {
-        c07 c07Var;
-        byte b = this.a;
-        Toolbar toolbar = this.b;
-        switch (b) {
+    public final void d(java.nio.ByteBuffer r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.btb.d(java.nio.ByteBuffer):void");
+    }
+
+    @Override
+    public final m20 h(m20 m20Var) {
+        switch (this.i) {
             case 0:
-                dtb dtbVar = toolbar.f0;
-                if (dtbVar == null) {
-                    c07Var = null;
-                } else {
-                    c07Var = dtbVar.b;
+                int i = m20Var.c;
+                if (gcc.N(i)) {
+                    if (i != 4) {
+                        return new m20(m20Var.a, m20Var.b, 4);
+                    }
+                    return m20.e;
                 }
-                if (c07Var != null) {
-                    c07Var.collapseActionView();
-                    return;
-                }
-                return;
+                throw new p20(m20Var);
             default:
-                toolbar.m();
-                return;
+                int i2 = m20Var.c;
+                if (gcc.N(i2)) {
+                    if (i2 != 2) {
+                        return new m20(m20Var.a, m20Var.b, 2);
+                    }
+                    return m20.e;
+                }
+                throw new p20(m20Var);
         }
     }
 }

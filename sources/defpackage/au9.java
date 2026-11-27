@@ -1,44 +1,41 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
+import android.os.Bundle;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class au9 extends TLObject {
-    public int a;
-    public TLRPC.TL_decryptedMessageLayer b;
-    public TLRPC.EncryptedFile c;
-    public boolean d;
-    public byte e;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ProfileActivity;
+public final class au9 extends cu9 {
+    public final TLRPC.User b;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
-        inputSerializedData.readInt64(z);
-        this.a = inputSerializedData.readInt32(z);
-        this.b = TLRPC.TL_decryptedMessageLayer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        if (inputSerializedData.readBool(z)) {
-            this.c = TLRPC.EncryptedFile.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-        this.d = inputSerializedData.readBool(z);
+    public au9(String str, TLRPC.User user) {
+        super(str);
+        this.b = user;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        boolean z;
-        outputSerializedData.writeInt32(1431655929);
-        outputSerializedData.writeInt64(0L);
-        outputSerializedData.writeInt32(this.a);
-        this.b.serializeToStream(outputSerializedData);
-        if (this.c != null) {
-            z = true;
-        } else {
-            z = false;
+    public final String b() {
+        return lbc.r(this.b);
+    }
+
+    @Override
+    public final void c(e eVar) {
+        TLRPC.User user = this.b;
+        if (user.id == yac.h(yac.t0).e()) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.id);
+            bundle.putBoolean("my_profile", true);
+            eVar.presentFragment(new ProfileActivity(bundle, null));
+            return;
         }
-        outputSerializedData.writeBool(z);
-        TLRPC.EncryptedFile encryptedFile = this.c;
-        if (encryptedFile != null) {
-            encryptedFile.serializeToStream(outputSerializedData);
-        }
-        outputSerializedData.writeBool(this.d);
+        eVar.presentFragment(ProfileActivity.Q2(user.id));
+    }
+
+    @Override
+    public final void d(ImageReceiver imageReceiver) {
+        rb0 rb0Var = new rb0((vnb) null);
+        TLRPC.User user = this.b;
+        rb0Var.q(user);
+        imageReceiver.U(user, rb0Var, null);
     }
 }

@@ -1,10 +1,11 @@
 package defpackage;
-public final class ep9 {
-    public final fm4 a;
-    public final xq3 b;
+public enum ep9 {
+    FPS_30(30),
+    FPS_60(60);
+    
+    public final byte a;
 
-    public ep9(fm4 fm4Var, xq3 xq3Var) {
-        this.a = fm4Var;
-        this.b = xq3Var;
+    ep9(int i) {
+        this.a = i;
     }
 }

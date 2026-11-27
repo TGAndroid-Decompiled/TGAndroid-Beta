@@ -1,35 +1,26 @@
 package defpackage;
 
-import android.content.DialogInterface;
-public final class pp7 implements DialogInterface.OnDismissListener {
-    public final byte a;
-    public final boolean[] b;
-    public final long c;
+import android.widget.ImageView;
+public final class pp7 extends skb {
+    public ImageView a0;
 
-    public pp7(boolean[] zArr, long j, byte b) {
-        this.a = b;
-        this.b = zArr;
-        this.c = j;
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int L;
+        super.onLayout(z, i, i2, i3, i4);
+        int i5 = i3 - i;
+        if (ob6.a0) {
+            L = hl.L(17.0f);
+        } else {
+            L = i5 - hl.L(41.0f);
+        }
+        int D = ik8.D(24.0f, i4 - i2, 2);
+        this.a0.layout(L, D, hl.L(24.0f) + L, hl.L(24.0f) + D);
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        byte b = this.a;
-        long j = this.c;
-        boolean[] zArr = this.b;
-        switch (b) {
-            case 0:
-                if (!zArr[0]) {
-                    vp7.g(j);
-                    return;
-                }
-                return;
-            default:
-                if (!zArr[0]) {
-                    vp7.g(j);
-                    return;
-                }
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.a0.measure(i, i2);
     }
 }

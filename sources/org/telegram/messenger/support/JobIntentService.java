@@ -238,7 +238,7 @@ public abstract class JobIntentService extends Service {
             }
             return;
         }
-        w26.j("work must not be null");
+        lq5.j("work must not be null");
     }
 
     public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z, int i) {
@@ -250,7 +250,7 @@ public abstract class JobIntentService extends Service {
                 if (z) {
                     compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
                 } else {
-                    w26.j("Can't be here without a job id");
+                    lq5.j("Can't be here without a job id");
                     return null;
                 }
             } else {
@@ -422,7 +422,7 @@ public abstract class JobIntentService extends Service {
                 this.mJobId = i;
             } else if (this.mJobId == i) {
             } else {
-                fvc.e(this.mJobId, de9.m(i, "Given job ID ", " is different than previous "));
+                p3d.f(this.mJobId, uh9.m(i, "Given job ID ", " is different than previous "));
             }
         }
 

@@ -1,53 +1,75 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class da6 extends i49 {
-    public final byte a;
-    public final qa6 b;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
+import android.view.TextureView;
+public final class da6 implements qr9, TextureView.SurfaceTextureListener {
+    public final ne8 a;
+    public volatile Surface b;
+    public boolean c;
 
-    public da6(qa6 qa6Var, byte b) {
-        this.a = b;
-        this.b = qa6Var;
-    }
-
-    @Override
-    public final void a(RecyclerView recyclerView, int i) {
-        byte b = this.a;
-        boolean z = true;
-        qa6 qa6Var = this.b;
-        switch (b) {
-            case 0:
-                if (i == 1 && qa6Var.u0 && qa6Var.v0) {
-                    gl.t1(qa6Var.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            default:
-                if (i == 0) {
-                    z = false;
-                }
-                qa6Var.N = z;
-                if (!z && qa6Var.I != null) {
-                    qa6Var.I = null;
-                    return;
-                }
-                return;
+    public da6(ne8 ne8Var) {
+        this.a = ne8Var;
+        ne8Var.setSurfaceTextureListener(this);
+        SurfaceTexture surfaceTexture = ne8Var.getSurfaceTexture();
+        if (surfaceTexture != null) {
+            this.b = new Surface(surfaceTexture);
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        switch (this.a) {
-            case 1:
-                qa6 qa6Var = this.b;
-                qa6Var.M0(false);
-                if (qa6Var.I != null) {
-                    qa6Var.K += i2;
-                    return;
-                }
+    public final boolean b() {
+        return true;
+    }
+
+    public final void c(SurfaceTexture surfaceTexture) {
+        if (this.c) {
+            if (surfaceTexture != null) {
+                kq9.I(this, new z96(surfaceTexture, (byte) 1));
                 return;
-            default:
-                return;
+            }
+            return;
         }
+        this.c = true;
+        Surface surface = this.b;
+        this.b = null;
+        kq9.I(this, new ca6(surface, surfaceTexture, (byte) 1));
+    }
+
+    @Override
+    public final Surface getSurface() {
+        return this.b;
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        if (this.c) {
+            return;
+        }
+        this.b = new Surface(surfaceTexture);
+        kq9.I(this, null);
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        if (this.c) {
+            return false;
+        }
+        Surface surface = this.b;
+        this.b = null;
+        kq9.I(this, new ca6(surface, surfaceTexture, (byte) 0));
+        return false;
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public final void a(int i, int i2) {
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
     }
 }

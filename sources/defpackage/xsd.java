@@ -1,17 +1,48 @@
 package defpackage;
-public final class xsd implements zn7 {
-    public static final xsd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import android.net.ConnectivityManager;
+import android.net.LinkProperties;
+import android.net.Network;
+public final class xsd extends ConnectivityManager.NetworkCallback {
+    public final etd a;
+
+    public xsd(etd etdVar) {
+        this.a = etdVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
+        this.a.a(network, linkProperties);
+    }
+
+    @Override
+    public final void onLost(Network network) {
+        etd etdVar = this.a;
+        synchronized (etdVar.h) {
+            if (etdVar.d != null && etdVar.e != null) {
+                etd.j.b("the network is lost", new Object[0]);
+                if (etdVar.e.remove(network)) {
+                    etdVar.d.remove(network);
+                }
+                etdVar.b();
+            }
         }
-        throw new ClassCastException();
+    }
+
+    @Override
+    public final void onUnavailable() {
+        etd etdVar = this.a;
+        synchronized (etdVar.h) {
+            if (etdVar.d != null && etdVar.e != null) {
+                etd.j.b("all networks are unavailable.", new Object[0]);
+                etdVar.d.clear();
+                etdVar.e.clear();
+                etdVar.b();
+            }
+        }
+    }
+
+    @Override
+    public final void onAvailable(Network network) {
     }
 }

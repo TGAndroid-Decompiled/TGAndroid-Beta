@@ -1,24 +1,18 @@
 package defpackage;
+public enum kxe implements pod {
+    TYPE_UNKNOWN(0),
+    TYPE_THIN(1),
+    TYPE_THICK(2),
+    TYPE_GMV(3);
+    
+    public final byte a;
 
-import java.util.Arrays;
-public final class kxe {
-    public final Float a;
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof kxe)) {
-            return false;
-        }
-        kxe kxeVar = (kxe) obj;
-        if (cqe.a(null, null) && cqe.a(this.a, kxeVar.a) && cqe.a(null, null)) {
-            return true;
-        }
-        return false;
+    kxe(int i) {
+        this.a = i;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, this.a, null});
+    @Override
+    public final int zza() {
+        return this.a;
     }
 }

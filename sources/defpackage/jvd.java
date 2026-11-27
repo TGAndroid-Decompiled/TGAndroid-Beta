@@ -1,17 +1,19 @@
 package defpackage;
-public final class jvd implements zn7 {
-    public static final jvd a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class jvd {
+    public static final Object a(mx2 mx2Var, Object obj, Object obj2, is4 is4Var, zw2 zw2Var) {
+        Object c = xhd.c(mx2Var, obj2);
+        try {
+            hqa hqaVar = new hqa(zw2Var, mx2Var);
+            q7c.a(2, is4Var);
+            Object invoke = is4Var.invoke(obj, hqaVar);
+            xhd.a(mx2Var, c);
+            if (invoke == vx2.a) {
+                zw2Var.getClass();
+            }
+            return invoke;
+        } catch (Throwable th) {
+            xhd.a(mx2Var, c);
+            throw th;
         }
-        throw new ClassCastException();
     }
 }

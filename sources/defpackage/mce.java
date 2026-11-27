@@ -1,16 +1,17 @@
 package defpackage;
+public final class mce implements zq7 {
+    public static final mce a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class mce implements IInterface {
-    public final IBinder a;
-
-    public mce(IBinder iBinder) {
-        this.a = iBinder;
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)));
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this.a;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

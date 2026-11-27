@@ -1,22 +1,34 @@
 package defpackage;
-public final class lr5 extends ft5 {
-    public static final long f = ex.a.objectFieldOffset(lr5.class.getDeclaredField("_invoked$volatile"));
-    private volatile int _invoked$volatile = 0;
-    public final qp4 e;
+public final class lr5 {
+    public final int a;
+    public final int b;
 
-    public lr5(qp4 qp4Var) {
-        this.e = qp4Var;
+    public lr5(int i, int i2) {
+        this.a = i;
+        this.b = i2;
     }
 
-    @Override
-    public final boolean k() {
-        return true;
-    }
-
-    @Override
-    public final void l(Throwable th) {
-        if (ex.a.compareAndSwapInt(this, f, 0, 1)) {
-            this.e.invoke(th);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && lr5.class == obj.getClass()) {
+            lr5 lr5Var = (lr5) obj;
+            if (this.a == lr5Var.a && this.b == lr5Var.b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (this.a * 31) + this.b;
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("IntSize(");
+        sb.append(this.a);
+        sb.append(", ");
+        return uh9.l(sb, this.b, ")");
     }
 }

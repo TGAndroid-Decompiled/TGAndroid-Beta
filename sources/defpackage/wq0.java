@@ -17,14 +17,14 @@ public final class wq0 implements View.OnClickListener {
         gr0 gr0Var = this.b;
         switch (b) {
             case 0:
-                kca kcaVar = gr0Var.a0;
-                s1b s1bVar = gr0Var.a;
-                if (s1bVar == null) {
+                bga bgaVar = gr0Var.a0;
+                o5b o5bVar = gr0Var.a;
+                if (o5bVar == null) {
                     str = "";
                 } else {
-                    str = s1bVar.E;
+                    str = o5bVar.E;
                 }
-                kcaVar.a(str);
+                bgaVar.a(str);
                 return;
             default:
                 gr0Var.a0.b(gr0Var.a.E);

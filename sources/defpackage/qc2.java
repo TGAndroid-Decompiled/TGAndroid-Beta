@@ -1,80 +1,139 @@
 package defpackage;
 
+import android.os.SystemClock;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class qc2 implements ed, z97, vc7 {
+import org.telegram.tgnet.tl.TL_phone;
+public final class qc2 implements RequestDelegate {
     public final byte a;
-    public final zc2 b;
+    public final vc2 b;
 
-    public qc2(zc2 zc2Var, byte b) {
+    public qc2(vc2 vc2Var, byte b) {
         this.a = b;
-        this.b = zc2Var;
+        this.b = vc2Var;
     }
 
     @Override
-    public final boolean b(TLRPC.TL_error tL_error) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        zc2 zc2Var = this.b;
-        switch (b) {
-            case 2:
-                zc2Var.p0(false);
-                return true;
-            case 3:
-                zc2Var.p0(false);
-                return true;
-            default:
-                return zc2Var.m0(tL_error);
-        }
-    }
-
-    @Override
-    public final void run(long j) {
-        this.b.l0(j);
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        TLRPC.TL_chatAdminRights d0;
-        byte b = this.a;
-        zc2 zc2Var = this.b;
+        final vc2 vc2Var = this.b;
         switch (b) {
             case 0:
-                zc2Var.n0(true);
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        TLObject tLObject2 = tLObject;
+                        switch (b2) {
+                            case 0:
+                                long elapsedRealtime = SystemClock.elapsedRealtime();
+                                vc2 vc2Var2 = vc2Var;
+                                vc2Var2.N = elapsedRealtime;
+                                vc2Var2.O = false;
+                                if (tLObject2 != null) {
+                                    TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject2;
+                                    uc7.s1(vc2Var2.C.a).j4(groupparticipants.users, false);
+                                    uc7.s1(vc2Var2.C.a).c4(groupparticipants.chats, false);
+                                    TLRPC.GroupCall groupCall = vc2Var2.b;
+                                    int i = groupCall.participants_count;
+                                    int i2 = groupparticipants.count;
+                                    if (i != i2) {
+                                        groupCall.participants_count = i2;
+                                        if (f11.a) {
+                                            c00.q(vc2Var2.b.participants_count, new StringBuilder("new participants reload count "));
+                                        }
+                                        jn7.f(vc2Var2.C.a).k(167, Long.valueOf(vc2Var2.c), Long.valueOf(vc2Var2.b.id), Boolean.FALSE);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                boolean z = tLObject2 instanceof TL_phone.groupCall;
+                                vc2 vc2Var3 = vc2Var;
+                                if (z) {
+                                    TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
+                                    vc2Var3.b = groupcall.call;
+                                    uc7.s1(vc2Var3.C.a).j4(groupcall.users, false);
+                                    uc7.s1(vc2Var3.C.a).c4(groupcall.chats, false);
+                                    ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
+                                    String str = groupcall.participants_next_offset;
+                                    TLRPC.GroupCall groupCall2 = groupcall.call;
+                                    vc2Var3.n(arrayList, true, "", str, groupCall2.version, groupCall2.participants_count);
+                                    return;
+                                }
+                                vc2Var3.getClass();
+                                return;
+                        }
+                    }
+                });
                 return;
             case 1:
-                zc2 zc2Var2 = this.b;
-                zc2Var2.p0(true);
-                sc2 sc2Var = new sc2(zc2Var2, (byte) 0);
-                if (!zc2Var2.L && !zc2Var2.M) {
-                    zc2Var2.getMessagesController().j(zc2Var2.x.id, zc2Var2.w, 0, zc2Var2.Z0, zc2Var2, true, sc2Var, new qc2(zc2Var2, (byte) 3), null);
+                vc2Var.getClass();
+                if (tLObject != null) {
+                    uc7.s1(vc2Var.C.a).Y3((TLRPC.Updates) tLObject, false);
                     return;
                 }
-                na7 messagesController = zc2Var2.getMessagesController();
-                long j = zc2Var2.x.id;
-                TLRPC.User user = zc2Var2.w;
-                if (zc2Var2.L) {
-                    d0 = zc2Var2.N;
-                } else {
-                    d0 = zc2.d0(false);
-                }
-                messagesController.V4(j, user, d0, zc2Var2.T, false, zc2Var2, zc2Var2.a1, zc2Var2.L, zc2Var2.Z0, sc2Var, new qc2(zc2Var2, (byte) 2));
                 return;
             case 2:
-            case 3:
+                vc2Var.getClass();
+                if (tLObject != null) {
+                    uc7.s1(vc2Var.C.a).Y3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
+                return;
             default:
-                zc2Var.getClass();
-                zc2Var.presentFragment(new p3c(6, null));
-                return;
-            case 4:
-                zc2Var.finishFragment();
-                return;
-            case 5:
-                zc2Var.getClass();
-                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                v82 v82Var = new v82(zc2Var, twoStepVerificationActivity, (byte) 3);
-                twoStepVerificationActivity.a0 = (byte) 0;
-                twoStepVerificationActivity.c0 = v82Var;
-                zc2Var.presentFragment(twoStepVerificationActivity);
+                vc2Var.getClass();
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        TLObject tLObject2 = tLObject;
+                        switch (b2) {
+                            case 0:
+                                long elapsedRealtime = SystemClock.elapsedRealtime();
+                                vc2 vc2Var2 = vc2Var;
+                                vc2Var2.N = elapsedRealtime;
+                                vc2Var2.O = false;
+                                if (tLObject2 != null) {
+                                    TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject2;
+                                    uc7.s1(vc2Var2.C.a).j4(groupparticipants.users, false);
+                                    uc7.s1(vc2Var2.C.a).c4(groupparticipants.chats, false);
+                                    TLRPC.GroupCall groupCall = vc2Var2.b;
+                                    int i = groupCall.participants_count;
+                                    int i2 = groupparticipants.count;
+                                    if (i != i2) {
+                                        groupCall.participants_count = i2;
+                                        if (f11.a) {
+                                            c00.q(vc2Var2.b.participants_count, new StringBuilder("new participants reload count "));
+                                        }
+                                        jn7.f(vc2Var2.C.a).k(167, Long.valueOf(vc2Var2.c), Long.valueOf(vc2Var2.b.id), Boolean.FALSE);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                boolean z = tLObject2 instanceof TL_phone.groupCall;
+                                vc2 vc2Var3 = vc2Var;
+                                if (z) {
+                                    TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
+                                    vc2Var3.b = groupcall.call;
+                                    uc7.s1(vc2Var3.C.a).j4(groupcall.users, false);
+                                    uc7.s1(vc2Var3.C.a).c4(groupcall.chats, false);
+                                    ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
+                                    String str = groupcall.participants_next_offset;
+                                    TLRPC.GroupCall groupCall2 = groupcall.call;
+                                    vc2Var3.n(arrayList, true, "", str, groupCall2.version, groupCall2.participants_count);
+                                    return;
+                                }
+                                vc2Var3.getClass();
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

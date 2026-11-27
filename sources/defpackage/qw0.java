@@ -1,84 +1,46 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-public final class qw0 extends View {
-    public final Paint a;
-    public float b;
-    public int c;
-    public int d;
-    public final RectF e;
-    public final gec f;
-    public final int h;
-    public int n;
-    public int r;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class qw0 implements Runnable {
+    public final byte a;
+    public final sw0 b;
 
-    public qw0(Context context, gec gecVar, int i) {
-        super(context);
-        this.a = new Paint(1);
-        this.e = new RectF();
-        this.n = -1;
-        this.r = -1;
-        this.f = gecVar;
-        this.h = i;
+    public qw0(sw0 sw0Var, byte b) {
+        this.a = b;
+        this.b = sw0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i;
-        RectF rectF;
-        int L;
-        gl.L(5.0f);
-        int i2 = this.n;
-        Paint paint = this.a;
-        if (i2 >= 0) {
-            paint.setColor((bkb.w0(null, i2, false) & 16777215) | (-1275068416));
-        } else {
-            if (bkb.B0().o()) {
-                i = -11184811;
-            } else {
-                i = -4473925;
-            }
-            paint.setColor(i);
+    public final void run() {
+        byte b = this.a;
+        sw0 sw0Var = this.b;
+        switch (b) {
+            case 0:
+                TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
+                xw0 xw0Var = sw0Var.d;
+                toggleuseremojistatuspermission.bot = uc7.s1(xw0Var.I).o1(xw0Var.J);
+                toggleuseremojistatuspermission.enabled = false;
+                ConnectionsManager.getInstance(xw0Var.I).sendRequest(toggleuseremojistatuspermission, new rw0(sw0Var, (byte) 1));
+                return;
+            case 1:
+                xw0 xw0Var2 = sw0Var.d;
+                tq0.d(xw0Var2.getContext(), xw0Var2.I, xw0Var2.J).k(false, null);
+                return;
+            default:
+                xw0 xw0Var3 = sw0Var.d;
+                e S = LaunchActivity.S();
+                if (S != null && S.getParentLayout() != null) {
+                    wk5 parentLayout = S.getParentLayout();
+                    S.presentFragment(ProfileActivity.Q2(xw0Var3.J));
+                    hl.f3(parentLayout, "botPermissionLocation");
+                    xw0Var3.m(true);
+                    return;
+                }
+                return;
         }
-        this.d = this.f.getCurrentItem();
-        int i3 = 0;
-        while (true) {
-            int i4 = this.h;
-            rectF = this.e;
-            if (i3 >= i4) {
-                break;
-            }
-            if (i3 != this.d) {
-                rectF.set(gl.L(11.0f) * i3, 0.0f, gl.L(5.0f) + L, gl.L(5.0f));
-                canvas.drawRoundRect(rectF, gl.L(2.5f), gl.L(2.5f), paint);
-            }
-            i3++;
-        }
-        int i5 = this.r;
-        if (i5 >= 0) {
-            paint.setColor(bkb.w0(null, i5, false));
-        } else {
-            paint.setColor(-14509328);
-        }
-        int L2 = gl.L(11.0f) * this.d;
-        if (this.b != 0.0f) {
-            if (this.c >= this.d) {
-                rectF.set(L2, 0.0f, (gl.L(11.0f) * this.b) + gl.L(5.0f) + L2, gl.L(5.0f));
-            } else {
-                rectF.set(ls6.B(1.0f, this.b, gl.L(11.0f), L2), 0.0f, gl.L(5.0f) + L2, gl.L(5.0f));
-            }
-        } else {
-            rectF.set(L2, 0.0f, gl.L(5.0f) + L2, gl.L(5.0f));
-        }
-        canvas.drawRoundRect(rectF, gl.L(2.5f), gl.L(2.5f), paint);
-    }
-
-    public void setCurrentPage(int i) {
-        this.d = i;
-        invalidate();
     }
 }

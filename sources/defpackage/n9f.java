@@ -1,20 +1,26 @@
 package defpackage;
 
-import java.util.HashMap;
-public abstract class n9f {
-    public static final String[] a = {"text1", "text2", "icon", "intent_action", "intent_data", "intent_data_id", "intent_extra_data", "suggest_large_icon", "intent_activity", "thing_proto"};
-    public static final HashMap b = new HashMap(10);
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.common.api.Status;
+import java.util.ArrayList;
+public final class n9f extends c4 implements ie9 {
+    public static final Parcelable.Creator<n9f> CREATOR = new t4f((byte) 12);
+    public Status a;
+    public ArrayList b;
+    public String[] c;
 
-    static {
-        int i = 0;
-        while (true) {
-            String[] strArr = a;
-            if (i < 10) {
-                b.put(strArr[i], Integer.valueOf(i));
-                i++;
-            } else {
-                return;
-            }
-        }
+    @Override
+    public final Status a() {
+        return this.a;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.k(parcel, 1, this.a, i);
+        bye.p(parcel, 2, this.b);
+        bye.m(parcel, 3, this.c);
+        bye.s(parcel, r);
     }
 }

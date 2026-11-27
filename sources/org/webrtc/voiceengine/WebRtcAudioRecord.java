@@ -88,13 +88,13 @@ public class WebRtcAudioRecord {
                             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
                             webRtcAudioRecord.nativeDataIsRecorded(read, webRtcAudioRecord.nativeAudioRecord);
                         } catch (UnsatisfiedLinkError e) {
-                            fa4.g(e, true);
+                            cc4.g(e, true);
                             this.keepAlive = false;
                         }
                     }
                     WebRtcAudioRecordSamplesReadyCallback webRtcAudioRecordSamplesReadyCallback = WebRtcAudioRecord.audioSamplesReadyCallback;
                     if (webRtcAudioRecordSamplesReadyCallback != null) {
-                        webRtcAudioRecordSamplesReadyCallback.onWebRtcAudioRecordSamplesReady(new AudioSamples(WebRtcAudioRecord.this.audioRecord, Arrays.copyOf(WebRtcAudioRecord.this.byteBuffer.array(), WebRtcAudioRecord.this.byteBuffer.capacity())));
+                        webRtcAudioRecordSamplesReadyCallback.onWebRtcAudioRecordSamplesReady(new AudioSamples(WebRtcAudioRecord.this.audioRecord, Arrays.copyOf(WebRtcAudioRecord.this.byteBuffer.array(), WebRtcAudioRecord.this.byteBuffer.capacity()), 0));
                     }
                 } else {
                     String str = "AudioRecord.read failed: " + read;
@@ -117,36 +117,6 @@ public class WebRtcAudioRecord {
         public void stopThread() {
             Logging.d("WebRtcAudioRecord", "stopThread");
             this.keepAlive = false;
-        }
-    }
-
-    public static class AudioSamples {
-        private final int audioFormat;
-        private final int channelCount;
-        private final byte[] data;
-        private final int sampleRate;
-
-        private AudioSamples(AudioRecord audioRecord, byte[] bArr) {
-            this.audioFormat = audioRecord.getAudioFormat();
-            this.channelCount = audioRecord.getChannelCount();
-            this.sampleRate = audioRecord.getSampleRate();
-            this.data = bArr;
-        }
-
-        public int getAudioFormat() {
-            return this.audioFormat;
-        }
-
-        public int getChannelCount() {
-            return this.channelCount;
-        }
-
-        public byte[] getData() {
-            return this.data;
-        }
-
-        public int getSampleRate() {
-            return this.sampleRate;
         }
     }
 
@@ -182,7 +152,7 @@ public class WebRtcAudioRecord {
         if (z) {
             return;
         }
-        fi7.g("Expected condition to be true");
+        hz6.e("Expected condition to be true");
     }
 
     private int channelCountToConfiguration(int i) {
@@ -244,7 +214,7 @@ public class WebRtcAudioRecord {
                         try {
                             MediaProjection mediaProjection = VideoCapturerDevice.getMediaProjection();
                             if (mediaProjection != null) {
-                                mk1.r();
+                                vk1.r();
                                 AudioPlaybackCaptureConfiguration.Builder builder = new AudioPlaybackCaptureConfiguration.Builder(mediaProjection);
                                 builder.addMatchingUsage(1);
                                 builder.addMatchingUsage(14);
@@ -283,7 +253,7 @@ public class WebRtcAudioRecord {
                 releaseAudioResources(false);
                 return -1;
             }
-            reportWebRtcAudioRecordInitError(de9.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(uh9.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
             return -1;
         }
         return -1;
@@ -428,7 +398,7 @@ public class WebRtcAudioRecord {
         try {
             this.audioRecord.stop();
         } catch (Throwable th) {
-            fa4.g(th, true);
+            cc4.g(th, true);
         }
         releaseAudioResources(false);
         return true;
@@ -444,7 +414,7 @@ public class WebRtcAudioRecord {
             if (minBufferSize != -1 && minBufferSize != -2) {
                 int max = Math.max(minBufferSize << 1, this.deviceByteBuffer.capacity());
                 try {
-                    mk1.r();
+                    vk1.r();
                     AudioPlaybackCaptureConfiguration.Builder builder = new AudioPlaybackCaptureConfiguration.Builder(mediaProjection);
                     builder.addMatchingUsage(1);
                     builder.addMatchingUsage(14);
@@ -478,7 +448,7 @@ public class WebRtcAudioRecord {
                     return;
                 }
             }
-            reportWebRtcAudioRecordInitError(de9.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(uh9.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         }
     }
 
@@ -490,8 +460,42 @@ public class WebRtcAudioRecord {
         try {
             audioRecord.stop();
         } catch (Throwable th) {
-            fa4.g(th, true);
+            cc4.g(th, true);
         }
         releaseAudioResources(true);
+    }
+
+    public static class AudioSamples {
+        private final int audioFormat;
+        private final int channelCount;
+        private final byte[] data;
+        private final int sampleRate;
+
+        private AudioSamples(AudioRecord audioRecord, byte[] bArr) {
+            this.audioFormat = audioRecord.getAudioFormat();
+            this.channelCount = audioRecord.getChannelCount();
+            this.sampleRate = audioRecord.getSampleRate();
+            this.data = bArr;
+        }
+
+        public int getAudioFormat() {
+            return this.audioFormat;
+        }
+
+        public int getChannelCount() {
+            return this.channelCount;
+        }
+
+        public byte[] getData() {
+            return this.data;
+        }
+
+        public int getSampleRate() {
+            return this.sampleRate;
+        }
+
+        public AudioSamples(AudioRecord audioRecord, byte[] bArr, int i) {
+            this(audioRecord, bArr);
+        }
     }
 }

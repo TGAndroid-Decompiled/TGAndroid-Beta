@@ -1,61 +1,43 @@
 package defpackage;
 
-import android.os.ParcelFileDescriptor;
-import androidx.datastore.core.NativeSharedCounter;
-import java.io.File;
-import java.io.IOException;
-public final class og7 extends vw5 implements op4 {
-    public final byte b;
-    public final rg7 c;
+import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.io.Closeable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicBoolean;
+public abstract class og7 implements Closeable, h36 {
+    public static final j5 e = new j5("MobileVisionBase", "", (byte) 2);
+    public final AtomicBoolean a = new AtomicBoolean(false);
+    public final qi6 b;
+    public final CancellationTokenSource c;
+    public final Executor d;
 
-    public og7(rg7 rg7Var, byte b) {
-        super(0);
-        this.b = b;
-        this.c = rg7Var;
+    public og7(qi6 qi6Var, Executor executor) {
+        this.b = qi6Var;
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        this.c = cancellationTokenSource;
+        this.d = executor;
+        qi6Var.b.incrementAndGet();
+        qi6Var.a(executor, fgd.a, cancellationTokenSource.getToken()).addOnFailureListener(z6f.f);
+    }
+
+    public final synchronized Task c(jq5 jq5Var) {
+        if (this.a.get()) {
+            return Tasks.forException(new kg7("This detector is already closed!", 14));
+        } else if (jq5Var.b >= 32 && jq5Var.c >= 32) {
+            return this.b.a(this.d, new lka(this, jq5Var), this.c.getToken());
+        } else {
+            return Tasks.forException(new kg7("InputImage width and height should be at least 32!", 3));
+        }
     }
 
     @Override
-    public final Object invoke() {
-        ParcelFileDescriptor parcelFileDescriptor;
-        byte b = this.b;
-        rg7 rg7Var = this.c;
-        switch (b) {
-            case 0:
-                System.loadLibrary("datastore_shared_counter");
-                String str = rg7Var.e;
-                File file = new File(rg7Var.b.getAbsolutePath() + str);
-                rg7.f(file);
-                try {
-                    parcelFileDescriptor = ParcelFileDescriptor.open(file, 939524096);
-                    try {
-                        int fd = parcelFileDescriptor.getFd();
-                        NativeSharedCounter nativeSharedCounter = hba.b;
-                        if (nativeSharedCounter.nativeTruncateFile(fd) == 0) {
-                            long nativeCreateSharedCounter = nativeSharedCounter.nativeCreateSharedCounter(fd);
-                            if (nativeCreateSharedCounter >= 0) {
-                                hba hbaVar = new hba(nativeCreateSharedCounter);
-                                parcelFileDescriptor.close();
-                                return hbaVar;
-                            }
-                            throw new IOException("Failed to mmap counter file");
-                        }
-                        throw new IOException("Failed to truncate counter file");
-                    } catch (Throwable th) {
-                        th = th;
-                        if (parcelFileDescriptor != null) {
-                            parcelFileDescriptor.close();
-                        }
-                        throw th;
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
-                    parcelFileDescriptor = null;
-                }
-            default:
-                String str2 = rg7Var.d;
-                File file2 = new File(rg7Var.b.getAbsolutePath() + str2);
-                rg7.f(file2);
-                return file2;
+    @es7(y26.ON_DESTROY)
+    public synchronized void close() {
+        if (!this.a.getAndSet(true)) {
+            this.c.cancel();
+            this.b.d(this.d);
         }
     }
 }

@@ -1,71 +1,65 @@
 package defpackage;
 
-import java.util.List;
-public final class v73 implements v63 {
-    public final eb4 a;
-    public final ln8 b;
-    public final ax2 c;
-    public int f;
-    public xma g;
-    public final c5a i;
-    public final c5a l;
-    public final v39 d = new v39(new h73(this, null, (byte) 0), (byte) 5);
-    public final nh7 e = new nh7();
-    public final qx4 h = new qx4((byte) 23);
-    public final ycb j = new ycb(new a73(this, (byte) 1));
-    public final ycb k = new ycb(new a73(this, (byte) 0));
+import android.util.Log;
+public final class v73 extends yfb implements is4 {
+    public final byte a;
+    public Object b;
 
-    public v73(eb4 eb4Var, List list, ln8 ln8Var, ax2 ax2Var) {
-        this.a = eb4Var;
-        this.b = ln8Var;
-        this.c = ax2Var;
-        this.i = new c5a(this, list);
-        this.l = new c5a(ax2Var, new s73(this, (byte) 0), new ai1(this, null, (byte) 5));
+    public v73(l9a l9aVar, zw2 zw2Var) {
+        super(2, zw2Var);
+        this.a = (byte) 2;
+        this.b = l9aVar;
     }
 
     @Override
-    public final Object a(eq4 eq4Var, gw2 gw2Var) {
-        n6c n6cVar = (n6c) gw2Var.getContext().get(ie7.d);
-        if (n6cVar != null) {
-            n6cVar.a(this);
+    public final zw2 create(Object obj, zw2 zw2Var) {
+        switch (this.a) {
+            case 0:
+                v73 v73Var = new v73(2, zw2Var, (byte) 0);
+                v73Var.b = obj;
+                return v73Var;
+            case 1:
+                v73 v73Var2 = new v73(2, zw2Var, (byte) 1);
+                v73Var2.b = obj;
+                return v73Var2;
+            default:
+                return new v73((l9a) this.b, zw2Var);
         }
-        return ppd.c(new n6c(n6cVar, this), new zh1(this, eq4Var, null, (byte) 1), gw2Var);
-    }
-
-    public final java.lang.Object b(defpackage.gw2 r5) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.b(gw2):java.lang.Object");
-    }
-
-    public final kp5 c() {
-        return (kp5) this.k.getValue();
-    }
-
-    public final java.lang.Object d(defpackage.d17 r10, defpackage.gw2 r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.d(d17, gw2):java.lang.Object");
-    }
-
-    public final java.lang.Object e(defpackage.gw2 r5) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.e(gw2):java.lang.Object");
-    }
-
-    public final java.lang.Object f(defpackage.gw2 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.f(gw2):java.lang.Object");
-    }
-
-    public final java.lang.Object g(boolean r10, defpackage.fw2 r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.g(boolean, fw2):java.lang.Object");
     }
 
     @Override
-    public final hk4 getData() {
-        return this.d;
+    public final Object invoke(Object obj, Object obj2) {
+        byte b = this.a;
+        f9c f9cVar = f9c.a;
+        switch (b) {
+            case 0:
+                return ((v73) create((i0b) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+            case 1:
+                ((v73) create((String) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+                return f9cVar;
+            default:
+                return ((v73) create((l9a) obj, (zw2) obj2)).invokeSuspend(f9cVar);
+        }
     }
 
-    public final java.lang.Object h(boolean r11, defpackage.gw2 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.h(boolean, gw2):java.lang.Object");
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        switch (this.a) {
+            case 0:
+                ixe.b(obj);
+                return Boolean.valueOf(!(((i0b) this.b) instanceof sh4));
+            case 1:
+                ixe.b(obj);
+                Log.e("FirebaseSessions", "Error failed to fetch the remote configs: " + ((String) this.b));
+                return f9c.a;
+            default:
+                ixe.b(obj);
+                return (l9a) this.b;
+        }
     }
 
-    public final java.lang.Object i(java.lang.Object r10, boolean r11, defpackage.gw2 r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v73.i(java.lang.Object, boolean, gw2):java.lang.Object");
+    public v73(int i, zw2 zw2Var, byte b) {
+        super(i, zw2Var);
+        this.a = b;
     }
 }

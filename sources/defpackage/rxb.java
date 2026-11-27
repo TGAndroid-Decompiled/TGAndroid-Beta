@@ -1,20 +1,27 @@
 package defpackage;
-public final class rxb {
-    public wb3 a;
-    public long b;
-    public long c;
-    public int d;
-    public int e;
-    public boolean k;
-    public qxb m;
-    public boolean o;
-    public long p;
-    public boolean q;
-    public long[] f = new long[0];
-    public int[] g = new int[0];
-    public int[] h = new int[0];
-    public long[] i = new long[0];
-    public boolean[] j = new boolean[0];
-    public boolean[] l = new boolean[0];
-    public final xu7 n = new xu7();
+
+import org.telegram.ui.ActionBar.e;
+public final class rxb implements Runnable {
+    public final byte a;
+    public final wxb b;
+
+    public rxb(wxb wxbVar, byte b) {
+        this.a = b;
+        this.b = wxbVar;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        wxb wxbVar = this.b;
+        switch (b) {
+            case 0:
+                new xk8((e) wxbVar, 11, false).show();
+                return;
+            default:
+                wxbVar.e.requestFocus();
+                hl.E3(wxbVar.e);
+                return;
+        }
+    }
 }

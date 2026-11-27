@@ -1,9 +1,8 @@
 package defpackage;
 
 import android.view.View;
-public final class f04 {
-    public float a;
-    public float b;
-    public long c;
-    public View d;
+public final class f04 implements View.OnClickListener {
+    @Override
+    public final void onClick(View view) {
+    }
 }

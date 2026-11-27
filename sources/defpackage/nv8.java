@@ -1,30 +1,29 @@
 package defpackage;
 
-import android.graphics.Canvas;
-public final class nv8 extends o39 {
-    public ay2 f3;
-    public aw8 g3;
+import android.animation.ValueAnimator;
+public final class nv8 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final sv8 b;
+
+    public nv8(sv8 sv8Var, byte b) {
+        this.a = b;
+        this.b = sv8Var;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int i;
-        if (this.g3 != null) {
-            canvas2 = canvas;
-            i = canvas2.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
-        } else {
-            canvas2 = canvas;
-            i = -1;
-        }
-        ay2 ay2Var = this.f3;
-        if (ay2Var != null) {
-            ay2Var.accept(canvas2);
-        }
-        super.dispatchDraw(canvas2);
-        aw8 aw8Var = this.g3;
-        if (aw8Var != null) {
-            aw8Var.accept(canvas2);
-            canvas2.restoreToCount(i);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        sv8 sv8Var = this.b;
+        switch (b) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                sv8Var.R = floatValue;
+                sv8Var.r.setUseGyroscope(floatValue);
+                return;
+            default:
+                sv8Var.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                sv8Var.e();
+                return;
         }
     }
 }

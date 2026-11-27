@@ -44,7 +44,7 @@ public class RtpParameters {
             return this.numChannels;
         }
 
-        public Map getParameters() {
+        public Map<String, String> getParameters() {
             return this.parameters;
         }
 
@@ -54,10 +54,11 @@ public class RtpParameters {
     }
 
     public enum DegradationPreference {
-        DISABLED,
+        MAINTAIN_FRAMERATE_AND_RESOLUTION,
         MAINTAIN_FRAMERATE,
         MAINTAIN_RESOLUTION,
-        BALANCED;
+        BALANCED,
+        DISABLED;
 
         public static DegradationPreference fromNativeIndex(int i) {
             return values()[i];
@@ -212,7 +213,7 @@ public class RtpParameters {
 
         public Encoding(String str, boolean z, Double d) {
             this.bitratePriority = 1.0d;
-            this.networkPriority = 0;
+            this.networkPriority = 1;
             this.rid = str;
             this.active = z;
             this.scaleResolutionDownBy = d;

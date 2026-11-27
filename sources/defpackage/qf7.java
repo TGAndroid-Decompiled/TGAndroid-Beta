@@ -1,52 +1,256 @@
 package defpackage;
-public final class qf7 implements jd7 {
-    public final float a;
-    public final float b;
 
-    public qf7(float f, float f2) {
-        boolean z;
-        if (f >= -90.0f && f <= 90.0f && f2 >= -180.0f && f2 <= 180.0f) {
-            z = true;
-        } else {
-            z = false;
+import android.util.Log;
+import java.io.BufferedWriter;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+public final class qf7 {
+    public static final Charset b = Charset.forName("UTF-8");
+    public final gd4 a;
+
+    public qf7(gd4 gd4Var) {
+        this.a = gd4Var;
+    }
+
+    public static HashMap a(String str) {
+        JSONObject jSONObject = new JSONObject(str);
+        HashMap hashMap = new HashMap();
+        Iterator<String> keys = jSONObject.keys();
+        while (keys.hasNext()) {
+            String next = keys.next();
+            String str2 = null;
+            if (!jSONObject.isNull(next)) {
+                str2 = jSONObject.optString(next, null);
+            }
+            hashMap.put(next, str2);
         }
-        gre.e("Invalid latitude or longitude", z);
-        this.a = f;
-        this.b = f2;
+        return hashMap;
     }
 
-    @Override
-    public final fm4 a() {
-        return null;
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && qf7.class == obj.getClass()) {
-            qf7 qf7Var = (qf7) obj;
-            if (this.a == qf7Var.a && this.b == qf7Var.b) {
-                return true;
+    public static ArrayList b(String str) {
+        JSONArray jSONArray = new JSONObject(str).getJSONArray("rolloutsState");
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < jSONArray.length(); i++) {
+            String string = jSONArray.getString(i);
+            try {
+                arrayList.add(ym9.a(string));
+            } catch (Exception e) {
+                Log.w("FirebaseCrashlytics", "Failed de-serializing rollouts state. " + string, e);
             }
         }
-        return false;
+        return arrayList;
     }
 
-    public final int hashCode() {
-        return Float.valueOf(this.b).hashCode() + ((Float.valueOf(this.a).hashCode() + 527) * 31);
+    public static String e(List list) {
+        HashMap hashMap = new HashMap();
+        JSONArray jSONArray = new JSONArray();
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                jSONArray.put(new JSONObject(ym9.a.O(list.get(i))));
+            } catch (JSONException e) {
+                Log.w("FirebaseCrashlytics", "Exception parsing rollout assignment!", e);
+            }
+        }
+        hashMap.put("rolloutsState", jSONArray);
+        return new JSONObject(hashMap).toString();
     }
 
-    public final String toString() {
-        return "xyz: latitude=" + this.a + ", longitude=" + this.b;
+    public static void f(File file) {
+        if (file.exists() && file.delete()) {
+            Log.i("FirebaseCrashlytics", "Deleted corrupt file: " + file.getAbsolutePath(), null);
+        }
     }
 
-    @Override
-    public final void b(hr6 hr6Var) {
+    public static void g(File file, String str) {
+        if (file.exists() && file.delete()) {
+            Log.i("FirebaseCrashlytics", qd4.q("Deleted corrupt file: ", file.getAbsolutePath(), "\nReason: ", str), null);
+        }
+    }
+
+    public final Map c(String str, boolean z) {
+        File b2;
+        FileInputStream fileInputStream;
+        Exception e;
+        gd4 gd4Var = this.a;
+        if (z) {
+            b2 = gd4Var.b(str, "internal-keys");
+        } else {
+            b2 = gd4Var.b(str, "keys");
+        }
+        if (b2.exists() && b2.length() != 0) {
+            FileInputStream fileInputStream2 = null;
+            try {
+                fileInputStream = new FileInputStream(b2);
+                try {
+                    try {
+                        HashMap a = a(jn2.l(fileInputStream));
+                        jn2.b(fileInputStream, "Failed to close user metadata file.");
+                        return a;
+                    } catch (Exception e2) {
+                        e = e2;
+                        Log.w("FirebaseCrashlytics", "Error deserializing user metadata.", e);
+                        f(b2);
+                        jn2.b(fileInputStream, "Failed to close user metadata file.");
+                        return Collections.EMPTY_MAP;
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    fileInputStream2 = fileInputStream;
+                    jn2.b(fileInputStream2, "Failed to close user metadata file.");
+                    throw th;
+                }
+            } catch (Exception e3) {
+                fileInputStream = null;
+                e = e3;
+            } catch (Throwable th2) {
+                th = th2;
+                jn2.b(fileInputStream2, "Failed to close user metadata file.");
+                throw th;
+            }
+        } else {
+            g(b2, "The file has a length of zero for session: " + str);
+            return Collections.EMPTY_MAP;
+        }
+    }
+
+    public final String d(String str) {
+        FileInputStream fileInputStream;
+        String str2;
+        File b2 = this.a.b(str, "user-data");
+        Closeable closeable = null;
+        if (b2.exists()) {
+            ?? r2 = (b2.length() > 0L ? 1 : (b2.length() == 0L ? 0 : -1));
+            try {
+                if (r2 != 0) {
+                    try {
+                        fileInputStream = new FileInputStream(b2);
+                        try {
+                            JSONObject jSONObject = new JSONObject(jn2.l(fileInputStream));
+                            if (!jSONObject.isNull("userId")) {
+                                str2 = jSONObject.optString("userId", null);
+                            } else {
+                                str2 = null;
+                            }
+                            String str3 = "Loaded userId " + str2 + " for session " + str;
+                            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                                Log.d("FirebaseCrashlytics", str3, null);
+                            }
+                            jn2.b(fileInputStream, "Failed to close user metadata file.");
+                            return str2;
+                        } catch (Exception e) {
+                            e = e;
+                            Log.w("FirebaseCrashlytics", "Error deserializing user metadata.", e);
+                            f(b2);
+                            jn2.b(fileInputStream, "Failed to close user metadata file.");
+                            return null;
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        fileInputStream = null;
+                    } catch (Throwable th) {
+                        th = th;
+                        jn2.b(closeable, "Failed to close user metadata file.");
+                        throw th;
+                    }
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                closeable = r2;
+            }
+        }
+        String i = c00.i("No userId set for session ", str);
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", i, null);
+        }
+        f(b2);
+        return null;
+    }
+
+    public final void h(String str, Map map, boolean z) {
+        File b2;
+        BufferedWriter bufferedWriter;
+        Exception e;
+        gd4 gd4Var = this.a;
+        if (z) {
+            b2 = gd4Var.b(str, "internal-keys");
+        } else {
+            b2 = gd4Var.b(str, "keys");
+        }
+        BufferedWriter bufferedWriter2 = null;
+        try {
+            String jSONObject = new JSONObject(map).toString();
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b2), b));
+            try {
+                try {
+                    bufferedWriter.write(jSONObject);
+                    bufferedWriter.flush();
+                } catch (Exception e2) {
+                    e = e2;
+                    Log.w("FirebaseCrashlytics", "Error serializing key/value metadata.", e);
+                    f(b2);
+                    jn2.b(bufferedWriter, "Failed to close key/value metadata file.");
+                }
+            } catch (Throwable th) {
+                th = th;
+                bufferedWriter2 = bufferedWriter;
+                jn2.b(bufferedWriter2, "Failed to close key/value metadata file.");
+                throw th;
+            }
+        } catch (Exception e3) {
+            bufferedWriter = null;
+            e = e3;
+        } catch (Throwable th2) {
+            th = th2;
+            jn2.b(bufferedWriter2, "Failed to close key/value metadata file.");
+            throw th;
+        }
+        jn2.b(bufferedWriter, "Failed to close key/value metadata file.");
+    }
+
+    public final void i(String str, String str2) {
+        String obj;
+        BufferedWriter bufferedWriter;
+        File b2 = this.a.b(str, "user-data");
+        BufferedWriter bufferedWriter2 = null;
+        try {
+            try {
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("userId", str2);
+                obj = jSONObject.toString();
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b2), b));
+            } catch (Throwable th) {
+                th = th;
+            }
+        } catch (Exception e) {
+            e = e;
+        }
+        try {
+            bufferedWriter.write(obj);
+            bufferedWriter.flush();
+            jn2.b(bufferedWriter, "Failed to close user metadata file.");
+        } catch (Exception e2) {
+            e = e2;
+            bufferedWriter2 = bufferedWriter;
+            Log.w("FirebaseCrashlytics", "Error serializing user metadata.", e);
+            jn2.b(bufferedWriter2, "Failed to close user metadata file.");
+        } catch (Throwable th2) {
+            th = th2;
+            bufferedWriter2 = bufferedWriter;
+            jn2.b(bufferedWriter2, "Failed to close user metadata file.");
+            throw th;
+        }
     }
 }

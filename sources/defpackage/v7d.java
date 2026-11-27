@@ -1,13 +1,12 @@
 package defpackage;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.regex.Pattern;
-public abstract class v7d {
-    public static final wn a = new Object();
+import android.app.AlertDialog;
+public final class v7d extends p3f {
+    public final AlertDialog a;
+    public final bva b;
 
-    static {
-        Charset charset = StandardCharsets.UTF_8;
-        Pattern pattern = id1.a;
+    public v7d(bva bvaVar, AlertDialog alertDialog) {
+        this.a = alertDialog;
+        this.b = bvaVar;
     }
 }

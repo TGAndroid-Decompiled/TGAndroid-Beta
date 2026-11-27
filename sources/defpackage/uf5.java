@@ -1,67 +1,127 @@
 package defpackage;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.os.Build;
+import j$.time.ZoneOffset;
+import j$.time.format.DateTimeFormatter;
+import j$.util.DateRetargetClass;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 public final class uf5 {
-    public final int a;
-    public final int b;
-    public final String c;
-    public final String d;
-    public final String e;
-    public final String f;
+    public static final zj8 b = new zj8("fire-global");
+    public static final zj8 c = new zj8("fire-count");
+    public static final zj8 d = new zj8("last-used-date");
+    public final av5 a;
 
-    public uf5(int i, String str, int i2, String str2, String str3, String str4) {
-        this.a = i;
-        this.b = i2;
-        this.c = str;
-        this.d = str2;
-        this.e = str3;
-        this.f = str4;
+    public uf5(Context context, String str) {
+        this.a = new av5(context, "FirebaseHeartBeat".concat(str));
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public static String c(long j) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            return DateRetargetClass.toInstant(new Date(j)).atOffset(ZoneOffset.UTC).toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE);
         }
-        if (obj != null && uf5.class == obj.getClass()) {
-            uf5 uf5Var = (uf5) obj;
-            if (this.a == uf5Var.a && this.b == uf5Var.b && TextUtils.equals(this.c, uf5Var.c) && TextUtils.equals(this.d, uf5Var.d) && TextUtils.equals(this.e, uf5Var.e) && TextUtils.equals(this.f, uf5Var.f)) {
-                return true;
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.UK).format(new Date(j));
+    }
+
+    public static zj8 d(rj7 rj7Var, String str) {
+        for (Map.Entry entry : rj7Var.a().entrySet()) {
+            if (entry.getValue() instanceof Set) {
+                for (String str2 : (Set) entry.getValue()) {
+                    if (str.equals(str2)) {
+                        String str3 = ((zj8) entry.getKey()).a;
+                        str3.getClass();
+                        return new zj8(str3);
+                    }
+                }
+                continue;
             }
         }
-        return false;
+        return null;
     }
 
-    public final int hashCode() {
-        int i;
-        int i2;
-        int i3;
-        int i4 = ((this.a * 31) + this.b) * 31;
-        int i5 = 0;
-        String str = this.c;
-        if (str != null) {
-            i = str.hashCode();
-        } else {
-            i = 0;
+    public static void f(rj7 rj7Var, String str) {
+        zj8 d2 = d(rj7Var, str);
+        if (d2 == null) {
+            return;
         }
-        int i6 = (i4 + i) * 31;
-        String str2 = this.d;
-        if (str2 != null) {
-            i2 = str2.hashCode();
-        } else {
-            i2 = 0;
+        HashSet hashSet = new HashSet((Collection) eqe.a(rj7Var, d2, new HashSet()));
+        hashSet.remove(str);
+        if (hashSet.isEmpty()) {
+            rj7Var.b();
+            rj7Var.a.remove(d2);
+            return;
         }
-        int i7 = (i6 + i2) * 31;
-        String str3 = this.e;
-        if (str3 != null) {
-            i3 = str3.hashCode();
-        } else {
-            i3 = 0;
+        rj7Var.d(d2, hashSet);
+    }
+
+    public final synchronized void a() {
+        this.a.a(new nx2(this));
+    }
+
+    public final synchronized ArrayList b() {
+        ArrayList arrayList;
+        arrayList = new ArrayList();
+        String c2 = c(System.currentTimeMillis());
+        for (Map.Entry entry : ((Map) ytd.a(new u73(this.a, null, (byte) 1))).entrySet()) {
+            if (entry.getValue() instanceof Set) {
+                HashSet hashSet = new HashSet((Set) entry.getValue());
+                hashSet.remove(c2);
+                if (!hashSet.isEmpty()) {
+                    arrayList.add(new w90(((zj8) entry.getKey()).a, new ArrayList(hashSet)));
+                }
+            }
         }
-        int i8 = (i7 + i3) * 31;
-        String str4 = this.f;
-        if (str4 != null) {
-            i5 = str4.hashCode();
+        j(System.currentTimeMillis());
+        return arrayList;
+    }
+
+    public final synchronized void e() {
+        this.a.a(new a2(this, c(System.currentTimeMillis())));
+    }
+
+    public final synchronized boolean g(long j) {
+        return h(b, j);
+    }
+
+    public final synchronized boolean h(zj8 zj8Var, long j) {
+        if (c(((Long) this.a.b(zj8Var, -1L)).longValue()).equals(c(j))) {
+            return false;
         }
-        return i8 + i5;
+        rj7 rj7Var = (rj7) ytd.a(new yu5(this.a, zj8Var, Long.valueOf(j), null, (byte) 1));
+        return true;
+    }
+
+    public final synchronized void i(long j, String str) {
+        try {
+            try {
+                String c2 = c(j);
+                str.getClass();
+                zj8 zj8Var = new zj8(str);
+                this.a.a(new m13(this, c2, str, zj8Var, (byte) 2));
+            } catch (Throwable th) {
+                th = th;
+                throw th;
+            }
+        } catch (Throwable th2) {
+            th = th2;
+            throw th;
+        }
+    }
+
+    public final synchronized void j(final long j) {
+        this.a.a(new ur4() {
+            @Override
+            public final Object invoke(Object obj) {
+                ((rj7) obj).c(uf5.b, Long.valueOf(j));
+                return null;
+            }
+        });
     }
 }

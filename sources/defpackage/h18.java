@@ -1,17 +1,19 @@
 package defpackage;
-public final class h18 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final Object c;
 
-    public h18(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class h18 extends TwoStepVerificationActivity {
+    public final c34 e0;
+
+    public h18(c34 c34Var) {
+        this.e0 = c34Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.h18.run():void");
+    public final void onFragmentDestroy() {
+        c34 c34Var = this.e0;
+        if ((((rj4) c34Var.c) != null || ((g25) c34Var.d) != null) && !c34Var.b) {
+            c34Var.f();
+        }
+        super.onFragmentDestroy();
     }
 }

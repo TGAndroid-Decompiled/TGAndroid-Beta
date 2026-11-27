@@ -1,55 +1,125 @@
 package defpackage;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class wk0 implements View.OnLayoutChangeListener {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
+import org.telegram.messenger.Utilities;
+public final class wk0 {
+    public uo3 a;
+    public final boolean b;
+    public final View c;
+    public final a81 d;
+    public Bitmap[] e;
+    public Bitmap[] f;
+    public Bitmap[] g;
+    public Canvas[] h;
+    public Canvas[] i;
+    public Canvas[] j;
+    public boolean k;
+    public float m;
+    public boolean n;
+    public boolean o;
+    public int q;
+    public int r;
+    public int s;
+    public boolean t;
+    public float u;
+    public final Paint x;
+    public final vnb y;
+    public boolean l = true;
+    public boolean p = true;
+    public vk0 v = new vk0(this);
+    public final Paint w = new Paint(2);
 
-    public wk0(gk4 gk4Var) {
-        this.a = (byte) 1;
-        this.d = gk4Var;
-        this.b = new Rect();
-        this.c = new Rect();
+    public wk0(View view, a81 a81Var, vnb vnbVar) {
+        Paint paint = new Paint();
+        this.x = paint;
+        this.b = true;
+        this.c = view;
+        this.d = a81Var;
+        this.y = vnbVar;
+        paint.setColor(-16777216);
     }
 
-    @Override
-    public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        byte b = this.a;
-        Object obj = this.d;
-        Object obj2 = this.c;
-        Object obj3 = this.b;
-        switch (b) {
-            case 0:
-                ((av9) obj3).setProgress(xk0.m1);
-                ((av9) obj2).setProgress(xk0.n1);
-                ((av9) obj).setProgress(xk0.o1);
-                return;
-            default:
-                Rect rect = (Rect) obj3;
-                rect.set(i, i2, i3, i4);
-                Rect rect2 = (Rect) obj2;
-                rect2.set(i5, i6, i7, i8);
-                gk4 gk4Var = (gk4) obj;
-                ek4 ek4Var = gk4Var.b;
-                if (ek4Var.e() && !rect.equals(rect2)) {
-                    gk4Var.h = true;
-                    if (ek4Var.e()) {
-                        gk4Var.c();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void a() {
+        Bitmap[] bitmapArr = this.g;
+        if (bitmapArr == null) {
+            bitmapArr = new Bitmap[2];
+            this.g = bitmapArr;
+            this.h = new Canvas[2];
         }
-    }
-
-    public wk0(av9 av9Var, av9 av9Var2, av9 av9Var3) {
-        this.a = (byte) 0;
-        this.b = av9Var;
-        this.c = av9Var2;
-        this.d = av9Var3;
+        if (this.e == null) {
+            this.e = new Bitmap[2];
+            this.j = new Canvas[2];
+        }
+        this.v.a = true;
+        this.v = new vk0(this);
+        for (int i = 0; i < 2; i++) {
+            a81 a81Var = this.d;
+            int measuredHeight = a81Var.getMeasuredHeight();
+            int measuredWidth = a81Var.getMeasuredWidth();
+            int L = hl.L(200.0f) + hl.m;
+            this.s = L;
+            if (i != 0) {
+                L = measuredHeight;
+            }
+            Bitmap bitmap = bitmapArr[i];
+            if (bitmap == null || bitmap.getHeight() != L || bitmapArr[i].getWidth() != a81Var.getMeasuredWidth()) {
+                uo3 uo3Var = this.a;
+                if (uo3Var != null) {
+                    uo3Var.cleanupQueue();
+                }
+                Bitmap[] bitmapArr2 = this.e;
+                int i2 = (int) (measuredWidth / 15.0f);
+                Bitmap.Config config = Bitmap.Config.ARGB_8888;
+                bitmapArr2[i] = Bitmap.createBitmap(i2, (int) (L / 15.0f), config);
+                vnb vnbVar = this.y;
+                if (i == 1) {
+                    this.e[i].eraseColor(aob.v0(aob.d6, vnbVar));
+                }
+                this.j[i] = new Canvas(this.e[i]);
+                if (i == 0) {
+                    measuredHeight = this.s;
+                }
+                this.g[i] = Bitmap.createBitmap(i2, (int) (measuredHeight / 15.0f), config);
+                this.h[i] = new Canvas(this.g[i]);
+                this.h[i].scale(this.g[i].getWidth() / this.e[i].getWidth(), this.g[i].getHeight() / this.e[i].getHeight());
+                this.j[i].save();
+                this.j[i].scale(0.06666667f, 0.06666667f, 0.0f, 0.0f);
+                View view = this.c;
+                Drawable background = view.getBackground();
+                if (background == null) {
+                    if (vnbVar instanceof xu1) {
+                        background = ((xu1) vnbVar).l();
+                    } else {
+                        background = aob.s0();
+                    }
+                }
+                view.setTag(67108867, Integer.valueOf(i));
+                if (i == 0) {
+                    this.j[i].translate(0.0f, -this.u);
+                    view.draw(this.j[i]);
+                }
+                if (i == 1) {
+                    Rect bounds = background.getBounds();
+                    background.setBounds(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                    background.draw(this.j[i]);
+                    background.setBounds(bounds);
+                    view.draw(this.j[i]);
+                }
+                view.setTag(67108867, null);
+                this.j[i].restore();
+                Utilities.stackBlurBitmap(this.e[i], 15);
+                Paint paint = this.w;
+                paint.setAlpha(255);
+                if (i == 1) {
+                    this.g[i].eraseColor(aob.v0(aob.d6, vnbVar));
+                }
+                this.h[i].drawBitmap(this.e[i], 0.0f, 0.0f, paint);
+            }
+        }
     }
 }

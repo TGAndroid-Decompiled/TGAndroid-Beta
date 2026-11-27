@@ -20,9 +20,9 @@ public class SequenceParameterSetRbsp {
     public SequenceParameterSetRbsp(InputStream inputStream) {
         int i;
         ?? obj = new Object();
-        nj1 nj1Var = new nj1((byte) 0);
-        nj1Var.b = new char[50];
-        obj.e = nj1Var;
+        wj1 wj1Var = new wj1((byte) 0);
+        wj1Var.b = new char[50];
+        obj.e = wj1Var;
         obj.a = inputStream;
         obj.b = inputStream.read();
         obj.c = inputStream.read();
@@ -95,22 +95,22 @@ public class SequenceParameterSetRbsp {
         obj.b("strong_intra_smoothing_enabled_flag");
     }
 
-    private void parse_short_term_ref_pic_sets(int i, h51 h51Var) {
+    private void parse_short_term_ref_pic_sets(int i, p51 p51Var) {
         boolean z;
         boolean z2;
         long[] jArr = new long[i];
         for (int i2 = 0; i2 < i; i2++) {
-            if (i2 != 0 && h51Var.a() == 1) {
-                h51Var.b("delta_rps_sign");
-                h51Var.e("abs_delta_rps_minus1");
+            if (i2 != 0 && p51Var.a() == 1) {
+                p51Var.b("delta_rps_sign");
+                p51Var.e("abs_delta_rps_minus1");
                 jArr[i2] = 0;
                 for (int i3 = 0; i3 <= jArr[i2 - 1]; i3++) {
-                    if (h51Var.a() == 1) {
+                    if (p51Var.a() == 1) {
                         z = true;
                     } else {
                         z = false;
                     }
-                    if (!z && h51Var.a() == 1) {
+                    if (!z && p51Var.a() == 1) {
                         z2 = true;
                     } else {
                         z2 = false;
@@ -120,49 +120,49 @@ public class SequenceParameterSetRbsp {
                     }
                 }
             } else {
-                long e = h51Var.e("num_positive_pics") + h51Var.e("num_negative_pics");
+                long e = p51Var.e("num_positive_pics") + p51Var.e("num_negative_pics");
                 jArr[i2] = e;
                 for (long j = 0; j < e; j++) {
-                    h51Var.e("delta_poc_s0/1_minus1");
-                    h51Var.b("used_by_curr_pic_s0/1_flag");
+                    p51Var.e("delta_poc_s0/1_minus1");
+                    p51Var.b("used_by_curr_pic_s0/1_flag");
                 }
             }
         }
     }
 
-    private void profile_tier_level(int i, h51 h51Var) {
+    private void profile_tier_level(int i, p51 p51Var) {
         boolean[] zArr;
         long[] jArr;
         int[] iArr;
         boolean[] zArr2;
         int i2 = i;
-        long d = h51Var.d(2, "general_profile_space");
-        InputStream inputStream = h51Var.a;
+        long d = p51Var.d(2, "general_profile_space");
+        InputStream inputStream = p51Var.a;
         this.general_profile_space = (int) d;
-        this.general_tier_flag = h51Var.b("general_tier_flag");
-        this.general_profile_idc = (int) h51Var.d(5, "general_profile_idc");
-        this.general_profile_compatibility_flags = h51Var.c(32);
-        this.general_constraint_indicator_flags = h51Var.c(48);
-        if (h51Var.d > 0) {
-            h51Var.b = h51Var.c;
-            h51Var.c = inputStream.read();
-            h51Var.d = 0;
+        this.general_tier_flag = p51Var.b("general_tier_flag");
+        this.general_profile_idc = (int) p51Var.d(5, "general_profile_idc");
+        this.general_profile_compatibility_flags = p51Var.c(32);
+        this.general_constraint_indicator_flags = p51Var.c(48);
+        if (p51Var.d > 0) {
+            p51Var.b = p51Var.c;
+            p51Var.c = inputStream.read();
+            p51Var.d = 0;
         }
-        int i3 = h51Var.b;
-        h51Var.b = h51Var.c;
-        h51Var.c = inputStream.read();
-        h51Var.d = 0;
+        int i3 = p51Var.b;
+        p51Var.b = p51Var.c;
+        p51Var.c = inputStream.read();
+        p51Var.d = 0;
         this.general_level_idc = (byte) i3;
         boolean[] zArr3 = new boolean[i2];
         boolean[] zArr4 = new boolean[i2];
         for (int i4 = 0; i4 < i2; i4++) {
-            zArr3[i4] = h51Var.b("sub_layer_profile_present_flag[" + i4 + "]");
-            zArr4[i4] = h51Var.b("sub_layer_level_present_flag[" + i4 + "]");
+            zArr3[i4] = p51Var.b("sub_layer_profile_present_flag[" + i4 + "]");
+            zArr4[i4] = p51Var.b("sub_layer_level_present_flag[" + i4 + "]");
         }
         if (i2 > 0) {
             int[] iArr2 = new int[8];
             for (int i5 = i2; i5 < 8; i5++) {
-                iArr2[i5] = (int) h51Var.d(2, "reserved_zero_2bits[" + i5 + "]");
+                iArr2[i5] = (int) p51Var.d(2, "reserved_zero_2bits[" + i5 + "]");
             }
         }
         int[] iArr3 = new int[i2];
@@ -181,17 +181,17 @@ public class SequenceParameterSetRbsp {
                 zArr = zArr3;
                 jArr = jArr2;
                 iArr = iArr5;
-                iArr3[i6] = (int) h51Var.d(2, "sub_layer_profile_space[" + i6 + "]");
-                zArr5[i6] = h51Var.b("sub_layer_tier_flag[" + i6 + "]");
-                iArr4[i6] = (int) h51Var.d(5, "sub_layer_profile_idc[" + i6 + "]");
+                iArr3[i6] = (int) p51Var.d(2, "sub_layer_profile_space[" + i6 + "]");
+                zArr5[i6] = p51Var.b("sub_layer_tier_flag[" + i6 + "]");
+                iArr4[i6] = (int) p51Var.d(5, "sub_layer_profile_idc[" + i6 + "]");
                 for (int i7 = 0; i7 < 32; i7++) {
-                    zArr6[i6][i7] = h51Var.b("sub_layer_profile_compatibility_flag[" + i6 + "][" + i7 + "]");
+                    zArr6[i6][i7] = p51Var.b("sub_layer_profile_compatibility_flag[" + i6 + "][" + i7 + "]");
                 }
-                zArr7[i6] = h51Var.b("sub_layer_progressive_source_flag[" + i6 + "]");
-                zArr8[i6] = h51Var.b("sub_layer_interlaced_source_flag[" + i6 + "]");
-                zArr9[i6] = h51Var.b("sub_layer_non_packed_constraint_flag[" + i6 + "]");
-                zArr10[i6] = h51Var.b("sub_layer_frame_only_constraint_flag[" + i6 + "]");
-                jArr[i6] = h51Var.c(44);
+                zArr7[i6] = p51Var.b("sub_layer_progressive_source_flag[" + i6 + "]");
+                zArr8[i6] = p51Var.b("sub_layer_interlaced_source_flag[" + i6 + "]");
+                zArr9[i6] = p51Var.b("sub_layer_non_packed_constraint_flag[" + i6 + "]");
+                zArr10[i6] = p51Var.b("sub_layer_frame_only_constraint_flag[" + i6 + "]");
+                jArr[i6] = p51Var.c(44);
             } else {
                 zArr = zArr3;
                 jArr = jArr2;
@@ -199,7 +199,7 @@ public class SequenceParameterSetRbsp {
             }
             if (zArr4[i6]) {
                 zArr2 = zArr10;
-                iArr[i6] = (int) h51Var.d(8, "sub_layer_level_idc[" + i6 + "]");
+                iArr[i6] = (int) p51Var.d(8, "sub_layer_level_idc[" + i6 + "]");
             } else {
                 zArr2 = zArr10;
             }
@@ -212,7 +212,7 @@ public class SequenceParameterSetRbsp {
         }
     }
 
-    private static void skip_scaling_list_data(h51 h51Var) {
+    private static void skip_scaling_list_data(p51 p51Var) {
         int i;
         for (int i2 = 0; i2 < 4; i2++) {
             int i3 = 0;
@@ -223,15 +223,15 @@ public class SequenceParameterSetRbsp {
                     i = 6;
                 }
                 if (i3 < i) {
-                    if (h51Var.a() == 1) {
-                        h51Var.e("scaling_list_pred_matrix_id_delta");
+                    if (p51Var.a() == 1) {
+                        p51Var.e("scaling_list_pred_matrix_id_delta");
                     } else {
                         int min = Math.min(64, 1 << ((i2 << 1) + 4));
                         if (i2 > 1) {
-                            h51Var.e("scaling_list_dc_coef_minus8");
+                            p51Var.e("scaling_list_dc_coef_minus8");
                         }
                         for (int i4 = 0; i4 < min; i4++) {
-                            h51Var.e("scaling_list_delta_coef");
+                            p51Var.e("scaling_list_delta_coef");
                         }
                     }
                     i3++;

@@ -1,126 +1,91 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import java.util.concurrent.CountDownLatch;
-public final class pk1 implements Runnable {
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.TextView;
+import java.util.ArrayList;
+public final class pk1 implements View.OnLayoutChangeListener {
     public final byte a;
-    public final oy8 b;
+    public final Object b;
 
-    public pk1(oy8 oy8Var, byte b) {
+    public pk1(Object obj, byte b) {
         this.a = b;
-        this.b = oy8Var;
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
-        int i;
-        Bitmap.Config config;
-        Bitmap createBitmap;
-        boolean z;
+    public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        TextView textView;
+        TextView textView2;
         byte b = this.a;
-        oy8 oy8Var = this.b;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                oy8Var.C(false);
+                qk1 qk1Var = (qk1) obj;
+                qk1Var.c.setPivotX(textView.getMeasuredWidth() * 0.7f);
+                qk1Var.b.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             case 1:
-                oy8Var.getClass();
-                try {
-                    dk0 dk0Var = oy8Var.C0;
-                    if (dk0Var != null) {
-                        dk0Var.b();
-                    }
-                } catch (Throwable unused) {
-                }
-                gl.c3(oy8Var.A0);
+                view.post((la7) obj);
                 return;
             case 2:
-                oy8Var.Q = null;
-                oy8Var.k();
+                bx4 bx4Var = (bx4) obj;
+                if (i4 - i2 != i8 - i6) {
+                    hl.c3(new qw4(bx4Var, (byte) 2));
+                    return;
+                }
                 return;
             case 3:
-                oy8Var.Y = true;
-                if ((!oy8Var.l0 && oy8Var.X) || (oy8Var.R == null && oy8Var.S != null)) {
-                    oy8Var.s();
+                fu5 fu5Var = (fu5) obj;
+                if (fu5Var.E()) {
+                    fu5Var.P();
+                    return;
                 }
-                oy8Var.k();
                 return;
             case 4:
-                if (!oy8Var.m0 && !oy8Var.W && oy8Var.f() && oy8Var.P == null) {
-                    oy8Var.y0 = true;
-                    if (oy8.U0 == null) {
-                        oy8.U0 = new do3("cache generator queue", true);
-                    }
-                    dk0.A++;
-                    do3 do3Var = oy8.U0;
-                    pk1 pk1Var = new pk1(oy8Var, (byte) 1);
-                    oy8Var.P = pk1Var;
-                    do3Var.postRunnable(pk1Var);
-                    return;
-                }
+                ((rx5) obj).d();
                 return;
             case 5:
-                if (oy8Var.P != null) {
-                    dk0.c();
-                    oy8Var.P = null;
-                }
-                oy8Var.y0 = false;
-                oy8Var.k();
-                Runnable runnable = oy8Var.B0;
-                if (runnable != null) {
-                    runnable.run();
-                    oy8Var.B0 = null;
-                    return;
-                }
+                ((on9) obj).a0();
                 return;
             case 6:
-                try {
-                    i = oy8Var.e();
-                    if (i == 1) {
-                        if (oy8Var.T != null) {
-                            createBitmap = oy8Var.T;
-                            z = true;
-                        } else {
-                            if (oy8Var.H) {
-                                config = Bitmap.Config.ALPHA_8;
-                            } else {
-                                config = Bitmap.Config.ARGB_8888;
-                            }
-                            createBitmap = Bitmap.createBitmap(oy8Var.b, oy8Var.c, config);
-                            oy8Var.T = createBitmap;
-                            z = false;
-                        }
-                        int w = oy8Var.w(createBitmap, z);
-                        if (w == 1) {
-                            oy8Var.S = createBitmap;
-                            oy8Var.d();
-                        }
-                        i = w;
-                    }
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    i = 2;
-                }
-                if (i == 1) {
-                    oy8Var.H0 = 0;
-                    gl.c3(oy8Var.x0);
-                } else if (i == 2) {
-                    gl.d3(oy8Var.w0, oy8Var.H0);
-                    oy8Var.H0 = Math.min((Math.max(oy8Var.H0, 2) * 3) / 2, 2000);
-                } else if (i == 3) {
-                    gl.c3(oy8Var.w0);
-                }
-                CountDownLatch countDownLatch = oy8Var.V;
-                if (countDownLatch != null) {
-                    countDownLatch.countDown();
+                ((tba) obj).o0();
+                return;
+            case 7:
+                u3b u3bVar = (u3b) obj;
+                c19 c19Var = u3bVar.h;
+                if (c19Var != null && c19Var.getLayout() != null) {
+                    u3bVar.G = c19Var.getLayout().getLineWidth(0);
                     return;
                 }
                 return;
-            case 7:
-                oy8Var.h();
+            case 8:
+                wsc wscVar = (wsc) obj;
+                if (i3 - i != i7 - i5 || i4 - i2 != i8 - i6) {
+                    for (vsc vscVar : wscVar.f.values()) {
+                        vscVar.K = false;
+                    }
+                    wscVar.f0();
+                    return;
+                }
                 return;
             default:
-                oy8Var.start();
+                atc atcVar = (atc) obj;
+                if (i4 - i2 < i8 - i6) {
+                    ArrayList arrayList = atcVar.w;
+                    int size = arrayList.size();
+                    int i9 = 0;
+                    while (i9 < size) {
+                        Object obj2 = arrayList.get(i9);
+                        i9++;
+                        zuc zucVar = (zuc) obj2;
+                        if (zucVar.hasFocus()) {
+                            zucVar.requestRectangleOnScreen(new Rect(0, 0, zucVar.getWidth(), zucVar.getHeight()), true);
+                            return;
+                        }
+                    }
+                    return;
+                }
                 return;
         }
     }

@@ -1,109 +1,64 @@
 package defpackage;
-public abstract class g44 implements Runnable, Comparable, no3 {
-    private volatile Object _heap;
-    public long a;
-    public int b = -1;
 
-    public g44(long j) {
-        this.a = j;
+import android.content.Context;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
+public abstract class g44 extends FrameLayout {
+    public final Paint a;
+    public final Paint b;
+    public final Paint c;
+    public int d;
+    public final mm e;
+    public boolean f;
+    public final h44 h;
+
+    public g44(h44 h44Var, Context context) {
+        super(context);
+        this.h = h44Var;
+        Paint paint = new Paint(1);
+        this.a = paint;
+        Paint paint2 = new Paint(1);
+        this.b = paint2;
+        Paint paint3 = new Paint(1);
+        this.c = paint3;
+        this.e = new mm(this, 0L, 250L, k43.h);
+        this.f = true;
+        setWillNotDraw(false);
+        paint.setColor(-1);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(hl.L(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setPathEffect(new DashPathEffect(new float[]{hl.L(10.0f), hl.L(10.0f)}, 0.5f));
+        paint.setShadowLayer(hl.N(0.75f), 0.0f, 0.0f, 1342177280);
+        paint2.setColor(-15033089);
+        paint3.setColor(-1);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(hl.N(2.66f));
+        paint3.setShadowLayer(hl.N(0.75f), 0.0f, 0.0f, 1342177280);
     }
 
-    public final enb b() {
-        Object obj = this._heap;
-        if (obj instanceof enb) {
-            return (enb) obj;
-        }
-        return null;
+    public abstract int a(float f, float f2);
+
+    public final void b() {
+        h44 h44Var = this.h;
+        a69 selectionBounds = h44Var.getSelectionBounds();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
+        layoutParams.leftMargin = (int) selectionBounds.a;
+        layoutParams.topMargin = (int) selectionBounds.b;
+        layoutParams.width = (int) selectionBounds.c;
+        layoutParams.height = (int) selectionBounds.d;
+        setLayoutParams(layoutParams);
+        setRotation(h44Var.getRotation());
     }
 
-    public final int c(long j, h44 h44Var, i44 i44Var) {
-        g44 g44Var;
-        boolean z;
-        synchronized (this) {
-            if (this._heap == z8d.a) {
-                return 2;
-            }
-            synchronized (h44Var) {
-                g44[] g44VarArr = h44Var.a;
-                if (g44VarArr != null) {
-                    g44Var = g44VarArr[0];
-                } else {
-                    g44Var = null;
-                }
-                int i = i44.s;
-                if (ex.a.getIntVolatile(i44Var, i44.n) != 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (z) {
-                    return 1;
-                }
-                if (g44Var == null) {
-                    h44Var.c = j;
-                } else {
-                    long j2 = g44Var.a;
-                    if (j2 - j < 0) {
-                        j = j2;
-                    }
-                    long j3 = h44Var.c;
-                    if (j - j3 > 0) {
-                        h44Var.c = j;
-                    } else {
-                        j = j3;
-                    }
-                }
-                if (this.a - j < 0) {
-                    this.a = j;
-                }
-                h44Var.a(this);
-                return 0;
-            }
-        }
+    public float getShowAlpha() {
+        return this.e.d(this.f);
     }
 
     @Override
-    public final int compareTo(Object obj) {
-        int i = ((this.a - ((g44) obj).a) > 0L ? 1 : ((this.a - ((g44) obj).a) == 0L ? 0 : -1));
-        if (i > 0) {
-            return 1;
-        }
-        if (i < 0) {
-            return -1;
-        }
-        return 0;
-    }
-
-    public final void d(h44 h44Var) {
-        if (this._heap != z8d.a) {
-            this._heap = h44Var;
-        } else {
-            w26.j("Failed requirement.");
-        }
-    }
-
-    @Override
-    public final void dispose() {
-        h44 h44Var;
-        synchronized (this) {
-            Object obj = this._heap;
-            lo5 lo5Var = z8d.a;
-            if (obj == lo5Var) {
-                return;
-            }
-            if (obj instanceof h44) {
-                h44Var = (h44) obj;
-            } else {
-                h44Var = null;
-            }
-            if (h44Var != null) {
-                h44Var.c(this);
-            }
-            this._heap = lo5Var;
-        }
-    }
-
-    public String toString() {
-        return "Delayed[nanos=" + this.a + ']';
+    public final boolean onTouchEvent(android.view.MotionEvent r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.g44.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

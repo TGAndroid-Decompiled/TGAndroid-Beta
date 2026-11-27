@@ -1,13 +1,7 @@
 package defpackage;
-
-import org.webrtc.RendererCommon;
-public final class vgc implements RendererCommon.RendererEvents {
+public final class vgc implements fs7 {
     @Override
-    public final void onFrameResolutionChanged(int i, int i2, int i3) {
-        gl.c3(new cza((byte) 8));
-    }
-
-    @Override
-    public final void onFirstFrameRendered() {
+    public final bw2 a(bw2 bw2Var) {
+        return bw2Var;
     }
 }

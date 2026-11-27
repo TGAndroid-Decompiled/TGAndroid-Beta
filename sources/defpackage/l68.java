@@ -1,274 +1,199 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.provider.Settings;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.video.VideoAds;
-import org.telegram.ui.PhotoViewer;
-public final class l68 implements Runnable {
-    public final byte a;
-    public final PhotoViewer b;
+import org.telegram.messenger.Utilities;
+public final class l68 extends FrameLayout {
+    public final mb0 a;
+    public final ff0 b;
+    public final TextView[] c;
+    public g29 d;
+    public final n68 e;
+    public Paint f;
+    public float h;
+    public boolean n;
+    public boolean r;
+    public ValueAnimator s;
 
-    public l68(PhotoViewer photoViewer, byte b) {
-        this.a = b;
-        this.b = photoViewer;
+    public l68(Context context, n68 n68Var) {
+        super(context);
+        this.c = new TextView[2];
+        this.e = n68Var;
+        mb0 mb0Var = new mb0((byte) 8, context, this);
+        this.a = mb0Var;
+        mb0Var.setRoundRadius(hl.L(16.0f));
+        addView(mb0Var, tre.d(32, 32.0f, 0, 12.0f, 2.0f, 0.0f, 0.0f));
+        setClipChildren(false);
+        ff0 ff0Var = new ff0(context, (byte) 3);
+        this.b = ff0Var;
+        ff0Var.setTextSize(14);
+        ff0Var.setTypeface(hl.o());
+        ff0Var.setMaxLines(1);
+        ff0Var.setEllipsizeByGradient(hl.L(4.0f));
+        ff0Var.setPivotX(0.0f);
+        jn7.i(ff0Var);
+        addView(ff0Var, tre.d(-2, -2.0f, 0, 54.0f, 0.0f, 86.0f, 0.0f));
+        for (int i = 0; i < 2; i++) {
+            this.c[i] = new TextView(context);
+            this.c[i].setTextSize(1, 12.0f);
+            this.c[i].setMaxLines(1);
+            this.c[i].setSingleLine(true);
+            this.c[i].setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            this.c[i].setTextColor(-1);
+            this.c[i].setPadding(hl.L(3.0f), 0, hl.L(3.0f), hl.L(1.0f));
+            addView(this.c[i], tre.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
+        }
+        this.b.setTextColor(-1);
+    }
+
+    public final void a(float f, Canvas canvas, RectF rectF, boolean z) {
+        boolean z2;
+        float f2;
+        boolean z3;
+        float i;
+        b6b b6bVar;
+        n68 n68Var = this.e;
+        if ((n68Var != null && n68Var.b != null) || this.h != 0.0f) {
+            if (n68Var != null && (b6bVar = n68Var.b) != null && !b6bVar.J) {
+                this.h = 1.0f;
+                f2 = b6bVar.h;
+                if (!this.n) {
+                    this.n = true;
+                }
+                z2 = false;
+            } else {
+                if (this.n) {
+                    this.n = false;
+                    if (this.d.f < 0.2f) {
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    this.r = z3;
+                }
+                if (!this.r) {
+                    this.h = Utilities.i(this.h - ((1000.0f / hl.r) / 300.0f), 1.0f, 0.0f);
+                }
+                z2 = true;
+                f2 = 1.0f;
+            }
+            g29 g29Var = this.d;
+            mb0 mb0Var = this.a;
+            if (g29Var == null) {
+                g29 g29Var2 = new g29(mb0Var);
+                this.d = g29Var2;
+                g29Var2.d(null, true, false);
+            }
+            this.d.q = 0;
+            ImageReceiver imageReceiver = mb0Var.getImageReceiver();
+            float B = qu6.B(1.0f, this.h, hl.L(6.0f), hl.L(3.0f));
+            this.d.f((int) (rectF.left - B), (int) (rectF.top - B), (int) (rectF.right + B), (int) (rectF.bottom + B));
+            g29 g29Var3 = this.d;
+            if (z2) {
+                i = 1.0f;
+            } else {
+                i = Utilities.i(f2, 1.0f, 0.0f);
+            }
+            g29Var3.e(true, i);
+            if (this.r && z2 && this.d.f >= 0.9f) {
+                this.h = Utilities.i(this.h - ((1000.0f / hl.r) / 300.0f), 1.0f, 0.0f);
+            }
+            if (z) {
+                if (f != 1.0f) {
+                    Paint t = t6b.t(imageReceiver, false);
+                    t.setAlpha((int) (this.h * 255.0f));
+                    g29 g29Var4 = this.d;
+                    g29Var4.r = t;
+                    g29Var4.a(canvas);
+                }
+                if (this.f == null) {
+                    Paint paint = new Paint(1);
+                    this.f = paint;
+                    paint.setColor(-1);
+                    this.f.setStrokeWidth(hl.L(2.0f));
+                    this.f.setStyle(Paint.Style.STROKE);
+                    this.f.setStrokeCap(Paint.Cap.ROUND);
+                }
+                this.f.setAlpha((int) (255.0f * f * this.h));
+                g29 g29Var5 = this.d;
+                g29Var5.r = this.f;
+                g29Var5.a(canvas);
+            }
+        }
+    }
+
+    public final void b(CharSequence charSequence, boolean z) {
+        ValueAnimator valueAnimator = this.s;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.s = null;
+        }
+        TextView[] textViewArr = this.c;
+        if (z) {
+            textViewArr[1].setOnClickListener(null);
+            textViewArr[1].setText(textViewArr[0].getText());
+            textViewArr[1].setVisibility(0);
+            textViewArr[1].setAlpha(1.0f);
+            textViewArr[1].setTranslationY(0.0f);
+            textViewArr[0].setText(charSequence);
+            textViewArr[0].setVisibility(0);
+            textViewArr[0].setAlpha(0.0f);
+            textViewArr[0].setTranslationY(-hl.L(4.0f));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.s = ofFloat;
+            ofFloat.addUpdateListener(new pv7(this, (byte) 3));
+            this.s.addListener(new ad5(this, (byte) 28));
+            this.s.setInterpolator(k43.h);
+            this.s.setDuration(340L);
+            this.s.start();
+            return;
+        }
+        textViewArr[0].setVisibility(0);
+        textViewArr[0].setAlpha(1.0f);
+        textViewArr[0].setText(charSequence);
+        textViewArr[1].setVisibility(8);
+        textViewArr[1].setAlpha(0.0f);
     }
 
     @Override
-    public final void run() {
-        boolean z;
-        boolean z2 = true;
-        switch (this.a) {
-            case 0:
-                PhotoViewer photoViewer = this.b;
-                Drawable[] drawableArr = PhotoViewer.d9;
-                photoViewer.p2(1, false);
-                return;
-            case 1:
-                PhotoViewer photoViewer2 = this.b;
-                Drawable[] drawableArr2 = PhotoViewer.d9;
-                photoViewer2.p2(-1, false);
-                return;
-            case 2:
-                PhotoViewer photoViewer3 = this.b;
-                Drawable[] drawableArr3 = PhotoViewer.d9;
-                photoViewer3.o2(0);
-                return;
-            case 3:
-                PhotoViewer photoViewer4 = this.b;
-                Drawable[] drawableArr4 = PhotoViewer.d9;
-                photoViewer4.I0();
-                return;
-            case 4:
-                PhotoViewer photoViewer5 = this.b;
-                Drawable[] drawableArr5 = PhotoViewer.d9;
-                photoViewer5.E1.b(photoViewer5.J2, photoViewer5.K2, photoViewer5.L2, photoViewer5.P2, photoViewer5.R2, photoViewer5.O2, photoViewer5.z1(true), photoViewer5.z1(true), photoViewer5.M2, photoViewer5.N2, 0.0f, 0.0f, photoViewer5.Q2);
-                photoViewer5.o2(0);
-                return;
-            case 5:
-                PhotoViewer photoViewer6 = this.b;
-                Drawable[] drawableArr6 = PhotoViewer.d9;
-                photoViewer6.p5.b.setLoading(false);
-                photoViewer6.o2(0);
-                return;
-            case 6:
-                PhotoViewer photoViewer7 = this.b;
-                Drawable[] drawableArr7 = PhotoViewer.d9;
-                photoViewer7.p5.b.setLoading(false);
-                photoViewer7.o2(0);
-                return;
-            case 7:
-                PhotoViewer photoViewer8 = this.b;
-                Drawable[] drawableArr8 = PhotoViewer.d9;
-                photoViewer8.e();
-                return;
-            case 8:
-                PhotoViewer photoViewer9 = this.b;
-                Drawable[] drawableArr9 = PhotoViewer.d9;
-                photoViewer9.s(false);
-                return;
-            case 9:
-                PhotoViewer photoViewer10 = this.b;
-                Drawable[] drawableArr10 = PhotoViewer.d9;
-                photoViewer10.o5.W = false;
-                return;
-            case 10:
-                PhotoViewer photoViewer11 = this.b;
-                Drawable[] drawableArr11 = PhotoViewer.d9;
-                photoViewer11.x4.setBackground(null);
-                return;
-            case 11:
-                PhotoViewer photoViewer12 = this.b;
-                Drawable[] drawableArr12 = PhotoViewer.d9;
-                photoViewer12.h7 = null;
-                photoViewer12.e();
-                photoViewer12.o2(0);
-                return;
-            case 12:
-                PhotoViewer photoViewer13 = this.b;
-                Drawable[] drawableArr13 = PhotoViewer.d9;
-                photoViewer13.o2(0);
-                return;
-            case 13:
-                PhotoViewer photoViewer14 = this.b;
-                Drawable[] drawableArr14 = PhotoViewer.d9;
-                photoViewer14.p5.b.setLoading(false);
-                photoViewer14.o2(0);
-                return;
-            case 14:
-                PhotoViewer photoViewer15 = this.b;
-                Drawable[] drawableArr15 = PhotoViewer.d9;
-                photoViewer15.p5.b.setLoading(false);
-                photoViewer15.o2(0);
-                return;
-            case 15:
-                PhotoViewer photoViewer16 = this.b;
-                Drawable[] drawableArr16 = PhotoViewer.d9;
-                if (photoViewer16.G3 == 2) {
-                    photoViewer16.s(false);
-                    return;
-                }
-                return;
-            case 16:
-                PhotoViewer photoViewer17 = this.b;
-                Drawable[] drawableArr17 = PhotoViewer.d9;
-                photoViewer17.c();
-                return;
-            case 17:
-                PhotoViewer photoViewer18 = this.b;
-                Drawable[] drawableArr18 = PhotoViewer.d9;
-                photoViewer18.D2();
-                return;
-            case 18:
-                PhotoViewer photoViewer19 = this.b;
-                Drawable[] drawableArr19 = PhotoViewer.d9;
-                photoViewer19.y2(true);
-                return;
-            case 19:
-                PhotoViewer photoViewer20 = this.b;
-                Drawable[] drawableArr20 = PhotoViewer.d9;
-                if (photoViewer20.w0.isEnabled()) {
-                    Activity activity = photoViewer20.E;
-                    Typeface typeface = gl.a;
-                    if (Settings.canDrawOverlays(activity) && mb3.c().a() == null && photoViewer20.P3) {
-                        if (photoViewer20.s4) {
-                            x88 x88Var = photoViewer20.g0;
-                            if (x88Var != null && !x88Var.c() && photoViewer20.g0.d()) {
-                                photoViewer20.K3 = false;
-                                if (PhotoViewer.k9 != null) {
-                                    PhotoViewer.k9.M();
-                                }
-                                photoViewer20.J3 = true;
-                                PhotoViewer.k9 = PhotoViewer.j9;
-                                PhotoViewer.j9 = null;
-                                photoViewer20.e = false;
-                                p98 p98Var = photoViewer20.c5;
-                                if (p98Var != null) {
-                                    ImageReceiver imageReceiver = p98Var.a;
-                                    if (!imageReceiver.R0) {
-                                        imageReceiver.v0(true, true);
-                                    }
-                                }
-                                photoViewer20.l6 = 1.0f;
-                                photoViewer20.f0.invalidate();
-                                photoViewer20.P();
-                                return;
-                            }
-                            return;
-                        }
-                        photoViewer20.K3 = false;
-                        photoViewer20.r2();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 20:
-                PhotoViewer photoViewer21 = this.b;
-                Drawable[] drawableArr21 = PhotoViewer.d9;
-                if (photoViewer21.e && photoViewer21.m4 == 0) {
-                    photoViewer21.H2(photoViewer21.K);
-                    return;
-                }
-                return;
-            case 21:
-                PhotoViewer photoViewer22 = this.b;
-                Drawable[] drawableArr22 = PhotoViewer.d9;
-                photoViewer22.H0();
-                return;
-            case 22:
-                PhotoViewer photoViewer23 = this.b;
-                Drawable[] drawableArr23 = PhotoViewer.d9;
-                photoViewer23.L2();
-                return;
-            case 23:
-                PhotoViewer photoViewer24 = this.b;
-                lbc lbcVar = photoViewer24.G2;
-                if (lbcVar != null && photoViewer24.Z5 <= 1.35f) {
-                    long S = lbcVar.S();
-                    long U = photoViewer24.G2.U();
-                    if (S != -9223372036854775807L && U >= 8000) {
-                        float f = photoViewer24.J7;
-                        int i0 = photoViewer24.i0(photoViewer24.t4);
-                        if (U > 180000) {
-                            int i = i0 / 3;
-                            if (f < (i << 1)) {
-                                if (f < i) {
-                                    z2 = false;
-                                } else {
-                                    return;
-                                }
-                            }
-                            photoViewer24.a4.startRewind(photoViewer24.G2, z2, photoViewer24.u1);
-                            return;
-                        }
-                        if (f > i0 / 3) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        photoViewer24.c4.startRewind(photoViewer24.G2, z, photoViewer24.J7, photoViewer24.u1, photoViewer24.B1);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 24:
-                PhotoViewer photoViewer25 = this.b;
-                Drawable[] drawableArr24 = PhotoViewer.d9;
-                photoViewer25.a9 = false;
-                photoViewer25.I0();
-                return;
-            case 25:
-                PhotoViewer photoViewer26 = this.b;
-                Drawable[] drawableArr25 = PhotoViewer.d9;
-                if (photoViewer26.T4.isPopupShown()) {
-                    VideoAds videoAds = photoViewer26.T4;
-                    lbc lbcVar2 = photoViewer26.G2;
-                    if (lbcVar2 != null) {
-                        z2 = lbcVar2.c0();
-                    }
-                    videoAds.videoWasPlaying = z2;
-                    lbc lbcVar3 = photoViewer26.G2;
-                    if (lbcVar3 != null) {
-                        lbcVar3.f0();
-                        return;
-                    }
-                    return;
-                }
-                lbc lbcVar4 = photoViewer26.G2;
-                if (lbcVar4 != null && photoViewer26.T4.videoWasPlaying) {
-                    lbcVar4.g0();
-                    return;
-                }
-                return;
-            case 26:
-                PhotoViewer photoViewer27 = this.b;
-                Drawable[] drawableArr26 = PhotoViewer.d9;
-                v48 v48Var = photoViewer27.D1;
-                b33 b33Var = v48Var.c;
-                b33Var.b(0.0f);
-                b33Var.setMirrored(false);
-                b33Var.setRotated(false);
-                v48Var.b.l(true);
-                return;
-            case 27:
-                PhotoViewer photoViewer28 = this.b;
-                Drawable[] drawableArr27 = PhotoViewer.d9;
-                photoViewer28.N2();
-                return;
-            case 28:
-                PhotoViewer photoViewer29 = this.b;
-                Drawable[] drawableArr28 = PhotoViewer.d9;
-                photoViewer29.F1(true, 0, 0, false, true, false);
-                return;
-            default:
-                PhotoViewer photoViewer30 = this.b;
-                Drawable[] drawableArr29 = PhotoViewer.d9;
-                photoViewer30.F1(true, 0, 0, false, false, false);
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public void setOnSubtitleClick(View.OnClickListener onClickListener) {
+        boolean z;
+        hf0 f0;
+        TextView[] textViewArr = this.c;
+        textViewArr[0].setOnClickListener(onClickListener);
+        TextView textView = textViewArr[0];
+        if (onClickListener != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        textView.setClickable(z);
+        TextView textView2 = textViewArr[0];
+        if (onClickListener == null) {
+            f0 = null;
+        } else {
+            f0 = aob.f0(822083583, 7, -1);
+        }
+        textView2.setBackground(f0);
+    }
+
+    public void setSubtitle(CharSequence charSequence) {
+        b(charSequence, false);
     }
 }

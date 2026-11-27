@@ -1,13 +1,13 @@
 package defpackage;
-public final class x extends gb3 {
-    public final a1 F;
+public final class x extends zb3 {
+    public final b1 F;
 
-    public x(a1 a1Var) {
-        this.F = a1Var;
+    public x(b1 b1Var) {
+        this.F = b1Var;
     }
 
     @Override
-    public final void P(s49 s49Var) {
+    public final void P(f89 f89Var) {
         this.F.b.invalidate();
     }
 }

@@ -1,23 +1,58 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class kae extends b4 {
-    public static final Parcelable.Creator<kae> CREATOR = new qyd((byte) 16);
-    public final int a;
-    public final String b;
+import java.util.Iterator;
+import java.util.Map;
+public final class kae extends g9e {
+    public final transient ybd s;
+    public final transient Object[] w;
+    public final transient int x;
 
-    public kae(int i, String str) {
-        this.a = i;
-        this.b = str;
+    public kae(ybd ybdVar, Object[] objArr, int i) {
+        super((byte) 5);
+        this.s = ybdVar;
+        this.w = objArr;
+        this.x = i;
+    }
+
+    public final k8e A() {
+        return new eae(this);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 3, this.b);
-        jte.s(parcel, r);
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.s.get(key))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        k8e k8eVar = this.n;
+        if (k8eVar == null) {
+            k8eVar = A();
+            this.n = k8eVar;
+        }
+        return k8eVar.listIterator(0);
+    }
+
+    @Override
+    public final int p(Object[] objArr) {
+        k8e k8eVar = this.n;
+        if (k8eVar == null) {
+            k8eVar = A();
+            this.n = k8eVar;
+        }
+        return k8eVar.p(objArr);
+    }
+
+    @Override
+    public final int size() {
+        return this.x;
     }
 }

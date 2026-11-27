@@ -1,58 +1,40 @@
 package defpackage;
+public final class d7b implements Runnable {
+    public final byte a;
+    public final e7b b;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class d7b extends View {
-    public final boolean a;
-    public final Canvas b;
-    public final float c;
-    public final float d;
-    public final float e;
-    public final Paint f;
-    public final Bitmap h;
-    public final Paint n;
-    public final float r;
-    public final float s;
-    public final t7b w;
-
-    public d7b(t7b t7bVar, Context context, boolean z, Canvas canvas, float f, float f2, float f3, Paint paint, Bitmap bitmap, Paint paint2, float f4, float f5) {
-        super(context);
-        this.w = t7bVar;
-        this.a = z;
-        this.b = canvas;
-        this.c = f;
-        this.d = f2;
-        this.e = f3;
-        this.f = paint;
-        this.h = bitmap;
-        this.n = paint2;
-        this.r = f4;
-        this.s = f5;
+    public d7b(e7b e7bVar, byte b) {
+        this.a = b;
+        this.b = e7bVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        t7b t7bVar = this.w;
-        float f = t7bVar.E2;
-        Paint paint = this.n;
-        float f2 = this.e;
-        float f3 = this.d;
-        float f4 = this.c;
-        if (this.a) {
-            if (f > 0.0f) {
-                this.b.drawCircle(f4, f3, f2 * f, this.f);
-            }
-            canvas.drawBitmap(this.h, 0.0f, 0.0f, paint);
-        } else {
-            canvas.drawCircle(f4, f3, (1.0f - f) * f2, paint);
+    public final void run() {
+        byte b = this.a;
+        e7b e7bVar = this.b;
+        switch (b) {
+            case 0:
+                f7b f7bVar = e7bVar.v;
+                f7bVar.s = 0;
+                f7bVar.requestLayout();
+                g7b g7bVar = f7bVar.K;
+                g7bVar.L(g7bVar.getWidth(), g7bVar.getHeight());
+                g7bVar.requestLayout();
+                return;
+            case 1:
+                f7b f7bVar2 = e7bVar.v;
+                f7bVar2.s = 0;
+                f7bVar2.requestLayout();
+                g7b g7bVar2 = f7bVar2.K;
+                g7bVar2.L(g7bVar2.getWidth(), g7bVar2.getHeight());
+                g7bVar2.requestLayout();
+                return;
+            case 2:
+                e7bVar.v.post(new d7b(e7bVar, (byte) 3));
+                return;
+            default:
+                e7bVar.v.y = true;
+                return;
         }
-        canvas.save();
-        canvas.translate(this.r, this.s);
-        t7bVar.j1.draw(canvas);
-        canvas.restore();
     }
 }

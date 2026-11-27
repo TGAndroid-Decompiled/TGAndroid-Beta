@@ -1,138 +1,84 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.os.Build;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-import javax.microedition.khronos.egl.EGLContext;
-public final class sl0 {
-    public boolean a;
-    public final View b;
-    public final ArrayList c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final Object f;
-    public EGLContext g;
-    public final Object h;
-    public int i;
-    public g7b j;
-    public Object k;
-    public Object l;
-    public xl0 m;
-    public final ei0 n;
-    public Bitmap o;
-    public int p;
+import android.view.ViewGroup;
+public abstract class sl0 extends d79 {
+    public int f3;
+    public int g3;
+    public boolean h3;
+    public int i3;
+    public boolean j3;
 
-    public sl0(View view) {
-        ArrayList arrayList = new ArrayList();
-        this.c = arrayList;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f = new Object();
-        this.h = new Object();
-        this.n = new ei0(0, new oz(this, (byte) 12));
-        this.p = 0;
-        this.b = view;
-        if (view.isAttachedToWindow()) {
-            arrayList.clear();
-            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
-                arrayList.add(0, view2);
-                if (!(view2.getParent() instanceof View)) {
-                    break;
-                }
-            }
-        }
-        view.addOnAttachStateChangeListener(new wc(this, (byte) 3));
+    public int A1() {
+        return hl.L(203.0f);
     }
 
-    public final void a(EGLContext eGLContext) {
-        synchronized (this.f) {
-            if (this.g == null) {
-                this.g = eGLContext;
-            }
-        }
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap;
-        xl0 xl0Var = this.m;
-        if (xl0Var == null) {
-            return this.o;
-        }
-        synchronized (xl0Var.n) {
-            if (!xl0Var.q) {
-                bitmap = null;
-            } else {
-                bitmap = xl0Var.p;
-            }
-        }
-        if (bitmap == null) {
-            return this.o;
-        }
-        return bitmap;
-    }
-
-    public final boolean c() {
-        if (this.l != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList.get(i2);
-            i2++;
-            ((wl0) obj).b.invalidate();
-        }
-        ArrayList arrayList2 = this.e;
-        int size2 = arrayList2.size();
-        while (i < size2) {
-            Object obj2 = arrayList2.get(i);
-            i++;
-            ((Runnable) obj2).run();
-        }
-    }
-
-    public final void e() {
-        xl0 xl0Var = this.m;
-        if (xl0Var != null) {
-            synchronized (xl0Var.n) {
-                xl0Var.q = false;
-            }
-        }
-    }
-
-    public final void f(Bitmap bitmap, boolean z) {
-        int i = this.p;
-        this.p = i + 1;
-        this.o = this.n.c(bitmap, String.valueOf(i), 0, 0, z);
-    }
-
-    public final void g(g7b g7bVar, Object obj) {
-        this.j = g7bVar;
-        this.k = obj;
-        this.i = -14737633;
-        if (obj != null && Build.VERSION.SDK_INT >= 31) {
-            RenderNode renderNode = (RenderNode) obj;
-            RenderNode renderNode2 = new RenderNode("blurRenderNode");
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(gl.L(35.0f), gl.L(35.0f), Shader.TileMode.CLAMP));
-            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
-            RecordingCanvas beginRecording = renderNode2.beginRecording();
-            beginRecording.drawColor(-14737633);
-            beginRecording.drawRenderNode(renderNode);
-            renderNode2.endRecording();
-            this.l = renderNode2;
+    public final void B1() {
+        if (getLayoutParams() == null) {
             return;
         }
-        this.l = null;
+        if (xea.f()) {
+            this.f3 = A1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f3;
+            return;
+        }
+        this.f3 = 0;
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        if (this.f3 != 0 && !a1()) {
+            canvas.clipRect(0, this.f3, getMeasuredWidth(), getMeasuredHeight() + this.i3);
+            super.dispatchDraw(canvas);
+            return;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        if (view.getY() + view.getMeasuredHeight() < this.f3 && !this.j3 && !a1()) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j);
+    }
+
+    @Override
+    public final void g(Canvas canvas, RectF rectF) {
+        this.j3 = true;
+        super.g(canvas, rectF);
+        this.j3 = false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        B1();
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        this.h3 = true;
+        B1();
+        super.setPadding(getPaddingLeft(), this.g3 + this.f3, getPaddingRight(), getPaddingBottom());
+        this.h3 = false;
+        super.onMeasure(i, i2);
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.h3) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void setPadding(int i, int i2, int i3, int i4) {
+        this.g3 = i2;
+        super.setPadding(i, i2 + this.f3, i3, i4);
     }
 }

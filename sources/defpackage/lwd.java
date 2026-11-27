@@ -1,17 +1,19 @@
 package defpackage;
-public final class lwd implements zn7 {
-    public static final lwd a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class lwd {
+    public static int a(int i) {
+        if (i != 0) {
+            if (i != 90) {
+                if (i != 180) {
+                    if (i == 270) {
+                        return 3;
+                    }
+                    lq5.j(uh9.k(i, "Invalid rotation: "));
+                    return 0;
+                }
+                return 2;
+            }
+            return 1;
         }
-        throw new ClassCastException();
+        return 0;
     }
 }

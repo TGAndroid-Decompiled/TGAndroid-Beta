@@ -1,9 +1,18 @@
 package defpackage;
-public final class mf7 extends fs5 {
-    public final xu7 e;
+public enum mf7 implements lw8 {
+    UNKNOWN_OS(0),
+    ANDROID(1),
+    IOS(2),
+    WEB(3);
+    
+    public final byte a;
 
-    public mf7(int i, xu7 xu7Var) {
-        super(i, (byte) 1);
-        this.e = xu7Var;
+    mf7(int i) {
+        this.a = i;
+    }
+
+    @Override
+    public final int a() {
+        return this.a;
     }
 }

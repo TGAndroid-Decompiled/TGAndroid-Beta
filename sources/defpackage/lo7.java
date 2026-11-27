@@ -1,8 +1,13 @@
 package defpackage;
-public interface lo7 {
-    void b0(long j);
 
-    long h(ja3 ja3Var);
+import android.content.ComponentName;
+import android.os.IBinder;
+public final class lo7 {
+    public final ComponentName a;
+    public final IBinder b;
 
-    fv9 k();
+    public lo7(ComponentName componentName, IBinder iBinder) {
+        this.a = componentName;
+        this.b = iBinder;
+    }
 }

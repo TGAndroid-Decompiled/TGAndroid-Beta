@@ -1,130 +1,104 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.ProfileActivity;
-public final class qba implements rn4, yc7, wi3 {
-    public final nfa a;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class qba extends LinearLayout implements snb {
+    public final vnb a;
+    public final n57 b;
+    public final FrameLayout c;
+    public final ImageView d;
+    public final TextView e;
+    public final TextView f;
+    public final TextView h;
+    public boolean n;
+    public boolean r;
 
-    public qba(nfa nfaVar) {
-        this.a = nfaVar;
-    }
-
-    @Override
-    public final boolean G() {
-        return false;
-    }
-
-    @Override
-    public final void a(String str) {
-        this.a.w0(str);
-    }
-
-    public final void b(boolean z) {
-        nfa nfaVar = this.a;
-        if (!z) {
-            nfaVar.requestLayout();
-        }
-        nfaVar.setVisibleHeight(nfaVar.Q1);
-    }
-
-    @Override
-    public final boolean r(cj3 cj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, qvb qvbVar) {
-        UndoView undoView;
-        nfa nfaVar = this.a;
-        SparseArray[] sparseArrayArr = nfaVar.c1;
-        d dVar = nfaVar.y1;
-        ArrayList arrayList2 = new ArrayList();
-        boolean z3 = true;
-        int i3 = 1;
-        while (true) {
-            int i4 = 0;
-            if (i3 < 0) {
-                break;
-            }
-            ArrayList arrayList3 = new ArrayList();
-            for (int i5 = 0; i5 < sparseArrayArr[i3].size(); i5++) {
-                arrayList3.add(Integer.valueOf(sparseArrayArr[i3].keyAt(i5)));
-            }
-            Collections.sort(arrayList3);
-            int size = arrayList3.size();
-            while (i4 < size) {
-                Object obj = arrayList3.get(i4);
-                i4++;
-                Integer num = (Integer) obj;
-                if (num.intValue() > 0) {
-                    arrayList2.add((k27) sparseArrayArr[i3].get(num.intValue()));
-                }
-            }
-            sparseArrayArr[i3].clear();
-            i3--;
-        }
-        nfaVar.d1 = 0;
-        nfaVar.l1(false);
-        yea yeaVar = nfaVar.U;
-        if (yeaVar != null) {
-            yeaVar.x.clear();
-        }
-        UndoView undoView2 = null;
-        if (arrayList.size() <= 1 && ((zc7) arrayList.get(0)).a != dVar.getUserConfig().e() && charSequence == null) {
-            long j = ((zc7) arrayList.get(0)).a;
-            Bundle l = ir2.l("scrollToTopOnResume", true);
-            if (cf3.B(j)) {
-                l.putInt("enc_id", (int) (j & 4294967295L));
-            } else {
-                if (cf3.D(j)) {
-                    l.putLong("user_id", j);
-                } else {
-                    l.putLong("chat_id", -j);
-                }
-                if (!dVar.getMessagesController().A(l, cj3Var, null, null)) {
-                    return true;
-                }
-            }
-            dVar.getNotificationCenter().k(kk7.s, new Object[0]);
-            mu1 mu1Var = new mu1(l);
-            mm4.a(mu1Var, (zc7) arrayList.get(0));
-            cj3Var.presentFragment(mu1Var, true);
-            mu1Var.Qb(arrayList2);
-            return true;
-        }
-        nfaVar.J1(true);
-        int i6 = 0;
-        while (i6 < arrayList.size()) {
-            long j2 = ((zc7) arrayList.get(i6)).a;
-            if (charSequence != null) {
-                dVar.getSendMessagesHelper().q0(x3a.b(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
-            }
-            dVar.getSendMessagesHelper().p0(arrayList2, j2, false, false, true, 0, 0, null, -1, 0L, 0L, null);
-            i6++;
-            z3 = z3;
-            undoView2 = undoView2;
-        }
-        boolean z4 = z3;
-        UndoView undoView3 = undoView2;
-        cj3Var.finishFragment();
-        if (dVar instanceof ProfileActivity) {
-            undoView = ((ProfileActivity) dVar).M;
+    public qba(Context context, vnb vnbVar) {
+        super(context);
+        this.n = true;
+        this.a = vnbVar;
+        setOrientation(0);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.c = frameLayout;
+        n57 n57Var = new n57((byte) 1);
+        this.b = n57Var;
+        frameLayout.setBackground(n57Var);
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        frameLayout.addView(imageView, tre.e(24, 24, 17));
+        LinearLayout j = uh9.j(context, 1);
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView m = ik8.m(j, textView, tre.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        this.f = m;
+        m.setTextSize(1, 13.0f);
+        TextView m2 = ik8.m(j, m, tre.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
+        this.h = m2;
+        m2.setTextSize(1, 16.0f);
+        if (ob6.a0) {
+            addView(m2, tre.t(-2, -2, 16, 20, 0, 0, 0));
+            addView(j, tre.q(0, -2, 1.0f, 23, 20, 0, 18, 0));
+            addView(frameLayout, tre.t(28, 28, 21, 0, 0, 18, 0));
         } else {
-            undoView = undoView3;
+            addView(frameLayout, tre.t(28, 28, 19, 18, 0, 0, 0));
+            addView(j, tre.q(0, -2, 1.0f, 23, 18, 0, 20, 0));
+            addView(m2, tre.t(-2, -2, 16, 0, 0, 20, 0));
         }
-        if (undoView != null) {
-            if (arrayList.size() == z4) {
-                undoView.m(Integer.valueOf(arrayList2.size()), 53, ((zc7) arrayList.get(0)).a);
-                return z4;
-            }
-            undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
-            return z4;
-        }
-        return z4;
+        updateColors();
     }
 
     @Override
-    public final boolean t(cj3 cj3Var) {
-        return false;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.G6));
+        hashSet.add(Integer.valueOf(aob.y6));
+        hashSet.add(Integer.valueOf(aob.n6));
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        float f;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        if (this.r) {
+            f = 60.0f;
+        } else {
+            f = 50.0f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(hl.L(f), 1073741824));
+    }
+
+    public void setValue(CharSequence charSequence) {
+        int i;
+        if (!TextUtils.isEmpty(charSequence)) {
+            i = 0;
+        } else {
+            i = 8;
+        }
+        TextView textView = this.h;
+        textView.setVisibility(i);
+        textView.setText(charSequence);
+    }
+
+    @Override
+    public final void updateColors() {
+        boolean z;
+        int i = aob.G6;
+        vnb vnbVar = this.a;
+        this.e.setTextColor(aob.v0(i, vnbVar));
+        this.f.setTextColor(aob.v0(aob.y6, vnbVar));
+        this.h.setTextColor(aob.v0(aob.n6, vnbVar));
+        if (this.n && (vnbVar == null ? aob.I.o() : vnbVar.a())) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.b.b = z;
     }
 }

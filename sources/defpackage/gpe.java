@@ -1,14 +1,17 @@
 package defpackage;
+public final class gpe implements zq7 {
+    public static final gpe a = new Object();
 
-import java.math.RoundingMode;
-public abstract class gpe {
-    public static int a(long j, long j2) {
-        if (j > 0 && j2 > 0) {
-            long b0 = g8c.b0(j, 8000000L, j2, RoundingMode.HALF_UP);
-            if (b0 > 0 && b0 <= 2147483647L) {
-                return (int) b0;
-            }
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return -2147483647;
+        throw new ClassCastException();
     }
 }

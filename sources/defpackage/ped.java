@@ -1,14 +1,4 @@
 package defpackage;
 public abstract class ped {
-    public static final f84 a;
-    public static final f84 b;
-    public static final f84[] c;
-
-    static {
-        f84 f84Var = new f84("EXECUTE", 1L);
-        a = f84Var;
-        f84 f84Var2 = new f84("INIT", 1L);
-        b = f84Var2;
-        c = new f84[]{f84Var, f84Var2};
-    }
+    public static final String[] a = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
 }

@@ -1,282 +1,133 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-public final class gd8 implements w4a, p71 {
-    public final String a;
-    public final gs4 b;
-    public final byte c;
-    public int d = -1;
-    public final String[] e;
-    public final List[] f;
-    public final boolean[] g;
-    public Map h;
-    public final d06 i;
-    public final d06 j;
-    public final d06 k;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.PhotoViewer;
+public final class gd8 extends View {
+    public final Paint a;
+    public final TextPaint b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public final String h;
+    public final String n;
+    public int r;
+    public final PhotoViewer s;
 
-    public gd8(String str, gs4 gs4Var, int i) {
-        this.a = str;
-        this.b = gs4Var;
-        this.c = i;
-        String[] strArr = new String[i];
-        for (int i2 = 0; i2 < i; i2++) {
-            strArr[i2] = "[UNINITIALIZED]";
+    public gd8(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.s = photoViewer;
+        this.a = new Paint(1);
+        TextPaint textPaint = new TextPaint(1);
+        this.b = textPaint;
+        textPaint.setTextSize(hl.L(14.0f));
+        textPaint.setColor(-3289651);
+        this.h = ob6.M0(2131754732, "AccDescrVideoCompressLow");
+        this.n = ob6.M0(2131754733, "AccDescrVideoCompressHigh");
+        setImportantForAccessibility(1);
+        setFocusable(true);
+        setAccessibilityDelegate(new m86(this, (byte) 1));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i;
+        float f;
+        if (this.s.e8 != 1) {
+            this.f = (((getMeasuredWidth() - (this.c * this.s.e8)) - (((this.s.e8 << 1) - 2) * this.d)) - (this.e << 1)) / (this.s.e8 - 1);
+        } else {
+            this.f = ((getMeasuredWidth() - (this.c * this.s.e8)) - (this.d << 1)) - (this.e << 1);
         }
-        this.e = strArr;
-        int i3 = this.c;
-        this.f = new List[i3];
-        this.g = new boolean[i3];
-        this.h = d24.a;
-        this.i = cne.a(new op4(this) {
-            public final gd8 b;
-
-            {
-                this.b = this;
+        int L = hl.L(6.0f) + (getMeasuredHeight() / 2);
+        for (int i2 = 0; i2 < this.s.e8; i2++) {
+            int i3 = this.e;
+            int i4 = this.f + (this.d << 1);
+            int i5 = this.c;
+            int i6 = (i5 / 2) + ((i4 + i5) * i2) + i3;
+            int i7 = this.s.d8;
+            Paint paint = this.a;
+            if (i2 <= i7) {
+                paint.setColor(-11292945);
+            } else {
+                paint.setColor(1728053247);
             }
-
-            @Override
-            public final Object invoke() {
-                boolean z;
-                boolean z2;
-                int i4;
-                byte b = r2;
-                gd8 gd8Var = this.b;
-                switch (b) {
-                    case 0:
-                        return gd8Var.b.a();
-                    default:
-                        w4a[] w4aVarArr = (w4a[]) gd8Var.j.getValue();
-                        w4aVarArr.getClass();
-                        int hashCode = (gd8Var.a().hashCode() * 31) + Arrays.hashCode(w4aVarArr);
-                        int f = gd8Var.f();
-                        int i5 = 1;
-                        while (true) {
-                            int i6 = 0;
-                            if (f > 0) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            if (z) {
-                                int i7 = f - 1;
-                                int i8 = i5 * 31;
-                                String a = gd8Var.i(gd8Var.f() - f).a();
-                                if (a != null) {
-                                    i6 = a.hashCode();
-                                }
-                                i5 = i8 + i6;
-                                f = i7;
-                            } else {
-                                int f2 = gd8Var.f();
-                                int i9 = 1;
-                                while (true) {
-                                    if (f2 > 0) {
-                                        z2 = true;
-                                    } else {
-                                        z2 = false;
-                                    }
-                                    if (z2) {
-                                        int i10 = f2 - 1;
-                                        int i11 = i9 * 31;
-                                        vte e = gd8Var.i(gd8Var.f() - f2).e();
-                                        if (e != null) {
-                                            i4 = e.hashCode();
-                                        } else {
-                                            i4 = 0;
-                                        }
-                                        i9 = i11 + i4;
-                                        f2 = i10;
-                                    } else {
-                                        return Integer.valueOf((((hashCode * 31) + i5) * 31) + i9);
-                                    }
-                                }
-                            }
-                        }
+            float f2 = i6;
+            float f3 = L;
+            if (i2 == this.s.d8) {
+                i = hl.L(6.0f);
+            } else {
+                i = this.c / 2;
+            }
+            canvas.drawCircle(f2, f3, i, this.a);
+            if (i2 != 0) {
+                int i8 = ((i6 - (this.c / 2)) - this.d) - this.f;
+                float f4 = 0.0f;
+                if (i2 == this.s.d8 + 1) {
+                    f = hl.N(2.0f);
+                } else {
+                    f = 0.0f;
                 }
-            }
-        });
-        this.j = cne.a(new fd8(this));
-        this.k = cne.a(new op4(this) {
-            public final gd8 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final Object invoke() {
-                boolean z;
-                boolean z2;
-                int i4;
-                byte b = r2;
-                gd8 gd8Var = this.b;
-                switch (b) {
-                    case 0:
-                        return gd8Var.b.a();
-                    default:
-                        w4a[] w4aVarArr = (w4a[]) gd8Var.j.getValue();
-                        w4aVarArr.getClass();
-                        int hashCode = (gd8Var.a().hashCode() * 31) + Arrays.hashCode(w4aVarArr);
-                        int f = gd8Var.f();
-                        int i5 = 1;
-                        while (true) {
-                            int i6 = 0;
-                            if (f > 0) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            if (z) {
-                                int i7 = f - 1;
-                                int i8 = i5 * 31;
-                                String a = gd8Var.i(gd8Var.f() - f).a();
-                                if (a != null) {
-                                    i6 = a.hashCode();
-                                }
-                                i5 = i8 + i6;
-                                f = i7;
-                            } else {
-                                int f2 = gd8Var.f();
-                                int i9 = 1;
-                                while (true) {
-                                    if (f2 > 0) {
-                                        z2 = true;
-                                    } else {
-                                        z2 = false;
-                                    }
-                                    if (z2) {
-                                        int i10 = f2 - 1;
-                                        int i11 = i9 * 31;
-                                        vte e = gd8Var.i(gd8Var.f() - f2).e();
-                                        if (e != null) {
-                                            i4 = e.hashCode();
-                                        } else {
-                                            i4 = 0;
-                                        }
-                                        i9 = i11 + i4;
-                                        f2 = i10;
-                                    } else {
-                                        return Integer.valueOf((((hashCode * 31) + i5) * 31) + i9);
-                                    }
-                                }
-                            }
-                        }
+                if (i2 == this.s.d8) {
+                    f4 = hl.N(2.0f);
                 }
+                canvas.drawRect(f + i8, L - hl.L(1.0f), (i8 + this.f) - f4, hl.L(2.0f) + L, this.a);
             }
-        });
-    }
-
-    @Override
-    public final String a() {
-        return this.a;
-    }
-
-    @Override
-    public final Set b() {
-        return this.h.keySet();
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int d(String str) {
-        str.getClass();
-        Integer num = (Integer) this.h.get(str);
-        if (num != null) {
-            return num.intValue();
         }
-        return -3;
+        canvas.drawText(this.h, this.e, L - hl.L(16.0f), this.b);
+        canvas.drawText(this.n, (getMeasuredWidth() - this.e) - this.b.measureText(this.n), L - hl.L(16.0f), this.b);
     }
 
     @Override
-    public final vte e() {
-        return v9b.b;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.c = hl.L(8.0f);
+        this.d = hl.L(2.0f);
+        this.e = hl.L(18.0f);
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof gd8) {
-                w4a w4aVar = (w4a) obj;
-                if (this.a.equals(w4aVar.a()) && Arrays.equals((w4a[]) this.j.getValue(), (w4a[]) ((gd8) obj).j.getValue())) {
-                    int f = w4aVar.f();
-                    byte b = this.c;
-                    if (b == f) {
-                        for (int i = 0; i < b; i++) {
-                            if (rp5.a(i(i).a(), w4aVar.i(i).a()) && rp5.a(i(i).e(), w4aVar.i(i).e())) {
-                            }
-                        }
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        float x = motionEvent.getX();
+        if (motionEvent.getAction() == 0) {
+            this.r = this.s.d8;
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        int i = 0;
+        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+            while (true) {
+                if (i >= this.s.e8) {
+                    break;
+                }
+                int i2 = this.e;
+                int i3 = this.f;
+                int i4 = this.d;
+                int i5 = this.c;
+                int i6 = i5 / 2;
+                int i7 = (((i4 << 1) + i3 + i5) * i) + i2 + i6;
+                int i8 = (i3 / 2) + i6 + i4;
+                if (x > i7 - i8 && x < i7 + i8) {
+                    if (this.s.d8 != i) {
+                        this.s.d8 = i;
+                        this.s.N();
+                        invalidate();
                         return true;
                     }
+                } else {
+                    i++;
                 }
             }
-            return false;
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (this.s.d8 != this.r) {
+                this.s.x1(1);
+            }
+            this.s.K6 = false;
+            return true;
         }
         return true;
-    }
-
-    @Override
-    public final int f() {
-        return this.c;
-    }
-
-    @Override
-    public final String g(int i) {
-        return this.e[i];
-    }
-
-    @Override
-    public final List getAnnotations() {
-        return c24.a;
-    }
-
-    @Override
-    public final List h(int i) {
-        List list = this.f[i];
-        if (list == null) {
-            return c24.a;
-        }
-        return list;
-    }
-
-    public final int hashCode() {
-        return ((Number) this.k.getValue()).intValue();
-    }
-
-    @Override
-    public final w4a i(int i) {
-        return ((cv5[]) this.i.getValue())[i].d();
-    }
-
-    @Override
-    public final boolean isInline() {
-        return false;
-    }
-
-    public final void j(String str, boolean z) {
-        int i = this.d + 1;
-        this.d = i;
-        String[] strArr = this.e;
-        strArr[i] = str;
-        this.g[i] = z;
-        this.f[i] = null;
-        if (i == this.c - 1) {
-            HashMap hashMap = new HashMap();
-            int length = strArr.length;
-            for (int i2 = 0; i2 < length; i2++) {
-                hashMap.put(strArr[i2], Integer.valueOf(i2));
-            }
-            this.h = hashMap;
-        }
-    }
-
-    public final String toString() {
-        return yk2.f(ise.a(0, this.c), ", ", this.a.concat("("), ")", new z1(this, (byte) 7), 24);
     }
 }

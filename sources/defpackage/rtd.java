@@ -1,12 +1,17 @@
 package defpackage;
+public final class rtd implements zq7 {
+    public static final rtd a = new Object();
 
-import android.content.res.Configuration;
-import android.os.Build;
-public abstract class rtd {
-    public static m96 a(Configuration configuration) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            return new m96(new p96(kh0.i(configuration)));
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return m96.a(configuration.locale);
+        throw new ClassCastException();
     }
 }

@@ -1,35 +1,39 @@
 package defpackage;
+public final class h4d implements l4d {
+    public static final Object c = new Object();
+    public volatile i4d a;
+    public volatile Object b;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
-import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
-import java.util.Set;
-public abstract class h4d {
-    public static final lh0 a = new lh0("GoogleSignInCommon", new String[0]);
-
-    public static Intent a(Context context, GoogleSignInOptions googleSignInOptions) {
-        a.a("getSignInIntent()", new Object[0]);
-        SignInConfiguration signInConfiguration = new SignInConfiguration(context.getPackageName(), googleSignInOptions);
-        Intent intent = new Intent("com.google.android.gms.auth.GOOGLE_SIGN_IN");
-        intent.setPackage(context.getPackageName());
-        intent.setClass(context, SignInHubActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("config", signInConfiguration);
-        intent.putExtra("config", bundle);
-        return intent;
+    public static h4d b(i4d i4dVar) {
+        if (i4dVar instanceof h4d) {
+            return (h4d) i4dVar;
+        }
+        ?? obj = new Object();
+        obj.b = c;
+        obj.a = i4dVar;
+        return obj;
     }
 
-    public static void b(Context context) {
-        i4d.N2(context).O2();
-        Set<gy4> set = gy4.a;
-        synchronized (set) {
+    @Override
+    public final Object a() {
+        Object obj;
+        Object obj2 = this.b;
+        Object obj3 = c;
+        if (obj2 == obj3) {
+            synchronized (this) {
+                obj = this.b;
+                if (obj == obj3) {
+                    obj = this.a.a();
+                    Object obj4 = this.b;
+                    if (obj4 != obj3 && obj4 != obj) {
+                        throw new IllegalStateException("Scoped provider was invoked recursively returning different results: " + obj4 + " & " + obj + ". This is likely due to a circular dependency.");
+                    }
+                    this.b = obj;
+                    this.a = null;
+                }
+            }
+            return obj;
         }
-        for (gy4 gy4Var : set) {
-            gy4Var.b();
-        }
-        hy4.a();
+        return obj2;
     }
 }

@@ -1,78 +1,71 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.ui.ActionBar.d;
-public final class p47 extends dxa {
-    public final q47 w;
+import java.util.ArrayList;
+public final class p47 {
+    public final CharSequence a;
+    public final int b;
+    public final int c;
+    public final float d;
+    public final ArrayList e = new ArrayList();
+    public final boolean f;
+    public final boolean g;
+    public final boolean h;
+    public final boolean i;
+    public final boolean j;
+    public final boolean k;
 
-    public p47(q47 q47Var, Context context, int i, mf0 mf0Var, wjb wjbVar) {
-        super(context, i, mf0Var, wjbVar);
-        this.w = q47Var;
+    public p47(defpackage.r47 r37, java.lang.CharSequence r38, android.text.TextPaint r39, int r40) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.p47.<init>(r47, java.lang.CharSequence, android.text.TextPaint, int):void");
     }
 
-    @Override
-    public final void c() {
-        int i;
-        int i2;
-        int i3;
-        s47 s47Var = this.w.d;
-        if (this.r.c <= 0) {
-            performClick();
-            nf0 nf0Var = this.b;
-            if (nf0Var.u0.H) {
-                long selectedDate = nf0Var.getSelectedDate();
-                gxa gxaVar = this.r;
-                if (this.s == 4) {
-                    gxaVar.e = new lma(gxaVar.d, selectedDate);
-                    g(false);
-                } else if (gxaVar.g == null) {
+    public final void a(p47 p47Var) {
+        if (p47Var != null) {
+            ArrayList arrayList = p47Var.e;
+            int i = 0;
+            while (true) {
+                ArrayList arrayList2 = this.e;
+                if (i < Math.min(arrayList2.size(), arrayList.size())) {
+                    ((o47) arrayList2.get(i)).H = ((o47) arrayList.get(i)).H;
+                    i++;
                 } else {
-                    f();
-                    String str = this.r.g + "_" + selectedDate;
-                    fk1 fk1Var = (fk1) s47Var.w.f(str);
-                    if (fk1Var != null) {
-                        this.r.e = fk1Var;
-                        g(false);
-                        return;
-                    }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.r.g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
-                    }
-                    ?? obj = new Object();
-                    s47Var.x = obj;
-                    s47Var.f.getClass();
-                    obj.a = RecyclerView.R(this);
-                    nf0Var.u0.d(true, false);
-                    i = ((d) s47Var).currentAccount;
-                    int sendRequest = ConnectionsManager.getInstance(i).sendRequest(tL_loadAsyncGraph, new k45(this, str, obj, (byte) 15), null, null, 0, s47Var.a.stats_dc, 1, true);
-                    i2 = ((d) s47Var).currentAccount;
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i2);
-                    i3 = ((d) s47Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i3);
+                    return;
                 }
             }
         }
     }
 
-    @Override
-    public final void f() {
-        s47 s47Var = this.w.d;
-        txa txaVar = s47Var.x;
-        if (txaVar != null) {
-            txaVar.b = true;
+    public final int b() {
+        int i;
+        int i2 = 0;
+        int i3 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i2 < arrayList.size()) {
+                int i4 = ((o47) arrayList.get(i2)).f;
+                o47 o47Var = (o47) arrayList.get(i2);
+                if (o47Var.K && o47Var.f()) {
+                    i = o47Var.G;
+                } else {
+                    i = o47Var.w;
+                }
+                i3 += i + i4 + ((o47) arrayList.get(i2)).h;
+                i2++;
+            } else {
+                return i3;
+            }
         }
-        int childCount = s47Var.f.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = s47Var.f.getChildAt(i);
-            if (childAt instanceof dxa) {
-                ((dxa) childAt).b.u0.d(false, true);
+    }
+
+    public final int c(dc2 dc2Var) {
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i < arrayList.size()) {
+                i2 += ((o47) arrayList.get(i)).j(dc2Var) + ((o47) arrayList.get(i)).f + ((o47) arrayList.get(i)).h;
+                i++;
+            } else {
+                return i2;
             }
         }
     }

@@ -1,310 +1,194 @@
 package defpackage;
 
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
-import android.text.Editable;
-import android.text.style.CharacterStyle;
-import android.view.inputmethod.BaseInputConnection;
-import android.widget.EditText;
-import android.widget.TextView;
-public final class qn3 {
-    public final TextView a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
-    public boolean g;
-    public bm3 h;
-    public mn3 i;
-    public pn3 j;
-    public LinearGradient k;
-    public float m;
-    public float f = 0.5f;
-    public final Matrix l = new Matrix();
-    public final o1 n = new o1(this, (byte) 23);
+import android.util.Base64;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Dictation.DictationAsr;
+public abstract class qn3 {
+    public static ArrayList a;
+    public static long b;
+    public static CountDownLatch c;
+    public static long d;
 
-    public qn3(TextView textView) {
-        this.a = textView;
-    }
-
-    public static float b(float f) {
-        if (f < 0.5f) {
-            return yjb.C(f, 4.0f, f, f);
-        }
-        return 1.0f - (((float) Math.pow((f * (-2.0f)) + 2.0f, 3.0d)) / 2.0f);
-    }
-
-    public final void a() {
-        Editable editableText = this.a.getEditableText();
-        if (editableText == null) {
-            return;
-        }
-        for (nn3 nn3Var : (nn3[]) editableText.getSpans(0, editableText.length(), nn3.class)) {
-            editableText.removeSpan(nn3Var);
-        }
-        for (on3 on3Var : (on3[]) editableText.getSpans(0, editableText.length(), on3.class)) {
-            editableText.removeSpan(on3Var);
-        }
-        for (mn3 mn3Var : (mn3[]) editableText.getSpans(0, editableText.length(), mn3.class)) {
-            editableText.removeSpan(mn3Var);
-        }
-        this.i = null;
-    }
-
-    public final void c(int i, int i2, boolean z) {
-        int i3;
-        int i4;
-        float f;
-        this.b = i;
-        this.c = i2;
-        if (z) {
-            i3 = -10777345;
-        } else {
-            i3 = -15374904;
-        }
-        this.d = om3.e(i3);
-        if (z) {
-            i4 = -6128385;
-        } else {
-            i4 = -15823740;
-        }
-        this.e = om3.e(i4);
-        if (z) {
-            f = 0.6f;
-        } else {
-            f = 0.75f;
-        }
-        this.f = f;
-        this.k = null;
-    }
-
-    public final void d(Editable editable, int i) {
-        mn3[] mn3VarArr;
-        int length = editable.length();
-        int max = Math.max(0, Math.min(i, length));
-        long uptimeMillis = SystemClock.uptimeMillis();
-        mn3 mn3Var = this.i;
-        if (mn3Var != null) {
-            int spanStart = editable.getSpanStart(mn3Var);
-            if (spanStart >= 0 && spanStart < max) {
-                ?? characterStyle = new CharacterStyle();
-                characterStyle.a = uptimeMillis;
-                editable.setSpan(characterStyle, spanStart, max, 33);
+    public static synchronized ArrayList a() {
+        synchronized (qn3.class) {
+            if (a == null) {
+                String string = uc7.e1().getString("speech_models", null);
+                if (string == null) {
+                    return null;
+                }
+                SerializedData serializedData = new SerializedData(Base64.decode(string, 0));
+                int readInt32 = serializedData.readInt32(true);
+                ArrayList arrayList = new ArrayList(readInt32);
+                for (int i = 0; i < readInt32; i++) {
+                    arrayList.add(TLRPC.TL_transcriptionModel.TLdeserialize(serializedData, serializedData.readInt32(true), true));
+                }
+                serializedData.cleanup();
+                a = arrayList;
             }
-            editable.removeSpan(this.i);
-            this.i = null;
+            return a;
         }
-        for (mn3 mn3Var2 : (mn3[]) editable.getSpans(0, length, mn3.class)) {
-            int spanStart2 = editable.getSpanStart(mn3Var2);
-            int spanEnd = editable.getSpanEnd(mn3Var2);
-            editable.removeSpan(mn3Var2);
-            if (spanEnd > spanStart2) {
-                editable.setSpan(mn3Var2, spanStart2, spanEnd, 33);
-            }
-        }
-        if (max < length) {
-            ?? characterStyle2 = new CharacterStyle();
-            this.i = characterStyle2;
-            editable.setSpan(characterStyle2, max, length, 33);
-        }
-        g();
     }
 
-    public final void e(int i, int i2, String str) {
-        String[] split;
-        boolean z;
-        int i3;
-        boolean z2;
+    public static boolean b() {
+        kq3 n;
+        lq3 q = lq3.q(yac.k());
+        int e = a.e();
+        if (e == 1) {
+            n = q.p();
+        } else if (e == 2) {
+            n = q.o();
+        } else {
+            n = q.n();
+        }
+        if (n != null && n.g) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int c(org.telegram.tgnet.TLRPC.TL_transcriptionModel r23, java.io.File r24, boolean r25, defpackage.pn3 r26) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qn3.c(org.telegram.tgnet.TLRPC$TL_transcriptionModel, java.io.File, boolean, pn3):int");
+    }
+
+    public static boolean d() {
         long j;
-        long j2;
-        int i4;
-        TextView textView = this.a;
-        Editable editableText = textView.getEditableText();
-        if (editableText == null) {
-            return;
-        }
-        boolean z3 = false;
-        int max = Math.max(0, Math.min(i, editableText.length()));
-        String charSequence = editableText.subSequence(max, editableText.length()).toString();
-        if (charSequence.equals(str)) {
-            if (i2 < 0) {
-                i4 = editableText.length();
+        ArrayList a2 = a();
+        long currentTimeMillis = System.currentTimeMillis() - uc7.e1().getLong("speech_models_checked", 0L);
+        if (a2 != null) {
+            if (a2.isEmpty()) {
+                j = 3600000;
             } else {
-                i4 = max + i2;
+                j = 86400000;
             }
-            d(editableText, i4);
-            return;
-        }
-        int min = Math.min(charSequence.length(), str.length());
-        int i5 = 0;
-        while (i5 < min && charSequence.charAt(i5) == str.charAt(i5)) {
-            i5++;
-        }
-        String substring = str.substring(i5);
-        int i6 = 0;
-        for (String str2 : charSequence.substring(i5).trim().split("\\s+")) {
-            int length = str2.length();
-            int i7 = 0;
-            while (true) {
-                if (i7 >= length) {
-                    break;
-                } else if (Character.isLetterOrDigit(str2.charAt(i7))) {
-                    i6++;
-                    break;
-                } else {
-                    i7++;
+            if (currentTimeMillis <= j) {
+                if (!a2.isEmpty() || b != 0) {
+                    if ((f11.c + "/" + DictationAsr.j0()).equals(uc7.e1().getString("speech_models_build", null))) {
+                        return false;
+                    }
+                    return true;
                 }
+                return true;
             }
+            return true;
         }
-        BaseInputConnection.removeComposingSpans(editableText);
-        int i8 = i5 + max;
-        if (i8 == editableText.length()) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            editableText.append((CharSequence) substring);
-        } else {
-            editableText.replace(i8, editableText.length(), substring);
-        }
-        int length2 = substring.length() + i8;
-        if (z) {
-            i6 = 0;
-        }
-        long uptimeMillis = SystemClock.uptimeMillis();
-        int i9 = 0;
-        int i10 = 0;
-        loop3: while (i8 < length2) {
-            while (i8 < length2) {
-                if (Character.isWhitespace(editableText.charAt(i8))) {
-                    i8++;
-                } else {
-                    int i11 = i8;
-                    while (i11 < length2 && !Character.isWhitespace(editableText.charAt(i11))) {
-                        i11++;
-                    }
-                    if (i9 < i6) {
-                        z2 = true;
-                    } else {
-                        z2 = z3;
-                    }
-                    int i12 = i8;
-                    while (true) {
-                        if (i12 >= i11) {
-                            break;
-                        } else if (Character.isLetterOrDigit(editableText.charAt(i12))) {
-                            i9++;
-                            break;
-                        } else {
-                            i12++;
-                        }
-                    }
-                    int i13 = i9;
-                    if (z2) {
-                        j = 0;
-                    } else {
-                        j = (i10 * 22) + uptimeMillis;
-                    }
-                    int i14 = i8;
-                    while (true) {
-                        if (i14 > 0) {
-                            j2 = 0;
-                            if (Character.isWhitespace(editableText.charAt(i14 - 1))) {
-                                break;
-                            }
-                            i14--;
-                        } else {
-                            j2 = 0;
-                            break;
-                        }
-                    }
-                    int i15 = length2;
-                    int i16 = i11;
-                    while (i16 < editableText.length() && !Character.isWhitespace(editableText.charAt(i16))) {
-                        i16++;
-                    }
-                    Object[] objArr = (nn3[]) editableText.getSpans(i14, i16, nn3.class);
-                    int i17 = max;
-                    int length3 = objArr.length;
-                    int i18 = 0;
-                    while (i18 < length3) {
-                        int i19 = i18;
-                        Object obj = objArr[i19];
-                        int i20 = length3;
-                        if (editableText.getSpanStart(obj) < i16 && editableText.getSpanEnd(obj) > i14) {
-                            editableText.removeSpan(obj);
-                        }
-                        i18 = i19 + 1;
-                        length3 = i20;
-                    }
-                    if (j > j2) {
-                        on3 on3Var = new on3(j, this.b);
-                        on3Var.c = i11 - i8;
-                        editableText.setSpan(on3Var, i8, i11, 33);
-                    }
-                    int i21 = i8;
-                    editableText.setSpan(new nn3(Math.max(uptimeMillis, j), this.b, this.c), i14, i16, 33);
-                    if (!z2) {
-                        i10 += i11 - i21;
-                    }
-                    i9 = i13;
-                    i8 = i11;
-                    length2 = i15;
-                    max = i17;
-                    z3 = false;
-                }
-            }
-            break loop3;
-        }
-        int i22 = max;
-        if (i2 < 0) {
-            i3 = editableText.length();
-        } else {
-            i3 = i22 + i2;
-        }
-        d(editableText, i3);
-        if (textView instanceof EditText) {
-            ((EditText) textView).setSelection(editableText.length());
-        }
-        g();
+        return true;
     }
 
-    public final void f(boolean z) {
-        Editable editableText = this.a.getEditableText();
-        if (editableText != null) {
-            if (z) {
-                if (this.k == null) {
-                    float L = gl.L(150.0f);
-                    int f = bm2.f(this.f, this.c, this.d);
-                    int f2 = bm2.f(this.f, this.c, this.e);
-                    this.k = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{this.c, f, bm2.f(0.5f, f, f2), f2, this.c}, new float[]{0.0f, 0.3f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.MIRROR);
-                }
-                pn3 pn3Var = this.j;
-                if (pn3Var == null) {
-                    pn3Var = new pn3(this, (byte) 0);
-                    this.j = pn3Var;
-                }
-                this.m = 1.0f;
-                editableText.setSpan(pn3Var, 0, editableText.length(), 18);
-                g();
-                return;
+    public static synchronized CountDownLatch e() {
+        synchronized (qn3.class) {
+            CountDownLatch countDownLatch = c;
+            if (countDownLatch != null) {
+                return countDownLatch;
             }
-            pn3 pn3Var2 = this.j;
-            if (pn3Var2 != null) {
-                this.m = 0.0f;
-                editableText.removeSpan(pn3Var2);
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long j = b;
+            if (j != 0 && elapsedRealtime - j < 60000) {
+                return null;
             }
+            int k = yac.k();
+            if (!yac.q(k)) {
+                return null;
+            }
+            b = elapsedRealtime;
+            CountDownLatch countDownLatch2 = new CountDownLatch(1);
+            c = countDownLatch2;
+            TLRPC.TL_messages_getTranscriptionModels tL_messages_getTranscriptionModels = new TLRPC.TL_messages_getTranscriptionModels();
+            tL_messages_getTranscriptionModels.version = DictationAsr.j0();
+            ConnectionsManager.getInstance(k).sendRequest(tL_messages_getTranscriptionModels, new ye(countDownLatch2, (byte) 20));
+            return countDownLatch2;
         }
     }
 
-    public final void g() {
-        if (this.g) {
-            return;
+    public static TLRPC.TL_transcriptionModel f(ArrayList arrayList, String... strArr) {
+        if (arrayList == null) {
+            return null;
         }
-        this.g = true;
-        this.a.postOnAnimation(this.n);
+        String[] strArr2 = (String[]) strArr.clone();
+        Arrays.sort(strArr2);
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
+            String[] strArr3 = (String[]) tL_transcriptionModel.languages.toArray(new String[0]);
+            Arrays.sort(strArr3);
+            if (Arrays.equals(strArr2, strArr3)) {
+                return tL_transcriptionModel;
+            }
+        }
+        return null;
+    }
+
+    public static void g(File file) {
+        SharedPreferences.Editor edit = uc7.e1().edit();
+        edit.remove("speech_doc_" + file.getName()).apply();
+    }
+
+    public static boolean h() {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j = d;
+        if (j == 0 || elapsedRealtime - j > 60000) {
+            d = elapsedRealtime;
+            if (d()) {
+                e();
+            }
+        }
+        ArrayList a2 = a();
+        if (a2 != null) {
+            int size = a2.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = a2.get(i);
+                i++;
+                TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
+                if (!tL_transcriptionModel.languages.isEmpty() && !tL_transcriptionModel.languages.contains("tinylid") && !tL_transcriptionModel.languages.contains("silero-vad")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean i(TLRPC.TL_transcriptionModel tL_transcriptionModel, File file) {
+        if (tL_transcriptionModel != null && file.exists()) {
+            SharedPreferences e1 = uc7.e1();
+            if (e1.getLong("speech_doc_" + file.getName(), 0L) != tL_transcriptionModel.document.id) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static void j() {
+        CountDownLatch e = e();
+        if (e != null) {
+            new Thread(new nn3(e, (byte) 0), "DictationModels").start();
+        }
+    }
+
+    public static void k(ArrayList arrayList) {
+        SerializedData serializedData = new SerializedData();
+        serializedData.writeInt32(arrayList.size());
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((TLRPC.TL_transcriptionModel) obj).serializeToStream(serializedData);
+        }
+        SharedPreferences.Editor putLong = uc7.e1().edit().putString("speech_models", Base64.encodeToString(serializedData.toByteArray(), 2)).putLong("speech_models_checked", System.currentTimeMillis());
+        putLong.putString("speech_models_build", f11.c + "/" + DictationAsr.j0()).apply();
+        serializedData.cleanup();
     }
 }

@@ -1,52 +1,61 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-public final class kc8 {
-    public static final kc8 b = new jc8().b();
-    public static final String c;
-    public final gi4 a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.ui.PhotoViewer;
+public final class kc8 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final lc8 b;
 
-    static {
-        String str = g8c.a;
-        c = "0";
+    public kc8(lc8 lc8Var, byte b) {
+        this.a = b;
+        this.b = lc8Var;
     }
 
-    public kc8(gi4 gi4Var) {
-        this.a = gi4Var;
-    }
-
-    public final boolean a(int i) {
-        return this.a.a.get(i);
-    }
-
-    public final Bundle b() {
-        Bundle bundle = new Bundle();
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        int i = 0;
-        while (true) {
-            gi4 gi4Var = this.a;
-            if (i < gi4Var.a.size()) {
-                arrayList.add(Integer.valueOf(gi4Var.a(i)));
-                i++;
-            } else {
-                bundle.putIntegerArrayList(c, arrayList);
-                return bundle;
-            }
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        lc8 lc8Var = this.b;
+        switch (b) {
+            case 0:
+                PhotoViewer photoViewer = (PhotoViewer) lc8Var.b;
+                photoViewer.R1.getNextView().setText((CharSequence) null);
+                ic8 ic8Var = photoViewer.U1;
+                ic8Var.l0 = false;
+                if (ic8Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) ic8Var.o0.getLayoutParams()).topMargin = ic8Var.m0;
+                    ic8Var.m0 = -1;
+                    ic8Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((PhotoViewer) lc8Var.b).R1.setTranslationY(0.0f);
+                return;
         }
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.a) {
+            case 0:
+                ic8 ic8Var = ((PhotoViewer) this.b.b).U1;
+                Method method = ic8Var.f0;
+                if (method != null) {
+                    try {
+                        method.invoke(ic8Var, null);
+                        return;
+                    } catch (Exception e) {
+                        cc4.g(e, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        if (!(obj instanceof kc8)) {
-            return false;
-        }
-        return this.a.equals(((kc8) obj).a);
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
     }
 }

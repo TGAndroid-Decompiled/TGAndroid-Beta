@@ -1,80 +1,173 @@
 package defpackage;
-public final class gu8 {
-    public final byte a;
-    public final uob b;
-    public final xu7 c;
+
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import java.util.ArrayList;
+import java.util.HashSet;
+public final class gu8 extends View implements fn7 {
+    public final mm E;
+    public float F;
+    public axa G;
+    public final ArrayList H;
+    public final ArrayList I;
+    public final HashSet J;
+    public int K;
+    public final DecelerateInterpolator L;
+    public final LinearInterpolator M;
+    public fu8 N;
+    public final int a;
+    public final long b;
+    public final d26 c;
     public boolean d;
-    public boolean e;
-    public boolean f;
-    public long g;
-    public long h;
-    public long i;
+    public float e;
+    public float f;
+    public boolean h;
+    public float n;
+    public float r;
+    public float s;
+    public float w;
+    public float x;
+    public float y;
 
-    public gu8(byte b) {
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.b = new uob(0L);
-                this.g = -9223372036854775807L;
-                this.h = -9223372036854775807L;
-                this.i = -9223372036854775807L;
-                this.c = new xu7();
-                return;
-            default:
-                this.b = new uob(0L);
-                this.g = -9223372036854775807L;
-                this.h = -9223372036854775807L;
-                this.i = -9223372036854775807L;
-                this.c = new xu7();
-                return;
+    public gu8(Context context, int i, long j, d26 d26Var) {
+        super(context);
+        this.d = true;
+        this.E = new mm(this, 0L, 350L, k43.h);
+        this.F = 1.0f;
+        this.H = new ArrayList();
+        this.I = new ArrayList();
+        this.J = new HashSet();
+        this.L = new DecelerateInterpolator();
+        this.M = new LinearInterpolator();
+        this.a = i;
+        this.b = j;
+        this.c = d26Var;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gu8.a():void");
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.I3 && ((Long) objArr[0]).longValue() == this.b) {
+            a();
         }
     }
 
-    public static int b(int i, byte[] bArr) {
-        return ((bArr[i] & 255) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8) | (bArr[i + 3] & 255);
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gu8.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    public static long c(xu7 xu7Var) {
-        int i = xu7Var.b;
-        if (xu7Var.a() >= 9) {
-            byte[] bArr = new byte[9];
-            xu7Var.k(0, 9, bArr);
-            xu7Var.N(i);
-            byte b = bArr[0];
-            if ((b & 196) == 68) {
-                byte b2 = bArr[2];
-                if ((b2 & 4) == 4) {
-                    byte b3 = bArr[4];
-                    if ((b3 & 4) == 4 && (bArr[5] & 1) == 1 && (bArr[8] & 3) == 3) {
-                        long j = b;
-                        long j2 = b2;
-                        return (((56 & j) >> 3) << 30) | ((j & 3) << 28) | ((bArr[1] & 255) << 20) | (((j2 & 248) >> 3) << 15) | ((j2 & 3) << 13) | ((bArr[3] & 255) << 5) | ((b3 & 248) >> 3);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        jn7.f(this.a).b(this, jn7.I3);
+        ArrayList arrayList = this.I;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((fu8) obj).j.b(this);
+        }
+        a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        jn7.f(this.a).n(this, jn7.I3);
+        ArrayList arrayList = this.I;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((fu8) obj).j.o(this);
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        fu8 fu8Var;
+        fu8 fu8Var2;
+        fu8 fu8Var3;
+        if (this.d) {
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            int i = 0;
+            while (true) {
+                ArrayList arrayList = this.I;
+                if (i < arrayList.size()) {
+                    if (((fu8) arrayList.get(i)).l.contains(x, y)) {
+                        fu8Var = (fu8) arrayList.get(i);
+                        break;
                     }
-                    return -9223372036854775807L;
+                    i++;
+                } else {
+                    fu8Var = null;
+                    break;
                 }
-                return -9223372036854775807L;
             }
-            return -9223372036854775807L;
+            if (motionEvent.getAction() == 0) {
+                this.N = fu8Var;
+                if (fu8Var != null) {
+                    fu8Var.m.c(true);
+                }
+            } else if (motionEvent.getAction() == 2) {
+                fu8 fu8Var4 = this.N;
+                if (fu8Var4 != fu8Var && fu8Var4 != null) {
+                    fu8Var4.m.c(false);
+                    this.N = null;
+                }
+            } else if (motionEvent.getAction() == 1) {
+                if (this.N != null) {
+                    m01.u(getContext(), "https://t.me/nft/" + fu8Var3.e);
+                    this.N.m.c(false);
+                    this.N = null;
+                }
+            } else if (motionEvent.getAction() == 3 && (fu8Var2 = this.N) != null) {
+                fu8Var2.m.c(false);
+                this.N = null;
+            }
+            if (this.N != null) {
+                return true;
+            }
         }
-        return -9223372036854775807L;
+        return false;
     }
 
-    public final void a(ja3 ja3Var) {
-        byte b = this.a;
-        xu7 xu7Var = this.c;
-        switch (b) {
-            case 0:
-                byte[] bArr = g8c.b;
-                xu7Var.L(bArr.length, bArr);
-                this.d = true;
-                ja3Var.f = 0;
-                return;
-            default:
-                byte[] bArr2 = g8c.b;
-                xu7Var.L(bArr2.length, bArr2);
-                this.d = true;
-                ja3Var.f = 0;
-                return;
+    public void setActionBarActionMode(float f) {
+        this.n = f;
+        invalidate();
+    }
+
+    public void setActive(boolean z) {
+        this.d = z;
+    }
+
+    public void setExpandCoords(float f) {
+        this.x = f;
+        invalidate();
+    }
+
+    public void setExpandProgress(float f) {
+        if (this.e != f) {
+            this.e = f;
+            invalidate();
         }
+    }
+
+    public void setProgressToStoriesInsets(float f) {
+        if (this.F == f) {
+            return;
+        }
+        this.F = f;
+        invalidate();
     }
 }

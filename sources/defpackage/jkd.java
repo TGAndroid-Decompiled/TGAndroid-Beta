@@ -1,17 +1,20 @@
 package defpackage;
-public final class jkd implements zn7 {
-    public static final jkd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class jkd extends c4 {
+    public static final Parcelable.Creator<jkd> CREATOR = new ced((byte) 27);
+    public final int a;
+
+    public jkd(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.s(parcel, r);
     }
 }

@@ -1,4 +1,10 @@
 package defpackage;
-public interface en7 {
-    void b(int i);
+public final class en7 {
+    public final int a;
+    public final Object[] b;
+
+    public en7(int i, Object[] objArr) {
+        this.a = i;
+        this.b = objArr;
+    }
 }

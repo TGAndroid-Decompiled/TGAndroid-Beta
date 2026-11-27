@@ -1,142 +1,115 @@
 package defpackage;
 
-import android.util.SparseArray;
-import java.lang.reflect.Array;
-public final class rj0 implements my0 {
-    public final byte a = 2;
+import java.util.Arrays;
+public final class rj0 implements Cloneable {
+    public int a;
     public int b;
     public int c;
-    public final Object d;
+    public int[] d;
 
-    public rj0(mf7 mf7Var, fm4 fm4Var) {
-        xu7 xu7Var = mf7Var.e;
-        this.d = xu7Var;
-        xu7Var.N(12);
-        int E = xu7Var.E();
-        if ("audio/raw".equals(fm4Var.t)) {
-            int u = g8c.u(fm4Var.Q) * fm4Var.N;
-            if (E % u != 0) {
-                lad.f("BoxParsers", "Audio sample size mismatch. stsd sample size: " + u + ", stsz sample size: " + E);
-                E = u;
-            }
+    public rj0(int i, int i2) {
+        if (i >= 1 && i2 >= 1) {
+            this.a = i;
+            this.b = i2;
+            int i3 = (i + 31) / 32;
+            this.c = i3;
+            this.d = new int[i3 * i2];
+            return;
         }
-        this.b = E == 0 ? -1 : E;
-        this.c = xu7Var.E();
+        lq5.j("Both dimensions must be greater than 0");
+        throw null;
     }
 
-    @Override
-    public final int a() {
-        return this.b;
+    public final void a(int i, int i2) {
+        int i3 = (i / 32) + (i2 * this.c);
+        int[] iArr = this.d;
+        iArr[i3] = iArr[i3] ^ (1 << (i & 31));
     }
 
-    @Override
-    public final int b() {
-        return this.c;
-    }
-
-    @Override
-    public final int c() {
-        int i = this.b;
-        if (i == -1) {
-            return ((xu7) this.d).E();
+    public final boolean b(int i, int i2) {
+        int i3 = i2 * this.c;
+        if (((this.d[(i / 32) + i3] >>> (i & 31)) & 1) != 0) {
+            return true;
         }
-        return i;
+        return false;
     }
 
-    public final int d() {
-        return ((((byte[]) this.d).length - this.b) << 3) - this.c;
+    public final void c(int i, int i2) {
+        int i3 = (i / 32) + (i2 * this.c);
+        int[] iArr = this.d;
+        iArr[i3] = iArr[i3] | (1 << (i & 31));
     }
 
-    public final byte e(int i, int i2) {
-        return ((byte[][]) this.d)[i2][i];
+    public final Object clone() {
+        int i = this.a;
+        int i2 = this.b;
+        int i3 = this.c;
+        ?? obj = new Object();
+        obj.a = i;
+        obj.b = i2;
+        obj.c = i3;
+        obj.d = (int[]) this.d.clone();
+        return obj;
     }
 
-    public final int f(int i) {
-        byte[] bArr = (byte[]) this.d;
-        int i2 = 0;
-        if (i >= 1 && i <= 32 && i <= d()) {
-            int i3 = this.c;
-            if (i3 > 0) {
-                int i4 = 8 - i3;
-                int min = Math.min(i, i4);
-                int i5 = i4 - min;
-                int i6 = this.b;
-                int i7 = (bArr[i6] & ((255 >> (8 - min)) << i5)) >> i5;
-                i -= min;
-                int i8 = this.c + min;
-                this.c = i8;
-                if (i8 == 8) {
-                    this.c = 0;
-                    this.b = i6 + 1;
+    public final void d(int i, int i2, int i3, int i4) {
+        if (i2 >= 0 && i >= 0) {
+            if (i4 >= 1 && i3 >= 1) {
+                int i5 = i3 + i;
+                int i6 = i4 + i2;
+                if (i6 <= this.b && i5 <= this.a) {
+                    while (i2 < i6) {
+                        int i7 = this.c * i2;
+                        for (int i8 = i; i8 < i5; i8++) {
+                            int[] iArr = this.d;
+                            int i9 = (i8 / 32) + i7;
+                            iArr[i9] = iArr[i9] | (1 << (i8 & 31));
+                        }
+                        i2++;
+                    }
+                    return;
                 }
-                i2 = i7;
+                lq5.j("The region must fit inside the matrix");
+                return;
             }
-            if (i > 0) {
-                while (i >= 8) {
-                    int i9 = this.b;
-                    i2 = (i2 << 8) | (bArr[i9] & 255);
-                    this.b = i9 + 1;
-                    i -= 8;
-                }
-                if (i > 0) {
-                    int i10 = 8 - i;
-                    int i11 = (i2 << i) | ((bArr[this.b] & ((255 >> i10) << i10)) >> i10);
-                    this.c += i;
-                    return i11;
-                }
-                return i2;
-            }
-            return i2;
+            lq5.j("Height and width must be at least 1");
+            return;
         }
-        w26.j(String.valueOf(i));
-        return 0;
+        lq5.j("Left and top must be nonnegative");
     }
 
-    public final void g(int i, int i2, int i3) {
-        ((byte[][]) this.d)[i2][i] = (byte) i3;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof rj0)) {
+            return false;
+        }
+        rj0 rj0Var = (rj0) obj;
+        if (this.a != rj0Var.a || this.b != rj0Var.b || this.c != rj0Var.c || !Arrays.equals(this.d, rj0Var.d)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i = this.a;
+        return Arrays.hashCode(this.d) + (((((((i * 31) + i) * 31) + this.b) * 31) + this.c) * 31);
     }
 
     public final String toString() {
-        switch (this.a) {
-            case 2:
-                int i = this.b;
-                int i2 = this.c;
-                StringBuilder sb = new StringBuilder(((i << 1) * i2) + 2);
-                for (int i3 = 0; i3 < i2; i3++) {
-                    byte[] bArr = ((byte[][]) this.d)[i3];
-                    for (int i4 = 0; i4 < i; i4++) {
-                        byte b = bArr[i4];
-                        if (b != 0) {
-                            if (b != 1) {
-                                sb.append("  ");
-                            } else {
-                                sb.append(" 1");
-                            }
-                        } else {
-                            sb.append(" 0");
-                        }
-                    }
-                    sb.append('\n');
+        String str;
+        int i = this.b;
+        int i2 = this.a;
+        StringBuilder sb = new StringBuilder((i2 + 1) * i);
+        for (int i3 = 0; i3 < i; i3++) {
+            for (int i4 = 0; i4 < i2; i4++) {
+                if (b(i4, i3)) {
+                    str = "X ";
+                } else {
+                    str = "  ";
                 }
-                return sb.toString();
-            default:
-                return super.toString();
+                sb.append(str);
+            }
+            sb.append("\n");
         }
-    }
-
-    public rj0(byte[] bArr) {
-        this.d = bArr;
-    }
-
-    public rj0(int i, int i2, SparseArray sparseArray) {
-        this.b = i;
-        this.c = i2;
-        this.d = sparseArray;
-    }
-
-    public rj0(int i, int i2) {
-        this.d = (byte[][]) Array.newInstance(Byte.TYPE, i2, i);
-        this.b = i;
-        this.c = i2;
+        return sb.toString();
     }
 }

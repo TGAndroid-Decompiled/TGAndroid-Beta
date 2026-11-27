@@ -1,33 +1,28 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ew0 extends AnimatorListenerAdapter {
-    public final int a;
-    public final int b;
-    public final iv0 c;
-    public final ow0 d;
+import android.view.View;
+import android.view.WindowInsets;
+import org.telegram.ui.SecretMediaViewer;
+public final class ew0 implements View.OnApplyWindowInsetsListener {
+    public final byte a;
+    public final Object b;
 
-    public ew0(ow0 ow0Var, int i, int i2, iv0 iv0Var) {
-        this.d = ow0Var;
-        this.a = i;
-        this.b = i2;
-        this.c = iv0Var;
+    public ew0(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int f = bm2.f(1.0f, this.a, this.b);
-        ow0 ow0Var = this.d;
-        ow0Var.S = f;
-        ow0Var.h();
-        nw0 nw0Var = ow0Var.f;
-        nw0Var.invalidate();
-        lw0 lw0Var = ow0Var.Y;
-        lw0Var.setBackgroundColor(ow0Var.S);
-        iv0 iv0Var = this.c;
-        iv0Var.b(lw0Var, 1.0f);
-        ow0Var.a = iv0Var.a(bkb.yj);
-        nw0Var.invalidate();
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                return ((xw0) obj).r(view, windowInsets);
+            case 1:
+                return ((nx0) obj).V(windowInsets);
+            default:
+                return ((SecretMediaViewer) obj).f(windowInsets);
+        }
     }
 }

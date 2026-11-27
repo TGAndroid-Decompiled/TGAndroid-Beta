@@ -1,68 +1,279 @@
 package defpackage;
 
-import android.view.KeyEvent;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-public final class hx8 implements TextView.OnEditorActionListener {
-    public final p32 a;
-    public final int b;
-    public final nx8 c;
-    public final TextView d;
-    public final au0 e;
-    public final p8c f;
-    public final hd[] g;
-    public final View h;
+import java.util.HashSet;
+import org.telegram.ui.ProxyListActivity;
+public final class hx8 extends FrameLayout implements snb {
+    public final TextView a;
+    public final TextView b;
+    public final ImageView c;
+    public wea d;
+    public Drawable e;
+    public final og2 f;
+    public boolean h;
+    public boolean n;
+    public int r;
+    public final ProxyListActivity s;
 
-    public hx8(p32 p32Var, int i, nx8 nx8Var, TextView textView, au0 au0Var, p8c p8cVar, hd[] hdVarArr, View view) {
-        this.a = p32Var;
-        this.b = i;
-        this.c = nx8Var;
-        this.d = textView;
-        this.e = au0Var;
-        this.f = p8cVar;
-        this.g = hdVarArr;
-        this.h = view;
+    public hx8(ProxyListActivity proxyListActivity, Context context) {
+        super(context);
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        int i8;
+        this.s = proxyListActivity;
+        TextView textView = new TextView(context);
+        this.a = textView;
+        yob.X(textView, aob.G6, null);
+        ik8.w(textView, 1, 16.0f, 1, 1);
+        textView.setSingleLine(true);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        if (ob6.a0) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        textView.setGravity(i | 16);
+        boolean z = ob6.a0;
+        if (z) {
+            i2 = 5;
+        } else {
+            i2 = 3;
+        }
+        int i9 = i2 | 48;
+        if (z) {
+            i3 = 56;
+        } else {
+            i3 = 21;
+        }
+        float f = i3;
+        if (z) {
+            i4 = 21;
+        } else {
+            i4 = 56;
+        }
+        addView(textView, tre.d(-2, -2.0f, i9, f, 10.0f, i4, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.b = textView2;
+        textView2.setTextSize(1, 13.0f);
+        if (ob6.a0) {
+            i5 = 5;
+        } else {
+            i5 = 3;
+        }
+        textView2.setGravity(i5);
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setCompoundDrawablePadding(hl.L(6.0f));
+        textView2.setEllipsize(truncateAt);
+        textView2.setPadding(0, 0, 0, 0);
+        boolean z2 = ob6.a0;
+        if (z2) {
+            i6 = 5;
+        } else {
+            i6 = 3;
+        }
+        int i10 = i6 | 48;
+        if (z2) {
+            i7 = 56;
+        } else {
+            i7 = 21;
+        }
+        addView(textView2, tre.d(-2, -2.0f, i10, i7, 35.0f, z2 ? 21 : 56, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.c = imageView;
+        imageView.setImageResource(2131232190);
+        yob.s(imageView, aob.A6, null, PorterDuff.Mode.MULTIPLY);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setContentDescription(ob6.M0(2131751300, null));
+        if (ob6.a0) {
+            i8 = 3;
+        } else {
+            i8 = 5;
+        }
+        addView(imageView, tre.d(48, 48.0f, i8 | 48, 8.0f, 8.0f, 8.0f, 0.0f));
+        imageView.setOnClickListener(new jn8(this, (byte) 5));
+        og2 og2Var = new og2(21, null, context);
+        this.f = og2Var;
+        og2Var.b(aob.i7, aob.g7, aob.k7);
+        og2Var.setDrawBackgroundAsArc(14);
+        og2Var.setVisibility(8);
+        addView(og2Var, tre.d(24, 24.0f, (ob6.a0 ? 5 : 3) | 16, 16.0f, 0.0f, 8.0f, 0.0f));
+        setWillNotDraw(false);
+    }
+
+    public final void a(boolean z, boolean z2) {
+        int L;
+        int i;
+        if (this.n == z && z2) {
+            return;
+        }
+        this.n = z;
+        if (ob6.a0) {
+            L = -hl.L(32.0f);
+        } else {
+            L = hl.L(32.0f);
+        }
+        float f = L;
+        int i2 = 0;
+        float f2 = 0.0f;
+        float f3 = 1.0f;
+        if (!z2) {
+            if (!z) {
+                f = 0.0f;
+            }
+            this.a.setTranslationX(f);
+            this.b.setTranslationX(f);
+            ImageView imageView = this.c;
+            imageView.setTranslationX(f);
+            boolean z3 = ob6.a0;
+            int L2 = hl.L(32.0f);
+            if (!z3) {
+                L2 = -L2;
+            }
+            og2 og2Var = this.f;
+            og2Var.setTranslationX(L2 + f);
+            if (z) {
+                i = 8;
+            } else {
+                i = 0;
+            }
+            imageView.setVisibility(i);
+            imageView.setAlpha(1.0f);
+            imageView.setScaleX(1.0f);
+            imageView.setScaleY(1.0f);
+            if (!z) {
+                i2 = 8;
+            }
+            og2Var.setVisibility(i2);
+            og2Var.setAlpha(1.0f);
+            og2Var.setScaleX(1.0f);
+            og2Var.setScaleY(1.0f);
+            return;
+        }
+        if (z) {
+            f3 = 0.0f;
+            f2 = 1.0f;
+        }
+        ValueAnimator duration = ValueAnimator.ofFloat(f3, f2).setDuration(200L);
+        duration.setInterpolator(k43.f);
+        duration.addUpdateListener(new qm1(this, f, (byte) 7));
+        duration.addListener(new gf4((byte) 26, this, z));
+        duration.start();
+    }
+
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hx8.b():void");
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        int i2;
-        if (i != 6) {
-            return false;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        b();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i;
+        if (ob6.a0) {
+            L = 0.0f;
+        } else {
+            L = hl.L(20.0f);
         }
-        p32 p32Var = this.a;
-        String obj = p32Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 32) {
-            ox8 f = ox8.f(this.b);
-            nx8 nx8Var = this.c;
-            if (nx8Var == null) {
-                i2 = -1;
+        float f = L;
+        float measuredHeight = getMeasuredHeight() - 1;
+        int measuredWidth = getMeasuredWidth();
+        if (ob6.a0) {
+            i = hl.L(20.0f);
+        } else {
+            i = 0;
+        }
+        canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, aob.j0);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), ik8.E(64.0f, 1, 1073741824));
+    }
+
+    public void setChecked(boolean z) {
+        TextView textView = this.b;
+        if (z) {
+            Drawable drawable = this.e;
+            if (drawable == null) {
+                drawable = getResources().getDrawable(2131232641).mutate();
+                this.e = drawable;
+            }
+            if (drawable != null) {
+                drawable.setColorFilter(new PorterDuffColorFilter(this.r, PorterDuff.Mode.MULTIPLY));
+            }
+            boolean z2 = ob6.a0;
+            Drawable drawable2 = this.e;
+            if (z2) {
+                textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, drawable2, (Drawable) null);
+                return;
             } else {
-                i2 = nx8Var.a;
+                textView.setCompoundDrawablesWithIntrinsicBounds(drawable2, (Drawable) null, (Drawable) null, (Drawable) null);
+                return;
             }
-            nx8 d = f.d(obj);
-            if (d != null && d.a != i2) {
-                gl.z3(p32Var);
-                this.d.setText(k96.M0(2131752650, null));
-                this.e.a(Boolean.TRUE);
-                return true;
-            }
-            this.f.a(obj);
-            hd[] hdVarArr = this.g;
-            hd hdVar = hdVarArr[0];
-            if (hdVar != null) {
-                hdVar.dismiss();
-            }
-            if (hdVarArr[0] == kx8.f) {
-                kx8.f = null;
-            }
-            View view = this.h;
-            if (view != null) {
-                view.requestFocus();
-            }
-            return true;
         }
-        gl.z3(p32Var);
-        return true;
+        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+    }
+
+    public void setProxy(wea weaVar) {
+        String str;
+        jx8 jx8Var = weaVar.a;
+        if (jx8Var.a == 3) {
+            str = c00.k(new StringBuilder(), jx8Var.b, " (WEB)");
+        } else {
+            str = jx8Var.b + ":" + weaVar.a.c;
+        }
+        this.a.setText(str);
+        this.d = weaVar;
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.b.setText(charSequence);
+    }
+
+    @Override
+    public final void updateColors() {
+        int w0;
+        TextView textView = this.b;
+        if (textView != null) {
+            try {
+                if ((textView.getTag() instanceof Integer) && (w0 = aob.w0(null, ((Integer) textView.getTag()).intValue(), false)) != this.r) {
+                    this.r = w0;
+                    textView.setTextColor(w0);
+                    Drawable drawable = this.e;
+                    if (drawable != null) {
+                        drawable.setColorFilter(new PorterDuffColorFilter(this.r, PorterDuff.Mode.MULTIPLY));
+                    }
+                }
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,151 +1,108 @@
 package defpackage;
 
-import android.animation.LayoutTransition;
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.graphics.Canvas;
-import android.graphics.RenderNode;
-import android.os.SystemClock;
-import android.text.SpannableStringBuilder;
-import android.util.Property;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class t66 extends LinearLayout {
-    public final ArrayList a;
-    public RenderNode b;
-    public float c;
-    public p65 d;
-    public Runnable e;
-    public int f;
-    public final tp5 h;
+import java.util.List;
+public final class t66 implements o8a {
+    public final o8a a;
+    public final o8a b;
 
-    public t66(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.a = new ArrayList();
-        this.h = new tp5(this, (byte) 13);
-        setOrientation(1);
-        setGravity(80);
-        setPadding(gl.L(22.0f), 0, gl.L(22.0f), 0);
-        setClipToPadding(false);
-        LayoutTransition layoutTransition = new LayoutTransition();
-        layoutTransition.enableTransitionType(4);
-        layoutTransition.setDuration(320L);
-        s33 s33Var = s33.h;
-        layoutTransition.setInterpolator(4, s33Var);
-        layoutTransition.setInterpolator(0, s33Var);
-        layoutTransition.setInterpolator(1, s33Var);
-        Property property = View.ALPHA;
-        layoutTransition.setAnimator(2, ObjectAnimator.ofPropertyValuesHolder(null, PropertyValuesHolder.ofFloat(property, 0.0f, 1.0f), PropertyValuesHolder.ofFloat(View.SCALE_X, 0.6f, 1.0f), PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.6f, 1.0f)));
-        layoutTransition.setInterpolator(2, s33Var);
-        layoutTransition.setAnimator(3, ObjectAnimator.ofFloat((Object) null, property, 1.0f, 0.0f));
-        layoutTransition.setStartDelay(2, 0L);
-        layoutTransition.setStartDelay(0, 0L);
-        layoutTransition.setStartDelay(3, 0L);
-        layoutTransition.setStartDelay(1, 0L);
-        setLayoutTransition(layoutTransition);
-    }
-
-    public final void a(int i, long j, long j2, String str, boolean z) {
-        s66 s66Var;
-        String str2;
-        ArrayList arrayList = this.a;
-        int size = arrayList.size();
-        int i2 = 0;
-        while (true) {
-            if (i2 < size) {
-                Object obj = arrayList.get(i2);
-                i2++;
-                s66Var = (s66) obj;
-                if (s66Var.a == j2) {
-                    break;
-                }
-            } else {
-                s66Var = null;
-                break;
-            }
-        }
-        if (s66Var == null) {
-            if (!str.trim().isEmpty()) {
-                s66Var = new s66(this, getContext(), j2);
-                TLObject Z1 = na7.q1(i).Z1(j);
-                if (Z1 instanceof TLRPC.User) {
-                    str2 = l7c.k((TLRPC.User) Z1, true);
-                } else if (Z1 instanceof TLRPC.Chat) {
-                    str2 = ((TLRPC.Chat) Z1).title;
-                } else {
-                    str2 = "";
-                }
-                pb0 pb0Var = new pb0((wjb) null);
-                pb0Var.o(Z1);
-                s66Var.d.U(Z1, pb0Var, null);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str2);
-                spannableStringBuilder.setSpan(new z3c(gl.o()), 0, spannableStringBuilder.length(), 33);
-                spannableStringBuilder.append((CharSequence) "  ");
-                s66Var.x = spannableStringBuilder.length();
-                s66Var.e.setText(spannableStringBuilder, TextView.BufferType.EDITABLE);
-                arrayList.add(s66Var);
-                addView(s66Var, nme.k(0.0f, 6.0f, 0.0f, 0.0f, -1, -2));
-                while (arrayList.size() > 3) {
-                    View view = (s66) arrayList.get(0);
-                    arrayList.remove(view);
-                    removeView(view);
-                }
-            } else {
-                return;
-            }
-        }
-        s66Var.f.e(s66Var.x, -1, str.trim());
-        s66Var.b = z;
-        s66Var.c = SystemClock.uptimeMillis();
-        Runnable runnable = this.h;
-        removeCallbacks(runnable);
-        if (!arrayList.isEmpty()) {
-            postDelayed(runnable, 500L);
-        }
+    public t66(o8a o8aVar, o8a o8aVar2) {
+        o8aVar.getClass();
+        o8aVar2.getClass();
+        this.a = o8aVar;
+        this.b = o8aVar2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        float height = getHeight();
-        for (int i = 0; i < getChildCount(); i++) {
-            View childAt = getChildAt(i);
-            if (childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f) {
-                height = Math.min(height, childAt.getY() - gl.L(6.0f));
-            }
-        }
-        int max = Math.max(0, Math.round(getHeight() - height));
-        if (max != this.f) {
-            this.f = max;
-            Runnable runnable = this.e;
-            if (runnable != null) {
-                post(runnable);
-            }
-        }
+    public final String a() {
+        return "kotlin.collections.LinkedHashMap";
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+    public final boolean c() {
         return false;
     }
 
-    public int getContentHeight() {
-        return this.f;
+    @Override
+    public final int d(String str) {
+        str.getClass();
+        Integer b = kdb.b(str);
+        if (b != null) {
+            return b.intValue();
+        }
+        lq5.j(str.concat(" is not a valid map index"));
+        return 0;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        removeCallbacks(this.h);
+    public final nye e() {
+        return tdb.d;
     }
 
-    public void setOnContentHeightChanged(Runnable runnable) {
-        this.e = runnable;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof t66) {
+                t66 t66Var = (t66) obj;
+                if (!ur5.a(this.a, t66Var.a) || !ur5.a(this.b, t66Var.b)) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int f() {
+        return 2;
+    }
+
+    @Override
+    public final String g(int i) {
+        return String.valueOf(i);
+    }
+
+    @Override
+    public final List getAnnotations() {
+        return x24.a;
+    }
+
+    @Override
+    public final List h(int i) {
+        if (i >= 0) {
+            return x24.a;
+        }
+        bya.a(qd4.n(i, "Illegal index ", ", kotlin.collections.LinkedHashMap expects only non-negative indices"));
+        return null;
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode() + ((this.a.hashCode() + 710441009) * 31);
+    }
+
+    @Override
+    public final o8a i(int i) {
+        if (i >= 0) {
+            int i2 = i % 2;
+            if (i2 != 0) {
+                if (i2 == 1) {
+                    return this.b;
+                }
+                grb.i("Unreached");
+                return null;
+            }
+            return this.a;
+        }
+        bya.a(qd4.n(i, "Illegal index ", ", kotlin.collections.LinkedHashMap expects only non-negative indices"));
+        return null;
+    }
+
+    @Override
+    public final boolean isInline() {
+        return false;
+    }
+
+    public final String toString() {
+        return "kotlin.collections.LinkedHashMap(" + this.a + ", " + this.b + ')';
     }
 }

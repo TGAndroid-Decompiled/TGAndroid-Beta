@@ -1,8 +1,6 @@
 package defpackage;
-public abstract class us4 extends Exception {
-    public static final int a = 0;
-
-    public us4(java.lang.CharSequence r1, java.lang.String r2) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.us4.<init>(java.lang.CharSequence, java.lang.String):void");
+public abstract class us4 extends ts4 {
+    public us4(int i, Class cls, String str, String str2, int i2) {
+        super(i, s91.NO_RECEIVER, cls, str, str2, i2);
     }
 }

@@ -1,3 +1,5 @@
 package defpackage;
-public interface lh5 {
+
+import java.io.IOException;
+public final class lh5 extends IOException {
 }

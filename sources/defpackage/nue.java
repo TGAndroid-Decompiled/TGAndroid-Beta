@@ -1,49 +1,18 @@
 package defpackage;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.google.android.gms.cast.framework.media.internal.ResourceProvider;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 public abstract class nue {
-    public static String a(String str, Object... objArr) {
-        int indexOf;
-        String sb;
-        String valueOf = String.valueOf(str);
-        int i = 0;
-        for (int i2 = 0; i2 < objArr.length; i2++) {
-            Object obj = objArr[i2];
-            if (obj == null) {
-                sb = "null";
-            } else {
-                try {
-                    sb = obj.toString();
-                } catch (Exception e) {
-                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").log(Level.WARNING, "Exception during lenientFormat for ".concat(str2), (Throwable) e);
-                    StringBuilder p = ug8.p("<", str2, " threw ");
-                    p.append(e.getClass().getName());
-                    p.append(">");
-                    sb = p.toString();
-                }
+    public static int a(String str) {
+        try {
+            Map map = ResourceProvider.a;
+            Integer num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
+            if (num != null) {
+                return num.intValue();
             }
-            objArr[i2] = sb;
+        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
         }
-        StringBuilder sb2 = new StringBuilder(valueOf.length() + (objArr.length << 4));
-        int i3 = 0;
-        while (i < objArr.length && (indexOf = valueOf.indexOf("%s", i3)) != -1) {
-            sb2.append((CharSequence) valueOf, i3, indexOf);
-            sb2.append(objArr[i]);
-            i3 = indexOf + 2;
-            i++;
-        }
-        sb2.append((CharSequence) valueOf, i3, valueOf.length());
-        if (i < objArr.length) {
-            sb2.append(" [");
-            sb2.append(objArr[i]);
-            for (int i4 = i + 1; i4 < objArr.length; i4++) {
-                sb2.append(", ");
-                sb2.append(objArr[i4]);
-            }
-            sb2.append(']');
-        }
-        return sb2.toString();
+        return 0;
     }
 }

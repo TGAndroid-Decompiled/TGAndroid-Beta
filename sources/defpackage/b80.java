@@ -1,41 +1,43 @@
 package defpackage;
-
-import java.io.File;
 public final class b80 {
-    public final a80 a;
-    public final String b;
-    public final File c;
+    public String a;
+    public String b;
+    public int c;
+    public String d;
+    public String e;
+    public String f;
+    public String g;
+    public String h;
+    public String i;
+    public n80 j;
+    public i80 k;
+    public f80 l;
+    public byte m;
 
-    public b80(a80 a80Var, String str, File file) {
-        this.a = a80Var;
-        if (str != null) {
-            this.b = str;
-            this.c = file;
-            return;
+    public final c80 a() {
+        if (this.m == 1 && this.a != null && this.b != null && this.d != null && this.h != null && this.i != null) {
+            return new c80(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l);
         }
-        fvc.f("Null sessionId");
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof b80) {
-                b80 b80Var = (b80) obj;
-                if (this.a.equals(b80Var.a) && this.b.equals(b80Var.b) && this.c.equals(b80Var.c)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+        StringBuilder sb = new StringBuilder();
+        if (this.a == null) {
+            sb.append(" sdkVersion");
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode();
-    }
-
-    public final String toString() {
-        return "CrashlyticsReportWithSessionId{report=" + this.a + ", sessionId=" + this.b + ", reportFile=" + this.c + "}";
+        if (this.b == null) {
+            sb.append(" gmpAppId");
+        }
+        if ((this.m & 1) == 0) {
+            sb.append(" platform");
+        }
+        if (this.d == null) {
+            sb.append(" installationUuid");
+        }
+        if (this.h == null) {
+            sb.append(" buildVersion");
+        }
+        if (this.i == null) {
+            sb.append(" displayVersion");
+        }
+        grb.i(bs2.o("Missing required properties:", sb));
+        return null;
     }
 }

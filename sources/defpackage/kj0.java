@@ -1,34 +1,48 @@
 package defpackage;
 
-import android.content.DialogInterface;
 import java.lang.ref.WeakReference;
-public final class kj0 implements DialogInterface.OnClickListener {
-    public final byte a = 1;
-    public final Object b;
+public final class kj0 extends v40 {
+    public final WeakReference a;
 
-    public kj0(lj0 lj0Var) {
-        this.b = new WeakReference(lj0Var);
+    public kj0(mj0 mj0Var) {
+        this.a = new WeakReference(mj0Var);
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                WeakReference weakReference = (WeakReference) obj;
-                if (weakReference.get() != null) {
-                    ((lj0) weakReference.get()).e(true);
-                    return;
-                }
-                return;
-            default:
-                ((bg4) obj).D0.e(true);
-                return;
+    public final void a(int i, CharSequence charSequence) {
+        WeakReference weakReference = this.a;
+        if (weakReference.get() != null && !((mj0) weakReference.get()).m && ((mj0) weakReference.get()).l) {
+            mj0 mj0Var = (mj0) weakReference.get();
+            qi0 qi0Var = new qi0(i, charSequence);
+            qj7 qj7Var = mj0Var.q;
+            if (qj7Var == null) {
+                qj7Var = new qj7();
+                mj0Var.q = qj7Var;
+            }
+            mj0.f(qj7Var, qi0Var);
         }
     }
 
-    public kj0(bg4 bg4Var) {
-        this.b = bg4Var;
+    @Override
+    public final void b(gj0 gj0Var) {
+        WeakReference weakReference = this.a;
+        if (weakReference.get() != null && ((mj0) weakReference.get()).l) {
+            int i = -1;
+            if (gj0Var.b == -1) {
+                hj0 hj0Var = gj0Var.a;
+                int c = ((mj0) weakReference.get()).c();
+                if ((c & 32767) != 0 && !nrd.b(c)) {
+                    i = 2;
+                }
+                gj0Var = new gj0(hj0Var, i);
+            }
+            mj0 mj0Var = (mj0) weakReference.get();
+            qj7 qj7Var = mj0Var.p;
+            if (qj7Var == null) {
+                qj7Var = new qj7();
+                mj0Var.p = qj7Var;
+            }
+            mj0.f(qj7Var, gj0Var);
+        }
     }
 }

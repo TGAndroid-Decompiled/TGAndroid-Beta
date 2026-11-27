@@ -107,7 +107,7 @@ public class WebRtcAudioTrack {
                         try {
                             Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
                         } catch (InterruptedException e) {
-                            fa4.g(e, true);
+                            cc4.g(e, true);
                         }
                     } else {
                         this.targetTimeNs = System.nanoTime();
@@ -170,7 +170,7 @@ public class WebRtcAudioTrack {
         if (z) {
             return;
         }
-        fi7.g("Expected condition to be true");
+        hz6.e("Expected condition to be true");
     }
 
     private int channelCountToConfiguration(int i) {
@@ -314,7 +314,7 @@ public class WebRtcAudioTrack {
             try {
                 audioTrack.release();
             } catch (Throwable th) {
-                fa4.g(th, true);
+                cc4.g(th, true);
             }
         }
     }
@@ -465,7 +465,7 @@ public class WebRtcAudioTrack {
         try {
             releaseAudioResources();
         } catch (Throwable th) {
-            fa4.g(th, true);
+            cc4.g(th, true);
         }
         return true;
     }

@@ -1,26 +1,27 @@
 package defpackage;
 
-import android.view.View;
-public final class zq9 implements View.OnClickListener {
-    public final byte a;
-    public final er9 b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class zq9 extends kea {
+    public final er9 U2;
 
-    public zq9(er9 er9Var, byte b) {
-        this.a = b;
-        this.b = er9Var;
+    public zq9(er9 er9Var, Context context, String str, String str2) {
+        super(context, null, str, null, false, str2, null, true);
+        this.U2 = er9Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        er9 er9Var = this.b;
-        switch (b) {
-            case 0:
-                er9Var.f.a(((Integer) view.getTag(2131296463)).intValue());
-                return;
-            default:
-                er9Var.f.a(((Integer) view.getTag(2131296463)).intValue());
-                return;
+    public final void M0(zh6 zh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        if (!z) {
+            return;
+        }
+        int m = zh6Var.m();
+        UndoView undoView = this.U2.J;
+        if (m == 1) {
+            undoView.m(((TLRPC.Dialog) zh6Var.n(0)).id, Integer.valueOf(i), 41);
+        } else {
+            undoView.k(0L, 41, Integer.valueOf(i), Integer.valueOf(zh6Var.m()), null, null);
         }
     }
 }

@@ -1,80 +1,133 @@
 package defpackage;
 
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
-import android.view.View;
-import android.widget.RelativeLayout;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.nio.ByteOrder;
+import java.util.Collections;
 public final class gk4 {
-    public static final tj4 p = new Object();
-    public static final List q = Arrays.asList(2131296505, 2131296493, 2131296499, 2131296511, 2131296501, 2131296514, 2131296510, 2131296500, 2131296504, 2131296495);
-    public static final List r = Arrays.asList(2131296493, 2131296499, 2131296511, 2131296500, 2131296501, 2131296514, 2131296510, 2131296504);
-    public final View a;
-    public final ek4 b;
-    public Menu e;
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public final int h;
     public final int i;
-    public Runnable j;
-    public wf0 k;
-    public final wjb n;
-    public final kl0 o;
-    public final Rect c = new Rect();
-    public final Rect d = new Rect();
-    public ArrayList f = new ArrayList();
-    public MenuItem.OnMenuItemClickListener g = p;
-    public boolean h = true;
-    public final wk0 l = new wk0(this);
-    public final mz2 m = new mz2((byte) 17);
+    public final long j;
+    public final lh2 k;
+    public final uf7 l;
 
-    public gk4(Context context, View view, int i, wjb wjbVar, kl0 kl0Var) {
-        this.a = view;
-        this.i = i;
-        this.o = kl0Var;
-        this.n = wjbVar;
-        this.b = new ek4(this, context, view);
+    public gk4(int i, byte[] bArr) {
+        zd1 zd1Var = new zd1(bArr.length, bArr);
+        zd1Var.l(i << 3);
+        this.a = zd1Var.f(16);
+        this.b = zd1Var.f(16);
+        this.c = zd1Var.f(24);
+        this.d = zd1Var.f(24);
+        int f = zd1Var.f(20);
+        this.e = f;
+        this.f = d(f);
+        this.g = zd1Var.f(3) + 1;
+        int f2 = zd1Var.f(5) + 1;
+        this.h = f2;
+        this.i = a(f2);
+        this.j = zd1Var.h(36);
+        this.k = null;
+        this.l = null;
     }
 
-    public static AnimatorSet a(RelativeLayout relativeLayout, int i, AnimatorListenerAdapter animatorListenerAdapter) {
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ObjectAnimator.ofFloat(relativeLayout, View.ALPHA, 1.0f, 0.0f).setDuration(100L));
-        animatorSet.setStartDelay(i);
-        animatorSet.addListener(animatorListenerAdapter);
-        return animatorSet;
-    }
-
-    public static void e(android.view.View r4, android.view.MenuItem r5, boolean r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gk4.e(android.view.View, android.view.MenuItem, boolean):void");
-    }
-
-    public final android.widget.LinearLayout b(android.content.Context r22, android.view.MenuItem r23, boolean r24, boolean r25, boolean r26) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gk4.b(android.content.Context, android.view.MenuItem, boolean, boolean, boolean):android.widget.LinearLayout");
-    }
-
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gk4.c():void");
-    }
-
-    public final ArrayList d(Menu menu) {
-        wf0 wf0Var;
-        ArrayList arrayList = new ArrayList();
-        for (int i = 0; menu != null && i < menu.size(); i++) {
-            MenuItem item = menu.getItem(i);
-            if (item.isVisible() && item.isEnabled()) {
-                SubMenu subMenu = item.getSubMenu();
-                if (subMenu != null) {
-                    arrayList.addAll(d(subMenu));
-                } else if ((item.getItemId() != 2131296504 || (wf0Var = this.k) == null || ((Boolean) wf0Var.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != 2131296505 || this.j == null)) {
-                    arrayList.add(item);
+    public static int a(int i) {
+        if (i != 8) {
+            if (i != 12) {
+                if (i != 16) {
+                    if (i != 20) {
+                        if (i != 24) {
+                            if (i != 32) {
+                                return -1;
+                            }
+                            return 7;
+                        }
+                        return 6;
+                    }
+                    return 5;
                 }
+                return 4;
             }
+            return 2;
         }
-        return arrayList;
+        return 1;
+    }
+
+    public static int d(int i) {
+        switch (i) {
+            case 8000:
+                return 4;
+            case 16000:
+                return 5;
+            case 22050:
+                return 6;
+            case 24000:
+                return 7;
+            case 32000:
+                return 8;
+            case 44100:
+                return 9;
+            case 48000:
+                return 10;
+            case 88200:
+                return 1;
+            case 96000:
+                return 11;
+            case 176400:
+                return 2;
+            case 192000:
+                return 3;
+            default:
+                return -1;
+        }
+    }
+
+    public final long b() {
+        long j = this.j;
+        if (j == 0) {
+            return -9223372036854775807L;
+        }
+        return (j * 1000000) / this.e;
+    }
+
+    public final ko4 c(byte[] bArr, uf7 uf7Var) {
+        bArr[4] = Byte.MIN_VALUE;
+        int i = this.d;
+        if (i <= 0) {
+            i = -1;
+        }
+        uf7 uf7Var2 = this.l;
+        if (uf7Var2 != null) {
+            uf7Var = uf7Var2.b(uf7Var);
+        }
+        jo4 jo4Var = new jo4();
+        jo4Var.s = dg7.n("audio/flac");
+        jo4Var.t = i;
+        jo4Var.M = this.g;
+        jo4Var.O = this.e;
+        String str = gcc.a;
+        jo4Var.P = gcc.F(this.h, ByteOrder.LITTLE_ENDIAN);
+        jo4Var.v = Collections.singletonList(bArr);
+        jo4Var.l = uf7Var;
+        return new ko4(jo4Var);
+    }
+
+    public gk4(int i, int i2, int i3, int i4, int i5, int i6, int i7, long j, lh2 lh2Var, uf7 uf7Var) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
+        this.e = i5;
+        this.f = d(i5);
+        this.g = i6;
+        this.h = i7;
+        this.i = a(i7);
+        this.j = j;
+        this.k = lh2Var;
+        this.l = uf7Var;
     }
 }

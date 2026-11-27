@@ -1,3 +1,3 @@
 package defpackage;
-public interface rgb {
+public final class rgb extends RuntimeException {
 }

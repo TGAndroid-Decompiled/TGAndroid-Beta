@@ -1,13 +1,16 @@
 package defpackage;
-public abstract class gxe {
-    public static byte a(long j) {
-        boolean z;
-        if ((j >> 8) == 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.d(j, "out of range: %s", z);
-        return (byte) j;
-    }
+
+import java.util.AbstractCollection;
+public final class gxe {
+    public String a;
+    public String b;
+    public String c;
+    public String d;
+    public String e;
+    public Boolean f;
+    public Boolean g;
+    public Boolean h;
+    public Integer i;
+    public Integer j;
+    public AbstractCollection k;
 }

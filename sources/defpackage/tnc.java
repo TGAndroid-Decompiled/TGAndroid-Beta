@@ -1,37 +1,41 @@
 package defpackage;
 
-import org.telegram.ui.Wallet.WalletEngine2;
-public final class tnc implements Runnable {
-    public final byte a = 0;
-    public final WalletEngine2 b;
-    public final p8c c;
-    public final String d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+public final class tnc extends View {
+    public final byte a;
+    public final vnc b;
 
-    public tnc(WalletEngine2 walletEngine2, p8c p8cVar, String str) {
-        this.b = walletEngine2;
-        this.c = p8cVar;
-        this.d = str;
+    public tnc(vnc vncVar, Context context, byte b) {
+        super(context);
+        this.a = b;
+        this.b = vncVar;
     }
 
     @Override
-    public final void run() {
+    public final void onDraw(Canvas canvas) {
         byte b = this.a;
-        String str = this.d;
-        p8c p8cVar = this.c;
-        WalletEngine2 walletEngine2 = this.b;
+        int i = -1;
+        vnc vncVar = this.b;
         switch (b) {
             case 0:
-                walletEngine2.lambda$getTransactionByHash$42(str, p8cVar);
+                RectF rectF = hl.P;
+                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                if (!vncVar.h0) {
+                    i = vncVar.i0;
+                }
+                vncVar.j(canvas, rectF, i, 1.0f);
                 return;
             default:
-                walletEngine2.lambda$previewSignMessage$10(p8cVar, str);
+                RectF rectF2 = hl.P;
+                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
+                if (!vncVar.h0) {
+                    i = vncVar.i0;
+                }
+                vncVar.e(canvas, rectF2, i, 1.0f);
                 return;
         }
-    }
-
-    public tnc(WalletEngine2 walletEngine2, String str, p8c p8cVar) {
-        this.b = walletEngine2;
-        this.d = str;
-        this.c = p8cVar;
     }
 }

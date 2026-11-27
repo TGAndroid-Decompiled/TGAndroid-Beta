@@ -1,132 +1,110 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class yl5 extends FrameLayout {
-    public final xl5 a;
-    public final be0 b;
-    public AnimatorSet c;
-    public boolean d;
-    public boolean e;
-    public final boolean f;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+import j$.util.Objects;
+import java.util.Locale;
+import java.util.UUID;
+import java.util.regex.Pattern;
+public final class yl5 {
+    public static final Pattern g = Pattern.compile("[^\\p{Alnum}]");
+    public static final String h = "\\Q/\\E";
+    public final sc3 a;
+    public final Context b;
+    public final String c;
+    public final ri4 d;
+    public final p63 e;
+    public x90 f;
 
-    public yl5(Activity activity) {
-        super(activity);
-        xl5 xl5Var = new xl5(gl.L(104.0f), gl.L(111.0f), gl.L(12.0f), 8);
-        this.a = xl5Var;
-        xl5Var.b(3.0d);
-        if (!xl5Var.e) {
-            invalidate();
-        }
-        xl5Var.e = true;
-        be0 be0Var = new be0(activity);
-        this.b = be0Var;
-        addView(be0Var, nme.e(135, 135, 17));
-        setWillNotDraw(false);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.c = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 1.05f, 1.0f, 1.05f, 1.0f));
-        this.c.setInterpolator(s33.g);
-        this.c.setDuration(3000L);
-        boolean e = e66.e(512);
-        this.f = e;
-        if (e) {
-            this.c.start();
-        }
-        setClipChildren(false);
-    }
-
-    public final void a() {
-        if (this.d) {
-            return;
-        }
-        AnimatorSet animatorSet = this.c;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.d = true;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.c = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.SCALE_X, getScaleX(), 1.05f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, getScaleY(), 1.05f, 1.0f));
-        this.c.setInterpolator(s33.g);
-        this.c.setDuration(400L);
-        this.c.start();
-    }
-
-    public final void b(boolean z, boolean z2) {
-        ValueAnimator ofFloat;
-        if (this.e != z) {
-            this.e = z;
-            xl5 xl5Var = this.a;
-            if (z) {
-                xl5Var.b(3.0d);
+    public yl5(Context context, String str, ri4 ri4Var, p63 p63Var) {
+        if (context != null) {
+            if (str != null) {
+                this.b = context;
+                this.c = str;
+                this.d = ri4Var;
+                this.e = p63Var;
+                this.a = new Object();
+                return;
             }
-            if (xl5Var.h != z) {
-                xl5Var.h = z;
-                ValueAnimator valueAnimator = xl5Var.j;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllUpdateListeners();
-                    xl5Var.j.cancel();
-                }
-                if (z) {
-                    ofFloat = ValueAnimator.ofFloat(xl5Var.i, 0.0f);
-                    xl5Var.j = ofFloat;
-                    xl5Var.k = (int) (2000.0f / gl.t);
+            lq5.j("appIdentifier must not be null");
+            throw null;
+        }
+        lq5.j("appContext must not be null");
+        throw null;
+    }
+
+    public final synchronized String a(String str, SharedPreferences sharedPreferences) {
+        String lowerCase;
+        lowerCase = g.matcher(UUID.randomUUID().toString()).replaceAll("").toLowerCase(Locale.US);
+        String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
+        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+            Log.v("FirebaseCrashlytics", str2, null);
+        }
+        sharedPreferences.edit().putString("crashlytics.installation.id", lowerCase).putString("firebase.installation.id", str).apply();
+        return lowerCase;
+    }
+
+    public final defpackage.ni4 b(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.yl5.b(boolean):ni4");
+    }
+
+    public final synchronized x90 c() {
+        String str;
+        x90 x90Var = this.f;
+        if (x90Var != null && (x90Var.b != null || !this.e.a())) {
+            return this.f;
+        }
+        sae saeVar = sae.b;
+        saeVar.k("Determining Crashlytics installation ID...");
+        SharedPreferences sharedPreferences = this.b.getSharedPreferences("com.google.firebase.crashlytics", 0);
+        String string = sharedPreferences.getString("firebase.installation.id", null);
+        saeVar.k("Cached Firebase Installation ID: " + string);
+        if (this.e.a()) {
+            ni4 b = b(false);
+            saeVar.k("Fetched Firebase Installation ID: " + b.a);
+            if (b.a == null) {
+                if (string == null) {
+                    str = "SYN_" + UUID.randomUUID().toString();
                 } else {
-                    xl5Var.k = 0;
-                    ofFloat = ValueAnimator.ofFloat(xl5Var.i, 1.0f);
-                    xl5Var.j = ofFloat;
+                    str = string;
                 }
-                ofFloat.addUpdateListener(new ni4(xl5Var, (byte) 10));
-                ValueAnimator valueAnimator2 = xl5Var.j;
-                if (z2) {
-                    valueAnimator2.setDuration(150L);
-                } else {
-                    valueAnimator2.setDuration(1000L);
-                }
-                xl5Var.j.start();
-                invalidate();
+                b = new ni4(str, null);
             }
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f) {
-            xl5 xl5Var = this.a;
-            xl5Var.c();
-            xl5Var.a(canvas, getWidth() / 2, getHeight() / 2, this);
-        }
-        super.onDraw(canvas);
-    }
-
-    public void setAmplitude(double d) {
-        if (this.e) {
-            return;
-        }
-        int i = (d > 1.5d ? 1 : (d == 1.5d ? 0 : -1));
-        xl5 xl5Var = this.a;
-        if (i > 0) {
-            xl5Var.b(d);
+            if (Objects.equals(b.a, string)) {
+                this.f = new x90(sharedPreferences.getString("crashlytics.installation.id", null), b.a, b.b);
+            } else {
+                this.f = new x90(a(b.a, sharedPreferences), b.a, b.b);
+            }
+        } else if (string != null && string.startsWith("SYN_")) {
+            this.f = new x90(sharedPreferences.getString("crashlytics.installation.id", null), null, null);
         } else {
-            xl5Var.b(0.0d);
+            this.f = new x90(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null, null);
         }
+        saeVar.k("Install IDs: " + this.f);
+        return this.f;
     }
 
-    public void setRoundRadius(int i) {
-        this.b.setRoundRadius(i);
-    }
-
-    public void setShowWaves(boolean z) {
-        xl5 xl5Var = this.a;
-        if (xl5Var.e != z) {
-            invalidate();
+    public final String d() {
+        String str;
+        sc3 sc3Var = this.a;
+        Context context = this.b;
+        synchronized (sc3Var) {
+            String str2 = sc3Var.a;
+            if (str2 == null) {
+                String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
+                if (installerPackageName == null) {
+                    installerPackageName = "";
+                }
+                str2 = installerPackageName;
+                sc3Var.a = str2;
+            }
+            if ("".equals(str2)) {
+                str = null;
+            } else {
+                str = sc3Var.a;
+            }
         }
-        xl5Var.e = z;
+        return str;
     }
 }

@@ -1,10 +1,17 @@
 package defpackage;
-
-import java.util.logging.Logger;
-public abstract class ece {
-    public static final int a = 0;
+public final class ece implements zq7 {
+    public static final ece a = new Object();
 
     static {
-        Logger.getLogger(ece.class.getName());
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

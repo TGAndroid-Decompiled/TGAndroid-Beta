@@ -1,5 +1,7 @@
 package defpackage;
-
-import android.graphics.Canvas;
-public abstract class aja extends Canvas {
+public final class aja extends r47 {
+    @Override
+    public final float G1() {
+        return this.m.h;
+    }
 }

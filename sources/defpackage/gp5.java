@@ -1,20 +1,18 @@
 package defpackage;
-public final class gp5 implements cv5 {
-    public static final gp5 a = new Object();
-    public static final bj8 b = new bj8("kotlin.Int", aj8.d);
+public final class gp5 implements hp5 {
+    public final qm7 a;
 
-    @Override
-    public final void b(c30 c30Var, Object obj) {
-        c30Var.d(((Number) obj).intValue());
+    public gp5(qm7 qm7Var) {
+        this.a = qm7Var;
     }
 
     @Override
-    public final Object c(igf igfVar) {
-        return Integer.valueOf(igfVar.d());
+    public final qm7 b() {
+        return this.a;
     }
 
     @Override
-    public final w4a d() {
-        return b;
+    public final boolean isActive() {
+        return false;
     }
 }

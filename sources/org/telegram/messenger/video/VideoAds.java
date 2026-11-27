@@ -22,18 +22,18 @@ import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.LaunchActivity;
 public class VideoAds {
     private static final LruCache<VideoAdsLocation, VideoAdsCache> cached = new LruCache<>(3);
     private int between_delay;
-    private m21 bulletin;
-    private u21 bulletinFactory;
+    private v21 bulletin;
+    private d31 bulletinFactory;
     private long bulletinShowTime;
     private final VideoAdsCache cache;
     private final int currentAccount;
     private long currentBulletinPassedTime;
-    private cs5 currentMenu;
+    private fu5 currentMenu;
     private float currentMenuTranslationY;
     private final long dialogId;
     private boolean lastPopupShown;
@@ -42,7 +42,7 @@ public class VideoAds {
     private boolean loading;
     private final int msg_id;
     private Runnable onPopupCallback;
-    private jh8 premiumSheet;
+    private xk8 premiumSheet;
     private int requestId;
     private int start_delay;
     public boolean videoWasPlaying;
@@ -50,7 +50,7 @@ public class VideoAds {
     private long waitingTimeSince;
     private final ArrayList<TLRPC.TL_sponsoredMessage> ads = new ArrayList<>();
     private boolean first = true;
-    private final Runnable showRunnable = new dac(this, (byte) 1);
+    private final Runnable showRunnable = new dec(this, (byte) 1);
 
     public static class CloseDrawable extends Drawable {
         private int alpha;
@@ -61,15 +61,15 @@ public class VideoAds {
         private final View parentView;
         private boolean paused;
         private long pausedTime;
-        private final lm showCrossAnimated;
-        private final lm showTimerAnimated;
+        private final mm showCrossAnimated;
+        private final mm showTimerAnimated;
         private final long startTime;
-        private final gn timer;
-        private final lm timerScaleAnimated;
+        private final hn timer;
+        private final mm timerScaleAnimated;
 
         public CloseDrawable(View view, int i, int i2, long j) {
-            gn gnVar = new gn(false, true, true);
-            this.timer = gnVar;
+            hn hnVar = new hn(false, true, true);
+            this.timer = hnVar;
             Paint paint = new Paint(1);
             this.paint = paint;
             this.paused = false;
@@ -82,16 +82,16 @@ public class VideoAds {
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
-            gnVar.setCallback(view);
-            gnVar.b = 17;
-            gnVar.w(gl.L(12.0f));
-            gnVar.x(gl.n1("fonts/num.otf"));
-            gnVar.N = gl.q.x;
-            gnVar.u(-1);
-            s33 s33Var = s33.h;
-            this.showCrossAnimated = new lm(view, 0L, 420L, s33Var);
-            this.showTimerAnimated = new lm(view, 0L, 420L, s33Var);
-            this.timerScaleAnimated = new lm(view, 0L, 420L, s33Var);
+            hnVar.setCallback(view);
+            hnVar.b = 17;
+            hnVar.w(hl.L(12.0f));
+            hnVar.x(hl.n1("fonts/num.otf"));
+            hnVar.N = hl.q.x;
+            hnVar.u(-1);
+            k43 k43Var = k43.h;
+            this.showCrossAnimated = new mm(view, 0L, 420L, k43Var);
+            this.showTimerAnimated = new mm(view, 0L, 420L, k43Var);
+            this.timerScaleAnimated = new mm(view, 0L, 420L, k43Var);
         }
 
         @Override
@@ -119,7 +119,7 @@ public class VideoAds {
             }
             float d = this.showTimerAnimated.d(z);
             String valueOf = String.valueOf((int) Math.ceil(max / 1000.0d));
-            lm lmVar = this.timerScaleAnimated;
+            mm mmVar = this.timerScaleAnimated;
             if (valueOf.length() >= 3) {
                 f = 0.825f;
             } else if (valueOf.length() >= 2) {
@@ -127,28 +127,28 @@ public class VideoAds {
             } else {
                 f = 1.0f;
             }
-            float e = lmVar.e(false, f);
+            float e = mmVar.e(false, f);
             canvas.save();
             canvas.scale(e, e, centerX, centerY);
             this.timer.t(valueOf, true, true);
             this.timer.o(centerX - 1.0f, centerY - 1.0f, centerX + 1.0f, centerY + 1.0f);
-            gn gnVar = this.timer;
-            gnVar.C = (int) (this.alpha * d);
-            gnVar.draw(canvas);
+            hn hnVar = this.timer;
+            hnVar.C = (int) (this.alpha * d);
+            hnVar.draw(canvas);
             canvas.restore();
             this.paint.setAlpha((int) (this.alpha * d));
-            this.paint.setStrokeWidth(gl.L(2.0f));
-            RectF rectF = gl.P;
-            rectF.set(centerX - gl.L(9.0f), centerY - gl.L(9.0f), gl.L(9.0f) + centerX, gl.L(9.0f) + centerY);
+            this.paint.setStrokeWidth(hl.L(2.0f));
+            RectF rectF = hl.P;
+            rectF.set(centerX - hl.L(9.0f), centerY - hl.L(9.0f), hl.L(9.0f) + centerX, hl.L(9.0f) + centerY);
             canvas.drawArc(rectF, -90.0f, f2 * (-360.0f), false, this.paint);
-            lm lmVar2 = this.showCrossAnimated;
+            mm mmVar2 = this.showCrossAnimated;
             if ((1.0f - f2) * 360.0f > 75.0f) {
                 z2 = true;
             }
-            float d2 = lmVar2.d(z2);
-            float R1 = gl.R1(centerX, gl.L(8.0f) + centerX, d);
-            float R12 = gl.R1(centerY, centerY - gl.L(8.0f), d);
-            float R13 = gl.R1(0.35f, 1.0f, d2) * gl.U1(d, gl.L(5.0f), gl.L(3.0f));
+            float d2 = mmVar2.d(z2);
+            float R1 = hl.R1(centerX, hl.L(8.0f) + centerX, d);
+            float R12 = hl.R1(centerY, centerY - hl.L(8.0f), d);
+            float R13 = hl.R1(0.35f, 1.0f, d2) * hl.U1(d, hl.L(5.0f), hl.L(3.0f));
             this.paint.setAlpha((int) (this.alpha * d2));
             float f3 = R1 - R13;
             float f4 = R12 - R13;
@@ -163,12 +163,12 @@ public class VideoAds {
 
         @Override
         public int getIntrinsicHeight() {
-            return gl.L(24.0f);
+            return hl.L(24.0f);
         }
 
         @Override
         public int getIntrinsicWidth() {
-            return gl.L(24.0f);
+            return hl.L(24.0f);
         }
 
         @Override
@@ -258,14 +258,14 @@ public class VideoAds {
         }
     }
 
-    private VideoAds(int i, long j, int i2, u21 u21Var, VideoAdsCache videoAdsCache) {
+    private VideoAds(int i, long j, int i2, d31 d31Var, VideoAdsCache videoAdsCache) {
         this.lastTime = 0L;
         this.currentAccount = i;
         this.dialogId = j;
         this.msg_id = i2;
         this.cache = videoAdsCache;
         this.lastTime = System.currentTimeMillis();
-        init(u21Var);
+        init(d31Var);
     }
 
     private void checkPopupShownCallback() {
@@ -282,8 +282,8 @@ public class VideoAds {
         cached.evictAll();
     }
 
-    private void init(u21 u21Var) {
-        this.bulletinFactory = u21Var;
+    private void init(d31 d31Var) {
+        this.bulletinFactory = d31Var;
         this.lastTime = System.currentTimeMillis();
         this.first = true;
         VideoAdsCache videoAdsCache = this.cache;
@@ -304,8 +304,8 @@ public class VideoAds {
         }
         if (tLObject instanceof TLRPC.TL_messages_sponsoredMessages) {
             TLRPC.TL_messages_sponsoredMessages tL_messages_sponsoredMessages = (TLRPC.TL_messages_sponsoredMessages) tLObject;
-            na7.q1(this.currentAccount).b4(tL_messages_sponsoredMessages.users, false);
-            na7.q1(this.currentAccount).V3(tL_messages_sponsoredMessages.chats, false);
+            uc7.s1(this.currentAccount).j4(tL_messages_sponsoredMessages.users, false);
+            uc7.s1(this.currentAccount).c4(tL_messages_sponsoredMessages.chats, false);
             this.ads.addAll(tL_messages_sponsoredMessages.messages);
             this.start_delay = tL_messages_sponsoredMessages.start_delay;
             this.between_delay = tL_messages_sponsoredMessages.between_delay;
@@ -323,37 +323,37 @@ public class VideoAds {
     }
 
     public void lambda$load$1(TLObject tLObject, TLRPC.TL_error tL_error) {
-        gl.c3(new l3c(this, tLObject, (byte) 9));
+        hl.c3(new g9c(this, tLObject, (byte) 6));
     }
 
     public static void lambda$show$10(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
-        gl.g(tL_sponsoredMessage.additional_info);
+        hl.g(tL_sponsoredMessage.additional_info);
     }
 
-    public void lambda$show$12(cs5 cs5Var) {
-        if (y6c.h(this.currentAccount).p()) {
-            cs5Var.u();
-            m21 m21Var = this.bulletin;
-            if (m21Var != null) {
-                m21Var.i(true);
+    public void lambda$show$12(fu5 fu5Var) {
+        if (yac.h(this.currentAccount).p()) {
+            fu5Var.u();
+            v21 v21Var = this.bulletin;
+            if (v21Var != null) {
+                v21Var.i(true);
                 this.bulletin.b();
             }
-            this.bulletinFactory.c(k96.M0(2131754485, null)).j();
-            na7.q1(this.currentAccount).l0(true);
+            this.bulletinFactory.c(ob6.M0(2131754481, null)).j();
+            uc7.s1(this.currentAccount).n0(true);
             return;
         }
         showPremium();
     }
 
-    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, cs5 cs5Var) {
+    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, fu5 fu5Var) {
         int i = this.currentAccount;
         long j = this.dialogId;
-        u21 u21Var = this.bulletinFactory;
-        e53 e53Var = new e53();
-        dac dacVar = new dac(this, (byte) 0);
-        Objects.requireNonNull(cs5Var);
-        en1 en1Var = new en1(cs5Var, (byte) 11);
-        int i2 = b89.v1;
+        d31 d31Var = this.bulletinFactory;
+        w53 w53Var = new w53();
+        dec decVar = new dec(this, (byte) 0);
+        Objects.requireNonNull(fu5Var);
+        vn1 vn1Var = new vn1(fu5Var, (byte) 12);
+        int i2 = nb9.v1;
         if (context == null) {
             return;
         }
@@ -361,106 +361,106 @@ public class VideoAds {
         byte[] bArr = tL_sponsoredMessage.random_id;
         tL_messages_reportSponsoredMessage.random_id = bArr;
         tL_messages_reportSponsoredMessage.option = new byte[0];
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_reportSponsoredMessage, new mz4(context, e53Var, j, bArr, en1Var, u21Var, dacVar, i));
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_reportSponsoredMessage, new q15(context, w53Var, j, bArr, vn1Var, d31Var, decVar, i));
     }
 
-    public void lambda$show$15(cs5 cs5Var) {
-        if (y6c.h(this.currentAccount).p()) {
-            cs5Var.u();
-            m21 m21Var = this.bulletin;
-            if (m21Var != null) {
-                m21Var.i(true);
+    public void lambda$show$15(fu5 fu5Var) {
+        if (yac.h(this.currentAccount).p()) {
+            fu5Var.u();
+            v21 v21Var = this.bulletin;
+            if (v21Var != null) {
+                v21Var.i(true);
                 this.bulletin.b();
             }
-            this.bulletinFactory.c(k96.M0(2131754485, null)).j();
-            na7.q1(this.currentAccount).l0(true);
+            this.bulletinFactory.c(ob6.M0(2131754481, null)).j();
+            uc7.s1(this.currentAccount).n0(true);
             return;
         }
         showPremium();
     }
 
-    public void lambda$show$16(p8c p8cVar) {
-        p8cVar.a(Boolean.FALSE);
+    public void lambda$show$16(pcc pccVar) {
+        pccVar.a(Boolean.FALSE);
         this.currentMenu = null;
         checkPopupShownCallback();
     }
 
-    public void lambda$show$17(defpackage.m21 r22, final org.telegram.tgnet.TLRPC.TL_sponsoredMessage r23, android.content.Context r24, defpackage.wjb r25, org.telegram.messenger.video.VideoAds.AdLayout r26, defpackage.p8c r27, android.view.View r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoAds.lambda$show$17(m21, org.telegram.tgnet.TLRPC$TL_sponsoredMessage, android.content.Context, wjb, org.telegram.messenger.video.VideoAds$AdLayout, p8c, android.view.View):void");
+    public void lambda$show$17(defpackage.v21 r23, final org.telegram.tgnet.TLRPC.TL_sponsoredMessage r24, android.content.Context r25, defpackage.vnb r26, org.telegram.messenger.video.VideoAds.AdLayout r27, defpackage.pcc r28, android.view.View r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoAds.lambda$show$17(v21, org.telegram.tgnet.TLRPC$TL_sponsoredMessage, android.content.Context, vnb, org.telegram.messenger.video.VideoAds$AdLayout, pcc, android.view.View):void");
     }
 
     public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         logSponsoredClicked(tL_sponsoredMessage);
-        d01.s(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, na7.q1(y6c.t0).k4.A2.f, false, false);
+        m01.t(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, uc7.s1(yac.t0).k4.I2.f, false, false);
     }
 
     public void lambda$show$2(CloseDrawable closeDrawable, View view) {
         if (closeDrawable.isCrossAvailable()) {
-            m21 m21Var = this.bulletin;
-            if (m21Var != null) {
-                m21Var.b();
+            v21 v21Var = this.bulletin;
+            if (v21Var != null) {
+                v21Var.b();
             }
-        } else if (y6c.h(this.currentAccount).p()) {
-            m21 m21Var2 = this.bulletin;
-            if (m21Var2 != null) {
-                m21Var2.b();
+        } else if (yac.h(this.currentAccount).p()) {
+            v21 v21Var2 = this.bulletin;
+            if (v21Var2 != null) {
+                v21Var2.b();
                 this.bulletin = null;
             }
-            na7.q1(this.currentAccount).l0(true);
-            this.bulletinFactory.c(k96.M0(2131754485, null)).j();
+            uc7.s1(this.currentAccount).n0(true);
+            this.bulletinFactory.c(ob6.M0(2131754481, null)).j();
         } else {
             showPremium();
         }
     }
 
-    public void lambda$show$3(m21 m21Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
-        m21 m21Var2 = this.bulletin;
-        if (m21Var2 != null && m21Var2 == m21Var) {
-            m21Var2.j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
-            m21Var2.i(true);
+    public void lambda$show$3(v21 v21Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
+        v21 v21Var2 = this.bulletin;
+        if (v21Var2 != null && v21Var2 == v21Var) {
+            v21Var2.j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            v21Var2.i(true);
         }
     }
 
-    public void lambda$show$4(m21 m21Var, boolean[] zArr, CloseDrawable closeDrawable, long[] jArr, Runnable runnable, long[] jArr2, long j, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Boolean bool) {
-        m21 m21Var2 = this.bulletin;
-        if (m21Var2 != null && m21Var2 == m21Var && bool.booleanValue() != zArr[0]) {
+    public void lambda$show$4(v21 v21Var, boolean[] zArr, CloseDrawable closeDrawable, long[] jArr, Runnable runnable, long[] jArr2, long j, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Boolean bool) {
+        v21 v21Var2 = this.bulletin;
+        if (v21Var2 != null && v21Var2 == v21Var && bool.booleanValue() != zArr[0]) {
             boolean booleanValue = bool.booleanValue();
             zArr[0] = booleanValue;
             closeDrawable.setPaused(booleanValue);
             if (zArr[0]) {
                 this.bulletin.i(false);
                 jArr[0] = System.currentTimeMillis();
-                gl.r(runnable);
+                hl.r(runnable);
                 return;
             }
-            gl.r(runnable);
+            hl.r(runnable);
             jArr2[0] = (System.currentTimeMillis() - jArr[0]) + jArr2[0];
             long currentTimeMillis = (System.currentTimeMillis() - j) - jArr2[0];
             long j2 = (tL_sponsoredMessage.min_display_duration * 1000) - currentTimeMillis;
             long j3 = (tL_sponsoredMessage.max_display_duration * 1000) - currentTimeMillis;
             if (j3 <= 0) {
-                m21 m21Var3 = this.bulletin;
-                if (m21Var3 != null) {
-                    m21Var3.b();
+                v21 v21Var3 = this.bulletin;
+                if (v21Var3 != null) {
+                    v21Var3.b();
                     this.bulletin = null;
                 }
             } else if (j2 <= 0) {
-                m21 m21Var4 = this.bulletin;
-                m21Var4.j = (int) j3;
-                m21Var4.i(true);
+                v21 v21Var4 = this.bulletin;
+                v21Var4.j = (int) j3;
+                v21Var4.i(true);
             } else {
-                gl.d3(runnable, j2);
+                hl.d3(runnable, j2);
             }
         }
     }
 
-    public void lambda$show$5(m21 m21Var, boolean[] zArr) {
-        m21 m21Var2 = this.bulletin;
-        if (m21Var2 != null && m21Var2 == m21Var && !zArr[0]) {
+    public void lambda$show$5(v21 v21Var, boolean[] zArr) {
+        v21 v21Var2 = this.bulletin;
+        if (v21Var2 != null && v21Var2 == v21Var && !zArr[0]) {
             zArr[0] = true;
-            cs5 cs5Var = this.currentMenu;
-            if (cs5Var != null) {
-                cs5Var.u();
+            fu5 fu5Var = this.currentMenu;
+            if (fu5Var != null) {
+                fu5Var.u();
                 this.currentMenu = null;
             }
             this.bulletin = null;
@@ -477,23 +477,23 @@ public class VideoAds {
         }
     }
 
-    public void lambda$show$7(cs5 cs5Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
-        cs5Var.u();
+    public void lambda$show$7(fu5 fu5Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
+        fu5Var.u();
         logSponsoredClicked(tL_sponsoredMessage);
-        d01.s(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, na7.q1(this.currentAccount).k4.A2.f, false, false);
+        m01.t(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, uc7.s1(this.currentAccount).k4.I2.f, false, false);
     }
 
     public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
-        gl.g(tL_sponsoredMessage.url);
+        hl.g(tL_sponsoredMessage.url);
         return true;
     }
 
     public static void lambda$show$9(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
-        gl.g(tL_sponsoredMessage.sponsor_info);
+        hl.g(tL_sponsoredMessage.sponsor_info);
     }
 
-    public void lambda$showPremium$19(jh8 jh8Var) {
-        if (jh8Var == this.premiumSheet) {
+    public void lambda$showPremium$19(xk8 xk8Var) {
+        if (xk8Var == this.premiumSheet) {
             this.premiumSheet = null;
             checkPopupShownCallback();
         }
@@ -501,18 +501,18 @@ public class VideoAds {
 
     private void load() {
         if (!this.loading && !this.loaded) {
-            if (!y6c.h(this.currentAccount).p() || !na7.q1(this.currentAccount).D2()) {
+            if (!yac.h(this.currentAccount).p() || !uc7.s1(this.currentAccount).J2()) {
                 this.loading = true;
                 TLRPC.TL_messages_getSponsoredMessages tL_messages_getSponsoredMessages = new TLRPC.TL_messages_getSponsoredMessages();
-                tL_messages_getSponsoredMessages.peer = na7.q1(this.currentAccount).h1(this.dialogId);
+                tL_messages_getSponsoredMessages.peer = uc7.s1(this.currentAccount).j1(this.dialogId);
                 tL_messages_getSponsoredMessages.flags |= 1;
                 tL_messages_getSponsoredMessages.msg_id = this.msg_id;
-                this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSponsoredMessages, new wx9(this, (byte) 22));
+                this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSponsoredMessages, new yp9(this, (byte) 23));
             }
         }
     }
 
-    public static VideoAds make(int i, long j, int i2, u21 u21Var) {
+    public static VideoAds make(int i, long j, int i2, d31 d31Var) {
         VideoAdsLocation videoAdsLocation = new VideoAdsLocation(i, j);
         LruCache<VideoAdsLocation, VideoAdsCache> lruCache = cached;
         VideoAdsCache videoAdsCache = lruCache.get(videoAdsLocation);
@@ -520,19 +520,19 @@ public class VideoAds {
             videoAdsCache = new VideoAdsCache(i2);
             lruCache.put(videoAdsLocation, videoAdsCache);
         }
-        return new VideoAds(i, j, i2, u21Var, videoAdsCache);
+        return new VideoAds(i, j, i2, d31Var, videoAdsCache);
     }
 
     private void schedule() {
         int i;
-        gl.r(this.showRunnable);
+        hl.r(this.showRunnable);
         if (this.loaded && !this.ads.isEmpty()) {
             if (this.first) {
                 i = this.start_delay;
             } else {
                 i = this.between_delay;
             }
-            gl.d3(this.showRunnable, Math.max(0L, (i * 1000) - (System.currentTimeMillis() - this.lastTime)));
+            hl.d3(this.showRunnable, Math.max(0L, (i * 1000) - (System.currentTimeMillis() - this.lastTime)));
         }
     }
 
@@ -543,14 +543,14 @@ public class VideoAds {
         final TLRPC.TL_sponsoredMessage tL_sponsoredMessage = this.ads.get(0);
         final long currentTimeMillis = System.currentTimeMillis() - this.currentBulletinPassedTime;
         this.bulletinShowTime = currentTimeMillis;
-        m21 m21Var = this.bulletin;
-        if (m21Var != null) {
-            m21Var.b();
+        v21 v21Var = this.bulletin;
+        if (v21Var != null) {
+            v21Var.b();
             this.bulletin = null;
         }
         Context X = this.bulletinFactory.X();
-        wjb wjbVar = this.bulletinFactory.c;
-        AdLayout adLayout = new AdLayout(X, wjbVar) {
+        vnb vnbVar = this.bulletinFactory.c;
+        AdLayout adLayout = new AdLayout(X, vnbVar) {
             {
                 VideoAds.this = this;
             }
@@ -568,79 +568,79 @@ public class VideoAds {
             }
         };
         adLayout.titleTextView.k(tL_sponsoredMessage.title);
-        jia jiaVar = adLayout.titleTextView;
+        ema emaVar = adLayout.titleTextView;
         Context X2 = this.bulletinFactory.X();
-        int i = bkb.Ei;
-        jiaVar.i(new AdOptionsDrawable(X2, bkb.v0(i, this.bulletinFactory.c)));
+        int i = aob.Fi;
+        emaVar.i(new AdOptionsDrawable(X2, aob.v0(i, this.bulletinFactory.c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
-                adLayout.imageView.g(0, 0L, gl5.b(tL_sponsoredMessage.media.document), gl5.c(ba4.w(document.thumbs, 48, false, null, false), tL_sponsoredMessage.media.document), null, "48_48", "48_48", null);
+                adLayout.imageView.g(0, 0L, jn5.b(tL_sponsoredMessage.media.document), jn5.c(xb4.w(document.thumbs, 48, false, null, false), tL_sponsoredMessage.media.document), null, "48_48", "48_48", null);
             } else {
                 TLRPC.Photo photo = messageMedia.photo;
                 if (photo != null) {
-                    TLRPC.PhotoSize w = ba4.w(photo.sizes, 48, true, null, true);
-                    adLayout.imageView.g(0, 0L, gl5.i(w, tL_sponsoredMessage.media.photo), gl5.i(ba4.w(tL_sponsoredMessage.media.photo.sizes, 48, true, w, false), tL_sponsoredMessage.media.photo), null, "48_48", "48_48", null);
+                    TLRPC.PhotoSize w = xb4.w(photo.sizes, 48, true, null, true);
+                    adLayout.imageView.g(0, 0L, jn5.i(w, tL_sponsoredMessage.media.photo), jn5.i(xb4.w(tL_sponsoredMessage.media.photo.sizes, 48, true, w, false), tL_sponsoredMessage.media.photo), null, "48_48", "48_48", null);
                 }
             }
         } else {
             TLRPC.Photo photo2 = tL_sponsoredMessage.photo;
             if (photo2 != null) {
-                TLRPC.PhotoSize w2 = ba4.w(photo2.sizes, 48, true, null, true);
-                adLayout.imageView.g(0, 0L, gl5.i(w2, tL_sponsoredMessage.photo), gl5.i(ba4.w(tL_sponsoredMessage.photo.sizes, 48, true, w2, false), tL_sponsoredMessage.photo), null, "48_48", "48_48", null);
+                TLRPC.PhotoSize w2 = xb4.w(photo2.sizes, 48, true, null, true);
+                adLayout.imageView.g(0, 0L, jn5.i(w2, tL_sponsoredMessage.photo), jn5.i(xb4.w(tL_sponsoredMessage.photo.sizes, 48, true, w2, false), tL_sponsoredMessage.photo), null, "48_48", "48_48", null);
             } else {
                 adLayout.hideImage();
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(bkb.v0(i, this.bulletinFactory.c));
+        closeDrawable.setColor(aob.v0(i, this.bulletinFactory.c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
-        adLayout.buttonView.setOnClickListener(new vzb(this, closeDrawable, (byte) 8));
-        final m21 b = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
+        adLayout.buttonView.setOnClickListener(new jjb(this, closeDrawable, (byte) 11));
+        final v21 b = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b;
-        b.u = false;
+        b.v = false;
         b.i(false);
-        final r1b r1bVar = new r1b(this, b, tL_sponsoredMessage, (byte) 26);
+        final b6c b6cVar = new b6c(this, b, tL_sponsoredMessage, (byte) 5);
         final long[] jArr = new long[1];
         final long[] jArr2 = new long[1];
         final boolean[] zArr = new boolean[1];
-        p8c p8cVar = new p8c() {
+        pcc pccVar = new pcc() {
             @Override
             public final void a(Object obj) {
-                VideoAds.this.lambda$show$4(b, zArr, closeDrawable, jArr2, r1bVar, jArr, currentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
+                VideoAds.this.lambda$show$4(b, zArr, closeDrawable, jArr2, b6cVar, jArr, currentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
             }
         };
-        gl.d3(r1bVar, tL_sponsoredMessage.min_display_duration * 1000);
-        m21 m21Var2 = this.bulletin;
-        m21Var2.r = false;
-        m21Var2.v = new r1b(this, b, new boolean[1], (byte) 27);
-        adLayout.titleTextView.setRightDrawableOnClick(new y35(this, b, tL_sponsoredMessage, X, wjbVar, adLayout, p8cVar, (byte) 1));
-        m21 m21Var3 = this.bulletin;
-        vzb vzbVar = new vzb(this, tL_sponsoredMessage, (byte) 9);
-        q11 q11Var = m21Var3.e;
-        if (q11Var != null) {
-            q11Var.setOnClickListener(vzbVar);
+        hl.d3(b6cVar, tL_sponsoredMessage.min_display_duration * 1000);
+        v21 v21Var2 = this.bulletin;
+        v21Var2.s = false;
+        v21Var2.w = new b6c(this, b, new boolean[1], (byte) 6);
+        adLayout.titleTextView.setRightDrawableOnClick(new b65(this, b, tL_sponsoredMessage, X, vnbVar, adLayout, pccVar, (byte) 1));
+        v21 v21Var3 = this.bulletin;
+        jjb jjbVar = new jjb(this, tL_sponsoredMessage, (byte) 12);
+        z11 z11Var = v21Var3.e;
+        if (z11Var != null) {
+            z11Var.setOnClickListener(jjbVar);
         }
         this.bulletin.j();
         logSponsoredShown(tL_sponsoredMessage);
     }
 
     public void showPremium() {
-        jh8 jh8Var = this.premiumSheet;
-        if (jh8Var != null) {
-            jh8Var.dismiss();
+        xk8 xk8Var = this.premiumSheet;
+        if (xk8Var != null) {
+            xk8Var.dismiss();
             this.premiumSheet = null;
         }
-        jh8 jh8Var2 = new jh8(new d() {
+        xk8 xk8Var2 = new xk8(new e() {
             {
                 VideoAds.this = this;
             }
 
             @Override
             public Context getContext() {
-                return gl.W(LaunchActivity.H1);
+                return hl.W(LaunchActivity.H1);
             }
 
             @Override
@@ -650,24 +650,24 @@ public class VideoAds {
 
             @Override
             public Activity getParentActivity() {
-                Activity W = gl.W(org.telegram.messenger.a.b);
+                Activity W = hl.W(org.telegram.messenger.a.b);
                 if (W == null) {
                     return LaunchActivity.H1;
                 }
                 return W;
             }
         }, 3, true);
-        this.premiumSheet = jh8Var2;
-        jh8Var2.n(new l3c(this, jh8Var2, (byte) 8));
-        jh8Var2.show();
+        this.premiumSheet = xk8Var2;
+        xk8Var2.n(new g9c(this, xk8Var2, (byte) 5));
+        xk8Var2.show();
         checkPopupShownCallback();
     }
 
     public boolean isPopupShown() {
-        cs5 cs5Var = this.currentMenu;
-        if (cs5Var == null || !cs5Var.E()) {
-            jh8 jh8Var = this.premiumSheet;
-            if (jh8Var != null && !jh8Var.J) {
+        fu5 fu5Var = this.currentMenu;
+        if (fu5Var == null || !fu5Var.E()) {
+            xk8 xk8Var = this.premiumSheet;
+            if (xk8Var != null && !xk8Var.J) {
                 return true;
             }
             return false;
@@ -683,7 +683,7 @@ public class VideoAds {
         tL_messages_clickSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
         tL_messages_clickSponsoredMessage.media = false;
         tL_messages_clickSponsoredMessage.fullscreen = false;
-        boolean z = w01.a;
+        boolean z = f11.a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
@@ -693,7 +693,7 @@ public class VideoAds {
         }
         TLRPC.TL_messages_viewSponsoredMessage tL_messages_viewSponsoredMessage = new TLRPC.TL_messages_viewSponsoredMessage();
         tL_messages_viewSponsoredMessage.random_id = tL_sponsoredMessage.random_id;
-        boolean z = w01.a;
+        boolean z = f11.a;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_viewSponsoredMessage, null);
     }
 
@@ -704,7 +704,7 @@ public class VideoAds {
     public void setWaitingPaused(boolean z) {
         if (this.waitingPaused != z) {
             this.waitingPaused = z;
-            gl.r(this.showRunnable);
+            hl.r(this.showRunnable);
             if (z) {
                 this.waitingTimeSince = System.currentTimeMillis();
                 return;
@@ -729,9 +729,9 @@ public class VideoAds {
         } else {
             this.currentBulletinPassedTime = 0L;
         }
-        cs5 cs5Var = this.currentMenu;
-        if (cs5Var != null) {
-            cs5Var.u();
+        fu5 fu5Var = this.currentMenu;
+        if (fu5Var != null) {
+            fu5Var.u();
             this.currentMenu = null;
         }
         this.bulletin = null;
@@ -740,56 +740,56 @@ public class VideoAds {
             this.requestId = 0;
             this.loading = false;
         }
-        gl.r(this.showRunnable);
+        hl.r(this.showRunnable);
         setWaitingPaused(true);
     }
 
-    public static class AdLayout extends h11 {
+    public static class AdLayout extends q11 {
         public final ImageView buttonView;
-        public final be0 imageView;
+        public final de0 imageView;
         private final LinearLayout linearLayout;
-        public final l46 subtitleTextView;
-        public final jia titleTextView;
+        public final p66 subtitleTextView;
+        public final ema titleTextView;
 
-        public AdLayout(Context context, wjb wjbVar) {
-            super(context, wjbVar);
-            setBackground(getThemedColor(bkb.vj));
-            be0 be0Var = new be0(context);
-            this.imageView = be0Var;
-            be0Var.setRoundRadius(gl.L(48.0f));
-            addView(be0Var, nme.i(36.0f, 36.0f, 8388627, 9.0f, 0.0f, 0.0f, 0.0f));
-            int i = bkb.xj;
+        public AdLayout(Context context, vnb vnbVar) {
+            super(context, vnbVar);
+            setBackground(getThemedColor(aob.wj));
+            de0 de0Var = new de0(context);
+            this.imageView = de0Var;
+            de0Var.setRoundRadius(hl.L(48.0f));
+            addView(de0Var, tre.i(36.0f, 36.0f, 8388627, 9.0f, 0.0f, 0.0f, 0.0f));
+            int i = aob.yj;
             getThemedColor(i);
-            int i2 = bkb.wj;
+            int i2 = aob.xj;
             getThemedColor(i2);
             LinearLayout linearLayout = new LinearLayout(context);
             this.linearLayout = linearLayout;
             linearLayout.setOrientation(1);
-            addView(linearLayout, nme.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 54.0f, 8.0f));
-            jia jiaVar = new jia(context);
-            this.titleTextView = jiaVar;
-            jiaVar.setPadding(gl.L(4.0f), 0, gl.L(4.0f), 0);
-            zkb.W(jiaVar, i, wjbVar);
-            jiaVar.setTextSize(14);
-            jiaVar.setTypeface(gl.o());
-            linearLayout.addView(jiaVar);
-            l46 l46Var = new l46(context, null);
-            this.subtitleTextView = l46Var;
-            l46Var.setPadding(gl.L(4.0f), 0, gl.L(4.0f), 0);
-            zkb.X(l46Var, i, wjbVar);
-            zkb.G(l46Var, i2, wjbVar);
-            l46Var.setTypeface(Typeface.SANS_SERIF);
-            l46Var.setTextSize(1, 13.0f);
-            linearLayout.addView(l46Var);
+            addView(linearLayout, tre.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 54.0f, 8.0f));
+            ema emaVar = new ema(context);
+            this.titleTextView = emaVar;
+            emaVar.setPadding(hl.L(4.0f), 0, hl.L(4.0f), 0);
+            yob.W(emaVar, i, vnbVar);
+            emaVar.setTextSize(14);
+            emaVar.setTypeface(hl.o());
+            linearLayout.addView(emaVar);
+            p66 p66Var = new p66(context, null);
+            this.subtitleTextView = p66Var;
+            p66Var.setPadding(hl.L(4.0f), 0, hl.L(4.0f), 0);
+            yob.X(p66Var, i, vnbVar);
+            yob.G(p66Var, i2, vnbVar);
+            p66Var.setTypeface(Typeface.SANS_SERIF);
+            p66Var.setTextSize(1, 13.0f);
+            linearLayout.addView(p66Var);
             ImageView imageView = new ImageView(context);
             this.buttonView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i3 = bkb.Ei;
-            ff0 f0 = bkb.f0(bkb.p1(0.15f, getThemedColor(i3)), 7, -1);
-            vkb K = zkb.K(0.15f, i3);
+            int i3 = aob.Fi;
+            hf0 f0 = aob.f0(aob.p1(0.15f, getThemedColor(i3)), 7, -1);
+            uob K = yob.K(0.15f, i3);
             imageView.setBackground(f0);
-            zkb.j(imageView, f0, null, K, wjbVar);
-            addView(imageView, nme.i(32.0f, 32.0f, 8388629, 0.0f, 0.0f, 11.0f, 0.0f));
+            yob.j(imageView, f0, null, K, vnbVar);
+            addView(imageView, tre.i(32.0f, 32.0f, 8388629, 0.0f, 0.0f, 11.0f, 0.0f));
         }
 
         @Override
@@ -799,7 +799,7 @@ public class VideoAds {
 
         public void hideImage() {
             this.imageView.setVisibility(8);
-            this.linearLayout.setLayoutParams(nme.i(-2.0f, -2.0f, 8388627, 10.0f, 8.0f, 54.0f, 8.0f));
+            this.linearLayout.setLayoutParams(tre.i(-2.0f, -2.0f, 8388627, 10.0f, 8.0f, 54.0f, 8.0f));
         }
 
         @Override
@@ -816,37 +816,37 @@ public class VideoAds {
         public final int color;
         public final Drawable icon;
         public final Paint backgroundPaint = new Paint(1);
-        public final tgb text = new tgb(k96.M0(2131745021, null), 11.0f, gl.o());
+        public final pkb text = new pkb(ob6.M0(2131744915, null), 11.0f, hl.o());
         private float alpha = 1.0f;
 
         public AdOptionsDrawable(Context context, int i) {
             this.color = i;
-            Drawable d = b00.d(context, 2131231247);
-            this.icon = d;
-            d.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+            Drawable e = c00.e(context, 2131231247);
+            this.icon = e;
+            e.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
 
         @Override
         public void draw(Canvas canvas) {
-            RectF rectF = gl.P;
+            RectF rectF = hl.P;
             rectF.set(getBounds());
-            rectF.left += gl.L(4.0f);
-            this.backgroundPaint.setColor(bkb.p1(this.alpha * 0.2f, this.color));
+            rectF.left += hl.L(4.0f);
+            this.backgroundPaint.setColor(aob.p1(this.alpha * 0.2f, this.color));
             canvas.drawRoundRect(rectF, rectF.height(), rectF.height(), this.backgroundPaint);
-            this.text.c(rectF.left + gl.L(5.0f), rectF.centerY(), this.alpha, this.color, canvas);
-            this.icon.setBounds(getBounds().right - gl.L(12.99f), getBounds().centerY() - gl.L(5.665f), getBounds().right - gl.L(1.66f), gl.L(5.665f) + getBounds().centerY());
+            this.text.c(rectF.left + hl.L(5.0f), rectF.centerY(), this.alpha, this.color, canvas);
+            this.icon.setBounds(getBounds().right - hl.L(12.99f), getBounds().centerY() - hl.L(5.665f), getBounds().right - hl.L(1.66f), hl.L(5.665f) + getBounds().centerY());
             this.icon.setAlpha((int) (this.alpha * 255.0f));
             this.icon.draw(canvas);
         }
 
         @Override
         public int getIntrinsicHeight() {
-            return gl.L(16.0f);
+            return hl.L(16.0f);
         }
 
         @Override
         public int getIntrinsicWidth() {
-            return (int) (this.text.j() + gl.L(4.0f) + gl.L(18.0f));
+            return (int) (this.text.j() + hl.L(4.0f) + hl.L(18.0f));
         }
 
         @Override

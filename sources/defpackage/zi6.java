@@ -1,70 +1,50 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.maps.model.LatLng;
-public final class zi6 extends b4 {
-    public static final Parcelable.Creator<zi6> CREATOR = new rhe((byte) 0);
-    public float E;
-    public LatLng a;
-    public String b;
-    public String c;
-    public lj9 d;
-    public float e;
-    public float f;
-    public boolean h;
-    public boolean n;
-    public boolean r;
-    public float s;
-    public float w;
-    public float x;
-    public float y;
+import android.os.Looper;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.ServiceConfigurationError;
+public abstract class zi6 {
+    public static final le5 a;
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        IBinder asBinder;
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 2, this.a, i);
-        jte.l(parcel, 3, this.b);
-        jte.l(parcel, 4, this.c);
-        lj9 lj9Var = this.d;
-        if (lj9Var == null) {
-            asBinder = null;
-        } else {
-            asBinder = ((yi5) lj9Var.b).asBinder();
+    static {
+        Object obj;
+        int i = chb.a;
+        try {
+            System.getProperty("kotlinx.coroutines.fast.service.loader");
+        } catch (SecurityException unused) {
         }
-        jte.f(parcel, 5, asBinder);
-        float f = this.e;
-        jte.q(parcel, 6, 4);
-        parcel.writeFloat(f);
-        float f2 = this.f;
-        jte.q(parcel, 7, 4);
-        parcel.writeFloat(f2);
-        boolean z = this.h;
-        jte.q(parcel, 8, 4);
-        parcel.writeInt(z ? 1 : 0);
-        boolean z2 = this.n;
-        jte.q(parcel, 9, 4);
-        parcel.writeInt(z2 ? 1 : 0);
-        boolean z3 = this.r;
-        jte.q(parcel, 10, 4);
-        parcel.writeInt(z3 ? 1 : 0);
-        float f3 = this.s;
-        jte.q(parcel, 11, 4);
-        parcel.writeFloat(f3);
-        float f4 = this.w;
-        jte.q(parcel, 12, 4);
-        parcel.writeFloat(f4);
-        float f5 = this.x;
-        jte.q(parcel, 13, 4);
-        parcel.writeFloat(f5);
-        float f6 = this.y;
-        jte.q(parcel, 14, 4);
-        parcel.writeFloat(f6);
-        float f7 = this.E;
-        jte.q(parcel, 15, 4);
-        parcel.writeFloat(f7);
-        jte.s(parcel, r);
+        try {
+            Iterator it = Arrays.asList(new Object()).iterator();
+            it.getClass();
+            Iterator it2 = k8a.a(new lt2(new l8a(it, (byte) 1))).iterator();
+            if (!it2.hasNext()) {
+                obj = null;
+            } else {
+                Object next = it2.next();
+                if (it2.hasNext()) {
+                    ((dk) next).getClass();
+                    do {
+                        ((dk) it2.next()).getClass();
+                    } while (it2.hasNext());
+                    obj = next;
+                } else {
+                    obj = next;
+                }
+            }
+            if (((dk) obj) != null) {
+                Looper mainLooper = Looper.getMainLooper();
+                if (mainLooper != null) {
+                    a = new le5(me5.a(mainLooper), false);
+                    return;
+                } else {
+                    grb.i("The main looper is not available");
+                    return;
+                }
+            }
+            grb.i("Module with the Main dispatcher is missing. Add dependency providing the Main dispatcher, e.g. 'kotlinx-coroutines-android' and ensure it has the same version as 'kotlinx-coroutines-core'");
+        } catch (Throwable th) {
+            throw new ServiceConfigurationError(th.getMessage(), th);
+        }
     }
 }

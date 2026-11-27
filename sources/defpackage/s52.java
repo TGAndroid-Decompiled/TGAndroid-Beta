@@ -1,200 +1,154 @@
 package defpackage;
 
-import android.text.SpannableString;
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class s52 implements u04 {
-    public final k62 a;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import androidx.recyclerview.widget.RecyclerView;
+import java.io.File;
+import org.telegram.messenger.a;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class s52 extends p79 implements yi5 {
+    public Drawable a;
+    public final Path b = new Path();
+    public final Drawable c;
+    public final i52 d;
+    public final ChatAttachAlertPhotoLayout e;
 
-    public s52(k62 k62Var) {
-        this.a = k62Var;
+    public s52(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, i52 i52Var) {
+        this.e = chatAttachAlertPhotoLayout;
+        this.d = i52Var;
+        this.c = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(2131230927).mutate();
     }
 
     @Override
-    public final boolean A() {
-        return false;
+    public final void a(qeb qebVar, RectF rectF) {
+        h(null, this.d, qebVar, rectF);
     }
 
     @Override
-    public final long a() {
-        return 0L;
+    public final void e(Canvas canvas, RecyclerView recyclerView) {
+        h(canvas, recyclerView, null, null);
     }
 
     @Override
-    public final boolean b() {
-        return false;
+    public final void g(Canvas canvas, RectF rectF) {
+        h(canvas, this.d, null, rectF);
     }
 
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void j(int i) {
+    public final void h(Canvas canvas, RecyclerView recyclerView, qeb qebVar, RectF rectF) {
+        int top;
+        r52 r52Var;
         boolean z;
-        if (i != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        k62 k62Var = this.a;
-        k62Var.i1 = z;
-        k62Var.b.o3.requestLayout();
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean l() {
-        EditTextBoldCursor editField;
-        le8 le8Var = this.a.h1;
-        if (le8Var == null || (editField = le8Var.getEditField()) == null) {
-            return false;
-        }
-        editField.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void m(String str) {
-        EditTextBoldCursor editField;
-        le8 le8Var = this.a.h1;
-        if (le8Var == null || (editField = le8Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            CharSequence m = vu3.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
-            editField.setText(editField.getText().insert(selectionEnd, m));
-            int length = selectionEnd + m.length();
-            editField.setSelection(length, length);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void n() {
-        k62 k62Var = this.a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, k62Var.a, k62Var.getContext());
-        String M0 = k96.M0(2131752056, null);
-        hd hdVar = alertDialog$Builder.a;
-        hdVar.S = M0;
-        hdVar.U = k96.M0(2131752057, null);
-        alertDialog$Builder.j(k96.M0(2131752087, null), new rh1(this, (byte) 18));
-        alertDialog$Builder.g(k96.M0(2131752577, null), null);
-        alertDialog$Builder.o();
-    }
-
-    @Override
-    public final float o() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void w(long j, TLRPC.Document document, String str, boolean z) {
-        EditTextBoldCursor editField;
-        gm gmVar;
-        le8 le8Var = this.a.h1;
-        if (le8Var == null || (editField = le8Var.getEditField()) == null) {
-            return;
-        }
-        int selectionEnd = editField.getSelectionEnd();
-        if (selectionEnd < 0) {
-            selectionEnd = 0;
-        }
-        try {
-            SpannableString spannableString = new SpannableString(str);
-            if (document != null) {
-                gmVar = new gm(document, editField.getPaint().getFontMetricsInt());
+        boolean z2;
+        boolean z3;
+        r52 r52Var2;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
+        if (!chatAttachAlertPhotoLayout.e0 && !chatAttachAlertPhotoLayout.c0 && chatAttachAlertPhotoLayout.H.e && !chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.Q0) {
+            f89 L = recyclerView.L(0);
+            if (L != null) {
+                top = L.a.getTop();
             } else {
-                gmVar = new gm(j, editField.getPaint().getFontMetricsInt());
+                L = recyclerView.L(chatAttachAlertPhotoLayout.N0);
+                if (L != null) {
+                    top = (L.a.getTop() - hl.L(2.0f)) - chatAttachAlertPhotoLayout.L0;
+                } else if (qebVar != null) {
+                    qebVar.b = true;
+                    return;
+                } else {
+                    return;
+                }
             }
-            gmVar.cacheType = 3;
-            spannableString.setSpan(gmVar, 0, spannableString.length(), 33);
-            editField.setText(editField.getText().insert(selectionEnd, spannableString));
-            int length = selectionEnd + spannableString.length();
-            editField.setSelection(length, length);
-        } catch (Exception e) {
-            fa4.g(e, true);
+            int left = L.a.getLeft();
+            int i = chatAttachAlertPhotoLayout.L0;
+            int i2 = left + i;
+            int L2 = hl.L(2.0f) + (i << 1) + top;
+            if (qebVar != null) {
+                qebVar.a(left);
+                qebVar.a(top);
+                qebVar.a(i2);
+                qebVar.a(L2);
+            }
+            if (rectF == null || rectF.intersects(left, top, i2, L2)) {
+                Drawable drawable = this.c;
+                if (qebVar != null) {
+                    if (this.a != null && ((r52Var2 = chatAttachAlertPhotoLayout.Q) == null || !r52Var2.isInited() || chatAttachAlertPhotoLayout.O)) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    qebVar.b(z);
+                    if (chatAttachAlertPhotoLayout.Q != null) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    qebVar.b(z2);
+                    if (drawable != null) {
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    qebVar.b(z3);
+                }
+                if (canvas != null) {
+                    float L3 = hl.L(16.0f);
+                    Path path = this.b;
+                    path.rewind();
+                    float f = left;
+                    float f2 = top;
+                    path.addRoundRect(f, f2, i2 + L3, L2 + L3, L3, L3, Path.Direction.CW);
+                    canvas.save();
+                    canvas.clipPath(path);
+                    if (this.a != null && ((r52Var = chatAttachAlertPhotoLayout.Q) == null || !r52Var.isInited() || chatAttachAlertPhotoLayout.O)) {
+                        this.a.setBounds(left, top, i2, L2);
+                        this.a.draw(canvas);
+                    }
+                    r52 r52Var3 = chatAttachAlertPhotoLayout.Q;
+                    if (r52Var3 != null) {
+                        r52Var3.b = true;
+                        canvas.save();
+                        canvas.clipRect(left, top, i2, L2);
+                        canvas.translate(f, f2);
+                        chatAttachAlertPhotoLayout.Q.draw(canvas);
+                        canvas.restore();
+                        chatAttachAlertPhotoLayout.Q.b = false;
+                    }
+                    if (drawable != null) {
+                        int L4 = hl.L(24.0f);
+                        int x = qu6.x(7.0f, i2, L4);
+                        int L5 = hl.L(7.0f) + top;
+                        drawable.setBounds(x, L5, x + L4, L4 + L5);
+                        drawable.draw(canvas);
+                    }
+                    canvas.restore();
+                    chatAttachAlertPhotoLayout.F.invalidate();
+                }
+            }
+        } else if (qebVar != null) {
+            qebVar.b = true;
         }
     }
 
-    @Override
-    public final boolean z() {
-        return this.a.i1;
-    }
-
-    @Override
-    public final void p() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void v() {
-    }
-
-    @Override
-    public final void g(d2c d2cVar) {
-    }
-
-    @Override
-    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void r(int i) {
-    }
-
-    @Override
-    public final void s(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void y(long j) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
-    }
-
-    @Override
-    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
-    }
-
-    @Override
-    public final void x(View view, TLRPC.Document document, String str, Object obj, g27 g27Var, boolean z, int i) {
+    public final void i() {
+        Bitmap bitmap;
+        try {
+            bitmap = BitmapFactory.decodeFile(new File(a.h(), "cthumb.jpg").getAbsolutePath());
+        } catch (Throwable unused) {
+            bitmap = null;
+        }
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
+        if (bitmap != null) {
+            this.a = new BitmapDrawable(chatAttachAlertPhotoLayout.getContext().getResources(), bitmap);
+        } else {
+            this.a = chatAttachAlertPhotoLayout.getContext().getResources().getDrawable(2131231495).mutate();
+        }
+        i52 i52Var = chatAttachAlertPhotoLayout.F;
+        if (i52Var != null) {
+            i52Var.invalidate();
+        }
     }
 }

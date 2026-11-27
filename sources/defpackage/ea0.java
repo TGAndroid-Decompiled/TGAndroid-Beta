@@ -1,35 +1,54 @@
 package defpackage;
+
+import android.util.JsonReader;
+import android.util.JsonToken;
+import java.io.BufferedReader;
+import java.io.IOException;
 public final class ea0 {
     public final long a;
-    public final ra0 b;
-    public final p90 c;
 
-    public ea0(long j, ra0 ra0Var, p90 p90Var) {
+    public ea0(long j) {
         this.a = j;
-        this.b = ra0Var;
-        this.c = p90Var;
+    }
+
+    public static ea0 a(BufferedReader bufferedReader) {
+        ea0 ea0Var;
+        JsonReader jsonReader = new JsonReader(bufferedReader);
+        try {
+            jsonReader.beginObject();
+            while (jsonReader.hasNext()) {
+                if (jsonReader.nextName().equals("nextRequestWaitMillis")) {
+                    if (jsonReader.peek() == JsonToken.STRING) {
+                        ea0Var = new ea0(Long.parseLong(jsonReader.nextString()));
+                    } else {
+                        ea0Var = new ea0(jsonReader.nextLong());
+                    }
+                    return ea0Var;
+                }
+                jsonReader.skipValue();
+            }
+            throw new IOException("Response is missing nextRequestWaitMillis field.");
+        } finally {
+            jsonReader.close();
+        }
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof ea0) {
-                ea0 ea0Var = (ea0) obj;
-                if (this.a == ea0Var.a && this.b.equals(ea0Var.b) && this.c.equals(ea0Var.c)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+        if (obj == this) {
+            return true;
         }
-        return true;
+        if ((obj instanceof ea0) && this.a == ((ea0) obj).a) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
         long j = this.a;
-        return ((((((int) ((j >>> 32) ^ j)) ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode();
+        return 1000003 ^ ((int) ((j >>> 32) ^ j));
     }
 
     public final String toString() {
-        return "PersistedEvent{id=" + this.a + ", transportContext=" + this.b + ", event=" + this.c + "}";
+        return qu6.p(new StringBuilder("LogResponse{nextRequestWaitMillis="), this.a, "}");
     }
 }

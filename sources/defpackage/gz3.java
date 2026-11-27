@@ -1,98 +1,67 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.FrameLayout;
+import android.os.Bundle;
+import android.util.SparseIntArray;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class gz3 extends b04 {
-    public final d F0;
-    public final boolean G0;
-    public final t14 H0;
+public final class gz3 implements Runnable {
+    public final byte a;
+    public final o24 b;
 
-    public gz3(t14 t14Var, Context context, wjb wjbVar, d dVar, boolean z) {
-        super(t14Var, context, wjbVar);
-        this.H0 = t14Var;
-        this.F0 = dVar;
-        this.G0 = z;
+    public gz3(o24 o24Var, byte b) {
+        this.a = b;
+        this.b = o24Var;
     }
 
     @Override
-    public final void j() {
-        hz3 hz3Var = this.H0.D0;
-        if (hz3Var != null) {
-            hz3Var.invalidate();
-        }
-    }
-
-    @Override
-    public final void o(int i, int i2) {
-        t14 t14Var = this.H0;
-        ez3 ez3Var = t14Var.g2;
-        int i3 = t14Var.F1;
-        int i4 = i - i3;
-        int i5 = i2 - i3;
-        int i6 = t14Var.d1;
-        hq6 d0 = hq6.d0(i6);
-        ArrayList arrayList = t14Var.e1;
-        arrayList.add(i5, (TLRPC.TL_messages_stickerSet) arrayList.remove(i4));
-        Collections.sort(d0.t0(0), new bz0(this, (byte) 1));
-        ArrayList arrayList2 = t14Var.F2;
-        if (arrayList2 != null) {
-            arrayList2.clear();
-            t14Var.F2.addAll(arrayList);
-        }
-        t14Var.C();
-        gl.r(ez3Var);
-        gl.d3(ez3Var, 1500L);
-        hq6 d02 = hq6.d0(i6);
-        d02.Y[0] = hq6.s(d02.H[0]);
-        TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
-        tL_messages_reorderStickerSets.masks = false;
-        tL_messages_reorderStickerSets.emojis = false;
-        for (int i7 = t14Var.f0; i7 < arrayList.size(); i7 = mue.c(i7, 1, ((TLRPC.TL_messages_stickerSet) arrayList.get(i7)).set.id, tL_messages_reorderStickerSets.order)) {
-        }
-        ConnectionsManager.getInstance(i6).sendRequest(tL_messages_reorderStickerSets, new ce2((byte) 0));
-        kk7.f(i6).k(kk7.w0, 0, Boolean.TRUE);
-        t14Var.Y(true);
-        if (gba.W) {
-            gba.N();
-            d dVar = this.F0;
-            if (dVar != null) {
-                u21.b0(dVar).L(2131624018, k96.M0(2131751325, null), k96.M0(2131751324, null), k96.N0("Settings"), new kv1(dVar, (byte) 1)).j();
+    public final void run() {
+        byte b = this.a;
+        o24 o24Var = this.b;
+        switch (b) {
+            case 0:
+                o24Var.X(false);
+                o24Var.C();
                 return;
-            }
-            FrameLayout frameLayout = t14Var.r;
-            if (frameLayout != null) {
-                new u21(frameLayout, t14Var.a2).I(2131624018, k96.M0(2131751325, null), k96.M0(2131751324, null)).j();
-            }
-        }
-    }
-
-    @Override
-    public final void p() {
-        t14 t14Var = this.H0;
-        t14Var.Z();
-        hz3 hz3Var = t14Var.D0;
-        if (hz3Var != null) {
-            hz3Var.invalidate();
-        }
-        invalidate();
-        u04 u04Var = t14Var.u1;
-        if (u04Var != null) {
-            u04Var.t();
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        if (getTranslationY() != f) {
-            super.setTranslationY(f);
-            if (!this.G0) {
-                this.H0.y0.invalidate();
-            }
+            case 1:
+                y04 y04Var = o24Var.S;
+                if (y04Var != null) {
+                    y04Var.F(true);
+                    return;
+                }
+                return;
+            case 2:
+                p14 p14Var = o24Var.u1;
+                if (p14Var != null) {
+                    p14Var.s(o24Var.S.h);
+                    return;
+                }
+                return;
+            case 3:
+                ArrayList<c14> emojipacks = o24Var.getEmojipacks();
+                for (int i = 0; i < emojipacks.size(); i++) {
+                    if (emojipacks.get(i).i) {
+                        SparseIntArray sparseIntArray = o24Var.S.s;
+                        char[] cArr = jx3.a;
+                        int i2 = sparseIntArray.get(i + 8);
+                        o24Var.Q.E0();
+                        o24Var.U(i2);
+                        o24Var.E(i2, hl.L(-9.0f));
+                        o24Var.j(0, null);
+                    }
+                }
+                return;
+            case 4:
+                p14 p14Var2 = o24Var.u1;
+                if (p14Var2 != null) {
+                    p14Var2.p();
+                    return;
+                }
+                return;
+            default:
+                o24Var.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", yac.h(o24Var.d1).e());
+                o24Var.Z1.presentFragment(new zu1(bundle));
+                return;
         }
     }
 }

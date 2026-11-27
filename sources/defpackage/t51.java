@@ -1,97 +1,68 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t51 extends ka {
-    public final v51 d;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class t51 implements Parcelable {
+    public static final Parcelable.Creator<t51> CREATOR = new t4f((byte) 15);
+    public final kj a;
 
-    public t51(v51 v51Var) {
-        this.d = v51Var;
+    public t51(kj kjVar) {
+        this.a = kjVar;
+    }
+
+    public static t51 a(int i) {
+        ws3[] values;
+        f29 f29Var;
+        if (i == -262) {
+            f29Var = f29.RS1;
+        } else {
+            f29[] values2 = f29.values();
+            int length = values2.length;
+            int i2 = 0;
+            while (true) {
+                if (i2 < length) {
+                    f29 f29Var2 = values2[i2];
+                    if (f29Var2.a == i) {
+                        f29Var = f29Var2;
+                        break;
+                    }
+                    i2++;
+                } else {
+                    for (ws3 ws3Var : ws3.values()) {
+                        if (ws3Var.a == i) {
+                            f29Var = ws3Var;
+                        }
+                    }
+                    throw new Exception(qd4.n(i, "Algorithm with COSE value ", " not supported"));
+                }
+            }
+        }
+        return new t51(f29Var);
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        int i = s49Var.f;
-        if (i == 1 || i == 2 || i == 4) {
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof t51) && this.a.a() == ((t51) obj).a.a()) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final int b() {
-        return this.d.c.size();
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a});
+    }
+
+    public final String toString() {
+        return qd4.y("COSEAlgorithmIdentifier{algorithm=", String.valueOf(this.a), "}");
     }
 
     @Override
-    public final int d(int i) {
-        return ((u51) this.d.c.get(i)).a;
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        String m;
-        v51 v51Var = this.d;
-        ArrayList arrayList = v51Var.c;
-        if (((u51) arrayList.get(i)).a == 2) {
-            v6c v6cVar = (v6c) s49Var.a;
-            m51 m51Var = ((u51) arrayList.get(i)).c;
-            TLObject Z1 = v51Var.getMessagesController().Z1(m51Var.a);
-            boolean z = false;
-            String str = null;
-            if (Z1 instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) Z1;
-                if (user.self) {
-                    m = k96.M0(2131745709, null);
-                } else {
-                    m = qu2.m(0, user.first_name, user.last_name);
-                }
-                str = m;
-            } else if (Z1 instanceof TLRPC.Chat) {
-                str = ((TLRPC.Chat) Z1).title;
-            }
-            v6cVar.setSelfAsSavedMessages(true);
-            String f = o51.f(m51Var.b);
-            if (i == arrayList.size() - 1 || ((u51) arrayList.get(i + 1)).a == 2) {
-                z = true;
-            }
-            v6cVar.d(Z1, str, f, z);
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        wgb wgbVar;
-        View view = null;
-        if (i != 1) {
-            if (i != 2) {
-                if (i != 3) {
-                    if (i == 4) {
-                        wgb wgbVar2 = new wgb(viewGroup.getContext());
-                        wgbVar2.k(k96.M0(2131747722, null), false);
-                        wgbVar2.g(-1, bkb.o7);
-                        zkb.h(bkb.c6, null, wgbVar2);
-                        wgbVar = wgbVar2;
-                    }
-                } else {
-                    wgbVar = new b9a(viewGroup.getContext(), (de9) null);
-                }
-            } else {
-                View v6cVar = new v6c(4, 0, null, viewGroup.getContext(), false, false);
-                zkb.h(bkb.c6, null, v6cVar);
-                view = v6cVar;
-            }
-            return ls6.h(view, view, -1, -2);
-        }
-        wgb wgbVar3 = new wgb(viewGroup.getContext());
-        wgbVar3.o(2131232104, k96.M0(2131747730, null), true);
-        wgbVar3.g(bkb.u6, bkb.t6);
-        zkb.h(bkb.c6, null, wgbVar3);
-        wgbVar = wgbVar3;
-        view = wgbVar;
-        return ls6.h(view, view, -1, -2);
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.a.a());
     }
 }

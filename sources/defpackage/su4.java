@@ -1,27 +1,49 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class su4 extends b4c {
-    public static final int b = 0;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+public final class su4 {
+    public static final int w = ViewConfiguration.getTapTimeout();
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final tu4 f;
+    public final tu4 g;
+    public boolean h;
+    public boolean i;
+    public boolean j;
+    public boolean k;
+    public boolean l;
+    public MotionEvent m;
+    public MotionEvent n;
+    public boolean o;
+    public float p;
+    public float q;
+    public float r;
+    public float s;
+    public boolean t;
+    public VelocityTracker v;
+    public long u = ViewConfiguration.getLongPressTimeout();
+    public final d1 e = new d1(this, (byte) 5);
 
-    static {
-        b4c.h(new b4c());
-    }
-
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        kz9 kz9Var = (kz9) view;
-        kz9Var.setUser((TLRPC.User) c4cVar.H);
-        kz9Var.c(c4cVar.e, false);
-        kz9Var.setDivider(z);
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        kz9 kz9Var = new kz9(context, false, true, wjbVar, false);
-        kz9Var.setCellBackgroundVisible(false);
-        return kz9Var;
+    public su4(Context context, tu4 tu4Var) {
+        this.f = tu4Var;
+        this.g = tu4Var;
+        if (context != null) {
+            this.t = true;
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.c = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.d = viewConfiguration.getScaledMaximumFlingVelocity();
+            this.a = scaledTouchSlop * scaledTouchSlop;
+            this.b = scaledDoubleTapSlop * scaledDoubleTapSlop;
+            return;
+        }
+        lq5.j("Context must not be null");
+        throw null;
     }
 }

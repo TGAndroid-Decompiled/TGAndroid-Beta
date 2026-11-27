@@ -1,65 +1,80 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-public final class p08 extends tx9 {
-    public final s08 f2;
-    public final kx9[] g2;
-    public final t08 h2;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class p08 implements Runnable {
+    public final byte a;
+    public final r08 b;
+    public final TLRPC.TL_error c;
+    public final TLObject d;
 
-    public p08(t08 t08Var, d dVar, Context context, Integer num, int i, wjb wjbVar, int i2, int i3, s08 s08Var, kx9[] kx9VarArr) {
-        super(dVar, context, true, num, i, true, wjbVar, i2, i3);
-        this.h2 = t08Var;
-        this.f2 = s08Var;
-        this.g2 = kx9VarArr;
+    public p08(r08 r08Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.a = (byte) 0;
+        this.b = r08Var;
+        this.d = tLObject;
+        this.c = tL_error;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void o(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        t08 t08Var = this.h2;
-        if (tL_starGiftUnique != null) {
-            if (!t08Var.n0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    t08Var.s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    t08Var.r = null;
-                } else {
+    public final void run() {
+        switch (this.a) {
+            case 0:
+                r08 r08Var = this.b;
+                TLObject tLObject = this.d;
+                TLRPC.TL_error tL_error = this.c;
+                b18 b18Var = r08Var.e;
+                if (tLObject instanceof Vector) {
+                    b18Var.E = new TL_account.authorizationForm();
+                    Vector vector = (Vector) tLObject;
+                    int size = vector.objects.size();
+                    for (int i = 0; i < size; i++) {
+                        b18Var.E.values.add((TLRPC.TL_secureValue) vector.objects.get(i));
+                    }
+                    r08Var.a();
                     return;
                 }
-            } else {
-                t08Var.s = null;
-                t08Var.r = na7.n0(tL_starGiftUnique);
-            }
-            t08Var.J = null;
-            t08Var.h = -1;
-        } else {
-            if (l == null) {
-                longValue = 0;
-            } else {
-                longValue = l.longValue();
-            }
-            t08Var.n = longValue;
-            t08Var.r = null;
-            t08Var.s = null;
-            t08Var.J = null;
+                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
+                    jj.u0(b18Var.getParentActivity(), ob6.M0(2131743475, null), true);
+                } else {
+                    b18Var.P1(ob6.M0(2131689472, null), tL_error.text);
+                }
+                b18Var.Q1(true, false);
+                return;
+            case 1:
+                r08 r08Var2 = this.b;
+                TLRPC.TL_error tL_error2 = this.c;
+                TLObject tLObject2 = this.d;
+                if (tL_error2 == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject2;
+                    r08Var2.e.K = password;
+                    TwoStepVerificationActivity.e0(password);
+                    r08Var2.b();
+                    return;
+                }
+                return;
+            default:
+                r08 r08Var3 = this.b;
+                TLRPC.TL_error tL_error3 = this.c;
+                TLObject tLObject3 = this.d;
+                if (tL_error3 == null) {
+                    TL_account.Password password2 = (TL_account.Password) tLObject3;
+                    r08Var3.e.K = password2;
+                    TwoStepVerificationActivity.e0(password2);
+                    Utilities.e.c(new fd7(r08Var3, r08Var3.b, r08Var3.d, (byte) 19));
+                    return;
+                }
+                return;
         }
-        this.f2.b(true);
-        t08Var.j(true);
-        t08Var.i();
-        t08Var.f(true);
-        kx9 kx9Var = this.g2[0];
-        if (kx9Var != null) {
-            t08Var.p0 = null;
-            kx9Var.dismiss();
-        }
+    }
+
+    public p08(r08 r08Var, TLRPC.TL_error tL_error, TLObject tLObject, byte b) {
+        this.a = b;
+        this.b = r08Var;
+        this.c = tL_error;
+        this.d = tLObject;
     }
 }

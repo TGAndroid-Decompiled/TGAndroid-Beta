@@ -1,148 +1,200 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public final class v88 extends i98 {
-    public final jl5 a;
-    public final o98 b;
-    public final k27 c;
-    public final jm6 d;
-    public final boolean e;
-    public final boolean f;
-    public final PhotoViewer g;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.TextPaint;
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.Locale;
+public final class v88 extends View {
+    public int a;
+    public boolean b;
+    public boolean c;
+    public float d;
+    public a69 e;
+    public Paint f;
+    public Paint h;
+    public Paint n;
+    public TextPaint r;
+    public Path s;
+    public u88 w;
+    public lo x;
 
-    public v88(PhotoViewer photoViewer, o98 o98Var, k27 k27Var, jm6 jm6Var, boolean z, boolean z2) {
-        this.g = photoViewer;
-        this.b = o98Var;
-        this.c = k27Var;
-        this.d = jm6Var;
-        this.e = z;
-        this.f = z2;
-        this.a = photoViewer.B4.p();
-    }
-
-    @Override
-    public final void L(int i, oac oacVar, boolean z, int i2, int i3, boolean z2) {
-        d0(oacVar, z, i2, false, z2);
-    }
-
-    @Override
-    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        o98 o98Var = this.b;
-        if (o98Var != null) {
-            return o98Var.M(this.c, null, 0, z, false);
-        }
-        return null;
-    }
-
-    @Override
-    public final k27 V() {
-        return this.c;
-    }
-
-    @Override
-    public final void c(oac oacVar) {
-        jm6 jm6Var = this.d;
-        if (!jm6Var.w && !jm6Var.v && !jm6Var.u && oacVar == null && TextUtils.isEmpty(jm6Var.a)) {
-            return;
-        }
-        d0(oacVar, false, 0, true, false);
-    }
-
-    public final void d0(oac oacVar, boolean z, int i, boolean z2, boolean z3) {
-        k27 k27Var;
-        PhotoViewer photoViewer = this.g;
-        if (photoViewer.k4 != null) {
-            bu1 bu1Var = null;
-            k27 k27Var2 = this.c;
-            if (z2) {
-                k27Var = k27Var2;
-            } else {
-                k27Var = null;
-            }
-            jm6 jm6Var = this.d;
-            if (k27Var != null && !TextUtils.isEmpty(jm6Var.a)) {
-                k27Var.y1 = jm6Var.a;
-                k27Var.z1 = jm6Var.n;
-            }
-            if (z2 || k27Var2 == null) {
-                mu1 mu1Var = photoViewer.k4;
-                k27Var2 = mu1Var.F5;
-                bu1Var = mu1Var.D5;
-            }
-            bu1 bu1Var2 = bu1Var;
-            k27 k27Var3 = k27Var2;
-            if (jm6Var.b) {
-                mu1 mu1Var2 = photoViewer.k4;
-                if (oacVar != null) {
-                    j5 accountInstance = mu1Var2.getAccountInstance();
-                    String str = jm6Var.I;
-                    long a = photoViewer.k4.a();
-                    mu1 mu1Var3 = photoViewer.k4;
-                    k27 k27Var4 = mu1Var3.m4;
-                    ArrayList arrayList = jm6Var.n;
-                    k27 k27Var5 = k27Var;
-                    int i2 = jm6Var.x;
-                    boolean z4 = jm6Var.M;
-                    z3a.a0(i2, i, a, 0L, 0L, photoViewer.k4.c7(), accountInstance, bu1Var2, k27Var3, k27Var4, k27Var5, photoViewer.k4.y5, mu1Var3.Q6(), oacVar, jm6Var.a, str, null, arrayList, null, null, z, z3, z4);
+    public final void a(int i, MotionEvent motionEvent) {
+        a98 a98Var;
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        if (i != 1) {
+            if (i != 2) {
+                if ((i == 3 || i == 4 || i == 5) && this.a != 0) {
+                    this.a = 0;
                     return;
                 }
-                k27 k27Var6 = k27Var;
-                j5 accountInstance2 = mu1Var2.getAccountInstance();
-                String str2 = jm6Var.I;
-                long a2 = photoViewer.k4.a();
-                mu1 mu1Var4 = photoViewer.k4;
-                k27 k27Var7 = mu1Var4.m4;
-                ArrayList arrayList2 = jm6Var.n;
-                int i3 = jm6Var.x;
-                boolean z5 = jm6Var.M;
-                z3a.a0(i3, i, a2, 0L, 0L, photoViewer.k4.c7(), accountInstance2, bu1Var2, k27Var3, k27Var7, k27Var6, photoViewer.k4.y5, mu1Var4.Q6(), null, jm6Var.a, str2, null, arrayList2, null, null, z, z3, z5);
                 return;
             }
-            k27 k27Var8 = k27Var;
-            if (jm6Var.h != null) {
-                j5 accountInstance3 = photoViewer.k4.getAccountInstance();
-                String str3 = jm6Var.h;
-                String str4 = jm6Var.c;
-                long a3 = photoViewer.k4.a();
-                mu1 mu1Var5 = photoViewer.k4;
-                z3a.Y(accountInstance3, str3, str4, null, a3, k27Var3, mu1Var5.m4, bu1Var2, jm6Var.n, jm6Var.r, null, jm6Var.x, k27Var8, oacVar, z, i, z3, jm6Var.a, mu1Var5.Q6(), 0L, 0L, photoViewer.k4.c7(), photoViewer.k4.y5);
-            } else if (jm6Var.I != null) {
-                j5 accountInstance4 = photoViewer.k4.getAccountInstance();
-                String str5 = jm6Var.I;
-                String str6 = jm6Var.c;
-                long a4 = photoViewer.k4.a();
-                mu1 mu1Var6 = photoViewer.k4;
-                z3a.Y(accountInstance4, str5, str6, null, a4, k27Var3, mu1Var6.m4, bu1Var2, jm6Var.n, jm6Var.r, null, jm6Var.x, k27Var8, oacVar, z, i, z3, jm6Var.a, mu1Var6.Q6(), 0L, 0L, photoViewer.k4.c7(), photoViewer.k4.y5);
+            float min = Math.min(2.0f, (this.d - y) / 8.0f);
+            lo loVar = this.x;
+            int i2 = loVar.a;
+            if (i2 != 0) {
+                if (i2 != 1) {
+                    if (i2 != 2) {
+                        if (i2 != 3) {
+                            a98Var = null;
+                        } else {
+                            a98Var = (a98) loVar.e;
+                        }
+                    } else {
+                        a98Var = (a98) loVar.d;
+                    }
+                } else {
+                    a98Var = (a98) loVar.c;
+                }
+            } else {
+                a98Var = (a98) loVar.b;
+            }
+            int i3 = this.a;
+            if (i3 != 1) {
+                if (i3 != 2) {
+                    if (i3 != 3) {
+                        if (i3 != 4) {
+                            if (i3 == 5) {
+                                a98Var.e = xnb.f(a98Var.e, min, 100.0f, 0.0f);
+                            }
+                        } else {
+                            a98Var.d = xnb.f(a98Var.d, min, 100.0f, 0.0f);
+                        }
+                    } else {
+                        a98Var.c = xnb.f(a98Var.c, min, 100.0f, 0.0f);
+                    }
+                } else {
+                    a98Var.b = xnb.f(a98Var.b, min, 100.0f, 0.0f);
+                }
+            } else {
+                a98Var.a = xnb.f(a98Var.a, min, 100.0f, 0.0f);
+            }
+            invalidate();
+            u88 u88Var = this.w;
+            if (u88Var != null) {
+                c98 c98Var = ((w88) u88Var).a;
+                c98Var.e();
+                rf4 rf4Var = c98Var.m0;
+                if (rf4Var != null) {
+                    rf4Var.b(false, false, false);
+                }
+            }
+            this.d = y;
+        } else if (this.a != 0) {
+        } else {
+            a69 a69Var = this.e;
+            this.a = (int) Math.floor(bp1.z(x, a69Var.a, a69Var.c / 5.0f, 1.0f));
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        a98 a98Var;
+        int i;
+        String format;
+        TextPaint textPaint = this.r;
+        Path path = this.s;
+        Paint paint = this.n;
+        lo loVar = this.x;
+        a69 a69Var = this.e;
+        float f2 = a69Var.c / 5.0f;
+        int i2 = 0;
+        while (true) {
+            f = a69Var.a;
+            if (i2 >= 4) {
+                break;
+            }
+            float f3 = f + f2 + (i2 * f2);
+            float f4 = a69Var.b;
+            canvas.drawLine(f3, f4, f3, f4 + a69Var.d, this.f);
+            i2++;
+        }
+        float f5 = a69Var.b;
+        canvas.drawLine(f, f5 + a69Var.d, f + a69Var.c, f5, this.h);
+        int i3 = loVar.a;
+        int i4 = 3;
+        int i5 = 2;
+        if (i3 != 0) {
+            if (i3 != 1) {
+                if (i3 != 2) {
+                    if (i3 != 3) {
+                        a98Var = null;
+                    } else {
+                        paint.setColor(-13404165);
+                        a98Var = (a98) loVar.e;
+                    }
+                } else {
+                    paint.setColor(-15667555);
+                    a98Var = (a98) loVar.d;
+                }
+            } else {
+                paint.setColor(-1229492);
+                a98Var = (a98) loVar.c;
+            }
+        } else {
+            paint.setColor(-1);
+            a98Var = (a98) loVar.b;
+        }
+        int i6 = 0;
+        while (i6 < 5) {
+            if (i6 != 0) {
+                if (i6 != 1) {
+                    if (i6 != i5) {
+                        if (i6 != i4) {
+                            if (i6 != 4) {
+                                format = "";
+                                i = i5;
+                            } else {
+                                i = i5;
+                                format = String.format(Locale.US, "%.2f", Float.valueOf(a98Var.e / 100.0f));
+                            }
+                        } else {
+                            i = i5;
+                            format = String.format(Locale.US, "%.2f", Float.valueOf(a98Var.d / 100.0f));
+                        }
+                    } else {
+                        i = i5;
+                        format = String.format(Locale.US, "%.2f", Float.valueOf(a98Var.c / 100.0f));
+                    }
+                } else {
+                    i = i5;
+                    format = String.format(Locale.US, "%.2f", Float.valueOf(a98Var.b / 100.0f));
+                }
+            } else {
+                i = i5;
+                format = String.format(Locale.US, "%.2f", Float.valueOf(a98Var.a / 100.0f));
+            }
+            canvas.drawText(format, (i6 * f2) + bp1.z(f2, textPaint.measureText(format), 2.0f, a69Var.a), (a69Var.b + a69Var.d) - hl.L(4.0f), textPaint);
+            i6++;
+            i5 = i;
+            i4 = 3;
+        }
+        float[] a = a98Var.a();
+        invalidate();
+        path.reset();
+        for (int i7 = 0; i7 < a.length / 2; i7++) {
+            float f6 = a69Var.a;
+            int i8 = i7 << 1;
+            if (i7 == 0) {
+                path.moveTo((a[i8] * a69Var.c) + f6, ((1.0f - a[i8 + 1]) * a69Var.d) + a69Var.b);
+            } else {
+                path.lineTo((a[i8] * a69Var.c) + f6, ((1.0f - a[i8 + 1]) * a69Var.d) + a69Var.b);
             }
         }
+        canvas.drawPath(path, paint);
     }
 
     @Override
-    public final boolean h() {
-        return false;
+    public final boolean onTouchEvent(android.view.MotionEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.v88.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    @Override
-    public final jl5 k(int i) {
-        return this.a;
-    }
-
-    @Override
-    public final boolean o() {
-        if (this.b != null && this.e) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        if (this.b != null && this.f) {
-            return true;
-        }
-        return false;
+    public void setDelegate(u88 u88Var) {
+        this.w = u88Var;
     }
 }

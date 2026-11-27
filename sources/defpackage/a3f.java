@@ -1,60 +1,34 @@
 package defpackage;
+public final class a3f implements vw8 {
+    public final byte a;
+    public final f5c b;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public abstract class a3f {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String sb;
-        int i = 0;
-        int i2 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i2 >= length) {
-                break;
-            }
-            Object obj = objArr[i2];
-            if (obj == null) {
-                sb = "null";
-            } else {
-                try {
-                    sb = obj.toString();
-                } catch (Exception e) {
-                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e);
-                    StringBuilder p = ug8.p("<", str2, " threw ");
-                    p.append(e.getClass().getName());
-                    p.append(">");
-                    sb = p.toString();
-                }
-            }
-            objArr[i2] = sb;
-            i2++;
+    public a3f(f5c f5cVar, byte b) {
+        this.a = b;
+        this.b = f5cVar;
+    }
+
+    @Override
+    public final Object get() {
+        byte b = this.a;
+        f5c f5cVar = this.b;
+        switch (b) {
+            case 0:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), z3f.y);
+            case 1:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), rg7.x);
+            case 2:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), uif.y);
+            case 3:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), z6f.E);
+            case 4:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), qf5.E);
+            case 5:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), rj2.E);
+            case 6:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("json"), sae.y);
+            default:
+                return f5cVar.a("FIREBASE_ML_SDK", new n34("proto"), rg7.E);
         }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length << 4));
-        int i3 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i >= length2 || (indexOf = str.indexOf("%s", i3)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i3, indexOf);
-            sb2.append(objArr[i]);
-            i++;
-            i3 = indexOf + 2;
-        }
-        sb2.append((CharSequence) str, i3, str.length());
-        if (i < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i]);
-            for (int i4 = i + 1; i4 < objArr.length; i4++) {
-                sb2.append(", ");
-                sb2.append(objArr[i4]);
-            }
-            sb2.append(']');
-        }
-        return sb2.toString();
     }
 }

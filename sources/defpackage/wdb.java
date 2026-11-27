@@ -1,59 +1,72 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-public final class wdb extends cra {
-    public Paint[] r;
-    public final byte s;
-    public final boolean w;
+import android.os.SystemClock;
+import j$.util.Objects;
+public final class wdb {
+    public final int a;
+    public Object b;
+    public int c;
+    public int d;
+    public boolean e;
+    public long f;
+    public final q90 g;
 
-    public wdb(Context context, int i, int i2) {
-        super(context);
-        this.s = i;
-        this.w = i2;
-        c();
+    public wdb(q90 q90Var, int i) {
+        this.g = q90Var;
+        this.a = i;
     }
 
-    @Override
     public final void a() {
-        bra braVar = new bra(this.s);
-        this.a = braVar;
-        braVar.N = 106;
-        int i = 0;
-        braVar.L = false;
-        braVar.G = false;
-        braVar.J = true;
-        braVar.H = true;
-        braVar.I = false;
-        braVar.m = true;
-        braVar.h = true;
-        if (this.w) {
-            braVar.k = gl.L(24.0f);
+        Object l;
+        long j;
+        q90 q90Var = this.g;
+        xrb xrbVar = (xrb) q90Var.e;
+        xgb xgbVar = (xgb) q90Var.f;
+        s64 s64Var = (s64) q90Var.a;
+        asb y0 = s64Var.y0();
+        if (y0.p()) {
+            l = null;
+        } else {
+            l = y0.l(s64Var.A());
         }
-        this.r = new Paint[20];
-        while (true) {
-            Paint[] paintArr = this.r;
-            if (i < paintArr.length) {
-                paintArr[i] = new Paint(1);
-                this.r[i].setColorFilter(new PorterDuffColorFilter(bm2.f(i / (this.r.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
-                i++;
-            } else {
-                bra braVar2 = this.a;
-                braVar2.l = new z02(this, (byte) 10);
-                braVar2.r = (byte) 17;
-                braVar2.s = (byte) 18;
-                braVar2.t = (byte) 19;
-                braVar2.P = bkb.F6;
-                braVar2.c();
+        int k0 = s64Var.k0();
+        int L = s64Var.L();
+        long k = s64Var.k();
+        if (l != null && k0 == -1) {
+            y0.g(l, xrbVar);
+            k -= gcc.i0(xrbVar.e);
+            j = gcc.i0(xrbVar.d);
+        } else if (k0 != -1) {
+            j = s64Var.getDuration();
+        } else {
+            j = -9223372036854775807L;
+        }
+        boolean i = s64Var.i();
+        if (i && j != -9223372036854775807L && k >= j) {
+            ((vgb) q90Var.d).getClass();
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            boolean z = this.e;
+            int i2 = this.a;
+            if (z && Objects.equals(l, this.b) && k0 == this.c && L == this.d) {
+                if (elapsedRealtime - this.f >= i2) {
+                    ((n64) q90Var.c).a.t1(new e64(2, new ydb(3, i2), 1003));
+                    return;
+                }
                 return;
             }
+            this.e = true;
+            this.f = elapsedRealtime;
+            this.b = l;
+            this.c = k0;
+            this.d = L;
+            xgbVar.g(3);
+            xgbVar.a.sendEmptyMessageDelayed(3, i2);
+            return;
         }
-    }
-
-    @Override
-    public final int getStarsRectWidth() {
-        return getMeasuredWidth();
+        xgbVar.g(3);
+        if (i && j != -9223372036854775807L) {
+            xgbVar.a.sendEmptyMessageDelayed(3, (int) Math.ceil(((float) (j - k)) / s64Var.f().a));
+        }
+        this.e = false;
     }
 }

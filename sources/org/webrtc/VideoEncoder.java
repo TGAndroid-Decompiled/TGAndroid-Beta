@@ -26,14 +26,6 @@ public interface VideoEncoder {
         void onEncodedFrame(EncodedImage encodedImage, CodecSpecificInfo codecSpecificInfo);
     }
 
-    public static class Capabilities {
-        public final boolean lossNotification;
-
-        public Capabilities(boolean z) {
-            this.lossNotification = z;
-        }
-    }
-
     public static class CodecSpecificInfo {
     }
 
@@ -115,7 +107,7 @@ public interface VideoEncoder {
         }
     }
 
-    long createNativeVideoEncoder();
+    long createNative(long j);
 
     VideoCodecStatus encode(VideoFrame videoFrame, EncodeInfo encodeInfo);
 
@@ -136,6 +128,20 @@ public interface VideoEncoder {
     VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i);
 
     VideoCodecStatus setRates(RateControlParameters rateControlParameters);
+
+    public static class Capabilities {
+        @Deprecated
+        public final boolean lossNotification;
+
+        public Capabilities() {
+            this.lossNotification = false;
+        }
+
+        @Deprecated
+        public Capabilities(boolean z) {
+            this.lossNotification = z;
+        }
+    }
 
     public static class ScalingSettings {
         public static final ScalingSettings OFF = new ScalingSettings();
@@ -200,7 +206,7 @@ public interface VideoEncoder {
 
         @Deprecated
         public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z) {
-            this(i, i2, i3, i4, i5, i6, z, new Capabilities(false));
+            this(i, i2, i3, i4, i5, i6, z, new Capabilities());
         }
     }
 }

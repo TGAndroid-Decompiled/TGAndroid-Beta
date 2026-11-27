@@ -1,174 +1,122 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-public final class h20 extends n39 {
-    public final Activity c;
-    public ArrayList d = new ArrayList();
-    public String e;
-    public f20 f;
-    public boolean h;
-    public final i20 n;
+import org.telegram.tgnet.TLRPC;
+public final class h20 implements Runnable {
+    public final byte a = 0;
+    public final i20 b;
+    public final ArrayList c;
+    public final String d;
 
-    public h20(i20 i20Var, Activity activity) {
-        this.n = i20Var;
-        this.c = activity;
+    public h20(i20 i20Var, String str, ArrayList arrayList) {
+        this.b = i20Var;
+        this.d = str;
+        this.c = arrayList;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        if (this.n.o2 && s49Var.b() == 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void E(String str) {
-        if (this.f != null) {
-            Utilities.g.a(this.f);
-            this.f = null;
-        }
-        if (str == null) {
-            this.e = null;
-            this.d.clear();
-            f();
-            return;
-        }
-        co3 co3Var = Utilities.g;
-        f20 f20Var = new f20(this, str, (byte) 0);
-        this.f = f20Var;
-        co3Var.d(f20Var, 300L);
-    }
-
-    @Override
-    public final int b() {
-        int size;
-        i20 i20Var = this.n;
-        boolean z = i20Var.o2;
-        if (i20Var.p1) {
-            size = this.d.size();
-        } else if (i20Var.q2.size() > 1) {
-            size = i20Var.q2.size();
-        } else {
-            return 0;
-        }
-        return size + (z ? 1 : 0);
-    }
-
-    @Override
-    public final int d(int i) {
-        if (this.n.o2 && i == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void f() {
+    public final void run() {
+        int i;
+        TLRPC.Document document;
         boolean z;
-        boolean z2;
-        super.f();
-        i20 i20Var = this.n;
-        View view = i20Var.o1;
-        p10 p10Var = i20Var.r1;
-        int i = 0;
-        if (i20Var.q2.size() > 1) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z != this.h) {
-            if (i20Var.q2.size() > 1) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            this.h = z2;
-            if (z2) {
-                p10Var.setVisibility(0);
-                p10Var.setTranslationY(gl.q.y);
-                p10Var.animate().translationY(0.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final h20 b;
-
-                    {
-                        this.b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        byte b = r2;
-                        h20 h20Var = this.b;
-                        switch (b) {
-                            case 0:
-                                h20Var.n.b.invalidate();
-                                return;
-                            default:
-                                h20Var.n.b.invalidate();
-                                return;
+        String str;
+        byte b = this.a;
+        String str2 = null;
+        String str3 = this.d;
+        ArrayList arrayList = this.c;
+        i20 i20Var = this.b;
+        switch (b) {
+            case 0:
+                i20Var.getClass();
+                String lowerCase = str3.trim().toLowerCase();
+                if (lowerCase.length() == 0) {
+                    hl.c3(new h20(i20Var, new ArrayList(), str3));
+                    return;
+                }
+                String S0 = ob6.D0().S0(lowerCase, true, false);
+                if (!lowerCase.equals(S0) && S0.length() != 0) {
+                    str2 = S0;
+                }
+                if (str2 != null) {
+                    i = 1;
+                } else {
+                    i = 0;
+                }
+                int i2 = i + 1;
+                String[] strArr = new String[i2];
+                strArr[0] = lowerCase;
+                if (str2 != null) {
+                    strArr[1] = str2;
+                }
+                ArrayList arrayList2 = new ArrayList();
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    r47 r47Var = (r47) arrayList.get(i3);
+                    int i4 = 0;
+                    while (true) {
+                        if (i4 < i2) {
+                            String str4 = strArr[i4];
+                            String I0 = r47Var.I0();
+                            if (I0 != null && I0.length() != 0) {
+                                if (I0.toLowerCase().contains(str4)) {
+                                    arrayList2.add(r47Var);
+                                } else {
+                                    int i5 = r47Var.D;
+                                    TLRPC.Message message = r47Var.k;
+                                    if (i5 == 0) {
+                                        document = message.media.webpage.document;
+                                    } else {
+                                        document = message.media.document;
+                                    }
+                                    int i6 = 0;
+                                    while (true) {
+                                        if (i6 < document.attributes.size()) {
+                                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i6);
+                                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                                                String str5 = documentAttribute.performer;
+                                                if (str5 != null) {
+                                                    z = str5.toLowerCase().contains(str4);
+                                                } else {
+                                                    z = false;
+                                                }
+                                                if (!z && (str = documentAttribute.title) != null) {
+                                                    z = str.toLowerCase().contains(str4);
+                                                }
+                                            } else {
+                                                i6++;
+                                            }
+                                        } else {
+                                            z = false;
+                                        }
+                                    }
+                                    if (z) {
+                                        arrayList2.add(r47Var);
+                                    }
+                                }
+                            }
+                            i4++;
                         }
                     }
-                }).setDuration(420L).setInterpolator(s33.h).start();
-            } else {
-                p10Var.animate().translationY(gl.q.y).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final h20 b;
-
-                    {
-                        this.b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        byte b = r2;
-                        h20 h20Var = this.b;
-                        switch (b) {
-                            case 0:
-                                h20Var.n.b.invalidate();
-                                return;
-                            default:
-                                h20Var.n.b.invalidate();
-                                return;
-                        }
-                    }
-                }).setDuration(420L).setInterpolator(s33.h).withEndAction(new oz(this, (byte) 2)).start();
-            }
+                }
+                hl.c3(new h20(i20Var, arrayList2, str3));
+                return;
+            default:
+                j20 j20Var = i20Var.n;
+                if (j20Var.q1) {
+                    j20Var.p1 = true;
+                    i20Var.d = arrayList;
+                    i20Var.e = str3;
+                    i20Var.f();
+                    j20Var.s1.m0(0);
+                    uh9.r(null, null, 2131747971, new Object[]{str3}, j20Var.w1);
+                    return;
+                }
+                return;
         }
-        int size = i20Var.q2.size();
-        k10 k10Var = i20Var.x1;
-        if (size > 1) {
-            zkb.h(bkb.Hj, i20Var.J0, k10Var);
-            view.setVisibility(0);
-            p10Var.setPadding(0, p10Var.getPaddingTop(), 0, gl.L(231.0f));
-        } else {
-            zkb.h(bkb.Hj, i20Var.J0, k10Var);
-            view.setVisibility(0);
-            p10Var.setPadding(0, p10Var.getPaddingTop(), 0, 0);
-        }
-        i20Var.u1.setVisibility((i20Var.q1 && i20Var.t1.b() == 0) ? 8 : 8);
-        i20Var.T0();
     }
 
-    @Override
-    public final void t(defpackage.s49 r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.h20.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        Activity activity = this.c;
-        int i2 = 1;
-        if (i == 1) {
-            d62 d62Var = new d62(activity, (byte) 3);
-            d62Var.setTag(-33024);
-            return new s49(d62Var);
-        }
-        if (MediaController.w().D0 == null) {
-            i2 = 0;
-        }
-        return new s49(new j20(i2, this.n.J0, activity));
+    public h20(i20 i20Var, ArrayList arrayList, String str) {
+        this.b = i20Var;
+        this.c = arrayList;
+        this.d = str;
     }
 }

@@ -1,31 +1,39 @@
 package defpackage;
-public final class z80 {
-    public long a;
-    public String b;
-    public String c;
-    public long d;
-    public int e;
-    public byte f;
+public final class z80 extends nz2 {
+    public final String a;
+    public final String b;
+    public final long c;
 
-    public final a90 a() {
-        String str;
-        if (this.f == 7 && (str = this.b) != null) {
-            return new a90(str, this.e, this.c, this.a, this.d);
+    public z80(long j, String str, String str2) {
+        this.a = str;
+        this.b = str2;
+        this.c = j;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        StringBuilder sb = new StringBuilder();
-        if ((this.f & 1) == 0) {
-            sb.append(" pc");
+        if (obj instanceof nz2) {
+            z80 z80Var = (z80) ((nz2) obj);
+            if (this.a.equals(z80Var.a) && this.b.equals(z80Var.b) && this.c == z80Var.c) {
+                return true;
+            }
         }
-        if (this.b == null) {
-            sb.append(" symbol");
-        }
-        if ((this.f & 2) == 0) {
-            sb.append(" offset");
-        }
-        if ((this.f & 4) == 0) {
-            sb.append(" importance");
-        }
-        sc8.j(ir2.o("Missing required properties:", sb));
-        return null;
+        return false;
+    }
+
+    public final int hashCode() {
+        long j = this.c;
+        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ ((int) ((j >>> 32) ^ j));
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("Signal{name=");
+        sb.append(this.a);
+        sb.append(", code=");
+        sb.append(this.b);
+        sb.append(", address=");
+        return qu6.p(sb, this.c, "}");
     }
 }

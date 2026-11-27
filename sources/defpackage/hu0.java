@@ -1,407 +1,343 @@
 package defpackage;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.regex.Pattern;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class hu0 extends d {
+import android.text.SpannableString;
+import android.text.style.CharacterStyle;
+import java.io.File;
+import java.util.ArrayList;
+import org.json.JSONObject;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.e;
+public final class hu0 implements pcc {
     public final byte a;
     public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
 
-    public hu0(long j) {
-        super(null);
-        this.a = (byte) 6;
-        this.b = new my6(this, this, getLayoutContainer(), j);
-    }
-
-    public static a Y(hu0 hu0Var) {
-        return hu0Var.actionBar;
+    public hu0(rv0 rv0Var, pv0 pv0Var, String str, ot0 ot0Var, String str2) {
+        this.a = (byte) 0;
+        this.b = rv0Var;
+        this.e = pv0Var;
+        this.c = str;
+        this.f = ot0Var;
+        this.d = str2;
     }
 
     @Override
-    public final View createView(Context context) {
-        int i;
-        switch (this.a) {
-            case 6:
-                this.actionBar.setAllowOverlayTitle(true);
-                this.actionBar.setActionBarMenuOnItemClick(new bq5(this, (byte) 9));
-                this.actionBar.setBackButtonImage(2131231243);
-                a aVar = this.actionBar;
-                my6 my6Var = (my6) this.b;
-                if (my6Var.a) {
-                    i = 2131744195;
+    public final void a(Object obj) {
+        final TLRPC.UserFull userFull;
+        TLRPC.TL_document tL_document;
+        byte b = this.a;
+        String str = "";
+        Object obj2 = this.d;
+        int i = 0;
+        Object obj3 = this.f;
+        Object obj4 = this.c;
+        Object obj5 = this.e;
+        Object obj6 = this.b;
+        switch (b) {
+            case 0:
+                rv0 rv0Var = (rv0) obj6;
+                pv0 pv0Var = (pv0) obj5;
+                String str2 = (String) obj4;
+                ot0 ot0Var = (ot0) obj3;
+                String str3 = (String) obj2;
+                String str4 = (String) obj;
+                if (str4 == null) {
+                    rv0Var.u(pv0Var, "secure_storage_failed", rv0.y("req_id", str2, "error", "RESTORE_CANCELLED"));
+                    return;
+                }
+                try {
+                    ot0Var.j(str4);
+                    rv0Var.u(pv0Var, "secure_storage_key_restored", rv0.y("req_id", str2, "value", (String) ot0Var.f(str3).first));
+                    return;
+                } catch (Exception e) {
+                    rv0Var.u(pv0Var, "secure_storage_failed", rv0.y("req_id", str2, "error", e.getMessage()));
+                    return;
+                }
+            case 1:
+                hl.c3(new z87((rv0) obj6, (File) obj, (id) obj5, (String) obj4, (String) obj2, (String) obj3));
+                return;
+            case 2:
+                hl.c3(new z87((wf1) obj6, (TLRPC.ChannelParticipant) obj, (ArrayList) obj5, (ArrayList) obj4, (ArrayList) obj2, (df1) obj3, (byte) 6));
+                return;
+            case 3:
+                final zu1 zu1Var = (zu1) obj6;
+                wb2 wb2Var = (wb2) obj5;
+                String str5 = (String) obj4;
+                TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) obj2;
+                CharacterStyle characterStyle = (CharacterStyle) obj3;
+                final TLRPC.User user = (TLRPC.User) obj;
+                if (user != null) {
+                    userFull = zu1Var.getMessagesController().Y1(user.id);
                 } else {
-                    i = 2131748443;
+                    userFull = null;
                 }
-                aVar.setTitle(k96.M0(i, null));
-                r7 a = this.actionBar.t().a(0, 2131232491);
-                a.N();
-                a.I = new q10(this, (byte) 16);
-                a.setSearchFieldHint(k96.M0(2131745644, null));
-                a.setVisibility(8);
-                d dVar = my6Var.g;
-                if (my6Var.m == null) {
-                    FrameLayout frameLayout = new FrameLayout(dVar.getParentActivity());
-                    my6Var.m = frameLayout;
-                    zkb.h(bkb.Z6, dVar.getResourceProvider(), frameLayout);
-                    pi4 b = my6Var.b();
-                    my6Var.q = b;
-                    my6Var.m.addView(b, -1, -1);
-                    zya c = my6Var.c();
-                    my6Var.o = c;
-                    my6Var.m.addView(c, -1, -1);
-                    zya a2 = my6Var.a();
-                    my6Var.n = a2;
-                    my6Var.m.addView(a2, nme.c(-1.0f, -1));
-                    dVar.getParentActivity();
-                    t26 t26Var = new t26();
-                    o39 o39Var = new o39(dVar.getParentActivity(), null);
-                    my6Var.p = o39Var;
-                    o39Var.setAdapter(my6Var.f);
-                    my6Var.p.r1();
-                    my6Var.p.setLayoutManager(t26Var);
-                    my6Var.p.setOnItemClickListener(new bf4(my6Var, (byte) 11));
-                    my6Var.p.setOnScrollListener(my6Var.D);
-                    zkb.J(my6Var.p, bkb.h6, dVar.getResourceProvider());
-                    my6Var.m.addView(my6Var.p, -1, -1);
-                    gb3 gb3Var = new gb3();
-                    gb3Var.n(350L);
-                    gb3Var.o(s33.h);
-                    gb3Var.C = false;
-                    gb3Var.m = false;
-                    my6Var.p.setItemAnimator(gb3Var);
+                fu5 J = fu5.J(zu1Var, wb2Var);
+                mu9 mu9Var = new mu9(zu1Var.getParentActivity(), zu1Var.Ba);
+                J.p = new dm1(mu9Var, (byte) 1);
+                gt gtVar = new gt(zu1Var, user, str5, (byte) 8);
+                fu5 K = J.K();
+                K.b(2131231243, ob6.M0(2131753749, null), new vn1(J, (byte) 0), false);
+                K.j();
+                K.b(2131232049, ob6.M0(2131751682, null), new on1(zu1Var, J, str5, (byte) 2), false);
+                K.b(2131231784, ob6.M0(2131754368, null), new fv0(gtVar, (byte) 27), false);
+                if (tL_contact == null && (user == null || !zu1Var.getContactsController().g0.containsKey(Long.valueOf(user.id)))) {
+                    J.b(2131232104, ob6.M0(2131754370, null), new c10(J, K, (byte) 4), false);
+                    J.j();
                 }
-                FrameLayout frameLayout2 = my6Var.m;
-                a aVar2 = this.actionBar;
-                o39 o39Var2 = my6Var.p;
-                aVar2.getClass();
-                aVar2.E(o39Var2, bkb.Z6, bkb.r8);
-                my6Var.e();
-                this.fragmentView = frameLayout2;
-                return frameLayout2;
-            case 7:
-                this.hasOwnBackground = true;
-                this.actionBar.setAddToContainer(false);
-                View view = new View(context);
-                view.setBackgroundColor(0);
-                return view;
-            default:
-                return super.createView(context);
-        }
-    }
-
-    @Override
-    public final Context getContext() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 2:
-                return ((pt3) obj).a.getContext();
-            case 8:
-                return ((wt7) obj).getContext();
-            case 11:
-                return ((rz9) obj).b.getContext();
-            case 13:
-                return ((vqa) obj).getContext();
-            default:
-                return super.getContext();
-        }
-    }
-
-    @Override
-    public final int getCurrentAccount() {
-        switch (this.a) {
-            case 2:
-                return this.currentAccount;
-            case 3:
-            case 6:
-            case 7:
-            case 9:
-            case 12:
-            default:
-                return super.getCurrentAccount();
-            case 4:
-                return this.currentAccount;
-            case 5:
-                return ((l04) this.b).H.d1;
-            case 8:
-                return this.currentAccount;
-            case 10:
-                return this.currentAccount;
-            case 11:
-                return this.currentAccount;
-            case 13:
-                return this.currentAccount;
-        }
-    }
-
-    @Override
-    public final View getFragmentView() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 4:
-                qx3 qx3Var = ((mx3) obj).y;
-                Pattern pattern = qx3.P1;
-                return qx3Var.b;
-            case 5:
-                return ((l04) obj).H.r;
-            case 10:
-                return ((xh8) obj).b;
-            default:
-                return super.getFragmentView();
-        }
-    }
-
-    @Override
-    public final FrameLayout getLayoutContainer() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 4:
-                qx3 qx3Var = ((mx3) obj).y;
-                Pattern pattern = qx3.P1;
-                return (FrameLayout) qx3Var.b;
-            case 5:
-                return ((l04) obj).H.r;
-            case 10:
-                return ((xh8) obj).H2;
-            default:
-                return super.getLayoutContainer();
-        }
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return ((hv0) obj).a0;
-            case 1:
-                return ((d) obj).getParentActivity();
-            case 2:
-                for (Context context = getContext(); context instanceof ContextWrapper; context = ((ContextWrapper) context).getBaseContext()) {
-                    if (context instanceof Activity) {
-                        return (Activity) context;
+                if (user == null) {
+                    J.b(2131231840, ob6.M0(2131748861, null), new hl1(zu1Var, str5, (byte) 8), false);
+                    J.b(2131232090, ob6.M0(2131743174, null), new hl1(zu1Var, str5, (byte) 9), false);
+                    J.b(2131232108, ob6.M0(2131751725, null), new hl1(zu1Var, str5, (byte) 10), false);
+                    J.j();
+                    J.o(13, -1, ob6.M0(2131747560, null));
+                } else {
+                    J.b(2131232118, ob6.M0(2131745329, null), new wn1(zu1Var, user, (byte) 0), false);
+                    if (!lbc.D(user)) {
+                        J.b(2131232088, ob6.M0(2131743173, null), new Runnable() {
+                            @Override
+                            public final void run() {
+                                boolean z;
+                                boolean z2;
+                                byte b2 = r4;
+                                zu1 zu1Var2 = zu1Var;
+                                switch (b2) {
+                                    case 0:
+                                        TLRPC.UserFull userFull2 = userFull;
+                                        if (userFull2 != null && userFull2.video_calls_available) {
+                                            z = true;
+                                        } else {
+                                            z = false;
+                                        }
+                                        xkc.m(user, false, z, zu1Var2.getParentActivity(), userFull2, zu1Var2.getAccountInstance());
+                                        return;
+                                    default:
+                                        TLRPC.UserFull userFull3 = userFull;
+                                        if (userFull3 != null && userFull3.video_calls_available) {
+                                            z2 = true;
+                                        } else {
+                                            z2 = false;
+                                        }
+                                        xkc.m(user, true, z2, zu1Var2.getParentActivity(), userFull3, zu1Var2.getAccountInstance());
+                                        return;
+                                }
+                            }
+                        }, false);
+                        J.b(2131232424, ob6.M0(2131743263, null), new Runnable() {
+                            @Override
+                            public final void run() {
+                                boolean z;
+                                boolean z2;
+                                byte b2 = r4;
+                                zu1 zu1Var2 = zu1Var;
+                                switch (b2) {
+                                    case 0:
+                                        TLRPC.UserFull userFull2 = userFull;
+                                        if (userFull2 != null && userFull2.video_calls_available) {
+                                            z = true;
+                                        } else {
+                                            z = false;
+                                        }
+                                        xkc.m(user, false, z, zu1Var2.getParentActivity(), userFull2, zu1Var2.getAccountInstance());
+                                        return;
+                                    default:
+                                        TLRPC.UserFull userFull3 = userFull;
+                                        if (userFull3 != null && userFull3.video_calls_available) {
+                                            z2 = true;
+                                        } else {
+                                            z2 = false;
+                                        }
+                                        xkc.m(user, true, z2, zu1Var2.getParentActivity(), userFull3, zu1Var2.getAccountInstance());
+                                        return;
+                                }
+                            }
+                        }, false);
                     }
+                    J.b(2131232090, ob6.M0(2131743174, null), new hl1(zu1Var, str5, (byte) 6), false);
+                    J.b(2131232108, ob6.M0(2131751725, null), new hl1(zu1Var, str5, (byte) 7), false);
+                    J.j();
+                    J.m(user, ob6.M0(2131743198, null), new on1(zu1Var, mu9Var, user, (byte) 1));
                 }
-                return null;
-            case 3:
-                return LaunchActivity.H1;
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 11:
-            default:
-                return super.getParentActivity();
-            case 8:
-                return gl.W(((wt7) obj).getContext());
-            case 9:
-                Activity W = gl.W(((y28) obj).getContext());
-                if (W == null) {
-                    return LaunchActivity.H1;
-                }
-                return W;
-            case 10:
-                d dVar = ((xh8) obj).o2;
-                if (dVar == null) {
-                    return null;
-                }
-                return dVar.getParentActivity();
-            case 12:
-                h1a h1aVar = (h1a) obj;
-                Activity ownerActivity = h1aVar.getOwnerActivity();
-                if (ownerActivity == null) {
-                    ownerActivity = LaunchActivity.H1;
-                }
-                if (ownerActivity == null) {
-                    return gl.W(h1aVar.getContext());
-                }
-                return ownerActivity;
-            case 13:
-                for (Context context2 = ((vqa) obj).getContext(); context2 instanceof ContextWrapper; context2 = ((ContextWrapper) context2).getBaseContext()) {
-                    if (context2 instanceof Activity) {
-                        return (Activity) context2;
+                mu9Var.e(J);
+                if (characterStyle instanceof h8c) {
+                    String url = ((h8c) characterStyle).getURL();
+                    if (url != null) {
+                        str = url;
                     }
-                }
-                return null;
-        }
-    }
-
-    @Override
-    public final wjb getResourceProvider() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return new gu0(((hv0) obj).e, (byte) 0);
-            case 1:
-                return new si5((wjb) new f53());
-            case 2:
-            case 6:
-            case 7:
-            case 10:
-            default:
-                return super.getResourceProvider();
-            case 3:
-                return new gu0(((mt7) obj).J0, (byte) 1);
-            case 4:
-                qx3 qx3Var = ((mx3) obj).y;
-                Pattern pattern = qx3.P1;
-                return qx3Var.J0;
-            case 5:
-                return ((l04) obj).H.a2;
-            case 8:
-                return ((wt7) obj).w1;
-            case 9:
-                return new gu0(((y28) obj).r0, (byte) 3);
-            case 11:
-                return ((rz9) obj).b.s;
-            case 12:
-                return ((h1a) obj).J0;
-        }
-    }
-
-    @Override
-    public final Dialog getVisibleDialog() {
-        switch (this.a) {
-            case 2:
-                return new ot3(this, ((pt3) this.b).a.getContext());
-            default:
-                return super.getVisibleDialog();
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        switch (this.a) {
-            case 0:
-            case 1:
-            case 3:
-            case 9:
-                return false;
-            default:
-                return super.isLightStatusBar();
-        }
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z) {
-        switch (this.a) {
-            case 6:
-                wy6 wy6Var = ((my6) this.b).s;
-                if (wy6Var != null) {
-                    if (!z) {
-                        return false;
+                    String trim = str.trim();
+                    if (trim.startsWith("tel:")) {
+                        trim = trim.substring(4);
                     }
-                    wy6Var.e(false);
-                    return false;
+                    if (trim.length() > 204) {
+                        trim = trim.substring(0, 204).concat("…");
+                    }
+                    SpannableString spannableString = new SpannableString(trim);
+                    spannableString.setSpan(characterStyle, 0, spannableString.length(), 33);
+                    mu9Var.f(wb2Var, characterStyle, spannableString, false);
+                } else {
+                    mu9Var.f(wb2Var, characterStyle, null, false);
                 }
-                return true;
-            default:
-                return super.onBackPressed(z);
-        }
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
-        switch (this.a) {
-            case 7:
-                if (z && z2) {
-                    ((gr7) this.b).dismiss();
+                zu1Var.showDialog(mu9Var);
+                return;
+            case 4:
+                zu1 zu1Var2 = (zu1) obj6;
+                TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj5;
+                String str6 = (String) obj4;
+                n47 n47Var = (n47) obj3;
+                Long l = (Long) obj;
+                int i2 = zu1Var2.g4;
+                Object obj7 = this.d;
+                if (i2 == 1) {
+                    jj.J(zu1Var2.getParentActivity(), zu1Var2.l6, new pt((Object) zu1Var2, (Object) tL_document2, obj7, str6, (byte) 3), zu1Var2.Ba);
+                    tL_document = tL_document2;
+                } else {
+                    tL_document = tL_document2;
+                    zu1Var2.getSendMessagesHelper().t0(tL_document, str6, zu1Var2.l6, zu1Var2.F5, zu1Var2.m4, null, zu1Var2.D5, n47Var, true, 0, 0, false, obj7, zu1Var2.X6(), l.longValue(), zu1Var2.k7(), zu1Var2.y5);
+                }
+                zu1Var2.E7(false);
+                zu1Var2.a0.j(tL_document);
+                zu1Var2.a0.setFieldText("");
+                return;
+            case 5:
+                uj3 uj3Var = (uj3) obj6;
+                Long l2 = (Long) obj4;
+                Runnable runnable = (Runnable) obj;
+                ((id) obj5).dismiss();
+                uj3Var.getMessagesController().c3(l2, null, 32);
+                oj3 oj3Var = uj3Var.E2;
+                uj3Var.removeSelfFromStack();
+                ((gi1) obj2).removeSelfFromStack();
+                ((e) obj3).finishFragment();
+                if (oj3Var != null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(if7.a(-l2.longValue(), 0L));
+                    oj3Var.q(uj3Var, arrayList, null, false, uj3Var.L2, uj3Var.M2, uj3Var.N2, null);
                     return;
                 }
                 return;
+            case 6:
+                ArrayList arrayList2 = (ArrayList) obj5;
+                ArrayList arrayList3 = (ArrayList) obj2;
+                ArrayList arrayList4 = (ArrayList) obj3;
+                Runnable runnable2 = (Runnable) obj;
+                o14 o14Var = ((n14) obj6).a;
+                String str7 = o14Var.w;
+                ArrayList arrayList5 = o14Var.r;
+                ArrayList arrayList6 = o14Var.h;
+                ArrayList arrayList7 = o14Var.s;
+                o24 o24Var = o14Var.G;
+                b14 b14Var = o24Var.Q;
+                if (((String) obj4).equals(str7)) {
+                    o24Var.W.d(false);
+                    o14Var.E = true;
+                    j79 adapter = b14Var.getAdapter();
+                    o14 o14Var2 = o24Var.T;
+                    if (adapter != o14Var2) {
+                        b14Var.setAdapter(o14Var2);
+                    }
+                    arrayList6.clear();
+                    arrayList6.addAll(o14Var.n);
+                    arrayList5.clear();
+                    arrayList5.addAll(arrayList2);
+                    arrayList7.clear();
+                    LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
+                    int size = arrayList3.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj8 = arrayList3.get(i3);
+                        i3++;
+                        h14 h14Var = (h14) obj8;
+                        if (longSparseIntArray.indexOfKey(h14Var.c.id) < 0) {
+                            longSparseIntArray.append(h14Var.c.id, 1);
+                            arrayList7.add(h14Var);
+                        }
+                    }
+                    int size2 = arrayList4.size();
+                    while (i < size2) {
+                        Object obj9 = arrayList4.get(i);
+                        i++;
+                        h14 h14Var2 = (h14) obj9;
+                        if (longSparseIntArray.indexOfKey(h14Var2.c.id) < 0) {
+                            longSparseIntArray.append(h14Var2.c.id, 1);
+                            arrayList7.add(h14Var2);
+                        }
+                    }
+                    o14Var.f();
+                    return;
+                }
+                return;
+            case 7:
+                sk7 sk7Var = (sk7) obj4;
+                vnb vnbVar = (vnb) obj2;
+                ao1 ao1Var = (ao1) obj3;
+                String str8 = (String) obj;
+                ((n55) obj6).d = false;
+                ((c51) obj5).setLoading(false);
+                if (str8 != null) {
+                    d31.d0(str8, sk7Var.F, vnbVar);
+                }
+                ao1Var.run();
+                return;
+            case 8:
+                wua wuaVar = (wua) obj6;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) obj5;
+                TL_stars.StarGiftAttribute starGiftAttribute = (TL_stars.StarGiftAttribute) obj4;
+                y41[] y41VarArr = (y41[]) obj2;
+                boolean[] zArr = (boolean[]) obj3;
+                ArrayList arrayList8 = (ArrayList) obj;
+                if (arrayList8 != null) {
+                    new gra(wuaVar.getContext(), wuaVar.J0, wuaVar.a, starGift.title, arrayList8, false).show();
+                } else {
+                    wuaVar.v2(y41VarArr[0], ob6.a0(null, null, 2131750004, cc.J0(starGiftAttribute.getRarityPermille())), false);
+                }
+                zArr[0] = false;
+                return;
             default:
-                super.onTransitionAnimationEnd(z, z2);
+                qsb qsbVar = (qsb) obj4;
+                rxc rxcVar = (rxc) obj2;
+                pcc pccVar = (pcc) obj3;
+                JSONObject jSONObject = (JSONObject) obj;
+                qsb.a((psb) obj6);
+                if (!((boolean[]) obj5)[0]) {
+                    psb d = qsb.d(qsbVar, "parseJSON");
+                    try {
+                        rxcVar.c = rxcVar.i(rxcVar.a, jSONObject);
+                    } catch (Exception e2) {
+                        qsb.c(qsbVar, "error: " + e2);
+                        cc4.g(e2, true);
+                    }
+                    qsb.a(d);
+                    pccVar.a(rxcVar);
+                    TLRPC.TL_webPage tL_webPage = rxcVar.c;
+                    if (tL_webPage != null) {
+                        rxc.e.put(tL_webPage, rxcVar);
+                    }
+                    qsb.b(qsbVar);
+                    return;
+                }
                 return;
         }
     }
 
-    @Override
-    public final boolean presentFragment(d dVar) {
-        switch (this.a) {
-            case 1:
-                return false;
-            case 8:
-                d Q = LaunchActivity.Q();
-                if (Q == 0) {
-                    return false;
-                }
-                ?? obj = new Object();
-                obj.a = true;
-                Q.showAsSheet(dVar, obj);
-                return true;
-            case 9:
-                m8b m8bVar = ((y28) this.b).z0;
-                if (m8bVar != null) {
-                    m8bVar.L(dVar);
-                }
-                return true;
-            default:
-                return super.presentFragment(dVar);
-        }
+    public hu0(n14 n14Var, String str, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
+        this.a = (byte) 6;
+        this.b = n14Var;
+        this.c = str;
+        this.e = arrayList;
+        this.d = arrayList2;
+        this.f = arrayList3;
     }
 
-    @Override
-    public final Dialog showDialog(Dialog dialog) {
-        switch (this.a) {
-            case 0:
-                dialog.show();
-                return dialog;
-            case 3:
-                dialog.show();
-                return dialog;
-            case 9:
-                m8b m8bVar = ((y28) this.b).z0;
-                if (m8bVar != null) {
-                    m8bVar.u(dialog);
-                } else if (dialog != null) {
-                    dialog.show();
-                }
-                return dialog;
-            case 10:
-                dialog.show();
-                return dialog;
-            case 13:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
-        }
-    }
-
-    public hu0(Object obj, byte b) {
-        super(null);
+    public hu0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, byte b) {
         this.a = b;
         this.b = obj;
-    }
-
-    public hu0(d dVar) {
-        super(null);
-        this.a = (byte) 1;
-        this.b = dVar;
-    }
-
-    public hu0(mt7 mt7Var) {
-        super(null);
-        this.a = (byte) 3;
-        this.b = mt7Var;
-        this.currentAccount = mt7Var.a;
-    }
-
-    public hu0(hv0 hv0Var) {
-        super(null);
-        this.a = (byte) 0;
-        this.b = hv0Var;
-        this.currentAccount = hv0Var.N;
+        this.e = obj2;
+        this.c = obj3;
+        this.d = obj4;
+        this.f = obj5;
     }
 }

@@ -19,11 +19,12 @@ public class MediaConstraints {
             if (this == obj) {
                 return true;
             }
-            if (obj != null && getClass() == obj.getClass()) {
-                KeyValuePair keyValuePair = (KeyValuePair) obj;
-                if (this.key.equals(keyValuePair.key) && this.value.equals(keyValuePair.value)) {
-                    return true;
-                }
+            if (!(obj instanceof KeyValuePair)) {
+                return false;
+            }
+            KeyValuePair keyValuePair = (KeyValuePair) obj;
+            if (this.key.equals(keyValuePair.key) && this.value.equals(keyValuePair.value)) {
+                return true;
             }
             return false;
         }

@@ -1,33 +1,25 @@
 package defpackage;
+public final class dp9 {
+    public static final dp9 a;
+    public static final dp9 b;
+    public static final dp9 c;
+    public static final dp9[] d;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.WritableByteChannel;
-public final class dp9 extends a2 {
-    public dp9() {
-        super("stsd");
+    static {
+        ?? r0 = new Enum("HIGH", 0);
+        a = r0;
+        ?? r1 = new Enum("MEDIUM", 1);
+        b = r1;
+        ?? r3 = new Enum("LOW", 2);
+        c = r3;
+        d = new dp9[]{r0, r1, r3};
     }
 
-    @Override
-    public final void getBox(WritableByteChannel writableByteChannel) {
-        writableByteChannel.write(d());
-        ByteBuffer allocate = ByteBuffer.allocate(8);
-        ile.f(0, allocate);
-        ile.e(0, allocate);
-        allocate.putInt(this.b.size());
-        writableByteChannel.write((ByteBuffer) allocate.rewind());
-        c(writableByteChannel);
+    public static dp9 valueOf(String str) {
+        return (dp9) Enum.valueOf(dp9.class, str);
     }
 
-    @Override
-    public final long getSize() {
-        int i;
-        long b = b();
-        long j = 8 + b;
-        if (b + 16 >= 4294967296L) {
-            i = 16;
-        } else {
-            i = 8;
-        }
-        return j + i;
+    public static dp9[] values() {
+        return (dp9[]) d.clone();
     }
 }

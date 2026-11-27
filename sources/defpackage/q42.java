@@ -1,57 +1,51 @@
 package defpackage;
 
-import java.io.File;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSessionWrapper;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ShutterButton;
-public final class q42 implements xga {
-    public File a;
-    public boolean b;
-    public final wjb c;
-    public final ww0 d;
-    public final ChatAttachAlertPhotoLayout e;
+import android.content.Context;
+import android.widget.TextView;
+public final class q42 extends wc6 {
+    public final byte E = 0;
+    public final fn7 F;
 
-    public q42(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, wjb wjbVar, ww0 ww0Var) {
-        this.e = chatAttachAlertPhotoLayout;
-        this.c = wjbVar;
-        this.d = ww0Var;
+    public q42(uc6 uc6Var, Context context, vnb vnbVar, boolean z) {
+        super(vnbVar, context, false, z);
+        this.F = uc6Var;
     }
 
-    public final void a() {
-        b52 b52Var;
-        boolean z;
-        boolean z2;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.e;
-        x02 x02Var = chatAttachAlertPhotoLayout.b;
-        ShutterButton shutterButton = chatAttachAlertPhotoLayout.l0;
-        if (!chatAttachAlertPhotoLayout.t0 && (b52Var = chatAttachAlertPhotoLayout.Q) != null && b52Var.getCameraSession() != null) {
-            if (shutterButton.getState() == yga.b) {
-                chatAttachAlertPhotoLayout.o0();
-                CameraController.getInstance().stopVideoRecording(chatAttachAlertPhotoLayout.Q.getCameraSession(), false);
-                shutterButton.a(yga.a);
-            } else if (!chatAttachAlertPhotoLayout.y0) {
-                yjb.x(null, 2131749367, new u21(chatAttachAlertPhotoLayout.Q, this.c), null);
-            } else {
-                d dVar = x02Var.Z1;
-                if ((dVar instanceof mu1) && ((mu1) dVar).y()) {
-                    z = true;
-                } else {
-                    z = false;
+    @Override
+    public final void f() {
+        byte b = this.E;
+        fn7 fn7Var = this.F;
+        switch (b) {
+            case 0:
+                s42 s42Var = (s42) fn7Var;
+                q42 q42Var = s42Var.O;
+                s7 s7Var = s42Var.x;
+                if (s7Var != null) {
+                    s7Var.setShowSearchProgress(q42Var.w);
                 }
-                File q0 = gl.q0(null, z);
-                boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.Q.getCameraSession().isSameTakePictureOrientation();
-                CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.Q.getCameraSession();
-                if (!(x02Var.Z1 instanceof mu1) && x02Var.N2 != 2) {
-                    z2 = false;
-                } else {
-                    z2 = true;
+                TextView textView = s42Var.w;
+                if (textView != null) {
+                    textView.setText(ob6.a0(null, null, 2131747896, q42Var.h));
                 }
-                cameraSession.setFlipFront(z2);
-                chatAttachAlertPhotoLayout.t0 = CameraController.getInstance().takePicture(q0, false, chatAttachAlertPhotoLayout.Q.getCameraSessionObject(), new o42(this, q0, isSameTakePictureOrientation, (byte) 0));
-                chatAttachAlertPhotoLayout.Q.startTakePictureAnimation(true);
-            }
+                super.f();
+                return;
+            default:
+                uc6 uc6Var = (uc6) fn7Var;
+                sla slaVar = uc6Var.r;
+                if (slaVar != null) {
+                    slaVar.setShowSearchProgress(uc6Var.T.w);
+                }
+                TextView textView2 = uc6Var.n;
+                if (textView2 != null) {
+                    textView2.setText(ob6.a0(null, null, 2131747896, uc6Var.T.h));
+                }
+                super.f();
+                return;
         }
+    }
+
+    public q42(s42 s42Var, Context context, vnb vnbVar, boolean z) {
+        super(vnbVar, context, z, false);
+        this.F = s42Var;
     }
 }

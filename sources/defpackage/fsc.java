@@ -1,27 +1,37 @@
 package defpackage;
 
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-public final class fsc extends TLObject {
-    public double a;
-    public double b;
-    public String c;
-    public float d;
+import org.telegram.ui.Wallet.WalletEngine2;
+public final class fsc implements Runnable {
+    public final byte a = 0;
+    public final WalletEngine2 b;
+    public final pcc c;
+    public final String d;
 
-    public final String a() {
-        boolean a = gsc.a();
-        float f = this.d;
-        if (a) {
-            return Math.round(f) + "°C";
-        }
-        return de9.l(new StringBuilder(), (int) Math.round(((f * 9.0d) / 5.0d) + 32.0d), "°F");
+    public fsc(WalletEngine2 walletEngine2, pcc pccVar, String str) {
+        this.b = walletEngine2;
+        this.c = pccVar;
+        this.d = str;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeDouble(this.a);
-        outputSerializedData.writeDouble(this.b);
-        outputSerializedData.writeString(this.c);
-        outputSerializedData.writeFloat(this.d);
+    public final void run() {
+        byte b = this.a;
+        String str = this.d;
+        pcc pccVar = this.c;
+        WalletEngine2 walletEngine2 = this.b;
+        switch (b) {
+            case 0:
+                walletEngine2.lambda$getTransactionByHash$42(str, pccVar);
+                return;
+            default:
+                walletEngine2.lambda$previewSignMessage$10(pccVar, str);
+                return;
+        }
+    }
+
+    public fsc(WalletEngine2 walletEngine2, String str, pcc pccVar) {
+        this.b = walletEngine2;
+        this.d = str;
+        this.c = pccVar;
     }
 }

@@ -1,25 +1,17 @@
 package defpackage;
-public final class z56 {
-    public final Object a;
-    public e31 b = new e31();
-    public boolean c;
-    public boolean d;
+public final class z56 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public z56(Object obj) {
-        this.a = obj;
+    public z56(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && z56.class == obj.getClass()) {
-            return this.a.equals(((z56) obj).a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.z56.run():void");
     }
 }

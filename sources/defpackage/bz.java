@@ -1,7 +1,9 @@
 package defpackage;
-public final class bz extends h1a {
+
+import android.view.MotionEvent;
+public final class bz extends sx4 {
     @Override
-    public final u21 Z0() {
-        return new u21(this.c, this.J0);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

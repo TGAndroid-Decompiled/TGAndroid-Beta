@@ -1,53 +1,63 @@
 package defpackage;
+public final class i34 {
+    public static final i34 E;
+    public static final i34[] F;
+    public static final i34 a;
+    public static final i34 b;
+    public static final i34 c;
+    public static final i34 d;
+    public static final i34 e;
+    public static final i34 f;
+    public static final i34 h;
+    public static final i34 n;
+    public static final i34 r;
+    public static final i34 s;
+    public static final i34 w;
+    public static final i34 x;
+    public static final i34 y;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i34 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final l34 b;
-
-    public i34(l34 l34Var, byte b) {
-        this.a = b;
-        this.b = l34Var;
+    static {
+        ?? r0 = new Enum("ERROR_CORRECTION", 0);
+        a = r0;
+        ?? r1 = new Enum("CHARACTER_SET", 1);
+        b = r1;
+        Enum r3 = new Enum("DATA_MATRIX_SHAPE", 2);
+        Enum r5 = new Enum("DATA_MATRIX_COMPACT", 3);
+        Enum r7 = new Enum("MIN_SIZE", 4);
+        Enum r9 = new Enum("MAX_SIZE", 5);
+        ?? r11 = new Enum("MARGIN", 6);
+        c = r11;
+        ?? r13 = new Enum("PDF417_COMPACT", 7);
+        d = r13;
+        ?? r15 = new Enum("PDF417_COMPACTION", 8);
+        e = r15;
+        ?? r2 = new Enum("PDF417_DIMENSIONS", 9);
+        f = r2;
+        ?? r4 = new Enum("PDF417_AUTO_ECI", 10);
+        h = r4;
+        ?? r6 = new Enum("AZTEC_LAYERS", 11);
+        n = r6;
+        ?? r8 = new Enum("QR_VERSION", 12);
+        r = r8;
+        ?? r10 = new Enum("QR_MASK_PATTERN", 13);
+        s = r10;
+        ?? r12 = new Enum("QR_COMPACT", 14);
+        w = r12;
+        ?? r14 = new Enum("GS1_FORMAT", 15);
+        x = r14;
+        ?? r02 = new Enum("FORCE_CODE_SET", 16);
+        y = r02;
+        Enum r16 = new Enum("FORCE_C40", 17);
+        ?? r22 = new Enum("CODE128_COMPACT", 18);
+        E = r22;
+        F = new i34[]{r0, r1, r3, r5, r7, r9, r11, r13, r15, r2, r4, r6, r8, r10, r12, r14, r02, r16, r22};
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        l34 l34Var = this.b;
-        switch (b) {
-            case 0:
-                if (animator == l34Var.c0) {
-                    l34Var.c0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                if (animator == l34Var.d0) {
-                    l34Var.d0 = null;
-                    return;
-                }
-                return;
-            case 2:
-                if (animator == l34Var.R) {
-                    l34Var.R = null;
-                    l34Var.Q = 0.0f;
-                    return;
-                }
-                return;
-            case 3:
-                if (animator == l34Var.S) {
-                    l34Var.S = null;
-                    return;
-                }
-                return;
-            default:
-                if (!l34Var.n0) {
-                    gl.B2(l34Var.J);
-                    l34Var.J = null;
-                    return;
-                }
-                return;
-        }
+    public static i34 valueOf(String str) {
+        return (i34) Enum.valueOf(i34.class, str);
+    }
+
+    public static i34[] values() {
+        return (i34[]) F.clone();
     }
 }

@@ -1,148 +1,184 @@
 package defpackage;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.graphics.Shader;
-import android.widget.FrameLayout;
-public final class za1 implements Runnable {
-    public final byte a;
-    public final ib1 b;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.RippleDrawable;
+import android.util.StateSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import java.util.ArrayList;
+public final class za1 {
+    public static final int[] p = {16842910, 16842919};
+    public jx2 a;
+    public final ArrayList b = new ArrayList();
+    public int c;
+    public boolean d;
+    public final hf0 e;
+    public final View f;
+    public final Paint g;
+    public Runnable h;
+    public boolean i;
+    public Runnable j;
+    public final p1 k;
+    public boolean l;
+    public final CornerPathEffect m;
+    public boolean n;
+    public final Paint o;
 
-    public za1(ib1 ib1Var, byte b) {
-        this.a = b;
-        this.b = ib1Var;
+    public za1(View view) {
+        Paint paint = new Paint(1);
+        this.g = paint;
+        this.k = new p1(this, (byte) 12);
+        this.f = view;
+        CornerPathEffect cornerPathEffect = new CornerPathEffect(hl.L(12.0f));
+        this.m = cornerPathEffect;
+        paint.setPathEffect(cornerPathEffect);
+        Paint paint2 = new Paint(1);
+        this.o = paint2;
+        paint2.setFilterBitmap(true);
+        paint2.setPathEffect(new CornerPathEffect(hl.L(12.0f)));
+        paint2.setColor(-1);
+        Paint paint3 = new Paint(1);
+        paint3.setFilterBitmap(true);
+        paint3.setColor(-1);
+        ?? rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{aob.w0(null, aob.i6, false) & 436207615}), null, new ya1(this, paint3));
+        this.e = rippleDrawable;
+        rippleDrawable.setCallback(view);
     }
 
-    @Override
-    public final void run() {
-        float f;
-        int i;
-        int i2;
-        byte b = this.a;
-        ib1 ib1Var = this.b;
-        switch (b) {
-            case 0:
-                ib1Var.t();
-                return;
-            default:
-                boolean z = ib1Var.m0;
-                FrameLayout frameLayout = ib1Var.K;
-                fb1 fb1Var = ib1Var.r;
-                cb1 cb1Var = ib1Var.f;
-                if (ib1Var.p0 != z) {
-                    ib1Var.p0 = z;
-                    ValueAnimator valueAnimator = ib1Var.q0;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                        ib1Var.q0 = null;
+    public final void a(RectF rectF) {
+        int i = this.c + 1;
+        this.c = i;
+        ArrayList arrayList = this.b;
+        if (i > arrayList.size()) {
+            arrayList.add(new RectF());
+        }
+        ((RectF) arrayList.get(this.c - 1)).set(rectF);
+    }
+
+    public final boolean b(MotionEvent motionEvent) {
+        Runnable runnable;
+        int x = (int) motionEvent.getX();
+        int y = (int) motionEvent.getY();
+        int action = motionEvent.getAction();
+        View view = this.f;
+        p1 p1Var = this.k;
+        hf0 hf0Var = this.e;
+        if (action == 0) {
+            for (int i = 0; i < this.c; i++) {
+                float f = x;
+                float f2 = y;
+                if (((RectF) this.b.get(i)).contains(f, f2)) {
+                    this.d = true;
+                    if (hf0Var != null) {
+                        hf0Var.setHotspot(f, f2);
+                        hf0Var.setState(p);
                     }
-                    p8c p8cVar = ib1Var.k0;
-                    if (p8cVar != null) {
-                        p8cVar.a(Boolean.valueOf(z));
+                    hl.r(p1Var);
+                    if (this.l) {
+                        hl.d3(p1Var, ViewConfiguration.getLongPressTimeout());
                     }
-                    ib1Var.d(z);
-                    if (z) {
-                        eb1 eb1Var = ib1Var.N;
-                        if (eb1Var != null) {
-                            eb1Var.setVisibility(0);
-                        }
-                        fb1Var.setVisibility(0);
-                    } else {
-                        cb1Var.getEditText().scrollBy(0, -cb1Var.getEditText().getScrollY());
-                    }
-                    float f2 = ib1Var.o0;
-                    if (z) {
-                        f = 1.0f;
-                    } else {
-                        f = 0.0f;
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-                    ib1Var.q0 = ofFloat;
-                    ofFloat.addUpdateListener(new f0(ib1Var, (byte) 24));
-                    if (!z) {
-                        cb1Var.getEditText().setAllowDrawCursor(false);
-                    }
-                    ib1Var.q0.addListener(new y7((byte) 11, ib1Var, z));
-                    ValueAnimator valueAnimator2 = ib1Var.q0;
-                    if (z) {
-                        valueAnimator2.setInterpolator(gb.w);
-                        ib1Var.q0.setDuration(250L);
-                    } else {
-                        valueAnimator2.setInterpolator(new c84());
-                        ib1Var.q0.setDuration(420L);
-                    }
-                    ib1Var.q0.start();
-                    gt3 editText = cb1Var.getEditText();
-                    if (editText != null && editText.getLayout() != null) {
-                        ObjectAnimator objectAnimator = ib1Var.g0;
-                        if (objectAnimator != null) {
-                            objectAnimator.cancel();
-                        }
-                        int scrollY = editText.getScrollY();
-                        if (z) {
-                            i = cb1Var.a.length();
-                        } else {
-                            i = 0;
-                        }
-                        cb1Var.setSelection(i);
-                        cb1Var.getEditText().setForceCursorEnd(false);
-                        int lineTop = editText.getLayout().getLineTop(editText.getLineCount());
-                        int height = (editText.getHeight() - editText.getPaddingTop()) - editText.getPaddingBottom();
-                        if (z) {
-                            i2 = lineTop - height;
-                        } else {
-                            i2 = 0;
-                        }
-                        ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, i2);
-                        ib1Var.g0 = ofInt;
-                        ofInt.setDuration(360L);
-                        ib1Var.g0.setInterpolator(s33.h);
-                        ib1Var.g0.start();
-                    }
-                    cb1Var.setSuggestionsEnabled(z);
-                    if (!z) {
-                        cb1Var.getEditText().j(false, true);
-                        return;
-                    } else if (gba.o() >= 1 && !e66.f()) {
-                        Bitmap bitmap = ib1Var.r0;
-                        if (bitmap == null) {
-                            bitmap = Bitmap.createBitmap((int) (frameLayout.getWidth() / 12.0f), (int) (frameLayout.getHeight() / 12.0f), Bitmap.Config.ARGB_8888);
-                            ib1Var.r0 = bitmap;
-                        }
-                        ib1Var.y0 = true;
-                        ib1Var.i(bitmap);
-                        ib1Var.y0 = false;
-                        Bitmap bitmap2 = ib1Var.r0;
-                        if (bitmap2 != null && !bitmap2.isRecycled()) {
-                            Bitmap bitmap3 = ib1Var.r0;
-                            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                            ib1Var.s0 = new BitmapShader(bitmap3, tileMode, tileMode);
-                            Matrix matrix = ib1Var.t0;
-                            if (matrix == null) {
-                                ib1Var.t0 = new Matrix();
-                            } else {
-                                matrix.reset();
-                            }
-                            ib1Var.s0.setLocalMatrix(ib1Var.t0);
-                            if (ib1Var.u0 == null) {
-                                Paint paint = new Paint(3);
-                                ib1Var.u0 = paint;
-                                paint.setColor(-1);
-                            }
-                            ib1Var.u0.setShader(ib1Var.s0);
-                            return;
-                        }
-                        ib1Var.r0 = null;
-                        return;
-                    } else {
-                        return;
-                    }
+                    view.invalidate();
+                    return true;
                 }
+            }
+        } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+            if (motionEvent.getAction() == 2 && this.d && hf0Var != null) {
+                hf0Var.setHotspot(x, y);
+            }
+        } else {
+            if (this.d) {
+                if (motionEvent.getAction() == 1 && (runnable = this.h) != null) {
+                    runnable.run();
+                }
+                view.playSoundEffect(0);
+                if (hf0Var != null) {
+                    hf0Var.setState(StateSet.NOTHING);
+                }
+                this.d = false;
+                view.invalidate();
+            }
+            hl.r(p1Var);
+        }
+        return this.d;
+    }
+
+    public final void c(Canvas canvas, Paint paint) {
+        int i = this.c;
+        CornerPathEffect cornerPathEffect = this.m;
+        hf0 hf0Var = this.e;
+        int i2 = 0;
+        ArrayList arrayList = this.b;
+        if (i > 1) {
+            if (!this.i) {
+                jx2 jx2Var = this.a;
+                if (jx2Var == null) {
+                    this.a = new jx2(0);
+                } else {
+                    jx2Var.rewind();
+                }
+                int i3 = 0;
+                int i4 = 0;
+                int i5 = 0;
+                int i6 = 0;
+                while (true) {
+                    int i7 = this.c;
+                    if (i2 >= i7) {
+                        break;
+                    }
+                    int i8 = i2 + 1;
+                    if (i8 < i7) {
+                        float f = ((RectF) arrayList.get(i2)).right;
+                        float f2 = ((RectF) arrayList.get(i8)).right;
+                        if (Math.abs(f - f2) < hl.L(4.0f)) {
+                            float max = Math.max(f, f2);
+                            ((RectF) arrayList.get(i2)).right = max;
+                            ((RectF) arrayList.get(i8)).right = max;
+                        }
+                    }
+                    if (i2 == 0 || ((RectF) arrayList.get(i2)).bottom > i3) {
+                        i3 = (int) ((RectF) arrayList.get(i2)).bottom;
+                    }
+                    if (i2 == 0 || ((RectF) arrayList.get(i2)).right > i4) {
+                        i4 = (int) ((RectF) arrayList.get(i2)).right;
+                    }
+                    if (i2 == 0 || ((RectF) arrayList.get(i2)).left < i5) {
+                        i5 = (int) ((RectF) arrayList.get(i2)).left;
+                    }
+                    if (i2 == 0 || ((RectF) arrayList.get(i2)).top < i6) {
+                        i6 = (int) ((RectF) arrayList.get(i2)).top;
+                    }
+                    this.a.addRect((RectF) arrayList.get(i2), Path.Direction.CCW);
+                    if (hf0Var != null) {
+                        hf0Var.setBounds(i5, i6, i4, i3);
+                    }
+                    i2 = i8;
+                }
+                this.a.a();
+                this.i = true;
+            }
+            paint.setPathEffect(cornerPathEffect);
+            jx2 jx2Var2 = this.a;
+            if (jx2Var2 != null) {
+                canvas.drawPath(jx2Var2, paint);
+            }
+        } else if (i == 1) {
+            if (hf0Var != null) {
+                hf0Var.setBounds((int) ((RectF) arrayList.get(0)).left, (int) ((RectF) arrayList.get(0)).top, (int) ((RectF) arrayList.get(0)).right, (int) ((RectF) arrayList.get(0)).bottom);
+            }
+            if (this.n) {
+                paint.setPathEffect(null);
+                float min = Math.min(((RectF) arrayList.get(0)).width(), ((RectF) arrayList.get(0)).height()) / 2.0f;
+                canvas.drawRoundRect((RectF) arrayList.get(0), min, min, paint);
                 return;
+            }
+            paint.setPathEffect(cornerPathEffect);
+            canvas.drawRoundRect((RectF) arrayList.get(0), 0.0f, 0.0f, paint);
         }
     }
 }

@@ -1,94 +1,154 @@
 package defpackage;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class gd4 extends ja {
-    public View.OnClickListener c;
-    public String d;
-    public String e;
-    public boolean f;
-    public boolean g;
-    public long h;
-    public String i;
-    public short j;
-    public int k;
-    public boolean l;
-    public TL_chatlists.TL_exportedChatlistInvite m;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.util.Log;
+import android.util.SparseArray;
+import android.widget.FrameLayout;
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicMarkableReference;
+public final class gd4 {
+    public Object a;
+    public Object b;
+    public Object c;
+    public Object d;
+    public Object e;
+    public Object f;
+    public Object g;
 
-    public static gd4 b(int i, String str, boolean z) {
-        ?? jaVar = new ja(4, false);
-        jaVar.k = i;
-        jaVar.d = str;
-        jaVar.l = z;
-        return jaVar;
+    public gd4(Context context, vnb vnbVar) {
+        TextPaint textPaint = new TextPaint(1);
+        this.a = textPaint;
+        Paint paint = new Paint();
+        this.b = paint;
+        this.e = new Paint();
+        this.f = new SparseArray();
+        this.g = new HashMap();
+        textPaint.setTextSize(hl.L(12.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(hl.o());
+        Drawable mutate = context.getDrawable(2131232565).mutate();
+        this.c = mutate;
+        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
+        Drawable mutate2 = context.getDrawable(2131231187).mutate();
+        this.d = mutate2;
+        mutate2.setBounds(0, 0, (int) (mutate2.getIntrinsicWidth() * 0.7f), (int) (mutate2.getIntrinsicHeight() * 0.7f));
+        paint.setColor(aob.v0(aob.Ci, vnbVar));
     }
 
-    public static gd4 c(int i, String str, String str2, boolean z) {
-        ?? jaVar = new ja(1, false);
-        jaVar.g = z;
-        jaVar.d = str;
-        jaVar.i = str2;
-        jaVar.j = i;
-        return jaVar;
-    }
-
-    public static gd4 d(String str) {
-        int i;
-        if (TextUtils.isEmpty(str)) {
-            i = 3;
-        } else {
-            i = 6;
-        }
-        ?? jaVar = new ja(i, false);
-        jaVar.d = str;
-        return jaVar;
-    }
-
-    public final boolean equals(Object obj) {
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
-        if (this != obj) {
-            if (obj != null && gd4.class == obj.getClass()) {
-                gd4 gd4Var = (gd4) obj;
-                int i = this.a;
-                if (i == gd4Var.a) {
-                    if (i == 11) {
-                        if (!TextUtils.equals(this.d, gd4Var.d) || !TextUtils.equals(this.e, gd4Var.e)) {
-                            return false;
-                        }
-                    } else if ((i != 0 && i != 1 && i != 3 && i != 4) || TextUtils.equals(this.d, gd4Var.d)) {
-                        int i2 = this.a;
-                        if (i2 == 0) {
-                            if (this.f != gd4Var.f) {
-                                return false;
-                            }
-                        } else if (i2 == 1) {
-                            if (this.h != gd4Var.h || !TextUtils.equals(this.i, gd4Var.i) || this.j != gd4Var.j) {
-                                return false;
-                            }
-                        } else if (i2 == 7 && (tL_exportedChatlistInvite = this.m) != (tL_exportedChatlistInvite2 = gd4Var.m)) {
-                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.m;
-                                boolean z = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = gd4Var.m;
-                                if (z != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.m.peers.size() != gd4Var.m.peers.size()) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
+    public static synchronized void c(File file) {
+        synchronized (gd4.class) {
+            if (file.exists()) {
+                if (file.isDirectory()) {
+                    return;
                 }
-            } else {
-                return false;
+                String str = "Unexpected non-directory file: " + file + "; deleting file and creating new directory.";
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", str, null);
+                }
+                file.delete();
+            }
+            if (!file.mkdirs()) {
+                Log.e("FirebaseCrashlytics", "Could not create Crashlytics-specific directory: " + file, null);
             }
         }
-        return true;
+    }
+
+    public static boolean d(File file) {
+        File[] listFiles = file.listFiles();
+        if (listFiles != null) {
+            for (File file2 : listFiles) {
+                d(file2);
+            }
+        }
+        return file.delete();
+    }
+
+    public static List e(Object[] objArr) {
+        if (objArr == null) {
+            return Collections.EMPTY_LIST;
+        }
+        return Arrays.asList(objArr);
+    }
+
+    public final void a(String str) {
+        File file = new File((File) this.b, str);
+        if (file.exists() && d(file)) {
+            String str2 = "Deleted previous Crashlytics file system: " + file.getPath();
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", str2, null);
+            }
+        }
+    }
+
+    public final File b(String str, String str2) {
+        File file = new File((File) this.d, str);
+        file.mkdirs();
+        return new File(file, str2);
+    }
+
+    public final void f(long j, long j2, boolean z) {
+        boolean z2;
+        vnb vnbVar = (vnb) this.d;
+        Context context = (Context) this.b;
+        if (!z) {
+            this.f = null;
+            v21 v21Var = (v21) this.g;
+            if (v21Var != null) {
+                v21Var.b();
+                this.g = null;
+                return;
+            }
+            return;
+        }
+        if (((p21) this.f) == null) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (z2) {
+            p21 p21Var = new p21(context, vnbVar);
+            this.f = p21Var;
+            p21Var.a.setAutoRepeat(true);
+            ((p21) this.f).a.f(2131624005, 32, 32, null);
+            ((p21) this.f).a.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            ((p21) this.f).b.setText(ob6.a0(null, null, 2131744365, (String) this.a));
+            t21 t21Var = new t21(vnbVar, context, true);
+            t21Var.b = new fv0(this, (byte) 21);
+            ((p21) this.f).setButton(t21Var);
+            this.g = v21.f((FrameLayout) this.c, (p21) this.f, -1);
+        }
+        if (j2 > 0) {
+            ((p21) this.f).c.c(ob6.a0(null, null, 2131744364, hl.i0(Math.min(j, j2), false, false), hl.i0(j2, false, false)), !z2, true);
+        }
+        if (z2) {
+            ((v21) this.g).k(true);
+        }
+    }
+
+    public gd4(String str, gd4 gd4Var, rx6 rx6Var) {
+        this.d = new vh4(this, false);
+        this.e = new vh4(this, true);
+        this.f = new qh2((byte) 3);
+        this.g = new AtomicMarkableReference(null, false);
+        this.a = str;
+        this.b = new qf7(gd4Var);
+        this.c = rx6Var;
+    }
+
+    public gd4(Context context, FrameLayout frameLayout, vnb vnbVar, String str, Runnable runnable) {
+        this.b = context;
+        this.c = frameLayout;
+        this.d = vnbVar;
+        this.a = str;
+        this.e = runnable;
     }
 }

@@ -1,23 +1,37 @@
 package defpackage;
+
+import org.telegram.messenger.voip.VoIPService;
 public final class bmc implements Runnable {
     public final byte a;
-    public final cmc b;
+    public final VoIPService b;
 
-    public bmc(cmc cmcVar, byte b) {
+    public bmc(VoIPService voIPService, byte b) {
         this.a = b;
-        this.b = cmcVar;
+        this.b = voIPService;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        cmc cmcVar = this.b;
+        VoIPService voIPService = this.b;
         switch (b) {
             case 0:
-                gl.c3(new bmc(cmcVar, (byte) 1));
+                VoIPService.z(voIPService);
+                return;
+            case 1:
+                VoIPService.h(voIPService);
+                return;
+            case 2:
+                VoIPService.e1(voIPService);
+                return;
+            case 3:
+                VoIPService.r1(voIPService);
+                return;
+            case 4:
+                VoIPService.H0(voIPService);
                 return;
             default:
-                cmcVar.a();
+                VoIPService.m0(voIPService);
                 return;
         }
     }

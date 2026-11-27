@@ -1,17 +1,15 @@
 package defpackage;
-public final class ffd implements zn7 {
-    public static final ffd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
-    }
+import android.os.SystemClock;
+public final class ffd {
+    public final byte a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final long a() {
+        switch (this.a) {
+            case 0:
+                return SystemClock.elapsedRealtimeNanos();
+            default:
+                return SystemClock.elapsedRealtime() * 1000000;
         }
-        throw new ClassCastException();
     }
 }

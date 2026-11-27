@@ -1,71 +1,47 @@
 package defpackage;
-public final class ora implements p8c {
-    public final byte a = 1;
-    public final gta b;
-    public final int c;
-    public final p8c d;
-    public final boolean[] e;
-    public final p8c f;
 
-    public ora(gta gtaVar, int i, p8c p8cVar, boolean[] zArr, p8c p8cVar2) {
-        this.b = gtaVar;
-        this.c = i;
-        this.d = p8cVar;
-        this.e = zArr;
-        this.f = p8cVar2;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+public final class ora implements kcc {
+    public final byte a;
+    public final wua b;
+
+    public ora(wua wuaVar, byte b) {
+        this.a = b;
+        this.b = wuaVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        String str = "failed";
-        p8c p8cVar = this.f;
-        boolean[] zArr = this.e;
-        p8c p8cVar2 = this.d;
-        int i = this.c;
-        gta gtaVar = this.b;
-        Boolean bool = (Boolean) obj;
-        switch (b) {
+    public final void a(Object obj, Object obj2, Object obj3) {
+        switch (this.a) {
             case 0:
-                zArr[0] = true;
-                if (i > 0) {
-                    gtaVar.O();
-                }
-                if (p8cVar2 != null) {
-                    if (bool.booleanValue()) {
-                        str = "paid";
-                    }
-                    p8cVar2.a(str);
-                }
-                if (p8cVar != null) {
-                    p8cVar.a(Boolean.TRUE);
-                    return;
-                }
+                boolean booleanValue = ((Boolean) obj3).booleanValue();
+                this.b.v2((View) obj2, (CharSequence) obj, booleanValue);
                 return;
             default:
-                if (i > 0) {
-                    gtaVar.O();
+                ArrayList arrayList = (ArrayList) obj;
+                icc iccVar = (icc) obj2;
+                Runnable runnable = (Runnable) obj3;
+                wua wuaVar = this.b;
+                ld9 ld9Var = wuaVar.R2;
+                if (ld9Var != null) {
+                    ld9Var.b();
+                    wuaVar.R2 = null;
                 }
-                if (p8cVar2 != null) {
-                    p8cVar2.a(Boolean.TRUE);
+                TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj4 = arrayList.get(i);
+                    i++;
+                    TL_stars.TL_inputSavedStarGiftSlug tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
+                    tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
+                    craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                zArr[0] = true;
-                if (p8cVar != null) {
-                    if (bool.booleanValue()) {
-                        str = "paid";
-                    }
-                    p8cVar.a(str);
-                    return;
-                }
+                ConnectionsManager.getInstance(wuaVar.a).sendRequestTyped(craftstargift, new ic((byte) 0), new nu0(wuaVar, iccVar, arrayList, runnable, (byte) 14));
                 return;
         }
-    }
-
-    public ora(gta gtaVar, boolean[] zArr, int i, p8c p8cVar, p8c p8cVar2) {
-        this.b = gtaVar;
-        this.e = zArr;
-        this.c = i;
-        this.d = p8cVar;
-        this.f = p8cVar2;
     }
 }

@@ -1,90 +1,23 @@
 package defpackage;
-
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import org.telegram.tgnet.TLRPC;
-public final class ce implements ed, Continuation, z97 {
+public final class ce implements Runnable {
     public final byte a;
-    public final Runnable b;
+    public final int b;
+    public final long c;
+    public final long d;
+    public final pcc e;
+    public final long f;
 
-    public ce(Runnable runnable, byte b) {
+    public ce(int i, long j, long j2, pcc pccVar, long j3, byte b) {
         this.a = b;
-        this.b = runnable;
+        this.b = i;
+        this.c = j;
+        this.d = j2;
+        this.e = pccVar;
+        this.f = j3;
     }
 
     @Override
-    public final boolean b(TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        Runnable runnable = this.b;
-        switch (b) {
-            case 9:
-                runnable.run();
-                return true;
-            case 10:
-                runnable.run();
-                return true;
-            case 11:
-                runnable.run();
-                return true;
-            case 12:
-                runnable.run();
-                return true;
-            case 13:
-                runnable.run();
-                return true;
-            default:
-                runnable.run();
-                return true;
-        }
-    }
-
-    @Override
-    public final Object then(Task task) {
-        this.b.run();
-        return Tasks.forResult(null);
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        Runnable runnable = this.b;
-        switch (b) {
-            case 0:
-                runnable.run();
-                return;
-            case 1:
-                runnable.run();
-                return;
-            case 2:
-                runnable.run();
-                return;
-            case 3:
-                runnable.run();
-                return;
-            case 4:
-                hdVar.dismiss();
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 5:
-                runnable.run();
-                return;
-            case 6:
-            default:
-                runnable.run();
-                return;
-            case 7:
-                runnable.run();
-                return;
-            case 8:
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ce.run():void");
     }
 }

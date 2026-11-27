@@ -1,27 +1,45 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-public final class ald implements Executor {
-    public static final ald a;
-    public static final ald[] b;
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class ald {
+    public static final int a = 0;
 
     static {
-        ?? r0 = new Enum("INSTANCE", 0);
-        a = r0;
-        b = new ald[]{r0};
+        ald.class.getClassLoader();
     }
 
-    public static ald[] values() {
-        return (ald[]) b.clone();
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public final void execute(Runnable runnable) {
-        runnable.run();
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(uh9.k(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    @Override
-    public final String toString() {
-        return "MoreExecutors.directExecutor()";
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
+    }
+
+    public static void d(Parcel parcel, IInterface iInterface) {
+        if (iInterface == null) {
+            parcel.writeStrongBinder(null);
+        } else {
+            parcel.writeStrongBinder(iInterface.asBinder());
+        }
     }
 }

@@ -1,36 +1,40 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class qh1 implements RequestDelegate {
+public final class qh1 implements pcc {
     public final byte a;
-    public final yh1 b;
+    public final uh1 b;
 
-    public qh1(yh1 yh1Var, byte b) {
+    public qh1(uh1 uh1Var, byte b) {
         this.a = b;
-        this.b = yh1Var;
+        this.b = uh1Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void a(Object obj) {
+        TLRPC.WallPaper wallPaper;
         byte b = this.a;
-        yh1 yh1Var = this.b;
+        uh1 uh1Var = this.b;
+        View view = (View) obj;
         switch (b) {
             case 0:
-                gl.c3(new q21(yh1Var, tLObject, (byte) 27));
-                return;
-            case 1:
-                gl.c3(new q21(yh1Var, tL_error, (byte) 25));
-                return;
-            case 2:
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    gl.c3(new oh1(yh1Var, (byte) 3));
+                if (view instanceof zqb) {
+                    view.setBackgroundColor(aob.v0(aob.i5, uh1Var.b));
                     return;
                 }
                 return;
             default:
-                gl.c3(new fv0(yh1Var, tL_error, tLObject, (byte) 19));
+                if (view instanceof zqb) {
+                    zqb zqbVar = (zqb) view;
+                    if (zqbVar.H.a.b) {
+                        wallPaper = null;
+                    } else {
+                        wallPaper = uh1Var.w;
+                    }
+                    zqbVar.setFallbackWallpaper(wallPaper);
+                    return;
+                }
                 return;
         }
     }

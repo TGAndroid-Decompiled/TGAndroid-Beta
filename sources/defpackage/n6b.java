@@ -1,30 +1,30 @@
 package defpackage;
 
-import android.content.DialogInterface;
-public final class n6b implements DialogInterface.OnDismissListener {
+import org.telegram.tgnet.tl.TL_stories;
+public final class n6b implements Runnable {
     public final byte a;
-    public final t7b b;
+    public final o6b b;
+    public final TL_stories.PeerStories c;
 
-    public n6b(t7b t7bVar, byte b) {
+    public n6b(o6b o6bVar, TL_stories.PeerStories peerStories, byte b) {
         this.a = b;
-        this.b = t7bVar;
+        this.b = o6bVar;
+        this.c = peerStories;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void run() {
         byte b = this.a;
-        t7b t7bVar = this.b;
+        TL_stories.PeerStories peerStories = this.c;
+        o6b o6bVar = this.b;
         switch (b) {
             case 0:
-                t7bVar.Y0.x(3, false);
-                t7bVar.r0 = null;
+                for (int i = 0; i < peerStories.stories.size(); i++) {
+                    o6bVar.l(wf3.n(peerStories.peer), peerStories.stories.get(i));
+                }
                 return;
             default:
-                i7b i7bVar = t7bVar.Y0;
-                if (i7bVar != null) {
-                    i7bVar.x(4, false);
-                    return;
-                }
+                o6bVar.g(wf3.n(peerStories.peer), peerStories);
                 return;
         }
     }

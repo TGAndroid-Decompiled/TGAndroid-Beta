@@ -1,76 +1,40 @@
 package defpackage;
 
-import android.app.Activity;
-import android.app.Dialog;
-import org.telegram.ui.ActionBar.d;
-public final class z6b extends d {
+import android.animation.ValueAnimator;
+public final class z6b implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final t7b b;
+    public final g7b b;
+    public final float c;
+    public final float d;
 
-    public z6b(t7b t7bVar, byte b) {
-        super(null);
+    public z6b(g7b g7bVar, float f, float f2, byte b) {
         this.a = b;
+        this.b = g7bVar;
+        this.c = f;
+        this.d = f2;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        float f = this.d;
+        float f2 = this.c;
+        g7b g7bVar = this.b;
         switch (b) {
-            case 1:
-                this.b = t7bVar;
-                super(null);
-                this.currentAccount = t7bVar.c;
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g7bVar.setScrollY((int) hl.R1(f2, 0.0f, floatValue));
+                f7b f7bVar = g7bVar.b0;
+                f7bVar.x = hl.R1(f, 0.0f, floatValue);
+                f7bVar.invalidate();
                 return;
             default:
-                this.b = t7bVar;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g7bVar.setScrollY((int) hl.R1(f2, Math.min((g7bVar.getMeasuredHeight() - g7bVar.u0) - hl.L(64.0f), g7bVar.r0.getBottom() - g7bVar.getMeasuredHeight()), floatValue2));
+                f7b f7bVar2 = g7bVar.b0;
+                f7bVar2.x = hl.R1(f, 1.0f, floatValue2);
+                f7bVar2.invalidate();
                 return;
-        }
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        byte b = this.a;
-        t7b t7bVar = this.b;
-        switch (b) {
-            case 0:
-                return t7bVar.b;
-            default:
-                return t7bVar.b;
-        }
-    }
-
-    @Override
-    public final wjb getResourceProvider() {
-        byte b = this.a;
-        t7b t7bVar = this.b;
-        switch (b) {
-            case 0:
-                return new gu0(t7bVar.a, (byte) 8);
-            default:
-                return new gu0(t7bVar.a, (byte) 9);
-        }
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        byte b = this.a;
-        return false;
-    }
-
-    @Override
-    public final boolean presentFragment(d dVar) {
-        switch (this.a) {
-            case 0:
-                this.b.S();
-                return false;
-            default:
-                return super.presentFragment(dVar);
-        }
-    }
-
-    @Override
-    public final Dialog showDialog(Dialog dialog) {
-        switch (this.a) {
-            case 1:
-                dialog.show();
-                return dialog;
-            default:
-                return super.showDialog(dialog);
         }
     }
 }

@@ -1,38 +1,63 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import org.telegram.messenger.video.OldVideoPlayerRewinder;
-import org.telegram.ui.PhotoViewer;
-public final class ya2 extends OldVideoPlayerRewinder {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class ya2 extends AnimatorListenerAdapter {
     public final byte a;
-    public final Object b;
+    public final xb3 b;
+    public final ViewPropertyAnimator c;
+    public final View d;
+    public final bb2 e;
 
-    public ya2(Object obj, byte b) {
+    public ya2(bb2 bb2Var, xb3 xb3Var, ViewPropertyAnimator viewPropertyAnimator, View view, byte b) {
         this.a = b;
-        this.b = obj;
+        this.e = bb2Var;
+        this.b = xb3Var;
+        this.c = viewPropertyAnimator;
+        this.d = view;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        sj4 sj4Var;
+    public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
-        Object obj = this.b;
+        View view = this.d;
+        ViewPropertyAnimator viewPropertyAnimator = this.c;
+        bb2 bb2Var = this.e;
+        xb3 xb3Var = this.b;
         switch (b) {
             case 0:
-                gb2 gb2Var = (gb2) obj;
-                gb2Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                gb2Var.ac.d(false);
+                viewPropertyAnimator.setListener(null);
+                view.setAlpha(1.0f);
+                view.setScaleX(1.0f);
+                view.setScaleX(1.0f);
+                if (view instanceof wb2) {
+                    ((wb2) view).setAnimationOffsetX(0.0f);
+                } else {
+                    view.setTranslationX(0.0f);
+                }
+                view.setTranslationY(0.0f);
+                if (bb2Var.B.remove(xb3Var.a)) {
+                    bb2Var.d(xb3Var.a);
+                    bb2Var.G();
+                    return;
+                }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                Drawable[] drawableArr = PhotoViewer.d9;
-                photoViewer.h1(obtain);
-                photoViewer.A1.d(false);
-                xa8 xa8Var = photoViewer.U8;
-                if (xa8Var != null && (sj4Var = xa8Var.e) != null) {
-                    sj4Var.F.d(false);
+                viewPropertyAnimator.setListener(null);
+                view.setAlpha(1.0f);
+                view.setScaleX(1.0f);
+                view.setScaleX(1.0f);
+                if (view instanceof wb2) {
+                    ((wb2) view).setAnimationOffsetX(0.0f);
+                } else {
+                    view.setTranslationX(0.0f);
+                }
+                view.setTranslationY(0.0f);
+                if (bb2Var.B.remove(xb3Var.b)) {
+                    bb2Var.d(xb3Var.b);
+                    bb2Var.G();
                     return;
                 }
                 return;
@@ -40,88 +65,13 @@ public final class ya2 extends OldVideoPlayerRewinder {
     }
 
     @Override
-    public final void onRewindStart(boolean z) {
-        sj4 sj4Var;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
+    public final void onAnimationStart(Animator animator) {
+        switch (this.a) {
             case 0:
-                gb2 gb2Var = (gb2) obj;
-                rac racVar = gb2Var.ac;
-                racVar.n = new lj9(this, (byte) 20);
-                racVar.c(false);
-                gb2Var.ac.b(!z);
-                gb2Var.ac.d(true);
-                gb2Var.invalidate();
+                f89 f89Var = this.b.a;
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                photoViewer.A1.c(false);
-                boolean z2 = !z;
-                photoViewer.A1.b(z2);
-                photoViewer.A1.d(true);
-                photoViewer.f0.invalidate();
-                xa8 xa8Var = photoViewer.U8;
-                if (xa8Var != null && (sj4Var = xa8Var.e) != null) {
-                    rac racVar2 = sj4Var.F;
-                    racVar2.c(false);
-                    racVar2.b(z2);
-                    racVar2.d(true);
-                    rj4 rj4Var = sj4Var.o;
-                    if (rj4Var != null) {
-                        rj4Var.invalidate();
-                    }
-                    lj4 lj4Var = sj4Var.m;
-                    if (lj4Var != null) {
-                        lj4Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void updateRewindProgressUi(long j, float f, boolean z) {
-        sj4 sj4Var;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                gb2 gb2Var = (gb2) obj;
-                gb2Var.ac.e(Math.abs(j));
-                if (z) {
-                    gb2Var.Q5.b0 = f;
-                    gb2Var.W3();
-                    return;
-                }
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                photoViewer.A1.e(Math.abs(j));
-                if (z) {
-                    photoViewer.q3.h(false, f);
-                    photoViewer.r3.invalidate();
-                }
-                xa8 xa8Var = photoViewer.U8;
-                if (xa8Var != null && (sj4Var = xa8Var.e) != null) {
-                    sj4Var.F.e(0L);
-                    if (z) {
-                        sj4Var.I = f;
-                        rj4 rj4Var = sj4Var.o;
-                        if (rj4Var != null) {
-                            rj4Var.invalidate();
-                        }
-                        lj4 lj4Var = sj4Var.m;
-                        if (lj4Var != null) {
-                            lj4Var.invalidate();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                f89 f89Var2 = this.b.b;
                 return;
         }
     }

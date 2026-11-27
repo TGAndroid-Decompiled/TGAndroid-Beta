@@ -1,26 +1,34 @@
 package defpackage;
+public final class bc9 implements Runnable {
+    public final byte a;
+    public final nd9 b;
 
-import android.content.Context;
-import android.view.View;
-public final class bc9 extends b4c {
-    public static final int b = 0;
-
-    static {
-        b4c.h(new b4c());
+    public bc9(nd9 nd9Var, byte b) {
+        this.a = b;
+        this.b = nd9Var;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        ((cc9) view).c = (lk0) c4cVar.H;
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new cc9(context, wjbVar);
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+    public final void run() {
+        byte b = this.a;
+        nd9 nd9Var = this.b;
+        switch (b) {
+            case 0:
+                ed9 ed9Var = nd9Var.e;
+                if (ed9Var != null) {
+                    ed9Var.s(nd9Var.K);
+                    return;
+                }
+                return;
+            case 1:
+                nd9Var.e.t(dd9.a);
+                return;
+            case 2:
+                nd9Var.e.t(dd9.b);
+                return;
+            default:
+                nd9Var.e.t(dd9.c);
+                return;
+        }
     }
 }

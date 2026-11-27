@@ -1,34 +1,19 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class tz3 extends FrameLayout {
-    public final t14 a;
+public final class tz3 extends c24 {
+    public final o24 I;
 
-    public tz3(t14 t14Var, Context context) {
-        super(context);
-        this.a = t14Var;
+    public tz3(o24 o24Var, Context context) {
+        super(o24Var, context, 2);
+        this.I = o24Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        t14 t14Var = this.a;
-        yz3 yz3Var = t14Var.J;
-        ty3 ty3Var = t14Var.W;
-        g04 g04Var = t14Var.Q;
-        if (view != g04Var && view != ty3Var) {
-            return super.drawChild(canvas, view, j);
+    public final void setTranslationY(float f) {
+        if (getTranslationY() != f) {
+            super.setTranslationY(f);
+            this.I.h0.invalidate();
         }
-        canvas.save();
-        float y = yz3Var.getY() + yz3Var.getMeasuredHeight() + 1.0f;
-        if (view == g04Var && ty3Var != null) {
-            y = Math.max(y, ty3Var.getY() + ty3Var.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y - (gl.L(16.0f) * t14Var.b.e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j);
-        canvas.restore();
-        return drawChild;
     }
 }

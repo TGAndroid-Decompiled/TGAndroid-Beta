@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class bcf {
+public final class bcf extends v3d implements rff {
 }

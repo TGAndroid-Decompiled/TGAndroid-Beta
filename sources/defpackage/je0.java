@@ -1,43 +1,13 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import java.util.ArrayList;
-public final class je0 extends nf0 {
-    @Override
-    public float getMinDistance() {
-        return 0.1f;
-    }
+import android.os.Handler;
+public final class je0 {
+    public final Handler a;
+    public final ea3 b;
+    public boolean c;
 
-    @Override
-    public final void k(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.je0.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        F();
-        k(canvas);
-        i(canvas);
-        ArrayList arrayList = this.b;
-        this.n0 = arrayList.size();
-        int i = 0;
-        while (true) {
-            this.o0 = i;
-            int i2 = this.o0;
-            if (i2 < this.n0) {
-                l(canvas, (ik1) arrayList.get(i2));
-                p(canvas, (ik1) arrayList.get(this.o0));
-                i = this.o0 + 1;
-            } else {
-                j(canvas);
-                m(canvas);
-                super.onDraw(canvas);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void o(Canvas canvas) {
+    public je0(Handler handler, ea3 ea3Var) {
+        this.a = handler;
+        this.b = ea3Var;
     }
 }

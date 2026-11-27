@@ -1,54 +1,156 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-public final class i51 {
-    public static final String c;
-    public static final Set d;
-    public static final i51 e;
-    public static final i51 f;
-    public final String a;
-    public final String b;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+public class i51 extends FilterInputStream {
+    public final byte a = 1;
+    public long b;
+    public long c;
 
-    static {
-        String a = lue.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        c = a;
-        String a2 = lue.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
-        String a3 = lue.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
-        d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new s24("proto"), new s24("json"))));
-        e = new i51(a, null);
-        f = new i51(a2, a3);
+    public i51(InputStream inputStream) {
+        super(inputStream);
+        this.c = -1L;
+        this.b = 1048577L;
     }
 
-    public i51(String str, String str2) {
-        this.a = str;
-        this.b = str2;
+    private final synchronized void a(int i) {
+        ((FilterInputStream) this).in.mark(i);
+        this.c = this.b;
     }
 
-    public static i51 a(byte[] bArr) {
-        String str = new String(bArr, Charset.forName("UTF-8"));
-        String str2 = null;
-        if (str.startsWith("1$")) {
-            String[] split = str.substring(2).split("\\Q\\\\E", 2);
-            if (split.length == 2) {
-                String str3 = split[0];
-                if (!str3.isEmpty()) {
-                    String str4 = split[1];
-                    if (!str4.isEmpty()) {
-                        str2 = str4;
-                    }
-                    return new i51(str3, str2);
-                }
-                w26.j("Missing endpoint in CCTDestination extras");
-                return null;
+    private final synchronized void b(int i) {
+        this.c = this.b;
+        super.mark(i);
+    }
+
+    private final synchronized void c() {
+        if (((FilterInputStream) this).in.markSupported()) {
+            if (this.c != -1) {
+                ((FilterInputStream) this).in.reset();
+                this.b = this.c;
+            } else {
+                throw new IOException("Mark not set");
             }
-            w26.j("Extra is not a valid encoded LegacyFlgDestination");
-            return null;
+        } else {
+            throw new IOException("Mark not supported");
         }
-        w26.j("Version marker missing from extras");
-        return null;
+    }
+
+    private final synchronized void d() {
+        super.reset();
+        this.b = this.c;
+    }
+
+    @Override
+    public final int available() {
+        switch (this.a) {
+            case 0:
+                return (int) Math.min(((FilterInputStream) this).in.available(), this.b);
+            default:
+                return super.available();
+        }
+    }
+
+    @Override
+    public final synchronized void mark(int i) {
+        switch (this.a) {
+            case 0:
+                a(i);
+                return;
+            default:
+                b(i);
+                return;
+        }
+    }
+
+    @Override
+    public int read(byte[] bArr, int i, int i2) {
+        switch (this.a) {
+            case 0:
+                long j = this.b;
+                if (j == 0) {
+                    return -1;
+                }
+                int read = ((FilterInputStream) this).in.read(bArr, i, (int) Math.min(i2, j));
+                if (read != -1) {
+                    this.b -= read;
+                }
+                return read;
+            default:
+                long j2 = this.b;
+                int read2 = super.read(bArr, i, i2);
+                if (read2 > 0) {
+                    this.b = j2 + read2;
+                }
+                return read2;
+        }
+    }
+
+    @Override
+    public final synchronized void reset() {
+        switch (this.a) {
+            case 0:
+                c();
+                return;
+            default:
+                d();
+                return;
+        }
+    }
+
+    @Override
+    public long skip(long j) {
+        switch (this.a) {
+            case 0:
+                long skip = ((FilterInputStream) this).in.skip(Math.min(j, this.b));
+                this.b -= skip;
+                return skip;
+            default:
+                long j2 = this.b;
+                long skip2 = super.skip(j);
+                this.b = j2 + skip2;
+                return skip2;
+        }
+    }
+
+    public i51(InputStream inputStream, long j) {
+        super(inputStream);
+        this.b = j;
+    }
+
+    public i51(FilterInputStream filterInputStream) {
+        this(filterInputStream, 0L);
+    }
+
+    @Override
+    public int read() {
+        switch (this.a) {
+            case 0:
+                if (this.b != 0) {
+                    int read = ((FilterInputStream) this).in.read();
+                    if (read != -1) {
+                        this.b--;
+                    }
+                    return read;
+                }
+                return -1;
+            default:
+                int read2 = super.read();
+                if (read2 >= 0) {
+                    this.b++;
+                }
+                return read2;
+        }
+    }
+
+    @Override
+    public final int read(byte[] bArr) {
+        switch (this.a) {
+            case 1:
+                return read(bArr, 0, bArr.length);
+            default:
+                return super.read(bArr);
+        }
     }
 }

@@ -1,17 +1,24 @@
 package defpackage;
-public final class sud implements zn7 {
-    public static final sud a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+public abstract class sud {
+    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
+        inputStream.getClass();
+        byte[] bArr = new byte[8192];
+        int read = inputStream.read(bArr);
+        while (read >= 0) {
+            byteArrayOutputStream.write(bArr, 0, read);
+            read = inputStream.read(bArr);
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public static final byte[] b(InputStream inputStream) {
+        inputStream.getClass();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(Math.max(8192, inputStream.available()));
+        a(inputStream, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        byteArray.getClass();
+        return byteArray;
     }
 }

@@ -1,126 +1,262 @@
 package defpackage;
 
 import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.tgnet.NativeByteBuffer;
+import java.util.Arrays;
 import org.telegram.tgnet.TLRPC;
-public final class kc7 implements Runnable {
-    public final byte a;
-    public final ad7 b;
-    public final byte c;
+public final class kc7 {
+    public boolean b;
+    public int c;
+    public boolean d;
+    public int e;
+    public int f;
+    public int a = 0;
+    public final int[] g = new int[6];
+    public final int[] h = new int[6];
 
-    public kc7(ad7 ad7Var, int i, byte b) {
-        this.a = b;
-        this.b = ad7Var;
-        this.c = i;
+    public static kc7 a(TLRPC.EmojiStatus emojiStatus) {
+        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+            return null;
+        }
+        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+        kc7 kc7Var = new kc7();
+        kc7Var.c = -1;
+        kc7Var.d = true;
+        int i = tL_emojiStatusCollectible.edge_color | (-16777216);
+        int[] iArr = kc7Var.g;
+        iArr[0] = i;
+        int i2 = tL_emojiStatusCollectible.center_color | (-16777216);
+        iArr[1] = i2;
+        iArr[2] = i;
+        iArr[3] = i2;
+        int i3 = tL_emojiStatusCollectible.text_color | (-16777216);
+        iArr[4] = i3;
+        iArr[5] = i3;
+        System.arraycopy(iArr, 0, kc7Var.h, 0, 6);
+        kc7Var.a = tL_emojiStatusCollectible.pattern_color | (-16777216);
+        return kc7Var;
     }
 
-    @Override
-    public final void run() {
-        boolean z;
-        boolean z2;
-        int i;
-        boolean z3;
-        byte b = this.a;
-        byte b2 = this.c;
-        ad7 ad7Var = this.b;
-        switch (b) {
-            case 0:
-                try {
-                    SQLiteDatabase sQLiteDatabase = ad7Var.b;
-                    if (b2 == 0) {
-                        sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
-                    } else {
-                        Locale locale = Locale.US;
-                        sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE type = " + ((int) b2)).stepThis().dispose();
-                    }
-                    return;
-                } catch (Exception e) {
-                    ad7Var.n(e, true);
-                    return;
-                }
-            default:
-                SQLiteCursor sQLiteCursor = null;
-                try {
-                    try {
-                        ArrayList arrayList = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase2 = ad7Var.b;
-                        Locale locale2 = Locale.US;
-                        try {
-                            SQLiteCursor queryFinalized = sQLiteDatabase2.queryFinalized("SELECT uid, type, data, parent FROM download_queue WHERE type = " + ((int) b2) + " ORDER BY date DESC LIMIT 3", new Object[0]);
-                            while (queryFinalized.next()) {
-                                try {
-                                    ?? obj = new Object();
-                                    obj.b = queryFinalized.intValue(1);
-                                    obj.c = queryFinalized.longValue(0);
-                                    obj.f = queryFinalized.stringValue(3);
-                                    NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(2);
-                                    if (byteBufferValue != null) {
-                                        TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                        byteBufferValue.reuse();
-                                        TLRPC.Document document = TLdeserialize.document;
-                                        if (document != null) {
-                                            obj.a = document;
-                                            if ((k27.J4(document) || k27.P4(TLdeserialize.document) || k27.h4(TLdeserialize.document)) && (((i = TLdeserialize.ttl_seconds) > 0 && i <= 60) || i == Integer.MAX_VALUE)) {
-                                                z3 = true;
-                                            } else {
-                                                z3 = false;
-                                            }
-                                            obj.d = z3;
-                                        } else {
-                                            TLRPC.Photo photo = TLdeserialize.photo;
-                                            if (photo != null) {
-                                                obj.a = photo;
-                                                int i2 = TLdeserialize.ttl_seconds;
-                                                if ((i2 > 0 && i2 <= 60) || i2 == Integer.MAX_VALUE) {
-                                                    z = true;
-                                                } else {
-                                                    z = false;
-                                                }
-                                                obj.d = z;
-                                            }
-                                        }
-                                        if ((TLdeserialize.flags & Integer.MIN_VALUE) != 0) {
-                                            z2 = true;
-                                        } else {
-                                            z2 = false;
-                                        }
-                                        obj.e = z2;
-                                    }
-                                    arrayList.add(obj);
-                                } catch (Exception e2) {
-                                    e = e2;
-                                    sQLiteCursor = queryFinalized;
-                                    ad7Var.n(e, true);
-                                    if (sQLiteCursor != null) {
-                                        sQLiteCursor.dispose();
-                                        return;
-                                    }
-                                    return;
-                                } catch (Throwable th) {
-                                    th = th;
-                                    sQLiteCursor = queryFinalized;
-                                    if (sQLiteCursor != null) {
-                                        sQLiteCursor.dispose();
-                                    }
-                                    throw th;
-                                }
-                            }
-                            queryFinalized.dispose();
-                            gl.c3(new o94(ad7Var, b2, arrayList, (byte) 12));
-                            return;
-                        } catch (Exception e3) {
-                            e = e3;
-                        }
-                    } catch (Throwable th2) {
-                        th = th2;
-                    }
-                } catch (Exception e4) {
-                    e = e4;
-                }
-                break;
+    public static kc7 b(TLRPC.TL_help_peerColorOption tL_help_peerColorOption) {
+        if (tL_help_peerColorOption == null) {
+            return null;
         }
+        kc7 kc7Var = new kc7();
+        kc7Var.c = tL_help_peerColorOption.color_id;
+        kc7Var.d = tL_help_peerColorOption.hidden;
+        int i = tL_help_peerColorOption.flags;
+        if ((i & 8) != 0) {
+            kc7Var.e = tL_help_peerColorOption.channel_min_level;
+        }
+        if ((i & 16) != 0) {
+            kc7Var.f = tL_help_peerColorOption.group_min_level;
+        }
+        System.arraycopy(p(tL_help_peerColorOption.colors), 0, kc7Var.g, 0, 6);
+        System.arraycopy(p(tL_help_peerColorOption.dark_colors), 0, kc7Var.h, 0, 6);
+        return kc7Var;
+    }
+
+    public static int[] p(TLRPC.help_PeerColorSet help_peercolorset) {
+        ArrayList<Integer> arrayList;
+        int[] iArr = new int[6];
+        iArr[0] = 0;
+        iArr[1] = 0;
+        iArr[2] = 0;
+        iArr[3] = 0;
+        iArr[4] = 0;
+        iArr[5] = 0;
+        if (help_peercolorset instanceof TLRPC.TL_help_peerColorSet) {
+            arrayList = ((TLRPC.TL_help_peerColorSet) help_peercolorset).colors;
+        } else if (help_peercolorset instanceof TLRPC.TL_help_peerColorProfileSet) {
+            TLRPC.TL_help_peerColorProfileSet tL_help_peerColorProfileSet = (TLRPC.TL_help_peerColorProfileSet) help_peercolorset;
+            ArrayList<Integer> arrayList2 = tL_help_peerColorProfileSet.palette_colors;
+            ArrayList<Integer> arrayList3 = tL_help_peerColorProfileSet.bg_colors;
+            ArrayList<Integer> arrayList4 = tL_help_peerColorProfileSet.story_colors;
+            ArrayList<Integer> arrayList5 = new ArrayList<>();
+            if (arrayList2 != null) {
+                for (int i = 0; i < Math.min(2, arrayList2.size()); i++) {
+                    arrayList5.add(arrayList2.get(i));
+                }
+            }
+            if (arrayList3 != null) {
+                for (int i2 = 0; i2 < Math.min(2, arrayList3.size()); i2++) {
+                    arrayList5.add(arrayList3.get(i2));
+                }
+            }
+            if (arrayList4 != null) {
+                for (int i3 = 0; i3 < Math.min(2, arrayList4.size()); i3++) {
+                    arrayList5.add(arrayList4.get(i3));
+                }
+            }
+            arrayList = arrayList5;
+        } else {
+            arrayList = null;
+        }
+        if (arrayList != null) {
+            if (arrayList.size() > 0) {
+                Arrays.fill(iArr, arrayList.get(0).intValue() | (-16777216));
+            }
+            for (int i4 = 0; i4 < Math.min(6, arrayList.size()); i4++) {
+                iArr[i4] = arrayList.get(i4).intValue() | (-16777216);
+            }
+        }
+        return iArr;
+    }
+
+    public final int c(boolean z) {
+        if (o(z)) {
+            return j(z);
+        }
+        return h(z);
+    }
+
+    public final int d(boolean z) {
+        int[] iArr;
+        if (o(z)) {
+            if (z) {
+                iArr = this.h;
+            } else {
+                iArr = this.g;
+            }
+            return iArr[3];
+        }
+        return h(z);
+    }
+
+    public final int e(int i, vnb vnbVar) {
+        boolean o;
+        int[] iArr;
+        int i2;
+        if (i >= 0 && i <= 5) {
+            if (this.b && (i2 = this.c) >= 0 && i2 < 7) {
+                return aob.v0(aob.r8[i2], vnbVar);
+            }
+            if (vnbVar != null) {
+                o = vnbVar.a();
+            } else {
+                o = aob.I.o();
+            }
+            if (o) {
+                iArr = this.h;
+            } else {
+                iArr = this.g;
+            }
+            return iArr[i];
+        }
+        return 0;
+    }
+
+    public final int f() {
+        int[] iArr;
+        if (aob.I.o()) {
+            iArr = this.h;
+        } else {
+            iArr = this.g;
+        }
+        return iArr[0];
+    }
+
+    public final int g() {
+        int[] iArr;
+        if (aob.I.o()) {
+            iArr = this.h;
+        } else {
+            iArr = this.g;
+        }
+        return iArr[1];
+    }
+
+    public final int h(boolean z) {
+        int[] iArr;
+        if (z) {
+            iArr = this.h;
+        } else {
+            iArr = this.g;
+        }
+        return iArr[1];
+    }
+
+    public final int i() {
+        int[] iArr;
+        if (aob.I.o()) {
+            iArr = this.h;
+        } else {
+            iArr = this.g;
+        }
+        return iArr[2];
+    }
+
+    public final int j(boolean z) {
+        int[] iArr;
+        if (z) {
+            iArr = this.h;
+        } else {
+            iArr = this.g;
+        }
+        return iArr[2];
+    }
+
+    public final int k() {
+        int[] iArr;
+        if (aob.I.o()) {
+            iArr = this.h;
+        } else {
+            iArr = this.g;
+        }
+        return iArr[4];
+    }
+
+    public final int l(boolean z) {
+        if (z) {
+            return this.f;
+        }
+        return this.e;
+    }
+
+    public final int m(boolean z) {
+        int[] iArr;
+        if (o(z)) {
+            if (z) {
+                iArr = this.h;
+            } else {
+                iArr = this.g;
+            }
+            return iArr[4];
+        }
+        return j(z);
+    }
+
+    public final int n(boolean z) {
+        boolean o = o(z);
+        int[] iArr = this.g;
+        int[] iArr2 = this.h;
+        if (o) {
+            if (z) {
+                iArr = iArr2;
+            }
+            return iArr[5];
+        }
+        if (z) {
+            iArr = iArr2;
+        }
+        return iArr[3];
+    }
+
+    public final boolean o(boolean z) {
+        int[] iArr;
+        int[] iArr2 = this.g;
+        int[] iArr3 = this.h;
+        if (z) {
+            iArr = iArr3;
+        } else {
+            iArr = iArr2;
+        }
+        int i = iArr[5];
+        if (z) {
+            iArr2 = iArr3;
+        }
+        if (i == iArr2[0]) {
+            return false;
+        }
+        return true;
     }
 }

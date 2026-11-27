@@ -1,87 +1,71 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-import java.io.File;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
 import org.telegram.ui.Dictation.DictationAsr;
-import org.telegram.ui.Dictation.DictationLid;
-public final class rm3 implements Runnable {
-    public final byte a;
-    public final File b;
+public final class rm3 {
+    public boolean a;
+    public boolean b;
+    public long c;
+    public final Object d;
+    public final Object e;
+    public Object f;
+    public Object g;
+    public Object h;
 
-    public rm3(File file, byte b) {
-        this.a = b;
-        this.b = file;
+    public rm3(Context context, uec uecVar) {
+        this.d = context.getApplicationContext();
+        this.e = uecVar;
+        this.c = 15000L;
+        this.h = new vec();
+        this.g = vgb.a;
     }
 
-    @Override
-    public final void run() {
-        int c;
-        byte b = this.a;
-        File file = this.b;
-        switch (b) {
-            case 0:
-                ExecutorService executorService = DictationLid.a;
-                SharedPreferences c1 = na7.c1();
-                boolean z = true;
-                long[] jArr = {0};
-                try {
-                    CountDownLatch e = zm3.e();
-                    if (e != null) {
-                        try {
-                            e.await(20000L, TimeUnit.MILLISECONDS);
-                        } catch (InterruptedException unused) {
-                        }
-                    }
-                    TLRPC.TL_transcriptionModel f = zm3.f(zm3.a(), "tinylid");
-                    if (f == null && !file.exists()) {
-                        Log.d("Dictation", "tinylid: not on the server");
-                    }
-                    if (zm3.i(f, file)) {
-                        Log.d("Dictation", "tinylid: a newer model on the server, updating");
-                    }
-                    c = zm3.c(f, file, true, new vu2(jArr, (byte) 25));
-                    if (c >= 0) {
-                        c1.edit().putLong("tinylid_checked", System.currentTimeMillis()).apply();
-                    }
-                } catch (Throwable th) {
-                    th = th;
-                    z = false;
-                }
-                if (c > 0) {
-                    DictationLid.e = true;
-                    DictationLid.g = true;
-                    try {
-                        DictationLid.a.execute(new rm3(file, (byte) 2));
-                    } catch (Throwable th2) {
-                        th = th2;
-                        try {
-                            Log.d("Dictation", "tinylid: download failed: " + th);
-                            break;
-                        } finally {
-                            if (!z) {
-                                DictationLid.h = false;
-                            }
-                            DictationLid.f = false;
-                            DictationLid.f();
-                            DictationAsr.I("tinylid.bin");
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                DictationLid.e(file);
-                return;
-            default:
-                DictationLid.e(file);
-                DictationLid.h = false;
-                DictationLid.f();
-                return;
+    public static rm3 c(pm3 pm3Var, t86 t86Var) {
+        int i;
+        long nativeSessionNew;
+        nm3 nm3Var = (nm3) pm3Var.b;
+        long h = DictationAsr.h(nm3Var);
+        if (h == 0) {
+            return null;
         }
+        rm3 rm3Var = new rm3(pm3Var, t86Var);
+        String a = nm3Var.a((String) pm3Var.c);
+        String str = a.split(",")[0];
+        if (xea.o() == 0) {
+            i = 2;
+        } else {
+            i = 4;
+        }
+        nativeSessionNew = DictationAsr.nativeSessionNew(h, a, str, i);
+        rm3Var.c = nativeSessionNew;
+        if (nativeSessionNew == 0) {
+            DictationAsr.U(nm3Var);
+            return null;
+        }
+        return rm3Var;
+    }
+
+    public final void a() {
+        String nativeSessionFinish;
+        long j = this.c;
+        if (j != 0) {
+            nativeSessionFinish = DictationAsr.nativeSessionFinish(j);
+            b(nativeSessionFinish);
+            DictationAsr.nativeSessionFree(this.c);
+            this.c = 0L;
+            DictationAsr.U((nm3) this.e);
+        }
+    }
+
+    public final void b(java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rm3.b(java.lang.String):void");
+    }
+
+    public rm3(pm3 pm3Var, t86 t86Var) {
+        this.g = new StringBuilder();
+        this.h = "";
+        this.d = pm3Var;
+        this.e = (nm3) pm3Var.b;
+        this.f = t86Var;
     }
 }

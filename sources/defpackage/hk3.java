@@ -1,81 +1,81 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class hk3 extends AnimatorListenerAdapter {
-    public final byte a = 1;
-    public final s49 b;
-    public final View c;
-    public final ViewPropertyAnimator d;
-    public final yg3 e;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hk3 implements Runnable {
+    public final byte a;
+    public final int b;
+    public final Object c;
+    public final boolean d;
+    public final Object e;
+    public final Object f;
 
-    public hk3(yg3 yg3Var, s49 s49Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.e = yg3Var;
-        this.b = s49Var;
-        this.d = viewPropertyAnimator;
-        this.c = view;
+    public hk3(int i, String str, boolean z, TLRPC.WallPaper wallPaper, m62 m62Var) {
+        this.a = (byte) 7;
+        this.b = i;
+        this.f = str;
+        this.d = z;
+        this.c = wallPaper;
+        this.e = m62Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.a) {
-            case 1:
-                this.c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hk3.run():void");
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        s49 s49Var = this.b;
-        yg3 yg3Var = this.e;
-        ViewPropertyAnimator viewPropertyAnimator = this.d;
-        switch (b) {
-            case 0:
-                viewPropertyAnimator.setListener(null);
-                this.c.setAlpha(1.0f);
-                yg3Var.d(s49Var);
-                yg3Var.x.remove(s49Var);
-                yg3Var.A();
-                return;
-            default:
-                viewPropertyAnimator.setListener(null);
-                yg3Var.u(s49Var);
-                yg3Var.v.remove(s49Var);
-                yg3Var.A();
-                View view = s49Var.a;
-                if (view instanceof ue3) {
-                    ((ue3) view).setMoving(false);
-                    return;
-                }
-                return;
-        }
+    public hk3(qy6 qy6Var, ry6 ry6Var, int i, py6 py6Var, boolean z) {
+        this.a = (byte) 2;
+        this.f = qy6Var;
+        this.c = ry6Var;
+        this.b = i;
+        this.e = py6Var;
+        this.d = z;
     }
 
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.a) {
-            case 0:
-                this.e.y();
-                return;
-            default:
-                return;
-        }
+    public hk3(uc7 uc7Var, TLRPC.Chat chat, boolean z, int i, tm1 tm1Var) {
+        this.a = (byte) 3;
+        this.f = uc7Var;
+        this.c = chat;
+        this.d = z;
+        this.b = i;
+        this.e = tm1Var;
     }
 
-    public hk3(yg3 yg3Var, s49 s49Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.e = yg3Var;
-        this.b = s49Var;
-        this.c = view;
-        this.d = viewPropertyAnimator;
+    public hk3(nx7 nx7Var, j18 j18Var, int i, boolean z, yp5 yp5Var) {
+        this.a = (byte) 4;
+        this.f = nx7Var;
+        this.c = j18Var;
+        this.b = i;
+        this.d = z;
+        this.e = yp5Var;
     }
 
-    private final void a(Animator animator) {
+    public hk3(r7a r7aVar, TLObject tLObject, d7a d7aVar, boolean z, int i) {
+        this.a = (byte) 5;
+        this.f = r7aVar;
+        this.e = tLObject;
+        this.c = d7aVar;
+        this.d = z;
+        this.b = i;
+    }
+
+    public hk3(l9c l9cVar, int i, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z, TLObject tLObject, byte b) {
+        this.a = b;
+        this.f = l9cVar;
+        this.b = i;
+        this.c = tL_messages_searchGlobal;
+        this.d = z;
+        this.e = tLObject;
+    }
+
+    public hk3(boolean z, int i, String str, ImageReceiver imageReceiver, boolean[] zArr) {
+        this.a = (byte) 6;
+        this.d = z;
+        this.b = i;
+        this.f = str;
+        this.c = imageReceiver;
+        this.e = zArr;
     }
 }

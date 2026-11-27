@@ -1,0 +1,25 @@
+package defpackage;
+
+import android.view.View;
+public final class c96 extends zb3 {
+    public final b58 F;
+
+    public c96(b58 b58Var) {
+        this.F = b58Var;
+    }
+
+    @Override
+    public final float A(View view) {
+        return 0.5f;
+    }
+
+    @Override
+    public final void M() {
+        this.F.c.invalidate();
+    }
+
+    @Override
+    public final void P(f89 f89Var) {
+        this.F.c.invalidate();
+    }
+}

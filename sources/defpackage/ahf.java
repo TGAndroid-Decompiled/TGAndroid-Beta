@@ -1,42 +1,17 @@
 package defpackage;
-
-import android.os.IBinder;
-import android.os.IInterface;
-public final class ahf extends xx4 {
-    @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+public final class ahf {
+    public final boolean equals(Object obj) {
+        if (obj == this || (obj instanceof ahf)) {
+            return true;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
-        if (queryLocalInterface instanceof mce) {
-            return (mce) queryLocalInterface;
-        }
-        return new mce(iBinder);
+        return false;
     }
 
-    @Override
-    public final f84[] f() {
-        return eed.b;
+    public final int hashCode() {
+        return -228219804;
     }
 
-    @Override
-    public final int i() {
-        return 12451000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.auth.api.phone.service.SmsRetrieverApiService.START";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
+    public final String toString() {
+        return "MLKitLoggingOptions{libraryName=common, enableFirelog=true, firelogEventType=1}";
     }
 }

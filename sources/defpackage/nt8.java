@@ -1,53 +1,78 @@
 package defpackage;
 
-import java.util.Locale;
-public final class nt8 implements dn7, fn7 {
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+public final class nt8 extends Drawable {
     public final byte a;
-    public final st8 b;
+    public final ShapeDrawable b;
+    public final Rect c;
 
-    public nt8(st8 st8Var, byte b) {
-        this.a = b;
-        this.b = st8Var;
+    public nt8(ega egaVar) {
+        this.a = (byte) 1;
+        int L = hl.L(16.0f);
+        int L2 = hl.L(16.0f);
+        int i = aob.d6;
+        vnb vnbVar = egaVar.c;
+        this.b = aob.c0(L, L2, aob.v(aob.v0(i, vnbVar), aob.p1(0.04f, aob.v0(aob.G6, vnbVar))));
+        this.c = new Rect();
     }
 
     @Override
-    public final String c(int i) {
+    public final void draw(Canvas canvas) {
         byte b = this.a;
-        st8 st8Var = this.b;
+        ShapeDrawable shapeDrawable = this.b;
+        Rect rect = this.c;
         switch (b) {
             case 0:
-                if (st8Var.P) {
-                    return k96.a0("MilesShort", null, 2131748235, Integer.valueOf(i));
-                }
-                return k96.a0("KMetersShort", null, 2131748869, Integer.valueOf(i));
+                rect.set(getBounds());
+                rect.inset(hl.L(2.0f), hl.L(8.0f));
+                shapeDrawable.setBounds(rect);
+                shapeDrawable.draw(canvas);
+                return;
             default:
-                if (st8Var.P) {
-                    if (i == 1) {
-                        return k96.a0("FootsShort", null, 2131750584, 250);
-                    }
-                    if (i > 1) {
-                        i--;
-                    }
-                    Locale locale = Locale.US;
-                    return de9.k(i, ".");
-                } else if (i == 1) {
-                    return k96.a0("MetersShort", null, 2131748250, 50);
-                } else {
-                    if (i > 1) {
-                        i--;
-                    }
-                    return k96.a0("MetersShort", null, 2131748250, Integer.valueOf(i * 100));
-                }
+                rect.set(getBounds());
+                rect.inset(hl.L(2.0f), hl.L(8.0f));
+                shapeDrawable.setBounds(rect);
+                shapeDrawable.draw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void i(hn7 hn7Var, int i) {
-        st8 st8Var = this.b;
-        try {
-            st8Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public final int getOpacity() {
+        byte b = this.a;
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        switch (this.a) {
+            case 0:
+                this.b.setAlpha(i);
+                return;
+            default:
+                this.b.setAlpha(i);
+                return;
         }
-        st8Var.c(true);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        byte b = this.a;
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
+    }
+
+    public nt8(cga cgaVar) {
+        this.a = (byte) 0;
+        this.b = aob.c0(hl.L(16.0f), hl.L(16.0f), 0);
+        this.c = new Rect();
     }
 }

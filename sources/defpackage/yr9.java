@@ -1,14 +1,20 @@
 package defpackage;
+public final class yr9 extends ax2 {
+    public u8a a;
+    public wj7 b;
+    public Object c;
+    public final u8a d;
+    public int e;
 
-import java.util.ArrayList;
-public interface yr9 {
-    vf6 O0();
+    public yr9(u8a u8aVar, ax2 ax2Var) {
+        super(ax2Var);
+        this.d = u8aVar;
+    }
 
-    boolean U1(int i);
-
-    void m2(ArrayList arrayList);
-
-    void r(int i);
-
-    vf6 t1();
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.c = obj;
+        this.e |= Integer.MIN_VALUE;
+        return this.d.F(this);
+    }
 }

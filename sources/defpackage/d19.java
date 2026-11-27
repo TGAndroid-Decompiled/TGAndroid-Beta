@@ -1,127 +1,176 @@
 package defpackage;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-public final class d19 {
-    public static d19 B;
-    public static d19 C;
-    public static int D;
-    public static long E;
-    public boolean A;
-    public final int a;
-    public final b19 b;
-    public final b19 c;
-    public final b19 d;
-    public final FrameLayout e;
-    public final d19 f;
-    public float g;
-    public float h;
-    public final a19 i;
-    public WindowManager k;
-    public boolean l;
-    public float m;
-    public final int n;
-    public final long o;
-    public final h19 p;
-    public float q;
-    public float r;
-    public boolean s;
-    public final r09 t;
-    public boolean u;
-    public final View v;
-    public boolean w;
-    public long y;
-    public boolean z;
-    public final int[] j = new int[2];
-    public final ArrayList x = new ArrayList();
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class d19 extends LinearLayout implements snb {
+    public final byte a = 0;
+    public final vnb b;
+    public final TextView c;
+    public final View d;
+    public final TextView e;
 
-    public d19(android.content.Context r34, org.telegram.ui.ActionBar.d r35, defpackage.t09 r36, android.view.View r37, android.view.View r38, float r39, float r40, defpackage.h19 r41, int r42, int r43, boolean r44) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d19.<init>(android.content.Context, org.telegram.ui.ActionBar.d, t09, android.view.View, android.view.View, float, float, h19, int, int, boolean):void");
-    }
-
-    public static String a() {
-        return e() + "_" + e() + "_nolimit_pcache";
-    }
-
-    public static void b(boolean z) {
-        d19 d19Var;
-        for (int i = 0; i < 2; i++) {
-            if (i == 0) {
-                d19Var = B;
-            } else {
-                d19Var = C;
-            }
-            if (d19Var != null) {
-                if (z) {
-                    d19Var.c();
+    public d19(Activity activity, int i, long j, String str, vnb vnbVar) {
+        super(activity);
+        String str2;
+        setOrientation(1);
+        this.b = vnbVar;
+        TextView textView = new TextView(activity);
+        this.c = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(hl.o());
+        textView.setTextAlignment(4);
+        textView.setLineSpacing(hl.L(1.66f), 1.0f);
+        textView.setGravity(17);
+        c19 c19Var = new c19(activity, (byte) 0);
+        this.d = c19Var;
+        c19Var.setTextAlignment(4);
+        c19Var.setGravity(17);
+        c19Var.setTextSize(1, 12.0f);
+        c19Var.setLineSpacing(hl.L(2.0f), 1.0f);
+        c19Var.setGravity(1);
+        ImageView imageView = new ImageView(activity);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        c19Var.setMaxWidth(hl.L(160.0f));
+        int i2 = 22;
+        if (i == 9) {
+            imageView.setImageResource(2131231610);
+            textView.setText(ob6.M0(2131742527, null));
+            c19Var.setText(ob6.M0(2131742528, null));
+            c19Var.setMaxWidth(Math.min(hl.L(160.0f), kg5.a(c19Var.getText(), c19Var.getPaint())));
+        } else if ("hello".equalsIgnoreCase(str)) {
+            imageView.setImageResource(2131231610);
+            textView.setText(ob6.M0(2131752746, null));
+            c19Var.setText(ob6.M0(2131752747, null));
+            c19Var.setMaxWidth(Math.min(hl.L(160.0f), kg5.a(c19Var.getText(), c19Var.getPaint())));
+        } else if ("away".equalsIgnoreCase(str)) {
+            imageView.setImageResource(2131231607);
+            textView.setText(ob6.M0(2131752814, null));
+            c19Var.setText(ob6.M0(2131752815, null));
+            c19Var.setMaxWidth(Math.min(hl.L(160.0f), kg5.a(c19Var.getText(), c19Var.getPaint())));
+        } else {
+            if (i == 5) {
+                imageView.setImageResource(2131231618);
+                a19 c = b19.f(yac.t0).c(j);
+                if (c == null) {
+                    str2 = str;
                 } else {
-                    d19Var.l = true;
+                    str2 = c.b;
                 }
+                textView.setText(ob6.M0(2131752648, null));
+                c19Var.setMaxWidth(hl.L(208.0f));
+                c19Var.setTextAlignment(2);
+                c19Var.setGravity(3);
+                c19Var.setText(hl.S2(ob6.a0(null, null, 2131752650, str2)));
+                c19Var.setPadding(hl.L(28.0f), 0, 0, 0);
+                c19 c19Var2 = new c19(activity, (byte) 0);
+                this.e = c19Var2;
+                c19Var2.setMaxWidth(hl.L(208.0f));
+                c19Var2.setTextAlignment(2);
+                c19Var2.setGravity(3);
+                c19Var2.setTextSize(1, 13.0f);
+                c19Var2.setText(hl.S2(ob6.M0(2131752649, null)));
+                c19Var2.setPadding(hl.L(28.0f), 0, 0, 0);
             }
+            i2 = 12;
         }
-        C = null;
-        B = null;
+        int i3 = i2;
+        addView(imageView, tre.t(78, 78, 49, 20, 17, 20, 9));
+        addView(textView, tre.t(-2, -2, 49, 20, 0, 20, 6));
+        addView(c19Var, tre.t(-2, -2, 49, i3, 0, i3, ((c19) this.e) == null ? 19 : 9));
+        View view = (c19) this.e;
+        if (view != null) {
+            addView(view, tre.t(-2, -2, 49, 12, 0, 12, 19));
+        }
+        updateColors();
     }
 
-    public static void d(org.telegram.ui.ActionBar.d r14, defpackage.t09 r15, defpackage.hf0 r16, android.view.View r17, float r18, float r19, defpackage.h19 r20, int r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d19.d(org.telegram.ui.ActionBar.d, t09, hf0, android.view.View, float, float, h19, int, int):void");
-    }
-
-    public static int e() {
-        return (int) ((gl.L(40.0f) * 2.0f) / gl.p);
-    }
-
-    public static void f() {
-        d19 d19Var = B;
-        if (d19Var != null) {
-            d19Var.s = true;
-            d19Var.y = System.currentTimeMillis();
-            if (B.a == 0 && System.currentTimeMillis() - E > 200) {
-                E = System.currentTimeMillis();
-                B.v.performHapticFeedback(3);
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        switch (this.a) {
+            case 0:
                 return;
-            }
-            return;
-        }
-        g();
-        d19 d19Var2 = C;
-        if (d19Var2 != null) {
-            View view = d19Var2.v;
-            if (view instanceof gb2) {
-                ((gb2) view).O.b(d19Var2.p);
-            } else if (view instanceof uk1) {
-                ((uk1) view).F0.b(d19Var2.p);
-            }
+            default:
+                hashSet.add(Integer.valueOf(aob.G6));
+                return;
         }
     }
 
-    public static void g() {
-        d19 d19Var = C;
-        if (d19Var != null && !d19Var.s) {
-            d19Var.s = true;
-            d19Var.y = System.currentTimeMillis();
-            if (C.a == 1 && System.currentTimeMillis() - E > 200) {
-                E = System.currentTimeMillis();
-                View view = C.v;
-                if (view != null) {
-                    view.performHapticFeedback(3);
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.a) {
+            case 1:
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        byte b = this.a;
+        TextView textView = this.e;
+        TextView textView2 = this.c;
+        vnb vnbVar = this.b;
+        View view = this.d;
+        switch (b) {
+            case 0:
+                c19 c19Var = (c19) view;
+                if (textView2 != null && c19Var != null) {
+                    int i = aob.Zc;
+                    textView2.setTextColor(aob.v0(i, vnbVar));
+                    c19Var.setTextColor(aob.v0(i, vnbVar));
+                    c19 c19Var2 = (c19) textView;
+                    if (c19Var2 != null) {
+                        c19Var2.setTextColor(aob.v0(i, vnbVar));
+                        return;
+                    }
+                    return;
                 }
-            }
+                return;
+            default:
+                int i2 = aob.G6;
+                ((ImageView) view).setColorFilter(new PorterDuffColorFilter(aob.v0(i2, vnbVar), PorterDuff.Mode.SRC_IN));
+                textView2.setTextColor(aob.v0(i2, vnbVar));
+                textView.setTextColor(aob.p1(0.75f, aob.v0(i2, vnbVar)));
+                return;
         }
     }
 
-    public final void c() {
-        try {
-            boolean z = this.w;
-            a19 a19Var = this.i;
-            if (z) {
-                this.k.removeView(a19Var);
-            } else {
-                gl.B2(a19Var);
-            }
-        } catch (Exception unused) {
-        }
+    private final void a(HashSet hashSet) {
+    }
+
+    public d19(Context context, kf9 kf9Var, vnb vnbVar) {
+        super(context);
+        this.b = vnbVar;
+        setOrientation(0);
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, tre.t(42, 42, 19, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.c = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView textView2 = new TextView(context);
+        this.e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        textView2.setGravity(5);
+        addView(textView, tre.t(-2, -2, 19, 8, 0, 0, 0));
+        addView(new Space(context), tre.p(0, -2, 1.0f, 119));
+        addView(textView2, tre.t(-2, -2, 21, 8, 0, 0, 0));
+        imageView.setImageResource(kf9Var.a);
+        textView.setText(kf9Var.b);
+        textView2.setText((CharSequence) kf9Var.c.get(0));
+        updateColors();
     }
 }

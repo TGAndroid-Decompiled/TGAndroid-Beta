@@ -1,16 +1,20 @@
 package defpackage;
+public enum fpe implements pbd {
+    SOURCE_UNKNOWN(0),
+    BITMAP(1),
+    BYTEARRAY(2),
+    BYTEBUFFER(3),
+    FILEPATH(4),
+    ANDROID_MEDIA_IMAGE(5);
+    
+    public final byte a;
 
-import java.io.IOException;
-public class fpe extends IOException {
-    public static fpe a() {
-        return new IOException("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.");
+    fpe(int i) {
+        this.a = i;
     }
 
-    public static fpe b() {
-        return new IOException("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
-    }
-
-    public static fpe c() {
-        return new IOException("Protocol message had invalid UTF-8.");
+    @Override
+    public final int zza() {
+        return this.a;
     }
 }

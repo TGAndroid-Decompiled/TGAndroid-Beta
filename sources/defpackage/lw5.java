@@ -1,26 +1,27 @@
 package defpackage;
+public final class lw5 implements Runnable {
+    public final byte a;
+    public final nw5 b;
+    public final boolean c;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-public final class lw5 extends c79 {
-    public final Bitmap F;
-    public final q88 G;
-
-    public lw5(q88 q88Var, Context context, gu7 gu7Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, gu7Var, bitmap, null, null);
-        this.G = q88Var;
-        this.F = bitmap2;
+    public lw5(nw5 nw5Var, boolean z, byte b) {
+        this.a = b;
+        this.b = nw5Var;
+        this.c = z;
     }
 
     @Override
-    public final void g(m01 m01Var) {
-        int indexOf = m01.a.indexOf(m01Var);
-        int i = indexOf + 1;
-        if (i <= 1 || this.F != null) {
-            indexOf = i;
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.c;
+        nw5 nw5Var = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new lw5(nw5Var, z, (byte) 1));
+                return;
+            default:
+                nw5Var.setJoinRequest(z);
+                return;
         }
-        q88 q88Var = this.G;
-        q88Var.j1.b(indexOf);
-        q88Var.s(m01Var);
     }
 }

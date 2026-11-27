@@ -1,14 +1,13 @@
 package org.webrtc;
 class NativeLibrary {
-    private static String TAG = "NativeLibrary";
+    private static final String TAG = "NativeLibrary";
     private static boolean libraryLoaded;
-    private static Object lock = new Object();
+    private static final Object lock = new Object();
 
     static class DefaultLoader implements NativeLibraryLoader {
         @Override
         public boolean load(String str) {
-            String str2 = NativeLibrary.TAG;
-            Logging.d(str2, "Loading library: " + str);
+            Logging.d("NativeLibrary", "Loading library: " + str);
             System.loadLibrary(str);
             return true;
         }
@@ -16,13 +15,11 @@ class NativeLibrary {
 
     public static void initialize(NativeLibraryLoader nativeLibraryLoader, String str) {
         synchronized (lock) {
-            boolean z = libraryLoaded;
-            String str2 = TAG;
-            if (z) {
-                Logging.d(str2, "Native library has already been loaded.");
+            if (libraryLoaded) {
+                Logging.d("NativeLibrary", "Native library has already been loaded.");
                 return;
             }
-            Logging.d(str2, "Loading native library: " + str);
+            Logging.d("NativeLibrary", "Loading native library: " + str);
             libraryLoaded = nativeLibraryLoader.load(str);
         }
     }

@@ -2,272 +2,202 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
 public final class cw3 extends View {
-    public final Paint a;
-    public final TextPaint b;
-    public final ArrayList c;
-    public float[] d;
-    public av3 e;
-    public final ew3 f;
+    public zm2 a;
+    public boolean b;
+    public final int c;
+    public wl d;
+    public final dw3 e;
+    public ImageReceiver f;
+    public long h;
+    public final ln5[] n;
+    public ImageReceiver r;
+    public final v41 s;
+    public boolean w;
 
-    public cw3(ew3 ew3Var, Context context) {
+    public cw3(Context context, dw3 dw3Var) {
         super(context);
-        String str;
-        String a;
-        this.f = ew3Var;
-        Paint paint = new Paint(1);
-        this.a = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.b = textPaint;
-        paint.setColor(436207615);
-        textPaint.setTypeface(gl.n1("fonts/rcondensedbold.ttf"));
-        textPaint.setTextSize(gl.N(21.3f));
-        textPaint.setColor(-1);
-        ArrayList arrayList = new ArrayList();
-        this.c = arrayList;
-        setPadding(0, 0, 0, 0);
-        if (ew3Var.E0(4)) {
-            zv3 zv3Var = new zv3(this, 4, 2131232205, k96.M0(2131744202, null));
-            int i = ew3.C1;
-            if (!y6c.h(ew3Var.a).p()) {
-                Drawable mutate = getContext().getResources().getDrawable(2131232248).mutate();
-                zv3Var.j = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(bkb.p1(0.6f, -1), PorterDuff.Mode.SRC_IN));
-                Paint paint2 = new Paint(1);
-                zv3Var.n = paint2;
-                paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            }
-            arrayList.add(zv3Var);
+        this.c = yac.t0;
+        this.n = new ln5[2];
+        this.s = new v41(this);
+        setPadding(hl.L(2.0f), hl.L(2.0f), hl.L(2.0f), hl.L(2.0f));
+        this.e = dw3Var;
+    }
+
+    public final void a(TLRPC.Document document, boolean z) {
+        long j;
+        int i;
+        long j2 = this.h;
+        if (document == null) {
+            j = 0;
+        } else {
+            j = document.id;
         }
-        if (ew3Var.E0(0)) {
-            arrayList.add(new zv3(this, 0, 2131231652, k96.M0(2131744201, null)));
-        }
-        if (ew3Var.E0(5)) {
-            fsc fscVar = gsc.b;
-            zv3[] zv3VarArr = {null};
-            StringBuilder sb = new StringBuilder();
-            if (fscVar == null) {
-                str = "🌤";
-            } else {
-                str = fscVar.c;
+        if (j2 != j) {
+            wl wlVar = this.d;
+            if (wlVar != null) {
+                wlVar.o(this);
             }
-            sb.append(str);
-            sb.append(" ");
-            if (fscVar == null) {
-                if (gsc.a()) {
-                    a = "24°C";
+            if (document != null) {
+                int i2 = 1;
+                this.b = true;
+                this.h = document.id;
+                int i3 = zw3.C1;
+                if (!z) {
+                    i2 = 16388;
+                }
+                if (i86.e(i2)) {
+                    i = 3;
                 } else {
-                    a = "72°F";
+                    i = 13;
                 }
-            } else {
-                a = fscVar.a();
-            }
-            sb.append(a);
-            CharSequence m = vu3.m(sb.toString(), textPaint.getFontMetricsInt(), false, null, 0);
-            SpannableStringBuilder spannableStringBuilder = m;
-            if (na7.q1(ew3Var.a).k4.v2.f) {
-                spannableStringBuilder = m;
-                spannableStringBuilder = m;
-                if (rqe.d("android.permission.ACCESS_COARSE_LOCATION") && fscVar == null) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new u86(gl.L(68.0f), this), 0, spannableStringBuilder2.length(), 33);
-                    zv3VarArr[0] = new zv3(this, spannableStringBuilder2);
-                    rqe.c(2131624120, 2131747109, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ra((byte) 10, new ra((byte) 9, new pz1(this, zv3VarArr, (byte) 14), false), false));
-                    spannableStringBuilder = spannableStringBuilder2;
+                wl l = wl.l(this.c, i, document);
+                this.d = l;
+                if (this.w) {
+                    l.b(this);
+                    return;
                 }
+                return;
             }
-            zv3 zv3Var2 = zv3VarArr[0];
-            arrayList.add(zv3Var2 == null ? new zv3(this, spannableStringBuilder) : zv3Var2);
-        }
-        if (ew3Var.E0(6)) {
-            arrayList.add(new zv3(this, 6, 2131231190, k96.M0(2131744203, null)));
-        }
-        if (ew3Var.E0(1)) {
-            arrayList.add(new zv3(this, 1, 2131231191, k96.M0(2131744204, null)));
-        }
-        if (ew3Var.E0(2)) {
-            arrayList.add(new zv3(this, 2, 2131231148, k96.M0(2131744200, null)));
-        }
-        if (ew3Var.E0(3)) {
-            arrayList.add(new bw3(this));
+            this.b = false;
+            this.h = 0L;
+            this.d = null;
         }
     }
 
+    public float getScale() {
+        return this.s.a(0.15f);
+    }
+
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.c;
-        int i = 0;
-        int i2 = 0;
-        while (true) {
-            try {
-                float[] fArr = this.d;
-                if (i2 >= fArr.length) {
-                    break;
-                }
-                fArr[i2] = 0.0f;
-                i2++;
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
-        }
-        int size = arrayList.size();
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj = arrayList.get(i3);
-            i3++;
-            yv3 yv3Var = (yv3) obj;
-            int i4 = yv3Var.e - 1;
-            float[] fArr2 = this.d;
-            float f = fArr2[i4];
-            if (f > 0.0f) {
-                fArr2[i4] = f + gl.L(10.0f);
-            }
-            float[] fArr3 = this.d;
-            fArr3[i4] = fArr3[i4] + yv3Var.h.e(false, yv3Var.b);
-        }
-        int size2 = arrayList.size();
-        while (i < size2) {
-            Object obj2 = arrayList.get(i);
-            i++;
-            yv3 yv3Var2 = (yv3) obj2;
-            yv3Var2.a(canvas, oo1.z((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[yv3Var2.e - 1], 2.0f, getPaddingLeft()) + yv3Var2.d, de9.y(48.0f, yv3Var2.e - 1, gl.L(12.0f)));
-        }
+    public final void invalidate() {
+        this.e.invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ArrayList arrayList = this.c;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((yv3) obj).b(true);
+        this.w = true;
+        wl wlVar = this.d;
+        if (wlVar != null) {
+            wlVar.b(this);
+        }
+        ImageReceiver imageReceiver = this.f;
+        if (imageReceiver != null) {
+            imageReceiver.I();
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.c;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((yv3) obj).b(false);
+        this.w = false;
+        wl wlVar = this.d;
+        if (wlVar != null) {
+            wlVar.o(this);
+        }
+        ImageReceiver imageReceiver = this.f;
+        if (imageReceiver != null) {
+            imageReceiver.K();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        ImageReceiver imageReceiver = this.f;
+        if (imageReceiver != null) {
+            imageReceiver.i0(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            this.f.h(canvas, null);
+            return;
+        }
+        wl wlVar = this.d;
+        if (wlVar != null) {
+            wlVar.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            this.d.draw(canvas);
         }
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.c;
-        int size2 = arrayList.size();
-        int i3 = 0;
-        int i4 = 1;
-        float f = 0.0f;
-        int i5 = 0;
-        while (i5 < size2) {
-            Object obj = arrayList.get(i5);
-            i5++;
-            yv3 yv3Var = (yv3) obj;
-            yv3Var.d = f;
-            float L = yv3Var.b + gl.L(10.0f) + f;
-            if (L > paddingLeft) {
-                i4++;
-                yv3Var.d = 0.0f;
-                f = yv3Var.b + gl.L(10.0f) + 0.0f;
-            } else {
-                f = L;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        super.onMeasure(makeMeasureSpec, makeMeasureSpec);
+    }
+
+    public void setDrawable(Drawable drawable) {
+        wl wlVar = this.d;
+        if (wlVar != null) {
+            wlVar.o(this);
+        }
+        this.d = null;
+        this.h = 0L;
+        this.b = false;
+        if (this.f == null) {
+            ImageReceiver imageReceiver = new ImageReceiver(null);
+            this.f = imageReceiver;
+            imageReceiver.m0(7);
+            ImageReceiver imageReceiver2 = this.f;
+            imageReceiver2.S0 = true;
+            if (this.w) {
+                imageReceiver2.I();
             }
-            yv3Var.e = i4;
         }
-        float[] fArr = this.d;
-        if (fArr != null && fArr.length == i4) {
-            Arrays.fill(fArr, 0.0f);
-        } else {
-            this.d = new float[i4];
-        }
-        int size3 = arrayList.size();
-        while (i3 < size3) {
-            Object obj2 = arrayList.get(i3);
-            i3++;
-            yv3 yv3Var2 = (yv3) obj2;
-            int i6 = yv3Var2.e - 1;
-            float[] fArr2 = this.d;
-            float f2 = fArr2[i6];
-            if (f2 > 0.0f) {
-                fArr2[i6] = f2 + gl.L(10.0f);
-            }
-            float[] fArr3 = this.d;
-            fArr3[i6] = fArr3[i6] + yv3Var2.b;
-        }
-        setMeasuredDimension(size, de9.y(12.0f, i4 - 1, de9.y(36.0f, i4, gl.L(24.0f))));
+        this.f.g0(drawable);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        yv3 yv3Var;
-        av3 av3Var;
-        boolean z;
-        ArrayList arrayList = this.c;
-        int size = arrayList.size();
-        int i = 0;
-        while (true) {
-            if (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                yv3Var = (yv3) obj;
-                if (yv3Var.f.contains(motionEvent.getX(), motionEvent.getY())) {
-                    break;
+    public void setPressed(boolean z) {
+        super.setPressed(z);
+        this.s.c(z);
+    }
+
+    public void setSticker(TLRPC.Document document) {
+        View view;
+        String str;
+        this.b = false;
+        if (document != null) {
+            long j = this.h;
+            long j2 = document.id;
+            if (j != j2) {
+                this.h = j2;
+                if (this.f == null) {
+                    ImageReceiver imageReceiver = new ImageReceiver(null);
+                    this.f = imageReceiver;
+                    imageReceiver.m0(7);
+                    ImageReceiver imageReceiver2 = this.f;
+                    imageReceiver2.S0 = true;
+                    if (this.w) {
+                        imageReceiver2.I();
+                    }
                 }
-            } else {
-                yv3Var = null;
-                break;
+                ImageReceiver imageReceiver3 = this.f;
+                if (!this.b) {
+                    view = this;
+                } else {
+                    view = this.e;
+                }
+                imageReceiver3.p0(view);
+                TLRPC.PhotoSize w = xb4.w(document.thumbs, 90, false, null, false);
+                if ("video/webm".equals(document.mime_type)) {
+                    str = "80_80_g";
+                } else {
+                    str = "80_80";
+                }
+                if (!i86.e(1)) {
+                    str = str.concat("_firstframe");
+                }
+                this.f.Z(jn5.b(document), str, jn5.c(w, document), "80_80", null, 0L, null, document, 0);
+                return;
             }
+            return;
         }
-        int size2 = arrayList.size();
-        int i2 = 0;
-        while (i2 < size2) {
-            Object obj2 = arrayList.get(i2);
-            i2++;
-            yv3 yv3Var2 = (yv3) obj2;
-            if (yv3Var2 != yv3Var) {
-                yv3Var2.g.c(false);
-            }
+        ImageReceiver imageReceiver4 = this.f;
+        if (imageReceiver4 != null) {
+            this.h = 0L;
+            imageReceiver4.f();
         }
-        if (yv3Var != null) {
-            n41 n41Var = yv3Var.g;
-            if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                z = true;
-            } else {
-                z = false;
-            }
-            n41Var.c(z);
-        }
-        if (motionEvent.getAction() == 1 && yv3Var != null && (av3Var = this.e) != null) {
-            byte b = yv3Var.a;
-            ew3 ew3Var = av3Var.b;
-            int i3 = ew3.C1;
-            ew3Var.H0(b);
-        }
-        if (yv3Var == null) {
-            return false;
-        }
-        return true;
     }
 }

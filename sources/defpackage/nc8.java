@@ -1,166 +1,82 @@
 package defpackage;
 
-import android.os.Bundle;
-import j$.util.Objects;
-public final class nc8 {
-    public static final String j;
-    public static final String k;
-    public static final String l;
-    public static final String m;
-    public static final String n;
-    public static final String o;
-    public static final String p;
-    public final Object a;
-    public final int b;
-    public final br6 c;
-    public final Object d;
-    public final int e;
-    public final long f;
-    public final long g;
-    public final int h;
-    public final int i;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.webkit.CookieManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.PhotoViewer;
+public final class nc8 extends qd8 {
+    public final Rect N;
+    public final PhotoViewer O;
 
-    static {
-        String str = g8c.a;
-        j = "0";
-        k = "1";
-        l = "2";
-        m = "3";
-        n = "4";
-        o = "5";
-        p = "6";
+    public nc8(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, b8 b8Var) {
+        super(context);
+        this.O = photoViewer;
+        this.a = yac.t0;
+        this.w = new ArrayList();
+        this.M = new x38(this, (byte) 22);
+        this.b = photoViewer2;
+        this.r = b8Var;
+        ev3 ev3Var = new ev3(this, context, context, (byte) 1);
+        this.f = ev3Var;
+        ev3Var.getSettings().setJavaScriptEnabled(true);
+        ev3Var.getSettings().setDomStorageEnabled(true);
+        ev3Var.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        ev3Var.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(ev3Var, true);
+        ev3Var.setWebViewClient(new tu(this, (byte) 2));
+        addView(ev3Var, tre.e(-1, -1, 51));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, tre.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        yob.X(textView, aob.y6, null);
+        textView.setGravity(17);
+        linearLayout.addView(textView, tre.r(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        int i = aob.n6;
+        yob.X(textView2, i, null);
+        textView2.setPadding(hl.L(12.0f), hl.L(8.0f), hl.L(12.0f), hl.L(8.0f));
+        int i2 = rnb.a;
+        textView2.setBackground(rnb.d(0, rnb.b(aob.w0(null, i, false)), 12.0f));
+        textView2.setVisibility(8);
+        linearLayout.addView(textView2, tre.t(-2, -2, 1, 0, 8, 0, 0));
+        tb tbVar = new tb((byte) 27, context, this);
+        this.h = tbVar;
+        tbVar.setBackgroundColor(-16777216);
+        tbVar.setVisibility(4);
+        addView(tbVar, tre.c(-1.0f, -1));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.n = radialProgressView;
+        radialProgressView.setVisibility(4);
+        addView(radialProgressView, tre.e(-2, -2, 17));
+        this.N = new Rect();
     }
 
-    public nc8(Object obj, int i, br6 br6Var, Object obj2, int i2, long j2, long j3, int i3, int i4) {
-        boolean z;
-        if (i >= 0) {
-            z = true;
-        } else {
-            z = false;
+    public final void j(Canvas canvas, int i, int i2) {
+        Bitmap n = this.O.B4.n();
+        if (n != null) {
+            float min = Math.min(i / n.getWidth(), i2 / n.getHeight());
+            int width = (int) (n.getWidth() * min);
+            int height = (int) (n.getHeight() * min);
+            int i3 = (i2 - height) / 2;
+            int i4 = (i - width) / 2;
+            Rect rect = this.N;
+            rect.set(i4, i3, width + i4, height + i3);
+            canvas.drawBitmap(n, (Rect) null, rect, (Paint) null);
         }
-        gre.f(z);
-        gre.f(i2 >= 0);
-        this.a = obj;
-        this.b = i;
-        this.c = br6Var;
-        this.d = obj2;
-        this.e = i2;
-        this.f = j2;
-        this.g = j3;
-        this.h = i3;
-        this.i = i4;
-    }
-
-    public final boolean a(nc8 nc8Var) {
-        if (this.b == nc8Var.b && this.e == nc8Var.e && this.f == nc8Var.f && this.g == nc8Var.g && this.h == nc8Var.h && this.i == nc8Var.i && Objects.equals(this.c, nc8Var.c)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final nc8 b(boolean z, boolean z2) {
-        int i;
-        br6 br6Var;
-        long j2;
-        long j3;
-        int i2;
-        int i3;
-        if (z && z2) {
-            return this;
-        }
-        int i4 = 0;
-        if (z2) {
-            i = this.b;
-        } else {
-            i = 0;
-        }
-        if (z) {
-            br6Var = this.c;
-        } else {
-            br6Var = null;
-        }
-        if (z2) {
-            i4 = this.e;
-        }
-        int i5 = i4;
-        if (z) {
-            long j4 = this.f;
-            long j5 = this.g;
-            i2 = this.h;
-            i3 = this.i;
-            j3 = j5;
-            j2 = j4;
-        } else {
-            j2 = 0;
-            j3 = 0;
-            i2 = -1;
-            i3 = -1;
-        }
-        return new nc8(this.a, i, br6Var, this.d, i5, j2, j3, i2, i3);
-    }
-
-    public final Bundle c(int i) {
-        Bundle bundle = new Bundle();
-        int i2 = this.b;
-        if (i < 3 || i2 != 0) {
-            bundle.putInt(j, i2);
-        }
-        br6 br6Var = this.c;
-        if (br6Var != null) {
-            bundle.putBundle(k, br6Var.b(i, false));
-        }
-        int i3 = this.e;
-        if (i < 3 || i3 != 0) {
-            bundle.putInt(l, i3);
-        }
-        long j2 = this.f;
-        if (i < 3 || j2 != 0) {
-            bundle.putLong(m, j2);
-        }
-        long j3 = this.g;
-        if (i < 3 || j3 != 0) {
-            bundle.putLong(n, j3);
-        }
-        int i4 = this.h;
-        if (i4 != -1) {
-            bundle.putInt(o, i4);
-        }
-        int i5 = this.i;
-        if (i5 != -1) {
-            bundle.putInt(p, i5);
-        }
-        return bundle;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && nc8.class == obj.getClass()) {
-            nc8 nc8Var = (nc8) obj;
-            if (a(nc8Var) && Objects.equals(this.a, nc8Var.a) && Objects.equals(this.d, nc8Var.d)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.a, Integer.valueOf(this.b), this.c, this.d, Integer.valueOf(this.e), Long.valueOf(this.f), Long.valueOf(this.g), Integer.valueOf(this.h), Integer.valueOf(this.i));
-    }
-
-    public final String toString() {
-        String str = "mediaItem=" + this.b + ", period=" + this.e + ", pos=" + this.f;
-        int i = this.h;
-        if (i == -1) {
-            return str;
-        }
-        StringBuilder k2 = b00.k(str, ", contentPos=");
-        k2.append(this.g);
-        k2.append(", adGroup=");
-        k2.append(i);
-        k2.append(", ad=");
-        k2.append(this.i);
-        return k2.toString();
     }
 }

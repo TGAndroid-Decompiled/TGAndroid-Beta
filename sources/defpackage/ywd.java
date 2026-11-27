@@ -1,17 +1,32 @@
 package defpackage;
-public final class ywd implements zn7 {
-    public static final ywd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+import java.util.Arrays;
+public final class ywd {
+    public final daf a;
+    public final Boolean b;
+    public final ehf c;
+
+    public ywd(htd htdVar) {
+        this.a = (daf) htdVar.b;
+        this.b = (Boolean) htdVar.c;
+        this.c = (ehf) htdVar.d;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        throw new ClassCastException();
+        if (!(obj instanceof ywd)) {
+            return false;
+        }
+        ywd ywdVar = (ywd) obj;
+        if (vue.a(this.a, ywdVar.a) && vue.a(this.b, ywdVar.b) && vue.a(null, null) && vue.a(this.c, ywdVar.c)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, null, this.c});
     }
 }

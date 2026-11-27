@@ -1,17 +1,26 @@
 package defpackage;
-public final class ajd implements zn7 {
-    public static final ajd a = new Object();
+public final class ajd extends ted {
+    public final transient Object[] h;
+    public final transient boolean n;
+    public final transient boolean r;
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)));
+    public ajd(int i, Object[] objArr) {
+        super((byte) 0);
+        this.h = objArr;
+        this.n = i;
+        this.r = true;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object get(int i) {
+        d7f.a(i, this.r ? 1 : 0);
+        Object obj = this.h[(i << 1) + (this.n ? 1 : 0)];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.r ? 1 : 0;
     }
 }

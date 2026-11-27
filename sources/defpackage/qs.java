@@ -1,26 +1,116 @@
 package defpackage;
-public abstract class qs {
-    public static final int a;
 
-    static {
-        Object sa9Var;
-        int i;
-        try {
-            String property = System.getProperty("kotlinx.serialization.json.pool.size");
-            property.getClass();
-            sa9Var = m9b.b(property);
-        } catch (Throwable th) {
-            sa9Var = new sa9(th);
+import j$.util.Map;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+public final class qs extends vla implements Map, j$.util.Map {
+    public ms d;
+    public os e;
+    public ks f;
+
+    @Override
+    public final Object compute(Object obj, BiFunction biFunction) {
+        return Map.CC.$default$compute(this, obj, biFunction);
+    }
+
+    @Override
+    public final Object computeIfAbsent(Object obj, Function function) {
+        return Map.CC.$default$computeIfAbsent(this, obj, function);
+    }
+
+    @Override
+    public final Object computeIfPresent(Object obj, BiFunction biFunction) {
+        return Map.CC.$default$computeIfPresent(this, obj, biFunction);
+    }
+
+    @Override
+    public final Set entrySet() {
+        ms msVar = this.d;
+        if (msVar == null) {
+            ms msVar2 = new ms(this, (byte) 0);
+            this.d = msVar2;
+            return msVar2;
         }
-        if (sa9Var instanceof sa9) {
-            sa9Var = null;
+        return msVar;
+    }
+
+    @Override
+    public final void forEach(BiConsumer biConsumer) {
+        Map.CC.$default$forEach(this, biConsumer);
+    }
+
+    public final boolean j(Collection collection) {
+        for (Object obj : collection) {
+            if (!super.containsKey(obj)) {
+                return false;
+            }
         }
-        Integer num = (Integer) sa9Var;
-        if (num != null) {
-            i = num.intValue();
-        } else {
-            i = 2097152;
+        return true;
+    }
+
+    public final boolean k(Collection collection) {
+        int i = this.c;
+        for (Object obj : collection) {
+            super.remove(obj);
         }
-        a = i;
+        if (i != this.c) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Set keySet() {
+        os osVar = this.e;
+        if (osVar == null) {
+            os osVar2 = new os(this);
+            this.e = osVar2;
+            return osVar2;
+        }
+        return osVar;
+    }
+
+    @Override
+    public final Object merge(Object obj, Object obj2, BiFunction biFunction) {
+        return Map.CC.$default$merge(this, obj, obj2, biFunction);
+    }
+
+    @Override
+    public final void putAll(java.util.Map map) {
+        int size = map.size() + this.c;
+        int i = this.c;
+        int[] iArr = this.a;
+        if (iArr.length < size) {
+            this.a = Arrays.copyOf(iArr, size);
+            this.b = Arrays.copyOf(this.b, size << 1);
+        }
+        if (this.c == i) {
+            for (Map.Entry entry : map.entrySet()) {
+                put(entry.getKey(), entry.getValue());
+            }
+            return;
+        }
+        bg.b();
+    }
+
+    @Override
+    public final void replaceAll(BiFunction biFunction) {
+        Map.CC.$default$replaceAll(this, biFunction);
+    }
+
+    @Override
+    public final Collection values() {
+        ks ksVar = this.f;
+        if (ksVar == null) {
+            ks ksVar2 = new ks(this);
+            this.f = ksVar2;
+            return ksVar2;
+        }
+        return ksVar;
     }
 }

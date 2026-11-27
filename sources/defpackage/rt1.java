@@ -1,24 +1,18 @@
 package defpackage;
-public final class rt1 implements ca7 {
-    public final pp1 a;
-    public final mu1 b;
-    public final wt1 c;
 
-    public rt1(wt1 wt1Var, pp1 pp1Var, mu1 mu1Var) {
-        this.c = wt1Var;
-        this.a = pp1Var;
-        this.b = mu1Var;
+import android.content.Context;
+public abstract class rt1 extends d79 implements j6b {
+    public final zu1 f3;
+
+    public rt1(zu1 zu1Var, Context context, xu1 xu1Var) {
+        super(context, xu1Var);
+        this.f3 = zu1Var;
     }
 
     @Override
-    public final void a() {
-        this.a.c(false);
-        this.c.a.presentFragment(this.b);
-    }
-
-    @Override
-    public final void m(boolean z) {
-        this.a.c(false);
-        this.c.a.presentFragment(this.b);
+    public final void b(int[] iArr) {
+        zu1 zu1Var = this.f3;
+        iArr[0] = ((int) zu1Var.P9) - hl.L(4.0f);
+        iArr[1] = uh9.f(3.0f, zu1Var.A0.getPaddingBottom(), zu1Var.A0.getMeasuredHeight());
     }
 }

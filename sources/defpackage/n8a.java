@@ -1,80 +1,62 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.text.style.ImageSpan;
-public final class n8a extends ImageSpan {
-    public static tyb b;
-    public final byte a = 1;
+import java.util.ArrayDeque;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.logging.Logger;
+public final class n8a implements Executor {
+    public static final Logger f = Logger.getLogger(n8a.class.getName());
+    public final Executor a;
+    public final ArrayDeque b = new ArrayDeque();
+    public int c = 1;
+    public long d = 0;
+    public final xs4 e = new xs4(this);
 
-    public n8a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.n8a.<init>():void");
+    public n8a(Executor executor) {
+        xve.h(executor);
+        this.a = executor;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        switch (this.a) {
-            case 0:
-                Drawable drawable = getDrawable();
-                canvas.save();
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i6 = fontMetricsInt.descent;
-                canvas.translate(f, ((i4 + i6) - ((i6 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
-                if (k96.a0) {
-                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+    public final void execute(Runnable runnable) {
+        xve.h(runnable);
+        synchronized (this.b) {
+            int i = this.c;
+            if (i != 4 && i != 3) {
+                long j = this.d;
+                boolean z = true;
+                ps9 ps9Var = new ps9(runnable, (byte) 1);
+                this.b.add(ps9Var);
+                this.c = 2;
+                try {
+                    this.a.execute(this.e);
+                    if (this.c == 2) {
+                        synchronized (this.b) {
+                            if (this.d == j && this.c == 2) {
+                                this.c = 3;
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Error | RuntimeException e) {
+                    synchronized (this.b) {
+                        int i2 = this.c;
+                        if ((i2 != 1 && i2 != 2) || !this.b.removeLastOccurrence(ps9Var)) {
+                            z = false;
+                        }
+                        if (!(e instanceof RejectedExecutionException) || z) {
+                            throw e;
+                        }
+                    }
+                    return;
                 }
-                drawable.draw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-                return;
+            }
+            this.b.add(runnable);
         }
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.a) {
-            case 0:
-                Rect bounds = getDrawable().getBounds();
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i3 = fontMetricsInt2.descent;
-                    int i4 = fontMetricsInt2.ascent;
-                    int i5 = ((i3 - i4) / 2) + i4;
-                    int i6 = (bounds.bottom - bounds.top) / 2;
-                    int i7 = i5 - i6;
-                    fontMetricsInt.ascent = i7;
-                    fontMetricsInt.top = i7;
-                    int i8 = i5 + i6;
-                    fontMetricsInt.bottom = i8;
-                    fontMetricsInt.descent = i8;
-                }
-                return bounds.right;
-            default:
-                return super.getSize(paint, charSequence, i, i2, fontMetricsInt);
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.a) {
-            case 1:
-                float textSize = textPaint.getTextSize() * 0.89f;
-                int i = (int) (0.02f * textSize);
-                getDrawable().setBounds(0, i, (int) textSize, ((int) (textSize * 1.25f)) + i);
-                super.updateDrawState(textPaint);
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                return;
-        }
-    }
-
-    public n8a(Drawable drawable) {
-        super(drawable);
+    public final String toString() {
+        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.a + "}";
     }
 }

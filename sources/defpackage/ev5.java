@@ -1,13 +1,24 @@
 package defpackage;
-public final class ev5 {
-    public static final ev5[] a = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
-    ev5 EF5;
 
-    public static ev5 valueOf(String str) {
-        return (ev5) Enum.valueOf(ev5.class, str);
-    }
+import java.util.concurrent.CancellationException;
+public interface ev5 extends kx2 {
+    xg2 attachChild(ah2 ah2Var);
 
-    public static ev5[] values() {
-        return (ev5[]) a.clone();
-    }
+    void cancel(CancellationException cancellationException);
+
+    CancellationException getCancellationException();
+
+    f8a getChildren();
+
+    ep3 invokeOnCompletion(ur4 ur4Var);
+
+    ep3 invokeOnCompletion(boolean z, boolean z2, ur4 ur4Var);
+
+    boolean isActive();
+
+    boolean isCancelled();
+
+    Object join(zw2 zw2Var);
+
+    boolean start();
 }

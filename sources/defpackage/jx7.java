@@ -1,109 +1,96 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.d;
-public final class jx7 implements RequestDelegate {
+import android.animation.ValueAnimator;
+import android.graphics.RectF;
+public final class jx7 implements Runnable {
     public final byte a;
-    public final lx7 b;
+    public final nx7 b;
+    public final tca c;
 
-    public jx7(lx7 lx7Var, byte b) {
+    public jx7(nx7 nx7Var, tca tcaVar, byte b) {
         this.a = b;
-        this.b = lx7Var;
+        this.b = nx7Var;
+        this.c = tcaVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public final void run() {
+        boolean z;
+        boolean z2;
+        float f;
         byte b = this.a;
-        final lx7 lx7Var = this.b;
+        tca tcaVar = this.c;
+        nx7 nx7Var = this.b;
         switch (b) {
             case 0:
-                gl.c3(new kx7(lx7Var, tLObject, tL_error));
-                return;
-            case 1:
-                gl.c3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        int i;
-                        int i2;
-                        switch (r3) {
-                            case 0:
-                                lx7 lx7Var2 = lx7Var;
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                vx7 vx7Var = lx7Var2.e;
-                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
-                                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                                    i = ((d) vx7Var).currentAccount;
-                                    ConnectionsManager.getInstance(i).sendRequest(getpassword, new jx7(lx7Var2, (byte) 4), 8);
-                                    return;
-                                }
-                                if (vx7Var.E == null) {
-                                    vx7Var.E = new TL_account.authorizationForm();
-                                }
-                                lx7Var2.a();
-                                return;
-                            default:
-                                lx7 lx7Var3 = lx7Var;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
-                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
-                                    i2 = ((d) lx7Var3.e).currentAccount;
-                                    ConnectionsManager.getInstance(i2).sendRequest(getpassword2, new jx7(lx7Var3, (byte) 3), 8);
-                                    return;
-                                }
-                                Utilities.e.c(new pc7(lx7Var3, lx7Var3.b, lx7Var3.d, (byte) 11));
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 2:
-                gl.c3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        int i;
-                        int i2;
-                        switch (r3) {
-                            case 0:
-                                lx7 lx7Var2 = lx7Var;
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                vx7 vx7Var = lx7Var2.e;
-                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
-                                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                                    i = ((d) vx7Var).currentAccount;
-                                    ConnectionsManager.getInstance(i).sendRequest(getpassword, new jx7(lx7Var2, (byte) 4), 8);
-                                    return;
-                                }
-                                if (vx7Var.E == null) {
-                                    vx7Var.E = new TL_account.authorizationForm();
-                                }
-                                lx7Var2.a();
-                                return;
-                            default:
-                                lx7 lx7Var3 = lx7Var;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
-                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
-                                    i2 = ((d) lx7Var3.e).currentAccount;
-                                    ConnectionsManager.getInstance(i2).sendRequest(getpassword2, new jx7(lx7Var3, (byte) 3), 8);
-                                    return;
-                                }
-                                Utilities.e.c(new pc7(lx7Var3, lx7Var3.b, lx7Var3.d, (byte) 11));
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 3:
-                gl.c3(new kx7(lx7Var, tL_error, tLObject, (byte) 1));
+                nx7Var.c = tcaVar;
+                RectF rectF = nx7Var.h;
+                if (rectF == null) {
+                    rectF = new RectF();
+                    nx7Var.h = rectF;
+                }
+                nx7Var.c.a(rectF);
+                xh4 xh4Var = nx7Var.a;
+                if (xh4Var != null) {
+                    xh4Var.v();
+                    return;
+                }
                 return;
             default:
-                gl.c3(new kx7(lx7Var, tL_error, tLObject, (byte) 2));
-                return;
+                if (tcaVar != null && nx7Var.q == 0) {
+                    nx7Var.q = ymb.b(nx7Var.g);
+                }
+                boolean z3 = nx7Var.H;
+                if (tcaVar != null) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (z3 != z) {
+                    if (tcaVar != null) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    nx7Var.H = z2;
+                    ValueAnimator valueAnimator = nx7Var.K;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                        nx7Var.K = null;
+                    }
+                    float f2 = nx7Var.I;
+                    if (nx7Var.H) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.0f;
+                    }
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+                    nx7Var.K = ofFloat;
+                    ofFloat.addUpdateListener(new ix7(nx7Var, (byte) 0));
+                    nx7Var.K.addListener(new mx7(nx7Var, (byte) 0));
+                    nx7Var.K.setInterpolator(k43.h);
+                    nx7Var.K.start();
+                    nx7Var.d = tcaVar;
+                    xh4 xh4Var2 = nx7Var.a;
+                    if (xh4Var2 != null) {
+                        xh4Var2.v();
+                    }
+                    if (nx7Var.H) {
+                        yw0.SELECTION_CHANGE.a();
+                        return;
+                    }
+                    return;
+                } else if (tcaVar != nx7Var.d) {
+                    nx7Var.d = tcaVar;
+                    xh4 xh4Var3 = nx7Var.a;
+                    if (xh4Var3 != null) {
+                        xh4Var3.v();
+                        return;
+                    }
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 }

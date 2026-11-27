@@ -1,28 +1,33 @@
 package defpackage;
-public final class qid extends f7d {
-    public static final qid n = new qid(null, new Object[0], 0);
-    public final transient Object e;
-    public final transient Object[] f;
-    public final transient int h;
+public final class qid extends iid {
+    public final xx8 a;
 
-    public qid(Object obj, Object[] objArr, int i) {
-        super((byte) 3);
-        this.e = obj;
-        this.f = objArr;
-        this.h = i;
-    }
-
-    public static defpackage.qid c(int r19, java.lang.Object[] r20, defpackage.kp r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qid.c(int, java.lang.Object[], kp):qid");
+    public qid(xx8 xx8Var) {
+        this.a = xx8Var;
     }
 
     @Override
-    public final java.lang.Object get(java.lang.Object r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qid.get(java.lang.Object):java.lang.Object");
+    public final Object a() {
+        return this.a;
     }
 
     @Override
-    public final int size() {
-        return this.h;
+    public final boolean b() {
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof qid) {
+            return this.a.equals(((qid) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode() + 1502476572;
+    }
+
+    public final String toString() {
+        return qd4.y("Optional.of(", this.a.toString(), ")");
     }
 }

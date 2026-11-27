@@ -1,23 +1,25 @@
 package defpackage;
 
-import android.content.ContentResolver;
-import android.database.ContentObserver;
-import android.net.Uri;
-import android.os.Handler;
-public final class tz extends ContentObserver {
-    public final ContentResolver a;
-    public final Uri b;
-    public final uz c;
+import android.media.AudioDeviceCallback;
+import android.media.AudioDeviceInfo;
+public final class tz extends AudioDeviceCallback {
+    public final vz a;
 
-    public tz(uz uzVar, Handler handler, ContentResolver contentResolver, Uri uri) {
-        super(handler);
-        this.c = uzVar;
-        this.a = contentResolver;
-        this.b = uri;
+    public tz(vz vzVar) {
+        this.a = vzVar;
     }
 
     @Override
-    public final void onChange(boolean z) {
-        this.c.c();
+    public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
+        this.a.l();
+    }
+
+    @Override
+    public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
+        vz vzVar = this.a;
+        if (gcc.l(audioDeviceInfoArr, (AudioDeviceInfo) vzVar.s)) {
+            vzVar.s = null;
+        }
+        vzVar.l();
     }
 }

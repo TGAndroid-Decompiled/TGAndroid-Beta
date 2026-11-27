@@ -1,15 +1,17 @@
 package defpackage;
-public abstract class cne {
-    public static d06 a(op4 op4Var) {
-        pd5 pd5Var = pd5.d;
-        ?? obj = new Object();
-        obj.a = op4Var;
-        obj.b = pd5Var;
-        return obj;
+public final class cne implements zq7 {
+    public static final cne a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
     }
 
-    public static ycb b(op4 op4Var) {
-        op4Var.getClass();
-        return new ycb(op4Var);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

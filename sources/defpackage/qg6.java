@@ -1,14 +1,27 @@
 package defpackage;
 
-import java.util.logging.Logger;
-public final class qg6 extends g00 {
-    public static final Logger r = Logger.getLogger(qg6.class.getName());
+import android.content.Context;
+public final class qg6 extends bk2 {
+    public final byte h;
+    public final tg6 n;
 
-    public qg6(java.io.BufferedInputStream r28, long r29) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qg6.<init>(java.io.BufferedInputStream, long):void");
+    public qg6(tg6 tg6Var, Context context, byte b) {
+        super(context);
+        this.h = b;
+        this.n = tg6Var;
     }
 
-    public static long b(defpackage.rg6 r29, long r30, defpackage.m11 r32) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qg6.b(rg6, long, m11):long");
+    @Override
+    public final void a() {
+        byte b = this.h;
+        tg6 tg6Var = this.n;
+        switch (b) {
+            case 0:
+                tg6Var.h(null);
+                return;
+            default:
+                tg6Var.h(null);
+                return;
+        }
     }
 }

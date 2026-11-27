@@ -1,47 +1,30 @@
 package defpackage;
+public enum qge implements sse {
+    UNRECOGNIZED(0),
+    CODE_128(1),
+    CODE_39(2),
+    CODE_93(3),
+    CODABAR(4),
+    DATA_MATRIX(5),
+    EAN_13(6),
+    EAN_8(7),
+    ITF(8),
+    QR_CODE(9),
+    UPC_A(10),
+    UPC_E(11),
+    PDF417(12),
+    AZTEC(13),
+    DATABAR(14),
+    TEZ_CODE(16);
+    
+    public final byte a;
 
-import java.util.Arrays;
-public abstract class qge {
-    public static ld7 a(ja3 ja3Var, boolean z, boolean z2) {
-        wn4 wn4Var;
-        if (!z) {
-            wn4Var = tj5.b;
-        } else if (z2) {
-            wn4Var = tj5.c;
-        } else {
-            wn4Var = null;
-        }
-        ld7 O = new s34((byte) 8).O(ja3Var, wn4Var, 0);
-        if (O == null || O.a.length == 0) {
-            return null;
-        }
-        return O;
+    qge(int i) {
+        this.a = i;
     }
 
-    public static lv6 b(xu7 xu7Var) {
-        xu7Var.O(1);
-        int D = xu7Var.D();
-        long j = xu7Var.b + D;
-        int i = D / 18;
-        long[] jArr = new long[i];
-        long[] jArr2 = new long[i];
-        int i2 = 0;
-        while (true) {
-            if (i2 >= i) {
-                break;
-            }
-            long u = xu7Var.u();
-            if (u == -1) {
-                jArr = Arrays.copyOf(jArr, i2);
-                jArr2 = Arrays.copyOf(jArr2, i2);
-                break;
-            }
-            jArr[i2] = u;
-            jArr2[i2] = xu7Var.u();
-            xu7Var.O(2);
-            i2++;
-        }
-        xu7Var.O((int) (j - xu7Var.b));
-        return new lv6(jArr, jArr2, false, (byte) 28);
+    @Override
+    public final String toString() {
+        return "<" + qge.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

@@ -1,13 +1,17 @@
 package defpackage;
-public abstract class kye {
-    public abstract void a();
+public final class kye implements zq7 {
+    public static final kye a = new Object();
 
-    public abstract void c(boolean z);
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
+    }
 
-    public abstract void d();
-
-    public abstract void e();
-
-    public void b() {
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -26,8 +26,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(lm6 lm6Var, String str, String str2, String str3, ArrayList<mac> arrayList, zl6 zl6Var, int i, int i2, int i3, int i4, int i5, float f, boolean z, Integer num, Integer num2, e4b e4bVar, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(lm6Var, str, str2, str3, arrayList, zl6Var, i, i2, i3, i4, i5, f, z, num, num2, e4bVar, convertVideoParams);
+    public OutputSurface(po6 po6Var, String str, String str2, String str3, ArrayList<mec> arrayList, fo6 fo6Var, int i, int i2, int i3, int i4, int i5, float f, boolean z, Integer num, Integer num2, b8b b8bVar, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(po6Var, str, str2, str3, arrayList, fo6Var, i, i2, i3, i4, i5, f, z, num, num2, b8bVar, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         this.mSurfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -42,7 +42,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (EGL14.eglGetError() == 12288) {
             return;
         }
-        wn4.j(b00.h("EGL error encountered (see log) at: ", str));
+        xi4.l(c00.i("EGL error encountered (see log) at: ", str));
     }
 
     public void awaitNewImage() {
@@ -111,7 +111,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         try {
             return GLES20.glGetString(7939).contains("GL_EXT_YUV_target");
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return false;
         }
     }

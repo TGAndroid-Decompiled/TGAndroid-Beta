@@ -1,17 +1,11 @@
 package defpackage;
-public final class gm4 extends m19 {
-    public static final gm4 c;
 
-    static {
-        ?? exc = new Exception();
-        c = exc;
-        exc.setStackTrace(m19.b);
-    }
+import android.view.animation.Interpolator;
+public final class gm4 implements Interpolator {
+    public final float a = 1.0f / ((float) (1.0d - Math.pow(100.0d, -1.0d)));
 
-    public static gm4 a() {
-        if (m19.a) {
-            return new Exception();
-        }
-        return c;
+    @Override
+    public final float getInterpolation(float f) {
+        return 1.0f - (((float) (1.0d - Math.pow(100.0d, -(1.0f - f)))) * this.a);
     }
 }

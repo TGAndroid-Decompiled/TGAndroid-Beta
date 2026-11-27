@@ -25,7 +25,7 @@ public final class d implements Runnable {
         Object obj3 = this.b;
         switch (b) {
             case 0:
-                ((WalletEngine2) obj3).lambda$prepareRotateKey$37((m8c) obj2, (WalletEngine2.PreparedRotation) obj, str);
+                ((WalletEngine2) obj3).lambda$prepareRotateKey$37((mcc) obj2, (WalletEngine2.PreparedRotation) obj, str);
                 return;
             case 1:
                 ((WalletEngine2) obj3).lambda$rotateKey$55((WalletEngine2.RotationCallbacks) obj2, (byte[]) obj, str);

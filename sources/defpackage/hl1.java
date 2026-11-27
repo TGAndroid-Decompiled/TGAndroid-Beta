@@ -1,126 +1,81 @@
 package defpackage;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.tl.TL_stories;
-public final class hl1 implements p8c {
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
+public final class hl1 implements Runnable {
     public final byte a;
-    public final mu1 b;
+    public final zu1 b;
+    public final String c;
 
-    public hl1(mu1 mu1Var, byte b) {
+    public hl1(zu1 zu1Var, String str, byte b) {
         this.a = b;
-        this.b = mu1Var;
+        this.b = zu1Var;
+        this.c = str;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        mu1 mu1Var = this.b;
-        switch (b) {
+    public final void run() {
+        switch (this.a) {
             case 0:
-                u47 u47Var = (u47) obj;
-                mu1 mu1Var2 = this.b;
-                mu1Var2.y5 = u47Var;
-                mu1Var2.H5.k.suggested_post = u47Var.c();
-                mu1Var2.Ob(true, null, mu1Var2.H5, null, null, true, 0, null, false, 0L);
-                return;
-            case 1:
-            case 9:
-                mu1Var.Tb((u47) obj);
-                return;
-            case 2:
-                mu1Var.Lb(true, false);
-                if (((Boolean) obj).booleanValue()) {
-                    mu1Var.finishFragment();
-                    return;
-                }
-                return;
-            case 3:
-                mu1Var.ia((String) obj, false);
-                return;
-            case 4:
-                mu1Var.T1 = (ng1) obj;
-                return;
-            case 5:
-                View view = (View) obj;
-                if (view instanceof gb2) {
-                    gb2 gb2Var = (gb2) view;
-                    gb2Var.W6 = mu1Var.K7();
-                    gb2Var.X6 = mu1Var.W7();
-                    boolean V7 = mu1Var.V7();
-                    if (gb2Var.Y6 != V7) {
-                        gb2Var.Y6 = V7;
-                        mu1Var.A0.getClass();
-                        int R = RecyclerView.R(view);
-                        gb2Var.F6 = true;
-                        gb2Var.forceLayout();
-                        if (R >= 0) {
-                            mu1Var.D0.g(R);
-                        }
-                    }
-                    gb2Var.Z6 = mu1Var.f7();
-                    int g7 = mu1Var.g7();
-                    if (gb2Var.a7 != g7) {
-                        gb2Var.a7 = g7;
-                        gb2Var.d4();
-                        gb2Var.invalidate();
-                        return;
-                    }
-                    return;
-                } else if (view instanceof uk1) {
-                    uk1 uk1Var = (uk1) view;
-                    uk1Var.f0 = mu1Var.K7();
-                    uk1Var.j0 = mu1Var.W7();
-                    mu1Var.V7();
-                    mu1Var.f7();
-                    int g72 = mu1Var.g7();
-                    if (uk1Var.k0 != g72) {
-                        uk1Var.k0 = g72;
-                        uk1Var.invalidate();
-                        return;
-                    }
-                    return;
-                } else if (view instanceof ke2) {
-                    ((ke2) view).getTextView().setTranslationX(mu1Var.g7() / 2.0f);
-                    return;
-                } else if (view instanceof oo0) {
-                    view.invalidate();
-                    return;
-                } else if (view instanceof eq0) {
-                    view.invalidate();
+                zu1 zu1Var = this.b;
+                String str = this.c;
+                zu1Var.getClass();
+                if (str != null && str.length() != 0) {
+                    zu1Var.getMessagesController().M4(str, zu1Var.f);
                     return;
                 } else {
+                    zu1Var.getSendMessagesHelper().q0(p7a.b("/start", zu1Var.l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                     return;
                 }
+            case 1:
+                this.b.Ca(this.c);
+                return;
+            case 2:
+                this.b.W8(this.c);
+                return;
+            case 3:
+                this.b.ta(this.c, false);
+                return;
+            case 4:
+                zu1 zu1Var2 = this.b;
+                String str2 = this.c;
+                zu1Var2.getClass();
+                zu1Var2.presentFragment(new euc(str2));
+                return;
+            case 5:
+                zu1 zu1Var3 = this.b;
+                String str3 = this.c;
+                String str4 = zu1Var3.getMessagesController().k4.O1.f;
+                if (TextUtils.isEmpty(str4)) {
+                    str4 = "https://tonviewer.com/";
+                } else if (!str4.endsWith("/")) {
+                    str4 = str4.concat("/");
+                }
+                Activity parentActivity = zu1Var3.getParentActivity();
+                m01.w(parentActivity, str4 + Uri.encode(str3), false);
+                return;
             case 6:
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus != null) {
-                    mu1Var.S1 = tL_premium_boostsStatus;
-                    mu1Var.getMessagesController().E0().b(mu1Var.l6, tL_premium_boostsStatus, new hl1(mu1Var, (byte) 4));
-                    return;
-                }
+                m01.u(this.b.getParentActivity(), "tel:".concat(this.c));
                 return;
             case 7:
-                Long l = (Long) obj;
-                kxb kxbVar = mu1Var.g2;
-                if (kxbVar != null) {
-                    kxbVar.k(l.longValue(), true);
-                    return;
-                }
+                zu1 zu1Var4 = this.b;
+                hl.g(this.c);
+                d31.b0(zu1Var4).i(ob6.M0(2131747022, null)).j();
                 return;
             case 8:
-                fq2 fq2Var = mu1Var.f0;
-                fq2Var.c.add(((r7) obj).getIconView());
+                this.b.X8(this.c);
+                return;
+            case 9:
+                m01.u(this.b.getParentActivity(), "tel:".concat(this.c));
                 return;
             case 10:
-                int intValue = ((Integer) obj).intValue();
-                int i = mu1.nd;
-                mu1Var.Ja(intValue);
+                zu1 zu1Var5 = this.b;
+                hl.g(this.c);
+                d31.b0(zu1Var5).i(ob6.M0(2131747022, null)).j();
                 return;
             default:
-                int intValue2 = ((Integer) obj).intValue();
-                int i2 = mu1.nd;
-                mu1Var.Ja(intValue2);
+                m01.u(this.b.getParentActivity(), "https://fragment.com/username/".concat(this.c));
                 return;
         }
     }

@@ -23,15 +23,4 @@ public final class a implements VideoSink {
                 return;
         }
     }
-
-    @Override
-    public final void setParentSink(VideoSink videoSink) {
-        byte b = this.a;
-    }
-
-    private final void a(VideoSink videoSink) {
-    }
-
-    private final void b(VideoSink videoSink) {
-    }
 }

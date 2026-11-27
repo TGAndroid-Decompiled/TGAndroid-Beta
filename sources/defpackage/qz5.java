@@ -1,40 +1,52 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class qz5 implements Runnable {
-    public final byte a;
-    public final rz5 b;
-    public final j5 c;
-    public final long d;
-    public final d e;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import org.telegram.messenger.a;
+import ru.noties.jlatexmath.JLatexMathAndroid;
+import ru.noties.jlatexmath.JLatexMathDrawable;
+public final class qz5 {
+    public static volatile boolean e = false;
+    public final Bitmap a;
+    public final int b;
+    public final int c;
+    public final int d;
 
-    public qz5(rz5 rz5Var, j5 j5Var, long j, d dVar, byte b) {
-        this.a = b;
-        this.b = rz5Var;
-        this.c = j5Var;
-        this.d = j;
-        this.e = dVar;
+    public qz5(Bitmap bitmap, int i, int i2, int i3) {
+        this.a = bitmap;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                gl.c3(new qz5(this.b, this.c, this.d, this.e, (byte) 1));
-                return;
-            default:
-                j5 j5Var = this.c;
-                int i = j5Var.a;
-                na7 q1 = na7.q1(i);
-                long j = this.d;
-                long j2 = -j;
-                boolean z = false;
-                fc2 e1 = q1.e1(j2, false, null);
-                TLRPC.Chat K0 = na7.q1(i).K0(Long.valueOf(j2));
-                na7.q1(i).h1(j);
-                rgc.l(K0, null, false, Boolean.valueOf((e1 == null || !e1.b.rtmp_stream) ? true : true), this.b.h, this.e, j5Var);
-                return;
+    public static qz5 a(String str, float f, boolean z) {
+        if (str != null && !str.isEmpty()) {
+            try {
+                if (!e) {
+                    synchronized (qz5.class) {
+                        if (!e) {
+                            JLatexMathAndroid.init(a.b);
+                            e = true;
+                        }
+                    }
+                }
+                JLatexMathDrawable build = JLatexMathDrawable.builder(str).textSize(f).build();
+                int intrinsicWidth = build.getIntrinsicWidth();
+                int intrinsicHeight = build.getIntrinsicHeight();
+                if (intrinsicWidth > 0 && intrinsicHeight > 0) {
+                    Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
+                    int i = 0;
+                    build.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+                    build.draw(new Canvas(createBitmap));
+                    if (z) {
+                        i = build.icon().getIconDepth();
+                    }
+                    return new qz5(createBitmap, intrinsicWidth, intrinsicHeight, i);
+                }
+            } catch (Throwable th) {
+                cc4.g(th, true);
+            }
         }
+        return null;
     }
 }

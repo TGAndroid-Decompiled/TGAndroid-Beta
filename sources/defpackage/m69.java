@@ -1,19 +1,41 @@
 package defpackage;
-public final class m69 extends gw2 {
-    public nh7 a;
-    public Object b;
-    public final n69 c;
-    public int d;
 
-    public m69(n69 n69Var, gw2 gw2Var) {
-        super(gw2Var);
-        this.c = n69Var;
-    }
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewParent;
+public final class m69 implements View.OnTouchListener {
+    public float a;
+    public float b;
+    public boolean c;
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.c.a(this);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        ViewParent parent = view.getParent();
+        if (parent != null) {
+            if (motionEvent.getAction() == 0) {
+                this.a = motionEvent.getX();
+                this.b = motionEvent.getY();
+                this.c = true;
+                parent.requestDisallowInterceptTouchEvent(true);
+            }
+            if (motionEvent.getAction() == 2) {
+                float x = this.a - motionEvent.getX();
+                float y = this.b - motionEvent.getY();
+                float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+                if (this.c) {
+                    if (Math.sqrt((y * y) + (x * x)) > scaledTouchSlop) {
+                        this.c = false;
+                        parent.requestDisallowInterceptTouchEvent(false);
+                        return false;
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.c = false;
+                parent.requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        }
+        return false;
     }
 }

@@ -1,24 +1,27 @@
 package defpackage;
+public final class ctb implements Runnable {
+    public final byte a;
+    public final ktb b;
 
-import android.view.View;
-import android.window.OnBackInvokedCallback;
-import android.window.OnBackInvokedDispatcher;
-import j$.util.Objects;
-public abstract class ctb {
-    public static OnBackInvokedDispatcher a(View view) {
-        return view.findOnBackInvokedDispatcher();
+    public ctb(ktb ktbVar, byte b) {
+        this.a = b;
+        this.b = ktbVar;
     }
 
-    public static OnBackInvokedCallback b(Runnable runnable) {
-        Objects.requireNonNull(runnable);
-        return new uo(runnable, (byte) 5);
-    }
-
-    public static void c(Object obj, Object obj2) {
-        ((OnBackInvokedDispatcher) obj).registerOnBackInvokedCallback(1000000, (OnBackInvokedCallback) obj2);
-    }
-
-    public static void d(Object obj, Object obj2) {
-        ((OnBackInvokedDispatcher) obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ktb ktbVar = this.b;
+        switch (b) {
+            case 0:
+                ktbVar.b(false);
+                return;
+            case 1:
+                ktbVar.c();
+                return;
+            default:
+                ktbVar.b(false);
+                return;
+        }
     }
 }

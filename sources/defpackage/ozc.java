@@ -1,36 +1,16 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class ozc extends nzc {
-    public static final ozc s = new ozc(new Object[0]);
-    public final transient Object[] r;
+import java.util.Set;
+public final class ozc {
+    public final String a;
+    public final int b;
+    public final String c;
+    public final Set d;
 
-    public ozc(Object[] objArr) {
-        super((byte) 0);
-        this.r = objArr;
-    }
-
-    @Override
-    public final Object get(int i) {
-        qye.a(i, 0);
-        Object obj = this.r[i];
-        Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final int h(Object[] objArr) {
-        System.arraycopy(this.r, 0, objArr, 0, 0);
-        return 0;
-    }
-
-    @Override
-    public final Object[] k() {
-        return this.r;
-    }
-
-    @Override
-    public final int size() {
-        return 0;
+    public ozc(String str, int i, String str2, Set set) {
+        this.b = i;
+        this.a = str;
+        this.c = str2;
+        this.d = set;
     }
 }

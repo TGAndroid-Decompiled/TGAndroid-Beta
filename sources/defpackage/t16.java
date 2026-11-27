@@ -1,42 +1,39 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class t16 implements ed, e39 {
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class t16 implements Runnable {
     public final byte a;
-    public final h26 b;
+    public final u16 b;
+    public final k5 c;
+    public final long d;
+    public final e e;
 
-    public t16(h26 h26Var, byte b) {
+    public t16(u16 u16Var, k5 k5Var, long j, e eVar, byte b) {
         this.a = b;
-        this.b = h26Var;
+        this.b = u16Var;
+        this.c = k5Var;
+        this.d = j;
+        this.e = eVar;
     }
 
     @Override
-    public final boolean d(int i, View view) {
-        h26 h26Var = this.b;
-        h26Var.n1.getOnItemClickListener().d(i, view);
-        if (h26Var.c2 != 19) {
-            try {
-                view.performHapticFeedback(0);
-            } catch (Exception unused) {
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        h26 h26Var = this.b;
-        switch (b) {
+    public final void run() {
+        switch (this.a) {
             case 0:
-                h26Var.F2.presentFragment(new PremiumPreviewFragment(0, null));
-                h26Var.dismiss();
-                hdVar.dismiss();
+                hl.c3(new t16(this.b, this.c, this.d, this.e, (byte) 1));
                 return;
             default:
-                hdVar.dismiss();
-                h26Var.Z0();
+                k5 k5Var = this.c;
+                int i = k5Var.a;
+                uc7 s1 = uc7.s1(i);
+                long j = this.d;
+                long j2 = -j;
+                boolean z = false;
+                vc2 g1 = s1.g1(j2, false, null);
+                TLRPC.Chat M0 = uc7.s1(i).M0(Long.valueOf(j2));
+                uc7.s1(i).j1(j);
+                xkc.l(M0, null, false, Boolean.valueOf((g1 == null || !g1.b.rtmp_stream) ? true : true), this.b.h, this.e, k5Var);
                 return;
         }
     }

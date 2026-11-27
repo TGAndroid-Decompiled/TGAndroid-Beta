@@ -1,54 +1,20 @@
 package defpackage;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-public final class p43 implements Runnable {
-    public final byte a;
-    public final s43 b;
+import java.util.List;
+public final class p43 {
+    public final po5 a;
+    public final long b;
+    public final long c;
+    public final long d;
 
-    public p43(s43 s43Var, byte b) {
-        this.a = b;
-        this.b = s43Var;
-    }
-
-    @Override
-    public final void run() {
-        View view;
-        byte b = this.a;
-        s43 s43Var = this.b;
-        switch (b) {
-            case 0:
-                if (s43Var.b == null && (view = s43Var.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        s43Var.b = (EditText) findFocus;
-                    }
-                }
-                EditText editText = s43Var.b;
-                if (editText != null) {
-                    if (editText.length() != 0 || s43Var.e) {
-                        try {
-                            s43Var.performHapticFeedback(3, 2);
-                            s43Var.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        s43Var.b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        s43Var.b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (s43Var.f) {
-                            s43Var.postDelayed(s43Var.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                s43Var.n = false;
-                s43Var.f = true;
-                s43Var.h.run();
-                return;
+    public p43(long j, long j2, List list) {
+        this.a = po5.q(list);
+        this.b = j;
+        this.c = j2;
+        long j3 = -9223372036854775807L;
+        if (j != -9223372036854775807L && j2 != -9223372036854775807L) {
+            j3 = j + j2;
         }
+        this.d = j3;
     }
 }

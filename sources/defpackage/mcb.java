@@ -1,16 +1,11 @@
 package defpackage;
-public final class mcb {
-    public int a;
-    public float b;
-    public float c;
 
-    public mcb(float f, float f2, int i) {
-        this.a = i;
-        this.b = f;
-        this.c = f2;
-    }
+import android.graphics.Canvas;
+import android.view.View;
+public abstract class mcb {
+    public abstract void a(Canvas canvas, float f);
 
-    public final Object clone() {
-        return new mcb(this.b, this.c, this.a);
-    }
+    public abstract void b(boolean z);
+
+    public abstract void c(View view);
 }

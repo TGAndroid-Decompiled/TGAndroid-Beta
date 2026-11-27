@@ -1,46 +1,44 @@
 package defpackage;
 
-import android.os.BadParcelableException;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class e2d {
-    static {
-        e2d.class.getClassLoader();
+import android.view.DisplayCutout;
+import android.view.WindowInsets;
+import j$.util.Objects;
+public class e2d extends d2d {
+    public e2d(l2d l2dVar, WindowInsets windowInsets) {
+        super(l2dVar, windowInsets);
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
+    @Override
+    public l2d a() {
+        return l2d.h(null, this.c.consumeDisplayCutout());
+    }
+
+    @Override
+    public cp3 e() {
+        DisplayCutout displayCutout = this.c.getDisplayCutout();
+        if (displayCutout == null) {
             return null;
         }
-        return (Parcelable) creator.createFromParcel(parcel);
+        return new cp3(displayCutout);
     }
 
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
+        if (!(obj instanceof e2d)) {
+            return false;
+        }
+        e2d e2dVar = (e2d) obj;
+        if (Objects.equals(this.c, e2dVar.c) && Objects.equals(this.g, e2dVar.g) && c2d.B(this.h, e2dVar.h)) {
+            return true;
+        }
+        return false;
     }
 
-    public static void c(Parcel parcel, IInterface iInterface) {
-        if (iInterface == null) {
-            parcel.writeStrongBinder(null);
-        } else {
-            parcel.writeStrongBinder(iInterface.asBinder());
-        }
-    }
-
-    public static void d(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder(String.valueOf(dataAvail).length() + 45);
-        sb.append("Parcel data not fully consumed, unread size: ");
-        sb.append(dataAvail);
-        throw new BadParcelableException(sb.toString());
+    @Override
+    public int hashCode() {
+        return this.c.hashCode();
     }
 }

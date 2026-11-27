@@ -1,8 +1,6 @@
 package defpackage;
-public final class vu4 {
-    public String a;
-    public boolean b;
-    public boolean c;
-    public int d;
-    public p8c e;
+public final class vu4 extends yu4 {
+    public vu4(CharSequence charSequence) {
+        super(charSequence, "android.credentials.GetCredentialException.TYPE_USER_CANCELED");
+    }
 }

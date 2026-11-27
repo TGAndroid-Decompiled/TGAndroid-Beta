@@ -1,37 +1,28 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class nj6 implements Comparable {
-    public final long a;
-    public final long b;
-    public final long c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nj6 implements RequestDelegate {
+    public final byte a;
+    public final ck6 b;
 
-    public nj6(long j, long j2, long j3) {
-        this.a = j;
-        this.b = j2;
-        this.c = j3;
+    public nj6(ck6 ck6Var, byte b) {
+        this.a = b;
+        this.b = ck6Var;
     }
 
     @Override
-    public final int compareTo(Object obj) {
-        return Long.compare(this.a, ((nj6) obj).a);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        ck6 ck6Var = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new z56(ck6Var, tL_error, (byte) 26));
+                return;
+            default:
+                hl.c3(new mj6(ck6Var, tL_error, tLObject, (byte) 1));
+                return;
         }
-        if (!(obj instanceof nj6)) {
-            return false;
-        }
-        nj6 nj6Var = (nj6) obj;
-        if (this.a == nj6Var.a && this.b == nj6Var.b && this.c == nj6Var.c) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.a), Long.valueOf(this.b), Long.valueOf(this.c));
     }
 }

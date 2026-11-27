@@ -1,12 +1,6 @@
 package defpackage;
 public interface vd3 {
-    void a(ugb ugbVar, ugb ugbVar2, int i);
+    ep3 a(long j, nsb nsbVar, mx2 mx2Var);
 
-    char b();
-
-    int c();
-
-    int d(ud3 ud3Var, ud3 ud3Var2);
-
-    char e();
+    void b(long j, va1 va1Var);
 }

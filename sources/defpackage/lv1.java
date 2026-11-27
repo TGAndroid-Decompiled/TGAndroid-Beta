@@ -1,26 +1,59 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class lv1 implements InputFilter {
-    @Override
-    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-        int i5 = ChatActivityEnterView.r7;
-        for (int i6 = i; i6 < i2; i6++) {
-            char charAt = charSequence.charAt(i6);
-            if (charAt == '\n' || charAt == '\r') {
-                StringBuilder sb = new StringBuilder(i2 - i);
-                while (i < i2) {
-                    char charAt2 = charSequence.charAt(i);
-                    if (charAt2 != '\n' && charAt2 != '\r') {
-                        sb.append(charAt2);
-                    }
-                    i++;
-                }
-                return sb;
-            }
+import android.view.View;
+import android.widget.FrameLayout;
+public abstract class lv1 extends FrameLayout {
+    public zc a;
+    public jv1 b;
+    public boolean c;
+
+    public final void a(jv1 jv1Var, FrameLayout.LayoutParams layoutParams) {
+        if (this.b == null) {
+            this.b = jv1Var;
+            jv1Var.setVisibility(8);
+            addView(jv1Var, layoutParams);
         }
-        return null;
+    }
+
+    public final void b(zc zcVar, FrameLayout.LayoutParams layoutParams) {
+        if (this.a == null) {
+            this.a = zcVar;
+            addView(zcVar, layoutParams);
+        }
+    }
+
+    public jv1 getEditView() {
+        return this.b;
+    }
+
+    public View getReplyView() {
+        return this.a;
+    }
+
+    public void setEditMode(boolean z) {
+        int i;
+        this.c = z;
+        zc zcVar = this.a;
+        int i2 = 0;
+        if (z) {
+            i = 8;
+        } else {
+            i = 0;
+        }
+        zcVar.setVisibility(i);
+        jv1 jv1Var = this.b;
+        if (!z) {
+            i2 = 8;
+        }
+        jv1Var.setVisibility(i2);
+    }
+
+    public void setEditSuggestionMode(boolean z) {
+        setEditMode(z);
+        if (z) {
+            this.a.setVisibility(0);
+        }
+        this.b.a[0].setOnlyIconMode(z);
+        this.b.a[1].setOnlyIconMode(z);
     }
 }

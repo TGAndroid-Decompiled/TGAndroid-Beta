@@ -1,24 +1,22 @@
 package defpackage;
-public final class dj7 implements Runnable {
-    public final byte a;
-    public final jj7 b;
 
-    public dj7(jj7 jj7Var, byte b) {
-        this.a = b;
-        this.b = jj7Var;
+import android.os.FileObserver;
+import java.util.LinkedHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+public final class dj7 extends FileObserver {
+    public static final Object b = new Object();
+    public static final LinkedHashMap c = new LinkedHashMap();
+    public final CopyOnWriteArrayList a;
+
+    public dj7(String str) {
+        super(str, 128);
+        this.a = new CopyOnWriteArrayList();
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        jj7 jj7Var = this.b;
-        switch (b) {
-            case 0:
-                gl.t1(jj7Var.l1);
-                return;
-            default:
-                gl.E3(jj7Var.m1.getEditText());
-                return;
+    public final void onEvent(int i, String str) {
+        for (ur4 ur4Var : this.a) {
+            ur4Var.invoke(str);
         }
     }
 }

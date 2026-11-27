@@ -1,39 +1,50 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ns2 implements Runnable {
-    public final byte a;
-    public final i8c b;
-    public final TLObject c;
-    public final TLRPC.TL_error d;
+import java.util.concurrent.TimeUnit;
+import java.util.function.LongSupplier;
+public final class ns2 extends vr2 {
+    public int d;
+    public gr e;
+    public TimeUnit f;
 
-    public ns2(i8c i8cVar, TLObject tLObject, TLRPC.TL_error tL_error, byte b) {
-        this.a = b;
-        this.b = i8cVar;
-        this.c = tLObject;
-        this.d = tL_error;
+    public final os2 u(js2 js2Var) {
+        boolean z;
+        if (this.e == null) {
+            long j = this.d;
+            if (j >= 0 && j <= Long.MAX_VALUE) {
+                z = true;
+            } else {
+                z = false;
+            }
+            r(z, Long.valueOf(j));
+        }
+        if (this.f != null) {
+            String s = s();
+            gr grVar = this.e;
+            if (grVar == null) {
+                final long j2 = this.d;
+                grVar = new LongSupplier(j2) {
+                    public final int a;
+
+                    {
+                        this.a = (int) j2;
+                    }
+
+                    @Override
+                    public final long getAsLong() {
+                        return this.a;
+                    }
+                };
+            }
+            os2 os2Var = new os2(s, grVar, this.f, this.a);
+            q(js2Var, os2Var);
+            return os2Var;
+        }
+        throw new IllegalStateException("ConfigTime " + s() + " without a unit");
     }
 
-    @Override
-    public final void run() {
-        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        byte b = this.a;
-        TLRPC.TL_error tL_error = this.d;
-        TLObject tLObject = this.c;
-        i8c i8cVar = this.b;
-        switch (b) {
-            case 0:
-                i8cVar.a(tLObject, tL_error);
-                return;
-            default:
-                if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
-                    tL_starsRevenueStatus = ((TLRPC.TL_payments_starsRevenueStats) tLObject).status;
-                } else {
-                    tL_starsRevenueStatus = null;
-                }
-                i8cVar.a(tL_starsRevenueStatus, tL_error);
-                return;
-        }
+    public final void v(long j) {
+        this.d = (int) j;
+        this.e = null;
     }
 }

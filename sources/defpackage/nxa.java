@@ -1,36 +1,46 @@
 package defpackage;
+public final class nxa implements s84, ska {
+    public final byte a;
+    public final nza b;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.ProfileActivity;
-public final class nxa {
-    public TLRPC.User a;
-    public String b;
+    public nxa(nza nzaVar, byte b) {
+        this.a = b;
+        this.b = nzaVar;
+    }
 
-    public static TLRPC.User a(ArrayList arrayList, long j) {
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            TLRPC.User user = (TLRPC.User) obj;
-            if (user.id == j) {
-                return user;
-            }
+    @Override
+    public final int c() {
+        return this.b.b0;
+    }
+
+    @Override
+    public final void t(int i, float f, float f2, t84 t84Var) {
+        byte b = this.a;
+        nza nzaVar = this.b;
+        switch (b) {
+            case 0:
+                nzaVar.s1();
+                return;
+            case 1:
+                nzaVar.s1();
+                return;
+            default:
+                nzaVar.X.setAlpha(f);
+                return;
         }
-        return null;
     }
 
-    public final void b(d dVar) {
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", this.a.id);
-        na7.q1(y6c.t0).a4(this.a, false, false);
-        dVar.presentFragment(new ProfileActivity(bundle, null));
+    @Override
+    public final void v0(float f, int i) {
+        byte b = this.a;
     }
 
-    public final void c(final org.telegram.tgnet.TLRPC.ChatFull r17, final defpackage.uxa r18, final defpackage.hd[] r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nxa.c(org.telegram.tgnet.TLRPC$ChatFull, uxa, hd[], boolean):void");
+    private final void a(float f, int i) {
+    }
+
+    private final void b(float f, int i) {
+    }
+
+    private final void d(float f, int i) {
     }
 }

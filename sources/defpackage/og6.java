@@ -1,28 +1,26 @@
 package defpackage;
-public final class og6 {
-    public short a;
 
-    public final void a(byte b) {
-        boolean z;
-        int i = 128;
-        do {
-            short s = this.a;
-            boolean z2 = false;
-            if ((32768 & s) == 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if ((b & i) == 0) {
-                z2 = true;
-            }
-            short s2 = (short) (s << 1);
-            if (z ^ z2) {
-                this.a = (short) (s2 ^ 32773);
-            } else {
-                this.a = s2;
-            }
-            i >>>= 1;
-        } while (i != 0);
+import android.content.DialogInterface;
+public final class og6 implements DialogInterface.OnDismissListener {
+    public final byte a;
+    public final tg6 b;
+
+    public og6(tg6 tg6Var, byte b) {
+        this.a = b;
+        this.b = tg6Var;
+    }
+
+    @Override
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        tg6 tg6Var = this.b;
+        switch (b) {
+            case 0:
+                tg6Var.v0.finishFragment();
+                return;
+            default:
+                tg6Var.v0.finishFragment();
+                return;
+        }
     }
 }

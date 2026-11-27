@@ -1,254 +1,331 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class jx8 extends FrameLayout {
-    public final pb0 a;
-    public final ImageReceiver b;
-    public final wla c;
-    public final wf2 d;
-    public final ImageView e;
-    public final wjb f;
-    public boolean h;
-    public final int[] n;
-    public boolean r;
+import android.util.Base64;
+import j$.util.Objects;
+import java.io.UnsupportedEncodingException;
+import java.net.IDN;
+import java.net.URLEncoder;
+import java.util.Locale;
+import java.util.regex.Pattern;
+public final class jx8 {
+    public static final Pattern g = Pattern.compile("[A-Za-z0-9][A-Za-z0-9_-]*(/[A-Za-z0-9][A-Za-z0-9_-]*)*");
+    public static final Pattern h = Pattern.compile("[A-Za-z0-9_-]+");
+    public static final jx8 i = a().c();
+    public final int a;
+    public final String b;
+    public final int c;
+    public final String d;
+    public final String e;
+    public final String f;
 
-    public jx8(wjb wjbVar, Context context, boolean z) {
-        super(context);
-        int i;
-        float f;
+    public jx8(m66 m66Var) {
+        int i2 = m66Var.a;
+        this.a = i2;
+        this.b = (String) m66Var.c;
+        if (i2 == 3) {
+            this.f = (String) m66Var.f;
+            this.c = 0;
+            this.d = "";
+            this.e = "";
+        } else if (i2 == 2) {
+            this.f = (String) m66Var.f;
+            this.c = m66Var.b;
+            this.d = "";
+            this.e = "";
+        } else if (i2 == 1) {
+            this.f = "";
+            this.c = m66Var.b;
+            this.d = (String) m66Var.d;
+            this.e = (String) m66Var.e;
+        } else {
+            iy8.d();
+            throw null;
+        }
+    }
+
+    public static m66 a() {
+        ?? obj = new Object();
+        obj.a = 1;
+        obj.c = "";
+        obj.d = "";
+        obj.e = "";
+        obj.f = "";
+        return obj;
+    }
+
+    public static String b(String str) {
+        if (!TextUtils.isEmpty(str) && h.matcher(str).matches()) {
+            try {
+                byte[] decode = Base64.decode(str, 11);
+                if (decode.length >= 17 && (decode[0] & 255) == 112) {
+                    char[] cArr = new char[(decode.length - 1) << 1];
+                    char[] cArr2 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+                    for (int i2 = 1; i2 < decode.length; i2++) {
+                        byte b = decode[i2];
+                        int i3 = (i2 - 1) << 1;
+                        cArr[i3] = cArr2[(b & 255) >>> 4];
+                        cArr[i3 + 1] = cArr2[b & 15];
+                    }
+                    String str2 = new String(cArr);
+                    if (!h(str2)) {
+                        return null;
+                    }
+                    if (Base64.encodeToString(decode, 11).equals(str)) {
+                        return str2;
+                    }
+                }
+            } catch (IllegalArgumentException unused) {
+            }
+        }
+        return null;
+    }
+
+    public static jx8 c(SharedPreferences sharedPreferences) {
         int i2;
-        this.a = new pb0((wjb) null);
-        this.b = new ImageReceiver(this);
-        this.n = new int[1];
-        this.f = wjbVar;
-        setWillNotDraw(false);
-        if (z) {
-            i = 42;
+        String str = "";
+        String string = sharedPreferences.getString("proxy_ip", "");
+        String string2 = sharedPreferences.getString("proxy_user", "");
+        String string3 = sharedPreferences.getString("proxy_pass", "");
+        String string4 = sharedPreferences.getString("proxy_secret", "");
+        int i3 = sharedPreferences.getInt("proxy_port", 1080);
+        int i4 = 2;
+        if (TextUtils.isEmpty(string4)) {
+            i2 = 1;
         } else {
-            i = 16;
+            i2 = 2;
         }
-        wla wlaVar = new wla(context);
-        this.c = wlaVar;
-        wlaVar.setLines(2);
-        wlaVar.setEllipsize(TextUtils.TruncateAt.END);
-        zkb.X(wlaVar, bkb.y6, wjbVar);
-        wlaVar.setTextSize(1, 14.0f);
-        boolean z2 = k96.a0;
-        if (z2) {
-            f = i;
-        } else {
-            f = 64.0f;
-        }
-        addView(wlaVar, nme.d(-1, -2.0f, 7, f, 7.0f, z2 ? 64.0f : i, 0.0f));
-        if (z) {
-            ImageView imageView = new ImageView(context);
-            this.e = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setImageResource(2131231631);
-            zkb.s(imageView, bkb.Ki, null, PorterDuff.Mode.MULTIPLY);
-            imageView.setAlpha(0.0f);
-            if (k96.a0) {
-                i2 = 3;
-            } else {
-                i2 = 5;
+        int F = ik8.F(i2);
+        if (F != 1) {
+            if (F != 2) {
+                i4 = 0;
             }
-            addView(imageView, nme.e(50, 50, i2 | 112));
         } else {
-            this.e = null;
+            i4 = 1;
         }
-        wf2 wf2Var = new wf2(21, wjbVar, getContext());
-        this.d = wf2Var;
-        wf2Var.b(-1, bkb.c6, bkb.j7);
-        wf2Var.setDrawUnchecked(false);
-        wf2Var.setDrawBackgroundAsArc(3);
-        addView(wf2Var, nme.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        int f = f(sharedPreferences.getInt("proxy_type", i4));
+        m66 a = a();
+        if (string == null) {
+            string = "";
+        }
+        a.c = string;
+        if (string2 == null) {
+            string2 = "";
+        }
+        a.d = string2;
+        if (string3 == null) {
+            string3 = "";
+        }
+        a.e = string3;
+        if (string4 != null) {
+            str = string4;
+        }
+        a.f = str;
+        a.b = i3;
+        a.o(f);
+        return a.c();
     }
 
-    public final void a(nx8 nx8Var, String str, boolean z) {
-        boolean z2;
-        TLRPC.WebPage webPage;
-        TLRPC.Photo photo;
-        long j;
+    public static defpackage.jx8 d(android.net.Uri r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jx8.d(android.net.Uri):jx8");
+    }
+
+    public static int f(int i2) {
+        if (i2 != 0) {
+            if (i2 == 1) {
+                return 2;
+            }
+            if (i2 == 2) {
+                return 3;
+            }
+        }
+        return 1;
+    }
+
+    public static boolean h(String str) {
+        if (str != null) {
+            if (str.length() == 32) {
+                for (int i2 = 0; i2 < str.length(); i2++) {
+                    if (Character.digit(str.charAt(i2), 16) < 0) {
+                        return false;
+                    }
+                }
+                return true;
+            } else if (str.length() == 34 && str.regionMatches(true, 0, "dd", 0, 2)) {
+                for (int i3 = 2; i3 < str.length(); i3++) {
+                    if (Character.digit(str.charAt(i3), 16) < 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final String e() {
+        StringBuilder sb;
+        boolean z;
+        String str = this.e;
+        String str2 = this.d;
+        String str3 = this.b;
+        String str4 = this.f;
+        int i2 = this.a;
+        int F = ik8.F(i2);
+        if (F != 1) {
+            if (F != 2) {
+                sb = new StringBuilder("https://t.me/socks?");
+            } else {
+                sb = new StringBuilder("https://t.me/webproxy?");
+            }
+        } else {
+            sb = new StringBuilder("https://t.me/proxy?");
+        }
+        try {
+            sb.append("server=");
+            sb.append(URLEncoder.encode(str3, "UTF-8"));
+            if (i2 != 3) {
+                sb.append("&port=");
+                sb.append(this.c);
+            }
+            if (!TextUtils.isEmpty(str2)) {
+                sb.append("&user=");
+                sb.append(URLEncoder.encode(str2, "UTF-8"));
+            }
+            if (!TextUtils.isEmpty(str)) {
+                sb.append("&pass=");
+                sb.append(URLEncoder.encode(str, "UTF-8"));
+            }
+            if (!TextUtils.isEmpty(str4)) {
+                if (i2 == 3) {
+                    if (str3 != null && str3.indexOf(47) >= 0) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    if (z && h(str4)) {
+                        int length = str4.length() / 2;
+                        byte[] bArr = new byte[length];
+                        for (int i3 = 0; i3 < length; i3++) {
+                            int i4 = i3 << 1;
+                            bArr[i3] = (byte) ((Character.digit(str4.charAt(i4), 16) << 4) | Character.digit(str4.charAt(i4 + 1), 16));
+                        }
+                        byte[] bArr2 = new byte[length + 1];
+                        bArr2[0] = 112;
+                        System.arraycopy(bArr, 0, bArr2, 1, length);
+                        str4 = Base64.encodeToString(bArr2, 11);
+                    }
+                }
+                sb.append("&secret=");
+                sb.append(URLEncoder.encode(str4, "UTF-8"));
+            }
+        } catch (UnsupportedEncodingException unused) {
+        }
+        return sb.toString();
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof jx8) {
+                jx8 jx8Var = (jx8) obj;
+                if (this.c == jx8Var.c && this.a == jx8Var.a && Objects.equals(this.b, jx8Var.b) && Objects.equals(this.d, jx8Var.d) && Objects.equals(this.e, jx8Var.e) && Objects.equals(this.f, jx8Var.f)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean g() {
+        boolean z;
+        String str;
         String str2;
-        gl5 gl5Var;
-        int[] iArr;
-        int length;
-        String str3 = str;
-        if (nx8Var != null) {
-            z2 = nx8Var.g;
-        } else {
-            z2 = false;
-        }
-        this.h = z2;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (str3 != null && str3.length() > 0 && !str3.startsWith("/")) {
-            str3 = "/".concat(str3);
-        }
-        spannableStringBuilder.append((CharSequence) "/").append((CharSequence) nx8Var.b);
-        spannableStringBuilder.setSpan(new z3c(gl.o()), 0, spannableStringBuilder.length(), 33);
-        int i = bkb.F6;
-        wjb wjbVar = this.f;
-        spannableStringBuilder.setSpan(new cm4(i, wjbVar), 0, spannableStringBuilder.length(), 33);
-        if (str3 != null) {
-            cm4 cm4Var = new cm4(bkb.n6, wjbVar);
-            if (str3.length() <= 0) {
-                length = 1;
-            } else {
-                length = str3.length();
-            }
-            spannableStringBuilder.setSpan(cm4Var, 0, Math.min(length, spannableStringBuilder.length()), 33);
-        }
-        k27 k27Var = nx8Var.e;
-        wla wlaVar = this.c;
-        if (k27Var != null) {
-            spannableStringBuilder.append((CharSequence) " ");
-            CharSequence charSequence = nx8Var.e.z;
-            if (TextUtils.isEmpty(charSequence)) {
-                charSequence = nx8Var.e.v;
-            }
-            CharSequence m = vu3.m(new SpannableStringBuilder(charSequence), wlaVar.getPaint().getFontMetricsInt(), false, null, 0);
-            TLRPC.Message message = nx8Var.e.k;
-            if (message != null) {
-                k27.A5(m, message.entities, wlaVar.getPaint().getFontMetricsInt(), false);
-            }
-            spannableStringBuilder.append(m);
-        }
-        if (nx8Var.a() > 1) {
-            spannableStringBuilder.append((CharSequence) "  ");
-            int L = gl.q.x - gl.L(80.0f);
-            int i2 = s0.d;
-            SpannableString spannableString = new SpannableString("+");
-            s0 s0Var = new s0(nx8Var.a() - 1);
-            this.n[0] = (int) (((tgb) s0Var.c).c + gl.L(10.0f));
-            spannableString.setSpan(s0Var, 0, spannableString.length(), 33);
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, wlaVar.getPaint(), (L * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
-            if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
-                spannableStringBuilder2.append((CharSequence) "  ");
-            }
-            spannableStringBuilder2.append((CharSequence) spannableString);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        wlaVar.setText(spannableStringBuilder);
-        int i3 = y6c.t0;
-        TLRPC.MessageMedia m1 = k27.m1(nx8Var.e);
-        long j2 = 0;
-        ImageReceiver imageReceiver = this.b;
-        if (m1 != null) {
-            TLRPC.Photo photo2 = m1.photo;
-            if (photo2 != null) {
-                TLRPC.PhotoSize w = ba4.w(photo2.sizes, gl.L(36.0f), true, null, true);
-                gl5 f = gl5.f(w, m1.photo);
-                k27 k27Var2 = nx8Var.e;
-                BitmapDrawable bitmapDrawable = k27Var2.I1;
-                if (w != null) {
-                    j2 = w.size;
+        String str3 = this.b;
+        if (!TextUtils.isEmpty(str3)) {
+            if (this.a == 3) {
+                if (!TextUtils.isEmpty(str3)) {
+                    int indexOf = str3.indexOf(47);
+                    if (indexOf >= 0) {
+                        str = str3.substring(0, indexOf);
+                        str2 = str3.substring(indexOf + 1);
+                    } else {
+                        str = str3;
+                        str2 = null;
+                    }
+                    if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && g.matcher(str2).matches()))) {
+                        try {
+                            z = str.equals(IDN.toASCII(str, 3).toLowerCase(Locale.US));
+                        } catch (IllegalArgumentException unused) {
+                        }
+                        if (!z && h(this.f)) {
+                            return true;
+                        }
+                    }
                 }
-                imageReceiver.c0(f, "36_36", bitmapDrawable, j2, null, k27Var2, 0);
-                imageReceiver.q0(gl.L(4.0f));
-            } else if (m1.document != null && (k27.K4(nx8Var.e.k) || nx8Var.e.s4())) {
-                TLRPC.PhotoSize w2 = ba4.w(m1.document.thumbs, gl.L(36.0f), true, null, true);
-                TLRPC.Document document = m1.document;
-                if (w2 == null) {
-                    gl5 b = gl5.b(document);
-                    j = m1.document.size;
-                    gl5Var = b;
-                    str2 = "g";
-                } else {
-                    gl5 f2 = gl5.f(w2, document);
-                    j = w2.size;
-                    str2 = "36_36";
-                    gl5Var = f2;
-                }
-                long j3 = j;
-                k27 k27Var3 = nx8Var.e;
-                imageReceiver.c0(gl5Var, str2, k27Var3.I1, j3, null, k27Var3, 0);
-                imageReceiver.q0(gl.L(4.0f));
+                z = false;
+                return !z ? false : false;
+            } else if (this.c > 0) {
+                return true;
             }
-            this.r = z;
-            invalidate();
         }
-        if (m1 != null && (webPage = m1.webpage) != null && (photo = webPage.photo) != null) {
-            TLRPC.PhotoSize w3 = ba4.w(photo.sizes, gl.L(36.0f), true, null, true);
-            gl5 f3 = gl5.f(w3, m1.webpage.photo);
-            BitmapDrawable bitmapDrawable2 = nx8Var.e.I1;
-            if (w3 != null) {
-                j2 = w3.size;
-            }
-            imageReceiver.c0(f3, "36_36", bitmapDrawable2, j2, null, m1.webpage, 0);
-            imageReceiver.q0(gl.L(4.0f));
-        } else {
-            TLRPC.User f4 = y6c.h(i3).f();
-            pb0 pb0Var = this.a;
-            pb0Var.q(f4);
-            imageReceiver.U(y6c.h(i3).f(), pb0Var, null);
-            imageReceiver.q0(gl.L(36.0f));
-        }
-        this.r = z;
-        invalidate();
+        return false;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int L;
-        float f;
-        if (k96.a0) {
-            L = getMeasuredWidth() - gl.L(51.0f);
-        } else {
-            L = gl.L(15.0f);
-        }
-        float f2 = L;
-        ImageReceiver imageReceiver = this.b;
-        imageReceiver.i0(f2, gl.L(7.0f), gl.L(36.0f), gl.L(36.0f));
-        imageReceiver.h(canvas, null);
-        super.onDraw(canvas);
-        if (this.r) {
-            Paint U0 = bkb.U0("paintDivider", this.f);
-            if (U0 == null) {
-                U0 = bkb.j0;
-            }
-            Paint paint = U0;
-            float f3 = 64.0f;
-            if (k96.a0) {
-                f = 0.0f;
+    public final int hashCode() {
+        return Objects.hash(ik8.b(this.a), this.b, Integer.valueOf(this.c), this.d, this.e, this.f);
+    }
+
+    public final void i(SharedPreferences.Editor editor) {
+        int i2;
+        int i3 = this.a;
+        int F = ik8.F(i3);
+        if (F != 1) {
+            if (F != 2) {
+                i2 = 0;
             } else {
-                f = 64.0f;
+                i2 = 2;
             }
-            float L2 = gl.L(f);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!k96.a0) {
-                f3 = 0.0f;
-            }
-            canvas.drawRect(L2, measuredHeight, width - gl.L(f3), getMeasuredHeight(), paint);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(50.0f) + (this.r ? 1 : 0), 1073741824));
-    }
-
-    public void setReorder(boolean z) {
-        float f;
-        ViewPropertyAnimator animate = this.e.animate();
-        if (z && !this.h) {
-            f = 1.0f;
         } else {
-            f = 0.0f;
+            i2 = 1;
         }
-        animate.alpha(f).start();
+        editor.putInt("proxy_type", i2);
+        editor.putString("proxy_ip", this.b);
+        int F2 = ik8.F(i3);
+        int i4 = this.c;
+        if (F2 != 0) {
+            String str = this.f;
+            if (F2 != 1) {
+                if (F2 != 2) {
+                    return;
+                }
+                editor.putString("proxy_secret", str);
+                editor.remove("proxy_port");
+                editor.remove("proxy_pass");
+                editor.remove("proxy_user");
+                return;
+            }
+            editor.putString("proxy_secret", str);
+            editor.putInt("proxy_port", i4);
+            editor.remove("proxy_pass");
+            editor.remove("proxy_user");
+            return;
+        }
+        editor.putInt("proxy_port", i4);
+        editor.remove("proxy_secret");
+        String str2 = this.e;
+        if (TextUtils.isEmpty(str2)) {
+            editor.remove("proxy_pass");
+        } else {
+            editor.putString("proxy_pass", str2);
+        }
+        String str3 = this.d;
+        if (TextUtils.isEmpty(str3)) {
+            editor.remove("proxy_user");
+        } else {
+            editor.putString("proxy_user", str3);
+        }
     }
 }

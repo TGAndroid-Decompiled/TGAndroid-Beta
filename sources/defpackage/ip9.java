@@ -1,12 +1,20 @@
 package defpackage;
-public interface ip9 {
-    int a();
+public final class ip9 {
+    public final int a;
+    public final long b;
+    public final long c;
+    public final char d;
+    public final boolean e;
+    public final boolean f;
+    public final boolean g;
 
-    void b();
-
-    int h(sk4 sk4Var, z83 z83Var, int i);
-
-    boolean j();
-
-    int n(long j);
+    public ip9(int i, long j, long j2, long j3, boolean z, boolean z2, boolean z3) {
+        this.a = i;
+        this.b = j;
+        this.c = j2;
+        this.d = (int) j3;
+        this.e = z;
+        this.f = z2;
+        this.g = z3;
+    }
 }

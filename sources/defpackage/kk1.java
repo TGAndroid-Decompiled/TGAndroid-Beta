@@ -1,6 +1,17 @@
 package defpackage;
-public interface kk1 {
-    void a(float f, float f2, boolean z);
 
-    void invalidate();
+import java.nio.charset.Charset;
+public abstract class kk1 {
+    public static final Charset a;
+
+    static {
+        Charset forName = Charset.forName("UTF-8");
+        forName.getClass();
+        a = forName;
+        Charset.forName("UTF-16").getClass();
+        Charset.forName("UTF-16BE").getClass();
+        Charset.forName("UTF-16LE").getClass();
+        Charset.forName("US-ASCII").getClass();
+        Charset.forName("ISO-8859-1").getClass();
+    }
 }

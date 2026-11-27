@@ -1,93 +1,96 @@
 package defpackage;
 
+import java.util.AbstractSet;
 import java.util.Iterator;
-public final class ms implements Iterator {
-    public int a;
-    public int b;
-    public boolean c;
-    public final byte d;
-    public final Object e;
+import java.util.Map;
+public final class ms extends AbstractSet {
+    public final byte a;
+    public final Map b;
 
-    public ms(ps psVar, byte b) {
-        this(psVar.c);
-        this.d = b;
-        switch (b) {
+    public ms(Map map, byte b) {
+        this.a = b;
+        this.b = map;
+    }
+
+    @Override
+    public final boolean add(Object obj) {
+        switch (this.a) {
             case 1:
-                this.e = psVar;
-                this(psVar.c);
+                Map.Entry entry = (Map.Entry) obj;
+                if (!contains(entry)) {
+                    ((ona) this.b).put((Comparable) entry.getKey(), entry.getValue());
+                    return true;
+                }
+                return false;
+            default:
+                return super.add(obj);
+        }
+    }
+
+    @Override
+    public final void clear() {
+        switch (this.a) {
+            case 1:
+                ((ona) this.b).clear();
                 return;
             default:
-                this.e = psVar;
+                super.clear();
                 return;
         }
     }
 
     @Override
-    public final boolean hasNext() {
-        if (this.b < this.a) {
-            return true;
+    public final boolean contains(Object obj) {
+        switch (this.a) {
+            case 1:
+                Map.Entry entry = (Map.Entry) obj;
+                Object obj2 = ((ona) this.b).get(entry.getKey());
+                Object value = entry.getValue();
+                if (obj2 != value && (obj2 == null || !obj2.equals(value))) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.contains(obj);
         }
-        return false;
     }
 
     @Override
-    public final Object next() {
-        Object f;
-        if (hasNext()) {
-            int i = this.b;
-            byte b = this.d;
-            Object obj = this.e;
-            switch (b) {
-                case 0:
-                    f = ((ps) obj).f(i);
-                    break;
-                case 1:
-                    f = ((ps) obj).i(i);
-                    break;
-                default:
-                    f = ((rs) obj).b[i];
-                    break;
-            }
-            this.b++;
-            this.c = true;
-            return f;
+    public final Iterator iterator() {
+        byte b = this.a;
+        Map map = this.b;
+        switch (b) {
+            case 0:
+                return new ps((qs) map);
+            default:
+                return new qna((ona) map);
         }
-        w26.g();
-        return null;
     }
 
     @Override
-    public final void remove() {
-        if (this.c) {
-            int i = this.b - 1;
-            this.b = i;
-            byte b = this.d;
-            Object obj = this.e;
-            switch (b) {
-                case 0:
-                    ((ps) obj).g(i);
-                    break;
-                case 1:
-                    ((ps) obj).g(i);
-                    break;
-                default:
-                    ((rs) obj).h(i);
-                    break;
-            }
-            this.a--;
-            this.c = false;
-            return;
+    public final boolean remove(Object obj) {
+        switch (this.a) {
+            case 1:
+                Map.Entry entry = (Map.Entry) obj;
+                if (contains(entry)) {
+                    ((ona) this.b).remove(entry.getKey());
+                    return true;
+                }
+                return false;
+            default:
+                return super.remove(obj);
         }
-        sc8.j("Call next() before removing an element.");
     }
 
-    public ms(rs rsVar) {
-        this(rsVar.c);
-        this.d = (byte) 2;
-        this.e = rsVar;
-    }
-
-    public ms(int i) {
-        this.a = i;
+    @Override
+    public final int size() {
+        byte b = this.a;
+        Map map = this.b;
+        switch (b) {
+            case 0:
+                return ((qs) map).c;
+            default:
+                return ((ona) map).size();
+        }
     }
 }

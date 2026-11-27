@@ -1,12 +1,75 @@
 package defpackage;
 
-import java.util.Collection;
-public abstract class al2 extends zk2 {
-    public static int c(Iterable iterable, int i) {
-        iterable.getClass();
-        if (iterable instanceof Collection) {
-            return ((Collection) iterable).size();
+import android.text.TextUtils;
+import java.util.ArrayList;
+public final class al2 {
+    public static ArrayList f;
+    public final String a;
+    public final int b;
+    public final int c;
+    public final int[] d;
+    public final ArrayList e = new ArrayList();
+
+    public al2(String str) {
+        str = str == null ? "." : str;
+        this.a = str;
+        String[] split = str.split("/");
+        int length = split.length;
+        this.c = length;
+        this.d = new int[length];
+        int i = 0;
+        for (int i2 = 0; i2 < split.length; i2++) {
+            this.d[i2] = split[i2].length();
+            i = Math.max(i, split[i2].length());
+        }
+        this.b = i;
+        for (int i3 = 0; i3 < split.length; i3++) {
+            for (int i4 = 0; i4 < split[i3].length(); i4++) {
+                this.e.add(new zk2(this, i4, i3));
+            }
+        }
+    }
+
+    public static ArrayList a() {
+        if (f == null) {
+            ArrayList arrayList = new ArrayList();
+            f = arrayList;
+            arrayList.add(new al2("./."));
+            f.add(new al2(".."));
+            f.add(new al2("../."));
+            f.add(new al2("./.."));
+            f.add(new al2("././."));
+            f.add(new al2("..."));
+            f.add(new al2("../.."));
+            f.add(new al2("./../.."));
+            f.add(new al2("../../."));
+            f.add(new al2("../../.."));
+            boolean z = f11.a;
+        }
+        return f;
+    }
+
+    public static int b() {
+        ArrayList a = a();
+        int size = a.size();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = a.get(i2);
+            i2++;
+            i = Math.max(i, ((al2) obj).e.size());
         }
         return i;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof al2) {
+            return TextUtils.equals(this.a, ((al2) obj).a);
+        }
+        return false;
+    }
+
+    public final String toString() {
+        return this.a;
     }
 }

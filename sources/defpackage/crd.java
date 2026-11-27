@@ -1,17 +1,12 @@
 package defpackage;
-public final class crd implements zn7 {
-    public static final crd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.io.IOException;
+public abstract class crd {
+    public static void a(Appendable appendable, char c) {
+        try {
+            appendable.append(c);
+        } catch (IOException e) {
+            grb.m(e);
         }
-        throw new ClassCastException();
     }
 }

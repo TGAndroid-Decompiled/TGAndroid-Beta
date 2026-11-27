@@ -1,30 +1,24 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class dxb implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final fxb b;
-
-    public dxb(fxb fxbVar, byte b) {
-        this.a = b;
-        this.b = fxbVar;
+import android.view.View;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
+import j$.util.Objects;
+public abstract class dxb {
+    public static OnBackInvokedDispatcher a(View view) {
+        return view.findOnBackInvokedDispatcher();
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        fxb fxbVar = this.b;
-        switch (b) {
-            case 0:
-                rj4 rj4Var = fxbVar.f;
-                rj4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                rj4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                rj4Var.invalidate();
-                return;
-            default:
-                fxbVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fxbVar.h();
-                return;
-        }
+    public static OnBackInvokedCallback b(Runnable runnable) {
+        Objects.requireNonNull(runnable);
+        return new vo(runnable, (byte) 5);
+    }
+
+    public static void c(Object obj, Object obj2) {
+        ((OnBackInvokedDispatcher) obj).registerOnBackInvokedCallback(1000000, (OnBackInvokedCallback) obj2);
+    }
+
+    public static void d(Object obj, Object obj2) {
+        ((OnBackInvokedDispatcher) obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
     }
 }

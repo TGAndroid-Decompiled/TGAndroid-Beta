@@ -1,17 +1,31 @@
 package defpackage;
-public final class twe implements zn7 {
-    public static final twe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import android.os.Bundle;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class twe extends ebd {
+    public final byte c;
+    public final TaskCompletionSource d;
+
+    public twe(TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 0);
+        this.c = b;
+        this.d = taskCompletionSource;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final void U(Bundle bundle) {
+        byte b = this.c;
+        TaskCompletionSource taskCompletionSource = this.d;
+        switch (b) {
+            case 0:
+                taskCompletionSource.setResult(bundle);
+                return;
+            case 1:
+                taskCompletionSource.setResult(bundle);
+                return;
+            default:
+                taskCompletionSource.setResult(bundle);
+                return;
         }
-        throw new ClassCastException();
     }
 }

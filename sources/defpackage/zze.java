@@ -1,45 +1,27 @@
 package defpackage;
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class zze extends xx4 {
-    @Override
-    public final IInterface b(IBinder iBinder) {
-        iBinder.getClass();
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-        if (queryLocalInterface instanceof pyd) {
-            return (pyd) queryLocalInterface;
+import android.content.Context;
+import android.widget.TextView;
+public abstract class zze {
+    public static p66 a(Context context, float f, int i, boolean z, vnb vnbVar) {
+        int i2 = aob.Xc;
+        p66 p66Var = new p66(context, null);
+        p66Var.setTextSize(1, f);
+        yob.X(p66Var, i, vnbVar);
+        yob.G(p66Var, i2, vnbVar);
+        if (z) {
+            p66Var.setTypeface(hl.o());
         }
-        return new pyd(iBinder);
+        return p66Var;
     }
 
-    @Override
-    public final f84[] f() {
-        return ped.c;
-    }
-
-    @Override
-    public final int i() {
-        return 17895000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.recaptchabase.service.START";
-    }
-
-    @Override
-    public final boolean p() {
-        return true;
-    }
-
-    @Override
-    public final boolean x() {
-        return false;
+    public static TextView b(Context context, float f, int i, boolean z, vnb vnbVar) {
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, f);
+        yob.X(textView, i, vnbVar);
+        if (z) {
+            textView.setTypeface(hl.o());
+        }
+        return textView;
     }
 }

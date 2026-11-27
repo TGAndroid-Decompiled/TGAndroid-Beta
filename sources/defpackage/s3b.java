@@ -1,9 +1,20 @@
 package defpackage;
 
-import android.media.MediaExtractor;
-import java.io.Closeable;
-public interface s3b {
-    String g();
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class s3b extends CharacterStyle implements UpdateAppearance {
+    public final int a;
+    public final vnb b;
 
-    Closeable o(MediaExtractor mediaExtractor);
+    public s3b(int i, vnb vnbVar) {
+        this.a = i;
+        this.b = vnbVar;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(aob.v0(this.a, this.b));
+        textPaint.setUnderlineText(true);
+    }
 }

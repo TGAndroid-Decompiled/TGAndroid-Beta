@@ -1,228 +1,317 @@
 package defpackage;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
 import android.view.View;
-import android.view.ViewParent;
-import android.webkit.CookieManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
-import java.net.URLEncoder;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.ui.ActionBar.d;
-public final class tuc extends d {
-    public WebView a;
-    public r7 b;
-    public cw2 c;
-    public final String d;
-    public final String e;
-    public final String f;
-    public final String h;
-    public final k27 n;
-    public final String r;
-    public xia s;
+import java.util.Arrays;
+import java.util.Collections;
+import org.telegram.ui.ActionBar.e;
+public final class tuc extends e {
+    public final String[] a;
+    public final int[] b;
+    public final olc c;
+    public final ArrayList d;
+    public ScrollView e;
+    public ImageView f;
+    public c51 h;
+    public int n;
+    public int r;
+    public int s;
+    public int w;
+    public int x;
+    public boolean y;
 
-    public tuc(String str, String str2, String str3, String str4, k27 k27Var) {
+    public tuc(ArrayList arrayList, olc olcVar) {
         super(null);
-        String h;
-        this.s = new xia(this, (byte) 17);
-        this.d = str;
-        this.e = str2;
-        this.f = str3;
-        this.n = k27Var;
-        this.r = str4;
-        StringBuilder sb = new StringBuilder("https://");
-        sb.append(na7.q1(this.currentAccount).N2);
-        sb.append("/");
-        sb.append(str2);
-        if (TextUtils.isEmpty(str4)) {
-            h = "";
+        this.b = new int[3];
+        this.d = new ArrayList();
+        int i = 0;
+        String[] strArr = (String[]) arrayList.toArray(new String[0]);
+        this.a = strArr;
+        if (strArr.length != 12 && strArr.length != 24) {
+            lq5.j("Expected a 12- or 24-word recovery phrase");
+            throw null;
+        }
+        this.c = olcVar;
+        ArrayList arrayList2 = new ArrayList();
+        for (int i2 = 0; i2 < this.a.length; i2 = qd4.g(i2, i2, 1, arrayList2)) {
+        }
+        Collections.shuffle(arrayList2);
+        while (true) {
+            int[] iArr = this.b;
+            if (i < iArr.length) {
+                iArr[i] = ((Integer) arrayList2.get(i)).intValue();
+                i++;
+            } else {
+                Arrays.sort(iArr);
+                return;
+            }
+        }
+    }
+
+    public final void Y() {
+        boolean z;
+        int i;
+        if (this.h == null) {
+            return;
+        }
+        ArrayList arrayList = this.d;
+        boolean z2 = false;
+        if (arrayList.size() == this.b.length) {
+            z = true;
         } else {
-            h = b00.h("?game=", str4);
+            z = false;
         }
-        sb.append(h);
-        this.h = sb.toString();
-    }
-
-    public static void Z(String str, k27 k27Var, Activity activity, String str2, String str3) {
-        String str4;
-        String str5;
-        try {
-            SharedPreferences sharedPreferences = a.b.getSharedPreferences("botshare", 0);
-            String string = sharedPreferences.getString(String.valueOf(k27Var.e1()), null);
-            String str6 = "";
-            if (string == null) {
-                str4 = "";
-            } else {
-                str4 = string;
-            }
-            StringBuilder sb = new StringBuilder(str4);
-            StringBuilder sb2 = new StringBuilder("tgShareScoreUrl=" + URLEncoder.encode("tgb://share_game_score?hash=", "UTF-8"));
-            if (string == null) {
-                char[] cArr = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-                for (int i = 0; i < 20; i++) {
-                    sb.append(cArr[Utilities.b.nextInt(52)]);
-                }
-            }
-            sb2.append((CharSequence) sb);
-            int indexOf = str.indexOf(35);
-            if (indexOf < 0) {
-                str5 = str + "#" + ((Object) sb2);
-            } else {
-                String substring = str.substring(indexOf + 1);
-                if (substring.indexOf(61) < 0 && substring.indexOf(63) < 0) {
-                    if (substring.length() > 0) {
-                        str5 = str + "?" + ((Object) sb2);
-                    } else {
-                        str5 = str + ((Object) sb2);
-                    }
-                } else {
-                    str5 = str + "&" + ((Object) sb2);
-                }
-            }
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt(((Object) sb) + "_date", (int) (System.currentTimeMillis() / 1000));
-            SerializedData serializedData = new SerializedData(k27Var.k.getObjectSize());
-            k27Var.k.serializeToStream(serializedData);
-            edit.putString(((Object) sb) + "_m", Utilities.f(serializedData.toByteArray()));
-            String str7 = ((Object) sb) + "_link";
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append("https://");
-            sb3.append(na7.q1(k27Var.K1).N2);
-            sb3.append("/");
-            sb3.append(str3);
-            if (!TextUtils.isEmpty(str2)) {
-                str6 = "?game=" + str2;
-            }
-            sb3.append(str6);
-            edit.putString(str7, sb3.toString());
-            edit.commit();
-            d01.p(activity, str5, false);
-            serializedData.cleanup();
-        } catch (Exception e) {
-            fa4.g(e, true);
+        int size = arrayList.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            z &= !((zuc) obj).getWord().isEmpty();
         }
-    }
-
-    @Override
-    public final void addThemeColorKeys(HashSet hashSet) {
-        super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.H7));
-        hashSet.add(Integer.valueOf(bkb.G7));
-        hashSet.add(Integer.valueOf(bkb.c6));
-        hashSet.add(Integer.valueOf(bkb.D7));
-        hashSet.add(Integer.valueOf(bkb.C7));
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.u8));
-        hashSet.add(Integer.valueOf(bkb.r8));
+        c51 c51Var = this.h;
+        if (z) {
+            i = 0;
+        } else {
+            i = 4;
+        }
+        c51Var.setVisibility(i);
+        c51 c51Var2 = this.h;
+        if (z && !this.y) {
+            z2 = true;
+        }
+        c51Var2.setEnabled(z2);
     }
 
     @Override
     public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(2131231243);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new ruc(this));
-        r6 t = this.actionBar.t();
-        this.b = t.g(1, 2131232731, gl.L(54.0f));
-        t.a(0, 2131231247).e(2, 2131232270, k96.M0(2131747603, null));
-        this.actionBar.setTitle(this.f);
-        org.telegram.ui.ActionBar.a aVar = this.actionBar;
-        aVar.setSubtitle("@" + this.e);
-        cw2 cw2Var = new cw2(context, 1);
-        this.c = cw2Var;
-        this.b.addView(cw2Var, nme.c(-1.0f, -1));
-        this.c.setAlpha(0.0f);
-        this.c.setScaleX(0.1f);
-        this.c.setScaleY(0.1f);
-        this.c.setVisibility(4);
-        gl.u(context, true);
-        WebView webView = new WebView(context);
-        this.a = webView;
-        webView.getSettings().setJavaScriptEnabled(true);
-        this.a.getSettings().setDomStorageEnabled(true);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        this.a.setLayerType(2, null);
-        this.a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        this.a.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        this.a.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(this.a, true);
-        this.a.addJavascriptInterface(new suc(this), "TelegramWebviewProxy");
-        this.a.setWebViewClient(new su(this, (byte) 4));
-        frameLayout.addView(this.a, nme.c(-1.0f, -1));
+        int i;
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setOccupyStatusBar(false);
+        wma wmaVar = new wma(context, null);
+        wmaVar.setDelegate(new yv0(this, (byte) 3));
+        yob.h(aob.d6, this.resourceProvider, wmaVar);
+        this.fragmentView = wmaVar;
+        ScrollView scrollView = new ScrollView(context);
+        this.e = scrollView;
+        scrollView.setFillViewport(true);
+        this.e.setVerticalScrollBarEnabled(false);
+        this.e.setClipToPadding(false);
+        this.e.setPadding(0, hl.L(96.0f), 0, 0);
+        wmaVar.addView(this.e, tre.c(-1.0f, -1));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(hl.L(36.0f), 0, hl.L(36.0f), hl.L(24.0f));
+        linearLayout.setClipToPadding(false);
+        this.e.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
+        ImageView imageView = new ImageView(context);
+        this.f = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView imageView2 = this.f;
+        int i2 = aob.G6;
+        yob.s(imageView2, i2, this.resourceProvider, PorterDuff.Mode.SRC_IN);
+        this.f.setImageResource(2131231244);
+        ImageView imageView3 = this.f;
+        int i3 = aob.i6;
+        yob.R(imageView3, aob.f0(aob.v0(i3, this.resourceProvider), 3, -1), null, yob.M(i3), this.resourceProvider);
+        this.f.setOnClickListener(new View.OnClickListener(this) {
+            public final tuc b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                tuc tucVar = this.b;
+                switch (b) {
+                    case 0:
+                        tucVar.finishFragment();
+                        return;
+                    default:
+                        int[] iArr = tucVar.b;
+                        ArrayList arrayList = tucVar.d;
+                        if (!tucVar.y && arrayList.size() == iArr.length) {
+                            boolean z = f11.a;
+                            int size = arrayList.size();
+                            int i4 = 0;
+                            while (i4 < size) {
+                                Object obj = arrayList.get(i4);
+                                i4++;
+                                if (((zuc) obj).getWord().isEmpty()) {
+                                    return;
+                                }
+                            }
+                            boolean z2 = true;
+                            for (int i5 = 0; i5 < iArr.length; i5++) {
+                                zuc zucVar = (zuc) arrayList.get(i5);
+                                boolean equalsIgnoreCase = tucVar.a[iArr[i5]].equalsIgnoreCase(zucVar.getWord());
+                                if (!equalsIgnoreCase && zucVar.w) {
+                                    hl.B3(zucVar);
+                                }
+                                zucVar.setError(!equalsIgnoreCase);
+                                z2 &= equalsIgnoreCase;
+                            }
+                            if (z2) {
+                                tucVar.y = true;
+                                tucVar.Y();
+                                hl.t1(tucVar.fragmentView);
+                                olc olcVar = tucVar.c;
+                                if (olcVar != null) {
+                                    olcVar.run();
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        wmaVar.addView(this.f, tre.d(48, 48.0f, 51, 4.0f, 12.0f, 0.0f, 0.0f));
+        de0 de0Var = new de0(context);
+        de0Var.setAspectFit(true);
+        de0Var.getImageReceiver().d = hl.t0();
+        ls6.d0(hl.t0()).e2(de0Var, "RestrictedEmoji", "👨\u200d🏫", "100_100");
+        de0Var.getImageReceiver().N(1);
+        linearLayout.addView(de0Var, tre.t(100, 100, 1, 0, 0, 0, 12));
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(hl.o());
+        textView.setGravity(1);
+        ik8.x(textView, i2, this.resourceProvider, null, 2131742636);
+        TextView m = ik8.m(linearLayout, textView, tre.t(-1, -2, 1, 32, 0, 32, 10), context);
+        m.setTextSize(1, 14.0f);
+        m.setGravity(1);
+        yob.X(m, aob.z6, this.resourceProvider);
+        int[] iArr = this.b;
+        uh9.r(null, null, 2131742635, new Object[]{Integer.valueOf(iArr[0] + 1), Integer.valueOf(iArr[1] + 1), Integer.valueOf(iArr[2] + 1)}, m);
+        linearLayout.addView(m, tre.t(-1, -2, 1, 32, 0, 32, 8));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        linearLayout2.setGravity(1);
+        linearLayout2.setClipChildren(false);
+        linearLayout.addView(linearLayout2, tre.t(-1, -2, 1, 0, 16, 0, 0));
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = this.d;
+        int size = arrayList2.size();
+        int i4 = 0;
+        while (i4 < size) {
+            Object obj = arrayList2.get(i4);
+            i4++;
+            arrayList.add(((zuc) obj).getWord());
+        }
+        arrayList2.clear();
+        for (int i5 = 0; i5 < iArr.length; i5++) {
+            zuc zucVar = new zuc(iArr[i5], this.resourceProvider, context, false);
+            if (i5 < arrayList.size()) {
+                zucVar.setText((String) arrayList.get(i5));
+            }
+            zucVar.setOnTextChangedListener(new olc(this, (byte) 15));
+            zucVar.setOnNextListener(new mpc(this, i5, zucVar, (byte) 4));
+            if (i5 == 0) {
+                i = 0;
+            } else {
+                i = 12;
+            }
+            linearLayout2.addView(zucVar, tre.t(-1, 50, 1, 0, i, 0, 0));
+            arrayList2.add(zucVar);
+        }
+        linearLayout.addView(new View(context), tre.l(1.0f, -1, 0));
+        c51 c51Var = new c51(this.resourceProvider, context, true);
+        this.h = c51Var;
+        c51Var.f();
+        this.h.setText(ob6.M0(2131742805, null));
+        this.h.setOnClickListener(new View.OnClickListener(this) {
+            public final tuc b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                byte b = r2;
+                tuc tucVar = this.b;
+                switch (b) {
+                    case 0:
+                        tucVar.finishFragment();
+                        return;
+                    default:
+                        int[] iArr2 = tucVar.b;
+                        ArrayList arrayList3 = tucVar.d;
+                        if (!tucVar.y && arrayList3.size() == iArr2.length) {
+                            boolean z = f11.a;
+                            int size2 = arrayList3.size();
+                            int i42 = 0;
+                            while (i42 < size2) {
+                                Object obj2 = arrayList3.get(i42);
+                                i42++;
+                                if (((zuc) obj2).getWord().isEmpty()) {
+                                    return;
+                                }
+                            }
+                            boolean z2 = true;
+                            for (int i52 = 0; i52 < iArr2.length; i52++) {
+                                zuc zucVar2 = (zuc) arrayList3.get(i52);
+                                boolean equalsIgnoreCase = tucVar.a[iArr2[i52]].equalsIgnoreCase(zucVar2.getWord());
+                                if (!equalsIgnoreCase && zucVar2.w) {
+                                    hl.B3(zucVar2);
+                                }
+                                zucVar2.setError(!equalsIgnoreCase);
+                                z2 &= equalsIgnoreCase;
+                            }
+                            if (z2) {
+                                tucVar.y = true;
+                                tucVar.Y();
+                                hl.t1(tucVar.fragmentView);
+                                olc olcVar = tucVar.c;
+                                if (olcVar != null) {
+                                    olcVar.run();
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        linearLayout.addView(this.h, tre.t(-1, 48, 1, 0, 24, 0, 0));
+        Y();
         return this.fragmentView;
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new blb(this.actionBar, Integer.MIN_VALUE, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.F8));
-        arrayList.add(new blb(this.actionBar, 1073741824, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.D8));
-        arrayList.add(new blb(this.actionBar, 1073741832, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.E8));
-        return arrayList;
+    public final boolean isSupportEdgeToEdge() {
+        return true;
     }
 
     @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        gl.u(getParentActivity(), false);
-        gl.r(this.s);
-        this.a.setLayerType(0, null);
-        this.s = null;
-        try {
-            ViewParent parent = this.a.getParent();
-            if (parent != null) {
-                ((FrameLayout) parent).removeView(this.a);
-            }
-            this.a.stopLoading();
-            this.a.loadUrl("about:blank");
-            this.a.destroy();
-            this.a = null;
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final void onInsets(int i, int i2, int i3, int i4) {
+        this.r = i;
+        this.s = i2;
+        this.w = i3;
+        this.x = i4;
+        ScrollView scrollView = this.e;
+        if (scrollView != null) {
+            scrollView.setPadding(i, hl.L(96.0f) + i2, i3, i4 + this.n);
         }
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        gl.r(this.s);
-        this.s.run();
-    }
-
-    @Override
-    public final void onThemeColorsChanged() {
-        try {
-            org.telegram.ui.ActionBar.a aVar = this.actionBar;
-            if (aVar != null) {
-                aVar.I(bkb.w0(null, bkb.F8, false), false);
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
-        WebView webView;
-        if (z && !z2 && (webView = this.a) != null) {
-            webView.loadUrl(this.d);
+        ImageView imageView = this.f;
+        if (imageView != null) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imageView.getLayoutParams();
+            layoutParams.leftMargin = hl.L(4.0f) + i;
+            layoutParams.topMargin = hl.L(12.0f) + i2;
+            this.f.setLayoutParams(layoutParams);
         }
     }
 }

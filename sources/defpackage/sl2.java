@@ -1,166 +1,227 @@
 package defpackage;
 
-import android.view.View;
-public final class sl2 extends oec {
-    public final byte a;
-    public final Object b;
-
-    public sl2(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
-
-    @Override
-    public final void b(View view, int i, int i2) {
-        boolean z;
-        switch (this.a) {
-            case 0:
-                return;
-            case 1:
-                ((co2) view).getClass();
-                return;
-            case 2:
-                e83 e83Var = (e83) view;
-                e83Var.g3 = i;
-                e83Var.n3.clear();
-                if (e83Var.z1(6) + e83Var.B1(6) <= 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                e83Var.u3 = z;
-                e83Var.C1();
-                e83Var.D1(false);
-                e83Var.w0(0);
-                return;
-            case 3:
-            default:
-                return;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Set;
+public abstract class sl2 extends yl2 {
+    public static final void e(Iterable iterable, StringBuilder sb, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, ur4 ur4Var) {
+        iterable.getClass();
+        sb.append(charSequence2);
+        int i = 0;
+        for (Object obj : iterable) {
+            i++;
+            if (i > 1) {
+                sb.append(charSequence);
+            }
+            edb.a(sb, obj, ur4Var);
         }
+        sb.append(charSequence3);
     }
 
-    @Override
-    public final View d(int i) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                zf2 zf2Var = (zf2) obj;
-                if (i != 1) {
-                    if (i != 2) {
-                        return (vl2) zf2Var.b;
-                    }
-                    return (xl2) zf2Var.d;
+    public static String f(Iterable iterable, String str, String str2, String str3, ur4 ur4Var, int i) {
+        String str4;
+        String str5;
+        if ((i & 1) != 0) {
+            str = ", ";
+        }
+        String str6 = str;
+        if ((i & 2) != 0) {
+            str4 = "";
+        } else {
+            str4 = str2;
+        }
+        if ((i & 4) != 0) {
+            str5 = "";
+        } else {
+            str5 = str3;
+        }
+        if ((i & 32) != 0) {
+            ur4Var = null;
+        }
+        iterable.getClass();
+        StringBuilder sb = new StringBuilder();
+        e(iterable, sb, str6, str4, str5, "...", ur4Var);
+        return sb.toString();
+    }
+
+    public static List g(Iterable iterable, int i) {
+        Object next;
+        iterable.getClass();
+        if (i >= 0) {
+            x24 x24Var = x24.a;
+            if (i == 0) {
+                return x24Var;
+            }
+            if (iterable instanceof Collection) {
+                if (i >= ((Collection) iterable).size()) {
+                    return k(iterable);
                 }
-                return (ul2) zf2Var.c;
-            case 1:
-                eo2 eo2Var = (eo2) obj;
-                if (i == 2) {
-                    return eo2Var.w1;
-                }
-                if (i == 0) {
-                    return eo2Var.u1;
-                }
-                return eo2Var.v1;
-            case 2:
-                h83 h83Var = (h83) obj;
-                e83 e83Var = new e83(h83Var, h83Var.getParentActivity());
-                h83Var.e.add(e83Var);
-                return e83Var;
-            case 3:
-                return (View) ((ki7) obj).m1.get(i);
-            default:
-                a18 a18Var = (a18) obj;
                 if (i == 1) {
-                    return a18Var.h;
-                }
-                if (i == 0) {
-                    return a18Var.n;
-                }
-                return null;
-        }
-    }
-
-    @Override
-    public final int e() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return 3;
-            case 1:
-                if (!((eo2) obj).H1) {
-                    return 3;
-                }
-                return 1;
-            case 2:
-                return 4;
-            case 3:
-                return ((ki7) obj).m1.size();
-            default:
-                return 2;
-        }
-    }
-
-    @Override
-    public final CharSequence g(int i) {
-        switch (this.a) {
-            case 0:
-                if (i != 1) {
-                    if (i != 2) {
-                        return k96.M0(2131747476, null).toUpperCase();
-                    }
-                    return k96.M0(2131747475, null).toUpperCase();
-                }
-                return k96.M0(2131747470, null).toUpperCase();
-            case 1:
-            default:
-                return super.g(i);
-            case 2:
-                if (i != 0) {
-                    if (i != 1) {
-                        if (i != 2) {
-                            if (i != 3) {
-                                return "";
-                            }
-                            return k96.M0(2131748103, null);
+                    if (iterable instanceof List) {
+                        List list = (List) iterable;
+                        if (!list.isEmpty()) {
+                            next = list.get(0);
+                        } else {
+                            throw new NoSuchElementException("List is empty.");
                         }
-                        return k96.M0(2131748101, null);
+                    } else {
+                        Iterator it = iterable.iterator();
+                        if (it.hasNext()) {
+                            next = it.next();
+                        } else {
+                            throw new NoSuchElementException("Collection is empty.");
+                        }
                     }
-                    return k96.M0(2131748104, null);
+                    return tl2.a(next);
                 }
-                return k96.M0(2131748105, null);
+            }
+            ArrayList arrayList = new ArrayList(i);
+            int i2 = 0;
+            for (Object obj : iterable) {
+                arrayList.add(obj);
+                i2++;
+                if (i2 == i) {
+                    break;
+                }
+            }
+            int size = arrayList.size();
+            if (size != 0) {
+                if (size != 1) {
+                    return arrayList;
+                }
+                return tl2.a(arrayList.get(0));
+            }
+            return x24Var;
+        }
+        bya.a(qd4.n(i, "Requested element count ", " is less than zero."));
+        return null;
+    }
+
+    public static byte[] h(ArrayList arrayList) {
+        byte[] bArr = new byte[arrayList.size()];
+        int size = arrayList.size();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            bArr[i] = ((Number) obj).byteValue();
+            i++;
+        }
+        return bArr;
+    }
+
+    public static final void i(Iterable iterable, AbstractCollection abstractCollection) {
+        iterable.getClass();
+        for (Object obj : iterable) {
+            abstractCollection.add(obj);
         }
     }
 
-    @Override
-    public final int h(int i) {
-        switch (this.a) {
-            case 0:
-                return i;
-            case 1:
-                if (((eo2) this.b).H1 || i == 2) {
-                    return 2;
-                }
-                if (i == 0) {
-                    return 0;
-                }
-                return 1;
-            case 2:
-            default:
-                return super.h(i);
-            case 3:
-            case 4:
-                return i;
+    public static int[] j(ArrayList arrayList) {
+        int[] iArr = new int[arrayList.size()];
+        int size = arrayList.size();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            iArr[i] = ((Number) obj).intValue();
+            i++;
         }
+        return iArr;
     }
 
-    private final void i(View view, int i, int i2) {
+    public static List k(Iterable iterable) {
+        ArrayList arrayList;
+        Object next;
+        iterable.getClass();
+        boolean z = iterable instanceof Collection;
+        x24 x24Var = x24.a;
+        if (z) {
+            Collection collection = (Collection) iterable;
+            int size = collection.size();
+            if (size != 0) {
+                if (size != 1) {
+                    return new ArrayList(collection);
+                }
+                if (iterable instanceof List) {
+                    next = ((List) iterable).get(0);
+                } else {
+                    next = collection.iterator().next();
+                }
+                return tl2.a(next);
+            }
+            return x24Var;
+        }
+        if (z) {
+            arrayList = new ArrayList((Collection) iterable);
+        } else {
+            arrayList = new ArrayList();
+            i(iterable, arrayList);
+        }
+        int size2 = arrayList.size();
+        if (size2 != 0) {
+            if (size2 != 1) {
+                return arrayList;
+            }
+            return tl2.a(arrayList.get(0));
+        }
+        return x24Var;
     }
 
-    private final void j(View view, int i, int i2) {
+    public static long[] l(Collection collection) {
+        collection.getClass();
+        long[] jArr = new long[collection.size()];
+        Iterator it = collection.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            jArr[i] = ((Number) it.next()).longValue();
+            i++;
+        }
+        return jArr;
     }
 
-    private final void k(View view, int i, int i2) {
+    public static Set m(Iterable iterable) {
+        Object next;
+        iterable.getClass();
+        if (iterable instanceof Collection) {
+            Collection collection = (Collection) iterable;
+            int size = collection.size();
+            if (size != 0) {
+                if (size != 1) {
+                    LinkedHashSet linkedHashSet = new LinkedHashSet(uk6.b(collection.size()));
+                    i(iterable, linkedHashSet);
+                    return linkedHashSet;
+                }
+                if (iterable instanceof List) {
+                    next = ((List) iterable).get(0);
+                } else {
+                    next = collection.iterator().next();
+                }
+                Set singleton = Collections.singleton(next);
+                singleton.getClass();
+                return singleton;
+            }
+        } else {
+            LinkedHashSet linkedHashSet2 = new LinkedHashSet();
+            i(iterable, linkedHashSet2);
+            int size2 = linkedHashSet2.size();
+            if (size2 != 0) {
+                if (size2 != 1) {
+                    return linkedHashSet2;
+                }
+                Set singleton2 = Collections.singleton(linkedHashSet2.iterator().next());
+                singleton2.getClass();
+                return singleton2;
+            }
+        }
+        return a34.a;
     }
 }

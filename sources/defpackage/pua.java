@@ -1,37 +1,38 @@
 package defpackage;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class pua implements TextWatcher {
-    public boolean a;
-    public int b = 2;
-    public final EditTextBoldCursor c;
-    public final er7 d;
-    public final long e;
-    public final boolean f;
-    public final u41 h;
-    public final TextView n;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class pua implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final sua b;
 
-    public pua(EditTextBoldCursor editTextBoldCursor, er7 er7Var, long j, boolean z, u41 u41Var, TextView textView) {
-        this.c = editTextBoldCursor;
-        this.d = er7Var;
-        this.e = j;
-        this.f = z;
-        this.h = u41Var;
-        this.n = textView;
+    public pua(sua suaVar, byte b) {
+        this.a = b;
+        this.b = suaVar;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pua.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        sua suaVar = this.b;
+        switch (b) {
+            case 0:
+                suaVar.z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                suaVar.d(suaVar.b0);
+                return;
+            case 1:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float x = c00.x((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
+                suaVar.A0 = x;
+                FrameLayout frameLayout = suaVar.b;
+                frameLayout.setScaleX(x);
+                frameLayout.setScaleY(suaVar.A0);
+                suaVar.invalidate();
+                return;
+            default:
+                suaVar.z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                suaVar.d(suaVar.b0);
+                return;
+        }
     }
 }

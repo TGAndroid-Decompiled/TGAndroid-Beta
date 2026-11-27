@@ -8,19 +8,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.d {
+public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.e {
     public int a;
     public int addExceptionRow;
     public long b;
-    public qp9 c;
+    public it9 c;
     public boolean d;
     public int deleteAllExceptionsRow;
     public int e;
     public int f;
     public int h;
     public int maxVideoSizeRow;
-    public np9 n;
-    public o39 r;
+    public ft9 n;
+    public d79 r;
     public final ArrayList s;
     public LongSparseArray w;
 
@@ -30,34 +30,26 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.d {
         this.w = new LongSparseArray();
     }
 
-    public static int Y(SaveToGallerySettingsActivity saveToGallerySettingsActivity) {
-        return saveToGallerySettingsActivity.currentAccount;
-    }
-
-    public static int Z(SaveToGallerySettingsActivity saveToGallerySettingsActivity) {
-        return saveToGallerySettingsActivity.currentAccount;
-    }
-
-    public final void a0(ahb ahbVar, int i) {
-        for (int i2 = 0; i2 < ahbVar.getChildCount(); i2++) {
-            View childAt = ahbVar.getChildAt(i2);
-            if ((childAt instanceof ry8) && childAt.getBackground() != null) {
+    public final void a0(wkb wkbVar, int i) {
+        for (int i2 = 0; i2 < wkbVar.getChildCount(); i2++) {
+            View childAt = wkbVar.getChildAt(i2);
+            if ((childAt instanceof e29) && childAt.getBackground() != null) {
                 Drawable background = childAt.getBackground();
-                vkb M = zkb.M(i);
-                wjb resourceProvider = getResourceProvider();
+                uob M = yob.M(i);
+                vnb resourceProvider = getResourceProvider();
                 childAt.setBackground(background);
-                zkb.j(childAt, background, M, null, resourceProvider);
+                yob.j(childAt, background, M, null, resourceProvider);
                 return;
             }
         }
     }
 
-    public final rp9 b0() {
-        qp9 qp9Var = this.c;
-        if (qp9Var != null) {
-            return qp9Var;
+    public final jt9 b0() {
+        it9 it9Var = this.c;
+        if (it9Var != null) {
+            return it9Var;
         }
-        return mte.a(this.a);
+        return eye.a(this.a);
     }
 
     public final void c0() {
@@ -66,12 +58,12 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.d {
         }
         if (this.c != null) {
             LongSparseArray l = getUserConfig().l(this.a);
-            qp9 qp9Var = this.c;
-            l.put(qp9Var.d, qp9Var);
+            it9 it9Var = this.c;
+            l.put(it9Var.d, it9Var);
             getUserConfig().z(this.a, l);
             return;
         }
-        mte.f(this.a);
+        eye.f(this.a);
     }
 
     @Override
@@ -80,62 +72,62 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.d {
         setHasOwnBackground(true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        this.simpleActionBar.setBackButtonDrawable(new ed0(false));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new kk8(this, (byte) 10));
+        this.simpleActionBar.setBackButtonDrawable(new gd0(false));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new rn8(this, (byte) 12));
         if (this.c != null) {
             boolean z = this.d;
-            pha phaVar = this.simpleActionBar;
+            jla jlaVar = this.simpleActionBar;
             if (z) {
-                phaVar.setTitle(k96.M0(2131747702, null));
+                jlaVar.setTitle(ob6.M0(2131747622, null));
             } else {
-                phaVar.setTitle(k96.M0(2131745735, null));
+                jlaVar.setTitle(ob6.M0(2131745655, null));
             }
         } else {
             int i2 = this.a;
-            pha phaVar2 = this.simpleActionBar;
+            jla jlaVar2 = this.simpleActionBar;
             if (i2 == 1) {
-                phaVar2.setTitle(k96.M0(2131745727, null));
+                jlaVar2.setTitle(ob6.M0(2131745647, null));
             } else if (i2 == 2) {
-                phaVar2.setTitle(k96.M0(2131745734, null));
+                jlaVar2.setTitle(ob6.M0(2131745654, null));
             } else {
-                phaVar2.setTitle(k96.M0(2131745736, null));
+                jlaVar2.setTitle(ob6.M0(2131745656, null));
             }
         }
-        o39 o39Var = new o39(context, null);
-        this.r = o39Var;
-        o39Var.r1();
+        d79 d79Var = new d79(context, null);
+        this.r = d79Var;
+        d79Var.s1();
         this.r.setSectionsDrawBackground(true);
-        gb3 gb3Var = new gb3();
-        gb3Var.n(400L);
-        gb3Var.o(s33.h);
-        gb3Var.C = false;
-        gb3Var.m = false;
-        this.r.setItemAnimator(gb3Var);
-        this.r.setLayoutManager(new t26());
-        o39 o39Var2 = this.r;
-        np9 np9Var = new np9(this);
-        this.n = np9Var;
-        o39Var2.setAdapter(np9Var);
-        this.r.setOnItemClickListener(new mp9(this));
-        this.r.setOnItemLongClickListener(new mp9(this));
+        zb3 zb3Var = new zb3();
+        zb3Var.n(400L);
+        zb3Var.o(k43.h);
+        zb3Var.C = false;
+        zb3Var.m = false;
+        this.r.setItemAnimator(zb3Var);
+        this.r.setLayoutManager(new x46());
+        d79 d79Var2 = this.r;
+        ft9 ft9Var = new ft9(this);
+        this.n = ft9Var;
+        d79Var2.setAdapter(ft9Var);
+        this.r.setOnItemClickListener(new et9(this));
+        this.r.setOnItemLongClickListener(new et9(this));
         frameLayout.addView(this.r);
         if (this.c != null) {
             FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
-            frameLayout2.setBackground(sjb.f(bkb.Ei, 8.0f));
+            frameLayout2.setBackground(rnb.f(aob.Fi, 8.0f));
             TextView textView = new TextView(getParentActivity());
             textView.setTextSize(1, 14.0f);
             if (this.d) {
-                i = 2131754429;
+                i = 2131754425;
             } else {
-                i = 2131745751;
+                i = 2131745671;
             }
-            textView.setText(k96.M0(i, null));
+            textView.setText(ob6.M0(i, null));
             textView.setGravity(17);
-            textView.setTypeface(gl.o());
-            zkb.X(textView, bkb.Ii, null);
-            frameLayout2.addView(textView, nme.e(-2, -2, 17));
-            frameLayout2.setOnClickListener(new ik8(this, (byte) 11));
-            frameLayout.addView(frameLayout2, nme.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f));
+            textView.setTypeface(hl.o());
+            yob.X(textView, aob.Ji, null);
+            frameLayout2.addView(textView, tre.e(-2, -2, 17));
+            frameLayout2.setOnClickListener(new jn8(this, (byte) 13));
+            frameLayout.addView(frameLayout2, tre.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f));
         }
         d0();
         return this.fragmentView;
@@ -157,68 +149,68 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.d {
         }
         arrayList2.clear();
         if (this.c != null) {
-            arrayList2.add(new op9(9));
-            arrayList2.add(new op9(3));
+            arrayList2.add(new gt9(9));
+            arrayList2.add(new gt9(3));
         }
-        arrayList2.add(new op9(5, k96.M0(2131745737, null)));
+        arrayList2.add(new gt9(5, ob6.M0(2131745657, null)));
         this.e = arrayList2.size();
-        arrayList2.add(new op9(6));
+        arrayList2.add(new gt9(6));
         this.f = arrayList2.size();
-        arrayList2.add(new op9(6));
+        arrayList2.add(new gt9(6));
         if (this.c != null) {
-            str = k96.M0(2131745732, null);
+            str = ob6.M0(2131745652, null);
         } else {
             int i = this.a;
             if (i == 1) {
-                str = k96.M0(2131745730, null);
+                str = ob6.M0(2131745650, null);
             } else if (i == 4) {
-                str = k96.M0(2131745733, null);
+                str = ob6.M0(2131745653, null);
             } else if (i == 2) {
-                str = k96.M0(2131745731, null);
+                str = ob6.M0(2131745651, null);
             } else {
                 str = null;
             }
         }
-        arrayList2.add(new op9(7, str));
+        arrayList2.add(new gt9(7, str));
         if (b0().b) {
-            arrayList2.add(new op9(5, k96.M0(2131748476, null)));
+            arrayList2.add(new gt9(5, ob6.M0(2131748422, null)));
             this.maxVideoSizeRow = arrayList2.size();
-            arrayList2.add(new op9(8));
+            arrayList2.add(new gt9(8));
             this.h = arrayList2.size();
-            arrayList2.add(new op9(7));
+            arrayList2.add(new gt9(7));
         } else {
             this.h = -1;
         }
         if (this.c == null) {
             this.w = getUserConfig().l(this.a);
             this.addExceptionRow = arrayList2.size();
-            arrayList2.add(new op9(1));
+            arrayList2.add(new gt9(1));
             int i2 = 0;
             boolean z2 = false;
             while (i2 < this.w.size()) {
-                arrayList2.add(new op9((qp9) this.w.valueAt(i2)));
+                arrayList2.add(new gt9((it9) this.w.valueAt(i2)));
                 i2++;
                 z2 = true;
             }
             if (z2) {
-                arrayList2.add(new op9(3));
+                arrayList2.add(new gt9(3));
                 this.deleteAllExceptionsRow = arrayList2.size();
-                arrayList2.add(new op9(4));
+                arrayList2.add(new gt9(4));
             }
-            arrayList2.add(new op9(10));
+            arrayList2.add(new gt9(10));
         }
-        np9 np9Var = this.n;
-        if (np9Var != null) {
+        ft9 ft9Var = this.n;
+        if (ft9Var != null) {
             if (arrayList != null) {
-                np9Var.E(arrayList, arrayList2);
+                ft9Var.E(arrayList, arrayList2);
             } else {
-                np9Var.f();
+                ft9Var.f();
             }
         }
     }
 
     @Override
-    public final o39 getListViewForSimpleGlass() {
+    public final d79 getListViewForSimpleGlass() {
         return this.r;
     }
 
@@ -234,17 +226,17 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.d {
         long j = getArguments().getLong("dialog_id");
         this.b = j;
         if (j != 0) {
-            qp9 qp9Var = (qp9) y6c.h(this.currentAccount).l(this.a).get(this.b);
-            this.c = qp9Var;
-            if (qp9Var == null) {
+            it9 it9Var = (it9) yac.h(this.currentAccount).l(this.a).get(this.b);
+            this.c = it9Var;
+            if (it9Var == null) {
                 this.d = true;
-                this.c = new rp9();
-                sp9 a = mte.a(this.a);
-                qp9 qp9Var2 = this.c;
-                qp9Var2.a = a.a;
-                qp9Var2.b = a.b;
-                qp9Var2.c = a.c;
-                qp9Var2.d = this.b;
+                this.c = new jt9();
+                kt9 a = eye.a(this.a);
+                it9 it9Var2 = this.c;
+                it9Var2.a = a.a;
+                it9Var2.b = a.b;
+                it9Var2.c = a.c;
+                it9Var2.d = this.b;
             }
         }
         return super.onFragmentCreate();

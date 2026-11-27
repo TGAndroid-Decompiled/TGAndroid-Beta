@@ -16,21 +16,21 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
             this.F = extras.getInt("appWidgetId", 0);
         }
         if (this.F != 0) {
-            tb4.j(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            zt3 zt3Var = new zt3(0, this.F);
-            zt3Var.E = new rh1(this, (byte) 26);
-            if (gl.O1()) {
+            qd4.j(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            ru3 ru3Var = new ru3(0, this.F);
+            ru3Var.E = new rd1(this, (byte) 28);
+            if (hl.O1()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.b(-1, zt3Var);
+                    this.d.b(-1, ru3Var);
                 }
             } else if (this.c.getFragmentStack().isEmpty()) {
-                this.c.b(-1, zt3Var);
+                this.c.b(-1, ru3Var);
             }
-            if (!gl.O1()) {
+            if (!hl.O1()) {
                 this.e.setVisibility(8);
             }
             this.c.e0();
-            if (gl.O1()) {
+            if (hl.O1()) {
                 this.d.e0();
             }
             intent.setAction(null);

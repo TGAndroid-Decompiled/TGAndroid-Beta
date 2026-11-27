@@ -1,28 +1,23 @@
 package defpackage;
-
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.ProfileActivity;
-public final class vy implements View.OnClickListener {
+public final class vy implements Runnable {
     public final byte a;
-    public final rw0 b;
+    public final fz b;
 
-    public vy(rw0 rw0Var, byte b) {
+    public vy(fz fzVar, byte b) {
         this.a = b;
-        this.b = rw0Var;
+        this.b = fzVar;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         byte b = this.a;
-        rw0 rw0Var = this.b;
+        fz fzVar = this.b;
         switch (b) {
             case 0:
-                rw0Var.run();
+                fzVar.onBackPressed();
                 return;
             default:
-                RectF rectF = ProfileActivity.Z6;
-                rw0Var.run();
+                fzVar.b1();
                 return;
         }
     }

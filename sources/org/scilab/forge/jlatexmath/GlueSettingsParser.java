@@ -34,7 +34,7 @@ public class GlueSettingsParser {
         if (obj != null) {
             return;
         }
-        k93.g("GlueSettings.xml", str, str2, tb4.y("has an unknown value '", str3, "'!"));
+        da3.b("GlueSettings.xml", str, str2, qd4.y("has an unknown value '", str3, "'!"));
     }
 
     private Glue createGlue(Element element, String str) {
@@ -56,7 +56,7 @@ public class GlueSettingsParser {
                 }
                 fArr[i] = (float) d;
             } catch (NumberFormatException unused2) {
-                k93.g("GlueSettings.xml", "GlueType", strArr[i], tb4.y("has an invalid real value '", str2, "'!"));
+                da3.b("GlueSettings.xml", "GlueType", strArr[i], qd4.y("has an invalid real value '", str2, "'!"));
                 return null;
             }
         }
@@ -68,7 +68,7 @@ public class GlueSettingsParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        k93.g("GlueSettings.xml", element.getTagName(), str, null);
+        da3.b("GlueSettings.xml", element.getTagName(), str, null);
         return null;
     }
 

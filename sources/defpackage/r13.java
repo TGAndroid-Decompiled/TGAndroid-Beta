@@ -1,21 +1,20 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.Set;
-public abstract class r13 {
-    public final String a;
-    public final Bundle b;
-    public final Bundle c;
-    public final Set d;
+import android.content.Context;
+import android.os.CancellationSignal;
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.Executor;
+public final class r13 extends q23 {
+    public final Context e;
+    public h23 f;
+    public Executor g;
+    public CancellationSignal h;
+    public final q13 i;
 
-    public r13(String str, Bundle bundle, Bundle bundle2, boolean z, Set set) {
-        this.a = str;
-        this.b = bundle;
-        this.c = bundle2;
-        this.d = set;
-        bundle.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", z);
-        bundle2.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", z);
-        bundle.putInt("androidx.credentials.BUNDLE_KEY_TYPE_PRIORITY_VALUE", 100);
-        bundle2.putInt("androidx.credentials.BUNDLE_KEY_TYPE_PRIORITY_VALUE", 100);
+    public r13(Context context) {
+        context.getClass();
+        this.e = context;
+        this.i = new q13(this, new Handler(Looper.getMainLooper()), (byte) 0);
     }
 }

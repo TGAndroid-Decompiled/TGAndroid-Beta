@@ -1,59 +1,62 @@
 package defpackage;
 
-import android.os.AsyncTask;
-import android.os.SystemClock;
-import java.io.File;
-import java.io.RandomAccessFile;
-import org.telegram.messenger.Utilities;
-public final class wk5 extends AsyncTask {
-    public final String a;
-    public final File b;
-    public final String c;
-    public int d;
-    public RandomAccessFile e = null;
-    public boolean f = true;
-    public long g;
-    public final int h;
-    public final fl5 i;
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.FrameLayout;
+import java.util.List;
+import org.telegram.ui.ActionBar.e;
+public interface wk5 {
+    e getBackgroundFragment();
 
-    public wk5(fl5 fl5Var, String str, File file, String str2, int i) {
-        this.i = fl5Var;
-        this.a = str;
-        this.b = file;
-        this.c = str2;
-        this.h = i;
-    }
+    nx0 getBottomSheet();
 
-    public final void a(long j, long j2) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (j != j2) {
-            long j3 = this.g;
-            if (j3 != 0 && j3 >= elapsedRealtime - 100) {
-                return;
-            }
-        }
-        this.g = elapsedRealtime;
-        Utilities.d.c(new vk5(this, j, j2, (byte) 0));
-    }
+    List getFragmentStack();
 
-    @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wk5.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
+    e getLastFragment();
 
-    @Override
-    public final void onCancelled() {
-        gl.c3(new o94(this.i, this, 2, (byte) 4));
-    }
+    t37 getMessageDrawableOutMediaStart();
 
-    @Override
-    public final void onPostExecute(Object obj) {
-        int i;
-        if (((Boolean) obj).booleanValue()) {
-            i = 2;
-        } else {
-            i = 1;
-        }
-        gl.c3(new o94(this.i, this, i, (byte) 4));
-    }
+    t37 getMessageDrawableOutStart();
+
+    FrameLayout getOverlayContainerView();
+
+    Activity getParentActivity();
+
+    List getPulledDialogs();
+
+    e getSafeLastFragment();
+
+    float getThemeAnimationValue();
+
+    ViewGroup getView();
+
+    Window getWindow();
+
+    void setBackgroundView(View view);
+
+    void setDelegate(sk5 sk5Var);
+
+    void setDrawerLayoutContainer(dr3 dr3Var);
+
+    void setFragmentPanTranslationOffset(int i);
+
+    void setFragmentStack(List list);
+
+    void setHighlightActionButtons(boolean z);
+
+    void setInBubbleMode(boolean z);
+
+    void setIsSheet(boolean z);
+
+    void setNavigationBarColor(int i);
+
+    void setPulledDialogs(List list);
+
+    void setRemoveActionBarExtraHeight(boolean z);
+
+    void setUseAlphaAnimations(boolean z);
+
+    void setWindow(Window window);
 }

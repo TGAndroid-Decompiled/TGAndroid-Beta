@@ -1,45 +1,33 @@
 package defpackage;
-public final class ng4 {
-    public final String a;
-    public final String b;
 
-    public ng4(String str, String str2) {
-        this.a = str;
-        this.b = str2;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ng4 extends AnimatorListenerAdapter {
+    public final byte a = 0;
+    public final r32 b;
+
+    public ng4(r32 r32Var) {
+        this.b = r32Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        r32 r32Var = this.b;
+        switch (b) {
+            case 0:
+                ((yg4) r32Var.d).m0.e();
+                return;
+            default:
+                tk4 tk4Var = r32Var.b;
+                tk4Var.setAlpha(1.0f);
+                q79.w0(tk4Var);
+                ((yg4) r32Var.d).b.removeView(tk4Var);
+                return;
         }
-        if (!(obj instanceof ng4)) {
-            return false;
-        }
-        ng4 ng4Var = (ng4) obj;
-        if (rp5.a(this.a, ng4Var.a) && rp5.a(this.b, ng4Var.b)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        int hashCode;
-        int i = 0;
-        String str = this.a;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        int i2 = hashCode * 31;
-        String str2 = this.b;
-        if (str2 != null) {
-            i = str2.hashCode();
-        }
-        return i2 + i;
-    }
-
-    public final String toString() {
-        return "FirebaseInstallationId(fid=" + this.a + ", authToken=" + this.b + ')';
+    public ng4(r32 r32Var, q79 q79Var) {
+        this.b = r32Var;
     }
 }

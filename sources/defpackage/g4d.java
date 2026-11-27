@@ -1,45 +1,94 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class g4d extends e4d {
-    public static final g4d w = new g4d(0, new Object[0]);
+import java.util.Iterator;
+import java.util.Set;
+public final class g4d extends b4d implements Set, j$.util.Set {
+    public static final Object[] w;
+    public static final g4d x;
+    public transient f4d n;
     public final transient Object[] r;
-    public final transient boolean s;
+    public final transient Object[] s;
 
-    public g4d(int i, Object[] objArr) {
-        super((byte) 1);
+    static {
+        Object[] objArr = new Object[0];
+        w = objArr;
+        x = new g4d(objArr, objArr);
+    }
+
+    public g4d(Object[] objArr, Object[] objArr2) {
+        super((byte) 0);
         this.r = objArr;
-        this.s = i;
+        this.s = objArr2;
     }
 
     @Override
-    public final Object get(int i) {
-        yye.a(i, this.s ? 1 : 0);
-        Object obj = this.r[i];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final boolean contains(Object obj) {
+        if (obj != null) {
+            int length = this.s.length;
+            return false;
+        }
+        return false;
     }
 
     @Override
-    public final int l(Object[] objArr) {
-        Object[] objArr2 = this.r;
-        boolean z = this.s;
-        System.arraycopy(objArr2, 0, objArr, 0, z ? 1 : 0);
-        return z ? 1 : 0;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (set.size() == 0) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
     }
 
     @Override
-    public final int m() {
-        return this.s ? 1 : 0;
+    public final int h(Object[] objArr) {
+        System.arraycopy(this.r, 0, objArr, 0, 0);
+        return 0;
     }
 
     @Override
-    public final Object[] o() {
+    public final int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public final int i() {
+        return 0;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        f4d f4dVar = this.n;
+        if (f4dVar == null) {
+            c4d c4dVar = e4d.n;
+            f4dVar = f4d.s;
+            this.n = f4dVar;
+        }
+        return f4dVar.listIterator(0);
+    }
+
+    @Override
+    public final int j() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] k() {
         return this.r;
     }
 
     @Override
     public final int size() {
-        return this.s ? 1 : 0;
+        return 0;
     }
 }

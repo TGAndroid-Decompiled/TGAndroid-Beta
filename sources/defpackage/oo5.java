@@ -1,35 +1,68 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.Components.q;
-public final class oo5 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final q b;
+import java.util.Iterator;
+import java.util.ListIterator;
+public final class oo5 extends po5 {
+    public final transient int c;
+    public final transient int d;
+    public final po5 e;
 
-    public oo5(q qVar, byte b) {
-        this.a = b;
-        this.b = qVar;
+    public oo5(po5 po5Var, int i, int i2) {
+        this.e = po5Var;
+        this.c = i;
+        this.d = i2;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        q qVar = this.b;
-        switch (b) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * qVar.getMeasuredHeight() * 0.5f;
-                qVar.z0 = floatValue;
-                qVar.w.setTranslationY(floatValue + qVar.y0);
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qVar.B0 = floatValue2;
-                ul9 ul9Var = qVar.Q;
-                if (ul9Var != null) {
-                    ul9Var.y(floatValue2);
-                    return;
-                }
-                return;
-        }
+    public final Object get(int i) {
+        yve.j(i, this.d);
+        return this.e.get(i + this.c);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final Object[] j() {
+        return this.e.j();
+    }
+
+    @Override
+    public final int k() {
+        return this.e.l() + this.c + this.d;
+    }
+
+    @Override
+    public final int l() {
+        return this.e.l() + this.c;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final boolean m() {
+        return true;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
+    }
+
+    @Override
+    public final po5 subList(int i, int i2) {
+        yve.n(i, i2, this.d);
+        int i3 = this.c;
+        return this.e.subList(i + i3, i2 + i3);
+    }
+
+    @Override
+    public final ListIterator listIterator(int i) {
+        return listIterator(i);
     }
 }

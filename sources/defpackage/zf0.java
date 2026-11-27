@@ -1,33 +1,84 @@
 package defpackage;
 
-import android.app.Dialog;
-import android.view.View;
-public interface zf0 {
-    void a(boolean z);
+import org.telegram.ui.ActionBar.e;
+public final class zf0 implements r11 {
+    public final byte a;
+    public final e b;
 
-    void b(boolean z);
+    public zf0(e eVar, byte b) {
+        this.a = b;
+        this.b = eVar;
+    }
 
-    View d();
+    @Override
+    public final boolean a() {
+        byte b = this.a;
+        return true;
+    }
 
-    void dismiss();
+    @Override
+    public final void b(float f) {
+        byte b = this.a;
+    }
 
-    int e(int i);
+    @Override
+    public final void c(v21 v21Var) {
+        byte b = this.a;
+    }
 
-    boolean f();
+    @Override
+    public final boolean d() {
+        byte b = this.a;
+        return true;
+    }
 
-    void g(int i);
+    @Override
+    public final int e(int i) {
+        byte b = this.a;
+        e eVar = this.b;
+        switch (b) {
+            case 0:
+                if (eVar.isSupportEdgeToEdge()) {
+                    return hl.n;
+                }
+                return 0;
+            default:
+                return eVar.getBottomInset();
+        }
+    }
 
-    boolean h();
+    @Override
+    public final boolean f(int i) {
+        byte b = this.a;
+        return false;
+    }
 
-    u21 j();
+    @Override
+    public final void g(v21 v21Var) {
+        byte b = this.a;
+    }
 
-    void n(Runnable runnable);
+    @Override
+    public final int h(int i) {
+        byte b = this.a;
+        return 0;
+    }
 
-    void q();
+    private final void i(float f) {
+    }
 
-    boolean t();
+    private final void j(float f) {
+    }
 
-    boolean u(Dialog dialog);
+    private final void k(v21 v21Var) {
+    }
 
-    boolean z();
+    private final void l(v21 v21Var) {
+    }
+
+    private final void m(v21 v21Var) {
+    }
+
+    private final void n(v21 v21Var) {
+    }
 }

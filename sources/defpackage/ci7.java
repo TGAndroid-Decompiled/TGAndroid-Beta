@@ -1,292 +1,81 @@
 package defpackage;
+public final class ci7 {
+    public int a;
+    public String b;
+    public int c;
+    public int d;
+    public byte e;
+    public int f;
+    public int g;
 
-import j$.util.DesugarTimeZone;
-import java.io.BufferedWriter;
-import java.io.Closeable;
-import java.io.FilterOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.zip.GZIPOutputStream;
-public final class ci7 implements Closeable {
-    public final int a;
-    public final String b;
-    public final InputStream c;
-    public final long d;
-    public final ny1 e = new ny1(this, (byte) 1);
-    public final HashMap f = new HashMap();
-    public int h;
-    public boolean n;
-    public boolean r;
-    public boolean s;
-
-    public ci7(int i, String str, InputStream inputStream, long j) {
-        boolean z;
-        this.a = i;
-        this.b = str;
-        this.c = inputStream;
-        this.d = j;
-        if (j < 0) {
-            z = true;
-        } else {
-            z = false;
+    public final boolean a(int i) {
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        if ((i & (-2097152)) != -2097152 || (i2 = (i >>> 19) & 3) == 1 || (i3 = (i >>> 17) & 3) == 0 || (i4 = (i >>> 12) & 15) == 0 || i4 == 15 || (i5 = (i >>> 10) & 3) == 3) {
+            return false;
         }
-        this.n = z;
-        this.s = true;
-    }
-
-    public static void c(PrintWriter printWriter, String str, String str2) {
-        printWriter.append((CharSequence) str).append(": ").append((CharSequence) str2).append("\r\n");
-    }
-
-    public final String a(String str) {
-        return (String) this.f.get(str.toLowerCase());
-    }
-
-    public final boolean b() {
-        return "close".equals(a("connection"));
-    }
-
-    @Override
-    public final void close() {
-        InputStream inputStream = this.c;
-        if (inputStream != null) {
-            inputStream.close();
+        this.a = i2;
+        this.b = nfd.a[3 - i3];
+        int i8 = nfd.b[i5];
+        this.d = i8;
+        byte b = 2;
+        if (i2 == 2) {
+            i8 /= 2;
+            this.d = i8;
+        } else if (i2 == 0) {
+            i8 /= 4;
+            this.d = i8;
         }
-    }
-
-    public final void d(OutputStream outputStream) {
-        int i;
-        long j;
-        String str;
-        String str2 = this.b;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss 'GMT'", Locale.US);
-        simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("GMT"));
-        int i2 = this.a;
-        try {
-            if (i2 != 0) {
-                String str3 = new yh7(str2).b;
-                if (str3 == null) {
-                    str3 = "US-ASCII";
-                }
-                PrintWriter printWriter = new PrintWriter((Writer) new BufferedWriter(new OutputStreamWriter(outputStream, str3)), false);
-                PrintWriter append = printWriter.append((CharSequence) "HTTP/1.1 ");
-                StringBuilder sb = new StringBuilder("");
-                switch (i2) {
-                    case 1:
-                        i = 101;
-                        break;
-                    case 2:
-                        i = 200;
-                        break;
-                    case 3:
-                        i = 201;
-                        break;
-                    case 4:
-                        i = 202;
-                        break;
-                    case 5:
-                        i = 204;
-                        break;
-                    case 6:
-                        i = 206;
-                        break;
-                    case 7:
-                        i = 207;
-                        break;
-                    case 8:
-                        i = 301;
-                        break;
-                    case 9:
-                        i = 302;
-                        break;
-                    case 10:
-                        i = 303;
-                        break;
-                    case 11:
-                        i = 304;
-                        break;
-                    case 12:
-                        i = 307;
-                        break;
-                    case 13:
-                        i = 400;
-                        break;
-                    case 14:
-                        i = 401;
-                        break;
-                    case 15:
-                        i = 403;
-                        break;
-                    case 16:
-                        i = 404;
-                        break;
-                    case 17:
-                        i = 405;
-                        break;
-                    case 18:
-                        i = 406;
-                        break;
-                    case 19:
-                        i = 408;
-                        break;
-                    case 20:
-                        i = 409;
-                        break;
-                    case 21:
-                        i = 410;
-                        break;
-                    case 22:
-                        i = 411;
-                        break;
-                    case 23:
-                        i = 412;
-                        break;
-                    case 24:
-                        i = 413;
-                        break;
-                    case 25:
-                        i = 415;
-                        break;
-                    case 26:
-                        i = 416;
-                        break;
-                    case 27:
-                        i = 417;
-                        break;
-                    case 28:
-                        i = 429;
-                        break;
-                    case 29:
-                        i = 500;
-                        break;
-                    case 30:
-                        i = 501;
-                        break;
-                    case 31:
-                        i = 503;
-                        break;
-                    case 32:
-                        i = 505;
-                        break;
-                    default:
-                        throw null;
-                }
-                sb.append(i);
-                sb.append(" ");
-                sb.append(ls6.b(i2));
-                append.append((CharSequence) sb.toString()).append((CharSequence) " \r\n");
-                if (str2 != null) {
-                    c(printWriter, "Content-Type", str2);
-                }
-                if (a("date") == null) {
-                    c(printWriter, "Date", simpleDateFormat.format(new Date()));
-                }
-                for (Map.Entry entry : this.e.entrySet()) {
-                    c(printWriter, (String) entry.getKey(), (String) entry.getValue());
-                }
-                if (a("connection") == null) {
-                    if (this.s) {
-                        str = "keep-alive";
-                    } else {
-                        str = "close";
-                    }
-                    c(printWriter, "Connection", str);
-                }
-                if (a("content-length") != null) {
-                    this.r = false;
-                }
-                if (this.r) {
-                    c(printWriter, "Content-Encoding", "gzip");
-                    this.n = true;
-                }
-                InputStream inputStream = this.c;
-                if (inputStream != null) {
-                    j = this.d;
+        int i9 = (i >>> 9) & 1;
+        int i10 = 1152;
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 == 3) {
+                    i10 = 384;
                 } else {
-                    j = 0;
+                    iy8.d();
+                    return false;
                 }
-                if (this.h != 5 && this.n) {
-                    c(printWriter, "Transfer-Encoding", "chunked");
-                } else if (!this.r) {
-                    j = f(printWriter, j);
-                }
-                printWriter.append((CharSequence) "\r\n");
-                printWriter.flush();
-                if (this.h != 5 && this.n) {
-                    ?? filterOutputStream = new FilterOutputStream(outputStream);
-                    if (this.r) {
-                        GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(filterOutputStream);
-                        e(gZIPOutputStream, -1L);
-                        gZIPOutputStream.finish();
-                    } else {
-                        e(filterOutputStream, -1L);
-                    }
-                    filterOutputStream.a();
-                } else if (this.r) {
-                    GZIPOutputStream gZIPOutputStream2 = new GZIPOutputStream(outputStream);
-                    e(gZIPOutputStream2, -1L);
-                    gZIPOutputStream2.finish();
-                } else {
-                    e(outputStream, j);
-                }
-                outputStream.flush();
-                ei7.c(inputStream);
-                return;
             }
-            throw new Error("sendResponse(): Status can't be null.");
-        } catch (IOException e) {
-            ei7.d.log(Level.SEVERE, "Could not send response to the client", (Throwable) e);
+        } else if (i2 != 3) {
+            i10 = 576;
         }
-    }
-
-    public final void e(OutputStream outputStream, long j) {
-        boolean z;
-        byte[] bArr = new byte[16384];
-        if (j == -1) {
-            z = true;
-        } else {
-            z = false;
-        }
-        while (true) {
-            if (j > 0 || z) {
-                long j2 = 16384;
-                if (!z) {
-                    j2 = Math.min(j, 16384L);
-                }
-                int read = this.c.read(bArr, 0, (int) j2);
-                if (read <= 0) {
-                    return;
-                }
-                outputStream.write(bArr, 0, read);
-                if (!z) {
-                    j -= read;
-                }
+        this.g = i10;
+        if (i3 == 3) {
+            if (i2 == 3) {
+                i7 = nfd.c[i4 - 1];
             } else {
-                return;
+                i7 = nfd.d[i4 - 1];
+            }
+            this.f = i7;
+            this.c = qu6.y(i7, 12, i8, i9) << 2;
+        } else {
+            int i11 = 144;
+            if (i2 == 3) {
+                if (i3 == 2) {
+                    i6 = nfd.e[i4 - 1];
+                } else {
+                    i6 = nfd.f[i4 - 1];
+                }
+                this.f = i6;
+                this.c = qu6.y(i6, 144, i8, i9);
+            } else {
+                int i12 = nfd.g[i4 - 1];
+                this.f = i12;
+                if (i3 == 1) {
+                    i11 = 72;
+                }
+                this.c = qu6.y(i11, i12, i8, i9);
             }
         }
-    }
-
-    public final long f(PrintWriter printWriter, long j) {
-        String a = a("content-length");
-        if (a != null) {
-            try {
-                j = Long.parseLong(a);
-            } catch (NumberFormatException unused) {
-                ei7.d.severe("content-length was no number ".concat(a));
-            }
+        if (((i >> 6) & 3) == 3) {
+            b = 1;
         }
-        printWriter.print("Content-Length: " + j + "\r\n");
-        return j;
+        this.e = b;
+        return true;
     }
 }

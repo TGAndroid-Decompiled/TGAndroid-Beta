@@ -1,102 +1,152 @@
 package defpackage;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.HashSet;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.o;
-public final class kv extends View implements tjb {
-    public final byte a = 0;
-    public Object b;
-    public Drawable c;
+public final class kv extends View implements zlb, ew {
+    public final xi5 a;
+    public final ex b;
+    public cw c;
+    public final int d;
+    public int e;
+    public TL_iv.pageBlockRelatedArticles f;
 
-    public kv(Activity activity, vg5 vg5Var) {
+    public kv(Activity activity, xi5 xi5Var, ex exVar) {
         super(activity);
-        this.b = vg5Var;
-        fm2 fm2Var = new fm2(new ColorDrawable(bkb.w0(null, bkb.Gl, false)), bkb.V0(activity, 2131231233, -16777216));
-        this.c = fm2Var;
-        fm2Var.x = true;
-        setBackgroundDrawable(fm2Var);
-        setImportantForAccessibility(2);
+        this.d = hl.L(18.0f);
+        this.a = xi5Var;
+        this.b = exVar;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        switch (this.a) {
-            case 0:
-                hashSet.add(Integer.valueOf(bkb.Gl));
-                return;
-            default:
-                return;
+    public int getBoundLeft() {
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
+        }
+        int i = cwVar.s;
+        return ik8.h(this.a, 18.0f, cwVar.k() + i);
+    }
+
+    @Override
+    public int getBoundRight() {
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
+        }
+        int i = cwVar.s;
+        return ik8.C(this.a, 18.0f, cwVar.l() + i);
+    }
+
+    @Override
+    public int getLastLineBoundRight() {
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
+        }
+        int i = cwVar.s;
+        return ik8.C(this.a, 18.0f, cwVar.m() + i);
+    }
+
+    public int getMinWidth() {
+        return ik8.a(this);
+    }
+
+    @Override
+    public final void k(ArrayList arrayList) {
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            arrayList.add(cwVar);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.i(this);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.f(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.a) {
-            case 1:
-                float measuredWidth = getMeasuredWidth() / 2.0f;
-                float measuredHeight = getMeasuredHeight() / 2.0f;
-                canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, (Paint) this.b);
-                nh8.d().f(-gl.L(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - gl.L(2.0f), nh8.d().e());
-                float L = gl.L(18.0f) / 2.0f;
-                Drawable drawable = this.c;
-                drawable.setBounds((int) (measuredWidth - L), (int) (measuredHeight - L), (int) (measuredWidth + L), (int) (measuredHeight + L));
-                drawable.draw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+        if (this.f != null && this.c != null) {
+            canvas.save();
+            canvas.translate(this.d, this.e);
+            o.s(this.a, canvas, this, 0);
+            this.c.d(canvas, this);
+            canvas.restore();
         }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setEnabled(true);
+        accessibilityNodeInfo.setClickable(false);
+        accessibilityNodeInfo.setLongClickable(false);
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return;
+        }
+        accessibilityNodeInfo.setText(o.f(2131754852, o.g(this.a, this.b, cwVar)));
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 0:
-                setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(12.0f));
-                int i3 = bkb.Gl;
-                ((o) ((vg5) this.b)).getClass();
-                bkb.z1((fm2) this.c, bkb.u0(i3), false);
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
+        kv kvVar;
+        int size = View.MeasureSpec.getSize(i);
+        TL_iv.pageBlockRelatedArticles pageblockrelatedarticles = this.f;
+        if (pageblockrelatedarticles != null) {
+            TL_iv.pageBlockRelatedArticles pageblockrelatedarticles2 = this.f;
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            ex exVar = this.b;
+            kvVar = this;
+            cw n = o.n(this.a, kvVar, null, pageblockrelatedarticles.title, size - hl.L(52.0f), 0, pageblockrelatedarticles2, alignment, 1, exVar);
+            kvVar.c = n;
+            if (n != null) {
+                kvVar.e = ((hl.L(32.0f) - kvVar.c.d.getHeight()) / 2) + hl.L(6.0f);
+            }
+        } else {
+            kvVar = this;
         }
+        if (kvVar.c != null) {
+            kvVar.setMeasuredDimension(size, hl.L(38.0f));
+            cw cwVar = kvVar.c;
+            cwVar.s = kvVar.d;
+            cwVar.w = kvVar.e;
+            return;
+        }
+        kvVar.setMeasuredDimension(size, 1);
     }
 
     @Override
-    public final void updateColors() {
-        switch (this.a) {
-            case 0:
-                try {
-                    fm2 fm2Var = (fm2) this.c;
-                    if (fm2Var != null && ((vg5) this.b) != null) {
-                        bkb.z1(fm2Var, bkb.w0(null, bkb.Gl, false), false);
-                        invalidate();
-                        return;
-                    }
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
-                }
-            default:
-                ((Paint) this.b).setColor(bkb.w0(null, bkb.g5, false));
-                invalidate();
-                return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
+            return false;
         }
+        return true;
     }
 
-    private final void a(HashSet hashSet) {
-    }
-
-    public kv(Context context) {
-        super(context);
+    public void setBlock(TL_iv.pageBlockRelatedArticles pageblockrelatedarticles) {
+        this.f = pageblockrelatedarticles;
+        requestLayout();
     }
 }

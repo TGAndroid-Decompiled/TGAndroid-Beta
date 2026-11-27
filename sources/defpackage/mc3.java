@@ -1,63 +1,77 @@
 package defpackage;
+public final class mc3 {
+    public final String a;
+    public int b;
+    public long c;
+    public final vz6 d;
+    public boolean e;
+    public boolean f;
+    public final nc3 g;
 
-import android.util.SparseArray;
-import android.util.SparseBooleanArray;
-import java.util.HashMap;
-import java.util.Map;
-public final class mc3 extends ayb {
-    public final boolean J;
-    public final boolean K;
-    public final boolean L;
-    public final boolean M;
-    public final boolean N;
-    public final boolean O;
-    public final boolean P;
-    public final SparseArray Q;
-    public final SparseBooleanArray R;
-
-    public mc3(nc3 nc3Var) {
-        d(nc3Var);
-        this.J = nc3Var.w0;
-        this.K = nc3Var.x0;
-        this.L = nc3Var.y0;
-        this.M = nc3Var.z0;
-        this.N = nc3Var.A0;
-        this.O = nc3Var.B0;
-        this.P = nc3Var.C0;
-        SparseArray sparseArray = nc3Var.D0;
-        SparseArray sparseArray2 = new SparseArray();
-        for (int i = 0; i < sparseArray.size(); i++) {
-            sparseArray2.put(sparseArray.keyAt(i), new HashMap((Map) sparseArray.valueAt(i)));
+    public mc3(nc3 nc3Var, String str, int i, vz6 vz6Var) {
+        long j;
+        this.g = nc3Var;
+        this.a = str;
+        this.b = i;
+        if (vz6Var == null) {
+            j = -1;
+        } else {
+            j = vz6Var.d;
         }
-        this.Q = sparseArray2;
-        this.R = nc3Var.E0.clone();
+        this.c = j;
+        if (vz6Var != null && vz6Var.c()) {
+            this.d = vz6Var;
+        }
     }
 
-    @Override
-    public final void a(yxb yxbVar) {
-        this.H.put(yxbVar.a, yxbVar);
+    public final boolean a(uj ujVar) {
+        vz6 vz6Var = ujVar.d;
+        asb asbVar = ujVar.b;
+        if (vz6Var == null) {
+            if (this.b != ujVar.c) {
+                return true;
+            }
+            return false;
+        }
+        long j = this.c;
+        if (j != -1) {
+            if (vz6Var.d <= j) {
+                vz6 vz6Var2 = this.d;
+                if (vz6Var2 != null) {
+                    int i = vz6Var2.b;
+                    int b = asbVar.b(vz6Var.a);
+                    int b2 = asbVar.b(vz6Var2.a);
+                    if (vz6Var.d >= vz6Var2.d && b >= b2) {
+                        if (b <= b2) {
+                            if (vz6Var.c()) {
+                                int i2 = vz6Var.b;
+                                int i3 = vz6Var.c;
+                                if (i2 <= i) {
+                                    if (i2 == i && i3 > vz6Var2.c) {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                                return true;
+                            }
+                            int i4 = vz6Var.e;
+                            if (i4 == -1 || i4 > i) {
+                                return true;
+                            }
+                            return false;
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final byb b() {
-        return new nc3(this);
-    }
-
-    @Override
-    public final ayb c() {
-        super.c();
-        return this;
-    }
-
-    public mc3() {
-        this.Q = new SparseArray();
-        this.R = new SparseBooleanArray();
-        this.J = true;
-        this.K = true;
-        this.L = true;
-        this.M = true;
-        this.N = true;
-        this.O = true;
-        this.P = true;
+    public final boolean b(defpackage.asb r7, defpackage.asb r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mc3.b(asb, asb):boolean");
     }
 }

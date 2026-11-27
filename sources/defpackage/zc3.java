@@ -1,8 +1,20 @@
 package defpackage;
-public interface zc3 extends bt5 {
-    Object await(fw2 fw2Var);
+public final class zc3 extends zo {
+    public final byte c;
 
-    Object getCompleted();
+    @Override
+    public final int h(int i, int i2) {
+        switch (this.c) {
+            case 1:
+                return i % i2;
+            default:
+                return super.h(i, i2);
+        }
+    }
 
-    Throwable getCompletionExceptionOrNull();
+    @Override
+    public final int i(int i) {
+        byte b = this.c;
+        return 1;
+    }
 }

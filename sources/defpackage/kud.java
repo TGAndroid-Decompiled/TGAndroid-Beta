@@ -1,26 +1,17 @@
 package defpackage;
-public abstract class kud {
-    public static qw2 a(qw2 qw2Var, rw2 rw2Var) {
-        rw2Var.getClass();
-        if (rp5.a(qw2Var.getKey(), rw2Var)) {
-            return qw2Var;
-        }
-        return null;
+public final class kud implements zq7 {
+    public static final kud a = new Object();
+
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
     }
 
-    public static sw2 b(qw2 qw2Var, rw2 rw2Var) {
-        rw2Var.getClass();
-        if (rp5.a(qw2Var.getKey(), rw2Var)) {
-            return z14.a;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return qw2Var;
-    }
-
-    public static sw2 c(qw2 qw2Var, sw2 sw2Var) {
-        sw2Var.getClass();
-        if (sw2Var == z14.a) {
-            return qw2Var;
-        }
-        return (sw2) sw2Var.fold(qw2Var, new dm2((byte) 1));
+        throw new ClassCastException();
     }
 }

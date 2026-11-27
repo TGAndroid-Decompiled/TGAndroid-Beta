@@ -1,13 +1,18 @@
 package defpackage;
+public final class zj7 {
+    public final int a;
+    public final boolean b;
+    public final int c;
+    public final int d;
+    public final int[] e;
+    public final int f;
 
-import android.content.AsyncQueryHandler;
-import android.os.Message;
-public final class zj7 extends AsyncQueryHandler {
-    @Override
-    public final void handleMessage(Message message) {
-        try {
-            super.handleMessage(message);
-        } catch (Throwable unused) {
-        }
+    public zj7(int i, int i2, int i3, int i4, boolean z, int[] iArr) {
+        this.a = i;
+        this.b = z;
+        this.c = i2;
+        this.d = i3;
+        this.e = iArr;
+        this.f = i4;
     }
 }

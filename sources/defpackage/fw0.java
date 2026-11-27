@@ -1,58 +1,54 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.a;
-public final class fw0 extends r12 {
-    public final byte d0;
-    public final Object e0;
+import org.telegram.messenger.voip.OpusDred;
+import org.telegram.messenger.voip.VoIPGroupNotification;
+import org.telegram.messenger.voip.VoIPPreNotificationService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class fw0 implements RequestDelegate {
+    public final byte a;
+    public final int b;
 
-    public fw0(byte b, Context context, Object obj) {
-        super(context);
-        this.d0 = b;
-        this.e0 = obj;
+    public fw0(int i, byte b) {
+        this.a = b;
+        this.b = i;
     }
 
     @Override
-    public final void onMeasure(int r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.fw0.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void requestLayout() {
-        switch (this.d0) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        int i = this.b;
+        switch (b) {
             case 0:
-                if (!((ow0) this.e0).H) {
-                    super.requestLayout();
+                hl.c3(new gw0(i, (byte) 0));
+                return;
+            case 1:
+                String str = LaunchActivity.C1;
+                hl.c3(new b16(tLObject, i, (byte) 1));
+                return;
+            case 2:
+                String str2 = LaunchActivity.C1;
+                hl.c3(new b16(tLObject, i, (byte) 0));
+                return;
+            case 3:
+                OpusDred.lambda$download$8(i, tLObject, tL_error);
+                return;
+            case 4:
+                hl.c3(new b16(i, tLObject));
+                return;
+            case 5:
+                VoIPGroupNotification.a(i, tLObject, tL_error);
+                return;
+            case 6:
+                if (tLObject instanceof TLRPC.TL_updates) {
+                    uc7.s1(i).Y3((TLRPC.TL_updates) tLObject, false);
                     return;
                 }
                 return;
             default:
-                super.requestLayout();
-                return;
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        switch (this.d0) {
-            case 0:
-                super.setTranslationY(f);
-                ow0 ow0Var = (ow0) this.e0;
-                yp0 yp0Var = ow0Var.o0;
-                if (yp0Var != null) {
-                    yp0Var.setTranslationY(gl.L(24.0f) + f);
-                }
-                FrameLayout frameLayout = ow0Var.r0;
-                if (frameLayout != null) {
-                    int currentActionBarHeight = a.getCurrentActionBarHeight() - gl.L(24.0f);
-                    int L = gl.L(70.0f) + ow0Var.n.top;
-                    frameLayout.setTranslationY(ow0Var.x.getTranslationY() + gl.U1(ow0Var.h0, currentActionBarHeight, L));
-                    return;
-                }
-                return;
-            default:
-                super.setTranslationY(f);
+                VoIPPreNotificationService.lambda$decline$4(i, tLObject, tL_error);
                 return;
         }
     }

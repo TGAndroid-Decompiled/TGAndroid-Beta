@@ -1,32 +1,30 @@
 package defpackage;
-public final class xod implements pqd {
-    public pqd[] a;
+public final class xod extends v9c {
+    public static final Object c = new Object();
+    public Object b;
+
+    public xod(Object obj) {
+        super((byte) 10);
+        this.b = obj;
+    }
 
     @Override
-    public final boolean zza(Class cls) {
-        for (pqd pqdVar : this.a) {
-            if (pqdVar.zza(cls)) {
-                return true;
-            }
+    public final boolean hasNext() {
+        if (this.b != c) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public final fud zzb(Class cls) {
-        pqd[] pqdVarArr;
-        String str;
-        for (pqd pqdVar : this.a) {
-            if (pqdVar.zza(cls)) {
-                return pqdVar.zzb(cls);
-            }
+    public final Object next() {
+        Object obj = this.b;
+        Object obj2 = c;
+        if (obj != obj2) {
+            this.b = obj2;
+            return obj;
         }
-        String name = cls.getName();
-        if (name.length() != 0) {
-            str = "No factory is available for message type: ".concat(name);
-        } else {
-            str = new String("No factory is available for message type: ");
-        }
-        throw new UnsupportedOperationException(str);
+        lq5.n();
+        return null;
     }
 }

@@ -1,123 +1,288 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.SystemClock;
-import android.view.Choreographer;
-import java.util.ArrayList;
-public final class mn implements Choreographer.FrameCallback {
-    public final byte a;
-    public final Object b;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.AttributeSet;
+import org.xmlpull.v1.XmlPullParser;
+public final class mn extends rp2 implements Animatable {
+    public final Context d;
+    public final jn e = new jn(this, (byte) 0);
+    public final kn c = new Drawable.ConstantState();
 
-    public mn(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public mn(Context context) {
+        this.d = context;
     }
 
     @Override
-    public final void doFrame(long j) {
-        boolean z;
-        float f;
-        float min;
-        boolean z2;
-        switch (this.a) {
-            case 0:
-                nn nnVar = (nn) ((qx4) ((mv6) this.b).b).a;
-                long uptimeMillis = SystemClock.uptimeMillis();
-                ArrayList arrayList = nnVar.b;
-                long uptimeMillis2 = SystemClock.uptimeMillis();
-                for (int i = 0; i < arrayList.size(); i++) {
-                    yla ylaVar = (yla) arrayList.get(i);
-                    if (ylaVar != null) {
-                        aia aiaVar = nnVar.a;
-                        Long l = (Long) aiaVar.get(ylaVar);
-                        if (l != null) {
-                            if (l.longValue() < uptimeMillis2) {
-                                aiaVar.remove(ylaVar);
-                            }
-                        }
-                        long j2 = ylaVar.i;
-                        if (j2 == 0) {
-                            ylaVar.i = uptimeMillis;
-                            ylaVar.g(ylaVar.b);
-                        } else {
-                            long j3 = uptimeMillis - j2;
-                            ylaVar.i = uptimeMillis;
-                            int i2 = (ylaVar.n > Float.MAX_VALUE ? 1 : (ylaVar.n == Float.MAX_VALUE ? 0 : -1));
-                            zla zlaVar = ylaVar.m;
-                            if (i2 != 0) {
-                                double d = zlaVar.i;
-                                z = true;
-                                long j4 = j3 / 2;
-                                r1 c = zlaVar.c(ylaVar.b, ylaVar.a, j4);
-                                zla zlaVar2 = ylaVar.m;
-                                zlaVar2.i = ylaVar.n;
-                                ylaVar.n = Float.MAX_VALUE;
-                                r1 c2 = zlaVar2.c(c.a, c.b, j4);
-                                f = c2.a;
-                                ylaVar.b = f;
-                                ylaVar.a = c2.b;
-                            } else {
-                                z = true;
-                                r1 c3 = zlaVar.c(ylaVar.b, ylaVar.a, j3);
-                                f = c3.a;
-                                ylaVar.b = f;
-                                ylaVar.a = c3.b;
-                            }
-                            float max = Math.max(f, ylaVar.h);
-                            ylaVar.b = max;
-                            ylaVar.b = Math.min(max, ylaVar.g);
-                            float f2 = ylaVar.a;
-                            zla zlaVar3 = ylaVar.m;
-                            if (Math.abs(f2) < zlaVar3.e && Math.abs(min - ((float) zlaVar3.i)) < zlaVar3.d) {
-                                ylaVar.b = (float) ylaVar.m.i;
-                                ylaVar.a = 0.0f;
-                                z2 = z;
-                            } else {
-                                z2 = false;
-                            }
-                            float min2 = Math.min(ylaVar.b, ylaVar.g);
-                            ylaVar.b = min2;
-                            float max2 = Math.max(min2, ylaVar.h);
-                            ylaVar.b = max2;
-                            ylaVar.g(max2);
-                            if (z2) {
-                                ylaVar.e(false);
-                            }
-                        }
-                    }
-                }
-                if (nnVar.e) {
-                    for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (arrayList.get(size) == null) {
-                            arrayList.remove(size);
-                        }
-                    }
-                    nnVar.e = false;
-                }
-                if (arrayList.size() > 0) {
-                    mv6 mv6Var = nnVar.d;
-                    if (mv6Var == null) {
-                        mv6Var = new mv6(nnVar.c);
-                        nnVar.d = mv6Var;
-                    }
-                    ((Choreographer) mv6Var.c).postFrameCallback((mn) mv6Var.d);
-                    return;
-                }
-                return;
-            default:
-                gjb gjbVar = ((ijb) this.b).a;
-                if (gjbVar != null) {
-                    Handler handler = gjbVar.getHandler();
-                    if (handler != null && gjbVar.b.get()) {
-                        handler.sendMessage(handler.obtainMessage(0));
-                    }
-                    if (((ijb) this.b).a.T) {
-                        Choreographer.getInstance().postFrameCallback(this);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void applyTheme(Resources.Theme theme) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.applyTheme(theme);
         }
+    }
+
+    @Override
+    public final boolean canApplyTheme() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.canApplyTheme();
+        }
+        return false;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.draw(canvas);
+            return;
+        }
+        kn knVar = this.c;
+        knVar.a.draw(canvas);
+        if (knVar.b.isStarted()) {
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public final int getAlpha() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.getAlpha();
+        }
+        return this.c.a.getAlpha();
+    }
+
+    @Override
+    public final int getChangingConfigurations() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.getChangingConfigurations();
+        }
+        int changingConfigurations = super.getChangingConfigurations();
+        this.c.getClass();
+        return changingConfigurations;
+    }
+
+    @Override
+    public final ColorFilter getColorFilter() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.getColorFilter();
+        }
+        return this.c.a.getColorFilter();
+    }
+
+    @Override
+    public final Drawable.ConstantState getConstantState() {
+        if (((Drawable) this.b) != null && Build.VERSION.SDK_INT >= 24) {
+            return new ln(((Drawable) this.b).getConstantState());
+        }
+        return null;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
+        }
+        return this.c.a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
+        }
+        return this.c.a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.getOpacity();
+        }
+        return this.c.a.getOpacity();
+    }
+
+    @Override
+    public final void inflate(android.content.res.Resources r21, org.xmlpull.v1.XmlPullParser r22, android.util.AttributeSet r23, android.content.res.Resources.Theme r24) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mn.inflate(android.content.res.Resources, org.xmlpull.v1.XmlPullParser, android.util.AttributeSet, android.content.res.Resources$Theme):void");
+    }
+
+    @Override
+    public final boolean isAutoMirrored() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.isAutoMirrored();
+        }
+        return this.c.a.isAutoMirrored();
+    }
+
+    @Override
+    public final boolean isRunning() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return ((AnimatedVectorDrawable) drawable).isRunning();
+        }
+        return this.c.b.isRunning();
+    }
+
+    @Override
+    public final boolean isStateful() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.isStateful();
+        }
+        return this.c.a.isStateful();
+    }
+
+    @Override
+    public final Drawable mutate() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.mutate();
+        }
+        return this;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setBounds(rect);
+        } else {
+            this.c.a.setBounds(rect);
+        }
+    }
+
+    @Override
+    public final boolean onLevelChange(int i) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.setLevel(i);
+        }
+        return this.c.a.setLevel(i);
+    }
+
+    @Override
+    public final boolean onStateChange(int[] iArr) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.setState(iArr);
+        }
+        return this.c.a.setState(iArr);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setAlpha(i);
+        } else {
+            this.c.a.setAlpha(i);
+        }
+    }
+
+    @Override
+    public final void setAutoMirrored(boolean z) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setAutoMirrored(z);
+        } else {
+            this.c.a.setAutoMirrored(z);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        } else {
+            this.c.a.setColorFilter(colorFilter);
+        }
+    }
+
+    @Override
+    public final void setTint(int i) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setTint(i);
+        } else {
+            this.c.a.setTint(i);
+        }
+    }
+
+    @Override
+    public final void setTintList(ColorStateList colorStateList) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setTintList(colorStateList);
+        } else {
+            this.c.a.setTintList(colorStateList);
+        }
+    }
+
+    @Override
+    public final void setTintMode(PorterDuff.Mode mode) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            drawable.setTintMode(mode);
+        } else {
+            this.c.a.setTintMode(mode);
+        }
+    }
+
+    @Override
+    public final boolean setVisible(boolean z, boolean z2) {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            return drawable.setVisible(z, z2);
+        }
+        this.c.a.setVisible(z, z2);
+        return super.setVisible(z, z2);
+    }
+
+    @Override
+    public final void start() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            ((AnimatedVectorDrawable) drawable).start();
+            return;
+        }
+        kn knVar = this.c;
+        if (knVar.b.isStarted()) {
+            return;
+        }
+        knVar.b.start();
+        invalidateSelf();
+    }
+
+    @Override
+    public final void stop() {
+        Drawable drawable = (Drawable) this.b;
+        if (drawable != null) {
+            ((AnimatedVectorDrawable) drawable).stop();
+        } else {
+            this.c.b.end();
+        }
+    }
+
+    @Override
+    public final void inflate(Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet) {
+        inflate(resources, xmlPullParser, attributeSet, null);
     }
 }

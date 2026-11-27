@@ -1,17 +1,16 @@
 package defpackage;
-public final class xge implements zn7 {
-    public static final xge a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+import android.os.IBinder;
+import android.os.IInterface;
+public final class xge implements IInterface {
+    public final IBinder a;
+
+    public xge(IBinder iBinder) {
+        this.a = iBinder;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

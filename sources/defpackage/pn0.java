@@ -1,13 +1,13 @@
 package defpackage;
 
 import android.content.Context;
-public class pn0 extends gf0 {
+public class pn0 extends if0 {
     public static final int w = 0;
     public byte s;
 
-    public pn0(Context context, wjb wjbVar) {
-        super(context, wjbVar);
-        this.d.setTypeface(gl.o());
+    public pn0(Context context, vnb vnbVar) {
+        super(context, vnbVar);
+        this.d.setTypeface(hl.o());
     }
 
     @Override
@@ -25,13 +25,13 @@ public class pn0 extends gf0 {
         float f3;
         float f4;
         int i4 = 3;
-        if (k96.a0) {
+        if (ob6.a0) {
             i = 5;
         } else {
             i = 3;
         }
-        this.c.setLayoutParams(nme.d(40, 40.0f, i | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z = k96.a0;
+        this.c.setLayoutParams(tre.d(40, 40.0f, i | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        boolean z = ob6.a0;
         if (z) {
             i2 = 5;
         } else {
@@ -48,8 +48,8 @@ public class pn0 extends gf0 {
         } else {
             f2 = 20.0f;
         }
-        this.d.setLayoutParams(nme.d(-1, -2.0f, i5, f, 0.0f, f2, 0.0f));
-        boolean z2 = k96.a0;
+        this.d.setLayoutParams(tre.d(-1, -2.0f, i5, f, 0.0f, f2, 0.0f));
+        boolean z2 = ob6.a0;
         if (z2) {
             i3 = 5;
         } else {
@@ -66,11 +66,11 @@ public class pn0 extends gf0 {
         } else {
             f4 = 20.0f;
         }
-        this.e.setLayoutParams(nme.d(-1, -2.0f, i6, f3, 0.0f, f4, 0.0f));
-        if (k96.a0) {
+        this.e.setLayoutParams(tre.d(-1, -2.0f, i6, f3, 0.0f, f4, 0.0f));
+        if (ob6.a0) {
             i4 = 5;
         }
-        this.f.setLayoutParams(nme.d(22, 22.0f, i4 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f.setLayoutParams(tre.d(22, 22.0f, i4 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {

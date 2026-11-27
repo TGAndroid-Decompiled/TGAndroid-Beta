@@ -1,17 +1,24 @@
 package defpackage;
-public final class bzd implements zn7 {
-    public static final bzd a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.wearable.ConnectionConfiguration;
+public final class bzd extends c4 {
+    public static final Parcelable.Creator<bzd> CREATOR = new hud((byte) 21);
+    public final int a;
+    public final ConnectionConfiguration b;
+
+    public bzd(int i, ConnectionConfiguration connectionConfiguration) {
+        this.a = i;
+        this.b = connectionConfiguration;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.k(parcel, 3, this.b, i);
+        bye.s(parcel, r);
     }
 }

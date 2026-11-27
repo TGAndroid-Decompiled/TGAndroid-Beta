@@ -1,193 +1,165 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.ui.Components.FragmentContextView;
-public class fj3 extends om implements tjb {
-    public FragmentContextView E;
-    public boolean F;
-    public boolean G;
-    public il0 s;
-    public final Path w;
-    public final RectF x;
-    public int y;
+import android.app.Activity;
+import android.graphics.Typeface;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.PhotoViewer;
+public final class fj3 implements yn5 {
+    public final uj3 a;
 
-    public fj3(Context context) {
-        super(context);
-        this.w = new Path();
-        this.x = new RectF();
-        this.y = 24;
-        setOrientation(1);
-        updateColors();
+    public fj3(uj3 uj3Var) {
+        this.a = uj3Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        boolean z;
-        int currentStyle;
-        FragmentContextView fragmentContextView;
-        Canvas canvas2 = canvas;
-        if (getMetadata().c.a != 0.0f) {
-            il0 il0Var = this.s;
-            if (il0Var != null) {
-                il0Var.draw(canvas2);
-            }
-            FragmentContextView fragmentContextView2 = this.E;
-            x46 x46Var = this.c;
-            View view = null;
-            if (fragmentContextView2 != null && ((currentStyle = fragmentContextView2.getCurrentStyle()) == 3 || currentStyle == 1)) {
-                int entriesCount = getEntriesCount();
-                for (int i = 0; i < entriesCount; i++) {
-                    u46 i2 = x46Var.i(i);
-                    float paddingTop = getPaddingTop() + i2.b().top;
-                    View view2 = ((nm) i2.a).a;
-                    float c = i2.c();
-                    if (c > 0.0f && (fragmentContextView = this.E) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
-                        ua1 capsuleBlobDrawable = this.E.getCapsuleBlobDrawable();
-                        int L = gl.L(1.0f) + ((int) capsuleBlobDrawable.d());
-                        int i3 = -L;
-                        capsuleBlobDrawable.setBounds(getPaddingLeft() - L, i3, (getMeasuredWidth() - getPaddingRight()) + L, gl.L(36.0f) + (L << 1) + i3);
-                        capsuleBlobDrawable.setAlpha((int) (c * 255.0f));
-                        canvas2.save();
-                        canvas2.translate(0.0f, paddingTop);
-                        capsuleBlobDrawable.draw(canvas2);
-                        canvas2.restore();
-                        view = view2;
+    public final void H(float f) {
+        v21 v21Var = this.a.k4;
+        if (v21Var != null) {
+            ((m21) v21Var.e).setProgress(f * 0.9f);
+        }
+    }
+
+    @Override
+    public final void O(boolean z, boolean z2) {
+        vnb vnbVar;
+        vnb vnbVar2;
+        int i;
+        uj3 uj3Var = this.a;
+        v21 v21Var = uj3Var.k4;
+        if (v21Var != null) {
+            v21Var.b();
+            uj3Var.k4 = null;
+        }
+        Activity parentActivity = uj3Var.getParentActivity();
+        vnbVar = ((e) uj3Var).resourceProvider;
+        ?? q11Var = new q11(parentActivity, vnbVar);
+        l21 l21Var = new l21(q11Var, parentActivity);
+        q11Var.b = l21Var;
+        l21Var.setWillNotDraw(false);
+        q11Var.addView(l21Var, tre.i(32.0f, 32.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        de0 de0Var = new de0(parentActivity);
+        q11Var.c = de0Var;
+        de0Var.setRoundRadius(hl.L(14.0f));
+        l21Var.addView(de0Var, tre.e(28, 28, 17));
+        in inVar = new in(parentActivity, false, false, false);
+        q11Var.d = inVar;
+        inVar.setTypeface(Typeface.SANS_SERIF);
+        inVar.setTextSize(hl.L(15.0f));
+        inVar.setPadding(0, hl.L(8.0f), 0, hl.L(8.0f));
+        q11Var.addView(inVar, tre.i(-2.0f, 18.0f, 8388627, 56.0f, 0.0f, 8.0f, 0.0f));
+        q11Var.setTextColor(q11Var.getThemedColor(aob.yj));
+        q11Var.setBackground(q11Var.getThemedColor(aob.wj));
+        if (z) {
+            de0Var.setImageBitmap(uj3Var.h4.r);
+        } else {
+            de0Var.setImageBitmap(PhotoViewer.q0().B4.n());
+        }
+        Activity parentActivity2 = uj3Var.getParentActivity();
+        vnbVar2 = ((e) uj3Var).resourceProvider;
+        t21 t21Var = new t21(vnbVar2, parentActivity2, true);
+        t21Var.e(ob6.M0(2131743215, null));
+        t21Var.b = new zg3(this, (byte) 6);
+        q11Var.setButton(t21Var);
+        q11Var.getButton().setVisibility(8);
+        if (z2) {
+            i = 2131742423;
+        } else {
+            i = 2131742425;
+        }
+        inVar.c(ob6.M0(i, null), true, true);
+        v21 b = d31.b0(uj3Var).b(q11Var, -1);
+        uj3Var.k4 = b;
+        b.s = false;
+        b.i(false);
+        v21 v21Var2 = uj3Var.k4;
+        v21Var2.t = true;
+        v21Var2.j();
+    }
+
+    @Override
+    public final void U(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, final String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, final boolean z, final TLRPC.VideoSize videoSize) {
+        hl.c3(new Runnable() {
+            @Override
+            public final void run() {
+                a aVar;
+                fj3 fj3Var = fj3.this;
+                uj3 uj3Var = fj3Var.a;
+                TLRPC.InputFile inputFile3 = inputFile;
+                TLRPC.InputFile inputFile4 = inputFile2;
+                TLRPC.VideoSize videoSize2 = videoSize;
+                if (inputFile3 == null && inputFile4 == null && videoSize2 == null) {
+                    uj3Var.i4 = photoSize2.location;
+                    uj3Var.j4 = photoSize.location;
+                } else if (uj3Var.i4 == null) {
+                    return;
+                } else {
+                    TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+                    if (inputFile3 != null) {
+                        tL_photos_uploadProfilePhoto.file = inputFile3;
+                        tL_photos_uploadProfilePhoto.flags |= 1;
                     }
+                    if (inputFile4 != null) {
+                        tL_photos_uploadProfilePhoto.video = inputFile4;
+                        int i = tL_photos_uploadProfilePhoto.flags;
+                        tL_photos_uploadProfilePhoto.video_start_ts = d;
+                        tL_photos_uploadProfilePhoto.flags = i | 6;
+                    }
+                    if (videoSize2 != null) {
+                        tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize2;
+                        tL_photos_uploadProfilePhoto.flags |= 16;
+                    }
+                    uj3Var.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new vi1(fj3Var, str, z, (byte) 2));
                 }
+                aVar = ((e) uj3Var).actionBar;
+                aVar.u().requestLayout();
             }
-            View view3 = view;
-            canvas2.save();
-            canvas2.clipPath(this.w);
-            int entriesCount2 = getEntriesCount();
-            int i4 = 0;
-            while (i4 < entriesCount2) {
-                u46 i5 = x46Var.i(i4);
-                float paddingTop2 = getPaddingTop() + i5.b().top;
-                View view4 = ((nm) i5.a).a;
-                float min = Math.min(1.0f, i5.c.a) * i5.c();
-                if (min > 0.0f && view3 != view4) {
-                    int alpha = bkb.j0.getAlpha();
-                    bkb.j0.setAlpha((int) (alpha * min));
-                    float f = 1.0f - min;
-                    canvas2.drawLine(getPaddingLeft() + (gl.L(16.0f) * f), paddingTop2, getWidth() - ((gl.L(16.0f) * f) + getPaddingRight()), paddingTop2, bkb.j0);
-                    bkb.j0.setAlpha(alpha);
-                }
-                i4++;
-                canvas2 = canvas;
-            }
-            if (view3 != null) {
-                z = true;
-            } else {
-                z = false;
-            }
-            this.F = z;
-            this.G = false;
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            if (view3 != null) {
-                this.G = true;
-                this.F = false;
-                super.dispatchDraw(canvas);
-            }
-        }
+        });
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        il0 il0Var;
-        if (!super.dispatchTouchEvent(motionEvent)) {
-            if (motionEvent.getAction() != 0 || (il0Var = this.s) == null || !il0Var.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return false;
-            }
-            return true;
-        }
+    public final boolean f() {
         return true;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        FragmentContextView fragmentContextView = this.E;
-        if (fragmentContextView != null && (fragmentContextView == view || fragmentContextView.getParent() == view)) {
-            if (this.F) {
-                return false;
-            }
-        } else if (this.G) {
-            return false;
+    public final fd8 getCloseIntoObject() {
+        uj3 uj3Var = this.a;
+        v21 v21Var = uj3Var.k4;
+        if (v21Var != null) {
+            m21 m21Var = (m21) v21Var.e;
+            fd8 fd8Var = new fd8();
+            int[] iArr = new int[2];
+            de0 de0Var = m21Var.c;
+            de0 de0Var2 = m21Var.c;
+            de0Var.getLocationInWindow(iArr);
+            fd8Var.b = iArr[0];
+            fd8Var.c = iArr[1];
+            fd8Var.d = uj3Var.fragmentView;
+            ImageReceiver imageReceiver = de0Var2.getImageReceiver();
+            fd8Var.a = imageReceiver;
+            fd8Var.e = imageReceiver.p();
+            fd8Var.i = 0;
+            fd8Var.h = fd8Var.a.X0;
+            fd8Var.k = de0Var2.getScaleX();
+            return fd8Var;
         }
-        return super.drawChild(canvas, view, j);
+        return null;
     }
 
     @Override
-    public final void f() {
-        k();
-        invalidate();
-    }
-
-    public final void k() {
-        float f = getMetadata().g.a;
-        float f2 = getMetadata().c.a;
-        RectF rectF = this.x;
-        rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f);
-        float min = Math.min(gl.L(this.y), Math.min(rectF.width(), rectF.height()) / 2.0f);
-        Path path = this.w;
-        path.rewind();
-        path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        il0 il0Var = this.s;
-        if (il0Var != null) {
-            il0Var.setAlpha((int) (f2 * 255.0f));
-            this.s.setBounds(gl.L(4.0f), gl.L(14.0f), getMeasuredWidth() - gl.L(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f)) - gl.L(14.0f));
-            this.s.r(Math.min(gl.L(this.y), f / 2.0f));
-        }
+    public final String getInitialSearchString() {
+        return null;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        k();
-    }
-
-    public void setBlurredBackground(il0 il0Var) {
-        this.s = il0Var;
-    }
-
-    public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
-        this.E = fragmentContextView;
-        fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
-    }
-
-    public void setDefaultRadiusDp(int i) {
-        this.y = i;
-    }
-
-    @Override
-    public final void updateColors() {
-        il0 il0Var = this.s;
-        if (il0Var != null) {
-            il0Var.updateColors();
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable)) {
-            FragmentContextView fragmentContextView = this.E;
-            if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
-                return false;
-            }
-            return true;
-        }
+    public final boolean x() {
         return true;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void T() {
     }
 }

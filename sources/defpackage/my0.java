@@ -1,8 +1,25 @@
 package defpackage;
-public interface my0 {
-    int a();
+public final class my0 {
+    public boolean a;
+    public int b;
+    public boolean c;
+    public boolean d;
+    public boolean e;
+    public int f;
+    public vnb g;
 
-    int b();
+    public my0(my0 my0Var) {
+        this.a = my0Var.a;
+        this.b = my0Var.b;
+        this.c = my0Var.c;
+        this.d = my0Var.d;
+        this.e = my0Var.e;
+        this.f = my0Var.f;
+        this.g = my0Var.g;
+    }
 
-    int c();
+    public my0() {
+        this.b = 1;
+        this.f = 1;
+    }
 }

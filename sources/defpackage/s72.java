@@ -1,145 +1,82 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.widget.ImageView;
-import java.util.HashSet;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class s72 extends gf0 implements tjb {
-    public int E;
-    public final ImageView s;
-    public r72 w;
-    public TLRPC.Chat x;
-    public boolean y;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class s72 implements l12 {
+    public final n12 a;
+    public final v72 b;
 
-    public s72(Context context, wjb wjbVar) {
-        super(context, wjbVar);
-        int i;
-        float f;
-        float f2;
-        float f3;
-        this.d.setTypeface(gl.o());
-        ImageView imageView = new ImageView(context);
-        this.s = imageView;
-        imageView.setFocusable(false);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int w0 = bkb.w0(null, bkb.Li, false);
-        this.E = w0;
-        imageView.setBackground(bkb.f0(w0, 1, -1));
-        imageView.setImageResource(2131232566);
-        zkb.s(imageView, bkb.l6, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setContentDescription(k96.M0(2131751586, null));
-        boolean z = k96.a0;
-        if (z) {
-            i = 3;
-        } else {
-            i = 5;
-        }
-        int i2 = i | 17;
-        if (z) {
-            f = 3.0f;
-        } else {
-            f = 0.0f;
-        }
-        if (z) {
-            f2 = 0.0f;
-        } else {
-            f2 = 3.0f;
-        }
-        addView(imageView, nme.d(48, 50.0f, i2, f, 0.0f, f2, 0.0f));
-        df0 df0Var = this.d;
-        if (k96.a0) {
-            f3 = 24.0f;
-        } else {
-            f3 = 0.0f;
-        }
-        df0Var.setPadding(gl.L(f3), 0, gl.L(k96.a0 ? 0.0f : 24.0f), 0);
+    public s72(v72 v72Var, n12 n12Var) {
+        this.b = v72Var;
+        this.a = n12Var;
     }
 
-    public final void f(TLRPC.Chat chat, int i, boolean z, int i2) {
-        String str;
-        int i3;
-        String M0;
-        String str2;
-        this.y = z;
-        this.x = chat;
-        pb0 pb0Var = this.b;
-        pb0Var.p(chat);
-        int L = gl.L(20.0f);
-        be0 be0Var = this.c;
-        be0Var.setRoundRadius(L);
-        be0Var.f(chat, pb0Var);
-        String str3 = chat.title;
-        df0 df0Var = this.d;
-        df0Var.k(vu3.m(str3, df0Var.getPaint().getFontMetricsInt(), false, null, 0));
-        boolean V = hc2.V(chat);
-        if (z) {
-            if (i2 >= 1) {
-                if (V) {
-                    str2 = "Subscribers";
-                } else {
-                    str2 = "Members";
+    @Override
+    public final boolean E0() {
+        return false;
+    }
+
+    @Override
+    public final void O0(vq0 vq0Var) {
+        jn7.f(this.b.n).d(vq0Var);
+    }
+
+    @Override
+    public final boolean o() {
+        return false;
+    }
+
+    @Override
+    public final void z0(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
+        pi9 pi9Var = this.b.r;
+        n12 n12Var = this.a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = n12Var.d2;
+        if (i == 7 || i == 8) {
+            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            mk0 mk0Var = pi9Var.j4;
+            pi9Var.j4 = null;
+            int i4 = 0;
+            while (true) {
+                if (i4 >= selectedPhotosOrder.size()) {
+                    break;
                 }
-                M0 = k96.G(i2, str2, new Object[0]);
-            } else {
-                if (V) {
-                    i3 = 2131751378;
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i4));
+                if (obj instanceof no6) {
+                    if (mk0Var != null) {
+                        pi9Var.Q1(mk0Var, (no6) obj);
+                    } else {
+                        pi9Var.b2((no6) obj);
+                    }
                 } else {
-                    i3 = 2131754876;
+                    i4++;
                 }
-                M0 = k96.M0(i3, null);
             }
-            setSubtitle(M0);
-        } else {
-            if (V) {
-                str = "BoostingChannelWillReceiveBoost";
-            } else {
-                str = "BoostingGroupWillReceiveBoost";
-            }
-            setSubtitle(k96.G(i, str, new Object[0]));
         }
-        zkb.W(this.e, bkb.q5, this.a);
-        setDivider(true);
-        ImageView imageView = this.s;
-        if (z) {
-            imageView.setVisibility(0);
-        } else {
-            imageView.setVisibility(4);
-        }
-        imageView.setOnClickListener(new kb1(this, chat, (byte) 12));
-    }
-
-    public TLRPC.Chat getChat() {
-        return this.x;
+        pi9Var.j4 = null;
+        n12Var.a(true);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.s.measure(View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
-    }
-
-    public void setChatDeleteListener(r72 r72Var) {
-        this.w = r72Var;
+    public final void R() {
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            int w0 = bkb.w0(null, bkb.Li, false);
-            ImageView imageView = this.s;
-            if (imageView != null && w0 != this.E) {
-                this.E = w0;
-                bkb.F1(imageView.getBackground(), w0, true);
-                imageView.invalidate();
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public final void V() {
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void e0(Object obj) {
+    }
+
+    @Override
+    public final void i0(TLRPC.User user) {
+    }
+
+    @Override
+    public final void f0(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
     }
 }

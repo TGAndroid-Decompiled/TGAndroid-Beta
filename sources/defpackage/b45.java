@@ -1,38 +1,46 @@
 package defpackage;
 
-import android.content.DialogInterface;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class b45 implements DialogInterface.OnDismissListener {
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class b45 implements Predicate {
     public final byte a;
-    public final h75 b;
+    public final TL_wallet.tonConnectSession b;
 
-    public b45(h75 h75Var, byte b) {
+    public b45(TL_wallet.tonConnectSession tonconnectsession, byte b) {
         this.a = b;
-        this.b = h75Var;
+        this.b = tonconnectsession;
+    }
+
+    public final Predicate and(Predicate predicate) {
+        byte b = this.a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public final Predicate negate() {
+        byte b = this.a;
+        return Predicate$CC.$default$negate(this);
+    }
+
+    public final Predicate or(Predicate predicate) {
+        byte b = this.a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        byte b = this.a;
-        h75 h75Var = this.b;
-        switch (b) {
+    public final boolean test(Object obj) {
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
+        switch (this.a) {
             case 0:
-                d S = LaunchActivity.S();
-                if (h75Var.r2 && (S instanceof mu1)) {
-                    ((mu1) S).Y9(true, true);
-                    return;
+                if (tonconnectsession.id == this.b.id) {
+                    return true;
                 }
-                return;
-            case 1:
-                h75Var.dismiss();
-                return;
-            case 2:
-                h75Var.y3 = null;
-                return;
+                return false;
             default:
-                h75Var.k2 = null;
-                return;
+                if (tonconnectsession.id == this.b.id) {
+                    return true;
+                }
+                return false;
         }
     }
 }

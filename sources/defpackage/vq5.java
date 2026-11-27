@@ -1,13 +1,57 @@
 package defpackage;
 
-import android.view.View;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class vq5 extends FrameLayout {
-    public TextView a;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.q;
+public final class vq5 extends zq5 {
+    public ImageReceiver a;
+    public float b;
+    public final q c;
+
+    public vq5(q qVar, Context context) {
+        super(context);
+        this.c = qVar;
+        setWillNotDraw(false);
+    }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(84.0f), 1073741824));
+    public final void dispatchDraw(Canvas canvas) {
+        q qVar = this.c;
+        FrameLayout frameLayout = qVar.y;
+        lo9 lo9Var = qVar.x;
+        uq5 uq5Var = qVar.E;
+        super.dispatchDraw(canvas);
+        if (this.a == null) {
+            return;
+        }
+        float f = this.b;
+        if (f < 1.0f) {
+            this.b = Math.min(1.0f, f + 0.064f);
+            invalidate();
+        }
+        canvas.save();
+        canvas.translate(uq5Var.getLeft() + frameLayout.getLeft() + lo9Var.getLeft(), uq5Var.getTop() + frameLayout.getTop() + lo9Var.getTop());
+        if (this.a.N0 != uq5Var.getWidth()) {
+            float width = uq5Var.getWidth() / this.a.N0;
+            canvas.scale(width, width);
+        }
+        ImageReceiver imageReceiver = this.a;
+        canvas.translate(-imageReceiver.L0, -imageReceiver.M0);
+        float alpha = this.a.getAlpha();
+        this.a.setAlpha(this.b);
+        this.a.h(canvas, null);
+        this.a.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    @Override
+    public final void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.a == null) {
+            this.b = 0.0f;
+        }
+        this.a = imageReceiver;
+        invalidate();
     }
 }

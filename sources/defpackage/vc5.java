@@ -1,53 +1,172 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class vc5 extends FrameLayout {
-    public final int a;
-    public final wjb b;
-    public ArrayList c;
-    public final FrameLayout d;
-    public final q5c e;
-    public final l5c f;
-    public p8c h;
+import org.telegram.ui.ActionBar.e;
+public final class vc5 extends c79 {
+    public final Context c;
+    public int d;
+    public final ArrayList e = new ArrayList();
+    public final xc5 f;
 
-    public vc5(int i, wjb wjbVar, Activity activity) {
-        super(activity);
-        this.a = i;
-        this.b = wjbVar;
-        q5c q5cVar = new q5c(activity, i, 0, false, new ur4(this, (byte) 10), new uc5(this), new uc5(this), wjbVar);
-        this.e = q5cVar;
-        q5cVar.setClipToPadding(false);
-        l5c l5cVar = (l5c) q5cVar.getAdapter();
-        this.f = l5cVar;
-        l5cVar.r = false;
-        addView(q5cVar, -1, -1);
-        FrameLayout frameLayout = new FrameLayout(activity);
-        this.d = frameLayout;
-        ImageView imageView = new ImageView(activity);
-        int i2 = bkb.l6;
-        zkb.s(imageView, i2, wjbVar, PorterDuff.Mode.MULTIPLY);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131231611);
-        frameLayout.addView(imageView, nme.e(56, 56, 49));
-        TextView textView = new TextView(activity);
-        zkb.X(textView, i2, wjbVar);
-        textView.setText(k96.M0(2131749161, null));
-        textView.setGravity(17);
-        frameLayout.addView(textView, nme.d(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
-        addView(frameLayout, nme.e(210, -2, 17));
-        q5cVar.setEmptyView(frameLayout);
+    public vc5(xc5 xc5Var, Context context) {
+        this.f = xc5Var;
+        this.c = context;
     }
 
-    public void setOnHashtagClickListener(p8c p8cVar) {
-        this.h = p8cVar;
+    @Override
+    public final void A(f89 f89Var) {
+        if (f89Var.f == 2) {
+            ((bd5) f89Var.a).a.getImageReceiver().c();
+        }
     }
 
-    public void setOnScrollListener(i49 i49Var) {
-        this.e.j(i49Var);
+    @Override
+    public final boolean D(f89 f89Var) {
+        int i = f89Var.f;
+        if (i != 3 && i != 4) {
+            if (i != 6 || !this.f.R) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        return this.e.size();
+    }
+
+    @Override
+    public final int d(int i) {
+        return ((uc5) this.e.get(i)).a;
+    }
+
+    @Override
+    public final void f() {
+        ArrayList arrayList = this.e;
+        arrayList.clear();
+        arrayList.add(new ka(0, true));
+        xc5 xc5Var = this.f;
+        if (xc5Var.Q == 5) {
+            arrayList.add(new ka(6, true));
+            arrayList.add(new uc5(ob6.M0(2131750548, null)));
+        } else {
+            arrayList.add(new ka(4, true));
+            arrayList.add(new uc5(ob6.M0(2131749209, null)));
+        }
+        if (xc5Var.U != null) {
+            arrayList.add(new ka(1, true));
+            arrayList.add(new ka(3, true));
+            arrayList.add(new ka(0, true));
+        }
+        if (xc5Var.L.size() > 0) {
+            arrayList.add(new ka(1, true));
+            this.d = arrayList.size();
+            for (int i = 0; i < xc5Var.L.size(); i++) {
+                arrayList.add(new ka(2, true));
+            }
+            arrayList.add(new ka(7, true));
+        }
+        super.f();
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        String c0;
+        boolean z;
+        int i2 = f89Var.f;
+        View view = f89Var.a;
+        ArrayList arrayList = this.e;
+        boolean z2 = false;
+        xc5 xc5Var = this.f;
+        switch (i2) {
+            case 1:
+                mf5 mf5Var = (mf5) view;
+                if (xc5Var.U != null && i == 1) {
+                    mf5Var.setText(ob6.M0(2131753954, null));
+                    return;
+                } else {
+                    mf5Var.setText(ob6.G(xc5Var.L.size(), "Members", new Object[0]));
+                    return;
+                }
+            case 2:
+                bd5 bd5Var = (bd5) view;
+                bd5Var.d(xc5Var.getMessagesController().X1((Long) xc5Var.L.get(i - this.d)), null, null);
+                if (i != arrayList.size() - 1) {
+                    z2 = true;
+                }
+                bd5Var.setDrawDivider(z2);
+                return;
+            case 3:
+                ((qmb) view).b(xc5Var.U, false);
+                return;
+            case 4:
+                skb skbVar = (skb) view;
+                int i3 = xc5Var.X;
+                if (i3 == 0) {
+                    c0 = ob6.M0(2131747166, null);
+                } else {
+                    c0 = ob6.c0(i3);
+                }
+                String str = c0;
+                String M0 = ob6.M0(2131753843, null);
+                z = ((e) xc5Var).fragmentBeginToShow;
+                skbVar.u(M0, str, z, 2131232065, false);
+                return;
+            case 5:
+                ((ilb) view).setText(((uc5) arrayList.get(i)).c);
+                return;
+            case 6:
+                skb skbVar2 = (skb) view;
+                skbVar2.n(2131232412, ob6.M0(2131752247, null), true);
+                skbVar2.getCheckBox().setAlpha(0.75f);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        mf5 mf5Var;
+        Context context = this.c;
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    if (i != 4) {
+                        if (i != 5) {
+                            if (i != 6) {
+                                if (i != 7) {
+                                    mf5Var = new qmb(context);
+                                } else {
+                                    View view = new View(context);
+                                    view.setTag(-33024);
+                                    mf5Var = view;
+                                }
+                            } else {
+                                mf5Var = new skb(23, this.f.getResourceProvider(), context, false, true);
+                            }
+                        } else {
+                            mf5Var = new ilb(context);
+                        }
+                    } else {
+                        mf5Var = new skb(context);
+                    }
+                } else {
+                    mf5Var = new bd5(context, 0, 3, false);
+                }
+            } else {
+                mf5 mf5Var2 = new mf5(context);
+                mf5Var2.setHeight(46);
+                mf5Var = mf5Var2;
+            }
+        } else {
+            mf5Var = new rca(context, (uh9) null);
+        }
+        return new f89(mf5Var);
     }
 }

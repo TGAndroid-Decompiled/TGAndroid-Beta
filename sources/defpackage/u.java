@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.p;
 import org.telegram.ui.DataAutoDownloadActivity;
 import org.telegram.ui.ProfileActivity;
-public final class u implements c39 {
+public final class u implements r69 {
     public final byte a;
     public final Object b;
 
@@ -28,25 +28,25 @@ public final class u implements c39 {
     }
 
     @Override
-    public final void d(int i, View view) {
+    public final void e(int i, View view) {
         TLRPC.InputStickerSet tL_inputStickerSetShortName;
         TLRPC.StickerSet stickerSet;
         int i2;
-        hb0 hb0Var;
+        jb0 jb0Var;
         TLRPC.Chat chat;
         String M0;
         String a0;
-        cib cibVar;
-        px2 px2Var;
+        s8b s8bVar;
+        jy2 jy2Var;
         boolean[] zArr;
         a aVar;
         TLRPC.Document document;
         long longValue;
-        vl vlVar;
-        wjb resourceProvider;
+        wl wlVar;
+        vnb resourceProvider;
         TLRPC.StickerSet stickerSet2;
-        gd4 gd4Var;
-        u21 b0;
+        ef4 ef4Var;
+        d31 b0;
         int i3;
         byte b = this.a;
         int i4 = 2;
@@ -56,57 +56,57 @@ public final class u implements c39 {
         TLRPC.BotInlineResult botInlineResult = null;
         r11 = null;
         r11 = null;
-        mx2 O = null;
+        gy2 O = null;
         obj = null;
         int i6 = 0;
         Object obj2 = this.b;
         switch (b) {
             case 0:
-                ((a1) obj2).O2.G(i - 1);
+                ((b1) obj2).Q2.G(i - 1);
                 return;
             case 1:
-                ((e0) obj2).b2.G(i - 1);
+                ((f0) obj2).b2.G(i - 1);
                 return;
             case 2:
-                ((bc) obj2).G0(i);
+                ((cc) obj2).H0(i);
                 return;
             case 3:
-                cs csVar = (cs) obj2;
-                if (i >= 0 && i < csVar.h.size()) {
-                    byte b2 = ((as) csVar.h.get(i)).d;
+                ds dsVar = (ds) obj2;
+                if (i >= 0 && i < dsVar.h.size()) {
+                    byte b2 = ((bs) dsVar.h.get(i)).d;
                     if (b2 == 1) {
-                        TLRPC.GlobalPrivacySettings globalPrivacySettings = csVar.d;
+                        TLRPC.GlobalPrivacySettings globalPrivacySettings = dsVar.d;
                         boolean z = !globalPrivacySettings.keep_archived_unmuted;
                         globalPrivacySettings.keep_archived_unmuted = z;
-                        ((ahb) view).setChecked(z);
-                        csVar.c = true;
+                        ((wkb) view).setChecked(z);
+                        dsVar.c = true;
                         return;
                     } else if (b2 == 4) {
-                        TLRPC.GlobalPrivacySettings globalPrivacySettings2 = csVar.d;
+                        TLRPC.GlobalPrivacySettings globalPrivacySettings2 = dsVar.d;
                         boolean z2 = !globalPrivacySettings2.keep_archived_folders;
                         globalPrivacySettings2.keep_archived_folders = z2;
-                        ((ahb) view).setChecked(z2);
-                        csVar.c = true;
+                        ((wkb) view).setChecked(z2);
+                        dsVar.c = true;
                         return;
                     } else if (b2 == 7) {
-                        if (!csVar.getUserConfig().p() && !csVar.getMessagesController().k4.L0.f && !csVar.d.archive_and_mute_new_noncontact_peers) {
-                            e21 e21Var = new e21(csVar.getParentActivity(), csVar.getResourceProvider());
-                            e21Var.b.setText(gl.N2(k96.M0(2131743627, null), bkb.wj, 0, new b1(csVar, (byte) 18), null));
-                            e21Var.b.setSingleLine(false);
-                            e21Var.b.setPadding(0, gl.L(4.0f), 0, gl.L(4.0f));
-                            e21Var.a.setImageResource(2131232367);
-                            m21.g(csVar, e21Var, 3500).j();
-                            int i7 = -csVar.e;
-                            csVar.e = i7;
-                            gl.A3(i7, view, null);
-                            pw0.APP_ERROR.a();
+                        if (!dsVar.getUserConfig().p() && !dsVar.getMessagesController().k4.T0.f && !dsVar.d.archive_and_mute_new_noncontact_peers) {
+                            n21 n21Var = new n21(dsVar.getParentActivity(), dsVar.getResourceProvider());
+                            n21Var.b.setText(hl.N2(ob6.M0(2131743521, null), aob.xj, 0, new c1(dsVar, (byte) 18), null));
+                            n21Var.b.setSingleLine(false);
+                            n21Var.b.setPadding(0, hl.L(4.0f), 0, hl.L(4.0f));
+                            n21Var.a.setImageResource(2131232367);
+                            v21.g(dsVar, n21Var, 3500).j();
+                            int i7 = -dsVar.e;
+                            dsVar.e = i7;
+                            hl.A3(i7, view, null);
+                            yw0.APP_ERROR.a();
                             return;
                         }
-                        TLRPC.GlobalPrivacySettings globalPrivacySettings3 = csVar.d;
+                        TLRPC.GlobalPrivacySettings globalPrivacySettings3 = dsVar.d;
                         boolean z3 = !globalPrivacySettings3.archive_and_mute_new_noncontact_peers;
                         globalPrivacySettings3.archive_and_mute_new_noncontact_peers = z3;
-                        ((ahb) view).setChecked(z3);
-                        csVar.c = true;
+                        ((wkb) view).setChecked(z3);
+                        dsVar.c = true;
                         return;
                     } else {
                         return;
@@ -114,9 +114,9 @@ public final class u implements c39 {
                 }
                 return;
             case 4:
-                hs hsVar = (hs) obj2;
-                if (i >= hsVar.y && i < hsVar.E && hsVar.getParentActivity() != null) {
-                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) hsVar.h.get(i - hsVar.y);
+                is isVar = (is) obj2;
+                if (i >= isVar.y && i < isVar.E && isVar.getParentActivity() != null) {
+                    TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) isVar.h.get(i - isVar.y);
                     if (stickerSetCovered.set.id != 0) {
                         tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetID();
                         stickerSet = stickerSetCovered.set;
@@ -128,257 +128,257 @@ public final class u implements c39 {
                     }
                     TLRPC.InputStickerSet inputStickerSet = tL_inputStickerSetShortName;
                     inputStickerSet.access_hash = stickerSet.access_hash;
-                    u0b u0bVar = new u0b(hsVar.getParentActivity(), hsVar, inputStickerSet, null, null, null);
-                    u0bVar.W1 = new fs(hsVar, view, stickerSetCovered);
-                    hsVar.showDialog(u0bVar);
+                    s4b s4bVar = new s4b(isVar.getParentActivity(), isVar, inputStickerSet, null, null, null);
+                    s4bVar.W1 = new gs(isVar, view, stickerSetCovered);
+                    isVar.showDialog(s4bVar);
                     return;
                 }
                 return;
             case 5:
-                ((vl9) obj2).b0(i);
+                ((kp9) obj2).b0(i);
                 return;
             case 6:
-                ib0 ib0Var = (ib0) obj2;
-                jr jrVar = ib0Var.i3;
-                mb0 mb0Var = ib0Var.k3;
-                if (view instanceof jb0) {
-                    jb0 jb0Var = (jb0) view;
-                    if (!jb0Var.d) {
-                        hb0 hb0Var2 = jb0Var.a;
-                        ib0Var.h3 = hb0Var2.a;
-                        mb0Var.a.b(hb0Var2, false);
-                        if (jrVar != null) {
-                            jrVar.f();
+                kb0 kb0Var = (kb0) obj2;
+                kr krVar = kb0Var.i3;
+                ob0 ob0Var = kb0Var.k3;
+                if (view instanceof lb0) {
+                    lb0 lb0Var = (lb0) view;
+                    if (!lb0Var.d) {
+                        jb0 jb0Var2 = lb0Var.a;
+                        kb0Var.h3 = jb0Var2.a;
+                        ob0Var.a.b(jb0Var2, false);
+                        if (krVar != null) {
+                            krVar.f();
                         }
-                        mb0Var.r0();
+                        ob0Var.r0();
                         return;
                     }
                 }
-                if (ib0Var.h3 != 1 && (hb0Var = ib0Var.j3) != null) {
-                    ib0Var.h3 = 1;
-                    mb0Var.a.b(hb0Var, true);
-                    if (jrVar != null) {
-                        jrVar.f();
+                if (kb0Var.h3 != 1 && (jb0Var = kb0Var.j3) != null) {
+                    kb0Var.h3 = 1;
+                    ob0Var.a.b(jb0Var, true);
+                    if (krVar != null) {
+                        krVar.f();
                     }
-                    mb0Var.r0();
+                    ob0Var.r0();
                     return;
-                } else if (mb0Var.T == null) {
-                    if (!mb0Var.a.w) {
-                        mb0Var.k0(true, true, true);
+                } else if (ob0Var.T == null) {
+                    if (!ob0Var.a.w) {
+                        ob0Var.k0(true, true, true);
                     }
-                    hb0 hb0Var3 = mb0Var.a.h;
+                    jb0 jb0Var3 = ob0Var.a.h;
                     boolean[] zArr2 = {false};
-                    gl.U2(mb0Var.getParentActivity(), mb0Var.getClassGuid());
-                    ya0 ya0Var = new ya0(mb0Var, mb0Var.getParentActivity());
-                    mb0Var.T = ya0Var;
-                    ya0Var.K();
-                    mb0Var.T.L0 = false;
-                    mb0Var.h = true;
-                    mb0Var.e.setBackground(new BitmapDrawable(mb0Var.getParentActivity().getResources(), gl.h2(12.0f, 10, mb0Var.fragmentView)));
-                    mb0Var.h = false;
-                    mb0Var.e.setVisibility(0);
-                    mb0Var.e.setAlpha(0.0f);
-                    mb0Var.f = true;
-                    mb0Var.fragmentView.invalidate();
-                    mb0Var.e.animate().setListener(new za0(mb0Var, (byte) 0)).alpha(1.0f).setDuration(200L).start();
-                    mb0Var.Z = new Object();
-                    p pVar = new p(mb0Var.getParentActivity(), false, new xa0(mb0Var, (byte) 2));
-                    hb0 hb0Var4 = mb0Var.a.h;
-                    if (hb0Var4 != null) {
-                        hb0 hb0Var5 = mb0Var.Z;
-                        int i8 = hb0Var4.f;
-                        hb0Var5.f = i8;
+                    hl.U2(ob0Var.getParentActivity(), ob0Var.getClassGuid());
+                    ab0 ab0Var = new ab0(ob0Var, ob0Var.getParentActivity());
+                    ob0Var.T = ab0Var;
+                    ab0Var.J();
+                    ob0Var.T.L0 = false;
+                    ob0Var.h = true;
+                    ob0Var.e.setBackground(new BitmapDrawable(ob0Var.getParentActivity().getResources(), hl.h2(12.0f, 10, ob0Var.fragmentView)));
+                    ob0Var.h = false;
+                    ob0Var.e.setVisibility(0);
+                    ob0Var.e.setAlpha(0.0f);
+                    ob0Var.f = true;
+                    ob0Var.fragmentView.invalidate();
+                    ob0Var.e.animate().setListener(new bb0(ob0Var, (byte) 0)).alpha(1.0f).setDuration(200L).start();
+                    ob0Var.Z = new Object();
+                    p pVar = new p(ob0Var.getParentActivity(), false, new za0(ob0Var, (byte) 2));
+                    jb0 jb0Var4 = ob0Var.a.h;
+                    if (jb0Var4 != null) {
+                        jb0 jb0Var5 = ob0Var.Z;
+                        int i8 = jb0Var4.f;
+                        jb0Var5.f = i8;
                         i2 = 3;
                         pVar.e(i8, 3);
-                        hb0 hb0Var6 = mb0Var.Z;
-                        int i9 = mb0Var.a.h.e;
-                        hb0Var6.e = i9;
+                        jb0 jb0Var6 = ob0Var.Z;
+                        int i9 = ob0Var.a.h.e;
+                        jb0Var6.e = i9;
                         pVar.e(i9, 2);
-                        hb0 hb0Var7 = mb0Var.Z;
-                        int i10 = mb0Var.a.h.d;
-                        hb0Var7.d = i10;
+                        jb0 jb0Var7 = ob0Var.Z;
+                        int i10 = ob0Var.a.h.d;
+                        jb0Var7.d = i10;
                         pVar.e(i10, 1);
-                        hb0 hb0Var8 = mb0Var.Z;
-                        int i11 = mb0Var.a.h.c;
-                        hb0Var8.c = i11;
+                        jb0 jb0Var8 = ob0Var.Z;
+                        int i11 = ob0Var.a.h.c;
+                        jb0Var8.c = i11;
                         pVar.e(i11, 0);
                     } else {
                         i2 = 3;
                     }
-                    hb0 hb0Var9 = mb0Var.Z;
-                    if (hb0Var9.f != 0) {
+                    jb0 jb0Var9 = ob0Var.Z;
+                    if (jb0Var9.f != 0) {
                         i4 = 4;
-                    } else if (hb0Var9.e != 0) {
+                    } else if (jb0Var9.e != 0) {
                         i4 = i2;
-                    } else if (hb0Var9.d == 0) {
+                    } else if (jb0Var9.d == 0) {
                         i4 = 1;
                     }
                     pVar.f(-1, 4, i4, false);
-                    mb0Var.a.b(mb0Var.Z, true);
-                    mb0Var.r0();
-                    LinearLayout linearLayout = new LinearLayout(mb0Var.getParentActivity());
+                    ob0Var.a.b(ob0Var.Z, true);
+                    ob0Var.r0();
+                    LinearLayout linearLayout = new LinearLayout(ob0Var.getParentActivity());
                     linearLayout.setOrientation(1);
-                    linearLayout.setPadding(0, gl.L(8.0f), 0, 0);
+                    linearLayout.setPadding(0, hl.L(8.0f), 0, 0);
                     linearLayout.addView(pVar);
-                    FrameLayout frameLayout = new FrameLayout(mb0Var.getParentActivity());
-                    frameLayout.setBackground(sjb.f(bkb.Ei, 8.0f));
-                    TextView textView = new TextView(mb0Var.getParentActivity());
-                    ir2.r(14.0f, 1, 2131745346, textView, null);
+                    FrameLayout frameLayout = new FrameLayout(ob0Var.getParentActivity());
+                    frameLayout.setBackground(rnb.f(aob.Fi, 8.0f));
+                    TextView textView = new TextView(ob0Var.getParentActivity());
+                    bs2.r(14.0f, 1, 2131745266, textView, null);
                     textView.setGravity(17);
-                    textView.setTypeface(gl.o());
-                    zkb.X(textView, bkb.Ii, null);
-                    frameLayout.addView(textView, nme.e(-2, -2, 17));
-                    linearLayout.addView(frameLayout, nme.d(-1, 48.0f, 0, 16.0f, -8.0f, 16.0f, 16.0f));
-                    frameLayout.setOnClickListener(new t(mb0Var, zArr2, (byte) 22));
-                    ya0 ya0Var2 = mb0Var.T;
-                    ya0Var2.O = linearLayout;
-                    ya0Var2.Q0 = true;
-                    ya0Var2.p0 = false;
-                    ya0Var2.show();
-                    mb0Var.isLightStatusBar();
+                    textView.setTypeface(hl.o());
+                    yob.X(textView, aob.Ji, null);
+                    frameLayout.addView(textView, tre.e(-2, -2, 17));
+                    linearLayout.addView(frameLayout, tre.d(-1, 48.0f, 0, 16.0f, -8.0f, 16.0f, 16.0f));
+                    frameLayout.setOnClickListener(new t(ob0Var, zArr2, (byte) 22));
+                    ab0 ab0Var2 = ob0Var.T;
+                    ab0Var2.O = linearLayout;
+                    ab0Var2.Q0 = true;
+                    ab0Var2.p0 = false;
+                    ab0Var2.show();
+                    ob0Var.isLightStatusBar();
                     return;
                 } else {
                     return;
                 }
             case 7:
                 gr0 gr0Var = (gr0) obj2;
-                kca kcaVar = gr0Var.a0;
-                d dVar = kcaVar.a;
-                if (view instanceof qfa) {
-                    k27 messageObject = ((qfa) view).getMessageObject();
-                    if (kcaVar.H.F1) {
-                        if (kcaVar.c(messageObject)) {
-                            kcaVar.g(messageObject);
+                bga bgaVar = gr0Var.a0;
+                e eVar = bgaVar.a;
+                if (view instanceof jja) {
+                    r47 messageObject = ((jja) view).getMessageObject();
+                    if (bgaVar.H.F1) {
+                        if (bgaVar.c(messageObject)) {
+                            bgaVar.g(messageObject);
                             return;
                         } else {
-                            kcaVar.e(messageObject);
+                            bgaVar.e(messageObject);
                             return;
                         }
                     }
-                    m8b orCreateStoryViewer = dVar.getOrCreateStoryViewer();
+                    lcb orCreateStoryViewer = eVar.getOrCreateStoryViewer();
                     Context context = gr0Var.getContext();
                     int e1 = messageObject.e1();
-                    s1b s1bVar = gr0Var.a;
-                    p2b a = p2b.a(gr0Var.f);
-                    if ((dVar instanceof ProfileActivity) && ((ProfileActivity) dVar).s1) {
-                        i6 = gl.L(68.0f);
+                    o5b o5bVar = gr0Var.a;
+                    l6b a = l6b.a(gr0Var.f);
+                    if ((eVar instanceof ProfileActivity) && ((ProfileActivity) eVar).s1) {
+                        i6 = hl.L(68.0f);
                     }
                     a.s += i6;
-                    orCreateStoryViewer.G(context, e1, s1bVar, a);
+                    orCreateStoryViewer.G(context, e1, o5bVar, a);
                     return;
                 }
                 return;
             case 8:
-                lh1 lh1Var = (lh1) obj2;
-                ArrayList arrayList = lh1Var.c;
-                rkb rkbVar = lh1Var.d;
+                uh1 uh1Var = (uh1) obj2;
+                ArrayList arrayList = uh1Var.c;
+                qob qobVar = uh1Var.d;
                 if (i >= 0 && i < arrayList.size()) {
-                    wd2 wd2Var = (wd2) arrayList.get(i);
-                    lh1Var.a(wd2Var.a(), true);
-                    if (view.getLeft() < gl.L(24.0f) + rkbVar.getPaddingLeft()) {
-                        rkbVar.x0(-((gl.L(48.0f) + rkbVar.getPaddingLeft()) - view.getLeft()), 0, null);
-                    } else if (view.getWidth() + view.getLeft() > (rkbVar.getMeasuredWidth() - rkbVar.getPaddingRight()) - gl.L(24.0f)) {
-                        rkbVar.x0(de9.f(48.0f, rkbVar.getMeasuredWidth() - rkbVar.getPaddingRight(), view.getWidth() + view.getLeft()), 0, null);
+                    ne2 ne2Var = (ne2) arrayList.get(i);
+                    uh1Var.a(ne2Var.a(), true);
+                    if (view.getLeft() < hl.L(24.0f) + qobVar.getPaddingLeft()) {
+                        qobVar.y0(-((hl.L(48.0f) + qobVar.getPaddingLeft()) - view.getLeft()), 0, null);
+                    } else if (view.getWidth() + view.getLeft() > (qobVar.getMeasuredWidth() - qobVar.getPaddingRight()) - hl.L(24.0f)) {
+                        qobVar.y0(uh9.f(48.0f, qobVar.getMeasuredWidth() - qobVar.getPaddingRight(), view.getWidth() + view.getLeft()), 0, null);
                     }
-                    p8c p8cVar = lh1Var.r;
-                    if (p8cVar != null) {
-                        p8cVar.a(wd2Var.a());
+                    pcc pccVar = uh1Var.r;
+                    if (pccVar != null) {
+                        pccVar.a(ne2Var.a());
                         return;
                     }
                     return;
                 }
                 return;
             case 9:
-                p62 p62Var = (p62) obj2;
-                m62 m62Var = p62Var.y;
-                x02 x02Var = p62Var.b;
-                w39 adapter = p62Var.s.getAdapter();
-                n62 n62Var = p62Var.E;
-                if (adapter == n62Var) {
-                    ArrayList arrayList2 = n62Var.d;
+                f72 f72Var = (f72) obj2;
+                c72 c72Var = f72Var.y;
+                n12 n12Var = f72Var.b;
+                j79 adapter = f72Var.s.getAdapter();
+                d72 d72Var = f72Var.E;
+                if (adapter == d72Var) {
+                    ArrayList arrayList2 = d72Var.d;
                     int i12 = i - 1;
                     if (i12 >= 0 && i12 < arrayList2.size()) {
                         obj = arrayList2.get(i12);
                     }
                 } else {
-                    int S = m62Var.S(i);
-                    int Q = m62Var.Q(i);
+                    int S = c72Var.S(i);
+                    int Q = c72Var.Q(i);
                     if (Q >= 0 && S >= 0) {
-                        obj = m62Var.O(S, Q);
+                        obj = c72Var.O(S, Q);
                     } else {
                         return;
                     }
                 }
-                if (obj instanceof nx8) {
-                    if (!y6c.h(x02Var.G3).p()) {
-                        if (x02Var.Z1 != null) {
-                            new jh8(x02Var.Z1, p62Var.getContext(), x02Var.G3, true, 31, false, null).show();
+                if (obj instanceof a19) {
+                    if (!yac.h(n12Var.G3).p()) {
+                        if (n12Var.Z1 != null) {
+                            new xk8(n12Var.Z1, f72Var.getContext(), n12Var.G3, true, 31, false, null).show();
                             return;
                         }
                         return;
                     }
-                    nx8 nx8Var = (nx8) obj;
-                    ij.X(x02Var.G3, x02Var.V0(), nx8Var.a(), new pz1(p62Var, nx8Var, (byte) 4));
+                    a19 a19Var = (a19) obj;
+                    jj.X(n12Var.G3, n12Var.W0(), a19Var.a(), new rx1(f72Var, a19Var, (byte) 5));
                     return;
                 }
                 return;
             case 10:
-                x92 x92Var = (x92) obj2;
-                boolean z4 = x92Var.s;
-                if (x92Var.getParentActivity() != null) {
-                    w39 adapter2 = x92Var.b.getAdapter();
-                    w92 w92Var = x92Var.e;
-                    if (adapter2 == w92Var) {
-                        chat = (TLRPC.Chat) w92Var.d.get(i);
+                na2 na2Var = (na2) obj2;
+                boolean z4 = na2Var.s;
+                if (na2Var.getParentActivity() != null) {
+                    j79 adapter2 = na2Var.b.getAdapter();
+                    ma2 ma2Var = na2Var.e;
+                    if (adapter2 == ma2Var) {
+                        chat = (TLRPC.Chat) ma2Var.d.get(i);
                     } else {
-                        int i13 = x92Var.H;
-                        if (i >= i13 && i < x92Var.I) {
-                            chat = (TLRPC.Chat) x92Var.w.get(i - i13);
+                        int i13 = na2Var.H;
+                        if (i >= i13 && i < na2Var.I) {
+                            chat = (TLRPC.Chat) na2Var.w.get(i - i13);
                         } else {
                             chat = null;
                         }
                     }
                     if (chat != null) {
-                        if (z4 && x92Var.h.linked_chat_id == 0) {
-                            x92Var.e0(chat, true);
+                        if (z4 && na2Var.h.linked_chat_id == 0) {
+                            na2Var.e0(chat, true);
                             return;
                         }
                         Bundle bundle = new Bundle();
                         bundle.putLong("chat_id", chat.id);
-                        x92Var.presentFragment(new mu1(bundle));
+                        na2Var.presentFragment(new zu1(bundle));
                         return;
-                    } else if (i == x92Var.G) {
-                        if (z4 && x92Var.h.linked_chat_id == 0) {
+                    } else if (i == na2Var.G) {
+                        if (z4 && na2Var.h.linked_chat_id == 0) {
                             Bundle bundle2 = new Bundle();
-                            bundle2.putLongArray("result", new long[]{x92Var.getUserConfig().e()});
+                            bundle2.putLongArray("result", new long[]{na2Var.getUserConfig().e()});
                             bundle2.putInt("chatType", 4);
-                            TLRPC.Chat chat2 = x92Var.f;
+                            TLRPC.Chat chat2 = na2Var.f;
                             if (chat2 != null) {
-                                bundle2.putString("title", k96.a0("GroupCreateDiscussionDefaultName", null, 2131749262, chat2.title));
+                                bundle2.putString("title", ob6.a0("GroupCreateDiscussionDefaultName", null, 2131749208, chat2.title));
                             }
-                            wa5 wa5Var = new wa5(bundle2);
-                            wa5Var.Z = new p92(x92Var);
-                            x92Var.presentFragment(wa5Var);
+                            xc5 xc5Var = new xc5(bundle2);
+                            xc5Var.Z = new fa2(na2Var);
+                            na2Var.presentFragment(xc5Var);
                             return;
-                        } else if (!x92Var.w.isEmpty()) {
-                            TLRPC.Chat chat3 = (TLRPC.Chat) x92Var.w.get(0);
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(x92Var.getParentActivity());
+                        } else if (!na2Var.w.isEmpty()) {
+                            TLRPC.Chat chat3 = (TLRPC.Chat) na2Var.w.get(0);
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(na2Var.getParentActivity());
                             if (z4) {
-                                M0 = k96.M0(2131751359, null);
-                                a0 = k96.a0("DiscussionUnlinkChannelAlert", null, 2131751360, chat3.title);
+                                M0 = ob6.M0(2131751336, null);
+                                a0 = ob6.a0("DiscussionUnlinkChannelAlert", null, 2131751337, chat3.title);
                             } else {
-                                M0 = k96.M0(2131751361, null);
-                                a0 = k96.a0("DiscussionUnlinkGroupAlert", null, 2131751358, chat3.title);
+                                M0 = ob6.M0(2131751338, null);
+                                a0 = ob6.a0("DiscussionUnlinkGroupAlert", null, 2131751335, chat3.title);
                             }
                             alertDialog$Builder.a.S = M0;
-                            alertDialog$Builder.a.U = gl.S2(a0);
-                            alertDialog$Builder.j(k96.M0(2131751362, null), new rh1(x92Var, (byte) 21));
-                            alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                            hd hdVar = alertDialog$Builder.a;
-                            x92Var.showDialog(hdVar);
-                            TextView textView2 = (TextView) hdVar.c(-1);
+                            alertDialog$Builder.a.U = hl.S2(a0);
+                            alertDialog$Builder.j(ob6.M0(2131751339, null), new rd1(na2Var, (byte) 23));
+                            alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+                            id idVar = alertDialog$Builder.a;
+                            na2Var.showDialog(idVar);
+                            TextView textView2 = (TextView) idVar.c(-1);
                             if (textView2 != null) {
-                                zkb.X(textView2, bkb.p7, null);
+                                yob.X(textView2, aob.q7, null);
                                 return;
                             }
                             return;
@@ -391,83 +391,83 @@ public final class u implements c39 {
                 }
                 return;
             case 11:
-                oc2 oc2Var = (oc2) obj2;
-                ArrayList arrayList3 = oc2Var.n;
+                ed2 ed2Var = (ed2) obj2;
+                ArrayList arrayList3 = ed2Var.n;
                 if (i > 2) {
-                    va0 va0Var = (va0) view;
+                    xa0 xa0Var = (xa0) view;
                     TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) arrayList3.get(i - 3);
-                    boolean contains = oc2Var.d.contains(tL_availableReaction.reaction);
+                    boolean contains = ed2Var.d.contains(tL_availableReaction.reaction);
                     boolean z5 = !contains;
-                    ArrayList arrayList4 = oc2Var.d;
+                    ArrayList arrayList4 = ed2Var.d;
                     String str = tL_availableReaction.reaction;
                     if (!contains) {
                         arrayList4.add(str);
                     } else {
                         arrayList4.remove(str);
-                        if (oc2Var.d.isEmpty()) {
-                            nc2 nc2Var = oc2Var.h;
-                            if (nc2Var != null) {
-                                nc2Var.q(2, arrayList3.size() + 1);
+                        if (ed2Var.d.isEmpty()) {
+                            dd2 dd2Var = ed2Var.h;
+                            if (dd2Var != null) {
+                                dd2Var.q(2, arrayList3.size() + 1);
                             }
-                            oc2Var.Z(2, true);
+                            ed2Var.Z(2, true);
                         }
                     }
-                    Switch r0 = va0Var.c;
+                    Switch r0 = xa0Var.c;
                     if (r0 != null) {
                         r0.c(z5, true);
                     }
-                    wf2 wf2Var = va0Var.d;
-                    if (wf2Var != null) {
-                        wf2Var.a(z5, true);
+                    og2 og2Var = xa0Var.d;
+                    if (og2Var != null) {
+                        og2Var.a(z5, true);
                         return;
                     }
                     return;
                 }
                 return;
             case 12:
-                xd2 xd2Var = (xd2) obj2;
-                o39 o39Var = xd2Var.v1;
-                vd2 vd2Var = xd2Var.q1;
-                if (vd2Var.d.get(i) != xd2Var.F1 && xd2Var.K1 == null) {
-                    xd2Var.F1 = (wd2) vd2Var.d.get(i);
-                    xd2Var.M0();
-                    vd2Var.E(i);
-                    xd2Var.b.postDelayed(new ef0(xd2Var, i, (byte) 2), 100L);
-                    while (i6 < o39Var.getChildCount()) {
-                        anb anbVar = (anb) o39Var.getChildAt(i6);
-                        if (anbVar != view && (cibVar = anbVar.K) != null) {
-                            gl.r(cibVar);
-                            anbVar.K.run();
+                oe2 oe2Var = (oe2) obj2;
+                d79 d79Var = oe2Var.v1;
+                me2 me2Var = oe2Var.q1;
+                if (me2Var.d.get(i) != oe2Var.F1 && oe2Var.K1 == null) {
+                    oe2Var.F1 = (ne2) me2Var.d.get(i);
+                    oe2Var.N0();
+                    me2Var.E(i);
+                    oe2Var.b.postDelayed(new gf0(oe2Var, i, (byte) 2), 100L);
+                    while (i6 < d79Var.getChildCount()) {
+                        zqb zqbVar = (zqb) d79Var.getChildAt(i6);
+                        if (zqbVar != view && (s8bVar = zqbVar.K) != null) {
+                            hl.r(s8bVar);
+                            zqbVar.K.run();
                         }
                         i6++;
                     }
-                    if (!((wd2) vd2Var.d.get(i)).a.a) {
-                        ((anb) view).d();
+                    if (!((ne2) me2Var.d.get(i)).a.a) {
+                        ((zqb) view).d();
                     }
-                    xd2Var.U0(true);
+                    oe2Var.V0(true);
                     return;
                 }
                 return;
             case 13:
-                mf2 mf2Var = (mf2) obj2;
-                c4c G = mf2Var.Z1.G(i - 1);
+                dg2 dg2Var = (dg2) obj2;
+                b8c G = dg2Var.Z1.G(i - 1);
                 if (G != null) {
-                    m41 m41Var = mf2Var.U1;
-                    if (!m41Var.h(G)) {
+                    u41 u41Var = dg2Var.U1;
+                    if (!u41Var.h(G)) {
                         int i14 = G.d;
                         if (i14 == -1) {
-                            mf2Var.a2 = true;
-                            m41Var.h = true;
-                            mf2Var.Z1.O(true);
-                            mf2Var.Y0(true);
+                            dg2Var.a2 = true;
+                            u41Var.h = true;
+                            dg2Var.Z1.O(true);
+                            dg2Var.Z0(true);
                             return;
                         }
-                        int i15 = mf2.f2;
+                        int i15 = dg2.f2;
                         if (i14 == -2) {
-                            mf2Var.a2 = false;
-                            m41Var.h = false;
-                            mf2Var.Z1.O(true);
-                            mf2Var.Y0(true);
+                            dg2Var.a2 = false;
+                            u41Var.h = false;
+                            dg2Var.Z1.O(true);
+                            dg2Var.Z0(true);
                             return;
                         }
                         return;
@@ -476,116 +476,116 @@ public final class u implements c39 {
                 }
                 return;
             case 14:
-                p8c p8cVar2 = ((jk2) obj2).c;
-                if (p8cVar2 != null) {
-                    p8cVar2.a((fk2) fk2.a().get(i));
+                pcc pccVar2 = ((el2) obj2).c;
+                if (pccVar2 != null) {
+                    pccVar2.a((al2) al2.a().get(i));
                     return;
                 }
                 return;
             case 15:
-                qm2 qm2Var = (qm2) obj2;
-                int i16 = qm2Var.S1.G(i - 1).d;
+                kn2 kn2Var = (kn2) obj2;
+                int i16 = kn2Var.S1.G(i - 1).d;
                 if (i16 == 151) {
-                    qm2Var.Z0(false);
+                    kn2Var.a1(false);
                     return;
                 } else if (i16 == 150) {
-                    qm2Var.Z0(true);
+                    kn2Var.a1(true);
                     return;
                 } else {
                     return;
                 }
             case 16:
-                tv2 tv2Var = (tv2) obj2;
-                TLRPC.StickerSetCovered stickerSetCovered2 = ((wv2) view).d;
-                xv2 xv2Var = tv2Var.a;
-                m43 reactionsWindow = xv2Var.P.getReactionsWindow();
+                nw2 nw2Var = (nw2) obj2;
+                TLRPC.StickerSetCovered stickerSetCovered2 = ((qw2) view).d;
+                rw2 rw2Var = nw2Var.a;
+                e53 reactionsWindow = rw2Var.P.getReactionsWindow();
                 if (reactionsWindow != null && !reactionsWindow.q) {
                     reactionsWindow.d();
                 }
                 if (stickerSetCovered2 instanceof TLRPC.TL_stickerSetNoCovered) {
-                    a1b.c(null, xv2Var.c0, xv2Var.z.getContext(), new w72(tv2Var, (byte) 12));
+                    x4b.c(null, rw2Var.c0, rw2Var.z.getContext(), new n82(nw2Var, (byte) 12));
                     return;
                 }
-                vv2 vv2Var = xv2Var.l;
-                if (vv2Var != null) {
-                    vv2Var.s(stickerSetCovered2.set, TextUtils.join("", xv2Var.o));
+                pw2 pw2Var = rw2Var.l;
+                if (pw2Var != null) {
+                    pw2Var.t(stickerSetCovered2.set, TextUtils.join("", rw2Var.o));
                 }
-                xv2Var.d();
+                rw2Var.d();
                 return;
             case 17:
-                qx2 qx2Var = (qx2) obj2;
-                if (qx2Var.f && qx2Var.e) {
-                    v22 v22Var = qx2Var.d;
-                    ArrayList arrayList5 = v22Var.e;
+                ky2 ky2Var = (ky2) obj2;
+                if (ky2Var.f && ky2Var.e) {
+                    m32 m32Var = ky2Var.d;
+                    ArrayList arrayList5 = m32Var.e;
                     if (arrayList5 != null && i >= 0 && i < arrayList5.size()) {
-                        O = (mx2) v22Var.e.get(i);
+                        O = (gy2) m32Var.e.get(i);
                     }
                 } else {
-                    int S2 = qx2Var.c.S(i);
-                    int Q2 = qx2Var.c.Q(i);
+                    int S2 = ky2Var.c.S(i);
+                    int Q2 = ky2Var.c.Q(i);
                     if (Q2 >= 0 && S2 >= 0) {
-                        O = qx2Var.c.O(S2, Q2);
+                        O = ky2Var.c.O(S2, Q2);
                     } else {
                         return;
                     }
                 }
                 if (i >= 0) {
-                    qx2Var.finishFragment();
-                    if (O != null && (px2Var = qx2Var.r) != null) {
-                        px2Var.z(O);
+                    ky2Var.finishFragment();
+                    if (O != null && (jy2Var = ky2Var.r) != null) {
+                        jy2Var.B(O);
                         return;
                     }
                     return;
                 }
                 return;
             case 18:
-                o03 o03Var = (o03) obj2;
-                o39 o39Var2 = o03Var.n1;
+                h13 h13Var = (h13) obj2;
+                d79 d79Var2 = h13Var.n1;
                 if (i > 3) {
-                    o03Var.Y1 = (TLRPC.Peer) o03Var.T1.get(i - 4);
-                    if (view instanceof za5) {
-                        ((za5) view).c(true, true);
+                    h13Var.Y1 = (TLRPC.Peer) h13Var.T1.get(i - 4);
+                    if (view instanceof bd5) {
+                        ((bd5) view).c(true, true);
                     }
-                    for (int i17 = 0; i17 < o39Var2.getChildCount(); i17++) {
-                        View childAt = o39Var2.getChildAt(i17);
-                        if (childAt != view && (childAt instanceof za5)) {
-                            ((za5) childAt).c(false, true);
+                    for (int i17 = 0; i17 < d79Var2.getChildCount(); i17++) {
+                        View childAt = d79Var2.getChildAt(i17);
+                        if (childAt != view && (childAt instanceof bd5)) {
+                            ((bd5) childAt).c(false, true);
                         }
                     }
                     return;
                 }
                 return;
             case 19:
-                e83 e83Var = (e83) obj2;
-                ArrayList arrayList6 = e83Var.k3;
-                h83 h83Var = e83Var.w3;
-                if ((view instanceof x73) && i >= 0 && i < arrayList6.size()) {
-                    z73 z73Var = (z73) arrayList6.get(i);
-                    if (z73Var != null) {
-                        int i18 = z73Var.h;
+                x83 x83Var = (x83) obj2;
+                ArrayList arrayList6 = x83Var.k3;
+                a93 a93Var = x83Var.w3;
+                if ((view instanceof q83) && i >= 0 && i < arrayList6.size()) {
+                    s83 s83Var = (s83) arrayList6.get(i);
+                    if (s83Var != null) {
+                        int i18 = s83Var.h;
                         if (i18 >= 0) {
-                            e83Var.q3[i18] = !zArr[i18];
-                            e83Var.D1(true);
+                            x83Var.q3[i18] = !zArr[i18];
+                            x83Var.E1(true);
                             return;
                         } else if (i18 == -2) {
-                            h83Var.presentFragment(new DataAutoDownloadActivity(e83Var.g3 - 1));
+                            a93Var.presentFragment(new DataAutoDownloadActivity(x83Var.g3 - 1));
                             return;
                         } else {
                             return;
                         }
                     }
                     return;
-                } else if (view instanceof wgb) {
-                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(h83Var.getParentActivity());
-                    alertDialog$Builder2.a.S = k96.M0(2131745896, null);
-                    alertDialog$Builder2.a.U = k96.M0(2131745897, null);
-                    alertDialog$Builder2.j(k96.M0(2131745925, null), new a83(e83Var));
-                    alertDialog$Builder2.g(k96.M0(2131752577, null), null);
-                    hd hdVar2 = alertDialog$Builder2.a;
-                    h83Var.showDialog(hdVar2);
-                    TextView textView3 = (TextView) hdVar2.c(-1);
+                } else if (view instanceof skb) {
+                    AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(a93Var.getParentActivity());
+                    alertDialog$Builder2.a.S = ob6.M0(2131745816, null);
+                    alertDialog$Builder2.a.U = ob6.M0(2131745817, null);
+                    alertDialog$Builder2.j(ob6.M0(2131745845, null), new t83(x83Var));
+                    alertDialog$Builder2.g(ob6.M0(2131752570, null), null);
+                    id idVar2 = alertDialog$Builder2.a;
+                    a93Var.showDialog(idVar2);
+                    TextView textView3 = (TextView) idVar2.c(-1);
                     if (textView3 != null) {
-                        zkb.X(textView3, bkb.p7, null);
+                        yob.X(textView3, aob.q7, null);
                         return;
                     }
                     return;
@@ -593,70 +593,70 @@ public final class u implements c39 {
                     return;
                 }
             case 20:
-                ((oh3) obj2).i((uf3) view, false);
+                ((ii3) obj2).i((og3) view, false);
                 return;
             case 21:
-                bl3 bl3Var = (bl3) obj2;
-                if (view instanceof ee5) {
-                    ee5 ee5Var = (ee5) view;
-                    if (ee5Var.F) {
-                        ji3 ji3Var = bl3Var.V;
-                        if (ji3Var != null) {
-                            ji3Var.a.e5(ee5Var.getDialogId(), view);
+                tl3 tl3Var = (tl3) obj2;
+                if (view instanceof fg5) {
+                    fg5 fg5Var = (fg5) view;
+                    if (fg5Var.F) {
+                        dj3 dj3Var = tl3Var.V;
+                        if (dj3Var != null) {
+                            dj3Var.a.i5(fg5Var.getDialogId(), view);
                             return;
                         }
                         return;
                     }
                 }
-                ji3 ji3Var2 = bl3Var.V;
-                if (ji3Var2 != null) {
-                    cj3 cj3Var = ji3Var2.a;
+                dj3 dj3Var2 = tl3Var.V;
+                if (dj3Var2 != null) {
+                    uj3 uj3Var = dj3Var2.a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (cj3Var.n2) {
-                        if (cj3Var.D5(longValue2)) {
-                            if (!cj3Var.K2.isEmpty()) {
-                                cj3Var.k3(longValue2, cj3Var.y2(longValue2, null));
-                                cj3Var.u5();
-                                aVar = ((d) cj3Var).actionBar;
-                                aVar.n(true);
+                    if (uj3Var.n2) {
+                        if (uj3Var.H5(longValue2)) {
+                            if (!uj3Var.K2.isEmpty()) {
+                                uj3Var.m3(longValue2, uj3Var.A2(longValue2, null));
+                                uj3Var.y5();
+                                aVar = ((e) uj3Var).actionBar;
+                                aVar.o(true);
                                 return;
                             }
-                            cj3Var.i3(longValue2, 0L, true, null);
+                            uj3Var.k3(longValue2, 0L, true, null);
                             return;
                         }
                         return;
                     }
                     Bundle bundle3 = new Bundle();
-                    if (cf3.D(longValue2)) {
+                    if (wf3.D(longValue2)) {
                         bundle3.putLong("user_id", longValue2);
                     } else {
                         bundle3.putLong("chat_id", -longValue2);
                     }
-                    cj3Var.d3();
-                    if (gl.O1() && cj3Var.f0 != null) {
+                    uj3Var.f3();
+                    if (hl.O1() && uj3Var.f0 != null) {
                         int i19 = 0;
                         while (true) {
-                            bj3[] bj3VarArr = cj3Var.f0;
-                            if (i19 < bj3VarArr.length) {
-                                eh3 eh3Var = bj3VarArr[i19].d;
-                                cj3Var.r2.a = longValue2;
-                                eh3Var.s = longValue2;
+                            tj3[] tj3VarArr = uj3Var.f0;
+                            if (i19 < tj3VarArr.length) {
+                                yh3 yh3Var = tj3VarArr[i19].d;
+                                uj3Var.r2.a = longValue2;
+                                yh3Var.s = longValue2;
                                 i19++;
                             } else {
-                                int i20 = na7.q5;
-                                cj3Var.C5(512, true);
+                                int i20 = uc7.r5;
+                                uj3Var.G5(512, true);
                             }
                         }
                     }
-                    if (cj3Var.p2 != null) {
-                        if (cj3Var.getMessagesController().A(bundle3, cj3Var, null, null)) {
-                            cj3Var.getNotificationCenter().k(4, new Object[0]);
-                            cj3Var.presentFragment(new mu1(bundle3));
+                    if (uj3Var.p2 != null) {
+                        if (uj3Var.getMessagesController().C(bundle3, uj3Var, null, null)) {
+                            uj3Var.getNotificationCenter().k(4, new Object[0]);
+                            uj3Var.presentFragment(new zu1(bundle3));
                             return;
                         }
                         return;
-                    } else if (cj3Var.getMessagesController().A(bundle3, cj3Var, null, null)) {
-                        cj3Var.presentFragment(new mu1(bundle3));
+                    } else if (uj3Var.getMessagesController().C(bundle3, uj3Var, null, null)) {
+                        uj3Var.presentFragment(new zu1(bundle3));
                         return;
                     } else {
                         return;
@@ -664,9 +664,9 @@ public final class u implements c39 {
                 }
                 return;
             case 22:
-                nv3 nv3Var = (nv3) obj2;
-                ew3 ew3Var = nv3Var.r;
-                Object E = nv3Var.c.E(i);
+                hw3 hw3Var = (hw3) obj2;
+                zw3 zw3Var = hw3Var.r;
+                Object E = hw3Var.c.E(i);
                 if (E instanceof TLRPC.BotInlineResult) {
                     botInlineResult = (TLRPC.BotInlineResult) E;
                     document = botInlineResult.document;
@@ -675,30 +675,30 @@ public final class u implements c39 {
                 } else {
                     return;
                 }
-                l8c l8cVar = ew3Var.y1;
-                if (l8cVar != null) {
-                    l8cVar.h(botInlineResult, document, Boolean.TRUE);
+                lcc lccVar = zw3Var.y1;
+                if (lccVar != null) {
+                    lccVar.h(botInlineResult, document, Boolean.TRUE);
                 }
-                ew3Var.dismiss();
+                zw3Var.dismiss();
                 return;
             case 23:
-                tv3 tv3Var = (tv3) obj2;
-                ew3 ew3Var2 = tv3Var.s;
-                sv3 sv3Var = tv3Var.c;
+                ow3 ow3Var = (ow3) obj2;
+                zw3 zw3Var2 = ow3Var.s;
+                nw3 nw3Var = ow3Var.c;
                 if (i >= 0) {
-                    tv3Var.d.getClass();
-                    if (RecyclerView.U(view).f != 4) {
-                        ArrayList arrayList7 = sv3Var.s;
-                        ArrayList arrayList8 = sv3Var.w;
+                    ow3Var.d.getClass();
+                    if (RecyclerView.V(view).f != 4) {
+                        ArrayList arrayList7 = nw3Var.s;
+                        ArrayList arrayList8 = nw3Var.w;
                         if (i < arrayList7.size()) {
-                            document2 = (TLRPC.Document) sv3Var.s.get(i);
+                            document2 = (TLRPC.Document) nw3Var.s.get(i);
                         }
-                        if (document2 == ew3Var2.o1) {
-                            r31 r31Var = ew3Var2.z1;
-                            if (r31Var != null) {
-                                r31Var.run();
+                        if (document2 == zw3Var2.o1) {
+                            z31 z31Var = zw3Var2.z1;
+                            if (z31Var != null) {
+                                z31Var.run();
                             }
-                            ew3Var2.dismiss();
+                            zw3Var2.dismiss();
                             return;
                         }
                         if (i >= arrayList8.size()) {
@@ -706,18 +706,18 @@ public final class u implements c39 {
                         } else {
                             longValue = ((Long) arrayList8.get(i)).longValue();
                         }
-                        if (document2 == null && (view instanceof iv3) && (vlVar = ((iv3) view).d) != null) {
-                            document2 = vlVar.e;
+                        if (document2 == null && (view instanceof cw3) && (wlVar = ((cw3) view).d) != null) {
+                            document2 = wlVar.e;
                         }
                         if (document2 == null && longValue != 0) {
-                            document2 = vl.e(ew3Var2.a, longValue);
+                            document2 = wl.e(zw3Var2.a, longValue);
                         }
                         if (document2 != null) {
-                            l8c l8cVar2 = ew3Var2.y1;
-                            if (l8cVar2 != null) {
-                                l8cVar2.h(sv3Var.f.get(Long.valueOf(document2.id)), document2, Boolean.FALSE);
+                            lcc lccVar2 = zw3Var2.y1;
+                            if (lccVar2 != null) {
+                                lccVar2.h(nw3Var.f.get(Long.valueOf(document2.id)), document2, Boolean.FALSE);
                             }
-                            ew3Var2.dismiss();
+                            zw3Var2.dismiss();
                             return;
                         }
                         return;
@@ -726,13 +726,13 @@ public final class u implements c39 {
                 }
                 return;
             case 24:
-                t14 t14Var = ((d04) obj2).G;
-                int i21 = t14Var.d1;
+                o24 o24Var = ((y04) obj2).G;
+                int i21 = o24Var.d1;
                 if (view.getTag() instanceof TLRPC.StickerSetCovered) {
                     TLRPC.StickerSetCovered stickerSetCovered3 = (TLRPC.StickerSetCovered) view.getTag();
                     ArrayList arrayList9 = new ArrayList();
-                    d dVar2 = t14Var.Z1;
-                    ArrayList arrayList10 = hq6.d0(i21).t0[1];
+                    e eVar2 = o24Var.Z1;
+                    ArrayList arrayList10 = ls6.d0(i21).t0[1];
                     while (i6 < arrayList10.size()) {
                         TLRPC.StickerSetCovered stickerSetCovered4 = (TLRPC.StickerSetCovered) arrayList10.get(i6);
                         if (stickerSetCovered4 != null && stickerSetCovered4.set != null) {
@@ -747,119 +747,119 @@ public final class u implements c39 {
                         }
                         i6++;
                     }
-                    hq6.d0(i21).e1(true, true);
-                    Context context2 = t14Var.getContext();
-                    if (dVar2 == null) {
-                        resourceProvider = t14Var.a2;
+                    ls6.d0(i21).e1(true, true);
+                    Context context2 = o24Var.getContext();
+                    if (eVar2 == null) {
+                        resourceProvider = o24Var.a2;
                     } else {
-                        resourceProvider = dVar2.getResourceProvider();
+                        resourceProvider = eVar2.getResourceProvider();
                     }
-                    qx3 qx3Var = new qx3(dVar2, context2, resourceProvider, arrayList9);
+                    ly3 ly3Var = new ly3(eVar2, context2, resourceProvider, arrayList9);
                     if (i5 >= 0) {
-                        qx3Var.I1 = i5;
+                        ly3Var.I1 = i5;
                     }
-                    if (dVar2 != null) {
-                        dVar2.showDialog(qx3Var);
+                    if (eVar2 != null) {
+                        eVar2.showDialog(ly3Var);
                         return;
                     } else {
-                        qx3Var.show();
+                        ly3Var.show();
                         return;
                     }
                 }
                 return;
             case 25:
-                t14 t14Var2 = ((l14) obj2).w;
-                t14Var2.u1.g(new d2c(t14Var2.getContext(), new oz3(t14Var2), t14Var2.y1, t14Var2.z1, t14Var2.A1, (TLRPC.StickerSetCovered) view.getTag(), t14Var2.a2));
+                o24 o24Var2 = ((g24) obj2).w;
+                o24Var2.u1.g(new d6c(o24Var2.getContext(), new j04(o24Var2), o24Var2.y1, o24Var2.z1, o24Var2.A1, (TLRPC.StickerSetCovered) view.getTag(), o24Var2.a2));
                 return;
             case 26:
-                ((mc4) obj2).e0(i, view);
+                ((je4) obj2).e0(i, view);
                 return;
             case 27:
-                pd4 pd4Var = (pd4) obj2;
-                if (pd4Var.getParentActivity() != null && (gd4Var = (gd4) pd4Var.Q.get(i)) != null) {
-                    View.OnClickListener onClickListener = gd4Var.c;
+                nf4 nf4Var = (nf4) obj2;
+                if (nf4Var.getParentActivity() != null && (ef4Var = (ef4) nf4Var.Q.get(i)) != null) {
+                    View.OnClickListener onClickListener = ef4Var.c;
                     if (onClickListener != null) {
                         onClickListener.onClick(view);
                         return;
                     }
-                    int i22 = gd4Var.a;
+                    int i22 = ef4Var.a;
                     if (i22 == 1) {
-                        v6c v6cVar = (v6c) view;
-                        pd4Var.A0(gd4Var, v6cVar.getName(), v6cVar.getCurrentObject(), gd4Var.g);
+                        vac vacVar = (vac) view;
+                        nf4Var.B0(ef4Var, vacVar.getName(), vacVar.getCurrentObject(), ef4Var.g);
                         return;
                     } else if (i22 == 7) {
-                        eu3 eu3Var = new eu3(pd4Var, gd4Var, (byte) 29);
-                        if (pd4Var.c.x.f) {
-                            pd4Var.x0(eu3Var, false);
+                        vx3 vx3Var = new vx3(nf4Var, ef4Var, (byte) 26);
+                        if (nf4Var.c.x.f) {
+                            nf4Var.y0(vx3Var, false);
                             return;
                         } else {
-                            eu3Var.run();
+                            vx3Var.run();
                             return;
                         }
-                    } else if (i22 == 8 || (i22 == 4 && gd4Var.k == 2131232035)) {
-                        t97 t97Var = pd4Var.r;
-                        pw0 pw0Var = pw0.APP_ERROR;
-                        if (pd4Var.s && pd4Var.c.x.f) {
-                            float f = -pd4Var.R;
-                            pd4Var.R = f;
-                            gl.A3(f, view, null);
-                            pw0Var.a();
-                            pd4Var.w = true;
-                            je5 je5Var = pd4Var.S;
-                            if ((je5Var == null || !je5Var.W) && (pd4Var.fragmentView instanceof FrameLayout)) {
-                                je5 je5Var2 = new je5(pd4Var.getParentActivity(), 1);
-                                je5Var2.p(true);
-                                je5Var2.d = 2300L;
-                                je5Var2.U = true;
-                                je5Var2.e = true;
-                                je5Var2.m(11.0f, 6.0f, 11.0f, 7.0f);
-                                je5Var2.v0 = -gl.L(10.0f);
-                                pd4Var.S = je5Var2;
-                                je5Var2.setPadding(gl.L(8.0f), 0, gl.L(8.0f), 0);
-                                je5Var2.k(pd4Var.getBaseSimpleGlass().c);
-                                je5Var2.t(k96.M0(2131750763, null));
-                                je5Var2.r0 = new hh(je5Var2, (byte) 2);
-                                ((FrameLayout) pd4Var.fragmentView).addView(je5Var2, nme.e(-1, 150, 55));
-                                je5Var2.x(pd4Var.c, true);
+                    } else if (i22 == 8 || (i22 == 4 && ef4Var.k == 2131232035)) {
+                        ac7 ac7Var = nf4Var.r;
+                        yw0 yw0Var = yw0.APP_ERROR;
+                        if (nf4Var.s && nf4Var.c.x.f) {
+                            float f = -nf4Var.R;
+                            nf4Var.R = f;
+                            hl.A3(f, view, null);
+                            yw0Var.a();
+                            nf4Var.w = true;
+                            kg5 kg5Var = nf4Var.S;
+                            if ((kg5Var == null || !kg5Var.W) && (nf4Var.fragmentView instanceof FrameLayout)) {
+                                kg5 kg5Var2 = new kg5(nf4Var.getParentActivity(), 1);
+                                kg5Var2.p(true);
+                                kg5Var2.d = 2300L;
+                                kg5Var2.U = true;
+                                kg5Var2.e = true;
+                                kg5Var2.m(11.0f, 6.0f, 11.0f, 7.0f);
+                                kg5Var2.v0 = -hl.L(10.0f);
+                                nf4Var.S = kg5Var2;
+                                kg5Var2.setPadding(hl.L(8.0f), 0, hl.L(8.0f), 0);
+                                kg5Var2.k(nf4Var.getBaseSimpleGlass().c);
+                                kg5Var2.t(ob6.M0(2131750740, null));
+                                kg5Var2.r0 = new ug(kg5Var2, (byte) 2);
+                                ((FrameLayout) nf4Var.fragmentView).addView(kg5Var2, tre.e(-1, 150, 55));
+                                kg5Var2.x(nf4Var.c, true);
                                 return;
                             }
                             return;
                         }
-                        if (!TextUtils.isEmpty(pd4Var.x) || !TextUtils.isEmpty(t97Var.b)) {
-                            int i23 = pd4Var.E;
-                            int i24 = na7.q5;
-                            if ((i23 & (-1537)) == 0 && pd4Var.H.isEmpty() && !pd4Var.G.isEmpty()) {
-                                pd4Var.x0(new sc4(pd4Var, (byte) 1), false);
+                        if (!TextUtils.isEmpty(nf4Var.x) || !TextUtils.isEmpty(ac7Var.b)) {
+                            int i23 = nf4Var.E;
+                            int i24 = uc7.r5;
+                            if ((i23 & (-1537)) == 0 && nf4Var.H.isEmpty() && !nf4Var.G.isEmpty()) {
+                                nf4Var.y0(new oe4(nf4Var, (byte) 1), false);
                                 return;
                             }
                         }
-                        float f2 = -pd4Var.R;
-                        pd4Var.R = f2;
-                        gl.A3(f2, view, null);
-                        pw0Var.a();
-                        if (TextUtils.isEmpty(pd4Var.x) && TextUtils.isEmpty(t97Var.b)) {
-                            b0 = u21.b0(pd4Var);
-                            i3 = 2131750750;
+                        float f2 = -nf4Var.R;
+                        nf4Var.R = f2;
+                        hl.A3(f2, view, null);
+                        yw0Var.a();
+                        if (TextUtils.isEmpty(nf4Var.x) && TextUtils.isEmpty(ac7Var.b)) {
+                            b0 = d31.b0(nf4Var);
+                            i3 = 2131750727;
                         } else {
-                            int i25 = pd4Var.E;
-                            int i26 = na7.q5;
+                            int i25 = nf4Var.E;
+                            int i26 = uc7.r5;
                             if ((i25 & (-1537)) != 0) {
-                                if (!pd4Var.H.isEmpty()) {
-                                    b0 = u21.b0(pd4Var);
-                                    i3 = 2131750747;
+                                if (!nf4Var.H.isEmpty()) {
+                                    b0 = d31.b0(nf4Var);
+                                    i3 = 2131750724;
                                 } else {
-                                    b0 = u21.b0(pd4Var);
-                                    i3 = 2131750748;
+                                    b0 = d31.b0(nf4Var);
+                                    i3 = 2131750725;
                                 }
-                            } else if (pd4Var.G.isEmpty()) {
-                                b0 = u21.b0(pd4Var);
-                                i3 = 2131750751;
+                            } else if (nf4Var.G.isEmpty()) {
+                                b0 = d31.b0(nf4Var);
+                                i3 = 2131750728;
                             } else {
-                                b0 = u21.b0(pd4Var);
-                                i3 = 2131750749;
+                                b0 = d31.b0(nf4Var);
+                                i3 = 2131750726;
                             }
                         }
-                        yjb.x(null, i3, b0, null);
+                        xnb.x(null, i3, b0, null);
                         return;
                     } else {
                         return;
@@ -867,18 +867,18 @@ public final class u implements c39 {
                 }
                 return;
             default:
-                cd4 cd4Var = (cd4) obj2;
-                ArrayList arrayList11 = cd4Var.Z1;
+                af4 af4Var = (af4) obj2;
+                ArrayList arrayList11 = af4Var.Z1;
                 int i27 = i - 1;
                 if (i27 >= 0 && i27 < arrayList11.size()) {
-                    gd4 gd4Var2 = (gd4) arrayList11.get(i27);
-                    int i28 = gd4Var2.a;
+                    ef4 ef4Var2 = (ef4) arrayList11.get(i27);
+                    int i28 = ef4Var2.a;
                     if (i28 == 7) {
-                        cd4Var.dismiss();
-                        cd4Var.r1.presentFragment(new mc4(cd4Var.T1, gd4Var2.m));
+                        af4Var.dismiss();
+                        af4Var.r1.presentFragment(new je4(af4Var.T1, ef4Var2.m));
                         return;
                     } else if (i28 == 8) {
-                        cd4Var.Y0();
+                        af4Var.Z0();
                         return;
                     } else {
                         return;

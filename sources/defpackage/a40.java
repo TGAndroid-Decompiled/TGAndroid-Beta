@@ -1,17 +1,7 @@
 package defpackage;
-
-import android.media.AudioTimestamp;
-import android.media.AudioTrack;
-public final class a40 {
-    public final AudioTrack a;
-    public final AudioTimestamp b = new AudioTimestamp();
-    public long c;
-    public long d;
-    public long e;
-    public boolean f;
-    public long g;
-
-    public a40(AudioTrack audioTrack) {
-        this.a = audioTrack;
-    }
+public final class a40 extends e23 {
+    public static final int[] e = {5512, 11025, 22050, 44100};
+    public boolean b;
+    public boolean c;
+    public int d;
 }

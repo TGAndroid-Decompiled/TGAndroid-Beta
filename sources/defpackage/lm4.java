@@ -1,58 +1,80 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class lm4 extends Drawable {
-    public Drawable a;
-    public float b;
-    public int c;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
+import android.view.View;
+import android.widget.RelativeLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+public final class lm4 {
+    public static final yl4 p = new Object();
+    public static final List q = Arrays.asList(2131296505, 2131296493, 2131296499, 2131296511, 2131296501, 2131296514, 2131296510, 2131296500, 2131296504, 2131296495);
+    public static final List r = Arrays.asList(2131296493, 2131296499, 2131296511, 2131296500, 2131296501, 2131296514, 2131296510, 2131296504);
+    public final View a;
+    public final jm4 b;
+    public Menu e;
+    public final int i;
+    public Runnable j;
+    public yf0 k;
+    public final vnb n;
+    public final ll0 o;
+    public final Rect c = new Rect();
+    public final Rect d = new Rect();
+    public ArrayList f = new ArrayList();
+    public MenuItem.OnMenuItemClickListener g = p;
+    public boolean h = true;
+    public final xk0 l = new xk0(this);
+    public final f03 m = new f03((byte) 18);
 
-    public final void a(int i) {
-        if (this.c != i) {
-            this.c = i;
-            setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+    public lm4(Context context, View view, int i, vnb vnbVar, ll0 ll0Var) {
+        this.a = view;
+        this.i = i;
+        this.o = ll0Var;
+        this.n = vnbVar;
+        this.b = new jm4(this, context, view);
+    }
+
+    public static AnimatorSet a(RelativeLayout relativeLayout, int i, AnimatorListenerAdapter animatorListenerAdapter) {
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(ObjectAnimator.ofFloat(relativeLayout, View.ALPHA, 1.0f, 0.0f).setDuration(100L));
+        animatorSet.setStartDelay(i);
+        animatorSet.addListener(animatorListenerAdapter);
+        return animatorSet;
+    }
+
+    public static void e(android.view.View r4, android.view.MenuItem r5, boolean r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lm4.e(android.view.View, android.view.MenuItem, boolean):void");
+    }
+
+    public final android.widget.LinearLayout b(android.content.Context r22, android.view.MenuItem r23, boolean r24, boolean r25, boolean r26) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lm4.b(android.content.Context, android.view.MenuItem, boolean, boolean, boolean):android.widget.LinearLayout");
+    }
+
+    public final void c() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.lm4.c():void");
+    }
+
+    public final ArrayList d(Menu menu) {
+        yf0 yf0Var;
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; menu != null && i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            if (item.isVisible() && item.isEnabled()) {
+                SubMenu subMenu = item.getSubMenu();
+                if (subMenu != null) {
+                    arrayList.addAll(d(subMenu));
+                } else if ((item.getItemId() != 2131296504 || (yf0Var = this.k) == null || ((Boolean) yf0Var.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != 2131296505 || this.j == null)) {
+                    arrayList.add(item);
+                }
+            }
         }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        float f = this.b;
-        int i = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
-        Drawable drawable = this.a;
-        if (i == 0) {
-            drawable.setBounds(bounds);
-        } else {
-            drawable.setBounds((int) de9.x(bounds.width(), 2.0f, f, bounds.centerX()), (int) de9.x(bounds.height(), 2.0f, f, bounds.centerY()), (int) b00.A(bounds.width(), 2.0f, f, bounds.centerX()), (int) b00.A(bounds.height(), 2.0f, f, bounds.centerY()));
-        }
-        drawable.draw(canvas);
-    }
-
-    @Override
-    public final ColorFilter getColorFilter() {
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            return drawable.getColorFilter();
-        }
-        return null;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.a.setAlpha(i);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.a.setColorFilter(colorFilter);
+        return arrayList;
     }
 }

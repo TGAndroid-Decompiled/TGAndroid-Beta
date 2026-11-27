@@ -32,8 +32,8 @@ public final class uo0 {
     public boolean f;
     public String g;
     public String h;
-    public i4d i;
-    public ae2 j;
+    public z8d i;
+    public qe2 j;
 
     public uo0(Context context, int i, long j) {
         this.a = context;
@@ -65,7 +65,7 @@ public final class uo0 {
         return uo0Var;
     }
 
-    public static void c(Activity activity, int i, p8c p8cVar) {
+    public static void c(Activity activity, int i, pcc pccVar) {
         int i2 = 0;
         SharedPreferences sharedPreferences = activity.getSharedPreferences("2botbiometry_" + i, 0);
         ArrayList arrayList = new ArrayList();
@@ -75,7 +75,7 @@ public final class uo0 {
                 try {
                     arrayList.add(Long.valueOf(Long.parseLong(key.substring(0, key.length() - 10))));
                 } catch (Exception e) {
-                    fa4.g(e, true);
+                    cc4.g(e, true);
                 }
             }
         }
@@ -91,9 +91,9 @@ public final class uo0 {
             }
         }
         if (arrayList.isEmpty()) {
-            p8cVar.a(new ArrayList());
+            pccVar.a(new ArrayList());
         } else {
-            ad7.Y(i).a.c(new tn6(i, arrayList, hashMap, p8cVar));
+            jf7.Y(i).a.c(new gp6(i, arrayList, hashMap, pccVar));
         }
     }
 
@@ -111,7 +111,7 @@ public final class uo0 {
             KeyStore keyStore3 = l;
             return (SecretKey) keyStore3.getKey("9bot_" + j, null);
         }
-        KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(ls6.n(j, "9bot_"), 3);
+        KeyGenParameterSpec.Builder builder = new KeyGenParameterSpec.Builder(qu6.n(j, "9bot_"), 3);
         builder.setBlockModes("CBC");
         builder.setEncryptionPaddings("PKCS7Padding");
         builder.setUserAuthenticationRequired(true);
@@ -133,7 +133,7 @@ public final class uo0 {
 
     public final void f() {
         boolean z;
-        SharedPreferences k2 = oo1.k(new StringBuilder("2botbiometry_"), this.b, this.a, 0);
+        SharedPreferences k2 = bp1.k(new StringBuilder("2botbiometry_"), this.b, this.a, 0);
         long j = this.c;
         this.g = k2.getString(String.valueOf(j), null);
         this.h = k2.getString(String.valueOf(j) + "_iv", null);
@@ -153,7 +153,7 @@ public final class uo0 {
         this.d = k2.getBoolean(j + "_disabled", false);
     }
 
-    public final gj0 g(boolean z) {
+    public final hj0 g(boolean z) {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             SecretKey d = d();
@@ -162,31 +162,31 @@ public final class uo0 {
             } else {
                 cipher.init(1, d);
             }
-            return new gj0(cipher);
+            return new hj0(cipher);
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return null;
         }
     }
 
-    public final void h(String str, boolean z, String str2, k8c k8cVar) {
-        gj0 gj0Var;
+    public final void h(String str, boolean z, String str2, kcc kccVar) {
+        hj0 hj0Var;
         int i;
         this.j = null;
         try {
             if (this.i == null) {
-                this.i = new i4d(LaunchActivity.H1, rr.g(this.a), new so0(this, (byte) 0));
+                this.i = new z8d(LaunchActivity.H1, sr.g(this.a), new so0(this, (byte) 0));
             }
-            gj0 g = g(z);
-            TLRPC.User V1 = na7.q1(this.b).V1(Long.valueOf(this.c));
-            hj0 hj0Var = new hj0();
-            hj0Var.a = l7c.r(V1);
-            hj0Var.c = k96.M0(2131753753, null);
-            hj0Var.d = (byte) 15;
+            hj0 g = g(z);
+            TLRPC.User X1 = uc7.s1(this.b).X1(Long.valueOf(this.c));
+            ij0 ij0Var = new ij0();
+            ij0Var.a = lbc.r(X1);
+            ij0Var.c = ob6.M0(2131753749, null);
+            ij0Var.d = (byte) 15;
             if (!TextUtils.isEmpty(str)) {
-                hj0Var.b = str;
+                ij0Var.b = str;
             }
-            hj0 a = hj0Var.a();
+            ij0 a = ij0Var.a();
             if (g != null) {
                 Cipher cipher = g.b;
                 if (!z && Build.VERSION.SDK_INT >= 30) {
@@ -198,40 +198,40 @@ public final class uo0 {
                             this.h = Utilities.f(cipher.getIV());
                         }
                         i();
-                        k8cVar.a(Boolean.TRUE, null, null);
+                        kccVar.a(Boolean.TRUE, null, null);
                         return;
                     } catch (Exception e) {
-                        fa4.g(e, true);
+                        cc4.g(e, true);
                         g = g(z);
                     }
                 }
             }
             if (g != null && Build.VERSION.SDK_INT < 30) {
-                gj0Var = g;
+                hj0Var = g;
             } else {
-                gj0Var = null;
+                hj0Var = null;
             }
-            this.j = new ae2(k8cVar, gj0Var, (byte) 3);
+            this.j = new qe2(kccVar, hj0Var, (byte) 3);
             if (g != null && (i = Build.VERSION.SDK_INT) < 30) {
-                i4d i4dVar = this.i;
-                i4dVar.getClass();
-                int a2 = wmd.a(a, g);
+                z8d z8dVar = this.i;
+                z8dVar.getClass();
+                int a2 = nrd.a(a, g);
                 if ((a2 & 255) != 255) {
-                    if (i < 30 && wmd.b(a2)) {
-                        w26.j("Crypto-based authentication is not supported for device credential prior to API 30.");
+                    if (i < 30 && nrd.b(a2)) {
+                        lq5.j("Crypto-based authentication is not supported for device credential prior to API 30.");
                         return;
                     } else {
-                        i4dVar.I2(a, g);
+                        z8dVar.R0(a, g);
                         return;
                     }
                 }
-                w26.j("Crypto-based authentication is not supported for Class 2 (Weak) biometrics.");
+                lq5.j("Crypto-based authentication is not supported for Class 2 (Weak) biometrics.");
                 return;
             }
-            this.i.I2(a, null);
+            this.i.R0(a, null);
         } catch (Exception e2) {
-            fa4.g(e2, true);
-            k8cVar.a(Boolean.FALSE, null, null);
+            cc4.g(e2, true);
+            kccVar.a(Boolean.FALSE, null, null);
         }
     }
 
@@ -270,27 +270,27 @@ public final class uo0 {
         edit.apply();
     }
 
-    public final void j(String str, final String str2, final ht htVar) {
-        h(str, false, str2, new k8c() {
+    public final void j(String str, final String str2, final gt gtVar) {
+        h(str, false, str2, new kcc() {
             @Override
             public final void a(Object obj, Object obj2, Object obj3) {
                 String str3 = str2;
                 Boolean bool = (Boolean) obj;
-                fj0 fj0Var = (fj0) obj2;
-                gj0 gj0Var = (gj0) obj3;
+                gj0 gj0Var = (gj0) obj2;
+                hj0 hj0Var = (hj0) obj3;
                 uo0 uo0Var = uo0.this;
                 uo0Var.getClass();
-                if (fj0Var != null) {
+                if (gj0Var != null) {
                     try {
                         if (TextUtils.isEmpty(str3)) {
                             uo0Var.g = null;
                             uo0Var.h = null;
                         } else {
                             if (Build.VERSION.SDK_INT >= 30) {
-                                gj0Var = uo0Var.g(false);
+                                hj0Var = uo0Var.g(false);
                             }
-                            if (gj0Var != null) {
-                                Cipher cipher = gj0Var.b;
+                            if (hj0Var != null) {
+                                Cipher cipher = hj0Var.b;
                                 uo0Var.g = Utilities.f(cipher.doFinal(str3.getBytes(StandardCharsets.UTF_8)));
                                 uo0Var.h = Utilities.f(cipher.getIV());
                             } else {
@@ -299,11 +299,11 @@ public final class uo0 {
                         }
                         uo0Var.i();
                     } catch (Exception e) {
-                        fa4.g(e, true);
+                        cc4.g(e, true);
                         bool = Boolean.FALSE;
                     }
                 }
-                htVar.a(bool);
+                gtVar.a(bool);
             }
         });
     }

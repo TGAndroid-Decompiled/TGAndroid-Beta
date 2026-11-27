@@ -1,28 +1,47 @@
 package defpackage;
 
 import android.app.Activity;
-import java.util.ArrayList;
-public final class ht9 extends vj3 {
-    public final hi3 l0;
+import android.graphics.Canvas;
+import org.telegram.ui.SaveToGallerySettingsActivity;
+public final class ht9 extends in {
+    public boolean s;
+    public final mm w;
+    public final SaveToGallerySettingsActivity x;
 
-    public ht9(hi3 hi3Var, o39 o39Var, Activity activity, int i, int i2) {
-        super(o39Var, activity, i, i2, false, null);
-        this.l0 = hi3Var;
+    public ht9(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
+        super(activity, true, true, false);
+        this.x = saveToGallerySettingsActivity;
+        this.w = new mm(this);
+        getDrawable().K = true;
     }
 
     @Override
-    public final void O(boolean z) {
-        boolean z2;
-        ArrayList arrayList;
-        super.O(z);
-        gt9 gt9Var = this.l0.o0;
-        if (!this.c0 && !this.d0 && (arrayList = this.W) != null && arrayList.isEmpty()) {
-            z2 = false;
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        if (this.s) {
+            f = 1.0f;
         } else {
-            z2 = true;
+            f = 0.0f;
         }
-        gt9Var.e(z2, z);
-        gt9Var.d.setText(k96.M0(2131747975, null));
-        gt9Var.e.setVisibility(8);
+        mm mmVar = this.w;
+        mmVar.e(false, f);
+        int i = aob.y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.x;
+        setTextColor(vm2.f(mmVar.c, saveToGallerySettingsActivity.getThemedColor(i), saveToGallerySettingsActivity.getThemedColor(aob.n6)));
+        super.dispatchDraw(canvas);
+    }
+
+    public final void e(boolean z, boolean z2) {
+        float f;
+        if (this.s != z) {
+            this.s = z;
+            if (z) {
+                f = 1.0f;
+            } else {
+                f = 0.0f;
+            }
+            this.w.e(z2, f);
+            invalidate();
+        }
     }
 }

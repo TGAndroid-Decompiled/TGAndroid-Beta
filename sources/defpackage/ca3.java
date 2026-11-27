@@ -1,21 +1,23 @@
 package defpackage;
-
-import android.os.Handler;
-public final class ca3 implements xq3 {
-    public final vq3 a;
-    public sq3 b;
-    public boolean c;
-    public final da3 d;
-
-    public ca3(da3 da3Var, vq3 vq3Var) {
-        this.d = da3Var;
-        this.a = vq3Var;
-    }
+public final class ca3 implements b86 {
+    public final byte a = 1;
+    public final ggc b;
 
     @Override
-    public final void release() {
-        Handler handler = this.d.K;
-        handler.getClass();
-        g8c.X(handler, new mk2(this, (byte) 20));
+    public final void invoke(Object obj) {
+        switch (this.a) {
+            case 0:
+                ggc ggcVar = this.b;
+                ((vj) obj).s(ggcVar);
+                int i = ggcVar.a;
+                return;
+            default:
+                ((bg8) obj).a(this.b);
+                return;
+        }
+    }
+
+    public ca3(ggc ggcVar) {
+        this.b = ggcVar;
     }
 }

@@ -1,21 +1,13 @@
 package defpackage;
+public final class ek extends d2 implements kx2 {
+    private volatile Object _preHandler;
 
-import android.util.Log;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public final class ek extends cc6 {
-    public final byte a;
-    public Object b;
+    public ek() {
+        super(qf5.b);
+        this._preHandler = this;
+    }
 
-    @Override
-    public final void b(String str) {
-        switch (this.a) {
-            case 0:
-                Log.d("isoparser", ((String) this.b) + ":" + str);
-                return;
-            default:
-                ((Logger) this.b).log(Level.FINE, str);
-                return;
-        }
+    public final void c(java.lang.Throwable r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ek.c(java.lang.Throwable):void");
     }
 }

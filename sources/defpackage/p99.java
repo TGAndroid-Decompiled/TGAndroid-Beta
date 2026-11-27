@@ -1,25 +1,40 @@
 package defpackage;
-public final class p99 {
-    public static final p99 a;
-    public static final p99 b;
-    public static final p99 c;
-    public static final p99[] d;
+public final class p99 extends zo5 {
+    public static final p99 n;
+    public final transient wq7 e;
+    public final transient int f;
+    public transient yo5 h;
 
     static {
-        ?? r0 = new Enum("BY_PRICE", 0);
-        a = r0;
-        ?? r1 = new Enum("BY_DATE", 1);
-        b = r1;
-        ?? r3 = new Enum("BY_NUMBER", 2);
-        c = r3;
-        d = new p99[]{r0, r1, r3};
+        ?? obj = new Object();
+        obj.d(3);
+        n = new p99(obj);
     }
 
-    public static p99 valueOf(String str) {
-        return (p99) Enum.valueOf(p99.class, str);
+    public p99(wq7 wq7Var) {
+        this.e = wq7Var;
+        long j = 0;
+        int i = 0;
+        while (true) {
+            int i2 = wq7Var.c;
+            if (i < i2) {
+                yve.j(i, i2);
+                j += wq7Var.b[i];
+                i++;
+            } else {
+                this.f = ype.d(j);
+                return;
+            }
+        }
     }
 
-    public static p99[] values() {
-        return (p99[]) d.clone();
+    @Override
+    public final boolean m() {
+        throw null;
+    }
+
+    @Override
+    public final int size() {
+        return this.f;
     }
 }

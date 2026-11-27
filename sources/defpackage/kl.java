@@ -1,94 +1,103 @@
 package defpackage;
 
-import android.os.SystemClock;
-import android.view.View;
-public final class kl {
-    public final View a;
-    public final Runnable b;
-    public int c;
-    public int d;
-    public boolean e;
-    public final short f;
-    public final s33 g;
-    public boolean h;
-    public long i;
-    public int j;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Picture;
+import android.text.TextUtils;
+public abstract class kl extends k66 implements s84 {
+    public final t84 Q0;
+    public Picture R0;
+    public float S0;
+    public int T0;
+    public Paint U0;
 
-    public kl(View view, long j, s33 s33Var) {
-        this.f = (short) 200;
-        s33 s33Var2 = s33.f;
-        this.a = view;
-        this.f = (int) j;
-        this.g = s33Var;
-        this.e = true;
+    public kl(Context context) {
+        super(context);
+        this.Q0 = new t84(0, this, k43.h, 320L, 1.0f);
+        this.T0 = 0;
     }
 
-    public final int a(int i, boolean z) {
-        long j = this.f;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!z && j > 0 && !this.e) {
-            if (this.d != i) {
-                this.h = true;
-                this.d = i;
-                this.j = this.c;
-                this.i = elapsedRealtime;
-            }
+    @Override
+    public int getLayerType() {
+        return this.T0;
+    }
+
+    public final void n(Canvas canvas, float f, float f2) {
+        if (f >= 1.0f && f2 == 0.0f) {
+            super.onDraw(canvas);
+            return;
+        }
+        canvas.save();
+        canvas.translate(0.0f, f2);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (f * 255.0f));
+        super.onDraw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    public final boolean o(CharSequence charSequence, boolean z) {
+        CharSequence text = getText();
+        if (TextUtils.equals(text, charSequence)) {
+            return l(charSequence, false);
+        }
+        t84 t84Var = this.Q0;
+        if (z && isAttachedToWindow() && isLaidOut() && getVisibility() == 0 && getAlpha() > 0.0f && getWidth() > 0 && getHeight() > 0 && !TextUtils.isEmpty(text)) {
+            Picture picture = new Picture();
+            n(picture.beginRecording(getWidth(), getHeight()), 1.0f, 0.0f);
+            picture.endRecording();
+            t84Var.c(0.0f);
+            this.R0 = picture;
+            this.S0 = getTranslationX();
+            super.setLayerType(0, null);
+            t84Var.a(1.0f);
         } else {
-            this.d = i;
-            this.c = i;
-            this.h = false;
-            this.e = false;
-        }
-        if (this.h) {
-            float a = moe.a(((float) (elapsedRealtime - this.i)) / ((float) j), 0.0f, 1.0f);
-            if (elapsedRealtime - this.i >= 0) {
-                int i2 = this.j;
-                int i3 = this.d;
-                s33 s33Var = this.g;
-                if (s33Var == null) {
-                    this.c = bm2.f(a, i2, i3);
-                } else {
-                    this.c = bm2.f(s33Var.getInterpolation(a), i2, i3);
-                }
+            t84Var.c(1.0f);
+            if (this.R0 != null) {
+                this.R0 = null;
+                super.setLayerType(this.T0, this.U0);
             }
-            if (a >= 1.0f) {
-                this.h = false;
-            } else {
-                View view = this.a;
-                if (view != null) {
-                    view.invalidate();
-                }
-                Runnable runnable = this.b;
-                if (runnable != null) {
-                    runnable.run();
-                }
-            }
+            invalidate();
         }
-        return this.c;
+        invalidate();
+        return l(charSequence, false);
     }
 
-    public kl(View view) {
-        this.f = (short) 200;
-        this.g = s33.f;
-        this.a = view;
-        this.e = true;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.R0 == null) {
+            super.onDraw(canvas);
+            return;
+        }
+        float f = this.Q0.f;
+        int L = hl.L(6.0f);
+        canvas.save();
+        canvas.translate(this.S0 - getTranslationX(), (-L) * f);
+        float f2 = 1.0f - f;
+        canvas.saveLayerAlpha(0.0f, 0.0f, this.R0.getWidth(), this.R0.getHeight(), (int) (255.0f * f2));
+        canvas.drawPicture(this.R0);
+        canvas.restore();
+        canvas.restore();
+        n(canvas, f, L * f2);
     }
 
-    public kl(View view, long j, s33 s33Var, int i) {
-        this.f = (short) 200;
-        s33 s33Var2 = s33.f;
-        this.a = view;
-        this.f = (int) j;
-        this.g = s33Var;
-        this.e = true;
+    @Override
+    public final void setLayerType(int i, Paint paint) {
+        this.T0 = i;
+        this.U0 = paint;
+        if (this.R0 == null) {
+            super.setLayerType(i, paint);
+        }
     }
 
-    public kl(Runnable runnable, long j, s33 s33Var) {
-        this.f = (short) 200;
-        s33 s33Var2 = s33.f;
-        this.b = runnable;
-        this.f = (int) j;
-        this.g = s33Var;
-        this.e = true;
+    @Override
+    public final void v0(float f, int i) {
+        if (f == 1.0f) {
+            if (this.R0 != null) {
+                this.R0 = null;
+                super.setLayerType(this.T0, this.U0);
+            }
+            invalidate();
+        }
     }
 }

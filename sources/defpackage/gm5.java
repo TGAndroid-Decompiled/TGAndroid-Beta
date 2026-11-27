@@ -1,163 +1,111 @@
 package defpackage;
 
-import j$.lang.Iterable$CC;
-import j$.util.Collection;
-import j$.util.Spliterator;
-import j$.util.Spliterators;
-import j$.util.stream.Stream;
-import java.io.Serializable;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Spliterator;
-import java.util.function.Consumer;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-public abstract class gm5 extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] a = new Object[0];
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+import com.google.android.gms.tasks.Task;
+import java.io.Closeable;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayDeque;
+import java.util.concurrent.Future;
+public final class gm5 implements Closeable {
+    public final URL a;
+    public volatile Future b;
+    public Task c;
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
+    public gm5(URL url) {
+        this.a = url;
     }
 
-    @Override
-    public final boolean addAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean contains(Object obj) {
-        if (((c69) this).e.b(obj) > 0) {
-            return true;
+    public final Bitmap a() {
+        byte[] a;
+        int i;
+        boolean isLoggable = Log.isLoggable("FirebaseMessaging", 4);
+        URL url = this.a;
+        if (isLoggable) {
+            Log.i("FirebaseMessaging", "Starting download of: " + url);
         }
-        return false;
-    }
-
-    @Override
-    public final void forEach(Consumer consumer) {
-        Iterable$CC.$default$forEach(this, consumer);
-    }
-
-    public mm5 h() {
-        if (isEmpty()) {
-            km5 km5Var = mm5.b;
-            return w59.e;
+        URLConnection openConnection = url.openConnection();
+        if (openConnection.getContentLength() <= 1048576) {
+            InputStream inputStream = openConnection.getInputStream();
+            try {
+                i51 i51Var = new i51(inputStream);
+                ArrayDeque arrayDeque = new ArrayDeque(20);
+                int i2 = 128;
+                int i3 = 0;
+                loop0: while (true) {
+                    int i4 = 2;
+                    if (i3 < 2147483639) {
+                        int min = Math.min(i2, 2147483639 - i3);
+                        byte[] bArr = new byte[min];
+                        arrayDeque.add(bArr);
+                        int i5 = 0;
+                        while (i5 < min) {
+                            int read = i51Var.read(bArr, i5, min - i5);
+                            if (read == -1) {
+                                a = rud.a(arrayDeque, i3);
+                                break loop0;
+                            }
+                            i5 += read;
+                            i3 += read;
+                        }
+                        long j = i2;
+                        if (i2 < 4096) {
+                            i4 = 4;
+                        }
+                        long j2 = j * i4;
+                        if (j2 > 2147483647L) {
+                            i = Integer.MAX_VALUE;
+                        } else if (j2 < -2147483648L) {
+                            i = Integer.MIN_VALUE;
+                        } else {
+                            i = (int) j2;
+                        }
+                        i2 = i;
+                    } else if (i51Var.read() == -1) {
+                        a = rud.a(arrayDeque, 2147483639);
+                    } else {
+                        throw new OutOfMemoryError("input is too large to fit in a byte array");
+                    }
+                }
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (Log.isLoggable("FirebaseMessaging", 2)) {
+                    Log.v("FirebaseMessaging", "Downloaded " + a.length + " bytes from " + url);
+                }
+                if (a.length <= 1048576) {
+                    Bitmap decodeByteArray = BitmapFactory.decodeByteArray(a, 0, a.length);
+                    if (decodeByteArray != null) {
+                        if (Log.isLoggable("FirebaseMessaging", 3)) {
+                            Log.d("FirebaseMessaging", "Successfully downloaded image: " + url);
+                        }
+                        return decodeByteArray;
+                    }
+                    bg.e(url, "Failed to decode image: ");
+                    return null;
+                }
+                su3.e("Image exceeds max size of 1048576");
+                return null;
+            } catch (Throwable th) {
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (Throwable th2) {
+                        th.addSuppressed(th2);
+                    }
+                }
+                throw th;
+            }
         }
-        Object[] array = toArray(a);
-        km5 km5Var2 = mm5.b;
-        return mm5.o(array.length, array);
-    }
-
-    public int i(int i, Object[] objArr) {
-        v5c n = n();
-        while (n.hasNext()) {
-            objArr[i] = n.next();
-            i++;
-        }
-        return i;
-    }
-
-    public Object[] j() {
+        su3.e("Content-Length exceeds max size of 1048576");
         return null;
     }
 
-    public int k() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int l() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract boolean m();
-
-    public abstract v5c n();
-
     @Override
-    public final Stream parallelStream() {
-        return Stream.Wrapper.convert(parallelStream());
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeIf(Predicate predicate) {
-        return Collection.CC.$default$removeIf(this, predicate);
-    }
-
-    @Override
-    public final boolean retainAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Spliterator spliterator() {
-        return Spliterator.Wrapper.convert(spliterator());
-    }
-
-    @Override
-    public final java.util.stream.Stream stream() {
-        return Stream.Wrapper.convert(stream());
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        if (objArr.length < size) {
-            Object[] j = j();
-            if (j != null) {
-                return Arrays.copyOfRange(j, l(), k(), objArr.getClass());
-            }
-            if (objArr.length != 0) {
-                objArr = Arrays.copyOf(objArr, 0);
-            }
-            objArr = Arrays.copyOf(objArr, size);
-        } else if (objArr.length > size) {
-            objArr[size] = null;
-        }
-        i(0, objArr);
-        return objArr;
-    }
-
-    @Override
-    public final j$.util.stream.Stream parallelStream() {
-        return Collection.CC.$default$parallelStream(this);
-    }
-
-    @Override
-    public final j$.util.Spliterator spliterator() {
-        return Spliterators.spliterator(this, 1296);
-    }
-
-    @Override
-    public final j$.util.stream.Stream stream() {
-        return Collection.CC.$default$stream(this);
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(a);
-    }
-
-    @Override
-    public final Object[] toArray(IntFunction intFunction) {
-        Object[] array;
-        array = toArray((Object[]) intFunction.apply(0));
-        return array;
+    public final void close() {
+        this.b.cancel(true);
     }
 }

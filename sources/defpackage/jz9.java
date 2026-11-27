@@ -1,25 +1,31 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class jz9 extends b4c {
-    public static final int b = 0;
+import java.util.ArrayList;
+public final class jz9 extends iz9 {
+    public final ArrayList j;
 
-    static {
-        b4c.h(new b4c());
+    public jz9(n29 n29Var, long j, long j2, long j3, long j4, ArrayList arrayList, long j5, ArrayList arrayList2, long j6, long j7) {
+        super(n29Var, j, j2, j3, j4, arrayList, j5, j6, j7);
+        this.j = arrayList2;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        kz9 kz9Var = (kz9) view;
-        kz9Var.setUser((TLRPC.User) c4cVar.H);
-        kz9Var.c(c4cVar.e, false);
-        kz9Var.setDivider(z);
+    public final nz9 a() {
+        return new jz9(this.a, this.b, 0L, this.d, this.e, this.f, this.i, this.j, this.g, this.h);
     }
 
     @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new kz9(context, true, false, wjbVar, false);
+    public final long e(long j) {
+        return this.j.size();
+    }
+
+    @Override
+    public final n29 i(sb9 sb9Var, long j) {
+        return (n29) this.j.get((int) (j - this.d));
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
     }
 }

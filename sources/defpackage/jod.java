@@ -1,35 +1,71 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.location.LocationRequest;
-public final class jod extends b4 {
-    public static final Parcelable.Creator<jod> CREATOR = new igd((byte) 28);
-    public final LocationRequest a;
-
-    public jod(com.google.android.gms.location.LocationRequest r26, java.util.ArrayList r27, boolean r28, boolean r29, java.lang.String r30, boolean r31, boolean r32, java.lang.String r33, long r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jod.<init>(com.google.android.gms.location.LocationRequest, java.util.ArrayList, boolean, boolean, java.lang.String, boolean, boolean, java.lang.String, long):void");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof jod) {
-            return cqe.a(this.a, ((jod) obj).a);
+public final class jod extends o5f {
+    @Override
+    public final dod a(jtd jtdVar) {
+        dod dodVar;
+        dod dodVar2 = dod.d;
+        synchronized (jtdVar) {
+            dodVar = jtdVar.b;
+            if (dodVar != dodVar2) {
+                jtdVar.b = dodVar2;
+            }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
-    }
-
-    public final String toString() {
-        return this.a.toString();
+        return dodVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 1, this.a, i);
-        jte.s(parcel, r);
+    public final lod b(jtd jtdVar) {
+        lod lodVar;
+        lod lodVar2 = lod.c;
+        synchronized (jtdVar) {
+            lodVar = jtdVar.c;
+            if (lodVar != lodVar2) {
+                jtdVar.c = lodVar2;
+            }
+        }
+        return lodVar;
+    }
+
+    @Override
+    public final void c(lod lodVar, lod lodVar2) {
+        lodVar.b = lodVar2;
+    }
+
+    @Override
+    public final void d(lod lodVar, Thread thread) {
+        lodVar.a = thread;
+    }
+
+    @Override
+    public final boolean e(jtd jtdVar, dod dodVar, dod dodVar2) {
+        synchronized (jtdVar) {
+            if (jtdVar.b == dodVar) {
+                jtdVar.b = dodVar2;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public final boolean f(rod rodVar, Object obj, Object obj2) {
+        synchronized (rodVar) {
+            if (rodVar.a == obj) {
+                rodVar.a = obj2;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public final boolean g(rod rodVar, lod lodVar, lod lodVar2) {
+        synchronized (rodVar) {
+            if (rodVar.c == lodVar) {
+                rodVar.c = lodVar2;
+                return true;
+            }
+            return false;
+        }
     }
 }

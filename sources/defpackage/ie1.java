@@ -1,293 +1,237 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public abstract class ie1 extends FrameLayout implements tjb {
-    public final lm E;
-    public float F;
-    public ValueAnimator G;
-    public boolean H;
-    public boolean I;
-    public final lm J;
-    public boolean a;
-    public final wjb b;
-    public final jia c;
-    public final ImageView d;
-    public final ih2 e;
-    public final hn f;
-    public final Drawable[] h;
-    public float n;
-    public boolean r;
-    public ValueAnimator s;
-    public TLRPC.TL_username w;
-    public boolean x;
-    public long y;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.e;
+public final class ie1 extends e {
+    public he1 a;
+    public he1 b;
+    public s7 c;
+    public vnb d;
 
-    public ie1(Context context, wjb wjbVar) {
-        super(context);
-        this.a = false;
-        this.E = new lm(300L, this, s33.f);
-        this.J = new lm(400L, this, s33.h);
-        this.b = wjbVar;
-        zkb.h(bkb.c6, wjbVar, this);
-        jia jiaVar = new jia(getContext());
-        this.c = jiaVar;
-        jiaVar.setTextSize(16);
-        zkb.W(jiaVar, bkb.F6, wjbVar);
-        jiaVar.setEllipsizeByGradient(true);
-        addView(jiaVar, nme.d(-1, -2.0f, 48, 70.0f, 9.0f, 0.0f, 50.0f));
-        ImageView imageView = new ImageView(getContext());
-        this.d = imageView;
-        ih2 ih2Var = new ih2(gl.L(7.0f), gl.L(1.35f), bkb.v0(bkb.m6, wjbVar));
-        this.e = ih2Var;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageDrawable(ih2Var);
-        imageView.setAlpha(0.0f);
-        imageView.setVisibility(0);
-        ih2Var.setBounds(0, 0, gl.L(14.0f), gl.L(14.0f));
-        addView(imageView, nme.d(14, 14.0f, 48, 70.0f, 35.0f, 0.0f, 0.0f));
-        hn hnVar = new hn(getContext(), false, true, true);
-        this.f = hnVar;
-        hnVar.setTextColor(bkb.v0(bkb.y6, wjbVar));
-        hnVar.b(0.4f, 120L, s33.g);
-        hnVar.setTextSize(gl.L(13.0f));
-        addView(hnVar, nme.d(-1, -2.0f, 48, 70.0f, 23.0f, 0.0f, 0.0f));
-        Drawable[] drawableArr = {context.getDrawable(2131232210).mutate(), context.getDrawable(2131232211).mutate()};
-        this.h = drawableArr;
-        Drawable drawable = drawableArr[0];
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        drawable.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        drawableArr[1].setColorFilter(new PorterDuffColorFilter(-1, mode));
-        me1.I.setColor(bkb.v0(bkb.Ei, wjbVar));
-        me1.J.setColor(bkb.v0(bkb.U8, wjbVar));
+    public final void Y() {
+        String str;
+        TLRPC.User f = yac.h(this.currentAccount).f();
+        if (f != null && this.b.getText() != null && this.a.getText() != null) {
+            String obj = this.a.getText().toString();
+            String obj2 = this.b.getText().toString();
+            String str2 = f.first_name;
+            if (str2 == null || !str2.equals(obj) || (str = f.last_name) == null || !str.equals(obj2)) {
+                TL_account.updateProfile updateprofile = new TL_account.updateProfile();
+                updateprofile.flags = 3;
+                updateprofile.first_name = obj;
+                f.first_name = obj;
+                updateprofile.last_name = obj2;
+                f.last_name = obj2;
+                TLRPC.User X1 = uc7.s1(this.currentAccount).X1(Long.valueOf(yac.h(this.currentAccount).e()));
+                if (X1 != null) {
+                    X1.first_name = updateprofile.first_name;
+                    X1.last_name = updateprofile.last_name;
+                }
+                yac.h(this.currentAccount).u(true);
+                jn7.f(this.currentAccount).k(jn7.j0, new Object[0]);
+                jn7.f(this.currentAccount).k(2, 1);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateprofile, new xe2((byte) 0));
+            }
+        }
     }
 
-    public final void a(TLRPC.TL_username tL_username, boolean z, boolean z2, long j) {
-        boolean z3;
+    @Override
+    public final void addThemeColorKeys(HashSet hashSet) {
+        super.addThemeColorKeys(hashSet);
+        hashSet.add(Integer.valueOf(aob.t8));
+        hashSet.add(Integer.valueOf(aob.A8));
+        hashSet.add(Integer.valueOf(aob.s8));
+        hashSet.add(Integer.valueOf(aob.d6));
+    }
+
+    @Override
+    public final View createView(Context context) {
         int i;
-        boolean z4;
         int i2;
-        this.w = tL_username;
-        this.x = z;
-        this.y = j;
-        invalidate();
-        if (this.w == null) {
-            this.H = false;
-            this.I = false;
-            return;
+        vnb vnbVar = this.d;
+        yob.l(this.actionBar, 3, aob.f8, vnbVar);
+        yob.l(this.actionBar, 1, aob.v8, vnbVar);
+        this.actionBar.setBackButtonImage(2131231243);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(ob6.M0(2131751229, null));
+        this.actionBar.setActionBarMenuOnItemClick(new s8(this, (byte) 18));
+        this.c = this.actionBar.u().h(1, 2131231245, hl.L(56.0f), ob6.M0(2131751319, null));
+        TLRPC.User X1 = uc7.s1(this.currentAccount).X1(Long.valueOf(yac.h(this.currentAccount).e()));
+        if (X1 == null) {
+            X1 = yac.h(this.currentAccount).f();
         }
-        this.H = tL_username.active;
-        if (j == 0 && tL_username.editable) {
-            z3 = true;
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.fragmentView = linearLayout;
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        ((LinearLayout) this.fragmentView).setOrientation(1);
+        this.fragmentView.setOnTouchListener(new q8((byte) 22));
+        he1 he1Var = new he1(this, context, (byte) 0);
+        this.a = he1Var;
+        he1Var.setTextSize(1, 18.0f);
+        he1 he1Var2 = this.a;
+        int i3 = aob.H6;
+        yob.D(he1Var2, i3, vnbVar);
+        he1 he1Var3 = this.a;
+        int i4 = aob.G6;
+        yob.X(he1Var3, i4, vnbVar);
+        this.a.setBackgroundDrawable(null);
+        he1 he1Var4 = this.a;
+        int i5 = aob.k6;
+        int i6 = aob.l6;
+        int i7 = aob.p7;
+        yob.F(he1Var4, i5, i6, i7, vnbVar);
+        this.a.setMaxLines(1);
+        this.a.setLines(1);
+        this.a.setSingleLine(true);
+        he1 he1Var5 = this.a;
+        if (ob6.a0) {
+            i = 5;
         } else {
-            z3 = false;
+            i = 3;
         }
-        this.I = z3;
-        b(tL_username.username);
-        boolean z5 = this.a;
-        boolean z6 = this.I;
-        hn hnVar = this.f;
-        if (z5) {
-            if (z6) {
-                i2 = 2131743407;
-            } else if (this.H) {
-                i2 = 2131743408;
-            } else {
-                i2 = 2131743406;
+        he1Var5.setGravity(i);
+        this.a.setInputType(49152);
+        this.a.setImeOptions(5);
+        this.a.setHint(ob6.M0(2131750654, null));
+        yob.v(this.a, i4, vnbVar);
+        this.a.setCursorSize(hl.L(20.0f));
+        this.a.setCursorWidth(1.5f);
+        linearLayout.addView(this.a, tre.k(24.0f, 24.0f, 24.0f, 0.0f, -1, 36));
+        this.a.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final ie1 b;
+
+            {
+                this.b = this;
             }
-            hnVar.c(k96.M0(i2, null), z2, !this.H);
+
+            @Override
+            public final boolean onEditorAction(TextView textView, int i8, KeyEvent keyEvent) {
+                byte b = r2;
+                ie1 ie1Var = this.b;
+                switch (b) {
+                    case 0:
+                        if (i8 != 5) {
+                            return false;
+                        }
+                        ie1Var.b.requestFocus();
+                        he1 he1Var6 = ie1Var.b;
+                        he1Var6.setSelection(he1Var6.length());
+                        return true;
+                    default:
+                        if (i8 != 6) {
+                            return false;
+                        }
+                        ie1Var.c.performClick();
+                        return true;
+                }
+            }
+        });
+        he1 he1Var6 = new he1(this, context, (byte) 1);
+        this.b = he1Var6;
+        he1Var6.setTextSize(1, 18.0f);
+        yob.D(this.b, i3, vnbVar);
+        yob.X(this.b, i4, vnbVar);
+        this.b.setBackgroundDrawable(null);
+        yob.F(this.b, i5, i6, i7, vnbVar);
+        this.b.setMaxLines(1);
+        this.b.setLines(1);
+        this.b.setSingleLine(true);
+        he1 he1Var7 = this.b;
+        if (ob6.a0) {
+            i2 = 5;
         } else {
-            if (z6) {
-                i = 2131743411;
-            } else if (this.H) {
-                i = 2131743412;
-            } else {
-                i = 2131743410;
+            i2 = 3;
+        }
+        he1Var7.setGravity(i2);
+        this.b.setInputType(49152);
+        this.b.setImeOptions(6);
+        this.b.setHint(ob6.M0(2131748786, null));
+        yob.v(this.b, i4, vnbVar);
+        this.b.setCursorSize(hl.L(20.0f));
+        this.b.setCursorWidth(1.5f);
+        linearLayout.addView(this.b, tre.k(24.0f, 16.0f, 24.0f, 0.0f, -1, 36));
+        this.b.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            public final ie1 b;
+
+            {
+                this.b = this;
             }
-            hnVar.c(k96.M0(i, null), z2, !this.H);
-        }
-        if (!this.H && !this.I) {
-            z4 = false;
-        } else {
-            z4 = true;
-        }
-        ValueAnimator valueAnimator = this.G;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.G = null;
-        }
-        float f = 0.0f;
-        if (z2) {
-            float f2 = this.F;
-            if (z4) {
-                f = 1.0f;
+
+            @Override
+            public final boolean onEditorAction(TextView textView, int i8, KeyEvent keyEvent) {
+                byte b = r2;
+                ie1 ie1Var = this.b;
+                switch (b) {
+                    case 0:
+                        if (i8 != 5) {
+                            return false;
+                        }
+                        ie1Var.b.requestFocus();
+                        he1 he1Var62 = ie1Var.b;
+                        he1Var62.setSelection(he1Var62.length());
+                        return true;
+                    default:
+                        if (i8 != 6) {
+                            return false;
+                        }
+                        ie1Var.c.performClick();
+                        return true;
+                }
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new he1(this, (byte) 1));
-            this.G.setDuration(120L);
-            this.G.setInterpolator(s33.g);
-            this.G.start();
-            return;
+        });
+        if (X1 != null) {
+            this.a.setText(X1.first_name);
+            he1 he1Var8 = this.a;
+            he1Var8.setSelection(he1Var8.length());
+            this.b.setText(X1.last_name);
         }
-        if (z4) {
-            f = 1.0f;
-        }
-        this.F = f;
-        int i3 = bkb.y6;
-        wjb wjbVar = this.b;
-        int f3 = bm2.f(this.F, bkb.v0(i3, wjbVar), bkb.v0(bkb.m6, wjbVar));
-        this.e.b(f3);
-        hnVar.setTextColor(f3);
+        return this.fragmentView;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.Ei));
-        hashSet.add(Integer.valueOf(bkb.U8));
-        hashSet.add(Integer.valueOf(bkb.y6));
-        hashSet.add(Integer.valueOf(bkb.m6));
-    }
-
-    public final void b(String str) {
-        if (this.I) {
-            str = getUsernameEditable();
-        }
-        boolean isEmpty = TextUtils.isEmpty(str);
-        jia jiaVar = this.c;
-        if (isEmpty) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("@");
-            SpannableString spannableString = new SpannableString(k96.M0(2131743409, null));
-            spannableString.setSpan(new cm4(bkb.G6, this.b), 0, spannableString.length(), 33);
-            spannableStringBuilder.append((CharSequence) spannableString);
-            jiaVar.l(spannableStringBuilder, false);
-            return;
-        }
-        jiaVar.l("@" + str, false);
-    }
-
-    public String getUsernameEditable() {
-        return null;
+    public final vnb getResourceProvider() {
+        return this.d;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        super.onDraw(canvas);
-        if (this.H) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        float e = this.J.e(false, f);
-        int i = (e > 1.0f ? 1 : (e == 1.0f ? 0 : -1));
-        Drawable[] drawableArr = this.h;
-        if (i < 0) {
-            f3 = 0.0f;
-            canvas.drawCircle(gl.L(35.0f), gl.L(29.0f), gl.L(16.0f), me1.J);
-            drawableArr[1].setAlpha((int) ((1.0f - e) * 255.0f));
-            f2 = 255.0f;
-            drawableArr[1].setBounds(oo1.A(2, gl.L(35.0f), drawableArr[1]), oo1.y(2, gl.L(29.0f), drawableArr[1]), oo1.w(2, gl.L(35.0f), drawableArr[1]), oo1.i(2, gl.L(29.0f), drawableArr[1]));
-            drawableArr[1].draw(canvas);
-        } else {
-            f2 = 255.0f;
-            f3 = 0.0f;
-        }
-        if (e > f3) {
-            Paint paint = me1.I;
-            int i2 = (int) (e * f2);
-            paint.setAlpha(i2);
-            canvas.drawCircle(gl.L(35.0f), gl.L(29.0f), gl.L(16.0f) * e, paint);
-            drawableArr[0].setAlpha(i2);
-            drawableArr[0].setBounds(oo1.A(2, gl.L(35.0f), drawableArr[0]), oo1.y(2, gl.L(29.0f), drawableArr[0]), oo1.w(2, gl.L(35.0f), drawableArr[0]), oo1.i(2, gl.L(29.0f), drawableArr[0]));
-            drawableArr[0].draw(canvas);
-        }
-        if (this.x) {
-            f4 = 1.0f;
-        } else {
-            f4 = f3;
-        }
-        float e2 = this.E.e(false, f4);
-        if (e2 > f3) {
-            int alpha = bkb.j0.getAlpha();
-            bkb.j0.setAlpha((int) (alpha * e2));
-            canvas.drawRect(gl.L(70.0f), getHeight() - 1, getWidth(), getHeight(), bkb.j0);
-            bkb.j0.setAlpha(alpha);
-        }
-        Paint paint2 = me1.K;
-        paint2.setColor(bkb.w0(null, bkb.Ki, false));
-        paint2.setAlpha((int) (paint2.getAlpha() * e));
-        RectF rectF = gl.P;
-        rectF.set(getWidth() - gl.L(37.0f), gl.L(25.0f), getWidth() - gl.L(21.0f), gl.L(27.0f));
-        canvas.drawRoundRect(rectF, gl.L(0.3f), gl.L(0.3f), paint2);
-        rectF.set(getWidth() - gl.L(37.0f), gl.L(31.0f), getWidth() - gl.L(21.0f), gl.L(33.0f));
-        canvas.drawRoundRect(rectF, gl.L(0.3f), gl.L(0.3f), paint2);
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        he1 he1Var = this.a;
+        int i = aob.k6;
+        arrayList.add(new apb(he1Var, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, i));
+        he1 he1Var2 = this.a;
+        int i2 = aob.l6;
+        arrayList.add(new apb(he1Var2, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, i2));
+        arrayList.add(new apb(this.b, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, i));
+        arrayList.add(new apb(this.b, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, i2));
+        return arrayList;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(58.0f), 1073741824));
-    }
-
-    public void setLoading(boolean z) {
-        float f;
-        if (this.r != z) {
-            this.r = z;
-            ValueAnimator valueAnimator = this.s;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.d.setVisibility(0);
-            float f2 = this.n;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.s = ofFloat;
-            ofFloat.addUpdateListener(new he1(this, (byte) 0));
-            this.s.addListener(new y7((byte) 12, this, z));
-            this.s.setInterpolator(s33.g);
-            this.s.setDuration(200L);
-            this.s.start();
+    public final void onResume() {
+        super.onResume();
+        if (!uc7.e1().getBoolean("view_animations", true)) {
+            this.a.requestFocus();
+            hl.E3(this.a);
         }
     }
 
     @Override
-    public final void updateColors() {
-        ih2 ih2Var;
-        hn hnVar;
-        wjb wjbVar = this.b;
-        try {
-            me1.I.setColor(bkb.v0(bkb.Ei, wjbVar));
-            me1.J.setColor(bkb.v0(bkb.U8, wjbVar));
-            ValueAnimator valueAnimator = this.G;
-            if ((valueAnimator == null || !valueAnimator.isRunning()) && (ih2Var = this.e) != null && (hnVar = this.f) != null) {
-                int f = bm2.f(this.F, bkb.v0(bkb.y6, wjbVar), bkb.v0(bkb.m6, wjbVar));
-                ih2Var.b(f);
-                hnVar.setTextColor(f);
-            }
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+        if (z) {
+            hl.d3(new fv0(this, (byte) 22), 100L);
         }
     }
 }

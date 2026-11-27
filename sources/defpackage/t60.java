@@ -1,10 +1,12 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t60 implements RequestDelegate {
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+import java.io.File;
+import org.telegram.messenger.Utilities;
+public final class t60 extends v51 {
+    public final long e;
+
+    public t60(File file) {
+        super(file);
+        this.e = Utilities.getLastUsageFileTime(file.getAbsolutePath());
     }
 }

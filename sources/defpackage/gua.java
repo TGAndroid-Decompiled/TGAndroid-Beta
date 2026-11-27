@@ -1,30 +1,40 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import androidx.recyclerview.widget.RecyclerView;
-public final class gua implements cha {
-    public final byte a;
-    public final hz4 b;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stars;
+public final class gua extends dua {
+    public final boolean c;
+    public final ImageReceiver d;
 
-    public gua(hz4 hz4Var, byte b) {
-        this.a = b;
-        this.b = hz4Var;
+    public gua(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.a = stargiftattributemodel.name;
+        this.b = stargiftattributemodel.getRarityPermille();
+        this.c = true;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.d = imageReceiver;
+        nza.e1(imageReceiver, stargiftattributemodel.document, 160);
     }
 
     @Override
-    public final void m(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        byte b = this.a;
-        hz4 hz4Var = this.b;
-        switch (b) {
-            case 0:
-                o39 o39Var = (o39) recyclerView;
-                tk0.a(o39Var, canvas, rectF, o39Var, hz4Var);
-                return;
-            default:
-                o39 o39Var2 = (o39) recyclerView;
-                tk0.a(o39Var2, canvas, rectF, o39Var2, hz4Var);
-                return;
+    public final void a() {
+        if (this.c) {
+            this.d.K();
         }
+    }
+
+    @Override
+    public final boolean b() {
+        if (this.d.y() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public gua(de0 de0Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.a = stargiftattributemodel.name;
+        this.b = stargiftattributemodel.getRarityPermille();
+        this.c = false;
+        this.d = de0Var.getImageReceiver();
     }
 }

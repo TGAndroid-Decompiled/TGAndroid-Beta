@@ -1,27 +1,69 @@
 package defpackage;
+public final class gs9 extends ax2 implements nm4 {
+    public final nm4 a;
+    public final mx2 b;
+    public final int c;
+    public mx2 d;
+    public zw2 e;
 
-import android.view.View;
-public final class gs9 implements View.OnClickListener {
-    public final gx0 a;
-
-    public gs9(gx0 gx0Var) {
-        this.a = gx0Var;
+    public gs9(nm4 nm4Var, mx2 mx2Var) {
+        super(xp2.c, u24.a);
+        this.a = nm4Var;
+        this.b = mx2Var;
+        this.c = ((Number) mx2Var.fold(0, new xm2((byte) 5))).intValue();
     }
 
     @Override
-    public final void onClick(View view) {
-        hs9 hs9Var = (hs9) this.a.d;
-        for (int i = 0; i < hs9Var.e.size(); i++) {
-            k27 k27Var = (k27) hs9Var.e.get(i);
-            boolean z = hs9Var.I;
-            int i2 = y6c.t0;
-            if (z) {
-                ba4.G(j5.a(i2).a).f(k27Var.F0());
-            } else {
-                ba4.G(j5.a(i2).a).X(k27Var.F0(), k27Var, 0, 0);
-                up3.q(hs9Var.d).y();
+    public final Object c(Object obj, zw2 zw2Var) {
+        try {
+            Object d = d(zw2Var, obj);
+            if (d == vx2.a) {
+                return d;
             }
+            return f9c.a;
+        } catch (Throwable th) {
+            this.d = new uq3(zw2Var.getContext(), th);
+            throw th;
         }
-        hs9Var.d(true);
+    }
+
+    public final java.lang.Object d(defpackage.zw2 r14, java.lang.Object r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gs9.d(zw2, java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public final wx2 getCallerFrame() {
+        zw2 zw2Var = this.e;
+        if (zw2Var instanceof wx2) {
+            return (wx2) zw2Var;
+        }
+        return null;
+    }
+
+    @Override
+    public final mx2 getContext() {
+        mx2 mx2Var = this.d;
+        if (mx2Var == null) {
+            return u24.a;
+        }
+        return mx2Var;
+    }
+
+    @Override
+    public final StackTraceElement getStackTraceElement() {
+        return null;
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        Throwable a = he9.a(obj);
+        if (a != null) {
+            this.d = new uq3(getContext(), a);
+        }
+        zw2 zw2Var = this.e;
+        if (zw2Var != null) {
+            zw2Var.resumeWith(obj);
+        }
+        return vx2.a;
     }
 }

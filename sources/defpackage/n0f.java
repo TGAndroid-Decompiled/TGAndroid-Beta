@@ -1,28 +1,19 @@
 package defpackage;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 public abstract class n0f {
-    public static boolean a(o7a o7aVar, Collection collection) {
-        collection.getClass();
-        if (collection instanceof mdd) {
-            collection = ((mdd) collection).zza();
-        }
-        boolean z = false;
-        if ((collection instanceof Set) && collection.size() > o7aVar.size()) {
-            Iterator<E> it = o7aVar.iterator();
-            while (it.hasNext()) {
-                if (collection.contains(it.next())) {
-                    it.remove();
-                    z = true;
-                }
-            }
-            return z;
-        }
-        for (Object obj : collection) {
-            z |= o7aVar.remove(obj);
-        }
-        return z;
+    public static int a(sjf sjfVar) {
+        sjfVar.getClass();
+        return Math.max(1, (int) Math.ceil(0.5f * hl.p)) + (((int) Math.ceil(1.9f * hl.p)) << 1);
+    }
+
+    public static void b(Canvas canvas, Bitmap bitmap, int i, float f, float f2, int i2, int i3, Paint paint) {
+        int min = Math.min(i, bitmap.getWidth());
+        int i4 = (int) f;
+        int i5 = (int) f2;
+        canvas.drawBitmap(bitmap, new Rect(0, i2, min, i2 + i3), new Rect(i4, i5, min + i4, i3 + i5), paint);
     }
 }

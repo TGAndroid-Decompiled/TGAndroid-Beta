@@ -1,17 +1,11 @@
 package defpackage;
-public final class vub extends is5 {
-    public final qvb T;
-
-    public vub(qvb qvbVar, pvb pvbVar) {
-        super(pvbVar);
-        this.T = qvbVar;
+public enum vub extends rwb {
+    public vub() {
+        super("ScriptDataDoubleEscapeStart", 27);
     }
 
     @Override
-    public final boolean r() {
-        if (this.T.y > 0) {
-            return true;
-        }
-        return false;
+    public final void c(bub bubVar, ik1 ik1Var) {
+        rwb.a(bubVar, ik1Var, rwb.S, rwb.L);
     }
 }

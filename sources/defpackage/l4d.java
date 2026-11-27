@@ -1,3 +1,3 @@
 package defpackage;
-public final class l4d extends ezc {
+public interface l4d extends m4d {
 }

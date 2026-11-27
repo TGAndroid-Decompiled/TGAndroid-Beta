@@ -1,24 +1,23 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class epa extends ClickableSpan {
+import j$.util.DesugarCollections;
+import java.util.List;
+public final class epa extends cpa {
     public final long a;
-    public final vqa b;
+    public final long b;
+    public final List c;
 
-    public epa(vqa vqaVar, long j) {
-        this.b = vqaVar;
+    public epa(long j, long j2, List list) {
         this.a = j;
+        this.b = j2;
+        this.c = DesugarCollections.unmodifiableList(list);
     }
 
     @Override
-    public final void onClick(View view) {
-        this.b.Y1(this.a);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("SCTE-35 SpliceInsertCommand { programSplicePts=");
+        sb.append(this.a);
+        sb.append(", programSplicePlaybackPositionUs= ");
+        return qu6.p(sb, this.b, " }");
     }
 }

@@ -1,17 +1,14 @@
 package defpackage;
-public final class aze implements zn7 {
-    public static final aze a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.text.Spannable;
+public abstract class aze {
+    public static void a(Spannable spannable, Object obj, int i, int i2) {
+        Object[] spans;
+        for (Object obj2 : spannable.getSpans(i, i2, obj.getClass())) {
+            if (spannable.getSpanStart(obj2) == i && spannable.getSpanEnd(obj2) == i2 && spannable.getSpanFlags(obj2) == 33) {
+                spannable.removeSpan(obj2);
+            }
         }
-        throw new ClassCastException();
+        spannable.setSpan(obj, i, i2, 33);
     }
 }

@@ -11,17 +11,17 @@ public class ChatsWidgetService extends RemoteViewsService {
         Context applicationContext = getApplicationContext();
         ?? obj = new Object();
         obj.a = new ArrayList();
-        obj.g = new vf6();
-        obj.h = new vf6();
+        obj.g = new zh6();
+        obj.h = new zh6();
         obj.b = applicationContext;
-        bkb.S(applicationContext);
+        aob.S(applicationContext);
         boolean z = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         obj.c = intExtra;
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("shortcut_widget", 0);
         int i = sharedPreferences.getInt("account" + intExtra, -1);
         if (i >= 0) {
-            obj.d = j5.a(i);
+            obj.d = k5.a(i);
         }
         StringBuilder sb = new StringBuilder("deleted");
         sb.append(intExtra);

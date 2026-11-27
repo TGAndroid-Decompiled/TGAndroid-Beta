@@ -1,119 +1,197 @@
 package defpackage;
 
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.IdentityHashMap;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_iv;
-public final class uh9 {
-    public final TL_iv.RichText a;
-    public final IdentityHashMap b;
-    public final int c;
-    public final int d;
-
-    public uh9(TL_iv.RichText richText, IdentityHashMap identityHashMap, int i, int i2) {
-        this.a = richText;
-        this.b = identityHashMap;
-        this.c = i;
-        this.d = i2;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextPaint;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ThemeActivity;
+public abstract class uh9 {
+    public static String A(int i) {
+        switch (i) {
+            case 1:
+                return "IDLE";
+            case 2:
+                return "STARTING";
+            case 3:
+                return "RECORDING";
+            case 4:
+                return "PAUSING";
+            case 5:
+                return "PREVIEWING";
+            case 6:
+                return "RESUMING";
+            case 7:
+                return "FINISHING";
+            case 8:
+                return "COMPLETED";
+            case 9:
+                return "ERROR";
+            case 10:
+                return "RELEASED";
+            default:
+                return "null";
+        }
     }
 
-    public static uh9 a(rh9 rh9Var, iq iqVar) {
-        IdentityHashMap identityHashMap = new IdentityHashMap();
-        kg9 kg9Var = (kg9) iqVar.c;
-        SpannableStringBuilder o = rh9Var.o(kg9Var.a, kg9Var.b, identityHashMap);
-        Spanned spanned = (Spanned) iqVar.d;
-        int spanEnd = spanned.getSpanEnd(kg9Var);
-        int i = iqVar.b;
-        int i2 = spanEnd - i;
-        if (o.length() == i2 && TextUtils.regionMatches(o, 0, spanned, i, i2)) {
-            return new uh9(kg9Var.a, identityHashMap, o.length(), kg9Var.b);
+    public static byte[] a(TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        TL_keyboard.ButtonTypeProto type = keyboardButtonProto.getType();
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeCallback) {
+            return ((TL_keyboard.TL_inlineButtonTypeCallback) type).data;
         }
-        fa4.d("RichQuote: laid out text doesn't match the formatted one");
         return null;
     }
 
-    public final TL_iv.RichText b(int i, int i2) {
-        int max = Math.max(0, i);
-        int i3 = this.c;
-        int min = Math.min(i3, i2);
-        if (max >= min) {
-            return null;
+    public static String b(TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        TL_keyboard.ButtonTypeProto type = keyboardButtonProto.getType();
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
+            return ((TL_keyboard.TL_inlineButtonTypeUrl) type).url;
         }
-        TL_iv.RichText richText = this.a;
-        if (max == 0 && min == i3) {
-            return richText;
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeUrlAuth) {
+            return ((TL_keyboard.TL_inlineButtonTypeUrlAuth) type).url;
         }
-        return c(richText, max, min);
+        if (type instanceof TL_keyboard.TL_inlineButtonTypeWebView) {
+            return ((TL_keyboard.TL_inlineButtonTypeWebView) type).url;
+        }
+        if (type instanceof TL_keyboard.TL_buttonTypeSimpleWebView) {
+            return ((TL_keyboard.TL_buttonTypeSimpleWebView) type).url;
+        }
+        return null;
     }
 
-    public final TL_iv.RichText c(TL_iv.RichText richText, int i, int i2) {
-        int[] iArr;
-        int i3;
-        int i4;
-        if (richText != null && (iArr = (int[]) this.b.get(richText)) != null && (i3 = iArr[0]) != (i4 = iArr[1]) && i4 > i && i3 < i2) {
-            if (i > i3 || i4 > i2) {
-                if (richText instanceof TL_iv.textPlain) {
-                    String str = ((TL_iv.textPlain) richText).text;
-                    if (str != null && str.length() == i4 - i3) {
-                        int max = Math.max(i, i3) - i3;
-                        int min = Math.min(i2, i4) - i3;
-                        if (max > 0 && max < str.length() && Character.isLowSurrogate(str.charAt(max))) {
-                            max--;
-                        }
-                        if (min > 0 && min < str.length() && Character.isLowSurrogate(str.charAt(min))) {
-                            min++;
-                        }
-                        TL_iv.textPlain textplain = new TL_iv.textPlain();
-                        textplain.text = str.substring(max, min);
-                        return textplain;
+    public static q43 c(reb rebVar, byte[] bArr, int i) {
+        mo5 p = po5.p();
+        rebVar.l(bArr, 0, i, qeb.c, new hja(p, (byte) 22));
+        return new q43(p.f());
+    }
+
+    public static void d(RecyclerView recyclerView) {
+        recyclerView.E0();
+        q79 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof x46) {
+            ((x46) layoutManager).g1(0, 0);
+        } else {
+            recyclerView.x0(0);
+        }
+    }
+
+    public static float e(float f, float f2, float f3, float f4) {
+        return (f3 - (f / f2)) * f4;
+    }
+
+    public static int f(float f, int i, int i2) {
+        return i2 - (i - hl.L(f));
+    }
+
+    public static int g(int i, int i2, int i3, int i4) {
+        return Math.max(i4, Math.min(Math.min(i, i2), i3));
+    }
+
+    public static nx0 h(int i, vnb vnbVar, Context context, boolean z) {
+        nx0 nx0Var = new nx0(i, vnbVar, context, z);
+        nx0Var.J();
+        return nx0Var;
+    }
+
+    public static TextPaint i(TextPaint textPaint, int i) {
+        textPaint.setTypeface(hl.o());
+        return new TextPaint(i);
+    }
+
+    public static LinearLayout j(Context context, int i) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(i);
+        return linearLayout;
+    }
+
+    public static String k(int i, String str) {
+        return str + i;
+    }
+
+    public static String l(StringBuilder sb, int i, String str) {
+        sb.append(i);
+        sb.append(str);
+        return sb.toString();
+    }
+
+    public static StringBuilder m(int i, String str, String str2) {
+        StringBuilder sb = new StringBuilder(str);
+        sb.append(i);
+        sb.append(str2);
+        return sb;
+    }
+
+    public static void n(float f, float f2, float f3, float f4, Canvas canvas) {
+        canvas.translate(f4, f3 - (f / f2));
+    }
+
+    public static void o(int i, e eVar) {
+        eVar.presentFragment(new ThemeActivity(i));
+    }
+
+    public static void p(TextPaint textPaint, float f) {
+        textPaint.setTextSize(f);
+        textPaint.setTypeface(hl.o());
+    }
+
+    public static void q(TextView textView, int i, String str, int i2) {
+        textView.setGravity(i);
+        textView.setText(ob6.M0(i2, str));
+    }
+
+    public static void r(String str, String str2, int i, Object[] objArr, TextView textView) {
+        textView.setText(hl.S2(ob6.a0(str, str2, i, objArr)));
+    }
+
+    public static void s(String str, StringBuilder sb) {
+        sb.append(str);
+        cc4.b(sb.toString());
+    }
+
+    public static boolean t(String str, String str2, String str3) {
+        return str3.contains(str + str2);
+    }
+
+    public static boolean u(TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument) {
+        if (tL_inputMediaUploadedDocument != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float v(float f, float f2, float f3, float f4) {
+        return ((f + f2) * f3) + f4;
+    }
+
+    public static int w(float f, int i, int i2) {
+        return hl.L(f) + i + i2;
+    }
+
+    public static float x(float f, float f2, float f3, float f4) {
+        return f4 - ((f / f2) * f3);
+    }
+
+    public static int y(float f, int i, int i2) {
+        return (hl.L(f) * i) + i2;
+    }
+
+    public static String z(int i) {
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        return "null";
                     }
-                } else if (richText instanceof TL_iv.textConcat) {
-                    ArrayList<TL_iv.RichText> arrayList = new ArrayList<>();
-                    ArrayList<TL_iv.RichText> arrayList2 = richText.texts;
-                    int size = arrayList2.size();
-                    int i5 = 0;
-                    while (i5 < size) {
-                        TL_iv.RichText richText2 = arrayList2.get(i5);
-                        i5++;
-                        TL_iv.RichText c = c(richText2, i, i2);
-                        if (c != null) {
-                            arrayList.add(c);
-                        }
-                    }
-                    if (!arrayList.isEmpty()) {
-                        if (arrayList.size() == 1) {
-                            return arrayList.get(0);
-                        }
-                        TL_iv.textConcat textconcat = new TL_iv.textConcat();
-                        textconcat.texts = arrayList;
-                        return textconcat;
-                    }
-                } else {
-                    if (!(richText instanceof TL_iv.textMath) && !(richText instanceof TL_iv.textCustomEmoji) && !(richText instanceof TL_iv.textDate) && !(richText instanceof TL_iv.textDiff) && !(richText instanceof TL_iv.textButton)) {
-                        TL_iv.RichText richText3 = richText.text;
-                        if (richText3 != null) {
-                            TL_iv.RichText c2 = c(richText3, i, i2);
-                            if (c2 != null) {
-                                try {
-                                    richText = (TL_iv.RichText) TLObject.deepCopy(richText, new sc8((byte) 20));
-                                } catch (Exception e) {
-                                    fa4.g(e, true);
-                                    richText = null;
-                                }
-                                if (richText != null) {
-                                    richText.text = c2;
-                                }
-                            }
-                        }
-                    }
-                    return richText;
+                    return "ERROR";
                 }
+                return "CANCELLED";
             }
-            return richText;
+            return "AUDIO_REMOVED";
         }
-        return null;
+        return "TRIMMED";
     }
 }

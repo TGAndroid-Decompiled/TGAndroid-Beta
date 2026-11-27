@@ -1,263 +1,202 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ar1 extends ChatActivityEnterView {
-    public int s7;
-    public int t7;
-    public int u7;
-    public final mu1 v7;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class ar1 extends zo {
+    public final byte c;
+    public final Object d;
 
-    public ar1(mu1 mu1Var, Activity activity, cja cjaVar, mu1 mu1Var2, boolean z, wjb wjbVar) {
-        super(activity, cjaVar, mu1Var2, z, wjbVar);
-        this.v7 = mu1Var;
+    public ar1(Object obj, byte b) {
+        this.c = b;
+        this.d = obj;
     }
 
-    public final void H2() {
-        a aVar;
-        s33 s33Var;
-        s33 s33Var2;
-        mu1 mu1Var = this.v7;
-        aVar = ((d) mu1Var).actionBar;
-        if (!aVar.y() && !mu1Var.T7()) {
-            int backgroundTop = getBackgroundTop();
-            int i = mu1Var.d0;
-            if (i != 0 && backgroundTop != i && this.s7 == mu1Var.m1.getMeasuredHeight()) {
-                int i2 = (this.J2 + mu1Var.d0) - backgroundTop;
-                setAnimatedTop(i2);
-                this.o2.invalidate();
-                ValueAnimator valueAnimator = mu1Var.M9;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    mu1Var.M9.cancel();
+    @Override
+    public final int i(int i) {
+        int i2;
+        r47 r47Var;
+        m47 v7;
+        int i3;
+        j47 d;
+        r47 r47Var2;
+        m47 c;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        byte b = this.c;
+        int i8 = 0;
+        Object obj = this.d;
+        switch (b) {
+            case 0:
+                zu1 zu1Var = (zu1) obj;
+                it1 it1Var = zu1Var.D0;
+                int i9 = it1Var.K;
+                if (i < i9 || i >= it1Var.L || (i2 = i - i9) < 0 || i2 >= it1Var.G().size() || (v7 = zu1Var.v7((r47Var = (r47) zu1Var.D0.G().get(i2)))) == null) {
+                    return 1000;
                 }
-                View view = this.w2;
-                if (view != null && view.getVisibility() == 0) {
-                    this.w2.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.w2.getLayoutParams().height) + this.J2);
+                return v7.d(r47Var).i;
+            case 1:
+                m22 m22Var = (m22) obj;
+                int i10 = m22Var.r;
+                byte b2 = m22Var.x;
+                if (i % b2 != b2 - 1) {
+                    i8 = hl.L(5.0f);
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(i2, 0.0f);
-                mu1Var.M9 = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final ar1 b;
-
-                    {
-                        this.b = this;
+                return i10 + i8;
+            case 2:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
+                if (i != chatAttachAlertPhotoLayout.H.n - 1 && ((!chatAttachAlertPhotoLayout.Q0 && !chatAttachAlertPhotoLayout.P0) || i != 0)) {
+                    if (chatAttachAlertPhotoLayout.P0) {
+                        i--;
                     }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        byte b = r2;
-                        ar1 ar1Var = this.b;
-                        switch (b) {
-                            case 0:
-                                mu1 mu1Var2 = ar1Var.v7;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                ar1Var.setAnimatedTop((int) floatValue);
-                                View view2 = ar1Var.w2;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    ar1Var.w2.setTranslationY(((1.0f - ar1Var.getTopViewEnterProgress()) * ar1Var.w2.getLayoutParams().height) + floatValue);
-                                } else {
-                                    mu1Var2.G7();
-                                    mu1Var2.I7();
-                                }
-                                ar1Var.o2.invalidate();
-                                ar1Var.invalidate();
-                                return;
-                            default:
-                                ar1Var.F0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
-                        }
+                    int i11 = chatAttachAlertPhotoLayout.L0;
+                    byte b3 = chatAttachAlertPhotoLayout.N0;
+                    if (i % b3 != b3 - 1) {
+                        i8 = hl.L(2.0f);
                     }
-                });
-                mu1Var.M9.addListener(new bb1(this, (byte) 6));
-                mu1Var.M9.setDuration(D0());
-                ValueAnimator valueAnimator2 = mu1Var.M9;
-                s33 s33Var3 = la2.V;
-                if (this.G1 > 0 && SystemClock.uptimeMillis() < this.G1 && (s33Var2 = this.H1) != null) {
-                    s33Var3 = s33Var2;
+                    return i11 + i8;
                 }
-                valueAnimator2.setInterpolator(s33Var3);
-                mu1Var.M9.setStartDelay(getLineAnimationDelay());
-                if (!mu1Var.L9) {
-                    mu1Var.M9.start();
+                return chatAttachAlertPhotoLayout.G.J;
+            case 3:
+                gw3 gw3Var = (gw3) obj;
+                if (gw3Var.Y.c.E(i) == null) {
+                    return gw3Var.J;
                 }
-                mu1Var.G7();
-                mu1Var.I7();
-                mu1Var.d0 = 0;
-            } else if (this.s7 != mu1Var.m1.getMeasuredHeight()) {
-                mu1Var.d0 = 0;
-            }
-            if (this.d4) {
-                float scrollY = (this.u7 - this.F0.getScrollY()) + (this.t7 - this.F0.getMeasuredHeight());
-                ex1 ex1Var = this.F0;
-                ex1Var.setOffsetY(ex1Var.getOffsetY() - scrollY);
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.F0.getOffsetY(), 0.0f);
-                ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final ar1 b;
-
-                    {
-                        this.b = this;
+                gw3Var.z1();
+                return gw3Var.R.get(i);
+            case 4:
+                ow3 ow3Var = (ow3) obj;
+                if (ow3Var.c.d(i) == 2) {
+                    return 1;
+                }
+                return ow3Var.h;
+            case 5:
+                u14 u14Var = (u14) obj;
+                o24 o24Var = u14Var.Y;
+                if (i == 0) {
+                    o24Var.o0.getClass();
+                }
+                j79 adapter = o24Var.i0.getAdapter();
+                t14 t14Var = o24Var.k0;
+                if (adapter == t14Var && t14Var.y.isEmpty()) {
+                    return u14Var.J;
+                }
+                o24Var.o0.getClass();
+                u14Var.z1();
+                return u14Var.R.get(i);
+            case 6:
+                if (i == 0 || i == 1 || i == ((wt4) obj).f.b() - 1) {
+                    return 3;
+                }
+                return 1;
+            case 7:
+                yx4 yx4Var = (yx4) obj;
+                q74 q74Var = yx4Var.c2;
+                l9c l9cVar = yx4Var.T1;
+                if (l9cVar != null && i != 0) {
+                    b8c G = l9cVar.G(i - 1);
+                    if (G == null || (i3 = G.v) == -1) {
+                        return q74Var.J;
                     }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
-                        byte b = r2;
-                        ar1 ar1Var = this.b;
-                        switch (b) {
-                            case 0:
-                                mu1 mu1Var2 = ar1Var.v7;
-                                float floatValue = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
-                                ar1Var.setAnimatedTop((int) floatValue);
-                                View view2 = ar1Var.w2;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    ar1Var.w2.setTranslationY(((1.0f - ar1Var.getTopViewEnterProgress()) * ar1Var.w2.getLayoutParams().height) + floatValue);
-                                } else {
-                                    mu1Var2.G7();
-                                    mu1Var2.I7();
-                                }
-                                ar1Var.o2.invalidate();
-                                ar1Var.invalidate();
-                                return;
-                            default:
-                                ar1Var.F0.setOffsetY(((Float) valueAnimator22.getAnimatedValue()).floatValue());
-                                return;
-                        }
+                    return i3;
+                }
+                return q74Var.J;
+            case 8:
+                vw7 vw7Var = (vw7) obj;
+                int size = (vw7Var.u0.size() - 1) - i;
+                m47 m47Var = vw7Var.v0;
+                if (m47Var == null || size < 0 || size >= m47Var.d.size() || (d = m47Var.d((r47) m47Var.d.get(size))) == null) {
+                    return 1000;
+                }
+                return d.i;
+            case 9:
+                m57 m57Var = (m57) obj;
+                if (i < 0 || i >= m57Var.r.f.size() || (c = m57Var.c((r47Var2 = (r47) m57Var.r.f.get(i)))) == null) {
+                    return 1000;
+                }
+                return c.d(r47Var2).i;
+            case 10:
+                q67 q67Var = (q67) obj;
+                ArrayList arrayList = q67Var.N;
+                r47 r47Var3 = (r47) arrayList.get((arrayList.size() - 1) - i);
+                m47 j = q67Var.j(r47Var3);
+                if (j == null) {
+                    return 1000;
+                }
+                return j.d(r47Var3).i;
+            case 11:
+                a48 a48Var = (a48) obj;
+                if ((i < a48Var.c0 || i >= a48Var.d0) && (i < a48Var.e0 || i >= a48Var.f0)) {
+                    return 3;
+                }
+                return 1;
+            case 12:
+                l98 l98Var = (l98) obj;
+                if (l98Var.M.d(i) != 1 && !l98Var.Z && (l98Var.K != null || !TextUtils.isEmpty(l98Var.w))) {
+                    int i12 = l98Var.S;
+                    byte b4 = l98Var.h0;
+                    if (i % b4 != b4 - 1) {
+                        i8 = hl.L(2.0f);
                     }
-                });
-                ValueAnimator valueAnimator3 = mu1Var.N9;
-                if (valueAnimator3 != null) {
-                    valueAnimator3.cancel();
+                    return i12 + i8;
                 }
-                mu1Var.N9 = ofFloat2;
-                ofFloat2.setDuration(D0());
-                s33 s33Var4 = la2.V;
-                if (this.G1 > 0 && SystemClock.uptimeMillis() < this.G1 && (s33Var = this.H1) != null) {
-                    s33Var4 = s33Var;
+                return l98Var.N.J;
+            case 13:
+                pz8 pz8Var = (pz8) obj;
+                if (pz8Var.e.d(i) != 0) {
+                    return 1;
                 }
-                ofFloat2.setInterpolator(s33Var4);
-                ofFloat2.setStartDelay(getLineAnimationDelay());
-                ofFloat2.start();
-                this.d4 = false;
-            }
-            this.s7 = mu1Var.m1.getMeasuredHeight();
-            return;
-        }
-        ValueAnimator valueAnimator4 = mu1Var.N9;
-        if (valueAnimator4 != null) {
-            valueAnimator4.cancel();
-        }
-        ValueAnimator valueAnimator5 = mu1Var.M9;
-        if (valueAnimator5 != null) {
-            valueAnimator5.cancel();
-        }
-        mu1Var.d0 = 0;
-        this.d4 = false;
-    }
-
-    @Override
-    public final void N0(boolean z) {
-        super.N0(z);
-        mu1 mu1Var = this.v7;
-        wl1 wl1Var = mu1Var.Rb;
-        if (wl1Var != null) {
-            gl.c3(wl1Var);
-            mu1Var.Rb = null;
-        }
-    }
-
-    @Override
-    public final void a1(float f) {
-        this.v7.w5();
-    }
-
-    @Override
-    public final void c1(int i, int i2) {
-        a aVar;
-        a aVar2;
-        mu1 mu1Var = this.v7;
-        if (mu1Var.a0 != null) {
-            if (mu1Var.A0 != null) {
-                if (mu1Var.bb <= 0.0f) {
-                    aVar = ((d) mu1Var).actionBar;
-                    if (aVar != null) {
-                        aVar2 = ((d) mu1Var).actionBar;
-                        if (aVar2.y()) {
-                            return;
-                        }
+                return pz8Var.r;
+            case 14:
+                b8c G2 = ((md9) obj).d2.G(i - 1);
+                if (G2 == null || (i4 = G2.v) == -1) {
+                    return 3;
+                }
+                return i4;
+            case 15:
+                h2a h2aVar = (h2a) obj;
+                q74 q74Var2 = h2aVar.V1;
+                l9c l9cVar2 = h2aVar.b2;
+                if (l9cVar2 == null) {
+                    return q74Var2.J;
+                }
+                b8c G3 = l9cVar2.G(i - 1);
+                if (G3 == null || (i5 = G3.v) == -1) {
+                    return q74Var2.J;
+                }
+                return i5;
+            case 16:
+                k2a k2aVar = (k2a) obj;
+                q74 q74Var3 = k2aVar.S1;
+                l9c l9cVar3 = k2aVar.Y1;
+                if (l9cVar3 == null) {
+                    return q74Var3.J;
+                }
+                b8c G4 = l9cVar3.G(i - 1);
+                if (G4 == null || (i6 = G4.v) == -1) {
+                    return q74Var3.J;
+                }
+                return i6;
+            case 17:
+                gra graVar = (gra) obj;
+                q74 q74Var4 = graVar.c2;
+                bra braVar = graVar.f2;
+                if (braVar != null && i != 0) {
+                    b8c G5 = braVar.G(i - 1);
+                    if (G5 == null || (i7 = G5.v) == -1) {
+                        return q74Var4.J;
                     }
-                } else {
-                    return;
+                    return i7;
                 }
-            }
-            this.d4 = true;
-            this.t7 = this.F0.getMeasuredHeight();
-            this.u7 = this.F0.getScrollY();
-            mu1Var.m1.invalidate();
-            mu1Var.d0 = mu1Var.a0.getBackgroundTop();
+                return q74Var4.J;
+            default:
+                s4b s4bVar = (s4b) obj;
+                if ((s4bVar.Q1 == null || !(s4bVar.n1.e.get(i) instanceof Integer)) && i != s4bVar.n1.h) {
+                    return 1;
+                }
+                return s4bVar.n1.d;
         }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void h1() {
-        if (this.v7.cb != null) {
-            return;
-        }
-        super.h1();
-    }
-
-    @Override
-    public final boolean n1() {
-        if (!this.v7.f6) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setVisibility(int i) {
-        boolean z;
-        super.setVisibility(i);
-        mu1 mu1Var = this.v7;
-        igf igfVar = mu1Var.kd;
-        boolean z2 = false;
-        if (i == 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (getMeasuredWidth() > 0 && !mu1Var.ad) {
-            z2 = true;
-        }
-        igfVar.s(1, z, z2);
     }
 }

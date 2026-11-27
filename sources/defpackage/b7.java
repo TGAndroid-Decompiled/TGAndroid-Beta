@@ -1,17 +1,23 @@
 package defpackage;
 
 import android.animation.ValueAnimator;
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.q;
+import org.telegram.ui.ExternalActionActivity;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.o;
-public final class b7 implements TextWatcher {
+public final class b7 implements View.OnTouchListener {
     public final byte a;
     public final Object b;
 
@@ -21,929 +27,555 @@ public final class b7 implements TextWatcher {
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        eb ebVar;
-        long j;
-        boolean z;
-        boolean z2;
-        r3b r3bVar;
-        Object[] objArr;
-        long j2;
-        long j3;
-        int i;
-        int i2;
-        ArrayList arrayList;
-        int[] iArr;
-        int i3;
-        boolean z3;
-        String str;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        n8 n8Var;
+        n8 n8Var2;
         float f;
-        String str2;
-        int i4;
-        long j4 = 0;
-        float f2 = 0.0f;
-        String str3 = null;
-        boolean z4 = false;
-        boolean z5 = false;
-        r12 = false;
-        boolean z6 = false;
-        int i5 = 0;
-        z4 = false;
-        z4 = false;
-        int i6 = 1;
-        boolean z7 = true;
-        switch (this.a) {
+        s64 s64Var;
+        float f2;
+        zt5 zt5Var;
+        n8 n8Var3;
+        n8 n8Var4;
+        byte b;
+        float f3;
+        float f4;
+        c1a c1aVar;
+        byte b2 = this.a;
+        boolean z = false;
+        Object obj = this.b;
+        switch (b2) {
             case 0:
-                return;
+                s7 s7Var = (s7) obj;
+                if (motionEvent.getActionMasked() == 0 && (n8Var = s7Var.d) != null && n8Var.isShowing()) {
+                    view.getHitRect(s7Var.J);
+                    if (!s7Var.J.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        s7Var.d.d(true);
+                    }
+                }
+                return false;
             case 1:
-                o oVar = (o) this.b;
-                if (oVar.i0.a0 && (ebVar = oVar.j0) != null) {
-                    if (editable != null) {
-                        str3 = editable.toString();
+                o oVar = (o) obj;
+                if (motionEvent.getActionMasked() == 0 && (n8Var2 = oVar.I) != null && n8Var2.isShowing()) {
+                    view.getHitRect(oVar.E0);
+                    if (!oVar.E0.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        oVar.I.d(true);
                     }
-                    ebVar.setInput(str3);
-                    return;
                 }
-                return;
+                return false;
             case 2:
-                ss0 ss0Var = (ss0) this.b;
-                es0 es0Var = ss0Var.t0;
-                TLRPC.TL_payments_starsRevenueStats h = ct0.g(ss0.k0(ss0Var)).h(ss0Var.b, false);
-                if (h == null) {
-                    j = 0;
-                } else {
-                    j = h.status.available_balance.amount;
+                h42 h42Var = (h42) obj;
+                if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
+                    h42Var.b0();
                 }
-                if (!TextUtils.isEmpty(editable)) {
-                    j4 = Long.parseLong(editable.toString());
-                }
-                ss0Var.Z = j4;
-                if (j4 > j) {
-                    ss0Var.Z = j;
-                    z = true;
-                    ss0Var.X = true;
-                    ss0Var.a0.setText(Long.toString(j));
-                    ps0 ps0Var = ss0Var.a0;
-                    ps0Var.setSelection(ps0Var.getText().length());
-                    ss0Var.X = false;
-                } else {
-                    z = true;
-                }
-                if (ss0Var.Z == j) {
-                    z2 = z;
-                } else {
-                    z2 = false;
-                }
-                ss0Var.Y = z2;
-                gl.r(es0Var);
-                es0Var.run();
-                if (!ss0Var.X) {
-                    ss0Var.Y = false;
-                    return;
-                }
-                return;
+                return false;
             case 3:
-                mb1 mb1Var = (mb1) this.b;
-                if (mb1Var.f.getEditText().getLineCount() > 2 && editable != null && !TextUtils.isEmpty(editable.toString().trim())) {
-                    z4 = true;
+                rw2 rw2Var = (rw2) obj;
+                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 6 || motionEvent.getAction() == 3) {
+                    if (rw2Var.n) {
+                        rw2Var.c();
+                    } else {
+                        rw2Var.b();
+                    }
                 }
-                mb1Var.F(z4);
-                return;
+                return true;
             case 4:
-                cc1 cc1Var = (cc1) this.b;
-                if (!cc1Var.H0 && cc1Var.G0 && (r3bVar = cc1Var.E0) != null) {
-                    r3bVar.c = new SpannableStringBuilder(editable);
-                    r3b r3bVar2 = cc1Var.E0;
-                    ArrayList arrayList2 = new ArrayList();
-                    int i7 = -1;
-                    for (int i8 = 0; i8 <= editable.length(); i8++) {
-                        if (i8 != editable.length() && !Character.isWhitespace(editable.charAt(i8))) {
-                            if (i7 < 0) {
-                                i7 = i8;
-                            }
-                        } else if (i7 >= 0) {
-                            arrayList2.add(Integer.valueOf(i7));
-                            arrayList2.add(Integer.valueOf(i8));
-                            i7 = -1;
-                        }
+                n8 n8Var5 = (n8) ((g9) obj).b;
+                if (motionEvent.getActionMasked() == 1 && n8Var5 != null && n8Var5.isShowing()) {
+                    Rect rect = hl.Q;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        n8Var5.d(true);
                     }
-                    int size = arrayList2.size() / 2;
-                    int[] iArr2 = r3bVar2.d;
-                    if (iArr2 != null && iArr2.length == (size << 2)) {
-                        objArr = 1;
-                    } else {
-                        objArr = null;
-                    }
-                    if (iArr2 != null && iArr2.length >= 4) {
-                        j2 = iArr2[2];
-                    } else {
-                        j2 = r3bVar2.a;
-                    }
-                    if (iArr2 != null && iArr2.length >= 4) {
-                        j3 = iArr2[iArr2.length - 1];
-                    } else {
-                        j3 = r3bVar2.b;
-                    }
-                    long max = Math.max(j2, j3);
-                    int[] iArr3 = new int[size << 2];
-                    while (i5 < size) {
-                        int i9 = i5 << 2;
-                        int i10 = i5 << 1;
-                        iArr3[i9] = ((Integer) arrayList2.get(i10)).intValue();
-                        iArr3[i9 + 1] = ((Integer) arrayList2.get(i10 + i6)).intValue();
-                        int i11 = i9 + 2;
-                        if (objArr != null) {
-                            i2 = iArr2[i11];
-                            i = i11;
-                        } else {
-                            i = i11;
-                            i2 = (int) ((((max - j2) * i5) / size) + j2);
-                        }
-                        iArr3[i] = i2;
-                        int i12 = i9 + 3;
-                        if (objArr != null) {
-                            i3 = iArr2[i12];
-                            arrayList = arrayList2;
-                            iArr = iArr2;
-                        } else {
-                            arrayList = arrayList2;
-                            iArr = iArr2;
-                            i3 = (int) ((((max - j2) * (i5 + 1)) / size) + j2);
-                        }
-                        iArr3[i12] = i3;
-                        i5++;
-                        arrayList2 = arrayList;
-                        iArr2 = iArr;
-                        i6 = 1;
-                    }
-                    r3bVar2.d = iArr3;
-                    cc1Var.E0.e = true;
-                    return;
                 }
-                return;
+                return false;
             case 5:
-                me1 me1Var = ((ge1) this.b).c;
-                if (me1Var.r.startsWith("@")) {
-                    me1Var.r = me1Var.r.substring(1);
+                ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
+                ArrayList arrayList = ExternalActionActivity.y;
+                if (externalActionActivity.c.getFragmentStack().isEmpty() || motionEvent.getAction() != 1) {
+                    return false;
                 }
-                if (me1Var.r.length() > 0) {
-                    String str4 = "https://" + na7.q1(me1.Y(me1Var)).N2 + "/" + me1Var.r;
-                    String a0 = k96.a0("UsernameHelpLink", null, 2131743420, str4);
-                    int indexOf = a0.indexOf(str4);
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a0);
-                    if (indexOf >= 0) {
-                        spannableStringBuilder.setSpan(new q1((byte) 1, str4, me1Var), indexOf, str4.length() + indexOf, 33);
-                        return;
+                float x = motionEvent.getX();
+                float y = motionEvent.getY();
+                int[] iArr = new int[2];
+                externalActionActivity.d.getView().getLocationOnScreen(iArr);
+                int i = iArr[0];
+                int i2 = iArr[1];
+                if (externalActionActivity.d.h()) {
+                    return false;
+                }
+                if (x > i && x < externalActionActivity.d.getView().getWidth() + i && y > i2 && y < externalActionActivity.d.getView().getHeight() + i2) {
+                    return false;
+                }
+                if (!externalActionActivity.d.getFragmentStack().isEmpty()) {
+                    while (true) {
+                        int size = externalActionActivity.d.getFragmentStack().size() - 1;
+                        ActionBarLayout actionBarLayout = externalActionActivity.d;
+                        if (size > 0) {
+                            actionBarLayout.c0((e) actionBarLayout.getFragmentStack().get(0), false);
+                        } else {
+                            actionBarLayout.j(true, false);
+                        }
                     }
-                    return;
                 }
-                return;
+                return true;
             case 6:
-                return;
-            case 7:
-                TextUtils.isEmpty(((h12) this.b).E);
-                ((h12) this.b).E = editable.toString().trim();
-                gl.r(((h12) this.b).b0);
-                if (!TextUtils.isEmpty(((h12) this.b).E)) {
-                    h12 h12Var = (h12) this.b;
-                    String str5 = h12Var.E;
-                    if (str5 != null && str5.length() >= 0) {
-                        z3 = true;
-                    } else {
-                        z3 = false;
-                    }
-                    h12Var.a0 = z3;
-                    h12 h12Var2 = (h12) this.b;
-                    if (!TextUtils.equals(h12Var2.W, h12Var2.E)) {
-                        ((h12) this.b).M.clear();
-                        h12 h12Var3 = (h12) this.b;
-                        h12Var3.c0 = 0;
-                        h12Var3.d0 = false;
-                    }
-                    gl.d3(((h12) this.b).b0, 1500L);
+                q qVar = (q) obj;
+                if (qVar.Q == null || qVar.S == null) {
+                    return false;
                 }
-                gl.r(((h12) this.b).g0);
-                if (!TextUtils.isEmpty(((h12) this.b).E)) {
-                    h12 h12Var4 = (h12) this.b;
-                    String str6 = h12Var4.E;
-                    h12Var4.n0 = (str6 == null || str6.length() < 3 || TextUtils.isEmpty(na7.q1(((h12) this.b).b.G3).k4.J.f)) ? false : false;
-                    h12 h12Var5 = (h12) this.b;
-                    if (!TextUtils.equals(h12Var5.f0, h12Var5.E)) {
-                        ((h12) this.b).N.clear();
-                        ((h12) this.b).h0 = false;
+                int actionMasked = motionEvent.getActionMasked();
+                float f5 = 0.0f;
+                if (actionMasked == 0) {
+                    ValueAnimator valueAnimator = qVar.d0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
                     }
-                    gl.d3(((h12) this.b).g0, 1500L);
-                }
-                ((h12) this.b).T();
-                return;
-            case 8:
-                String obj = editable.toString();
-                boolean isEmpty = obj.isEmpty();
-                k22 k22Var = (k22) this.b;
-                if (!isEmpty) {
-                    g24 g24Var = k22Var.H;
-                    if (g24Var != null) {
-                        g24Var.setText(k96.M0(2131747975, null));
-                    }
-                } else {
-                    w39 adapter = k22Var.s.getAdapter();
-                    k22 k22Var2 = (k22) this.b;
-                    if (adapter != k22Var2.F) {
-                        int P = k22.P(k22Var2);
-                        ((k22) this.b).H.setText(k96.M0(2131748031, null));
-                        ((k22) this.b).H.c();
-                        k22 k22Var3 = (k22) this.b;
-                        k22Var3.s.setAdapter(k22Var3.F);
-                        ((k22) this.b).F.f();
-                        if (P > 0) {
-                            ((k22) this.b).w.g1(0, -P);
-                        }
-                    }
-                }
-                g22 g22Var = ((k22) this.b).G;
-                if (g22Var != null) {
-                    if (g22Var.f != null) {
-                        Utilities.g.a(g22Var.f);
-                        g22Var.f = null;
-                    }
-                    int i13 = g22Var.h + 1;
-                    g22Var.h = i13;
-                    co3 co3Var = Utilities.g;
-                    f22 f22Var = new f22(g22Var, obj, i13, (byte) 0);
-                    g22Var.f = f22Var;
-                    co3Var.d(f22Var, 300L);
-                    return;
-                }
-                return;
-            case 9:
-                String obj2 = editable.toString();
-                boolean isEmpty2 = obj2.isEmpty();
-                p62 p62Var = (p62) this.b;
-                fu fuVar = p62Var.s;
-                g24 g24Var2 = p62Var.F;
-                m62 m62Var = p62Var.y;
-                if (!isEmpty2) {
-                    if (g24Var2 != null) {
-                        g24Var2.setText(k96.M0(2131747975, null));
-                    }
-                } else if (fuVar.getAdapter() != m62Var) {
-                    int P2 = p62.P(p62Var);
-                    g24Var2.c();
-                    fuVar.setAdapter(m62Var);
-                    m62Var.f();
-                    if (P2 > 0) {
-                        p62Var.w.g1(0, -P2);
-                    }
-                }
-                n62 n62Var = p62Var.E;
-                if (n62Var != null) {
-                    p62 p62Var2 = n62Var.f;
-                    fu fuVar2 = p62Var2.s;
-                    ArrayList arrayList3 = n62Var.d;
-                    arrayList3.clear();
-                    n62Var.e = obj2;
-                    String I3 = gl.I3(obj2);
-                    if (I3.startsWith("/")) {
-                        I3 = I3.substring(1);
-                    }
-                    ArrayList arrayList4 = ox8.f(y6c.t0).b;
-                    for (int i14 = 0; i14 < arrayList4.size(); i14++) {
-                        nx8 nx8Var = (nx8) arrayList4.get(i14);
-                        if (!ox8.g(nx8Var.b)) {
-                            String I32 = gl.I3(nx8Var.b);
-                            if (I32.startsWith(I3) || I32.contains(" ".concat(I3))) {
-                                arrayList3.add(nx8Var);
+                    qVar.E0 = false;
+                    qVar.C0 = motionEvent.getPointerId(0);
+                    qVar.D0 = -1;
+                    int i3 = qVar.S.a;
+                    if (i3 == 5) {
+                        ImageView imageView = qVar.J;
+                        jp9 jp9Var = qVar.Q;
+                        if (jp9Var != null && i3 == 5) {
+                            boolean z2 = qVar.l0;
+                            qVar.l0 = !z2;
+                            jp9.v();
+                            if (jp9Var.a0 == 5 && (s64Var = jp9Var.W) != null) {
+                                if (!z2) {
+                                    f2 = 0.0f;
+                                } else {
+                                    f2 = 1.0f;
+                                }
+                                s64Var.R(f2);
                             }
-                        }
-                    }
-                    w39 adapter2 = fuVar2.getAdapter();
-                    n62 n62Var2 = p62Var2.E;
-                    if (adapter2 != n62Var2) {
-                        fuVar2.setAdapter(n62Var2);
-                    }
-                    n62Var.f();
-                    return;
-                }
-                return;
-            case 10:
-                p82 p82Var = (p82) this.b;
-                p82Var.r.j(5L, p82Var.w.getText().toString(), null, null);
-                kb0 kb0Var = p82Var.e;
-                if (kb0Var != null) {
-                    kb0Var.invalidate();
-                    return;
-                }
-                return;
-            case 11:
-                ((f92) this.b).a0();
-                return;
-            case 12:
-                yc2 yc2Var = (yc2) this.b;
-                zc2 zc2Var = yc2Var.e;
-                if (!yc2Var.d) {
-                    zc2Var.T = editable.toString();
-                    s49 K = zc2Var.b.K(zc2Var.v0);
-                    if (K != null) {
-                        zc2Var.q0(K.a);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 13:
-                uf2 uf2Var = (uf2) this.b;
-                uf2Var.y = false;
-                of2 of2Var = uf2Var.G;
-                gl.r(of2Var);
-                if (TextUtils.isEmpty(uf2Var.f.getText())) {
-                    uf2Var.E = null;
-                    uf2Var.d.b();
-                } else {
-                    uf2Var.y = true;
-                    gl.d3(of2Var, 800L);
-                }
-                uf2Var.c.g3.O(true);
-                uf2Var.f0();
-                return;
-            case 14:
-                return;
-            case 15:
-                ((en2) this.b).Y();
-                return;
-            case 16:
-                xx2 xx2Var = (xx2) this.b;
-                xx2Var.S0();
-                xx2Var.X1 = editable.toString();
-                xx2Var.Y1.O(true);
-                return;
-            case 17:
-                jm3 jm3Var = (jm3) this.b;
-                if (!jm3Var.L) {
-                    byte b = jm3Var.r;
-                    if (b == 1) {
-                        jm3Var.N = jm3Var.M.length();
-                        jm3Var.I = editable.length();
-                        if (editable.length() > 0 && !Character.isWhitespace(editable.charAt(editable.length() - 1))) {
-                            z6 = true;
-                        }
-                        jm3Var.O = z6;
-                        return;
-                    } else if (b == 3 && TextUtils.isEmpty(editable)) {
-                        jm3Var.m();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            case 18:
-                gt3 gt3Var = (gt3) this.b;
-                if (gt3Var.X1 != gt3Var.getLineCount()) {
-                    if (!gt3Var.Y1 && gt3Var.getMeasuredWidth() > 0) {
-                        gt3Var.G(gt3Var.X1, gt3Var.getLineCount());
-                    }
-                    gt3Var.X1 = gt3Var.getLineCount();
-                    return;
-                }
-                return;
-            case 19:
-                ((z77) this.b).run();
-                return;
-            case 20:
-                xv3 xv3Var = (xv3) this.b;
-                ImageView imageView = xv3Var.r;
-                l7 l7Var = xv3Var.e;
-                if (!xv3Var.s) {
-                    xv3Var.d(false);
-                    String obj3 = l7Var.getText().toString();
-                    if (TextUtils.isEmpty(obj3)) {
-                        str = null;
-                    } else {
-                        str = obj3;
-                    }
-                    i8c i8cVar = xv3Var.x;
-                    if (i8cVar != null) {
-                        i8cVar.a(str, -1);
-                    }
-                    wv3 wv3Var = xv3Var.h;
-                    if (wv3Var != null) {
-                        wv3Var.I1(null);
-                        xv3Var.h.J1(TextUtils.isEmpty(obj3), true);
-                    }
-                    if (l7Var != null) {
-                        l7Var.animate().cancel();
-                        ViewPropertyAnimator translationX = l7Var.animate().translationX(0.0f);
-                        s33 s33Var = s33.h;
-                        translationX.setInterpolator(s33Var).start();
-                        if (imageView != null && xv3Var.n != (!TextUtils.isEmpty(l7Var.getText()))) {
-                            xv3Var.n = !xv3Var.n;
+                            oec oecVar = qVar.V;
+                            if (oecVar != null) {
+                                oecVar.t = qVar.l0;
+                            }
                             imageView.animate().cancel();
-                            if (xv3Var.n) {
-                                imageView.setVisibility(0);
-                            }
                             ViewPropertyAnimator animate = imageView.animate();
-                            float f3 = 0.7f;
-                            if (xv3Var.n) {
+                            if (qVar.l0) {
+                                f5 = 1.0f;
+                            }
+                            ik8.s(animate, f5, 180L);
+                        }
+                    }
+                } else {
+                    if (motionEvent.getActionMasked() == 5 && motionEvent.getPointerCount() == 2) {
+                        ip9 ip9Var = qVar.S;
+                        if (ip9Var.a == 3 && !ip9Var.f) {
+                            qVar.C0 = motionEvent.getPointerId(0);
+                            qVar.D0 = motionEvent.getPointerId(1);
+                            float hypot = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
+                            qVar.A0 = hypot;
+                            if (hypot > 0.0f) {
+                                z = true;
+                            }
+                            qVar.E0 = z;
+                            qVar.B0 = 0.0f;
+                        }
+                    }
+                    if (motionEvent.getActionMasked() == 2 && qVar.E0) {
+                        int findPointerIndex = motionEvent.findPointerIndex(qVar.C0);
+                        int findPointerIndex2 = motionEvent.findPointerIndex(qVar.D0);
+                        if (findPointerIndex >= 0 && findPointerIndex2 >= 0) {
+                            float hypot2 = ((float) Math.hypot(motionEvent.getX(findPointerIndex2) - motionEvent.getX(findPointerIndex), motionEvent.getY(findPointerIndex2) - motionEvent.getY(findPointerIndex))) / qVar.A0;
+                            bp9 bp9Var = qVar.T;
+                            if (bp9Var == null) {
                                 f = 1.0f;
                             } else {
-                                f = 0.7f;
+                                f = bp9Var.c;
                             }
-                            ViewPropertyAnimator scaleX = animate.scaleX(f);
-                            if (xv3Var.n) {
-                                f3 = 1.0f;
+                            float max = (Math.max(0.0f, hypot2 - 1.0f) / 1.5f) + 1.0f;
+                            if (f > 1.0f) {
+                                f5 = Math.max(0.0f, Math.min(1.0f, (max - 1.0f) / (f - 1.0f)));
                             }
-                            ViewPropertyAnimator scaleY = scaleX.scaleY(f3);
-                            if (xv3Var.n) {
-                                f2 = 1.0f;
-                            }
-                            ViewPropertyAnimator duration = scaleY.alpha(f2).withEndAction(new li3(this, (byte) 22)).setInterpolator(s33Var).setDuration(320L);
-                            if (xv3Var.n) {
-                                j4 = 240;
-                            }
-                            duration.setStartDelay(j4).start();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 21:
-                h14 h14Var = (h14) this.b;
-                h14Var.g(false);
-                f14 f14Var = h14Var.d;
-                String obj4 = f14Var.getText().toString();
-                h14Var.b(obj4, true);
-                g14 g14Var = h14Var.r;
-                if (g14Var != null) {
-                    g14Var.I1(null);
-                    g14Var.J1(TextUtils.isEmpty(obj4), true);
-                }
-                h14Var.f(!TextUtils.isEmpty(obj4));
-                if (f14Var != null) {
-                    f14Var.clearAnimation();
-                    f14Var.animate().translationX(0.0f).setInterpolator(s33.h).start();
-                }
-                h14Var.c(false);
-                return;
-            case 22:
-                b34 b34Var = ((c34) this.b).c;
-                if (b34Var != null) {
-                    String trim = editable.toString().trim();
-                    ao0 ao0Var = ((sn0) b34Var).a;
-                    ao0Var.q2 = trim;
-                    ao0Var.f1(false, false);
-                    ao0Var.f1(true, true);
-                    return;
-                }
-                return;
-            case 23:
-                pd4 pd4Var = ((md4) this.b).e;
-                if (!TextUtils.equals(editable, pd4Var.x)) {
-                    pd4Var.n = !TextUtils.isEmpty(editable);
-                    pd4Var.x = gm.onlyEmojiSpans(editable);
-                    ed4 ed4Var = pd4Var.J;
-                    if (ed4Var != null) {
-                        ed4Var.e(gm.cloneSpans(pd4Var.x, -1, ed4Var.s.getPaint().getFontMetricsInt(), 0.5f), true);
-                    }
-                    fd4 fd4Var = pd4Var.K;
-                    if (fd4Var != null) {
-                        ri riVar = fd4Var.r;
-                        if (pd4.m0(pd4Var.x)) {
-                            if (pd4Var.y) {
-                                i4 = 2131750723;
-                            } else {
-                                i4 = 2131750722;
-                            }
-                            str2 = k96.M0(i4, null);
+                            qVar.B0 = f5;
+                            qVar.Q.y(f5);
                         } else {
-                            str2 = null;
+                            qVar.l();
                         }
-                        riVar.setText(str2);
-                    }
-                    if (pd4Var.s && TextUtils.isEmpty(pd4Var.x)) {
-                        pd4.Y(pd4Var).setTitle(k96.M0(2131750716, null));
-                    } else {
-                        pd4.a0(pd4Var).setTitle(gm.cloneSpans(pd4Var.x, -1, pd4.Z(pd4Var).getTitleFontMetricsInt()));
-                    }
-                }
-                pd4Var.k0(true);
-                return;
-            case 24:
-                no4 no4Var = (no4) this.b;
-                if (!no4Var.G.isEmpty() && editable.length() > 0 && no4Var.J >= 0) {
-                    no4Var.J = -1;
-                    no4Var.e();
-                }
-                no4Var.a.a((no4Var.n || no4Var.r.length() > 0) ? true : true, true);
-                return;
-            case 25:
-                qa5 qa5Var = (qa5) this.b;
-                if (qa5Var.f.r.length() != 0) {
-                    oa5 oa5Var = qa5Var.w;
-                    boolean z8 = oa5Var.n;
-                    if (!z8) {
-                        qa5Var.U = true;
-                        qa5Var.T = true;
-                        if (!z8) {
-                            oa5Var.n = true;
-                            oa5Var.f();
+                    } else if (motionEvent.getActionMasked() == 6 && qVar.E0) {
+                        int pointerId = motionEvent.getPointerId(motionEvent.getActionIndex());
+                        if (pointerId == qVar.C0 || pointerId == qVar.D0) {
+                            qVar.l();
                         }
-                        qa5Var.n.setFastScrollVisible(false);
-                        qa5Var.n.setVerticalScrollBarEnabled(true);
+                    } else if ((motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) && qVar.E0) {
+                        qVar.l();
                     }
-                    qa5Var.w.L(qa5Var.f.r.getText().toString());
-                    qa5Var.s.e(true, false);
-                    return;
                 }
-                qa5Var.U = false;
-                qa5Var.T = false;
-                oa5 oa5Var2 = qa5Var.w;
-                if (oa5Var2.n) {
-                    oa5Var2.n = false;
-                    oa5Var2.f();
-                }
-                qa5Var.w.L(null);
-                qa5Var.n.setFastScrollVisible(true);
-                qa5Var.n.setVerticalScrollBarEnabled(false);
-                qa5Var.t0(0);
-                return;
-            case 26:
-                pa6 pa6Var = (pa6) this.b;
-                if (!pa6Var.c) {
-                    pa6Var.E = false;
-                    pa6Var.y = editable.toString();
-                    pa6Var.Y(true);
-                    return;
-                }
-                return;
-            case 27:
-            case 28:
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        String charSequence2;
-        boolean z;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                return;
-            case 5:
-                ge1 ge1Var = (ge1) obj;
-                me1 me1Var = ge1Var.c;
-                String str = me1Var.r;
-                if (charSequence == null) {
-                    charSequence2 = "";
-                } else {
-                    charSequence2 = charSequence.toString();
-                }
-                me1Var.r = charSequence2;
-                me1 me1Var2 = ge1Var.c;
-                ie1 ie1Var = me1Var2.F;
-                if (ie1Var != null && str != null) {
-                    ie1Var.b(me1Var2.r);
-                    return;
-                }
-                return;
-            case 6:
+                return true;
             case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-                return;
-            case 14:
-                dj2 dj2Var = (dj2) obj;
-                if (charSequence.length() != 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                dj2Var.X1 = z;
-                dj2Var.V1 = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                dj2Var.a2 = ofFloat;
-                ofFloat.addUpdateListener(new uz1(dj2Var, (byte) 11));
-                boolean z2 = dj2Var.X1;
-                ValueAnimator valueAnimator = dj2Var.a2;
-                if (!z2) {
-                    b00.n(1.5f, valueAnimator);
-                    dj2Var.a2.setDuration(350L);
-                } else {
-                    valueAnimator.setDuration(220L);
-                }
-                dj2Var.a2.start();
-                dj2Var.m();
-                return;
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-            case 22:
-            case 23:
-            case 24:
-            case 25:
-            case 26:
-                return;
-            case 27:
-                ad6 ad6Var = (ad6) obj;
-                uc6 uc6Var = ad6Var.T;
-                if (ad6Var.S) {
-                    ad6Var.removeCallbacks(uc6Var);
-                    uc6Var.run();
-                    return;
-                }
-                return;
-            case 28:
-                td6 td6Var = (td6) obj;
-                rd6 rd6Var = td6Var.y;
-                if (td6Var.x) {
-                    td6Var.removeCallbacks(rd6Var);
-                    rd6Var.run();
-                    return;
-                }
-                return;
-            default:
-                qe6 qe6Var = (qe6) obj;
-                ee6 ee6Var = qe6Var.u0;
-                if (qe6Var.t0) {
-                    qe6Var.removeCallbacks(ee6Var);
-                    ee6Var.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        String charSequence2;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                r7 r7Var = (r7) obj;
-                n7 n7Var = r7Var.I;
-                if (n7Var != null) {
-                    n7Var.l(r7Var.e);
-                }
-                r7Var.k();
-                if (!r7Var.h0.isEmpty() && !TextUtils.isEmpty(r7Var.e.getText()) && r7Var.i0 >= 0) {
-                    r7Var.i0 = -1;
-                    r7Var.E();
-                    return;
-                }
-                return;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                return;
-            case 5:
-                ge1 ge1Var = (ge1) obj;
-                me1 me1Var = ge1Var.c;
-                String str = me1Var.r;
-                if (charSequence == null) {
-                    charSequence2 = "";
-                } else {
-                    charSequence2 = charSequence.toString();
-                }
-                me1Var.r = charSequence2;
-                me1 me1Var2 = ge1Var.c;
-                ie1 ie1Var = me1Var2.F;
-                if (ie1Var != null && str != null) {
-                    ie1Var.b(me1Var2.r);
-                }
-                if (!me1Var.n) {
-                    me1Var.b0(me1Var.r);
-                    return;
-                }
-                return;
-            case 6:
-                yh1 yh1Var = (yh1) obj;
-                yh1Var.d0(yh1Var.y.getText().toString());
-                return;
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-                return;
-            case 11:
-                f92 f92Var = (f92) obj;
-                if (!f92Var.n0) {
-                    String obj2 = f92Var.b.getText().toString();
-                    ie1 ie1Var2 = f92Var.P;
-                    if (ie1Var2 != null) {
-                        ie1Var2.b(obj2);
+                fu5 fu5Var = (fu5) ((WeakReference) obj).get();
+                if (fu5Var != null && (zt5Var = fu5Var.m) != null && zt5Var.isShowing()) {
+                    if (view.getParent() != null) {
+                        view.getParent().requestDisallowInterceptTouchEvent(true);
                     }
-                    f92Var.b0(obj2);
-                    return;
+                    int actionMasked2 = motionEvent.getActionMasked();
+                    if (actionMasked2 == 2) {
+                        fu5Var.c0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                    } else if (actionMasked2 == 1) {
+                        fu5Var.c0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+                        View view2 = fu5Var.v0;
+                        if (view2 != null) {
+                            fu5Var.v0 = null;
+                            view2.setPressed(false);
+                            view2.performClick();
+                        }
+                        view.setOnTouchListener(null);
+                        fu5Var.u0 = null;
+                    } else if (actionMasked2 == 3) {
+                        View view3 = fu5Var.v0;
+                        if (view3 != null) {
+                            view3.setPressed(false);
+                            fu5Var.v0 = null;
+                        }
+                        view.setOnTouchListener(null);
+                        fu5Var.u0 = null;
+                    }
+                    return true;
                 }
-                return;
+                view.setOnTouchListener(null);
+                return false;
+            case 8:
+                wy5 wy5Var = (wy5) obj;
+                if (motionEvent.getActionMasked() == 0 && (n8Var3 = wy5Var.B1) != null && n8Var3.isShowing()) {
+                    view.getHitRect(wy5Var.D1);
+                    if (!wy5Var.D1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        wy5Var.B1.d(true);
+                    }
+                }
+                return false;
+            case 9:
+                LaunchActivity launchActivity = (LaunchActivity) obj;
+                String str = LaunchActivity.C1;
+                if (launchActivity.p0.getFragmentStack().isEmpty() || motionEvent.getAction() != 1) {
+                    return false;
+                }
+                float x2 = motionEvent.getX();
+                float y2 = motionEvent.getY();
+                int[] iArr2 = new int[2];
+                launchActivity.q0.getView().getLocationOnScreen(iArr2);
+                int i4 = iArr2[0];
+                int i5 = iArr2[1];
+                if (launchActivity.q0.h()) {
+                    return false;
+                }
+                if (x2 > i4 && x2 < launchActivity.q0.getView().getWidth() + i4 && y2 > i5 && y2 < launchActivity.q0.getView().getHeight() + i5) {
+                    return false;
+                }
+                if (!launchActivity.q0.getFragmentStack().isEmpty()) {
+                    while (true) {
+                        int size2 = launchActivity.q0.getFragmentStack().size() - 1;
+                        ActionBarLayout actionBarLayout2 = launchActivity.q0;
+                        if (size2 > 0) {
+                            actionBarLayout2.c0(actionBarLayout2.getFragmentStack().get(0), false);
+                        } else {
+                            actionBarLayout2.j(true, false);
+                        }
+                    }
+                }
+                return true;
+            case 10:
+                b27 b27Var = (b27) obj;
+                b27Var.getClass();
+                return rw2.e().h(motionEvent, b27Var.getListView(), b27Var.x, null, b27Var.a);
+            case 11:
+                m57 m57Var = (m57) obj;
+                if (motionEvent.getAction() == 1) {
+                    m57Var.d0.a(true);
+                }
+                return true;
             case 12:
+                dx7 dx7Var = (dx7) obj;
+                if (motionEvent.getActionMasked() == 0 && (n8Var4 = dx7Var.r1) != null && n8Var4.isShowing()) {
+                    view.getHitRect(dx7Var.t1);
+                    if (!dx7Var.t1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        dx7Var.r1.d(true);
+                    }
+                }
+                return false;
             case 13:
+                f88 f88Var = (f88) obj;
+                float x3 = motionEvent.getX();
+                float y3 = motionEvent.getY();
+                int L = hl.L(14.0f);
+                if (motionEvent.getAction() == 0) {
+                    float f6 = f88Var.f;
+                    float f7 = L;
+                    float f8 = f6 - f7;
+                    int i6 = (f8 > x3 ? 1 : (f8 == x3 ? 0 : -1));
+                    if (i6 < 0 && f6 + f7 > x3) {
+                        float f9 = f88Var.h;
+                        if (f9 - f7 < y3 && f9 + f7 > y3) {
+                            f88Var.n = (byte) 1;
+                            f88Var.requestDisallowInterceptTouchEvent(true);
+                            f88Var.r = x3;
+                            f88Var.s = y3;
+                        }
+                    }
+                    float f10 = f88Var.d;
+                    int i7 = ((f8 + f10) > x3 ? 1 : ((f8 + f10) == x3 ? 0 : -1));
+                    if (i7 < 0 && f6 + f7 + f10 > x3) {
+                        float f11 = f88Var.h;
+                        if (f11 - f7 < y3 && f11 + f7 > y3) {
+                            f88Var.n = (byte) 2;
+                            f88Var.requestDisallowInterceptTouchEvent(true);
+                            f88Var.r = x3;
+                            f88Var.s = y3;
+                        }
+                    }
+                    if (i6 < 0 && f6 + f7 > x3) {
+                        float f12 = f88Var.h;
+                        float f13 = f88Var.e;
+                        if ((f12 - f7) + f13 < y3 && f12 + f7 + f13 > y3) {
+                            f88Var.n = (byte) 3;
+                            f88Var.requestDisallowInterceptTouchEvent(true);
+                            f88Var.r = x3;
+                            f88Var.s = y3;
+                        }
+                    }
+                    if (i7 < 0 && f6 + f7 + f10 > x3) {
+                        float f14 = f88Var.h;
+                        float f15 = f88Var.e;
+                        if ((f14 - f7) + f15 < y3 && f14 + f7 + f15 > y3) {
+                            f88Var.n = (byte) 4;
+                            f88Var.requestDisallowInterceptTouchEvent(true);
+                            f88Var.r = x3;
+                            f88Var.s = y3;
+                        }
+                    }
+                    if (f6 < x3 && f6 + f10 > x3) {
+                        float f16 = f88Var.h;
+                        if (f16 < y3 && f16 + f88Var.e > y3) {
+                            f88Var.n = (byte) 5;
+                            f88Var.requestDisallowInterceptTouchEvent(true);
+                            f88Var.r = x3;
+                            f88Var.s = y3;
+                        }
+                    }
+                    f88Var.n = (byte) 0;
+                    f88Var.r = x3;
+                    f88Var.s = y3;
+                } else if (motionEvent.getAction() == 1) {
+                    f88Var.n = (byte) 0;
+                } else if (motionEvent.getAction() == 2 && (b = f88Var.n) != 0) {
+                    float f17 = x3 - f88Var.r;
+                    float f18 = y3 - f88Var.s;
+                    if (b == 5) {
+                        float f19 = f88Var.f + f17;
+                        f88Var.f = f19;
+                        float f20 = f88Var.h + f18;
+                        f88Var.h = f20;
+                        int i8 = f88Var.y;
+                        float f21 = i8;
+                        if (f19 < f21) {
+                            f88Var.f = f21;
+                        } else {
+                            float f22 = f88Var.d;
+                            float f23 = i8 + f88Var.w;
+                            if (f19 + f22 > f23) {
+                                f88Var.f = f23 - f22;
+                            }
+                        }
+                        int i9 = f88Var.E;
+                        float f24 = i9;
+                        if (f20 < f24) {
+                            f88Var.h = f24;
+                        } else {
+                            float f25 = f88Var.e;
+                            float f26 = i9 + f88Var.x;
+                            if (f20 + f25 > f26) {
+                                f88Var.h = f26 - f25;
+                            }
+                        }
+                    } else if (b == 1) {
+                        float f27 = f88Var.d;
+                        if (f27 - f17 < 160.0f) {
+                            f17 = f27 - 160.0f;
+                        }
+                        float f28 = f88Var.f;
+                        float f29 = f88Var.y;
+                        if (f28 + f17 < f29) {
+                            f17 = f29 - f28;
+                        }
+                        if (!f88Var.H) {
+                            float f30 = f88Var.h;
+                            float f31 = f88Var.E;
+                            if (f30 + f17 < f31) {
+                                f17 = f31 - f30;
+                            }
+                            f88Var.f = f28 + f17;
+                            f88Var.h = f30 + f17;
+                            f88Var.d = f27 - f17;
+                            f88Var.e -= f17;
+                        } else {
+                            float f32 = f88Var.e;
+                            if (f32 - f18 < 160.0f) {
+                                f18 = f32 - 160.0f;
+                            }
+                            float f33 = f88Var.h;
+                            float f34 = f88Var.E;
+                            if (f33 + f18 < f34) {
+                                f18 = f34 - f33;
+                            }
+                            f88Var.f = f28 + f17;
+                            f88Var.h = f33 + f18;
+                            f88Var.d = f27 - f17;
+                            f88Var.e = f32 - f18;
+                        }
+                    } else if (b == 2) {
+                        float f35 = f88Var.d;
+                        if (f35 + f17 < 160.0f) {
+                            f17 = -(f35 - 160.0f);
+                        }
+                        float f36 = f88Var.f;
+                        float f37 = f88Var.y + f88Var.w;
+                        if (f36 + f35 + f17 > f37) {
+                            f17 = (f37 - f36) - f35;
+                        }
+                        if (!f88Var.H) {
+                            float f38 = f88Var.h;
+                            float f39 = f88Var.E;
+                            if (f38 - f17 < f39) {
+                                f17 = f38 - f39;
+                            }
+                            f88Var.h = f38 - f17;
+                            f88Var.d = f35 + f17;
+                            f88Var.e += f17;
+                        } else {
+                            float f40 = f88Var.e;
+                            if (f40 - f18 < 160.0f) {
+                                f18 = f40 - 160.0f;
+                            }
+                            float f41 = f88Var.h;
+                            float f42 = f88Var.E;
+                            if (f41 + f18 < f42) {
+                                f18 = f42 - f41;
+                            }
+                            f88Var.h = f41 + f18;
+                            f88Var.d = f35 + f17;
+                            f88Var.e = f40 - f18;
+                        }
+                    } else if (b == 3) {
+                        float f43 = f88Var.d;
+                        if (f43 - f17 < 160.0f) {
+                            f17 = f43 - 160.0f;
+                        }
+                        float f44 = f88Var.f;
+                        float f45 = f88Var.y;
+                        if (f44 + f17 < f45) {
+                            f17 = f45 - f44;
+                        }
+                        boolean z3 = f88Var.H;
+                        float f46 = f88Var.h;
+                        if (!z3) {
+                            float f47 = f46 + f43;
+                            int i10 = f88Var.E;
+                            int i11 = f88Var.x;
+                            if (f47 - f17 > i10 + i11) {
+                                f17 = (f47 - i10) - i11;
+                            }
+                            f88Var.f = f44 + f17;
+                            f88Var.d = f43 - f17;
+                            f88Var.e -= f17;
+                        } else {
+                            float f48 = f88Var.e;
+                            float f49 = f88Var.E + f88Var.x;
+                            if (f46 + f48 + f18 > f49) {
+                                f18 = (f49 - f46) - f48;
+                            }
+                            f88Var.f = f44 + f17;
+                            f88Var.d = f43 - f17;
+                            float f50 = f48 + f18;
+                            f88Var.e = f50;
+                            if (f50 < 160.0f) {
+                                f88Var.e = 160.0f;
+                            }
+                        }
+                    } else if (b == 4) {
+                        float f51 = f88Var.f;
+                        float f52 = f88Var.d;
+                        float f53 = f88Var.y + f88Var.w;
+                        if (f51 + f52 + f17 > f53) {
+                            f17 = (f53 - f51) - f52;
+                        }
+                        boolean z4 = f88Var.H;
+                        float f54 = f88Var.h;
+                        if (!z4) {
+                            float f55 = f88Var.E + f88Var.x;
+                            if (f54 + f52 + f17 > f55) {
+                                f17 = (f55 - f54) - f52;
+                            }
+                            f3 = f52 + f17;
+                            f88Var.d = f3;
+                            f4 = f88Var.e + f17;
+                            f88Var.e = f4;
+                        } else {
+                            float f56 = f88Var.e;
+                            float f57 = f88Var.E + f88Var.x;
+                            if (f54 + f56 + f18 > f57) {
+                                f18 = (f57 - f54) - f56;
+                            }
+                            f3 = f52 + f17;
+                            f88Var.d = f3;
+                            f4 = f56 + f18;
+                            f88Var.e = f4;
+                        }
+                        if (f3 < 160.0f) {
+                            f88Var.d = 160.0f;
+                        }
+                        if (f4 < 160.0f) {
+                            f88Var.e = 160.0f;
+                        }
+                    }
+                    f88Var.r = x3;
+                    f88Var.s = y3;
+                    f88Var.invalidate();
+                }
+                return true;
             case 14:
+                ji8 ji8Var = (ji8) obj;
+                if (ji8Var.U == null || motionEvent.getAction() != 0) {
+                    return false;
+                }
+                Drawable backgroundDrawable = ((ActionBarPopupWindow$ActionBarPopupWindowLayout) ji8Var.U).getBackgroundDrawable();
+                RectF rectF = hl.P;
+                rectF.set(backgroundDrawable.getBounds());
+                rectF.offset(ji8Var.U.getX(), ji8Var.U.getY());
+                if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                    return false;
+                }
+                ji8Var.b(true);
+                return true;
             case 15:
+                n1a n1aVar = (n1a) obj;
+                if (motionEvent.getAction() != 0 || (c1aVar = n1aVar.V1) == null) {
+                    return false;
+                }
+                c1aVar.run();
+                return true;
             case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-            case 22:
-            case 23:
-            case 24:
-            case 25:
-            case 26:
-            case 27:
-            case 28:
+                s4b s4bVar = (s4b) obj;
+                if (s4bVar.L1) {
+                    return false;
+                }
+                return rw2.e().h(motionEvent, s4bVar.m1, s4bVar.B1, s4bVar.g2, s4bVar.J0);
             default:
-                return;
+                ktb ktbVar = (ktb) obj;
+                if (ktbVar.T == null || motionEvent.getAction() != 0) {
+                    return false;
+                }
+                Drawable backgroundDrawable2 = ((ActionBarPopupWindow$ActionBarPopupWindowLayout) ktbVar.T).getBackgroundDrawable();
+                RectF rectF2 = hl.P;
+                rectF2.set(backgroundDrawable2.getBounds());
+                rectF2.offset(ktbVar.T.getX(), ktbVar.T.getY());
+                if (rectF2.contains(motionEvent.getX(), motionEvent.getY())) {
+                    return false;
+                }
+                ktbVar.b(true);
+                return true;
         }
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(Editable editable) {
-    }
-
-    private final void d(Editable editable) {
-    }
-
-    private final void e(Editable editable) {
-    }
-
-    private final void f(Editable editable) {
-    }
-
-    private final void A(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void B(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void C(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void D(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void E(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void F(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void G(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void H(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void I(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void J(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void K(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void L(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void M(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void N(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void O(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void P(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void Q(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void R(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void S(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void T(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void U(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void V(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void W(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void X(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void Y(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void Z(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void a0(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b0(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c0(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d0(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void e0(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void g(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void h(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void i(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void j(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void k(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void l(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void m(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void n(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void o(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void p(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void q(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void r(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void s(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void t(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void u(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void v(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void w(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void x(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void y(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void z(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

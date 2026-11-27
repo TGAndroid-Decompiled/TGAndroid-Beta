@@ -1,180 +1,350 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class b6b extends Drawable {
-    public int a;
-    public final View b;
-    public final Paint c;
-    public final Paint d;
-    public final lm g;
-    public boolean h;
-    public Paint i;
-    public int e = 255;
-    public final float[] f = new float[15];
-    public final Path j = new Path();
+import android.content.Intent;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.Stories.recorder.StoryUploadingService;
+public final class b6b implements fn7 {
+    public long E;
+    public r47 F;
+    public oec G;
+    public boolean H;
+    public boolean I;
+    public boolean J;
+    public final long K;
+    public r47 L;
+    public TL_bots.botPreviewMedia M;
+    public final c6b N;
+    public final boolean b;
+    public final c8b c;
+    public boolean d;
+    public String e;
+    public final String f;
+    public float h;
+    public float n;
+    public float r;
+    public boolean s;
+    public boolean w;
+    public int x;
+    public long y = -1;
+    public final long a = Utilities.b.nextLong();
 
-    public b6b(View view) {
-        this.b = view;
-        this.g = new lm(350L, view, s33.h);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        paint.setShadowLayer(gl.L(4.0f), 0.0f, 0.0f, 1593835520);
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        paint2.setColor(-1);
+    public b6b(c6b c6bVar, c8b c8bVar) {
+        this.N = c6bVar;
+        this.c = c8bVar;
+        this.b = c8bVar.g;
+        File file = c8bVar.N0;
+        if (file != null) {
+            this.f = file.getAbsolutePath();
+        }
+        boolean z = c8bVar.w;
+        this.I = z;
+        this.J = z;
+        long j = c8bVar.J0;
+        if (j != 0) {
+            this.K = j;
+        } else if (c8bVar.g) {
+            this.K = c8bVar.e;
+        } else {
+            TLRPC.InputPeer inputPeer = c8bVar.v0;
+            if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerSelf)) {
+                this.K = wf3.m(inputPeer);
+            } else {
+                this.K = yac.h(c6bVar.a).n;
+            }
+        }
     }
 
     public final void a() {
-        int i = this.a + 1;
-        this.a = i;
-        if (i >= 2) {
-            this.a = 0;
+        c6b c6bVar = this.N;
+        int i = c6bVar.a;
+        boolean z = this.J;
+        c8b c8bVar = this.c;
+        if (z) {
+            c6bVar.w.b(c8bVar);
+            ((ArrayList) c6bVar.b.f(this.K)).remove(this);
         }
+        this.w = true;
+        if (c8bVar.D()) {
+            MediaController.z().d(this.F);
+        }
+        xb4.G(i).b(this.e, false);
+        if (this.x >= 0) {
+            ConnectionsManager.getInstance(i).cancelRequest(this.x, true);
+        }
+        b();
     }
 
-    public final void b(boolean z, boolean z2) {
-        float f;
-        this.h = z;
-        if (!z2) {
-            if (z) {
-                f = 1.0f;
+    public final void b() {
+        LongSparseArray longSparseArray;
+        kr0 kr0Var;
+        LongSparseArray longSparseArray2;
+        LongSparseArray longSparseArray3;
+        kr0 kr0Var2;
+        LongSparseArray longSparseArray4;
+        HashMap hashMap;
+        ArrayList arrayList;
+        c6b c6bVar = this.N;
+        int i = c6bVar.a;
+        jn7.f(i).n(this, jn7.U1);
+        jn7.f(i).n(this, jn7.V1);
+        jn7.f(i).n(this, jn7.W1);
+        jn7.f(i).n(this, jn7.c2);
+        jn7.f(i).n(this, jn7.a2);
+        jn7.f(i).n(this, jn7.b2);
+        boolean z = this.J;
+        long j = this.K;
+        if (!z && (arrayList = (ArrayList) c6bVar.b.f(j)) != null) {
+            arrayList.remove(this);
+        }
+        ArrayList arrayList2 = (ArrayList) c6bVar.c.f(j);
+        if (arrayList2 != null) {
+            arrayList2.remove(this);
+            if (arrayList2.isEmpty()) {
+                c6bVar.d = 0;
             } else {
-                f = 0.0f;
+                c6bVar.d++;
             }
-            this.g.e(true, f);
-            return;
         }
-        this.b.invalidate();
-    }
-
-    public final void c(float f) {
-        this.c.setShadowLayer(gl.L(2.0f) / f, 0.0f, gl.N(0.7f) / f, bm2.o(-16777216, 45));
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f;
-        int i;
-        Paint paint;
-        int i2;
-        int i3;
-        float[] fArr = this.f;
-        int i4 = 0;
-        fArr[0] = getBounds().centerX();
-        int i5 = 1;
-        fArr[1] = getBounds().centerY();
-        int i6 = 2;
-        fArr[2] = getBounds().height() / 2.0f;
-        int i7 = 3;
-        fArr[3] = (getBounds().width() * 1.027f) + getBounds().left;
-        int i8 = 4;
-        fArr[4] = (getBounds().height() * 0.956f) + getBounds().top;
-        fArr[5] = getBounds().height() * 0.055f;
-        fArr[6] = (getBounds().width() * 0.843f) + getBounds().left;
-        fArr[7] = (getBounds().height() * 0.812f) + getBounds().top;
-        fArr[8] = getBounds().height() * 0.132f;
-        fArr[9] = (getBounds().width() * (-0.02699995f)) + getBounds().left;
-        fArr[10] = (getBounds().height() * 0.956f) + getBounds().top;
-        fArr[11] = getBounds().height() * 0.055f;
-        fArr[12] = (getBounds().width() * 0.157f) + getBounds().left;
-        fArr[13] = (getBounds().height() * 0.812f) + getBounds().top;
-        fArr[14] = getBounds().height() * 0.132f;
-        if (this.h) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
+        boolean z2 = this.b;
+        c8b c8bVar = this.c;
+        if (z2 && (hashMap = (HashMap) c6bVar.e.f(j)) != null) {
+            hashMap.remove(Integer.valueOf(c8bVar.f));
         }
-        float e = this.g.e(false, f);
-        int i9 = this.a;
-        Paint paint2 = this.d;
-        if (i9 == 0) {
-            paint2.setColor(-1);
-        } else if (i9 == 1) {
-            if (this.i == null) {
-                Paint paint3 = new Paint(1);
-                this.i = paint3;
-                paint3.setColor(-16777216);
-                this.i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                this.i.setStrokeWidth(gl.L(3.0f));
-            }
-            paint2.setColor(bm2.o(-16777216, 127));
-        }
-        if (this.e == 255 && this.a != 1) {
-            canvas.save();
-        } else {
-            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.e, 31);
-        }
-        Path path = this.j;
-        path.rewind();
-        int i10 = 0;
-        while (i10 < i6) {
-            if (this.a == i5 && i10 == 0) {
-                i2 = i6;
-            } else {
-                if (i10 == 0) {
-                    paint = this.c;
-                    i = i5;
-                } else {
-                    i = i4;
-                    paint = paint2;
+        if (this.M != null) {
+            u5b z3 = c6bVar.z(4, -1, this.K, false);
+            if (c8bVar != null && c8bVar.g) {
+                if (z3 instanceof o5b) {
+                    ((o5b) z3).G(c8bVar.L0, this.M);
                 }
-                while (i4 < 5) {
-                    if (i4 != i5 && i4 != i6) {
-                        if (i4 != i7 && i4 != i8) {
-                            int i11 = i4 * 3;
-                            i3 = i6;
-                            path.addCircle(fArr[i11], fArr[i11 + 1], fArr[i11 + 2] - i, Path.Direction.CW);
-                        } else {
-                            i3 = i6;
-                            if (e != 0.0f) {
-                                int i12 = i4 * 3;
-                                path.addCircle(fArr[i12], fArr[i12 + 1], (fArr[i12 + 2] * e) - i, Path.Direction.CW);
-                            }
-                        }
-                    } else {
-                        i3 = i6;
-                        if (e != 1.0f) {
-                            int i13 = i4 * 3;
-                            path.addCircle(fArr[i13], fArr[i13 + 1], ((1.0f - e) * fArr[i13 + 2]) - i, Path.Direction.CW);
+                String str = c8bVar.K0;
+                TLRPC.InputMedia inputMedia = c8bVar.L0;
+                TL_bots.botPreviewMedia botpreviewmedia = this.M;
+                LongSparseArray longSparseArray5 = kr0.G;
+                if (longSparseArray5 != null && (longSparseArray4 = (LongSparseArray) longSparseArray5.get(i)) != null) {
+                    o5b o5bVar = (o5b) longSparseArray4.get(j);
+                    int i2 = o5bVar.c;
+                    ArrayList arrayList3 = o5bVar.G;
+                    if (i2 == i) {
+                        if (TextUtils.equals(o5bVar.E, str)) {
+                            o5bVar.G(inputMedia, botpreviewmedia);
+                        } else if (!TextUtils.isEmpty(str) && !arrayList3.contains(str)) {
+                            arrayList3.add(str);
+                            r5b r5bVar = o5bVar.q;
+                            hl.r(r5bVar);
+                            hl.c3(r5bVar);
                         }
                     }
-                    i4++;
-                    i6 = i3;
-                    i7 = 3;
-                    i5 = 1;
-                    i8 = 4;
                 }
-                i2 = i6;
-                canvas.drawPath(path, paint);
+                LongSparseArray longSparseArray6 = kr0.F;
+                if (longSparseArray6 != null && (longSparseArray3 = (LongSparseArray) longSparseArray6.get(i)) != null && (kr0Var2 = (kr0) longSparseArray3.get(j)) != null) {
+                    ArrayList arrayList4 = kr0Var2.f;
+                    for (int i3 = 0; i3 < arrayList4.size(); i3++) {
+                        o5b o5bVar2 = (o5b) arrayList4.get(i3);
+                        if (o5bVar2.c == i && TextUtils.equals(o5bVar2.E, str)) {
+                            o5bVar2.G(inputMedia, botpreviewmedia);
+                        }
+                    }
+                }
+            } else {
+                if (z3 instanceof o5b) {
+                    ((o5b) z3).I(this.M);
+                }
+                String str2 = c8bVar.K0;
+                TL_bots.botPreviewMedia botpreviewmedia2 = this.M;
+                LongSparseArray longSparseArray7 = kr0.G;
+                if (longSparseArray7 != null && (longSparseArray2 = (LongSparseArray) longSparseArray7.get(i)) != null) {
+                    o5b o5bVar3 = (o5b) longSparseArray2.get(j);
+                    int i4 = o5bVar3.c;
+                    ArrayList arrayList5 = o5bVar3.G;
+                    if (i4 == i) {
+                        if (TextUtils.equals(o5bVar3.E, str2)) {
+                            o5bVar3.I(botpreviewmedia2);
+                        } else if (!TextUtils.isEmpty(str2) && !arrayList5.contains(str2)) {
+                            arrayList5.add(str2);
+                            r5b r5bVar2 = o5bVar3.q;
+                            hl.r(r5bVar2);
+                            hl.c3(r5bVar2);
+                        }
+                    }
+                }
+                LongSparseArray longSparseArray8 = kr0.F;
+                if (longSparseArray8 != null && (longSparseArray = (LongSparseArray) longSparseArray8.get(i)) != null && (kr0Var = (kr0) longSparseArray.get(j)) != null) {
+                    ArrayList arrayList6 = kr0Var.f;
+                    for (int i5 = 0; i5 < arrayList6.size(); i5++) {
+                        o5b o5bVar4 = (o5b) arrayList6.get(i5);
+                        if (o5bVar4.c == i && TextUtils.equals(o5bVar4.E, str2)) {
+                            o5bVar4.I(botpreviewmedia2);
+                        }
+                    }
+                }
             }
-            i10++;
-            i6 = i2;
-            i7 = 3;
-            i4 = 0;
-            i5 = 1;
-            i8 = 4;
+            this.M = null;
         }
-        canvas.restore();
+        jn7.f(i).k(jn7.y5, new Object[0]);
+        if (c8bVar != null && !c8bVar.h && !this.d) {
+            c8bVar.i(false);
+            this.d = true;
+        }
+        jn7.e().k(jn7.E5, this.e);
+    }
+
+    public final void c(org.telegram.tgnet.TLRPC.InputFile r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b6b.c(org.telegram.tgnet.TLRPC$InputFile):void");
+    }
+
+    public final void d() {
+        boolean z;
+        c8b c8bVar = this.c;
+        if (c8bVar.b0) {
+            TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
+            TLRPC.Document document = this.c.c0;
+            int i = uc7.r5;
+            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+            tL_inputDocument.id = document.id;
+            tL_inputDocument.access_hash = document.access_hash;
+            tL_inputDocument.file_reference = document.file_reference;
+            tL_inputFileStoryDocument.doc = tL_inputDocument;
+            c(tL_inputFileStoryDocument);
+        } else if ((c8bVar.g || (c8bVar.n && c8bVar.t != null)) && !c8bVar.j && c8bVar.o0 == null) {
+            c(null);
+            return;
+        }
+        u9b u9bVar = this.c.E0;
+        if (u9bVar != null && u9bVar.a == 1) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.H = z;
+        jn7.f(this.N.a).a(this, jn7.U1);
+        jn7.f(this.N.a).a(this, jn7.V1);
+        jn7.f(this.N.a).a(this, jn7.W1);
+        jn7.f(this.N.a).a(this, jn7.c2);
+        jn7.f(this.N.a).a(this, jn7.a2);
+        jn7.f(this.N.a).a(this, jn7.b2);
+        boolean D = this.c.D();
+        this.s = D;
+        if (D) {
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.id = 1;
+            String absolutePath = c8b.w(this.N.a, "mp4").getAbsolutePath();
+            tL_message.attachPath = absolutePath;
+            this.e = absolutePath;
+            this.F = new r47(this.N.a, tL_message, null, false, false);
+            this.c.s(new a6b(this, (byte) 1));
+        } else {
+            File w = c8b.w(this.N.a, "jpg");
+            this.e = w.getAbsolutePath();
+            Utilities.i.c(new z3b(this, w, (byte) 9));
+        }
+        Intent intent = new Intent(a.b, StoryUploadingService.class);
+        intent.putExtra("path", this.e);
+        intent.putExtra("currentAccount", this.N.a);
+        try {
+            a.b.startService(intent);
+        } catch (Throwable th) {
+            cc4.g(th, true);
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        c6b c6bVar = this.N;
+        int i3 = c6bVar.a;
+        if (i == jn7.a2) {
+            if (objArr[0] == this.F) {
+                this.e = (String) objArr[1];
+                e();
+                return;
+            }
+            return;
+        }
+        int i4 = jn7.b2;
+        int i5 = jn7.D5;
+        if (i == i4) {
+            if (objArr[0] == this.F) {
+                String str = (String) objArr[1];
+                long longValue = ((Long) objArr[2]).longValue();
+                long longValue2 = ((Long) objArr[3]).longValue();
+                float floatValue = ((Float) objArr[4]).floatValue();
+                this.n = floatValue;
+                this.h = (this.r * 0.7f) + (floatValue * 0.3f);
+                jn7.f(i3).k(i5, this.e, Float.valueOf(this.h));
+                if (this.y < 0 && this.n * ((float) this.E) >= 1000.0f) {
+                    this.y = longValue;
+                }
+                xb4.G(i3).n(str, false, Math.max(1L, longValue), longValue2, Float.valueOf(this.n));
+                if (longValue2 > 0 && this.y < 0) {
+                    this.y = longValue2;
+                }
+            }
+        } else if (i == jn7.c2) {
+            if (objArr[0] == this.F) {
+                if (!this.b) {
+                    c8b c8bVar = this.c;
+                    c8bVar.w = true;
+                    TLRPC.TL_error tL_error = new TLRPC.TL_error();
+                    c8bVar.x = tL_error;
+                    tL_error.code = 400;
+                    tL_error.text = "FILE_PREPARE_FAILED";
+                    this.d = true;
+                    this.J = true;
+                    this.I = true;
+                    c6bVar.w.d(c8bVar);
+                }
+                b();
+            }
+        } else if (i == jn7.U1) {
+            String str2 = (String) objArr[0];
+            String str3 = this.e;
+            if (str3 != null && str2.equals(str3)) {
+                c((TLRPC.InputFile) objArr[1]);
+            }
+        } else if (i == jn7.V1) {
+            String str4 = (String) objArr[0];
+            String str5 = this.e;
+            if (str5 != null && str4.equals(str5)) {
+                jn7.e().k(jn7.S4, 1, ob6.M0(2131744106, null));
+                b();
+            }
+        } else if (i == jn7.W1 && ((String) objArr[0]).equals(this.e)) {
+            float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
+            this.r = min;
+            this.h = (min * 0.7f) + (this.n * 0.3f);
+            jn7.f(i3).k(i5, this.e, Float.valueOf(this.h));
+        }
     }
 
-    @Override
-    public final void setAlpha(int i) {
-        this.e = i;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void e() {
+        int i;
+        c8b c8bVar = this.c;
+        c8bVar.getClass();
+        xb4 G = xb4.G(this.N.a);
+        String str = this.e;
+        boolean z = !c8bVar.K;
+        long j = 0;
+        if (this.s) {
+            oec oecVar = this.G;
+            if (oecVar != null) {
+                j = oecVar.q;
+            }
+            j = Math.max(1, (int) j);
+        }
+        if (c8bVar.K) {
+            i = 33554432;
+        } else {
+            i = 16777216;
+        }
+        G.g0(str, false, z, j, i, true);
     }
 }

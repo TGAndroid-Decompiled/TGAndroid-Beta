@@ -1,10 +1,16 @@
 package defpackage;
-public final class zvc {
-    public final ovc a;
-    public final int b;
 
-    public zvc(ovc ovcVar, int i) {
-        this.a = ovcVar;
-        this.b = i;
+import java.io.File;
+public final class zvc {
+    public String a;
+    public int b;
+    public int c;
+    public File d;
+    public final File e;
+
+    public zvc(File file, File file2, String str) {
+        this.a = str;
+        this.d = file;
+        this.e = file2;
     }
 }

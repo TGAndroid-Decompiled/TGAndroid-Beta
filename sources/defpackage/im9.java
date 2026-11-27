@@ -1,22 +1,28 @@
 package defpackage;
 
-import org.telegram.messenger.voip.NativeInstance;
-public final class im9 implements NativeInstance.BroadcastStateCallback, xz0 {
-    public final nm9 a;
-    public final NativeInstance b;
+import android.content.Context;
+import android.view.View;
+public final class im9 extends a8c {
+    public static final int b = 0;
 
-    public im9(nm9 nm9Var, NativeInstance nativeInstance) {
-        this.a = nm9Var;
-        this.b = nativeInstance;
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void onBroadcastStateChanged(boolean z, boolean z2) {
-        gl.c3(new s91(this.a, this.b, z2, z, (byte) 4));
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        ((km9) view).d((mk0) b8cVar.H, (hm9) b8cVar.I, b8cVar.s);
     }
 
     @Override
-    public final void onRejoinRequested() {
-        gl.c3(new tj9(this.a, this.b, (byte) 6));
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        km9 km9Var = new km9(context, vnbVar);
+        km9Var.setBackground(new vg9(aob.v0(aob.d6, vnbVar)));
+        return km9Var;
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
     }
 }

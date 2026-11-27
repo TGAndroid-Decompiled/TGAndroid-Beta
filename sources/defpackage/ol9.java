@@ -1,25 +1,44 @@
 package defpackage;
-public final class ol9 {
-    public static final ol9 a;
-    public static final ol9 b;
-    public static final ol9 c;
-    public static final ol9[] d;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_iv;
+public final class ol9 extends a8c {
+    public static final int b = 0;
 
     static {
-        ?? r0 = new Enum("HIGH", 0);
-        a = r0;
-        ?? r1 = new Enum("MEDIUM", 1);
-        b = r1;
-        ?? r3 = new Enum("LOW", 2);
-        c = r3;
-        d = new ol9[]{r0, r1, r3};
+        a8c.h(new a8c());
     }
 
-    public static ol9 valueOf(String str) {
-        return (ol9) Enum.valueOf(ol9.class, str);
+    @Override
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        TL_iv.RichText richText;
+        pl9 pl9Var = (pl9) view;
+        mk0 mk0Var = (mk0) b8cVar.H;
+        nl9 nl9Var = (nl9) b8cVar.I;
+        dg9 dg9Var = pl9Var.r;
+        pl9Var.a = mk0Var;
+        pl9Var.s = nl9Var;
+        pl9Var.f(hl.L(16.0f), hl.L(1.0f), hl.L(16.0f), hl.L(8.0f));
+        pl9Var.c(mk0Var);
+        if (nl9Var != null) {
+            richText = (TL_iv.RichText) ((wh9) nl9Var).a.u3.get(Long.valueOf(mk0Var.t));
+        } else {
+            richText = null;
+        }
+        if (!String.valueOf(dg9Var.getText()).equals(mm9.l(richText))) {
+            dg9Var.setTextSilently(pv3.m(mm9.r(richText, null, true), dg9Var.getPaint().getFontMetricsInt(), false, null, 0));
+            dg9Var.f();
+        }
     }
 
-    public static ol9[] values() {
-        return (ol9[]) d.clone();
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new pl9(context, vnbVar);
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
     }
 }

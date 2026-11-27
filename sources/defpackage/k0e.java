@@ -1,28 +1,17 @@
 package defpackage;
+public final class k0e implements zq7 {
+    public static final k0e a = new Object();
 
-import java.lang.ref.WeakReference;
-public final class k0e extends WeakReference {
-    public final int a;
-
-    public k0e(Exception exc) {
-        super(exc, null);
-        this.a = System.identityHashCode(exc);
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != null && obj.getClass() == k0e.class) {
-            if (this == obj) {
-                return true;
-            }
-            k0e k0eVar = (k0e) obj;
-            if (this.a == k0eVar.a && get() == k0eVar.get()) {
-                return true;
-            }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a;
+        throw new ClassCastException();
     }
 }

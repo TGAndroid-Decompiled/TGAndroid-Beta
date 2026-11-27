@@ -1,78 +1,39 @@
 package defpackage;
 
-import android.os.Bundle;
-import androidx.core.graphics.drawable.IconCompat;
-import j$.util.Objects;
-public final class l38 {
-    public CharSequence a;
-    public IconCompat b;
-    public String c;
-    public String d;
-    public boolean e;
-    public boolean f;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public final class l38 extends a8c {
+    public static final int b = 0;
 
-    public static l38 a(Bundle bundle) {
-        IconCompat iconCompat;
-        Bundle bundle2 = bundle.getBundle("icon");
-        CharSequence charSequence = bundle.getCharSequence("name");
-        if (bundle2 != null) {
-            iconCompat = IconCompat.a(bundle2);
-        } else {
-            iconCompat = null;
-        }
-        String string = bundle.getString("uri");
-        String string2 = bundle.getString("key");
-        boolean z = bundle.getBoolean("isBot");
-        boolean z2 = bundle.getBoolean("isImportant");
-        ?? obj = new Object();
-        obj.a = charSequence;
-        obj.b = iconCompat;
-        obj.c = string;
-        obj.d = string2;
-        obj.e = z;
-        obj.f = z2;
-        return obj;
+    static {
+        a8c.h(new a8c());
     }
 
-    public final Bundle b() {
-        Bundle bundle;
-        Bundle bundle2 = new Bundle();
-        bundle2.putCharSequence("name", this.a);
-        IconCompat iconCompat = this.b;
-        if (iconCompat != null) {
-            bundle = iconCompat.l();
-        } else {
-            bundle = null;
+    @Override
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        m38 m38Var = (m38) view;
+        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) b8cVar.H;
+        tx4 tx4Var = m38Var.h;
+        px4 px4Var = m38Var.e;
+        m38Var.a = savedStarGift.gift.id;
+        m38Var.setPadding(0, 0, 0, 0);
+        m38Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
+        m38Var.b = (TL_stars.starGiftAttributeBackdrop) jxa.i(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        m38Var.c = (TL_stars.starGiftAttributePattern) jxa.i(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        px4Var.d(m38Var.b);
+        px4Var.e(m38Var.c);
+        if (tx4Var != null) {
+            tx4Var.setBackdrop(m38Var.b);
+            String concat = "#".concat(ob6.E(savedStarGift.gift.num, ','));
+            tx4Var.b = concat;
+            tx4Var.a.g(9, concat, false);
         }
-        bundle2.putBundle("icon", bundle);
-        bundle2.putString("uri", this.c);
-        bundle2.putString("key", this.d);
-        bundle2.putBoolean("isBot", this.e);
-        bundle2.putBoolean("isImportant", this.f);
-        return bundle2;
+        m38Var.b(b8cVar.e, false);
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof l38)) {
-            return false;
-        }
-        l38 l38Var = (l38) obj;
-        String str = this.d;
-        String str2 = l38Var.d;
-        if (str == null && str2 == null) {
-            if (!Objects.equals(Objects.toString(this.a), Objects.toString(l38Var.a)) || !Objects.equals(this.c, l38Var.c) || !Boolean.valueOf(this.e).equals(Boolean.valueOf(l38Var.e)) || !Boolean.valueOf(this.f).equals(Boolean.valueOf(l38Var.f))) {
-                return false;
-            }
-            return true;
-        }
-        return Objects.equals(str, str2);
-    }
-
-    public final int hashCode() {
-        String str = this.d;
-        if (str != null) {
-            return str.hashCode();
-        }
-        return Objects.hash(this.a, this.c, Boolean.valueOf(this.e), Boolean.valueOf(this.f));
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new m38(vnbVar, context, true);
     }
 }

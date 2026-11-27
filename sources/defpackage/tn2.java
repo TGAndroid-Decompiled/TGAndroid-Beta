@@ -1,192 +1,103 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.io.Serializable;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class tn2 implements n8c, no7, o8c {
+import org.telegram.tgnet.tl.TL_communities;
+public final class tn2 implements icc {
     public final byte a;
-    public final eo2 b;
+    public final xn2 b;
 
-    public tn2(eo2 eo2Var, byte b) {
+    public tn2(xn2 xn2Var, byte b) {
         this.a = b;
-        this.b = eo2Var;
+        this.b = xn2Var;
     }
 
     @Override
-    public final vxc W(View view, vxc vxcVar) {
-        sxc sxcVar = vxcVar.a;
-        io5 f = sxcVar.f(527);
-        eo2 eo2Var = this.b;
-        eo2Var.N1 = f;
-        eo2Var.O1 = sxcVar.f(519);
-        eo2Var.z1.j(gl.L(56.0f) + eo2Var.N1.b, eo2Var.N1.d, false);
-        eo2Var.B1.invalidate();
-        return vxc.b;
-    }
-
-    @Override
-    public final Boolean d(c4c c4cVar, View view, Integer num, Float f, Float f2) {
-        boolean z;
-        long j;
-        boolean z2;
-        boolean z3;
-        int i = eo2.P1;
-        Object obj = c4cVar.H;
-        boolean z4 = obj instanceof TLRPC.Chat;
-        eo2 eo2Var = this.b;
-        boolean z5 = true;
-        if (z4) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            long j2 = -chat.id;
-            boolean V = hc2.V(chat);
-            TLRPC.Chat chat2 = eo2Var.p1;
-            if (chat2 != null && (chat.creator || hc2.y(27, chat2))) {
-                z = true;
-            } else {
-                z = false;
-            }
-            j = j2;
-            z3 = V;
-            z2 = false;
-        } else {
-            if (obj instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) obj;
-                long j3 = user.id;
-                boolean v = l7c.v(user);
-                TLRPC.Chat chat3 = eo2Var.p1;
-                if (chat3 != null && ((user.bot && user.bot_can_edit) || hc2.y(27, chat3))) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                j = j3;
-                z2 = v;
-                z3 = false;
-            }
-            z5 = false;
-            return Boolean.valueOf(z5);
-        }
-        if (z) {
-            cs5 G = cs5.G(eo2Var.c, null, view);
-            G.b(2131232092, k96.M0(2131751903, null), new mo1(eo2Var, z2, z3, j, (byte) 2), true);
-            G.X(eo2Var.u1.d.V0(view, true));
-            G.a0();
-            return Boolean.valueOf(z5);
-        }
-        z5 = false;
-        return Boolean.valueOf(z5);
-    }
-
-    @Override
-    public final void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        long j;
-        TLRPC.Chat chat;
+    public final void a(Object obj, Object obj2) {
+        ArrayList<TL_communities.CommunityPeer> arrayList;
+        String str;
+        String str2;
         int i;
+        TLRPC.ChatPhoto chatPhoto;
         byte b = this.a;
-        eo2 eo2Var = this.b;
-        c4c c4cVar = (c4c) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f = (Float) serializable;
-        Float f2 = (Float) serializable2;
+        int i2 = 0;
+        xn2 xn2Var = this.b;
         switch (b) {
             case 0:
-                eo2Var.G0(c4cVar);
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    d31.b0(xn2Var).g0(tL_error, false);
+                    return;
+                }
                 return;
-            case 1:
             default:
-                int i2 = eo2.P1;
-                eo2Var.D0(c4cVar);
-                return;
-            case 2:
-                int i3 = eo2.P1;
-                eo2Var.G0(c4cVar);
-                return;
-            case 3:
-                int i4 = eo2.P1;
-                d dVar = eo2Var.t1;
-                if (!eo2Var.D0(c4cVar)) {
-                    int i5 = c4cVar.d;
-                    boolean z = false;
-                    if (i5 == 101) {
-                        eo2Var.q1 = !eo2Var.q1;
-                        na7.q1(eo2Var.a).k5(eo2Var.o1, eo2Var.q1);
-                        if (view instanceof zgb) {
-                            ((zgb) view).getCheckBox().c(eo2Var.q1, true);
-                            return;
-                        } else {
-                            eo2Var.u1.d.g3.O(false);
-                            return;
-                        }
-                    } else if (i5 == 100) {
-                        eo2Var.n1.E(1);
-                        eo2Var.G1.e();
-                        return;
+                ArrayList arrayList2 = (ArrayList) obj;
+                l9c l9cVar = (l9c) obj2;
+                arrayList2.add(b8c.l(140, xn2Var.s));
+                if (xc2.y(1, xn2Var.J)) {
+                    TLRPC.Chat chat = xn2Var.J;
+                    if (chat != null && (chatPhoto = chat.photo) != null && !(chatPhoto instanceof TLRPC.TL_chatPhotoEmpty)) {
+                        i = 2131751817;
                     } else {
-                        Object obj3 = c4cVar.H;
-                        if (obj3 instanceof TLRPC.Chat) {
-                            TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
-                            z = hc2.V(chat2);
-                            j = -chat2.id;
-                            chat = chat2;
-                        } else if (obj3 instanceof TLRPC.User) {
-                            j = ((TLRPC.User) obj3).id;
-                            chat = null;
-                        } else {
-                            return;
-                        }
-                        int b2 = no2.b(eo2Var.a, j);
-                        if (b2 != 1 && b2 != 2) {
-                            if (b2 == 3) {
-                                fu5 fu5Var = new fu5(eo2Var.getContext(), chat, null, eo2Var.t1, eo2Var.J0);
-                                fu5Var.s1 = new u21((FrameLayout) eo2Var.b, eo2Var.J0);
-                                fu5Var.show();
-                                return;
-                            } else if (b2 == 4) {
-                                u21 u21Var = new u21((FrameLayout) eo2Var.b, eo2Var.J0);
-                                if (z) {
-                                    i = 2131751918;
-                                } else {
-                                    i = 2131751915;
-                                }
-                                ir2.v(null, i, u21Var, 2131624007, 36);
-                                return;
-                            } else {
-                                return;
-                            }
-                        }
-                        if (dVar instanceof mu1) {
-                            mu1 mu1Var = (mu1) dVar;
-                            TLRPC.Chat chat3 = mu1Var.e;
-                            TLRPC.User h = mu1Var.h();
-                            if ((chat3 != null && chat3.id == (-j)) || (h != null && h.id == j)) {
-                                eo2Var.dismiss();
-                                return;
-                            }
-                        }
-                        Bundle bundle = new Bundle();
-                        if (j > 0) {
-                            bundle.putLong("user_id", j);
-                        } else {
-                            bundle.putLong("chat_id", -j);
-                        }
-                        if (hc2.c0(chat)) {
-                            if (hc2.a(chat)) {
-                                mu1 mu1Var2 = new mu1(bundle);
-                                mm4.a(mu1Var2, zc7.a(j, na7.q1(eo2Var.a).X3.getLong(ls6.n(chat.id, "forumlasttopic"), 1L)));
-                                dVar.presentFragment(mu1Var2);
-                            } else {
-                                dVar.presentFragment(new qvb(bundle));
-                            }
-                        } else {
-                            dVar.presentFragment(new mu1(bundle));
-                        }
-                        eo2Var.dismiss();
-                        return;
+                        i = 2131751816;
                     }
+                    b8c c = b8c.c(141, 2131232512, ob6.M0(i, null));
+                    c.r = true;
+                    arrayList2.add(c);
+                    arrayList2.add(b8c.E(2, hl.L(14.0f)));
+                    arrayList2.add(b8c.t(0, ob6.M0(2131751839, null)));
+                    arrayList2.add(b8c.j(7, xn2Var.r));
+                    arrayList2.add(b8c.E(1, hl.L(14.0f)));
+                }
+                if (xc2.w(2, xn2Var.J)) {
+                    arrayList2.add(b8c.t(3, ob6.M0(2131751837, null)));
+                    b8c y = b8c.y(150, ob6.M0(2131751808, null), ob6.M0(2131751807, null));
+                    y.L(xn2Var.n);
+                    arrayList2.add(y);
+                    b8c y2 = b8c.y(151, ob6.M0(2131751806, null), ob6.M0(2131751805, null));
+                    y2.L(!xn2Var.n);
+                    arrayList2.add(y2);
+                    arrayList2.add(b8c.E(4, hl.L(14.0f)));
+                }
+                if (xc2.N(xn2Var.J)) {
+                    String M0 = ob6.M0(2131751930, null);
+                    TLRPC.ChatFull chatFull = xn2Var.K;
+                    String str3 = "";
+                    if (chatFull == null) {
+                        str = "";
+                    } else {
+                        str = Integer.toString(chatFull.admins_count);
+                    }
+                    arrayList2.add(b8c.d(142, 2131232054, M0, str));
+                    String M02 = ob6.M0(2131751860, null);
+                    TLRPC.ChatFull chatFull2 = xn2Var.K;
+                    if (chatFull2 == null) {
+                        str2 = "";
+                    } else {
+                        str2 = Integer.toString(chatFull2.requests_pending);
+                    }
+                    arrayList2.add(b8c.d(143, 2131231031, M02, str2));
+                    String M03 = ob6.M0(2131751846, null);
+                    TLRPC.ChatFull chatFull3 = xn2Var.K;
+                    if (chatFull3 != null) {
+                        str3 = Integer.toString(chatFull3.kicked_count);
+                    }
+                    arrayList2.add(b8c.d(144, 2131232420, M03, str3));
+                }
+                arrayList2.add(b8c.E(5, hl.L(14.0f)));
+                b8c c2 = b8c.c(146, 2131232181, ob6.M0(2131751883, null));
+                c2.r = true;
+                arrayList2.add(c2);
+                TLRPC.ChatFull chatFull4 = xn2Var.K;
+                if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {
+                    int size = arrayList.size();
+                    while (i2 < size) {
+                        TL_communities.CommunityPeer communityPeer = arrayList.get(i2);
+                        i2++;
+                        arrayList2.add(b8c.w(xn2Var.getMessagesController().b2(wf3.n(communityPeer.peer))));
+                    }
+                    return;
                 }
                 return;
         }

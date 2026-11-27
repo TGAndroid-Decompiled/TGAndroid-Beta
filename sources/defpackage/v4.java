@@ -1,165 +1,412 @@
 package defpackage;
 
 import android.graphics.Rect;
-import android.graphics.RectF;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityManager;
+import android.text.SpannableString;
+import android.text.TextUtils;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.accessibility.AccessibilityNodeProvider;
-import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.ui.ProfileActivity;
-public class v4 extends AccessibilityNodeProvider {
-    public final byte a = 0;
-    public final Object b;
+public final class v4 {
+    public static int c;
+    public final AccessibilityNodeInfo a;
+    public int b = -1;
 
-    public v4(l69 l69Var) {
-        this.b = l69Var;
+    public v4(AccessibilityNodeInfo accessibilityNodeInfo) {
+        this.a = accessibilityNodeInfo;
     }
 
-    @Override
-    public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i) {
-        ml8 ml8Var;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                u4 u = ((l69) obj).u(i);
-                if (u == null) {
-                    return null;
-                }
-                return u.a;
-            default:
-                int[] iArr = {0, 0};
-                pl8 pl8Var = (pl8) obj;
-                ArrayList arrayList = pl8Var.a;
-                pl8Var.getLocationOnScreen(iArr);
-                if (i == -1) {
-                    AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(pl8Var);
-                    pl8Var.onInitializeAccessibilityNodeInfo(obtain);
-                    obtain.setEnabled(true);
-                    for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                        obtain.addChild(pl8Var, ((ml8) arrayList.get(i2)).a);
-                    }
-                    return obtain;
-                }
-                int i3 = 0;
-                while (true) {
-                    if (i3 < arrayList.size()) {
-                        if (((ml8) arrayList.get(i3)).a == i) {
-                            ml8Var = (ml8) arrayList.get(i3);
-                        } else {
-                            i3++;
+    public static String e(int i) {
+        if (i != 1) {
+            if (i != 2) {
+                switch (i) {
+                    case 4:
+                        return "ACTION_SELECT";
+                    case 8:
+                        return "ACTION_CLEAR_SELECTION";
+                    case 16:
+                        return "ACTION_CLICK";
+                    case 32:
+                        return "ACTION_LONG_CLICK";
+                    case 64:
+                        return "ACTION_ACCESSIBILITY_FOCUS";
+                    case 128:
+                        return "ACTION_CLEAR_ACCESSIBILITY_FOCUS";
+                    case 256:
+                        return "ACTION_NEXT_AT_MOVEMENT_GRANULARITY";
+                    case 512:
+                        return "ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY";
+                    case 1024:
+                        return "ACTION_NEXT_HTML_ELEMENT";
+                    case 2048:
+                        return "ACTION_PREVIOUS_HTML_ELEMENT";
+                    case 4096:
+                        return "ACTION_SCROLL_FORWARD";
+                    case 8192:
+                        return "ACTION_SCROLL_BACKWARD";
+                    case 16384:
+                        return "ACTION_COPY";
+                    case 32768:
+                        return "ACTION_PASTE";
+                    case 65536:
+                        return "ACTION_CUT";
+                    case 131072:
+                        return "ACTION_SET_SELECTION";
+                    case 262144:
+                        return "ACTION_EXPAND";
+                    case 524288:
+                        return "ACTION_COLLAPSE";
+                    case 2097152:
+                        return "ACTION_SET_TEXT";
+                    case 16908354:
+                        return "ACTION_MOVE_WINDOW";
+                    case 16908382:
+                        return "ACTION_SCROLL_IN_DIRECTION";
+                    default:
+                        switch (i) {
+                            case 16908342:
+                                return "ACTION_SHOW_ON_SCREEN";
+                            case 16908343:
+                                return "ACTION_SCROLL_TO_POSITION";
+                            case 16908344:
+                                return "ACTION_SCROLL_UP";
+                            case 16908345:
+                                return "ACTION_SCROLL_LEFT";
+                            case 16908346:
+                                return "ACTION_SCROLL_DOWN";
+                            case 16908347:
+                                return "ACTION_SCROLL_RIGHT";
+                            case 16908348:
+                                return "ACTION_CONTEXT_CLICK";
+                            case 16908349:
+                                return "ACTION_SET_PROGRESS";
+                            default:
+                                switch (i) {
+                                    case 16908356:
+                                        return "ACTION_SHOW_TOOLTIP";
+                                    case 16908357:
+                                        return "ACTION_HIDE_TOOLTIP";
+                                    case 16908358:
+                                        return "ACTION_PAGE_UP";
+                                    case 16908359:
+                                        return "ACTION_PAGE_DOWN";
+                                    case 16908360:
+                                        return "ACTION_PAGE_LEFT";
+                                    case 16908361:
+                                        return "ACTION_PAGE_RIGHT";
+                                    case 16908362:
+                                        return "ACTION_PRESS_AND_HOLD";
+                                    default:
+                                        switch (i) {
+                                            case 16908372:
+                                                return "ACTION_IME_ENTER";
+                                            case 16908373:
+                                                return "ACTION_DRAG_START";
+                                            case 16908374:
+                                                return "ACTION_DRAG_DROP";
+                                            case 16908375:
+                                                return "ACTION_DRAG_CANCEL";
+                                            default:
+                                                return "ACTION_UNKNOWN";
+                                        }
+                                }
                         }
-                    } else {
-                        ml8Var = null;
-                    }
                 }
-                if (ml8Var == null) {
-                    return null;
-                }
-                RectF rectF = ml8Var.d;
-                if (rectF.isEmpty()) {
-                    return null;
-                }
-                AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain();
-                obtain2.setSource(pl8Var, i);
-                obtain2.setParent(pl8Var);
-                obtain2.setPackageName(pl8Var.getContext().getPackageName());
-                obtain2.addAction(16);
-                obtain2.addAction(64);
-                obtain2.setClickable(true);
-                obtain2.setFocusable(true);
-                obtain2.setEnabled(true);
-                obtain2.setVisibleToUser(true);
-                obtain2.setClassName(Button.class.getName());
-                obtain2.setText(ml8Var.l.i());
-                Rect rect = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-                obtain2.setBoundsInParent(rect);
-                rect.offset(iArr[0], iArr[1]);
-                obtain2.setBoundsInScreen(rect);
-                return obtain2;
+            }
+            return "ACTION_CLEAR_FOCUS";
         }
+        return "ACTION_FOCUS";
     }
 
-    @Override
-    public final List findAccessibilityNodeInfosByText(String str, int i) {
-        switch (this.a) {
-            case 0:
-                ((l69) this.b).getClass();
-                return null;
-            default:
-                return super.findAccessibilityNodeInfosByText(str, i);
+    public final void a(int i) {
+        this.a.addAction(i);
+    }
+
+    public final void b(s4 s4Var) {
+        this.a.addAction((AccessibilityNodeInfo.AccessibilityAction) s4Var.a);
+    }
+
+    public final ArrayList c(String str) {
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        ArrayList<Integer> integerArrayList = accessibilityNodeInfo.getExtras().getIntegerArrayList(str);
+        if (integerArrayList == null) {
+            ArrayList<Integer> arrayList = new ArrayList<>();
+            accessibilityNodeInfo.getExtras().putIntegerArrayList(str, arrayList);
+            return arrayList;
         }
+        return integerArrayList;
     }
 
-    @Override
-    public final AccessibilityNodeInfo findFocus(int i) {
-        switch (this.a) {
-            case 0:
-                u4 w = ((l69) this.b).w(i);
-                if (w == null) {
-                    return null;
-                }
-                return w.a;
-            default:
-                return super.findFocus(i);
+    public final ArrayList d() {
+        List<AccessibilityNodeInfo.AccessibilityAction> actionList = this.a.getActionList();
+        ArrayList arrayList = new ArrayList();
+        int size = actionList.size();
+        for (int i = 0; i < size; i++) {
+            arrayList.add(new s4(actionList.get(i), 0, null, null, null));
         }
+        return arrayList;
     }
 
-    @Override
-    public final boolean performAction(int i, int i2, Bundle bundle) {
-        ml8 ml8Var;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return ((l69) obj).E(i, i2, bundle);
-            default:
-                pl8 pl8Var = (pl8) obj;
-                ArrayList arrayList = pl8Var.a;
-                if (i == -1) {
-                    return pl8Var.performAccessibilityAction(i2, bundle);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && (obj instanceof v4)) {
+            v4 v4Var = (v4) obj;
+            AccessibilityNodeInfo accessibilityNodeInfo = v4Var.a;
+            AccessibilityNodeInfo accessibilityNodeInfo2 = this.a;
+            if (accessibilityNodeInfo2 == null) {
+                if (accessibilityNodeInfo != null) {
+                    return false;
                 }
-                int i3 = 0;
-                while (true) {
-                    if (i3 < arrayList.size()) {
-                        if (((ml8) arrayList.get(i3)).a == i) {
-                            ml8Var = (ml8) arrayList.get(i3);
-                        } else {
-                            i3++;
-                        }
-                    } else {
-                        ml8Var = null;
-                    }
-                }
-                if (ml8Var != null) {
-                    if (i2 == 64) {
-                        if (((AccessibilityManager) pl8Var.getContext().getSystemService("accessibility")).isTouchExplorationEnabled()) {
-                            AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
-                            obtain.setPackageName(pl8Var.getContext().getPackageName());
-                            obtain.setSource(pl8Var, i);
-                            if (pl8Var.getParent() != null) {
-                                pl8Var.getParent().requestSendAccessibilityEvent(pl8Var, obtain);
-                            }
-                        }
-                    } else if (i2 == 16) {
-                        ol8 ol8Var = pl8Var.y;
-                        if (ol8Var != null) {
-                            ProfileActivity profileActivity = ((ql8) ol8Var).b;
-                            RectF rectF = ProfileActivity.Z6;
-                            profileActivity.t2(0.0f, 0.0f, i);
-                        }
-                    }
-                    return true;
-                }
+            } else if (!accessibilityNodeInfo2.equals(accessibilityNodeInfo)) {
                 return false;
+            }
+            if (this.b == v4Var.b) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean f(int i) {
+        Bundle extras = this.a.getExtras();
+        if (extras == null || (extras.getInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOOLEAN_PROPERTY_KEY", 0) & i) != i) {
+            return false;
+        }
+        return true;
+    }
+
+    public final CharSequence g() {
+        boolean isEmpty = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY").isEmpty();
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        if (!isEmpty) {
+            ArrayList c2 = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY");
+            ArrayList c3 = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_END_KEY");
+            ArrayList c4 = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_FLAGS_KEY");
+            ArrayList c5 = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ID_KEY");
+            SpannableString spannableString = new SpannableString(TextUtils.substring(accessibilityNodeInfo.getText(), 0, accessibilityNodeInfo.getText().length()));
+            for (int i = 0; i < c2.size(); i++) {
+                spannableString.setSpan(new p4(((Integer) c5.get(i)).intValue(), this, accessibilityNodeInfo.getExtras().getInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ACTION_ID_KEY")), ((Integer) c2.get(i)).intValue(), ((Integer) c3.get(i)).intValue(), ((Integer) c4.get(i)).intValue());
+            }
+            return spannableString;
+        }
+        return accessibilityNodeInfo.getText();
+    }
+
+    public final void h(Rect rect) {
+        this.a.setBoundsInParent(rect);
+    }
+
+    public final int hashCode() {
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        if (accessibilityNodeInfo == null) {
+            return 0;
+        }
+        return accessibilityNodeInfo.hashCode();
+    }
+
+    public final void i(String str) {
+        this.a.setClassName(str);
+    }
+
+    public final void j(String str) {
+        this.a.setContentDescription(str);
+    }
+
+    public final void k(boolean z) {
+        int i = Build.VERSION.SDK_INT;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        if (i >= 28) {
+            accessibilityNodeInfo.setHeading(z);
+            return;
+        }
+        Bundle extras = accessibilityNodeInfo.getExtras();
+        if (extras != null) {
+            int i2 = 0;
+            int i3 = extras.getInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOOLEAN_PROPERTY_KEY", 0) & (-3);
+            if (z) {
+                i2 = 2;
+            }
+            extras.putInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOOLEAN_PROPERTY_KEY", i3 | i2);
         }
     }
 
-    public v4(pl8 pl8Var) {
-        this.b = pl8Var;
+    public final void l(CharSequence charSequence) {
+        int i = Build.VERSION.SDK_INT;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        if (i >= 26) {
+            accessibilityNodeInfo.setHintText(charSequence);
+        } else {
+            accessibilityNodeInfo.getExtras().putCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.HINT_TEXT_KEY", charSequence);
+        }
+    }
+
+    public final void m(CharSequence charSequence) {
+        int i = Build.VERSION.SDK_INT;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        if (i >= 28) {
+            accessibilityNodeInfo.setPaneTitle(charSequence);
+        } else {
+            accessibilityNodeInfo.getExtras().putCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.PANE_TITLE_KEY", charSequence);
+        }
+    }
+
+    public final void n(boolean z) {
+        int i = Build.VERSION.SDK_INT;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        if (i >= 28) {
+            accessibilityNodeInfo.setScreenReaderFocusable(z);
+            return;
+        }
+        Bundle extras = accessibilityNodeInfo.getExtras();
+        if (extras != null) {
+            extras.putInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOOLEAN_PROPERTY_KEY", (extras.getInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOOLEAN_PROPERTY_KEY", 0) & (-2)) | (z ? 1 : 0));
+        }
+    }
+
+    public final void o(CharSequence charSequence) {
+        this.a.setText(charSequence);
+    }
+
+    public final void p(boolean z) {
+        this.a.setVisibleToUser(z);
+    }
+
+    public final String toString() {
+        CharSequence charSequence;
+        CharSequence charSequence2;
+        String string;
+        CharSequence charSequence3;
+        boolean z;
+        boolean f;
+        boolean f2;
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        Rect rect = new Rect();
+        AccessibilityNodeInfo accessibilityNodeInfo = this.a;
+        accessibilityNodeInfo.getBoundsInParent(rect);
+        sb.append("; boundsInParent: " + rect);
+        accessibilityNodeInfo.getBoundsInScreen(rect);
+        sb.append("; boundsInScreen: " + rect);
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 34) {
+            u4.g(accessibilityNodeInfo, rect);
+        } else {
+            Rect rect2 = (Rect) accessibilityNodeInfo.getExtras().getParcelable("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOUNDS_IN_WINDOW_KEY");
+            if (rect2 != null) {
+                rect.set(rect2.left, rect2.top, rect2.right, rect2.bottom);
+            }
+        }
+        sb.append("; boundsInWindow: " + rect);
+        sb.append("; packageName: ");
+        sb.append(accessibilityNodeInfo.getPackageName());
+        sb.append("; className: ");
+        sb.append(accessibilityNodeInfo.getClassName());
+        sb.append("; text: ");
+        sb.append(g());
+        sb.append("; error: ");
+        sb.append(accessibilityNodeInfo.getError());
+        sb.append("; maxTextLength: ");
+        sb.append(accessibilityNodeInfo.getMaxTextLength());
+        sb.append("; stateDescription: ");
+        if (i >= 30) {
+            charSequence = mka.l(accessibilityNodeInfo);
+        } else {
+            charSequence = accessibilityNodeInfo.getExtras().getCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.STATE_DESCRIPTION_KEY");
+        }
+        sb.append(charSequence);
+        sb.append("; contentDescription: ");
+        sb.append(accessibilityNodeInfo.getContentDescription());
+        sb.append("; tooltipText: ");
+        if (i >= 28) {
+            charSequence2 = accessibilityNodeInfo.getTooltipText();
+        } else {
+            charSequence2 = accessibilityNodeInfo.getExtras().getCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.TOOLTIP_TEXT_KEY");
+        }
+        sb.append(charSequence2);
+        sb.append("; viewIdResName: ");
+        sb.append(accessibilityNodeInfo.getViewIdResourceName());
+        sb.append("; uniqueId: ");
+        if (i >= 33) {
+            string = t4.h(accessibilityNodeInfo);
+        } else {
+            string = accessibilityNodeInfo.getExtras().getString("androidx.view.accessibility.AccessibilityNodeInfoCompat.UNIQUE_ID_KEY");
+        }
+        sb.append(string);
+        sb.append("; checkable: ");
+        sb.append(accessibilityNodeInfo.isCheckable());
+        sb.append("; checked: ");
+        sb.append(accessibilityNodeInfo.isChecked());
+        sb.append("; fieldRequired: ");
+        sb.append(accessibilityNodeInfo.getExtras().getBoolean("androidx.view.accessibility.AccessibilityNodeInfoCompat.IS_REQUIRED_KEY"));
+        sb.append("; focusable: ");
+        sb.append(accessibilityNodeInfo.isFocusable());
+        sb.append("; focused: ");
+        sb.append(accessibilityNodeInfo.isFocused());
+        sb.append("; selected: ");
+        sb.append(accessibilityNodeInfo.isSelected());
+        sb.append("; clickable: ");
+        sb.append(accessibilityNodeInfo.isClickable());
+        sb.append("; longClickable: ");
+        sb.append(accessibilityNodeInfo.isLongClickable());
+        sb.append("; contextClickable: ");
+        sb.append(accessibilityNodeInfo.isContextClickable());
+        sb.append("; enabled: ");
+        sb.append(accessibilityNodeInfo.isEnabled());
+        sb.append("; password: ");
+        sb.append(accessibilityNodeInfo.isPassword());
+        sb.append("; scrollable: " + accessibilityNodeInfo.isScrollable());
+        sb.append("; containerTitle: ");
+        if (i >= 34) {
+            charSequence3 = u4.h(accessibilityNodeInfo);
+        } else {
+            charSequence3 = accessibilityNodeInfo.getExtras().getCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.CONTAINER_TITLE_KEY");
+        }
+        sb.append(charSequence3);
+        sb.append("; granularScrollingSupported: ");
+        sb.append(f(67108864));
+        sb.append("; importantForAccessibility: ");
+        if (i >= 24) {
+            z = accessibilityNodeInfo.isImportantForAccessibility();
+        } else {
+            z = true;
+        }
+        sb.append(z);
+        sb.append("; visible: ");
+        sb.append(accessibilityNodeInfo.isVisibleToUser());
+        sb.append("; isTextSelectable: ");
+        if (i >= 33) {
+            f = t4.i(accessibilityNodeInfo);
+        } else {
+            f = f(8388608);
+        }
+        sb.append(f);
+        sb.append("; accessibilityDataSensitive: ");
+        if (i >= 34) {
+            f2 = u4.k(accessibilityNodeInfo);
+        } else {
+            f2 = f(64);
+        }
+        sb.append(f2);
+        sb.append("; [");
+        ArrayList d = d();
+        for (int i2 = 0; i2 < d.size(); i2++) {
+            s4 s4Var = (s4) d.get(i2);
+            int a = s4Var.a();
+            Object obj = s4Var.a;
+            String e = e(a);
+            if (e.equals("ACTION_UNKNOWN") && ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
+                e = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
+            }
+            sb.append(e);
+            if (i2 != d.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

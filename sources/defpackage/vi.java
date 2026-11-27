@@ -1,35 +1,65 @@
 package defpackage;
 
-import android.content.Context;
-public final class vi extends hn7 {
-    public final int[] z0;
+import android.view.View;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.StickersActivity;
+public final class vi extends f8c {
+    public final byte e;
+    public Object f;
 
-    public vi(Context context, wjb wjbVar, int[] iArr) {
-        super(context, wjbVar);
-        this.z0 = iArr;
+    public vi(Object obj, byte b) {
+        super("@stickers", (rmb) null);
+        this.e = b;
+        this.f = obj;
     }
 
     @Override
-    public final CharSequence d(int i) {
-        int i2 = this.z0[i];
-        if (i2 == 0) {
-            return k96.M0(2131748115, null);
+    public final void onClick(View view) {
+        int i;
+        switch (this.e) {
+            case 0:
+                ((e) this.f).dismissCurrentDialog();
+                super.onClick(view);
+                return;
+            case 1:
+                nd5 nd5Var = ((ld5) this.f).d;
+                i = ((e) nd5Var).currentAccount;
+                uc7.s1(i).H3("stickers", nd5Var, 1, null);
+                return;
+            case 2:
+                ((m08) this.f).a.dismissCurrentDialog();
+                super.onClick(view);
+                return;
+            case 3:
+                StickersActivity stickersActivity = (StickersActivity) this.f;
+                uc7.s1(StickersActivity.a0(stickersActivity)).H3("stickers", stickersActivity, 3, null);
+                return;
+            case 4:
+                s4b s4bVar = (s4b) this.f;
+                uc7.s1(s4bVar.a).H3(getURL(), s4bVar.F1, 1, null);
+                s4bVar.dismiss();
+                return;
+            default:
+                hl.g(getURL());
+                d31.b0((n41) this.f).k(false).j();
+                return;
         }
-        if (i2 < 60) {
-            return k96.G(i2, "Minutes", new Object[0]);
-        }
-        if (i2 < 1440) {
-            return k96.G(i2 / 60, "Hours", new Object[0]);
-        }
-        if (i2 < 10080) {
-            return k96.G(i2 / 1440, "Days", new Object[0]);
-        }
-        if (i2 < 44640) {
-            return k96.G(i2 / 10080, "Weeks", new Object[0]);
-        }
-        if (i2 < 525600) {
-            return k96.G(i2 / 44640, "Months", new Object[0]);
-        }
-        return k96.G(i2 / 525600, "Years", new Object[0]);
+    }
+
+    public vi(byte b, Object obj, String str) {
+        super(str, (rmb) null);
+        this.e = b;
+        this.f = obj;
+    }
+
+    public vi(String str, rmb rmbVar) {
+        super(str, rmbVar);
+        this.e = (byte) 5;
+    }
+
+    public vi(String str, e eVar) {
+        super(str, (rmb) null);
+        this.e = (byte) 0;
+        this.f = eVar;
     }
 }

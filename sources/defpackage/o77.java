@@ -1,26 +1,34 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.ui.NotificationsSettingsActivity;
 public final class o77 implements Runnable {
     public final byte a;
-    public final long b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
+    public final fn7 b;
+    public final Cloneable c;
+    public final Cloneable d;
+    public final Cloneable e;
+    public final Cloneable f;
+    public final Cloneable h;
+    public final Cloneable n;
+    public final Cloneable r;
+    public final Object s;
+    public final Cloneable w;
 
-    public o77(eta etaVar, TLObject tLObject, na7 na7Var, TLRPC.TL_error tL_error, long j) {
-        this.a = (byte) 19;
-        this.e = etaVar;
-        this.c = tLObject;
-        this.d = na7Var;
-        this.f = tL_error;
-        this.b = j;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o77.a():void");
+    public o77(NotificationsSettingsActivity notificationsSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8, av2 av2Var) {
+        this.a = (byte) 2;
+        this.b = notificationsSettingsActivity;
+        this.c = arrayList;
+        this.d = arrayList2;
+        this.w = arrayList3;
+        this.e = arrayList4;
+        this.f = arrayList5;
+        this.h = arrayList6;
+        this.n = arrayList7;
+        this.r = arrayList8;
+        this.s = av2Var;
     }
 
     @Override
@@ -28,48 +36,17 @@ public final class o77 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.o77.run():void");
     }
 
-    public o77(ct0 ct0Var, hd hdVar, TLObject tLObject, long j, p8c p8cVar) {
-        this.a = (byte) 1;
-        this.d = ct0Var;
-        this.e = hdVar;
-        this.f = tLObject;
-        this.b = j;
-        this.c = p8cVar;
-    }
-
-    public o77(Object obj, long j, Object obj2, Object obj3, Object obj4, byte b) {
+    public o77(uc7 uc7Var, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray, zh6 zh6Var, zh6 zh6Var2, zh6 zh6Var3, zh6 zh6Var4, zh6 zh6Var5, LongSparseIntArray longSparseIntArray3, byte b) {
         this.a = b;
-        this.d = obj;
-        this.b = j;
-        this.e = obj2;
-        this.c = obj3;
-        this.f = obj4;
-    }
-
-    public o77(Object obj, Object obj2, long j, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.b = j;
-        this.c = obj3;
-        this.f = obj4;
-    }
-
-    public o77(Object obj, Object obj2, Object obj3, long j, Object obj4, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.c = obj3;
-        this.b = j;
-        this.f = obj4;
-    }
-
-    public o77(Object obj, Object obj2, Object obj3, Object obj4, long j, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.e = obj2;
-        this.c = obj3;
-        this.f = obj4;
-        this.b = j;
+        this.b = uc7Var;
+        this.c = longSparseIntArray;
+        this.d = longSparseIntArray2;
+        this.e = sparseIntArray;
+        this.f = zh6Var;
+        this.h = zh6Var2;
+        this.n = zh6Var3;
+        this.r = zh6Var4;
+        this.s = zh6Var5;
+        this.w = longSparseIntArray3;
     }
 }

@@ -1,36 +1,95 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.SessionsActivity;
-public final class m5a implements View.OnClickListener {
-    public final d7a a;
-    public final TLRPC.TL_authorization b;
-    public final SessionsActivity c;
-    public final n5a d;
+public final class m5a implements Runnable {
+    public final byte a;
+    public final CharSequence b;
+    public final k5 c;
+    public final long d;
+    public final long e;
+    public final boolean f;
+    public final int h;
+    public final int n;
 
-    public m5a(n5a n5aVar, d7a d7aVar, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
-        this.d = n5aVar;
-        this.a = d7aVar;
-        this.b = tL_authorization;
-        this.c = sessionsActivity;
+    public m5a(CharSequence charSequence, k5 k5Var, long j, long j2, boolean z, int i, int i2, byte b) {
+        this.a = b;
+        this.b = charSequence;
+        this.c = k5Var;
+        this.d = j;
+        this.e = j2;
+        this.f = z;
+        this.h = i;
+        this.n = i2;
     }
 
     @Override
-    public final void onClick(View view) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.m1.getParentActivity());
-        String M0 = k96.M0(2131743963, null);
-        hd hdVar = alertDialog$Builder.a;
-        hdVar.U = M0;
-        hdVar.S = k96.M0(2131754070, null);
-        alertDialog$Builder.j(k96.M0(2131743968, null), new io9(this, this.a, this.b, (byte) 3));
-        alertDialog$Builder.g(k96.M0(2131752577, null), null);
-        this.c.showDialog(hdVar);
-        TextView textView = (TextView) hdVar.c(-1);
-        if (textView != null) {
-            zkb.X(textView, bkb.p7, null);
+    public final void run() {
+        r47 r47Var;
+        TLRPC.TL_forumTopic f;
+        TLRPC.Message message;
+        switch (this.a) {
+            case 0:
+                CharSequence charSequence = this.b;
+                k5 k5Var = this.c;
+                long j = this.d;
+                long j2 = this.e;
+                boolean z = this.f;
+                int i = this.h;
+                int i2 = this.n;
+                CharSequence G = r7a.G(charSequence);
+                int i3 = k5Var.a;
+                int t1 = uc7.s1(i3).t1();
+                if (G != null && G.length() != 0) {
+                    int ceil = (int) Math.ceil(G.length() / t1);
+                    char c = 0;
+                    int i4 = 1;
+                    if (j != 0 && (f = uc7.s1(i3).g4.f(-j2, j)) != null && (message = f.topicStartMessage) != null) {
+                        r47Var = new r47(i3, message, false, false);
+                        r47Var.p = true;
+                    } else {
+                        r47Var = null;
+                    }
+                    int i5 = 0;
+                    while (i5 < ceil) {
+                        int i6 = i5 + 1;
+                        CharSequence[] charSequenceArr = new CharSequence[i4];
+                        charSequenceArr[c] = G.subSequence(i5 * t1, Math.min(i6 * t1, G.length()));
+                        ArrayList Y = ls6.d0(i3).Y(charSequenceArr, i4, i4);
+                        int i7 = i;
+                        char c2 = c;
+                        boolean z2 = i4;
+                        int i8 = ceil;
+                        CharSequence charSequence2 = G;
+                        int i9 = i2;
+                        int i10 = t1;
+                        r47 r47Var2 = r47Var;
+                        p7a b = p7a.b(charSequenceArr[c].toString(), j2, r47Var2, r47Var, null, true, null, null, null, z, i7, i9, null, false);
+                        b.w = Y;
+                        if (i5 == 0) {
+                            b.O = 0L;
+                        }
+                        r7a.B(i3).q0(b);
+                        G = charSequence2;
+                        r47Var = r47Var2;
+                        i = i7;
+                        i2 = i9;
+                        i5 = i6;
+                        t1 = i10;
+                        c = c2;
+                        i4 = z2;
+                        ceil = i8;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                Utilities.d.c(new m5a(this.b, this.c, this.d, this.e, this.f, this.h, this.n, (byte) 2));
+                return;
+            default:
+                hl.c3(new m5a(this.b, this.c, this.d, this.e, this.f, this.h, this.n, (byte) 0));
+                return;
         }
     }
 }

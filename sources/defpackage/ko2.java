@@ -1,108 +1,203 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class ko2 implements Runnable {
-    public final byte a;
-    public final boolean b;
-    public final long c;
-    public final Object d;
+public final class ko2 extends LinearLayout implements snb {
+    public final vnb a;
+    public final n57 b;
+    public final FrameLayout c;
+    public final ImageView d;
+    public final TextView e;
+    public final TextView f;
+    public final boolean h;
+    public boolean n;
 
-    public ko2(gk7 gk7Var, boolean z, long j, byte b) {
-        this.a = b;
-        this.d = gk7Var;
-        this.b = z;
-        this.c = j;
+    public ko2(vnb vnbVar, Context context, boolean z) {
+        super(context);
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        this.a = vnbVar;
+        this.h = z;
+        setOrientation(0);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.c = frameLayout;
+        n57 n57Var = new n57((byte) 1);
+        this.b = n57Var;
+        frameLayout.setBackground(n57Var);
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        frameLayout.addView(imageView, tre.e(24, 24, 17));
+        LinearLayout j = uh9.j(context, 1);
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView m = ik8.m(j, textView, tre.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        this.f = m;
+        m.setGravity(17);
+        m.setMinWidth(hl.L(20.66f));
+        m.setPadding(hl.L(6.33f), 0, hl.L(6.33f), 0);
+        m.setTextSize(1, 16.0f);
+        if (ob6.a0) {
+            addView(m, tre.j(13.33f, 0.0f));
+            if (z) {
+                i3 = 12;
+            } else {
+                i3 = 16;
+            }
+            addView(j, tre.q(0, -2, 1.0f, 23, 20, 0, i3, 0));
+            if (z) {
+                i4 = 9;
+            } else {
+                i4 = 14;
+            }
+            addView(frameLayout, tre.t(28, 28, 21, 0, 0, i4, 0));
+        } else {
+            if (z) {
+                i = 9;
+            } else {
+                i = 14;
+            }
+            addView(frameLayout, tre.t(28, 28, 19, i, 0, 0, 0));
+            if (z) {
+                i2 = 12;
+            } else {
+                i2 = 16;
+            }
+            addView(j, tre.q(0, -2, 1.0f, 23, i2, 0, 20, 0));
+            addView(m, tre.j(0.0f, 13.33f));
+        }
+        updateColors();
+        setUnreadMode(true);
+    }
+
+    public final void a(int i, int i2, int i3, CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        int i4;
+        float f;
+        if (i3 != 0) {
+            i4 = 0;
+        } else {
+            i4 = 8;
+        }
+        this.c.setVisibility(i4);
+        if (i3 == 0) {
+            f = hl.L(2.0f);
+        } else {
+            f = 0.0f;
+        }
+        this.e.setTranslationX(f);
+        this.b.b(i, i2);
+        this.d.setImageResource(i3);
+        setTitle(charSequence);
+        setValue(charSequence2);
+        setUnreadMode(z);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        boolean z = this.b;
-        long j = this.c;
-        Object obj = this.d;
-        switch (b) {
-            case 0:
-                mo2 mo2Var = (mo2) obj;
-                mo2Var.i = null;
-                mo2Var.g.l(j);
-                for (int size = mo2Var.j.size() - 1; size >= 0; size--) {
-                    if (cf3.n(((TL_communities.CommunityPeerRequest) mo2Var.j.get(size)).peer) == j) {
-                        mo2Var.j.remove(size);
-                    }
-                }
-                mo2Var.a();
-                lo2 lo2Var = mo2Var.h;
-                if (lo2Var != null) {
-                    lo2Var.U0();
-                }
-                na7 q1 = na7.q1(mo2Var.d);
-                long j2 = mo2Var.e;
-                jo2 jo2Var = new jo2(mo2Var, (byte) 2);
-                TL_communities.TL_communities_togglePeerLinkRequestApproval tL_communities_togglePeerLinkRequestApproval = new TL_communities.TL_communities_togglePeerLinkRequestApproval();
-                tL_communities_togglePeerLinkRequestApproval.community = q1.f1(j2);
-                tL_communities_togglePeerLinkRequestApproval.peer = q1.h1(j);
-                tL_communities_togglePeerLinkRequestApproval.reject = !z;
-                q1.getConnectionsManager().sendRequestTyped(tL_communities_togglePeerLinkRequestApproval, new hc((byte) 0), new et4(q1, j2, jo2Var, (byte) 3));
-                return;
-            case 1:
-                HashSet hashSet = ((im7) obj).y;
-                if (z) {
-                    hashSet.add(Long.valueOf(j));
-                    return;
-                } else {
-                    hashSet.remove(Long.valueOf(j));
-                    return;
-                }
-            case 2:
-                bwa bwaVar = (bwa) obj;
-                bwaVar.z1 = j;
-                bwaVar.y1 = j;
-                if (z) {
-                    i76 i76Var = bwaVar.A1;
-                    i76Var.c = j;
-                    bwaVar.B1.set(i76Var);
-                }
-                bwaVar.H0();
-                bwaVar.D1.a(true, true);
-                awa awaVar = bwaVar.x1;
-                if (awaVar != null) {
-                    awaVar.setMyPrivacy(bwaVar.y1);
-                    return;
-                }
-                return;
-            case 3:
-                t5b t5bVar = (t5b) obj;
-                y5b y5bVar = t5bVar.a0;
-                if (z) {
-                    int i = y5b.X1;
-                    na7.q1(y5bVar.a).W2(Long.valueOf(j), new hy3(t5bVar, j, (byte) 2), 200);
-                    return;
-                }
-                int i2 = y5b.X1;
-                na7.q1(y5bVar.a).Y2(0, j, true);
-                return;
-            default:
-                pub pubVar = (pub) obj;
-                pubVar.getUserConfig().j().edit().remove("topics_end_reached_" + j).apply();
-                pubVar.a.l(j);
-                pubVar.b.l(j);
-                pubVar.d.delete(j);
-                pubVar.s.l(j);
-                TLRPC.Chat K0 = pubVar.getMessagesController().K0(Long.valueOf(j));
-                if (K0 != null && (K0.forum || K0.monoforum)) {
-                    pubVar.n(0, j, z);
-                }
-                pubVar.y(j, true);
-                return;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.G6));
+        hashSet.add(Integer.valueOf(aob.U8));
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        float f;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        if (this.h) {
+            f = 44.0f;
+        } else {
+            f = 50.0f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(hl.L(f), 1073741824));
+    }
+
+    public void setTitle(CharSequence charSequence) {
+        this.e.setText(charSequence);
+    }
+
+    public void setUnreadMode(boolean z) {
+        float f;
+        Typeface typeface;
+        int i;
+        if (this.n != z) {
+            this.n = z;
+            if (z) {
+                f = 13.0f;
+            } else {
+                f = 16.0f;
+            }
+            TextView textView = this.f;
+            textView.setTextSize(1, f);
+            ShapeDrawable shapeDrawable = null;
+            if (z) {
+                typeface = hl.o();
+            } else {
+                typeface = null;
+            }
+            textView.setTypeface(typeface);
+            if (z) {
+                i = aob.W8;
+            } else {
+                i = aob.n6;
+            }
+            vnb vnbVar = this.a;
+            yob.X(textView, i, vnbVar);
+            if (z) {
+                shapeDrawable = aob.b0(hl.L(10.33f), aob.v0(aob.U8, vnbVar));
+            }
+            textView.setBackground(shapeDrawable);
         }
     }
 
-    public ko2(Object obj, long j, boolean z, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.c = j;
-        this.b = z;
+    public void setValue(CharSequence charSequence) {
+        int i;
+        if (!TextUtils.isEmpty(charSequence)) {
+            i = 0;
+        } else {
+            i = 8;
+        }
+        TextView textView = this.f;
+        textView.setVisibility(i);
+        textView.setText(charSequence);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i;
+        ShapeDrawable shapeDrawable;
+        boolean o;
+        int i2 = aob.G6;
+        vnb vnbVar = this.a;
+        this.e.setTextColor(aob.v0(i2, vnbVar));
+        if (this.n) {
+            i = aob.W8;
+        } else {
+            i = aob.n6;
+        }
+        int v0 = aob.v0(i, vnbVar);
+        TextView textView = this.f;
+        textView.setTextColor(v0);
+        if (this.n) {
+            shapeDrawable = aob.b0(hl.L(10.33f), aob.v0(aob.U8, vnbVar));
+        } else {
+            shapeDrawable = null;
+        }
+        textView.setBackground(shapeDrawable);
+        if (vnbVar != null) {
+            o = vnbVar.a();
+        } else {
+            o = aob.I.o();
+        }
+        this.b.b = o;
     }
 }

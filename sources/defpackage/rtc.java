@@ -1,51 +1,81 @@
 package defpackage;
 
-import android.os.AsyncTask;
-import java.util.concurrent.CountDownLatch;
-public final class rtc extends AsyncTask {
-    public static final int f = 0;
-    public final String a;
-    public final CountDownLatch b = new CountDownLatch(1);
-    public final String[] c = new String[2];
-    public String d;
-    public final stc e;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class rtc implements icc {
+    public final byte a;
+    public final euc b;
 
-    public rtc(stc stcVar, String str) {
-        this.e = stcVar;
-        this.a = str;
+    public rtc(euc eucVar, byte b) {
+        this.a = b;
+        this.b = eucVar;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rtc.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String[] strArr = (String[]) obj;
-        String str = strArr[0];
-        stc stcVar = this.e;
-        if (str != null) {
-            if (w01.a) {
-                StringBuilder sb = new StringBuilder("start play youtube video ");
-                sb.append(strArr[1]);
-                sb.append(" ");
-                de9.s(strArr[0], sb);
-            }
-            stcVar.x = true;
-            stcVar.y = strArr[0];
-            String str2 = strArr[1];
-            stcVar.E = str2;
-            if (str2.equals("hls")) {
-                stcVar.I = true;
-            }
-            if (stcVar.s) {
-                stcVar.i();
-            }
-            stcVar.j(false, true);
-            stcVar.g0.d(true, true);
-        } else if (!isCancelled()) {
-            stcVar.h();
+    public final void a(Object obj, Object obj2) {
+        byte b = this.a;
+        int i = 8;
+        euc eucVar = this.b;
+        switch (b) {
+            case 0:
+                String str = (String) obj2;
+                eucVar.p0((TL_wallet.walletUserAddress) obj);
+                return;
+            case 1:
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
+                String str2 = (String) obj2;
+                if (wallettransaction != null) {
+                    eucVar.f0 = wallettransaction.fee;
+                    eucVar.D0();
+                    return;
+                }
+                return;
+            case 2:
+                TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
+                eucVar.r = false;
+                if (TextUtils.equals((String) obj2, "WALLET_USER_UNAVAILABLE")) {
+                    eucVar.finishFragment();
+                    return;
+                }
+                eucVar.e = walletuseraddress;
+                if (walletuseraddress != null) {
+                    eucVar.h = walletuseraddress.address;
+                }
+                wa waVar = eucVar.a;
+                if (waVar != null) {
+                    waVar.g3.O(true);
+                }
+                eucVar.C0();
+                eucVar.r0();
+                ktc ktcVar = eucVar.w;
+                if (ktcVar != null) {
+                    ktcVar.a(eucVar.h, eucVar.f);
+                    return;
+                }
+                return;
+            case 3:
+                eucVar.h0 = (String) obj;
+                eucVar.i0 = ((Boolean) obj2).booleanValue();
+                eucVar.Q.setText(eucVar.h0);
+                TextView textView = eucVar.Q;
+                if (!TextUtils.isEmpty(eucVar.h0)) {
+                    i = 0;
+                }
+                textView.setVisibility(i);
+                eucVar.E0();
+                return;
+            default:
+                eucVar.h0 = (String) obj;
+                eucVar.i0 = ((Boolean) obj2).booleanValue();
+                eucVar.Q.setText(eucVar.h0);
+                TextView textView2 = eucVar.Q;
+                if (!TextUtils.isEmpty(eucVar.h0)) {
+                    i = 0;
+                }
+                textView2.setVisibility(i);
+                eucVar.E0();
+                return;
         }
     }
 }

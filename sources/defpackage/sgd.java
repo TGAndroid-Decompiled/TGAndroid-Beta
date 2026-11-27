@@ -1,38 +1,42 @@
 package defpackage;
+public final class sgd implements og1 {
+    public final kdd a;
 
-import android.os.BadParcelableException;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class sgd {
-    public static final int a = 0;
-
-    static {
-        sgd.class.getClassLoader();
+    public sgd(kdd kddVar) {
+        this.a = kddVar;
     }
 
-    public static void a(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
-        }
-        throw new BadParcelableException(de9.k(dataAvail, "Parcel data not fully consumed, unread size: "));
+    @Override
+    public final void a(fjd fjdVar) {
+        xve.i(fjdVar, "channel must not be null");
     }
 
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
-        }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
+    @Override
+    public final void b(fjd fjdVar) {
+        xve.i(fjdVar, "channel must not be null");
     }
 
-    public static void c(Parcel parcel, IInterface iInterface) {
-        if (iInterface == null) {
-            parcel.writeStrongBinder(null);
-        } else {
-            parcel.writeStrongBinder(iInterface.asBinder());
+    @Override
+    public final void c(fjd fjdVar) {
+        xve.i(fjdVar, "channel must not be null");
+    }
+
+    @Override
+    public final void d(fjd fjdVar) {
+        xve.i(fjdVar, "channel must not be null");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && sgd.class == obj.getClass() && this.a == ((sgd) obj).a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
     }
 }

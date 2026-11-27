@@ -1,88 +1,44 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import android.os.RemoteException;
-import com.google.android.gms.cast.CastDevice;
-public final class lhf extends xx4 {
-    public static final dc6 I = new dc6("CastClientImplCxless", null);
-    public final CastDevice F;
-    public final Bundle G;
-    public final String H;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class lhf extends c4 {
+    public static final Parcelable.Creator<lhf> CREATOR = new nkf((byte) 1);
+    public int a;
+    public int b;
+    public int c;
+    public long d;
+    public int e;
 
-    public lhf(Context context, Looper looper, ntb ntbVar, CastDevice castDevice, Bundle bundle, String str, ey4 ey4Var, fy4 fy4Var) {
-        super(10, ey4Var, fy4Var, ntbVar, context, looper);
-        this.F = castDevice;
-        this.G = bundle;
-        this.H = str;
+    public static lhf b(pm3 pm3Var) {
+        ?? obj = new Object();
+        rc0 rc0Var = (rc0) pm3Var.b;
+        obj.a = rc0Var.a;
+        obj.b = rc0Var.b;
+        obj.e = rc0Var.c;
+        obj.c = 0;
+        obj.d = 0L;
+        return obj;
     }
 
     @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.internal.ICastDeviceController");
-        if (queryLocalInterface instanceof x6d) {
-            return (x6d) queryLocalInterface;
-        }
-        return new x6d(iBinder);
-    }
-
-    @Override
-    public final void c() {
-        try {
-            try {
-                ((x6d) k()).Z();
-            } finally {
-                super.c();
-            }
-        } catch (RemoteException | IllegalStateException e) {
-            I.a(e, "Error while disconnecting the controller interface", new Object[0]);
-        }
-    }
-
-    @Override
-    public final f84[] f() {
-        return ied.e;
-    }
-
-    @Override
-    public final Bundle h() {
-        Bundle bundle = new Bundle();
-        I.b("getRemoteService()", new Object[0]);
-        CastDevice castDevice = this.F;
-        castDevice.getClass();
-        bundle.putParcelable("com.google.android.gms.cast.EXTRA_CAST_DEVICE", castDevice);
-        bundle.putLong("com.google.android.gms.cast.EXTRA_CAST_FLAGS", 0L);
-        bundle.putString("connectionless_client_record_id", this.H);
-        Bundle bundle2 = this.G;
-        if (bundle2 != null) {
-            bundle.putAll(bundle2);
-        }
-        return bundle;
-    }
-
-    @Override
-    public final int i() {
-        return 19390000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.cast.internal.ICastDeviceController";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.cast.service.BIND_CAST_DEVICE_CONTROLLER_SERVICE";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        int i2 = this.a;
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(i2);
+        int i3 = this.b;
+        bye.q(parcel, 3, 4);
+        parcel.writeInt(i3);
+        int i4 = this.c;
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(i4);
+        long j = this.d;
+        bye.q(parcel, 5, 8);
+        parcel.writeLong(j);
+        int i5 = this.e;
+        bye.q(parcel, 6, 4);
+        parcel.writeInt(i5);
+        bye.s(parcel, r);
     }
 }

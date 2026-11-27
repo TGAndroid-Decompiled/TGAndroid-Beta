@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.WeakHashMap;
-import org.telegram.ui.ActionBar.d;
-public final class vo0 extends d {
-    public q5c a;
+import org.telegram.ui.ActionBar.e;
+public final class vo0 extends e {
+    public q9c a;
     public final ArrayList b;
     public final HashMap c;
 
@@ -32,30 +32,30 @@ public final class vo0 extends d {
                 if (spannableStringBuilder == null) {
                     spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) "a   ");
-                    ec0 ec0Var = new ec0(24.0f, this.currentAccount, null);
-                    ec0Var.e(to0Var.a);
-                    spannableStringBuilder.setSpan(ec0Var, 0, 1, 33);
-                    spannableStringBuilder.append((CharSequence) l7c.r(to0Var.a));
+                    gc0 gc0Var = new gc0(24.0f, this.currentAccount, null);
+                    gc0Var.e(to0Var.a);
+                    spannableStringBuilder.setSpan(gc0Var, 0, 1, 33);
+                    spannableStringBuilder.append((CharSequence) lbc.r(to0Var.a));
                     hashMap.put(to0Var, spannableStringBuilder);
                 }
-                c4c i2 = c4c.i(i, spannableStringBuilder);
+                b8c i2 = b8c.i(i, spannableStringBuilder);
                 i2.L(!to0Var.b);
                 arrayList.add(i2);
                 i++;
             } else {
-                arrayList.add(c4c.C(k96.M0(2131746670, null)));
+                arrayList.add(b8c.C(ob6.M0(2131746590, null)));
                 return;
             }
         }
     }
 
-    public final void Z(c4c c4cVar) {
+    public final void Z(b8c b8cVar) {
         int i;
-        l5c l5cVar;
-        if (c4cVar.a == 4 && (i = c4cVar.d) >= 0) {
+        l9c l9cVar;
+        if (b8cVar.a == 4 && (i = b8cVar.d) >= 0) {
             ArrayList arrayList = this.b;
             if (i < arrayList.size()) {
-                to0 to0Var = (to0) arrayList.get(c4cVar.d);
+                to0 to0Var = (to0) arrayList.get(b8cVar.d);
                 to0Var.b = !to0Var.b;
                 Activity parentActivity = getParentActivity();
                 int i2 = this.currentAccount;
@@ -69,9 +69,9 @@ public final class vo0 extends d {
                     edit.putString(String.valueOf(j), "");
                 }
                 edit.apply();
-                q5c q5cVar = this.a;
-                if (q5cVar != null && (l5cVar = q5cVar.g3) != null) {
-                    l5cVar.O(true);
+                q9c q9cVar = this.a;
+                if (q9cVar != null && (l9cVar = q9cVar.g3) != null) {
+                    l9cVar.O(true);
                 }
             }
         }
@@ -79,16 +79,16 @@ public final class vo0 extends d {
 
     @Override
     public final View createView(Context context) {
-        this.actionBar.setBackButtonDrawable(new ed0(false));
+        this.actionBar.setBackButtonDrawable(new gd0(false));
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(k96.M0(2131746672, null));
-        this.actionBar.setActionBarMenuOnItemClick(new r8(this, (byte) 8));
+        this.actionBar.setTitle(ob6.M0(2131746592, null));
+        this.actionBar.setActionBarMenuOnItemClick(new s8(this, (byte) 8));
         FrameLayout frameLayout = new FrameLayout(context);
-        zkb.h(bkb.Z6, this.resourceProvider, frameLayout);
-        q5c q5cVar = new q5c(this, new f(this, (byte) 15), new sg0(this, (byte) 8), new qm0(this, (byte) 2));
-        this.a = q5cVar;
-        frameLayout.addView(q5cVar, nme.e(-1, -1, 119));
-        uo0.c(getParentActivity(), this.currentAccount, new be2(this, (byte) 7));
+        yob.h(aob.a7, this.resourceProvider, frameLayout);
+        q9c q9cVar = new q9c(this, new c(this, (byte) 15), new tg0(this, (byte) 8), new rm0(this, (byte) 3));
+        this.a = q9cVar;
+        frameLayout.addView(q9cVar, tre.e(-1, -1, 119));
+        uo0.c(getParentActivity(), this.currentAccount, new te2(this, (byte) 7));
         this.fragmentView = frameLayout;
         return frameLayout;
     }

@@ -7,12 +7,12 @@ public abstract class k4f {
         }
         if (i >= 0) {
             if (i2 < 0) {
-                w26.j(de9.k(i2, "negative size: "));
+                lq5.j(uh9.k(i2, "negative size: "));
                 return;
             }
-            a = o4f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
+            a = m4f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
         } else {
-            a = o4f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
+            a = m4f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
         }
         throw new IndexOutOfBoundsException(a);
     }
@@ -21,7 +21,7 @@ public abstract class k4f {
         if (i >= 0 && i <= i2) {
             return;
         }
-        k93.i(d(i, i2, "index"));
+        su3.g(d(i, i2, "index"));
     }
 
     public static void c(int i, int i2, int i3) {
@@ -31,7 +31,7 @@ public abstract class k4f {
         }
         if (i >= 0 && i <= i3) {
             if (i2 >= 0 && i2 <= i3) {
-                d = o4f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
+                d = m4f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
             } else {
                 d = d(i2, i3, "end index");
             }
@@ -43,12 +43,12 @@ public abstract class k4f {
 
     public static String d(int i, int i2, String str) {
         if (i < 0) {
-            return o4f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
+            return m4f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
         }
         if (i2 >= 0) {
-            return o4f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
+            return m4f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
         }
-        w26.j(de9.k(i2, "negative size: "));
+        lq5.j(uh9.k(i2, "negative size: "));
         return null;
     }
 }

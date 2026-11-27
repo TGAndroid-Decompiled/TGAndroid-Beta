@@ -1,102 +1,100 @@
 package defpackage;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class r95 extends n39 {
-    public fc2 c;
-    public final int d;
-    public ArrayList f;
-    public e55 h;
-    public final h75 n;
-    public final ArrayList e = new ArrayList();
-    public boolean r = false;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
+public abstract class r95 extends FrameLayout implements snb {
+    public de0 a;
+    public ema b;
+    public ema c;
+    public ImageView d;
+    public rb0 e;
+    public TLRPC.User f;
+    public Paint h;
+    public int n;
+    public boolean r;
+    public int s;
 
-    public r95(fc2 fc2Var, int i, h75 h75Var) {
-        this.c = fc2Var;
-        this.d = i;
-        this.n = h75Var;
+    public final void a(int i, int i2) {
+        this.n = i;
+        ImageView imageView = this.d;
+        imageView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+        this.c.setTextColor(i2);
+        aob.F1(imageView.getDrawable(), i2 & 620756991, true);
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        float L;
+        int i;
+        if (this.r) {
+            if (ob6.a0) {
+                L = 0.0f;
+            } else {
+                L = hl.L(68.0f);
+            }
+            float f = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (ob6.a0) {
+                i = hl.L(68.0f);
+            } else {
+                i = 0;
+            }
+            canvas2 = canvas;
+            canvas2.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, this.h);
+        } else {
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas2);
+    }
+
+    public CharSequence getName() {
+        return this.b.getText();
+    }
+
+    public TLRPC.User getUser() {
+        return this.f;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
         return false;
     }
 
-    public final void E(o75 o75Var, boolean z) {
-        if (z) {
-            if (o75Var.getRenderer() == null) {
-                o75Var.setRenderer(h85.c(this.f, this.h, null, null, o75Var, o75Var.getParticipant(), this.c, this.n));
-            }
-        } else if (o75Var.getRenderer() != null) {
-            o75Var.getRenderer().setTabletGridView(null);
-            o75Var.setRenderer(null);
-        }
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(58.0f), 1073741824));
     }
 
-    public final int F() {
-        o39 o39Var = this.n.f4;
-        int size = this.e.size();
-        if (size <= 1) {
-            return o39Var.getMeasuredHeight();
-        }
-        if (size <= 4) {
-            return o39Var.getMeasuredHeight() / 2;
-        }
-        return (int) (o39Var.getMeasuredHeight() / 2.5f);
-    }
-
-    public final void G(ArrayList arrayList, e55 e55Var) {
-        this.f = arrayList;
-        this.h = e55Var;
-    }
-
-    public final void H(o39 o39Var, boolean z, boolean z2) {
+    public void setDrawDivider(boolean z) {
         this.r = z;
-        if (z2) {
-            for (int i = 0; i < o39Var.getChildCount(); i++) {
-                View childAt = o39Var.getChildAt(i);
-                if (childAt instanceof o75) {
-                    o75 o75Var = (o75) childAt;
-                    if (o75Var.getParticipant() != null) {
-                        E(o75Var, z);
-                    }
-                }
+        invalidate();
+    }
+
+    @Override
+    public final void updateColors() {
+        int w0;
+        try {
+            this.h.setColor(aob.w0(null, aob.Xg, false));
+            if (this.d != null && this.c != null && (w0 = aob.w0(null, this.n, false)) != this.s) {
+                this.s = w0;
+                a(this.n, w0);
             }
+            invalidate();
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
     }
 
-    public final void I(o39 o39Var, boolean z) {
-        if (this.c == null) {
-            return;
-        }
-        ArrayList arrayList = this.e;
-        if (z) {
-            ArrayList arrayList2 = new ArrayList();
-            arrayList2.addAll(arrayList);
-            arrayList.clear();
-            arrayList.addAll(this.c.f);
-            vu7.a(new ij3(this, arrayList2, (byte) 2), true).c(this);
-            gl.V3(o39Var);
-            return;
-        }
-        arrayList.clear();
-        arrayList.addAll(this.c.f);
-        f();
-    }
-
     @Override
-    public final int b() {
-        return this.e.size();
-    }
-
-    @Override
-    public final void t(defpackage.s49 r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.r95.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        return new s49(new b75(this, viewGroup.getContext()));
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

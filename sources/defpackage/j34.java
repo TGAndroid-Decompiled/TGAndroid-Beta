@@ -1,30 +1,43 @@
 package defpackage;
-public interface j34 {
-    void A(l34 l34Var);
 
-    void B(boolean z);
+import java.util.Arrays;
+public final class j34 {
+    public final n34 a;
+    public final byte[] b;
 
-    void C();
+    public j34(n34 n34Var, byte[] bArr) {
+        if (n34Var != null) {
+            if (bArr != null) {
+                this.a = n34Var;
+                this.b = bArr;
+                return;
+            }
+            p3d.h("bytes is null");
+            throw null;
+        }
+        p3d.h("encoding is null");
+        throw null;
+    }
 
-    void d(boolean z);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof j34)) {
+            return false;
+        }
+        j34 j34Var = (j34) obj;
+        if (!this.a.equals(j34Var.a)) {
+            return false;
+        }
+        return Arrays.equals(this.b, j34Var.b);
+    }
 
-    void e(boolean z);
+    public final int hashCode() {
+        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.b);
+    }
 
-    void f();
-
-    void g();
-
-    boolean i(l34 l34Var);
-
-    void j(boolean z);
-
-    boolean o();
-
-    boolean p();
-
-    void u(float f, float f2, float[] fArr);
-
-    int[] v(l34 l34Var);
-
-    void x();
+    public final String toString() {
+        return "EncodedPayload{encoding=" + this.a + ", bytes=[...]}";
+    }
 }

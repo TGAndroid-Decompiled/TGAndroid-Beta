@@ -1,28 +1,35 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class h65 extends AnimatorListenerAdapter {
+import org.telegram.tgnet.TLRPC;
+public final class h65 implements icc {
     public final byte a;
-    public final h75 b;
+    public final j95 b;
 
-    public h65(h75 h75Var, byte b) {
+    public h65(j95 j95Var, byte b) {
         this.a = b;
-        this.b = h75Var;
+        this.b = j95Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void a(Object obj, Object obj2) {
         byte b = this.a;
-        h75 h75Var = this.b;
+        j95 j95Var = this.b;
+        TLRPC.Updates updates = (TLRPC.Updates) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
         switch (b) {
             case 0:
-                h75Var.O1.setVisibility(4);
-                h75Var.P1.setVisibility(4);
-                h75Var.N1.setVisibility(4);
+                if (updates != null) {
+                    uc7.s1(j95Var.n1.a).Y3(updates, false);
+                } else {
+                    j95Var.getClass();
+                }
+                hl.c3(new z55(j95Var, (byte) 8));
                 return;
             default:
-                h75Var.a2 = null;
+                if (updates != null) {
+                    uc7.s1(j95Var.n1.a).Y3(updates, false);
+                    return;
+                }
                 return;
         }
     }

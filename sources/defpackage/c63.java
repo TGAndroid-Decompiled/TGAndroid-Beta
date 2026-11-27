@@ -1,48 +1,24 @@
 package defpackage;
+public final class c63 {
+    public final int[] a;
+    public final int b;
+    public final byte c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public final int h;
+    public final ko4 i;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.WritableByteChannel;
-public final class c63 extends a2 {
-    public final byte f;
-
-    public c63(String str, byte b) {
-        super(str);
-        this.f = b;
-    }
-
-    @Override
-    public final void getBox(WritableByteChannel writableByteChannel) {
-        switch (this.f) {
-            case 1:
-                writableByteChannel.write(d());
-                ByteBuffer allocate = ByteBuffer.allocate(8);
-                ile.f(0, allocate);
-                ile.e(0, allocate);
-                allocate.putInt(this.b.size());
-                writableByteChannel.write((ByteBuffer) allocate.rewind());
-                c(writableByteChannel);
-                return;
-            default:
-                super.getBox(writableByteChannel);
-                return;
-        }
-    }
-
-    @Override
-    public final long getSize() {
-        int i;
-        switch (this.f) {
-            case 1:
-                long b = b();
-                long j = 8 + b;
-                if (b + 16 >= 4294967296L) {
-                    i = 16;
-                } else {
-                    i = 8;
-                }
-                return j + i;
-            default:
-                return super.getSize();
-        }
+    public c63(int i, int i2, int[] iArr, int i3, int i4, int i5, int i6, int i7, ko4 ko4Var) {
+        this.b = i;
+        this.a = iArr;
+        this.c = i2;
+        this.e = i3;
+        this.f = i4;
+        this.g = i5;
+        this.h = i6;
+        this.d = i7;
+        this.i = ko4Var;
     }
 }

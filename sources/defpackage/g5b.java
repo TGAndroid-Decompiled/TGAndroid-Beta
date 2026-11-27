@@ -1,120 +1,196 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class g5b extends fx0 implements gk7 {
-    public final int l1;
-    public ArrayList m1;
-    public final TLRPC.InputPeer n1;
-    public final o39 o1;
-    public final f5b p1;
-    public final TextView q1;
+public final class g5b implements RequestDelegate {
+    public final byte a;
+    public final c6b b;
 
-    public g5b(Context context, final int i, boolean z, TLRPC.InputPeer inputPeer, final p8c p8cVar, final wjb wjbVar) {
-        super(1, wjbVar, context, false);
-        int i2;
-        K();
-        na7.q1(i).M1().T();
-        this.l1 = i;
-        this.m1 = na7.q1(i).M1().T;
-        this.n1 = inputPeer;
-        this.b = new d5b(this, context, wjbVar);
-        o39 o39Var = new o39(context, wjbVar);
-        this.o1 = o39Var;
-        int i3 = this.u0;
-        o39Var.setPadding(i3, 0, i3, 0);
-        f5b f5bVar = new f5b(this);
-        this.p1 = f5bVar;
-        o39Var.setAdapter(f5bVar);
-        o39Var.setLayoutManager(new t26());
-        this.b.addView(o39Var, nme.e(-1, -1, 119));
-        o39Var.setOnItemClickListener(new c39() {
-            @Override
-            public final void d(int i4, View view) {
-                if (i4 <= 1) {
+    public g5b(c6b c6bVar, byte b) {
+        this.a = b;
+        this.b = c6bVar;
+    }
+
+    @Override
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        final c6b c6bVar = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        boolean z = true;
+                        TLObject tLObject2 = tLObject;
+                        c6b c6bVar2 = c6bVar;
+                        switch (b2) {
+                            case 0:
+                                HashSet hashSet = c6bVar2.L;
+                                int i = c6bVar2.a;
+                                if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
+                                    TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
+                                    uc7.s1(i).j4(tL_contacts_blocked.users, false);
+                                    uc7.s1(i).c4(tL_contacts_blocked.chats, false);
+                                    hashSet.clear();
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList = tL_contacts_blocked.blocked;
+                                    int size = arrayList.size();
+                                    int i2 = 0;
+                                    while (i2 < size) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked = arrayList.get(i2);
+                                        i2++;
+                                        hashSet.add(Long.valueOf(wf3.n(tL_peerBlocked.peer_id)));
+                                    }
+                                    c6bVar2.N = Math.max(hashSet.size(), tL_contacts_blocked.count);
+                                    c6bVar2.O = true;
+                                } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
+                                    TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
+                                    uc7.s1(i).j4(tL_contacts_blockedSlice.users, false);
+                                    uc7.s1(i).c4(tL_contacts_blockedSlice.chats, false);
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList2 = tL_contacts_blockedSlice.blocked;
+                                    int size2 = arrayList2.size();
+                                    int i3 = 0;
+                                    while (i3 < size2) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked2 = arrayList2.get(i3);
+                                        i3++;
+                                        hashSet.add(Long.valueOf(wf3.n(tL_peerBlocked2.peer_id)));
+                                    }
+                                    c6bVar2.N = tL_contacts_blockedSlice.count;
+                                    if (hashSet.size() < c6bVar2.N) {
+                                        z = false;
+                                    }
+                                    c6bVar2.O = z;
+                                } else {
+                                    return;
+                                }
+                                jn7.f(i).k(199, new Object[0]);
+                                c6bVar2.P = false;
+                                c6bVar2.Q = System.currentTimeMillis();
+                                return;
+                            default:
+                                int i4 = c6bVar2.a;
+                                ArrayList arrayList3 = c6bVar2.T;
+                                arrayList3.clear();
+                                arrayList3.add(new TLRPC.TL_inputPeerSelf());
+                                if (tLObject2 instanceof TLRPC.TL_messages_chats) {
+                                    ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject2).chats;
+                                    uc7.s1(i4).c4(arrayList4, false);
+                                    int size3 = arrayList4.size();
+                                    int i5 = 0;
+                                    while (i5 < size3) {
+                                        TLRPC.Chat chat = arrayList4.get(i5);
+                                        i5++;
+                                        arrayList3.add(uc7.l1(chat));
+                                    }
+                                }
+                                c6bVar2.U = false;
+                                c6bVar2.V = true;
+                                jn7.f(i4).k(201, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        boolean z = true;
+                        TLObject tLObject2 = tLObject;
+                        c6b c6bVar2 = c6bVar;
+                        switch (b2) {
+                            case 0:
+                                HashSet hashSet = c6bVar2.L;
+                                int i = c6bVar2.a;
+                                if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
+                                    TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
+                                    uc7.s1(i).j4(tL_contacts_blocked.users, false);
+                                    uc7.s1(i).c4(tL_contacts_blocked.chats, false);
+                                    hashSet.clear();
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList = tL_contacts_blocked.blocked;
+                                    int size = arrayList.size();
+                                    int i2 = 0;
+                                    while (i2 < size) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked = arrayList.get(i2);
+                                        i2++;
+                                        hashSet.add(Long.valueOf(wf3.n(tL_peerBlocked.peer_id)));
+                                    }
+                                    c6bVar2.N = Math.max(hashSet.size(), tL_contacts_blocked.count);
+                                    c6bVar2.O = true;
+                                } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
+                                    TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
+                                    uc7.s1(i).j4(tL_contacts_blockedSlice.users, false);
+                                    uc7.s1(i).c4(tL_contacts_blockedSlice.chats, false);
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList2 = tL_contacts_blockedSlice.blocked;
+                                    int size2 = arrayList2.size();
+                                    int i3 = 0;
+                                    while (i3 < size2) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked2 = arrayList2.get(i3);
+                                        i3++;
+                                        hashSet.add(Long.valueOf(wf3.n(tL_peerBlocked2.peer_id)));
+                                    }
+                                    c6bVar2.N = tL_contacts_blockedSlice.count;
+                                    if (hashSet.size() < c6bVar2.N) {
+                                        z = false;
+                                    }
+                                    c6bVar2.O = z;
+                                } else {
+                                    return;
+                                }
+                                jn7.f(i).k(199, new Object[0]);
+                                c6bVar2.P = false;
+                                c6bVar2.Q = System.currentTimeMillis();
+                                return;
+                            default:
+                                int i4 = c6bVar2.a;
+                                ArrayList arrayList3 = c6bVar2.T;
+                                arrayList3.clear();
+                                arrayList3.add(new TLRPC.TL_inputPeerSelf());
+                                if (tLObject2 instanceof TLRPC.TL_messages_chats) {
+                                    ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject2).chats;
+                                    uc7.s1(i4).c4(arrayList4, false);
+                                    int size3 = arrayList4.size();
+                                    int i5 = 0;
+                                    while (i5 < size3) {
+                                        TLRPC.Chat chat = arrayList4.get(i5);
+                                        i5++;
+                                        arrayList3.add(uc7.l1(chat));
+                                    }
+                                }
+                                c6bVar2.U = false;
+                                c6bVar2.V = true;
+                                jn7.f(i4).k(201, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 2:
+                c6bVar.getClass();
+                hl.c3(new f5b(c6bVar, (byte) 1));
+                return;
+            case 3:
+                c6bVar.getClass();
+                if (tL_error == null) {
+                    hl.c3(new f5b(c6bVar, (byte) 1));
                     return;
                 }
-                g5b g5bVar = g5b.this;
-                TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) g5bVar.m1.get(i4 - 2);
-                int i5 = (inputPeer2.channel_id > 0L ? 1 : (inputPeer2.channel_id == 0L ? 0 : -1));
-                p8c p8cVar2 = p8cVar;
-                if (i5 == 0 && inputPeer2.chat_id == 0) {
-                    p8cVar2.a(inputPeer2);
-                    g5bVar.dismiss();
+                return;
+            case 4:
+                TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                if (updates != null) {
+                    uc7.s1(c6bVar.a).X3(updates.updates, updates.users, updates.chats, false, updates.date);
+                    hl.c3(new f5b(c6bVar, (byte) 0));
                     return;
                 }
-                Context context2 = g5bVar.getContext();
-                wjb wjbVar2 = wjbVar;
-                hd hdVar = new hd(3, wjbVar2, context2);
-                hdVar.q(200L);
-                na7.q1(i).M1().j(cf3.m(inputPeer2), new f28(hdVar, p8cVar2, inputPeer2, (byte) 11), true, wjbVar2);
-                g5bVar.dismiss();
-            }
-        });
-        o39Var.setOnScrollListener(new e5b(this));
-        TextView textView = new TextView(getContext());
-        this.q1 = textView;
-        zkb.X(textView, bkb.F6, wjbVar);
-        textView.setTextSize(1, 20.0f);
-        textView.setPadding(gl.L(22.0f) + this.u0, gl.L(2.0f), gl.L(22.0f) + this.u0, gl.L(14.0f));
-        zkb.h(bkb.g5, wjbVar, textView);
-        textView.setTypeface(gl.o());
-        if (z) {
-            i2 = 2131744277;
-        } else {
-            i2 = 2131744278;
+                return;
+            default:
+                hl.c3(new pwa(c6bVar, tLObject, tL_error, (byte) 8));
+                return;
         }
-        textView.setText(k96.M0(i2, null));
-        this.b.addView(textView, nme.c(-2.0f, -1));
-    }
-
-    @Override
-    public final boolean D() {
-        if (D0() > ((int) (gl.q.y * 0.5f))) {
-            return true;
-        }
-        return false;
-    }
-
-    public final float D0() {
-        int R;
-        float measuredHeight = this.b.getMeasuredHeight();
-        int i = 0;
-        while (true) {
-            o39 o39Var = this.o1;
-            if (i < o39Var.getChildCount()) {
-                View childAt = o39Var.getChildAt(i);
-                if (childAt != null && (R = RecyclerView.R(childAt)) != -1 && R > 0) {
-                    measuredHeight = Math.min(gl.R1(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
-                }
-                i++;
-            } else {
-                return measuredHeight;
-            }
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.d3) {
-            this.m1 = na7.q1(this.l1).M1().T;
-            this.p1.f();
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        kk7.f(this.l1).b(this, kk7.d3);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        kk7.f(this.l1).n(this, kk7.d3);
     }
 }

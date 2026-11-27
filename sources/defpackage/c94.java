@@ -1,37 +1,25 @@
 package defpackage;
-public final class c94 implements Runnable {
-    public final byte a;
-    public final l94 b;
-    public final int c;
 
-    public c94(l94 l94Var, int i, byte b) {
-        this.a = b;
-        this.b = l94Var;
-        this.c = i;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class c94 extends a8c {
+    public static final int b = 0;
+
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        l94 l94Var = this.b;
-        switch (b) {
-            case 0:
-                l94Var.F0.add(Integer.valueOf(i));
-                return;
-            case 1:
-                l94Var.F0.remove(Integer.valueOf(i));
-                return;
-            case 2:
-                l94Var.F0.remove(Integer.valueOf(i));
-                return;
-            default:
-                z94 z94Var = l94Var.g0;
-                if (z94Var != null) {
-                    z94Var.b(l94Var, i);
-                }
-                l94Var.g();
-                return;
-        }
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        d94 d94Var = (d94) view;
+        d94Var.a((TLRPC.StickerSetCovered) b8cVar.H, z, b8cVar.u, false);
+        d94Var.f.a(b8cVar.u, false);
+        d94Var.setAddOnClickListener(b8cVar.E);
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new d94(context, vnbVar);
     }
 }

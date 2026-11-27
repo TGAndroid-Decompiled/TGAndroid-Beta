@@ -126,7 +126,7 @@ public class PredefMacros {
     }
 
     public static final Atom Braket_macro(TeXParser teXParser, String[] strArr) {
-        return new TeXFormula(teXParser, tb4.y("\\left\\langle ", strArr[1].replaceAll("\\|", "\\\\middle\\\\vert "), "\\right\\rangle")).root;
+        return new TeXFormula(teXParser, qd4.y("\\left\\langle ", strArr[1].replaceAll("\\|", "\\\\middle\\\\vert "), "\\right\\rangle")).root;
     }
 
     public static final Atom DeclareMathSizes_macro(TeXParser teXParser, String[] strArr) {
@@ -182,7 +182,7 @@ public class PredefMacros {
     }
 
     public static final Atom Set_macro(TeXParser teXParser, String[] strArr) {
-        return new TeXFormula(teXParser, tb4.y("\\left\\{", strArr[1].replaceFirst("\\|", "\\\\middle\\\\vert "), "\\right\\}")).root;
+        return new TeXFormula(teXParser, qd4.y("\\left\\{", strArr[1].replaceFirst("\\|", "\\\\middle\\\\vert "), "\\right\\}")).root;
     }
 
     public static final Atom TStroke_macro(TeXParser teXParser, String[] strArr) {
@@ -205,10 +205,10 @@ public class PredefMacros {
             if (formulaAtom != null && atom != null) {
                 return new FractionAtom(formulaAtom, atom, (int) length[0], length[1]);
             }
-            qm0.g("Both numerator and denominator of a fraction can't be empty!");
+            rm0.k("Both numerator and denominator of a fraction can't be empty!");
             return null;
         }
-        qm0.g("Invalid length in above macro");
+        rm0.k("Invalid length in above macro");
         return null;
     }
 
@@ -235,10 +235,10 @@ public class PredefMacros {
                 rowAtom.add(atom3);
                 return rowAtom;
             }
-            qm0.g("Both numerator and denominator of a fraction can't be empty!");
+            rm0.k("Both numerator and denominator of a fraction can't be empty!");
             return null;
         }
-        qm0.g("Invalid length in above macro");
+        rm0.k("Invalid length in above macro");
         return null;
     }
 
@@ -328,7 +328,7 @@ public class PredefMacros {
         if (arrayOfAtoms.col == (Integer.parseInt(strArr[1]) << 1)) {
             return new MatrixAtom(teXParser.getIsPartial(), arrayOfAtoms, 3);
         }
-        qm0.g("Bad number of equations in alignat environment !");
+        rm0.k("Bad number of equations in alignat environment !");
         return null;
     }
 
@@ -346,7 +346,7 @@ public class PredefMacros {
         if (arrayOfAtoms.col == (Integer.parseInt(strArr[1]) << 1)) {
             return new MatrixAtom(teXParser.getIsPartial(), arrayOfAtoms, 7);
         }
-        qm0.g("Bad number of equations in alignedat environment !");
+        rm0.k("Bad number of equations in alignedat environment !");
         return null;
     }
 
@@ -379,7 +379,7 @@ public class PredefMacros {
         if (formulaAtom != null && atom != null) {
             return new FractionAtom(formulaAtom, atom, false);
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -404,7 +404,7 @@ public class PredefMacros {
             rowAtom.add(atom3);
             return rowAtom;
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -492,7 +492,7 @@ public class PredefMacros {
         if (atom2 != null && (atom = teXFormula2.root) != null) {
             return new FencedAtom(new FractionAtom(atom2, atom, false), new SymbolAtom("lbrack", 4, true), new SymbolAtom("rbrack", 5, true));
         }
-        qm0.g("Both binomial coefficients must be not empty !!");
+        rm0.k("Both binomial coefficients must be not empty !!");
         return null;
     }
 
@@ -531,7 +531,7 @@ public class PredefMacros {
             rowAtom.add(new StyleAtom(0, fractionAtom));
             return rowAtom;
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -561,7 +561,7 @@ public class PredefMacros {
         if (formulaAtom != null && atom != null) {
             return new FencedAtom(new FractionAtom(formulaAtom, atom, false), new SymbolAtom(str, 4, true), new SymbolAtom(str2, 5, true));
         }
-        qm0.g("Both numerator and denominator of choose can't be empty!");
+        rm0.k("Both numerator and denominator of choose can't be empty!");
         return null;
     }
 
@@ -686,7 +686,7 @@ public class PredefMacros {
             if (stringTokenizer.countTokens() == 3) {
                 color = new Color(Float.parseFloat(stringTokenizer.nextToken().trim()), Float.parseFloat(stringTokenizer.nextToken().trim()), Float.parseFloat(stringTokenizer.nextToken().trim()));
             } else {
-                qm0.g("The color definition must have three components !");
+                rm0.k("The color definition must have three components !");
                 return null;
             }
         } else if ("cmyk".equals(strArr[2])) {
@@ -699,11 +699,11 @@ public class PredefMacros {
                 float f = 1.0f - fArr[3];
                 color = new Color((1.0f - fArr[0]) * f, (1.0f - fArr[1]) * f, (1.0f - fArr[2]) * f);
             } else {
-                qm0.g("The color definition must have four components !");
+                rm0.k("The color definition must have four components !");
                 return null;
             }
         } else {
-            qm0.g("The color model is incorrect !");
+            rm0.k("The color model is incorrect !");
             return null;
         }
         ColorAtom.Colors.put(strArr[1], color);
@@ -801,7 +801,7 @@ public class PredefMacros {
         if (atom2 != null && (atom = teXFormula2.root) != null) {
             return new FractionAtom(atom2, atom, true);
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -816,7 +816,7 @@ public class PredefMacros {
             }
             return new MultlineAtom(teXParser.getIsPartial(), arrayOfAtoms, 1);
         }
-        qm0.g("Character '&' is only available in array mode !");
+        rm0.k("Character '&' is only available in array mode !");
         return null;
     }
 
@@ -831,7 +831,7 @@ public class PredefMacros {
             }
             return new MultlineAtom(teXParser.getIsPartial(), arrayOfAtoms, 2);
         }
-        qm0.g("Character '&' is only available in array mode !");
+        rm0.k("Character '&' is only available in array mode !");
         return null;
     }
 
@@ -875,7 +875,7 @@ public class PredefMacros {
             rowAtom.add(new StyleAtom(i << 1, new FencedAtom(fractionAtom, symbolAtom, symbolAtom2)));
             return rowAtom;
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -915,7 +915,7 @@ public class PredefMacros {
         if (teXParser.isArrayMode()) {
             return new HlineAtom();
         }
-        qm0.g("The macro \\hline is only available in array mode !");
+        rm0.k("The macro \\hline is only available in array mode !");
         return null;
     }
 
@@ -1036,7 +1036,7 @@ public class PredefMacros {
             teXParser.addRow();
             return null;
         }
-        qm0.g("Bad environment for \\intertext command !");
+        rm0.k("Bad environment for \\intertext command !");
         return null;
     }
 
@@ -1056,7 +1056,7 @@ public class PredefMacros {
         if (DynamicAtom.hasAnExternalConverterFactory()) {
             return new DynamicAtom(strArr[1], strArr[2]);
         }
-        qm0.g("No ExternalConverterFactory set !");
+        rm0.k("No ExternalConverterFactory set !");
         return null;
     }
 
@@ -1124,7 +1124,7 @@ public class PredefMacros {
         if (length.length != 1) {
             return new SpaceAtom((int) length[0], length[1], 0.0f, 0.0f);
         }
-        qm0.g("Error in getting kern in \\kern command !");
+        rm0.k("Error in getting kern in \\kern command !");
         return null;
     }
 
@@ -1181,7 +1181,7 @@ public class PredefMacros {
             }
             throw new ParseException("Divisor must not be 0");
         } catch (NumberFormatException unused) {
-            qm0.g("Divisor and dividend must be integer numbers");
+            rm0.k("Divisor and dividend must be integer numbers");
             return null;
         }
     }
@@ -1311,7 +1311,7 @@ public class PredefMacros {
             }
             return new MultlineAtom(teXParser.getIsPartial(), arrayOfAtoms, 0);
         }
-        qm0.g("Character '&' is only available in array mode !");
+        rm0.k("Character '&' is only available in array mode !");
         return null;
     }
 
@@ -1368,7 +1368,7 @@ public class PredefMacros {
             }
             return null;
         }
-        qm0.g(b00.h("Invalid name for the command :", str));
+        rm0.k(c00.i("Invalid name for the command :", str));
         return null;
     }
 
@@ -1416,7 +1416,7 @@ public class PredefMacros {
         if (formulaAtom != null && atom != null) {
             return new FractionAtom(formulaAtom, atom, true);
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -1473,7 +1473,7 @@ public class PredefMacros {
             rowAtom.add(atom3);
             return rowAtom;
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 
@@ -1513,7 +1513,7 @@ public class PredefMacros {
             }
             return new RaiseAtom(new TeXFormula(teXParser, strArr[2]).root, (int) length[0], length[1], (int) length2[0], length2[1], (int) length3[0], length3[1]);
         }
-        qm0.g("Error in getting raise in \\raisebox command !");
+        rm0.k("Error in getting raise in \\raisebox command !");
         return null;
     }
 
@@ -1538,7 +1538,7 @@ public class PredefMacros {
             NewCommandMacro.addReNewCommand(str.substring(1), strArr[2], valueOf.intValue());
             return null;
         }
-        qm0.g(b00.h("Invalid name for the command :", str));
+        rm0.k(c00.i("Invalid name for the command :", str));
         return null;
     }
 
@@ -1585,7 +1585,7 @@ public class PredefMacros {
         String str = "";
         for (int i = 0; i < 13; i++) {
             while (parseInt >= iArr[i]) {
-                StringBuilder r = tb4.r(str);
+                StringBuilder r = qd4.r(str);
                 r.append(strArr2[i]);
                 str = r.toString();
                 parseInt -= iArr[i];
@@ -1618,13 +1618,13 @@ public class PredefMacros {
                 if (length3.length != 1) {
                     return new RuleAtom((int) length[0], length[1], (int) length2[0], length2[1], (int) length3[0], -length3[1]);
                 }
-                qm0.g("Error in getting raise in \\rule command !");
+                rm0.k("Error in getting raise in \\rule command !");
                 return null;
             }
-            qm0.g("Error in getting height in \\rule command !");
+            rm0.k("Error in getting height in \\rule command !");
             return null;
         }
-        qm0.g("Error in getting width in \\rule command !");
+        rm0.k("Error in getting width in \\rule command !");
         return null;
     }
 
@@ -1695,7 +1695,7 @@ public class PredefMacros {
             rowAtom.add(new ScaleAtom(teXFormula2.root, d, d2));
             return rowAtom;
         }
-        qm0.g("Both numerator and denominator of a fraction can't be empty!");
+        rm0.k("Both numerator and denominator of a fraction can't be empty!");
         return null;
     }
 

@@ -1,13 +1,29 @@
 package defpackage;
 
-import android.transition.Transition;
-import android.widget.PopupWindow;
-public abstract class m07 {
-    public static void a(PopupWindow popupWindow, Transition transition) {
-        popupWindow.setEnterTransition(transition);
+import org.webrtc.AudioTrack;
+import org.webrtc.MediaStream;
+import org.webrtc.NativeLifecycleLock;
+public final class m07 implements NativeLifecycleLock.NativePointerCallable {
+    public final byte a;
+    public final MediaStream b;
+    public final AudioTrack c;
+
+    public m07(MediaStream mediaStream, AudioTrack audioTrack, byte b) {
+        this.a = b;
+        this.b = mediaStream;
+        this.c = audioTrack;
     }
 
-    public static void b(PopupWindow popupWindow, Transition transition) {
-        popupWindow.setExitTransition(transition);
+    @Override
+    public final Object call(long j) {
+        byte b = this.a;
+        AudioTrack audioTrack = this.c;
+        MediaStream mediaStream = this.b;
+        switch (b) {
+            case 0:
+                return MediaStream.d(mediaStream, audioTrack, j);
+            default:
+                return MediaStream.g(mediaStream, audioTrack, j);
+        }
     }
 }

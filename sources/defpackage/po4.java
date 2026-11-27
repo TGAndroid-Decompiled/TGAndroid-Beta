@@ -1,29 +1,50 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class po4 extends AnimatorListenerAdapter {
+import android.os.Bundle;
+public final class po4 implements Runnable {
     public final byte a;
-    public final qo4 b;
+    public final tzb b;
 
-    public po4(qo4 qo4Var, byte b) {
+    public po4(tzb tzbVar, byte b) {
         this.a = b;
-        this.b = qo4Var;
+        this.b = tzbVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void run() {
         byte b = this.a;
-        qo4 qo4Var = this.b;
+        tzb tzbVar = this.b;
         switch (b) {
             case 0:
-                kk7.f(qo4Var.r.a).j(qo4Var.f);
-                qo4Var.requestLayout();
+                if (tzbVar.getParentLayout() != null) {
+                    tzbVar.I = true;
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", tzbVar.a);
+                    zu1 zu1Var = new zu1(bundle);
+                    zu1Var.Ga = true;
+                    tzbVar.presentFragment(zu1Var);
+                    return;
+                }
+                return;
+            case 1:
+                tzbVar.y0();
+                tzbVar.C0();
+                return;
+            case 2:
+                tzbVar.y0();
+                return;
+            case 3:
+                tzbVar.S0(true);
+                return;
+            case 4:
+                tzbVar.B0 = null;
+                tzbVar.Z0(true, false);
+                return;
+            case 5:
+                tzbVar.finishPreviewFragment();
                 return;
             default:
-                qo4Var.d = null;
-                qo4Var.a = null;
-                qo4Var.b = false;
+                tzbVar.O.postOnAnimation(new po4(tzbVar, (byte) 2));
                 return;
         }
     }

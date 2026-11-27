@@ -1,115 +1,46 @@
 package defpackage;
-public final class xxb {
-    public final oxb a;
-    public final int b;
-    public final long[] c;
-    public final int[] d;
-    public final int e;
-    public final long[] f;
-    public final int[] g;
-    public final int[] h;
-    public final long i;
-    public final boolean j;
 
-    public xxb(oxb oxbVar, long[] jArr, int[] iArr, int i, long[] jArr2, int[] iArr2, int[] iArr3, boolean z, long j, int i2) {
-        boolean z2;
-        boolean z3;
-        if (iArr.length == jArr2.length) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        gre.f(z2);
-        if (jArr.length == jArr2.length) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        gre.f(z3);
-        gre.f(iArr2.length == jArr2.length);
-        this.a = oxbVar;
-        this.c = jArr;
-        this.d = iArr;
-        this.e = i;
-        this.f = jArr2;
-        this.g = iArr2;
-        this.h = iArr3;
-        this.j = z;
-        this.i = j;
-        this.b = i2;
-        if (iArr2.length > 0) {
-            int length = iArr2.length - 1;
-            iArr2[length] = iArr2[length] | 536870912;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class xxb extends FrameLayout implements snb {
+    public boolean a;
+    public de0 b;
+    public TextView c;
+    public TextView d;
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.c9));
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.a) {
+            canvas.drawLine(hl.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, aob.j0);
         }
     }
 
-    public final int a(long j) {
-        long[] jArr = this.f;
-        if (jArr.length <= 0) {
-            return -1;
-        }
-        int i = 0;
-        if (this.j) {
-            return g8c.f(jArr, j, false);
-        }
-        int[] iArr = this.h;
-        int length = iArr.length - 1;
-        int i2 = -1;
-        while (i <= length) {
-            int g = ug8.g(length, i, 2, i);
-            if (jArr[iArr[g]] <= j) {
-                i = g + 1;
-                i2 = g;
-            } else {
-                length = g - 1;
-            }
-        }
-        if (i2 == -1) {
-            return -1;
-        }
-        long j2 = jArr[iArr[i2]];
-        if (j2 == j) {
-            while (i2 > 0 && jArr[iArr[i2 - 1]] == j2) {
-                i2--;
-            }
-        }
-        return iArr[i2];
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(56.0f), 1073741824));
     }
 
-    public final int b(long j) {
-        long[] jArr = this.f;
-        if (jArr.length <= 0) {
-            return -1;
-        }
-        if (this.j) {
-            return g8c.b(jArr, j, true);
-        }
-        int[] iArr = this.h;
-        int length = iArr.length - 1;
-        int i = 0;
-        int i2 = -1;
-        while (i <= length) {
-            int g = ug8.g(length, i, 2, i);
-            if (jArr[iArr[g]] >= j) {
-                length = g - 1;
-                i2 = g;
-            } else {
-                i = g + 1;
-            }
-        }
-        if (i2 == -1) {
-            return -1;
-        }
-        long j2 = jArr[iArr[i2]];
-        if (j2 == j) {
-            while (i2 < iArr.length - 1) {
-                int i3 = i2 + 1;
-                if (jArr[iArr[i3]] != j2) {
-                    break;
+    @Override
+    public final void updateColors() {
+        de0 de0Var = this.b;
+        if (de0Var != null) {
+            try {
+                if (de0Var.getImageReceiver() != null && (de0Var.getImageReceiver().t() instanceof qo4)) {
+                    ((qo4) de0Var.getImageReceiver().t()).a(aob.w0(null, aob.c9, false));
+                    de0Var.invalidate();
                 }
-                i2 = i3;
+            } catch (Exception e) {
+                cc4.g(e, true);
             }
         }
-        return iArr[i2];
     }
 }

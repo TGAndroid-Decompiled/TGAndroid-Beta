@@ -1,73 +1,45 @@
 package defpackage;
 
-import sun.misc.Unsafe;
-public final class gnb extends ft5 {
-    public static final long h = ex.a.objectFieldOffset(gnb.class.getDeclaredField("_state$volatile"));
-    private volatile int _state$volatile;
-    public final Thread e = Thread.currentThread();
-    public no3 f;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.view.View;
+import java.util.ArrayList;
+public final class gnb {
+    public final View a;
+    public final ArrayList b;
+    public final Runnable c;
+    public Runnable d;
+    public final Bitmap e;
+    public final Matrix f;
+    public float g;
 
-    public static void n(int i) {
-        throw new IllegalStateException(("Illegal state " + i).toString());
+    public gnb(View view, Runnable runnable) {
+        this.g = 1.0f;
+        this.a = view;
+        this.b = null;
+        this.c = null;
+        this.d = runnable;
+        this.e = null;
+        this.f = null;
     }
 
-    @Override
-    public final boolean k() {
-        return true;
+    public gnb(ArrayList arrayList, on1 on1Var) {
+        this.g = 1.0f;
+        this.a = null;
+        this.b = arrayList;
+        this.c = null;
+        this.d = on1Var;
+        this.e = null;
+        this.f = null;
     }
 
-    @Override
-    public final void l(Throwable th) {
-        while (true) {
-            Unsafe unsafe = ex.a;
-            long j = h;
-            int intVolatile = unsafe.getIntVolatile(this, j);
-            if (intVolatile != 0) {
-                if (intVolatile != 1 && intVolatile != 2 && intVolatile != 3) {
-                    n(intVolatile);
-                    throw null;
-                }
-                return;
-            }
-            gnb gnbVar = this;
-            if (unsafe.compareAndSwapInt(gnbVar, h, intVolatile, 2)) {
-                gnbVar.e.interrupt();
-                unsafe.putIntVolatile(gnbVar, j, 3);
-                return;
-            }
-            this = gnbVar;
-        }
-    }
-
-    public final void m() {
-        gnb gnbVar;
-        while (true) {
-            Unsafe unsafe = ex.a;
-            long j = h;
-            int intVolatile = unsafe.getIntVolatile(this, j);
-            if (intVolatile != 0) {
-                if (intVolatile != 2) {
-                    if (intVolatile == 3) {
-                        Thread.interrupted();
-                        return;
-                    } else {
-                        n(intVolatile);
-                        throw null;
-                    }
-                }
-                gnbVar = this;
-            } else {
-                gnbVar = this;
-                if (unsafe.compareAndSwapInt(gnbVar, j, intVolatile, 1)) {
-                    no3 no3Var = gnbVar.f;
-                    if (no3Var != null) {
-                        no3Var.dispose();
-                        return;
-                    }
-                    return;
-                }
-            }
-            this = gnbVar;
-        }
+    public gnb(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.g = 1.0f;
+        this.a = null;
+        this.b = null;
+        this.c = runnable;
+        this.d = runnable2;
+        this.f = matrix;
+        this.e = bitmap;
     }
 }

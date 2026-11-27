@@ -1,17 +1,19 @@
 package defpackage;
-public final class hme implements zn7 {
-    public static final hme a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class hme extends c4 {
+    public static final Parcelable.Creator<hme> CREATOR = new ime((byte) 6);
+    public final byte[] a;
+
+    public hme(byte[] bArr) {
+        this.a = bArr;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.c(parcel, 2, this.a);
+        bye.s(parcel, r);
     }
 }

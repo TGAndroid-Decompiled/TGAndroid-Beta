@@ -1,48 +1,24 @@
 package defpackage;
-public final class g56 extends x1 {
-    public final f56 a = new tg6();
-    public final int b;
-    public boolean c;
 
-    public g56(int i) {
-        this.b = i;
+import android.content.Context;
+import android.view.View;
+public final class g56 extends jc0 {
+    public final gb0 e;
+
+    public g56(gb0 gb0Var, Context context) {
+        super(context, false);
+        this.e = gb0Var;
     }
 
     @Override
-    public final boolean b(gk0 gk0Var) {
-        if (this.c) {
-            gk0 gk0Var2 = (gk0) ((tg6) this.a.b);
-            return true;
+    public final void onMeasure(int i, int i2) {
+        int h;
+        int min = Math.min(3, ((i56) this.e.d).x);
+        if (min == 0) {
+            h = 0;
+        } else {
+            h = bp1.h(min, 1, 20, 32);
         }
-        return true;
-    }
-
-    @Override
-    public final gk0 e() {
-        return this.a;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final vj2 h(vo3 vo3Var) {
-        boolean z = false;
-        if (vo3Var.h) {
-            if (((tg6) this.a.c) != null) {
-                gk0 e = vo3Var.h().e();
-                this.c = ((e instanceof tu7) || (e instanceof f56)) ? true : true;
-                return vj2.a(vo3Var.e);
-            }
-            return null;
-        }
-        int i = vo3Var.g;
-        int i2 = this.b;
-        if (i >= i2) {
-            return new vj2(-1, vo3Var.c + i2, false);
-        }
-        return null;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(hl.L(h), 1073741824), i2);
     }
 }

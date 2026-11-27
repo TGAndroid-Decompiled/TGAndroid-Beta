@@ -1,263 +1,118 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
+import android.util.StateSet;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.tl.TL_keyboard;
 public final class kb2 {
-    public final gb2 a;
-    public int b;
-    public ni2 c;
+    public final wb2 a;
+    public final HashMap b = new HashMap();
+    public final HashMap c = new HashMap();
     public String d;
-    public usc e;
-    public Drawable f;
-    public int g = -1;
 
-    public kb2(gb2 gb2Var) {
-        this.a = gb2Var;
+    public kb2(wb2 wb2Var) {
+        this.a = wb2Var;
     }
 
-    public final void a(Canvas canvas) {
-        gb2 gb2Var = this.a;
-        ml mlVar = gb2Var.U0;
-        mv6 mv6Var = gb2Var.ec;
-        Drawable drawable = (Drawable) mv6Var.d;
-        if (drawable == null) {
-            drawable = b00.d((Context) mv6Var.b, 2131231650);
-            mv6Var.d = drawable;
-        }
-        int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
-        int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
-        int z = (int) oo1.z(mlVar.N0, intrinsicWidth, 2.0f, mlVar.L0);
-        int interpolation = (int) ((((mlVar.O0 / 2.0f) - intrinsicHeight) + mlVar.M0) - ((1.0f - s33.k.getInterpolation(mlVar.i1)) * gl.L(16.0f)));
-        drawable.setAlpha((int) (Math.min(1.0f, mlVar.i1 * 5.0f) * 255.0f));
-        drawable.setBounds(z, interpolation, intrinsicWidth + z, intrinsicHeight + interpolation);
-        drawable.draw(canvas);
-        if (mlVar.i1 < 1.0f) {
-            gb2Var.invalidate();
-        }
-    }
-
-    public final void b(Canvas canvas) {
+    public final boolean a(MotionEvent motionEvent) {
         int i;
         float f;
-        float f2;
-        float f3;
-        String C;
-        float abs;
-        float f4;
-        RectF rectF;
-        float f5;
-        gb2 gb2Var;
-        ImageReceiver imageReceiver;
-        nb2 nb2Var;
-        float f6;
-        float f7;
-        float f8;
-        int i2;
-        gb2 gb2Var2 = this.a;
-        int i3 = gb2Var2.a6;
-        ImageReceiver imageReceiver2 = gb2Var2.F7;
-        nb2 nb2Var2 = gb2Var2.ub;
-        RectF rectF2 = gb2Var2.c4;
-        ml mlVar = gb2Var2.U0;
-        if (gb2Var2.e3 != null) {
-            if (gb2Var2.Q5.O3()) {
-                bkb.G2.setColor(bkb.v0(bkb.Vc, gb2Var2.cc));
-                TextPaint textPaint = bkb.H2;
-                if (gb2Var2.A2()) {
-                    i2 = bkb.Bc;
+        int L;
+        wb2 wb2Var = this.a;
+        ArrayList arrayList = wb2Var.I5;
+        if (!arrayList.isEmpty()) {
+            int x = (int) motionEvent.getX();
+            int P1 = (int) wb2Var.P1(motionEvent);
+            if (motionEvent.getAction() == 0) {
+                int widthForButtons = wb2Var.getWidthForButtons();
+                if (wb2Var.Q5.O3()) {
+                    L = (wb2Var.getMeasuredWidth() - widthForButtons) - hl.L(10.0f);
+                } else if (wb2Var.v2()) {
+                    L = wb2Var.getCompactLeft();
                 } else {
-                    i2 = bkb.Ac;
+                    int i2 = wb2Var.N6;
+                    if (wb2Var.C6) {
+                        f = 1.0f;
+                    } else {
+                        f = 7.0f;
+                    }
+                    L = i2 + hl.L(f);
                 }
-                textPaint.setColor(bkb.v0(i2, gb2Var2.cc));
-            } else {
-                bkb.G2.setColor(bkb.v0(bkb.Uc, gb2Var2.cc));
-                TextPaint textPaint2 = bkb.H2;
-                if (gb2Var2.A2()) {
-                    i = bkb.ze;
-                } else {
-                    i = bkb.ye;
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    wo0 wo0Var = (wo0) arrayList.get(i3);
+                    int L2 = (wo0Var.d + wb2Var.e7) - hl.L(2.0f);
+                    float f2 = x;
+                    float f3 = widthForButtons;
+                    float f4 = (wo0Var.c * f3) + L;
+                    if (f2 >= f4 && f2 <= (wo0Var.e * f3) + f4 && P1 >= L2 && P1 <= wo0Var.f + L2) {
+                        wb2Var.N5 = i3;
+                        wb2Var.r2();
+                        if (wo0Var.s == null) {
+                            hf0 Y = aob.Y(aob.v0(aob.ed, wb2Var.cc), 6, 6);
+                            wo0Var.s = Y;
+                            Y.setCallback(wb2Var);
+                            hf0 hf0Var = wo0Var.s;
+                            int i4 = ((int) (wo0Var.c * f3)) + L;
+                            hf0Var.setBounds(i4, L2, ((int) (wo0Var.e * f3)) + i4, wo0Var.f + L2);
+                        }
+                        wo0Var.s.setHotspot(f2, P1);
+                        wo0Var.s.setState(wb2Var.N2);
+                        wo0Var.b(!wo0Var.m);
+                        wb2Var.postDelayed(new zd(this, wb2Var.N5, (byte) 27), ViewConfiguration.getLongPressTimeout() - 1);
+                        return true;
+                    }
                 }
-                textPaint2.setColor(bkb.v0(i, gb2Var2.cc));
+            } else if (motionEvent.getAction() == 1) {
+                if (wb2Var.N5 != -1) {
+                    wb2Var.playSoundEffect(0);
+                    wo0 wo0Var2 = (wo0) arrayList.get(wb2Var.N5);
+                    hf0 hf0Var2 = wo0Var2.s;
+                    if (hf0Var2 != null) {
+                        hf0Var2.setState(StateSet.NOTHING);
+                    }
+                    wo0Var2.b(false);
+                    if (wb2Var.Q5.r1) {
+                        Toast.makeText(wb2Var.getContext(), ob6.M0(2131748284, null), 1).show();
+                    } else {
+                        rb2 rb2Var = wb2Var.eb;
+                        if (rb2Var != null && !wo0Var2.m) {
+                            iq0 iq0Var = wo0Var2.j;
+                            if (iq0Var != null) {
+                                rb2Var.y1(wb2Var, iq0Var);
+                            } else {
+                                TL_keyboard.KeyboardInlineButton keyboardInlineButton = wo0Var2.i;
+                                if (keyboardInlineButton != null) {
+                                    rb2Var.I0(wb2Var, keyboardInlineButton);
+                                }
+                            }
+                        }
+                    }
+                    wb2Var.N5 = -1;
+                    wb2Var.r2();
+                    return false;
+                }
+            } else if (motionEvent.getAction() == 3 && (i = wb2Var.N5) != -1) {
+                wo0 wo0Var3 = (wo0) arrayList.get(i);
+                hf0 hf0Var3 = wo0Var3.s;
+                if (hf0Var3 != null) {
+                    hf0Var3.setState(StateSet.NOTHING);
+                }
+                wo0Var3.b(false);
+                wb2Var.N5 = -1;
+                wb2Var.r2();
             }
-            if (k27.n1(gb2Var2.Q5.k) instanceof TLRPC.TL_messageMediaGeoLive) {
-                int x = (int) (mlVar.x() + gl.L(30.0f));
-                if (gb2Var2.h3 && !nb2Var2.j) {
-                    nb2Var2.l = null;
-                    nb2Var2.n = null;
-                    nb2Var2.o = null;
-                    gb2Var = gb2Var2;
-                    imageReceiver = imageReceiver2;
-                    f3 = 2.0f;
-                    f = 1.0f;
-                    f2 = 255.0f;
-                } else {
-                    gb2Var2.S9 = true;
-                    StaticLayout staticLayout = gb2Var2.e3;
-                    StaticLayout staticLayout2 = gb2Var2.x3;
-                    f = 1.0f;
-                    boolean z = false;
-                    if (nb2Var2.j) {
-                        float f9 = nb2Var2.m;
-                        String str = nb2Var2.l;
-                        staticLayout = nb2Var2.n;
-                        StaticLayout staticLayout3 = nb2Var2.o;
-                        f2 = 255.0f;
-                        abs = f9;
-                        f4 = 1.0f - nb2Var2.L1;
-                        C = str;
-                        staticLayout2 = staticLayout3;
-                        f3 = 2.0f;
-                    } else {
-                        f2 = 255.0f;
-                        if (k27.n1(gb2Var2.Q5.k).period == Integer.MAX_VALUE) {
-                            C = "";
-                            f4 = 1.0f;
-                            abs = 1.0f;
-                            f3 = 2.0f;
-                            z = true;
-                        } else {
-                            f3 = 2.0f;
-                            C = k96.C(Math.abs(k27.n1(gb2Var2.Q5.k).period - (ConnectionsManager.getInstance(i3).getCurrentTime() - gb2Var2.Q5.k.date)));
-                            abs = 1.0f - (Math.abs(ConnectionsManager.getInstance(i3).getCurrentTime() - gb2Var2.Q5.k.date) / k27.n1(gb2Var2.Q5.k).period);
-                            f4 = 1.0f;
-                        }
-                    }
-                    float f10 = f4;
-                    rectF2.set(mlVar.w() - gl.L(43.0f), x - gl.L(15.0f), mlVar.w() - gl.L(13.0f), gl.L(15.0f) + x);
-                    if (gb2Var2.Q5.O3()) {
-                        Paint paint = bkb.k2;
-                        int i4 = bkb.Lb;
-                        paint.setColor(bkb.v0(i4, gb2Var2.cc));
-                        bkb.E2.setColor(bkb.v0(i4, gb2Var2.cc));
-                    } else {
-                        Paint paint2 = bkb.k2;
-                        int i5 = bkb.td;
-                        paint2.setColor(bkb.v0(i5, gb2Var2.cc));
-                        bkb.E2.setColor(bkb.v0(i5, gb2Var2.cc));
-                    }
-                    int alpha = bkb.G2.getAlpha();
-                    int alpha2 = bkb.H2.getAlpha();
-                    int alpha3 = bkb.E2.getAlpha();
-                    int i6 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-                    if (i6 != 0) {
-                        f5 = 50.0f;
-                        rectF = rectF2;
-                        bkb.G2.setAlpha((int) (alpha * f10));
-                        bkb.H2.setAlpha((int) (alpha2 * f10));
-                        bkb.E2.setAlpha((int) (alpha3 * f10));
-                        canvas.save();
-                        canvas.translate(0.0f, (-gl.L(50.0f)) * nb2Var2.L1);
-                    } else {
-                        rectF = rectF2;
-                        f5 = 50.0f;
-                    }
-                    bkb.k2.setAlpha((int) (f10 * f5));
-                    StaticLayout staticLayout4 = staticLayout2;
-                    canvas.drawCircle(rectF.centerX(), rectF.centerY(), gl.L(15.0f), bkb.k2);
-                    bkb.k2.setAlpha((int) (f10 * f2));
-                    StaticLayout staticLayout5 = staticLayout;
-                    gb2Var = gb2Var2;
-                    imageReceiver = imageReceiver2;
-                    RectF rectF3 = rectF;
-                    canvas.drawArc(rectF3, -90.0f, abs * (-360.0f), false, bkb.k2);
-                    if (z) {
-                        if (this.f == null) {
-                            this.f = gb2Var.getContext().getResources().getDrawable(2131231132).mutate();
-                        }
-                        if (bkb.E2.getColor() != this.g) {
-                            Drawable drawable = this.f;
-                            int color = bkb.E2.getColor();
-                            this.g = color;
-                            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
-                        }
-                        nb2Var = nb2Var2;
-                        f6 = abs;
-                        this.f.setBounds(oo1.A(2, (int) rectF3.centerX(), this.f), oo1.y(2, (int) rectF3.centerY(), this.f), oo1.w(2, (int) rectF3.centerX(), this.f), oo1.i(2, (int) rectF3.centerY(), this.f));
-                        this.f.draw(canvas);
-                    } else {
-                        nb2Var = nb2Var2;
-                        f6 = abs;
-                        float measureText = bkb.E2.measureText(C);
-                        int length = C.length();
-                        if (length > 4) {
-                            f7 = 0.75f;
-                        } else if (length > 3) {
-                            f7 = 0.85f;
-                        } else {
-                            f7 = 1.0f;
-                        }
-                        canvas.save();
-                        canvas.scale(f7, f7, rectF3.centerX(), rectF3.centerY());
-                        canvas.drawText(C, rectF3.centerX() - (measureText / f3), gl.L(4.0f) + x, bkb.E2);
-                        canvas.restore();
-                    }
-                    if (staticLayout5 != null && staticLayout4 != null) {
-                        canvas.save();
-                        canvas.translate(mlVar.L0 + gl.L(10.0f), mlVar.x() + gl.L(10.0f));
-                        staticLayout5.draw(canvas);
-                        canvas.translate(0.0f, gl.L(23.0f));
-                        staticLayout4.draw(canvas);
-                        canvas.restore();
-                    }
-                    if (i6 != 0) {
-                        bkb.G2.setAlpha(alpha);
-                        bkb.H2.setAlpha(alpha2);
-                        bkb.E2.setAlpha(alpha3);
-                        canvas.restore();
-                    }
-                    nb2 nb2Var3 = nb2Var;
-                    nb2Var3.m = f6;
-                    nb2Var3.l = C;
-                    nb2Var3.n = staticLayout5;
-                    nb2Var3.o = staticLayout4;
-                }
-                if (mlVar.G()) {
-                    f8 = f;
-                } else {
-                    f8 = mlVar.i1;
-                }
-                if (f8 > 0.0f) {
-                    if (mlVar.E() || mlVar.G()) {
-                        int L = (int) (((mlVar.N0 / f3) + mlVar.L0) - gl.L(31.0f));
-                        int L2 = (int) ((((mlVar.O0 / f3) + mlVar.M0) - gl.L(38.0f)) - ((f - s33.k.getInterpolation(f8)) * gl.L(16.0f)));
-                        mv6 mv6Var = gb2Var.ec;
-                        Drawable drawable2 = (Drawable) mv6Var.c;
-                        if (drawable2 == null) {
-                            drawable2 = b00.d((Context) mv6Var.b, 2131231638);
-                            mv6Var.c = drawable2;
-                        }
-                        hf0.t(L, L2, drawable2);
-                        float f11 = f8 * 5.0f;
-                        drawable2.setAlpha((int) (Math.min(f, f11) * f2));
-                        drawable2.draw(canvas);
-                        ImageReceiver imageReceiver3 = imageReceiver;
-                        imageReceiver3.i0(gl.L(5.0f) + L, gl.L(5.0f) + L2, gl.L(52.0f), gl.L(52.0f));
-                        imageReceiver3.setAlpha(Math.min(1.0f, f11));
-                        imageReceiver3.h(canvas, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            canvas.save();
-            canvas.translate(mlVar.L0 + gl.L(6.0f), mlVar.x() + gl.L(8.0f));
-            gb2Var2.e3.draw(canvas);
-            if (gb2Var2.x3 != null) {
-                canvas.translate(0.0f, gl.L(21.0f));
-                gb2Var2.x3.draw(canvas);
-            }
-            canvas.restore();
         }
+        return false;
+    }
+
+    public final void b(android.graphics.Canvas r28, java.util.ArrayList r29, int r30) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb2.b(android.graphics.Canvas, java.util.ArrayList, int):void");
+    }
+
+    public final void c(defpackage.r47 r32, defpackage.ed r33, int r34, boolean r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kb2.c(r47, ed, int, boolean):void");
     }
 }

@@ -1,207 +1,133 @@
 package defpackage;
 
-import android.os.Build;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.a;
-public final class dg0 {
-    public final qw4 a;
-    public final ix4 b;
-    public final kl0 c;
-    public final kl0 d;
-    public final jx4 e;
-    public final kl0 f;
-    public final ew4 g;
-    public final lx4 h;
-    public final lx4 i;
-    public Runnable j;
-    public final gx4 k;
-    public boolean l;
-    public FrameLayout m;
-    public ViewGroup n;
-    public wg5 o;
+import j$.util.Objects;
+import org.telegram.ui.ProfileActivity;
+public final class dg0 implements yi5 {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public dg0(qw4 qw4Var, nw4 nw4Var) {
-        this.a = qw4Var;
-        qw4Var.a = new l0(this, (byte) 29);
-        qw4Var.d = new ax4(gl.L(48.0f));
-        ix4 ix4Var = new ix4();
-        this.b = ix4Var;
-        ix4Var.a(nw4Var.i());
-        qw4Var.E.add(new ow4(ix4Var, nw4Var));
-        if (Build.VERSION.SDK_INT >= 31) {
-            ew4 ew4Var = new ew4();
-            this.g = ew4Var;
-            lx4 lx4Var = new lx4(ix4Var);
-            lx4Var.f = ix4Var;
-            lx4Var.h = ew4Var.d(2);
-            this.h = lx4Var;
-            lx4 lx4Var2 = new lx4(ix4Var);
-            this.i = lx4Var2;
-            lx4Var2.f = ix4Var;
-            lx4Var2.h = ew4Var.d(3);
-            kl0 kl0Var = new kl0(lx4Var, lx4Var2, ix4Var);
-            this.c = kl0Var;
-            kl0Var.j = qw4Var;
-            kl0Var.k = true;
-            jx4 jx4Var = new jx4(lx4Var, lx4Var2);
-            this.e = jx4Var;
-            kl0 kl0Var2 = new kl0(lx4Var2, lx4Var2, ix4Var);
-            this.f = kl0Var2;
-            kl0Var2.j = qw4Var;
-            kl0 kl0Var3 = new kl0(jx4Var, lx4Var2, ix4Var);
-            this.d = kl0Var3;
-            kl0Var3.j = qw4Var;
-            kl0Var3.k = true;
-            this.k = ew4Var.d(1);
-            return;
-        }
-        this.k = kx4.a;
-        this.g = null;
-        this.h = null;
-        this.i = null;
-        kl0 kl0Var4 = new kl0(ix4Var, ix4Var, ix4Var);
-        this.c = kl0Var4;
-        kl0Var4.j = qw4Var;
-        this.e = null;
-        this.d = kl0Var4;
-        this.f = kl0Var4;
+    public dg0(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
     }
 
-    public static int c(int i) {
-        return Math.max(gl.L(8.0f), gl.L(48.0f) - i);
+    @Override
+    public final void a(qeb qebVar, RectF rectF) {
+        byte b = this.a;
+        qebVar.b = true;
     }
 
-    public static int d(int i) {
-        int currentActionBarHeight = a.getCurrentActionBarHeight();
-        return gl.L(7.0f) + ((i + currentActionBarHeight) - ((currentActionBarHeight - gl.L(46.0f)) / 2));
-    }
-
-    public static void e(ViewGroup viewGroup, int i, int i2, int i3, int i4) {
-        int i5 = -c(i);
-        int i6 = -c(i2);
-        gl.v3(viewGroup, 0, i5, 0, i6);
-        viewGroup.setPadding(0, (i + i3) - i5, 0, (i2 + i4) - i6);
-    }
-
-    public final ww4 a(View view) {
-        ww4 ww4Var = new ww4(this.k);
-        xw4 xw4Var = new xw4(gl.L(32.0f));
-        xw4 xw4Var2 = new xw4(gl.L(56.0f));
-        xw4 xw4Var3 = new xw4(gl.L(48.0f));
-        if (ww4Var.y != 1) {
-            ww4Var.y = 1;
-            ww4Var.w = true;
-            ww4Var.x = true;
-            ww4Var.invalidateSelf();
-        }
-        ww4Var.H = this.b;
-        ww4Var.w = true;
-        ww4Var.updateColors();
-        ww4Var.invalidateSelf();
-        ww4Var.J = (short) 160;
-        ix4 ix4Var = ww4Var.H;
-        if (ix4Var != null) {
-            ww4Var.I = bkb.p1(0.627451f, ix4Var.b);
-        }
-        ww4Var.w = true;
-        ww4Var.invalidateSelf();
-        ww4Var.E = xw4Var;
-        ww4Var.w = true;
-        ww4Var.invalidateSelf();
-        ww4Var.F = xw4Var2;
-        ww4Var.w = true;
-        ww4Var.invalidateSelf();
-        ww4Var.L = (short) 210;
-        ix4 ix4Var2 = ww4Var.H;
-        if (ix4Var2 != null) {
-            ww4Var.K = bkb.p1(0.8235294f, ix4Var2.b);
-        }
-        ww4Var.x = true;
-        ww4Var.invalidateSelf();
-        ww4Var.G = xw4Var3;
-        ww4Var.x = true;
-        ww4Var.invalidateSelf();
-        this.a.c.add(new pw4(view, ww4Var));
-        return ww4Var;
-    }
-
-    public final ww4 b(View view) {
-        ww4 ww4Var = new ww4(this.k);
-        xw4 xw4Var = new xw4(gl.L(28.0f));
-        xw4 xw4Var2 = new xw4(gl.L(40.0f));
-        xw4 xw4Var3 = new xw4(gl.L(30.0f));
-        if (ww4Var.y != 4) {
-            ww4Var.y = 4;
-            ww4Var.w = true;
-            ww4Var.x = true;
-            ww4Var.invalidateSelf();
-        }
-        ww4Var.H = this.b;
-        ww4Var.w = true;
-        ww4Var.updateColors();
-        ww4Var.invalidateSelf();
-        ww4Var.J = (short) 160;
-        ix4 ix4Var = ww4Var.H;
-        if (ix4Var != null) {
-            ww4Var.I = bkb.p1(0.627451f, ix4Var.b);
-        }
-        ww4Var.w = true;
-        ww4Var.invalidateSelf();
-        ww4Var.E = xw4Var;
-        ww4Var.w = true;
-        ww4Var.invalidateSelf();
-        ww4Var.F = xw4Var2;
-        ww4Var.w = true;
-        ww4Var.invalidateSelf();
-        ww4Var.L = (short) 210;
-        ix4 ix4Var2 = ww4Var.H;
-        if (ix4Var2 != null) {
-            ww4Var.K = bkb.p1(0.8235294f, ix4Var2.b);
-        }
-        ww4Var.x = true;
-        ww4Var.invalidateSelf();
-        ww4Var.G = xw4Var3;
-        ww4Var.x = true;
-        ww4Var.invalidateSelf();
-        this.a.c.add(new pw4(view, ww4Var));
-        return ww4Var;
-    }
-
-    public final void f(FrameLayout frameLayout, o39 o39Var, View view, wjb wjbVar) {
-        this.m = frameLayout;
-        this.n = o39Var;
-        o39Var.setCaptureSectionsDecoratorAllowed(true);
-        this.o = new cg0(o39Var, frameLayout, (byte) 1);
-        this.a.b(o39Var);
-        o39Var.setClipToPadding(false);
-        g(frameLayout, view, wjbVar);
-    }
-
-    public final void g(FrameLayout frameLayout, View view, wjb wjbVar) {
-        if (view != null) {
-            gl.B2(view);
-            frameLayout.addView(view, nme.e(-1, -2, 48));
-            boolean z = view instanceof pha;
-            kl0 kl0Var = this.c;
-            if (z) {
-                pha phaVar = (pha) view;
-                phaVar.setExtraHeight(gl.L(6.0f));
-                nl0 l = nod.l(wjbVar);
-                phaVar.M = kl0Var;
-                phaVar.N = l;
-                phaVar.r();
-                phaVar.p0 = this.d;
-                phaVar.q0 = this.e;
-            } else if (view instanceof a) {
-                a aVar = (a) view;
-                aVar.setAddToContainer(false);
-                aVar.setCenterTitleAndGlass(true);
-                aVar.setExtraHeight(gl.L(6.0f));
-                aVar.U0 = true;
-                aVar.P(kl0Var, nod.l(wjbVar), false);
-            }
+    @Override
+    public final void g(Canvas canvas, RectF rectF) {
+        float f;
+        Canvas canvas2;
+        float f2;
+        byte b = this.a;
+        int i = 0;
+        Object obj = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                ny9 ny9Var = (ny9) obj2;
+                uk0.a(ny9Var, canvas, rectF, ny9Var, (FrameLayout) obj);
+                return;
+            case 1:
+                d79 d79Var = (d79) obj2;
+                uk0.a(d79Var, canvas, rectF, d79Var, (FrameLayout) obj);
+                return;
+            case 2:
+                ((at0) obj2).f.d(canvas, rectF, (kd) obj);
+                return;
+            case 3:
+                ((z61) obj2).c0.d(canvas, rectF, (tg0) obj);
+                return;
+            case 4:
+                a93 a93Var = (a93) obj2;
+                b6 b6Var = (b6) obj;
+                int childCount = a93Var.a.getChildCount();
+                while (i < childCount) {
+                    View childAt = a93Var.a.getChildAt(i);
+                    if (childAt instanceof d79) {
+                        d79 d79Var2 = (d79) childAt;
+                        uk0.a(d79Var2, canvas, rectF, d79Var2, b6Var);
+                    }
+                    i++;
+                }
+                return;
+            case 5:
+                ((ue5) obj2).n.u(canvas, rectF, (FrameLayout) obj);
+                return;
+            case 6:
+                ((em6) obj2).S.u(canvas, rectF, (d26) obj);
+                return;
+            case 7:
+                d26 d26Var = (d26) obj;
+                jm7[] jm7VarArr = ((lm7) obj2).b;
+                int length = jm7VarArr.length;
+                while (i < length) {
+                    im7 im7Var = jm7VarArr[i].f;
+                    if (im7Var != null && im7Var.H && im7Var.getVisibility() == 0 && im7Var.getAlpha() > 0.0f) {
+                        uk0.a(im7Var, canvas, rectF, im7Var, d26Var);
+                    }
+                    i++;
+                }
+                return;
+            case 8:
+                ProfileActivity profileActivity = (ProfileActivity) obj2;
+                lhc lhcVar = (lhc) obj;
+                RectF rectF2 = ProfileActivity.Z6;
+                Paint paint = profileActivity.T6;
+                ViewGroup viewGroup = (ViewGroup) profileActivity.fragmentView;
+                gr8 gr8Var = profileActivity.O;
+                if (gr8Var != null && gr8Var.getParent() == profileActivity.a) {
+                    f = profileActivity.W5;
+                } else {
+                    f = 0.0f;
+                }
+                int i2 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
+                if (i2 < 0) {
+                    is8 is8Var = profileActivity.d1;
+                    RectF rectF3 = ProfileActivity.Z6;
+                    if (yic.c(is8Var, viewGroup, rectF3) && RectF.intersects(rectF3, rectF)) {
+                        uk0.a(new mr0(profileActivity, (byte) 8), canvas, rectF, profileActivity.d1, viewGroup);
+                    }
+                    zp8 zp8Var = profileActivity.a;
+                    Objects.requireNonNull(zp8Var);
+                    uk0.a(new mr0(zp8Var, (byte) 9), canvas, rectF, profileActivity.a, viewGroup);
+                    lhcVar.g(canvas, rectF);
+                }
+                if (f > 0.0f) {
+                    if (i2 < 0) {
+                        f2 = profileActivity.O.getY() + profileActivity.a.getY();
+                    } else {
+                        f2 = Float.MAX_VALUE;
+                    }
+                    paint.setColor(aob.v0(aob.a7, profileActivity.A0));
+                    paint.setAlpha((int) (f * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(rectF.left, rectF.top, rectF.right, Math.min(rectF.bottom, f2), paint);
+                } else {
+                    canvas2 = canvas;
+                }
+                profileActivity.O.u(canvas2, rectF, viewGroup);
+                ProfileActivity.F1(profileActivity.u0, canvas2, rectF, viewGroup);
+                ProfileActivity.F1(profileActivity.o0, canvas2, rectF, viewGroup);
+                ProfileActivity.F1(profileActivity.n0, canvas2, rectF, viewGroup);
+                return;
+            case 9:
+                ((nza) obj2).V.d(canvas, rectF, (kya) obj);
+                return;
+            default:
+                ((thb) obj2).V.d(canvas, rectF, (kya) obj);
+                return;
         }
     }
 }

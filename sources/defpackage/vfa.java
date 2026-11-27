@@ -1,34 +1,30 @@
 package defpackage;
 
-import android.content.Context;
-import java.util.LinkedHashSet;
-import java.util.Set;
-public final class vfa {
-    public final d73 a;
-    public final wfa b;
-    public final Context c;
-    public final String d;
-    public final ycb e;
-    public final LinkedHashSet f;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.e;
+public final class vfa implements hf7, fd {
+    public final eja a;
+    public final TL_stories.StoryItem b;
 
-    public vfa(Context context, String str, Set set, d73 d73Var, wfa wfaVar) {
-        LinkedHashSet linkedHashSet;
-        set.getClass();
-        kg8 kg8Var = new kg8((byte) 1, context, str);
-        this.a = d73Var;
-        this.b = wfaVar;
-        this.c = context;
-        this.d = str;
-        this.e = new ycb(kg8Var);
-        if (set == yfa.a) {
-            linkedHashSet = null;
-        } else {
-            linkedHashSet = new LinkedHashSet(set);
-        }
-        this.f = linkedHashSet;
+    public vfa(eja ejaVar, TL_stories.StoryItem storyItem) {
+        this.a = ejaVar;
+        this.b = storyItem;
     }
 
-    public final java.lang.Object a(java.lang.Object r5, defpackage.gw2 r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vfa.a(java.lang.Object, gw2):java.lang.Object");
+    @Override
+    public final void a(String str) {
+        this.a.y0(this.b, str);
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(this.b);
+        eja ejaVar = this.a;
+        e eVar = ejaVar.y1;
+        eVar.getMessagesController().O1().r(arrayList, ejaVar.m1);
+        d31.b0(eVar).Q(2131624052, 36, ob6.G(1, "StoriesDeleted", new Object[0])).j();
+        ejaVar.E(false);
     }
 }

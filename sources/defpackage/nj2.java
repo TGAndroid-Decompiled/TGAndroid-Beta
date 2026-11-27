@@ -1,41 +1,12 @@
 package defpackage;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class nj2 extends CharacterStyle {
-    public final String a;
-    public final float b;
-    public final boolean c;
-
-    public nj2(String str, String str2, boolean z) {
-        int length;
-        int i;
-        this.c = z;
-        this.a = str;
-        if (str2 == null) {
-            length = 0;
-        } else {
-            length = str2.length();
-        }
-        jj8 jj8Var = qj2.a;
-        if (length > 120) {
-            i = 5;
-        } else if (length > 50) {
-            i = 3;
-        } else {
-            i = 2;
-        }
-        this.b = i;
+import java.io.IOException;
+public final class nj2 extends IOException {
+    public nj2(long r4, int r6, long r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nj2.<init>(long, int, long):void");
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        if (this.c) {
-            textPaint.setTextSize(gl.L(gba.S0 - this.b));
-        }
-        textPaint.setColor(bkb.w0(null, bkb.Uc, false));
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
+    public nj2(int i) {
+        this(-9223372036854775807L, i, -9223372036854775807L);
     }
 }

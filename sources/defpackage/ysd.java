@@ -1,17 +1,21 @@
 package defpackage;
-public final class ysd implements zn7 {
-    public static final ysd a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)));
-    }
+import java.nio.charset.Charset;
+public final class ysd {
+    public static final jnd b = new jnd((byte) 1);
+    public final ntd a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public ysd() {
+        fvd fvdVar;
+        try {
+            fvdVar = (fvd) Class.forName("com.google.protobuf.DescriptorMessageInfoFactory").getDeclaredMethod("getInstance", null).invoke(null, null);
+        } catch (Exception unused) {
+            fvdVar = b;
         }
-        throw new ClassCastException();
+        fvd[] fvdVarArr = {jnd.b, fvdVar};
+        ?? obj = new Object();
+        obj.a = fvdVarArr;
+        Charset charset = vnd.a;
+        this.a = obj;
     }
 }

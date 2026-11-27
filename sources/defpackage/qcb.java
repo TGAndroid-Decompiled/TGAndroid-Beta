@@ -1,28 +1,39 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.Switch;
-public final class qcb extends AnimatorListenerAdapter {
-    public final byte a;
-    public final Switch b;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stories;
+public final class qcb extends nn5 {
+    public final ArrayList a;
+    public float b;
+    public float c;
+    public float d;
+    public float e;
 
-    public qcb(Switch r1, byte b) {
-        this.a = b;
-        this.b = r1;
+    public qcb(TL_stories.StoryItem storyItem) {
+        for (int i = 0; i < storyItem.media_areas.size(); i++) {
+            if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                if (this.a == null) {
+                    this.a = new ArrayList();
+                }
+                this.a.add(new ncb(this, (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i)));
+            } else if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaWeather) {
+                if (this.a == null) {
+                    this.a = new ArrayList();
+                }
+                this.a.add(new pcb(this, (TL_stories.TL_mediaAreaWeather) storyItem.media_areas.get(i)));
+            }
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        Switch r1 = this.b;
-        switch (b) {
-            case 0:
-                r1.d = null;
-                return;
-            default:
-                r1.e = null;
-                return;
+    public final void a(ImageReceiver imageReceiver) {
+        ArrayList arrayList = this.a;
+        if (arrayList != null) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                ((mcb) arrayList.get(i)).c(imageReceiver.e);
+                ((mcb) arrayList.get(i)).b(true);
+            }
         }
     }
 }

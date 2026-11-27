@@ -1,42 +1,113 @@
 package defpackage;
 
-import android.graphics.BlendMode;
-import android.graphics.Paint;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.regex.Pattern;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
 public abstract class gvc {
-    public static final BlendMode[] a;
+    public static final Pattern a = Pattern.compile("^(.+_\\d+_.+_v\\d+(_debug)?\\.jpg|-?\\d+_-?\\d+\\.jpg|wallpaper_thumb_-?\\d+\\.png)$");
+    public static final Object b = new Object();
+    public static volatile File c;
 
-    static {
-        BlendMode blendMode;
-        BlendMode blendMode2;
-        BlendMode blendMode3;
-        BlendMode blendMode4;
-        BlendMode blendMode5;
-        BlendMode blendMode6;
-        BlendMode blendMode7;
-        BlendMode blendMode8;
-        BlendMode blendMode9;
-        blendMode = BlendMode.SRC_OVER;
-        blendMode2 = BlendMode.SRC_IN;
-        blendMode3 = BlendMode.DST_IN;
-        blendMode4 = BlendMode.PLUS;
-        blendMode5 = BlendMode.SCREEN;
-        blendMode6 = BlendMode.OVERLAY;
-        blendMode7 = BlendMode.COLOR_DODGE;
-        blendMode8 = BlendMode.COLOR_BURN;
-        blendMode9 = BlendMode.SOFT_LIGHT;
-        a = new BlendMode[]{blendMode, blendMode2, BlendMode.SRC_OUT, BlendMode.SRC_ATOP, BlendMode.DST_OVER, blendMode3, BlendMode.DST_OUT, BlendMode.DST_ATOP, blendMode4, BlendMode.SRC, BlendMode.XOR, BlendMode.MULTIPLY, blendMode5, blendMode6, BlendMode.DARKEN, BlendMode.LIGHTEN, blendMode7, blendMode8, BlendMode.HARD_LIGHT, blendMode9, BlendMode.DIFFERENCE, BlendMode.EXCLUSION, BlendMode.HUE, BlendMode.SATURATION, BlendMode.COLOR, BlendMode.LUMINOSITY};
-    }
-
-    public static void a(int i, Paint paint) {
-        BlendMode blendMode;
-        if (i > 0) {
-            BlendMode[] blendModeArr = a;
-            if (i < blendModeArr.length) {
-                blendMode = blendModeArr[i];
-                paint.setBlendMode(blendMode);
+    public static boolean a(File file, File file2) {
+        boolean renameTo;
+        if (file == null) {
+            return false;
+        }
+        if (file.equals(file2)) {
+            return true;
+        }
+        synchronized (b) {
+            File parentFile = file2.getParentFile();
+            File file3 = new File(parentFile, file2.getName() + ".tmp");
+            FileInputStream fileInputStream = new FileInputStream(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(file3);
+            try {
+                fileOutputStream.getChannel().transferFrom(fileInputStream.getChannel(), 0L, fileInputStream.getChannel().size());
+                fileOutputStream.getFD().sync();
+                fileOutputStream.close();
+                fileInputStream.close();
+                renameTo = file3.renameTo(file2);
+                if (!renameTo) {
+                    file3.delete();
+                }
+            } catch (Throwable th) {
+                try {
+                    fileOutputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
             }
         }
-        blendMode = null;
-        paint.setBlendMode(blendMode);
+        return renameTo;
+    }
+
+    public static File b(String str) {
+        File file = c;
+        if (file == null) {
+            file = new File(a.h(), "wallpaper");
+            file.mkdirs();
+            c = file;
+        }
+        if (str == null) {
+            return new File(file, ".none");
+        }
+        File file2 = new File(file, str);
+        if (!file2.exists()) {
+            synchronized (b) {
+                File file3 = new File(a.h(), str);
+                if (file3.isFile() && !file2.exists() && !file3.renameTo(file2)) {
+                    return file3;
+                }
+                return file2;
+            }
+        }
+        return file2;
+    }
+
+    public static boolean c(Bitmap bitmap, Bitmap.CompressFormat compressFormat, File file) {
+        if (bitmap == null) {
+            return false;
+        }
+        synchronized (b) {
+            File parentFile = file.getParentFile();
+            File file2 = new File(parentFile, file.getName() + ".tmp");
+            FileOutputStream fileOutputStream = new FileOutputStream(file2);
+            if (!bitmap.compress(compressFormat, 87, fileOutputStream)) {
+                fileOutputStream.close();
+                file2.delete();
+                return false;
+            }
+            fileOutputStream.flush();
+            fileOutputStream.getFD().sync();
+            fileOutputStream.close();
+            boolean renameTo = file2.renameTo(file);
+            if (!renameTo) {
+                file2.delete();
+            }
+            return renameTo;
+        }
+    }
+
+    public static File d(String str) {
+        String str2;
+        if (TextUtils.isEmpty(str)) {
+            str2 = null;
+        } else {
+            str2 = Utilities.a(str) + ".wp";
+        }
+        return b(str2);
+    }
+
+    public static File e(String str) {
+        if (TextUtils.isEmpty(str)) {
+            str = null;
+        }
+        return b(str);
     }
 }

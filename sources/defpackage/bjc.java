@@ -1,72 +1,143 @@
 package defpackage;
 
-import android.util.Log;
-import java.util.Locale;
-public final class bjc implements Runnable {
-    public final byte a;
-    public final gjc b;
+import android.graphics.Bitmap;
+import android.view.View;
+import android.view.animation.BaseInterpolator;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class bjc implements gjf {
+    public long a;
+    public boolean b;
+    public final Object c;
+    public Object d;
+    public Object e;
+    public final Object f;
 
-    public bjc(gjc gjcVar, byte b) {
-        this.a = b;
-        this.b = gjcVar;
+    public bjc() {
+        this.a = -1L;
+        this.f = new ajc(this);
+        this.c = new ArrayList();
+    }
+
+    public final void a() {
+        if (!this.b) {
+            return;
+        }
+        ArrayList arrayList = (ArrayList) this.c;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((zic) obj).b();
+        }
+        this.b = false;
+    }
+
+    public final void b() {
+        View view;
+        if (this.b) {
+            return;
+        }
+        ArrayList arrayList = (ArrayList) this.c;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            zic zicVar = (zic) obj;
+            long j = this.a;
+            if (j >= 0) {
+                zicVar.c(j);
+            }
+            BaseInterpolator baseInterpolator = (BaseInterpolator) this.d;
+            if (baseInterpolator != null && (view = (View) zicVar.a.get()) != null) {
+                view.animate().setInterpolator(baseInterpolator);
+            }
+            if (((djc) this.e) != null) {
+                zicVar.d((ajc) this.f);
+            }
+            View view2 = (View) zicVar.a.get();
+            if (view2 != null) {
+                view2.animate().start();
+            }
+        }
+        this.b = true;
     }
 
     @Override
-    public final void run() {
-        String str;
-        String str2;
-        byte b = this.a;
-        gjc gjcVar = this.b;
-        switch (b) {
-            case 0:
-                if (gjcVar.c == 2) {
-                    if (gjcVar.y == 0) {
-                        Log.w("VoiceLive", "SELF-CHECK FAILED: no PCM from the recorder tap 1.5 s after lock (neither MediaController nor AudioCapture fed it)");
-                        return;
+    public final rx zza() {
+        long j = this.a;
+        boolean z = this.b;
+        jkf jkfVar = (jkf) this.f;
+        am2 am2Var = new am2((byte) 23, false);
+        htd htdVar = new htd((byte) 9);
+        htdVar.b = Long.valueOf(j & Long.MAX_VALUE);
+        htdVar.c = (daf) this.d;
+        htdVar.d = Boolean.valueOf(z);
+        am2Var.b = new r8f(htdVar);
+        mre.l.getClass();
+        Bitmap bitmap = ((jq5) this.e).a;
+        xve.h(bitmap);
+        int allocationByteCount = bitmap.getAllocationByteCount();
+        zhc zhcVar = new zhc((byte) 19, false);
+        zhcVar.b = d8f.BITMAP;
+        zhcVar.c = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
+        am2Var.c = new g8f(zhcVar);
+        am2Var.d = ((mre) this.c).e.a();
+        if (jkfVar != null) {
+            ArrayList arrayList = jkfVar.d;
+            ded dedVar = ted.f;
+            Object[] array = arrayList.toArray();
+            int length = array.length;
+            z4f.a(length, array);
+            am2Var.f = ted.m(length, array);
+            ArrayList arrayList2 = jkfVar.a;
+            if (!arrayList2.isEmpty()) {
+                Object[] objArr = new Object[4];
+                int size = arrayList2.size();
+                int i = 0;
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList2.get(i2);
+                    i2++;
+                    hkf hkfVar = (hkf) obj;
+                    lyc lycVar = new lyc((byte) 20, false);
+                    lycVar.b = Integer.valueOf(hkfVar.c & Integer.MAX_VALUE);
+                    lycVar.c = Integer.valueOf(hkfVar.d & Integer.MAX_VALUE);
+                    lycVar.d = Integer.valueOf(hkfVar.e & Integer.MAX_VALUE);
+                    lycVar.e = Integer.valueOf(hkfVar.f & Integer.MAX_VALUE);
+                    bhf bhfVar = new bhf(lycVar);
+                    int i3 = i + 1;
+                    int length2 = objArr.length;
+                    if (length2 < i3) {
+                        int i4 = length2 + (length2 >> 1) + 1;
+                        if (i4 < i3) {
+                            i4 = Integer.highestOneBit(i) << 1;
+                        }
+                        if (i4 < 0) {
+                            i4 = Integer.MAX_VALUE;
+                        }
+                        objArr = Arrays.copyOf(objArr, i4);
                     }
-                    StringBuilder sb = new StringBuilder("self-check ok: chunks=");
-                    sb.append(gjcVar.y);
-                    sb.append(" in=");
-                    sb.append(gjcVar.w);
-                    sb.append("B out=");
-                    sb.append(gjcVar.x);
-                    sb.append("B (ratio ");
-                    if (gjcVar.x > 0) {
-                        str = String.format(Locale.US, "%.2f", Double.valueOf(gjcVar.w / gjcVar.x));
-                    } else {
-                        str = "-";
-                    }
-                    sb.append(str);
-                    sb.append(", expect 3.00 at 48 kHz) source=");
-                    byte b2 = gjcVar.F;
-                    if (b2 == 1) {
-                        str2 = "MediaController";
-                    } else if (b2 == 2) {
-                        str2 = "AudioRecorderV2";
-                    } else {
-                        str2 = "none";
-                    }
-                    ir2.x(sb, str2, "VoiceLive");
-                    return;
+                    objArr[i] = bhfVar;
+                    i = i3;
                 }
-                return;
-            case 1:
-                if (gjcVar.c == 2) {
-                    gjcVar.u();
-                    return;
-                }
-                return;
-            case 2:
-                gjcVar.t();
-                mu1 mu1Var = gjcVar.b.a.F3;
-                if (mu1Var != null) {
-                    mu1Var.presentFragment(new zka());
-                    return;
-                }
-                return;
-            default:
-                gjcVar.m("field send preview");
-                return;
+                am2Var.e = ted.m(i, objArr);
+            }
         }
+        ?? obj2 = new Object();
+        obj2.c = m9f.TYPE_THIN;
+        obj2.f = new zff(am2Var);
+        return new rx((oxb) obj2, 0);
+    }
+
+    public bjc(mre mreVar, long j, daf dafVar, boolean z, jq5 jq5Var, jkf jkfVar) {
+        this.c = mreVar;
+        this.a = j;
+        this.d = dafVar;
+        this.b = z;
+        this.e = jq5Var;
+        this.f = jkfVar;
     }
 }

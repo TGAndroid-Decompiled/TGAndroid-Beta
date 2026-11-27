@@ -1,17 +1,51 @@
 package defpackage;
-public final class nxe implements zn7 {
-    public static final nxe a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+public abstract class nxe {
+    public static void a(ab9 ab9Var, vnb vnbVar) {
+        boolean o;
+        if (vnbVar != null) {
+            o = vnbVar.a();
+        } else {
+            o = aob.I.o();
+        }
+        ab9Var.p(aob.v0(aob.Fi, vnbVar), o);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static int b(mk0 mk0Var) {
+        int i = 0;
+        if (mk0Var == null) {
+            return 0;
         }
-        throw new ClassCastException();
+        int c = c(mk0Var);
+        int max = Math.max(0, mk0Var.c);
+        if (max > 0) {
+            i = hl.L(bp1.h(max, 1, 24, 28));
+        }
+        return c + i;
+    }
+
+    public static int c(mk0 mk0Var) {
+        int size;
+        if (mk0Var == null) {
+            size = 0;
+        } else {
+            size = mk0Var.k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return hl.L(((size - 1) << 4) + 12);
+    }
+
+    public static int d(mk0 mk0Var) {
+        int size;
+        if (mk0Var == null) {
+            size = 0;
+        } else {
+            size = mk0Var.k.size();
+        }
+        if (size <= 0) {
+            return 0;
+        }
+        return hl.L(((size - 1) << 4) + 8);
     }
 }

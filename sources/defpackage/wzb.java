@@ -1,111 +1,54 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-public final class wzb extends b4c {
-    static {
-        b4c.h(new b4c());
-    }
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class wzb implements r69 {
+    public final zzb a;
 
-    public static c4c i(int i, String str, String str2, String str3, tzb tzbVar) {
-        return j(i, str, str2, str3, tzbVar, false, null, null);
-    }
-
-    public static c4c j(int i, String str, String str2, String str3, View.OnClickListener onClickListener, boolean z, View.OnClickListener onClickListener2, a0 a0Var) {
-        c4c K = c4c.K(wzb.class);
-        K.d = i;
-        K.m = str;
-        K.n = str2;
-        K.o = str3;
-        K.E = onClickListener;
-        K.e = z;
-        K.F = onClickListener2;
-        K.H = a0Var;
-        return K;
+    public wzb(zzb zzbVar) {
+        this.a = zzbVar;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        View.OnClickListener onClickListener;
-        int i;
-        boolean z2;
-        int i2;
-        xzb xzbVar = (xzb) view;
-        CharSequence charSequence = c4cVar.m;
-        CharSequence charSequence2 = c4cVar.n;
-        CharSequence charSequence3 = c4cVar.o;
-        View.OnClickListener onClickListener2 = c4cVar.E;
-        boolean z3 = c4cVar.e;
-        View.OnClickListener onClickListener3 = c4cVar.F;
-        Object obj = c4cVar.H;
-        if (obj instanceof View.OnClickListener) {
-            onClickListener = (View.OnClickListener) obj;
-        } else {
-            onClickListener = null;
+    public final void e(int i, View view) {
+        zzb zzbVar = this.a;
+        ArrayList arrayList = zzbVar.d;
+        if (((yzb) arrayList.get(i)).a == 1) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -zzbVar.c);
+            bundle.putBoolean("for_select", true);
+            tzb tzbVar = new tzb(bundle);
+            tzbVar.B0 = zzbVar.e;
+            tzbVar.w = new uzb(this);
+            zzbVar.presentFragment(tzbVar);
         }
-        LinearLayout linearLayout = xzbVar.r;
-        LinearLayout linearLayout2 = xzbVar.h;
-        LinearLayout linearLayout3 = xzbVar.b;
-        xzbVar.c.setText(charSequence);
-        xzbVar.d.setText(charSequence2);
-        xzbVar.e.setText(charSequence3);
-        ImageView imageView = xzbVar.f;
-        int i3 = 8;
-        if (onClickListener2 != null) {
-            i = 0;
-        } else {
-            i = 8;
+        if (((yzb) arrayList.get(i)).a == 2) {
+            TLRPC.TL_forumTopic tL_forumTopic = ((yzb) arrayList.get(i)).c;
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("dialog_id", zzbVar.c);
+            bundle2.putLong("topic_id", tL_forumTopic.id);
+            bundle2.putBoolean("exception", false);
+            zu8 zu8Var = new zu8(bundle2, null);
+            zu8Var.s = new vzb(this, tL_forumTopic);
+            zzbVar.presentFragment(zu8Var);
         }
-        imageView.setVisibility(i);
-        linearLayout3.setOnClickListener(onClickListener2);
-        if (onClickListener2 != null) {
-            z2 = true;
-        } else {
-            z2 = false;
+        if (((yzb) arrayList.get(i)).a == 4) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zzbVar.getParentActivity());
+            String M0 = ob6.M0(2131747640, null);
+            id idVar = alertDialog$Builder.a;
+            idVar.S = M0;
+            idVar.U = ob6.M0(2131747641, null);
+            alertDialog$Builder.j(ob6.M0(2131751563, null), new uzb(this));
+            alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+            zzbVar.showDialog(idVar);
+            TextView textView = (TextView) idVar.c(-1);
+            if (textView != null) {
+                yob.X(textView, aob.q7, null);
+            }
         }
-        linearLayout3.setClickable(z2);
-        xzbVar.n.a(z3, false);
-        if (onClickListener3 != null) {
-            i2 = 0;
-        } else {
-            i2 = 8;
-        }
-        linearLayout2.setVisibility(i2);
-        linearLayout2.setOnClickListener(onClickListener3);
-        if (onClickListener != null) {
-            i3 = 0;
-        }
-        linearLayout.setVisibility(i3);
-        linearLayout.setOnClickListener(new vzb(xzbVar, onClickListener, (byte) 1));
-        xzbVar.updateColors();
-    }
-
-    @Override
-    public final boolean c(c4c c4cVar, c4c c4cVar2) {
-        if (TextUtils.equals(c4cVar.m, c4cVar2.m) && TextUtils.equals(c4cVar.n, c4cVar2.n) && TextUtils.equals(c4cVar.o, c4cVar2.o) && c4cVar.F == c4cVar2.F) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new xzb(context, wjbVar);
-    }
-
-    @Override
-    public final boolean e(c4c c4cVar, c4c c4cVar2) {
-        if (c4cVar.d == c4cVar2.d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
     }
 }

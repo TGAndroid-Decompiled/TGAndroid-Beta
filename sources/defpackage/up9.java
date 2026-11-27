@@ -1,76 +1,131 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import android.app.BroadcastOptions;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.util.Log;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 public final class up9 {
-    public long a;
-    public boolean b;
-    public int c;
-    public k27 d;
-    public int e;
-    public long f;
-    public long g;
-    public long h;
-    public boolean i;
-    public int j;
-    public int k;
+    public static int h;
+    public static PendingIntent i;
+    public static final Pattern j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
+    public final Context b;
+    public final plf c;
+    public final ScheduledThreadPoolExecutor d;
+    public Messenger f;
+    public yrd g;
+    public final vla a = new vla(0);
+    public final Messenger e = new Messenger(new fmf(this, Looper.getMainLooper()));
 
-    public static up9 a(int i, TLRPC.Message message) {
-        ?? obj = new Object();
-        obj.a = k27.Q1(y6c.h(i).e(), message);
-        obj.b = false;
-        obj.c = message.id;
-        obj.d = new k27(i, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
-        return obj;
+    public up9(Context context) {
+        this.b = context;
+        this.c = new plf(context);
+        ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1, new kq7("fcm-rpc-timeout-executor"));
+        scheduledThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
+        scheduledThreadPoolExecutor.allowCoreThreadTimeOut(true);
+        this.d = scheduledThreadPoolExecutor;
     }
 
-    public static up9 b(int i, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
-        TLRPC.Message message;
-        ?? obj = new Object();
-        obj.a = cf3.n(saveddialog.peer);
-        obj.b = saveddialog.pinned;
-        obj.c = saveddialog.top_message;
-        obj.f = saveddialog.unread_count;
-        obj.g = saveddialog.read_inbox_max_id;
-        obj.h = saveddialog.read_outbox_max_id;
-        int i2 = 0;
-        while (true) {
-            if (i2 < arrayList.size()) {
-                message = (TLRPC.Message) arrayList.get(i2);
-                if (obj.c == message.id) {
-                    break;
+    public static synchronized void a(Context context, Intent intent) {
+        synchronized (up9.class) {
+            PendingIntent pendingIntent = i;
+            if (pendingIntent == null) {
+                Intent intent2 = new Intent();
+                intent2.setPackage("com.google.example.invalidpackage");
+                pendingIntent = PendingIntent.getBroadcast(context, 0, intent2, wff.a);
+                i = pendingIntent;
+            }
+            intent.putExtra("app", pendingIntent);
+        }
+    }
+
+    public static synchronized String c() {
+        String num;
+        synchronized (up9.class) {
+            int i2 = h;
+            h = i2 + 1;
+            num = Integer.toString(i2);
+        }
+        return num;
+    }
+
+    public final void b(String str, Bundle bundle) {
+        vla vlaVar = this.a;
+        synchronized (vlaVar) {
+            TaskCompletionSource taskCompletionSource = (TaskCompletionSource) vlaVar.remove(str);
+            if (taskCompletionSource == null) {
+                StringBuilder sb = new StringBuilder(String.valueOf(str).length() + 21);
+                sb.append("Missing callback for ");
+                sb.append(str);
+                Log.w("Rpc", sb.toString());
+                return;
+            }
+            taskCompletionSource.setResult(bundle);
+        }
+    }
+
+    public final Task d(Bundle bundle) {
+        String c = c();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        vla vlaVar = this.a;
+        synchronized (vlaVar) {
+            vlaVar.put(c, taskCompletionSource);
+        }
+        Intent intent = new Intent();
+        intent.setPackage("com.google.android.gms");
+        if (this.c.a() == 2) {
+            intent.setAction("com.google.iid.TOKEN_REQUEST");
+        } else {
+            intent.setAction("com.google.android.c2dm.intent.REGISTER");
+        }
+        intent.putExtras(bundle);
+        a(this.b, intent);
+        intent.putExtra("kid", qu6.o("|ID|", c, "|", new StringBuilder(String.valueOf(c).length() + 5)));
+        if (Log.isLoggable("Rpc", 3)) {
+            Log.d("Rpc", "Sending ".concat(String.valueOf(intent.getExtras())));
+        }
+        intent.putExtra("google.messenger", this.e);
+        if (this.f != null || this.g != null) {
+            Message obtain = Message.obtain();
+            obtain.obj = intent;
+            try {
+                Messenger messenger = this.f;
+                if (messenger != null) {
+                    messenger.send(obtain);
+                } else {
+                    this.g.a.send(obtain);
                 }
-                i2++;
+            } catch (RemoteException unused) {
+                if (Log.isLoggable("Rpc", 3)) {
+                    Log.d("Rpc", "Messenger failed, fallback to startService");
+                }
+            }
+            taskCompletionSource.getTask().addOnCompleteListener(no3.d, new ko9(this, c, this.d.schedule(new bva(taskCompletionSource, (byte) 25), 30L, TimeUnit.SECONDS), (byte) 18));
+            return taskCompletionSource.getTask();
+        }
+        int a = this.c.a();
+        Context context = this.b;
+        if (a == 2) {
+            if (Build.VERSION.SDK_INT < 34) {
+                context.sendBroadcast(intent);
             } else {
-                message = null;
-                break;
+                context.sendBroadcast(intent, null, BroadcastOptions.makeBasic().setShareIdentityEnabled(true).toBundle());
             }
+        } else {
+            context.startService(intent);
         }
-        TLRPC.Message message2 = message;
-        if (message2 != null) {
-            obj.d = new k27(i, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
-        }
-        return obj;
-    }
-
-    public final int c() {
-        TLRPC.Message message;
-        k27 k27Var = this.d;
-        if (k27Var != null && (message = k27Var.k) != null) {
-            if ((message.flags & 32768) != 0) {
-                return message.edit_date;
-            }
-            return message.date;
-        }
-        return this.j;
-    }
-
-    public final boolean d() {
-        TLRPC.Message message;
-        k27 k27Var = this.d;
-        if (k27Var != null && (message = k27Var.k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
-            return true;
-        }
-        return false;
+        taskCompletionSource.getTask().addOnCompleteListener(no3.d, new ko9(this, c, this.d.schedule(new bva(taskCompletionSource, (byte) 25), 30L, TimeUnit.SECONDS), (byte) 18));
+        return taskCompletionSource.getTask();
     }
 }

@@ -1,59 +1,38 @@
 package defpackage;
+public abstract class nmd {
+    public static final int[] a;
+    public static final int[] b;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-public final class nmd implements ymd {
-    public static final f06 b = new f06(nmd.class, (byte) 3);
-    public final Object a;
-
-    public nmd(Object obj) {
-        this.a = obj;
-    }
-
-    @Override
-    public final void c(Runnable runnable, Executor executor) {
-        if (executor != null) {
-            try {
-                executor.execute(runnable);
-                return;
-            } catch (Exception e) {
-                b.c().logp(Level.SEVERE, "com.google.common.util.concurrent.ImmediateFuture", "addListener", tb4.q("RuntimeException while executing runnable ", runnable.toString(), " with executor ", String.valueOf(executor)), (Throwable) e);
-                return;
-            }
+    static {
+        int[] iArr = new int[xpd.values().length];
+        b = iArr;
+        try {
+            iArr[xpd.BYTE_STRING.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        fvc.f("Executor was null.");
-    }
-
-    @Override
-    public final boolean cancel(boolean z) {
-        return false;
-    }
-
-    @Override
-    public final Object get(long j, TimeUnit timeUnit) {
-        timeUnit.getClass();
-        return this.a;
-    }
-
-    @Override
-    public final boolean isCancelled() {
-        return false;
-    }
-
-    @Override
-    public final boolean isDone() {
-        return true;
-    }
-
-    public final String toString() {
-        String obj = super.toString();
-        String obj2 = this.a.toString();
-        return obj + "[status=SUCCESS, result=[" + obj2 + "]]";
-    }
-
-    @Override
-    public final Object get() {
-        return this.a;
+        try {
+            b[xpd.MESSAGE.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            int[] iArr2 = b;
+            xpd xpdVar = xpd.VOID;
+            iArr2[6] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        int[] iArr3 = new int[ik8.G(4).length];
+        a = iArr3;
+        try {
+            iArr3[3] = 1;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[1] = 2;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[0] = 3;
+        } catch (NoSuchFieldError unused6) {
+        }
     }
 }

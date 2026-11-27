@@ -1,65 +1,29 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class r58 implements n48 {
-    public final s20 a;
+import android.content.Context;
+import android.graphics.Bitmap;
+public final class r58 extends v8b {
+    public final lcb I;
+    public final o68 J;
 
-    public r58(s20 s20Var) {
-        this.a = s20Var;
+    public r58(o68 o68Var, Context context, t58 t58Var, x53 x53Var, lcb lcbVar) {
+        super(context, t58Var, x53Var);
+        this.J = o68Var;
+        this.I = lcbVar;
     }
 
-    public final void a() {
-        mu1 mu1Var;
-        TLRPC.Chat chat;
-        u58 u58Var = (u58) this.a.e;
-        if (u58Var.J && (mu1Var = u58Var.V) != null && (chat = mu1Var.e) != null && !hc2.N(chat) && chat.slowmode_enabled && u58Var.X != 2) {
-            ij.r0(u58Var, k96.M0(2131745118, null), k96.M0(2131745111, null), null);
-            if (u58Var.X == 1) {
-                u58Var.X = (byte) 2;
-            }
+    @Override
+    public final void b(boolean z) {
+        k68 k68Var = this.J.A1;
+        if (k68Var != null) {
+            lcb lcbVar = ((ccb) k68Var).d;
+            lcbVar.i1 = z;
+            lcbVar.U();
         }
     }
 
     @Override
-    public final void c(o48 o48Var) {
-        boolean z;
-        int intValue = ((Integer) o48Var.getTag()).intValue();
-        u58 u58Var = (u58) this.a.e;
-        xl6 xl6Var = u58Var.K;
-        int i = -1;
-        int i2 = 1;
-        if (xl6Var != null) {
-            jm6 jm6Var = (jm6) xl6Var.e.get(intValue);
-            boolean containsKey = u58Var.b.containsKey(Integer.valueOf(jm6Var.C));
-            z = !containsKey;
-            if (!containsKey && u58Var.I > 0 && u58Var.b.size() >= u58Var.I) {
-                a();
-                return;
-            }
-            if (u58Var.e && !containsKey) {
-                i = u58Var.c.size();
-            }
-            o48Var.b(i, z, true);
-            u58Var.a0(intValue, jm6Var);
-        } else {
-            gl.t1(u58Var.getParentActivity().getCurrentFocus());
-            nm6 nm6Var = (nm6) u58Var.f.get(intValue);
-            boolean containsKey2 = u58Var.b.containsKey(nm6Var.B);
-            z = !containsKey2;
-            if (!containsKey2 && u58Var.I > 0 && u58Var.b.size() >= u58Var.I) {
-                a();
-                return;
-            }
-            if (u58Var.e && !containsKey2) {
-                i = u58Var.c.size();
-            }
-            o48Var.b(i, z, true);
-            u58Var.a0(intValue, nm6Var);
-        }
-        if (!z) {
-            i2 = 2;
-        }
-        u58Var.m0(i2);
-        u58Var.t0.e();
+    public final Bitmap getPlayingBitmap() {
+        return this.J.getPlayingBitmap();
     }
 }

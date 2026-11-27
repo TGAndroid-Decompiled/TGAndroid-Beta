@@ -1,162 +1,119 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class vl0 extends Drawable {
-    public float a = 1.0f;
-    public final Paint b = new Paint(1);
-    public final Rect c = new Rect();
-    public final Path d = new Path();
-    public final float e;
-    public final float f;
-    public final Drawable g;
-    public final float h;
-    public final wl0 i;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
+public final class vl0 implements View.OnAttachStateChangeListener {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public vl0(wl0 wl0Var, float f, float f2, Drawable drawable, float f3) {
-        this.i = wl0Var;
-        this.e = f;
-        this.f = f2;
-        this.g = drawable;
-        this.h = f3;
+    public vl0(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap b;
-        wl0 wl0Var = this.i;
-        sl0 sl0Var = wl0Var.a;
-        Matrix matrix = wl0Var.p;
-        Paint paint = null;
-        if (sl0Var != null && (b = sl0Var.b()) != null) {
-            if (wl0Var.o == null || wl0Var.n != b) {
-                wl0Var.n = b;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(b, tileMode, tileMode);
-                wl0Var.o = bitmapShader;
-                wl0Var.h.setShader(bitmapShader);
-            }
-            matrix.reset();
-            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f);
-            View view = sl0Var.b;
-            if (view != null) {
-                matrix.preScale(view.getWidth() / b.getWidth(), sl0Var.b.getHeight() / b.getHeight());
-            }
-            wl0Var.o.setLocalMatrix(matrix);
-            wl0Var.h.setAlpha((int) (this.a * 255.0f));
-            paint = wl0Var.h;
-        }
-        Paint paint2 = paint;
-        Rect bounds = getBounds();
-        Drawable drawable = this.g;
-        Paint paint3 = this.b;
-        float f = this.h;
-        if (paint2 == null && (sl0Var == null || !sl0Var.c())) {
-            if (drawable != null) {
-                drawable.setBounds(bounds);
-                drawable.draw(canvas);
+    public final void onViewAttachedToWindow(View view) {
+        byte b = this.a;
+        Object obj = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                tl0 tl0Var = (tl0) obj;
+                if (tl0Var != null) {
+                    tl0Var.d.add((xl0) obj2);
+                    return;
+                }
                 return;
-            }
-            paint3.setColor(-14145495);
-            if (f > 0.0f) {
-                RectF rectF = gl.P;
-                rectF.set(bounds);
-                canvas.drawRoundRect(rectF, f, f, paint3);
+            case 1:
+                pkb pkbVar = (pkb) obj2;
+                pkbVar.k = hm.update(pkbVar.l, (View) obj, pkbVar.k, pkbVar.b);
                 return;
-            }
-            canvas.drawRect(bounds, paint3);
-            return;
+            default:
+                zoc zocVar = (zoc) obj2;
+                yoc yocVar = zocVar.m;
+                if (yocVar != null) {
+                    yocVar.setPaused(!zocVar.n);
+                }
+                zocVar.a.isAttachedToWindow();
+                int i = zocVar.v0;
+                if (-1 != i) {
+                    if (i >= 0) {
+                        jn7.f(i).n(zocVar.x0, 68);
+                    }
+                    zocVar.v0 = -1;
+                    return;
+                }
+                return;
         }
-        Path path = this.d;
-        if (drawable != null) {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-            drawable.setBounds(bounds);
-            drawable.draw(canvas);
-            Rect rect = this.c;
-            if (sl0Var != null && sl0Var.c()) {
-                canvas.save();
-                getPadding(rect);
-                RectF rectF2 = gl.P;
-                rectF2.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-                path.rewind();
-                path.addRoundRect(rectF2, f, f, Path.Direction.CW);
-                canvas.clipPath(path);
-                wl0Var.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRect(bounds, paint2);
-            }
-            canvas.restore();
-            getPadding(rect);
-            RectF rectF3 = gl.P;
-            rectF3.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-            paint3.setColor(1711276032);
-            canvas.drawRoundRect(rectF3, f, f, paint3);
-            return;
-        }
-        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
-        if (i > 0) {
-            RectF rectF4 = gl.P;
-            rectF4.set(bounds);
-            if (sl0Var != null && sl0Var.c()) {
-                canvas.save();
-                path.rewind();
-                path.addRoundRect(rectF4, f, f, Path.Direction.CW);
-                canvas.clipPath(path);
-                wl0Var.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRoundRect(rectF4, f, f, paint2);
-            }
-        } else if (sl0Var != null && sl0Var.c()) {
-            canvas.save();
-            canvas.clipRect(bounds);
-            wl0Var.b(canvas, false);
-            canvas.restore();
-        } else {
-            canvas.drawRect(bounds, paint2);
-        }
-        paint3.setColor(1711276032);
-        if (i > 0) {
-            RectF rectF5 = gl.P;
-            rectF5.set(bounds);
-            canvas.drawRoundRect(rectF5, f, f, paint3);
-            return;
-        }
-        canvas.drawRect(bounds, paint3);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.g;
-        if (drawable != null) {
-            return drawable.getPadding(rect);
+    public final void onViewDetachedFromWindow(View view) {
+        byte b = this.a;
+        Object obj = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                xl0 xl0Var = (xl0) obj2;
+                tl0 tl0Var = (tl0) obj;
+                if (tl0Var != null) {
+                    ArrayList arrayList = tl0Var.d;
+                    arrayList.remove(xl0Var);
+                    if (tl0Var.e.isEmpty() && arrayList.isEmpty()) {
+                        tl0Var.n.a();
+                    }
+                }
+                xl0Var.n = null;
+                Paint paint = xl0Var.h;
+                xl0Var.o = null;
+                paint.setShader(null);
+                return;
+            case 1:
+                hm.release((View) obj, ((pkb) obj2).k);
+                return;
+            default:
+                zoc zocVar = (zoc) obj2;
+                dl1 dl1Var = zocVar.a;
+                zocVar.f();
+                zocVar.M = false;
+                zocVar.N = 0L;
+                zocVar.k();
+                vpa vpaVar = zocVar.Z;
+                if (vpaVar != null) {
+                    vpaVar.d();
+                    zocVar.Z = null;
+                }
+                zocVar.a0 = 1.0f;
+                dl1Var.invalidate();
+                if (dl1Var.getParent() instanceof View) {
+                    ((View) dl1Var.getParent()).invalidate();
+                }
+                zocVar.l();
+                hrc hrcVar = zocVar.k;
+                WeakHashMap weakHashMap = hrcVar.e;
+                weakHashMap.remove((dl1) obj);
+                if (weakHashMap.isEmpty()) {
+                    hrcVar.a();
+                }
+                dl1Var.isAttachedToWindow();
+                int i = zocVar.v0;
+                if (-1 != i) {
+                    if (i >= 0) {
+                        jn7.f(i).n(zocVar.x0, 68);
+                    }
+                    zocVar.v0 = -1;
+                }
+                yoc yocVar = zocVar.m;
+                if (yocVar != null) {
+                    yocVar.setPaused(true);
+                }
+                zocVar.l.stop();
+                zocVar.H = false;
+                return;
         }
-        rect.set(0, 0, 0, 0);
-        return true;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.a = i / 255.0f;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

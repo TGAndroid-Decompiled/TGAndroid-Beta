@@ -1,20 +1,15 @@
 package defpackage;
+public final class m72 implements Runnable {
+    public final byte a;
+    public final pi9 b;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class m72 extends m8 {
-    public final o72 o;
-
-    public m72(o72 o72Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.o = o72Var;
+    public m72(pi9 pi9Var, byte b) {
+        this.a = b;
+        this.b = pi9Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        mu1 mu1Var = this.o.H;
-        if (mu1Var != null) {
-            mu1Var.r6(false, true, 0.0f);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m72.run():void");
     }
 }

@@ -1,4 +1,7 @@
 package defpackage;
-public interface eia {
-    float get(Object obj);
+public final class eia {
+    public String a;
+    public int b;
+    public int c;
+    public int d;
 }

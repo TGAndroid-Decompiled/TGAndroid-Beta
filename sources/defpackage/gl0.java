@@ -1,141 +1,92 @@
 package defpackage;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.os.Build;
-public final class gl0 extends mod {
-    public final float a = gl.N(0.55f);
-    public final Outline b = new Outline();
+import android.graphics.drawable.NinePatchDrawable;
+public final class gl0 extends ctd {
+    public NinePatchDrawable d;
+    public long e;
+    public final jl0 g;
+    public final qeb a = new Object();
+    public final Paint b = new Paint(1);
     public final Rect c = new Rect();
-    public final RenderNode d;
-    public final RenderNode e;
-    public final Paint f;
-    public s46 g;
-    public boolean h;
-    public boolean i;
-    public final RectF j;
-    public final il0 k;
+    public final Bitmap[] f = new Bitmap[1];
 
-    public gl0(il0 il0Var) {
-        this.k = il0Var;
-        RenderNode renderNode = new RenderNode("BlurredNode");
-        this.d = renderNode;
-        this.e = new RenderNode("BlurredFill");
-        Paint paint = new Paint(1);
-        this.f = paint;
-        this.h = true;
-        this.i = true;
-        this.j = new RectF();
-        renderNode.setClipToOutline(true);
-        renderNode.setClipToBounds(true);
-        paint.setColor(0);
+    public gl0(jl0 jl0Var) {
+        this.g = jl0Var;
     }
 
     @Override
-    public final void a() {
-        this.d.discardDisplayList();
-        this.e.discardDisplayList();
-        this.h = true;
-    }
-
-    @Override
-    public final void b(Canvas canvas, gx4 gx4Var) {
-        il0 il0Var = this.k;
-        hl0 hl0Var = il0Var.S;
-        if (!this.d.hasDisplayList() || this.h) {
-            e();
-        }
-        int p1 = bkb.p1(this.d.getAlpha() * il0Var.X, il0Var.x);
-        int alpha = Color.alpha(p1);
-        Paint paint = this.f;
-        if (alpha != 0) {
-            paint.setShadowLayer(il0Var.V, 0.0f, il0Var.W, p1);
-            hl0Var.d(canvas, paint, il0Var.U);
-        }
-        int p12 = bkb.p1(this.d.getAlpha() * il0Var.X, il0Var.G);
-        if (Color.alpha(p12) != 0) {
-            paint.setShadowLayer(this.a, 0.0f, 0.0f, p12);
-            hl0Var.d(canvas, paint, il0Var.U);
-        }
-        Rect rect = hl0Var.m;
-        canvas.save();
-        if (hl0Var.e()) {
-            canvas.clipPath(hl0Var.k);
-        }
-        canvas.translate(rect.left, rect.top);
-        canvas.drawRenderNode(this.d);
-        canvas.restore();
-    }
-
-    public final boolean c() {
-        return this.d.hasDisplayList();
-    }
-
-    public final void d() {
-        hl0 hl0Var = this.k.S;
-        Rect rect = hl0Var.m;
-        int width = rect.width();
-        int height = rect.height();
-        Rect rect2 = this.c;
-        boolean z = false;
-        rect2.set(0, 0, width, height);
-        float[] fArr = hl0Var.b;
-        Outline outline = this.b;
-        il0.l(outline, rect2, fArr);
-        outline.setAlpha(1.0f);
-        if (!rect.isEmpty()) {
-            this.e.setPosition(0, 0, rect.width(), rect.height());
-            this.d.setPosition(0, 0, rect.width(), rect.height());
-            this.d.setOutline(outline);
-            RenderNode renderNode = this.d;
-            if (this.i && !hl0Var.e()) {
-                z = true;
-            }
-            renderNode.setClipToOutline(z);
-            this.h = true;
-        }
-    }
-
-    public final void e() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gl0.e():void");
-    }
-
-    public final void f(float f) {
-        this.d.setAlpha(f);
-    }
-
-    public final void g(boolean z) {
-        boolean z2;
-        this.i = z;
-        RenderNode renderNode = this.d;
-        if (z && !this.k.S.e()) {
-            z2 = true;
+    public final void b(Canvas canvas, mz4 mz4Var) {
+        int i;
+        mz4 v = jl0.v(mz4Var);
+        jl0 jl0Var = this.g;
+        if (Color.alpha(jl0Var.y) != 255 && (v instanceof oz4)) {
+            i = ((oz4) v).b;
         } else {
-            z2 = false;
+            i = 0;
         }
-        renderNode.setClipToOutline(z2);
+        c(canvas, vm2.k(jl0Var.y, i));
     }
 
-    public final void h(boolean z) {
-        boolean z2;
-        if (this.g != null) {
-            z2 = true;
-        } else {
-            z2 = false;
+    public final void c(Canvas canvas, int i) {
+        long j;
+        int i2;
+        jl0 jl0Var = this.g;
+        il0 il0Var = jl0Var.S;
+        if (Color.alpha(i) == 0 && Color.alpha(jl0Var.x) == 0) {
+            return;
         }
-        if (z != z2 && Build.VERSION.SDK_INT >= 33) {
-            if (z) {
-                this.g = new s46(this.e);
+        if (il0Var.e()) {
+            float f = jl0Var.c / 255.0f;
+            int p1 = aob.p1(f, i);
+            Paint paint = this.b;
+            paint.setColor(p1);
+            int p12 = aob.p1(f * jl0Var.X, jl0Var.x);
+            if (Color.alpha(p12) != 0) {
+                paint.setShadowLayer(jl0Var.V, 0.0f, jl0Var.W, p12);
             } else {
-                this.g = null;
-                this.e.setRenderEffect(null);
+                paint.clearShadowLayer();
             }
-            this.h = true;
+            canvas.drawPath(il0Var.k, paint);
+            return;
         }
+        qeb qebVar = this.a;
+        qebVar.a = 0L;
+        qebVar.b = false;
+        qebVar.a(i);
+        qebVar.a(jl0Var.x);
+        for (float f2 : il0Var.b) {
+            qebVar.c(f2);
+        }
+        qebVar.c(jl0Var.V);
+        qebVar.c(0.0f);
+        qebVar.c(jl0Var.W);
+        if (qebVar.b) {
+            j = -1;
+        } else {
+            j = qebVar.a;
+        }
+        NinePatchDrawable ninePatchDrawable = this.d;
+        Rect rect = this.c;
+        if (ninePatchDrawable == null || this.e != j) {
+            this.e = j;
+            if (Color.alpha(i) == 255) {
+                i2 = i;
+            } else {
+                i2 = 1;
+            }
+            NinePatchDrawable b = jue.b(this.f, i, il0Var.b, jl0Var.V, jl0Var.x, jl0Var.W, i2);
+            this.d = b;
+            b.getPadding(rect);
+        }
+        NinePatchDrawable ninePatchDrawable2 = this.d;
+        Rect rect2 = il0Var.m;
+        ninePatchDrawable2.setBounds(rect2.left - rect.left, rect2.top - rect.top, rect2.right + rect.right, rect2.bottom + rect.bottom);
+        ninePatchDrawable2.setAlpha(jl0Var.c);
+        ninePatchDrawable2.draw(canvas);
     }
 }

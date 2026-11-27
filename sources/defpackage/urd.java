@@ -1,17 +1,20 @@
 package defpackage;
-public final class urd implements zn7 {
-    public static final urd a = new Object();
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class urd {
+    public static final int a = 0;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)), 10)));
+        urd.class.getClassLoader();
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
         }
-        throw new ClassCastException();
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

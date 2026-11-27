@@ -1,95 +1,122 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-import org.telegram.ui.Wallet.c;
-public final class xo8 extends jr8 {
-    public final Drawable R;
-    public final Drawable S;
-    public final tgb T;
-    public tgb U;
-    public final Paint V;
-    public final Path W;
-    public float a0;
-    public final DecimalFormat b0;
+import android.text.Layout;
+public final class xo8 {
+    public byte a;
+    public final v41 b;
+    public final mm e;
+    public Drawable i;
+    public Drawable j;
+    public b29 k;
+    public pkb l;
+    public va6 r;
+    public boolean s;
+    public boolean t;
+    public int u;
+    public long w;
+    public short x;
+    public final ap8 y;
+    public final RectF c = new RectF();
+    public final RectF d = new RectF();
+    public final RectF f = new RectF();
+    public final RectF g = new RectF();
+    public final Rect h = new Rect();
+    public float m = 1.0f;
+    public boolean n = false;
+    public boolean o = false;
+    public boolean p = false;
+    public final float q = 1.0f;
+    public short v = 0;
 
-    public xo8(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.V = paint;
-        Path path = new Path();
-        this.W = path;
-        this.b0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
-        this.R = b00.d(context, 2131232585);
-        this.S = b00.d(context, 2131232586);
-        this.T = new tgb(k96.M0(2131744918, null).concat(":"), 11.0f, null);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(gl.N(1.16f));
-        path.moveTo(0.0f, -gl.N(3.33f));
-        path.lineTo(gl.N(3.16f), 0.0f);
-        path.lineTo(0.0f, gl.N(3.33f));
-        setBalance(0L);
+    public xo8(ap8 ap8Var, yo8 yo8Var) {
+        this.y = ap8Var;
+        this.b = new v41(ap8Var);
+        this.e = new mm(ap8Var, 0L, 250L, k43.f);
+        d(0, yo8Var.b, yo8Var.c);
+        c(ob6.M0(yo8Var.a, null));
     }
 
-    @Override
-    public final void b(Canvas canvas, float f) {
-        Drawable drawable;
-        float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-gl.L(20.0f)) * this.a0);
-        float f2 = f * 0.85f;
-        this.T.c(0.0f, height, f2, this.F, canvas);
-        canvas.translate(this.T.j() + gl.L(4.0f), 0.0f);
-        if (!this.G && this.H < 0.8f) {
-            drawable = this.R;
-        } else {
-            drawable = this.S;
-        }
-        int L = gl.L(13.0f);
-        int i = ((int) height) - (L / 2);
-        drawable.setBounds(0, i, L, i + L);
-        drawable.setAlpha((int) (255.0f * f));
-        drawable.draw(canvas);
-        canvas.translate(gl.L(2.0f) + L, 0.0f);
-        this.U.c(0.0f, height, f, this.F, canvas);
-        canvas.translate(gl.N(4.8f) + this.U.j(), height);
-        int p1 = bkb.p1(f2, this.F);
-        Paint paint = this.V;
-        paint.setColor(p1);
-        canvas.drawPath(this.W, paint);
-    }
-
-    @Override
-    public final float c(float f) {
-        tgb tgbVar = this.T;
-        tgbVar.p = -1.0f;
-        this.U.p = -1.0f;
-        float max = Math.max(0.0f, f - gl.L(43.0f));
-        tgbVar.p = Math.max(0.0f, max - this.U.j());
-        this.U.p = Math.max(0.0f, max - tgbVar.j());
-        return this.U.j() + tgbVar.j() + gl.L(27.0f);
-    }
-
-    public void setBalance(long j) {
-        String format = this.b0.format(new BigDecimal(c.t(j, false)));
-        this.U = new tgb(format, 11.0f, gl.o());
-        setContentDescription(k96.M0(2131744918, null) + ": " + format);
-        invalidate();
-    }
-
-    public void setEjectProgress(float f) {
-        if (this.a0 == f) {
+    public final void a() {
+        float e = this.e.e(false, 1.0f);
+        if (e != 1.0f) {
+            RectF rectF = this.g;
+            float f = rectF.left;
+            RectF rectF2 = this.f;
+            float R1 = hl.R1(f, rectF2.left, e);
+            RectF rectF3 = this.d;
+            rectF3.left = R1;
+            rectF3.right = hl.R1(rectF.right, rectF2.right, e);
             return;
         }
-        this.a0 = f;
-        invalidate();
+        this.n = false;
+        if (this.o) {
+            this.p = true;
+        }
+    }
+
+    public final float b() {
+        boolean z = this.o;
+        mm mmVar = this.e;
+        if (z) {
+            return 1.0f - mmVar.e(false, 1.0f);
+        }
+        if (!this.n) {
+            return 1.0f;
+        }
+        return mmVar.e(false, 1.0f);
+    }
+
+    public final void c(String str) {
+        pkb pkbVar = new pkb(str, 11.0f, hl.o());
+        pkbVar.l(3);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        pkbVar.a();
+        this.l = pkbVar;
+    }
+
+    public final void d(int i, int i2, int i3) {
+        Drawable drawable;
+        Drawable drawable2 = null;
+        ap8 ap8Var = this.y;
+        if (i != 0) {
+            b29 b29Var = new b29(i, hl.L(56.0f), hl.L(56.0f), false, null);
+            b29Var.M(ap8Var);
+            b29Var.start();
+            this.k = b29Var;
+        } else {
+            this.k = null;
+        }
+        if (i2 != 0) {
+            drawable = ap8Var.getResources().getDrawable(i2).mutate();
+        } else {
+            drawable = null;
+        }
+        this.i = drawable;
+        if (i3 != 0) {
+            drawable2 = ap8Var.getResources().getDrawable(i3).mutate();
+        }
+        this.j = drawable2;
+        b29 b29Var2 = this.k;
+        Rect rect = this.h;
+        if (b29Var2 != null) {
+            b29Var2.setBounds(rect);
+        }
+        Drawable drawable3 = this.i;
+        if (drawable3 != null) {
+            drawable3.setBounds(rect);
+        }
+        Drawable drawable4 = this.j;
+        if (drawable4 != null) {
+            drawable4.setBounds(rect);
+        }
+    }
+
+    public xo8(ap8 ap8Var) {
+        this.y = ap8Var;
+        this.b = new v41(ap8Var);
+        this.e = new mm(ap8Var, 0L, 250L, k43.f);
     }
 }

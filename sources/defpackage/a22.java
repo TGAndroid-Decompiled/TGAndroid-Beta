@@ -1,41 +1,33 @@
 package defpackage;
+public final class a22 implements fd, h22, nu4 {
+    public final j22 a;
 
-import j$.util.Objects;
-import org.telegram.tgnet.TLRPC;
-public final class a22 {
-    public final int a;
-    public final long b;
-
-    public a22(int i, long j) {
-        this.a = i;
-        this.b = j;
+    public a22(j22 j22Var) {
+        this.a = j22Var;
     }
 
-    public static a22 a(Object obj) {
-        if (obj instanceof nu2) {
-            return new a22(2, ((nu2) obj).a);
+    @Override
+    public final void e(boolean z) {
+        j22 j22Var = this.a;
+        if (!j22Var.O()) {
+            j22Var.K.d(0.0f);
         }
-        if (obj instanceof TLRPC.User) {
-            return new a22(1, ((TLRPC.User) obj).id);
-        }
-        return null;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && a22.class == obj.getClass()) {
-                a22 a22Var = (a22) obj;
-                if (this.b == a22Var.b && this.a == a22Var.a) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final Object h(Object obj) {
+        boolean z;
+        Void r1 = (Void) obj;
+        if (this.a.b.o3.getKeyboardHeight() >= hl.L(20.0f)) {
+            z = true;
+        } else {
+            z = false;
         }
-        return true;
+        return Boolean.valueOf(z);
     }
 
-    public final int hashCode() {
-        return Objects.hash(ug8.b(this.a), Long.valueOf(this.b));
+    @Override
+    public final void w(id idVar, int i) {
+        this.a.b.dismiss();
     }
 }

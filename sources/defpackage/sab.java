@@ -1,10 +1,20 @@
 package defpackage;
-public interface sab {
-    public static final cff B = new cff((byte) 26);
 
-    boolean h(fm4 fm4Var);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class sab extends AnimatorListenerAdapter {
+    public final byte a;
+    public final byte b;
+    public final rbb c;
 
-    uab r(fm4 fm4Var);
+    public sab(rbb rbbVar, int i, int i2) {
+        this.c = rbbVar;
+        this.a = i;
+        this.b = i2;
+    }
 
-    int y(fm4 fm4Var);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.c.L(this.a, this.b);
+    }
 }

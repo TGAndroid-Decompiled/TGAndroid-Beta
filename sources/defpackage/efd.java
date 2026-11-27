@@ -1,192 +1,71 @@
 package defpackage;
 
-import j$.util.List;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-import java.util.function.UnaryOperator;
-public abstract class efd extends ned implements List, RandomAccess, j$.util.List {
-    public static final sed b = new sed(nhd.e, 0);
+import android.text.TextUtils;
+import android.util.Log;
+import java.net.UnknownHostException;
+public abstract class efd {
+    public static final Object a = new Object();
 
-    public static nhd o(int i, Object[] objArr) {
-        if (i == 0) {
-            return nhd.e;
-        }
-        return new nhd(i, objArr);
-    }
-
-    public static efd p(List list) {
-        if (list instanceof ned) {
-            efd k = ((ned) list).k();
-            if (k.l()) {
-                Object[] array = k.toArray(ned.a);
-                return o(array.length, array);
-            }
-            return k;
-        }
-        Object[] array2 = list.toArray();
-        int length = array2.length;
-        s0f.a(length, array2);
-        return o(length, array2);
-    }
-
-    @Override
-    public final void add(int i, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(int i, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        Object next;
-        Object next2;
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i = 0; i < size; i++) {
-                            Object obj2 = get(i);
-                            Object obj3 = list.get(i);
-                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
-                            }
+    public static String a(String str, Throwable th) {
+        String replace;
+        if (th == null) {
+            replace = null;
+        } else {
+            synchronized (a) {
+                Throwable th2 = th;
+                while (true) {
+                    if (th2 != null) {
+                        if (th2 instanceof UnknownHostException) {
+                            replace = "UnknownHostException (no network)";
+                            break;
                         }
-                        return true;
-                    }
-                    sed listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
+                        th2 = th2.getCause();
+                    } else {
+                        replace = Log.getStackTraceString(th).trim().replace("\t", "    ");
+                        break;
                     }
                 }
             }
-            return false;
         }
-        return true;
-    }
-
-    @Override
-    public int h(Object[] objArr) {
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            objArr[i] = get(i);
+        if (!TextUtils.isEmpty(replace)) {
+            return str + "\n  " + replace.replace("\n", "\n  ") + '\n';
         }
-        return size;
+        return str;
     }
 
-    @Override
-    public final int hashCode() {
-        int size = size();
-        int i = 1;
-        for (int i2 = 0; i2 < size; i2++) {
-            i = (i * 31) + get(i2).hashCode();
+    public static void b(String str, String str2) {
+        synchronized (a) {
+            Log.d(str, a(str2, null));
         }
-        return i;
     }
 
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
+    public static void c(String str, String str2) {
+        synchronized (a) {
+            Log.e(str, a(str2, null));
         }
-        int size = size();
-        for (int i = 0; i < size; i++) {
-            if (obj.equals(get(i))) {
-                return i;
-            }
+    }
+
+    public static void d(String str, String str2, Throwable th) {
+        synchronized (a) {
+            Log.e(str, a(str2, th));
         }
-        return -1;
     }
 
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
+    public static void e(String str, String str2) {
+        synchronized (a) {
+            Log.i(str, a(str2, null));
         }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
+    }
+
+    public static void f(String str, String str2) {
+        synchronized (a) {
+            Log.w(str, a(str2, null));
         }
-        return -1;
     }
 
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public efd subList(int i, int i2) {
-        sze.c(i, i2, size());
-        int i3 = i2 - i;
-        if (i3 == size()) {
-            return this;
+    public static void g(String str, String str2, Throwable th) {
+        synchronized (a) {
+            Log.w(str, a(str2, th));
         }
-        if (i3 == 0) {
-            return nhd.e;
-        }
-        return new zed(this, i, i3);
-    }
-
-    @Override
-    public final sed listIterator(int i) {
-        sze.b(i, size());
-        if (isEmpty()) {
-            return b;
-        }
-        return new sed(this, i);
-    }
-
-    @Override
-    public final Object remove(int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void replaceAll(UnaryOperator unaryOperator) {
-        List.CC.$default$replaceAll(this, unaryOperator);
-    }
-
-    @Override
-    public final Object set(int i, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void sort(Comparator comparator) {
-        List.CC.$default$sort(this, comparator);
-    }
-
-    @Override
-    public final efd k() {
-        return this;
     }
 }

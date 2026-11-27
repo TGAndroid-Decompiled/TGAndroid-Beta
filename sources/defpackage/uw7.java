@@ -1,54 +1,79 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class uw7 implements TextWatcher {
-    public boolean a;
-    public final EditTextBoldCursor b;
-    public final String c;
-    public final vx7 d;
+import android.app.Activity;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class uw7 extends zu1 {
+    public final icc Jd;
+    public final dx7 Kd;
 
-    public uw7(vx7 vx7Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.d = vx7Var;
-        this.b = editTextBoldCursor;
-        this.c = str;
+    public uw7(dx7 dx7Var, icc iccVar) {
+        super(null);
+        this.Kd = dx7Var;
+        this.Jd = iccVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (this.a) {
+    public final boolean Y7() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final void b(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
+        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
+        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+            tL_mediaAreaGeoPoint2 = new TL_stories.TL_mediaAreaGeoPoint();
+            tL_mediaAreaGeoPoint2.geo = messageMedia.geo;
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
+            long j2 = tL_messageMediaVenue.query_id;
+            if (j2 != -1 && j2 != -2) {
+                TL_stories.TL_inputMediaAreaVenue tL_inputMediaAreaVenue = new TL_stories.TL_inputMediaAreaVenue();
+                tL_inputMediaAreaVenue.query_id = tL_messageMediaVenue.query_id;
+                tL_inputMediaAreaVenue.result_id = tL_messageMediaVenue.result_id;
+                tL_mediaAreaGeoPoint = tL_inputMediaAreaVenue;
+            } else {
+                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
+                tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
+                TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
+                tL_mediaAreaGeoPoint3.address = tL_geoPointAddress;
+                if (tL_geoPointAddress != null) {
+                    tL_mediaAreaGeoPoint3.flags |= 1;
+                }
+                Utilities.e.c(new pl7(messageMedia, tL_mediaAreaGeoPoint3, (byte) 13));
+                tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
+            }
+            tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
+        } else {
             return;
         }
-        boolean z = true;
-        this.a = true;
-        int i = 0;
-        while (true) {
-            if (i < editable.length()) {
-                char charAt = editable.charAt(i);
-                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
-                    break;
-                }
-                i++;
-            } else {
-                z = false;
-                break;
-            }
-        }
-        this.a = false;
-        EditTextBoldCursor editTextBoldCursor = this.b;
-        if (z) {
-            editTextBoldCursor.setErrorText(k96.M0(2131747256, null));
-        } else {
-            this.d.O0(editTextBoldCursor, this.c, editable, false);
-        }
+        this.Jd.a(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public final Activity getParentActivity() {
+        return hl.W(this.Kd.getContext());
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public final vnb getResourceProvider() {
+        return this.Kd.q1;
+    }
+
+    @Override
+    public final TLRPC.User h() {
+        return yac.h(this.currentAccount).f();
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
     }
 }

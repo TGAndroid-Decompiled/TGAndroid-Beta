@@ -1,10 +1,19 @@
 package defpackage;
-public final class fgf extends y4f {
-    public final boolean i(Object obj) {
-        if (y4f.f.d(this, null, y4f.h)) {
-            y4f.d(this);
-            return true;
-        }
-        return false;
+
+import java.util.concurrent.Executor;
+public final class fgf {
+    public static final fgf d = new fgf();
+    public final Runnable a;
+    public final Executor b;
+    public fgf c;
+
+    public fgf() {
+        this.a = null;
+        this.b = null;
+    }
+
+    public fgf(Runnable runnable, Executor executor) {
+        this.a = runnable;
+        this.b = executor;
     }
 }

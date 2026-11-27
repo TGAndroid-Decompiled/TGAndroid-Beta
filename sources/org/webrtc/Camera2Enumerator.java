@@ -2,11 +2,11 @@ package org.webrtc;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
+import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.SystemClock;
-import android.util.AndroidException;
 import android.util.Range;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,8 +49,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     private CameraCharacteristics getCameraCharacteristics(String str) {
         try {
             return this.cameraManager.getCameraCharacteristics(str);
-        } catch (AndroidException e) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
+        } catch (CameraAccessException | RuntimeException e) {
+            Logging.e("Camera2Enumerator", "Camera access exception", e);
             return null;
         }
     }
@@ -122,8 +122,8 @@ public class Camera2Enumerator implements CameraEnumerator {
                 }
             }
             return true;
-        } catch (Throwable th) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + th);
+        } catch (CameraAccessException | RuntimeException e) {
+            Logging.e("Camera2Enumerator", "Failed to check if camera2 is supported", e);
             return false;
         }
     }
@@ -137,8 +137,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     public String[] getDeviceNames() {
         try {
             return this.cameraManager.getCameraIdList();
-        } catch (AndroidException e) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
+        } catch (CameraAccessException e) {
+            Logging.e("Camera2Enumerator", "Camera access exception", e);
             return new String[0];
         }
     }

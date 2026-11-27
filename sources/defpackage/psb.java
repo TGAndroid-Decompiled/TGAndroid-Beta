@@ -1,26 +1,27 @@
 package defpackage;
-public enum psb extends qsb {
-    public psb() {
-        super("EndTagOpen", 8);
+public class psb {
+    public final String c;
+    public int d;
+    public final qsb e;
+    public long b = -1;
+    public final long a = System.currentTimeMillis();
+
+    public psb(qsb qsbVar, String str) {
+        this.e = qsbVar;
+        this.c = str;
+        qsbVar.a++;
     }
 
-    @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        boolean j = zj1Var.j();
-        lqb lqbVar = qsb.a;
-        if (j) {
-            aqbVar.l(this);
-            aqbVar.h("</");
-            aqbVar.c = lqbVar;
-        } else if (zj1Var.o()) {
-            aqbVar.d(false);
-            aqbVar.c = qsb.r;
-        } else if (zj1Var.m('>')) {
-            aqbVar.m(this);
-            aqbVar.a(lqbVar);
+    public String toString() {
+        String p;
+        StringBuilder sb = new StringBuilder(this.c);
+        sb.append(": ");
+        if (this.b < 0) {
+            p = "not done";
         } else {
-            aqbVar.m(this);
-            aqbVar.a(qsb.g0);
+            p = qu6.p(new StringBuilder(), this.b - this.a, "ms");
         }
+        sb.append(p);
+        return sb.toString();
     }
 }

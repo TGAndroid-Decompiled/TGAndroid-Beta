@@ -1,8 +1,17 @@
 package defpackage;
-public final class zn4 {
-    public final go4 a;
 
-    public zn4(go4 go4Var) {
-        this.a = go4Var;
+import android.graphics.Typeface;
+public final class zn4 {
+    public final Typeface a;
+    public final int b;
+
+    public zn4(int i) {
+        this.a = null;
+        this.b = i;
+    }
+
+    public zn4(Typeface typeface) {
+        this.a = typeface;
+        this.b = 0;
     }
 }

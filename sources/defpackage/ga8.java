@@ -1,32 +1,30 @@
 package defpackage;
-public final class ga8 implements Runnable {
-    public final byte a;
-    public final ja8 b;
 
-    public ga8(ja8 ja8Var, byte b) {
+import android.graphics.drawable.Drawable;
+import android.text.style.ClickableSpan;
+import android.widget.TextView;
+import org.telegram.ui.PhotoViewer;
+public final class ga8 implements icc {
+    public final byte a;
+    public final PhotoViewer b;
+
+    public ga8(PhotoViewer photoViewer, byte b) {
         this.a = b;
-        this.b = ja8Var;
+        this.b = photoViewer;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj, Object obj2) {
         byte b = this.a;
-        ja8 ja8Var = this.b;
+        PhotoViewer photoViewer = this.b;
         switch (b) {
             case 0:
-                ja8Var.d.a(false);
+                Drawable[] drawableArr = PhotoViewer.d9;
+                photoViewer.b1((ClickableSpan) obj, (TextView) obj2);
                 return;
             default:
-                Runnable runnable = ja8Var.I;
-                ja8Var.I = null;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                Runnable runnable2 = ja8Var.J;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
+                Drawable[] drawableArr2 = PhotoViewer.d9;
+                photoViewer.x(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
                 return;
         }
     }

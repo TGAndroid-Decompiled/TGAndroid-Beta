@@ -1,17 +1,12 @@
 package defpackage;
-public final class ehe implements zn7 {
-    public static final ehe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+import java.util.Date;
+public abstract class ehe {
+    public static long a(Date date) {
+        return (date.getTime() / 1000) + 2082844800;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public static Date b(long j) {
+        return new Date((j - 2082844800) * 1000);
     }
 }

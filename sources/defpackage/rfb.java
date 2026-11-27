@@ -1,11 +1,41 @@
 package defpackage;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class rfb extends ViewOutlineProvider {
+import android.view.MenuItem;
+import java.lang.reflect.Method;
+public final class rfb implements MenuItem.OnMenuItemClickListener {
+    public static final Class[] d = {MenuItem.class};
+    public final byte a = 0;
+    public Object b;
+    public Object c;
+
+    public rfb(n27 n27Var, MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
+        this.c = n27Var;
+        this.b = onMenuItemClickListener;
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), gl.L(16.0f));
+    public final boolean onMenuItemClick(MenuItem menuItem) {
+        switch (this.a) {
+            case 0:
+                Object obj = this.b;
+                Method method = (Method) this.c;
+                boolean z = false;
+                try {
+                    if (method.getReturnType() == Boolean.TYPE) {
+                        z = ((Boolean) method.invoke(obj, menuItem)).booleanValue();
+                    } else {
+                        method.invoke(obj, menuItem);
+                        z = true;
+                    }
+                } catch (Exception e) {
+                    grb.m(e);
+                }
+                return z;
+            default:
+                return ((MenuItem.OnMenuItemClickListener) this.b).onMenuItemClick(((n27) this.c).f(menuItem));
+        }
+    }
+
+    public rfb() {
     }
 }

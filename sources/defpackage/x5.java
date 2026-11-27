@@ -2,179 +2,129 @@ package defpackage;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.ActionBarLayout;
+import java.util.ArrayList;
 import org.telegram.ui.ActionBar.a;
 public final class x5 extends AnimatorListenerAdapter {
-    public final byte a;
-    public boolean b;
+    public final byte a = 0;
+    public final boolean b;
     public final boolean c;
     public final Object d;
+    public final KeyEvent.Callback e;
 
-    public x5(u0b u0bVar, int i, boolean z) {
-        this.a = (byte) 5;
-        this.d = u0bVar;
-        this.b = i;
-        this.c = z;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        byte b = this.a;
-        Object obj = this.d;
-        switch (b) {
-            case 1:
-                this.b = true;
-                ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                actionBarLayout.k1 = false;
-                actionBarLayout.s.setAlpha(1.0f);
-                actionBarLayout.O(true);
-                actionBarLayout.o1 = null;
-                return;
-            case 2:
-            default:
-                super.onAnimationCancel(animator);
-                return;
-            case 3:
-                x02 x02Var = (x02) obj;
-                if (animator.equals(x02Var.J2)) {
-                    x02Var.J2 = null;
-                    return;
-                }
-                return;
-            case 4:
-                AnimatorSet[] animatorSetArr = ((mf6) obj).L;
-                int i = !this.b ? 1 : 0;
-                AnimatorSet animatorSet = animatorSetArr[i];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[i] = null;
-                    return;
-                }
-                return;
-            case 5:
-                AnimatorSet[] animatorSetArr2 = ((u0b) obj).C1;
-                boolean z = this.b;
-                AnimatorSet animatorSet2 = animatorSetArr2[z ? 1 : 0];
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    animatorSetArr2[z ? 1 : 0] = null;
-                    return;
-                }
-                return;
-        }
+    public x5(a aVar, ArrayList arrayList, boolean z, boolean z2) {
+        this.e = aVar;
+        this.d = arrayList;
+        this.b = z;
+        this.c = z2;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        p02 p02Var;
+        float f;
+        tx1 tx1Var;
+        wb2 wb2Var;
+        ViewGroup viewGroup;
+        h67 h67Var;
         byte b = this.a;
-        int i = 8;
-        float f = 1.0f;
         boolean z = this.c;
+        boolean z2 = this.b;
+        KeyEvent.Callback callback = this.e;
         Object obj = this.d;
         switch (b) {
             case 0:
-                a aVar = (a) obj;
-                jia[] jiaVarArr = aVar.n;
-                jia jiaVar = jiaVarArr[1];
-                if (jiaVar != null && jiaVar.getParent() != null) {
-                    ((ViewGroup) jiaVarArr[1].getParent()).removeView(jiaVarArr[1]);
-                }
-                jiaVarArr[1] = null;
-                aVar.y0 = false;
-                if (this.b && z) {
-                    aVar.r.setVisibility(8);
-                }
-                aVar.requestLayout();
-                return;
-            case 1:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                if (!this.b) {
-                    actionBarLayout.k1 = false;
-                    actionBarLayout.s.setAlpha(1.0f);
-                    actionBarLayout.O(z);
-                    actionBarLayout.o1 = null;
-                    return;
-                }
-                return;
-            case 2:
-                mb0 mb0Var = (mb0) obj;
-                mb0Var.H = null;
-                boolean z2 = this.b;
-                if (!z2) {
-                    f = 0.0f;
-                }
-                mb0Var.m0(false, f);
-                if (z) {
-                    db0 db0Var = mb0Var.a;
-                    db0Var.x = -1.0f;
-                    db0Var.setExpanded(z2);
-                    return;
-                }
-                return;
-            case 3:
-                boolean z3 = this.b;
-                x02 x02Var = (x02) obj;
-                if (animator.equals(x02Var.J2)) {
-                    if (!z3) {
-                        if (!x02Var.H1) {
-                            x02Var.A2.setVisibility(4);
-                        }
-                        x02Var.E2.setVisibility(4);
-                    } else if (x02Var.P2 && ((p02Var = x02Var.v2) == null || p02Var.N())) {
-                        x02Var.u3.setVisibility(4);
+                ArrayList arrayList = (ArrayList) obj;
+                a aVar = (a) callback;
+                ema[] emaVarArr = aVar.n;
+                for (int i = 0; i < arrayList.size(); i++) {
+                    View view = (View) arrayList.get(i);
+                    if (z2) {
+                        view.setVisibility(4);
+                        view.setAlpha(0.0f);
+                    } else {
+                        view.setAlpha(1.0f);
                     }
-                    if (z) {
-                        x02Var.L1();
-                        st stVar = x02Var.L2;
-                        if (z3) {
-                            i = 0;
-                        }
-                        stVar.setVisibility(i);
-                    }
-                    x02Var.J2 = null;
-                    return;
                 }
-                return;
-            case 4:
-                mf6 mf6Var = (mf6) obj;
-                AnimatorSet[] animatorSetArr = mf6Var.L;
-                boolean z4 = this.b;
-                AnimatorSet animatorSet = animatorSetArr[!z4 ? 1 : 0];
-                if (animatorSet != null && animatorSet.equals(animator) && !z && z4 && mf6Var.N.getAlpha() != 1.0f) {
-                    mf6Var.N.setAlpha(1.0f);
-                    mf6Var.N.setScaleX(1.0f);
-                    mf6Var.N.setScaleY(1.0f);
-                    mf6Var.N.setVisibility(0);
+                if (z2 && !z) {
+                    ema emaVar = emaVarArr[0];
+                    if (emaVar != null) {
+                        emaVar.setVisibility(8);
+                    }
+                    ema emaVar2 = emaVarArr[1];
+                    if (emaVar2 != null) {
+                        emaVar2.setVisibility(8);
+                    }
+                }
+                de0 de0Var = aVar.f;
+                if (de0Var != null && !z2) {
+                    de0Var.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                u0b u0bVar = (u0b) obj;
-                AnimatorSet[] animatorSetArr2 = u0bVar.C1;
-                boolean z5 = this.b;
-                AnimatorSet animatorSet2 = animatorSetArr2[z5 ? 1 : 0];
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!z) {
-                        u0bVar.D1[z5 ? 1 : 0].setVisibility(4);
+                Runnable runnable = (Runnable) obj;
+                q67 q67Var = (q67) callback;
+                m67 m67Var = q67Var.K;
+                if (z2) {
+                    f = 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+                q67Var.E = f;
+                q67Var.x = false;
+                q67Var.y = false;
+                q67Var.H.setAlpha(f);
+                if (z2) {
+                    q67Var.w = false;
+                    q67Var.s = false;
+                }
+                tx1 tx1Var2 = q67Var.S;
+                if (tx1Var2 != null) {
+                    tx1Var2.setAlpha(1.0f);
+                }
+                vh4 vh4Var = q67Var.m0;
+                if (vh4Var != null && !z2) {
+                    vh4Var.I(false);
+                }
+                wb2 wb2Var2 = q67Var.v0;
+                if (wb2Var2 != null) {
+                    wb2Var2.setVisibility(0);
+                }
+                if (!q67Var.r) {
+                    q67Var.o(false, 1.0f);
+                }
+                if (!z2 && (h67Var = q67Var.X) != null) {
+                    h67Var.setAlpha(0.0f);
+                }
+                if (!z && (viewGroup = q67Var.Z) != null) {
+                    viewGroup.setAlpha(q67Var.E);
+                }
+                m67Var.invalidate();
+                m67Var.setAlpha(q67Var.E);
+                q67Var.F.invalidate();
+                q67Var.G.invalidate();
+                if (runnable != null) {
+                    if (!z2 && (wb2Var = q67Var.v0) != null && wb2Var.isAttachedToWindow()) {
+                        q67Var.v0.post(runnable);
+                        return;
+                    } else if (!z2 && (tx1Var = q67Var.S) != null && tx1Var.isAttachedToWindow()) {
+                        q67Var.S.post(runnable);
+                        return;
+                    } else {
+                        hl.c3(runnable);
+                        return;
                     }
-                    animatorSetArr2[z5 ? 1 : 0] = null;
-                    return;
                 }
                 return;
         }
     }
 
-    public x5(ActionBarLayout actionBarLayout, boolean z) {
-        this.a = (byte) 1;
-        this.d = actionBarLayout;
-        this.c = z;
-    }
-
-    public x5(Object obj, boolean z, boolean z2, byte b) {
-        this.a = b;
-        this.d = obj;
+    public x5(q67 q67Var, boolean z, boolean z2, Runnable runnable) {
+        this.e = q67Var;
         this.b = z;
         this.c = z2;
+        this.d = runnable;
     }
 }

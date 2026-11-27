@@ -1,20 +1,17 @@
 package defpackage;
-public abstract class c9e {
-    public static final void a(sw2 sw2Var, Throwable th) {
-        try {
-            dk dkVar = (dk) sw2Var.get(pd5.b);
-            if (dkVar != null) {
-                dkVar.c(th);
-            } else {
-                w8e.a(sw2Var, th);
-            }
-        } catch (Throwable th2) {
-            if (th != th2) {
-                RuntimeException runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th2);
-                tfe.a(runtimeException, th);
-                th = runtimeException;
-            }
-            w8e.a(sw2Var, th);
+public final class c9e implements zq7 {
+    public static final c9e a = new Object();
+
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

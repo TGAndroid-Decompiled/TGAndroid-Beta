@@ -1,60 +1,14 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-public class mr extends ImageView {
-    public Drawable a;
-    public final Path b;
-    public int c;
-    public int d;
-
-    public mr(Context context) {
-        super(context);
-        this.b = new Path();
-        this.c = gl.L(5.0f);
-        this.d = gl.L(42.0f);
+import android.util.DisplayMetrics;
+public final class mr extends y46 {
+    @Override
+    public final int i(int i, int i2, int i3, int i4, int i5) {
+        return hl.L(16.0f) + (i3 - i);
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.b);
-        canvas.scale((this.d / getWidth()) + 1.0f, (this.d / getHeight()) + 1.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-        super.draw(canvas);
-        canvas.restore();
-        Drawable drawable = this.a;
-        if (drawable != null) {
-            int i = this.c;
-            drawable.setBounds(-i, -i, getWidth() + this.c, getHeight() + this.c);
-            this.a.draw(canvas);
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        Path path = this.b;
-        path.rewind();
-        path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f, Path.Direction.CW);
-    }
-
-    public void setBackgroundOuterPadding(int i) {
-        this.d = i;
-    }
-
-    public void setForeground(int i) {
-        this.a = getContext().getDrawable(i);
-        invalidate();
-    }
-
-    public void setOuterPadding(int i) {
-        this.c = i;
-    }
-
-    public void setPadding(int i) {
-        setPadding(i, i, i, i);
+    public final float l(DisplayMetrics displayMetrics) {
+        return super.l(displayMetrics) * 3.0f;
     }
 }

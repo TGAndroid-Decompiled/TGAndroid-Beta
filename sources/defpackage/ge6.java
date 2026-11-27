@@ -1,25 +1,19 @@
 package defpackage;
-public final class ge6 implements ed {
-    public final byte a;
-    public final qe6 b;
 
-    public ge6(qe6 qe6Var, byte b) {
-        this.a = b;
-        this.b = qe6Var;
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        qe6 qe6Var = this.b;
-        switch (b) {
-            case 0:
-                qe6Var.d(true);
-                qe6Var.v0.I1(0, true, null, true);
-                return;
-            default:
-                qe6Var.v0.I1(0, true, null, true);
-                return;
+import java.util.logging.Logger;
+public abstract class ge6 {
+    public static ge6 a(Class cls) {
+        if (System.getProperty("java.vm.name").equalsIgnoreCase("Dalvik")) {
+            String simpleName = cls.getSimpleName();
+            fk fkVar = new fk((byte) 0);
+            fkVar.b = simpleName;
+            return fkVar;
         }
+        String simpleName2 = cls.getSimpleName();
+        fk fkVar2 = new fk((byte) 1);
+        fkVar2.b = Logger.getLogger(simpleName2);
+        return fkVar2;
     }
+
+    public abstract void b(String str);
 }

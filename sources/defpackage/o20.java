@@ -1,10 +1,13 @@
 package defpackage;
-public final class o20 extends Exception {
-    public o20(String str, l20 l20Var) {
-        super(str + " " + l20Var);
-    }
+public final class o20 {
+    public static final o20 d = new n20().a();
+    public final long a;
+    public final asb b;
+    public final Object c;
 
-    public o20(l20 l20Var) {
-        this("Unhandled input format:", l20Var);
+    public o20(n20 n20Var) {
+        this.a = n20Var.a;
+        this.b = (asb) n20Var.b;
+        this.c = n20Var.c;
     }
 }

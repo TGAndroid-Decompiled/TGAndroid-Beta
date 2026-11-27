@@ -1,138 +1,49 @@
 package defpackage;
+public final class ai7 implements sf7 {
+    public final long a;
+    public final long b;
+    public final long c;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-public final class ai7 {
-    public final yg2 a;
-    public final OutputStream b;
-    public final BufferedInputStream c;
-    public int d;
-    public int e;
-    public String f;
-    public int g;
-    public HashMap h;
-    public final HashMap i;
-    public zh7 j;
-    public final String k;
-    public String l;
-    public final ei7 m;
-
-    public ai7(ei7 ei7Var, yg2 yg2Var, InputStream inputStream, OutputStream outputStream, InetAddress inetAddress) {
-        String str;
-        this.m = ei7Var;
-        this.a = yg2Var;
-        this.c = new BufferedInputStream(inputStream, 8192);
-        this.b = outputStream;
-        if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
-            str = inetAddress.getHostAddress().toString();
-        } else {
-            str = "127.0.0.1";
-        }
-        this.k = str;
-        if (!inetAddress.isLoopbackAddress() && !inetAddress.isAnyLocalAddress()) {
-            inetAddress.getHostName().getClass();
-        }
-        this.i = new HashMap();
+    public ai7(long j, long j2, long j3) {
+        this.a = j;
+        this.b = j2;
+        this.c = j3;
     }
 
-    public static void b(String str, HashMap hashMap) {
-        String trim;
-        String str2;
-        StringTokenizer stringTokenizer = new StringTokenizer(str, "&");
-        while (stringTokenizer.hasMoreTokens()) {
-            String nextToken = stringTokenizer.nextToken();
-            int indexOf = nextToken.indexOf(61);
-            if (indexOf >= 0) {
-                trim = ei7.a(nextToken.substring(0, indexOf)).trim();
-                str2 = ei7.a(nextToken.substring(indexOf + 1));
-            } else {
-                trim = ei7.a(nextToken).trim();
-                str2 = "";
-            }
-            List list = (List) hashMap.get(trim);
-            if (list == null) {
-                list = new ArrayList();
-                hashMap.put(trim, list);
-            }
-            list.add(str2);
-        }
+    @Override
+    public final ko4 a() {
+        return null;
     }
 
-    public static int d(int i, byte[] bArr) {
-        int i2;
-        int i3 = 0;
-        while (true) {
-            int i4 = i3 + 1;
-            if (i4 >= i) {
-                return 0;
-            }
-            byte b = bArr[i3];
-            if (b == 13 && bArr[i4] == 10 && (i2 = i3 + 3) < i && bArr[i3 + 2] == 13 && bArr[i2] == 10) {
-                return i3 + 4;
-            }
-            if (b == 10 && bArr[i4] == 10) {
-                return i3 + 2;
-            }
-            i3 = i4;
-        }
+    @Override
+    public final byte[] c() {
+        return null;
     }
 
-    public final void a(BufferedReader bufferedReader, HashMap hashMap, HashMap hashMap2, HashMap hashMap3) {
-        String a;
-        try {
-            String readLine = bufferedReader.readLine();
-            if (readLine == null) {
-                return;
-            }
-            StringTokenizer stringTokenizer = new StringTokenizer(readLine);
-            if (stringTokenizer.hasMoreTokens()) {
-                hashMap.put("method", stringTokenizer.nextToken());
-                if (stringTokenizer.hasMoreTokens()) {
-                    String nextToken = stringTokenizer.nextToken();
-                    int indexOf = nextToken.indexOf(63);
-                    if (indexOf >= 0) {
-                        b(nextToken.substring(indexOf + 1), hashMap2);
-                        a = ei7.a(nextToken.substring(0, indexOf));
-                    } else {
-                        a = ei7.a(nextToken);
-                    }
-                    if (stringTokenizer.hasMoreTokens()) {
-                        this.l = stringTokenizer.nextToken();
-                    } else {
-                        this.l = "HTTP/1.1";
-                        ei7.d.log(Level.FINE, "no protocol version specified, strange. Assuming HTTP/1.1.");
-                    }
-                    String readLine2 = bufferedReader.readLine();
-                    while (readLine2 != null && !readLine2.trim().isEmpty()) {
-                        int indexOf2 = readLine2.indexOf(58);
-                        if (indexOf2 >= 0) {
-                            hashMap3.put(readLine2.substring(0, indexOf2).trim().toLowerCase(Locale.US), readLine2.substring(indexOf2 + 1).trim());
-                        }
-                        readLine2 = bufferedReader.readLine();
-                    }
-                    hashMap.put("uri", a);
-                    return;
-                }
-                throw new di7("BAD REQUEST: Missing URI. Usage: GET /example/file.html");
-            }
-            throw new di7("BAD REQUEST: Syntax error. Usage: GET /example/file.html");
-        } catch (IOException e) {
-            String message = e.getMessage();
-            throw new di7("SERVER INTERNAL ERROR: IOException: " + message, e);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof ai7)) {
+            return false;
+        }
+        ai7 ai7Var = (ai7) obj;
+        if (this.a == ai7Var.a && this.b == ai7Var.b && this.c == ai7Var.c) {
+            return true;
+        }
+        return false;
     }
 
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ai7.c():void");
+    public final int hashCode() {
+        int b = tse.b(this.b);
+        return tse.b(this.c) + ((b + ((tse.b(this.a) + 527) * 31)) * 31);
+    }
+
+    public final String toString() {
+        return "Mp4Timestamp: creation time=" + this.a + ", modification time=" + this.b + ", timescale=" + this.c;
+    }
+
+    @Override
+    public final void b(lt6 lt6Var) {
     }
 }

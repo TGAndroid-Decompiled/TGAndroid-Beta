@@ -1,55 +1,20 @@
 package defpackage;
-public abstract class hg8 implements bg8 {
-    public static final dg8 a;
-    public static final hg8[] b;
 
-    static {
-        dg8 dg8Var = new dg8();
-        a = dg8Var;
-        b = new hg8[]{dg8Var, new hg8() {
-            @Override
-            public final boolean apply(Object obj) {
-                return false;
-            }
+import android.media.metrics.LogSessionId;
+public final class hg8 {
+    public LogSessionId a;
 
-            @Override
-            public final String toString() {
-                return "Predicates.alwaysFalse()";
-            }
-        }, new hg8() {
-            @Override
-            public final boolean apply(Object obj) {
-                if (obj == null) {
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public final String toString() {
-                return "Predicates.isNull()";
-            }
-        }, new hg8() {
-            @Override
-            public final boolean apply(Object obj) {
-                if (obj != null) {
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public final String toString() {
-                return "Predicates.notNull()";
-            }
-        }};
+    public hg8() {
+        LogSessionId logSessionId;
+        logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
+        this.a = logSessionId;
     }
 
-    public static hg8 valueOf(String str) {
-        return (hg8) Enum.valueOf(hg8.class, str);
-    }
-
-    public static hg8[] values() {
-        return (hg8[]) b.clone();
+    public final void a(LogSessionId logSessionId) {
+        LogSessionId logSessionId2;
+        LogSessionId logSessionId3 = this.a;
+        logSessionId2 = LogSessionId.LOG_SESSION_ID_NONE;
+        yve.p(logSessionId3.equals(logSessionId2));
+        this.a = logSessionId;
     }
 }

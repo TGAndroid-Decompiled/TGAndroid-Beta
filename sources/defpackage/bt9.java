@@ -1,3 +1,3 @@
 package defpackage;
-public interface bt9 {
+public final class bt9 extends b2 {
 }

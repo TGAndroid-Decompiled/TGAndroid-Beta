@@ -1,17 +1,15 @@
 package defpackage;
-public final class zrd implements zn7 {
-    public static final zrd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, new d6d(1)));
-    }
+import java.lang.ref.PhantomReference;
+import java.lang.ref.ReferenceQueue;
+import java.util.Set;
+public final class zrd extends PhantomReference {
+    public final Set a;
+    public final tv b;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public zrd(pi2 pi2Var, ReferenceQueue referenceQueue, Set set, tv tvVar) {
+        super(pi2Var, referenceQueue);
+        this.a = set;
+        this.b = tvVar;
     }
 }

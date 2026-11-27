@@ -1,77 +1,51 @@
 package defpackage;
 
-import java.io.File;
+import android.content.Context;
+import android.view.View;
+import j$.util.Objects;
 import java.util.ArrayList;
-import org.telegram.messenger.a;
-public final class s94 implements Runnable {
-    public final byte a = 1;
-    public final int b;
-    public final ArrayList c;
+public final class s94 extends a8c {
+    public static final int b = 0;
 
-    public s94(int i, ArrayList arrayList) {
-        this.b = i;
-        this.c = arrayList;
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                ArrayList arrayList = this.c;
-                int i = this.b;
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    File file = (File) arrayList.get(i2);
-                    File file2 = new File(file.getAbsolutePath() + ".enc");
-                    if (file2.exists()) {
-                        try {
-                            if (!file2.delete()) {
-                                file2.deleteOnExit();
-                            }
-                        } catch (Exception e) {
-                            fa4.g(e, true);
-                        }
-                        try {
-                            File cacheDir = a.b.getCacheDir();
-                            File file3 = new File(cacheDir, file.getName() + ".enc.key");
-                            if (!file3.delete()) {
-                                file3.deleteOnExit();
-                            }
-                        } catch (Exception e2) {
-                            fa4.g(e2, true);
-                        }
-                    } else if (file.exists()) {
-                        try {
-                            if (!file.delete()) {
-                                file.deleteOnExit();
-                            }
-                        } catch (Exception e3) {
-                            fa4.g(e3, true);
-                        }
-                    }
-                    try {
-                        File parentFile = file.getParentFile();
-                        File file4 = new File(parentFile, "q_" + file.getName());
-                        if (file4.exists() && !file4.delete()) {
-                            file4.deleteOnExit();
-                        }
-                    } catch (Exception e4) {
-                        fa4.g(e4, true);
-                    }
-                }
-                if (i == 2) {
-                    fl5.z().f();
-                    return;
-                }
-                return;
-            default:
-                int i3 = this.b;
-                na7.q1(i3).b4(this.c, true);
-                return;
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        t94 t94Var;
+        v94 v94Var = (v94) view;
+        v94Var.P = z;
+        if (q9cVar instanceof t94) {
+            t94Var = (t94) q9cVar;
+        } else {
+            t94Var = null;
         }
+        v94Var.setHost(t94Var);
+        v94Var.o(false, 0.0f);
+        v94Var.setScrimHidden(false);
+        v94Var.m((r47) b8cVar.H, (ArrayList) b8cVar.I);
+        v94Var.invalidate();
     }
 
-    public s94(ArrayList arrayList, int i) {
-        this.c = arrayList;
-        this.b = i;
+    @Override
+    public final boolean c(b8c b8cVar, b8c b8cVar2) {
+        if (b8cVar.H == b8cVar2.H && Objects.equals(b8cVar.I, b8cVar2.I) && b8cVar.j == b8cVar2.j) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new v94(i, vnbVar, context);
+    }
+
+    @Override
+    public final boolean e(b8c b8cVar, b8c b8cVar2) {
+        if (b8cVar.d == b8cVar2.d && b8cVar.C == b8cVar2.C) {
+            return true;
+        }
+        return false;
     }
 }

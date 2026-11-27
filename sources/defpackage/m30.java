@@ -1,33 +1,37 @@
 package defpackage;
 public final class m30 implements Runnable {
     public final byte a;
-    public final tg2 b;
-    public final pd5 c;
+    public final int b;
+    public final long c;
+    public final long d;
+    public final Object e;
 
-    public m30(tg2 tg2Var, pd5 pd5Var, byte b) {
-        this.a = b;
-        this.b = tg2Var;
-        this.c = pd5Var;
+    public m30(int i, long j, long j2, String str) {
+        this.a = (byte) 2;
+        this.b = i;
+        this.e = str;
+        this.c = j;
+        this.d = j2;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        pd5 pd5Var = this.c;
-        tg2 tg2Var = this.b;
-        switch (b) {
-            case 0:
-                String str = g8c.a;
-                l93 l93Var = ((t54) ((o30) tg2Var.c)).a.s;
-                tj U = l93Var.U();
-                l93Var.V(U, 1032, new i93(U, pd5Var, (byte) 29));
-                return;
-            default:
-                String str2 = g8c.a;
-                l93 l93Var2 = ((t54) ((o30) tg2Var.c)).a.s;
-                tj U2 = l93Var2.U();
-                l93Var2.V(U2, 1031, new i93(U2, pd5Var, (byte) 12));
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m30.run():void");
+    }
+
+    public m30(rf0 rf0Var, long j, long j2, int i, byte b) {
+        this.a = b;
+        this.e = rf0Var;
+        this.c = j;
+        this.d = j2;
+        this.b = i;
+    }
+
+    public m30(Object obj, int i, long j, long j2, byte b) {
+        this.a = b;
+        this.e = obj;
+        this.b = i;
+        this.c = j;
+        this.d = j2;
     }
 }

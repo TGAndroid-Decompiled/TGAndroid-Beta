@@ -1,7 +1,12 @@
 package defpackage;
-public final class opb extends ppb {
+
+import android.view.MotionEvent;
+public final class opb extends ena {
     @Override
-    public final String toString() {
-        return b00.j(new StringBuilder("<![CDATA["), this.e, "]]>");
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

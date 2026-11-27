@@ -1,17 +1,9 @@
 package defpackage;
-public final class ewe implements zn7 {
-    public static final ewe a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class ewe {
+    public static void a(Object obj, String str) {
+        if (obj != null) {
+            return;
         }
-        throw new ClassCastException();
+        p3d.h(str);
     }
 }

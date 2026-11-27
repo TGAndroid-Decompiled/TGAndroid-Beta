@@ -1,34 +1,36 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class v1d {
-    public final go a;
-    public final f84 b;
+import android.view.animation.Interpolator;
+public abstract class v1d {
+    public final int a;
+    public float b;
+    public final Interpolator c;
+    public final short d;
 
-    public v1d(go goVar, f84 f84Var) {
-        this.a = goVar;
-        this.b = f84Var;
+    public v1d(int i, Interpolator interpolator, long j) {
+        this.a = i;
+        this.c = interpolator;
+        this.d = (int) j;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof v1d) {
-            v1d v1dVar = (v1d) obj;
-            if (cqe.a(this.a, v1dVar.a) && cqe.a(this.b, v1dVar.b)) {
-                return true;
-            }
-            return false;
+    public long a() {
+        return this.d;
+    }
+
+    public float b() {
+        float f = this.b;
+        Interpolator interpolator = this.c;
+        if (interpolator != null) {
+            return interpolator.getInterpolation(f);
         }
-        return false;
+        return f;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b});
+    public int c() {
+        return this.a;
     }
 
-    public final String toString() {
-        wk4 wk4Var = new wk4(this);
-        wk4Var.a(this.a, "key");
-        wk4Var.a(this.b, "feature");
-        return wk4Var.toString();
+    public void d(float f) {
+        this.b = f;
     }
 }

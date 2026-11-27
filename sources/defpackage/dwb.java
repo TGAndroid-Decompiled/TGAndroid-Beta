@@ -1,39 +1,39 @@
 package defpackage;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class dwb extends AnimatorListenerAdapter {
-    public final byte a;
-    public final lwb b;
-
-    public dwb(lwb lwbVar, byte b) {
-        this.a = b;
-        this.b = lwbVar;
+public enum dwb extends rwb {
+    public dwb() {
+        super("AfterDoctypePublicIdentifier", 58);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        lwb lwbVar = this.b;
-        switch (b) {
-            case 0:
-                if (lwbVar.b0 == animator) {
-                    lwbVar.b0 = null;
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
+            if (d != '\"') {
+                if (d != '\'') {
+                    mub mubVar = rwb.a;
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bubVar.m(this);
+                            bubVar.c = rwb.D0;
+                            return;
+                        }
+                        bubVar.l(this);
+                        bubVar.j();
+                        bubVar.c = mubVar;
+                        return;
+                    }
+                    bubVar.j();
+                    bubVar.c = mubVar;
                     return;
                 }
+                bubVar.m(this);
+                bubVar.c = rwb.B0;
                 return;
-            case 1:
-                if (lwbVar.k0 == animator) {
-                    lwbVar.k0 = null;
-                }
-                lwbVar.b(1.0f);
-                return;
-            default:
-                if (lwbVar.K == animator) {
-                    lwbVar.K = null;
-                    return;
-                }
-                return;
+            }
+            bubVar.m(this);
+            bubVar.c = rwb.A0;
+            return;
         }
+        bubVar.c = rwb.x0;
     }
 }

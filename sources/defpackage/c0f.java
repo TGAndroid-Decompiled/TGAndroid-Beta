@@ -1,115 +1,116 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.cast.CastDevice;
-import com.google.android.gms.wallet.MaskedWallet;
-public final class c0f implements Parcelable.Creator {
-    public final byte a;
-
-    public c0f(byte b) {
-        this.a = b;
-    }
-
-    public static void a(ct4 ct4Var, Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        int i2 = ct4Var.a;
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(i2);
-        int i3 = ct4Var.b;
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(i3);
-        int i4 = ct4Var.c;
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(i4);
-        jte.l(parcel, 4, ct4Var.d);
-        jte.f(parcel, 5, ct4Var.e);
-        jte.o(parcel, 6, ct4Var.f, i);
-        jte.b(parcel, 7, ct4Var.h);
-        jte.k(parcel, 8, ct4Var.n, i);
-        jte.o(parcel, 10, ct4Var.r, i);
-        jte.o(parcel, 11, ct4Var.s, i);
-        boolean z = ct4Var.w;
-        jte.q(parcel, 12, 4);
-        parcel.writeInt(z ? 1 : 0);
-        int i5 = ct4Var.x;
-        jte.q(parcel, 13, 4);
-        parcel.writeInt(i5);
-        boolean z2 = ct4Var.y;
-        jte.q(parcel, 14, 4);
-        parcel.writeInt(z2 ? 1 : 0);
-        jte.l(parcel, 15, ct4Var.E);
-        jte.s(parcel, r);
-    }
-
-    @Override
-    public final java.lang.Object createFromParcel(android.os.Parcel r35) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.c0f.createFromParcel(android.os.Parcel):java.lang.Object");
-    }
-
-    @Override
-    public final Object[] newArray(int i) {
-        switch (this.a) {
-            case 0:
-                return new mwe[i];
-            case 1:
-                return new ct4[i];
-            case 2:
-                return new d50[i];
-            case 3:
-                return new owe[i];
-            case 4:
-                return new a0f[i];
-            case 5:
-                return new ve0[i];
-            case 6:
-                return new wze[i];
-            case 7:
-                return new dd1[i];
-            case 8:
-                return new ap5[i];
-            case 9:
-                return new uoc[i];
-            case 10:
-                return new d6f[i];
-            case 11:
-                return new i6f[i];
-            case 12:
-                return new w4f[i];
-            case 13:
-                return new a5f[i];
-            case 14:
-                return new b5f[i];
-            case 15:
-                return new l51[i];
-            case 16:
-                return new nr5[i];
-            case 17:
-                return new f9f[i];
-            case 18:
-                return new g9f[i];
-            case 19:
-                return new l9f[i];
-            case 20:
-                return new eg6[i];
-            case 21:
-                return new CastDevice[i];
-            case 22:
-                return new fbf[i];
-            case 23:
-                return new MaskedWallet[i];
-            case 24:
-                return new xcf[i];
-            case 25:
-                return new ycf[i];
-            case 26:
-                return new rcf[i];
-            case 27:
-                return new fff[i];
-            case 28:
-                return new rff[i];
-            default:
-                return new tff[i];
+import android.graphics.Paint;
+import android.os.Build;
+import android.text.TextDirectionHeuristic;
+import android.text.TextDirectionHeuristics;
+import android.text.TextPaint;
+import android.text.method.PasswordTransformationMethod;
+import android.view.ActionMode;
+import android.widget.TextView;
+public abstract class c0f {
+    public static nj8 a(tq tqVar) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 28) {
+            return new nj8(go.r(tqVar));
         }
+        TextPaint textPaint = new TextPaint(tqVar.getPaint());
+        TextDirectionHeuristic textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR;
+        int breakStrategy = tqVar.getBreakStrategy();
+        int hyphenationFrequency = tqVar.getHyphenationFrequency();
+        if (tqVar.getTransformationMethod() instanceof PasswordTransformationMethod) {
+            textDirectionHeuristic = TextDirectionHeuristics.LTR;
+        } else {
+            boolean z = true;
+            if (i >= 28 && (tqVar.getInputType() & 15) == 3) {
+                byte directionality = Character.getDirectionality(go.h(lh0.h(tqVar.getTextLocale()))[0].codePointAt(0));
+                textDirectionHeuristic = (directionality == 1 || directionality == 2) ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
+            } else {
+                if (tqVar.getLayoutDirection() != 1) {
+                    z = false;
+                }
+                switch (tqVar.getTextDirection()) {
+                    case 2:
+                        textDirectionHeuristic = TextDirectionHeuristics.ANYRTL_LTR;
+                        break;
+                    case 3:
+                        textDirectionHeuristic = TextDirectionHeuristics.LTR;
+                        break;
+                    case 4:
+                        textDirectionHeuristic = TextDirectionHeuristics.RTL;
+                        break;
+                    case 5:
+                        textDirectionHeuristic = TextDirectionHeuristics.LOCALE;
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_RTL;
+                        break;
+                    default:
+                        if (z) {
+                            textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_RTL;
+                            break;
+                        }
+                        break;
+                }
+            }
+        }
+        return new nj8(textPaint, textDirectionHeuristic, breakStrategy, hyphenationFrequency);
+    }
+
+    public static void b(TextView textView, int i) {
+        int i2;
+        if (i >= 0) {
+            if (Build.VERSION.SDK_INT >= 28) {
+                go.y(textView, i);
+                return;
+            }
+            Paint.FontMetricsInt fontMetricsInt = textView.getPaint().getFontMetricsInt();
+            if (textView.getIncludeFontPadding()) {
+                i2 = fontMetricsInt.top;
+            } else {
+                i2 = fontMetricsInt.ascent;
+            }
+            if (i > Math.abs(i2)) {
+                textView.setPadding(textView.getPaddingLeft(), i + i2, textView.getPaddingRight(), textView.getPaddingBottom());
+                return;
+            }
+            return;
+        }
+        iy8.d();
+    }
+
+    public static void c(TextView textView, int i) {
+        int i2;
+        if (i >= 0) {
+            Paint.FontMetricsInt fontMetricsInt = textView.getPaint().getFontMetricsInt();
+            if (textView.getIncludeFontPadding()) {
+                i2 = fontMetricsInt.bottom;
+            } else {
+                i2 = fontMetricsInt.descent;
+            }
+            if (i > Math.abs(i2)) {
+                textView.setPadding(textView.getPaddingLeft(), textView.getPaddingTop(), textView.getPaddingRight(), i - i2);
+                return;
+            }
+            return;
+        }
+        iy8.d();
+    }
+
+    public static ActionMode.Callback d(ActionMode.Callback callback) {
+        if ((callback instanceof umb) && Build.VERSION.SDK_INT >= 26) {
+            return ((umb) callback).a;
+        }
+        return callback;
+    }
+
+    public static ActionMode.Callback e(ActionMode.Callback callback, TextView textView) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 26 && i <= 27 && !(callback instanceof umb) && callback != null) {
+            return new umb(callback, textView);
+        }
+        return callback;
     }
 }

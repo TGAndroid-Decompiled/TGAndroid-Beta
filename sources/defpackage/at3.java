@@ -1,24 +1,174 @@
 package defpackage;
 
-import android.text.Editable;
-public final class at3 implements p8c {
-    public final gt3 a;
-    public final int b;
-    public final int c;
-
-    public at3(gt3 gt3Var, int i, int i2) {
-        this.a = gt3Var;
-        this.b = i;
-        this.c = i2;
-    }
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+public final class at3 extends tf0 {
+    public static final Logger p = Logger.getLogger(at3.class.getName());
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public int h;
+    public int i;
+    public String j;
+    public int k;
+    public int l;
+    public o93 m;
+    public zr9 n;
+    public ArrayList o;
 
     @Override
-    public final void a(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        gt3 gt3Var = this.a;
-        Editable text = gt3Var.getText();
-        int i = this.b;
-        text.replace(i, this.c, charSequence);
-        gt3Var.setSelection(i, charSequence.length() + i);
+    public final void b(ByteBuffer byteBuffer) {
+        int i;
+        int i2;
+        this.d = zpe.f(byteBuffer);
+        int a = zpe.a(byteBuffer.get());
+        int i3 = a >>> 7;
+        this.e = i3;
+        this.f = (a >>> 6) & 1;
+        this.g = (a >>> 5) & 1;
+        this.h = a & 31;
+        if (i3 == 1) {
+            this.k = zpe.f(byteBuffer);
+        }
+        if (this.f == 1) {
+            int a2 = zpe.a(byteBuffer.get());
+            this.i = a2;
+            byte[] bArr = new byte[a2];
+            byteBuffer.get(bArr);
+            try {
+                this.j = new String(bArr, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new Error(e);
+            }
+        }
+        if (this.g == 1) {
+            this.l = zpe.f(byteBuffer);
+        }
+        int i4 = this.c + 4;
+        int i5 = 0;
+        if (this.e == 1) {
+            i = 2;
+        } else {
+            i = 0;
+        }
+        int i6 = i4 + i;
+        if (this.f == 1) {
+            i2 = this.i + 1;
+        } else {
+            i2 = 0;
+        }
+        int i7 = i6 + i2;
+        if (this.g == 1) {
+            i5 = 2;
+        }
+        int i8 = i7 + i5;
+        int position = byteBuffer.position();
+        int a3 = a();
+        int i9 = i8 + 2;
+        Logger logger = p;
+        if (a3 > i9) {
+            tf0 a4 = yq7.a(-1, byteBuffer);
+            logger.finer(a4 + " - ESDescriptor1 read: " + (byteBuffer.position() - position) + ", size: " + Integer.valueOf(a4.a()));
+            int a5 = a4.a();
+            byteBuffer.position(position + a5);
+            i8 += a5;
+            if (a4 instanceof o93) {
+                this.m = (o93) a4;
+            }
+        }
+        int position2 = byteBuffer.position();
+        if (a() > i8 + 2) {
+            tf0 a6 = yq7.a(-1, byteBuffer);
+            logger.finer(a6 + " - ESDescriptor2 read: " + (byteBuffer.position() - position2) + ", size: " + Integer.valueOf(a6.a()));
+            int a7 = a6.a();
+            byteBuffer.position(position2 + a7);
+            i8 += a7;
+            if (a6 instanceof zr9) {
+                this.n = (zr9) a6;
+            }
+        } else {
+            logger.warning("SLConfigDescriptor is missing!");
+        }
+        while (a() - i8 > 2) {
+            int position3 = byteBuffer.position();
+            tf0 a8 = yq7.a(-1, byteBuffer);
+            logger.finer(a8 + " - ESDescriptor3 read: " + (byteBuffer.position() - position3) + ", size: " + Integer.valueOf(a8.a()));
+            int a9 = a8.a();
+            byteBuffer.position(position3 + a9);
+            i8 += a9;
+            this.o.add(a8);
+        }
+    }
+
+    public final int c() {
+        int i;
+        if (this.e > 0) {
+            i = 7;
+        } else {
+            i = 5;
+        }
+        if (this.f > 0) {
+            i += this.i + 1;
+        }
+        if (this.g > 0) {
+            i += 2;
+        }
+        z30 z30Var = this.m.j;
+        int i2 = 0;
+        if (z30Var != null) {
+            if (z30Var.e == 2) {
+                i2 = 4;
+            } else {
+                qyc.c("can't serialize that yet");
+                return 0;
+            }
+        }
+        this.n.getClass();
+        return i2 + 15 + i + 3;
+    }
+
+    public final boolean equals(java.lang.Object r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.at3.equals(java.lang.Object):boolean");
+    }
+
+    public final int hashCode() {
+        int i;
+        int i2;
+        int i3;
+        int i4 = ((((((((((this.d * 31) + this.e) * 31) + this.f) * 31) + this.g) * 31) + this.h) * 31) + this.i) * 31;
+        String str = this.j;
+        int i5 = 0;
+        if (str != null) {
+            i = str.hashCode();
+        } else {
+            i = 0;
+        }
+        int i6 = (((((i4 + i) * 961) + this.k) * 31) + this.l) * 31;
+        o93 o93Var = this.m;
+        if (o93Var != null) {
+            i2 = o93Var.hashCode();
+        } else {
+            i2 = 0;
+        }
+        int i7 = (i6 + i2) * 31;
+        zr9 zr9Var = this.n;
+        if (zr9Var != null) {
+            i3 = zr9Var.d;
+        } else {
+            i3 = 0;
+        }
+        int i8 = (i7 + i3) * 31;
+        ArrayList arrayList = this.o;
+        if (arrayList != null) {
+            i5 = arrayList.hashCode();
+        }
+        return i8 + i5;
+    }
+
+    public final String toString() {
+        return "ESDescriptor{esId=" + this.d + ", streamDependenceFlag=" + this.e + ", URLFlag=" + this.f + ", oCRstreamFlag=" + this.g + ", streamPriority=" + this.h + ", URLLength=" + this.i + ", URLString='" + this.j + "', remoteODFlag=0, dependsOnEsId=" + this.k + ", oCREsId=" + this.l + ", decoderConfigDescriptor=" + this.m + ", slConfigDescriptor=" + this.n + '}';
     }
 }

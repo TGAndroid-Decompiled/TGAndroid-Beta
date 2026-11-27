@@ -73,22 +73,13 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        int i = 0;
-        while (true) {
-            MediaCodecInfo mediaCodecInfo = null;
-            if (i >= MediaCodecList.getCodecCount()) {
-                return null;
-            }
-            try {
-                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i);
-            } catch (IllegalArgumentException e) {
-                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e);
-            }
+        MediaCodecInfo[] codecInfos;
+        for (MediaCodecInfo mediaCodecInfo : new MediaCodecList(1).getCodecInfos()) {
             if (mediaCodecInfo != null && mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
                 return mediaCodecInfo;
             }
-            i++;
         }
+        return null;
     }
 
     private int getForcedKeyFrameIntervalMs(VideoCodecMimeType videoCodecMimeType, String str) {

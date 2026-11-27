@@ -1,23 +1,31 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Method;
 public final class mi2 {
-    public static final int e = 0;
-    public final vnb a;
-    public final List b;
-    public final vx4 c;
-    public final String d;
+    public final byte a;
+    public final Method b;
 
-    static {
-        DesugarCollections.unmodifiableList(new ArrayList());
+    public mi2(int i, Method method) {
+        this.a = i;
+        this.b = method;
+        method.setAccessible(true);
     }
 
-    public mi2(vnb vnbVar, List list, vx4 vx4Var, String str) {
-        this.a = vnbVar;
-        this.b = list;
-        this.c = vx4Var;
-        this.d = str;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof mi2) {
+                mi2 mi2Var = (mi2) obj;
+                if (this.a == mi2Var.a && this.b.getName().equals(mi2Var.b.getName())) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.b.getName().hashCode() + (this.a * 31);
     }
 }

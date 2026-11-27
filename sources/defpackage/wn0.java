@@ -1,9 +1,9 @@
 package defpackage;
 
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.LaunchActivity;
-public final class wn0 implements p8c {
+public final class wn0 implements pcc {
     public final ao0 a;
     public final TL_stories.TL_prepaidStarsGiveaway b;
     public final long c;
@@ -24,15 +24,15 @@ public final class wn0 implements p8c {
         ao0 ao0Var = this.a;
         ao0Var.dismiss();
         if (this.b != null) {
-            d S = LaunchActivity.S();
+            e S = LaunchActivity.S();
             if (S != null) {
-                mu1 W9 = mu1.W9(this.c);
-                W9.whenFullyVisible(new xn0(W9, this.d, (byte) 0));
-                S.presentFragment(W9);
+                zu1 ha = zu1.ha(this.c);
+                ha.whenFullyVisible(new xn0(ha, this.d, (byte) 0));
+                S.presentFragment(ha);
                 return;
             }
             return;
         }
-        gl.d3(new z20(ao0Var, this.e, (byte) 13), 220L);
+        hl.d3(new a30(ao0Var, this.e, (byte) 13), 220L);
     }
 }

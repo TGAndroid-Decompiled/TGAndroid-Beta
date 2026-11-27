@@ -2,279 +2,199 @@ package defpackage;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.text.SpannableStringBuilder;
+import android.text.Spannable;
+import android.text.TextUtils;
+import android.text.style.MetricAffectingSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.o;
-public final class du extends View implements eib, dw {
-    public final vg5 a;
-    public final dx b;
-    public bw c;
-    public bw d;
-    public int e;
-    public int f;
-    public int h;
-    public TL_iv.pageBlockBlockquote n;
+public final class du extends View implements zlb, ew {
+    public final xi5 a;
+    public final ex b;
+    public cw c;
+    public int d;
+    public final int e;
+    public TL_iv.pageBlockAuthorDate f;
 
-    public du(Activity activity, vg5 vg5Var, dx dxVar) {
+    public du(Activity activity, xi5 xi5Var, ex exVar) {
         super(activity);
-        this.a = vg5Var;
-        this.b = dxVar;
+        this.e = hl.L(8.0f);
+        this.a = xi5Var;
+        this.b = exVar;
     }
 
     @Override
     public int getBoundLeft() {
-        int i;
-        vg5 vg5Var = this.a;
-        vg5Var.getClass();
-        int L = gl.L(18.0f);
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            i = Math.min(Integer.MAX_VALUE, (bwVar.k() + bwVar.s) - L);
-        } else {
-            i = Integer.MAX_VALUE;
-        }
-        bw bwVar2 = this.d;
-        if (bwVar2 != null) {
-            i = Math.min(i, (bwVar2.k() + bwVar2.s) - L);
-        }
-        if (i == Integer.MAX_VALUE) {
+        cw cwVar = this.c;
+        if (cwVar == null) {
             return -1;
         }
-        return ug8.h(vg5Var, 18.0f, i);
+        int i = cwVar.s;
+        return ik8.h(this.a, 18.0f, cwVar.k() + i);
     }
 
     @Override
     public int getBoundRight() {
-        int i;
-        vg5 vg5Var = this.a;
-        vg5Var.getClass();
-        int L = gl.L(18.0f);
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            i = Math.max(Integer.MIN_VALUE, bwVar.l() + bwVar.s + L);
-        } else {
-            i = Integer.MIN_VALUE;
-        }
-        bw bwVar2 = this.d;
-        if (bwVar2 != null) {
-            i = Math.max(i, bwVar2.l() + bwVar2.s + L);
-        }
-        if (i == Integer.MIN_VALUE) {
+        cw cwVar = this.c;
+        if (cwVar == null) {
             return -1;
         }
-        return ug8.C(vg5Var, 18.0f, i);
+        int i = cwVar.s;
+        return ik8.C(this.a, 18.0f, cwVar.l() + i);
     }
 
     @Override
     public int getLastLineBoundRight() {
-        bw bwVar = this.d;
-        vg5 vg5Var = this.a;
-        if (bwVar != null) {
-            int m = bwVar.m() + bwVar.s;
-            vg5Var.getClass();
-            return gl.L(18.0f) + m;
+        cw cwVar = this.c;
+        if (cwVar == null) {
+            return -1;
         }
-        bw bwVar2 = this.c;
-        if (bwVar2 != null) {
-            int m2 = bwVar2.m() + bwVar2.s;
-            vg5Var.getClass();
-            return gl.L(18.0f) + m2;
-        }
-        return -1;
+        int i = cwVar.s;
+        return ik8.C(this.a, 18.0f, cwVar.m() + i);
     }
 
     public int getMinWidth() {
-        return ug8.a(this);
+        return ik8.a(this);
     }
 
     @Override
     public final void k(ArrayList arrayList) {
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            arrayList.add(bwVar);
-        }
-        bw bwVar2 = this.d;
-        if (bwVar2 != null) {
-            arrayList.add(bwVar2);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            arrayList.add(cwVar);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.i(this);
-        }
-        bw bwVar2 = this.d;
-        if (bwVar2 != null) {
-            bwVar2.i(this);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.i(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.f(this);
-        }
-        bw bwVar2 = this.d;
-        if (bwVar2 != null) {
-            bwVar2.f(this);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.f(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.n == null) {
-            return;
-        }
-        bw bwVar = this.c;
-        vg5 vg5Var = this.a;
-        int i = 0;
-        if (bwVar != null) {
+        if (this.f != null && this.c != null) {
             canvas.save();
-            canvas.translate(this.f, this.h);
-            o.s(vg5Var, canvas, this, 0);
+            canvas.translate(this.d, this.e);
+            o.s(this.a, canvas, this, 0);
             this.c.d(canvas, this);
             canvas.restore();
-            i = 1;
         }
-        if (this.d != null) {
-            canvas.save();
-            canvas.translate(this.f, this.e);
-            o.s(vg5Var, canvas, this, i);
-            this.d.d(canvas, this);
-            canvas.restore();
-        }
-        dx dxVar = this.b;
-        if (dxVar != null && dxVar.H) {
-            int measuredWidth = getMeasuredWidth() - gl.L(20.0f);
-            canvas.drawRect(measuredWidth, gl.L(6.0f), gl.L(2.0f) + measuredWidth, getMeasuredHeight() - gl.L(6.0f), o.s1);
-        } else {
-            vg5Var.getClass();
-            vg5Var.getClass();
-            canvas.drawRect(gl.L((this.n.level * 14) + 18), gl.L(6.0f), gl.L((this.n.level * 14) + 20), getMeasuredHeight() - gl.L(6.0f), o.s1);
-        }
-        o.r(canvas, vg5Var, this.n, getMeasuredHeight());
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        CharSequence g;
-        CharSequence g2;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.TextView");
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setClickable(false);
-        accessibilityNodeInfo.setLongClickable(false);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        bw bwVar = this.c;
-        dx dxVar = this.b;
-        vg5 vg5Var = this.a;
-        if (bwVar != null && (g2 = o.g(vg5Var, dxVar, bwVar)) != null) {
-            spannableStringBuilder.append(g2);
-        }
-        bw bwVar2 = this.d;
-        if (bwVar2 != null && (g = o.g(vg5Var, dxVar, bwVar2)) != null) {
-            if (spannableStringBuilder.length() > 0) {
-                spannableStringBuilder.append((CharSequence) ", ");
-            }
-            spannableStringBuilder.append(g);
-        }
-        if (spannableStringBuilder.length() == 0) {
+        cw cwVar = this.c;
+        if (cwVar == null) {
             return;
         }
-        spannableStringBuilder.append((CharSequence) ", ").append((CharSequence) k96.M0(2131754872, null));
-        accessibilityNodeInfo.setText(spannableStringBuilder);
+        accessibilityNodeInfo.setText(o.g(this.a, this.b, cwVar));
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        du duVar;
         int i3;
+        TLRPC.WebPage webPage;
+        Spannable spannable;
+        MetricAffectingSpan[] metricAffectingSpanArr;
+        ?? r4;
+        int indexOf;
+        int L;
         int size = View.MeasureSpec.getSize(i);
-        vg5 vg5Var = this.a;
-        vg5Var.getClass();
-        this.h = gl.L(8.0f);
-        if (this.n != null) {
-            int h = ug8.h(vg5Var, 50.0f, size);
-            int i4 = this.n.level;
-            if (i4 > 0) {
-                h -= gl.L(i4 * 14);
-            }
-            int i5 = h;
-            TL_iv.pageBlockBlockquote pageblockblockquote = this.n;
-            duVar = this;
-            bw m = o.m(this.a, duVar, null, pageblockblockquote.text, i5, this.h, pageblockblockquote, this.b);
-            duVar.c = m;
-            if (m != null) {
-                vg5Var.getClass();
-                i3 = duVar.c.d.getHeight() + gl.L(8.0f);
+        TL_iv.pageBlockAuthorDate pageblockauthordate = this.f;
+        int i4 = 1;
+        if (pageblockauthordate != null) {
+            TL_iv.RichText richText = pageblockauthordate.author;
+            HashSet hashSet = o.d1;
+            ex exVar = this.b;
+            if (exVar != null) {
+                webPage = exVar.F;
             } else {
-                i3 = 0;
+                webPage = null;
             }
-            int i6 = duVar.n.level;
-            dx dxVar = duVar.b;
-            if (i6 > 0) {
-                if (dxVar != null && dxVar.H) {
-                    duVar.f = gl.L((i6 * 14) + 14);
-                } else {
-                    duVar.f = ug8.C(vg5Var, 32.0f, gl.L(i6 * 14));
+            CharSequence z = o.z(this.a, webPage, this, richText, richText, pageblockauthordate, size);
+            i3 = size;
+            if (z instanceof Spannable) {
+                spannable = (Spannable) z;
+                metricAffectingSpanArr = (MetricAffectingSpan[]) spannable.getSpans(0, z.length(), MetricAffectingSpan.class);
+            } else {
+                spannable = null;
+                metricAffectingSpanArr = null;
+            }
+            if (this.f.published_date != 0 && !TextUtils.isEmpty(z)) {
+                r4 = ob6.a0(null, null, 2131754033, ob6.D0().h0().format(this.f.published_date * 1000), z);
+            } else if (!TextUtils.isEmpty(z)) {
+                r4 = ob6.a0(null, null, 2131754049, z);
+            } else {
+                r4 = ob6.D0().h0().format(this.f.published_date * 1000);
+            }
+            if (metricAffectingSpanArr != null) {
+                try {
+                    if (metricAffectingSpanArr.length > 0 && (indexOf = TextUtils.indexOf((CharSequence) r4, z)) != -1) {
+                        r4 = Spannable.Factory.getInstance().newSpannable(r4);
+                        for (int i5 = 0; i5 < metricAffectingSpanArr.length; i5++) {
+                            MetricAffectingSpan metricAffectingSpan = metricAffectingSpanArr[i5];
+                            r4.setSpan(metricAffectingSpan, spannable.getSpanStart(metricAffectingSpan) + indexOf, spannable.getSpanEnd(metricAffectingSpanArr[i5]) + indexOf, 33);
+                        }
+                    }
+                } catch (Exception e) {
+                    cc4.g(e, true);
                 }
-            } else if (dxVar != null && dxVar.H) {
-                duVar.f = gl.L(14.0f);
+            }
+            cw m = o.m(this.a, this, r4, null, i3 - hl.L(36.0f), this.e, this.f, this.b);
+            this.c = m;
+            if (m != null) {
+                int height = this.c.d.getHeight() + hl.L(16.0f);
+                if (exVar != null && exVar.H) {
+                    L = (int) Math.floor(((i3 - this.c.d.getLineLeft(0)) - this.c.d.getLineWidth(0)) - hl.L(16.0f));
+                    this.d = L;
+                } else {
+                    L = hl.L(18.0f);
+                    this.d = L;
+                }
+                cw cwVar = this.c;
+                cwVar.s = L;
+                cwVar.w = this.e;
+                i4 = height;
             } else {
-                vg5Var.getClass();
-                duVar.f = gl.L(32.0f);
-            }
-            int C = ug8.C(vg5Var, 8.0f, i3);
-            duVar.e = C;
-            TL_iv.pageBlockBlockquote pageblockblockquote2 = duVar.n;
-            bw m2 = o.m(duVar.a, duVar, null, pageblockblockquote2.caption, i5, C, pageblockblockquote2, duVar.b);
-            duVar.d = m2;
-            if (m2 != null) {
-                vg5Var.getClass();
-                i3 += duVar.d.d.getHeight() + gl.L(8.0f);
-            }
-            if (i3 != 0) {
-                i3 = ug8.C(vg5Var, 8.0f, i3);
-            }
-            bw bwVar = duVar.c;
-            if (bwVar != null) {
-                bwVar.s = duVar.f;
-                bwVar.w = duVar.h;
-            }
-            bw bwVar2 = duVar.d;
-            if (bwVar2 != null) {
-                bwVar2.s = duVar.f;
-                bwVar2.w = duVar.e;
+                i4 = 0;
             }
         } else {
-            duVar = this;
-            i3 = 1;
+            i3 = size;
         }
-        duVar.setMeasuredDimension(size, i3);
+        setMeasuredDimension(i3, i4);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.f, this.h)) {
-            if (!o.i(this.a, this.b, motionEvent, this, this.d, this.f, this.e) && !super.onTouchEvent(motionEvent)) {
-                return false;
-            }
-            return true;
+        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
+            return false;
         }
         return true;
     }
 
-    public void setBlock(TL_iv.pageBlockBlockquote pageblockblockquote) {
-        this.n = pageblockblockquote;
+    public void setBlock(TL_iv.pageBlockAuthorDate pageblockauthordate) {
+        this.f = pageblockauthordate;
         requestLayout();
     }
 }

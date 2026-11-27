@@ -42,6 +42,10 @@ public class IceCandidate {
         return this.sdp;
     }
 
+    public int getSdpMLineIndex() {
+        return this.sdpMLineIndex;
+    }
+
     public String getSdpMid() {
         return this.sdpMid;
     }

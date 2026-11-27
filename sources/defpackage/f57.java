@@ -1,49 +1,40 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class f57 implements Runnable {
-    public final byte a;
-    public final na7 b;
-    public final ArrayList c;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class f57 extends b8 {
+    public final byte W;
 
-    public f57(na7 na7Var, ArrayList arrayList, byte b) {
-        this.a = b;
-        this.b = na7Var;
-        this.c = arrayList;
+    public f57(Context context, int i, boolean z, boolean z2, vnb vnbVar, byte b) {
+        super(i, vnbVar, context, z, z2);
+        this.W = b;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        ArrayList arrayList = this.c;
-        na7 na7Var = this.b;
-        switch (b) {
+    public final void l() {
+        switch (this.W) {
             case 0:
-                na7Var.getNotificationsController().K(arrayList, true, false, null);
-                return;
-            case 1:
-                gl.c3(new f57(na7Var, arrayList, (byte) 2));
-                return;
-            case 2:
-                na7Var.getNotificationsController().K(arrayList, true, false, null);
-                return;
-            case 3:
-                gl.c3(new f57(na7Var, arrayList, (byte) 4));
-                return;
-            case 4:
-                na7Var.getNotificationsController().K(arrayList, true, false, null);
-                return;
-            case 5:
-                break;
-            case 6:
-                na7Var.getNotificationsController().K(arrayList, true, false, null);
+                setBackground(null);
                 return;
             default:
-                gl.c3(new f57(na7Var, arrayList, (byte) 0));
+                setBackground(null);
                 return;
         }
-        for (int i = 0; i < arrayList.size(); i++) {
-            na7Var.f4(na7Var.h1(-((Long) arrayList.get(i)).longValue()), 0L);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.W) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
         }
     }
 }

@@ -1,367 +1,370 @@
 package defpackage;
 
-import android.net.Uri;
+import android.media.DeniedByServerException;
+import android.media.MediaDrm;
+import android.media.MediaDrmResetException;
+import android.media.NotProvisionedException;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.SystemClock;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Collections;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-public final class ta3 implements h86 {
-    public static final k93 N = new k93((byte) 6);
-    public mm5 E;
-    public mm5 F;
-    public mm5 G;
-    public mm5 H;
-    public Uri I;
-    public df5 J;
-    public Uri K;
-    public boolean L;
-    public final l69 a;
-    public final lf5 b;
-    public final i2f c;
-    public kp f;
-    public mv6 h;
-    public Handler n;
-    public ef5 r;
-    public s93 s;
-    public hf5 w;
-    public av7 x;
-    public se5 y;
-    public final CopyOnWriteArrayList e = new CopyOnWriteArrayList();
-    public final HashMap d = new HashMap();
-    public long M = -9223372036854775807L;
+import java.util.Set;
+import java.util.UUID;
+public final class ta3 implements jr3 {
+    public final List a;
+    public final d64 b;
+    public final qx6 c;
+    public final ri6 d;
+    public final boolean e;
+    public final boolean f;
+    public final HashMap g;
+    public final ex2 h;
+    public final z6f i;
+    public final ig8 j;
+    public final vh4 k;
+    public final UUID l;
+    public final Looper m;
+    public final d1 n;
+    public final Object o;
+    public byte p;
+    public int q;
+    public HandlerThread r;
+    public ra3 s;
+    public or4 t;
+    public ir3 u;
+    public byte[] v;
+    public byte[] w;
+    public b64 x;
+    public xh4 y;
+    public c64 z;
 
-    public ta3(l69 l69Var, i2f i2fVar, lf5 lf5Var) {
-        this.a = l69Var;
-        this.b = lf5Var;
-        this.c = i2fVar;
-    }
-
-    @Override
-    public final void C0(k86 k86Var, long j, long j2, int i) {
-        cv7 cv7Var = (cv7) k86Var;
-        e86 e86Var = new e86(cv7Var.a, cv7Var.b, j);
-        if (i != 0) {
-            zxa zxaVar = cv7Var.d;
-            e86Var.d = zxaVar.c;
-            e86Var.e = zxaVar.d;
-            e86Var.f = j2;
-            e86Var.g = zxaVar.b;
-        }
-        this.f.u(new f86(e86Var), cv7Var.c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i);
-    }
-
-    @Override
-    public final void U(k86 k86Var, long j, long j2) {
-        hf5 hf5Var;
-        cv7 cv7Var = (cv7) k86Var;
-        if5 if5Var = (if5) cv7Var.f;
-        boolean z = if5Var instanceof df5;
-        if (z) {
-            String str = if5Var.a;
-            hf5 hf5Var2 = hf5.o;
-            Uri parse = Uri.parse(str);
-            em4 em4Var = new em4();
-            em4Var.a = "0";
-            em4Var.r = ud7.n("application/x-mpegURL");
-            List singletonList = Collections.singletonList(new gf5(parse, new fm4(em4Var), null, null, null, null, null, null));
-            List list = Collections.EMPTY_LIST;
-            hf5Var = new hf5("", list, singletonList, list, list, list, list, null, null, false, Collections.EMPTY_MAP, list, null);
+    public ta3(UUID uuid, d64 d64Var, qx6 qx6Var, ri6 ri6Var, List list, boolean z, boolean z2, byte[] bArr, HashMap hashMap, vh4 vh4Var, Looper looper, z6f z6fVar, ig8 ig8Var) {
+        this.l = uuid;
+        this.c = qx6Var;
+        this.d = ri6Var;
+        this.b = d64Var;
+        this.e = z;
+        this.f = z2;
+        if (bArr != null) {
+            this.w = bArr;
+            this.a = null;
         } else {
-            hf5Var = (hf5) if5Var;
+            list.getClass();
+            this.a = DesugarCollections.unmodifiableList(list);
         }
-        this.w = hf5Var;
-        p38 p38Var = new p38(hf5Var);
-        try {
-            p38Var.d();
-            this.E = (mm5) p38Var.f;
-            this.F = p38Var.c(1);
-            this.G = p38Var.c(2);
-            this.H = p38Var.c(3);
-            sk4 sk4Var = this.w.n;
-            if (sk4Var != null) {
-                l69 l69Var = this.a;
-                i4d i4dVar = new i4d(this);
-                s93 s93Var = this.s;
-                s93Var.getClass();
-                se5 se5Var = new se5(l69Var, this, i4dVar, s93Var);
-                this.y = se5Var;
-                Uri uri = (Uri) sk4Var.b;
-                String str2 = (String) sk4Var.c;
-                kp kpVar = this.f;
-                if (str2 != null) {
-                    gre.p(se5Var.h.contains(str2));
-                    se5Var.l = str2;
-                }
-                se5Var.k = true;
-                se5Var.c(-9223372036854775807L);
-                cv8 cv8Var = se5Var.a;
-                pj4 pj4Var = new pj4(se5Var, (byte) 6);
-                cv8Var.e = uri;
-                cv8Var.f = pj4Var;
-                cv8Var.g = kpVar;
-                cv8Var.i = new cdb(new Handler(g8c.z(), null));
-                cv8Var.j = new mv6("SteeringManifestTracker");
-                cv8Var.a = true;
-                cv8Var.b();
-            }
-            this.I = ((of5) this.E.get(0)).b();
-            this.e.add(new qa3(this));
-            a(this.E, true);
-            a(this.F, false);
-            a(this.G, false);
-            a(this.H, false);
-            e86 e86Var = new e86(cv7Var.a, cv7Var.b, j);
-            zxa zxaVar = cv7Var.d;
-            e86Var.d = zxaVar.c;
-            e86Var.e = zxaVar.d;
-            e86Var.f = j2;
-            e86Var.g = zxaVar.b;
-            f86 f86Var = new f86(e86Var);
-            sa3 sa3Var = (sa3) this.d.get(this.I);
-            sa3Var.getClass();
-            if (z) {
-                Uri uri2 = cv7Var.d.c;
-                HashMap hashMap = sa3Var.b;
-                gre.p(hashMap.containsKey(uri2));
-                ra3 ra3Var = (ra3) hashMap.get(uri2);
-                ra3Var.getClass();
-                ra3Var.d((df5) if5Var, f86Var);
-            } else {
-                sa3Var.e(this.I, false);
-            }
-            this.c.getClass();
-            this.f.p(f86Var, 4);
-        } catch (av7 e) {
-            this.x = e;
-        }
+        this.g = hashMap;
+        this.k = vh4Var;
+        this.h = new ex2();
+        this.i = z6fVar;
+        this.j = ig8Var;
+        this.p = (byte) 2;
+        this.m = looper;
+        this.n = new d1(this, looper, (byte) 2);
+        this.o = new Object();
     }
 
-    public final void a(List list, boolean z) {
-        for (int i = 0; i < list.size(); i++) {
-            of5 of5Var = (of5) list.get(i);
-            sa3 sa3Var = new sa3(this, of5Var, z);
-            v5c n = ym5.q(of5Var.b.values()).n();
-            while (n.hasNext()) {
-                this.d.put((Uri) n.next(), sa3Var);
-            }
-        }
+    @Override
+    public final UUID a() {
+        p();
+        return this.l;
     }
 
-    public final df5 b(Uri uri, boolean z) {
-        HashMap hashMap = this.d;
-        sa3 sa3Var = (sa3) hashMap.get(uri);
-        if (sa3Var == null) {
-            return null;
+    @Override
+    public final boolean b() {
+        p();
+        return this.e;
+    }
+
+    @Override
+    public final void c(mr3 mr3Var) {
+        p();
+        int i = this.q;
+        if (i <= 0) {
+            efd.c("DefaultDrmSession", "release() called on a session that's already fully released.");
+            return;
         }
-        df5 b = sa3Var.b(uri);
-        if (b != null && z) {
-            h(uri, false);
-            sa3 sa3Var2 = (sa3) hashMap.get(uri);
-            sa3Var2.getClass();
-            HashMap hashMap2 = sa3Var2.b;
-            gre.p(hashMap2.containsKey(uri));
-            ra3 ra3Var = (ra3) hashMap2.get(uri);
-            ra3Var.getClass();
-            if (!ra3Var.x) {
-                gre.p(hashMap2.containsKey(uri));
-                ra3 ra3Var2 = (ra3) hashMap2.get(uri);
-                ra3Var2.getClass();
-                ra3Var2.x = true;
-                df5 b2 = sa3Var2.b(uri);
-                if (b2 != null && !b2.o) {
-                    sa3Var2.e(uri, true);
+        int i2 = i - 1;
+        this.q = i2;
+        if (i2 == 0) {
+            this.p = (byte) 0;
+            d1 d1Var = this.n;
+            String str = gcc.a;
+            d1Var.removeCallbacksAndMessages(null);
+            this.s.b();
+            this.s = null;
+            this.r.quit();
+            this.r = null;
+            this.t = null;
+            this.u = null;
+            this.x = null;
+            synchronized (this.o) {
+                this.y = null;
+            }
+            this.z = null;
+            byte[] bArr = this.v;
+            if (bArr != null) {
+                this.b.k(bArr);
+                this.v = null;
+            }
+        }
+        if (mr3Var != null) {
+            this.h.i(mr3Var);
+            if (this.h.h(mr3Var) == 0) {
+                mr3Var.e();
+            }
+        }
+        ri6 ri6Var = this.d;
+        int i3 = this.q;
+        wa3 wa3Var = (wa3) ri6Var.b;
+        if (i3 == 1 && wa3Var.F > 0 && wa3Var.w != -9223372036854775807L) {
+            wa3Var.E.add(this);
+            Handler handler = wa3Var.K;
+            handler.getClass();
+            handler.postAtTime(new vd2(this, (byte) 27), this, SystemClock.uptimeMillis() + wa3Var.w);
+        } else if (i3 == 0) {
+            wa3Var.x.remove(this);
+            if (wa3Var.H == this) {
+                wa3Var.H = null;
+            }
+            if (wa3Var.I == this) {
+                wa3Var.I = null;
+            }
+            qx6 qx6Var = wa3Var.n;
+            HashSet hashSet = (HashSet) qx6Var.b;
+            hashSet.remove(this);
+            if (((ta3) qx6Var.c) == this) {
+                qx6Var.c = null;
+                if (!hashSet.isEmpty()) {
+                    ta3 ta3Var = (ta3) hashSet.iterator().next();
+                    qx6Var.c = ta3Var;
+                    c64 d = ta3Var.b.d();
+                    ta3Var.z = d;
+                    ra3 ra3Var = ta3Var.s;
+                    String str2 = gcc.a;
+                    d.getClass();
+                    ra3Var.getClass();
+                    ra3Var.obtainMessage(1, new sa3(ja6.h.getAndIncrement(), true, SystemClock.elapsedRealtime(), d)).sendToTarget();
                 }
             }
+            if (wa3Var.w != -9223372036854775807L) {
+                Handler handler2 = wa3Var.K;
+                handler2.getClass();
+                handler2.removeCallbacksAndMessages(this);
+                wa3Var.E.remove(this);
+            }
         }
-        return b;
+        wa3Var.i();
     }
 
-    public final mm5 c(int i) {
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    if (i != 3) {
-                        return null;
-                    }
-                    return this.H;
+    @Override
+    public final void d(mr3 mr3Var) {
+        int i;
+        p();
+        boolean z = false;
+        if (this.q < 0) {
+            efd.c("DefaultDrmSession", "Session reference count less than zero: " + this.q);
+            this.q = 0;
+        }
+        if (mr3Var != null) {
+            ex2 ex2Var = this.h;
+            synchronized (ex2Var.a) {
+                ArrayList arrayList = new ArrayList(ex2Var.d);
+                arrayList.add(mr3Var);
+                ex2Var.d = DesugarCollections.unmodifiableList(arrayList);
+                Integer num = (Integer) ex2Var.b.get(mr3Var);
+                if (num == null) {
+                    HashSet hashSet = new HashSet(ex2Var.c);
+                    hashSet.add(mr3Var);
+                    ex2Var.c = DesugarCollections.unmodifiableSet(hashSet);
                 }
-                return this.G;
+                HashMap hashMap = ex2Var.b;
+                if (num != null) {
+                    i = num.intValue() + 1;
+                } else {
+                    i = 1;
+                }
+                hashMap.put(mr3Var, Integer.valueOf(i));
             }
-            return this.F;
         }
-        return this.E;
-    }
-
-    public final Uri d(Uri uri) {
-        ze5 ze5Var;
-        df5 df5Var = this.J;
-        if (df5Var != null && df5Var.v.e && (ze5Var = (ze5) df5Var.t.get(uri)) != null) {
-            Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(ze5Var.b));
-            int i = ze5Var.c;
-            if (i != -1) {
-                buildUpon.appendQueryParameter("_HLS_part", String.valueOf(i));
-            }
-            return buildUpon.build();
-        }
-        return uri;
-    }
-
-    public final boolean e(long j, Uri uri) {
-        sa3 sa3Var = (sa3) this.d.get(uri);
-        if (sa3Var != null) {
-            return sa3Var.c(j, uri);
-        }
-        return false;
-    }
-
-    public final boolean f(of5 of5Var, long j) {
-        boolean z;
-        sa3 sa3Var = (sa3) this.d.get(of5Var.b());
-        if (sa3Var == null) {
-            return false;
-        }
-        Iterator it = sa3Var.b.values().iterator();
-        boolean z2 = true;
-        while (it.hasNext()) {
-            if (j <= ((ra3) it.next()).r) {
+        int i2 = this.q + 1;
+        this.q = i2;
+        if (i2 == 1) {
+            if (this.p == 2) {
                 z = true;
-            } else {
-                z = false;
             }
-            z2 &= z;
+            yve.p(z);
+            HandlerThread handlerThread = new HandlerThread("ExoPlayer:DrmRequestHandler");
+            this.r = handlerThread;
+            handlerThread.start();
+            this.s = new ra3(this, this.r.getLooper());
+            if (n()) {
+                j(true);
+            }
+        } else if (mr3Var != null && k() && this.h.h(mr3Var) == 1) {
+            mr3Var.c(this.p);
         }
-        return z2;
+        wa3 wa3Var = (wa3) this.d.b;
+        if (wa3Var.w != -9223372036854775807L) {
+            wa3Var.E.remove(this);
+            Handler handler = wa3Var.K;
+            handler.getClass();
+            handler.removeCallbacksAndMessages(this);
+        }
     }
 
-    public final boolean g(Uri uri) {
-        byte b;
-        sa3 sa3Var = (sa3) this.d.get(uri);
-        if (sa3Var != null) {
-            HashMap hashMap = sa3Var.b;
-            gre.p(hashMap.containsKey(uri));
-            ra3 ra3Var = (ra3) hashMap.get(uri);
-            ra3Var.getClass();
-            if (ra3Var.e != null) {
-                long elapsedRealtime = SystemClock.elapsedRealtime();
-                long max = Math.max(30000L, g8c.i0(ra3Var.e.u));
-                df5 df5Var = ra3Var.e;
-                if (df5Var.o || (b = df5Var.d) == 2 || b == 1 || ra3Var.f + max > elapsedRealtime) {
-                    return true;
-                }
-                return false;
-            }
+    @Override
+    public final int e() {
+        p();
+        return this.p;
+    }
+
+    @Override
+    public final boolean f(String str) {
+        p();
+        byte[] bArr = this.v;
+        bArr.getClass();
+        return this.b.z(str, bArr);
+    }
+
+    @Override
+    public final ir3 g() {
+        p();
+        if (this.p == 1) {
+            return this.u;
+        }
+        return null;
+    }
+
+    @Override
+    public final or4 h() {
+        p();
+        return this.t;
+    }
+
+    public final void i(ot2 ot2Var) {
+        Set<mr3> set;
+        ex2 ex2Var = this.h;
+        synchronized (ex2Var.a) {
+            set = ex2Var.c;
+        }
+        for (mr3 mr3Var : set) {
+            ot2Var.accept(mr3Var);
+        }
+    }
+
+    public final void j(boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ta3.j(boolean):void");
+    }
+
+    public final boolean k() {
+        byte b = this.p;
+        if (b != 3 && b != 4) {
             return false;
         }
-        return false;
+        return true;
     }
 
-    public final void h(Uri uri, boolean z) {
-        boolean z2;
-        if (!uri.equals(this.I)) {
-            HashMap hashMap = this.d;
-            sa3 sa3Var = (sa3) hashMap.get(uri);
-            boolean z3 = false;
-            if (sa3Var != null) {
-                z2 = sa3Var.c;
-            } else {
-                z2 = false;
-            }
-            if (z2) {
-                df5 df5Var = this.J;
-                if (df5Var == null || !df5Var.o) {
-                    sa3 sa3Var2 = (sa3) hashMap.get(uri);
-                    sa3Var2.getClass();
-                    df5 b = sa3Var2.b(uri);
-                    if (b != null && b.o) {
-                        z3 = true;
+    public final void l(int i, Throwable th) {
+        int i2;
+        Set<mr3> set;
+        if (th instanceof MediaDrm.MediaDrmStateException) {
+            i2 = gcc.A(gcc.B(((MediaDrm.MediaDrmStateException) th).getDiagnosticInfo()));
+        } else {
+            if (!(th instanceof MediaDrmResetException)) {
+                if (!(th instanceof NotProvisionedException) && !ije.b(th)) {
+                    if (th instanceof DeniedByServerException) {
+                        i2 = 6007;
+                    } else if (th instanceof gac) {
+                        i2 = 6001;
+                    } else if (th instanceof ua3) {
+                        i2 = 6003;
+                    } else if (th instanceof ux5) {
+                        i2 = 6008;
+                    } else if (i != 1) {
+                        if (i == 2) {
+                            i2 = 6004;
+                        } else if (i != 3) {
+                            iy8.d();
+                            return;
+                        }
                     }
-                    if (!z3 && z) {
-                        sa3Var2.d(uri, d(uri));
-                        this.K = uri;
-                        return;
-                    }
-                    this.I = uri;
-                    if (z3) {
-                        this.J = b;
-                        this.r.v(b);
-                        return;
-                    }
-                    sa3Var2.d(uri, d(uri));
                 }
+                i2 = 6002;
             }
+            i2 = 6006;
+        }
+        this.u = new ir3(i2, th);
+        efd.d("DefaultDrmSession", "DRM session error", th);
+        if (th instanceof Exception) {
+            ex2 ex2Var = this.h;
+            synchronized (ex2Var.a) {
+                set = ex2Var.c;
+            }
+            for (mr3 mr3Var : set) {
+                mr3Var.d((Exception) th);
+            }
+        } else if (th instanceof Error) {
+            if (!ije.c(th) && !ije.b(th)) {
+                throw ((Error) th);
+            }
+        } else {
+            su3.f("Unexpected Throwable subclass", th);
+            return;
+        }
+        if (this.p != 4) {
+            this.p = (byte) 1;
         }
     }
 
-    public final void i(Uri uri) {
-        sa3 sa3Var = (sa3) this.d.get(uri);
-        if (sa3Var != null) {
-            HashMap hashMap = sa3Var.b;
-            gre.p(hashMap.containsKey(uri));
-            ra3 ra3Var = (ra3) hashMap.get(uri);
+    public final void m(Throwable th, boolean z) {
+        int i;
+        if (!(th instanceof NotProvisionedException) && !ije.b(th)) {
+            if (z) {
+                i = 1;
+            } else {
+                i = 2;
+            }
+            l(i, th);
+            return;
+        }
+        this.c.J(this);
+    }
+
+    public final boolean n() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ta3.n():boolean");
+    }
+
+    public final void o(int i, boolean z, byte[] bArr) {
+        try {
+            synchronized (this.o) {
+                this.y = new xh4((byte) 9);
+                List list = this.a;
+                if (list != null) {
+                    po5.q(list);
+                }
+            }
+            b64 u = this.b.u(bArr, this.a, i, this.g);
+            this.x = u;
+            ra3 ra3Var = this.s;
+            String str = gcc.a;
+            u.getClass();
             ra3Var.getClass();
-            ra3Var.c.b();
-            IOException iOException = ra3Var.w;
-            if (iOException != null) {
-                throw iOException;
-            }
+            ra3Var.obtainMessage(2, new sa3(ja6.h.getAndIncrement(), z, SystemClock.elapsedRealtime(), u)).sendToTarget();
+        } catch (Exception | NoSuchMethodError e) {
+            m(e, true);
         }
     }
 
-    @Override
-    public final void v(k86 k86Var, long j, long j2, boolean z) {
-        cv7 cv7Var = (cv7) k86Var;
-        e86 e86Var = new e86(cv7Var.a, cv7Var.b, j);
-        zxa zxaVar = cv7Var.d;
-        e86Var.d = zxaVar.c;
-        e86Var.e = zxaVar.d;
-        e86Var.f = j2;
-        e86Var.g = zxaVar.b;
-        f86 f86Var = new f86(e86Var);
-        this.c.getClass();
-        this.f.o(f86Var, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-    }
-
-    @Override
-    public final i86 w1(k86 k86Var, long j, long j2, IOException iOException, int i) {
-        boolean z;
-        long min;
-        cv7 cv7Var = (cv7) k86Var;
-        e86 e86Var = new e86(cv7Var.a, cv7Var.b, j);
-        zxa zxaVar = cv7Var.d;
-        e86Var.d = zxaVar.c;
-        e86Var.e = zxaVar.d;
-        e86Var.f = j2;
-        e86Var.g = zxaVar.b;
-        f86 f86Var = new f86(e86Var);
-        byte b = cv7Var.c;
-        this.c.getClass();
-        Throwable th = iOException;
-        while (true) {
-            z = true;
-            if (th != null) {
-                if ((th instanceof av7) || (th instanceof FileNotFoundException) || (th instanceof ig5) || (th instanceof m86) || ((th instanceof r63) && ((r63) th).a == 2008)) {
-                    break;
-                }
-                th = th.getCause();
-            } else {
-                min = Math.min((i - 1) * 1000, 5000);
-                break;
-            }
+    public final void p() {
+        Thread currentThread = Thread.currentThread();
+        Looper looper = this.m;
+        if (currentThread != looper.getThread()) {
+            efd.g("DefaultDrmSession", "DefaultDrmSession accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + looper.getThread().getName(), new IllegalStateException());
         }
-        min = -9223372036854775807L;
-        if (min != -9223372036854775807L) {
-            z = false;
-        }
-        this.f.s(f86Var, b, iOException, z);
-        if (z) {
-            return mv6.E;
-        }
-        return new i86(0, min);
     }
 }

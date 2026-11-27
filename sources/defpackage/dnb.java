@@ -1,15 +1,30 @@
 package defpackage;
-public abstract class dnb {
-    public static final ThreadLocal a = new ThreadLocal();
+public final class dnb implements Runnable {
+    public final byte a;
+    public final fnb b;
+    public final enb c;
 
-    public static d44 a() {
-        ThreadLocal threadLocal = a;
-        d44 d44Var = (d44) threadLocal.get();
-        if (d44Var == null) {
-            pk0 pk0Var = new pk0(Thread.currentThread());
-            threadLocal.set(pk0Var);
-            return pk0Var;
+    public dnb(fnb fnbVar, enb enbVar, byte b) {
+        this.a = b;
+        this.b = fnbVar;
+        this.c = enbVar;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        enb enbVar = this.c;
+        fnb fnbVar = this.b;
+        switch (b) {
+            case 0:
+                fnbVar.a(enbVar);
+                return;
+            case 1:
+                fnbVar.a(enbVar);
+                return;
+            default:
+                fnbVar.a(enbVar);
+                return;
         }
-        return d44Var;
     }
 }

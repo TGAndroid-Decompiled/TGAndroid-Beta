@@ -66,19 +66,19 @@ public class ColorPicker extends FrameLayout {
         return null;
     }
 
-    public mcb getSwatch() {
-        return new mcb(this.a, this.b, a(this.a));
+    public igb getSwatch() {
+        return new igb(this.a, this.b, a(this.a));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRoundRect(null, gl.L(6.0f), gl.L(6.0f), null);
+        canvas.drawRoundRect(null, hl.L(6.0f), hl.L(6.0f), null);
         throw null;
     }
 
     @Override
     public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        new LinearGradient(gl.L(56.0f), 0.0f, (i3 - i) - gl.L(56.0f), 0.0f, d, e, Shader.TileMode.REPEAT);
+        new LinearGradient(hl.L(56.0f), 0.0f, (i3 - i) - hl.L(56.0f), 0.0f, d, e, Shader.TileMode.REPEAT);
         throw null;
     }
 
@@ -101,9 +101,9 @@ public class ColorPicker extends FrameLayout {
         throw null;
     }
 
-    public void setSwatch(mcb mcbVar) {
-        setLocation(mcbVar.b);
-        setWeight(mcbVar.c);
+    public void setSwatch(igb igbVar) {
+        setLocation(igbVar.b);
+        setWeight(igbVar.c);
     }
 
     public void setUndoEnabled(boolean z) {
@@ -115,6 +115,6 @@ public class ColorPicker extends FrameLayout {
         invalidate();
     }
 
-    public void setDelegate(ml2 ml2Var) {
+    public void setDelegate(gm2 gm2Var) {
     }
 }

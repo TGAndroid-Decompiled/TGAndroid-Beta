@@ -1,81 +1,201 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.text.TextUtils;
-import java.math.BigDecimal;
-public final class g32 implements InputFilter {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.e;
+public final class g32 implements pcc {
     public final byte a;
-    public final Object b;
+    public final boolean b;
+    public final int c;
+    public final Object d;
+    public final Object e;
 
-    public g32(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public g32(p5b p5bVar, boolean z, int i, List list) {
+        this.a = (byte) 2;
+        this.d = p5bVar;
+        this.b = z;
+        this.c = i;
+        this.e = list;
     }
 
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+    public final void a(Object obj) {
+        long j;
+        String str;
+        k5 accountInstance;
         byte b = this.a;
-        Object obj = this.b;
+        boolean z = this.b;
+        int i = this.c;
+        boolean z2 = true;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
         switch (b) {
             case 0:
-                return ((r32) obj).W(charSequence, i, i2, spanned, i3, i4);
+                ((u32) obj3).R.m((ArrayList) obj2, this.b, this.c, ((Long) obj).longValue());
+                return;
             case 1:
-                mc9 mc9Var = (mc9) obj;
-                if (!mc9Var.m2 || mc9Var.i2) {
-                    return null;
-                }
-                lc9 lc9Var = mc9Var.e2;
-                if (lc9Var != null && charSequence != null && i2 > i && i3 == i4) {
-                    lc9Var.O(charSequence.subSequence(i, i2));
-                }
-                return spanned.subSequence(i3, i4);
-            case 2:
-                y0b y0bVar = (y0b) obj;
-                if (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0))) {
-                    if (TextUtils.isEmpty(y0bVar.getText()) || i3 == 0) {
-                        return "";
-                    }
-                    return charSequence;
-                }
-                return charSequence;
-            default:
-                qpc qpcVar = (qpc) obj;
-                String str = spanned.subSequence(0, i3).toString() + ((Object) charSequence.subSequence(i, i2)) + ((Object) spanned.subSequence(i4, spanned.length()));
-                int i5 = 9;
-                BigDecimal valueOf = BigDecimal.valueOf(Long.MAX_VALUE, 9);
-                if (qpcVar.l0) {
-                    BigDecimal i0 = qpcVar.i0();
-                    valueOf = valueOf.multiply(i0);
-                    i5 = qpc.h0(i0);
-                }
-                int max = Math.max(str.indexOf(46), str.indexOf(44));
-                if (max >= 0 && (str.length() - max) - 1 > i5) {
-                    return spanned.subSequence(i3, i4);
-                }
-                if (qpc.t0(str).compareTo(valueOf) > 0) {
-                    return spanned.subSequence(i3, i4);
-                }
-                if (i == i2) {
-                    return null;
-                }
-                boolean z = false;
-                for (int i6 = 0; i6 < str.length(); i6++) {
-                    char charAt = str.charAt(i6);
-                    if (charAt == '.' || charAt == ',') {
-                        if (z) {
-                            return spanned.subSequence(i3, i4);
-                        }
-                        z = true;
-                    }
-                }
-                if (i3 == 0 && (str.startsWith(".") || str.startsWith(","))) {
-                    return "0" + ((Object) charSequence.subSequence(i, i2));
-                } else if (!str.startsWith("00")) {
-                    return null;
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) obj2;
+                Long l = (Long) obj;
+                o68 o68Var = ((j58) obj3).a;
+                TLRPC.User user = o68Var.N2.getAdapter().x0;
+                if (user != null) {
+                    j = user.id;
                 } else {
-                    return spanned.subSequence(i3, i4);
+                    j = 0;
                 }
+                HashMap hashMap = new HashMap();
+                hashMap.put("id", botInlineResult.id);
+                hashMap.put("query_id", String.valueOf(botInlineResult.query_id));
+                hashMap.put("bot", String.valueOf(j));
+                TLRPC.User user2 = o68Var.N2.getAdapter().x0;
+                if (user2 == null) {
+                    str = "";
+                } else {
+                    str = user2.username;
+                }
+                hashMap.put("bot_name", str);
+                e eVar = o68Var.t0.f;
+                accountInstance = o68Var.getAccountInstance();
+                long j2 = j;
+                r7a.R(this.c, o68Var.l1, 0L, l.longValue(), accountInstance, null, null, null, null, hashMap, botInlineResult, o68Var.y1.a, eVar, this.b);
+                o68Var.L1.setFieldText("");
+                if (l.longValue() > 0) {
+                    z2 = false;
+                }
+                o68Var.a0(z2);
+                ls6.d0(o68Var.m2).w0(j2, false);
+                return;
+            case 2:
+                p5b p5bVar = (p5b) obj3;
+                List list = (List) obj2;
+                Long l2 = (Long) obj;
+                r5b r5bVar = p5bVar.q;
+                TLObject c2 = uc7.s1(p5bVar.c).c2(p5bVar.D);
+                p5bVar.G = false;
+                if (c2 != null) {
+                    p5bVar.q(i, list, z);
+                    return;
+                }
+                p5bVar.J = 0;
+                p5bVar.H = "";
+                hl.r(r5bVar);
+                hl.c3(r5bVar);
+                return;
+            default:
+                final t8c t8cVar = (t8c) obj2;
+                final i61 i61Var = new i61((boolean[]) obj3, i, (Runnable) obj, (byte) 7);
+                if (z) {
+                    u8c u8cVar = t8cVar.i;
+                    if (t8cVar.a) {
+                        TL_account.confirmBotConnection confirmbotconnection = new TL_account.confirmBotConnection();
+                        confirmbotconnection.bot_id = uc7.s1(u8cVar.a).o1(t8cVar.c);
+                        ConnectionsManager.getInstance(u8cVar.a).sendRequestTyped(confirmbotconnection, new ia7(t8cVar, i61Var, (byte) 16));
+                        return;
+                    }
+                    TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+                    changeauthorizationsettings.hash = t8cVar.b;
+                    changeauthorizationsettings.confirmed = true;
+                    ConnectionsManager.getInstance(u8cVar.a).sendRequest(changeauthorizationsettings, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            switch (r3) {
+                                case 0:
+                                    t8c t8cVar2 = t8cVar;
+                                    t8cVar2.getClass();
+                                    hl.c3(new s8c(t8cVar2, tLObject, i61Var, tL_error));
+                                    return;
+                                case 1:
+                                    t8c t8cVar3 = t8cVar;
+                                    t8cVar3.getClass();
+                                    hl.c3(new s8c(t8cVar3, i61Var, tLObject, tL_error, (byte) 2));
+                                    return;
+                                default:
+                                    t8c t8cVar4 = t8cVar;
+                                    t8cVar4.getClass();
+                                    hl.c3(new s8c(t8cVar4, i61Var, tLObject, tL_error, (byte) 0));
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                u8c u8cVar2 = t8cVar.i;
+                if (t8cVar.a) {
+                    TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
+                    updateconnectedbot.deleted = true;
+                    updateconnectedbot.bot = uc7.s1(u8cVar2.a).o1(t8cVar.c);
+                    updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
+                    ConnectionsManager.getInstance(u8cVar2.a).sendRequest(updateconnectedbot, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            switch (r3) {
+                                case 0:
+                                    t8c t8cVar2 = t8cVar;
+                                    t8cVar2.getClass();
+                                    hl.c3(new s8c(t8cVar2, tLObject, i61Var, tL_error));
+                                    return;
+                                case 1:
+                                    t8c t8cVar3 = t8cVar;
+                                    t8cVar3.getClass();
+                                    hl.c3(new s8c(t8cVar3, i61Var, tLObject, tL_error, (byte) 2));
+                                    return;
+                                default:
+                                    t8c t8cVar4 = t8cVar;
+                                    t8cVar4.getClass();
+                                    hl.c3(new s8c(t8cVar4, i61Var, tLObject, tL_error, (byte) 0));
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
+                resetauthorization.hash = t8cVar.b;
+                ConnectionsManager.getInstance(u8cVar2.a).sendRequest(resetauthorization, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        switch (r3) {
+                            case 0:
+                                t8c t8cVar2 = t8cVar;
+                                t8cVar2.getClass();
+                                hl.c3(new s8c(t8cVar2, tLObject, i61Var, tL_error));
+                                return;
+                            case 1:
+                                t8c t8cVar3 = t8cVar;
+                                t8cVar3.getClass();
+                                hl.c3(new s8c(t8cVar3, i61Var, tLObject, tL_error, (byte) 2));
+                                return;
+                            default:
+                                t8c t8cVar4 = t8cVar;
+                                t8cVar4.getClass();
+                                hl.c3(new s8c(t8cVar4, i61Var, tLObject, tL_error, (byte) 0));
+                                return;
+                        }
+                    }
+                });
+                return;
         }
+    }
+
+    public g32(Object obj, int i, Object obj2, boolean z, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = obj2;
+        this.b = z;
+        this.c = i;
+    }
+
+    public g32(boolean[] zArr, int i, boolean z, t8c t8cVar) {
+        this.a = (byte) 3;
+        this.d = zArr;
+        this.c = i;
+        this.b = z;
+        this.e = t8cVar;
     }
 }

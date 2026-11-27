@@ -1,13 +1,29 @@
 package defpackage;
-public final class olb extends gb3 {
-    public final qmb F;
 
-    public olb(qmb qmbVar) {
-        this.F = qmbVar;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class olb extends MetricAffectingSpan {
+    public TextPaint a;
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.a;
+        textPaint.setColor(textPaint2.getColor());
+        textPaint.setTypeface(textPaint2.getTypeface());
+        textPaint.setFlags(textPaint2.getFlags());
+        textPaint.setTextSize(textPaint2.getTextSize());
+        textPaint.baselineShift = textPaint2.baselineShift;
+        textPaint.bgColor = textPaint2.bgColor;
     }
 
     @Override
-    public final void P(s49 s49Var) {
-        this.F.w0.h1();
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.a;
+        textPaint.setColor(textPaint2.getColor());
+        textPaint.setTypeface(textPaint2.getTypeface());
+        textPaint.setFlags(textPaint2.getFlags());
+        textPaint.setTextSize(textPaint2.getTextSize());
+        textPaint.baselineShift = textPaint2.baselineShift;
+        textPaint.bgColor = textPaint2.bgColor;
     }
 }

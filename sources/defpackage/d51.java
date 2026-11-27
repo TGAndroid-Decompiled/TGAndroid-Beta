@@ -1,44 +1,42 @@
 package defpackage;
-public final class d51 extends f51 {
-    public final int e;
-    public final int f;
 
-    public d51(byte[] bArr, int i, int i2) {
-        super(bArr);
-        f51.i(i, i + i2, bArr.length);
-        this.e = i;
-        this.f = i2;
+import java.io.Serializable;
+import java.util.Arrays;
+public final class d51 extends eu7 implements Serializable {
+    public final es4 a;
+    public final eu7 b;
+
+    public d51(es4 es4Var, eu7 eu7Var) {
+        this.a = es4Var;
+        this.b = eu7Var;
     }
 
     @Override
-    public final byte h(int i) {
-        int i2 = this.f;
-        if (((i2 - (i + 1)) | i) < 0) {
-            if (i < 0) {
-                throw new ArrayIndexOutOfBoundsException(de9.k(i, "Index < 0: "));
+    public final int compare(Object obj, Object obj2) {
+        es4 es4Var = this.a;
+        return this.b.compare(es4Var.apply(obj), es4Var.apply(obj2));
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof d51) {
+                d51 d51Var = (d51) obj;
+                if (this.a.equals(d51Var.a) && this.b.equals(d51Var.b)) {
+                    return true;
+                }
+                return false;
             }
-            throw new ArrayIndexOutOfBoundsException(b00.g(i, i2, "Index > length: ", ", "));
+            return false;
         }
-        return this.b[this.e + i];
+        return true;
     }
 
-    @Override
-    public final void k(int i, byte[] bArr) {
-        System.arraycopy(this.b, this.e, bArr, 0, i);
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b});
     }
 
-    @Override
-    public final int l() {
-        return this.e;
-    }
-
-    @Override
-    public final byte m(int i) {
-        return this.b[this.e + i];
-    }
-
-    @Override
-    public final int size() {
-        return this.f;
+    public final String toString() {
+        return this.b + ".onResultOf(" + this.a + ")";
     }
 }

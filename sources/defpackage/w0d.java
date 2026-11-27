@@ -1,29 +1,25 @@
 package defpackage;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class w0d extends s0d {
-    public final TaskCompletionSource h;
-    public final s0d n;
-    public final hzc r;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+public abstract class w0d {
+    public static final ExecutorService a = Executors.newFixedThreadPool(4, new y20((byte) 12));
+    public static File b;
 
-    public w0d(hzc hzcVar, TaskCompletionSource taskCompletionSource, TaskCompletionSource taskCompletionSource2, s0d s0dVar) {
-        super(taskCompletionSource);
-        this.h = taskCompletionSource2;
-        this.n = s0dVar;
-        this.r = hzcVar;
-    }
-
-    @Override
-    public final void b() {
-        synchronized (this.r.f) {
-            hzc hzcVar = this.r;
-            TaskCompletionSource taskCompletionSource = this.h;
-            hzcVar.e.add(taskCompletionSource);
-            taskCompletionSource.getTask().addOnCompleteListener(new v8b(hzcVar, taskCompletionSource, false, (byte) 8));
-            if (this.r.l.getAndIncrement() > 0) {
-                this.r.b.b("Already connected to the service.", new Object[0]);
+    public static String a(InputStream inputStream) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] bArr = new byte[16384];
+        while (true) {
+            int read = inputStream.read(bArr);
+            if (read != -1) {
+                byteArrayOutputStream.write(bArr, 0, read);
+            } else {
+                return new String(byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8);
             }
-            hzc.b(this.r, this.n);
         }
     }
 }

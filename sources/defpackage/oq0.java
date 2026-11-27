@@ -10,8 +10,8 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.tgnet.TLRPC;
-public abstract class oq0 extends LinearLayout implements cn5, j79 {
-    public final wjb a;
+public abstract class oq0 extends LinearLayout implements fp5, wa9 {
+    public final vnb a;
     public final FrameLayout b;
     public TLRPC.TL_replyKeyboardMarkup c;
     public lq0 d;
@@ -23,14 +23,14 @@ public abstract class oq0 extends LinearLayout implements cn5, j79 {
     public int s;
     public final GradientDrawable w;
     public int x;
-    public final k79 y;
+    public final xa9 y;
 
-    public oq0(Context context, wjb wjbVar) {
+    public oq0(Context context, vnb vnbVar) {
         super(context);
         this.n = new ArrayList();
         this.w = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.y = new k79(this, s33.h, 320L);
-        this.a = wjbVar;
+        this.y = new xa9(this, k43.h, 320L);
+        this.a = vnbVar;
         setOrientation(1);
         ScrollView scrollView = new ScrollView(context);
         this.r = scrollView;
@@ -56,7 +56,7 @@ public abstract class oq0 extends LinearLayout implements cn5, j79 {
     }
 
     public final void d() {
-        gl.u3(this.r, bkb.v0(bkb.yf, this.a));
+        hl.u3(this.r, aob.v0(aob.zf, this.a));
         int i = 0;
         while (true) {
             ArrayList arrayList = this.n;
@@ -73,13 +73,13 @@ public abstract class oq0 extends LinearLayout implements cn5, j79 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float Q0 = gl.Q0(this.s);
+        float Q0 = hl.Q0(this.s);
         if (Q0 > 0.0f) {
-            int p1 = bkb.p1(Q0, bkb.v0(bkb.yf, this.a));
+            int p1 = aob.p1(Q0, aob.v0(aob.zf, this.a));
             int i = this.x;
             GradientDrawable gradientDrawable = this.w;
             if (i != p1) {
-                gradientDrawable.setColors(new int[]{p1, bkb.p1(0.66f, p1), bm2.o(p1, 0)});
+                gradientDrawable.setColors(new int[]{p1, aob.p1(0.66f, p1), vm2.o(p1, 0)});
                 this.x = p1;
             }
             gradientDrawable.setBounds(0, getMeasuredHeight() - this.s, getMeasuredWidth(), getMeasuredHeight());
@@ -88,13 +88,13 @@ public abstract class oq0 extends LinearLayout implements cn5, j79 {
     }
 
     @Override
-    public final void f(k79 k79Var) {
+    public final void f(xa9 xa9Var) {
         Iterator it = this.y.iterator();
         while (it.hasNext()) {
-            u46 u46Var = (u46) it.next();
-            float c = u46Var.c();
-            Object obj = u46Var.a;
-            float R1 = gl.R1(0.7f, 1.0f, c);
+            y66 y66Var = (y66) it.next();
+            float c = y66Var.c();
+            Object obj = y66Var.a;
+            float R1 = hl.R1(0.7f, 1.0f, c);
             ((nq0) obj).setAlpha(c);
             ((nq0) obj).setScaleX(R1);
             ((nq0) obj).setScaleY(R1);
@@ -109,8 +109,8 @@ public abstract class oq0 extends LinearLayout implements cn5, j79 {
         if (this.f) {
             return this.e;
         }
-        int L = gl.L(this.h) * tL_replyKeyboardMarkup.rows.size();
-        return de9.y(4.0f, this.c.rows.size() - 1, gl.L(16.0f) + L);
+        int L = hl.L(this.h) * tL_replyKeyboardMarkup.rows.size();
+        return uh9.y(4.0f, this.c.rows.size() - 1, hl.L(16.0f) + L);
     }
 
     public void setButtons(org.telegram.tgnet.TLRPC.TL_replyKeyboardMarkup r21) {
@@ -129,16 +129,16 @@ public abstract class oq0 extends LinearLayout implements cn5, j79 {
             if (!this.f) {
                 max = 44;
             } else {
-                max = (int) Math.max(44.0f, (((this.e - gl.L(16.0f)) - (gl.L(4.0f) * (this.c.rows.size() - 1))) / this.c.rows.size()) / gl.p);
+                max = (int) Math.max(44.0f, (((this.e - hl.L(16.0f)) - (hl.L(4.0f) * (this.c.rows.size() - 1))) / this.c.rows.size()) / hl.p);
             }
             this.h = max;
-            int L = gl.L(max);
+            int L = hl.L(max);
             Iterator it = this.y.iterator();
             while (it.hasNext()) {
-                u46 u46Var = (u46) it.next();
-                int childCount = ((nq0) u46Var.a).getChildCount();
+                y66 y66Var = (y66) it.next();
+                int childCount = ((nq0) y66Var.a).getChildCount();
                 for (int i2 = 0; i2 < childCount; i2++) {
-                    View childAt = ((nq0) u46Var.a).getChildAt(i2);
+                    View childAt = ((nq0) y66Var.a).getChildAt(i2);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != L) {
                         layoutParams.height = L;

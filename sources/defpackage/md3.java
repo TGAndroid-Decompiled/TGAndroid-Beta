@@ -1,15 +1,44 @@
 package defpackage;
-public final class md3 implements i8c {
-    public final byte a;
-    public final sd3 b;
 
-    public md3(sd3 sd3Var, byte b) {
-        this.a = b;
-        this.b = sd3Var;
+import j$.util.DesugarCollections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+public final class md3 {
+    public final String a;
+    public final wz4 b;
+
+    public md3(Set set, wz4 wz4Var) {
+        this.a = b(set);
+        this.b = wz4Var;
     }
 
-    @Override
-    public final void a(java.lang.Object r13, java.lang.Object r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.md3.a(java.lang.Object, java.lang.Object):void");
+    public static String b(Set set) {
+        StringBuilder sb = new StringBuilder();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            aa0 aa0Var = (aa0) it.next();
+            sb.append(aa0Var.a);
+            sb.append('/');
+            sb.append(aa0Var.b);
+            if (it.hasNext()) {
+                sb.append(' ');
+            }
+        }
+        return sb.toString();
+    }
+
+    public final String a() {
+        Set unmodifiableSet;
+        wz4 wz4Var = this.b;
+        synchronized (((HashSet) wz4Var.a)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) wz4Var.a);
+        }
+        boolean isEmpty = unmodifiableSet.isEmpty();
+        String str = this.a;
+        if (isEmpty) {
+            return str;
+        }
+        return str + ' ' + b(wz4Var.F());
     }
 }

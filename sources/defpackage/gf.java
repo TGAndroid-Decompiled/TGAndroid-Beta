@@ -1,215 +1,234 @@
 package defpackage;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.IBinder;
+import android.webkit.JsPromptResult;
 import android.widget.EditText;
-import org.telegram.messenger.ImageReceiver;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class gf implements ed, x56, ll5, ix6, lx6, yc7, us2 {
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ExternalActionActivity;
+import org.telegram.ui.LaunchActivity;
+public final class gf implements DialogInterface.OnDismissListener {
     public final byte a;
-    public final long b;
-    public final int c;
-    public final Object d;
+    public final Object b;
+    public final Object c;
 
-    public gf(tj tjVar, int i, long j, long j2) {
-        this.a = (byte) 2;
-        this.d = tjVar;
-        this.c = i;
-        this.b = j;
+    public gf(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void C(org.telegram.messenger.ImageReceiver r4, boolean r5, boolean r6, boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gf.C(org.telegram.messenger.ImageReceiver, boolean, boolean, boolean):void");
-    }
-
-    @Override
-    public final void a(String str) {
-        ((nfa) this.d).F0(this.c, str, this.b);
-    }
-
-    @Override
-    public final void accept(Object obj) {
-        boolean z;
-        vab vabVar = (vab) this.d;
-        x33 x33Var = (x33) obj;
-        vabVar.h.getClass();
-        byte[] l3 = i2f.l3(x33Var.a, x33Var.c);
-        xu7 xu7Var = vabVar.c;
-        xu7Var.L(l3.length, l3);
-        vabVar.a.e(l3.length, xu7Var);
-        long j = x33Var.b;
-        int i = (j > (-9223372036854775807L) ? 1 : (j == (-9223372036854775807L) ? 0 : -1));
-        fm4 fm4Var = vabVar.h;
-        long j2 = this.b;
-        if (i == 0) {
-            if (fm4Var.y == Long.MAX_VALUE) {
-                z = true;
-            } else {
-                z = false;
-            }
-            gre.p(z);
-        } else {
-            long j3 = fm4Var.y;
-            if (j3 == Long.MAX_VALUE) {
-                j2 += j;
-            } else {
-                j2 = j + j3;
-            }
-        }
-        vabVar.a.a(j2, this.c | 1, l3.length, 0, null);
-    }
-
-    @Override
-    public final void g(ad8 ad8Var, su6 su6Var) {
-        ad8Var.p(((ox6) this.d).f(su6Var, ad8Var, this.c), this.b);
-    }
-
-    @Override
-    public final void invoke(Object obj) {
-        uj ujVar = (uj) obj;
-        ujVar.n((tj) this.d, this.c, this.b);
-    }
-
-    @Override
-    public final Object p(tv6 tv6Var, su6 su6Var, int i) {
-        long j;
-        try {
-            mm5 a = w21.a((IBinder) this.d);
-            jm5 p = mm5.p();
-            for (int i2 = 0; i2 < a.size(); i2++) {
-                Bundle bundle = (Bundle) a.get(i2);
-                bundle.getClass();
-                p.c(br6.a(su6Var.c, bundle));
-            }
-            w59 f = p.f();
-            int i3 = this.c;
-            if (i3 == -1) {
-                tv6Var.t();
-                i3 = tv6Var.t.l0();
-                tv6Var.t();
-                j = tv6Var.t.m();
-            } else {
-                j = this.b;
-            }
-            return tv6Var.o(su6Var, f, i3, j);
-        } catch (RuntimeException e) {
-            lad.g("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
-            return jie.b(e);
-        }
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        Runnable runnable;
+        e lastFragment;
+        HashMap hashMap;
+        HashMap hashMap2;
+        euc eucVar;
         byte b = this.a;
-        Object obj = this.d;
-        int i2 = this.c;
-        long j = this.b;
+        Object obj = this.c;
+        Object obj2 = this.b;
         switch (b) {
             case 0:
-                EditText editText = (EditText) obj;
-                String str = "";
-                if (j > 0) {
-                    TLRPC.UserFull W1 = na7.q1(i2).W1(y6c.h(i2).e());
-                    String trim = editText.getText().toString().replace("\n", " ").replaceAll(" +", " ").trim();
-                    if (W1 != null) {
-                        String str2 = W1.about;
-                        if (str2 != null) {
-                            str = str2;
-                        }
-                        if (str.equals(trim)) {
-                            gl.t1(editText);
-                            hdVar.dismiss();
-                            return;
-                        }
-                        W1.about = trim;
-                        kk7.f(i2).k(67, Long.valueOf(j), W1);
-                    }
-                    TL_account.updateProfile updateprofile = new TL_account.updateProfile();
-                    updateprofile.about = trim;
-                    updateprofile.flags |= 4;
-                    kk7.e().k(295, 2, Long.valueOf(j));
-                    ConnectionsManager.getInstance(i2).sendRequest(updateprofile, new ce2((byte) 0), 2);
-                } else {
-                    long j2 = -j;
-                    TLRPC.ChatFull L0 = na7.q1(i2).L0(j2);
-                    String obj2 = editText.getText().toString();
-                    if (L0 != null) {
-                        String str3 = L0.about;
-                        if (str3 != null) {
-                            str = str3;
-                        }
-                        if (str.equals(obj2)) {
-                            gl.t1(editText);
-                            hdVar.dismiss();
-                            return;
-                        }
-                        L0.about = obj2;
-                        kk7 f = kk7.f(i2);
-                        Boolean bool = Boolean.FALSE;
-                        f.k(30, L0, 0, bool, bool);
-                    }
-                    kk7.e().k(295, 2, Long.valueOf(j));
-                    na7 q1 = na7.q1(i2);
-                    TLRPC.TL_messages_editChatAbout tL_messages_editChatAbout = new TLRPC.TL_messages_editChatAbout();
-                    tL_messages_editChatAbout.peer = q1.h1(-j2);
-                    tL_messages_editChatAbout.about = obj2;
-                    q1.getConnectionsManager().sendRequest(tL_messages_editChatAbout, new k45(q1, L0, obj2, (byte) 21), 64);
+                hl.t1((EditText) obj2);
+                hl.t1((EditText) obj);
+                return;
+            case 1:
+                pt2 pt2Var = (pt2) obj;
+                if (!((AtomicBoolean) obj2).get()) {
+                    pt2Var.accept(Boolean.FALSE);
+                    return;
                 }
-                hdVar.dismiss();
+                return;
+            case 2:
+                e eVar = (e) obj2;
+                DialogInterface.OnDismissListener onDismissListener = (DialogInterface.OnDismissListener) obj;
+                if (onDismissListener != null) {
+                    onDismissListener.onDismiss(dialogInterface);
+                }
+                eVar.onDialogDismiss((Dialog) dialogInterface);
+                if (dialogInterface == eVar.visibleDialog) {
+                    eVar.visibleDialog = null;
+                    return;
+                }
+                return;
+            case 3:
+                e eVar2 = (e) obj2;
+                bg0 bg0Var = (bg0) obj;
+                eVar2.onPause();
+                eVar2.onFragmentDestroy();
+                if (bg0Var != null && (runnable = bg0Var.b) != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 4:
+                kt ktVar = (kt) obj;
+                if (!((AtomicBoolean) obj2).get()) {
+                    ktVar.run();
+                    return;
+                }
+                return;
+            case 5:
+                boolean[] zArr = (boolean[]) obj2;
+                ku0 ku0Var = (ku0) obj;
+                if (!zArr[0]) {
+                    ku0Var.a(Boolean.FALSE);
+                    zArr[0] = true;
+                    return;
+                }
+                return;
+            case 6:
+                boolean[] zArr2 = (boolean[]) obj2;
+                hu0 hu0Var = (hu0) obj;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    hu0Var.a(null);
+                    return;
+                }
+                return;
+            case 7:
+                ((Runnable) obj).run();
+                ((rv0) obj2).d0 = null;
+                return;
+            case 8:
+                boolean[] zArr3 = (boolean[]) obj2;
+                JsPromptResult jsPromptResult = (JsPromptResult) obj;
+                if (!zArr3[0]) {
+                    zArr3[0] = true;
+                    jsPromptResult.cancel();
+                    return;
+                }
+                return;
+            case 9:
+                ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj2;
+                ArrayList arrayList = ExternalActionActivity.y;
+                externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj).text));
+                externalActionActivity.finish();
+                return;
+            case 10:
+                LaunchActivity launchActivity = (LaunchActivity) obj2;
+                id idVar = (id) obj;
+                String str = LaunchActivity.C1;
+                if (idVar == launchActivity.G0) {
+                    ActionBarLayout actionBarLayout = launchActivity.p0;
+                    if (actionBarLayout == null) {
+                        lastFragment = null;
+                    } else {
+                        lastFragment = actionBarLayout.getLastFragment();
+                    }
+                    try {
+                        String str2 = ob6.D0().B.c;
+                        if (lastFragment != null) {
+                            d31 b0 = d31.b0(lastFragment);
+                            if (str2.equals("en")) {
+                                hashMap2 = launchActivity.J0;
+                            } else {
+                                hashMap2 = launchActivity.I0;
+                            }
+                            v21 Q = b0.Q(2131624104, 36, LaunchActivity.T(2131752526, "ChangeLanguageLater", hashMap2));
+                            Q.j = 5000;
+                            Q.j();
+                        } else {
+                            d31 d31Var = new d31(o11.a(launchActivity), null);
+                            if (str2.equals("en")) {
+                                hashMap = launchActivity.J0;
+                            } else {
+                                hashMap = launchActivity.I0;
+                            }
+                            v21 Q2 = d31Var.Q(2131624104, 36, LaunchActivity.T(2131752526, "ChangeLanguageLater", hashMap));
+                            Q2.j = 5000;
+                            Q2.j();
+                        }
+                    } catch (Exception e) {
+                        cc4.g(e, true);
+                    }
+                    launchActivity.G0 = null;
+                } else if (idVar == launchActivity.E0) {
+                    uc7.e1();
+                    SharedPreferences.Editor edit = uc7.e1().edit();
+                    edit.putBoolean("proxy_enabled", false);
+                    edit.commit();
+                    ConnectionsManager.setProxySettings(false, null);
+                    jn7.e().k(281, new Object[0]);
+                    launchActivity.E0 = null;
+                }
+                launchActivity.D0.remove(idVar);
+                return;
+            case 11:
+                r17 r17Var = (r17) obj2;
+                if (!((boolean[]) obj)[0]) {
+                    r17Var.Q();
+                    return;
+                }
+                return;
+            case 12:
+                gn1 gn1Var = (gn1) obj;
+                if (!((boolean[]) obj2)[0]) {
+                    gn1Var.run();
+                    return;
+                }
+                return;
+            case 13:
+                d38 d38Var = (d38) obj;
+                if (!((boolean[]) obj2)[0]) {
+                    d38Var.a(Boolean.FALSE);
+                    return;
+                }
+                return;
+            case 14:
+                c0a c0aVar = (c0a) obj2;
+                if (!((boolean[]) obj)[0]) {
+                    c0aVar.a(true);
+                }
+                c0aVar.x = null;
+                return;
+            case 15:
+                ((boolean[]) obj2)[0] = true;
+                Runnable runnable2 = ((Runnable[]) obj)[0];
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
+            case 16:
+                p4a p4aVar = (p4a) obj2;
+                if (!((boolean[]) obj)[0]) {
+                    p4aVar.a(Boolean.FALSE, null);
+                    return;
+                }
+                return;
+            case 17:
+                mkc mkcVar = (mkc) obj2;
+                if (!((boolean[]) obj)[0]) {
+                    mkcVar.u0.b();
+                    return;
+                }
                 return;
             default:
-                Runnable runnable = (Runnable) obj;
-                SharedPreferences.Editor edit = na7.q1(y6c.t0).W3.edit();
-                if (j != 0) {
-                    edit.putInt("color_" + j, 0);
-                } else if (i2 == 1) {
-                    edit.putInt("MessagesLed", 0);
-                } else if (i2 == 0) {
-                    edit.putInt("GroupLed", 0);
-                } else if (i2 == 3) {
-                    edit.putInt("StoriesLed", 0);
-                } else if (i2 != 5 && i2 != 4) {
-                    edit.putInt("ChannelLed", 0);
-                } else {
-                    edit.putInt("ReactionsLed", 0);
+                TLRPC.User user = (TLRPC.User) obj2;
+                TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = (TL_wallet.walletTransactionPeerUser) obj;
+                e S = LaunchActivity.S();
+                if (S != null) {
+                    if (user != null) {
+                        eucVar = new euc(user);
+                    } else {
+                        eucVar = new euc(wallettransactionpeeruser.address);
+                        eucVar.A0(wallettransactionpeeruser.domain);
+                    }
+                    S.presentFragment(eucVar);
+                    return;
                 }
-                edit.commit();
-                runnable.run();
                 return;
         }
-    }
-
-    public gf(long j, int i, Object obj, byte b) {
-        this.a = b;
-        this.b = j;
-        this.c = i;
-        this.d = obj;
-    }
-
-    public gf(Object obj, int i, long j, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.c = i;
-        this.b = j;
-    }
-
-    public gf(Object obj, long j, int i, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.b = j;
-        this.c = i;
-    }
-
-    @Override
-    public final void v(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public final void E(int i, Drawable drawable) {
     }
 }

@@ -1,142 +1,141 @@
 package defpackage;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.RectF;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.ProfileActivity;
-public final class mq8 extends fs5 {
-    public final lca e;
-    public final pq8 f;
+public final class mq8 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final ProfileActivity b;
 
-    public mq8(pq8 pq8Var, lca lcaVar) {
-        this.f = pq8Var;
-        this.e = lcaVar;
+    public mq8(ProfileActivity profileActivity, byte b) {
+        this.a = b;
+        this.b = profileActivity;
     }
 
-    public static TL_stars.SavedStarGift v(s49 s49Var) {
-        View view = s49Var.a;
-        if (view instanceof nv4) {
-            return ((nv4) view).getSavedGift();
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        byte b = this.a;
+        ProfileActivity profileActivity = this.b;
+        switch (b) {
+            case 1:
+                profileActivity.U5 = null;
+                return;
+            case 4:
+                profileActivity.O1 = false;
+                profileActivity.a.P0 = true;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        return null;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s49 s49Var) {
-        super.a(recyclerView, s49Var);
-        s49Var.a.setPressed(false);
-    }
-
-    @Override
-    public final int f(RecyclerView recyclerView, s49 s49Var) {
-        if (u(v(s49Var))) {
-            return fs5.m(15, 0);
-        }
-        return fs5.m(0, 0);
-    }
-
-    @Override
-    public final boolean k() {
-        return this.f.h;
-    }
-
-    @Override
-    public final boolean l() {
-        return this.f.h;
-    }
-
-    @Override
-    public final boolean o(RecyclerView recyclerView, s49 s49Var, s49 s49Var2) {
-        vq8 vq8Var;
-        pq8 pq8Var = this.f;
-        va vaVar = pq8Var.f;
-        if (pq8Var.e != null && pq8Var.h && u(v(s49Var)) && u(v(s49Var2))) {
-            int b = s49Var.b();
-            int b2 = s49Var2.b();
-            int indexOf = pq8Var.e.l.indexOf(v(s49Var));
-            int indexOf2 = pq8Var.e.l.indexOf(v(s49Var2));
-            if (indexOf >= 0 && indexOf2 >= 0) {
-                boolean z = pq8Var.d;
-                xsa xsaVar = pq8Var.e;
-                lca lcaVar = this.e;
-                if (z) {
-                    xsaVar.n(indexOf, indexOf2);
-                    lcaVar.e.n(pq8Var.e.d);
+    public final void onAnimationEnd(Animator animator) {
+        vy4 vy4Var;
+        a aVar;
+        int v0;
+        byte b = this.a;
+        ProfileActivity profileActivity = this.b;
+        switch (b) {
+            case 0:
+                vy4Var = ((e) profileActivity).glassEngine;
+                vy4Var.g();
+                aVar = ((e) profileActivity).actionBar;
+                if (profileActivity.q2) {
+                    v0 = 1090519039;
+                } else if (profileActivity.n6 != null) {
+                    v0 = 553648127;
                 } else {
-                    if (xsaVar.q == null) {
-                        xsaVar.q = xsaVar.i();
-                    }
-                    xsaVar.n(indexOf, indexOf2);
+                    v0 = aob.v0(aob.f8, profileActivity.A0);
                 }
-                vaVar.g3.j(b, b2);
-                vaVar.g3.T();
-                if (pq8Var.d) {
-                    HashMap hashMap = tq8.V;
-                    lcaVar.f(true);
+                aVar.G(v0, false);
+                iq8 iq8Var = profileActivity.f0;
+                ImageReceiver imageReceiver = iq8Var.V;
+                lm m = imageReceiver.m();
+                if (m != null) {
+                    m.w(iq8Var);
                 }
-                d S = LaunchActivity.S();
-                if ((S instanceof ProfileActivity) && (vq8Var = ((ProfileActivity) S).w0) != null) {
-                    vq8Var.a();
+                imageReceiver.f();
+                mn5 mn5Var = iq8Var.a0;
+                if (mn5Var != null) {
+                    mn5Var.a();
+                    iq8Var.a0 = null;
                 }
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void q(s49 s49Var, int i) {
-        pq8 pq8Var = this.f;
-        if (i == 0) {
-            xsa xsaVar = pq8Var.e;
-            if (xsaVar != null) {
-                ArrayList arrayList = xsaVar.q;
-                if (arrayList != null) {
-                    ArrayList i2 = xsaVar.i();
-                    if (arrayList.size() == i2.size()) {
-                        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                            if (arrayList.get(i3) == i2.get(i3)) {
-                            }
-                        }
-                    }
-                    xsaVar.p();
-                    xsaVar.q = null;
+                iq8Var.W = 0.0f;
+                iq8Var.invalidate();
+                profileActivity.I0 = false;
+                profileActivity.i4(false);
+                return;
+            case 1:
+                if (profileActivity.U5 != null && !profileActivity.X5) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    profileActivity.V5 = animatorSet;
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.p5, 1.0f));
+                    profileActivity.V5.setDuration(100L);
+                    profileActivity.V5.addListener(new n88(this, (byte) 20));
+                    profileActivity.V5.start();
+                }
+                profileActivity.i4(false);
+                profileActivity.U5 = null;
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                RectF rectF = ProfileActivity.Z6;
+                profileActivity.O2(true);
+                return;
+            case 3:
+                AnimatorSet animatorSet2 = profileActivity.w;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    profileActivity.w = null;
                     return;
                 }
-                xsaVar.q = null;
                 return;
-            }
-            return;
+            case 4:
+                profileActivity.O1 = false;
+                profileActivity.a.P0 = true;
+                profileActivity.k2.removeListener(this);
+                profileActivity.d1.setBackgroundColor(-16777216);
+                profileActivity.Y.setVisibility(8);
+                profileActivity.o0.setVisibility(0);
+                profileActivity.o0.setAlpha(1.0f);
+                return;
+            case 5:
+                profileActivity.k2.removeListener(this);
+                profileActivity.o0.setVisibility(8);
+                profileActivity.o0.setAlpha(1.0f);
+                return;
+            default:
+                profileActivity.x0 = null;
+                profileActivity.fragmentView.invalidate();
+                return;
         }
-        va vaVar = pq8Var.f;
-        if (vaVar != null) {
-            vaVar.J0(false);
-        }
-        if (s49Var != null) {
-            s49Var.a.setPressed(true);
-        }
-    }
-
-    public final boolean u(TL_stars.SavedStarGift savedStarGift) {
-        pq8 pq8Var = this.f;
-        if (pq8Var.h) {
-            if (pq8Var.e == this.e.d) {
-                if (savedStarGift == null || !savedStarGift.pinned_to_top) {
-                    return false;
-                }
-                return true;
-            }
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public final void r(s49 s49Var) {
+    public final void onAnimationStart(Animator animator) {
+        switch (this.a) {
+            case 0:
+                return;
+            case 4:
+                RectF rectF = ProfileActivity.Z6;
+                ProfileActivity profileActivity = this.b;
+                profileActivity.t3(false);
+                profileActivity.o0.setAnimatedFileMaybe(profileActivity.f0.getImageReceiver().m());
+                profileActivity.o0.L();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    private final void a(Animator animator) {
     }
 }

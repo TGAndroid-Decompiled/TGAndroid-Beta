@@ -1,98 +1,41 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public interface hy1 {
-    void B();
+import android.animation.ValueAnimator;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class hy1 implements ViewTreeObserver.OnPreDrawListener {
+    public final tx1 a;
+    public final float b;
+    public final float c;
+    public final ChatActivityEnterView d;
 
-    void C0(CharSequence charSequence, boolean z, boolean z2);
+    public hy1(ChatActivityEnterView chatActivityEnterView, tx1 tx1Var, float f, float f2) {
+        this.d = chatActivityEnterView;
+        this.a = tx1Var;
+        this.b = f;
+        this.c = f2;
+    }
 
-    bu1 D();
-
-    void G0();
-
-    void H();
-
-    boolean H0();
-
-    void I0();
-
-    void K0();
-
-    void L0();
-
-    boolean M();
-
-    void O0(View view, CharSequence charSequence, boolean z);
-
-    void P0(CharSequence charSequence);
-
-    boolean Q0();
-
-    void R0();
-
-    void S();
-
-    void U();
-
-    void W0();
-
-    void a();
-
-    void e();
-
-    void e1();
-
-    void f1(int i);
-
-    boolean g();
-
-    void g0();
-
-    void g1();
-
-    int h();
-
-    TLRPC.Peer i();
-
-    void j();
-
-    void j1(boolean z);
-
-    void k(float f);
-
-    void k1(int i, int i2, int i3, long j, long j2, boolean z);
-
-    void m(boolean z);
-
-    void n();
-
-    void n0(int i);
-
-    int o0();
-
-    void o1();
-
-    void p1();
-
-    void r();
-
-    void s1();
-
-    TL_stories.StoryItem t0();
-
-    void u(CharSequence charSequence, boolean z, int i, int i2, long j);
-
-    boolean u0(long j);
-
-    TLRPC.TL_channels_sendAsPeers v();
-
-    void w(float f, int i);
-
-    void y();
-
-    boolean y0();
-
-    void z(boolean z);
+    @Override
+    public final boolean onPreDraw() {
+        c8a c8aVar;
+        tx1 tx1Var = this.a;
+        tx1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        tw1 tw1Var = chatActivityEnterView.R0;
+        if (chatActivityEnterView.F0 == tx1Var && (c8aVar = chatActivityEnterView.q0) != null && c8aVar.getVisibility() != 0) {
+            float left = (this.b - tx1Var.getLeft()) - chatActivityEnterView.I;
+            float left2 = this.c - tw1Var.getLeft();
+            ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
+            duration.setInterpolator(k43.f);
+            duration.addUpdateListener(new gy1(this, left, left2, (byte) 0));
+            duration.addListener(new v5(this, duration, (byte) 11));
+            chatActivityEnterView.q0.setTag(duration);
+            chatActivityEnterView.H = left;
+            chatActivityEnterView.B2();
+            tw1Var.setTranslationX(left2);
+            duration.start();
+        }
+        return true;
+    }
 }

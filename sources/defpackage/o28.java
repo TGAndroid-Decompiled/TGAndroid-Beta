@@ -1,99 +1,116 @@
 package defpackage;
-public final class o28 implements m8c {
-    public final byte a;
-    public final s28 b;
-    public final w28 c;
 
-    public o28(s28 s28Var, w28 w28Var, byte b) {
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.HashMap;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.p;
+public final class o28 implements TextWatcher {
+    public final byte a;
+    public final p b;
+
+    public o28(p pVar, byte b) {
         this.a = b;
-        this.b = s28Var;
-        this.c = w28Var;
+        this.b = pVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+    public final void afterTextChanged(Editable editable) {
+        boolean z;
+        String str;
+        String str2;
         byte b = this.a;
-        w28 w28Var = this.c;
-        s28 s28Var = this.b;
+        p pVar = this.b;
         switch (b) {
             case 0:
-                Long l = (Long) obj;
-                Runnable runnable = (Runnable) obj2;
-                Boolean bool = (Boolean) obj3;
-                Long l2 = (Long) obj4;
-                long currentTimeMillis = System.currentTimeMillis();
-                y28 y28Var = s28Var.x;
-                c30 c30Var = y28Var.C2;
-                l8b l8bVar = (l8b) c30Var.c;
-                if (l8bVar == null) {
-                    ((d8b) y28Var.G1).g(false);
-                    y28Var.setActive(true);
-                    y28Var.J3 = false;
-                    y28Var.Y0 = new ks2(runnable, (byte) 5);
-                    if (bool.booleanValue()) {
-                        y28Var.c1(false);
-                    }
-                    gl.d3(runnable, 400L);
-                    return;
-                }
-                l8bVar.firstFrameRendered = false;
-                c30Var.a = false;
-                l8bVar.setOnReadyListener(new k18(runnable, currentTimeMillis, (byte) 1));
-                ((d8b) y28Var.G1).g(false);
-                ry8 ry8Var = y28Var.p0;
-                if (ry8Var != null) {
-                    ry8Var.setAnimation(w28Var.u);
-                }
-                if (y28Var.H2 > 0 && l.longValue() > y28Var.H2 - 1400) {
-                    l = 0L;
-                }
-                y28Var.O0(l.longValue(), true);
-                y28Var.J3 = false;
-                gl.d3(runnable, 400L);
-                if (bool.booleanValue()) {
-                    y28Var.c1(false);
+                if (pVar.d0 != 0 && editable.length() == pVar.d0) {
+                    pVar.G0(false);
                     return;
                 }
                 return;
             default:
-                Long l3 = (Long) obj;
-                Runnable runnable2 = (Runnable) obj2;
-                Boolean bool2 = (Boolean) obj3;
-                Long l4 = (Long) obj4;
-                long currentTimeMillis2 = System.currentTimeMillis();
-                y28 y28Var2 = s28Var.x;
-                c30 c30Var2 = y28Var2.C2;
-                l8b l8bVar2 = (l8b) c30Var2.c;
-                if (l8bVar2 == null) {
-                    ((d8b) y28Var2.G1).g(false);
-                    y28Var2.setActive(true);
-                    y28Var2.J3 = false;
-                    y28Var2.Y0 = new ks2(runnable2, (byte) 6);
-                    if (bool2.booleanValue()) {
-                        y28Var2.c1(false);
+                HashMap hashMap = pVar.c;
+                if (!pVar.n0) {
+                    pVar.n0 = true;
+                    String h = f78.h(pVar.f[8].getText().toString(), false);
+                    pVar.f[8].setText(h);
+                    gg5 gg5Var = (gg5) pVar.f[9];
+                    if (h.length() == 0) {
+                        gg5Var.setHintText((String) null);
+                        gg5Var.setHint(ob6.M0(2131747099, null));
+                    } else {
+                        int i = 4;
+                        if (h.length() > 4) {
+                            while (true) {
+                                if (i >= 1) {
+                                    String substring = h.substring(0, i);
+                                    if (((String) hashMap.get(substring)) != null) {
+                                        pVar.f[8].setText(substring);
+                                        str = h.substring(i) + pVar.f[9].getText().toString();
+                                        h = substring;
+                                        z = true;
+                                    } else {
+                                        i--;
+                                    }
+                                } else {
+                                    z = false;
+                                    str = null;
+                                }
+                            }
+                            if (!z) {
+                                str = h.substring(1) + pVar.f[9].getText().toString();
+                                EditTextBoldCursor editTextBoldCursor = pVar.f[8];
+                                h = h.substring(0, 1);
+                                editTextBoldCursor.setText(h);
+                            }
+                        } else {
+                            z = false;
+                            str = null;
+                        }
+                        String str3 = (String) hashMap.get(h);
+                        if (str3 != null && pVar.a.indexOf(str3) != -1 && (str2 = (String) pVar.d.get(h)) != null) {
+                            gg5Var.setHintText(str2.replace('X', (char) 8211));
+                            gg5Var.setHint((CharSequence) null);
+                        } else {
+                            gg5Var.setHintText((String) null);
+                            gg5Var.setHint(ob6.M0(2131747099, null));
+                        }
+                        if (!z) {
+                            EditTextBoldCursor editTextBoldCursor2 = pVar.f[8];
+                            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+                        }
+                        if (str != null) {
+                            gg5Var.requestFocus();
+                            gg5Var.setText(str);
+                            gg5Var.setSelection(gg5Var.length());
+                        }
                     }
-                    gl.d3(runnable2, 400L);
-                    return;
-                }
-                l8bVar2.firstFrameRendered = false;
-                c30Var2.a = false;
-                l8bVar2.setOnReadyListener(new k18(runnable2, currentTimeMillis2, (byte) 2));
-                ((d8b) y28Var2.G1).g(false);
-                ry8 ry8Var2 = y28Var2.p0;
-                if (ry8Var2 != null) {
-                    ry8Var2.setAnimation(w28Var.u);
-                }
-                if (y28Var2.H2 > 0 && l3.longValue() > y28Var2.H2 - 1400) {
-                    l3 = 0L;
-                }
-                y28Var2.O0(l3.longValue(), true);
-                y28Var2.J3 = false;
-                gl.d3(runnable2, 400L);
-                if (bool2.booleanValue()) {
-                    y28Var2.c1(false);
+                    pVar.n0 = false;
                     return;
                 }
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+    }
+
+    private final void a(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void b(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void c(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void d(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

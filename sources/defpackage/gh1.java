@@ -1,152 +1,107 @@
 package defpackage;
 
 import android.app.Activity;
-import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d;
-public final class gh1 extends FrameLayout implements tjb {
-    public final e08 a;
-    public final fh1 b;
-    public final jia c;
-    public final TextView d;
-    public final TextView e;
-    public final LinearLayout f;
-    public final nh1 h;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import org.telegram.ui.ActionBar.e;
+public final class gh1 extends View {
+    public final byte a;
+    public final Canvas b;
+    public final float c;
+    public final float d;
+    public final float e;
+    public final Paint f;
+    public final Bitmap h;
+    public final Paint n;
+    public final float r;
+    public final float s;
+    public final e w;
 
-    public gh1(nh1 nh1Var, Activity activity) {
+    public gh1(e eVar, Activity activity, Canvas canvas, float f, float f2, float f3, Paint paint, Bitmap bitmap, Paint paint2, float f4, float f5, byte b) {
         super(activity);
-        wjb wjbVar;
-        int i;
-        wjb wjbVar2;
-        float f;
-        float f2;
-        int i2;
-        int i3;
-        this.h = nh1Var;
-        Context context = getContext();
-        wjbVar = ((d) nh1Var).resourceProvider;
-        e08 e08Var = new e08(context, wjbVar);
-        this.a = e08Var;
-        e08Var.setProgressToGradient(1.0f);
-        e08Var.G = true;
-        addView(e08Var, nme.e(-1, -1, 119));
-        Context context2 = getContext();
-        i = ((d) nh1Var).currentAccount;
-        long j = nh1Var.a;
-        wjbVar2 = ((d) nh1Var).resourceProvider;
-        fh1 fh1Var = new fh1(this, context2, i, j, wjbVar2);
-        this.b = fh1Var;
-        boolean z = nh1Var.d;
-        if (z) {
-            f = 230.0f;
-        } else {
-            f = 190.0f;
-        }
-        float f3 = f;
-        if (z) {
-            f2 = 24.0f;
-        } else {
-            f2 = 0.0f;
-        }
-        addView(fh1Var, nme.d(-1, f3, 80, 0.0f, 0.0f, 0.0f, f2));
-        if (nh1Var instanceof ca5) {
-            jia jiaVar = new jia(getContext());
-            this.c = jiaVar;
-            jiaVar.setGravity(19);
-            int i4 = bkb.z8;
-            jiaVar.setTextColor(nh1Var.getThemedColor(i4));
-            jiaVar.setTypeface(gl.o());
-            jiaVar.l(k96.M0(2131752539, null), false);
-            jiaVar.setAlpha(0.0f);
-            a();
-            addView(jiaVar, nme.d(-1, -2.0f, 80, 72.0f, 0.0f, 0.0f, 16.0f));
-            LinearLayout linearLayout = new LinearLayout(activity);
-            this.f = linearLayout;
-            linearLayout.setOrientation(0);
-            linearLayout.setBackground(bkb.g0(bkb.p1(0.065f, -16777216), -16777216));
-            linearLayout.setGravity(17);
-            linearLayout.setPadding(gl.L(4.0f), gl.L(4.0f), gl.L(4.0f), gl.L(4.0f));
-            TextView textView = new TextView(activity);
-            this.d = textView;
-            textView.setTextSize(1, 12.0f);
-            textView.setTextColor(fh1Var.h.getTextColor());
-            TextView textView2 = new TextView(activity);
-            this.e = textView2;
-            textView2.setTextSize(1, 12.0f);
-            if (nh1Var.d && nh1Var.s == -1) {
-                i2 = nh1Var.getThemedColor(i4);
-            } else {
-                i2 = -1;
-            }
-            textView2.setTextColor(i2);
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = nh1Var.c;
-            if (tL_premium_boostsStatus != null) {
-                i3 = tL_premium_boostsStatus.boosts;
-            } else {
-                i3 = 0;
-            }
-            textView.setText(gl.S2(k96.G(i3, "BoostingGroupBoostCount", new Object[0])));
-            textView2.setText(k96.M0(2131753350, null));
-            linearLayout.addView(textView);
-            linearLayout.addView(textView2, nme.k(3.0f, 0.0f, 0.0f, 0.0f, -2, -2));
-            addView(linearLayout, nme.e(-1, -2, 80));
-        }
-    }
-
-    public final void a() {
-        boolean z;
-        int i;
-        float f;
-        int i2 = 0;
-        if (getResources().getConfiguration().orientation == 2) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (!gl.O1() && z) {
-            i = 18;
-        } else {
-            i = 20;
-        }
-        jia jiaVar = this.c;
-        jiaVar.setTextSize(i);
-        if (gl.O1()) {
-            f = -2.0f;
-        } else {
-            if (z) {
-                i2 = 4;
-            }
-            f = i2;
-        }
-        jiaVar.setTranslationY(gl.L(f));
+        this.a = b;
+        this.w = eVar;
+        this.b = canvas;
+        this.c = f;
+        this.d = f2;
+        this.e = f3;
+        this.f = paint;
+        this.h = bitmap;
+        this.n = paint2;
+        this.r = f4;
+        this.s = f5;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.z8));
-    }
-
-    @Override
-    public final void updateColors() {
-        int themedColor;
-        jia jiaVar = this.c;
-        if (jiaVar != null) {
-            nh1 nh1Var = this.h;
-            int i = -1;
-            if (nh1Var.d && nh1Var.s != -1) {
-                themedColor = -1;
-            } else {
-                themedColor = nh1Var.getThemedColor(bkb.z8);
-            }
-            jiaVar.setTextColor(themedColor);
-            if (nh1Var.d && nh1Var.s == -1) {
-                i = nh1Var.getThemedColor(bkb.z8);
-            }
-            this.e.setTextColor(i);
+    public final void onDraw(Canvas canvas) {
+        byte b = this.a;
+        float f = this.s;
+        float f2 = this.r;
+        Bitmap bitmap = this.h;
+        Paint paint = this.f;
+        Canvas canvas2 = this.b;
+        e eVar = this.w;
+        float f3 = this.c;
+        float f4 = this.d;
+        float f5 = this.e;
+        Paint paint2 = this.n;
+        switch (b) {
+            case 0:
+                super.onDraw(canvas);
+                wh1 wh1Var = (wh1) eVar;
+                boolean z = wh1Var.K;
+                float f6 = wh1Var.o0;
+                if (z) {
+                    if (f6 > 0.0f) {
+                        canvas2.drawCircle(f3, f4, f5 * f6, paint);
+                    }
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas.drawCircle(f3, f4, (1.0f - f6) * f5, paint2);
+                }
+                canvas.save();
+                canvas.translate(f2, f);
+                wh1Var.M.draw(canvas);
+                canvas.restore();
+                return;
+            case 1:
+                super.onDraw(canvas);
+                h48 h48Var = (h48) eVar;
+                boolean z2 = h48Var.T;
+                float f7 = h48Var.Z;
+                if (z2) {
+                    if (f7 > 0.0f) {
+                        canvas2.drawCircle(f3, f4, f5 * f7, paint);
+                    }
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas.drawCircle(f3, f4, (1.0f - f7) * f5, paint2);
+                }
+                canvas.save();
+                canvas.translate(f2, f);
+                h48Var.L.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.onDraw(canvas);
+                pqb pqbVar = (pqb) eVar;
+                boolean a = pqbVar.a.a();
+                float f8 = pqbVar.k2;
+                if (a) {
+                    if (f8 > 0.0f) {
+                        canvas2.drawCircle(f3, f4, f5 * f8, paint);
+                    }
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas.drawCircle(f3, f4, (1.0f - f8) * f5, paint2);
+                }
+                canvas.save();
+                canvas.translate(f2, f);
+                pqbVar.Q1.draw(canvas);
+                canvas.restore();
+                return;
         }
     }
 }

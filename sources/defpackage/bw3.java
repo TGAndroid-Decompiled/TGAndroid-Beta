@@ -1,105 +1,143 @@
 package defpackage;
 
 import android.graphics.Canvas;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Timer;
-import org.telegram.tgnet.TLRPC;
-public final class bw3 extends yv3 {
-    public b09 i;
-    public b09 j;
-    public int k;
-    public final lm l;
-    public Timer m;
-    public final b6b n;
-    public final ArrayList o;
-    public final cw3 p;
+import org.telegram.messenger.ImageReceiver;
+public final class bw3 extends fr3 {
+    public int N;
+    public int O;
+    public ArrayList P;
+    public final ArrayList Q = new ArrayList();
+    public final boolean R = i86.e(8200);
+    public final dw3 S;
 
-    public bw3(cw3 cw3Var) {
-        super(cw3Var);
-        ArrayList arrayList;
-        this.p = cw3Var;
-        this.i = new b09(cw3Var);
-        this.j = new b09(cw3Var);
-        this.l = new lm(cw3Var);
-        this.n = new b6b(cw3Var);
-        this.o = new ArrayList();
-        this.a = (byte) 3;
-        this.b = gl.L(44.0f);
-        this.c = gl.L(36.0f);
-        ew3 ew3Var = cw3Var.f;
-        int i = ew3.C1;
-        ArrayList arrayList2 = hq6.d0(ew3Var.a).h;
-        int i2 = 0;
-        while (true) {
-            int min = Math.min(arrayList2.size(), 8);
-            arrayList = this.o;
-            if (i2 >= min) {
-                break;
-            }
-            arrayList.add(h19.c((TLRPC.TL_availableReaction) arrayList2.get(i2)));
-            i2++;
+    public bw3(dw3 dw3Var) {
+        this.S = dw3Var;
+    }
+
+    public static void m(Canvas canvas, wl wlVar, cw3 cw3Var, float f) {
+        if (wlVar != null) {
+            wlVar.setAlpha((int) (f * 255.0f));
+            wlVar.draw(canvas);
+        } else if (cw3Var.f != null) {
+            canvas.save();
+            ImageReceiver imageReceiver = cw3Var.f;
+            canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.w(), cw3Var.f.x());
+            cw3Var.f.setAlpha(f);
+            cw3Var.f.h(canvas, null);
+            canvas.restore();
         }
-        Collections.sort(arrayList, new mz2((byte) 15));
-        if (!this.o.isEmpty()) {
-            this.i.e((h19) this.o.get(this.k));
-        }
-        this.l.e(true, 1.0f);
     }
 
     @Override
-    public final void a(Canvas canvas, float f, float f2) {
-        float L = f2 - gl.L(4.0f);
-        float f3 = this.b;
-        RectF rectF = this.f;
-        rectF.set((int) f, (int) L, (int) (f + f3), (int) (L + f3));
-        float a = this.g.a(0.05f);
-        canvas.save();
-        canvas.scale(a, a, rectF.centerX(), rectF.centerY());
-        b6b b6bVar = this.n;
-        b6bVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        b6bVar.draw(canvas);
-        Rect rect = gl.Q;
-        float L2 = gl.L(30.0f) / 2.0f;
-        rect.set((int) (rectF.centerX() - L2), (int) (rectF.centerY() - L2), (int) (rectF.centerX() + L2), (int) (rectF.centerY() + L2));
-        float e = this.l.e(false, 1.0f);
-        this.j.c(rect);
-        this.i.c(rect);
-        if (e == 1.0f) {
-            this.i.a(canvas);
+    public final void a(Canvas canvas, long j, int i, int i2, float f) {
+        boolean z;
+        if (this.P == null) {
+            return;
+        }
+        boolean z2 = true;
+        if (!this.S.d0() && this.P.size() > 4 && this.R) {
+            z = false;
         } else {
-            canvas.save();
-            float f4 = 1.0f - e;
-            canvas.scale(f4, f4, rectF.centerX(), rectF.top);
-            b09 b09Var = this.j;
-            b09Var.h = f4;
-            b09Var.a(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.scale(e, e, rectF.centerX(), rectF.bottom);
-            b09 b09Var2 = this.i;
-            b09Var2.h = e;
-            b09Var2.a(canvas);
-            canvas.restore();
+            z = true;
         }
-        canvas.restore();
+        if (!z) {
+            for (int i3 = 0; i3 < this.P.size(); i3++) {
+                if (((cw3) this.P.get(i3)).getScale() != 1.0f) {
+                    break;
+                }
+            }
+        }
+        z2 = z;
+        if (z2) {
+            i(System.currentTimeMillis());
+            d(canvas, f);
+            k();
+            return;
+        }
+        super.a(canvas, j, i, i2, f);
     }
 
     @Override
-    public final void b(boolean z) {
-        this.i.b(z);
-        this.j.b(z);
-        Timer timer = this.m;
-        if (timer != null) {
-            timer.cancel();
-            this.m = null;
+    public final void c(Canvas canvas) {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.Q;
+            if (i < arrayList.size()) {
+                cw3 cw3Var = (cw3) arrayList.get(i);
+                cw3Var.getClass();
+                wl wlVar = cw3Var.d;
+                if (wlVar != null) {
+                    wlVar.setColorFilter(this.S.p3);
+                }
+                cw3Var.r.h(canvas, cw3Var.n[this.L]);
+                i++;
+            } else {
+                return;
+            }
         }
-        if (z) {
-            Timer timer2 = new Timer();
-            this.m = timer2;
-            timer2.schedule(new aw3(this, (byte) 0), 2000L, 2000L);
+    }
+
+    @Override
+    public final void d(Canvas canvas, float f) {
+        wl wlVar;
+        if (this.P != null) {
+            canvas.save();
+            canvas.translate(-this.O, 0.0f);
+            for (int i = 0; i < this.P.size(); i++) {
+                cw3 cw3Var = (cw3) this.P.get(i);
+                cw3Var.getClass();
+                float scale = cw3Var.getScale();
+                float alpha = cw3Var.getAlpha() * f;
+                Rect rect = hl.Q;
+                rect.set(cw3Var.getPaddingLeft() + ((int) cw3Var.getX()), cw3Var.getPaddingTop(), (cw3Var.getWidth() + ((int) cw3Var.getX())) - cw3Var.getPaddingRight(), cw3Var.getHeight() - cw3Var.getPaddingBottom());
+                wl wlVar2 = cw3Var.d;
+                if (wlVar2 != null) {
+                    wlVar2.setBounds(rect);
+                }
+                ImageReceiver imageReceiver = cw3Var.f;
+                if (imageReceiver != null) {
+                    imageReceiver.j0(rect);
+                }
+                PorterDuffColorFilter porterDuffColorFilter = this.S.p3;
+                if (porterDuffColorFilter != null && (wlVar = cw3Var.d) != null) {
+                    wlVar.setColorFilter(porterDuffColorFilter);
+                }
+                if (scale != 1.0f) {
+                    canvas.save();
+                    canvas.scale(scale, scale, rect.centerX(), rect.centerY());
+                    m(canvas, wlVar2, cw3Var, alpha);
+                    canvas.restore();
+                } else {
+                    m(canvas, wlVar2, cw3Var, alpha);
+                }
+            }
+            canvas.restore();
         }
+    }
+
+    @Override
+    public final void g() {
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.Q;
+            if (i < arrayList.size()) {
+                ln5 ln5Var = ((cw3) arrayList.get(i)).n[this.L];
+                if (ln5Var != null) {
+                    ln5Var.a();
+                }
+                i++;
+            } else {
+                this.S.invalidate();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void i(long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bw3.i(long):void");
     }
 }

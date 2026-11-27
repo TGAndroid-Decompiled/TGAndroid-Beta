@@ -2,20 +2,20 @@ package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.Utilities;
 public class FfmpegAudioWaveformLoader {
-    private i8c onChunkReceived;
+    private icc onChunkReceived;
     private volatile boolean running = true;
 
-    public FfmpegAudioWaveformLoader(String str, int i, i8c i8cVar) {
-        this.onChunkReceived = i8cVar;
-        Utilities.h.c(new va7(this, str, i, (byte) 25));
+    public FfmpegAudioWaveformLoader(String str, int i, icc iccVar) {
+        this.onChunkReceived = iccVar;
+        Utilities.h.c(new ze7(this, str, i, (byte) 25));
     }
 
-    public static void a(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader, short[] sArr, int i) {
-        ffmpegAudioWaveformLoader.lambda$receiveChunk$1(sArr, i);
-    }
-
-    public static void c(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader, String str, int i) {
+    public static void b(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader, String str, int i) {
         ffmpegAudioWaveformLoader.lambda$new$0(str, i);
+    }
+
+    public static void c(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader, short[] sArr, int i) {
+        ffmpegAudioWaveformLoader.lambda$receiveChunk$1(sArr, i);
     }
 
     public native void lambda$new$0(String str, int i);
@@ -29,10 +29,10 @@ public class FfmpegAudioWaveformLoader {
     }
 
     private void receiveChunk(short[] sArr, int i) {
-        gl.c3(new va7(this, sArr, i, (byte) 26));
+        hl.c3(new ze7(this, sArr, i, (byte) 26));
     }
 
     public void destroy() {
-        Utilities.h.c(new s54(this, (byte) 4));
+        Utilities.h.c(new lw3(this, (byte) 17));
     }
 }

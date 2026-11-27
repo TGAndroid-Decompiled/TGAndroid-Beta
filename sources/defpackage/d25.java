@@ -1,93 +1,96 @@
 package defpackage;
-public final class d25 implements p8c {
-    public final byte a = 1;
-    public final u41 b;
-    public final u41 c;
-    public final ki7 d;
-    public final wjb e;
-    public final s25 f;
-    public final Object g;
-    public final Object h;
 
-    public d25(u41 u41Var, u41 u41Var2, w25 w25Var, s25 s25Var, ki7 ki7Var, wjb wjbVar, jf4 jf4Var) {
-        this.b = u41Var;
-        this.c = u41Var2;
-        this.g = w25Var;
-        this.f = s25Var;
-        this.d = ki7Var;
-        this.e = wjbVar;
-        this.h = jf4Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.c;
+public final class d25 implements Runnable {
+    public final pcc E;
+    public final z45 F;
+    public final byte a;
+    public final c b;
+    public final String c;
+    public final pcc d;
+    public final TL_wallet.nftItem e;
+    public final String f;
+    public final String h;
+    public final byte[] n;
+    public final long r;
+    public final a35 s;
+    public final z45 w;
+    public final TLRPC.User x;
+    public final String y;
+
+    public d25(c cVar, String str, pcc pccVar, TL_wallet.nftItem nftitem, String str2, String str3, byte[] bArr, long j, a35 a35Var, z45 z45Var, TLRPC.User user, String str4, pcc pccVar2, z45 z45Var2, byte b) {
+        this.a = b;
+        this.b = cVar;
+        this.c = str;
+        this.d = pccVar;
+        this.e = nftitem;
+        this.f = str2;
+        this.h = str3;
+        this.n = bArr;
+        this.r = j;
+        this.s = a35Var;
+        this.w = z45Var;
+        this.x = user;
+        this.y = str4;
+        this.E = pccVar2;
+        this.F = z45Var2;
     }
 
     @Override
-    public final void a(Object obj) {
-        u41 u41Var;
-        boolean z;
-        byte b = this.a;
-        boolean z2 = false;
-        Object obj2 = this.h;
-        Object obj3 = this.g;
-        switch (b) {
+    public final void run() {
+        switch (this.a) {
             case 0:
-                w25 w25Var = (w25) obj3;
-                jf4 jf4Var = (jf4) obj2;
-                Boolean bool = (Boolean) obj;
-                u41 u41Var2 = this.b;
-                u41Var2.setEnabled(false);
-                u41 u41Var3 = this.c;
-                u41Var3.setEnabled(false);
-                if (bool.booleanValue()) {
-                    u41Var = u41Var3;
-                } else {
-                    u41Var = u41Var2;
+                c cVar = this.b;
+                String str = this.c;
+                pcc pccVar = this.d;
+                d25 d25Var = new d25(cVar, str, pccVar, this.e, this.f, this.h, this.n, this.r, this.s, this.w, this.x, this.y, this.E, this.F, (byte) 1);
+                if (cVar.S() && !cVar.R()) {
+                    c.P("send " + str + ": asking passcode");
+                    e S = LaunchActivity.S();
+                    if (S == 0) {
+                        pccVar.a("PASSCODE_FAILED");
+                        return;
+                    }
+                    ?? obj = new Object();
+                    obj.a = true;
+                    boolean[] zArr = {false};
+                    r25 r25Var = new r25(zArr, pccVar);
+                    r25Var.W = new se4(zArr, d25Var, (byte) 17);
+                    S.showAsSheet(r25Var, obj);
+                    return;
                 }
-                u41Var.setLoading(true);
-                boolean booleanValue = bool.booleanValue();
-                ki7 ki7Var = this.d;
-                wjb wjbVar = this.e;
-                s25 s25Var = this.f;
-                w25Var.e(s25Var, booleanValue, new f25(u41Var2, u41Var3, ki7Var, wjbVar, jf4Var, s25Var, (byte) 0));
+                d25Var.run();
                 return;
             default:
-                boolean[] zArr = (boolean[]) obj3;
-                boolean[] zArr2 = (boolean[]) obj2;
-                String str = (String) obj;
-                u41 u41Var4 = this.b;
-                u41Var4.setLoading(false);
-                u41 u41Var5 = this.c;
-                u41Var5.setLoading(false);
-                ki7 ki7Var2 = this.d;
-                if (str == null) {
-                    ki7Var2.dismiss();
-                    return;
-                } else if (zArr[0]) {
-                    u21.c0(str);
-                    return;
-                } else {
-                    u21.d0(str, ki7Var2.F, this.e);
-                    s25 s25Var2 = this.f;
-                    if (!s25Var2.n && zArr2[0]) {
-                        z = true;
-                    } else {
-                        z = false;
+                StringBuilder sb = new StringBuilder("send ");
+                final String str2 = this.c;
+                sb.append(str2);
+                sb.append(": ready, get secret phrase");
+                c.P(sb.toString());
+                final c cVar2 = this.b;
+                final pcc pccVar2 = this.d;
+                final TL_wallet.nftItem nftitem = this.e;
+                final String str3 = this.f;
+                final String str4 = this.h;
+                final byte[] bArr = this.n;
+                final long j = this.r;
+                final a35 a35Var = this.s;
+                final z45 z45Var = this.w;
+                final TLRPC.User user = this.x;
+                final String str5 = this.y;
+                final pcc pccVar3 = this.E;
+                final z45 z45Var2 = this.F;
+                cVar2.E(false, true, true, new icc() {
+                    @Override
+                    public final void a(java.lang.Object r38, java.lang.Object r39) {
+                        throw new UnsupportedOperationException("Method not decompiled: defpackage.f25.a(java.lang.Object, java.lang.Object):void");
                     }
-                    u41Var4.setEnabled(z);
-                    if (!s25Var2.n && !s25Var2.o) {
-                        z2 = true;
-                    }
-                    u41Var5.setEnabled(z2);
-                    return;
-                }
+                });
+                return;
         }
-    }
-
-    public d25(u41 u41Var, u41 u41Var2, ki7 ki7Var, boolean[] zArr, wjb wjbVar, s25 s25Var, boolean[] zArr2) {
-        this.b = u41Var;
-        this.c = u41Var2;
-        this.d = ki7Var;
-        this.g = zArr;
-        this.e = wjbVar;
-        this.f = s25Var;
-        this.h = zArr2;
     }
 }

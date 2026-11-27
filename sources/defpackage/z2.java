@@ -1,197 +1,195 @@
 package defpackage;
 
-import android.icu.util.ULocale;
-import android.media.MediaCodec;
-import android.os.Build;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
-public abstract class z2 {
-    public static ULocale a(String str) {
-        return new ULocale(str);
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+public abstract class z2 implements List, Collection {
+    @Override
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    public static MediaCodec.CryptoInfo.Pattern b() {
-        return new MediaCodec.CryptoInfo.Pattern(0, 0);
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    public static void c(id3 id3Var) {
-        if ((Build.VERSION.SDK_INT > 23 && id3Var == ForkJoinPool.commonPool()) || id3Var.a.isTerminated()) {
-            return;
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public boolean contains(Object obj) {
+        if (isEmpty()) {
+            return false;
         }
-        id3Var.shutdown();
-        throw null;
-    }
-
-    public static void d(fo3 fo3Var) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || fo3Var != ForkJoinPool.commonPool()) && !(isTerminated = fo3Var.isTerminated())) {
-            fo3Var.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = fo3Var.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        fo3Var.shutdownNow();
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                Thread.currentThread().interrupt();
+        for (Object obj2 : this) {
+            if (ur5.a(obj2, obj)) {
+                return true;
             }
         }
+        return false;
     }
 
-    public static void e(ce7 ce7Var) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || ce7Var != ForkJoinPool.commonPool()) && !(isTerminated = ce7Var.isTerminated())) {
-            ce7Var.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = ce7Var.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        ce7Var.shutdownNow();
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                Thread.currentThread().interrupt();
+    @Override
+    public final boolean containsAll(Collection collection) {
+        collection.getClass();
+        Collection<Object> collection2 = collection;
+        if (collection2.isEmpty()) {
+            return true;
+        }
+        for (Object obj : collection2) {
+            if (!contains(obj)) {
+                return false;
             }
         }
+        return true;
     }
 
-    public static void f(re7 re7Var) {
-        boolean isTerminated;
-        ExecutorService executorService = re7Var.a;
-        if ((Build.VERSION.SDK_INT <= 23 || re7Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            re7Var.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        re7Var.shutdownNow();
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                Thread.currentThread().interrupt();
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof List)) {
+            return false;
+        }
+        Collection collection = (Collection) obj;
+        if (size() != collection.size()) {
+            return false;
+        }
+        Iterator it = collection.iterator();
+        for (Object obj2 : this) {
+            if (!ur5.a(obj2, it.next())) {
+                return false;
             }
         }
+        return true;
     }
 
-    public static void g(ue7 ue7Var) {
-        boolean isTerminated;
-        ExecutorService executorService = ue7Var.a;
-        if ((Build.VERSION.SDK_INT <= 23 || ue7Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            ue7Var.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        ue7Var.shutdownNow();
-                        z = true;
-                    }
-                }
+    public abstract int h();
+
+    @Override
+    public final int hashCode() {
+        int i;
+        int i2 = 1;
+        for (Object obj : this) {
+            int i3 = i2 * 31;
+            if (obj != null) {
+                i = obj.hashCode();
+            } else {
+                i = 0;
             }
-            if (z) {
-                Thread.currentThread().interrupt();
-            }
+            i2 = i3 + i;
         }
+        return i2;
     }
 
-    public static void h(ExecutorService executorService) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || executorService != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            executorService.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        executorService.shutdownNow();
-                        z = true;
-                    }
-                }
+    @Override
+    public int indexOf(Object obj) {
+        int i = 0;
+        for (Object obj2 : this) {
+            if (ur5.a(obj2, obj)) {
+                return i;
             }
-            if (z) {
-                Thread.currentThread().interrupt();
-            }
+            i++;
         }
+        return -1;
     }
 
-    public static void i(ncf ncfVar) {
-        boolean isTerminated;
-        ExecutorService executorService = ncfVar.a;
-        if ((Build.VERSION.SDK_INT <= 23 || ncfVar != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            ncfVar.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        ncfVar.shutdownNow();
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                Thread.currentThread().interrupt();
-            }
+    @Override
+    public final boolean isEmpty() {
+        if (h() == 0) {
+            return true;
         }
+        return false;
     }
 
-    public static void j(adf adfVar) {
-        boolean isTerminated;
-        ExecutorService executorService = adfVar.a;
-        if ((Build.VERSION.SDK_INT <= 23 || adfVar != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            adfVar.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        adfVar.shutdownNow();
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                Thread.currentThread().interrupt();
-            }
-        }
+    @Override
+    public Iterator iterator() {
+        return new w2(this);
     }
 
-    public static void k(ExecutorService executorService) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || executorService != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            executorService.shutdown();
-            boolean z = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z) {
-                        executorService.shutdownNow();
-                        z = true;
-                    }
-                }
-            }
-            if (z) {
-                Thread.currentThread().interrupt();
+    @Override
+    public int lastIndexOf(Object obj) {
+        ListIterator listIterator = listIterator(size());
+        while (listIterator.hasPrevious()) {
+            if (ur5.a(listIterator.previous(), obj)) {
+                return listIterator.nextIndex();
             }
         }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return new x2(this, 0);
+    }
+
+    @Override
+    public final Object remove(int i) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final int size() {
+        return h();
+    }
+
+    @Override
+    public List subList(int i, int i2) {
+        return new y2(this, i, i2);
+    }
+
+    @Override
+    public Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        return l93.c(this, objArr);
+    }
+
+    public final String toString() {
+        return sl2.f(this, ", ", "[", "]", new a2(this, (byte) 0), 24);
+    }
+
+    @Override
+    public final ListIterator listIterator(int i) {
+        return new x2(this, i);
+    }
+
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public Object[] toArray() {
+        return l93.b(this);
     }
 }

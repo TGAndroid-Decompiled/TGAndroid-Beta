@@ -1,43 +1,69 @@
 package defpackage;
 
-import android.app.Application;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.List;
-public abstract class fq9 {
-    public static final List a = zk2.b(Application.class, wp9.class);
-    public static final List b = zk2.a(wp9.class);
+import j$.util.Objects;
+import org.telegram.messenger.a;
+public final class fq9 implements Runnable {
+    public final byte a;
+    public final kq9 b;
 
-    public static final Constructor a(Class cls, List list) {
-        list.getClass();
-        Constructor<?>[] constructors = cls.getConstructors();
-        constructors.getClass();
-        for (Constructor<?> constructor : constructors) {
-            Class<?>[] parameterTypes = constructor.getParameterTypes();
-            parameterTypes.getClass();
-            List h = ss.h(parameterTypes);
-            if (list.equals(h)) {
-                return constructor;
-            }
-            if (list.size() == h.size() && h.containsAll(list)) {
-                throw new UnsupportedOperationException("Class " + cls.getSimpleName() + " must have parameters in the proper order: " + list);
-            }
-        }
-        return null;
+    public fq9(kq9 kq9Var, byte b) {
+        this.a = b;
+        this.b = kq9Var;
     }
 
-    public static final odc b(Class cls, Constructor constructor, Object... objArr) {
-        try {
-            return (odc) constructor.newInstance(Arrays.copyOf(objArr, objArr.length));
-        } catch (IllegalAccessException e) {
-            ho9.l("Failed to access ", cls, e);
-            return null;
-        } catch (InstantiationException e2) {
-            throw new RuntimeException("A " + cls + " cannot be instantiated.", e2);
-        } catch (InvocationTargetException e3) {
-            fyb.j("An exception happened in constructor of " + cls, e3.getCause());
-            return null;
+    @Override
+    public final void run() {
+        jq9 jq9Var;
+        byte b = this.a;
+        kq9 kq9Var = this.b;
+        switch (b) {
+            case 0:
+                kq9Var.Q = null;
+                kq9Var.J();
+                return;
+            default:
+                boolean z = kq9Var.w;
+                if (!z) {
+                    rr9 rr9Var = kq9Var.O;
+                    if (rr9Var != null) {
+                        if (kq9Var.P) {
+                            kq9Var.P = false;
+                            xz0 xz0Var = rr9Var.e;
+                            Objects.requireNonNull(xz0Var);
+                            rr9Var.b.post(new gz0(xz0Var, (byte) 7));
+                            return;
+                        }
+                        return;
+                    }
+                    kq9Var.P = false;
+                    if (!z && rr9Var == null) {
+                        if (!kq9Var.G) {
+                            kq9Var.G = true;
+                            hl.c3(new u96(kq9Var, (byte) 3));
+                        }
+                        rr9 rr9Var2 = new rr9(kq9Var.e, kq9Var.f, kq9Var.k(), new iq9(kq9Var));
+                        kq9Var.O = rr9Var2;
+                        qr9 qr9Var = kq9Var.U;
+                        if (qr9Var != null) {
+                            jq9Var = new jq9(kq9Var, qr9Var);
+                        } else {
+                            jq9Var = null;
+                        }
+                        kq9Var.V = jq9Var;
+                        rr9Var2.l(jq9Var, null);
+                        rr9 rr9Var3 = kq9Var.O;
+                        float f = kq9Var.H;
+                        rr9Var3.getClass();
+                        rr9Var3.b.post(new jt(rr9Var3, f, (byte) 5));
+                        kq9Var.O.k(a.o());
+                        rr9 rr9Var4 = kq9Var.O;
+                        rr9Var4.getClass();
+                        rr9Var4.b.post(new hq9(rr9Var4, (byte) 3));
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

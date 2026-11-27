@@ -1,20 +1,8 @@
 package defpackage;
+public final class co4 implements bo4 {
+    public final do4[] a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class co4 implements Parcelable {
-    public static final Parcelable.Creator<co4> CREATOR = new x21((byte) 18);
-    public String a;
-    public int b;
-
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.a);
-        parcel.writeInt(this.b);
+    public co4(do4[] do4VarArr) {
+        this.a = do4VarArr;
     }
 }

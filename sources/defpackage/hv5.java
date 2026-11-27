@@ -1,10 +1,8 @@
 package defpackage;
-public final class hv5 {
-    public final a8 a;
-    public final byte b;
-
-    public hv5(a8 a8Var, int i) {
-        this.a = a8Var;
-        this.b = i;
+public final class hv5 extends us4 implements ur4 {
+    @Override
+    public final Object invoke(Object obj) {
+        ((iv5) this.receiver).l((Throwable) obj);
+        return f9c.a;
     }
 }

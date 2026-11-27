@@ -3,16 +3,16 @@ package org.telegram.ui.web;
 import android.os.AsyncTask;
 import java.io.File;
 public class HttpGetFileTask extends AsyncTask<String, Void, File> {
-    private p8c doneCallback;
+    private pcc doneCallback;
     private Exception exception;
     private File file;
     private long max_size = -1;
     private String overrideExt;
-    private p8c progressCallback;
+    private pcc progressCallback;
 
-    public HttpGetFileTask(p8c p8cVar, p8c p8cVar2) {
-        this.doneCallback = p8cVar;
-        this.progressCallback = p8cVar2;
+    public HttpGetFileTask(pcc pccVar, pcc pccVar2) {
+        this.doneCallback = pccVar;
+        this.progressCallback = pccVar2;
     }
 
     public void lambda$doInBackground$0(float f) {
@@ -30,12 +30,12 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
 
     @Override
     public void onPostExecute(File file) {
-        p8c p8cVar = this.doneCallback;
-        if (p8cVar != null) {
+        pcc pccVar = this.doneCallback;
+        if (pccVar != null) {
             if (this.exception == null) {
-                p8cVar.a(file);
+                pccVar.a(file);
             } else {
-                p8cVar.a(null);
+                pccVar.a(null);
             }
         }
     }

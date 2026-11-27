@@ -1,70 +1,898 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.session.MediaSessionCompat$QueueItem;
+import android.util.LongSparseArray;
 import java.util.ArrayList;
-import org.telegram.messenger.WearReplyReceiver;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Wallet.c;
+import org.telegram.ui.o;
 public final class r77 implements Runnable {
-    public final byte a = 1;
-    public final int b;
+    public final byte a;
+    public final Object b;
     public final long c;
-    public final long d;
+    public final int d;
     public final Object e;
-    public final Object f;
-    public final Object h;
-    public final Object n;
 
-    public r77(cs5 cs5Var, int i, long j, long j2, cs5 cs5Var2, mu1 mu1Var, wjb wjbVar) {
-        this.e = cs5Var;
-        this.b = i;
+    public r77(jf7 jf7Var, int i, long j, TLObject tLObject, byte b) {
+        this.a = b;
+        this.b = jf7Var;
+        this.d = i;
         this.c = j;
-        this.d = j2;
-        this.f = cs5Var2;
-        this.h = mu1Var;
-        this.n = wjbVar;
+        this.e = tLObject;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r77.a():void");
+    }
+
+    private final void b() {
+        TLRPC.Chat O;
+        TLRPC.User h0;
+        r7a r7aVar = (r7a) this.b;
+        byte[] bArr = (byte[]) this.e;
+        StringBuilder sb = new StringBuilder();
+        long j = this.c;
+        sb.append(j);
+        sb.append("_");
+        int i = this.d;
+        sb.append(i);
+        sb.append("_");
+        sb.append(Utilities.f(bArr));
+        sb.append("_0");
+        String sb2 = sb.toString();
+        r7aVar.r.put(sb2, Boolean.TRUE);
+        HashMap hashMap = r7aVar.s;
+        List list = (List) hashMap.get(j + "_" + i);
+        if (list == null) {
+            list = new ArrayList();
+            hashMap.put(j + "_" + i, list);
+        }
+        list.add(sb2);
+        if (wf3.D(j)) {
+            if (r7aVar.getMessagesController().X1(Long.valueOf(j)) == null && (h0 = r7aVar.getMessagesStorage().h0(j)) != null) {
+                r7aVar.getMessagesController().i4(h0, true, false);
+            }
+        } else {
+            long j2 = -j;
+            if (r7aVar.getMessagesController().M0(Long.valueOf(j2)) == null && (O = r7aVar.getMessagesStorage().O(j2)) != null) {
+                r7aVar.getMessagesController().a4(O, true);
+            }
+        }
+        TLRPC.TL_messages_getBotCallbackAnswer tL_messages_getBotCallbackAnswer = new TLRPC.TL_messages_getBotCallbackAnswer();
+        tL_messages_getBotCallbackAnswer.peer = r7aVar.getMessagesController().j1(j);
+        tL_messages_getBotCallbackAnswer.msg_id = i;
+        tL_messages_getBotCallbackAnswer.game = false;
+        if (bArr != null) {
+            tL_messages_getBotCallbackAnswer.flags |= 1;
+            tL_messages_getBotCallbackAnswer.data = bArr;
+        }
+        r7aVar.getConnectionsManager().sendRequest(tL_messages_getBotCallbackAnswer, new qn8(r7aVar, sb2, list, (byte) 10), 2);
+        r7aVar.getMessagesController().r3(j, i, i, 0, false, 0L, 0, true, 0);
+    }
+
+    private final void c() {
+        dkb dkbVar = (dkb) this.b;
+        jf7 jf7Var = (jf7) this.e;
+        long j = this.c;
+        int i = this.d;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        try {
+            SQLiteDatabase sQLiteDatabase = jf7Var.b;
+            Locale locale = Locale.US;
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
+            while (queryFinalized.next()) {
+                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                if (byteBufferValue != null) {
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLdeserialize.readAttachPath(byteBufferValue, yac.h(i).n);
+                    byteBufferValue.reuse();
+                    if (r47.K3(TLdeserialize)) {
+                        TLdeserialize.id = queryFinalized.intValue(1);
+                        TLdeserialize.dialog_id = j;
+                        r47 r47Var = new r47(i, TLdeserialize, false, true);
+                        arrayList.add(r47Var);
+                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j + "_" + arrayList.size(), r47Var.y1(true), r47Var.w1(true), null, null, null, null, null), arrayList2.size()));
+                    }
+                }
+            }
+            queryFinalized.dispose();
+            Collections.reverse(arrayList);
+            Collections.reverse(arrayList2);
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
+        hl.c3(new wy(dkbVar, i, j, arrayList, arrayList2, (byte) 14));
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.r77.run():void");
+        Object obj;
+        int i;
+        long[] jArr;
+        Object obj2;
+        final long j;
+        final long j2;
+        long j3;
+        rp0 rp0Var;
+        int i2;
+        Object obj3;
+        long[] jArr2;
+        Object obj4;
+        long j4;
+        long j5;
+        long j6;
+        rp0 rp0Var2;
+        int i3;
+        wp0 wp0Var;
+        SQLitePreparedStatement executeFast;
+        SQLiteCursor queryFinalized;
+        TLRPC.Chat chat;
+        NativeByteBuffer byteBufferValue;
+        boolean isEmpty;
+        SQLiteDatabase sQLiteDatabase;
+        SQLitePreparedStatement sQLitePreparedStatement = this.a;
+        TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+        SQLitePreparedStatement sQLitePreparedStatement2 = null;
+        SQLitePreparedStatement sQLitePreparedStatement3 = null;
+        r9 = null;
+        r9 = null;
+        r9 = null;
+        r9 = null;
+        SQLiteCursor sQLiteCursor = null;
+        SQLitePreparedStatement sQLitePreparedStatement4 = null;
+        long j7 = this.c;
+        int i4 = this.d;
+        boolean z = false;
+        int i5 = 0;
+        Object obj5 = this.e;
+        Object obj6 = this.b;
+        switch (sQLitePreparedStatement) {
+            case 0:
+                TLRPC.TL_sendMessageTextDraftAction tL_sendMessageTextDraftAction = (TLRPC.TL_sendMessageTextDraftAction) obj5;
+                final wp0 b = wp0.b(((uc7) obj6).currentAccount);
+                zm9 zm9Var = b.a;
+                long j8 = tL_sendMessageTextDraftAction.random_id;
+                TLRPC.TL_textWithEntities tL_textWithEntities = tL_sendMessageTextDraftAction.text;
+                boolean z2 = tL_sendMessageTextDraftAction.can_stop;
+                boolean z3 = tL_sendMessageTextDraftAction.keep_on_stop;
+                StringBuilder sb = new StringBuilder("[BotForum] onDraftNewDraft ");
+                long j9 = this.c;
+                sb.append(j9);
+                sb.append(" ");
+                int i6 = this.d;
+                sb.append(i6);
+                sb.append(" ");
+                sb.append(j8);
+                cc4.b(sb.toString());
+                long j10 = i6;
+                LongSparseArray H0 = b.b.H0(j9, j10);
+                if (H0 == null) {
+                    obj = null;
+                } else {
+                    obj = H0.get(j8);
+                }
+                if (obj != null) {
+                    cc4.b("[BotForum] onDraftNewDraft ignore " + j9 + " " + i6 + " " + j8);
+                    return;
+                }
+                LongSparseArray H02 = zm9Var.H0(j9, j10);
+                if (H02 != null && H02.size() > 0) {
+                    long[] jArr3 = new long[H02.size()];
+                    int size = H02.size();
+                    i = i6;
+                    for (int i7 = 0; i7 < size; i7++) {
+                        jArr3[i7] = H02.keyAt(i7);
+                    }
+                    jArr = jArr3;
+                } else {
+                    i = i6;
+                    jArr = null;
+                }
+                LongSparseArray H03 = zm9Var.H0(j9, j10);
+                if (H03 == null) {
+                    obj2 = null;
+                } else {
+                    obj2 = H03.get(j8);
+                }
+                rp0 rp0Var3 = (rp0) obj2;
+                if (rp0Var3 == null) {
+                    rp0 rp0Var4 = new rp0(j8, b.getUserConfig().i());
+                    j = j8;
+                    zm9Var.N0(j9, j10, j, rp0Var4);
+                    j3 = j10;
+                    j2 = j9;
+                    rp0Var = rp0Var4;
+                } else {
+                    j = j8;
+                    j2 = j9;
+                    j3 = j10;
+                    rp0Var = rp0Var3;
+                }
+                rp0Var.d = z3;
+                rp0Var.c = z2;
+                if (jArr != null) {
+                    int length = jArr.length;
+                    int i8 = 0;
+                    while (i8 < length) {
+                        long j11 = jArr[i8];
+                        if (j11 == j) {
+                            i2 = i;
+                        } else {
+                            Runnable runnable = ((rp0) H02.get(j11)).f;
+                            if (runnable != null) {
+                                hl.r(runnable);
+                            }
+                            int i9 = i;
+                            long j12 = j2;
+                            b.e(j12, i9, j11);
+                            j2 = j12;
+                            i2 = i9;
+                        }
+                        i8++;
+                        i = i2;
+                    }
+                }
+                final int i10 = i;
+                Runnable runnable2 = rp0Var.f;
+                if (runnable2 != null) {
+                    hl.r(runnable2);
+                }
+                long j13 = j2;
+                rp0Var.f = new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r7) {
+                            case 0:
+                                b.e(j2, i10, j);
+                                return;
+                            default:
+                                b.e(j2, i10, j);
+                                return;
+                        }
+                    }
+                };
+                rp0Var.g = tL_textWithEntities;
+                int i11 = rp0Var.b;
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                tL_message.dialog_id = j13;
+                tL_message.peer_id = b.getMessagesController().y1(j13);
+                tL_message.from_id = b.getMessagesController().y1(j13);
+                tL_message.local_id = i11;
+                tL_message.id = i11;
+                tL_message.random_id = j;
+                tL_message.message = tL_textWithEntities.text;
+                tL_message.entities = tL_textWithEntities.entities;
+                tL_message.flags |= 128;
+                tL_message.date = b.getConnectionsManager().getCurrentTime();
+                TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
+                tL_message.reply_to = tL_messageReplyHeader;
+                tL_message.flags |= 16;
+                tL_messageReplyHeader.forum_topic = true;
+                tL_messageReplyHeader.reply_to_top_id = i10;
+                tL_messageReplyHeader.flags |= 2;
+                tL_message.media = new TLRPC.TL_messageMediaEmpty();
+                tL_message.flags |= 512;
+                r47 r47Var = new r47(b.currentAccount, tL_message, false, true);
+                r47Var.Y1 = true;
+                r47Var.S1 = false;
+                rp0Var.h = r47Var;
+                hl.d3(rp0Var.f, b.getAppGlobalConfig().B.g(timeUnit));
+                b.getNotificationCenter().k(343, new tp0(j13, j3, rp0Var.h));
+                return;
+            case 1:
+                TLRPC.TL_sendMessageRichMessageDraftAction tL_sendMessageRichMessageDraftAction = (TLRPC.TL_sendMessageRichMessageDraftAction) obj5;
+                wp0 b2 = wp0.b(((uc7) obj6).currentAccount);
+                zm9 zm9Var2 = b2.a;
+                long j14 = tL_sendMessageRichMessageDraftAction.random_id;
+                TL_iv.RichMessage richMessage = tL_sendMessageRichMessageDraftAction.rich_message;
+                boolean z4 = tL_sendMessageRichMessageDraftAction.can_stop;
+                boolean z5 = tL_sendMessageRichMessageDraftAction.keep_on_stop;
+                StringBuilder sb2 = new StringBuilder("[BotForum] onDraftNewDraft (rich_message) ");
+                long j15 = this.c;
+                sb2.append(j15);
+                sb2.append(" ");
+                int i12 = this.d;
+                sb2.append(i12);
+                sb2.append(" ");
+                sb2.append(j14);
+                cc4.b(sb2.toString());
+                long j16 = i12;
+                LongSparseArray H04 = b2.b.H0(j15, j16);
+                if (H04 == null) {
+                    obj3 = null;
+                } else {
+                    obj3 = H04.get(j14);
+                }
+                if (obj3 != null) {
+                    cc4.b("[BotForum] onDraftNewDraft (rich_message) ignore " + j15 + " " + i12 + " " + j14);
+                    return;
+                }
+                LongSparseArray H05 = zm9Var2.H0(j15, j16);
+                if (H05 != null && H05.size() > 0) {
+                    jArr2 = new long[H05.size()];
+                    int size2 = H05.size();
+                    for (int i13 = 0; i13 < size2; i13++) {
+                        jArr2[i13] = H05.keyAt(i13);
+                    }
+                } else {
+                    jArr2 = null;
+                }
+                LongSparseArray H06 = zm9Var2.H0(j15, j16);
+                if (H06 == null) {
+                    obj4 = null;
+                } else {
+                    obj4 = H06.get(j14);
+                }
+                rp0 rp0Var5 = (rp0) obj4;
+                if (rp0Var5 == null) {
+                    rp0 rp0Var6 = new rp0(j14, b2.getUserConfig().i());
+                    j4 = j15;
+                    zm9Var2.N0(j4, j16, j14, rp0Var6);
+                    j6 = j16;
+                    j5 = j14;
+                    rp0Var2 = rp0Var6;
+                } else {
+                    j4 = j15;
+                    j5 = j14;
+                    j6 = j16;
+                    rp0Var2 = rp0Var5;
+                }
+                rp0Var2.d = z5;
+                rp0Var2.c = z4;
+                if (jArr2 != null) {
+                    int length2 = jArr2.length;
+                    int i14 = 0;
+                    while (i14 < length2) {
+                        long j17 = jArr2[i14];
+                        if (j17 == j5) {
+                            i3 = i12;
+                            wp0Var = b2;
+                        } else {
+                            Runnable runnable3 = ((rp0) H05.get(j17)).f;
+                            if (runnable3 != null) {
+                                hl.r(runnable3);
+                            }
+                            i3 = i12;
+                            wp0Var = b2;
+                            wp0Var.e(j4, i3, j17);
+                        }
+                        i14++;
+                        b2 = wp0Var;
+                        i12 = i3;
+                    }
+                }
+                final int i15 = i12;
+                final wp0 wp0Var2 = b2;
+                Runnable runnable4 = rp0Var2.f;
+                if (runnable4 != null) {
+                    hl.r(runnable4);
+                }
+                final long j18 = j4;
+                final long j19 = j5;
+                rp0Var2.f = new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r7) {
+                            case 0:
+                                wp0Var2.e(j18, i15, j19);
+                                return;
+                            default:
+                                wp0Var2.e(j18, i15, j19);
+                                return;
+                        }
+                    }
+                };
+                int i16 = rp0Var2.b;
+                TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
+                tL_message2.dialog_id = j18;
+                tL_message2.peer_id = wp0Var2.getMessagesController().y1(j18);
+                tL_message2.from_id = wp0Var2.getMessagesController().y1(j18);
+                tL_message2.local_id = i16;
+                tL_message2.id = i16;
+                tL_message2.random_id = j5;
+                tL_message2.message = "";
+                tL_message2.flags |= 8192;
+                tL_message2.rich_message = richMessage;
+                tL_message2.date = wp0Var2.getConnectionsManager().getCurrentTime();
+                TLRPC.TL_messageReplyHeader tL_messageReplyHeader2 = new TLRPC.TL_messageReplyHeader();
+                tL_message2.reply_to = tL_messageReplyHeader2;
+                tL_message2.flags |= 16;
+                tL_messageReplyHeader2.forum_topic = true;
+                tL_messageReplyHeader2.reply_to_top_id = i15;
+                tL_messageReplyHeader2.flags |= 2;
+                tL_message2.media = new TLRPC.TL_messageMediaEmpty();
+                tL_message2.flags |= 512;
+                r47 r47Var2 = new r47(wp0Var2.currentAccount, tL_message2, false, true);
+                r47Var2.Y1 = true;
+                r47Var2.S1 = false;
+                rp0Var2.h = r47Var2;
+                hl.d3(rp0Var2.f, wp0Var2.getAppGlobalConfig().B.g(timeUnit));
+                wp0Var2.getNotificationCenter().k(343, new tp0(j18, j6, rp0Var2.h));
+                return;
+            case 2:
+                o oVar = (o) obj6;
+                TLObject tLObject = (TLObject) obj5;
+                if (oVar.I0 != 0) {
+                    oVar.I0 = 0;
+                    oVar.Z(false);
+                    if (tLObject != null) {
+                        TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+                        uc7.s1(i4).j4(tL_contacts_resolvedPeer.users, false);
+                        jf7.Y(i4).j1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+                        if (!tL_contacts_resolvedPeer.users.isEmpty()) {
+                            oVar.N(j7, tL_contacts_resolvedPeer.users.get(0));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                d01 d01Var = (d01) obj6;
+                byte[] bArr = (byte[]) obj5;
+                if (!d01Var.u) {
+                    d01Var.f.put(Long.valueOf(j7), new a01(i4, bArr));
+                    if (j7 == d01Var.m) {
+                        d01Var.m = -1L;
+                    }
+                    if (!d01Var.t && !d01Var.u) {
+                        d01Var.t = true;
+                        d01Var.c.postDelayed(new b01(d01Var, (byte) 2), 16L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                p pVar = (p) obj6;
+                long currentTimeMillis = System.currentTimeMillis();
+                Float valueOf = Float.valueOf(((int[]) obj5)[0] / i4);
+                if (currentTimeMillis - j7 > 250) {
+                    z = true;
+                }
+                pVar.a(valueOf, Boolean.valueOf(z));
+                return;
+            case 5:
+                ryc rycVar = (ryc) obj5;
+                t35 t35Var = ((s35) obj6).c;
+                if (!t35Var.c(rycVar, i4)) {
+                    t35Var.d("closing stale connected websocket; attempt=" + i4);
+                    rycVar.c();
+                    return;
+                }
+                t35Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j7) + " ms");
+                q35 q35Var = t35Var.o;
+                try {
+                    JSONArray put = new JSONArray().put(t35Var.b);
+                    StringBuilder sb3 = new StringBuilder("wallet-");
+                    int i17 = t35Var.g + 1;
+                    t35Var.g = i17;
+                    sb3.append(i17);
+                    t35Var.f = sb3.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", t35Var.f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    hl.r(q35Var);
+                    hl.d3(q35Var, 30000L);
+                    t35Var.g(put2.toString());
+                    return;
+                } catch (JSONException unused) {
+                    t35Var.f("could not encode subscription");
+                    return;
+                }
+            case 6:
+                a55 a55Var = (a55) obj6;
+                a55Var.getClass();
+                TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
+                long j20 = this.c;
+                tonconnectgetpending.session_id = Long.valueOf(j20);
+                a55Var.f.sendRequestTyped(tonconnectgetpending, new ic((byte) 0), new p45(a55Var, (g45) obj5, j20, this.d, (byte) 0));
+                return;
+            case 7:
+                ls6 ls6Var = (ls6) obj6;
+                TLRPC.TL_attachMenuBots tL_attachMenuBots = (TLRPC.TL_attachMenuBots) obj5;
+                try {
+                    if (tL_attachMenuBots != null) {
+                        ls6Var.getMessagesStorage().b.executeFast("DELETE FROM attach_menu_bots").stepThis().dispose();
+                        SQLitePreparedStatement executeFast2 = ls6Var.getMessagesStorage().b.executeFast("REPLACE INTO attach_menu_bots VALUES(?, ?, ?)");
+                        executeFast2.requery();
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_attachMenuBots.getObjectSize());
+                        tL_attachMenuBots.serializeToStream(nativeByteBuffer);
+                        executeFast2.bindByteBuffer(1, nativeByteBuffer);
+                        executeFast2.bindLong(2, j7);
+                        executeFast2.bindInteger(3, i4);
+                        executeFast2.step();
+                        nativeByteBuffer.reuse();
+                        executeFast2.dispose();
+                    } else {
+                        SQLitePreparedStatement executeFast3 = ls6Var.getMessagesStorage().b.executeFast("UPDATE attach_menu_bots SET date = ?");
+                        executeFast3.requery();
+                        executeFast3.bindLong(1, i4);
+                        executeFast3.step();
+                        executeFast3.dispose();
+                    }
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            case 8:
+                ls6 ls6Var2 = (ls6) obj6;
+                if (((ArrayList) obj5) != null && j7 != 0) {
+                    ls6Var2.Y[i4] = j7;
+                }
+                ls6Var2.b1(i4, false, false);
+                return;
+            case 9:
+                uc7 uc7Var = (uc7) obj6;
+                TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) obj5;
+                uc7Var.A4 = uc7Var.getConnectionsManager().getCurrentTime();
+                TLRPC.Dialog dialog = uc7Var.q2;
+                long j21 = this.c;
+                if (dialog != null && j21 != dialog.id) {
+                    uc7Var.u4();
+                }
+                TLRPC.Dialog dialog2 = (TLRPC.Dialog) uc7Var.R.f(j21);
+                uc7Var.q2 = dialog2;
+                if (dialog2 != null) {
+                    uc7Var.n2 = false;
+                    uc7Var.h5(null);
+                    uc7Var.getNotificationCenter().k(3, Boolean.TRUE);
+                    return;
+                }
+                zh6 zh6Var = new zh6();
+                zh6 zh6Var2 = new zh6();
+                for (int i18 = 0; i18 < tL_help_promoData.users.size(); i18++) {
+                    TLRPC.User user = tL_help_promoData.users.get(i18);
+                    zh6Var.k(user.id, user);
+                }
+                for (int i19 = 0; i19 < tL_help_promoData.chats.size(); i19++) {
+                    TLRPC.Chat chat2 = tL_help_promoData.chats.get(i19);
+                    zh6Var2.k(chat2.id, chat2);
+                }
+                TLRPC.TL_messages_getPeerDialogs tL_messages_getPeerDialogs = new TLRPC.TL_messages_getPeerDialogs();
+                TLRPC.TL_inputDialogPeer tL_inputDialogPeer = new TLRPC.TL_inputDialogPeer();
+                TLRPC.Peer peer = tL_help_promoData.peer;
+                if (peer == null) {
+                    TLRPC.Dialog dialog3 = uc7Var.q2;
+                    if (dialog3 != null) {
+                        long j22 = dialog3.id;
+                        if (j22 < 0) {
+                            TLRPC.Chat M0 = uc7Var.M0(Long.valueOf(-j22));
+                            if (xc2.r0(M0) || M0.restricted) {
+                                uc7Var.q4(uc7Var.q2);
+                            }
+                        } else {
+                            uc7Var.q4(dialog3);
+                        }
+                        uc7Var.q2 = null;
+                        uc7Var.h5(null);
+                        uc7Var.getNotificationCenter().k(3, new Object[0]);
+                        return;
+                    }
+                    return;
+                }
+                if (peer.user_id != 0) {
+                    TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                    tL_inputDialogPeer.peer = tL_inputPeerUser;
+                    long j23 = tL_help_promoData.peer.user_id;
+                    tL_inputPeerUser.user_id = j23;
+                    TLRPC.User user2 = (TLRPC.User) zh6Var.f(j23);
+                    if (user2 != null) {
+                        tL_inputDialogPeer.peer.access_hash = user2.access_hash;
+                    }
+                } else if (peer.chat_id != 0) {
+                    TLRPC.TL_inputPeerChat tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
+                    tL_inputDialogPeer.peer = tL_inputPeerChat;
+                    long j24 = tL_help_promoData.peer.chat_id;
+                    tL_inputPeerChat.chat_id = j24;
+                    TLRPC.Chat chat3 = (TLRPC.Chat) zh6Var2.f(j24);
+                    if (chat3 != null) {
+                        tL_inputDialogPeer.peer.access_hash = chat3.access_hash;
+                    }
+                } else {
+                    TLRPC.TL_inputPeerChannel tL_inputPeerChannel = new TLRPC.TL_inputPeerChannel();
+                    tL_inputDialogPeer.peer = tL_inputPeerChannel;
+                    long j25 = tL_help_promoData.peer.channel_id;
+                    tL_inputPeerChannel.channel_id = j25;
+                    TLRPC.Chat chat4 = (TLRPC.Chat) zh6Var2.f(j25);
+                    if (chat4 != null) {
+                        tL_inputDialogPeer.peer.access_hash = chat4.access_hash;
+                    }
+                }
+                tL_messages_getPeerDialogs.peers.add(tL_inputDialogPeer);
+                uc7Var.o2 = uc7Var.getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new gg(uc7Var, this.d, tL_help_promoData, j21, (byte) 5));
+                return;
+            case 10:
+                ((jf7) obj6).getMessagesController().g4.D(j7, (TLRPC.TL_forumTopic) obj5, i4);
+                return;
+            case 11:
+                jf7 jf7Var = (jf7) obj6;
+                TLRPC.Message message = (TLRPC.Message) obj5;
+                try {
+                    try {
+                        jf7Var.b.beginTransaction();
+                        TLRPC.TL_message c0 = jf7Var.c0(i4, j7);
+                        c0.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+                        c0.voiceTranscriptionRated = message.voiceTranscriptionRated;
+                        c0.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+                        c0.voiceTranscriptionForce = message.voiceTranscriptionForce;
+                        c0.voiceTranscriptionId = message.voiceTranscriptionId;
+                        while (true) {
+                            SQLiteDatabase sQLiteDatabase2 = jf7Var.b;
+                            if (i5 < 2) {
+                                if (i5 == 0) {
+                                    executeFast = sQLiteDatabase2.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
+                                } else {
+                                    executeFast = sQLiteDatabase2.executeFast("UPDATE messages_topics SET custom_params = ? WHERE mid = ? AND uid = ?");
+                                }
+                                try {
+                                    executeFast.requery();
+                                    NativeByteBuffer c = s37.c(c0);
+                                    if (c != null) {
+                                        executeFast.bindByteBuffer(1, c);
+                                    } else {
+                                        executeFast.bindNull(1);
+                                    }
+                                    executeFast.bindInteger(2, i4);
+                                    executeFast.bindLong(3, j7);
+                                    executeFast.step();
+                                    executeFast.dispose();
+                                    if (c != null) {
+                                        c.reuse();
+                                    }
+                                    i5++;
+                                } catch (Exception e2) {
+                                    e = e2;
+                                    sQLitePreparedStatement2 = executeFast;
+                                    jf7Var.n(e, true);
+                                    SQLiteDatabase sQLiteDatabase3 = jf7Var.b;
+                                    if (sQLiteDatabase3 != null) {
+                                        sQLiteDatabase3.commitTransaction();
+                                    }
+                                    if (sQLitePreparedStatement2 != null) {
+                                        sQLitePreparedStatement2.dispose();
+                                        return;
+                                    }
+                                    return;
+                                } catch (Throwable th) {
+                                    th = th;
+                                    sQLitePreparedStatement4 = executeFast;
+                                    SQLiteDatabase sQLiteDatabase4 = jf7Var.b;
+                                    if (sQLiteDatabase4 != null) {
+                                        sQLiteDatabase4.commitTransaction();
+                                    }
+                                    if (sQLitePreparedStatement4 != null) {
+                                        sQLitePreparedStatement4.dispose();
+                                    }
+                                    throw th;
+                                }
+                            } else {
+                                sQLiteDatabase2.commitTransaction();
+                                SQLiteDatabase sQLiteDatabase5 = jf7Var.b;
+                                if (sQLiteDatabase5 != null) {
+                                    sQLiteDatabase5.commitTransaction();
+                                    return;
+                                }
+                                return;
+                            }
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                }
+            case 12:
+                jf7 jf7Var2 = (jf7) obj6;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) obj5;
+                try {
+                    try {
+                        SQLiteDatabase sQLiteDatabase6 = jf7Var2.b;
+                        Locale locale = Locale.US;
+                        queryFinalized = sQLiteDatabase6.queryFinalized("SELECT data FROM chats WHERE uid = " + j7, new Object[0]);
+                    } catch (Throwable th3) {
+                        th = th3;
+                    }
+                    try {
+                        if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
+                            chat = TLRPC.Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            byteBufferValue.reuse();
+                        } else {
+                            chat = null;
+                        }
+                        queryFinalized.dispose();
+                    } catch (Exception e4) {
+                        e = e4;
+                        sQLiteCursor = queryFinalized;
+                        sQLitePreparedStatement = 0;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        sQLiteCursor = queryFinalized;
+                        sQLitePreparedStatement = 0;
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        if (sQLitePreparedStatement != 0) {
+                            sQLitePreparedStatement.dispose();
+                        }
+                        throw th;
+                    }
+                } catch (Exception e5) {
+                    e = e5;
+                    sQLitePreparedStatement = 0;
+                } catch (Throwable th5) {
+                    th = th5;
+                    sQLitePreparedStatement = 0;
+                }
+                if (chat != null) {
+                    if (chat.default_banned_rights == null || i4 >= chat.version) {
+                        chat.default_banned_rights = tL_chatBannedRights;
+                        chat.flags |= 262144;
+                        chat.version = i4;
+                        sQLitePreparedStatement = jf7Var2.b.executeFast("UPDATE chats SET data = ? WHERE uid = ?");
+                        try {
+                            NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(chat.getObjectSize());
+                            chat.serializeToStream(nativeByteBuffer2);
+                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer2);
+                            sQLitePreparedStatement.bindLong(2, chat.id);
+                            sQLitePreparedStatement.step();
+                            nativeByteBuffer2.reuse();
+                            sQLitePreparedStatement.dispose();
+                        } catch (Exception e6) {
+                            e = e6;
+                            jf7Var2.n(e, true);
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
+                            }
+                            if (sQLitePreparedStatement != 0) {
+                                sQLitePreparedStatement.dispose();
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 13:
+                a();
+                return;
+            case 14:
+                jf7 jf7Var3 = (jf7) obj6;
+                String str = (String) obj5;
+                try {
+                    try {
+                        isEmpty = str.isEmpty();
+                        sQLiteDatabase = jf7Var3.b;
+                    } catch (Throwable th6) {
+                        if (0 != 0) {
+                            sQLitePreparedStatement2.dispose();
+                        }
+                        throw th6;
+                    }
+                } catch (Exception e7) {
+                    jf7Var3.n(e7, true);
+                    if (0 == 0) {
+                        return;
+                    }
+                }
+                if (isEmpty) {
+                    Locale locale2 = Locale.US;
+                    sQLiteDatabase.executeFast("DELETE FROM widget_state WHERE uid = " + j7 + " AND mid = " + i4).stepThis().dispose();
+                    return;
+                }
+                sQLitePreparedStatement3 = sQLiteDatabase.executeFast("REPLACE INTO widget_state VALUES(?, ?, ?)");
+                sQLitePreparedStatement3.bindLong(1, j7);
+                sQLitePreparedStatement3.bindInteger(2, i4);
+                sQLitePreparedStatement3.bindString(3, str);
+                sQLitePreparedStatement3.step();
+                sQLitePreparedStatement3.dispose();
+                return;
+            case 15:
+                ((boolean[]) obj6)[0] = true;
+                vs7.b.add(Long.valueOf(j7));
+                vs7.j(j7, 60000L);
+                vs7.d.put(vs7.a(i4, j7), Long.valueOf(SystemClock.elapsedRealtime() + 600000));
+                vs7.c();
+                v21 Q = vs7.h().Q(2131623990, 36, ob6.a0(null, null, 2131749531, (String) obj5));
+                Q.u = true;
+                Q.j();
+                return;
+            case 16:
+                RectF rectF = ProfileActivity.Z6;
+                ((ProfileActivity) obj6).getMessagesController().O1().a(i4, j7, (ArrayList) obj5);
+                return;
+            case 17:
+                b();
+                return;
+            case 18:
+                ((c51) obj6).setLoading(false);
+                nx0 nx0Var = ((nx0[]) obj5)[0];
+                if (nx0Var != null) {
+                    nx0Var.dismiss();
+                }
+                jxa.v(i4, false).P();
+                e S = LaunchActivity.S();
+                if (S != null) {
+                    S.presentFragment(zu1.ha(j7));
+                    return;
+                }
+                return;
+            case 19:
+                c();
+                return;
+            case 20:
+                a5c a5cVar = (a5c) obj6;
+                r47 r47Var3 = (r47) obj5;
+                r47Var3.k.originalLanguage = "und";
+                a5cVar.getMessagesStorage().U1(j7, r47Var3.k);
+                a5cVar.w.remove(Integer.valueOf(i4));
+                return;
+            default:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (vnb) obj5, (Context) obj6);
+                String M02 = ob6.M0(2131742723, null);
+                id idVar = alertDialog$Builder.a;
+                idVar.S = M02;
+                idVar.U = hl.R2(ob6.V(null, null, 2131742721, c.C(i4).q(j7, true)));
+                c00.u(null, 2131742713, alertDialog$Builder, null);
+                return;
+        }
     }
 
-    public r77(na7 na7Var, TLRPC.updates_ChannelDifference updates_channeldifference, long j, TLRPC.Chat chat, vf6 vf6Var, int i, long j2) {
-        this.e = na7Var;
-        this.f = updates_channeldifference;
+    public r77(Object obj, long j, int i, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
         this.c = j;
-        this.h = chat;
-        this.n = vf6Var;
-        this.b = i;
-        this.d = j2;
+        this.d = i;
+        this.e = obj2;
     }
 
-    public r77(z3a z3aVar, long j, long j2, int i, TLRPC.Message message, ArrayList arrayList, k27 k27Var) {
-        this.e = z3aVar;
+    public r77(Object obj, long j, Object obj2, int i, byte b) {
+        this.a = b;
+        this.b = obj;
         this.c = j;
-        this.d = j2;
-        this.b = i;
-        this.f = message;
-        this.h = arrayList;
-        this.n = k27Var;
+        this.e = obj2;
+        this.d = i;
     }
 
-    public r77(WearReplyReceiver wearReplyReceiver, j5 j5Var, TLRPC.Chat chat, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
-        this.e = j5Var;
-        this.h = chat;
-        this.f = charSequence;
+    public r77(Object obj, Object obj2, int i, long j, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.e = obj2;
+        this.d = i;
         this.c = j;
-        this.d = j2;
-        this.b = i;
-        this.n = iArr;
     }
 
-    public r77(WearReplyReceiver wearReplyReceiver, j5 j5Var, TLRPC.User user, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
-        this.e = j5Var;
-        this.f = user;
-        this.h = charSequence;
+    public r77(Object obj, Object obj2, long j, int i, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.e = obj2;
         this.c = j;
-        this.d = j2;
-        this.b = i;
-        this.n = iArr;
+        this.d = i;
     }
 }

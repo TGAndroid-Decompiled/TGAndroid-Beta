@@ -4,25 +4,28 @@ import java.util.List;
 import org.webrtc.VideoEncoderFactory;
 public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     private static final String TAG = "SoftwareVideoEncoderFactory";
-    private final long nativeFactory = nativeCreateFactory();
+    private final long nativeFactory = SoftwareVideoEncoderFactoryJni.get().createFactory();
 
-    private static native long nativeCreateEncoder(long j, VideoCodecInfo videoCodecInfo);
+    public interface Natives {
+        long create(long j, long j2, VideoCodecInfo videoCodecInfo);
 
-    private static native long nativeCreateFactory();
+        long createFactory();
 
-    private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j);
+        List<VideoCodecInfo> getSupportedCodecs(long j);
+
+        boolean isSupported(long j, VideoCodecInfo videoCodecInfo);
+    }
 
     @Override
-    public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        final long nativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
-        if (nativeCreateEncoder == 0) {
+    public VideoEncoder createEncoder(final VideoCodecInfo videoCodecInfo) {
+        if (!SoftwareVideoEncoderFactoryJni.get().isSupported(this.nativeFactory, videoCodecInfo)) {
             Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
             return null;
         }
         return new WrappedNativeVideoEncoder() {
             @Override
-            public long createNativeVideoEncoder() {
-                return nativeCreateEncoder;
+            public long createNative(long j) {
+                return SoftwareVideoEncoderFactoryJni.get().create(SoftwareVideoEncoderFactory.this.nativeFactory, j, videoCodecInfo);
             }
 
             @Override
@@ -44,6 +47,6 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
-        return (VideoCodecInfo[]) nativeGetSupportedCodecs(this.nativeFactory).toArray(new VideoCodecInfo[0]);
+        return (VideoCodecInfo[]) SoftwareVideoEncoderFactoryJni.get().getSupportedCodecs(this.nativeFactory).toArray(new VideoCodecInfo[0]);
     }
 }

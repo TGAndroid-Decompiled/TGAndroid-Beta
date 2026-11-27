@@ -1,34 +1,28 @@
 package defpackage;
 
+import android.content.Context;
 import android.view.View;
-public interface we9 {
-    void B(xe9 xe9Var, View view);
+public final class we9 extends a8c {
+    public static final int b = 0;
 
-    void G();
+    static {
+        a8c.h(new a8c());
+    }
 
-    cs5 J(View view);
+    @Override
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        ((xe9) view).h((mk0) b8cVar.H, (ji9) b8cVar.I);
+    }
 
-    void L();
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        xe9 xe9Var = new xe9(i, vnbVar, context);
+        xe9Var.setBackground(new vg9(aob.v0(aob.d6, vnbVar)));
+        return xe9Var;
+    }
 
-    void P(ve9 ve9Var, View view);
-
-    boolean a(float f);
-
-    void b(wi9 wi9Var, String str);
-
-    void c(int i);
-
-    void e();
-
-    void f();
-
-    void g(mc9 mc9Var, boolean z);
-
-    void onContentChanged();
-
-    void s();
-
-    void w(lk0 lk0Var);
-
-    void x(int i);
+    @Override
+    public final boolean f() {
+        return false;
+    }
 }

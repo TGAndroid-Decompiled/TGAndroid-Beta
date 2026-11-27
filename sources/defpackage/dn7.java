@@ -1,4 +1,7 @@
 package defpackage;
-public interface dn7 {
-    String c(int i);
+
+import android.os.SystemClock;
+public final class dn7 {
+    public int[] a;
+    public final long b = SystemClock.elapsedRealtime();
 }

@@ -1,39 +1,39 @@
 package defpackage;
 
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-public final class xz3 extends s14 {
-    public final t14 d;
+public final class xz3 extends u55 {
+    public final o24 Q;
 
-    public xz3(t14 t14Var) {
-        super(t14Var, 1);
-        this.d = t14Var;
+    public xz3(o24 o24Var) {
+        super(5);
+        this.Q = o24Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i) {
-        if (i == 0) {
-            this.d.g0 = false;
+    public final int n0(int i, oh2 oh2Var, c89 c89Var) {
+        int n0 = super.n0(i, oh2Var, c89Var);
+        o24 o24Var = this.Q;
+        if (n0 != 0 && o24Var.E0.getScrollState() == 1) {
+            o24Var.Y1 = false;
+            o24Var.Y();
         }
-        super.a(recyclerView, i);
+        if (o24Var.U0 == null) {
+            h04 h04Var = new h04(o24Var, o24Var.d1, o24Var.u1.a(), o24Var.u1.f(), (byte) 0);
+            o24Var.U0 = h04Var;
+            h04Var.a();
+        }
+        o24Var.U0.b();
+        return n0;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        t14 t14Var = this.d;
-        uz3 uz3Var = t14Var.R;
-        t14Var.V(uz3Var.H0());
-        super.b(recyclerView, i, i2);
-        t04 t04Var = t14Var.T;
-        if (t04Var != null && t14Var.Q.getAdapter() == t04Var) {
-            t04 t04Var2 = t04Var.y.a;
-            if (!t04Var2.G.W.G && !t04Var2.F) {
-                if (uz3Var.M0() + 20 > t04Var.b()) {
-                    s04 s04Var = t04Var.y;
-                    Objects.requireNonNull(s04Var);
-                    gl.c3(new li3(s04Var, (byte) 26));
-                }
-            }
+    public final void u0(RecyclerView recyclerView, c89 c89Var, int i) {
+        try {
+            z46 z46Var = new z46(recyclerView.getContext(), 2);
+            z46Var.a = i;
+            v0(z46Var);
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
     }
 }

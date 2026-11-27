@@ -1,81 +1,47 @@
 package defpackage;
+public final class h02 implements Runnable {
+    public final byte a;
+    public final n12 b;
+    public final boolean c;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class h02 implements t22 {
-    public final x02 a;
-
-    public h02(x02 x02Var) {
-        this.a = x02Var;
+    public h02(n12 n12Var, boolean z, byte b) {
+        this.a = b;
+        this.b = n12Var;
+        this.c = z;
     }
 
     @Override
-    public final void S() {
-        this.a.k1(true);
-    }
-
-    @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2) {
-        x02 x02Var = this.a;
-        t22 t22Var = x02Var.R1;
-        if (t22Var != null) {
-            t22Var.k(arrayList, str, arrayList2, arrayList3, z, i, j, z2, j2);
-            return;
-        }
-        d dVar = x02Var.Z1;
-        if (dVar instanceof t22) {
-            ((t22) dVar).k(arrayList, str, arrayList2, arrayList3, z, i, j, z2, j2);
-        } else if (dVar instanceof vx7) {
-            vx7 vx7Var = (vx7) dVar;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i2 = 0; i2 < size; i2++) {
-                ?? obj = new Object();
-                obj.c = (String) arrayList.get(i2);
-                arrayList4.add(obj);
-            }
-            vx7Var.I1(arrayList4);
-        }
-    }
-
-    @Override
-    public final void m(ArrayList arrayList, boolean z, int i, long j) {
-        x02 x02Var = this.a;
-        t22 t22Var = x02Var.R1;
-        if (t22Var != null) {
-            t22Var.m(arrayList, z, i, j);
-            return;
-        }
-        d dVar = x02Var.Z1;
-        if (dVar instanceof mu1) {
-            ((mu1) dVar).m(arrayList, z, i, j);
-        } else if (dVar instanceof vx7) {
-            ((vx7) dVar).I1(arrayList);
-        }
-    }
-
-    @Override
-    public final void z() {
-        x02 x02Var = this.a;
-        t22 t22Var = x02Var.R1;
-        if (t22Var != null) {
-            t22Var.z();
-            return;
-        }
-        d dVar = x02Var.Z1;
-        if (dVar instanceof t22) {
-            ((t22) dVar).z();
-        } else if (dVar instanceof vx7) {
-            vx7 vx7Var = (vx7) dVar;
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                vx7Var.startActivityForResult(intent, 21);
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.c;
+        n12 n12Var = this.b;
+        switch (b) {
+            case 0:
+                if (!z) {
+                    n12Var.Z2.setVisibility(8);
+                    return;
+                }
+                return;
+            case 1:
+                if (!z) {
+                    n12Var.v1.setVisibility(8);
+                    return;
+                }
+                return;
+            case 2:
+                if (!z) {
+                    n12Var.x1.setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                if (z) {
+                    n12Var.u3.setVisibility(4);
+                    return;
+                } else {
+                    n12Var.getClass();
+                    return;
+                }
         }
     }
 }

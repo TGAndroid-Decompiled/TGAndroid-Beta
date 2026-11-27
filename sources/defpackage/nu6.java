@@ -1,20 +1,21 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class nu6 {
-    public final long a;
+import java.util.Comparator;
+public final class nu6 implements Comparator {
+    public static final nu6 b = new nu6((byte) 0);
+    public static final nu6 c = new nu6((byte) 1);
+    public static final nu6 d = new nu6((byte) 2);
+    public static final nu6 e = new nu6((byte) 3);
+    public static final nu6 f = new nu6((byte) 12);
+    public static final nu6 h = new nu6((byte) 13);
+    public final byte a;
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof nu6) && this.a == ((nu6) obj).a && cqe.a(null, null)) {
-                return true;
-            }
-            return false;
-        }
-        return true;
+    public nu6(byte b2) {
+        this.a = b2;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.a), 0, Boolean.FALSE, null});
+    @Override
+    public final int compare(java.lang.Object r6, java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nu6.compare(java.lang.Object, java.lang.Object):int");
     }
 }

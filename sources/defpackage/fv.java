@@ -1,102 +1,48 @@
 package defpackage;
 
 import android.app.Activity;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
-import java.util.HashSet;
+import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.o;
-public final class fv extends View {
-    public final vg5 a;
-    public final dx b;
-    public final gv c;
+public final class fv extends HorizontalScrollView {
+    public final xi5 a;
+    public final hv b;
 
-    public fv(gv gvVar, Activity activity, vg5 vg5Var, dx dxVar) {
+    public fv(hv hvVar, Activity activity, xi5 xi5Var) {
         super(activity);
-        this.c = gvVar;
-        this.a = vg5Var;
-        this.b = dxVar;
+        this.b = hvVar;
+        this.a = xi5Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        gv gvVar = this.c;
-        if (gvVar.c != null) {
-            canvas.save();
-            o.s(this.a, canvas, gvVar, 0);
-            gvVar.c.d(canvas, this);
-            canvas.restore();
-            gvVar.c.s = (int) getX();
-            gvVar.c.w = (int) getY();
+    public final void onScrollChanged(int i, int i2, int i3, int i4) {
+        hv hvVar;
+        TL_iv.pageBlockPreformatted pageblockpreformatted;
+        super.onScrollChanged(i, i2, i3, i4);
+        xi5 xi5Var = this.a;
+        if (xi5Var.d != null) {
+            xi5Var.d = null;
+            xi5Var.f = null;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        StaticLayout staticLayout;
-        StaticLayout staticLayout2;
-        gv gvVar = this.c;
-        TL_iv.pageBlockPreformatted pageblockpreformatted = gvVar.f;
-        int i4 = 1;
-        if (pageblockpreformatted != null) {
-            CharSequence charSequence = gvVar.h;
-            dx dxVar = this.b;
-            vg5 vg5Var = this.a;
-            if (charSequence == null) {
-                TL_iv.RichText richText = pageblockpreformatted.text;
-                int L = gl.L(5000.0f);
-                HashSet hashSet = o.d1;
-                CharSequence z = o.z(vg5Var, dxVar.F, this, richText, richText, pageblockpreformatted, L);
-                gvVar.h = z;
-                TL_iv.pageBlockPreformatted pageblockpreformatted2 = gvVar.f;
-                boolean z2 = pageblockpreformatted2.diff;
-                String str = pageblockpreformatted2.language;
-                if (z2) {
-                    gvVar.h = gvVar.a(z, str);
-                } else if (!TextUtils.isEmpty(str)) {
-                    gvVar.h = qj2.b(gvVar.h, gvVar.f.language);
+        hv hvVar2 = this.b;
+        TL_iv.pageBlockPreformatted pageblockpreformatted2 = hvVar2.f;
+        if (pageblockpreformatted2 != null && pageblockpreformatted2.diff && !hvVar2.n) {
+            ex exVar = hvVar2.b;
+            if (exVar != null) {
+                exVar.I = i;
+            }
+            if (hvVar2.getParent() instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) hvVar2.getParent();
+                for (int i5 = 0; i5 < viewGroup.getChildCount(); i5++) {
+                    View childAt = viewGroup.getChildAt(i5);
+                    if (childAt != hvVar2 && (childAt instanceof hv) && (pageblockpreformatted = (hvVar = (hv) childAt).f) != null && pageblockpreformatted.diff) {
+                        hvVar.n = true;
+                        hvVar.d.scrollTo(i, 0);
+                        hvVar.n = false;
+                    }
                 }
             }
-            bw m = o.m(vg5Var, this, gvVar.h, null, gl.L(5000.0f), 0, gvVar.f, dxVar);
-            gvVar.c = m;
-            if (m != null) {
-                i3 = m.d.getHeight();
-                int lineCount = gvVar.c.d.getLineCount();
-                int i5 = 1;
-                for (int i6 = 0; i6 < lineCount; i6++) {
-                    i5 = Math.max((int) Math.ceil(gvVar.c.d.getLineWidth(i6)), i5);
-                }
-                if (gvVar.f.diff && (staticLayout2 = gvVar.c.d) != null) {
-                    i5 = Math.max((int) Math.ceil(staticLayout2.getPaint().measureText("m") * gvVar.f.diffColumns), i5);
-                }
-                gvVar.r = 0;
-                if (gvVar.f.continuesNext && (staticLayout = gvVar.c.d) != null && staticLayout.getLineCount() > 1) {
-                    StaticLayout staticLayout3 = gvVar.c.d;
-                    int lineCount2 = staticLayout3.getLineCount() - 1;
-                    int max = Math.max(0, (staticLayout3.getLineBottom(0) - staticLayout3.getLineTop(0)) - (staticLayout3.getLineBottom(lineCount2) - staticLayout3.getLineTop(lineCount2)));
-                    gvVar.r = max;
-                    i3 += max;
-                }
-                i4 = i5;
-            } else {
-                i3 = 0;
-            }
-        } else {
-            i3 = 1;
         }
-        setMeasuredDimension(gl.L(32.0f) + i4, i3);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        gv gvVar = this.c;
-        if (!o.i(this.a, this.b, motionEvent, gvVar, gvVar.c, 0, 0) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
     }
 }

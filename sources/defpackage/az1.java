@@ -1,180 +1,234 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.util.Log;
-import android.util.LongSparseArray;
+import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class az1 extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
-    public static final RectF I = new RectF();
-    public final yy1 E;
-    public ViewTreeObserver F;
-    public boolean G;
-    public TextPaint H;
-    public final boolean a;
-    public final RectF b;
-    public final RectF c;
-    public long d;
-    public int e;
-    public ViewGroup f;
-    public jq1 h;
-    public long n;
-    public yy1 r;
-    public long s;
-    public final ArrayList w;
-    public final LongSparseArray x;
-    public final LongSparseArray y;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class az1 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final Object b;
 
-    public az1(Context context) {
-        super(context);
-        this.b = new RectF();
-        this.c = new RectF();
-        this.w = new ArrayList();
-        this.x = new LongSparseArray();
-        this.y = new LongSparseArray();
-        this.E = new yy1(this, (byte) 1);
-        this.a = gba.c1;
-    }
-
-    public final void a() {
-        yy1 yy1Var = this.r;
-        if (yy1Var != null) {
-            gl.r(yy1Var);
-            this.r = null;
-        }
-        ArrayList arrayList = this.w;
-        if (!arrayList.isEmpty()) {
-            TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
-            tL_messages_reportReadMetrics.peer = na7.q1(this.e).h1(this.d);
-            tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
-            ConnectionsManager.getInstance(this.e).sendRequestTyped(tL_messages_reportReadMetrics, null, new np0((byte) 0));
-            arrayList.clear();
-        }
-    }
-
-    public final void b(int i, long j, ViewGroup viewGroup, jq1 jq1Var) {
-        this.d = j;
-        this.e = i;
-        this.f = viewGroup;
-        this.h = jq1Var;
-    }
-
-    public final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.az1.c():void");
+    public az1(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.s = 0L;
-        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
-        this.F = viewTreeObserver;
-        viewTreeObserver.addOnPreDrawListener(this);
-        this.F.addOnGlobalLayoutListener(this);
-        this.F.addOnScrollChangedListener(this);
-        gl.d3(this.E, 400L);
-        if (w01.a) {
-            Log.d("ViewMetrics", "attach");
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        ViewTreeObserver viewTreeObserver = this.F;
-        if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
-            this.F.removeOnPreDrawListener(this);
-            this.F.removeOnGlobalLayoutListener(this);
-            this.F.removeOnScrollChangedListener(this);
-        }
-        this.F = null;
-        this.s = 0L;
-        gl.r(this.E);
-        if (w01.a) {
-            Log.d("ViewMetrics", "detach");
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int round;
-        if (this.a) {
-            if (this.H == null) {
-                TextPaint textPaint = new TextPaint(1);
-                this.H = textPaint;
-                textPaint.setColor(-16776961);
-                this.H.setTextSize(gl.L(10.0f));
-            }
-            super.onDraw(canvas);
-            Paint paint = bkb.Im;
-            RectF rectF = this.c;
-            canvas.drawRect(rectF, paint);
-            LongSparseArray longSparseArray = this.x;
-            int size = longSparseArray.size();
-            for (int i = 0; i < size; i++) {
-                zy1 zy1Var = (zy1) longSparseArray.valueAt(i);
-                RectF rectF2 = zy1Var.c;
-                canvas.drawRect(rectF2, bkb.Jm);
-                canvas.save();
-                canvas.translate(rectF2.left, moe.a(moe.a(rectF2.centerY() - gl.L(20.0f), rectF.top - gl.L(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - gl.L(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), gl.L(40.0f), bkb.Hm);
-                canvas.translate(gl.L(10.0f), gl.L(16.0f));
-                canvas.save();
-                canvas.drawText("time_in_view_ms: " + zy1Var.g, 0.0f, 0.0f, this.H);
-                canvas.translate(0.0f, (float) gl.L(16.0f));
-                canvas.drawText("active_time_in_view_ms: " + zy1Var.h, 0.0f, 0.0f, this.H);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(getWidth() / 2.0f, 0.0f);
-                StringBuilder sb = new StringBuilder("height_to_viewport_ratio_permille: ");
-                float f = zy1Var.k;
-                if (f == 0.0f) {
-                    round = 1000;
-                } else {
-                    round = Math.round((zy1Var.j / f) * 1000.0f);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                ((bz1) obj).g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 1:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n12 n12Var = ((s02) obj).e;
+                m02 m02Var = n12Var.u3;
+                m02Var.setAlpha(1.0f - floatValue);
+                n12Var.B3.setAlpha(floatValue);
+                float L = floatValue * hl.L(36.0f);
+                n12Var.C3 = L;
+                m02Var.setTranslationY(L);
+                return;
+            case 2:
+                m02 m02Var2 = (m02) obj;
+                n12 n12Var2 = m02Var2.b;
+                n12Var2.S3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n12Var2.z2.invalidate();
+                n12Var2.A2.invalidate();
+                m02Var2.invalidate();
+                return;
+            case 3:
+                ((h42) obj).W(valueAnimator);
+                return;
+            case 4:
+                z52 z52Var = (z52) obj;
+                z52Var.getClass();
+                z52Var.l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z52Var.O.z.invalidate();
+                return;
+            case 5:
+                bb2 bb2Var = (bb2) obj;
+                zu1 zu1Var = bb2Var.F;
+                if (zu1Var != null) {
+                    zu1Var.Q7();
+                    if (zu1Var.Z8 != null) {
+                        zu1Var.fragmentView.invalidate();
+                        return;
+                    }
+                    return;
                 }
-                sb.append(round);
-                canvas.drawText(sb.toString(), 0.0f, 0.0f, this.H);
-                canvas.translate(0.0f, gl.L(16.0f));
-                canvas.drawText("seen_range_ratio_permille: " + zy1Var.b(), 0.0f, 0.0f, this.H);
-                canvas.restore();
-                canvas.restore();
-            }
+                bb2Var.G.invalidate();
+                return;
+            case 6:
+                wb2 wb2Var = (wb2) obj;
+                wb2Var.Y9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wb2Var.invalidate();
+                return;
+            case 7:
+                pd2 pd2Var = (pd2) obj;
+                pd2Var.getClass();
+                pd2Var.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                FrameLayout frameLayout = pd2Var.e;
+                if (frameLayout != null) {
+                    frameLayout.invalidate();
+                    return;
+                }
+                return;
+            case 8:
+                sd2 sd2Var = (sd2) obj;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                sd2Var.d = floatValue2;
+                sd2Var.setShown(floatValue2);
+                sd2Var.a(false);
+                return;
+            case 9:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ud2 ud2Var = ((wd2) obj).b;
+                if (ud2Var != null) {
+                    ud2Var.setAlpha(floatValue3);
+                    return;
+                }
+                return;
+            case 10:
+                oe2 oe2Var = (oe2) obj;
+                oe2Var.Z1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                oe2Var.C1.setTranslationY((-hl.L(7.0f)) * oe2Var.Z1);
+                return;
+            case 11:
+                ok2 ok2Var = (ok2) obj;
+                ok2Var.getClass();
+                ok2Var.X1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ok2Var.invalidate();
+                if (ok2Var.getParent() != null) {
+                    ((ViewGroup) ok2Var.getParent()).invalidate();
+                    return;
+                }
+                return;
+            case 12:
+                zj2 zj2Var = (zj2) obj;
+                zj2Var.W1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zj2Var.invalidate();
+                if (zj2Var.getParent() != null) {
+                    ((ViewGroup) zj2Var.getParent()).invalidate();
+                    return;
+                }
+                return;
+            case 13:
+                el2 el2Var = (el2) obj;
+                el2Var.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                el2Var.a.invalidate();
+                return;
+            case 14:
+                dn2 dn2Var = (dn2) obj;
+                dn2Var.h = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                dn2Var.invalidate();
+                return;
+            case 15:
+                dy2 dy2Var = (dy2) obj;
+                dy2Var.l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = dy2Var.G;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            case 16:
+                og3 og3Var = (og3) obj;
+                og3Var.P.e = hl.R1(0.0f, 1.0f - og3Var.c0.e0, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                og3Var.invalidate();
+                return;
+            case 17:
+                ((qj3) obj).setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 18:
+                ((zl3) obj).a.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 19:
+                ly3 ly3Var = (ly3) obj;
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ly3Var.D1 = floatValue4;
+                ly3Var.q1.setAlpha(floatValue4);
+                ly3Var.u1.setAlpha(ly3Var.D1);
+                ly3Var.v1.setAlpha(ly3Var.D1);
+                ly3Var.b.invalidate();
+                return;
+            case 20:
+                ey3 ey3Var = (ey3) obj;
+                ey3Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (ey3Var.getParent() instanceof View) {
+                    ((View) ey3Var.getParent()).invalidate();
+                    return;
+                }
+                return;
+            case 21:
+                hy3 hy3Var = (hy3) obj;
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hy3Var.w = floatValue5;
+                TextView textView = hy3Var.c;
+                textView.setScaleX(1.0f - floatValue5);
+                textView.setScaleY(1.0f - hy3Var.w);
+                textView.setAlpha(1.0f - hy3Var.w);
+                TextView textView2 = hy3Var.d;
+                textView2.setScaleX(hy3Var.w);
+                textView2.setScaleY(hy3Var.w);
+                textView2.setAlpha(hy3Var.w);
+                return;
+            case 22:
+                uy3 uy3Var = (uy3) obj;
+                uy3Var.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                uy3Var.d();
+                return;
+            case 23:
+                wy3 wy3Var = (wy3) obj;
+                wy3Var.getClass();
+                wy3Var.r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wy3Var.invalidate();
+                wy3Var.requestLayout();
+                wy3Var.c();
+                wy3Var.s.b.invalidate();
+                return;
+            case 24:
+                x14 x14Var = (x14) obj;
+                x14Var.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x14Var.invalidate();
+                return;
+            case 25:
+                c24 c24Var = (c24) obj;
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c24Var.x = floatValue6;
+                View view2 = c24Var.w;
+                if (view2 != null) {
+                    view2.setAlpha(floatValue6);
+                    return;
+                }
+                tt ttVar = c24Var.s;
+                if (ttVar != null) {
+                    ttVar.invalidate();
+                    return;
+                }
+                return;
+            case 26:
+                p94 p94Var = (p94) obj;
+                p94Var.f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p94Var.b();
+                p94Var.invalidate();
+                return;
+            case 27:
+                hf4 hf4Var = (hf4) obj;
+                hf4Var.s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hf4Var.invalidate();
+                return;
+            case 28:
+                ((fg4) obj).f(valueAnimator);
+                return;
+            default:
+                fg4 fg4Var = ((xf4) obj).F;
+                fg4Var.G.invalidate();
+                fg4Var.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final void onGlobalLayout() {
-        this.G = true;
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        RectF rectF = this.b;
-        this.c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
-    }
-
-    @Override
-    public final boolean onPreDraw() {
-        if (this.G) {
-            c();
-            this.G = false;
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onScrollChanged() {
-        this.G = true;
     }
 }

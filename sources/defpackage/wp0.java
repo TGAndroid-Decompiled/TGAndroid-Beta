@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 import org.telegram.messenger.a;
-public final class wp0 extends pf0 {
+public final class wp0 extends rf0 {
     public static volatile wp0[] f = new wp0[4];
-    public final lj9 a;
-    public final lj9 b;
+    public final zm9 a;
+    public final zm9 b;
     public final Set c;
     public final LongSparseArray d;
     public final SharedPreferences e;
 
     public wp0(int i) {
         super(i);
-        this.a = new lj9((byte) 10);
-        this.b = new lj9((byte) 10);
+        this.a = new zm9((byte) 10);
+        this.b = new zm9((byte) 10);
         this.c = DesugarCollections.synchronizedSet(Collections.newSetFromMap(new WeakHashMap()));
         this.d = new LongSparseArray();
         Context context = a.b;
@@ -50,11 +50,11 @@ public final class wp0 extends pf0 {
     }
 
     public final boolean c(int i, long j) {
-        LongSparseArray x = this.a.x(j, i);
-        if (x != null && x.size() > 0) {
-            int size = x.size();
+        LongSparseArray H0 = this.a.H0(j, i);
+        if (H0 != null && H0.size() > 0) {
+            int size = H0.size();
             for (int i2 = 0; i2 < size; i2++) {
-                if (!((rp0) x.valueAt(i2)).e) {
+                if (!((rp0) H0.valueAt(i2)).e) {
                     return true;
                 }
             }
@@ -68,51 +68,51 @@ public final class wp0 extends pf0 {
 
     public final void e(long j, int i, long j2) {
         long j3 = i;
-        rp0 rp0Var = (rp0) this.a.H(j, j3, j2);
+        rp0 rp0Var = (rp0) this.a.O0(j, j3, j2);
         if (rp0Var == null) {
             return;
         }
-        getNotificationCenter().k(kk7.N5, new sp0(j, rp0Var.b, j3));
+        getNotificationCenter().k(jn7.O5, new sp0(j, rp0Var.b, j3));
     }
 
     public final void f(int i, long j) {
         LongSparseArray longSparseArray = this.d;
-        List<uc7> list = (List) longSparseArray.get(j);
+        List<df7> list = (List) longSparseArray.get(j);
         if (list != null) {
             longSparseArray.remove(j);
-            for (uc7 uc7Var : list) {
-                uc7Var.a(i);
+            for (df7 df7Var : list) {
+                df7Var.a(i);
             }
         }
     }
 
     public final void g(int i, long j) {
         long j2;
-        lj9 lj9Var;
+        zm9 zm9Var;
         long j3 = i;
-        lj9 lj9Var2 = this.a;
+        zm9 zm9Var2 = this.a;
         long j4 = j;
-        LongSparseArray x = lj9Var2.x(j4, j3);
-        if (x != null) {
-            int size = x.size();
+        LongSparseArray H0 = zm9Var2.H0(j4, j3);
+        if (H0 != null) {
+            int size = H0.size();
             int i2 = 0;
             while (i2 < size) {
-                rp0 rp0Var = (rp0) x.valueAt(i2);
+                rp0 rp0Var = (rp0) H0.valueAt(i2);
                 if (rp0Var.e) {
                     long j5 = j3;
-                    getNotificationCenter().k(kk7.N5, new sp0(j4, rp0Var.b, j5));
-                    lj9Var = lj9Var2;
-                    lj9Var.H(j, j5, rp0Var.a);
+                    getNotificationCenter().k(jn7.O5, new sp0(j4, rp0Var.b, j5));
+                    zm9Var = zm9Var2;
+                    zm9Var.O0(j, j5, rp0Var.a);
                     j2 = j5;
                     i2--;
                     size--;
                 } else {
                     j2 = j3;
-                    lj9Var = lj9Var2;
+                    zm9Var = zm9Var2;
                 }
                 i2++;
                 j4 = j;
-                lj9Var2 = lj9Var;
+                zm9Var2 = zm9Var;
                 j3 = j2;
             }
         }

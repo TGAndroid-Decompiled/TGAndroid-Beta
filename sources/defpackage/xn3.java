@@ -1,31 +1,65 @@
 package defpackage;
+public final class xn3 {
+    public final byte a;
+    public final co3 b;
 
-import java.util.concurrent.Executor;
-public final class xn3 implements Executor {
-    public static final xn3 a;
-    public static final xn3[] b;
-
-    static {
-        ?? r0 = new Enum("INSTANCE", 0);
-        a = r0;
-        b = new xn3[]{r0};
+    public xn3(co3 co3Var, byte b) {
+        this.a = b;
+        this.b = co3Var;
     }
 
-    public static xn3 valueOf(String str) {
-        return (xn3) Enum.valueOf(xn3.class, str);
-    }
-
-    public static xn3[] values() {
-        return (xn3[]) b.clone();
-    }
-
-    @Override
-    public final void execute(Runnable runnable) {
-        runnable.run();
-    }
-
-    @Override
-    public final String toString() {
-        return "DirectExecutor";
+    public final void a(final float f) {
+        byte b = this.a;
+        final co3 co3Var = this.b;
+        switch (b) {
+            case 0:
+                co3Var.e.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        float f2 = f;
+                        co3 co3Var2 = co3Var;
+                        switch (b2) {
+                            case 0:
+                                if (!co3Var2.h) {
+                                    co3Var2.c.e(f2);
+                                    return;
+                                }
+                                return;
+                            default:
+                                if (!co3Var2.h) {
+                                    co3Var2.c.e(f2);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                co3Var.e.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        float f2 = f;
+                        co3 co3Var2 = co3Var;
+                        switch (b2) {
+                            case 0:
+                                if (!co3Var2.h) {
+                                    co3Var2.c.e(f2);
+                                    return;
+                                }
+                                return;
+                            default:
+                                if (!co3Var2.h) {
+                                    co3Var2.c.e(f2);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

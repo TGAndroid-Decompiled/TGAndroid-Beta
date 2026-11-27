@@ -3,7 +3,7 @@ package defpackage;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
-public final class tn0 implements p8c {
+public final class tn0 implements pcc {
     public final byte a;
     public final ao0 b;
 
@@ -20,7 +20,7 @@ public final class tn0 implements p8c {
             case 0:
                 Void r6 = (Void) obj;
                 ao0Var.dismiss();
-                gl.d3(new rn0(ao0Var, (byte) 2), 220L);
+                hl.d3(new rn0(ao0Var, (byte) 2), 220L);
                 return;
             case 1:
                 ao0Var.l2.b(false);
@@ -28,13 +28,13 @@ public final class tn0 implements p8c {
                 return;
             case 2:
                 ao0Var.i2 = ao0Var.T1.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
-                ao0Var.f1(true, true);
-                ao0Var.e1(true);
+                ao0Var.g1(true, true);
+                ao0Var.f1(true);
                 return;
             case 3:
                 Void r62 = (Void) obj;
                 ao0Var.dismiss();
-                gl.d3(new rn0(ao0Var, (byte) 1), 220L);
+                hl.d3(new rn0(ao0Var, (byte) 1), 220L);
                 return;
             case 4:
                 ao0Var.l2.b(false);
@@ -44,7 +44,7 @@ public final class tn0 implements p8c {
                 ArrayList arrayList = ao0Var.a2;
                 arrayList.clear();
                 arrayList.addAll((List) obj);
-                ao0Var.f1(true, true);
+                ao0Var.g1(true, true);
                 return;
             default:
                 ao0Var.l2.b(false);

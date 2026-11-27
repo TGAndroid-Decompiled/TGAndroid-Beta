@@ -1,26 +1,27 @@
 package defpackage;
+public final class zp5 implements Runnable {
+    public final byte a;
+    public final bq5 b;
+    public final j18 c;
 
-import java.io.IOException;
-public class zp5 extends IOException {
-    public boolean a;
-
-    public static zp5 a() {
-        return new IOException("Protocol message had invalid UTF-8.");
+    public zp5(bq5 bq5Var, j18 j18Var, byte b) {
+        this.a = b;
+        this.b = bq5Var;
+        this.c = j18Var;
     }
 
-    public static yp5 b() {
-        return new IOException("Protocol message tag had invalid wire type.");
-    }
-
-    public static zp5 c() {
-        return new IOException("CodedInputStream encountered a malformed varint.");
-    }
-
-    public static zp5 d() {
-        return new IOException("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
-    }
-
-    public static zp5 e() {
-        return new IOException("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.");
+    @Override
+    public final void run() {
+        byte b = this.a;
+        j18 j18Var = this.c;
+        bq5 bq5Var = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new zp5(bq5Var, j18Var, (byte) 1));
+                return;
+            default:
+                bq5Var.i = j18Var.a;
+                return;
+        }
     }
 }

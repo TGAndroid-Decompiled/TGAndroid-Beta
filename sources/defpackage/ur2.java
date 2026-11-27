@@ -1,50 +1,60 @@
 package defpackage;
 
-import java.util.concurrent.TimeUnit;
-import java.util.function.LongSupplier;
-public final class ur2 extends cr2 {
-    public int d;
-    public fr e;
-    public TimeUnit f;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLRPC;
+public final class ur2 extends yr2 {
+    public final boolean d;
+    public final int e;
+    public volatile boolean f;
 
-    public final vr2 u(qr2 qr2Var) {
-        boolean z;
-        if (this.e == null) {
-            long j = this.d;
-            if (j >= 0 && j <= Long.MAX_VALUE) {
-                z = true;
-            } else {
-                z = false;
-            }
-            r(z, Long.valueOf(j));
-        }
-        if (this.f != null) {
-            String s = s();
-            fr frVar = this.e;
-            if (frVar == null) {
-                final long j2 = this.d;
-                frVar = new LongSupplier(j2) {
-                    public final int a;
-
-                    {
-                        this.a = (int) j2;
-                    }
-
-                    @Override
-                    public final long getAsLong() {
-                        return this.a;
-                    }
-                };
-            }
-            vr2 vr2Var = new vr2(s, frVar, this.f, this.a);
-            q(qr2Var, vr2Var);
-            return vr2Var;
-        }
-        throw new IllegalStateException("ConfigTime " + s() + " without a unit");
+    public ur2(int i, String str, boolean z) {
+        super(str);
+        this.d = z;
+        this.e = i;
+        this.f = z;
     }
 
-    public final void v(long j) {
-        this.d = (int) j;
-        this.e = null;
+    @Override
+    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        boolean z;
+        if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z = ((TLRPC.TL_jsonBool) jSONValue).value) == this.f) {
+            return false;
+        }
+        this.f = z;
+        editor.putBoolean(e(), z);
+        return true;
+    }
+
+    @Override
+    public final boolean c(SharedPreferences.Editor editor) {
+        if (this.e == 2) {
+            boolean z = this.f;
+            boolean z2 = this.d;
+            if (z != z2) {
+                this.f = z2;
+                editor.remove(e());
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void d(SharedPreferences sharedPreferences) {
+        try {
+            this.f = sharedPreferences.getBoolean(e(), this.d);
+        } catch (ClassCastException e) {
+            cc4.g(e, true);
+            this.f = this.d;
+        }
+    }
+
+    public final boolean f() {
+        return this.f;
+    }
+
+    public final String toString() {
+        return this.a + "=" + this.f;
     }
 }

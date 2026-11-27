@@ -1,42 +1,39 @@
 package defpackage;
 
-import android.os.Bundle;
-public final class un2 implements Runnable {
-    public final byte a;
-    public final eo2 b;
+import android.view.View;
+import java.io.Serializable;
+public final class un2 implements ncc, occ, nr7, bf7 {
+    public final xn2 a;
 
-    public un2(eo2 eo2Var, byte b) {
-        this.a = b;
-        this.b = eo2Var;
+    public un2(xn2 xn2Var) {
+        this.a = xn2Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        eo2 eo2Var = this.b;
-        switch (b) {
-            case 0:
-                eo2Var.u1.d.f3.g1(1, eo2Var.O1.b);
-                eo2Var.l1.a(false, true);
-                eo2Var.r0 = true;
-                no4 no4Var = eo2Var.x1;
-                gl.t1(no4Var.r);
-                no4Var.r.clearFocus();
-                return;
-            case 1:
-                eo2Var.w1.d.f3.g1(1, eo2Var.O1.b);
-                eo2Var.m1.a(false, true);
-                eo2Var.r0 = true;
-                no4 no4Var2 = eo2Var.y1;
-                gl.t1(no4Var2.r);
-                no4Var2.r.clearFocus();
-                return;
-            default:
-                Bundle bundle = new Bundle();
-                bundle.putLong("community_id", eo2Var.o1);
-                eo2Var.t1.presentFragment(new en2(bundle));
-                eo2Var.dismiss();
-                return;
-        }
+    public final void A(boolean z) {
+        xn2 xn2Var = this.a;
+        xn2Var.finishFragment();
+        xn2Var.getNotificationCenter().k(jn7.K2, Long.valueOf(-xn2Var.c), null, xn2Var.J, Boolean.valueOf(z));
+    }
+
+    @Override
+    public final l2d S(View view, l2d l2dVar) {
+        mq5 f = l2dVar.a.f(519);
+        this.a.e.setPadding(0, f.b, 0, f.d);
+        return l2d.b;
+    }
+
+    @Override
+    public final Boolean e(b8c b8cVar, View view, Integer num, Float f, Float f2) {
+        return Boolean.valueOf(this.a.c0(b8cVar, view));
+    }
+
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.b0((b8c) obj);
     }
 }

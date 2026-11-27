@@ -1,77 +1,141 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class er2 extends fr2 {
-    public final double d;
-    public final double e;
-    public final double f;
-    public final double g;
-    public final int h;
-    public volatile double i;
+import java.util.List;
+public final class er2 implements i8a {
+    public final j99 a;
+    public long b;
 
-    public er2(String str, double d, double d2, double d3, double d4, int i) {
-        super(str);
-        this.d = d;
-        this.e = d2;
-        this.f = d3;
-        this.g = d4;
-        this.h = i;
-        this.i = d;
+    public er2(List list, List list2) {
+        boolean z;
+        mo5 p = po5.p();
+        if (list.size() == list2.size()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.f(z);
+        for (int i = 0; i < list.size(); i++) {
+            p.c(new dr2((i8a) list.get(i), (List) list2.get(i)));
+        }
+        this.a = p.f();
+        this.b = -9223372036854775807L;
     }
 
     @Override
-    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-        if (jSONValue instanceof TLRPC.TL_jsonNumber) {
-            double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
-            if (!Double.isNaN(d) && !Double.isInfinite(d)) {
-                double max = Math.max(this.e, Math.min(this.f, d));
-                if (max != this.i && Math.abs(max - this.i) >= this.g) {
-                    this.i = max;
-                    editor.putLong(e(), Double.doubleToRawLongBits(max));
-                    return true;
-                }
+    public final boolean e() {
+        int i = 0;
+        while (true) {
+            j99 j99Var = this.a;
+            if (i >= j99Var.d) {
                 return false;
             }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean c(SharedPreferences.Editor editor) {
-        if (this.h == 2) {
-            double d = this.i;
-            double d2 = this.d;
-            if (d != d2) {
-                this.i = d2;
-                editor.remove(e());
+            if (((dr2) j99Var.get(i)).a.e()) {
                 return true;
             }
-            return false;
+            i++;
         }
-        return false;
     }
 
     @Override
-    public final void d(SharedPreferences sharedPreferences) {
-        if (!sharedPreferences.contains(e())) {
-            this.i = this.d;
-            return;
-        }
-        try {
-            try {
-                this.i = Math.max(this.e, Math.min(this.f, Double.longBitsToDouble(sharedPreferences.getLong(e(), 0L))));
-            } catch (ClassCastException e) {
-                fa4.g(e, true);
-                this.i = this.d;
+    public final long h() {
+        int i = 0;
+        long j = Long.MAX_VALUE;
+        while (true) {
+            j99 j99Var = this.a;
+            if (i >= j99Var.d) {
+                break;
             }
-        } catch (ClassCastException unused) {
-            this.i = Math.max(this.e, Math.min(this.f, sharedPreferences.getFloat(e(), (float) this.d)));
+            long h = ((dr2) j99Var.get(i)).a.h();
+            if (h != Long.MIN_VALUE) {
+                j = Math.min(j, h);
+            }
+            i++;
+        }
+        if (j == Long.MAX_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return j;
+    }
+
+    @Override
+    public final boolean s(xa6 xa6Var) {
+        boolean z;
+        boolean z2;
+        boolean z3 = false;
+        do {
+            long h = h();
+            if (h == Long.MIN_VALUE) {
+                return z3;
+            }
+            int i = 0;
+            z = false;
+            while (true) {
+                j99 j99Var = this.a;
+                if (i < j99Var.d) {
+                    long h2 = ((dr2) j99Var.get(i)).a.h();
+                    if (h2 != Long.MIN_VALUE && h2 <= xa6Var.a) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    if (h2 == h || z2) {
+                        z |= ((dr2) j99Var.get(i)).a.s(xa6Var);
+                    }
+                    i++;
+                } else {
+                    z3 |= z;
+                }
+            }
+        } while (z);
+        return z3;
+    }
+
+    @Override
+    public final long t() {
+        int i = 0;
+        long j = Long.MAX_VALUE;
+        long j2 = Long.MAX_VALUE;
+        while (true) {
+            j99 j99Var = this.a;
+            if (i >= j99Var.d) {
+                break;
+            }
+            dr2 dr2Var = (dr2) j99Var.get(i);
+            long t = dr2Var.a.t();
+            po5 po5Var = dr2Var.b;
+            if ((po5Var.contains(1) || po5Var.contains(2) || po5Var.contains(4)) && t != Long.MIN_VALUE) {
+                j = Math.min(j, t);
+            }
+            if (t != Long.MIN_VALUE) {
+                j2 = Math.min(j2, t);
+            }
+            i++;
+        }
+        if (j != Long.MAX_VALUE) {
+            this.b = j;
+            return j;
+        } else if (j2 == Long.MAX_VALUE) {
+            return Long.MIN_VALUE;
+        } else {
+            long j3 = this.b;
+            if (j3 != -9223372036854775807L) {
+                return j3;
+            }
+            return j2;
         }
     }
 
-    public final String toString() {
-        return this.a + "=" + this.i;
+    @Override
+    public final void u(long j) {
+        int i = 0;
+        while (true) {
+            j99 j99Var = this.a;
+            if (i < j99Var.d) {
+                ((dr2) j99Var.get(i)).u(j);
+                i++;
+            } else {
+                return;
+            }
+        }
     }
 }

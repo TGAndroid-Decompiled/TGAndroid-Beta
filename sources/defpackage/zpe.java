@@ -1,48 +1,66 @@
 package defpackage;
-public final class zpe extends c2e {
-    private static final zpe zzb;
-    private int zzd;
-    private fje zze;
-    private long zzf;
 
-    static {
-        ?? c2eVar = new c2e();
-        zzb = c2eVar;
-        c2e.k(zpe.class, c2eVar);
-    }
-
-    public static void n(zpe zpeVar, fje fjeVar) {
-        zpeVar.zze = fjeVar;
-        zpeVar.zzd |= 1;
-    }
-
-    public static void o(zpe zpeVar, long j) {
-        zpeVar.zzd |= 2;
-        zpeVar.zzf = j;
-    }
-
-    public static ope p() {
-        return (ope) zzb.f();
-    }
-
-    @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
-                    }
-                    return new e0e(zzb);
-                }
-                return new c2e();
-            }
-            return new vae(zzb, "\u0004\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဉ\u0000\u0002ဂ\u0001", new Object[]{"zzd", "zze", "zzf"});
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+public abstract class zpe {
+    public static int a(byte b) {
+        if (b < 0) {
+            return b + 256;
         }
-        return (byte) 1;
+        return b;
+    }
+
+    public static String b(ByteBuffer byteBuffer) {
+        byte[] bArr = new byte[4];
+        byteBuffer.get(bArr);
+        try {
+            return new String(bArr, "ISO-8859-1");
+        } catch (UnsupportedEncodingException e) {
+            grb.m(e);
+            return null;
+        }
+    }
+
+    public static double c(ByteBuffer byteBuffer) {
+        byte[] bArr = new byte[4];
+        byteBuffer.get(bArr);
+        return (((((bArr[0] << 24) & (-16777216)) | ((bArr[1] << 16) & 16711680)) | ((bArr[2] << 8) & 65280)) | (bArr[3] & 255)) / 1.073741824E9d;
+    }
+
+    public static double d(ByteBuffer byteBuffer) {
+        byte[] bArr = new byte[4];
+        byteBuffer.get(bArr);
+        return (((((bArr[0] << 24) & (-16777216)) | ((bArr[1] << 16) & 16711680)) | ((bArr[2] << 8) & 65280)) | (bArr[3] & 255)) / 65536.0d;
+    }
+
+    public static float e(ByteBuffer byteBuffer) {
+        byte[] bArr = new byte[2];
+        byteBuffer.get(bArr);
+        return ((short) (((short) ((bArr[0] << 8) & 65280)) | (bArr[1] & 255))) / 256.0f;
+    }
+
+    public static int f(ByteBuffer byteBuffer) {
+        return a(byteBuffer.get()) + (a(byteBuffer.get()) << 8);
+    }
+
+    public static long g(ByteBuffer byteBuffer) {
+        long j = byteBuffer.getInt();
+        if (j < 0) {
+            return j + 4294967296L;
+        }
+        return j;
+    }
+
+    public static long h(ByteBuffer byteBuffer) {
+        long g = g(byteBuffer) << 32;
+        if (g >= 0) {
+            return g(byteBuffer) + g;
+        }
+        xi4.l("I don't know how to deal with UInt64! long is not sufficient and I don't want to use BigInt");
+        return 0L;
+    }
+
+    public static int i(ByteBuffer byteBuffer) {
+        return a(byteBuffer.get());
     }
 }

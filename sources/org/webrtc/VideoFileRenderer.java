@@ -60,24 +60,24 @@ public class VideoFileRenderer implements VideoSink {
             });
             return;
         }
-        w26.j("Does not support uneven width or height");
+        lq5.j("Does not support uneven width or height");
         throw null;
     }
 
-    public static void a(VideoFileRenderer videoFileRenderer, VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
-        videoFileRenderer.lambda$renderFrameOnRenderThread$1(i420Buffer, videoFrame);
-    }
-
-    public static void b(VideoFileRenderer videoFileRenderer, VideoFrame videoFrame) {
+    public static void a(VideoFileRenderer videoFileRenderer, VideoFrame videoFrame) {
         videoFileRenderer.lambda$onFrame$0(videoFrame);
     }
 
-    public static void c(VideoFileRenderer videoFileRenderer) {
+    public static void b(VideoFileRenderer videoFileRenderer) {
         videoFileRenderer.lambda$release$3();
     }
 
-    public static void d(VideoFileRenderer videoFileRenderer, CountDownLatch countDownLatch) {
+    public static void c(VideoFileRenderer videoFileRenderer, CountDownLatch countDownLatch) {
         videoFileRenderer.lambda$release$2(countDownLatch);
+    }
+
+    public static void d(VideoFileRenderer videoFileRenderer, VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
+        videoFileRenderer.lambda$renderFrameOnRenderThread$1(i420Buffer, videoFrame);
     }
 
     public void lambda$release$2(CountDownLatch countDownLatch) {
@@ -93,7 +93,7 @@ public class VideoFileRenderer implements VideoSink {
             Logging.d("VideoFileRenderer", "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");
             this.fileThread.quit();
         } catch (IOException e) {
-            fyb.j("Error closing output file", e);
+            grb.j("Error closing output file", e);
         }
     }
 
@@ -105,7 +105,7 @@ public class VideoFileRenderer implements VideoSink {
             this.videoOutFile.write(this.outputFrameBuffer.array(), this.outputFrameBuffer.arrayOffset(), this.outputFrameSize);
             this.frameCount++;
         } catch (IOException e) {
-            fyb.j("Error writing video to disk", e);
+            grb.j("Error writing video to disk", e);
         }
     }
 
@@ -138,29 +138,25 @@ public class VideoFileRenderer implements VideoSink {
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new r1b(this, i420, videoFrame, (byte) 28));
+        this.fileThreadHandler.post(new b6c(this, i420, videoFrame, (byte) 7));
     }
 
     @Override
     public void onFrame(VideoFrame videoFrame) {
         videoFrame.retain();
-        this.renderThreadHandler.post(new l3c(this, videoFrame, (byte) 14));
+        this.renderThreadHandler.post(new g9c(this, videoFrame, (byte) 10));
     }
 
     public void release() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.renderThreadHandler.post(new l3c(this, countDownLatch, (byte) 15));
+        this.renderThreadHandler.post(new g9c(this, countDownLatch, (byte) 11));
         ThreadUtils.awaitUninterruptibly(countDownLatch);
-        this.fileThreadHandler.post(new cib(this, (byte) 26));
+        this.fileThreadHandler.post(new azb(this, (byte) 13));
         try {
             this.fileThread.join();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             Logging.e("VideoFileRenderer", "Interrupted while waiting for the write to disk to complete.", e);
         }
-    }
-
-    @Override
-    public final void setParentSink(VideoSink videoSink) {
     }
 }

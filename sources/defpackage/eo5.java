@@ -1,46 +1,36 @@
 package defpackage;
 
-import android.content.ClipDescription;
-import android.net.Uri;
-import android.view.inputmethod.InputContentInfo;
-public final class eo5 implements fo5 {
-    public final InputContentInfo a;
+import java.util.Set;
+public final class eo5 extends lp {
+    public final i99 D() {
+        if (this.b == 0) {
+            return i99.r;
+        }
+        return new i99(this.b, (Object[]) this.c);
+    }
 
-    public eo5(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.a = new InputContentInfo(uri, clipDescription, uri2);
+    public final void F(t1c t1cVar, String str) {
+        super.x(t1cVar, str);
+    }
+
+    public final void G(Set set) {
+        super.y(set);
     }
 
     @Override
-    public final Uri f() {
-        return this.a.getContentUri();
+    public final to5 e() {
+        throw new UnsupportedOperationException("Not supported for bimaps");
     }
 
     @Override
-    public final ClipDescription getDescription() {
-        return this.a.getDescription();
+    public final lp x(Object obj, Object obj2) {
+        super.x(obj, obj2);
+        return this;
     }
 
     @Override
-    public final void h() {
-        this.a.requestPermission();
-    }
-
-    @Override
-    public final Uri i() {
-        return this.a.getLinkUri();
-    }
-
-    @Override
-    public final Object l() {
-        return this.a;
-    }
-
-    @Override
-    public final void n() {
-        this.a.releasePermission();
-    }
-
-    public eo5(Object obj) {
-        this.a = (InputContentInfo) obj;
+    public final lp y(Set set) {
+        super.y(set);
+        return this;
     }
 }

@@ -1,17 +1,10 @@
 package defpackage;
-public final class cvd implements zn7 {
-    public static final cvd a = new Object();
-
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)), 10)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class cvd {
+    public static int a(long j) {
+        if (j <= 2147483647L && j >= -2147483648L) {
+            return (int) j;
         }
-        throw new ClassCastException();
+        xi4.l(ik8.n(j, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
+        return 0;
     }
 }

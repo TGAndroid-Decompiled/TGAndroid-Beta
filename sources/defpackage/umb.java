@@ -1,138 +1,110 @@
 package defpackage;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ImageView;
-import java.util.Arrays;
-public final class umb extends ImageView {
-    public static final ax1 x = new ax1(Float.class, "radius", (byte) 4);
-    public final Paint a;
-    public final Matrix b;
-    public RadialGradient c;
-    public boolean d;
-    public float e;
-    public float f;
-    public float h;
-    public ry8 n;
-    public ColorFilter r;
-    public final int[] s;
-    public final int[] w;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.text.Editable;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+public final class umb implements ActionMode.Callback {
+    public final ActionMode.Callback a;
+    public final TextView b;
+    public Class c;
+    public Method d;
+    public boolean e;
+    public boolean f = false;
 
-    public umb(Context context) {
-        super(context);
-        this.a = new Paint(1);
-        this.b = new Matrix();
-        this.s = new int[2];
-        this.w = new int[2];
-    }
-
-    public static void a(Bitmap bitmap, View view, ry8 ry8Var) {
-        Drawable drawable = ry8Var.getDrawable();
-        if (drawable != null && ry8Var.isAttachedToWindow() && bitmap.isMutable()) {
-            int[] iArr = new int[2];
-            RectF rectF = new RectF(drawable.getBounds());
-            ry8Var.getImageMatrix().mapRect(rectF);
-            ry8Var.getLocationInWindow(iArr);
-            rectF.offset(ry8Var.getPaddingLeft() + iArr[0], ry8Var.getPaddingTop() + iArr[1]);
-            if (view != null) {
-                view.getLocationInWindow(iArr);
-                rectF.offset(-iArr[0], -iArr[1]);
-            }
-            int max = Math.max(1, ((int) Math.floor(rectF.left)) - 1);
-            int min = Math.min(bitmap.getWidth(), ((int) Math.ceil(rectF.right)) + 1);
-            int max2 = Math.max(0, ((int) Math.floor(rectF.top)) - 1);
-            int min2 = Math.min(bitmap.getHeight(), ((int) Math.ceil(rectF.bottom)) + 1);
-            if (max < min && max2 < min2) {
-                int i = min - max;
-                int[] iArr2 = new int[i];
-                for (int i2 = max2; i2 < min2; i2++) {
-                    Arrays.fill(iArr2, bitmap.getPixel(max - 1, i2));
-                    bitmap.setPixels(iArr2, 0, i, max, i2, i, 1);
-                }
-            }
-        }
-    }
-
-    public final void b(float f, float f2, boolean z) {
-        PorterDuff.Mode mode;
-        this.e = f;
-        this.f = f2;
-        this.d = z;
-        RadialGradient radialGradient = this.c;
-        Paint paint = this.a;
-        if (radialGradient == null) {
-            RadialGradient radialGradient2 = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{-16777216, -16777216, 0}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            this.c = radialGradient2;
-            paint.setShader(radialGradient2);
-        }
-        if (z) {
-            mode = PorterDuff.Mode.DST_OUT;
-        } else {
-            mode = PorterDuff.Mode.DST_IN;
-        }
-        paint.setXfermode(new PorterDuffXfermode(mode));
+    public umb(ActionMode.Callback callback, TextView textView) {
+        this.a = callback;
+        this.b = textView;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Drawable drawable;
-        if (this.c == null) {
-            super.onDraw(canvas);
-        } else if (this.h < 1.0f && !this.d) {
-        } else {
-            int saveLayer = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
-            super.onDraw(canvas);
-            ry8 ry8Var = this.n;
-            if (ry8Var != null) {
-                drawable = ry8Var.getDrawable();
-            } else {
-                drawable = null;
-            }
-            if (drawable != null && this.n.isAttachedToWindow()) {
-                ry8 ry8Var2 = this.n;
-                int[] iArr = this.s;
-                ry8Var2.getLocationInWindow(iArr);
-                int[] iArr2 = this.w;
-                getLocationInWindow(iArr2);
-                ColorFilter colorFilter = drawable.getColorFilter();
-                canvas.save();
-                canvas.translate(this.n.getPaddingLeft() + (iArr[0] - iArr2[0]), this.n.getPaddingTop() + (iArr[1] - iArr2[1]));
-                canvas.concat(this.n.getImageMatrix());
-                drawable.setColorFilter(this.r);
-                drawable.draw(canvas);
-                drawable.setColorFilter(colorFilter);
-                canvas.restore();
-                if ((drawable instanceof Animatable) && ((Animatable) drawable).isRunning()) {
-                    invalidate();
-                }
-            }
-            float f = this.h;
-            if (f >= 1.0f) {
-                float f2 = f / 100.0f;
-                Matrix matrix = this.b;
-                matrix.setScale(f2, f2);
-                matrix.postTranslate(this.e, this.f);
-                this.c.setLocalMatrix(matrix);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.a);
-            }
-            canvas.restoreToCount(saveLayer);
-        }
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        return this.a.onActionItemClicked(actionMode, menuItem);
     }
 
-    public void setRadius(float f) {
-        this.h = f;
-        invalidate();
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        return this.a.onCreateActionMode(actionMode, menu);
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        this.a.onDestroyActionMode(actionMode);
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        Method declaredMethod;
+        boolean z;
+        TextView textView = this.b;
+        Context context = textView.getContext();
+        PackageManager packageManager = context.getPackageManager();
+        boolean z2 = this.f;
+        Class<?> cls = Integer.TYPE;
+        if (!z2) {
+            this.f = true;
+            try {
+                Class<?> cls2 = Class.forName("com.android.internal.view.menu.MenuBuilder");
+                this.c = cls2;
+                this.d = cls2.getDeclaredMethod("removeItemAt", cls);
+                this.e = true;
+            } catch (ClassNotFoundException | NoSuchMethodException unused) {
+                this.c = null;
+                this.d = null;
+                this.e = false;
+            }
+        }
+        try {
+            if (this.e && this.c.isInstance(menu)) {
+                declaredMethod = this.d;
+            } else {
+                declaredMethod = menu.getClass().getDeclaredMethod("removeItemAt", cls);
+            }
+            for (int size = menu.size() - 1; size >= 0; size--) {
+                MenuItem item = menu.getItem(size);
+                if (item.getIntent() != null && "android.intent.action.PROCESS_TEXT".equals(item.getIntent().getAction())) {
+                    declaredMethod.invoke(menu, Integer.valueOf(size));
+                }
+            }
+            ArrayList arrayList = new ArrayList();
+            if (context instanceof Activity) {
+                for (ResolveInfo resolveInfo : packageManager.queryIntentActivities(new Intent().setAction("android.intent.action.PROCESS_TEXT").setType("text/plain"), 0)) {
+                    if (!context.getPackageName().equals(resolveInfo.activityInfo.packageName)) {
+                        ActivityInfo activityInfo = resolveInfo.activityInfo;
+                        if (activityInfo.exported) {
+                            String str = activityInfo.permission;
+                            if (str != null && context.checkSelfPermission(str) != 0) {
+                            }
+                        }
+                    }
+                    arrayList.add(resolveInfo);
+                }
+            }
+            for (int i = 0; i < arrayList.size(); i++) {
+                ResolveInfo resolveInfo2 = (ResolveInfo) arrayList.get(i);
+                MenuItem add = menu.add(0, 0, i + 100, resolveInfo2.loadLabel(packageManager));
+                Intent type = new Intent().setAction("android.intent.action.PROCESS_TEXT").setType("text/plain");
+                if ((textView instanceof Editable) && textView.onCheckIsTextEditor() && textView.isEnabled()) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                Intent putExtra = type.putExtra("android.intent.extra.PROCESS_TEXT_READONLY", !z);
+                ActivityInfo activityInfo2 = resolveInfo2.activityInfo;
+                add.setIntent(putExtra.setClassName(activityInfo2.packageName, activityInfo2.name)).setShowAsAction(1);
+            }
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException unused2) {
+        }
+        return this.a.onPrepareActionMode(actionMode, menu);
     }
 }

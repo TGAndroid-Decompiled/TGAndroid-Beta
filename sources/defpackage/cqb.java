@@ -1,42 +1,26 @@
 package defpackage;
 
-import java.util.Locale;
-public enum cqb extends qsb {
-    public cqb() {
-        super("RcdataLessthanSign", 10);
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class cqb extends kea {
+    public final eqb U2;
+
+    public cqb(eqb eqbVar, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.U2 = eqbVar;
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        String str;
-        if (zj1Var.m('/')) {
-            aqbVar.e();
-            aqbVar.a(qsb.w);
+    public final void M0(zh6 zh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        if (!z) {
             return;
         }
-        if (zj1Var.o() && aqbVar.o != null) {
-            String str2 = "</" + aqbVar.o;
-            Locale locale = Locale.ENGLISH;
-            String lowerCase = str2.toLowerCase(locale);
-            String upperCase = str2.toUpperCase(locale);
-            if (zj1Var.p(lowerCase) <= -1 && zj1Var.p(upperCase) <= -1) {
-                vpb d = aqbVar.d(false);
-                String str3 = aqbVar.o;
-                d.e = str3;
-                if (str3 != null) {
-                    str = str3.toLowerCase(locale);
-                } else {
-                    str = "";
-                }
-                d.f = str;
-                aqbVar.i = d;
-                aqbVar.k();
-                zj1Var.q();
-                aqbVar.c = qsb.a;
-                return;
-            }
+        int m = zh6Var.m();
+        pqb pqbVar = this.U2.a;
+        if (m == 1) {
+            pqbVar.n0.m(((TLRPC.Dialog) zh6Var.n(0)).id, Integer.valueOf(i), 61);
+        } else {
+            pqbVar.n0.k(0L, 61, Integer.valueOf(i), Integer.valueOf(zh6Var.m()), null, null);
         }
-        aqbVar.h("<");
-        aqbVar.c = qsb.c;
     }
 }

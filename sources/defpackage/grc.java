@@ -1,23 +1,25 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import java.io.File;
-import org.telegram.ui.WallpapersListActivity;
-public final class grc implements crc {
-    public final WallpapersListActivity a;
+import android.os.SystemClock;
+import j$.util.Collection;
+import java.util.WeakHashMap;
+public final class grc implements Runnable {
+    public final hrc a;
 
-    public grc(WallpapersListActivity wallpapersListActivity) {
-        this.a = wallpapersListActivity;
+    public grc(hrc hrcVar) {
+        this.a = hrcVar;
     }
 
     @Override
-    public final void b(File file, Bitmap bitmap, boolean z) {
-        qmb qmbVar = new qmb(new lrc(file, file, ""), bitmap, false);
-        qmbVar.g1(0L);
-        this.a.presentFragment(qmbVar, z);
-    }
-
-    @Override
-    public final void a() {
+    public final void run() {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        hrc hrcVar = this.a;
+        WeakHashMap weakHashMap = hrcVar.e;
+        Collection.EL.removeIf(weakHashMap.entrySet(), new hh((byte) 3, uptimeMillis));
+        if (weakHashMap.isEmpty()) {
+            hrcVar.a();
+        } else {
+            hrcVar.d.postDelayed(this, 250L);
+        }
     }
 }

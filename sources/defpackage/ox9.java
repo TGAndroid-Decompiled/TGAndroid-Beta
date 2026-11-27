@@ -1,61 +1,52 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ox9 extends AnimatorListenerAdapter {
-    public final boolean a;
-    public final lx9 b;
-    public final boolean[] c;
-    public final boolean d;
-    public final lx9 e;
-    public final px9 f;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+public final class ox9 implements Runnable {
+    public final byte a;
+    public final wx9 b;
+    public final long c;
 
-    public ox9(px9 px9Var, boolean z, lx9 lx9Var, boolean[] zArr, boolean z2, lx9 lx9Var2) {
-        this.f = px9Var;
-        this.a = z;
-        this.b = lx9Var;
-        this.c = zArr;
-        this.d = z2;
-        this.e = lx9Var2;
+    public ox9(wx9 wx9Var, long j, byte b) {
+        this.a = b;
+        this.b = wx9Var;
+        this.c = j;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f;
-        lx9 lx9Var;
-        px9 px9Var = this.f;
-        oc6 oc6Var = px9Var.s;
-        boolean z = this.a;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        px9Var.J = f;
-        gl.V1(px9Var.c, px9Var.d, f, px9Var.e);
-        oc6Var.invalidate();
-        if (!z) {
-            px9Var.w.setAlpha(px9Var.J);
-        }
-        if (px9Var.J < 0.5f && !z && (lx9Var = this.b) != null) {
-            boolean[] zArr = this.c;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                lx9Var.run();
-            }
-        }
-        if (!z) {
-            if (this.d) {
-                px9Var.a.b = false;
-                px9Var.Q.i0.invalidate();
-            }
-            kk7.e().k(kk7.j1, 4);
-        }
-        px9Var.L = null;
-        oc6Var.invalidate();
-        lx9 lx9Var2 = this.e;
-        if (lx9Var2 != null) {
-            lx9Var2.run();
+    public final void run() {
+        byte b = this.a;
+        long j = this.c;
+        wx9 wx9Var = this.b;
+        switch (b) {
+            case 0:
+                zh6 zh6Var = wx9Var.getMessagesController().R;
+                long j2 = this.c;
+                TLRPC.Dialog dialog = (TLRPC.Dialog) zh6Var.f(j2);
+                if (dialog != null) {
+                    dialog.unread_count = 0;
+                    wx9Var.getMessagesController().S.l(dialog.id);
+                }
+                wx9Var.getMessagesStorage().a.c(new ox9(wx9Var, j2, (byte) 1));
+                jf7 messagesStorage = wx9Var.getMessagesStorage();
+                messagesStorage.a.c(new gd7(messagesStorage, 1, j2, (byte) 0));
+                wx9Var.getNotificationCenter().k(3, new Object[0]);
+                wx9Var.getNotificationCenter().k(42, Long.valueOf(j2), Boolean.FALSE, null);
+                return;
+            case 1:
+                hl.c3(new ox9(wx9Var, j, (byte) 2));
+                return;
+            case 2:
+                ip7 notificationsController = wx9Var.getNotificationsController();
+                long j3 = this.c;
+                notificationsController.L(null, j3, 0, Integer.MAX_VALUE, false);
+                LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
+                longSparseIntArray.put(j3, 0);
+                wx9Var.getNotificationsController().J(longSparseIntArray);
+                return;
+            default:
+                wx9Var.getMessagesController().V(0, j, false);
+                return;
         }
     }
 }

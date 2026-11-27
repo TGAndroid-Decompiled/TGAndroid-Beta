@@ -1,44 +1,48 @@
 package defpackage;
-public final class i0c implements Runnable {
-    public final byte a;
-    public final b1c b;
-    public final String c;
-    public final k27 d;
-    public final long e;
-    public final int f;
 
-    public i0c(b1c b1cVar, String str, k27 k27Var, long j, int i, byte b) {
-        this.a = b;
-        this.b = b1cVar;
-        this.c = str;
-        this.d = k27Var;
-        this.e = j;
-        this.f = i;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class i0c extends c79 {
+    public final ArrayList c = new ArrayList();
+    public String d;
+    public final n0c e;
+
+    public i0c(n0c n0cVar) {
+        this.e = n0cVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        String str = this.c;
-        switch (b) {
-            case 0:
-                b1c b1cVar = this.b;
-                k27 k27Var = this.d;
-                long j = this.e;
-                int i = this.f;
-                cme.b(str, new l0c(b1cVar, k27Var, j, i), new l0c(b1cVar, k27Var, j, i), false);
-                return;
-            default:
-                if (str == null) {
-                    str = "und";
-                }
-                k27 k27Var2 = this.d;
-                k27Var2.k.originalLanguage = str;
-                b1c b1cVar2 = this.b;
-                b1cVar2.getMessagesStorage().U1(this.e, k27Var2.k);
-                b1cVar2.w.remove(Integer.valueOf(this.f));
-                b1cVar2.e(k27Var2);
-                return;
+    public final boolean D(f89 f89Var) {
+        return true;
+    }
+
+    public final void E(ArrayList arrayList, boolean z) {
+        d79 d79Var = this.e.r;
+        if (!z) {
+            f();
+            return;
         }
+        boolean canScrollVertically = d79Var.canScrollVertically(-1);
+        cy7.a(new ak3(this, arrayList, (byte) 5), true).c(this);
+        if (!canScrollVertically) {
+            d79Var.x0(0);
+        }
+    }
+
+    @Override
+    public final int b() {
+        return this.c.size();
+    }
+
+    @Override
+    public final void t(defpackage.f89 r34, int r35) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.i0c.t(f89, int):void");
+    }
+
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        m0c m0cVar = new m0c(this.e, viewGroup.getContext());
+        m0cVar.setLayoutParams(new r79(-1, -2));
+        return new f89(m0cVar);
     }
 }

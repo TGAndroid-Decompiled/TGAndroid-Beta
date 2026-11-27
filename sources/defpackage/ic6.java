@@ -1,42 +1,47 @@
 package defpackage;
 
-import android.os.Bundle;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import android.content.Intent;
+import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
-public final class ic6 implements OnSuccessListener {
-    public final byte a = 0;
-    public final mf6 b;
-    public final String c;
-    public final TLRPC.auth_SentCode d;
-    public final Bundle e;
-    public final boolean f;
+public final class ic6 extends d6 {
+    public final uc6 a;
 
-    public ic6(mf6 mf6Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z) {
-        this.b = mf6Var;
-        this.e = bundle;
-        this.d = auth_sentcode;
-        this.c = str;
-        this.f = z;
+    public ic6(uc6 uc6Var) {
+        this.a = uc6Var;
     }
 
     @Override
-    public final void onSuccess(Object obj) {
-        switch (this.a) {
-            case 0:
-                this.b.s1(this.e, this.d, this.c, this.f, (IntegrityTokenResponse) obj);
-                return;
-            default:
-                this.b.t1(this.c, this.d, this.e, this.f, (bp9) obj);
-                return;
+    public final void b(int i) {
+        uc6 uc6Var = this.a;
+        if (i == -1) {
+            uc6Var.finishFragment();
+            return;
         }
-    }
-
-    public ic6(mf6 mf6Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z) {
-        this.b = mf6Var;
-        this.c = str;
-        this.d = auth_sentcode;
-        this.e = bundle;
-        this.f = z;
+        int i2 = 1;
+        if (i == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = uc6Var.J0.k.media.geo;
+                double d = geoPoint.lat;
+                double d2 = geoPoint._long;
+                uc6Var.getParentActivity().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        } else if (i == 5) {
+            uc6Var.C0(false);
+        } else if (i == 6) {
+            uc6Var.B0(null);
+        } else if ((i == 2 || i == 3 || i == 4) && uc6Var.F != null) {
+            uc6Var.D0();
+            x05 x05Var = uc6Var.F;
+            if (i != 3) {
+                if (i == 4) {
+                    i2 = 2;
+                } else {
+                    i2 = 0;
+                }
+            }
+            x05Var.j(i2);
+        }
     }
 }

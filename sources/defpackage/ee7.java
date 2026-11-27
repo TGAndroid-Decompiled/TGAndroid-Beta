@@ -1,75 +1,65 @@
 package defpackage;
 
-import android.util.Pair;
-public final class ee7 implements kv9 {
-    public final long[] a;
-    public final long[] b;
-    public final long c;
+import org.telegram.messenger.Utilities;
+public final class ee7 implements Runnable {
+    public final int E;
+    public final boolean F;
+    public final boolean G;
+    public final jf7 a;
+    public final psb b;
+    public final qsb c;
+    public final long d;
+    public final long e;
+    public final int f;
+    public final int h;
+    public final int n;
+    public final int r;
+    public final int s;
+    public final int w;
+    public final int x;
+    public final long y;
 
-    public ee7(long j, long[] jArr, long[] jArr2) {
-        this.a = jArr;
-        this.b = jArr2;
-        this.c = j == -9223372036854775807L ? g8c.T(jArr2[jArr2.length - 1]) : j;
-    }
-
-    public static Pair i(long j, long[] jArr, long[] jArr2) {
-        double d;
-        int f = g8c.f(jArr, j, true);
-        long j2 = jArr[f];
-        long j3 = jArr2[f];
-        int i = f + 1;
-        if (i == jArr.length) {
-            return Pair.create(Long.valueOf(j2), Long.valueOf(j3));
-        }
-        long j4 = jArr[i];
-        long j5 = jArr2[i];
-        if (j4 == j2) {
-            d = 0.0d;
-        } else {
-            d = (j - j2) / (j4 - j2);
-        }
-        return Pair.create(Long.valueOf(j), Long.valueOf(((long) (d * (j5 - j3))) + j3));
-    }
-
-    @Override
-    public final long a() {
-        return -1L;
-    }
-
-    @Override
-    public final long b() {
-        return 0L;
+    public ee7(jf7 jf7Var, psb psbVar, qsb qsbVar, long j, long j2, int i, int i2, int i3, int i4, int i5, int i6, int i7, long j3, int i8, boolean z, boolean z2) {
+        this.a = jf7Var;
+        this.b = psbVar;
+        this.c = qsbVar;
+        this.d = j;
+        this.e = j2;
+        this.f = i;
+        this.h = i2;
+        this.n = i3;
+        this.r = i4;
+        this.s = i5;
+        this.w = i6;
+        this.x = i7;
+        this.y = j3;
+        this.E = i8;
+        this.F = z;
+        this.G = z2;
     }
 
     @Override
-    public final boolean c() {
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        return false;
-    }
-
-    @Override
-    public final long e(long j) {
-        return g8c.T(((Long) i(j, this.a, this.b).second).longValue());
-    }
-
-    @Override
-    public final ev9 f(long j) {
-        Pair i = i(g8c.i0(g8c.j(j, 0L, this.c)), this.b, this.a);
-        hv9 hv9Var = new hv9(g8c.T(((Long) i.first).longValue()), ((Long) i.second).longValue());
-        return new ev9(hv9Var, hv9Var);
-    }
-
-    @Override
-    public final int g() {
-        return -2147483647;
-    }
-
-    @Override
-    public final long h() {
-        return this.c;
+    public final void run() {
+        jf7 jf7Var = this.a;
+        psb psbVar = this.b;
+        qsb qsbVar = this.c;
+        long j = this.d;
+        long j2 = this.e;
+        int i = this.f;
+        int i2 = this.h;
+        int i3 = this.n;
+        int i4 = this.r;
+        int i5 = this.s;
+        int i6 = this.w;
+        int i7 = this.x;
+        long j3 = this.y;
+        int i8 = this.E;
+        boolean z = this.F;
+        boolean z2 = this.G;
+        qsb.a(psbVar);
+        psb d = qsb.d(qsbVar, "MessagesStorage.getMessages");
+        ne7 d0 = jf7Var.d0(j, j2, i, i2, i3, i4, i5, i6, i7, j3, i8, z, z2, qsbVar);
+        qsb.a(d);
+        Utilities.d.c(new t87(qsb.d(qsbVar, "MessagesStorage.getMessages: stageQueue.postRunnable"), d0, (byte) 19));
     }
 }

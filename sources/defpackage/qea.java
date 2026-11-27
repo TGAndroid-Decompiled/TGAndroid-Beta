@@ -1,9 +1,12 @@
 package defpackage;
+public final class qea {
+    public final pea[] a;
+    public final String b;
+    public final String[] c;
 
-import org.telegram.tgnet.TLRPC;
-public final class qea extends k27 {
-    @Override
-    public final boolean s(TLRPC.Chat chat, boolean z) {
-        return false;
+    public qea(pea[] peaVarArr, String str, String[] strArr) {
+        this.a = peaVarArr;
+        this.b = str;
+        this.c = strArr;
     }
 }

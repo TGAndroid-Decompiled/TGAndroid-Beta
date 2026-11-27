@@ -1,22 +1,15 @@
 package defpackage;
-public final class c9b implements cv5 {
-    public static final c9b a = new Object();
-    public static final bj8 b = new bj8("kotlin.String", aj8.f);
 
-    @Override
-    public final void b(c30 c30Var, Object obj) {
-        String str = (String) obj;
-        str.getClass();
-        c30Var.k(str);
+import androidx.recyclerview.widget.RecyclerView;
+public final class c9b extends v79 {
+    public final e9b a;
+
+    public c9b(e9b e9bVar) {
+        this.a = e9bVar;
     }
 
     @Override
-    public final Object c(igf igfVar) {
-        return igfVar.m();
-    }
-
-    @Override
-    public final w4a d() {
-        return b;
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        this.a.b.invalidate();
     }
 }

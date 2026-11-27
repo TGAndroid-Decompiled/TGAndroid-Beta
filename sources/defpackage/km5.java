@@ -1,14 +1,16 @@
 package defpackage;
-public final class km5 extends u2 {
-    public final mm5 d;
 
-    public km5(mm5 mm5Var, int i) {
-        super(mm5Var.size(), i);
-        this.d = mm5Var;
+import java.util.concurrent.Executor;
+public final class km5 extends og7 implements jm5 {
+    public final a94 f;
+
+    public km5(qi6 qi6Var, Executor executor, a94 a94Var) {
+        super(qi6Var, executor);
+        this.f = a94Var;
     }
 
     @Override
-    public final Object a(int i) {
-        return this.d.get(i);
+    public final a94[] a() {
+        return new a94[]{this.f};
     }
 }

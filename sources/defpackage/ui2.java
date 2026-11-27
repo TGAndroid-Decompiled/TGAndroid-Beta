@@ -1,16 +1,21 @@
 package defpackage;
 
-import java.util.regex.Pattern;
-public final class ui2 extends tn5 {
-    public static final Pattern e = bj6.n;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ui2 extends c4 {
+    public static final Parcelable.Creator<ui2> CREATOR = new g31((byte) 8);
+    public final boolean a;
 
-    @Override
-    public final defpackage.tg6 b() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ui2.b():tg6");
+    public ui2(boolean z) {
+        this.a = z;
     }
 
     @Override
-    public final char c() {
-        return ']';
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(this.a ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

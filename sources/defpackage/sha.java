@@ -1,249 +1,157 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.text.TextUtils;
 import android.view.View;
-public final class sha extends View implements x74 {
-    public int E;
-    public int F;
-    public int G;
-    public final pha a;
-    public final boolean b;
-    public final rha c;
-    public final qha d;
-    public final Drawable e;
-    public final ih2 f;
-    public final TextPaint h;
-    public final Paint n;
-    public final RectF r;
-    public CharSequence s;
-    public float w;
-    public final fm0 x;
-    public final fm0 y;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class sha extends c79 {
+    public final Context c;
+    public final ArrayList d = new ArrayList();
+    public boolean e;
+    public boolean f;
+    public boolean h;
+    public int n;
+    public final eja r;
 
-    public sha(Context context, pha phaVar, String str) {
-        super(context);
-        float f;
-        TextPaint textPaint = new TextPaint(1);
-        this.h = textPaint;
-        this.n = new Paint(1);
-        this.r = new RectF();
-        s33 s33Var = s33.h;
-        this.x = new fm0(0, this, s33Var, 380L, true);
-        this.y = new fm0(1, this, s33Var, 250L, false);
-        this.a = phaVar;
-        this.b = true;
-        this.c = (rha) wcd.j.a();
-        this.d = (qha) wcd.k.a();
-        this.s = str;
-        this.e = context.getDrawable(2131231245).mutate();
-        ih2 ih2Var = new ih2(gl.L(18.0f), gl.L(2.0f), -1);
-        this.f = ih2Var;
-        ih2Var.setCallback(this);
-        textPaint.setTypeface(gl.o());
-        textPaint.setTextSize(gl.L(15.0f));
-        c();
-        CharSequence charSequence = this.s;
-        if (charSequence != null) {
-            f = textPaint.measureText(charSequence, 0, charSequence.length());
-        } else {
-            f = 0.0f;
-        }
-        this.w = f;
-        setContentDescription(str);
-        setOnClickListener(new ik8(this, (byte) 28));
-    }
-
-    public final void a(boolean z, boolean z2) {
-        boolean z3;
-        y74 y74Var;
-        fm0 fm0Var = this.x;
-        if (fm0Var.f == z && (z2 || (y74Var = fm0Var.h) == null || !y74Var.h)) {
-            return;
-        }
-        pha phaVar = this.a;
-        if (z2 && phaVar.y()) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        fm0Var.a(z, z3);
-        p(0, fm0Var.e, 0.0f, null);
-        phaVar.requestLayout();
-    }
-
-    public final void b(boolean z) {
-        this.y.a(z, this.a.y());
-        invalidate();
-    }
-
-    public final void c() {
-        int i;
-        pha phaVar = this.a;
-        wjb wjbVar = phaVar.a;
-        this.E = bkb.v0(bkb.Ei, wjbVar);
-        this.F = bm2.f(0.5f, bkb.v0(bkb.Z6, wjbVar), this.E);
-        int v0 = bkb.v0(bkb.Ii, wjbVar);
-        this.G = v0;
-        int i2 = phaVar.g0;
-        rha rhaVar = this.c;
-        rha rhaVar2 = rha.b;
-        if (rhaVar != rhaVar2) {
-            v0 = i2;
-        }
-        this.e.setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.SRC_IN));
-        this.f.b(v0);
-        this.h.setColor(v0);
-        if (rhaVar == rhaVar2) {
-            i = bkb.p1(0.2f, this.G);
-        } else {
-            i = phaVar.i0;
-        }
-        setBackground(bkb.Y(i, gl.L(23.0f), gl.L(23.0f)));
-        invalidate();
-    }
-
-    public int getButtonId() {
-        return this.b ? 1 : 0;
-    }
-
-    public int getButtonWidth() {
-        if (this.d != qha.a && !TextUtils.isEmpty(this.s)) {
-            return ls6.e(32.0f, (int) Math.ceil(this.w), gl.L(46.0f));
-        }
-        return gl.L(46.0f);
-    }
-
-    public qha getShape() {
-        return this.d;
-    }
-
-    public rha getStyle() {
-        return this.c;
-    }
-
-    public float getTargetVisibleFactor() {
-        if (this.c != rha.b && !this.x.f) {
-            return 0.0f;
-        }
-        return 1.0f;
-    }
-
-    public float getVisibleFactor() {
-        if (this.c == rha.b) {
-            return 1.0f;
-        }
-        return this.x.e;
+    public sha(eja ejaVar, Context context) {
+        this.r = ejaVar;
+        this.c = context;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        float width = getWidth();
-        float height = getHeight();
-        if (this.c == rha.b) {
-            int f2 = bm2.f(this.x.e, this.F, this.E);
-            Paint paint = this.n;
-            paint.setColor(f2);
-            RectF rectF = this.r;
-            rectF.set(0.0f, 0.0f, width, height);
-            float f3 = height / 2.0f;
-            canvas.drawRoundRect(rectF, f3, f3, paint);
-        }
-        float f4 = this.y.e;
-        if (f4 < 1.0f) {
-            float R1 = gl.R1(1.0f, 0.6f, f4);
-            canvas.save();
-            canvas.scale(R1, R1, width / 2.0f, height / 2.0f);
-            float f5 = 1.0f - f4;
-            int i = (int) (f5 * 255.0f);
-            if (this.d != qha.a && !TextUtils.isEmpty(this.s)) {
-                TextPaint textPaint = this.h;
-                int alpha = textPaint.getAlpha();
-                textPaint.setAlpha((int) (alpha * f5));
-                float descent = ((height - textPaint.descent()) - textPaint.ascent()) / 2.0f;
-                CharSequence charSequence = this.s;
-                f = 0.0f;
-                canvas.drawText(charSequence, 0, charSequence.length(), (width - this.w) / 2.0f, descent, textPaint);
-                textPaint.setAlpha(alpha);
-            } else {
-                f = 0.0f;
-                Drawable drawable = this.e;
-                float intrinsicWidth = drawable.getIntrinsicWidth();
-                float intrinsicHeight = drawable.getIntrinsicHeight();
-                drawable.setBounds((int) ((width - intrinsicWidth) / 2.0f), (int) ((height - intrinsicHeight) / 2.0f), (int) ((intrinsicWidth + width) / 2.0f), (int) ((intrinsicHeight + height) / 2.0f));
-                drawable.setAlpha(i);
-                drawable.draw(canvas);
-            }
-            canvas.restore();
-        } else {
-            f = 0.0f;
-        }
-        if (f4 > f) {
-            float R12 = gl.R1(0.6f, 1.0f, f4);
-            canvas.save();
-            canvas.scale(R12, R12, width / 2.0f, height / 2.0f);
-            ih2 ih2Var = this.f;
-            ih2Var.setBounds(0, 0, (int) width, (int) height);
-            ih2Var.setAlpha((int) (f4 * 255.0f));
-            ih2Var.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        setMeasuredDimension(getButtonWidth(), gl.L(46.0f));
-    }
-
-    @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
-        if (i == 0) {
-            this.a.k();
-        }
-        invalidate();
-    }
-
-    public void setText(CharSequence charSequence) {
-        float f;
-        if (TextUtils.equals(this.s, charSequence)) {
-            return;
-        }
-        this.s = charSequence;
-        setContentDescription(charSequence);
-        CharSequence charSequence2 = this.s;
-        if (charSequence2 != null) {
-            f = this.h.measureText(charSequence2, 0, charSequence2.length());
-        } else {
-            f = 0.0f;
-        }
-        this.w = f;
-        requestLayout();
-        this.a.requestLayout();
-    }
-
-    @Override
-    public void setTranslationX(float f) {
-        super.setTranslationX(f);
-        this.a.invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f && !super.verifyDrawable(drawable)) {
+    public final boolean D(f89 f89Var) {
+        int i = f89Var.f;
+        if (i != 14 && i != 25) {
             return false;
         }
         return true;
     }
 
+    public final void E(long j) {
+        e eVar = this.r.y1;
+        if (!this.e) {
+            TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
+            TLRPC.InputUser o1 = eVar.getMessagesController().o1(F());
+            tL_messages_getCommonChats.user_id = o1;
+            if (o1 instanceof TLRPC.TL_inputUserEmpty) {
+                return;
+            }
+            tL_messages_getCommonChats.limit = 100;
+            tL_messages_getCommonChats.max_id = j;
+            this.e = true;
+            f();
+            this.n = eVar.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new yp9(this, (byte) 2));
+            eVar.getConnectionsManager().bindRequestToGuid(this.n, eVar.getClassGuid());
+        }
+    }
+
+    public final long F() {
+        eja ejaVar = this.r;
+        long j = ejaVar.m1;
+        if (wf3.B(j)) {
+            return ejaVar.y1.getMessagesController().a1(Integer.valueOf((int) (j & 4294967295L))).user_id;
+        }
+        return j;
+    }
+
+    public final boolean G() {
+        TLRPC.User X1;
+        if (!this.d.isEmpty() && (X1 = this.r.y1.getMessagesController().X1(Long.valueOf(F()))) != null && !X1.bot && !X1.self && !lbc.z(X1)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
-    public final void F(float f, int i) {
+    public final int b() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty() && !this.e) {
+            return 1;
+        }
+        int size = arrayList.size();
+        if (!arrayList.isEmpty()) {
+            if (G()) {
+                size++;
+            }
+            if (!this.h) {
+                return size + 1;
+            }
+            return size;
+        }
+        return size;
+    }
+
+    @Override
+    public final int d(int i) {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty() && !this.e) {
+            return 15;
+        }
+        if (G()) {
+            if (i == 0) {
+                return 25;
+            }
+            i--;
+        }
+        if (i < arrayList.size()) {
+            return 14;
+        }
+        return 16;
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        int i2 = f89Var.f;
+        View view = f89Var.a;
+        boolean z = false;
+        if (i2 == 14) {
+            if (view instanceof bv8) {
+                bv8 bv8Var = (bv8) view;
+                if (G()) {
+                    i--;
+                }
+                ArrayList arrayList = this.d;
+                bv8Var.C((TLRPC.Chat) arrayList.get(i), null, null, null, false, false);
+                if (i != arrayList.size() - 1 || !this.h) {
+                    z = true;
+                }
+                bv8Var.N = z;
+            }
+        } else if (i2 == 25 && (view instanceof ij6)) {
+            ((ij6) view).b(2131232181, 5, ob6.a0(null, null, 2131751710, lbc.k(this.r.y1.getMessagesController().X1(Long.valueOf(F())), true)), true);
+        }
+    }
+
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        bv8 bv8Var;
+        eja ejaVar = this.r;
+        vnb vnbVar = ejaVar.I1;
+        Context context = this.c;
+        if (i != 14) {
+            if (i != 15) {
+                if (i != 25) {
+                    tk4 tk4Var = new tk4(context, vnbVar);
+                    tk4Var.setIsSingleCell(true);
+                    tk4Var.x = false;
+                    tk4Var.setViewType(1);
+                    bv8Var = tk4Var;
+                } else {
+                    ij6 ij6Var = new ij6(context);
+                    ij6Var.a(aob.v6, aob.u6);
+                    ij6Var.setTextLeft(hl.C);
+                    bv8Var = ij6Var;
+                }
+            } else {
+                ci G = eja.G(6, ejaVar.m1, vnbVar, context);
+                G.setLayoutParams(new r79(-1, -1));
+                return new f89(G);
+            }
+        } else {
+            bv8Var = new bv8(context, vnbVar);
+        }
+        return qu6.h(bv8Var, bv8Var, -1, -2);
     }
 }

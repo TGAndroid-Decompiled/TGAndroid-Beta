@@ -1,17 +1,4 @@
 package defpackage;
-public final class e3e implements zn7 {
-    public static final e3e a = new Object();
-
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+public abstract class e3e extends u3d implements oae {
+    public static final int b = 0;
 }

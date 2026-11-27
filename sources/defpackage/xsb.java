@@ -1,19 +1,14 @@
 package defpackage;
-public final class xsb implements Runnable {
-    public final byte a;
-    public final ysb b;
-    public final String c;
-    public final int d;
 
-    public xsb(ysb ysbVar, String str, int i, byte b) {
-        this.a = b;
-        this.b = ysbVar;
-        this.c = str;
-        this.d = i;
-    }
+import android.content.Context;
+import android.content.ContextWrapper;
+public abstract class xsb extends ContextWrapper {
+    public static final Object a = null;
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xsb.run():void");
+    public static void a(Context context) {
+        if (!(context.getResources() instanceof ysb)) {
+            context.getResources();
+            int i = sdc.a;
+        }
     }
 }

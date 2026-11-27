@@ -1,23 +1,39 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class zqd extends b4 {
-    public static final Parcelable.Creator<zqd> CREATOR = new rpd((byte) 3);
-    public final int a;
-    public final p8d b;
+import java.io.Serializable;
+public final class zqd extends bqd implements Serializable {
+    public final bqd a;
 
-    public zqd(int i, p8d p8dVar) {
-        this.a = i;
-        this.b = p8dVar;
+    public zqd(bqd bqdVar) {
+        this.a = bqdVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.k(parcel, 3, this.b, i);
-        jte.s(parcel, r);
+    public final bqd a() {
+        return this.a;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        return this.a.compare(obj2, obj);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof zqd) {
+            return this.a.equals(((zqd) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return -this.a.hashCode();
+    }
+
+    public final String toString() {
+        return this.a.toString().concat(".reverse()");
     }
 }

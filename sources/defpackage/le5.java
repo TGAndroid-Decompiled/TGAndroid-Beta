@@ -1,85 +1,124 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.Utilities;
-public final class le5 {
-    public static final le5 d;
-    public static final le5 e;
-    public static final le5 f;
-    public static final le5 h;
-    public static final le5 n;
-    public static final le5 r;
-    public static final le5 s;
-    public static final le5 w;
-    public static final le5 x;
-    public static final le5[] y;
-    public final String a;
-    public final byte b;
-    public final float c;
+import android.os.Handler;
+import android.os.Looper;
+import java.util.concurrent.CancellationException;
+public final class le5 extends px2 implements vd3 {
+    public final Handler c;
+    public final boolean d;
+    public final le5 e;
 
-    static {
-        le5 le5Var = new le5("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
-        d = le5Var;
-        le5 le5Var2 = new le5("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
-        e = le5Var2;
-        le5 le5Var3 = new le5("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
-        f = le5Var3;
-        le5 le5Var4 = new le5("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
-        h = le5Var4;
-        le5 le5Var5 = new le5("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
-        n = le5Var5;
-        le5 le5Var6 = new le5("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
-        r = le5Var6;
-        le5 le5Var7 = new le5("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
-        s = le5Var7;
-        le5 le5Var8 = new le5("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
-        w = le5Var8;
-        le5 le5Var9 = new le5();
-        x = le5Var9;
-        y = new le5[]{le5Var, le5Var2, le5Var3, le5Var4, le5Var5, le5Var6, le5Var7, le5Var8, le5Var9};
+    public le5(Handler handler, boolean z) {
+        le5 le5Var;
+        this.c = handler;
+        this.d = z;
+        if (z) {
+            le5Var = this;
+        } else {
+            le5Var = new le5(handler, true);
+        }
+        this.e = le5Var;
     }
 
-    public le5() {
-        this.a = "hints_controller_" + this;
-        this.b = (byte) 3;
-        this.c = 1.0f;
+    @Override
+    public final ep3 a(long j, nsb nsbVar, mx2 mx2Var) {
+        if (j > 4611686018427387903L) {
+            j = 4611686018427387903L;
+        }
+        if (this.c.postDelayed(nsbVar, j)) {
+            return new ke5(this, nsbVar, (byte) 0);
+        }
+        f(mx2Var, nsbVar);
+        return rm7.a;
     }
 
-    public static le5 valueOf(String str) {
-        return (le5) Enum.valueOf(le5.class, str);
+    @Override
+    public final void b(long j, va1 va1Var) {
+        iqd iqdVar = new iqd(va1Var, this, (byte) 5);
+        if (j > 4611686018427387903L) {
+            j = 4611686018427387903L;
+        }
+        if (this.c.postDelayed(iqdVar, j)) {
+            va1Var.u(new m23(this, iqdVar, (byte) 3));
+        } else {
+            f(va1Var.e, iqdVar);
+        }
     }
 
-    public static le5[] values() {
-        return (le5[]) y.clone();
+    @Override
+    public final void c(mx2 mx2Var, Runnable runnable) {
+        if (!this.c.post(runnable)) {
+            f(mx2Var, runnable);
+        }
     }
 
-    public final void a() {
-        na7.c1().edit().putInt(this.a, this.b).apply();
+    @Override
+    public final boolean d(mx2 mx2Var) {
+        if (this.d && ur5.a(Looper.myLooper(), this.c.getLooper())) {
+            return false;
+        }
+        return true;
     }
 
-    public final void b() {
-        SharedPreferences c1 = na7.c1();
-        String str = this.a;
-        na7.c1().edit().putInt(str, c1.getInt(str, 0) + 1).apply();
-    }
-
-    public final boolean c() {
-        if (na7.c1().getInt(this.a, 0) < this.b) {
-            float f2 = this.c;
-            if (f2 < 1.0f) {
-                if (f2 > 0.0f && Utilities.c.nextFloat() < f2) {
-                    return true;
-                }
-            } else {
+    public final boolean equals(Object obj) {
+        if (obj instanceof le5) {
+            le5 le5Var = (le5) obj;
+            if (le5Var.c == this.c && le5Var.d == this.d) {
                 return true;
             }
+            return false;
         }
         return false;
     }
 
-    public le5(String str, int i, String str2, int i2, float f2) {
-        this.a = str2;
-        this.b = i2;
-        this.c = f2;
+    public final void f(mx2 mx2Var, Runnable runnable) {
+        CancellationException cancellationException = new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed");
+        ev5 ev5Var = (ev5) mx2Var.get(qf5.c);
+        if (ev5Var != null) {
+            ev5Var.cancel(cancellationException);
+        }
+        qc3 qc3Var = bp3.a;
+        qb3.c.c(mx2Var, runnable);
+    }
+
+    public final int hashCode() {
+        int i;
+        int identityHashCode = System.identityHashCode(this.c);
+        if (this.d) {
+            i = 1231;
+        } else {
+            i = 1237;
+        }
+        return identityHashCode ^ i;
+    }
+
+    @Override
+    public final String toString() {
+        le5 le5Var;
+        String str;
+        qc3 qc3Var = bp3.a;
+        le5 le5Var2 = zi6.a;
+        if (this == le5Var2) {
+            str = "Dispatchers.Main";
+        } else {
+            try {
+                le5Var = le5Var2.e;
+            } catch (UnsupportedOperationException unused) {
+                le5Var = null;
+            }
+            if (this == le5Var) {
+                str = "Dispatchers.Main.immediate";
+            } else {
+                str = null;
+            }
+        }
+        if (str == null) {
+            String handler = this.c.toString();
+            if (this.d) {
+                return qd4.o(handler, ".immediate");
+            }
+            return handler;
+        }
+        return str;
     }
 }

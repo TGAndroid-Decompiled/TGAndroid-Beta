@@ -1,34 +1,39 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class lt7 extends AnimatorListenerAdapter {
+import java.util.HashMap;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class lt7 implements Runnable {
     public final byte a;
-    public final wt7 b;
+    public final ot7 b;
 
-    public lt7(wt7 wt7Var, byte b) {
+    public lt7(ot7 ot7Var, byte b) {
         this.a = b;
-        this.b = wt7Var;
+        this.b = ot7Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void run() {
         byte b = this.a;
-        wt7 wt7Var = this.b;
+        ot7 ot7Var = this.b;
         switch (b) {
             case 0:
-                wt7Var.R1 = 0.0f;
-                wt7Var.P1.setAlpha(1.0f);
-                wt7Var.P1.setVisibility(8);
-                wt7Var.P1.k();
+                EditTextBoldCursor editTextBoldCursor = ot7Var.r1;
+                editTextBoldCursor.requestFocus();
+                hl.E3(editTextBoldCursor);
                 return;
             case 1:
-                wt7Var.j2.setTranslationY(0.0f);
+                jra jraVar = ot7Var.n1;
+                if (jraVar != null) {
+                    jraVar.run();
+                }
+                ot7Var.dismiss();
                 return;
             default:
-                wt7Var.m2 = false;
-                wt7Var.j2.setTranslationY(0.0f);
-                wt7Var.t0();
+                int i = ot7Var.a;
+                String str = ot7Var.l1.slug;
+                HashMap hashMap = vs7.a;
+                jf7 Y = jf7.Y(i);
+                Y.a.c(new t87(Y, str, (byte) 23));
                 return;
         }
     }

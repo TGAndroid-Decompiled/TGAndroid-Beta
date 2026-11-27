@@ -22,10 +22,10 @@ public final class wy implements Runnable {
     public final Object e;
     public final Object f;
 
-    public wy(z3a z3aVar, k27 k27Var, TLRPC.Message message, long j, int i) {
+    public wy(r7a r7aVar, r47 r47Var, TLRPC.Message message, long j, int i) {
         this.a = (byte) 11;
-        this.d = z3aVar;
-        this.e = k27Var;
+        this.d = r7aVar;
+        this.e = r47Var;
         this.f = message;
         this.b = j;
         this.c = i;
@@ -35,17 +35,17 @@ public final class wy implements Runnable {
         SQLitePreparedStatement executeFast;
         boolean z;
         boolean z2;
-        ad7 ad7Var = (ad7) this.d;
+        jf7 jf7Var = (jf7) this.d;
         ArrayList arrayList = (ArrayList) this.e;
         ArrayList arrayList2 = (ArrayList) this.f;
         int i = this.c;
         long j = this.b;
-        vf6 vf6Var = ad7Var.K;
+        zh6 zh6Var = jf7Var.K;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                ad7Var.b.beginTransaction();
-                executeFast = ad7Var.b.executeFast("UPDATE dialogs SET folder_id = ?, pinned = ? WHERE did = ?");
+                jf7Var.b.beginTransaction();
+                executeFast = jf7Var.b.executeFast("UPDATE dialogs SET folder_id = ?, pinned = ? WHERE did = ?");
             } catch (Exception e) {
                 e = e;
             }
@@ -58,7 +58,7 @@ public final class wy implements Runnable {
                 z2 = false;
                 for (int i2 = 0; i2 < size; i2++) {
                     TLRPC.TL_folderPeer tL_folderPeer = (TLRPC.TL_folderPeer) arrayList.get(i2);
-                    long n = cf3.n(tL_folderPeer.peer);
+                    long n = wf3.n(tL_folderPeer.peer);
                     executeFast.requery();
                     executeFast.bindInteger(1, tL_folderPeer.folder_id);
                     if (tL_folderPeer.folder_id == 1) {
@@ -67,14 +67,14 @@ public final class wy implements Runnable {
                     executeFast.bindInteger(2, 0);
                     executeFast.bindLong(3, n);
                     executeFast.step();
-                    vf6Var.l(n);
+                    zh6Var.l(n);
                 }
             } else if (arrayList2 != null) {
                 int size2 = arrayList2.size();
                 z2 = false;
                 for (int i3 = 0; i3 < size2; i3++) {
                     TLRPC.TL_inputFolderPeer tL_inputFolderPeer = (TLRPC.TL_inputFolderPeer) arrayList2.get(i3);
-                    long m = cf3.m(tL_inputFolderPeer.peer);
+                    long m = wf3.m(tL_inputFolderPeer.peer);
                     executeFast.requery();
                     executeFast.bindInteger(1, tL_inputFolderPeer.folder_id);
                     if (tL_inputFolderPeer.folder_id == 1) {
@@ -83,7 +83,7 @@ public final class wy implements Runnable {
                     executeFast.bindInteger(2, 0);
                     executeFast.bindLong(3, m);
                     executeFast.step();
-                    vf6Var.l(m);
+                    zh6Var.l(m);
                 }
             } else {
                 executeFast.requery();
@@ -99,20 +99,20 @@ public final class wy implements Runnable {
                 z2 = z;
             }
             executeFast.dispose();
-            ad7Var.b.commitTransaction();
+            jf7Var.b.commitTransaction();
             if (!z2) {
-                ad7Var.k(1);
+                jf7Var.k(1);
             }
-            ad7Var.q1(false);
-            SQLiteDatabase sQLiteDatabase = ad7Var.b;
+            jf7Var.q1(false);
+            SQLiteDatabase sQLiteDatabase = jf7Var.b;
             if (sQLiteDatabase != null) {
                 sQLiteDatabase.commitTransaction();
             }
         } catch (Exception e2) {
             e = e2;
             sQLitePreparedStatement = executeFast;
-            ad7Var.n(e, true);
-            SQLiteDatabase sQLiteDatabase2 = ad7Var.b;
+            jf7Var.n(e, true);
+            SQLiteDatabase sQLiteDatabase2 = jf7Var.b;
             if (sQLiteDatabase2 != null) {
                 sQLiteDatabase2.commitTransaction();
             }
@@ -122,7 +122,7 @@ public final class wy implements Runnable {
         } catch (Throwable th2) {
             th = th2;
             sQLitePreparedStatement = executeFast;
-            SQLiteDatabase sQLiteDatabase3 = ad7Var.b;
+            SQLiteDatabase sQLiteDatabase3 = jf7Var.b;
             if (sQLiteDatabase3 != null) {
                 sQLiteDatabase3.commitTransaction();
             }
@@ -134,27 +134,27 @@ public final class wy implements Runnable {
     }
 
     private final void b() {
-        u41 u41Var = (u41) this.d;
-        u41Var.setLoading(true);
+        c51 c51Var = (c51) this.d;
+        c51Var.setLoading(true);
         TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
         tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) this.e).id;
         tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
         int i = this.c;
-        ConnectionsManager.getInstance(i).sendRequest(tL_fulfillStarsSubscription, new mg(u41Var, (fx0[]) this.f, i, this.b, (byte) 6));
+        ConnectionsManager.getInstance(i).sendRequest(tL_fulfillStarsSubscription, new gg(c51Var, (nx0[]) this.f, i, this.b, (byte) 6));
     }
 
     private final void c() {
         TL_stories.StoryItem storyItem;
-        g2b g2bVar = (g2b) this.d;
+        c6b c6bVar = (c6b) this.d;
         TLObject tLObject = (TLObject) this.e;
         String str = (String) this.f;
-        int i = g2bVar.a;
-        HashSet hashSet = g2bVar.t;
+        int i = c6bVar.a;
+        HashSet hashSet = c6bVar.t;
         int i2 = this.c;
         if (tLObject != null) {
             TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-            na7.q1(i).b4(tL_stories_stories.users, false);
-            na7.q1(i).V3(tL_stories_stories.chats, false);
+            uc7.s1(i).j4(tL_stories_stories.users, false);
+            uc7.s1(i).c4(tL_stories_stories.chats, false);
             for (int i3 = 0; i3 < tL_stories_stories.stories.size(); i3++) {
                 if (tL_stories_stories.stories.get(i3).id == i2) {
                     storyItem = tL_stories_stories.stories.get(i3);
@@ -163,14 +163,14 @@ public final class wy implements Runnable {
             }
         }
         storyItem = null;
-        g2bVar.W.remove(str);
+        c6bVar.W.remove(str);
         long j = this.b;
         if (storyItem != null) {
             storyItem.dialogId = j;
             TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
-            tL_updateStory.peer = na7.q1(i).w1(j);
+            tL_updateStory.peer = uc7.s1(i).y1(j);
             tL_updateStory.story = storyItem;
-            g2bVar.b0(tL_updateStory);
+            c6bVar.b0(tL_updateStory);
             return;
         }
         Iterator it = hashSet.iterator();
@@ -185,55 +185,55 @@ public final class wy implements Runnable {
             }
         }
         hashSet.add(str);
-        g2bVar.l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
+        c6bVar.l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
     }
 
     private final void d() {
         String str;
         String str2;
-        hgb hgbVar = (hgb) this.d;
+        dkb dkbVar = (dkb) this.d;
         ArrayList arrayList = (ArrayList) this.e;
         ArrayList arrayList2 = (ArrayList) this.f;
-        vf6 vf6Var = hgbVar.l;
-        vf6 vf6Var2 = hgbVar.k;
-        vf6 vf6Var3 = hgbVar.j;
-        if (this.c == hgbVar.c) {
+        zh6 zh6Var = dkbVar.l;
+        zh6 zh6Var2 = dkbVar.k;
+        zh6 zh6Var3 = dkbVar.j;
+        if (this.c == dkbVar.c) {
             long j = this.b;
-            vf6Var3.k(arrayList, j);
-            vf6Var2.k(arrayList2, j);
-            ArrayList arrayList3 = (ArrayList) vf6Var.f(j);
-            vf6Var.l(j);
-            if (j == hgbVar.d) {
-                mv6 mv6Var = hgbVar.b;
+            zh6Var3.k(j, arrayList);
+            zh6Var2.k(j, arrayList2);
+            ArrayList arrayList3 = (ArrayList) zh6Var.f(j);
+            zh6Var.l(j);
+            if (j == dkbVar.d) {
+                rx6 rx6Var = dkbVar.b;
                 if (j != 0) {
-                    ArrayList arrayList4 = (ArrayList) vf6Var3.f(j);
-                    ArrayList arrayList5 = (ArrayList) vf6Var2.f(j);
+                    ArrayList arrayList4 = (ArrayList) zh6Var3.f(j);
+                    ArrayList arrayList5 = (ArrayList) zh6Var2.f(j);
                     if (arrayList4 != null && !arrayList4.isEmpty() && arrayList5 != null) {
-                        mv6Var.o0(arrayList5);
-                        zu6 zu6Var = (zu6) mv6Var.b;
-                        if (cf3.D(j)) {
-                            TLRPC.User user = (TLRPC.User) hgbVar.h.f(j);
+                        rx6Var.t0(arrayList5);
+                        ex6 ex6Var = (ex6) rx6Var.b;
+                        if (wf3.D(j)) {
+                            TLRPC.User user = (TLRPC.User) dkbVar.h.f(j);
                             if (user != null) {
-                                str2 = qu2.m(0, user.first_name, user.last_name);
+                                str2 = lv2.m(0, user.first_name, user.last_name);
                             } else {
                                 str2 = "DELETED USER";
                             }
-                            zu6Var.a.setQueueTitle(str2);
+                            ex6Var.a.setQueueTitle(str2);
                         } else {
-                            TLRPC.Chat chat = (TLRPC.Chat) hgbVar.i.f(-j);
+                            TLRPC.Chat chat = (TLRPC.Chat) dkbVar.i.f(-j);
                             if (chat != null) {
                                 str = chat.title;
                             } else {
                                 str = "DELETED CHAT";
                             }
-                            zu6Var.a.setQueueTitle(str);
+                            ex6Var.a.setQueueTitle(str);
                         }
-                        k27 k27Var = (k27) arrayList4.get(0);
-                        pj4 pj4Var = new pj4((byte) 15);
-                        pj4Var.X((long) (k27Var.L0() * 1000.0d));
-                        pj4Var.Y("android.media.metadata.ARTIST", k27Var.w1(true));
-                        pj4Var.Y("android.media.metadata.TITLE", k27Var.y1(true));
-                        mv6Var.m0(new MediaMetadataCompat((Bundle) pj4Var.b));
+                        r47 r47Var = (r47) arrayList4.get(0);
+                        v34 v34Var = new v34((byte) 16);
+                        v34Var.R((long) (r47Var.L0() * 1000.0d));
+                        v34Var.S("android.media.metadata.ARTIST", r47Var.w1(true));
+                        v34Var.S("android.media.metadata.TITLE", r47Var.y1(true));
+                        rx6Var.r0(new MediaMetadataCompat((Bundle) v34Var.b));
                     }
                 }
             }
@@ -259,22 +259,22 @@ public final class wy implements Runnable {
         this.f = runnable;
     }
 
-    public wy(t7a t7aVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, String str, int i) {
+    public wy(wra wraVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, String str, int i) {
         this.a = (byte) 9;
-        this.d = t7aVar;
+        this.d = wraVar;
         this.e = tL_starGiftUnique;
         this.b = j;
         this.f = str;
         this.c = i;
     }
 
-    public wy(Context context, int i, gt4 gt4Var, long j, av4 av4Var) {
+    public wy(Context context, int i, kv4 kv4Var, long j, ex4 ex4Var) {
         this.a = (byte) 0;
         this.d = context;
         this.c = i;
-        this.e = gt4Var;
+        this.e = kv4Var;
         this.b = j;
-        this.f = av4Var;
+        this.f = ex4Var;
     }
 
     public wy(Object obj, int i, long j, Object obj2, Object obj3, byte b) {

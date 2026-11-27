@@ -1,15 +1,17 @@
 package defpackage;
+public final class ond implements zq7 {
+    public static final ond a = new Object();
 
-import dalvik.system.PathClassLoader;
-public final class ond extends PathClassLoader {
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
     @Override
-    public final Class loadClass(String str, boolean z) {
-        if (!str.startsWith("java.") && !str.startsWith("android.")) {
-            try {
-                return findClass(str);
-            } catch (ClassNotFoundException unused) {
-            }
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return super.loadClass(str, z);
+        throw new ClassCastException();
     }
 }

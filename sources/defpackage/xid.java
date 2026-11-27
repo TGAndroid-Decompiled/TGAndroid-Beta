@@ -1,17 +1,37 @@
 package defpackage;
-public final class xid implements zn7 {
-    public static final xid a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import java.util.Iterator;
+public final class xid extends ofd {
+    public final transient djd h;
+    public final transient ajd n;
+
+    public xid(djd djdVar, ajd ajdVar) {
+        super((byte) 0);
+        this.h = djdVar;
+        this.n = ajdVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final boolean contains(Object obj) {
+        if (this.h.get(obj) != null) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        return this.n.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.n.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        this.h.getClass();
+        return 1;
     }
 }

@@ -1,24 +1,39 @@
 package defpackage;
-
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class zub extends jr5 {
-    public final long u2;
-    public final bvb v2;
-
-    public zub(bvb bvbVar, Context context, int i, vf6 vf6Var, long j, d dVar, long j2) {
-        super(context, i, vf6Var, j, dVar, null);
-        this.v2 = bvbVar;
-        this.u2 = j2;
+public enum zub extends rwb {
+    public zub() {
+        super("ScriptDataDoubleEscapedDashDash", 30);
     }
 
     @Override
-    public final boolean M0() {
-        TLRPC.Chat K0 = this.v2.b.getMessagesController().K0(Long.valueOf(this.u2));
-        if (K0 != null && hc2.y(3, K0)) {
-            return true;
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        wub wubVar = rwb.S;
+        if (d != 0) {
+            if (d != '-') {
+                if (d != '<') {
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bubVar.f(d);
+                            bubVar.c = wubVar;
+                            return;
+                        }
+                        bubVar.l(this);
+                        bubVar.c = rwb.a;
+                        return;
+                    }
+                    bubVar.f(d);
+                    bubVar.c = rwb.f;
+                    return;
+                }
+                bubVar.f(d);
+                bubVar.c = rwb.V;
+                return;
+            }
+            bubVar.f(d);
+            return;
         }
-        return false;
+        bubVar.m(this);
+        bubVar.f((char) 65533);
+        bubVar.c = wubVar;
     }
 }

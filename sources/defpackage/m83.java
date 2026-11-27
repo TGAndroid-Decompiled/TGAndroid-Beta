@@ -1,20 +1,19 @@
 package defpackage;
+public final class m83 extends ax2 {
+    public n89 a;
+    public Object b;
+    public final o83 c;
+    public int d;
 
-import androidx.car.app.model.DateTimeWithZone;
-import j$.time.LocalDateTime;
-import j$.time.ZoneId;
-import j$.time.ZoneOffset;
-import j$.time.ZonedDateTime;
-import j$.time.format.TextStyle;
-import j$.util.Objects;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-public abstract class m83 {
-    public static DateTimeWithZone a(ZonedDateTime zonedDateTime) {
-        Objects.requireNonNull(zonedDateTime);
-        LocalDateTime p = zonedDateTime.p();
-        ZoneId zone = zonedDateTime.getZone();
-        ZoneOffset offset = zone.getRules().getOffset(p);
-        return DateTimeWithZone.create(TimeUnit.SECONDS.toMillis(p.toEpochSecond(offset)), offset.getTotalSeconds(), zone.getDisplayName(TextStyle.SHORT, Locale.getDefault()));
+    public m83(o83 o83Var, ax2 ax2Var) {
+        super(ax2Var);
+        this.c = o83Var;
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.c.i(null, false, this);
     }
 }

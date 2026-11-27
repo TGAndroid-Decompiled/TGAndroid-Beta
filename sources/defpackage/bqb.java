@@ -1,11 +1,16 @@
 package defpackage;
-public enum bqb extends qsb {
-    public bqb() {
-        super("TagName", 9);
+
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class bqb extends o7 {
+    @Override
+    public final void h() {
     }
 
     @Override
-    public final void c(defpackage.aqb r13, defpackage.zj1 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.bqb.c(aqb, zj1):void");
+    public final void i() {
+    }
+
+    @Override
+    public final void l(EditTextBoldCursor editTextBoldCursor) {
     }
 }

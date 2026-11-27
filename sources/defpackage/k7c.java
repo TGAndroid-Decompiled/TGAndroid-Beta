@@ -1,73 +1,88 @@
 package defpackage;
 
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.util.LruCache;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.ConnectionsManager;
+import android.app.Dialog;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class k7c {
-    public final int a;
-    public final LruCache b = new LruCache(100);
-    public final HashMap c = new HashMap();
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class k7c implements Runnable {
+    public final byte a;
+    public final o7c b;
+    public final TLRPC.TL_error c;
 
-    public k7c(int i) {
-        this.a = i;
+    public k7c(o7c o7cVar, TLRPC.TL_error tL_error, byte b) {
+        this.a = b;
+        this.b = o7cVar;
+        this.c = tL_error;
     }
 
-    public final t79 a(String str, String str2, p8c p8cVar) {
-        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
-        if (TextUtils.isEmpty(str2)) {
-            LruCache lruCache = this.b;
-            j7c j7cVar = (j7c) lruCache.get(str);
-            if (j7cVar != null) {
-                long j = j7cVar.a;
-                if (System.currentTimeMillis() - j7cVar.b < 3600000) {
-                    p8cVar.a(Long.valueOf(j));
-                    fa4.b("resolve username from cache " + str + " " + j);
-                    return null;
+    @Override
+    public final void run() {
+        String G;
+        String G2;
+        byte b = this.a;
+        TLRPC.TL_error tL_error = this.c;
+        o7c o7cVar = this.b;
+        switch (b) {
+            case 0:
+                o7cVar.B0();
+                if (tL_error == null) {
+                    o7cVar.getMessagesController().v4(0L, "VALIDATE_PASSWORD");
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o7cVar.getParentActivity());
+                    alertDialog$Builder.j(ob6.M0(2131747558, null), new g7c(o7cVar, (byte) 3));
+                    String M0 = ob6.M0(2131747163, null);
+                    id idVar = alertDialog$Builder.a;
+                    idVar.U = M0;
+                    idVar.S = ob6.M0(2131743586, null);
+                    Dialog showDialog = o7cVar.showDialog(idVar);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue = Utilities.z(tL_error.text).intValue();
+                    if (intValue < 60) {
+                        G = ob6.G(intValue, "Seconds", new Object[0]);
+                    } else {
+                        G = ob6.G(intValue / 60, "Minutes", new Object[0]);
+                    }
+                    o7cVar.L0(ob6.M0(2131743586, null), ob6.a0("FloodWaitTime", null, 2131750646, G));
+                    return;
+                } else {
+                    o7cVar.L0(ob6.M0(2131743586, null), tL_error.text);
+                    return;
                 }
-                lruCache.remove(str);
-            }
-        }
-        HashMap hashMap = this.c;
-        ArrayList arrayList = (ArrayList) hashMap.get(str);
-        if (arrayList != null) {
-            arrayList.add(p8cVar);
-            return null;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        arrayList2.add(p8cVar);
-        hashMap.put(str, arrayList2);
-        Typeface typeface = gl.a;
-        try {
-            Double.parseDouble(str);
-            TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
-            tL_contacts_resolvePhone.phone = str;
-            tL_contacts_resolveUsername = tL_contacts_resolvePhone;
-        } catch (NumberFormatException unused) {
-            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername2 = new TLRPC.TL_contacts_resolveUsername();
-            tL_contacts_resolveUsername2.username = str;
-            if (!TextUtils.isEmpty(str2)) {
-                tL_contacts_resolveUsername2.flags |= 1;
-                tL_contacts_resolveUsername2.referer = str2;
-            }
-            tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
-        }
-        return new t79(this, str, ConnectionsManager.getInstance(this.a).sendRequest(tL_contacts_resolveUsername, new apa(this, str, (byte) 20)), (byte) 28);
-    }
-
-    public final void b(TLRPC.User user, TLRPC.User user2) {
-        String str;
-        if (user != null && user2 != null && (str = user.username) != null && !TextUtils.equals(str, user2.username)) {
-            String str2 = user.username;
-            LruCache lruCache = this.b;
-            lruCache.remove(str2);
-            String str3 = user2.username;
-            if (str3 != null) {
-                lruCache.put(str3, new j7c(user2.id));
-            }
+            case 1:
+                o7cVar.B0();
+                if (tL_error == null) {
+                    if (o7cVar.getParentActivity() != null) {
+                        o7cVar.k0(new f7c(o7cVar, (byte) 5));
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("CODE_INVALID")) {
+                    o7cVar.D0();
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue2 = Utilities.z(tL_error.text).intValue();
+                    if (intValue2 < 60) {
+                        G2 = ob6.G(intValue2, "Seconds", new Object[0]);
+                    } else {
+                        G2 = ob6.G(intValue2 / 60, "Minutes", new Object[0]);
+                    }
+                    o7cVar.L0(ob6.M0(2131689472, null), ob6.a0("FloodWaitTime", null, 2131750646, G2));
+                    return;
+                } else {
+                    o7cVar.L0(ob6.M0(2131689472, null), tL_error.text);
+                    return;
+                }
+            case 2:
+                o7cVar.w0(tL_error);
+                return;
+            default:
+                o7cVar.q0(tL_error);
+                return;
         }
     }
 }

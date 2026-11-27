@@ -1,68 +1,40 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.ActionBar.a;
-public final class t5 extends r6 {
-    public final a h;
+public final class t5 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final boolean b;
+    public final a c;
 
-    public t5(a aVar, Context context, a aVar2) {
-        super(context, aVar2);
-        this.h = aVar;
+    public t5(a aVar, boolean z, byte b) {
+        this.a = b;
+        this.c = aVar;
+        this.b = z;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        a aVar = this.h;
-        Paint paint = aVar.N0;
-        if (aVar.M0 && this.a && aVar.x != 0) {
-            aVar.O0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(aVar.x);
-            canvas2 = canvas;
-            aVar.L0.H(canvas2, 0.0f, aVar.O0, paint, true);
-        } else {
-            canvas2 = canvas;
-        }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        cja cjaVar = this.h.L0;
-        if (cjaVar != null) {
-            cjaVar.P.add(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        cja cjaVar = this.h.L0;
-        if (cjaVar != null) {
-            cjaVar.P.remove(this);
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f) {
-        super.setAlpha(f);
-        a aVar = this.h;
-        aVar.invalidate();
-        Runnable runnable = aVar.e1;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public final void setBackgroundColor(int i) {
-        a aVar = this.h;
-        aVar.x = i;
-        if (!aVar.M0) {
-            super.setBackgroundColor(i);
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        float f = 0.0f;
+        boolean z = this.b;
+        a aVar = this.c;
+        switch (b) {
+            case 0:
+                if (z) {
+                    f = 1.0f;
+                }
+                aVar.E1 = f;
+                aVar.j();
+                return;
+            default:
+                if (z) {
+                    f = 1.0f;
+                }
+                aVar.E1 = f;
+                aVar.j();
+                return;
         }
     }
 }

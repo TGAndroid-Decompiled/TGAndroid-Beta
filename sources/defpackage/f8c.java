@@ -1,58 +1,56 @@
 package defpackage;
-public abstract class f8c {
-    public static final d8c a;
 
-    static {
-        d8c d8cVar;
-        if (d6c.e && d6c.d && !wj.a()) {
-            d8cVar = new d8c((byte) 1);
-        } else {
-            d8cVar = new d8c((byte) 0);
-        }
-        a = d8cVar;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+public class f8c extends URLSpan {
+    public final boolean a;
+    public final rmb b;
+    public TLObject c;
+    public String d;
+
+    public f8c(String str, rmb rmbVar) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.a = false;
+        this.b = rmbVar;
     }
 
-    public static int a(String str) {
-        int length = str.length();
-        int i = 0;
-        while (i < length && str.charAt(i) < 128) {
-            i++;
+    @Override
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            m01.r(view.getContext(), Uri.parse("https://t.me/".concat(url.substring(1))), true, true);
+            return;
         }
-        int i2 = length;
-        while (true) {
-            if (i >= length) {
-                break;
-            }
-            char charAt = str.charAt(i);
-            if (charAt < 2048) {
-                i2 += (127 - charAt) >>> 31;
-                i++;
-            } else {
-                int length2 = str.length();
-                int i3 = 0;
-                while (i < length2) {
-                    char charAt2 = str.charAt(i);
-                    if (charAt2 < 2048) {
-                        i3 += (127 - charAt2) >>> 31;
-                    } else {
-                        i3 += 2;
-                        if (55296 <= charAt2 && charAt2 <= 57343) {
-                            if (Character.codePointAt(str, i) >= 65536) {
-                                i++;
-                            } else {
-                                throw new e8c(i, length2);
-                            }
-                        }
-                    }
-                    i++;
-                }
-                i2 += i3;
-            }
+        m01.u(view.getContext(), url);
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        boolean z;
+        int i = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        rmb rmbVar = this.b;
+        if (rmbVar != null) {
+            rmbVar.a(textPaint);
         }
-        if (i2 >= length) {
-            return i2;
+        if (i == color && !this.a) {
+            z = true;
+        } else {
+            z = false;
         }
-        haf.d(i2 + 4294967296L);
-        return 0;
+        textPaint.setUnderlineText(z);
+    }
+
+    public f8c(String str, int i) {
+        this(str, (rmb) null);
+        this.a = true;
+    }
+
+    public f8c(String str) {
+        this(str, (rmb) null);
     }
 }

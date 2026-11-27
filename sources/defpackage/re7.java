@@ -1,86 +1,32 @@
 package defpackage;
 
-import java.util.List;
-import java.util.concurrent.AbstractExecutorService;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.RunnableFuture;
-import java.util.concurrent.TimeUnit;
-public class re7 extends AbstractExecutorService implements AutoCloseable, ExecutorService {
-    public final ExecutorService a;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+public final class re7 implements Runnable {
+    public final jf7 a;
+    public final int b;
+    public final ArrayList c;
+    public final boolean d;
+    public final zh6 e;
+    public final zh6 f;
+    public final ArrayList h;
+    public final ArrayList n;
+    public final CountDownLatch r;
 
-    public re7(ExecutorService executorService) {
-        executorService.getClass();
-        this.a = executorService;
-    }
-
-    public final t56 a(Callable callable) {
-        return (t56) super.submit(callable);
-    }
-
-    @Override
-    public final boolean awaitTermination(long j, TimeUnit timeUnit) {
-        return this.a.awaitTermination(j, timeUnit);
-    }
-
-    @Override
-    public void close() {
-        z2.f(this);
+    public re7(jf7 jf7Var, int i, ArrayList arrayList, int i2, zh6 zh6Var, zh6 zh6Var2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
+        this.a = jf7Var;
+        this.b = i;
+        this.c = arrayList;
+        this.d = i2;
+        this.e = zh6Var;
+        this.f = zh6Var2;
+        this.h = arrayList2;
+        this.n = arrayList3;
+        this.r = countDownLatch;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        this.a.execute(runnable);
-    }
-
-    @Override
-    public final boolean isShutdown() {
-        return this.a.isShutdown();
-    }
-
-    @Override
-    public final boolean isTerminated() {
-        return this.a.isTerminated();
-    }
-
-    @Override
-    public final RunnableFuture newTaskFor(Runnable runnable, Object obj) {
-        return new i2c(Executors.callable(runnable, obj));
-    }
-
-    @Override
-    public final void shutdown() {
-        this.a.shutdown();
-    }
-
-    @Override
-    public final List shutdownNow() {
-        return this.a.shutdownNow();
-    }
-
-    @Override
-    public final Future submit(Runnable runnable) {
-        return (t56) super.submit(runnable);
-    }
-
-    public final String toString() {
-        return super.toString() + "[" + this.a + "]";
-    }
-
-    @Override
-    public final Future submit(Runnable runnable, Object obj) {
-        return (t56) super.submit(runnable, obj);
-    }
-
-    @Override
-    public final Future submit(Callable callable) {
-        return (t56) super.submit(callable);
-    }
-
-    @Override
-    public final RunnableFuture newTaskFor(Callable callable) {
-        return new i2c(callable);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.re7.run():void");
     }
 }

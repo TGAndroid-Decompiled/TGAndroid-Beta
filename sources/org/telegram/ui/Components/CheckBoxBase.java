@@ -15,10 +15,10 @@ public class CheckBoxBase {
     public int A;
     public float B;
     public String C;
-    public xf2 D;
-    public m17 E;
-    public wjb F;
-    public js4 G;
+    public pg2 D;
+    public t37 E;
+    public vnb F;
+    public nu4 G;
     public long H;
     public View a;
     public final Paint d;
@@ -45,19 +45,19 @@ public class CheckBoxBase {
     public final Path j = new Path();
     public boolean k = true;
     public float m = 1.0f;
-    public int r = bkb.j7;
+    public int r = aob.k7;
 
-    public CheckBoxBase(int i, wjb wjbVar, View view) {
-        int i2 = bkb.bd;
+    public CheckBoxBase(int i, vnb vnbVar, View view) {
+        int i2 = aob.cd;
         this.s = i2;
         this.t = i2;
-        this.u = bkb.g5;
+        this.u = aob.h5;
         this.v = 0.0f;
         this.w = 1.0f;
         this.z = true;
-        this.G = new k32((byte) 4);
+        this.G = new c22((byte) 9);
         this.H = 200L;
-        this.F = wjbVar;
+        this.F = vnbVar;
         this.a = view;
         this.B = i;
         if (I == null) {
@@ -69,11 +69,11 @@ public class CheckBoxBase {
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(gl.L(1.9f));
+        paint.setStrokeWidth(hl.L(1.9f));
         Paint paint2 = new Paint(1);
         this.f = paint2;
         paint2.setStyle(style);
-        paint2.setStrokeWidth(gl.L(1.2f));
+        paint2.setStrokeWidth(hl.L(1.2f));
     }
 
     public final void a(android.graphics.Canvas r32) {
@@ -108,18 +108,18 @@ public class CheckBoxBase {
         if (i != 12 && i != 13) {
             if (i != 4 && i != 5) {
                 if (i == 3) {
-                    paint.setStrokeWidth(gl.L(3.0f));
+                    paint.setStrokeWidth(hl.L(3.0f));
                 } else if (i != 0) {
-                    paint.setStrokeWidth(gl.L(1.5f));
+                    paint.setStrokeWidth(hl.L(1.5f));
                 }
             } else {
-                paint.setStrokeWidth(gl.L(1.9f));
+                paint.setStrokeWidth(hl.L(1.9f));
                 if (i == 5) {
-                    this.d.setStrokeWidth(gl.L(1.5f));
+                    this.d.setStrokeWidth(hl.L(1.5f));
                 }
             }
         } else {
-            paint.setStrokeWidth(gl.L(1.0f));
+            paint.setStrokeWidth(hl.L(1.0f));
         }
         b();
     }
@@ -158,8 +158,8 @@ public class CheckBoxBase {
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f);
             this.p = ofFloat;
-            ofFloat.addListener(new bb1(this, (byte) 28));
-            this.p.setInterpolator(s33.g);
+            ofFloat.addListener(new jb1(this, (byte) 28));
+            this.p.setInterpolator(k43.g);
             this.p.setDuration(this.H);
             this.p.start();
             return;
@@ -236,9 +236,9 @@ public class CheckBoxBase {
         if (this.o != f) {
             this.o = f;
             b();
-            xf2 xf2Var = this.D;
-            if (xf2Var != null) {
-                xf2Var.f();
+            pg2 pg2Var = this.D;
+            if (pg2Var != null) {
+                pg2Var.b();
             }
         }
     }

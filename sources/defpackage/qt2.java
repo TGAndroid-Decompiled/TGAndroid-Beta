@@ -1,44 +1,31 @@
 package defpackage;
+public final class qt2 implements Runnable {
+    public final byte a;
+    public final cu2 b;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class qt2 implements TextWatcher {
-    public final EditTextBoldCursor a;
-
-    public qt2(EditTextBoldCursor editTextBoldCursor) {
-        this.a = editTextBoldCursor;
+    public qt2(cu2 cu2Var, byte b) {
+        this.a = b;
+        this.b = cu2Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.z(obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (!obj.equals(String.valueOf(intValue))) {
-                    editTextBoldCursor.setText(String.valueOf(intValue));
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+    public final void run() {
+        byte b = this.a;
+        cu2 cu2Var = this.b;
+        switch (b) {
+            case 0:
+                cu2Var.d0();
+                return;
+            case 1:
+                if (cu2Var.K) {
+                    cu2Var.d.d.requestFocus();
+                    hl.E3(cu2Var.d.d);
+                    return;
                 }
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
+                return;
+            default:
+                cu2Var.presentFragment(zu1.ha(cu2Var.I), true);
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

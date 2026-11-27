@@ -1,115 +1,78 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.util.ArrayList;
-public final class q6 {
-    public r6 a;
-    public byte b;
-    public int c;
-    public String d;
-    public int e;
-    public Drawable f;
-    public int g;
-    public wjb h;
-    public float i;
-    public Boolean j;
-    public Boolean k;
-    public byte l;
-    public r7 m;
-    public ArrayList n;
+import java.util.logging.Level;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.e;
+public final class q6 implements Runnable {
+    public final byte a;
+    public boolean b;
+    public Object c;
+    public final Object d;
 
-    public final void a() {
-        r6 r6Var = this.a;
-        if (this.m == null) {
-            int childCount = r6Var.getChildCount();
-            ArrayList arrayList = r6Var.e;
-            int i = 0;
-            if (arrayList != null) {
-                int indexOf = arrayList.indexOf(Integer.valueOf(this.b));
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= r6Var.getChildCount()) {
-                        break;
-                    }
-                    Object tag = r6Var.getChildAt(i2).getTag();
-                    if (tag instanceof Integer) {
-                        if (r6Var.e.indexOf((Integer) tag) > indexOf) {
-                            childCount = i2;
-                            break;
-                        }
-                    }
-                    i2++;
+    public q6(Object obj, Object obj2, boolean z, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.c = obj2;
+        this.b = z;
+    }
+
+    @Override
+    public final void run() {
+        int i = 0;
+        switch (this.a) {
+            case 0:
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
+                if (actionBarLayout.e == this) {
+                    actionBarLayout.e = null;
+                    ((e) this.c).onTransitionAnimationStart(true, false);
+                    actionBarLayout.g0(true, true, this.b);
+                    return;
                 }
-            }
-            r7 f = r6Var.f(childCount, this.b, this.c, null, this.e, this.f, this.g, null, this.h);
-            this.m = f;
-            f.setVisibility(this.l);
-            String str = this.d;
-            if (str != null) {
-                this.m.setContentDescription(str);
-            }
-            Boolean bool = this.k;
-            if (bool != null) {
-                this.m.S = bool.booleanValue();
-            }
-            Boolean bool2 = this.j;
-            if (bool2 != null) {
-                this.m.T = bool2.booleanValue();
-            }
-            this.m.setAlpha(this.i);
-            ArrayList arrayList2 = this.n;
-            if (arrayList2 != null) {
-                int size = arrayList2.size();
+                return;
+            case 1:
+                bb2 bb2Var = (bb2) this.d;
+                ArrayList arrayList = (ArrayList) this.c;
+                int size = arrayList.size();
                 while (i < size) {
-                    Object obj = arrayList2.get(i);
+                    Object obj = arrayList.get(i);
                     i++;
-                    ((p8c) obj).a(this.m);
+                    yb3 yb3Var = (yb3) obj;
+                    bb2Var.S(yb3Var.a, yb3Var, this.b);
                 }
-                this.n = null;
-            }
+                arrayList.clear();
+                bb2Var.u.remove(arrayList);
+                return;
+            default:
+                try {
+                    ((nk7) this.d).a.bind(new InetSocketAddress(61578));
+                    this.b = true;
+                    do {
+                        try {
+                            Socket accept = ((nk7) this.d).a.accept();
+                            accept.setSoTimeout(5000);
+                            InputStream inputStream = accept.getInputStream();
+                            nk7 nk7Var = (nk7) this.d;
+                            nk7Var.c.u(new gk7(nk7Var, inputStream, accept));
+                        } catch (IOException e) {
+                            nk7.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
+                        }
+                    } while (!((nk7) this.d).a.isClosed());
+                    return;
+                } catch (IOException e2) {
+                    this.c = e2;
+                    return;
+                }
         }
     }
 
-    public final void b(hl1 hl1Var) {
-        r7 r7Var = this.m;
-        if (r7Var != null) {
-            hl1Var.a(r7Var);
-            return;
-        }
-        ArrayList arrayList = this.n;
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-            this.n = arrayList;
-        }
-        arrayList.add(hl1Var);
-    }
-
-    public final void c() {
-        this.k = Boolean.FALSE;
-        r7 r7Var = this.m;
-        if (r7Var != null) {
-            r7Var.S = false;
-        }
-    }
-
-    public final void d() {
-        this.j = Boolean.TRUE;
-        r7 r7Var = this.m;
-        if (r7Var != null) {
-            r7Var.T = true;
-        }
-    }
-
-    public final void e(int i) {
-        if (this.l != i) {
-            this.l = i;
-            if (i == 0) {
-                a();
-            }
-            r7 r7Var = this.m;
-            if (r7Var != null) {
-                r7Var.setVisibility(i);
-            }
-        }
+    public q6(nk7 nk7Var) {
+        this.a = (byte) 2;
+        this.d = nk7Var;
+        this.b = false;
     }
 }

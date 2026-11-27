@@ -1,38 +1,37 @@
 package defpackage;
+public final class zo9 implements Runnable {
+    public final byte a;
+    public final pq8 b;
+    public final Exception c;
 
-import java.io.Serializable;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class zo9 implements d06, Serializable {
-    public static final AtomicReferenceFieldUpdater c = AtomicReferenceFieldUpdater.newUpdater(zo9.class, Object.class, "b");
-    public volatile op4 a;
-    public volatile Object b;
-
-    @Override
-    public final Object getValue() {
-        Object obj = this.b;
-        pd5 pd5Var = pd5.d;
-        if (obj != pd5Var) {
-            return obj;
-        }
-        op4 op4Var = this.a;
-        if (op4Var != null) {
-            Object invoke = op4Var.invoke();
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = c;
-            while (!atomicReferenceFieldUpdater.compareAndSet(this, pd5Var, invoke)) {
-                if (atomicReferenceFieldUpdater.get(this) != pd5Var) {
-                    return this.b;
-                }
-            }
-            this.a = null;
-            return invoke;
-        }
-        return this.b;
+    public zo9(pq8 pq8Var, Exception exc, byte b) {
+        this.a = b;
+        this.b = pq8Var;
+        this.c = exc;
     }
 
-    public final String toString() {
-        if (this.b != pd5.d) {
-            return String.valueOf(getValue());
+    @Override
+    public final void run() {
+        byte b = this.a;
+        Exception exc = this.c;
+        pq8 pq8Var = this.b;
+        switch (b) {
+            case 0:
+                ((jp9) pq8Var.b).h(exc);
+                return;
+            default:
+                jp9 jp9Var = (jp9) pq8Var.b;
+                jp9Var.m.a("recording segment interrupted in state=".concat(uh9.A(jp9Var.a0)), exc);
+                int i = jp9Var.a0;
+                if (i == 3) {
+                    jp9Var.q();
+                    return;
+                } else if (i == 2) {
+                    jp9Var.D = true;
+                    return;
+                } else {
+                    return;
+                }
         }
-        return "Lazy value not initialized yet.";
     }
 }

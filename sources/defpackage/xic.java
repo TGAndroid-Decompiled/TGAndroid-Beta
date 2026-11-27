@@ -1,20 +1,16 @@
 package defpackage;
+
+import android.graphics.RectF;
+import android.view.ViewGroup;
 public final class xic {
-    public String a;
-    public boolean b;
-    public boolean c;
-    public float d;
-    public float e;
-    public float f;
-    public float g;
-    public float h;
-    public float i;
-    public float j;
-    public float k;
-    public float l;
-    public boolean m;
-    public float n;
-    public float o;
-    public int p;
-    public boolean q;
+    public final ViewGroup a;
+    public final wic b;
+    public final RectF c = new RectF();
+    public boolean d;
+    public boolean e;
+
+    public xic(ViewGroup viewGroup, wic wicVar) {
+        this.a = viewGroup;
+        this.b = wicVar;
+    }
 }

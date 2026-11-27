@@ -1,78 +1,92 @@
 package defpackage;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableString;
 import android.view.View;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stories;
-public final class q8b extends n8b {
-    public final p8b a;
-    public final TL_stories.TL_mediaAreaWeather b;
-    public View c;
-    public final r8b d;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class q8b extends FrameLayout {
+    public final Paint a;
+    public final ImageView b;
+    public final ImageView c;
+    public final in d;
+    public final in e;
+    public final ImageView f;
+    public final SpannableString h;
+    public final SpannableString n;
 
-    public q8b(r8b r8bVar, TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather) {
-        this.d = r8bVar;
-        this.b = tL_mediaAreaWeather;
-        ?? tLObject = new TLObject();
-        tLObject.c = tL_mediaAreaWeather.emoji;
-        tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-        p8b p8bVar = new p8b(this, a.b, gl.p);
-        this.a = p8bVar;
-        p8bVar.setMaxWidth(gl.q.x);
-        p8bVar.setIsVideo(false);
-        p8bVar.d(y6c.t0, tLObject.c);
-        p8bVar.setText(tLObject.a());
-        p8bVar.e(3, tL_mediaAreaWeather.color);
-        p8bVar.f();
+    public q8b(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.a = paint;
+        setWillNotDraw(false);
+        paint.setColor(-16777216);
+        ImageView imageView = new ImageView(context);
+        this.b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131231130);
+        imageView.setColorFilter(new PorterDuffColorFilter(-15033089, PorterDuff.Mode.SRC_IN));
+        addView(imageView, tre.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.c = imageView2;
+        imageView2.setBackground(new lg2(hl.L(20.0f), hl.L(2.4f), -15033089));
+        addView(imageView2, tre.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
+        in inVar = new in(context, false, false, false);
+        this.d = inVar;
+        inVar.setTextColor(-15033089);
+        inVar.setTextSize(hl.L(14.21f));
+        inVar.setTypeface(hl.o());
+        inVar.setEllipsizeByGradient(true);
+        hn drawable = inVar.getDrawable();
+        Point point = hl.q;
+        drawable.N = point.x;
+        addView(inVar, tre.d(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
+        in inVar2 = new in(context, false, false, false);
+        this.e = inVar2;
+        inVar2.setTextColor(-8355712);
+        inVar2.setTextSize(hl.L(14.21f));
+        inVar2.setEllipsizeByGradient(true);
+        inVar2.getDrawable().N = point.x;
+        addView(inVar2, tre.d(-1, 24.0f, 55, 57.0f, 20.66f, 48.0f, 0.0f));
+        int textColor = inVar.getTextColor();
+        SpannableString spannableString = new SpannableString("x");
+        this.h = spannableString;
+        ya6 ya6Var = new ya6(hl.L(200.0f), inVar);
+        ya6Var.e = 0.8f;
+        ya6Var.a(aob.p1(0.4f, textColor), aob.p1(0.08f, textColor));
+        spannableString.setSpan(ya6Var, 0, spannableString.length(), 33);
+        int textColor2 = inVar2.getTextColor();
+        SpannableString spannableString2 = new SpannableString("x");
+        this.n = spannableString2;
+        ya6 ya6Var2 = new ya6(hl.L(140.0f), inVar2);
+        ya6Var2.e = 0.8f;
+        ya6Var2.a(aob.p1(0.4f, textColor2), aob.p1(0.08f, textColor2));
+        spannableString2.setSpan(ya6Var2, 0, spannableString2.length(), 33);
+        ImageView imageView3 = new ImageView(context);
+        this.f = imageView3;
+        imageView3.setColorFilter(new PorterDuffColorFilter(1694498815, PorterDuff.Mode.MULTIPLY));
+        imageView3.setImageResource(2131231503);
+        imageView3.setScaleType(scaleType);
+        imageView3.setBackground(aob.f0(436207615, 1, hl.L(18.0f)));
+        addView(imageView3, tre.d(48, 48.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
     }
 
     @Override
-    public final void a(Canvas canvas, float f) {
-        int widthInternal;
-        int heightInternal;
-        r8b r8bVar = this.d;
-        double d = r8bVar.d;
-        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.b;
-        TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d2 = (mediaAreaCoordinates.x * d) / 100.0d;
-        double d3 = r8bVar.e;
-        double d4 = (mediaAreaCoordinates.y * d3) / 100.0d;
-        float f2 = (float) ((d * mediaAreaCoordinates.w) / 100.0d);
-        canvas.save();
-        canvas.translate((float) (d2 + r8bVar.b), (float) (d4 + r8bVar.c));
-        p8b p8bVar = this.a;
-        float min = Math.min(f2 / ((p8bVar.getWidthInternal() - p8bVar.getPaddingLeft()) - p8bVar.getPaddingRight()), ((float) ((d3 * mediaAreaCoordinates.h) / 100.0d)) / ((p8bVar.getHeightInternal() - p8bVar.getPaddingTop()) - p8bVar.getPaddingBottom()));
-        canvas.scale(min, min);
-        double d5 = tL_mediaAreaWeather.coordinates.rotation;
-        if (d5 != 0.0d) {
-            canvas.rotate((float) d5);
-        }
-        canvas.translate(((-widthInternal) / 2.0f) - p8bVar.getPaddingLeft(), ((-heightInternal) / 2.0f) - p8bVar.getPaddingTop());
-        p8bVar.a(canvas);
-        canvas.restore();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Paint paint = this.a;
+        canvas.drawRect(0.0f, 0.0f, getWidth(), hl.e1(), paint);
+        canvas.drawRect(0.0f, getHeight() - hl.e1(), getWidth(), getHeight(), paint);
     }
 
     @Override
-    public final void b(boolean z) {
-        p8b p8bVar = this.a;
-        if (z) {
-            p8bVar.L = true;
-            if (p8bVar.M) {
-                p8bVar.s.I();
-                return;
-            } else {
-                p8bVar.r.I();
-                return;
-            }
-        }
-        p8bVar.L = false;
-        p8bVar.r.K();
-        p8bVar.s.K();
-    }
-
-    @Override
-    public final void c(View view) {
-        this.c = view;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
     }
 }

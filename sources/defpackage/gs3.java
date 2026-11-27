@@ -1,12 +1,14 @@
 package defpackage;
-public interface gs3 {
-    int b(int i);
+public final class gs3 {
+    public final int a;
+    public final int[] b;
+    public final int[] c;
+    public final int[] d;
 
-    boolean c(int i);
-
-    char charAt(int i);
-
-    int length();
-
-    CharSequence subSequence(int i, int i2);
+    public gs3(int i, int[] iArr, int[] iArr2, int[] iArr3) {
+        this.a = i;
+        this.b = iArr;
+        this.c = iArr2;
+        this.d = iArr3;
+    }
 }

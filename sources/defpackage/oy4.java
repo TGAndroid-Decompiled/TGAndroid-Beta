@@ -1,27 +1,20 @@
 package defpackage;
 
-import com.google.android.gms.location.LocationRequest;
-public final class oy4 implements oh5 {
-    public LocationRequest a;
+import android.view.View;
+public final class oy4 implements s79 {
+    public final vy4 a;
 
-    public final void a() {
-        this.a.c = 1000L;
+    public oy4(vy4 vy4Var) {
+        this.a = vy4Var;
     }
 
-    public final void b() {
-        LocationRequest locationRequest = this.a;
-        long j = locationRequest.c;
-        long j2 = locationRequest.b;
-        if (j == j2 / 6) {
-            locationRequest.c = 166L;
-        }
-        if (locationRequest.r == j2) {
-            locationRequest.r = 1000L;
-        }
-        locationRequest.b = 1000L;
+    @Override
+    public final void b(View view) {
+        this.a.i++;
     }
 
+    @Override
     public final void c() {
-        this.a.a = 100;
+        this.a.i++;
     }
 }

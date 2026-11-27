@@ -1,85 +1,134 @@
 package defpackage;
 
-import sun.misc.Unsafe;
-public class rb6 {
-    public static final long a = ex.a.objectFieldOffset(rb6.class.getDeclaredField("_cur$volatile"));
-    private volatile Object _cur$volatile = new tb6(8, false);
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Locale;
+public final class rb6 implements sb6 {
+    public static final Locale[] c = new Locale[0];
+    public final Locale[] a;
+    public final String b;
 
-    public final boolean a(Runnable runnable) {
-        rb6 rb6Var;
-        while (true) {
-            Unsafe unsafe = ex.a;
-            long j = a;
-            tb6 tb6Var = (tb6) unsafe.getObjectVolatile(this, j);
-            int a2 = tb6Var.a(runnable);
-            if (a2 == 0) {
-                return true;
-            }
-            if (a2 != 1) {
-                if (a2 != 2) {
-                    rb6Var = this;
-                } else {
-                    return false;
+    static {
+        new Locale("en", "XA");
+        new Locale("ar", "XB");
+        qb6 qb6Var = qb6.b;
+        String[] split = "en-Latn".split("-", -1);
+        if (split.length > 2) {
+            new Locale(split[0], split[1], split[2]);
+        } else if (split.length > 1) {
+            new Locale(split[0], split[1]);
+        } else if (split.length == 1) {
+            new Locale(split[0]);
+        } else {
+            lq5.j("Can not parse language tag: [en-Latn]");
+        }
+    }
+
+    public rb6(Locale... localeArr) {
+        if (localeArr.length == 0) {
+            this.a = c;
+            this.b = "";
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        HashSet hashSet = new HashSet();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < localeArr.length; i++) {
+            Locale locale = localeArr[i];
+            if (locale != null) {
+                if (!hashSet.contains(locale)) {
+                    Locale locale2 = (Locale) locale.clone();
+                    arrayList.add(locale2);
+                    sb.append(locale2.getLanguage());
+                    String country = locale2.getCountry();
+                    if (country != null && !country.isEmpty()) {
+                        sb.append('-');
+                        sb.append(locale2.getCountry());
+                    }
+                    if (i < localeArr.length - 1) {
+                        sb.append(',');
+                    }
+                    hashSet.add(locale2);
                 }
             } else {
-                tb6 c = tb6Var.c();
-                while (true) {
-                    Unsafe unsafe2 = ex.a;
-                    rb6Var = this;
-                    if (!unsafe2.compareAndSwapObject(rb6Var, a, tb6Var, c) && unsafe2.getObjectVolatile(rb6Var, j) == tb6Var) {
-                        this = rb6Var;
-                    }
-                }
+                p3d.h(qd4.n(i, "list[", "] is null"));
+                throw null;
             }
-            this = rb6Var;
         }
+        this.a = (Locale[]) arrayList.toArray(new Locale[0]);
+        this.b = sb.toString();
     }
 
-    public final void b() {
-        rb6 rb6Var;
-        while (true) {
-            Unsafe unsafe = ex.a;
-            long j = a;
-            tb6 tb6Var = (tb6) unsafe.getObjectVolatile(this, j);
-            if (tb6Var.b()) {
-                return;
-            }
-            tb6 c = tb6Var.c();
-            while (true) {
-                rb6Var = this;
-                if (!ex.a.compareAndSwapObject(rb6Var, a, tb6Var, c) && ex.a.getObjectVolatile(rb6Var, j) == tb6Var) {
-                    this = rb6Var;
-                }
-            }
-            this = rb6Var;
+    @Override
+    public final String a() {
+        return this.b;
+    }
+
+    @Override
+    public final Object b() {
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
+        if (!(obj instanceof rb6)) {
+            return false;
+        }
+        Locale[] localeArr = ((rb6) obj).a;
+        Locale[] localeArr2 = this.a;
+        if (localeArr2.length != localeArr.length) {
+            return false;
+        }
+        for (int i = 0; i < localeArr2.length; i++) {
+            if (!localeArr2[i].equals(localeArr[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public final int c() {
-        tb6 tb6Var = (tb6) ex.a.getObjectVolatile(this, a);
-        tb6Var.getClass();
-        long longVolatile = ex.a.getLongVolatile(tb6Var, tb6.g);
-        return (((int) ((longVolatile & 1152921503533105152L) >> 30)) - ((int) (1073741823 & longVolatile))) & 1073741823;
+    @Override
+    public final Locale get(int i) {
+        if (i >= 0) {
+            Locale[] localeArr = this.a;
+            if (i < localeArr.length) {
+                return localeArr[i];
+            }
+            return null;
+        }
+        return null;
     }
 
-    public final Object d() {
-        rb6 rb6Var;
+    public final int hashCode() {
+        int i = 1;
+        for (Locale locale : this.a) {
+            i = (i * 31) + locale.hashCode();
+        }
+        return i;
+    }
+
+    @Override
+    public final int size() {
+        return this.a.length;
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        int i = 0;
         while (true) {
-            Unsafe unsafe = ex.a;
-            long j = a;
-            tb6 tb6Var = (tb6) unsafe.getObjectVolatile(this, j);
-            Object d = tb6Var.d();
-            if (d != tb6.e) {
-                return d;
-            }
-            tb6 c = tb6Var.c();
-            while (true) {
-                rb6Var = this;
-                if (!ex.a.compareAndSwapObject(rb6Var, a, tb6Var, c) && ex.a.getObjectVolatile(rb6Var, j) == tb6Var) {
-                    this = rb6Var;
+            Locale[] localeArr = this.a;
+            if (i < localeArr.length) {
+                sb.append(localeArr[i]);
+                if (i < localeArr.length - 1) {
+                    sb.append(',');
                 }
+                i++;
+            } else {
+                sb.append("]");
+                return sb.toString();
             }
-            this = rb6Var;
         }
     }
 }

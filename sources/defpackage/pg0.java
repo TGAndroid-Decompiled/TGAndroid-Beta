@@ -1,33 +1,19 @@
 package defpackage;
-public abstract class pg0 implements bk6 {
-    public final long a;
-    public final long b;
-    public long c;
+public abstract class pg0 extends fm6 {
+    public int[] E;
+    public final long w;
+    public final long x;
+    public lh2 y;
 
-    public pg0(long j, long j2) {
-        this.a = j;
-        this.b = j2;
-        this.c = j - 1;
+    public pg0(h73 h73Var, n73 n73Var, ko4 ko4Var, int i, Object obj, long j, long j2, long j3, long j4, long j5) {
+        super(h73Var, n73Var, ko4Var, i, obj, j, j2, j5, null);
+        this.w = j3;
+        this.x = j4;
     }
 
-    public final void b() {
-        long j = this.c;
-        if (j >= this.a && j <= this.b) {
-            return;
-        }
-        w26.g();
-    }
-
-    @Override
-    public final boolean next() {
-        boolean z;
-        long j = this.c + 1;
-        this.c = j;
-        if (j > this.b) {
-            z = true;
-        } else {
-            z = false;
-        }
-        return !z;
+    public final int e(int i) {
+        int[] iArr = this.E;
+        iArr.getClass();
+        return iArr[i];
     }
 }

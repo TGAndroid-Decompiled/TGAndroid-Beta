@@ -1,68 +1,50 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.a;
-public final class mh implements ed {
+import android.view.KeyEvent;
+import android.widget.TextView;
+public final class mh implements TextView.OnEditorActionListener {
     public final byte a;
-    public final Activity b;
 
-    public mh(Activity activity, byte b) {
+    public mh(byte b) {
         this.a = b;
-        this.b = activity;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        Activity activity = this.b;
-        switch (b) {
+    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        switch (this.a) {
             case 0:
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + a.b.getPackageName()));
-                    activity.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
-                }
+                hl.t1(textView);
+                return false;
             case 1:
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + a.b.getPackageName()));
-                    activity.startActivity(intent2);
-                    return;
-                } catch (Exception e2) {
-                    fa4.g(e2, true);
-                    return;
+                if (i != 6) {
+                    return false;
                 }
+                hl.t1(textView);
+                return true;
             case 2:
-                try {
-                    Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent3.setData(Uri.parse("package:" + a.b.getPackageName()));
-                    activity.startActivity(intent3);
-                    return;
-                } catch (Exception e3) {
-                    fa4.g(e3, true);
-                    return;
+                if (i == 6) {
+                    textView.clearFocus();
+                    hl.t1(textView);
                 }
+                return false;
             case 3:
-                try {
-                    Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent4.setData(Uri.parse("package:" + a.b.getPackageName()));
-                    activity.startActivity(intent4);
-                    return;
-                } catch (Exception e4) {
-                    fa4.g(e4, true);
-                    return;
+                if (i == 6) {
+                    textView.clearFocus();
+                    hl.t1(textView);
                 }
+                return false;
+            case 4:
+                if (i != 6) {
+                    return false;
+                }
+                hl.t1(textView);
+                return true;
             default:
-                Intent intent5 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                intent5.setData(Uri.fromParts("package", activity.getPackageName(), null));
-                activity.startActivity(intent5);
-                return;
+                if (i != 6) {
+                    return false;
+                }
+                hl.t1(textView);
+                return true;
         }
     }
 }

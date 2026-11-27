@@ -1,5 +1,8 @@
 package org.telegram.ui.Components;
-public final class i implements Runnable {
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class i extends AnimatorListenerAdapter {
     public final ChatActivityEnterView a;
 
     public i(ChatActivityEnterView chatActivityEnterView) {
@@ -7,7 +10,10 @@ public final class i implements Runnable {
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i.run():void");
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.a;
+        chatActivityEnterView.i1.setAllowDraw(true);
+        chatActivityEnterView.C2.setTransformToSeekbar(1.0f);
+        chatActivityEnterView.Y0();
     }
 }

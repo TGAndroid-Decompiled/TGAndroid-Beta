@@ -1,3 +1,3 @@
 package defpackage;
-public interface o2 extends t56 {
+public final class o2 extends hpd {
 }

@@ -1,29 +1,77 @@
 package defpackage;
 
-import java.util.concurrent.TimeUnit;
+import android.os.Bundle;
+import org.json.JSONObject;
 public abstract class vee {
-    public static final long a(long j) {
-        long j2 = (j << 1) + 1;
-        int i = jr3.d;
-        int i2 = lr3.a;
-        return j2;
-    }
-
-    public static final long b(long j) {
-        long j2 = j << 1;
-        int i = jr3.d;
-        int i2 = lr3.a;
-        return j2;
-    }
-
-    public static final long c(int i, nr3 nr3Var) {
-        if (nr3Var.compareTo(nr3.SECONDS) <= 0) {
-            return b(TimeUnit.NANOSECONDS.convert(i, nr3Var.a));
+    public static e23 a(String str, Bundle bundle) {
+        bundle.getClass();
+        try {
+            switch (str.hashCode()) {
+                case -1678407252:
+                    if (str.equals("androidx.credentials.TYPE_DIGITAL_CREDENTIAL")) {
+                        try {
+                            String string = bundle.getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON");
+                            string.getClass();
+                            e23 e23Var = new e23("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", bundle);
+                            if (string.length() != 0) {
+                                try {
+                                    new JSONObject(string);
+                                    return e23Var;
+                                } catch (Exception unused) {
+                                }
+                            }
+                            throw new IllegalArgumentException("credentialJson must not be empty, and must be a valid JSON");
+                        } catch (Exception unused2) {
+                            throw new Exception();
+                        }
+                    }
+                    throw new Exception();
+                case -1072734346:
+                    if (str.equals("androidx.credentials.TYPE_RESTORE_CREDENTIAL")) {
+                        String string2 = bundle.getString("androidx.credentials.BUNDLE_KEY_GET_RESTORE_CREDENTIAL_RESPONSE");
+                        if (string2 != null) {
+                            e23 e23Var2 = new e23("androidx.credentials.TYPE_RESTORE_CREDENTIAL", bundle);
+                            if (string2.length() != 0) {
+                                try {
+                                    new JSONObject(string2);
+                                    return e23Var2;
+                                } catch (Exception unused3) {
+                                }
+                            }
+                            throw new IllegalArgumentException("authenticationResponseJson must not be empty, and must be a valid JSON");
+                        }
+                        throw new om7("The device does not contain a restore credential.");
+                    }
+                    throw new Exception();
+                case -543568185:
+                    if (str.equals("android.credentials.TYPE_PASSWORD_CREDENTIAL")) {
+                        try {
+                            String string3 = bundle.getString("androidx.credentials.BUNDLE_KEY_ID");
+                            String string4 = bundle.getString("androidx.credentials.BUNDLE_KEY_PASSWORD");
+                            string3.getClass();
+                            string4.getClass();
+                            return new x43(string4, bundle, (byte) 2);
+                        } catch (Exception unused4) {
+                            throw new Exception();
+                        }
+                    }
+                    throw new Exception();
+                case -95037569:
+                    if (str.equals("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL")) {
+                        try {
+                            String string5 = bundle.getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON");
+                            string5.getClass();
+                            return new x43(string5, bundle, (byte) 3);
+                        } catch (Exception unused5) {
+                            throw new Exception();
+                        }
+                    }
+                    throw new Exception();
+                default:
+                    throw new Exception();
+            }
+        } catch (nr4 unused6) {
+            return new x43(str, bundle, (byte) 0);
         }
-        return d(i, nr3Var);
-    }
-
-    public static final long d(long r5, defpackage.nr3 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.vee.d(long, nr3):long");
     }
 }

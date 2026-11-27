@@ -1,15 +1,11 @@
 package defpackage;
-public final class uub extends i49 {
-    public int a;
-    public int b;
-    public final qvb c;
-
-    public uub(qvb qvbVar) {
-        this.c = qvbVar;
+public enum uub extends rwb {
+    public uub() {
+        super("ScriptDataEscapedEndTagName", 26);
     }
 
     @Override
-    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uub.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
+    public final void c(bub bubVar, ik1 ik1Var) {
+        rwb.b(bubVar, ik1Var, rwb.L);
     }
 }

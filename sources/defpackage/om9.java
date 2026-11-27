@@ -1,33 +1,28 @@
 package defpackage;
-public final class om9 {
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
-    public boolean g;
-    public boolean h;
 
-    public final void a(int i, int i2) {
-        this.c = i;
-        this.d = i2;
-        this.h = true;
-        if (this.g) {
-            if (i2 != Integer.MIN_VALUE) {
-                this.a = i2;
-            }
-            if (i != Integer.MIN_VALUE) {
-                this.b = i;
+import android.animation.ValueAnimator;
+public final class om9 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final rm9 b;
+
+    public om9(rm9 rm9Var, byte b) {
+        this.a = b;
+        this.b = rm9Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        rm9 rm9Var = this.b;
+        switch (b) {
+            case 0:
+                rm9Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rm9Var.g();
                 return;
-            }
-            return;
-        }
-        if (i != Integer.MIN_VALUE) {
-            this.a = i;
-        }
-        if (i2 != Integer.MIN_VALUE) {
-            this.b = i2;
+            default:
+                rm9Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rm9Var.g();
+                return;
         }
     }
 }

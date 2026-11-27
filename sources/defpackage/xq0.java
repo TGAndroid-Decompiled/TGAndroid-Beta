@@ -1,5 +1,5 @@
 package defpackage;
-public final class xq0 extends yo {
+public final class xq0 extends zo {
     public final byte c;
     public final gr0 d;
 

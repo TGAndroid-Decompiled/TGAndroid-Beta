@@ -1,195 +1,195 @@
 package defpackage;
 
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.UnderlineSpan;
-import java.util.ArrayList;
-public final class md1 {
-    public final ArrayList a;
-    public final ArrayList b;
-    public final StringBuilder c;
-    public int d;
-    public int e;
-    public int f;
-    public byte g;
-    public byte h;
+import android.content.Context;
+import android.media.session.MediaSession;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.support.v4.media.MediaMetadataCompat;
+import android.util.Log;
+import com.google.android.gms.cast.CastDevice;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.Task;
+import java.lang.reflect.Field;
+import java.util.HashSet;
+public final class md1 extends v8a {
+    public static final he6 m = new he6("CastSession", null);
+    public final Context c;
+    public final HashSet d;
+    public final ycd e;
+    public final ld1 f;
+    public final hhd g;
+    public final alf h;
+    public rjd i;
+    public v99 j;
+    public CastDevice k;
+    public uae l;
 
-    public md1(int i, int i2) {
-        ArrayList arrayList = new ArrayList();
-        this.a = arrayList;
-        ArrayList arrayList2 = new ArrayList();
-        this.b = arrayList2;
-        StringBuilder sb = new StringBuilder();
-        this.c = sb;
-        this.g = i;
-        arrayList.clear();
-        arrayList2.clear();
-        sb.setLength(0);
-        this.d = 15;
-        this.e = 0;
-        this.f = 0;
-        this.h = i2;
+    public md1(Context context, String str, String str2, ld1 ld1Var, hhd hhdVar, alf alfVar) {
+        super(context, str, str2);
+        this.d = new HashSet();
+        this.c = context.getApplicationContext();
+        this.f = ld1Var;
+        this.g = hhdVar;
+        this.h = alfVar;
+        al5 f = f();
+        kad kadVar = new kad(this);
+        he6 he6Var = mbd.a;
+        ycd ycdVar = null;
+        if (f != null) {
+            try {
+                ycdVar = mbd.b(context).Z(ld1Var, f, kadVar);
+            } catch (RemoteException | zg7 e) {
+                mbd.a.a(e, "Unable to call %s on %s.", "newCastSessionImpl", hcd.class.getSimpleName());
+            }
+        }
+        this.e = ycdVar;
     }
 
-    public final void a(char c) {
-        StringBuilder sb = this.c;
-        if (sb.length() < 32) {
-            sb.append(c);
+    public static void g(md1 md1Var, int i) {
+        alf alfVar = md1Var.h;
+        if (alfVar.q) {
+            alfVar.q = false;
+            v99 v99Var = alfVar.n;
+            if (v99Var != null) {
+                sff sffVar = alfVar.m;
+                xve.e("Must be called from the main thread.");
+                if (sffVar != null) {
+                    v99Var.i.remove(sffVar);
+                }
+            }
+            alfVar.c.T(null);
+            am2 am2Var = alfVar.h;
+            if (am2Var != null) {
+                am2Var.Q();
+                am2Var.f = null;
+            }
+            am2 am2Var2 = alfVar.i;
+            if (am2Var2 != null) {
+                am2Var2.Q();
+                am2Var2.f = null;
+            }
+            rx6 rx6Var = alfVar.p;
+            if (rx6Var != null) {
+                rx6Var.p0(null, null);
+                alfVar.p.r0(new MediaMetadataCompat(new Bundle()));
+                alfVar.j(0, null);
+            }
+            rx6 rx6Var2 = alfVar.p;
+            if (rx6Var2 != null) {
+                rx6Var2.n0(false);
+                ex6 ex6Var = (ex6) alfVar.p.b;
+                MediaSession mediaSession = ex6Var.a;
+                ex6Var.e.kill();
+                if (Build.VERSION.SDK_INT == 27) {
+                    try {
+                        Field declaredField = mediaSession.getClass().getDeclaredField("mCallback");
+                        declaredField.setAccessible(true);
+                        Handler handler = (Handler) declaredField.get(mediaSession);
+                        if (handler != null) {
+                            handler.removeCallbacksAndMessages(null);
+                        }
+                    } catch (Exception e) {
+                        Log.w("MediaSessionCompat", "Exception happened while accessing MediaSession.mCallback.", e);
+                    }
+                }
+                mediaSession.setCallback(null);
+                ex6Var.b.a.set(null);
+                mediaSession.release();
+                alfVar.p = null;
+            }
+            alfVar.n = null;
+            alfVar.o = null;
+            alfVar.h();
+            if (i == 0) {
+                alfVar.i();
+            }
+        }
+        rjd rjdVar = md1Var.i;
+        if (rjdVar != null) {
+            wjb b = xjb.b();
+            b.a = qf5.e;
+            b.d = (char) 8403;
+            rjdVar.e(1, b.a());
+            rjdVar.h();
+            y76 y76Var = aj3.T(rjdVar.g, rjdVar.l, "castDeviceControllerListenerKey").b;
+            xve.i(y76Var, "Key must not be null");
+            rjdVar.c(y76Var, 8415);
+            md1Var.i = null;
+        }
+        md1Var.k = null;
+        v99 v99Var2 = md1Var.j;
+        if (v99Var2 != null) {
+            v99Var2.v(null);
+            md1Var.j = null;
         }
     }
 
-    public final void b() {
-        StringBuilder sb = this.c;
-        int length = sb.length();
-        if (length > 0) {
-            sb.delete(length - 1, length);
-            ArrayList arrayList = this.a;
-            for (int size = arrayList.size() - 1; size >= 0; size--) {
-                ld1 ld1Var = (ld1) arrayList.get(size);
-                int i = ld1Var.c;
-                if (i == length) {
-                    ld1Var.c = i - 1;
-                } else {
+    public static void h(md1 md1Var, String str, Task task) {
+        he6 he6Var = m;
+        ycd ycdVar = md1Var.e;
+        if (ycdVar == null) {
+            return;
+        }
+        try {
+            if (task.isSuccessful()) {
+                zdf zdfVar = (zdf) task.getResult();
+                Status status = zdfVar.a;
+                if (status.b()) {
+                    he6Var.b("%s() -> success result", str);
+                    v99 v99Var = new v99(new rdd());
+                    md1Var.j = v99Var;
+                    v99Var.v(md1Var.i);
+                    md1Var.j.p(new sff(md1Var, (byte) 0));
+                    md1Var.j.u();
+                    alf alfVar = md1Var.h;
+                    v99 v99Var2 = md1Var.j;
+                    xve.e("Must be called from the main thread.");
+                    alfVar.a(v99Var2, md1Var.k);
+                    xr xrVar = zdfVar.b;
+                    xve.h(xrVar);
+                    String str2 = zdfVar.c;
+                    String str3 = zdfVar.d;
+                    xve.h(str3);
+                    boolean z = zdfVar.e;
+                    ncd ncdVar = (ncd) ycdVar;
+                    Parcel R = ncdVar.R();
+                    ald.c(R, xrVar);
+                    R.writeString(str2);
+                    R.writeString(str3);
+                    R.writeInt(z ? 1 : 0);
+                    ncdVar.V(R, 4);
                     return;
                 }
+                he6Var.b("%s() -> failure result", str);
+                int i = status.a;
+                ncd ncdVar2 = (ncd) ycdVar;
+                Parcel R2 = ncdVar2.R();
+                R2.writeInt(i);
+                ncdVar2.V(R2, 5);
+                return;
             }
+            Exception exception = task.getException();
+            if (exception instanceof ao) {
+                int statusCode = ((ao) exception).getStatusCode();
+                ncd ncdVar3 = (ncd) ycdVar;
+                Parcel R3 = ncdVar3.R();
+                R3.writeInt(statusCode);
+                ncdVar3.V(R3, 5);
+                return;
+            }
+            ncd ncdVar4 = (ncd) ycdVar;
+            Parcel R4 = ncdVar4.R();
+            R4.writeInt(2476);
+            ncdVar4.V(R4, 5);
+        } catch (RemoteException e) {
+            he6Var.a(e, "Unable to call %s on %s.", "methods", ycd.class.getSimpleName());
         }
     }
 
-    public final u33 c(int i) {
-        float f;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        int i2 = 0;
-        while (true) {
-            ArrayList arrayList = this.b;
-            if (i2 >= arrayList.size()) {
-                break;
-            }
-            spannableStringBuilder.append((CharSequence) arrayList.get(i2));
-            spannableStringBuilder.append('\n');
-            i2++;
-        }
-        spannableStringBuilder.append((CharSequence) d());
-        if (spannableStringBuilder.length() == 0) {
-            return null;
-        }
-        int i3 = this.e + this.f;
-        int length = (32 - i3) - spannableStringBuilder.length();
-        int i4 = i3 - length;
-        int i5 = i;
-        if (i5 == Integer.MIN_VALUE) {
-            if (this.g == 2 && (Math.abs(i4) < 3 || length < 0)) {
-                i5 = 1;
-            } else if (this.g == 2 && i4 > 0) {
-                i5 = 2;
-            } else {
-                i5 = 0;
-            }
-        }
-        if (i5 != 1) {
-            if (i5 != 2) {
-                f = b00.A(i3, 32.0f, 0.8f, 0.1f);
-            } else {
-                f = b00.A(32 - length, 32.0f, 0.8f, 0.1f);
-            }
-        } else {
-            f = 0.5f;
-        }
-        int i6 = this.d;
-        if (i6 > 7) {
-            i6 -= 17;
-        } else if (this.g == 1) {
-            i6 -= this.h - 1;
-        }
-        return new u33(spannableStringBuilder, Layout.Alignment.ALIGN_NORMAL, null, null, i6, 1, Integer.MIN_VALUE, f, i5, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
-    }
-
-    public final SpannableString d() {
-        int i;
-        int i2;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.c);
-        int length = spannableStringBuilder.length();
-        int i3 = -1;
-        int i4 = -1;
-        int i5 = -1;
-        int i6 = -1;
-        int i7 = 0;
-        int i8 = 0;
-        boolean z = false;
-        while (true) {
-            ArrayList arrayList = this.a;
-            if (i7 >= arrayList.size()) {
-                break;
-            }
-            ld1 ld1Var = (ld1) arrayList.get(i7);
-            boolean z2 = ld1Var.b;
-            int i9 = ld1Var.a;
-            if (i9 != 8) {
-                if (i9 == 7) {
-                    z = true;
-                } else {
-                    i6 = nd1.B[i9];
-                    z = false;
-                }
-            }
-            int i10 = ld1Var.c;
-            i7++;
-            if (i7 < arrayList.size()) {
-                i = ((ld1) arrayList.get(i7)).c;
-            } else {
-                i = length;
-            }
-            if (i10 != i) {
-                if (i3 != -1) {
-                    if (!z2) {
-                        i2 = 33;
-                        spannableStringBuilder.setSpan(new UnderlineSpan(), i3, i10, 33);
-                        i3 = -1;
-                    } else {
-                        i2 = 33;
-                    }
-                } else {
-                    i2 = 33;
-                    if (z2) {
-                        i3 = i10;
-                    }
-                }
-                if (i4 != -1) {
-                    if (!z) {
-                        spannableStringBuilder.setSpan(new StyleSpan(2), i4, i10, i2);
-                        i4 = -1;
-                    }
-                } else if (z) {
-                    i4 = i10;
-                }
-                if (i6 != i5) {
-                    if (i5 != -1) {
-                        spannableStringBuilder.setSpan(new ForegroundColorSpan(i5), i8, i10, 33);
-                    }
-                    i5 = i6;
-                    i8 = i10;
-                }
-            }
-        }
-        if (i3 != -1 && i3 != length) {
-            spannableStringBuilder.setSpan(new UnderlineSpan(), i3, length, 33);
-        }
-        if (i4 != -1 && i4 != length) {
-            spannableStringBuilder.setSpan(new StyleSpan(2), i4, length, 33);
-        }
-        if (i8 != length && i5 != -1) {
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(i5), i8, length, 33);
-        }
-        return new SpannableString(spannableStringBuilder);
-    }
-
-    public final boolean e() {
-        if (this.a.isEmpty() && this.b.isEmpty() && this.c.length() == 0) {
-            return true;
-        }
-        return false;
+    public final void i(android.os.Bundle r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.md1.i(android.os.Bundle):void");
     }
 }

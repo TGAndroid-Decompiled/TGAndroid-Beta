@@ -1,10 +1,27 @@
 package defpackage;
-public final class rl4 {
-    public final kw3 a;
-    public boolean b = false;
-    public final la3 c = new la3();
 
-    public rl4(kw3 kw3Var) {
-        this.a = kw3Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class rl4 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final xl4 b;
+
+    public rl4(xl4 xl4Var, byte b) {
+        this.a = b;
+        this.b = xl4Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        xl4 xl4Var = this.b;
+        switch (b) {
+            case 0:
+                xl4Var.a.c(false, true);
+                return;
+            default:
+                xl4Var.y = null;
+                return;
+        }
     }
 }

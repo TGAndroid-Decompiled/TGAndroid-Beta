@@ -1,31 +1,32 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class rc4 implements p8c {
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_ephemeral;
+public final class rc4 implements Runnable {
     public final byte a;
-    public final pd4 b;
+    public final xc4 b;
+    public final TL_ephemeral.TL_sendMessage c;
+    public final Object[] d;
 
-    public rc4(pd4 pd4Var, byte b) {
+    public rc4(xc4 xc4Var, TL_ephemeral.TL_sendMessage tL_sendMessage, Object[] objArr, byte b) {
         this.a = b;
-        this.b = pd4Var;
+        this.b = xc4Var;
+        this.c = tL_sendMessage;
+        this.d = objArr;
     }
 
     @Override
-    public final void a(Object obj) {
+    public final void run() {
         byte b = this.a;
-        pd4 pd4Var = this.b;
+        Object[] objArr = this.d;
+        xc4 xc4Var = this.b;
         switch (b) {
             case 0:
-                Boolean bool = (Boolean) obj;
-                pd4Var.finishFragment();
+                boolean booleanValue = ((Boolean) objArr[5]).booleanValue();
+                xc4Var.getSendMessagesHelper().O(this.c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (d7a) objArr[4], booleanValue);
                 return;
-            case 1:
-            case 3:
-                pd4Var.r0((TL_chatlists.TL_exportedChatlistInvite) obj);
-                return;
-            case 2:
             default:
-                pd4Var.q0((TL_chatlists.TL_exportedChatlistInvite) obj);
+                xc4Var.getSendMessagesHelper().O(this.c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (d7a) objArr[4], ((Boolean) objArr[5]).booleanValue());
                 return;
         }
     }

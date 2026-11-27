@@ -31,7 +31,7 @@ public class TeXSymbolParser {
         if (!attribute.equals("")) {
             return attribute;
         }
-        k93.g("TeXSymbols.xml", element.getTagName(), str, null);
+        da3.b("TeXSymbols.xml", element.getTagName(), str, null);
         return null;
     }
 
@@ -64,7 +64,7 @@ public class TeXSymbolParser {
             if (num != null) {
                 hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
             } else {
-                k93.g("TeXSymbols.xml", "Symbol", "type", tb4.y("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                da3.b("TeXSymbols.xml", "Symbol", "type", qd4.y("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
                 return null;
             }
         }

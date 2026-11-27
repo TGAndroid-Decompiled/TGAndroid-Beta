@@ -1,90 +1,32 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class w02 extends View {
-    public final byte a = 0;
-    public final int b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
+import org.telegram.tgnet.TLRPC;
+public final class w02 implements s22 {
+    public final n12 a;
 
-    public w02(ViewGroup viewGroup, int i) {
-        super(viewGroup.getContext());
-        this.c = new ArrayList();
-        this.e = new vl6(this, (byte) 10);
-        this.d = viewGroup;
-        this.b = i;
-    }
-
-    public final void a() {
-        vl6 vl6Var = (vl6) this.e;
-        ArrayList arrayList = (ArrayList) this.c;
-        boolean isEmpty = arrayList.isEmpty();
-        int i = this.b;
-        if (isEmpty && getVisibility() != 8) {
-            kk7.f(i).e.remove(vl6Var);
-            kk7.f(i).d(vl6Var);
-        } else if (!arrayList.isEmpty() && getVisibility() != 0) {
-            kk7.f(i).e.remove(vl6Var);
-            setVisibility(0);
-        }
+    public w02(n12 n12Var) {
+        this.a = n12Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        byte b = this.a;
-        Object obj = this.c;
-        switch (b) {
-            case 0:
-                jz4 jz4Var = (jz4) this.d;
-                wjb wjbVar = (wjb) obj;
-                int i = this.b;
-                jz4Var.b(bkb.p1(0.5f, bkb.v0(i, wjbVar)));
-                jz4Var.draw(canvas);
-                jz4 jz4Var2 = (jz4) this.e;
-                jz4Var2.b(bkb.p1(0.95f, bkb.v0(i, wjbVar)));
-                jz4Var2.draw(canvas);
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) obj;
-                if (!arrayList.isEmpty()) {
-                    for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                        ((n17) arrayList.get(i2)).a(canvas);
-                    }
-                    return;
-                }
-                return;
-        }
+    public final void a(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2) {
+        ((zu1) this.a.Z1).Bb(arrayList, str, z, i, j, z2);
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        switch (this.a) {
-            case 0:
-                super.onSizeChanged(i, i2, i3, i4);
-                int i5 = gl.m;
-                jz4 jz4Var = (jz4) this.d;
-                jz4Var.c(gl.L(12.0f) + i5, 0);
-                jz4Var.setBounds(0, 0, i, gl.L(52.0f) + i5);
-                jz4 jz4Var2 = (jz4) this.e;
-                jz4Var2.c(i5 / 3, 0);
-                jz4Var2.setBounds(0, 0, i, i5);
-                return;
-            default:
-                super.onSizeChanged(i, i2, i3, i4);
-                return;
+    public final void b(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j) {
+        zu1 zu1Var = (zu1) this.a.Z1;
+        if (zu1Var.r5()) {
+            p7a g = p7a.g(tL_userContact_old2, zu1Var.l6, zu1Var.F5, zu1Var.m4, null, null, z, i, 0);
+            g.K = zu1Var.X6();
+            g.O = 0L;
+            g.L = false;
+            g.Q = j;
+            g.R = zu1Var.k7();
+            g.T = zu1Var.y5;
+            zu1Var.getSendMessagesHelper().q0(g);
+            zu1Var.E4();
         }
-    }
-
-    public w02(int i, wjb wjbVar, Context context) {
-        super(context);
-        this.d = new jz4(2);
-        this.e = new jz4(2);
-        this.c = wjbVar;
-        this.b = i;
     }
 }

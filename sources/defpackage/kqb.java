@@ -1,11 +1,7 @@
 package defpackage;
-public enum kqb extends qsb {
-    public kqb() {
-        super("ScriptDataEndTagName", 18);
-    }
-
+public final class kqb extends r47 {
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        qsb.b(aqbVar, zj1Var, qsb.f);
+    public final boolean j5() {
+        return false;
     }
 }

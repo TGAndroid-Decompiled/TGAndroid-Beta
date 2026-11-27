@@ -1,7 +1,14 @@
 package defpackage;
+public final class j8a extends u2 {
+    public final int n;
+    public final gaa r;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.a;
-public abstract class j8a {
-    public static final SharedPreferences a = a.b.getSharedPreferences("mainconfig", 0);
+    public j8a(int i, gaa gaaVar) {
+        this.n = i;
+        this.r = gaaVar;
+    }
+
+    public final void o() {
+        super.l(this.r);
+    }
 }

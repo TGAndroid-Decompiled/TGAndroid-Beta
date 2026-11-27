@@ -1,33 +1,29 @@
 package defpackage;
-public class rq9 extends b2 implements cx2 {
-    public final fw2 e;
 
-    public rq9(fw2 fw2Var, sw2 sw2Var) {
-        super(sw2Var, true);
-        this.e = fw2Var;
+import android.view.View;
+import org.telegram.messenger.voip.VoIPService;
+public final class rq9 implements fd, nr7 {
+    public final er9 a;
+
+    public rq9(er9 er9Var) {
+        this.a = er9Var;
     }
 
     @Override
-    public final boolean A() {
-        return true;
+    public final l2d S(View view, l2d l2dVar) {
+        mq5 g = l2dVar.a.g(647);
+        er9 er9Var = this.a;
+        er9Var.R = g;
+        er9Var.f.requestLayout();
+        return l2d.b;
     }
 
     @Override
-    public void f(Object obj) {
-        r3c.c(dle.a(this.e), zsd.a(obj));
-    }
-
-    @Override
-    public void g(Object obj) {
-        this.e.resumeWith(zsd.a(obj));
-    }
-
-    @Override
-    public final cx2 getCallerFrame() {
-        fw2 fw2Var = this.e;
-        if (fw2Var instanceof cx2) {
-            return (cx2) fw2Var;
+    public final void w(id idVar, int i) {
+        if (VoIPService.getSharedInstance() != null) {
+            VoIPService.getSharedInstance().hangUp(1);
         }
-        return null;
+        this.a.dismiss();
+        jn7.e().k(jn7.v2, new Object[0]);
     }
 }

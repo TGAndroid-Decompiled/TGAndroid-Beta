@@ -1,15 +1,10 @@
 package defpackage;
+public final class dfb {
+    public final pkb a;
+    public final pkb b;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.tl.TL_iv;
-public interface dfb {
-    web c(TL_iv.pageTableCell pagetablecell, int i);
-
-    Paint getHeaderPaint();
-
-    Paint getLinePaint();
-
-    Paint getStripPaint();
-
-    void h(web webVar, int i);
+    public dfb(pkb pkbVar, pkb pkbVar2) {
+        this.a = pkbVar;
+        this.b = pkbVar2;
+    }
 }

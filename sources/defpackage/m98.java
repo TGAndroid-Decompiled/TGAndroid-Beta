@@ -1,197 +1,159 @@
 package defpackage;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
-import org.telegram.ui.ActionBar.a;
-public final class m98 extends View {
-    public final Paint a;
-    public final gn b;
-    public final TextPaint c;
-    public StaticLayout d;
-    public float e;
-    public float f;
-    public final gn h;
-    public String n;
-    public boolean r;
-    public final lm s;
-    public boolean w;
-    public int x;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class m98 extends FrameLayout {
+    public final byte a = 1;
+    public final de0 b;
+    public final View c;
+    public final View d;
+    public final View e;
+    public final Object f;
 
-    public m98(Activity activity) {
-        super(activity);
-        Paint paint = new Paint(1);
-        this.a = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.c = textPaint;
-        this.r = false;
-        s33 s33Var = s33.h;
-        this.s = new lm(this, 0L, 350L, s33Var);
-        paint.setColor(2130706432);
-        gn gnVar = new gn(false, true, true);
-        this.b = gnVar;
-        gnVar.n(0.3f, 320L, s33Var);
-        gnVar.u(-1);
-        gnVar.w(gl.L(14.0f));
-        gnVar.x(gl.o());
-        gnVar.setCallback(this);
-        gnVar.t("0", true, true);
-        Point point = gl.q;
-        gnVar.N = point.x;
-        textPaint.setColor(-1);
-        textPaint.setTextSize(gl.L(14.0f));
-        textPaint.setTypeface(gl.o());
-        c();
-        gn gnVar2 = new gn(false, true, true);
-        this.h = gnVar2;
-        gnVar2.n(0.3f, 320L, s33Var);
-        gnVar2.u(-1);
-        gnVar2.w(gl.L(14.0f));
-        gnVar2.x(gl.o());
-        gnVar2.setCallback(this);
-        gnVar2.t("0", true, true);
-        gnVar2.N = point.x;
+    public m98(o98 o98Var, Context context) {
+        super(context);
+        this.f = o98Var;
+        de0 de0Var = new de0(context);
+        this.b = de0Var;
+        addView(de0Var, tre.c(-1.0f, -1));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setBackgroundResource(2131230867);
+        addView(linearLayout, tre.e(-1, 60, 83));
+        TextView textView = new TextView(context);
+        this.c = textView;
+        textView.setTextSize(1, 13.0f);
+        textView.setTextColor(-1);
+        textView.setSingleLine(true);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        textView.setMaxLines(1);
+        textView.setGravity(80);
+        TextView m = ik8.m(linearLayout, textView, tre.m(1.0f, 0, -1, 8, 0, 5), context);
+        this.d = m;
+        m.setTextSize(1, 13.0f);
+        m.setTextColor(-1);
+        m.setSingleLine(true);
+        m.setEllipsize(truncateAt);
+        m.setMaxLines(1);
+        m.setGravity(80);
+        linearLayout.addView(m, tre.k(4.0f, 0.0f, 7.0f, 5.0f, -2, -1));
+        View view = new View(context);
+        this.e = view;
+        view.setBackgroundDrawable(aob.L0(false));
+        addView(view, tre.c(-1.0f, -1));
     }
 
-    public final void a(int i, int i2) {
-        b(i, i2, true);
-    }
-
-    public final void b(int i, int i2, boolean z) {
-        int i3;
-        boolean z2;
-        boolean z3 = false;
-        int max = Math.max(0, i);
-        int max2 = Math.max(max, i2);
-        if (k96.D0().B != null && !TextUtils.equals(this.n, k96.D0().B.c)) {
-            c();
-        }
-        if (k96.a0) {
-            i3 = max2;
-        } else {
-            i3 = max;
-        }
-        String format = String.format("%d", Integer.valueOf(i3));
-        if (z && !this.w && !k96.a0) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        this.b.t(format, z2, true);
-        if (!k96.a0) {
-            max = max2;
-        }
-        String format2 = String.format("%d", Integer.valueOf(max));
-        if (z && !this.w && !k96.a0) {
-            z3 = true;
-        }
-        this.h.t(format2, z3, true);
-        this.w = !z;
-    }
-
-    public final void c() {
-        this.n = k96.D0().B.c;
-        StaticLayout staticLayout = new StaticLayout(k96.M0(2131747636, null).replace("%1$d", "").replace("%2$d", ""), this.c, gl.L(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        this.d = staticLayout;
-        if (staticLayout.getLineCount() >= 1) {
-            this.e = this.d.getLineWidth(0);
-            this.f = this.d.getLineDescent(0);
-            return;
-        }
-        this.e = 0.0f;
-        this.f = 0.0f;
-    }
-
-    public final void d(boolean z, boolean z2) {
-        float f;
-        if (this.r != z) {
-            this.r = z;
-            if (!z) {
-                this.w = true;
-            }
-            if (!z2) {
-                if (z) {
-                    f = 1.0f;
-                } else {
-                    f = 0.0f;
-                }
-                this.s.e(true, f);
-            }
-            invalidate();
-        }
+    public final void a(android.graphics.Canvas r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m98.a(android.graphics.Canvas):void");
     }
 
     @Override
-    public final boolean isShown() {
-        return this.r;
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        ce8 ce8Var;
+        switch (this.a) {
+            case 1:
+                de8 de8Var = (de8) this.f;
+                float[] fArr = de8Var.Q;
+                if (de8Var.C == null) {
+                    float f2 = de8Var.P;
+                    if (f2 != 1.0f) {
+                        float f3 = f2 + 0.07272727f;
+                        de8Var.P = f3;
+                        if (f3 > 1.0f) {
+                            de8Var.P = 1.0f;
+                        } else {
+                            de8Var.e();
+                        }
+                    }
+                }
+                float interpolation = k43.f.getInterpolation(de8Var.P) * de8Var.A;
+                float measuredHeight = getMeasuredHeight();
+                float f4 = 0.0f;
+                if (interpolation != 1.0f && (ce8Var = de8Var.F) != null) {
+                    ce8Var.a(fArr);
+                    canvas.save();
+                    float f5 = 1.0f - interpolation;
+                    float f6 = fArr[0] * f5;
+                    float measuredHeight2 = (fArr[1] * f5) + (getMeasuredHeight() * interpolation);
+                    canvas.clipRect(0.0f, f6, getMeasuredWidth(), measuredHeight2);
+                    a(canvas);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                    f = measuredHeight2;
+                    f4 = f6;
+                } else {
+                    a(canvas);
+                    super.dispatchDraw(canvas);
+                    f = measuredHeight;
+                }
+                de8Var.c(canvas, 1.0f - interpolation, de8Var.o - getLeft(), de8Var.p - getTop(), f4, f);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f;
-        super.onDraw(canvas);
-        if (this.r) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
+        switch (this.a) {
+            case 0:
+                Paint paint = ((o98) this.f).e;
+                de0 de0Var = this.b;
+                if (!de0Var.getImageReceiver().E() || de0Var.getImageReceiver().i1 != 1.0f) {
+                    paint.setColor(aob.w0(null, aob.X9, false));
+                    canvas.drawRect(0.0f, 0.0f, de0Var.getMeasuredWidth(), de0Var.getMeasuredHeight(), paint);
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        float e = this.s.e(false, f);
-        if (e <= 0.0f) {
-            return;
-        }
-        gn gnVar = this.b;
-        float c = gnVar.c() + this.e;
-        gn gnVar2 = this.h;
-        float c2 = gnVar2.c() + c + gl.L(18.0f);
-        float f2 = ((1.0f - e) * (-gl.L(8.0f))) + this.x;
-        RectF rectF = gl.P;
-        rectF.set((getWidth() - c2) / 2.0f, gl.N(10.0f) + f2, (getWidth() + c2) / 2.0f, gl.N(33.0f) + f2);
-        Paint paint = this.a;
-        int alpha = paint.getAlpha();
-        paint.setAlpha((int) (alpha * e));
-        canvas.drawRoundRect(rectF, gl.N(12.0f), gl.N(12.0f), paint);
-        paint.setAlpha(alpha);
-        canvas.save();
-        canvas.translate(((getWidth() - c2) / 2.0f) + gl.L(9.0f), f2 + gl.L(9.5f));
-        gnVar.setBounds(0, 0, (int) gnVar.c(), gl.L(23.0f));
-        int i = (int) (e * 255.0f);
-        gnVar.C = i;
-        gnVar.draw(canvas);
-        canvas.translate(gnVar.c(), 0.0f);
-        canvas.save();
-        canvas.translate((-(this.d.getWidth() - this.e)) / 2.0f, ((this.f / 2.0f) + (gl.L(23.0f) - this.d.getHeight())) / 2.0f);
-        this.c.setAlpha(i);
-        this.d.draw(canvas);
-        canvas.restore();
-        canvas.translate(this.e, 0.0f);
-        gnVar2.setBounds(0, 0, (int) gnVar2.c(), gl.L(23.0f));
-        gnVar2.C = i;
-        gnVar2.draw(canvas);
-        canvas.restore();
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        this.x = a.getCurrentActionBarHeight() + gl.m;
-        this.b.N = size;
-        this.h.N = size;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), ug8.E(43.0f, this.x, 1073741824));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 0:
+                this.e.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public m98(de8 de8Var, Context context) {
+        super(context);
+        this.f = de8Var;
+        new Paint(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.c = frameLayout;
+        frameLayout.setOutlineProvider(new yi((byte) 10));
+        frameLayout.setClipToOutline(true);
+        de0 de0Var = new de0(context);
+        this.b = de0Var;
+        frameLayout.addView(de0Var);
+        frameLayout.setWillNotDraw(false);
+        jx jxVar = new jx(context);
+        this.e = jxVar;
+        jxVar.setBackgroundColor(0);
+        frameLayout.addView(jxVar, tre.e(-1, -1, 17));
+        TextureView textureView = new TextureView(context);
+        this.d = textureView;
+        textureView.setOpaque(false);
+        jxVar.addView(textureView, tre.c(-1.0f, -1));
+        addView(frameLayout, tre.c(-2.0f, -2));
+        setWillNotDraw(false);
     }
 }

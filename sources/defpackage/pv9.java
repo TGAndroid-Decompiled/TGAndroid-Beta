@@ -1,31 +1,51 @@
 package defpackage;
 
 import java.util.ArrayList;
-public final class pv9 extends ov9 {
-    public final ArrayList j;
+import java.util.Collections;
+import java.util.HashMap;
+import org.telegram.SQLite.SQLiteCursor;
+public final class pv9 implements Runnable {
+    public final byte a;
+    public final sv9 b;
 
-    public pv9(az8 az8Var, long j, long j2, long j3, long j4, ArrayList arrayList, long j5, ArrayList arrayList2, long j6, long j7) {
-        super(az8Var, j, j2, j3, j4, arrayList, j5, j6, j7);
-        this.j = arrayList2;
+    public pv9(sv9 sv9Var, byte b) {
+        this.a = b;
+        this.b = sv9Var;
     }
 
     @Override
-    public final tv9 a() {
-        return new pv9(this.a, this.b, 0L, this.d, this.e, this.f, this.i, this.j, this.g, this.h);
-    }
-
-    @Override
-    public final long e(long j) {
-        return this.j.size();
-    }
-
-    @Override
-    public final az8 i(g89 g89Var, long j) {
-        return (az8) this.j.get((int) (j - this.d));
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
+    public final void run() {
+        byte b = this.a;
+        sv9 sv9Var = this.b;
+        switch (b) {
+            case 0:
+                try {
+                    SQLiteCursor queryFinalized = jf7.Y(sv9Var.m).b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    ArrayList arrayList = new ArrayList();
+                    HashMap hashMap = new HashMap();
+                    while (queryFinalized.next()) {
+                        ?? obj = new Object();
+                        obj.a = queryFinalized.stringValue(0);
+                        obj.b = queryFinalized.intValue(1);
+                        arrayList.add(obj);
+                        hashMap.put(obj.a, obj);
+                    }
+                    queryFinalized.dispose();
+                    Collections.sort(arrayList, new qq7((byte) 19));
+                    hl.c3(new jr9(sv9Var, arrayList, hashMap, (byte) 2));
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            default:
+                try {
+                    jf7.Y(sv9Var.m).b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
+                }
+        }
     }
 }

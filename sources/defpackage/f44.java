@@ -1,19 +1,30 @@
 package defpackage;
-public final class f44 extends g44 {
-    public final nob c;
+public interface f44 {
+    void A(h44 h44Var);
 
-    public f44(long j, nob nobVar) {
-        super(j);
-        this.c = nobVar;
-    }
+    void B(boolean z);
 
-    @Override
-    public final void run() {
-        this.c.run();
-    }
+    void C();
 
-    @Override
-    public final String toString() {
-        return super.toString() + this.c;
-    }
+    void d(boolean z);
+
+    void e(boolean z);
+
+    void f();
+
+    void g();
+
+    boolean i(h44 h44Var);
+
+    void j(boolean z);
+
+    boolean o();
+
+    boolean p();
+
+    void u(float f, float f2, float[] fArr);
+
+    int[] v(h44 h44Var);
+
+    void x();
 }

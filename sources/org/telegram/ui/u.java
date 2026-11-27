@@ -30,13 +30,13 @@ public final class u extends AnimatorListenerAdapter {
         photoViewer.f1.setVisibility(8);
         photoViewer.g1.setVisibility(8);
         photoViewer.h1.setVisibility(8);
-        v48 v48Var = photoViewer.D1;
-        if (v48Var != null) {
-            v48Var.setVisibility(4);
+        k88 k88Var = photoViewer.D1;
+        if (k88Var != null) {
+            k88Var.setVisibility(4);
         }
         photoViewer.p1.setVisibility(8);
         photoViewer.p1.setAlpha(0.0f);
-        photoViewer.p1.setTranslationY(-gl.L(10.0f));
+        photoViewer.p1.setTranslationY(-hl.L(10.0f));
         photoViewer.P0.setRotationX(0.0f);
         photoViewer.p1.setEnabled(false);
         photoViewer.L = false;
@@ -60,23 +60,23 @@ public final class u extends AnimatorListenerAdapter {
         if (n != null) {
             float q = photoViewer.B4.q();
             float o = photoViewer.B4.o();
-            float min2 = Math.min(photoViewer.i0(2) / q, photoViewer.f0(2, false) / o);
+            float min2 = Math.min(photoViewer.h0(2) / q, photoViewer.e0(2, false) / o);
             if (photoViewer.d2 == 1) {
-                photoViewer.c6 = -gl.L(36.0f);
-                min = photoViewer.j0(false);
+                photoViewer.c6 = -hl.L(36.0f);
+                min = photoViewer.i0(false);
             } else {
-                int i4 = -gl.L(93.0f);
+                int i4 = -hl.L(93.0f);
                 if (!photoViewer.s) {
-                    i = gl.m / 2;
+                    i = hl.m / 2;
                 } else {
                     i = 0;
                 }
                 photoViewer.c6 = i4 + i;
-                zl6 zl6Var = photoViewer.W4.c;
-                if (zl6Var != null && ((i2 = zl6Var.k) == 90 || i2 == 270)) {
-                    min = Math.min(photoViewer.i0(photoViewer.t4) / o, photoViewer.g0() / q);
+                fo6 fo6Var = photoViewer.W4.c;
+                if (fo6Var != null && ((i2 = fo6Var.k) == 90 || i2 == 270)) {
+                    min = Math.min(photoViewer.h0(photoViewer.t4) / o, photoViewer.f0() / q);
                 } else {
-                    min = Math.min(photoViewer.i0(photoViewer.t4) / q, photoViewer.g0() / o);
+                    min = Math.min(photoViewer.h0(photoViewer.t4) / q, photoViewer.f0() / o);
                 }
             }
             photoViewer.d6 = min2 / min;
@@ -87,9 +87,9 @@ public final class u extends AnimatorListenerAdapter {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         photoViewer.o6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer, rn.g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.J1.getToolsView(), View.TRANSLATION_Y, gl.L(186.0f), 0.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer, sn.g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.J1.getToolsView(), View.TRANSLATION_Y, hl.L(186.0f), 0.0f));
         photoViewer.o6.setDuration(200L);
-        photoViewer.o6.addListener(new l48(this, (byte) 6));
+        photoViewer.o6.addListener(new n88(this, (byte) 5));
         photoViewer.o6.start();
     }
 }

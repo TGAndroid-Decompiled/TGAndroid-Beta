@@ -1,44 +1,43 @@
 package defpackage;
-public final class dx4 {
-    public byte a;
-    public final int[] b = new int[8];
-    public float c;
-    public float d;
-    public int e;
-    public int f;
-    public int g;
-    public int h;
-    public int i;
-    public boolean j;
-    public boolean k;
-    public int l;
-    public int m;
-    public int n;
-    public int o;
-    public int p;
-    public int q;
 
-    public static long b(int i, long j) {
-        return (j ^ i) * 1099511628211L;
+import java.util.ArrayList;
+import java.util.List;
+public final class dx4 implements pcc {
+    public final byte a;
+    public final yx4 b;
+
+    public dx4(yx4 yx4Var, byte b) {
+        this.a = b;
+        this.b = yx4Var;
     }
 
-    public final long a() {
-        int i;
-        long b = b(this.a, -3750763034362895579L);
-        for (int i2 : this.b) {
-            b = b(i2, b);
+    @Override
+    public final void a(Object obj) {
+        byte b = this.a;
+        yx4 yx4Var = this.b;
+        switch (b) {
+            case 0:
+                yx4Var.u2.setTitleMinSideInset(hl.L(6.0f) + ((Integer) obj).intValue());
+                return;
+            default:
+                List list = (List) obj;
+                if (yx4Var.getContext() != null && !yx4Var.J) {
+                    ArrayList c = on0.c(1, list);
+                    yx4Var.U1 = c;
+                    List d = on0.d(c);
+                    yx4Var.U1 = d;
+                    if (!((ArrayList) d).isEmpty()) {
+                        yx4Var.c1();
+                        l9c l9cVar = yx4Var.T1;
+                        if (l9cVar != null) {
+                            l9cVar.O(true);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        long b2 = b(Float.floatToIntBits(this.d), b(Float.floatToIntBits(this.c), b));
-        int i3 = -1;
-        if (this.j) {
-            i = -1;
-        } else {
-            i = this.h;
-        }
-        long b3 = b(i, b2);
-        if (!this.k) {
-            i3 = this.i;
-        }
-        return b(this.q, b(this.p, b(this.o, b(this.n, b(this.m, b(this.l, b(i3, b3)))))));
     }
 }

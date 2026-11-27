@@ -1,14 +1,22 @@
 package defpackage;
-public final class nt5 extends qq4 implements gq4 {
-    public static final nt5 a = new qq4(3, pt5.class, "onAwaitInternalProcessResFunc", "onAwaitInternalProcessResFunc(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;", 0);
+public final class nt5 extends iv5 {
+    public static final long f = fx.a.objectFieldOffset(nt5.class.getDeclaredField("_invoked$volatile"));
+    private volatile int _invoked$volatile = 0;
+    public final ur4 e;
+
+    public nt5(ur4 ur4Var) {
+        this.e = ur4Var;
+    }
 
     @Override
-    public final Object a(Object obj, Object obj2, Object obj3) {
-        int i = pt5.c;
-        ((pt5) obj).getClass();
-        if (!(obj3 instanceof fp2)) {
-            return obj3;
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final void l(Throwable th) {
+        if (fx.a.compareAndSwapInt(this, f, 0, 1)) {
+            this.e.invoke(th);
         }
-        throw ((fp2) obj3).a;
     }
 }

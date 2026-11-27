@@ -1,76 +1,93 @@
 package defpackage;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-public final class ba8 implements jd7 {
-    public final int a;
-    public final String b;
-    public final String c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final int g;
-    public final byte[] h;
+import android.graphics.drawable.Drawable;
+import android.view.WindowManager;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.PhotoViewer;
+public final class ba8 implements Runnable {
+    public final byte a;
+    public final PhotoViewer b;
+    public final fd8 c;
 
-    public ba8(int i, String str, String str2, int i2, int i3, int i4, int i5, byte[] bArr) {
-        this.a = i;
-        this.b = str;
-        this.c = str2;
-        this.d = i2;
-        this.e = i3;
-        this.f = i4;
-        this.g = i5;
-        this.h = bArr;
-    }
-
-    public static ba8 d(xu7 xu7Var) {
-        int m = xu7Var.m();
-        String n = ud7.n(xu7Var.y(xu7Var.m(), StandardCharsets.US_ASCII));
-        String y = xu7Var.y(xu7Var.m(), StandardCharsets.UTF_8);
-        int m2 = xu7Var.m();
-        int m3 = xu7Var.m();
-        int m4 = xu7Var.m();
-        int m5 = xu7Var.m();
-        int m6 = xu7Var.m();
-        byte[] bArr = new byte[m6];
-        xu7Var.k(0, m6, bArr);
-        return new ba8(m, n, y, m2, m3, m4, m5, bArr);
+    public ba8(PhotoViewer photoViewer, fd8 fd8Var, byte b) {
+        this.a = b;
+        this.b = photoViewer;
+        this.c = fd8Var;
     }
 
     @Override
-    public final fm4 a() {
-        return null;
-    }
-
-    @Override
-    public final void b(hr6 hr6Var) {
-        hr6Var.a(this.a, this.h);
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && ba8.class == obj.getClass()) {
-                ba8 ba8Var = (ba8) obj;
-                if (this.a == ba8Var.a && this.b.equals(ba8Var.b) && this.c.equals(ba8Var.c) && this.d == ba8Var.d && this.e == ba8Var.e && this.f == ba8Var.f && this.g == ba8Var.g && Arrays.equals(this.h, ba8Var.h)) {
-                    return true;
+    public final void run() {
+        sga sgaVar;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        byte b = this.a;
+        int i = 0;
+        fd8 fd8Var = this.c;
+        PhotoViewer photoViewer = this.b;
+        switch (b) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.d9;
+                photoViewer.i0.setImageBitmap(null);
+                if (fd8Var != null && !hl.O1() && (sgaVar = fd8Var.m) != null) {
+                    sgaVar.setImageBitmap(null);
                 }
-                return false;
-            }
-            return false;
+                try {
+                    if (photoViewer.h0.getParent() != null) {
+                        ((WindowManager) photoViewer.E.getSystemService("window")).removeView(photoViewer.h0);
+                        photoViewer.a1();
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            case 1:
+                Drawable[] drawableArr2 = PhotoViewer.d9;
+                photoViewer.o4 = null;
+                photoViewer.f0.setLayerType(0, null);
+                photoViewer.m4 = (byte) 0;
+                photoViewer.H0();
+                photoViewer.c1(fd8Var);
+                MediaController.z().J0();
+                if (photoViewer.A7 && !photoViewer.B7 && (arrayList = photoViewer.f7) != null) {
+                    int size = arrayList.size();
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        if (obj instanceof no6) {
+                            ((no6) obj).h();
+                        }
+                    }
+                    return;
+                }
+                return;
+            default:
+                Drawable[] drawableArr3 = PhotoViewer.d9;
+                photoViewer.o4 = null;
+                ad8 ad8Var = photoViewer.f0;
+                if (ad8Var != null) {
+                    ad8Var.setLayerType(0, null);
+                    photoViewer.m4 = (byte) 0;
+                    photoViewer.c1(fd8Var);
+                    photoViewer.f0.setScaleX(1.0f);
+                    photoViewer.f0.setScaleY(1.0f);
+                    MediaController.z().J0();
+                    if (photoViewer.A7 && !photoViewer.B7 && (arrayList2 = photoViewer.f7) != null) {
+                        int size2 = arrayList2.size();
+                        while (i < size2) {
+                            Object obj2 = arrayList2.get(i);
+                            i++;
+                            if (obj2 instanceof no6) {
+                                ((no6) obj2).h();
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((ir2.j(ir2.j((527 + this.a) * 31, 31, this.b), 31, this.c) + this.d) * 31) + this.e) * 31) + this.f) * 31) + this.g) * 31);
-    }
-
-    public final String toString() {
-        return "Picture: mimeType=" + this.b + ", description=" + this.c;
     }
 }

@@ -1,3 +1,3 @@
 package defpackage;
-public final class r2d extends ezc {
+public interface r2d {
 }

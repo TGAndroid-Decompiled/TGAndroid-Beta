@@ -1,24 +1,41 @@
 package defpackage;
-public final class gwa extends gw2 {
-    public hwa a;
-    public ik4 b;
-    public iwa c;
-    public bt5 d;
-    public Object e;
-    public Object f;
-    public final hwa h;
-    public int n;
 
-    public gwa(hwa hwaVar, fw2 fw2Var) {
-        super(fw2Var);
-        this.h = hwaVar;
+import android.content.DialogInterface;
+public final class gwa implements DialogInterface.OnDismissListener {
+    public final byte a;
+    public final icc b;
+    public final boolean[] c;
+
+    public gwa(byte b, icc iccVar, boolean[] zArr) {
+        this.a = b;
+        this.b = iccVar;
+        this.c = zArr;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f = obj;
-        this.n |= Integer.MIN_VALUE;
-        this.h.h(null, this);
-        return bx2.a;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        boolean[] zArr = this.c;
+        icc iccVar = this.b;
+        switch (b) {
+            case 0:
+                if (!zArr[0]) {
+                    iccVar.a(0L, Boolean.FALSE);
+                    return;
+                }
+                return;
+            case 1:
+                if (!zArr[0]) {
+                    iccVar.a(Boolean.FALSE, null);
+                    return;
+                }
+                return;
+            default:
+                if (!zArr[0]) {
+                    iccVar.a(Boolean.FALSE, null);
+                    return;
+                }
+                return;
+        }
     }
 }

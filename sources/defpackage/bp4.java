@@ -1,57 +1,69 @@
 package defpackage;
 
-import android.util.SparseArray;
-public final class bp4 implements fv9 {
-    public final SparseArray a;
-    public final SparseArray b;
-    public final long c;
-    public final long d;
-    public final int e;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class bp4 extends FrameLayout implements snb {
+    public final vnb a;
+    public final ImageView b;
+    public final TextView c;
+    public int d;
+    public boolean e;
 
-    public bp4(SparseArray sparseArray, SparseArray sparseArray2, long j, long j2, int i) {
-        this.a = sparseArray;
-        this.b = sparseArray2;
-        this.c = j;
-        this.d = j2;
-        this.e = i;
+    public bp4(Context context, vnb vnbVar) {
+        super(context);
+        this.a = vnbVar;
+        ImageView imageView = new ImageView(context);
+        this.b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(2131232062);
+        addView(imageView, tre.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.c = textView;
+        textView.setText(ob6.M0(2131751131, null));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(hl.o());
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, tre.d(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
+        updateColors();
+    }
+
+    public final int a(float f) {
+        return vm2.o(aob.v0(aob.Nl, this.a), (int) (f * 255.0f));
     }
 
     @Override
-    public final boolean c() {
-        return true;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.Nl));
+    }
+
+    public void setOnBackClickListener(View.OnClickListener onClickListener) {
+        this.b.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final boolean d() {
-        return false;
-    }
-
-    @Override
-    public final ev9 f(long j) {
-        SparseArray sparseArray = this.a;
-        int i = this.e;
-        long[] jArr = (long[]) sparseArray.get(i);
-        SparseArray sparseArray2 = this.b;
-        long[] jArr2 = (long[]) sparseArray2.get(i);
-        if (jArr == null || jArr2 == null) {
-            jArr = (long[]) sparseArray.get(i);
-            jArr2 = (long[]) sparseArray2.get(i);
-            if (jArr == null || jArr2 == null) {
-                jArr = (long[]) sparseArray.valueAt(0);
-                jArr2 = (long[]) sparseArray2.valueAt(0);
-            }
+    public final void updateColors() {
+        this.c.setTextColor(a(0.6f));
+        int a = a(1.0f);
+        if (this.e && a == this.d) {
+            return;
         }
-        if (jArr.length != 0 && j >= jArr[0]) {
-            int f = g8c.f(jArr, j, true);
-            hv9 hv9Var = new hv9(jArr[f], jArr2[f]);
-            return new ev9(hv9Var, hv9Var);
+        this.e = true;
+        this.d = a;
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
+        ImageView imageView = this.b;
+        imageView.setColorFilter(porterDuffColorFilter);
+        if (imageView.getBackground() != null) {
+            aob.F1(imageView.getBackground(), a(0.1f), true);
+        } else {
+            imageView.setBackground(aob.f0(a(0.1f), 1, -1));
         }
-        hv9 hv9Var2 = new hv9(0L, this.d);
-        return new ev9(hv9Var2, hv9Var2);
-    }
-
-    @Override
-    public final long h() {
-        return this.c;
     }
 }

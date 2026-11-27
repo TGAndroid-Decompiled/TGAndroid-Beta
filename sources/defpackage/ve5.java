@@ -1,46 +1,53 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class ve5 {
-    public final String a;
-    public final byte b;
-    public final double c;
-    public final String d;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ve5 implements ncc, occ {
+    public final we5 a;
 
-    public ve5(int i, String str, String str2) {
-        boolean z = true;
-        if (i == 1 && !str2.startsWith("0x") && !str2.startsWith("0X")) {
-            z = false;
+    public ve5(we5 we5Var) {
+        this.a = we5Var;
+    }
+
+    @Override
+    public final Boolean e(b8c b8cVar, View view, Integer num, Float f, Float f2) {
+        int i = b8cVar.d;
+        boolean z = false;
+        if (i != 0) {
+            we5 we5Var = this.a;
+            String str = (String) we5Var.c.get(i - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, we5Var.b, we5Var.getContext());
+            String M0 = ob6.M0(2131752019, null);
+            id idVar = alertDialog$Builder.a;
+            idVar.S = M0;
+            idVar.U = ob6.a0(null, null, 2131752017, str);
+            alertDialog$Builder.j(ob6.M0(2131752020, null), new u34(we5Var, str, (byte) 8));
+            alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+            idVar.show();
+            z = true;
         }
-        gre.p(z);
-        this.a = str;
-        this.b = i;
-        this.d = str2;
-        this.c = 0.0d;
+        return Boolean.valueOf(z);
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof ve5) {
-                ve5 ve5Var = (ve5) obj;
-                if (this.b == ve5Var.b && Double.compare(this.c, ve5Var.c) == 0 && this.a.equals(ve5Var.a) && Objects.equals(this.d, ve5Var.d)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        int i = ((b8c) obj).d;
+        we5 we5Var = this.a;
+        if (i == 0) {
+            df5 a = df5.a(we5Var.a);
+            a.f.clear();
+            a.d();
+            we5Var.f.O(true);
+            return;
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.a, Integer.valueOf(this.b), Double.valueOf(this.c), this.d);
-    }
-
-    public ve5(String str, double d) {
-        this.a = str;
-        this.b = (byte) 2;
-        this.c = d;
-        this.d = null;
+        pcc pccVar = we5Var.h;
+        if (pccVar != null) {
+            pccVar.a((String) we5Var.c.get(i - 1));
+        }
     }
 }

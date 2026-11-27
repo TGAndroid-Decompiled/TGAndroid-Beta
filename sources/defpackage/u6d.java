@@ -1,46 +1,73 @@
 package defpackage;
-public final class u6d extends a7d {
-    public final transient int r;
-    public final transient int s;
-    public final a7d w;
 
-    public u6d(a7d a7dVar, int i, int i2) {
-        super((byte) 3);
-        this.w = a7dVar;
-        this.r = i;
-        this.s = i2;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.view.View;
+import j$.util.Objects;
+public final class u6d {
+    public final byte a;
+    public final xq2 b;
+
+    public u6d(xq2 xq2Var, byte b) {
+        this.a = b;
+        switch (b) {
+            case 1:
+                Objects.requireNonNull(xq2Var);
+                this.b = xq2Var;
+                return;
+            default:
+                Objects.requireNonNull(xq2Var);
+                this.b = xq2Var;
+                return;
+        }
     }
 
-    @Override
-    public final Object get(int i) {
-        u3f.a(i, this.s);
-        return this.w.get(i + this.r);
+    public final int a() {
+        switch (this.a) {
+            case 0:
+                return 1;
+            default:
+                return 5;
+        }
     }
 
-    @Override
-    public final Object[] r() {
-        return this.w.r();
-    }
-
-    @Override
-    public final int s() {
-        return this.w.s() + this.r;
-    }
-
-    @Override
-    public final int size() {
-        return this.s;
-    }
-
-    @Override
-    public final int t() {
-        return this.w.s() + this.r + this.s;
-    }
-
-    @Override
-    public final a7d subList(int i, int i2) {
-        u3f.b(i, i2, this.s);
-        int i3 = this.r;
-        return this.w.subList(i + i3, i2 + i3);
+    public final void b() {
+        byte b = this.a;
+        xq2 xq2Var = this.b;
+        switch (b) {
+            case 0:
+                ko9 ko9Var = (ko9) xq2Var.a;
+                tt ttVar = (tt) ko9Var.b;
+                b1f b1fVar = (b1f) ko9Var.c;
+                try {
+                    Bundle bundle = new Bundle();
+                    Parcel R = b1fVar.R();
+                    jld.b(R, bundle);
+                    b1fVar.V(R, 2);
+                    fmd.b(bundle, null);
+                    Parcel Q = b1fVar.Q(b1fVar.R(), 8);
+                    al5 T = br7.T(Q.readStrongBinder());
+                    Q.recycle();
+                    ko9Var.d = (View) br7.U(T);
+                    ttVar.removeAllViews();
+                    ttVar.addView((View) ko9Var.d);
+                    return;
+                } catch (RemoteException e) {
+                    p3d.i(e);
+                    return;
+                }
+            default:
+                ko9 ko9Var2 = (ko9) xq2Var.a;
+                ko9Var2.getClass();
+                try {
+                    b1f b1fVar2 = (b1f) ko9Var2.c;
+                    b1fVar2.V(b1fVar2.R(), 3);
+                    return;
+                } catch (RemoteException e2) {
+                    p3d.i(e2);
+                    return;
+                }
+        }
     }
 }

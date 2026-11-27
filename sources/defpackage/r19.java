@@ -1,52 +1,232 @@
 package defpackage;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class r19 extends FrameLayout implements tjb {
-    public final be0 a;
-    public final kv b;
-    public final Paint c;
-    public TLRPC.Chat d;
-    public final pb0 e;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+import android.text.style.MetricAffectingSpan;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+public final class r19 implements LeadingMarginSpan {
+    public final float[] E;
+    public final Path F;
+    public final Paint G;
+    public final float[] H;
+    public final Path I;
+    public int J;
+    public zb4 K;
+    public SpannableString L;
+    public final boolean a;
+    public boolean b = true;
+    public int c;
+    public int d;
+    public boolean e;
+    public boolean f;
+    public boolean h;
+    public boolean n;
+    public boolean r;
+    public final q19 s;
+    public zk w;
+    public final Drawable x;
+    public final Paint y;
 
-    public r19(Context context) {
-        super(context);
+    public r19(boolean z, boolean z2, q19 q19Var) {
         Paint paint = new Paint(1);
-        this.c = paint;
-        this.e = new pb0((wjb) null);
-        be0 be0Var = new be0(getContext());
-        this.a = be0Var;
-        be0Var.setRoundRadius(gl.L(30.0f));
-        kv kvVar = new kv(context);
+        this.y = paint;
+        this.E = new float[8];
+        this.F = new Path();
         Paint paint2 = new Paint(1);
-        kvVar.b = paint2;
-        kvVar.c = kvVar.getContext().getDrawable(2131231936);
-        int i = bkb.g5;
-        paint2.setColor(bkb.w0(null, i, false));
-        this.b = kvVar;
-        kvVar.setAlpha(0.0f);
-        addView(be0Var, nme.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
-        addView(kvVar, nme.d(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
-        paint.setColor(bkb.w0(null, i, false));
+        this.G = paint2;
+        this.H = new float[8];
+        this.I = new Path();
+        this.J = -1;
+        this.a = z;
+        this.s = q19Var;
+        this.e = z2;
+        this.x = c00.e(a.b, 2131231970);
+        paint2.setColor(this.J);
+        paint.setColor(vm2.o(this.J, 30));
+    }
+
+    public static void a(SpannableStringBuilder spannableStringBuilder) {
+        int i;
+        int i2;
+        int i3;
+        TreeSet treeSet = new TreeSet();
+        HashMap hashMap = new HashMap();
+        q19[] q19VarArr = (q19[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), q19.class);
+        int i4 = 0;
+        while (true) {
+            int i5 = 1;
+            if (i4 >= q19VarArr.length) {
+                break;
+            }
+            q19 q19Var = q19VarArr[i4];
+            int spanStart = spannableStringBuilder.getSpanStart(q19Var);
+            int spanEnd = spannableStringBuilder.getSpanEnd(q19Var);
+            treeSet.add(Integer.valueOf(spanStart));
+            Integer valueOf = Integer.valueOf(spanStart);
+            if (hashMap.containsKey(Integer.valueOf(spanStart))) {
+                i2 = ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue();
+            } else {
+                i2 = 0;
+            }
+            if (q19Var.a.e) {
+                i5 = 16;
+            }
+            hashMap.put(valueOf, Integer.valueOf(i2 | i5));
+            treeSet.add(Integer.valueOf(spanEnd));
+            Integer valueOf2 = Integer.valueOf(spanEnd);
+            if (hashMap.containsKey(Integer.valueOf(spanEnd))) {
+                i3 = ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue();
+            } else {
+                i3 = 0;
+            }
+            hashMap.put(valueOf2, Integer.valueOf(i3 | 2));
+            spannableStringBuilder.removeSpan(q19Var);
+            spannableStringBuilder.removeSpan(q19Var.a);
+            i4++;
+        }
+        Iterator it = treeSet.iterator();
+        int i6 = 0;
+        int i7 = 0;
+        boolean z = false;
+        while (it.hasNext()) {
+            Integer num = (Integer) it.next();
+            int intValue = num.intValue();
+            int intValue2 = ((Integer) hashMap.get(num)).intValue();
+            if (i6 != intValue) {
+                int i8 = intValue - 1;
+                if (i8 >= 0 && i8 < spannableStringBuilder.length() && spannableStringBuilder.charAt(i8) == '\n') {
+                    i = intValue - 1;
+                } else {
+                    i = intValue;
+                }
+                if (i7 > 0) {
+                    c(spannableStringBuilder, i6, i, z);
+                }
+                i6 = intValue + 1;
+                if (i6 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(intValue) != '\n') {
+                    i6 = intValue;
+                }
+            }
+            if ((intValue2 & 2) != 0) {
+                i7--;
+            }
+            if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
+                i7++;
+                if ((intValue2 & 16) != 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            }
+        }
+        if (i6 < spannableStringBuilder.length() && i7 > 0) {
+            c(spannableStringBuilder, i6, spannableStringBuilder.length(), z);
+        }
+    }
+
+    public static void b(Spannable spannable, int i, int i2, boolean z) {
+        r19[] r19VarArr = (r19[]) spannable.getSpans(i, i2, r19.class);
+        if (r19VarArr != null && r19VarArr.length > 0) {
+            return;
+        }
+        int j = Utilities.j(i, spannable.length(), 0);
+        int j2 = Utilities.j(i2, spannable.length(), 0);
+        ?? metricAffectingSpan = new MetricAffectingSpan();
+        r19 r19Var = new r19(false, z, metricAffectingSpan);
+        metricAffectingSpan.a = r19Var;
+        r19Var.c = j;
+        r19Var.d = j2;
+        spannable.setSpan(metricAffectingSpan, j, j2, 33);
+        spannable.setSpan(r19Var, j, j2, 33);
+    }
+
+    public static int c(Editable editable, int i, int i2, boolean z) {
+        if (editable == 0) {
+            return -1;
+        }
+        int j = Utilities.j(i, editable.length(), 0);
+        int j2 = Utilities.j(i2, editable.length(), 0);
+        if (j > 0 && editable.charAt(j - 1) != '\n') {
+            editable.insert(j, "\n");
+            j++;
+            j2++;
+        }
+        int i3 = j2 + 1;
+        if (j2 >= editable.length() || editable.charAt(j2) != '\n') {
+            editable.insert(j2, "\n");
+        }
+        ?? metricAffectingSpan = new MetricAffectingSpan();
+        r19 r19Var = new r19(true, z, metricAffectingSpan);
+        metricAffectingSpan.a = r19Var;
+        r19Var.c = j;
+        r19Var.d = j2;
+        editable.setSpan(r19Var, Utilities.j(j, editable.length(), 0), Utilities.j(j2, editable.length(), 0), 33);
+        editable.setSpan(metricAffectingSpan, Utilities.j(j, editable.length(), 0), Utilities.j(j2, editable.length(), 0), 33);
+        editable.insert(Utilities.j(j2, editable.length(), 0), "\ufeff");
+        editable.delete(Utilities.j(j2, editable.length(), 0), Utilities.j(i3, editable.length(), 0));
+        return i3;
+    }
+
+    public static java.util.ArrayList d(defpackage.cu3 r20, android.text.Layout r21, java.util.ArrayList r22, boolean[] r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r19.d(cu3, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
+    }
+
+    public static ArrayList e(Layout layout, ArrayList arrayList) {
+        r19[] r19VarArr;
+        if (layout == null) {
+            if (arrayList != null) {
+                arrayList.clear();
+                return arrayList;
+            }
+        } else {
+            CharSequence text = layout.getText();
+            if (text != null && (text instanceof Spanned)) {
+                Spanned spanned = (Spanned) text;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                for (r19 r19Var : (r19[]) spanned.getSpans(0, spanned.length(), r19.class)) {
+                    boolean z = r19Var.n;
+                    n19 n19Var = new n19(null, layout, spanned, r19Var);
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    arrayList.add(n19Var);
+                }
+                return arrayList;
+            } else if (arrayList != null) {
+                arrayList.clear();
+            }
+        }
+        return arrayList;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - gl.L(2.0f), this.c);
-        super.dispatchDraw(canvas);
+    public final int getLeadingMargin(boolean z) {
+        float f;
+        if (this.b) {
+            f = 8.0f;
+        } else {
+            f = 10.0f;
+        }
+        return hl.L(f);
     }
 
     @Override
-    public final void updateColors() {
-        this.c.setColor(bkb.w0(null, bkb.g5, false));
-        invalidate();
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i, int i2, int i3, int i4, int i5, CharSequence charSequence, int i6, int i7, boolean z, Layout layout) {
     }
 }

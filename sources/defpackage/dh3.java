@@ -1,29 +1,43 @@
 package defpackage;
 
-import android.text.SpannableStringBuilder;
-public final class dh3 extends vu8 {
-    public final byte f0 = 0;
-    public final Object g0;
+import android.app.Activity;
+public final class dh3 implements pcc {
+    public final byte a;
+    public final Activity b;
 
-    public dh3(qvb qvbVar, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
-        super(spannableStringBuilder, spannableStringBuilder2);
-        this.g0 = qvbVar;
+    public dh3(Activity activity, byte b) {
+        this.a = b;
+        this.b = activity;
     }
 
     @Override
-    public final float d() {
-        byte b = this.f0;
-        Object obj = this.g0;
+    public final void a(Object obj) {
+        byte b = this.a;
+        Activity activity = this.b;
+        Boolean bool = (Boolean) obj;
         switch (b) {
             case 0:
-                return ((bj3) obj).a.getViewOffset();
+                if (bool.booleanValue()) {
+                    if (!jve.a()) {
+                        jve.f();
+                        return;
+                    } else {
+                        activity.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                        return;
+                    }
+                }
+                return;
             default:
-                return ((qvb) obj).O.m3;
+                if (bool.booleanValue()) {
+                    if (!jve.a()) {
+                        jve.f();
+                        return;
+                    } else {
+                        activity.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                        return;
+                    }
+                }
+                return;
         }
-    }
-
-    public dh3(String str, String str2, bj3 bj3Var) {
-        super(str, str2);
-        this.g0 = bj3Var;
     }
 }

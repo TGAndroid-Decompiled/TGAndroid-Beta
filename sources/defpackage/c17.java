@@ -1,168 +1,135 @@
 package defpackage;
 
-import android.util.LongSparseArray;
-import java.nio.ByteBuffer;
-import java.util.List;
-public final class c17 implements ip9 {
-    public final rs8 a;
-    public final rs8 b;
-    public final sk4 c = new sk4((byte) 1, false);
-    public final z83 d = new z83(1, 0);
-    public final LongSparseArray e = new LongSparseArray();
-    public final int f;
-    public byte[] h;
-    public long n;
-    public boolean r;
-    public boolean s;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class c17 extends ViewGroup {
+    public final GestureDetector a;
+    public final Path b;
+    public final RectF c;
+    public boolean d;
+    public final d17 e;
 
-    public c17(rs8 rs8Var, rs8 rs8Var2, fm4 fm4Var) {
-        int i;
-        this.a = rs8Var;
-        this.b = rs8Var2;
-        int i2 = fm4Var.v;
-        if (i2 != -1) {
-            i = i2 + 2;
-        } else {
-            i = 18;
+    public c17(d17 d17Var, Context context) {
+        super(context);
+        this.e = d17Var;
+        this.a = new GestureDetector(getContext(), new yl3(this, (byte) 1));
+        this.b = new Path();
+        this.c = new RectF();
+        this.d = true;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.b);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        this.e.c.draw(canvas);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int height = getHeight();
+        d17 d17Var = this.e;
+        int i5 = d17Var.a;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = d17Var.f;
+        int i6 = d17Var.b;
+        int c = (height - d17Var.c()) / 2;
+        int width = getWidth();
+        et8 et8Var = d17Var.h;
+        int measuredWidth = (width - et8Var.getMeasuredWidth()) / 2;
+        et8Var.layout(measuredWidth, c, et8Var.getMeasuredWidth() + measuredWidth, et8Var.getMeasuredHeight() + c);
+        a17 a17Var = d17Var.n;
+        a17Var.layout(et8Var.getLeft(), et8Var.getTop(), et8Var.getRight(), a17Var.getMeasuredHeight() + et8Var.getTop());
+        int w = uh9.w(12.0f, et8Var.getMeasuredHeight(), c);
+        TextView textView = d17Var.d;
+        textView.layout(hl.L(16.0f) + et8Var.getLeft(), w, et8Var.getRight() - hl.L(16.0f), textView.getMeasuredHeight() + w);
+        int measuredHeight = textView.getMeasuredHeight() + w;
+        TextView textView2 = d17Var.e;
+        int i7 = 8;
+        if (textView2.getVisibility() != 8) {
+            int L = hl.L(4.0f) + measuredHeight;
+            textView2.layout(textView.getLeft(), L, textView.getRight(), textView2.getMeasuredHeight() + L);
+            measuredHeight = textView2.getMeasuredHeight() + L;
         }
-        this.f = i;
-        this.n = -9223372036854775807L;
-    }
-
-    @Override
-    public final int a() {
-        return this.a.a();
-    }
-
-    @Override
-    public final void b() {
-        this.a.b();
-        if (!this.r) {
-            this.b.b();
+        int L2 = hl.L(12.0f) + measuredHeight;
+        d17Var.c.setBounds(et8Var.getLeft() - i6, et8Var.getTop() - i5, et8Var.getRight() + i6, i5 + L2);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.layout((et8Var.getRight() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) + i6, L2, et8Var.getRight() + i6, actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight() + L2);
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout.getBottom() < i4) {
+            i7 = 0;
         }
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setVisibility(i7);
+        int L3 = hl.L(6.0f);
+        RectF rectF = this.c;
+        rectF.set(et8Var.getLeft(), et8Var.getTop(), et8Var.getRight(), et8Var.getTop() + (L3 << 1));
+        Path path = this.b;
+        path.reset();
+        float f = L3;
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF, f, f, direction);
+        rectF.set(i, et8Var.getTop() + L3, i3, i4);
+        path.addRect(rectF, direction);
     }
 
     @Override
-    public final int h(sk4 sk4Var, z83 z83Var, int i) {
-        byte[] bArr;
-        boolean z;
-        int i2;
-        int i3;
-        int h = this.a.h(sk4Var, z83Var, i);
-        if (h == -4 && !z83Var.isEndOfStream() && (i & 4) == 0) {
-            boolean z2 = true;
-            if ((i & 1) == 0 && !this.r) {
-                long j = z83Var.e;
-                boolean z3 = this.s;
-                byte[] bArr2 = null;
-                LongSparseArray longSparseArray = this.e;
-                if (!z3) {
-                    while (true) {
-                        z83 z83Var2 = this.d;
-                        z83Var2.clear();
-                        rs8 rs8Var = this.b;
-                        sk4 sk4Var2 = this.c;
-                        int h2 = rs8Var.h(sk4Var2, z83Var2, 0);
-                        if (h2 == -3) {
-                            break;
-                        } else if (h2 != -5) {
-                            if (z83Var2.isEndOfStream()) {
-                                this.s = z2;
-                                break;
-                            }
-                            long j2 = z83Var2.e;
-                            long j3 = this.n;
-                            if (j3 != -9223372036854775807L && j2 < j3) {
-                                this.r = z2;
-                                longSparseArray.clear();
-                                this.h = bArr2;
-                            }
-                            this.n = j2;
-                            ByteBuffer byteBuffer = z83Var2.c;
-                            if (!this.r && byteBuffer != null) {
-                                z83Var2.d();
-                                fm4 fm4Var = (fm4) sk4Var2.c;
-                                if (fm4Var != null) {
-                                    List list = fm4Var.w;
-                                    z = z2;
-                                    i2 = 0;
-                                    for (int i4 = 0; i4 < list.size(); i4++) {
-                                        i2 += ((byte[]) list.get(i4)).length;
-                                    }
-                                } else {
-                                    z = z2;
-                                    i2 = 0;
-                                }
-                                byte[] bArr3 = new byte[byteBuffer.remaining() + i2];
-                                if (fm4Var != null) {
-                                    List list2 = fm4Var.w;
-                                    i3 = 0;
-                                    for (int i5 = 0; i5 < list2.size(); i5++) {
-                                        byte[] bArr4 = (byte[]) list2.get(i5);
-                                        System.arraycopy(bArr4, 0, bArr3, i3, bArr4.length);
-                                        i3 += bArr4.length;
-                                    }
-                                } else {
-                                    i3 = 0;
-                                }
-                                byteBuffer.get(bArr3, i3, byteBuffer.remaining());
-                                longSparseArray.put(j2, bArr3);
-                                while (longSparseArray.size() > this.f) {
-                                    longSparseArray.removeAt(0);
-                                }
-                            } else {
-                                z = z2;
-                            }
-                            if (j2 > j) {
-                                break;
-                            }
-                            z2 = z;
-                            bArr2 = null;
-                        }
-                    }
-                }
-                long j4 = z83Var.e;
-                int size = longSparseArray.size() - 1;
-                while (true) {
-                    if (size >= 0) {
-                        if (longSparseArray.keyAt(size) <= j4) {
-                            bArr = (byte[]) longSparseArray.valueAt(size);
-                            break;
-                        }
-                        size--;
-                    } else {
-                        bArr = null;
-                        break;
-                    }
-                }
-                if (bArr != null) {
-                    this.h = bArr;
-                }
-                byte[] bArr5 = this.h;
-                if (bArr5 != null) {
-                    int length = bArr5.length;
-                    ByteBuffer byteBuffer2 = z83Var.f;
-                    if (byteBuffer2 != null && byteBuffer2.capacity() >= length) {
-                        z83Var.f.clear();
-                    } else {
-                        z83Var.f = ByteBuffer.allocate(length);
-                    }
-                    z83Var.f.put(bArr5);
-                    z83Var.addFlag(268435456);
-                    return h;
-                }
+    public final void onMeasure(int i, int i2) {
+        setWillNotDraw(false);
+        super.onMeasure(i, i2);
+        int min = Math.min(Math.min(getMeasuredWidth(), getMeasuredHeight()), (int) (getMeasuredHeight() * 0.66d)) - (hl.L(12.0f) << 1);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE);
+        d17 d17Var = this.e;
+        et8 et8Var = d17Var.h;
+        et8Var.measure(makeMeasureSpec, makeMeasureSpec);
+        d17Var.n.measure(makeMeasureSpec, makeMeasureSpec);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(min - (hl.L(16.0f) << 1), 1073741824);
+        d17Var.d.measure(makeMeasureSpec2, 0);
+        d17Var.e.measure(makeMeasureSpec2, 0);
+        d17Var.f.measure(View.MeasureSpec.makeMeasureSpec(et8Var.getMeasuredWidth() + (d17Var.b << 1), Integer.MIN_VALUE), 0);
+    }
+
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        Point point = hl.q;
+        int i5 = point.x;
+        int i6 = point.y;
+        d17 d17Var = this.e;
+        if (i5 > i6) {
+            super/*android.app.Dialog*/.dismiss();
+        }
+        if (i != i3 && i2 != i4) {
+            if (!this.d) {
+                d17Var.f();
             }
+            this.d = false;
         }
-        return h;
     }
 
     @Override
-    public final boolean j() {
-        return this.a.j();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.a.onTouchEvent(motionEvent);
     }
 
     @Override
-    public final int n(long j) {
-        return this.a.n(j);
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.e.c && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

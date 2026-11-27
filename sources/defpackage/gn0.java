@@ -7,20 +7,20 @@ public final class gn0 implements Runnable {
     public final TLRPC.Chat b;
     public final int c;
     public final ArrayList d;
-    public final p8c e;
+    public final pcc e;
 
-    public gn0(TLRPC.Chat chat, int i, ArrayList arrayList, p8c p8cVar, byte b) {
+    public gn0(TLRPC.Chat chat, int i, ArrayList arrayList, pcc pccVar, byte b) {
         this.a = b;
         this.b = chat;
         this.c = i;
         this.d = arrayList;
-        this.e = p8cVar;
+        this.e = pccVar;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        p8c p8cVar = this.e;
+        pcc pccVar = this.e;
         ArrayList arrayList = this.d;
         int i = this.c;
         TLRPC.Chat chat = this.b;
@@ -29,13 +29,13 @@ public final class gn0 implements Runnable {
                 if (chat == null) {
                     on0.o(i, arrayList);
                 }
-                p8cVar.a(arrayList);
+                pccVar.a(arrayList);
                 return;
             default:
                 if (chat == null) {
                     on0.o(i, arrayList);
                 }
-                p8cVar.a(arrayList);
+                pccVar.a(arrayList);
                 return;
         }
     }

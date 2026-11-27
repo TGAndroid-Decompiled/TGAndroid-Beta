@@ -1,18 +1,12 @@
 package defpackage;
+public interface nr3 {
+    void I(int i, vz6 vz6Var);
 
-import java.util.concurrent.TimeUnit;
-public enum nr3 {
-    NANOSECONDS(TimeUnit.NANOSECONDS),
-    MICROSECONDS(TimeUnit.MICROSECONDS),
-    MILLISECONDS(TimeUnit.MILLISECONDS),
-    SECONDS(TimeUnit.SECONDS),
-    MINUTES(TimeUnit.MINUTES),
-    HOURS(TimeUnit.HOURS),
-    DAYS(TimeUnit.DAYS);
-    
-    public final TimeUnit a;
+    void N(int i, vz6 vz6Var, rj2 rj2Var);
 
-    nr3(TimeUnit timeUnit) {
-        this.a = timeUnit;
-    }
+    void i(int i, vz6 vz6Var, Exception exc);
+
+    void n(int i, vz6 vz6Var, int i2);
+
+    void y(int i, vz6 vz6Var);
 }

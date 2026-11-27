@@ -1,8 +1,8 @@
 package defpackage;
-
-import org.telegram.tgnet.TLObject;
 public final class al3 {
-    public TLObject a;
+    public f89 a;
     public int b;
-    public long c;
+    public int c;
+    public int d;
+    public int e;
 }

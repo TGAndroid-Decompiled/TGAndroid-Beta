@@ -1,19 +1,18 @@
 package defpackage;
-
-import android.content.Context;
-public final class ty3 extends h14 {
-    public final t14 I;
-
-    public ty3(t14 t14Var, Context context) {
-        super(t14Var, context, 1);
-        this.I = t14Var;
+public final class ty3 extends cl8 {
+    @Override
+    public final void invalidate() {
+        if (ri5.b(this)) {
+            return;
+        }
+        super.invalidate();
     }
 
     @Override
-    public final void setTranslationY(float f) {
-        if (f != getTranslationY()) {
-            super.setTranslationY(f);
-            this.I.K.invalidate();
+    public final void invalidate(int i, int i2, int i3, int i4) {
+        if (ri5.b(this)) {
+            return;
         }
+        super.invalidate(i, i2, i3, i4);
     }
 }

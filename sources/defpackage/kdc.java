@@ -1,37 +1,93 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.ViewConfiguration;
-import java.lang.reflect.Method;
-public abstract class kdc {
-    public static final Method a;
+import android.graphics.Paint;
+public final class kdc extends ndc {
+    public lp d;
+    public float e;
+    public lp f;
+    public float g;
+    public float h;
+    public float i;
+    public float j;
+    public float k;
+    public Paint.Cap l;
+    public Paint.Join m;
+    public float n;
 
-    static {
-        if (Build.VERSION.SDK_INT == 25) {
-            try {
-                a = ViewConfiguration.class.getDeclaredMethod("getScaledScrollFactor", null);
-            } catch (Exception unused) {
-                Log.i("ViewConfigCompat", "Could not find method getScaledScrollFactor() on ViewConfiguration");
-            }
+    @Override
+    public final boolean a() {
+        if (!this.f.n() && !this.d.n()) {
+            return false;
         }
+        return true;
     }
 
-    public static float a(ViewConfiguration viewConfiguration, Context context) {
-        Method method;
-        if (Build.VERSION.SDK_INT >= 25 && (method = a) != null) {
-            try {
-                return ((Integer) method.invoke(viewConfiguration, null)).intValue();
-            } catch (Exception unused) {
-                Log.i("ViewConfigCompat", "Could not find method getScaledScrollFactor() on ViewConfiguration");
-            }
-        }
-        TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(16842829, typedValue, true)) {
-            return typedValue.getDimension(context.getResources().getDisplayMetrics());
-        }
-        return 0.0f;
+    @Override
+    public final boolean b(int[] r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kdc.b(int[]):boolean");
+    }
+
+    public float getFillAlpha() {
+        return this.h;
+    }
+
+    public int getFillColor() {
+        return this.f.b;
+    }
+
+    public float getStrokeAlpha() {
+        return this.g;
+    }
+
+    public int getStrokeColor() {
+        return this.d.b;
+    }
+
+    public float getStrokeWidth() {
+        return this.e;
+    }
+
+    public float getTrimPathEnd() {
+        return this.j;
+    }
+
+    public float getTrimPathOffset() {
+        return this.k;
+    }
+
+    public float getTrimPathStart() {
+        return this.i;
+    }
+
+    public void setFillAlpha(float f) {
+        this.h = f;
+    }
+
+    public void setFillColor(int i) {
+        this.f.b = i;
+    }
+
+    public void setStrokeAlpha(float f) {
+        this.g = f;
+    }
+
+    public void setStrokeColor(int i) {
+        this.d.b = i;
+    }
+
+    public void setStrokeWidth(float f) {
+        this.e = f;
+    }
+
+    public void setTrimPathEnd(float f) {
+        this.j = f;
+    }
+
+    public void setTrimPathOffset(float f) {
+        this.k = f;
+    }
+
+    public void setTrimPathStart(float f) {
+        this.i = f;
     }
 }

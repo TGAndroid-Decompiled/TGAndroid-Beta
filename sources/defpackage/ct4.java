@@ -1,110 +1,85 @@
 package defpackage;
 
-import android.accounts.Account;
-import android.os.Binder;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.RemoteException;
-import android.util.Log;
-import com.google.android.gms.common.api.Scope;
-public final class ct4 extends b4 {
-    public static final Parcelable.Creator<ct4> CREATOR = new c0f((byte) 1);
-    public static final Scope[] F = new Scope[0];
-    public static final f84[] G = new f84[0];
-    public final String E;
-    public final int a;
-    public final int b;
-    public final int c;
-    public String d;
-    public IBinder e;
-    public Scope[] f;
-    public Bundle h;
-    public Account n;
-    public f84[] r;
-    public f84[] s;
-    public final boolean w;
-    public final int x;
-    public boolean y;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+public final class ct4 implements Runnable {
+    public final byte a;
+    public final float b;
+    public final float c;
+    public final Object d;
 
-    public ct4(int i, int i2, int i3, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, f84[] f84VarArr, f84[] f84VarArr2, boolean z, int i4, boolean z2, String str2) {
-        Scope[] scopeArr2;
-        Bundle bundle2;
-        f84[] f84VarArr3;
-        Account account2;
-        IInterface ezcVar;
-        if (scopeArr == null) {
-            scopeArr2 = F;
-        } else {
-            scopeArr2 = scopeArr;
-        }
-        if (bundle == null) {
-            bundle2 = new Bundle();
-        } else {
-            bundle2 = bundle;
-        }
-        f84[] f84VarArr4 = G;
-        if (f84VarArr == null) {
-            f84VarArr3 = f84VarArr4;
-        } else {
-            f84VarArr3 = f84VarArr;
-        }
-        f84VarArr4 = f84VarArr2 != null ? f84VarArr2 : f84VarArr4;
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        if ("com.google.android.gms".equals(str)) {
-            this.d = "com.google.android.gms";
-        } else {
-            this.d = str;
-        }
-        if (i < 2) {
-            account2 = null;
-            if (iBinder != null) {
-                int i5 = e5.b;
-                IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
-                if (queryLocalInterface instanceof ug5) {
-                    ezcVar = (ug5) queryLocalInterface;
-                } else {
-                    ezcVar = new ezc(iBinder, "com.google.android.gms.common.internal.IAccountAccessor", (byte) 4);
-                }
-                long clearCallingIdentity = Binder.clearCallingIdentity();
-                try {
-                    try {
-                        kef kefVar = (kef) ezcVar;
-                        Parcel P = kefVar.P(kefVar.R(), 2);
-                        Account account3 = (Account) mgd.a(P, Account.CREATOR);
-                        P.recycle();
-                        Binder.restoreCallingIdentity(clearCallingIdentity);
-                        account2 = account3;
-                    } catch (RemoteException unused) {
-                        Log.w("AccountAccessor", "Remote account accessor probably died");
-                        Binder.restoreCallingIdentity(clearCallingIdentity);
-                    }
-                } catch (Throwable th) {
-                    Binder.restoreCallingIdentity(clearCallingIdentity);
-                    throw th;
-                }
-            }
-        } else {
-            this.e = iBinder;
-            account2 = account;
-        }
-        this.n = account2;
-        this.f = scopeArr2;
-        this.h = bundle2;
-        this.r = f84VarArr3;
-        this.s = f84VarArr4;
-        this.w = z;
-        this.x = i4;
-        this.y = z2;
-        this.E = str2;
+    public ct4(Object obj, float f, float f2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = f;
+        this.c = f2;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        c0f.a(this, parcel, i);
+    public final void run() {
+        View view;
+        byte b = this.a;
+        float f = this.c;
+        float f2 = this.b;
+        Object obj = this.d;
+        switch (b) {
+            case 0:
+                dt4 dt4Var = (dt4) obj;
+                it4 it4Var = dt4Var.b;
+                ValueAnimator valueAnimator = it4Var.d0;
+                at4 at4Var = it4Var.i0;
+                at4 at4Var2 = it4Var.h0;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    it4Var.d0.cancel();
+                    it4Var.d0 = null;
+                }
+                AnimatorSet animatorSet = it4Var.e0;
+                if (animatorSet != null) {
+                    animatorSet.removeAllListeners();
+                    it4Var.e0.cancel();
+                    it4Var.e0 = null;
+                }
+                if (Math.abs(it4Var.b.d) > 10.0f) {
+                    it4Var.l();
+                    return;
+                }
+                hl.r(it4Var.f0);
+                it4Var.e0 = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(it4Var.b.d, f2);
+                ofFloat.addUpdateListener(at4Var2);
+                ofFloat.setDuration(220L);
+                k43 k43Var = k43.h;
+                ofFloat.setInterpolator(k43Var);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f2, 0.0f);
+                ofFloat2.addUpdateListener(at4Var2);
+                ofFloat2.setStartDelay(220L);
+                ofFloat2.setDuration(600L);
+                OvershootInterpolator overshootInterpolator = hl.H;
+                ofFloat2.setInterpolator(overshootInterpolator);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(it4Var.b.i, f);
+                ofFloat3.addUpdateListener(at4Var);
+                ofFloat3.setDuration(220L);
+                ofFloat3.setInterpolator(k43Var);
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f, 0.0f);
+                ofFloat4.addUpdateListener(at4Var);
+                ofFloat4.setStartDelay(220L);
+                ofFloat4.setDuration(600L);
+                ofFloat4.setInterpolator(overshootInterpolator);
+                it4Var.e0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                it4Var.e0.addListener(new cn2(dt4Var, (byte) 23));
+                it4Var.e0.start();
+                return;
+            default:
+                d79 d79Var = (d79) ((gu5) obj).b;
+                if (d79Var.d1 != null && (view = d79Var.M1) != null) {
+                    d79Var.l1(view, f2, f, true);
+                    d79Var.d1 = null;
+                    return;
+                }
+                return;
+        }
     }
 }

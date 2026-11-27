@@ -1,63 +1,177 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Typeface;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import org.telegram.ui.o;
-public final class tv extends HorizontalScrollView {
-    public final vg5 a;
-    public final uv b;
+import android.os.Binder;
+import android.os.Bundle;
+import android.os.Trace;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.LaunchActivity;
+public final class tv implements Runnable {
+    public static final tv b = new tv((byte) 14);
+    public final byte a;
 
-    public tv(uv uvVar, Activity activity, vg5 vg5Var) {
-        super(activity);
-        this.b = uvVar;
-        this.a = vg5Var;
+    public tv(ve9 ve9Var, int i) {
+        this.a = (byte) 1;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
-        this.b.e.getMeasuredWidth();
-        getMeasuredWidth();
-        Typeface typeface = gl.a;
-        return onInterceptTouchEvent;
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        efb efbVar = this.b.e;
-        efbVar.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight(), 0), i2);
-        setMeasuredDimension(View.MeasureSpec.getSize(i), efbVar.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onScrollChanged(int i, int i2, int i3, int i4) {
-        super.onScrollChanged(i, i2, i3, i4);
-        vg5 vg5Var = this.a;
-        if (vg5Var.d != null) {
-            vg5Var.d = null;
-            vg5Var.f = null;
+    public final void run() {
+        boolean z = true;
+        switch (this.a) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return;
+            case 6:
+                ArrayList arrayList = vo3.j;
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    ArrayList arrayList2 = vo3.j;
+                    vo3.j = null;
+                    if (vo3.k == null) {
+                        int max = Math.max(1, Runtime.getRuntime().availableProcessors());
+                        ?? obj = new Object();
+                        obj.a = new ArrayList(10);
+                        obj.b = new SparseIntArray();
+                        obj.c = new ArrayList(10);
+                        obj.i = new p1(obj, (byte) 24);
+                        obj.d = max;
+                        obj.f = Utilities.b.nextInt();
+                        vo3.k = obj;
+                    }
+                    Utilities.e.c(new se(arrayList2, (byte) 4));
+                    return;
+                }
+                vo3.j = null;
+                return;
+            case 7:
+                try {
+                    int i = n1c.a;
+                    Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
+                    if (gx3.j == null) {
+                        z = false;
+                    }
+                    if (z) {
+                        gx3.a().c();
+                    }
+                    Trace.endSection();
+                    return;
+                } catch (Throwable th) {
+                    int i2 = n1c.a;
+                    Trace.endSection();
+                    throw th;
+                }
+            case 8:
+                return;
+            case 9:
+                String[] strArr = MediaController.W1;
+                return;
+            case 10:
+                Utilities.b.nextInt();
+                o15[] o15VarArr = t6b.a;
+                jn7.f(yac.t0).k(2, 0);
+                hl.d3(t6b.o, 1000L);
+                LaunchActivity.Q().getFragmentView();
+                return;
+            case 11:
+                aob.j = false;
+                aob.l(false);
+                return;
+            case 12:
+                aob.k = false;
+                aob.l(true);
+                return;
+            case 13:
+                dlc dlcVar = dlc.U;
+                if (dlcVar != null) {
+                    clc clcVar = dlcVar.b;
+                    int i3 = clc.h;
+                    hl.r(clcVar.f.O);
+                    return;
+                }
+                return;
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            default:
+                return;
         }
-        this.b.a();
-        fib fibVar = ((o) vg5Var).Q0;
-        if (fibVar != null && fibVar.w()) {
-            fibVar.v();
-        }
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.b.e.getMeasuredWidth() <= getMeasuredWidth() - gl.L(36.0f)) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
+    public tv(p53 p53Var, String str, Bundle bundle, byte b2) {
+        this.a = b2;
     }
 
-    @Override
-    public final boolean overScrollBy(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, boolean z) {
-        o.R(this.a);
-        return super.overScrollBy(i, i2, i3, i4, i5, i6, i7, i8, z);
+    public tv(Binder binder, Object obj, byte b2) {
+        this.a = b2;
+    }
+
+    public tv(Object obj, byte b2) {
+        this.a = b2;
+    }
+
+    public tv(byte b2) {
+        this.a = b2;
+    }
+
+    public tv(p53 p53Var, int i, Bundle bundle) {
+        this.a = (byte) 2;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
+    }
+
+    private final void e() {
+    }
+
+    private final void f() {
+    }
+
+    private final void g() {
+    }
+
+    private final void h() {
+    }
+
+    private final void i() {
+    }
+
+    private final void j() {
+    }
+
+    private final void k() {
+    }
+
+    private final void l() {
+    }
+
+    private final void m() {
+    }
+
+    private final void n() {
+    }
+
+    private final void o() {
+    }
+
+    private final void p() {
     }
 }

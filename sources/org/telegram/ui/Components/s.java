@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import java.io.File;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class s implements crc {
+public final class s implements qvc {
     public final ThemeEditorView a;
 
     public s(ThemeEditorView themeEditorView) {
@@ -17,9 +17,9 @@ public final class s implements crc {
         while (true) {
             ThemeEditorView themeEditorView = this.a;
             if (i < themeEditorView.e.size()) {
-                blb blbVar = (blb) themeEditorView.e.get(i);
-                int w0 = bkb.w0(blbVar.i, blbVar.e, false);
-                blbVar.h = w0;
+                apb apbVar = (apb) themeEditorView.e.get(i);
+                int w0 = aob.w0(apbVar.i, apbVar.e, false);
+                apbVar.h = w0;
                 if (i == 0) {
                     themeEditorView.n.l1.c(w0);
                 }
@@ -27,7 +27,7 @@ public final class s implements crc {
             } else {
                 ThemeEditorView.EditorAlert editorAlert = themeEditorView.n;
                 int i2 = ThemeEditorView.EditorAlert.G1;
-                editorAlert.F0(true);
+                editorAlert.G0(true);
                 return;
             }
         }
@@ -35,32 +35,32 @@ public final class s implements crc {
 
     @Override
     public final void b(File file, Bitmap bitmap, boolean z) {
-        akb akbVar = this.a.o;
-        bkb.km.delete(bkb.De);
-        bkb.km.delete(bkb.Ee);
-        bkb.km.delete(bkb.Fe);
-        bkb.km.delete(bkb.Ge);
-        bkb.km.delete(bkb.He);
-        bkb.g0 = null;
-        akbVar.v(null);
+        znb znbVar = this.a.o;
+        aob.lm.delete(aob.Ee);
+        aob.lm.delete(aob.Fe);
+        aob.lm.delete(aob.Ge);
+        aob.lm.delete(aob.He);
+        aob.lm.delete(aob.Ie);
+        aob.g0 = null;
+        znbVar.v(null);
         if (bitmap != null) {
-            bkb.e0 = new BitmapDrawable(bitmap);
-            bkb.v1(akbVar, false, false, false);
-            int[] q = gl.q(bkb.e0);
+            aob.e0 = new BitmapDrawable(bitmap);
+            aob.v1(znbVar, false, false, false);
+            int[] q = hl.q(aob.e0);
             int i = q[0];
-            bkb.b0 = i;
-            bkb.W = i;
+            aob.b0 = i;
+            aob.W = i;
             int i2 = q[1];
-            bkb.c0 = i2;
-            bkb.a0 = i2;
-            bkb.h();
-            bkb.g(bkb.d0);
-            kk7.e().k(kk7.B4, new Object[0]);
+            aob.c0 = i2;
+            aob.a0 = i2;
+            aob.h();
+            aob.g(aob.d0);
+            jn7.e().k(jn7.C4, new Object[0]);
             return;
         }
-        bkb.e0 = null;
-        bkb.d0 = null;
-        bkb.v1(akbVar, false, false, false);
-        bkb.s1(true);
+        aob.e0 = null;
+        aob.d0 = null;
+        aob.v1(znbVar, false, false, false);
+        aob.s1(true);
     }
 }

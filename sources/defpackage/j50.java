@@ -1,14 +1,15 @@
 package defpackage;
-public final class j50 implements zn7 {
+public final class j50 implements zq7 {
     public static final j50 a = new Object();
-    public static final w84 b = w84.c("clearBlob");
-    public static final w84 c = w84.c("encryptedBlob");
+    public static final sa4 b = sa4.c("clientType");
+    public static final sa4 c = sa4.c("androidClientInfo");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        l64 l64Var = (l64) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ((r90) l64Var).a);
-        ao7Var.a(c, ((r90) l64Var).b);
+        hj2 hj2Var = (hj2) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ((z70) hj2Var).getClass();
+        ar7Var.a(b, gj2.a);
+        ar7Var.a(c, ((z70) hj2Var).a);
     }
 }

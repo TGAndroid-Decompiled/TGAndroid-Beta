@@ -1,141 +1,36 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PhotoViewer;
-public final class e88 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final PhotoViewer b;
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class e88 extends Path {
+    public int a;
+    public int b;
+    public int c;
 
-    public e88(PhotoViewer photoViewer, byte b) {
-        this.a = b;
-        this.b = photoViewer;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        boolean z;
-        boolean z2;
-        x02 x02Var;
-        byte b = this.a;
-        PhotoViewer photoViewer = this.b;
-        switch (b) {
-            case 0:
-                photoViewer.o6 = null;
-                v48 v48Var = photoViewer.D1;
-                if (v48Var != null) {
-                    boolean j = v48Var.b.j();
-                    ImageView imageView = photoViewer.b1;
-                    if (j) {
-                        zkb.s(imageView, bkb.pg, photoViewer.w2, PorterDuff.Mode.MULTIPLY);
-                    } else {
-                        imageView.setColorFilter((ColorFilter) null);
-                    }
-                    photoViewer.f6 = 0.0f;
-                    photoViewer.f0.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                photoViewer.t3 = null;
-                return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.d9;
-                photoViewer.q2();
-                return;
-            case 3:
-                photoViewer.M1.o0(false);
-                q88 q88Var = photoViewer.M1;
-                q88Var.k1.setTypeface(k38.e(q88Var.F1).j);
-                q88Var.P0.setVisibility(0);
-                q88Var.M0.setVisibility(0);
-                q88Var.N0.setVisibility(0);
-                ju7 ju7Var = photoViewer.x4;
-                ju7Var.f = true;
-                int childCount = ju7Var.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    ju7Var.getChildAt(i).setVisibility(4);
-                }
-                photoViewer.o6 = null;
-                photoViewer.t4 = (byte) 3;
-                mv5 mv5Var = photoViewer.d0().M;
-                if (photoViewer.t4 != 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                mv5Var.b(z);
-                mv5 mv5Var2 = photoViewer.L1;
-                if (mv5Var2 != null) {
-                    if (photoViewer.t4 != 3) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    mv5Var2.b(z2);
-                }
-                photoViewer.n6 = -1;
-                float z1 = photoViewer.z1(false);
-                photoViewer.Z5 = z1;
-                photoViewer.d6 = z1;
-                photoViewer.b6 = 0.0f;
-                photoViewer.c6 = 0.0f;
-                photoViewer.I2(z1);
-                photoViewer.u2 = true;
-                photoViewer.f0.invalidate();
-                o98 o98Var = photoViewer.d;
-                if (o98Var == null || !o98Var.P()) {
-                    photoViewer.W0();
-                    return;
-                }
-                return;
-            case 4:
-                AnimatorSet animatorSet = photoViewer.C1;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    photoViewer.p1.setVisibility(8);
-                    photoViewer.C1 = null;
-                    return;
-                }
-                return;
-            case 5:
-                gl.c3(new w88(this, (byte) 1));
-                return;
-            case 6:
-                photoViewer.l6 = 1.0f;
-                Runnable runnable = photoViewer.o4;
-                if (runnable != null) {
-                    mu1 mu1Var = photoViewer.k4;
-                    if (mu1Var == null && (x02Var = photoViewer.b2) != null) {
-                        d dVar = x02Var.Z1;
-                        if (dVar instanceof mu1) {
-                            mu1Var = (mu1) dVar;
-                        }
-                    }
-                    if (mu1Var != null) {
-                        mu1Var.s6(runnable);
-                        return;
-                    }
-                    runnable.run();
-                    photoViewer.o4 = null;
-                    return;
-                }
-                return;
-            case 7:
-                photoViewer.o6 = null;
-                photoViewer.f0.invalidate();
-                return;
-            case 8:
-                photoViewer.y3[0].setTag(null);
-                return;
-            default:
-                photoViewer.y3[0].setTag(null);
-                return;
+    public final void a(int i, int i2, int i3) {
+        if (this.a == i && this.b == i2 && this.c == i3) {
+            return;
         }
+        rewind();
+        RectF rectF = hl.P;
+        float f = i - i3;
+        float f2 = i2 + i3;
+        rectF.set(f, i2 - i3, i + i3, f2);
+        arcTo(rectF, -180.0f, 270.0f, false);
+        float f3 = i3 / 81.0f;
+        float f4 = i;
+        float f5 = f2 - (3.0f * f3);
+        cubicTo(f4 - (13.0f * f3), f2, f4 - (25.0f * f3), f5, f4 - (36.0f * f3), f2 - (8.42f * f3));
+        float f6 = f2 - f3;
+        cubicTo(f4 - (52.0f * f3), f6, f4 - (56.5f * f3), f6, f4 - (78.02f * f3), f6);
+        cubicTo(f4 - (80.0f * f3), f6, f4 - (81.0f * f3), f5, f4 - (79.52f * f3), f2 - (4.5f * f3));
+        float f7 = f4 - (63.73f * f3);
+        cubicTo(f4 - (78.0f * f3), f2 - (6.0f * f3), f7, f2 - (15.0f * f3), f7, f2 - (31.0f * f3));
+        float f8 = i2;
+        cubicTo(f4 - (74.5f * f3), f2 - (44.75f * f3), f, (f3 * 18.87f) + f8, f, f8);
+        close();
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
     }
 }

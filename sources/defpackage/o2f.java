@@ -1,6 +1,11 @@
 package defpackage;
+
+import org.telegram.ui.Dictation.DictationAsr;
 public abstract class o2f {
-    public static int a(int i) {
-        return (i >>> 1) ^ (-(i & 1));
+    public static boolean a() {
+        if (uc7.e1().getBoolean("asr_live_text", true) && DictationAsr.G()) {
+            return true;
+        }
+        return false;
     }
 }

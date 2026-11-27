@@ -1,425 +1,280 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.Layout;
-import android.util.Property;
+import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.o;
-public final class eu extends FrameLayout implements eib, tjb {
-    public AnimatorSet E;
-    public final boolean F;
-    public TL_iv.pageBlockChannel G;
-    public int a;
-    public final vg5 b;
-    public final dx c;
-    public final cw2 d;
-    public final TextView e;
-    public final ImageView f;
-    public byte h;
-    public bw n;
-    public int r;
-    public final int s;
-    public final int w;
-    public int x;
-    public final Paint y;
+public final class eu extends View implements zlb, ew {
+    public final xi5 a;
+    public final ex b;
+    public cw c;
+    public cw d;
+    public int e;
+    public int f;
+    public int h;
+    public TL_iv.pageBlockBlockquote n;
 
-    public eu(Context context, vg5 vg5Var, dx dxVar, int i) {
-        super(context);
-        this.s = gl.L(18.0f);
-        this.w = gl.L(11.0f);
-        this.b = vg5Var;
-        this.c = dxVar;
-        setWillNotDraw(false);
-        this.y = new Paint();
-        this.F = i;
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(gl.o());
-        textView.setText(k96.M0(2131752385, null));
-        textView.setGravity(19);
-        addView(textView, nme.e(-2, 39, 53));
-        textView.setOnClickListener(new t(this, vg5Var, (byte) 18));
-        ImageView imageView = new ImageView(context);
-        this.f = imageView;
-        imageView.setImageResource(2131231626);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, nme.e(39, 39, 53));
-        cw2 cw2Var = new cw2(context, 0);
-        this.d = cw2Var;
-        addView(cw2Var, nme.e(39, 39, 53));
-    }
-
-    public final void a(int i, boolean z) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        float f6;
-        float f7;
-        float f8;
-        float f9;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        float f18;
-        AnimatorSet animatorSet = this.E;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.h = i;
-        ImageView imageView = this.f;
-        cw2 cw2Var = this.d;
-        TextView textView = this.e;
-        if (z) {
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.E = animatorSet2;
-            if (i == 0) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            float[] fArr = {f10};
-            Property property = View.ALPHA;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, property, fArr);
-            if (i == 0) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.1f;
-            }
-            float[] fArr2 = {f11};
-            Property property2 = View.SCALE_X;
-            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView, property2, fArr2);
-            if (i == 0) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.1f;
-            }
-            Property property3 = View.SCALE_Y;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textView, property3, f12);
-            if (i == 1) {
-                f13 = 1.0f;
-            } else {
-                f13 = 0.0f;
-            }
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cw2Var, property, f13);
-            if (i == 1) {
-                f14 = 1.0f;
-            } else {
-                f14 = 0.1f;
-            }
-            ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(cw2Var, property2, f14);
-            if (i == 1) {
-                f15 = 1.0f;
-            } else {
-                f15 = 0.1f;
-            }
-            ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(cw2Var, property3, f15);
-            if (i == 2) {
-                f16 = 1.0f;
-            } else {
-                f16 = 0.0f;
-            }
-            ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(imageView, property, f16);
-            if (i == 2) {
-                f17 = 1.0f;
-            } else {
-                f17 = 0.1f;
-            }
-            ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(imageView, property2, f17);
-            if (i == 2) {
-                f18 = 1.0f;
-            } else {
-                f18 = 0.1f;
-            }
-            animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ObjectAnimator.ofFloat(imageView, property3, f18));
-            this.E.setDuration(150L);
-            this.E.start();
-            return;
-        }
-        if (i == 0) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        textView.setAlpha(f);
-        if (i == 0) {
-            f2 = 1.0f;
-        } else {
-            f2 = 0.1f;
-        }
-        textView.setScaleX(f2);
-        if (i == 0) {
-            f3 = 1.0f;
-        } else {
-            f3 = 0.1f;
-        }
-        textView.setScaleY(f3);
-        if (i == 1) {
-            f4 = 1.0f;
-        } else {
-            f4 = 0.0f;
-        }
-        cw2Var.setAlpha(f4);
-        if (i == 1) {
-            f5 = 1.0f;
-        } else {
-            f5 = 0.1f;
-        }
-        cw2Var.setScaleX(f5);
-        if (i == 1) {
-            f6 = 1.0f;
-        } else {
-            f6 = 0.1f;
-        }
-        cw2Var.setScaleY(f6);
-        if (i == 2) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        imageView.setAlpha(f7);
-        if (i == 2) {
-            f8 = 1.0f;
-        } else {
-            f8 = 0.1f;
-        }
-        imageView.setScaleX(f8);
-        if (i == 2) {
-            f9 = 1.0f;
-        } else {
-            f9 = 0.1f;
-        }
-        imageView.setScaleY(f9);
+    public eu(Activity activity, xi5 xi5Var, ex exVar) {
+        super(activity);
+        this.a = xi5Var;
+        this.b = exVar;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.L6));
-        hashSet.add(Integer.valueOf(bkb.I6));
-        hashSet.add(Integer.valueOf(bkb.x6));
+    public int getBoundLeft() {
+        int i;
+        xi5 xi5Var = this.a;
+        xi5Var.getClass();
+        int L = hl.L(18.0f);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            i = Math.min(Integer.MAX_VALUE, (cwVar.k() + cwVar.s) - L);
+        } else {
+            i = Integer.MAX_VALUE;
+        }
+        cw cwVar2 = this.d;
+        if (cwVar2 != null) {
+            i = Math.min(i, (cwVar2.k() + cwVar2.s) - L);
+        }
+        if (i == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return ik8.h(xi5Var, 18.0f, i);
+    }
+
+    @Override
+    public int getBoundRight() {
+        int i;
+        xi5 xi5Var = this.a;
+        xi5Var.getClass();
+        int L = hl.L(18.0f);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            i = Math.max(Integer.MIN_VALUE, cwVar.l() + cwVar.s + L);
+        } else {
+            i = Integer.MIN_VALUE;
+        }
+        cw cwVar2 = this.d;
+        if (cwVar2 != null) {
+            i = Math.max(i, cwVar2.l() + cwVar2.s + L);
+        }
+        if (i == Integer.MIN_VALUE) {
+            return -1;
+        }
+        return ik8.C(xi5Var, 18.0f, i);
+    }
+
+    @Override
+    public int getLastLineBoundRight() {
+        cw cwVar = this.d;
+        xi5 xi5Var = this.a;
+        if (cwVar != null) {
+            int m = cwVar.m() + cwVar.s;
+            xi5Var.getClass();
+            return hl.L(18.0f) + m;
+        }
+        cw cwVar2 = this.c;
+        if (cwVar2 != null) {
+            int m2 = cwVar2.m() + cwVar2.s;
+            xi5Var.getClass();
+            return hl.L(18.0f) + m2;
+        }
+        return -1;
+    }
+
+    public int getMinWidth() {
+        return ik8.a(this);
     }
 
     @Override
     public final void k(ArrayList arrayList) {
-        bw bwVar = this.n;
-        if (bwVar != null) {
-            arrayList.add(bwVar);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            arrayList.add(cwVar);
+        }
+        cw cwVar2 = this.d;
+        if (cwVar2 != null) {
+            arrayList.add(cwVar2);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        bw bwVar = this.n;
-        if (bwVar != null) {
-            bwVar.i(this);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.i(this);
+        }
+        cw cwVar2 = this.d;
+        if (cwVar2 != null) {
+            cwVar2.i(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        bw bwVar = this.n;
-        if (bwVar != null) {
-            bwVar.f(this);
+        cw cwVar = this.c;
+        if (cwVar != null) {
+            cwVar.f(this);
+        }
+        cw cwVar2 = this.d;
+        if (cwVar2 != null) {
+            cwVar2.f(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.G != null) {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), gl.L(39.0f), this.y);
-            bw bwVar = this.n;
-            if (bwVar != null && bwVar.d.getLineCount() > 0) {
-                canvas.save();
-                int i = this.w;
-                int i2 = this.s;
-                dx dxVar = this.c;
-                if (dxVar != null && dxVar.H) {
-                    canvas.translate((getMeasuredWidth() - this.n.d.getLineWidth(0)) - i2, i);
-                } else {
-                    canvas.translate(i2, i);
-                }
-                if (!this.F) {
-                    o.s(this.b, canvas, this, 0);
-                }
-                this.n.d(canvas, this);
-                canvas.restore();
-            }
+        if (this.n == null) {
+            return;
         }
+        cw cwVar = this.c;
+        xi5 xi5Var = this.a;
+        int i = 0;
+        if (cwVar != null) {
+            canvas.save();
+            canvas.translate(this.f, this.h);
+            o.s(xi5Var, canvas, this, 0);
+            this.c.d(canvas, this);
+            canvas.restore();
+            i = 1;
+        }
+        if (this.d != null) {
+            canvas.save();
+            canvas.translate(this.f, this.e);
+            o.s(xi5Var, canvas, this, i);
+            this.d.d(canvas, this);
+            canvas.restore();
+        }
+        ex exVar = this.b;
+        if (exVar != null && exVar.H) {
+            int measuredWidth = getMeasuredWidth() - hl.L(20.0f);
+            canvas.drawRect(measuredWidth, hl.L(6.0f), hl.L(2.0f) + measuredWidth, getMeasuredHeight() - hl.L(6.0f), o.s1);
+        } else {
+            xi5Var.getClass();
+            xi5Var.getClass();
+            canvas.drawRect(hl.L((this.n.level * 14) + 18), hl.L(6.0f), hl.L((this.n.level * 14) + 20), getMeasuredHeight() - hl.L(6.0f), o.s1);
+        }
+        o.r(canvas, xi5Var, this.n, getMeasuredHeight());
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        CharSequence g;
+        CharSequence g2;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
         accessibilityNodeInfo.setEnabled(true);
-        bw bwVar = this.n;
-        if (bwVar == null) {
+        accessibilityNodeInfo.setClickable(false);
+        accessibilityNodeInfo.setLongClickable(false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        cw cwVar = this.c;
+        ex exVar = this.b;
+        xi5 xi5Var = this.a;
+        if (cwVar != null && (g2 = o.g(xi5Var, exVar, cwVar)) != null) {
+            spannableStringBuilder.append(g2);
+        }
+        cw cwVar2 = this.d;
+        if (cwVar2 != null && (g = o.g(xi5Var, exVar, cwVar2)) != null) {
+            if (spannableStringBuilder.length() > 0) {
+                spannableStringBuilder.append((CharSequence) ", ");
+            }
+            spannableStringBuilder.append(g);
+        }
+        if (spannableStringBuilder.length() == 0) {
             return;
         }
-        accessibilityNodeInfo.setText(o.f(2131754904, o.g(this.b, this.c, bwVar)));
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int L = ((this.r / 2) + this.x) - gl.L(19.0f);
-        int i5 = this.x;
-        int L2 = gl.L(20.0f);
-        int L3 = gl.L(39.0f);
-        this.f.layout(L, 0, L2 + (this.r / 2) + i5, L3);
-        this.d.layout(((this.r / 2) + this.x) - gl.L(19.0f), 0, gl.L(20.0f) + (this.r / 2) + this.x, gl.L(39.0f));
-        int i6 = this.x;
-        TextView textView = this.e;
-        textView.layout(i6, 0, textView.getMeasuredWidth() + i6, textView.getMeasuredHeight());
+        spannableStringBuilder.append((CharSequence) ", ").append((CharSequence) ob6.M0(2131754868, null));
+        accessibilityNodeInfo.setText(spannableStringBuilder);
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        Layout.Alignment alignment;
+        eu euVar;
+        int i3;
         int size = View.MeasureSpec.getSize(i);
-        setMeasuredDimension(size, gl.L(48.0f));
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(gl.L(39.0f), 1073741824);
-        TextView textView = this.e;
-        textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.r = textView.getMeasuredWidth();
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(gl.L(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(39.0f), 1073741824));
-        this.f.measure(View.MeasureSpec.makeMeasureSpec(gl.L(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(39.0f), 1073741824));
-        TL_iv.pageBlockChannel pageblockchannel = this.G;
-        if (pageblockchannel != null) {
-            String str = pageblockchannel.channel.title;
-            int L = (size - gl.L(52.0f)) - this.r;
-            TL_iv.pageBlockChannel pageblockchannel2 = this.G;
-            Layout.Alignment[] alignmentArr = lwa.a;
-            if (alignmentArr.length >= 5) {
-                alignment = alignmentArr[3];
+        xi5 xi5Var = this.a;
+        xi5Var.getClass();
+        this.h = hl.L(8.0f);
+        if (this.n != null) {
+            int h = ik8.h(xi5Var, 50.0f, size);
+            int i4 = this.n.level;
+            if (i4 > 0) {
+                h -= hl.L(i4 * 14);
+            }
+            int i5 = h;
+            TL_iv.pageBlockBlockquote pageblockblockquote = this.n;
+            euVar = this;
+            cw m = o.m(this.a, euVar, null, pageblockblockquote.text, i5, this.h, pageblockblockquote, this.b);
+            euVar.c = m;
+            if (m != null) {
+                xi5Var.getClass();
+                i3 = euVar.c.d.getHeight() + hl.L(8.0f);
             } else {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
+                i3 = 0;
             }
-            Layout.Alignment alignment2 = alignment;
-            this.n = o.n(this.b, this, str, null, L, this.w, pageblockchannel2, alignment2, 1, this.c);
-            int i3 = this.s;
-            dx dxVar = this.c;
-            if (dxVar != null && dxVar.H) {
-                this.x = i3;
+            int i6 = euVar.n.level;
+            ex exVar = euVar.b;
+            if (i6 > 0) {
+                if (exVar != null && exVar.H) {
+                    euVar.f = hl.L((i6 * 14) + 14);
+                } else {
+                    euVar.f = ik8.C(xi5Var, 32.0f, hl.L(i6 * 14));
+                }
+            } else if (exVar != null && exVar.H) {
+                euVar.f = hl.L(14.0f);
             } else {
-                this.x = (getMeasuredWidth() - i3) - this.r;
+                xi5Var.getClass();
+                euVar.f = hl.L(32.0f);
             }
-            bw bwVar = this.n;
-            if (bwVar != null) {
-                bwVar.s = i3;
-                bwVar.w = this.w;
+            int C = ik8.C(xi5Var, 8.0f, i3);
+            euVar.e = C;
+            TL_iv.pageBlockBlockquote pageblockblockquote2 = euVar.n;
+            cw m2 = o.m(euVar.a, euVar, null, pageblockblockquote2.caption, i5, C, pageblockblockquote2, euVar.b);
+            euVar.d = m2;
+            if (m2 != null) {
+                xi5Var.getClass();
+                i3 += euVar.d.d.getHeight() + hl.L(8.0f);
             }
+            if (i3 != 0) {
+                i3 = ik8.C(xi5Var, 8.0f, i3);
+            }
+            cw cwVar = euVar.c;
+            if (cwVar != null) {
+                cwVar.s = euVar.f;
+                cwVar.w = euVar.h;
+            }
+            cw cwVar2 = euVar.d;
+            if (cwVar2 != null) {
+                cwVar2.s = euVar.f;
+                cwVar2.w = euVar.e;
+            }
+        } else {
+            euVar = this;
+            i3 = 1;
         }
+        euVar.setMeasuredDimension(size, i3);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.F) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!o.i(this.b, this.c, motionEvent, this, this.n, this.s, this.w) && !super.onTouchEvent(motionEvent)) {
-            return false;
+        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.f, this.h)) {
+            if (!o.i(this.a, this.b, motionEvent, this, this.d, this.f, this.e) && !super.onTouchEvent(motionEvent)) {
+                return false;
+            }
+            return true;
         }
         return true;
     }
 
-    public void setBlock(TL_iv.pageBlockChannel pageblockchannel) {
-        eu euVar;
-        this.G = pageblockchannel;
-        boolean z = this.F;
-        ImageView imageView = this.f;
-        Paint paint = this.y;
-        TextView textView = this.e;
-        vg5 vg5Var = this.b;
-        if (!z) {
-            int i = bkb.L6;
-            o oVar = (o) vg5Var;
-            oVar.getClass();
-            int w0 = bkb.w0(null, i, false);
-            int red = Color.red(w0);
-            int green = Color.green(w0);
-            int blue = Color.blue(w0);
-            oVar.getClass();
-            textView.setTextColor(bkb.w0(null, bkb.I6, false));
-            paint.setColor(Color.argb(34, red, green, blue));
-            oVar.getClass();
-            this.a = bkb.w0(null, bkb.x6, false);
-            imageView.setColorFilter(new PorterDuffColorFilter(this.a, PorterDuff.Mode.MULTIPLY));
-        } else {
-            textView.setTextColor(-1);
-            paint.setColor(2130706432);
-            imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        }
-        TLRPC.Chat K0 = na7.q1(((o) vg5Var).Y).K0(Long.valueOf(pageblockchannel.channel.id));
-        if (K0 != null && !K0.min) {
-            vg5Var.n = K0;
-            if (K0.left && !K0.kicked) {
-                a(0, false);
-            } else {
-                a(4, false);
-            }
-            euVar = this;
-        } else {
-            TLRPC.Chat chat = pageblockchannel.channel;
-            if (!vg5Var.r && hc2.t0(chat)) {
-                vg5Var.r = true;
-                int i2 = ((o) vg5Var).Y;
-                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = chat.username;
-                euVar = this;
-                ConnectionsManager.getInstance(i2).sendRequest(tL_contacts_resolveUsername, new ae(vg5Var, this.c, i2, euVar, (byte) 1));
-            } else {
-                euVar = this;
-            }
-            euVar.a(1, false);
-        }
-        euVar.requestLayout();
-    }
-
-    @Override
-    public final void updateColors() {
-        TextView textView;
-        ImageView imageView;
-        Paint paint;
-        try {
-            if (!this.F && this.G != null && this.b != null && (textView = this.e) != null && (imageView = this.f) != null && (paint = this.y) != null) {
-                int w0 = bkb.w0(null, bkb.L6, false);
-                textView.setTextColor(bkb.w0(null, bkb.I6, false));
-                paint.setColor(Color.argb(34, Color.red(w0), Color.green(w0), Color.blue(w0)));
-                int w02 = bkb.w0(null, bkb.x6, false);
-                if (w02 != this.a) {
-                    this.a = w02;
-                    imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
-                }
-                invalidate();
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public void setBlock(TL_iv.pageBlockBlockquote pageblockblockquote) {
+        this.n = pageblockblockquote;
+        requestLayout();
     }
 }

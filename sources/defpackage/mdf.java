@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class mdf {
+public final class mdf extends kjf {
 }

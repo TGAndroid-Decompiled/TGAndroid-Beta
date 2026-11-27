@@ -1,26 +1,58 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLRPC;
-public final class vx1 extends mu1 {
-    public boolean wd;
-    public final TLRPC.User xd;
-    public final TLRPC.User yd;
-    public final long zd;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import androidx.appcompat.widget.SearchView;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class vx1 implements TextView.OnEditorActionListener {
+    public final byte a;
+    public final Object b;
 
-    public vx1(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j) {
-        super(bundle);
-        this.xd = user;
-        this.yd = user2;
-        this.zd = j;
+    public vx1(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.wd) {
-            this.wd = true;
-            u21.b0(this).I(2131623990, k96.a0(null, null, 2131751727, l7c.r(this.xd)), gl.N2(k96.a0(null, null, 2131751728, l7c.r(this.yd)), -1, 0, new et(this, this.zd, (byte) 6), null)).j();
+    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
+                if (i == 4) {
+                    chatActivityEnterView.E1();
+                } else if (keyEvent == null || i != 0 || keyEvent.isShiftPressed()) {
+                    return false;
+                } else {
+                    if (chatActivityEnterView.q3) {
+                        if (keyEvent.isCtrlPressed()) {
+                            return false;
+                        }
+                    } else if (!keyEvent.isCtrlPressed()) {
+                        return false;
+                    }
+                    if (keyEvent.getAction() != 0 || chatActivityEnterView.O2 != null) {
+                        return false;
+                    }
+                    chatActivityEnterView.E1();
+                }
+                return true;
+            case 1:
+                if (i != 6) {
+                    return false;
+                }
+                ((zg3) obj).run();
+                return true;
+            case 2:
+                if (i != 6) {
+                    return false;
+                }
+                ((Runnable) obj).run();
+                return true;
+            default:
+                ((SearchView) obj).p();
+                return true;
         }
     }
 }

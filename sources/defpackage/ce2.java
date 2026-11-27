@@ -1,65 +1,31 @@
 package defpackage;
 
-import android.graphics.RectF;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class ce2 implements RequestDelegate {
-    public final byte a;
+import android.animation.ValueAnimator;
+public final class ce2 implements ValueAnimator.AnimatorUpdateListener {
+    public boolean a = false;
+    public final tqb b;
+    public final float c;
+    public final boolean d;
+    public final oe2 e;
 
-    public ce2(byte b) {
-        this.a = b;
+    public ce2(oe2 oe2Var, tqb tqbVar, float f, boolean z) {
+        this.e = oe2Var;
+        this.b = tqbVar;
+        this.c = f;
+        this.d = z;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.a) {
-            case 0:
-                return;
-            case 1:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 2:
-                gl.c3(new ki1(tL_error, (byte) 1));
-                return;
-            case 3:
-                gl.c3(new x57(tLObject, (byte) 1));
-                return;
-            case 4:
-                RectF rectF = ProfileActivity.Z6;
-                return;
-            case 5:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 6:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 7:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 8:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 9:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 10:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 11:
-                gl.c3(new jc((byte) 10));
-                return;
-            case 12:
-                VoIPService.lambda$callFailed$110(tLObject, tL_error);
-                return;
-            default:
-                VoIPService.lambda$createGroupInstance$70(tLObject, tL_error);
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        oe2 oe2Var = this.e;
+        oe2Var.L1 = floatValue;
+        if (!this.d) {
+            floatValue = 1.0f - floatValue;
         }
-    }
-
-    private final void a(TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.b.setRadius(this.c * floatValue);
+        if (!this.a && oe2Var.L1 > 0.5f) {
+            this.a = true;
+        }
     }
 }

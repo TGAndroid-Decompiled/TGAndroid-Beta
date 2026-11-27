@@ -1,48 +1,18 @@
 package defpackage;
-public final class cjd implements kkd {
-    public final byte a;
+public abstract class cjd {
+    public static final a94 a;
+    public static final a94 b;
+    public static final a94[] c;
 
-    public cjd(int i) {
-        this.a = i;
-    }
-
-    @Override
-    public final Class annotationType() {
-        return kkd.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof kkd) {
-                kkd kkdVar = (kkd) obj;
-                if (this.a == kkdVar.zza() && ekd.a.equals(kkdVar.zzb())) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.a ^ 14552422) + (ekd.a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + ((int) this.a) + "intEncoding=" + ekd.a + ')';
-    }
-
-    @Override
-    public final int zza() {
-        return this.a;
-    }
-
-    @Override
-    public final ekd zzb() {
-        return ekd.a;
+    static {
+        a94 a94Var = new a94("GET_CREDENTIAL", 1L);
+        a = a94Var;
+        a94 a94Var2 = new a94("CREDENTIAL_REGISTRY", 1L);
+        a94 a94Var3 = new a94("CLEAR_REGISTRY", 2L);
+        a94 a94Var4 = new a94("CLEAR_CREATION_OPTIONS", 1L);
+        a94 a94Var5 = new a94("CLEAR_CREDENTIAL_STATE", 1L);
+        a94 a94Var6 = new a94("CREATE_CREDENTIAL", 3L);
+        b = a94Var6;
+        c = new a94[]{a94Var, a94Var2, a94Var3, a94Var4, a94Var5, a94Var6, new a94("REGISTER_CREATION_OPTIONS", 1L), new a94("REGISTER_EXPORT", 1L), new a94("IMPORT_CREDENTIALS", 1L), new a94("SIGNAL_CREDENTIAL_STATE", 1L), new a94("CLEAR_EXPORT", 1L), new a94("IMPORT_CREDENTIALS_FOR_DEVICE_SETUP", 3L), new a94("EXPORT_CREDENTIALS_TO_DEVICE_SETUP", 3L), new a94("GET_CREDENTIAL_TRANSFER_CAPABILITIES", 3L)};
     }
 }

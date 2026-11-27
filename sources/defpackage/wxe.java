@@ -1,11 +1,17 @@
 package defpackage;
+public final class wxe implements zq7 {
+    public static final wxe a = new Object();
 
-import org.telegram.ui.Dictation.DictationAsr;
-public abstract class wxe {
-    public static boolean a() {
-        if (na7.c1().getBoolean("asr_live_text", true) && DictationAsr.E()) {
-            return true;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
+        throw new ClassCastException();
     }
 }

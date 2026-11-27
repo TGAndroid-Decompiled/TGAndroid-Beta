@@ -1,30 +1,35 @@
 package defpackage;
+public final class ja9 implements Runnable {
+    public final byte a;
+    public final pa9 b;
 
-import android.content.res.Resources;
-import j$.util.Objects;
-public final class ja9 {
-    public final Resources a;
-    public final Resources.Theme b;
-
-    public ja9(Resources resources, Resources.Theme theme) {
-        this.a = resources;
-        this.b = theme;
+    public ja9(pa9 pa9Var, byte b) {
+        this.a = b;
+        this.b = pa9Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        pa9 pa9Var = this.b;
+        switch (b) {
+            case 0:
+                oa9 oa9Var = pa9Var.a;
+                if (oa9Var != null) {
+                    oa9Var.u();
+                    return;
+                }
+                return;
+            case 1:
+                pa9Var.c.a(pa9Var.r);
+                na9 na9Var = pa9Var.d;
+                na9Var.getClass();
+                na9Var.postRunnable(new ma9(na9Var, (byte) 1));
+                pa9Var.d = null;
+                return;
+            default:
+                pa9Var.c.q(pa9Var.y);
+                return;
         }
-        if (obj != null && ja9.class == obj.getClass()) {
-            ja9 ja9Var = (ja9) obj;
-            if (this.a.equals(ja9Var.a) && Objects.equals(this.b, ja9Var.b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.a, this.b);
     }
 }

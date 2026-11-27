@@ -1,215 +1,801 @@
 package defpackage;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t37 extends FrameLayout implements tjb {
-    public final ArrayList a;
-    public final ArrayList b;
-    public final ArrayList c;
-    public final hc0 d;
-    public final jia e;
-    public final int f;
-    public final boolean h;
-    public final pi4 n;
-    public boolean r;
-    public rkb s;
-    public int w;
+import android.graphics.drawable.NinePatchDrawable;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+public class t37 extends Drawable {
+    public static final hh7[] T = new hh7[3];
+    public NinePatchDrawable F;
+    public int G;
+    public boolean I;
+    public t37 J;
+    public float K;
+    public boolean L;
+    public boolean M;
+    public Bitmap N;
+    public BitmapShader O;
+    public c34 P;
+    public int Q;
+    public float R;
+    public boolean S;
+    public Shader a;
+    public int b;
+    public int e;
+    public int f;
+    public int g;
+    public int h;
+    public boolean i;
+    public final byte l;
+    public final boolean m;
+    public vnb p;
+    public final boolean q;
+    public int r;
+    public boolean s;
+    public boolean t;
+    public boolean u;
+    public boolean v;
+    public final Paint c = new Paint(1);
+    public final RectF j = new RectF();
+    public final Matrix k = new Matrix();
+    public final Rect o = new Rect();
+    public Integer w = null;
+    public boolean x = true;
+    public final int[] y = {-1, -1, -1, -1};
+    public final Bitmap[] z = new Bitmap[4];
+    public final Drawable[] A = new Drawable[4];
+    public final int[] B = {-1, -1, -1, -1};
+    public final int[][] C = {new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
+    public final Drawable[][] D = (Drawable[][]) Array.newInstance(Drawable.class, 4, 4);
+    public final int[][] E = {new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
+    public final Path n = new Path();
+    public final Paint d = new Paint(1);
+    public int H = 255;
 
-    public t37(Context context, int i, k27 k27Var, TLRPC.Chat chat) {
-        super(context);
-        boolean z;
-        int i2;
-        long j;
-        this.a = new ArrayList();
-        this.b = new ArrayList();
-        this.c = new ArrayList();
-        this.f = i;
-        if (!k27Var.g4() && !k27.Q4(k27Var.k)) {
-            z = false;
-        } else {
-            z = true;
-        }
-        this.h = z;
-        pi4 pi4Var = new pi4(context, null);
-        this.n = pi4Var;
-        pi4Var.e(bkb.F8, bkb.h6, -1);
-        pi4Var.setViewType(13);
-        pi4Var.setIsSingleCell(false);
-        addView(pi4Var, nme.c(-1.0f, -2));
-        jia jiaVar = new jia(context);
-        this.e = jiaVar;
-        jiaVar.setTextSize(16);
-        jiaVar.setEllipsizeByGradient(true);
-        jiaVar.setRightPadding(gl.L(62.0f));
-        addView(jiaVar, nme.d(0, -2.0f, 19, 40.0f, 0.0f, 0.0f, 0.0f));
-        hc0 hc0Var = new hc0(context, false);
-        this.d = hc0Var;
-        hc0Var.setStyle(11);
-        hc0Var.setAvatarsTextSize(gl.L(22.0f));
-        addView(hc0Var, nme.d(56, -1.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
-        zkb.W(jiaVar, bkb.D8, null);
-        TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
-        tL_messages_getMessageReadParticipants.msg_id = k27Var.e1();
-        tL_messages_getMessageReadParticipants.peer = na7.q1(i).h1(k27.B0(k27Var.k));
-        ImageView imageView = new ImageView(context);
-        addView(imageView, nme.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
-        if (z) {
-            i2 = 2131232303;
-        } else {
-            i2 = 2131232361;
-        }
-        Drawable mutate = context.getDrawable(i2).mutate();
-        zkb.x(this, mutate, bkb.E8, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setImageDrawable(mutate);
-        hc0Var.setAlpha(0.0f);
-        jiaVar.setAlpha(0.0f);
-        TLRPC.Peer peer = k27Var.k.from_id;
-        if (peer != null) {
-            j = peer.user_id;
-        } else {
-            j = 0;
-        }
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getMessageReadParticipants, new mg(this, j, i, chat));
-        int w0 = bkb.w0(null, bkb.H5, false);
-        this.w = w0;
-        setBackground(bkb.Y(w0, 6, 0));
-        setEnabled(false);
+    public t37(int i, boolean z, boolean z2, vnb vnbVar) {
+        this.p = vnbVar;
+        this.q = z;
+        this.l = i;
+        this.m = z2;
     }
 
-    public final o39 a() {
-        rkb rkbVar = this.s;
-        if (rkbVar != null) {
-            return rkbVar;
+    public final void a() {
+        Bitmap bitmap;
+        if (this.a instanceof BitmapShader) {
+            boolean z = this.L;
+            Matrix matrix = this.k;
+            hh7[] hh7VarArr = T;
+            char c = 0;
+            byte b = this.l;
+            char c2 = 2;
+            if (z && (bitmap = this.N) != null) {
+                if (b == 2) {
+                    c = 1;
+                }
+                float min = 1.0f / Math.min(bitmap.getWidth() / hh7VarArr[c].getBounds().width(), this.N.getHeight() / hh7VarArr[c].getBounds().height());
+                matrix.postScale(min, min);
+                return;
+            }
+            if (!this.v) {
+                if (b == 2) {
+                    c = 1;
+                }
+                c2 = c;
+            }
+            Bitmap bitmap2 = hh7VarArr[c2].k;
+            float min2 = 1.0f / Math.min(bitmap2.getWidth() / hh7VarArr[c2].getBounds().width(), bitmap2.getHeight() / hh7VarArr[c2].getBounds().height());
+            matrix.postScale(min2, min2);
         }
-        rkb rkbVar2 = new rkb(getContext(), null, (byte) 9);
-        this.s = rkbVar2;
-        getContext();
-        rkbVar2.setLayoutManager(new t26());
-        this.s.i(new kr(this, (byte) 6));
-        this.s.setAdapter(new gx0(this, (byte) 4));
-        return this.s;
     }
 
-    public final void b() {
+    public final int b(float f) {
+        if (this.l == 2) {
+            return (int) Math.ceil(f * 3.0f);
+        }
+        return hl.L(f);
+    }
+
+    public final void c(Canvas canvas, Paint paint) {
+        int b;
+        int i;
+        Path path;
         boolean z;
-        hc0 hc0Var;
-        String str;
-        ArrayList arrayList = this.c;
-        if (arrayList.size() > 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        setEnabled(z);
-        int i = 0;
-        while (true) {
-            hc0Var = this.d;
-            if (i >= 3) {
-                break;
+        t37 t37Var;
+        Path path2;
+        int g;
+        Drawable f;
+        if (this.q || !m() || this.S) {
+            Rect bounds = getBounds();
+            Paint paint2 = this.c;
+            if (paint == null && paint2.getStyle() == Paint.Style.FILL && this.a == null && this.Q == 0 && this.R <= 0.0f && (f = f()) != null) {
+                f.setBounds(bounds);
+                f.draw(canvas);
+                return;
             }
-            int size = arrayList.size();
-            int i2 = this.f;
-            if (i < size) {
-                hc0Var.b(i, i2, (TLObject) arrayList.get(i));
+            int b2 = b(2.0f);
+            int i2 = this.Q;
+            if (i2 != 0) {
+                i = i2;
             } else {
-                hc0Var.b(i, i2, null);
+                if (this.R > 0.0f) {
+                    i2 = hl.U1(this.R, b(xea.U0), Math.min(bounds.width(), bounds.height()) / 2);
+                    b = hl.U1(this.R, b(Math.min(6, xea.U0)), Math.min(bounds.width(), bounds.height()) / 2);
+                } else if (this.l == 2) {
+                    i2 = b(6.0f);
+                    b = b(6.0f);
+                } else {
+                    i2 = b(xea.U0);
+                    b = b(Math.min(6, xea.U0));
+                }
+                i = b;
             }
-            i++;
-        }
-        if (arrayList.size() == 1) {
-            hc0Var.setTranslationX(gl.L(24.0f));
-        } else if (arrayList.size() == 2) {
-            hc0Var.setTranslationX(gl.L(12.0f));
-        } else {
-            hc0Var.setTranslationX(0.0f);
-        }
-        int L = gl.L((Math.min(2, arrayList.size() - 1) * 12) + 38);
-        jia jiaVar = this.e;
-        jiaVar.setRightPadding(L);
-        hc0Var.a(false);
-        ArrayList arrayList2 = this.a;
-        if (arrayList2.size() == 1 && arrayList.get(0) != null) {
-            jiaVar.l(qu2.o((TLObject) arrayList.get(0)), false);
-        } else if (arrayList2.size() == 0) {
-            jiaVar.l(k96.M0(2131747932, null), false);
-        } else {
-            if (this.h) {
-                str = "MessagePlayed";
+            int b3 = b(6.0f);
+            if (paint != null) {
+                paint2 = paint;
+            }
+            if (paint == null && this.a != null) {
+                Matrix matrix = this.k;
+                matrix.reset();
+                a();
+                matrix.postTranslate(0.0f, -this.r);
+                this.a.setLocalMatrix(matrix);
+            }
+            int max = Math.max(bounds.top, 0);
+            if (this.P != null) {
+                bounds.height();
+                int i3 = this.b;
+            }
+            c34 c34Var = this.P;
+            boolean z2 = true;
+            if (c34Var != null) {
+                path = (Path) c34Var.c;
+                z = c34Var.j(bounds, true, true);
             } else {
-                str = "MessageSeen";
+                path = this.n;
+                z = true;
             }
-            jiaVar.l(k96.G(arrayList2.size(), str, new Object[0]), false);
+            if (!z && this.Q == 0) {
+                t37Var = this;
+                path2 = path;
+            } else {
+                if (paint == null) {
+                    z2 = false;
+                }
+                t37Var = this;
+                int i4 = i2;
+                path2 = path;
+                t37Var.e(path2, bounds, b2, i4, b3, i, max, true, true, z2);
+            }
+            canvas.drawPath(path2, paint2);
+            if (t37Var.a != null && t37Var.m && paint == null) {
+                int o = vm2.o(t37Var.g(aob.Sc), (int) ((Color.alpha(g) * t37Var.H) / 255.0f));
+                Paint paint3 = t37Var.d;
+                paint3.setColor(o);
+                canvas.drawPath(path2, paint3);
+            }
         }
-        jiaVar.animate().alpha(1.0f).setDuration(220L).start();
-        hc0Var.animate().alpha(1.0f).setDuration(220L).start();
-        pi4 pi4Var = this.n;
-        pi4Var.animate().alpha(0.0f).setDuration(220L).setListener(new id4(pi4Var)).start();
-        rkb rkbVar = this.s;
-        if (rkbVar != null) {
-            rkbVar.getAdapter();
+    }
+
+    public final void d(Canvas canvas, c34 c34Var, Paint paint) {
+        this.P = c34Var;
+        t37 t37Var = this.J;
+        if (t37Var != null) {
+            t37Var.P = c34Var;
+        }
+        c(canvas, paint);
+        this.P = null;
+        t37 t37Var2 = this.J;
+        if (t37Var2 != null) {
+            t37Var2.P = null;
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        View view = (View) getParent();
-        if (view != null && view.getWidth() > 0) {
-            i = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
-        }
-        boolean z = true;
-        this.r = true;
-        pi4 pi4Var = this.n;
-        if (pi4Var.getVisibility() != 0) {
-            z = false;
-        }
-        jia jiaVar = this.e;
-        jiaVar.setVisibility(8);
-        if (z) {
-            pi4Var.setVisibility(8);
-        }
-        super.onMeasure(i, i2);
-        if (z) {
-            pi4Var.getLayoutParams().width = getMeasuredWidth();
-            pi4Var.setVisibility(0);
-        }
-        jiaVar.setVisibility(0);
-        jiaVar.getLayoutParams().width = getMeasuredWidth() - gl.L(40.0f);
-        this.r = false;
-        super.onMeasure(i, i2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.r) {
+    public final void draw(Canvas canvas) {
+        t37 t37Var = this.J;
+        if (t37Var != null) {
+            t37Var.draw(canvas);
+            setAlpha((int) (this.K * 255.0f));
+            c(canvas, null);
+            setAlpha(255);
             return;
         }
-        super.requestLayout();
+        c(canvas, null);
+    }
+
+    public final void e(Path path, Rect rect, int i, int i2, int i3, int i4, int i5, boolean z, boolean z2, boolean z3) {
+        int i6;
+        int i7;
+        int i8;
+        int i9;
+        path.rewind();
+        int height = (rect.height() - i) >> 1;
+        int i10 = i2;
+        if (i10 > height) {
+            i10 = height;
+        }
+        boolean z4 = this.I;
+        byte b = this.l;
+        RectF rectF = this.j;
+        if (this.q) {
+            if (!z4 && b != 2 && !z3 && !z) {
+                path.moveTo(rect.right - b(8.0f), (i5 - this.r) + this.b);
+                path.lineTo(rect.left + i, (i5 - this.r) + this.b);
+            } else {
+                if (this.u) {
+                    i8 = i4;
+                } else {
+                    i8 = i10;
+                }
+                int i11 = rect.right;
+                if (b == 1) {
+                    path.moveTo((i11 - b(8.0f)) - i8, rect.bottom - i);
+                } else {
+                    path.moveTo(i11 - b(2.6f), rect.bottom - i);
+                }
+                path.lineTo(rect.left + i + i8, rect.bottom - i);
+                int i12 = rect.left + i;
+                int i13 = rect.bottom - i;
+                int i14 = i8 << 1;
+                rectF.set(i12, i13 - i14, i12 + i14, i13);
+                path.arcTo(rectF, 90.0f, 90.0f, false);
+            }
+            if (!this.I && b != 2 && !z3 && !z2) {
+                path.lineTo(rect.left + i, (i5 - this.r) - b(2.0f));
+                int i15 = rect.right;
+                if (b == 1) {
+                    path.lineTo(i15 - i, (i5 - this.r) - b(2.0f));
+                } else {
+                    path.lineTo(i15 - b(8.0f), (i5 - this.r) - b(2.0f));
+                }
+            } else {
+                path.lineTo(rect.left + i, rect.top + i + i10);
+                int i16 = rect.left + i;
+                int i17 = rect.top + i;
+                int i18 = i10 << 1;
+                rectF.set(i16, i17, i16 + i18, i17 + i18);
+                path.arcTo(rectF, 180.0f, 90.0f, false);
+                if (this.s) {
+                    i9 = i4;
+                } else {
+                    i9 = i10;
+                }
+                int i19 = rect.right;
+                if (b == 1) {
+                    path.lineTo((i19 - i) - i9, rect.top + i);
+                    int i20 = rect.right - i;
+                    int i21 = i9 << 1;
+                    int i22 = rect.top + i;
+                    rectF.set(i20 - i21, i22, i20, i22 + i21);
+                } else {
+                    path.lineTo((i19 - b(8.0f)) - i9, rect.top + i);
+                    int i23 = i9 << 1;
+                    rectF.set((rect.right - b(8.0f)) - i23, rect.top + i, rect.right - b(8.0f), rect.top + i + i23);
+                }
+                path.arcTo(rectF, 270.0f, 90.0f, false);
+            }
+            if (b == 1) {
+                if (!z3 && !z) {
+                    path.lineTo(rect.right - i, (i5 - this.r) + this.b);
+                } else {
+                    if (this.t) {
+                        i10 = i4;
+                    }
+                    path.lineTo(rect.right - i, (rect.bottom - i) - i10);
+                    int i24 = rect.right - i;
+                    int i25 = i10 << 1;
+                    int i26 = rect.bottom - i;
+                    rectF.set(i24 - i25, i26 - i25, i24, i26);
+                    path.arcTo(rectF, 0.0f, 90.0f, false);
+                }
+            } else if (!this.I && b != 2 && !z3 && !z) {
+                path.lineTo(rect.right - b(8.0f), (i5 - this.r) + this.b);
+            } else {
+                path.lineTo(rect.right - b(8.0f), ((rect.bottom - i) - i3) - b(3.0f));
+                int i27 = i3 << 1;
+                rectF.set(rect.right - b(8.0f), ((rect.bottom - i) - i27) - b(9.0f), (rect.right - b(7.0f)) + i27, (rect.bottom - i) - b(1.0f));
+                path.arcTo(rectF, 180.0f, -83.0f, false);
+            }
+        } else {
+            if (!z4 && b != 2 && !z3 && !z) {
+                path.moveTo(b(8.0f) + rect.left, (i5 - this.r) + this.b);
+                path.lineTo(rect.right - i, (i5 - this.r) + this.b);
+            } else {
+                if (this.u) {
+                    i6 = i4;
+                } else {
+                    i6 = i10;
+                }
+                int i28 = rect.left;
+                if (b == 1) {
+                    path.moveTo(b(8.0f) + i28 + i6, rect.bottom - i);
+                } else {
+                    path.moveTo(b(2.6f) + i28, rect.bottom - i);
+                }
+                path.lineTo((rect.right - i) - i6, rect.bottom - i);
+                int i29 = rect.right - i;
+                int i30 = i6 << 1;
+                int i31 = rect.bottom - i;
+                rectF.set(i29 - i30, i31 - i30, i29, i31);
+                path.arcTo(rectF, 90.0f, -90.0f, false);
+            }
+            if (!this.I && b != 2 && !z3 && !z2) {
+                path.lineTo(rect.right - i, (i5 - this.r) - b(2.0f));
+                int i32 = rect.left;
+                if (b == 1) {
+                    path.lineTo(i32 + i, (i5 - this.r) - b(2.0f));
+                } else {
+                    path.lineTo(b(8.0f) + i32, (i5 - this.r) - b(2.0f));
+                }
+            } else {
+                path.lineTo(rect.right - i, rect.top + i + i10);
+                int i33 = rect.right - i;
+                int i34 = i10 << 1;
+                int i35 = rect.top + i;
+                rectF.set(i33 - i34, i35, i33, i35 + i34);
+                path.arcTo(rectF, 0.0f, -90.0f, false);
+                if (this.s) {
+                    i7 = i4;
+                } else {
+                    i7 = i10;
+                }
+                int i36 = rect.left;
+                if (b == 1) {
+                    path.lineTo(i36 + i + i7, rect.top + i);
+                    int i37 = rect.left + i;
+                    int i38 = rect.top + i;
+                    int i39 = i7 << 1;
+                    rectF.set(i37, i38, i37 + i39, i38 + i39);
+                } else {
+                    path.lineTo(b(8.0f) + i36 + i7, rect.top + i);
+                    int i40 = i7 << 1;
+                    rectF.set(b(8.0f) + rect.left, rect.top + i, b(8.0f) + rect.left + i40, rect.top + i + i40);
+                }
+                path.arcTo(rectF, 270.0f, -90.0f, false);
+            }
+            if (b == 1) {
+                if (!z3 && !z) {
+                    path.lineTo(rect.left + i, (i5 - this.r) + this.b);
+                } else {
+                    if (this.t || this.u) {
+                        i10 = i4;
+                    }
+                    path.lineTo(rect.left + i, (rect.bottom - i) - i10);
+                    int i41 = rect.left + i;
+                    int i42 = rect.bottom - i;
+                    int i43 = i10 << 1;
+                    rectF.set(i41, i42 - i43, i41 + i43, i42);
+                    path.arcTo(rectF, 180.0f, -90.0f, false);
+                }
+            } else if (!this.I && b != 2 && !z3 && !z) {
+                path.lineTo(b(8.0f) + rect.left, (i5 - this.r) + this.b);
+            } else {
+                path.lineTo(b(8.0f) + rect.left, ((rect.bottom - i) - i3) - b(3.0f));
+                int b2 = b(7.0f) + rect.left;
+                int i44 = i3 << 1;
+                rectF.set(b2 - i44, ((rect.bottom - i) - i44) - b(9.0f), b(8.0f) + rect.left, (rect.bottom - i) - b(1.0f));
+                path.arcTo(rectF, 0.0f, 83.0f, false);
+            }
+        }
+        path.close();
+    }
+
+    public final Drawable f() {
+        char c;
+        int i;
+        int g;
+        int i2;
+        boolean z;
+        int i3;
+        int i4;
+        Drawable[][] drawableArr;
+        int[][] iArr;
+        int i5;
+        int i6;
+        Rect rect = this.o;
+        int i7 = this.Q;
+        if (i7 == 0) {
+            if (this.R > 0.0f) {
+                i7 = 0;
+            } else {
+                i7 = b(xea.U0);
+            }
+        }
+        boolean z2 = this.s;
+        boolean z3 = this.t;
+        char c2 = 3;
+        if (z2) {
+            if (z3) {
+                c = 3;
+            } else {
+                c = 2;
+            }
+        } else if (z3) {
+            c = 1;
+        } else {
+            c = 0;
+        }
+        boolean z4 = this.u;
+        boolean z5 = this.m;
+        if (z5) {
+            if (!z4) {
+                c2 = 1;
+            }
+        } else if (z4) {
+            c2 = 2;
+        } else {
+            c2 = 0;
+        }
+        Integer num = this.w;
+        boolean z6 = this.q;
+        if (num != null) {
+            g = num.intValue();
+        } else if (z6 && m()) {
+            g = h();
+        } else if (z5) {
+            if (z6) {
+                i2 = aob.sb;
+            } else {
+                i2 = aob.Uc;
+            }
+            g = g(i2);
+        } else {
+            if (z6) {
+                i = aob.rb;
+            } else {
+                i = aob.ra;
+            }
+            g = g(i);
+        }
+        if (this.x && this.a == null && !z5 && !this.L && !m()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (z6) {
+            i3 = aob.tb;
+        } else {
+            i3 = aob.ta;
+        }
+        int g2 = g(i3);
+        boolean z7 = this.M;
+        Drawable[][] drawableArr2 = this.D;
+        int[][] iArr2 = this.E;
+        int[] iArr3 = this.B;
+        int[][] iArr4 = this.C;
+        if (z7 == z && iArr4[c2][c] == i7 && ((!z || iArr3[c] == g2) && iArr2[c2][c] == g)) {
+            i4 = g;
+            drawableArr = drawableArr2;
+            iArr = iArr2;
+        } else {
+            iArr4[c2][c] = i7;
+            this.S = true;
+            try {
+                Bitmap createBitmap = Bitmap.createBitmap(b(50.0f), b(40.0f), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                rect.set(getBounds());
+                if (z) {
+                    iArr3[c] = g2;
+                    Paint paint = new Paint(1);
+                    i5 = 1;
+                    paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, b(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
+                    paint.setColorFilter(new PorterDuffColorFilter(g2, PorterDuff.Mode.MULTIPLY));
+                    paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
+                    if (hl.p > 1.0f) {
+                        setBounds(-1, -1, createBitmap.getWidth() + 1, createBitmap.getHeight() + 1);
+                        i6 = 0;
+                    } else {
+                        i6 = 0;
+                        setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                    }
+                    c(canvas, paint);
+                    if (hl.p > 1.0f) {
+                        paint.setColor(i6);
+                        paint.setShadowLayer(0.0f, 0.0f, 0.0f, i6);
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                        setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                        c(canvas, paint);
+                    }
+                } else {
+                    i5 = 1;
+                }
+                Paint paint2 = new Paint(i5);
+                paint2.setColor(g);
+                setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                c(canvas, paint2);
+                i4 = g;
+                drawableArr = drawableArr2;
+                iArr = iArr2;
+                try {
+                    drawableArr2[c2][c] = new NinePatchDrawable(createBitmap, jue.c((createBitmap.getWidth() / 2) - 1, (createBitmap.getWidth() / 2) + 1, (createBitmap.getHeight() / 2) - 1, (createBitmap.getHeight() / 2) + 1, 0, 0, 0, 0, i4).array(), new Rect(), null);
+                    setBounds(rect);
+                } catch (Throwable unused) {
+                }
+            } catch (Throwable unused2) {
+                i4 = g;
+                drawableArr = drawableArr2;
+                iArr = iArr2;
+            }
+            this.S = false;
+        }
+        this.M = z;
+        iArr[c2][c] = i4;
+        return drawableArr[c2][c];
+    }
+
+    public final void finalize() {
+        super.finalize();
+        Bitmap[] bitmapArr = this.z;
+        for (Bitmap bitmap : bitmapArr) {
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+        }
+        Arrays.fill(bitmapArr, (Object) null);
+        Arrays.fill(this.A, (Object) null);
+        Arrays.fill(this.y, -1);
+    }
+
+    public int g(int i) {
+        if (this.l == 2) {
+            return aob.w0(null, i, false);
+        }
+        vnb vnbVar = this.p;
+        if (vnbVar != null) {
+            return vnbVar.h(i);
+        }
+        return aob.w0(null, i, false);
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            int w0 = bkb.w0(null, bkb.H5, false);
-            if (getBackground() != null && w0 != this.w) {
-                this.w = w0;
-                bkb.F1(getBackground(), w0, true);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public final int h() {
+        int g = g(aob.La);
+        if (this.m) {
+            g = vm2.o(g, Math.min(255, Color.alpha(g) << 1));
+        }
+        return vm2.k(g, g(aob.ua));
+    }
+
+    public int i(int i) {
+        if (this.l == 2) {
+            return aob.w0(null, i, false);
+        }
+        vnb vnbVar = this.p;
+        if (vnbVar != null) {
+            return vnbVar.j(i);
+        }
+        return aob.lm.get(i);
+    }
+
+    public final hh7 j() {
+        char c;
+        boolean z = this.v;
+        hh7[] hh7VarArr = T;
+        if (z) {
+            return hh7VarArr[2];
+        }
+        if (this.l == 2) {
+            c = 1;
+        } else {
+            c = 0;
+        }
+        return hh7VarArr[c];
+    }
+
+    public final Drawable k() {
+        char c;
+        int i;
+        int i2;
+        if (this.L || m() || (this.a == null && !this.m && this.J == null)) {
+            return null;
+        }
+        int b = b(xea.U0);
+        boolean z = this.s;
+        boolean z2 = this.t;
+        boolean z3 = false;
+        if (z) {
+            if (z2) {
+                c = 3;
+            } else {
+                c = 2;
             }
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+        } else if (z2) {
+            c = 1;
+        } else {
+            c = 0;
+        }
+        int[] iArr = this.y;
+        int i3 = iArr[c];
+        Drawable[] drawableArr = this.A;
+        if (i3 != b) {
+            iArr[c] = b;
+            Bitmap[] bitmapArr = this.z;
+            Bitmap bitmap = bitmapArr[c];
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+            try {
+                Bitmap createBitmap = Bitmap.createBitmap(b(50.0f), b(40.0f), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                Paint paint = new Paint(1);
+                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, b(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
+                paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
+                if (hl.p > 1.0f) {
+                    setBounds(-1, -1, createBitmap.getWidth() + 1, createBitmap.getHeight() + 1);
+                } else {
+                    setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                }
+                c(canvas, paint);
+                if (hl.p > 1.0f) {
+                    paint.setColor(0);
+                    paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                    setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                    c(canvas, paint);
+                    i2 = 0;
+                } else {
+                    i2 = 1;
+                }
+                bitmapArr[c] = createBitmap;
+                drawableArr[c] = new NinePatchDrawable(createBitmap, jue.c((createBitmap.getWidth() / 2) - 1, (createBitmap.getWidth() / 2) + 1, (createBitmap.getHeight() / 2) - 1, (createBitmap.getHeight() / 2) + 1, 0, 0, 0, 0, i2).array(), new Rect(), null);
+                z3 = true;
+            } catch (Throwable unused) {
+            }
+        }
+        if (this.q) {
+            i = aob.tb;
+        } else {
+            i = aob.ta;
+        }
+        int g = g(i);
+        Drawable drawable = drawableArr[c];
+        if (drawable != null) {
+            int[] iArr2 = this.B;
+            if (iArr2[c] != g || z3) {
+                drawable.setColorFilter(new PorterDuffColorFilter(g, PorterDuff.Mode.MULTIPLY));
+                iArr2[c] = g;
+            }
+        }
+        return drawableArr[c];
+    }
+
+    public final boolean l() {
+        if (this.a != null && aob.nm) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean m() {
+        if (aob.g1(this.p) && this.l != 2 && this.w == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final Path n() {
+        int b;
+        int i;
+        boolean z;
+        boolean z2;
+        Path path;
+        c34 c34Var = this.P;
+        Rect bounds = getBounds();
+        int b2 = b(2.0f);
+        int i2 = this.Q;
+        byte b3 = this.l;
+        if (i2 != 0) {
+            i = i2;
+        } else {
+            if (this.R > 0.0f) {
+                i2 = hl.U1(this.R, b(xea.U0), Math.min(bounds.width(), bounds.height()) / 2);
+                b = hl.U1(this.R, b(Math.min(6, xea.U0)), Math.min(bounds.width(), bounds.height()) / 2);
+            } else if (b3 == 2) {
+                i2 = b(6.0f);
+                b = b(6.0f);
+            } else {
+                i2 = b(xea.U0);
+                b = b(Math.min(6, xea.U0));
+            }
+            i = b;
+        }
+        int b4 = b(6.0f);
+        boolean z3 = false;
+        int max = Math.max(bounds.top, 0);
+        boolean z4 = true;
+        if (c34Var != null && bounds.height() < this.b) {
+            z = true;
+            z2 = true;
+        } else {
+            int i3 = this.r;
+            int i4 = bounds.bottom;
+            int i5 = this.b;
+            int i6 = i4 + i3;
+            if (b3 != 1 ? i6 - i2 < i5 : i6 - (b4 << 1) < i5) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (i3 + (i2 << 1) >= 0) {
+                z3 = true;
+            }
+            z2 = z3;
+        }
+        if (c34Var != null) {
+            path = (Path) c34Var.c;
+            z4 = c34Var.j(bounds, z, z2);
+        } else {
+            path = this.n;
+        }
+        if (!z4 && this.Q == 0) {
+            return path;
+        }
+        boolean z5 = z;
+        Path path2 = path;
+        e(path2, bounds, b2, i2, b4, i, max, z5, z2, true);
+        return path2;
+    }
+
+    public void o(int i, int i2, int i3) {
+        p(i, i2, i3, i3, 0, 0, false, false);
+    }
+
+    public void p(int r26, int r27, int r28, int r29, int r30, int r31, boolean r32, boolean r33) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.t37.p(int, int, int, int, int, int, boolean, boolean):void");
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        int i2 = this.H;
+        Paint paint = this.c;
+        if (i2 != i || paint.getAlpha() != i) {
+            this.H = i;
+            paint.setAlpha(i);
+            if (this.q) {
+                this.d.setAlpha((int) ((i / 255.0f) * Color.alpha(g(aob.Sc))));
+            }
+        }
+        if (this.a == null) {
+            Drawable f = f();
+            if (f.getAlpha() != i) {
+                f.setAlpha(i);
+            }
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void setBounds(int i, int i2, int i3, int i4) {
+        super.setBounds(i, i2, i3, i4);
+        t37 t37Var = this.J;
+        if (t37Var != null) {
+            t37Var.setBounds(i, i2, i3, i4);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    @Override
+    public final void setColorFilter(int i, PorterDuff.Mode mode) {
     }
 }

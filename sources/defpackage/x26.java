@@ -1,68 +1,37 @@
 package defpackage;
+public abstract class x26 {
+    public static final int[] a;
 
-import java.util.Iterator;
-public final class x26 implements Iterator {
-    public final CharSequence a;
-    public byte b;
-    public int c;
-    public int d;
-    public int e;
-
-    public x26(CharSequence charSequence) {
-        this.a = charSequence;
-    }
-
-    @Override
-    public final boolean hasNext() {
-        int i;
-        byte b = this.b;
-        if (b != 0) {
-            if (b != 1) {
-                return false;
-            }
-            return true;
+    static {
+        int[] iArr = new int[y26.values().length];
+        try {
+            iArr[y26.ON_CREATE.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        int i2 = 2;
-        if (this.e < 0) {
-            this.b = (byte) 2;
-            return false;
+        try {
+            iArr[y26.ON_STOP.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
         }
-        CharSequence charSequence = this.a;
-        int length = charSequence.length();
-        int length2 = charSequence.length();
-        for (int i3 = this.c; i3 < length2; i3++) {
-            char charAt = charSequence.charAt(i3);
-            if (charAt == '\n' || charAt == '\r') {
-                i2 = (charAt == '\r' && (i = i3 + 1) < charSequence.length() && charSequence.charAt(i) == '\n') ? 1 : 1;
-                length = i3;
-                this.b = (byte) 1;
-                this.e = i2;
-                this.d = length;
-                return true;
-            }
+        try {
+            iArr[y26.ON_START.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
         }
-        i2 = -1;
-        this.b = (byte) 1;
-        this.e = i2;
-        this.d = length;
-        return true;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            this.b = (byte) 0;
-            int i = this.d;
-            int i2 = this.c;
-            this.c = this.e + i;
-            return this.a.subSequence(i2, i).toString();
+        try {
+            iArr[y26.ON_PAUSE.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
         }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        try {
+            iArr[y26.ON_RESUME.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            iArr[y26.ON_DESTROY.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            iArr[y26.ON_ANY.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
+        a = iArr;
     }
 }

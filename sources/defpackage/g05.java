@@ -1,17 +1,13 @@
 package defpackage;
-public final class g05 implements m8c {
-    public final byte a;
-    public final Object b;
-    public final Object c;
 
-    public g05(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-    }
+import android.os.Looper;
+public final class g05 {
+    public static final g05 c = new g05(new uif((byte) 13), Looper.getMainLooper());
+    public final uif a;
+    public final Looper b;
 
-    @Override
-    public final void a(java.lang.Object r19, java.lang.Object r20, java.lang.Object r21, java.lang.Object r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.g05.a(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object):void");
+    public g05(uif uifVar, Looper looper) {
+        this.a = uifVar;
+        this.b = looper;
     }
 }

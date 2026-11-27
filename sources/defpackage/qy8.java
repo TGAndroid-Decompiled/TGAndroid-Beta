@@ -1,46 +1,32 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class qy8 extends Drawable {
-    public final byte a;
-    public final byte b;
-    public final ry8 c;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public final class qy8 {
+    public static final qy8[] f = new qy8[4];
+    public final int a;
+    public TLRPC.TL_shareThemeBackdrops b;
+    public boolean c;
+    public boolean d;
+    public final ArrayList e = new ArrayList();
 
-    public qy8(ry8 ry8Var, int i, int i2) {
-        this.c = ry8Var;
+    public qy8(int i) {
         this.a = i;
-        this.b = i2;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect rect = gl.Q;
-        int centerX = getBounds().centerX();
-        float f = this.a;
-        int L = centerX - (gl.L(f) / 2);
-        int centerY = getBounds().centerY();
-        float f2 = this.b;
-        rect.set(L, centerY - (gl.L(f2) / 2), (gl.L(f) / 2) + getBounds().centerX(), (gl.L(f2) / 2) + getBounds().centerY());
-        ry8 ry8Var = this.c;
-        ry8Var.c.j0(rect);
-        ry8Var.c.h(canvas, null);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.c.c.setAlpha(i / 255.0f);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.c.c.p1 = colorFilter;
+        String string = uc7.s1(i).X3.getString("qrBackdrops", null);
+        if (!TextUtils.isEmpty(string)) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.v(string));
+                TLRPC.ShareThemeBackdrops TLdeserialize = TLRPC.ShareThemeBackdrops.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+                if (TLdeserialize instanceof TLRPC.TL_shareThemeBackdrops) {
+                    this.b = (TLRPC.TL_shareThemeBackdrops) TLdeserialize;
+                }
+                serializedData.cleanup();
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        }
     }
 }

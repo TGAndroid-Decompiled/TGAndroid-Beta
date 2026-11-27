@@ -1,147 +1,75 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import android.net.Uri;
-import android.util.Log;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.List;
-public final class u3c extends vwe {
-    public static final Class a;
-    public static final Constructor b;
-    public static final Method c;
-    public static final Method d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class u3c implements icc {
+    public final byte a;
+    public final b4c b;
 
-    static {
-        Class<?> cls;
-        Method method;
-        Method method2;
-        Constructor<?> constructor = null;
-        try {
-            cls = Class.forName("android.graphics.FontFamily");
-            Constructor<?> constructor2 = cls.getConstructor(null);
-            Class<?> cls2 = Integer.TYPE;
-            method2 = cls.getMethod("addFontWeightStyle", ByteBuffer.class, cls2, List.class, cls2, Boolean.TYPE);
-            method = Typeface.class.getMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass());
-            constructor = constructor2;
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            Log.e("TypefaceCompatApi24Impl", e.getClass().getName(), e);
-            cls = null;
-            method = null;
-            method2 = null;
-        }
-        b = constructor;
-        a = cls;
-        c = method2;
-        d = method;
-    }
-
-    public static boolean f(Object obj, ByteBuffer byteBuffer, int i, int i2, boolean z) {
-        try {
-            return ((Boolean) c.invoke(obj, byteBuffer, Integer.valueOf(i), null, Integer.valueOf(i2), Boolean.valueOf(z))).booleanValue();
-        } catch (IllegalAccessException | InvocationTargetException unused) {
-            return false;
-        }
-    }
-
-    public static Typeface g(Object obj) {
-        try {
-            Object newInstance = Array.newInstance(a, 1);
-            Array.set(newInstance, 0, obj);
-            return (Typeface) d.invoke(null, newInstance);
-        } catch (IllegalAccessException | InvocationTargetException unused) {
-            return null;
-        }
+    public u3c(b4c b4cVar, byte b) {
+        this.a = b;
+        this.b = b4cVar;
     }
 
     @Override
-    public final Typeface a(Context context, xl4 xl4Var, Resources resources, int i) {
-        Object obj;
-        yl4[] yl4VarArr;
-        MappedByteBuffer mappedByteBuffer;
-        try {
-            obj = b.newInstance(null);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            obj = null;
-        }
-        if (obj != null) {
-            for (yl4 yl4Var : xl4Var.a) {
-                int i2 = yl4Var.f;
-                File c2 = ywe.c(context);
-                if (c2 != null) {
-                    try {
-                        if (ywe.a(c2, resources, i2)) {
-                            try {
-                                FileInputStream fileInputStream = new FileInputStream(c2);
-                                try {
-                                    FileChannel channel = fileInputStream.getChannel();
-                                    mappedByteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
-                                    fileInputStream.close();
-                                } finally {
-                                    break;
-                                }
-                            } catch (IOException unused2) {
-                                mappedByteBuffer = null;
-                            }
-                            if (mappedByteBuffer != null && f(obj, mappedByteBuffer, yl4Var.e, yl4Var.b, yl4Var.c)) {
-                            }
-                        }
-                    } finally {
-                        c2.delete();
-                    }
-                }
-                mappedByteBuffer = null;
-                if (mappedByteBuffer != null) {
-                }
-            }
-            return g(obj);
-        }
-        return null;
-    }
-
-    @Override
-    public final Typeface b(Context context, bm4[] bm4VarArr, int i) {
-        Object obj;
-        try {
-            obj = b.newInstance(null);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            obj = null;
-        }
-        if (obj != null) {
-            int i2 = 0;
-            aia aiaVar = new aia(0);
-            int length = bm4VarArr.length;
-            while (true) {
-                if (i2 < length) {
-                    bm4 bm4Var = bm4VarArr[i2];
-                    Uri uri = bm4Var.a;
-                    ByteBuffer byteBuffer = (ByteBuffer) aiaVar.get(uri);
-                    if (byteBuffer == null) {
-                        byteBuffer = ywe.d(context, uri);
-                        aiaVar.put(uri, byteBuffer);
-                    }
-                    if (byteBuffer == null || !f(obj, byteBuffer, bm4Var.b, bm4Var.c, bm4Var.d)) {
-                        break;
-                    }
-                    i2++;
+    public final void a(Object obj, Object obj2) {
+        String M0;
+        String str;
+        byte b = this.a;
+        b4c b4cVar = this.b;
+        switch (b) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                l9c l9cVar = (l9c) obj2;
+                String[] strArr = b4cVar.d2;
+                arrayList.add(b8c.C(null));
+                l9cVar.G = true;
+                l9cVar.V();
+                String str2 = b4cVar.Z1;
+                if (str2 != null) {
+                    M0 = r3c.F0(r3c.K0(str2, null, null));
                 } else {
-                    Typeface g = g(obj);
-                    if (g != null) {
-                        return Typeface.create(g, i);
-                    }
+                    M0 = ob6.M0(2131754983, null);
                 }
-            }
+                arrayList.add(v3c.i(3, "", M0, null, null));
+                arrayList.add(z3c.i(4, b4cVar.V1, b4cVar.f2, new jjb(b4cVar, l9cVar, (byte) 3), new r94(b4cVar, (byte) 2), null));
+                StringBuilder sb = new StringBuilder();
+                sb.append(r3c.K0(b4cVar.a2, null, null));
+                if (b4cVar.b2 == 1 || strArr == null) {
+                    str = "";
+                } else {
+                    str = c00.k(new StringBuilder(" ("), strArr[b4cVar.b2], ")");
+                }
+                sb.append(str);
+                arrayList.add(v3c.i(5, "", r3c.F0(sb.toString()), null, new t3c(b4cVar, (byte) 4)));
+                arrayList.add(z3c.i(6, b4cVar.X1, false, null, new r94(b4cVar, (byte) 2), null));
+                l9cVar.U();
+                arrayList.add(b8c.C(null));
+                l9cVar.V();
+                arrayList.add(b8c.c(1, 2131232108, ob6.M0(2131743613, null)));
+                l9cVar.U();
+                return;
+            default:
+                TLRPC.TL_messages_translateResult tL_messages_translateResult = (TLRPC.TL_messages_translateResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                b4cVar.g2 = -1;
+                c51 c51Var = b4cVar.U1;
+                c51Var.setLoading(false);
+                if (tL_error != null) {
+                    ik8.u(b4cVar.F, b4cVar.J0, tL_error, false);
+                    c51Var.setText(ob6.M0(2131747558, null));
+                    c51Var.setOnClickListener(new t3c(b4cVar, (byte) 0));
+                    return;
+                } else if (tL_messages_translateResult != null && !tL_messages_translateResult.result.isEmpty()) {
+                    b4cVar.X1 = r47.h0(tL_messages_translateResult.result.get(0), false);
+                    b4cVar.W1 = false;
+                    b4cVar.e2.O(true);
+                    return;
+                } else {
+                    c51Var.setText(ob6.M0(2131747558, null));
+                    c51Var.setOnClickListener(new t3c(b4cVar, (byte) 1));
+                    return;
+                }
         }
-        return null;
     }
 }

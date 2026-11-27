@@ -64,18 +64,18 @@ public class EncryptedFileInputStream extends FileInputStream {
         return super.skip(j);
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, vu9 vu9Var) {
-        Utilities.b(bArr, vu9Var.a, vu9Var.b, i, i2, 0, 0);
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, py9 py9Var) {
+        Utilities.b(bArr, py9Var.a, py9Var.b, i, i2, 0, 0);
     }
 
-    public EncryptedFileInputStream(File file, vu9 vu9Var) {
+    public EncryptedFileInputStream(File file, py9 py9Var) {
         super(file);
         byte[] bArr = new byte[32];
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(vu9Var.a, 0, bArr, 0, 32);
-        byte[] bArr2 = vu9Var.b;
+        System.arraycopy(py9Var.a, 0, bArr, 0, 32);
+        byte[] bArr2 = py9Var.b;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }

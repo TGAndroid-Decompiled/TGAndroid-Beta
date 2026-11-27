@@ -1,127 +1,76 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.method.TransformationMethod;
-public final class m3c implements TextWatcher {
-    public final byte a;
-    public final p3c b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+public final class m3c extends in {
+    public final Paint s;
+    public final m66 w;
+    public final o3c x;
 
-    public m3c(p3c p3cVar, byte b) {
-        this.a = b;
-        this.b = p3cVar;
+    public m3c(o3c o3cVar, Context context) {
+        super(context, false, false, false);
+        this.x = o3cVar;
+        this.s = new Paint(1);
+        this.w = new m66();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        oy8 oy8Var;
-        byte b = this.a;
-        p3c p3cVar = this.b;
-        switch (b) {
-            case 0:
-                if (!p3cVar.N) {
-                    byte b2 = p3cVar.P;
-                    if (b2 == 0) {
-                        oy8 animatedDrawable = p3cVar.a.getAnimatedDrawable();
-                        if (p3cVar.n.length() > 0) {
-                            TransformationMethod transformationMethod = p3cVar.n.getTransformationMethod();
-                            oy8[] oy8VarArr = p3cVar.g0;
-                            if (transformationMethod == null) {
-                                if (animatedDrawable != oy8VarArr[3] && animatedDrawable != (oy8Var = oy8VarArr[5])) {
-                                    p3cVar.a.setAnimation(oy8Var);
-                                    p3cVar.g0[5].O(false, 0.0f);
-                                    p3cVar.a.d();
-                                    return;
-                                }
-                                return;
-                            } else if (animatedDrawable != oy8VarArr[3]) {
-                                oy8 oy8Var2 = oy8VarArr[2];
-                                if (animatedDrawable != oy8Var2) {
-                                    p3cVar.a.setAnimation(oy8Var2);
-                                    p3cVar.g0[2].K(49);
-                                    p3cVar.g0[2].O(false, 0.0f);
-                                    p3cVar.a.d();
-                                    return;
-                                } else if (oy8Var2.b0 < 49) {
-                                    oy8Var2.K(49);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            } else {
-                                return;
-                            }
-                        }
-                        if (animatedDrawable != p3cVar.g0[3] || p3cVar.n.getTransformationMethod() != null) {
-                            oy8[] oy8VarArr2 = p3cVar.g0;
-                            if (animatedDrawable != oy8VarArr2[5]) {
-                                oy8VarArr2[2].K(-1);
-                                oy8 oy8Var3 = p3cVar.g0[2];
-                                if (animatedDrawable != oy8Var3) {
-                                    p3cVar.a.setAnimation(oy8Var3);
-                                    p3cVar.g0[2].I(49, false, false);
-                                }
-                                p3cVar.a.d();
-                                return;
-                            }
-                        }
-                        p3cVar.a.setAnimation(p3cVar.g0[4]);
-                        p3cVar.g0[4].O(false, 0.0f);
-                        p3cVar.a.d();
-                        return;
-                    } else if (b2 == 1) {
-                        try {
-                            p3cVar.g0[6].K((int) ((Math.min(1.0f, p3cVar.n.getLayout().getLineWidth(0) / p3cVar.n.getWidth()) * 142.0f) + 18.0f));
-                            p3cVar.a.d();
-                            return;
-                        } catch (Exception e) {
-                            fa4.g(e, true);
-                            return;
-                        }
-                    } else if (b2 == 8 && editable.length() > 0) {
-                        p3cVar.L0(true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            default:
-                if (p3cVar.G) {
-                    if (p3cVar.F.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        gl.T3(p3cVar.F, true, 0.1f, true, true);
-                        return;
-                    } else if (p3cVar.F.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        gl.T3(p3cVar.F, false, 0.1f, true, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        RectF rectF;
+        if (ob6.a0) {
+            rectF = hl.P;
+            rectF.set(getWidth() - d(), (getHeight() - hl.L(18.0f)) / 2.0f, getWidth(), (hl.L(18.0f) + getHeight()) / 2.0f);
+        } else {
+            rectF = hl.P;
+            rectF.set(0.0f, (getHeight() - hl.L(18.0f)) / 2.0f, d(), (hl.L(18.0f) + getHeight()) / 2.0f);
         }
+        r3c r3cVar = this.x.n;
+        int i = aob.Gj;
+        String[] strArr = r3c.R1;
+        int p1 = aob.p1(0.1175f, aob.v0(i, r3cVar.J0));
+        Paint paint = this.s;
+        paint.setColor(p1);
+        canvas.drawRoundRect(rectF, hl.L(4.0f), hl.L(4.0f), paint);
+        if (this.w.g(canvas)) {
+            invalidate();
+        }
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    private final void a(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        RectF rectF;
+        r3c r3cVar = this.x.n;
+        int action = motionEvent.getAction();
+        m66 m66Var = this.w;
+        if (action == 0) {
+            String[] strArr = r3c.R1;
+            q66 q66Var = new q66(null, r3cVar.J0, motionEvent.getX(), motionEvent.getY(), 0);
+            q66Var.d(aob.p1(0.1175f, aob.v0(aob.Gj, r3cVar.J0)));
+            f66 b = q66Var.b();
+            if (ob6.a0) {
+                rectF = hl.P;
+                rectF.set(getWidth() - d(), (getHeight() - hl.L(18.0f)) / 2.0f, getWidth(), (hl.L(18.0f) + getHeight()) / 2.0f);
+            } else {
+                rectF = hl.P;
+                rectF.set(0.0f, (getHeight() - hl.L(18.0f)) / 2.0f, d(), (hl.L(18.0f) + getHeight()) / 2.0f);
+            }
+            b.addRect(rectF, Path.Direction.CW);
+            m66Var.a(q66Var, null);
+            invalidate();
+            return true;
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent.getAction() == 1) {
+                performClick();
+            }
+            m66Var.e(true);
+            invalidate();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

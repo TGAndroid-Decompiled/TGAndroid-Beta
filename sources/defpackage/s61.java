@@ -1,51 +1,40 @@
 package defpackage;
 
-import android.util.Pair;
-import java.util.HashMap;
-public final class s61 implements m8c {
-    public final t61 a;
-    public final Pair b;
-    public final Object c;
-    public final int d;
-    public final Object e;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.HashSet;
+public final class s61 extends View implements snb {
+    public Paint a;
+    public Paint b;
+    public float c;
+    public mm d;
 
-    public s61(t61 t61Var, Pair pair, Object obj, int i, Object obj2) {
-        this.a = t61Var;
-        this.b = pair;
-        this.c = obj;
-        this.d = i;
-        this.e = obj2;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = hl.P;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, hl.L(3.0f), hl.L(3.0f), this.b);
+        rectF.set(0.0f, 0.0f, this.d.e(false, this.c) * getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, hl.L(3.0f), hl.L(3.0f), this.a);
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
-        Boolean bool = (Boolean) obj;
-        Long l = (Long) obj3;
-        t61 t61Var = this.a;
-        t61Var.getClass();
-        boolean booleanValue = ((Boolean) obj4).booleanValue();
-        Pair pair = this.b;
-        if (booleanValue) {
-            if (t61Var.d == null) {
-                t61Var.d = new HashMap();
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            t61Var.d.put(pair, Long.valueOf(currentTimeMillis));
-            if (t61Var instanceof n97) {
-                t61Var.h(pair.hashCode(), currentTimeMillis);
-            }
+    public final void updateColors() {
+        try {
+            Paint paint = this.a;
+            int i = aob.N6;
+            paint.setColor(aob.w0(null, i, false));
+            this.b.setColor(aob.p1(0.2f, aob.w0(null, i, false)));
+            invalidate();
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
-        if (bool.booleanValue()) {
-            Object obj5 = this.c;
-            t61Var.a(pair, obj5);
-            gl.c3(new rg((Object) t61Var, (Object) pair, obj5, true, (byte) 2));
-            return;
-        }
-        if (obj2 != null) {
-            l.getClass();
-            t61Var.g(this.d, this.e, obj2);
-            t61Var.a(pair, obj2);
-        }
-        gl.c3(new rg((Object) t61Var, (Object) pair, obj2, true, (byte) 2));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

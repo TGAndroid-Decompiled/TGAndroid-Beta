@@ -1,38 +1,56 @@
 package defpackage;
-public final class qi0 implements Runnable {
-    public final byte a;
-    public final int b;
-    public final CharSequence c;
-    public final aj0 d;
 
-    public qi0(aj0 aj0Var, int i, CharSequence charSequence, byte b) {
-        this.a = b;
-        this.d = aj0Var;
-        this.b = i;
-        this.c = charSequence;
+import java.util.Arrays;
+public final class qi0 {
+    public final int a;
+    public final CharSequence b;
+
+    public qi0(int i, CharSequence charSequence) {
+        this.a = i;
+        this.b = charSequence;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        CharSequence charSequence = this.c;
-        int i = this.b;
-        aj0 aj0Var = this.d;
-        switch (b) {
-            case 0:
-                lj0 lj0Var = aj0Var.m0;
-                aod aodVar = lj0Var.c;
-                aod aodVar2 = aodVar;
-                if (aodVar == null) {
-                    ?? obj = new Object();
-                    lj0Var.c = obj;
-                    aodVar2 = obj;
+    public final boolean equals(Object obj) {
+        String str;
+        if (obj instanceof qi0) {
+            qi0 qi0Var = (qi0) obj;
+            if (this.a == qi0Var.a) {
+                CharSequence charSequence = qi0Var.b;
+                String str2 = null;
+                CharSequence charSequence2 = this.b;
+                if (charSequence2 != null) {
+                    str = charSequence2.toString();
+                } else {
+                    str = null;
                 }
-                aodVar2.a(i, charSequence);
-                return;
-            default:
-                aj0Var.U(i, charSequence);
-                return;
+                if (charSequence != null) {
+                    str2 = charSequence.toString();
+                }
+                if (str == null) {
+                    if (str2 == null) {
+                        return true;
+                    }
+                    return false;
+                } else if (str.equals(str2)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
         }
+        return false;
+    }
+
+    public final int hashCode() {
+        String str;
+        Integer valueOf = Integer.valueOf(this.a);
+        CharSequence charSequence = this.b;
+        if (charSequence != null) {
+            str = charSequence.toString();
+        } else {
+            str = null;
+        }
+        return Arrays.hashCode(new Object[]{valueOf, str});
     }
 }

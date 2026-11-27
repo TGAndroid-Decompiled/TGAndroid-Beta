@@ -1,17 +1,17 @@
 package defpackage;
-public final class mye implements zn7 {
-    public static final mye a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
+public abstract class mye {
+    public static final hz9 a(Object obj) {
+        if (obj != td3.a) {
+            return (hz9) obj;
+        }
+        grb.i("Does not contain segment");
+        return null;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static final boolean b(Object obj) {
+        if (obj == td3.a) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
     }
 }

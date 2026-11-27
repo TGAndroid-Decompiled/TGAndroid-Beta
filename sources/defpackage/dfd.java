@@ -1,17 +1,9 @@
 package defpackage;
-public final class dfd implements zn7 {
-    public static final dfd a = new Object();
+public abstract class dfd {
+    public static final qf5 a = new qf5((byte) 18);
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public static final void a(qw5 qw5Var, o8a o8aVar) {
+        o8aVar.getClass();
+        ur5.a(o8aVar.e(), tdb.b);
     }
 }

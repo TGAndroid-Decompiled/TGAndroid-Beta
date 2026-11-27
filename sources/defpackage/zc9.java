@@ -1,193 +1,32 @@
 package defpackage;
 
-import android.text.SpannableString;
-import android.view.KeyEvent;
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.StickersActivity;
-public final class zc9 implements u04 {
-    public final hd9 a;
+public final class zc9 extends b8 {
+    public final int W;
+    public long a0;
+    public xc9 b0;
 
-    public zc9(hd9 hd9Var) {
-        this.a = hd9Var;
+    public zc9(int i, vnb vnbVar, Context context) {
+        super(0, vnbVar, context, false, false);
+        this.W = i;
+        setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
+        c(aob.E8, aob.F8);
+        setIconColor(-1);
+        this.c.setTranslationX(hl.L(2.0f));
+        this.c.setScaleX(1.2f);
+        this.c.setScaleY(1.2f);
+        a(2);
+        setBackground(null);
+        this.c.addOnAttachStateChangeListener(new xc(this, (byte) 15));
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean h() {
-        return false;
-    }
-
-    @Override
-    public final void j(int i) {
-        mc9 focusedEditTextOrNull;
-        boolean z = false;
-        hd9 hd9Var = this.a;
-        if (i != 0 && (focusedEditTextOrNull = hd9Var.Q.getFocusedEditTextOrNull()) != null) {
-            hd9Var.S0 = focusedEditTextOrNull;
-            hd9Var.T0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
+            size = hl.L(250.0f);
         }
-        if (i != 0) {
-            z = true;
-        }
-        hd9Var.D0 = z;
-        hd9Var.a0(z);
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean l() {
-        mc9 s0 = this.a.s0();
-        if (s0 == null || s0.length() == 0) {
-            return false;
-        }
-        s0.dispatchKeyEvent(new KeyEvent(0, 67));
-        return true;
-    }
-
-    @Override
-    public final void m(String str) {
-        hd9 hd9Var = this.a;
-        mc9 s0 = hd9Var.s0();
-        if (s0 != null) {
-            int t0 = hd9Var.t0(s0);
-            try {
-                CharSequence m = vu3.m(str, s0.getPaint().getFontMetricsInt(), false, null, 0);
-                s0.setText(s0.getText().insert(t0, m));
-                int length = t0 + m.length();
-                s0.setSelection(length, length);
-                if (s0 == hd9Var.S0) {
-                    hd9Var.T0 = length;
-                }
-            } catch (Exception unused) {
-            }
-        }
-    }
-
-    @Override
-    public final float o() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void s(ArrayList arrayList) {
-        this.a.presentFragment(new StickersActivity(5, arrayList));
-    }
-
-    @Override
-    public final void v() {
-        this.a.presentFragment(new StickersActivity(0, null));
-    }
-
-    @Override
-    public final void w(long j, TLRPC.Document document, String str, boolean z) {
-        gm gmVar;
-        hd9 hd9Var = this.a;
-        mc9 s0 = hd9Var.s0();
-        if (s0 != null) {
-            int t0 = hd9Var.t0(s0);
-            try {
-                if (str == null) {
-                    str = "😀";
-                }
-                SpannableString spannableString = new SpannableString(str);
-                if (document != null) {
-                    gmVar = new gm(document, s0.getPaint().getFontMetricsInt());
-                } else {
-                    gmVar = new gm(j, s0.getPaint().getFontMetricsInt());
-                }
-                gmVar.cacheType = vl.f();
-                spannableString.setSpan(gmVar, 0, spannableString.length(), 33);
-                s0.setText(s0.getText().insert(t0, spannableString));
-                int length = t0 + spannableString.length();
-                s0.setSelection(length, length);
-                if (s0 == hd9Var.S0) {
-                    hd9Var.T0 = length;
-                }
-            } catch (Exception unused) {
-            }
-        }
-    }
-
-    @Override
-    public final boolean z() {
-        return this.a.D0;
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void p() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void g(d2c d2cVar) {
-    }
-
-    @Override
-    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void r(int i) {
-    }
-
-    @Override
-    public final void y(long j) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
-    }
-
-    @Override
-    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
-    }
-
-    @Override
-    public final void x(View view, TLRPC.Document document, String str, Object obj, g27 g27Var, boolean z, int i) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
     }
 }

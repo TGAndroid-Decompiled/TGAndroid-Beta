@@ -1,772 +1,498 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextPaint;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public class u41 extends FrameLayout implements g86, tjb {
-    public int E;
-    public boolean F;
-    public int G;
-    public int H;
-    public boolean I;
-    public int J;
-    public q21 K;
-    public float L;
-    public ValueAnimator M;
-    public boolean N;
-    public r86 O;
-    public boolean P;
-    public float Q;
-    public boolean R;
-    public ValueAnimator S;
-    public boolean T;
-    public float U;
-    public ValueAnimator V;
-    public int W;
-    public wjb a;
-    public boolean a0;
-    public int b;
-    public boolean b0;
-    public final Paint c;
-    public Drawable c0;
-    public final gn d;
-    public float d0;
-    public final gn e;
-    public boolean e0;
-    public final gn f;
-    public ValueAnimator f0;
-    public ih2 g0;
-    public float h;
-    public int h0;
-    public boolean i0;
-    public int j0;
-    public boolean k0;
-    public int l0;
-    public final lm n;
-    public final View r;
-    public boolean s;
-    public boolean w;
-    public boolean x;
-    public boolean y;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.UsersSelectActivity;
+public final class u41 {
+    public final Context a;
+    public final int b;
+    public final vnb c;
+    public final e d;
+    public final Runnable e;
+    public int f;
+    public int g;
+    public boolean h;
+    public boolean i;
+    public final ArrayList j;
+    public final ArrayList k;
+    public TL_account.TL_businessBotRecipients l;
+    public int m;
+    public boolean n;
 
-    public u41(wjb wjbVar, Context context, boolean z) {
-        super(context);
-        this.b = 8;
-        s33 s33Var = s33.h;
-        this.n = new lm(350L, s33Var);
-        this.G = -1;
-        this.I = true;
-        this.J = 0;
-        this.L = 0.0f;
-        this.Q = 0.0f;
-        this.U = 1.0f;
-        this.d0 = 1.0f;
-        this.e0 = true;
-        this.h0 = 255;
-        this.s = z;
-        this.a = wjbVar;
-        ote.b(this, 0.02f, 1.2f);
-        View view = new View(context);
-        this.r = view;
-        addView(view, nme.c(-1.0f, -1));
-        if (z) {
-            int L = gl.L(8.0f);
-            int i = bkb.Ei;
-            int v0 = bkb.v0(i, wjbVar);
-            this.E = v0;
-            ShapeDrawable b0 = bkb.b0(L, v0);
-            vkb M = zkb.M(i);
-            setBackground(b0);
-            zkb.j(this, b0, M, null, wjbVar);
-        }
-        Paint paint = new Paint(1);
-        this.c = paint;
-        paint.setColor(bkb.v0(bkb.Ii, wjbVar));
-        gn gnVar = new gn(true, true, false, false, true);
-        this.d = gnVar;
-        gnVar.n(0.3f, 250L, s33Var);
-        gnVar.setCallback(this);
-        gnVar.w(gl.L(14.0f));
-        if (z) {
-            gnVar.x(gl.o());
-        }
-        gnVar.b = 1;
-        gn gnVar2 = new gn(j(), true, false);
-        this.e = gnVar2;
-        gnVar2.n(0.3f, 250L, s33Var);
-        gnVar2.setCallback(this);
-        gnVar2.w(gl.L(12.0f));
-        gnVar2.b = 1;
-        gn gnVar3 = new gn(false, false, true);
-        this.f = gnVar3;
-        gnVar3.n(0.3f, 250L, s33Var);
-        gnVar3.setCallback(this);
-        gnVar3.w(gl.L(12.0f));
-        gnVar3.x(gl.o());
-        gnVar3.t("", true, true);
-        gnVar3.b = 1;
-        setWillNotDraw(false);
-        updateColors();
+    public u41(e eVar, Runnable runnable) {
+        this.j = new ArrayList();
+        this.k = new ArrayList();
+        this.m = -4;
+        this.a = eVar.getContext();
+        this.b = eVar.getCurrentAccount();
+        this.d = eVar;
+        this.e = runnable;
+        this.c = eVar.getResourceProvider();
     }
 
-    private int getWrapWidth() {
-        float f;
-        float e = this.n.e(false, this.h);
-        if (this.b0) {
-            f = gl.L(12.0f);
-        } else {
-            f = 0.0f;
-        }
-        return getPaddingRight() + getPaddingLeft() + ((int) (b(this.f.c() + gl.L(15.66f), e) + this.d.c() + f));
+    public final void a(java.util.ArrayList r18, defpackage.l9c r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.u41.a(java.util.ArrayList, l9c, boolean):void");
     }
 
-    private void setRippleColor(int i) {
-        View view = this.r;
-        Drawable background = view.getBackground();
-        if (background != null && this.H == i) {
-            return;
-        }
-        this.H = i;
-        if (background instanceof RippleDrawable) {
-            ((RippleDrawable) background).setColor(ColorStateList.valueOf(i));
-            return;
-        }
-        int i2 = this.b;
-        view.setBackground(bkb.Y(i, i2, i2));
-    }
-
-    @Override
-    public final boolean a() {
-        return this.R;
-    }
-
-    public float b(float f, float f2) {
-        return f * f2;
-    }
-
-    public final void c(int i, boolean z) {
-        float f;
-        gn gnVar = this.f;
-        if (z) {
-            gnVar.a();
-            int i2 = this.W;
-            if (i != i2 && i > 0 && i2 > 0) {
-                ValueAnimator valueAnimator = this.V;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.V = null;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.V = ofFloat;
-                ofFloat.addUpdateListener(new s41(this, (byte) 0));
-                this.V.addListener(new t41(this, (byte) 1));
-                b00.n(2.0f, this.V);
-                this.V.setDuration(200L);
-                this.V.start();
-            }
-        }
-        this.W = i;
-        if (i == 0 && !this.a0) {
-            f = 0.0f;
-        } else {
-            f = 1.0f;
-        }
-        this.h = f;
-        gnVar.t(k96.E(i, ' '), z, true);
-        invalidate();
-    }
-
-    public final void d() {
-        int i;
-        ShapeDrawable b0 = bkb.b0(gl.L(this.b), this.E);
-        if (this.y) {
-            setBackground(b0);
-            return;
-        }
-        if (this.x) {
-            i = bkb.nb;
-        } else {
-            i = bkb.Ei;
-        }
-        vkb M = zkb.M(i);
-        wjb wjbVar = this.a;
-        setBackground(b0);
-        zkb.j(this, b0, M, null, wjbVar);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        return false;
-    }
-
-    public final void e() {
-        this.x = true;
-        setFilled(true);
-        if (!this.y) {
-            this.E = bkb.v0(bkb.nb, this.a);
-            d();
-        }
-        updateColors();
-    }
-
-    public final void f() {
-        setRoundRadius(24);
-    }
-
-    public final void g(CharSequence charSequence, boolean z) {
+    public final TL_account.TL_inputBusinessBotRecipients b() {
+        boolean z;
         boolean z2;
-        if (charSequence != null) {
+        boolean z3;
+        ArrayList arrayList;
+        TL_account.TL_inputBusinessBotRecipients tL_inputBusinessBotRecipients = new TL_account.TL_inputBusinessBotRecipients();
+        int d = d();
+        tL_inputBusinessBotRecipients.flags = d & (-49);
+        boolean z4 = true;
+        if ((d & 1) != 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        tL_inputBusinessBotRecipients.existing_chats = z;
+        if ((d & 2) != 0) {
             z2 = true;
         } else {
             z2 = false;
         }
-        gn gnVar = this.e;
-        if (z) {
-            gnVar.a();
-        }
-        setContentDescription(charSequence);
-        invalidate();
-        if (this.N && !z2) {
-            ValueAnimator valueAnimator = this.M;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.M = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.L, 0.0f);
-            this.M = ofFloat;
-            ofFloat.addUpdateListener(new s41(this, (byte) 3));
-            this.M.addListener(new t41(this, (byte) 0));
-            this.M.setDuration(200L);
-            this.M.setInterpolator(s33.f);
-            this.M.start();
+        tL_inputBusinessBotRecipients.new_chats = z2;
+        if ((d & 4) != 0) {
+            z3 = true;
         } else {
-            gnVar.t(charSequence, z, true);
+            z3 = false;
         }
-        if (!this.N && z2) {
-            this.N = true;
-            ValueAnimator valueAnimator2 = this.M;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-                this.M = null;
+        tL_inputBusinessBotRecipients.contacts = z3;
+        if ((d & 8) == 0) {
+            z4 = false;
+        }
+        tL_inputBusinessBotRecipients.non_contacts = z4;
+        boolean z5 = this.h;
+        tL_inputBusinessBotRecipients.exclude_selected = z5;
+        ArrayList arrayList2 = this.k;
+        if (z5) {
+            arrayList = arrayList2;
+        } else {
+            arrayList = this.j;
+        }
+        if (!arrayList.isEmpty()) {
+            uc7 s1 = uc7.s1(yac.t0);
+            tL_inputBusinessBotRecipients.flags |= 16;
+            for (int i = 0; i < arrayList.size(); i++) {
+                Long l = (Long) arrayList.get(i);
+                l.getClass();
+                tL_inputBusinessBotRecipients.users.add(s1.q1(s1.X1(l)));
             }
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.L, 1.0f);
-            this.M = ofFloat2;
-            ofFloat2.addUpdateListener(new s41(this, (byte) 4));
-            this.M.setDuration(200L);
-            this.M.setInterpolator(s33.f);
-            this.M.start();
         }
-    }
-
-    public TextPaint getTextPaint() {
-        return this.d.a;
-    }
-
-    public final void h(CharSequence charSequence, boolean z) {
-        i(charSequence, false, true);
-    }
-
-    public final void i(CharSequence charSequence, boolean z, boolean z2) {
-        gn gnVar = this.d;
-        if (z) {
-            gnVar.a();
+        if (!this.h) {
+            uc7 s12 = uc7.s1(yac.t0);
+            tL_inputBusinessBotRecipients.flags |= 64;
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                Long l2 = (Long) arrayList2.get(i2);
+                l2.getClass();
+                tL_inputBusinessBotRecipients.exclude_users.add(s12.q1(s12.X1(l2)));
+            }
         }
-        gnVar.t(charSequence, z, z2);
-        setContentDescription(charSequence);
-        invalidate();
+        return tL_inputBusinessBotRecipients;
     }
 
-    @Override
-    public final boolean isEnabled() {
-        return this.e0;
-    }
-
-    public boolean j() {
-        return !(this instanceof oi1);
-    }
-
-    public final void k() {
-        this.b0 = true;
-        Drawable mutate = getContext().getDrawable(2131231933).mutate();
-        this.c0 = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(this.E, PorterDuff.Mode.SRC_IN));
-    }
-
-    public final void l() {
-        this.i0 = true;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        int wrapWidth;
+    public final TL_account.TL_businessBotRecipients c() {
         boolean z;
-        float f;
-        float f2;
-        int i;
-        float f3;
-        float f4;
-        float f5;
-        this.r.draw(canvas);
-        int i2 = 0;
-        if (this.P) {
-            boolean z2 = this.R;
-            r86 r86Var = this.O;
-            if (z2) {
-                if (r86Var == null) {
-                    r86 r86Var2 = new r86(this.a);
-                    this.O = r86Var2;
-                    r86Var2.setCallback(this);
-                    r86 r86Var3 = this.O;
-                    r86Var3.t = 2.0f;
-                    r86Var3.D = true;
-                    r86Var3.x.setStrokeWidth(0.0f);
-                    this.O.f(bkb.p1(0.02f, -1), bkb.p1(0.375f, -1));
-                }
-                r86 r86Var4 = this.O;
-                r86Var4.c = -1L;
-                r86Var4.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.O.j(this.b);
-                this.O.draw(canvas);
-            } else if (r86Var != null) {
-                r86Var.a();
-                this.O.draw(canvas);
-                if (this.O.c()) {
-                    this.O.b = -1L;
-                }
+        boolean z2;
+        boolean z3;
+        ArrayList arrayList;
+        TL_account.TL_businessBotRecipients tL_businessBotRecipients = new TL_account.TL_businessBotRecipients();
+        int d = d();
+        tL_businessBotRecipients.flags = d & (-49);
+        boolean z4 = true;
+        if ((d & 1) != 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        tL_businessBotRecipients.existing_chats = z;
+        if ((d & 2) != 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        tL_businessBotRecipients.new_chats = z2;
+        if ((d & 4) != 0) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        tL_businessBotRecipients.contacts = z3;
+        if ((d & 8) == 0) {
+            z4 = false;
+        }
+        tL_businessBotRecipients.non_contacts = z4;
+        boolean z5 = this.h;
+        tL_businessBotRecipients.exclude_selected = z5;
+        ArrayList arrayList2 = this.k;
+        if (z5) {
+            arrayList = arrayList2;
+        } else {
+            arrayList = this.j;
+        }
+        if (!arrayList.isEmpty()) {
+            uc7 s1 = uc7.s1(yac.t0);
+            tL_businessBotRecipients.flags |= 16;
+            for (int i = 0; i < arrayList.size(); i++) {
+                Long l = (Long) arrayList.get(i);
+                l.getClass();
+                s1.q1(s1.X1(l));
+                tL_businessBotRecipients.users.add((Long) arrayList.get(i));
             }
         }
-        int i3 = (this.Q > 0.0f ? 1 : (this.Q == 0.0f ? 0 : -1));
-        gn gnVar = this.d;
-        if (i3 > 0) {
-            ih2 ih2Var = this.g0;
-            if (ih2Var == null) {
-                ih2Var = new ih2(gnVar.a.getColor());
-                this.g0 = ih2Var;
+        if (!this.h) {
+            uc7 s12 = uc7.s1(yac.t0);
+            tL_businessBotRecipients.flags |= 64;
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                Long l2 = (Long) arrayList2.get(i2);
+                l2.getClass();
+                s12.q1(s12.X1(l2));
+                tL_businessBotRecipients.users.add((Long) arrayList2.get(i2));
             }
-            if (this.T) {
-                ih2Var.setBounds(0, 0, getWidth(), getHeight());
-                this.g0.setAlpha((int) (this.Q * 255.0f));
-                float R1 = gl.R1(0.6f, 1.0f, this.Q);
-                canvas.save();
-                canvas.scale(R1, R1, getWidth() / 2.0f, getHeight() / 2.0f);
-                this.g0.draw(canvas);
-                canvas.restore();
-            } else {
-                int L = (int) ((1.0f - this.Q) * gl.L(24.0f));
-                this.g0.setBounds(0, L, getWidth(), getHeight() + L);
-                this.g0.setAlpha((int) (this.Q * 255.0f));
-                this.g0.draw(canvas);
-            }
-            invalidate();
         }
-        float f6 = this.Q;
-        if (f6 < 1.0f) {
-            if (f6 != 0.0f) {
-                canvas.save();
-                boolean z3 = this.T;
-                float f7 = this.Q;
-                if (z3) {
-                    float f8 = 1.0f - (f7 * 0.2f);
-                    canvas.scale(f8, f8, getWidth() / 2.0f, getHeight() / 2.0f);
-                } else {
-                    canvas.translate(0.0f, (int) (f7 * gl.L(-24.0f)));
-                    canvas.scale(1.0f, 1.0f - (this.Q * 0.4f));
-                }
-                z = true;
-            } else {
-                z = false;
+        return tL_businessBotRecipients;
+    }
+
+    public final int d() {
+        if (this.h) {
+            return this.g;
+        }
+        return this.f;
+    }
+
+    public final TL_account.TL_inputBusinessRecipients e() {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        ArrayList arrayList;
+        TL_account.TL_inputBusinessRecipients tL_inputBusinessRecipients = new TL_account.TL_inputBusinessRecipients();
+        int d = d();
+        tL_inputBusinessRecipients.flags = d & (-49);
+        boolean z4 = true;
+        if ((d & 1) != 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        tL_inputBusinessRecipients.existing_chats = z;
+        if ((d & 2) != 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        tL_inputBusinessRecipients.new_chats = z2;
+        if ((d & 4) != 0) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        tL_inputBusinessRecipients.contacts = z3;
+        if ((d & 8) == 0) {
+            z4 = false;
+        }
+        tL_inputBusinessRecipients.non_contacts = z4;
+        boolean z5 = this.h;
+        tL_inputBusinessRecipients.exclude_selected = z5;
+        if (z5) {
+            arrayList = this.k;
+        } else {
+            arrayList = this.j;
+        }
+        if (!arrayList.isEmpty()) {
+            uc7 s1 = uc7.s1(yac.t0);
+            tL_inputBusinessRecipients.flags |= 16;
+            for (int i = 0; i < arrayList.size(); i++) {
+                Long l = (Long) arrayList.get(i);
+                l.getClass();
+                tL_inputBusinessRecipients.users.add(s1.q1(s1.X1(l)));
             }
-            float c = gnVar.c();
-            float e = this.n.e(false, this.h);
-            if (this.b0) {
-                f = gl.L(12.0f);
-            } else {
-                f = 0.0f;
+        }
+        return tL_inputBusinessRecipients;
+    }
+
+    public final TL_account.TL_businessRecipients f() {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        ArrayList arrayList;
+        TL_account.TL_businessRecipients tL_businessRecipients = new TL_account.TL_businessRecipients();
+        int d = d();
+        tL_businessRecipients.flags = d & (-49);
+        boolean z4 = true;
+        if ((d & 1) != 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        tL_businessRecipients.existing_chats = z;
+        if ((d & 2) != 0) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        tL_businessRecipients.new_chats = z2;
+        if ((d & 4) != 0) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        tL_businessRecipients.contacts = z3;
+        if ((d & 8) == 0) {
+            z4 = false;
+        }
+        tL_businessRecipients.non_contacts = z4;
+        boolean z5 = this.h;
+        tL_businessRecipients.exclude_selected = z5;
+        if (z5) {
+            arrayList = this.k;
+        } else {
+            arrayList = this.j;
+        }
+        if (!arrayList.isEmpty()) {
+            uc7 s1 = uc7.s1(yac.t0);
+            tL_businessRecipients.flags |= 16;
+            for (int i = 0; i < arrayList.size(); i++) {
+                Long l = (Long) arrayList.get(i);
+                l.getClass();
+                s1.q1(s1.X1(l));
+                tL_businessRecipients.users.add((Long) arrayList.get(i));
             }
-            gn gnVar2 = this.f;
-            float b = b(gnVar2.c() + gl.L(15.66f), e) + c + f;
-            Rect rect = gl.Q;
-            rect.set((int) (((getMeasuredWidth() - b) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - gnVar.e) / 2.0f) - gl.L(1.0f)), (int) tb4.e(getMeasuredWidth() - b, getWidth(), 2.0f, c), (int) (((getMeasuredHeight() + gnVar.e) / 2.0f) - gl.L(1.0f)));
-            rect.offset(0, (int) ((-gl.L(7.0f)) * this.L));
-            gnVar.C = (int) (gl.R1(0.5f, 1.0f, this.d0) * (1.0f - this.Q) * this.h0);
-            gnVar.setBounds(rect);
-            gnVar.draw(canvas);
-            if (this.N) {
-                gn gnVar3 = this.e;
-                b = gnVar3.c();
-                rect.set((int) (((getMeasuredWidth() - b) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - gnVar3.e) / 2.0f) - gl.L(1.0f)), (int) tb4.e(getMeasuredWidth() - b, getWidth(), 2.0f, b), (int) (((getMeasuredHeight() + gnVar3.e) / 2.0f) - gl.L(1.0f)));
-                rect.offset(0, gl.L(11.0f));
-                canvas.save();
-                float R12 = gl.R1(0.1f, 1.0f, this.L);
-                canvas.scale(R12, R12, rect.centerX(), rect.bottom);
-                gnVar3.C = (int) (gl.R1(0.5f, 1.0f, this.d0) * (1.0f - this.Q) * 200.0f * this.L);
-                gnVar3.setBounds(rect);
-                gnVar3.draw(canvas);
-                canvas.restore();
-            }
-            float z4 = oo1.z(getMeasuredWidth(), b, 2.0f, c);
-            if (this.I) {
-                f2 = 5.0f;
-            } else {
-                f2 = 2.0f;
-            }
-            int L2 = (int) (z4 + gl.L(f2));
-            int measuredHeight = (int) ((getMeasuredHeight() - gl.L(18.0f)) / 2.0f);
-            float z5 = oo1.z(getMeasuredWidth(), b, 2.0f, c);
-            if (this.I) {
-                i = 5;
-            } else {
-                i = 2;
-            }
-            rect.set(L2, measuredHeight, (int) (Math.max(gl.L(9.0f), gnVar2.c() + f) + z5 + gl.L(i + 8)), (int) ((gl.L(18.0f) + getMeasuredHeight()) / 2.0f));
-            RectF rectF = gl.P;
-            rectF.set(rect);
-            if (this.U != 1.0f) {
-                canvas.save();
-                float f9 = this.U;
-                canvas.scale(f9, f9, rect.centerX(), rect.centerY());
-            }
-            if (this.I) {
-                float f10 = 1.0f - this.Q;
-                f3 = 0.5f;
-                float R13 = gl.R1(0.5f, 1.0f, this.d0);
-                Paint paint = this.c;
-                paint.setAlpha((int) (R13 * f10 * this.h0 * e * e));
-                if (this.b0) {
-                    f5 = 4.0f;
-                } else {
-                    f5 = 10.0f;
-                }
-                float L3 = gl.L(f5);
-                canvas.drawRoundRect(rectF, L3, L3, paint);
-            } else {
-                f3 = 0.5f;
-            }
-            CharSequence charSequence = gnVar2.i;
-            if (charSequence != null) {
-                i2 = charSequence.length();
-            }
-            if (i2 > 1) {
-                f4 = 0.3f;
-            } else {
-                f4 = 0.0f;
-            }
-            rect.offset(-gl.L(f4), -gl.L(0.4f));
-            float z6 = tb4.z(1.0f, this.Q, this.h0, e);
-            if (this.I) {
-                f3 = 1.0f;
-            }
-            gnVar2.C = (int) (z6 * f3);
-            gnVar2.setBounds(rect);
-            canvas.save();
-            if (this.I && this.b0) {
-                this.c0.setAlpha((int) ((1.0f - this.Q) * this.h0 * e * 1.0f));
-                this.c0.setBounds(gl.L(1.0f) + rect.left, gl.L(2.0f) + rect.top, this.c0.getIntrinsicWidth() + gl.L(1.0f) + rect.left, this.c0.getIntrinsicHeight() + gl.L(2.0f) + rect.top);
-                this.c0.draw(canvas);
-                canvas.translate(f / 2.0f, 0.0f);
-            }
-            gnVar2.draw(canvas);
-            canvas.restore();
-            if (this.U != 1.0f) {
-                canvas.restore();
-            }
+        }
+        return tL_businessRecipients;
+    }
+
+    public final boolean g() {
+        ArrayList arrayList;
+        TL_account.TL_businessBotRecipients tL_businessBotRecipients = this.l;
+        if (tL_businessBotRecipients != null && tL_businessBotRecipients.exclude_selected == this.h && (tL_businessBotRecipients.flags & (-49)) == d()) {
+            boolean z = this.h;
+            ArrayList arrayList2 = this.k;
             if (z) {
-                canvas.restore();
-            }
-        }
-        if (this.w && this.l0 != (wrapWidth = getWrapWidth())) {
-            this.l0 = wrapWidth;
-            requestLayout();
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.s && isClickable() && getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public void onMeasure(int i, int i2) {
-        if (this.w) {
-            int wrapWidth = getWrapWidth();
-            this.l0 = wrapWidth;
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(wrapWidth, View.MeasureSpec.getSize(i)), 1073741824), i2);
-            View view = this.r;
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            }
-        } else if (this.k0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(this.d.c() + getPaddingLeft() + getPaddingRight(), this.j0), View.MeasureSpec.getSize(i)), 1073741824), i2);
-        } else {
-            super.onMeasure(i, i2);
-        }
-    }
-
-    public void setColor(int i) {
-        if (this.s) {
-            this.y = true;
-            int L = gl.L(this.b);
-            this.E = i;
-            setBackground(bkb.b0(L, i));
-            return;
-        }
-        this.F = true;
-        this.d.u(i);
-        int p1 = bkb.p1(0.1f, i);
-        int i2 = this.b;
-        this.r.setBackground(bkb.Y(p1, i2, i2));
-    }
-
-    public void setCountFilled(boolean z) {
-        float f;
-        int color;
-        this.I = z;
-        if (z) {
-            f = 12.0f;
-        } else {
-            f = 14.0f;
-        }
-        gn gnVar = this.f;
-        gnVar.w(gl.L(f));
-        if (this.I) {
-            color = this.E;
-        } else {
-            color = this.d.a.getColor();
-        }
-        gnVar.u(color);
-    }
-
-    public void setCounterColor(int i) {
-        this.f.u(i);
-        this.c0.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-    }
-
-    @Override
-    public void setEnabled(boolean z) {
-        float f;
-        if (this.e0 != z) {
-            ValueAnimator valueAnimator = this.f0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.f0 = null;
-            }
-            float f2 = this.d0;
-            this.e0 = z;
-            if (z) {
-                f = 1.0f;
+                arrayList = arrayList2;
             } else {
-                f = 0.0f;
+                arrayList = this.j;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.f0 = ofFloat;
-            ofFloat.addUpdateListener(new s41(this, (byte) 1));
-            this.f0.start();
-        }
-        super.setEnabled(z);
-    }
-
-    public void setFilled(boolean z) {
-        if (this.s == z) {
-            return;
-        }
-        this.s = z;
-        gn gnVar = this.d;
-        if (z) {
-            d();
-            gnVar.x(gl.o());
-        } else {
-            setBackground(null);
-            gnVar.x(null);
-        }
-        updateColors();
-    }
-
-    public void setFlickeringLoading(boolean z) {
-        this.P = z;
-    }
-
-    public void setGlobalAlpha(float f) {
-        this.h0 = (int) (f * 255.0f);
-    }
-
-    @Override
-    public void setLoading(boolean z) {
-        float f;
-        long j;
-        if (this.R != z) {
-            if (this.P) {
-                this.R = z;
-                invalidate();
-                return;
+            if (arrayList.size() == this.l.users.size()) {
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (!this.l.users.contains(arrayList.get(i))) {
+                        return true;
+                    }
+                }
+                if (this.i && !this.h) {
+                    if (arrayList2.size() == this.l.exclude_users.size()) {
+                        for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                            if (!this.l.exclude_users.contains(arrayList2.get(i2))) {
+                                return true;
+                            }
+                        }
+                    } else {
+                        return true;
+                    }
+                }
+                return false;
             }
-            ValueAnimator valueAnimator = this.S;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.S = null;
-            }
-            float f2 = this.Q;
-            this.R = z;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-            this.S = ofFloat;
-            ofFloat.addUpdateListener(new s41(this, (byte) 2));
-            this.S.addListener(new y7((byte) 10, this, z));
-            ValueAnimator valueAnimator2 = this.S;
-            if (this.T) {
-                j = 240;
-            } else {
-                j = 320;
-            }
-            valueAnimator2.setDuration(j);
-            this.S.setInterpolator(s33.h);
-            this.S.start();
+            return true;
         }
+        return true;
     }
 
-    public void setMinWidth(int i) {
-        this.k0 = true;
-        this.j0 = i;
-    }
-
-    public void setRoundRadius(int i) {
-        this.b = i;
-        if (this.s) {
-            d();
-        } else {
-            setBackground(null);
-        }
-        this.r.setBackground(null);
-        updateColors();
-    }
-
-    public void setScaleLoading(boolean z) {
-        this.T = z;
-    }
-
-    public void setShowZero(boolean z) {
-        this.a0 = z;
-    }
-
-    public void setText(CharSequence charSequence) {
-        i(charSequence, false, true);
-    }
-
-    public void setTextAlpha(float f) {
-        this.d.C = (int) (f * 255.0f);
-    }
-
-    public void setTextColor(int i) {
-        this.G = -1;
-        this.F = true;
-        gn gnVar = this.d;
-        gnVar.u(i);
-        if (!this.s) {
-            setRippleColor(bkb.p1(0.1f, gnVar.a.getColor()));
-        }
-    }
-
-    public void setTextColorKey(int i) {
-        this.G = i;
-        this.F = false;
-        updateColors();
-    }
-
-    public void setUseWrapContent(boolean z) {
-        this.w = z;
-    }
-
-    @Override
-    public void updateColors() {
+    public final boolean h(b8c b8cVar) {
+        boolean z;
+        ArrayList arrayList;
+        boolean z2;
+        boolean z3;
         int i;
         int i2;
-        if (!this.y) {
-            if (this.x) {
-                i2 = bkb.nb;
+        int i3 = b8cVar.d;
+        e eVar = this.d;
+        if (i3 != 101) {
+            if (i3 == 103) {
+                z = false;
             } else {
-                i2 = bkb.Ei;
-            }
-            this.E = bkb.v0(i2, this.a);
-        }
-        boolean z = this.F;
-        gn gnVar = this.d;
-        if (!z) {
-            int i3 = this.G;
-            if (i3 < 0) {
-                if (this.s) {
-                    if (this.x) {
-                        i3 = bkb.ob;
+                Runnable runnable = this.e;
+                if (i3 == 102) {
+                    runnable.run();
+                    return true;
+                } else if (i3 == 104) {
+                    runnable.run();
+                    return true;
+                } else if (b8cVar.a != 11) {
+                    return false;
+                } else {
+                    boolean z4 = b8cVar.x;
+                    String A1 = uc7.s1(this.b).A1(b8cVar.y, false);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.c, this.a);
+                    if (!z4) {
+                        i = 2131752667;
                     } else {
-                        i3 = bkb.Ii;
+                        i = 2131752665;
                     }
-                } else {
-                    i3 = bkb.Ei;
+                    String M0 = ob6.M0(i, null);
+                    id idVar = alertDialog$Builder.a;
+                    idVar.S = M0;
+                    if (!z4) {
+                        i2 = 2131752668;
+                    } else {
+                        i2 = 2131752666;
+                    }
+                    idVar.U = ob6.a0(null, null, i2, A1);
+                    alertDialog$Builder.j(ob6.M0(2131746048, null), new bh(this, z4, b8cVar, (byte) 1));
+                    alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+                    if (eVar != null) {
+                        eVar.showDialog(idVar);
+                        return true;
+                    }
+                    idVar.show();
+                    return true;
                 }
             }
-            gnVar.u(bkb.v0(i3, this.a));
+        } else {
+            z = true;
         }
-        if (this.s) {
-            setRippleColor(bkb.v0(bkb.h6, this.a));
-        } else if (!this.F) {
-            setRippleColor(bkb.p1(0.1f, gnVar.a.getColor()));
+        if (z) {
+            arrayList = this.j;
+        } else {
+            arrayList = this.k;
         }
-        if (!this.F) {
-            if (this.s) {
-                if (this.x) {
-                    i = bkb.ob;
-                } else {
-                    i = bkb.Ii;
-                }
-            } else {
-                i = bkb.Ei;
-            }
-            this.e.u(bkb.v0(i, this.a));
+        UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z);
+        usersSelectActivity.y = (byte) 2;
+        usersSelectActivity.H = false;
+        boolean z5 = this.i;
+        if (z5 && !this.h && !z) {
+            z2 = true;
+        } else {
+            z2 = false;
         }
-        this.f.u(this.E);
-        this.c.setColor(bkb.v0(bkb.Ii, this.a));
-        invalidate();
+        usersSelectActivity.G = z2;
+        usersSelectActivity.H = false;
+        usersSelectActivity.I = z5;
+        if (!z && this.n) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        usersSelectActivity.J = z3;
+        usersSelectActivity.n = new t41((byte) 0, this, z);
+        if (eVar != null) {
+            eVar.presentFragment(usersSelectActivity);
+            return true;
+        }
+        e S = LaunchActivity.S();
+        if (S == 0) {
+            return true;
+        }
+        ?? obj = new Object();
+        obj.a = true;
+        S.showAsSheet(usersSelectActivity, obj);
+        return true;
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.O != drawable && this.d != drawable && this.e != drawable && this.f != drawable && !super.verifyDrawable(drawable)) {
+    public final void i(TL_account.TL_businessBotRecipients tL_businessBotRecipients) {
+        this.i = true;
+        this.l = tL_businessBotRecipients;
+        ArrayList arrayList = this.j;
+        ArrayList arrayList2 = this.k;
+        if (tL_businessBotRecipients == null) {
+            this.h = true;
+            this.g = 0;
+            this.f = 0;
+            arrayList.clear();
+            arrayList2.clear();
+            return;
+        }
+        boolean z = tL_businessBotRecipients.exclude_selected;
+        this.h = z;
+        if (z) {
+            this.f = 0;
+            this.g = tL_businessBotRecipients.flags & (-49);
+            arrayList.clear();
+            arrayList2.clear();
+            arrayList2.addAll(this.l.users);
+            return;
+        }
+        this.f = tL_businessBotRecipients.flags & (-49);
+        this.g = 0;
+        arrayList.clear();
+        arrayList2.clear();
+        arrayList.addAll(this.l.users);
+        arrayList2.addAll(this.l.exclude_users);
+    }
+
+    public final void j(TL_account.TL_businessRecipients tL_businessRecipients) {
+        TL_account.TL_businessBotRecipients tL_businessBotRecipients;
+        this.i = false;
+        if (tL_businessRecipients != null) {
+            tL_businessBotRecipients = new TL_account.TL_businessBotRecipients();
+            this.l = tL_businessBotRecipients;
+            tL_businessBotRecipients.flags = tL_businessRecipients.flags;
+            tL_businessBotRecipients.existing_chats = tL_businessRecipients.existing_chats;
+            tL_businessBotRecipients.new_chats = tL_businessRecipients.new_chats;
+            tL_businessBotRecipients.contacts = tL_businessRecipients.contacts;
+            tL_businessBotRecipients.non_contacts = tL_businessRecipients.non_contacts;
+            tL_businessBotRecipients.exclude_selected = tL_businessRecipients.exclude_selected;
+            tL_businessBotRecipients.users = tL_businessRecipients.users;
+        } else {
+            tL_businessBotRecipients = null;
+            this.l = null;
+        }
+        ArrayList arrayList = this.j;
+        ArrayList arrayList2 = this.k;
+        if (tL_businessBotRecipients == null) {
+            this.h = true;
+            this.g = 0;
+            this.f = 0;
+            arrayList.clear();
+            arrayList2.clear();
+            return;
+        }
+        boolean z = tL_businessBotRecipients.exclude_selected;
+        this.h = z;
+        if (z) {
+            this.f = 0;
+            this.g = tL_businessBotRecipients.flags & (-49);
+            arrayList.clear();
+            arrayList2.clear();
+            arrayList2.addAll(this.l.users);
+            return;
+        }
+        this.f = tL_businessBotRecipients.flags & (-49);
+        this.g = 0;
+        arrayList.clear();
+        arrayList2.clear();
+        arrayList.addAll(this.l.users);
+        arrayList2.addAll(this.l.exclude_users);
+    }
+
+    public final boolean k(q9c q9cVar) {
+        if (!this.h && this.j.isEmpty() && this.f == 0) {
+            yw0.APP_ERROR.a();
+            View C1 = q9cVar.C1(101);
+            int i = -this.m;
+            this.m = i;
+            hl.A3(i, C1, null);
+            q9cVar.A0(q9cVar.B1(101));
             return false;
         }
         return true;
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    public u41(Context context, wjb wjbVar) {
-        this(wjbVar, context, true);
+    public u41(Activity activity, int i, vd2 vd2Var, vnb vnbVar) {
+        this.j = new ArrayList();
+        this.k = new ArrayList();
+        this.m = -4;
+        this.a = activity;
+        this.b = i;
+        this.d = null;
+        this.e = vd2Var;
+        this.c = vnbVar;
     }
 }

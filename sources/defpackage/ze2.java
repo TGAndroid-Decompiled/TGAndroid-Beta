@@ -1,62 +1,62 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ze2 implements df2 {
-    public final kf2 a;
+import android.os.SystemClock;
+public final class ze2 implements hm6 {
+    public long a;
+    public long b;
+    public boolean c;
+    public Object d;
+    public Object e;
 
-    public ze2(kf2 kf2Var) {
-        this.a = kf2Var;
+    public final void a(long j) {
+        this.a = j;
+        if (this.c) {
+            ((vgb) this.d).getClass();
+            this.b = SystemClock.elapsedRealtime();
+        }
     }
 
-    @Override
-    public final void c(long j, TLObject tLObject) {
-        kf2 kf2Var = this.a;
-        vf6 vf6Var = kf2Var.K;
-        ArrayList arrayList = kf2Var.F;
-        if (vf6Var.f(j) == null) {
-            ef2 z0 = kf2Var.z0();
-            arrayList.add(tLObject);
-            kf2Var.K.k(tLObject, j);
-            Collections.sort(arrayList, new qe2(kf2Var, kf2Var.getConnectionsManager().getCurrentTime(), (byte) 0));
-            kf2Var.C0(z0);
+    public final void b() {
+        if (!this.c) {
+            ((vgb) this.d).getClass();
+            this.b = SystemClock.elapsedRealtime();
+            this.c = true;
         }
     }
 
     @Override
-    public final void d(long j) {
-        kf2 kf2Var = this.a;
-        vf6 vf6Var = kf2Var.K;
-        ArrayList arrayList = kf2Var.F;
-        if (vf6Var.f(j) == null) {
-            ef2 z0 = kf2Var.z0();
-            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
-            if (j > 0) {
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_channelParticipantBanned.peer = tL_peerUser;
-                tL_peerUser.user_id = j;
+    public final void c(of8 of8Var) {
+        if (this.c) {
+            a(g());
+        }
+        this.e = of8Var;
+    }
+
+    @Override
+    public final of8 f() {
+        return (of8) this.e;
+    }
+
+    @Override
+    public final long g() {
+        long j;
+        long j2 = this.a;
+        if (this.c) {
+            ((vgb) this.d).getClass();
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.b;
+            of8 of8Var = (of8) this.e;
+            if (of8Var.a == 1.0f) {
+                j = gcc.T(elapsedRealtime);
             } else {
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_channelParticipantBanned.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -j;
+                j = elapsedRealtime * of8Var.c;
             }
-            tL_channelParticipantBanned.date = kf2Var.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = y6c.h(kf2Var.getAccountInstance().a).n;
-            kf2Var.r.kicked_count++;
-            arrayList.add(tL_channelParticipantBanned);
-            kf2Var.K.k(tL_channelParticipantBanned, j);
-            Collections.sort(arrayList, new qe2(kf2Var, kf2Var.getConnectionsManager().getCurrentTime(), (byte) 0));
-            kf2Var.C0(z0);
+            return j + j2;
         }
+        return j2;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b(long j) {
+    public final boolean h() {
+        return false;
     }
 }

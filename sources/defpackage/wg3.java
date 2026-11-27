@@ -1,79 +1,198 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d;
-public final class wg3 implements RequestDelegate {
-    public final byte a = 0;
-    public final long b;
-    public final gk7 c;
-    public final Object d;
-    public final Object e;
-    public final TLObject f;
-    public final Object g;
+import android.os.Bundle;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class wg3 implements View.OnClickListener {
+    public final byte a;
+    public final uj3 b;
 
-    public wg3(cj3 cj3Var, hd hdVar, TLRPC.User user, TLRPC.Chat chat, long j, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.c = cj3Var;
-        this.d = hdVar;
-        this.e = user;
-        this.f = chat;
-        this.b = j;
-        this.g = tL_messages_checkHistoryImportPeer;
+    public wg3(uj3 uj3Var, byte b) {
+        this.a = b;
+        this.b = uj3Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        Object obj = this.g;
-        TLObject tLObject2 = this.f;
-        Object obj2 = this.d;
-        Object obj3 = this.e;
-        gk7 gk7Var = this.c;
-        switch (b) {
+    public final void onClick(View view) {
+        ii3 ii3Var;
+        ii3 ii3Var2;
+        ArrayList arrayList;
+        CharSequence charSequence;
+        int i = 0;
+        switch (this.a) {
             case 0:
-                gl.c3(new kg3((cj3) gk7Var, (hd) obj2, tLObject, (TLRPC.User) obj3, (TLRPC.Chat) tLObject2, this.b, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) obj));
+                uj3 uj3Var = this.b;
+                uj3Var.k5(true, false, true, false);
+                uj3Var.Z.b(true);
+                hl.d3(new rg3(uj3Var, (byte) 24), 100L);
                 return;
             case 1:
-                na7 na7Var = (na7) gk7Var;
-                Runnable runnable = (Runnable) obj2;
-                d dVar = (d) obj3;
-                TLRPC.TL_messages_editChatAdmin tL_messages_editChatAdmin = (TLRPC.TL_messages_editChatAdmin) tLObject2;
-                z97 z97Var = (z97) obj;
-                if (tL_error == null) {
-                    gl.d3(new a87(na7Var, this.b, runnable, (byte) 1), 1000L);
+                uj3 uj3Var2 = this.b;
+                if (uj3Var2.H0 && (ii3Var = uj3Var2.F0) != null && !ii3Var.g()) {
+                    uj3Var2.R4(true, true);
+                    return;
+                } else {
+                    uj3Var2.l5();
                     return;
                 }
-                gl.c3(new s67(na7Var, tL_error, dVar, tL_messages_editChatAdmin, (byte) 3));
-                if (z97Var != null) {
-                    gl.c3(new e87(z97Var, tL_error, (byte) 1));
+            case 2:
+                uj3 uj3Var3 = this.b;
+                if (uj3Var3.H0 && (ii3Var2 = uj3Var3.F0) != null && !ii3Var2.g()) {
+                    uj3Var3.R4(true, true);
+                    return;
+                } else {
+                    uj3Var3.l5();
                     return;
                 }
+            case 3:
+                uj3 uj3Var4 = this.b;
+                Bundle bundle = new Bundle();
+                bundle.putLong("community_id", uj3Var4.a3);
+                uj3Var4.presentFragment(new io2(bundle));
+                return;
+            case 4:
+                uj3 uj3Var5 = this.b;
+                ArrayList arrayList2 = uj3Var5.K2;
+                if (uj3Var5.E2 != null && !arrayList2.isEmpty()) {
+                    uj3Var5.O2 = false;
+                    ArrayList arrayList3 = new ArrayList();
+                    while (i < arrayList2.size()) {
+                        arrayList3.add(if7.a(((Long) arrayList2.get(i)).longValue(), 0L));
+                        i++;
+                    }
+                    uj3Var5.E2.q(uj3Var5, arrayList3, uj3Var5.D1.getFieldText(), false, uj3Var5.L2, uj3Var5.M2, uj3Var5.N2, null);
+                    return;
+                }
+                return;
+            case 5:
+                this.b.A3(true);
+                return;
+            case 6:
+                this.b.finishPreviewFragment();
+                return;
+            case 7:
+                uj3 uj3Var6 = this.b;
+                uj3Var6.A0.setIsEditing(false);
+                uj3Var6.d5(false);
+                return;
+            case 8:
+                uj3 uj3Var7 = this.b;
+                uj3Var7.showDialog(new xk8((e) uj3Var7, 2, true));
+                return;
+            case 9:
+                uj3 uj3Var8 = this.b;
+                uj3Var8.getContactsController().B();
+                uj3Var8.f5();
+                return;
+            case 10:
+                this.b.E4(view);
+                return;
+            case 11:
+                uj3 uj3Var9 = this.b;
+                if (uj3Var9.z3() && (arrayList = uj3Var9.F2) != null && !arrayList.isEmpty() && uj3Var9.getParentActivity() != null) {
+                    no6 no6Var = (no6) uj3Var9.F2.get(0);
+                    bi3 bi3Var = uj3Var9.D1;
+                    if (bi3Var != null) {
+                        charSequence = bi3Var.getFieldText();
+                    } else {
+                        charSequence = no6Var.a;
+                    }
+                    ArrayList arrayList4 = uj3Var9.F2;
+                    int size = arrayList4.size();
+                    while (i < size) {
+                        Object obj = arrayList4.get(i);
+                        i++;
+                        ((no6) obj).a = charSequence;
+                    }
+                    PhotoViewer.q0().T1(null, uj3Var9, uj3Var9.getResourceProvider());
+                    PhotoViewer.q0().u7 = true;
+                    PhotoViewer.q0().v7 = charSequence;
+                    ArrayList arrayList5 = new ArrayList(uj3Var9.F2);
+                    boolean[] zArr = new boolean[uj3Var9.F2.size()];
+                    Arrays.fill(zArr, true);
+                    PhotoViewer.q0().o1(arrayList5, 0, 0, false, new wi3(uj3Var9, zArr), null);
+                    PhotoViewer q0 = PhotoViewer.q0();
+                    q0.f4 = true;
+                    CheckBox checkBox = q0.O0;
+                    if (checkBox != null) {
+                        checkBox.setVisibility(8);
+                    }
+                    PhotoViewer.CounterView counterView = q0.P0;
+                    if (counterView != null) {
+                        counterView.setVisibility(8);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 12:
+                this.b.h4();
+                return;
+            case 13:
+                this.b.m4();
+                return;
+            case 14:
+                this.b.o4();
+                return;
+            case 15:
+                uj3 uj3Var10 = this.b;
+                uj3Var10.showDialog((nx0) jj.l(uj3Var10.getParentActivity(), ob6.M0(2131751203, null), ob6.M0(2131751208, null), null, new sg3(uj3Var10, (byte) 1), new rg3(uj3Var10, (byte) 6), false, false, uj3Var10.getResourceProvider()).b);
+                return;
+            case 16:
+                this.b.r4();
+                return;
+            case 17:
+                this.b.s4();
+                return;
+            case 18:
+                uj3 uj3Var11 = this.b;
+                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
+                premiumPreviewFragment.k0 = true;
+                uj3Var11.presentFragment(premiumPreviewFragment);
+                hl.d3(new rg3(uj3Var11, (byte) 20), 250L);
+                return;
+            case 19:
+                this.b.i4();
+                return;
+            case 20:
+                this.b.G4();
+                return;
+            case 21:
+                uj3 uj3Var12 = this.b;
+                PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
+                premiumPreviewFragment2.k0 = true;
+                uj3Var12.presentFragment(premiumPreviewFragment2);
+                hl.d3(new rg3(uj3Var12, (byte) 3), 250L);
+                return;
+            case 22:
+                uj3 uj3Var13 = this.b;
+                uj3Var13.presentFragment(new z61());
+                hl.d3(new rg3(uj3Var13, (byte) 1), 250L);
+                return;
+            case 23:
+                this.b.F4();
+                return;
+            case 24:
+                this.b.v4();
+                return;
+            case 25:
+                this.b.j4();
+                return;
+            case 26:
+                uj3 uj3Var14 = this.b;
+                m01.u(uj3Var14.getParentActivity(), uj3Var14.getMessagesController().k4.w2.f);
+                return;
+            case 27:
+                this.b.k4();
                 return;
             default:
-                vqa vqaVar = (vqa) gk7Var;
-                vqaVar.getClass();
-                gl.c3(new kg3(vqaVar, (c01) obj3, (hd) obj2, tLObject, (TL_stars.TL_starGiftUnique) tLObject2, tL_error, this.b, (CharSequence) obj));
+                this.b.P3();
                 return;
         }
-    }
-
-    public wg3(na7 na7Var, long j, Runnable runnable, d dVar, TLRPC.TL_messages_editChatAdmin tL_messages_editChatAdmin, z97 z97Var) {
-        this.c = na7Var;
-        this.b = j;
-        this.d = runnable;
-        this.e = dVar;
-        this.f = tL_messages_editChatAdmin;
-        this.g = z97Var;
-    }
-
-    public wg3(vqa vqaVar, c01 c01Var, hd hdVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, CharSequence charSequence) {
-        this.c = vqaVar;
-        this.e = c01Var;
-        this.d = hdVar;
-        this.f = tL_starGiftUnique;
-        this.b = j;
-        this.g = charSequence;
     }
 }

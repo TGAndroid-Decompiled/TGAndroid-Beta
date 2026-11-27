@@ -1,84 +1,75 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import j$.util.Objects;
-public final class bz3 extends q39 {
-    public boolean g3;
-    public final t14 h3;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+public final class bz3 implements TextWatcher {
+    public final EditText a;
+    public az3 b;
+    public boolean c = true;
 
-    public bz3(t14 t14Var, Context context) {
-        super(context, null);
-        this.h3 = t14Var;
+    public bz3(EditText editText) {
+        this.a = editText;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.h3.n2.g();
-    }
-
-    @Override
-    public final void m0(int i) {
-        int i2;
-        t14 t14Var = this.h3;
-        o14 o14Var = t14Var.A0;
-        if (t14Var.D0 != null) {
-            gz3 gz3Var = t14Var.C0;
-            if (t14Var.E0.canScrollVertically(-1)) {
-                i2 = gl.e1();
+    public static void a(EditText editText, int i) {
+        int length;
+        if (i == 1 && editText != null && editText.isAttachedToWindow()) {
+            Editable editableText = editText.getEditableText();
+            int selectionStart = Selection.getSelectionStart(editableText);
+            int selectionEnd = Selection.getSelectionEnd(editableText);
+            gx3 a = gx3.a();
+            if (editableText == null) {
+                length = 0;
             } else {
-                i2 = 0;
+                a.getClass();
+                length = editableText.length();
             }
-            gz3Var.setUnderlineHeight(i2);
+            a.e(0, length, editableText);
+            if (selectionStart >= 0) {
+                if (selectionEnd >= 0) {
+                    Selection.setSelection(editableText, selectionStart, selectionEnd);
+                } else {
+                    Selection.setSelection(editableText, selectionStart);
+                }
+            } else if (selectionEnd >= 0) {
+                Selection.setSelection(editableText, selectionEnd);
+            }
         }
-        if (o14Var != null && getAdapter() == o14Var && o14Var.d == 0) {
-            o14 o14Var2 = o14Var.P.x;
-            if (!o14Var2.R.H0.G && !o14Var2.E) {
-                if (t14Var.F0.M0() + 50 > o14Var.b()) {
-                    n14 n14Var = o14Var.P;
-                    Objects.requireNonNull(n14Var);
-                    gl.c3(new az3(n14Var, (byte) 0));
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        EditText editText = this.a;
+        if (!editText.isInEditMode() && this.c && gx3.j != null && i2 <= i3 && (charSequence instanceof Spannable)) {
+            int b = gx3.a().b();
+            if (b != 0) {
+                if (b != 1) {
+                    if (b != 3) {
+                        return;
+                    }
+                } else {
+                    gx3.a().e(i, i3 + i, (Spannable) charSequence);
+                    return;
                 }
             }
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        t14 t14Var = this.h3;
-        if (!t14Var.f) {
-            xv2 e = xv2.e();
-            bz3 bz3Var = t14Var.E0;
-            t14Var.getMeasuredHeight();
-            boolean g = e.g(motionEvent, bz3Var, t14Var.h2, this.o2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !g) {
-                return false;
+            gx3 a = gx3.a();
+            az3 az3Var = this.b;
+            if (az3Var == null) {
+                az3Var = new az3(editText);
+                this.b = az3Var;
             }
-            return true;
+            a.f(az3Var);
         }
-        return false;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        t14 t14Var = this.h3;
-        if (t14Var.J0 && t14Var.z0.b() > 0) {
-            this.g3 = true;
-            t14Var.F0.g1(0, 0);
-            t14Var.J0 = false;
-            this.g3 = false;
-        }
-        super.onLayout(z, i, i2, i3, i4);
-        t14Var.n(true);
+    public final void afterTextChanged(Editable editable) {
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.g3) {
-            return;
-        }
-        super.requestLayout();
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

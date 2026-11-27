@@ -1,115 +1,85 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import java.util.ArrayList;
-public final class m9a {
-    public c79 a;
-    public w69 b;
-    public Paint c;
-    public Paint d;
-    public Paint e;
-    public Paint f;
-    public Paint g;
-    public d9a h;
-    public float i;
-    public float j;
-    public l9a k;
-    public i9a l;
-    public ArrayList m;
-    public ArrayList n;
-    public Matrix o;
-    public float[] p;
+import java.util.Map;
+public final class m9a implements ku4 {
+    public static final m9a a;
+    private static final o8a descriptor;
 
-    public static float a(float f, float f2, float f3, float f4, float f5, float f6) {
-        float f7 = f5 - f3;
-        float f8 = f6 - f4;
-        float max = Math.max(Math.min((((f2 - f4) * f8) + ((f - f3) * f7)) / ((f8 * f8) + (f7 * f7)), 1.0f), 0.0f);
-        float f9 = ((f7 * max) + f3) - f;
-        float f10 = ((max * f8) + f4) - f2;
-        return (float) Math.sqrt((f10 * f10) + (f9 * f9));
+    static {
+        ?? obj = new Object();
+        a = obj;
+        ug8 ug8Var = new ug8("com.google.firebase.sessions.SessionData", obj, 3);
+        ug8Var.j("sessionDetails", false);
+        ug8Var.j("backgroundTime", true);
+        ug8Var.j("processDataMap", true);
+        descriptor = ug8Var;
     }
 
-    public final void b(Canvas canvas, via viaVar, l9a l9aVar) {
-        Paint paint;
-        Paint paint2;
-        float width = (l9aVar.d / viaVar.a) * canvas.getWidth();
-        float height = (l9aVar.e / viaVar.b) * canvas.getHeight();
-        float L = gl.L(5.0f);
-        boolean z = l9aVar.a;
-        if (z) {
-            paint = this.d;
-        } else {
-            paint = this.f;
+    @Override
+    public final hx5[] a() {
+        return new hx5[]{q9a.a, lud.a(mrb.a), lud.a((hx5) o9a.d[2].getValue())};
+    }
+
+    @Override
+    public final void b(d30 d30Var, Object obj) {
+        o9a o9aVar = (o9a) obj;
+        o9aVar.getClass();
+        o8a o8aVar = descriptor;
+        d30 a2 = d30Var.a(o8aVar);
+        h26[] h26VarArr = o9a.d;
+        q9a q9aVar = q9a.a;
+        s9a s9aVar = o9aVar.a;
+        Map map = o9aVar.c;
+        orb orbVar = o9aVar.b;
+        a2.i(o8aVar, 0, q9aVar, s9aVar);
+        if (a2.p(o8aVar) || orbVar != null) {
+            a2.h(o8aVar, 1, mrb.a, orbVar);
         }
-        canvas.drawCircle(width, height, L, paint);
-        float width2 = (l9aVar.d / viaVar.a) * canvas.getWidth();
-        float height2 = (l9aVar.e / viaVar.b) * canvas.getHeight();
-        float L2 = gl.L(5.0f);
-        if (z) {
-            paint2 = this.e;
-        } else {
-            paint2 = this.g;
+        if (a2.p(o8aVar) || map != null) {
+            a2.h(o8aVar, 2, (hx5) h26VarArr[2].getValue(), map);
         }
-        canvas.drawCircle(width2, height2, L2, paint2);
+        a2.l(o8aVar);
     }
 
-    public final void c(float f, float f2, boolean z) {
-        float[] fArr = this.p;
-        fArr[0] = f;
-        fArr[1] = f2;
-        d(z);
-    }
-
-    public final void d(boolean z) {
-        int i;
-        float[] fArr = this.p;
-        d9a d9aVar = this.h;
-        if (d9aVar != null) {
-            float f = d9aVar.h;
-            if (f != 0.0f) {
-                float f2 = fArr[0] - d9aVar.b;
-                fArr[0] = f2;
-                fArr[1] = fArr[1] - d9aVar.c;
-                if (z) {
-                    i = -1;
+    @Override
+    public final Object c(ykf ykfVar) {
+        o8a o8aVar = descriptor;
+        ykf a2 = ykfVar.a(o8aVar);
+        h26[] h26VarArr = o9a.d;
+        s9a s9aVar = null;
+        boolean z = true;
+        int i = 0;
+        orb orbVar = null;
+        Map map = null;
+        while (z) {
+            int b = a2.b(o8aVar);
+            if (b != -1) {
+                if (b != 0) {
+                    if (b != 1) {
+                        if (b == 2) {
+                            map = (Map) a2.j(o8aVar, 2, (hx5) h26VarArr[2].getValue(), map);
+                            i |= 4;
+                        } else {
+                            throw new yw5(b);
+                        }
+                    } else {
+                        orbVar = (orb) a2.j(o8aVar, 1, mrb.a, orbVar);
+                        i |= 2;
+                    }
                 } else {
-                    i = 1;
-                }
-                double d = f * i;
-                float cos = (float) ((Math.cos(d) * f2) - (Math.sin(d) * fArr[1]));
-                double sin = Math.sin(d) * fArr[0];
-                d9a d9aVar2 = this.h;
-                fArr[0] = cos + d9aVar2.b;
-                fArr[1] = ((float) ug8.d(d, fArr[1], sin)) + d9aVar2.c;
-            }
-        }
-    }
-
-    public final void e() {
-        d9a d9aVar;
-        c79 c79Var = this.a;
-        if (c79Var != null && c79Var.getPainting() != null && (d9aVar = this.h) != null) {
-            d9aVar.f = c79Var.getCurrentWeight();
-            gu7 painting = c79Var.getPainting();
-            d9a d9aVar2 = this.h;
-            int currentColor = c79Var.getCurrentColor();
-            if (d9aVar2 != null) {
-                if (painting.r != null) {
-                    painting.f.f(new j45(painting, d9aVar2, currentColor, (byte) 20));
+                    s9aVar = (s9a) a2.k(o8aVar, 0, q9a.a, s9aVar);
+                    i |= 1;
                 }
             } else {
-                painting.getClass();
+                z = false;
             }
-            this.m.clear();
-            this.n.clear();
-            this.h = null;
-            b79 b79Var = c79Var.a;
-            if (b79Var != null) {
-                b79Var.s();
-            }
-            c79Var.e.z = true;
         }
+        a2.o(o8aVar);
+        return new o9a(i, s9aVar, orbVar, map);
+    }
+
+    @Override
+    public final o8a d() {
+        return descriptor;
     }
 }

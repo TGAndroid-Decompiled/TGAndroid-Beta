@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class q7f {
+public final class q7f extends v3d {
 }

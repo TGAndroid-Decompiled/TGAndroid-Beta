@@ -1,14 +1,18 @@
 package defpackage;
+
+import android.os.SystemClock;
 public abstract class tfd {
-    public static final jfd a = new Object();
-    public static final jfd b;
+    public static final ffd a;
 
     static {
-        jfd jfdVar = null;
+        ffd ffdVar;
         try {
-            jfdVar = (jfd) Class.forName("com.google.protobuf.ExtensionSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
+            SystemClock.elapsedRealtimeNanos();
+            ffdVar = new ffd((byte) 0);
+        } catch (Throwable unused) {
+            SystemClock.elapsedRealtime();
+            ffdVar = new ffd((byte) 1);
         }
-        b = jfdVar;
+        a = ffdVar;
     }
 }

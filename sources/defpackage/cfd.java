@@ -1,17 +1,34 @@
 package defpackage;
-public final class cfd implements zn7 {
-    public static final cfd a = new Object();
+public abstract class cfd {
+    public static final Class a;
+    public static final boolean b;
 
     static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+        Class<?> cls;
+        boolean z;
+        Class<?> cls2 = null;
+        try {
+            cls = Class.forName("libcore.io.Memory");
+        } catch (Throwable unused) {
+            cls = null;
+        }
+        a = cls;
+        try {
+            cls2 = Class.forName("org.robolectric.Robolectric");
+        } catch (Throwable unused2) {
+        }
+        if (cls2 != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        b = z;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static boolean a() {
+        if (a != null && !b) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
     }
 }

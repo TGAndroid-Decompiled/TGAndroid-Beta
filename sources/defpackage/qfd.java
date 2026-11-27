@@ -1,17 +1,19 @@
 package defpackage;
-public final class qfd implements zn7 {
+public final class qfd extends iid {
     public static final qfd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int hashCode() {
+        return 2040732332;
+    }
+
+    public final String toString() {
+        return "Optional.absent()";
     }
 }

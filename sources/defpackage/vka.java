@@ -1,8 +1,8 @@
 package defpackage;
 
-import android.view.ViewGroup;
-public abstract class vka {
-    public abstract void a(ViewGroup viewGroup);
-
-    public abstract void b();
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import androidx.recyclerview.widget.RecyclerView;
+public interface vka {
+    void c(Canvas canvas, RectF rectF, RecyclerView recyclerView);
 }

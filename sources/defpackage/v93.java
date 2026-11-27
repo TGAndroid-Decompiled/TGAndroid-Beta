@@ -1,21 +1,22 @@
 package defpackage;
-public final class v93 extends pg0 {
-    public final u93 d;
 
-    public v93(u93 u93Var, long j, long j2) {
-        super(j, j2);
-        this.d = u93Var;
-    }
+import java.util.ArrayList;
+public final class v93 {
+    public final String a;
+    public final ArrayList b;
+    public final String c;
+    public Integer d;
+    public z3f e;
+    public final int f;
+    public final int g;
+    public final byte h;
 
-    @Override
-    public final long a() {
-        b();
-        return this.d.e(this.c);
-    }
-
-    @Override
-    public final long h() {
-        b();
-        return this.d.d(this.c);
+    public v93(byte[] bArr, String str, ArrayList arrayList, String str2, int i, int i2, int i3) {
+        this.a = str;
+        this.b = arrayList;
+        this.c = str2;
+        this.f = i2;
+        this.g = i;
+        this.h = i3;
     }
 }

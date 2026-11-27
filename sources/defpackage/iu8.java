@@ -1,337 +1,272 @@
 package defpackage;
 
-import android.util.SparseArray;
-import java.util.List;
-public final class iu8 implements j74 {
-    public boolean e;
-    public boolean f;
-    public boolean g;
-    public long h;
-    public zh4 i;
-    public l74 j;
-    public boolean k;
-    public final uob a = new uob(0);
-    public final xu7 c = new xu7(4096);
-    public final SparseArray b = new SparseArray();
-    public final gu8 d = new gu8((byte) 0);
+import android.graphics.BlendMode;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RecordingCanvas;
+import android.graphics.RectF;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.view.View;
+public final class iu8 implements ju8 {
+    public final float f;
+    public final Paint i;
+    public final RectF j;
+    public final ku8 k;
+    public final Paint a = new Paint(1);
+    public final RenderNode b = new RenderNode("render");
+    public final RenderNode c = new RenderNode("effectNotch");
+    public final RenderNode d = new RenderNode("effect");
+    public final RenderNode e = new RenderNode("blur");
+    public final RectF g = new RectF();
+    public final RectF h = new RectF();
+
+    public iu8(ku8 ku8Var, float f) {
+        BlendMode blendMode;
+        this.k = ku8Var;
+        Paint paint = new Paint();
+        this.i = paint;
+        this.j = new RectF();
+        this.f = f;
+        paint.setColor(-16777216);
+        blendMode = BlendMode.SRC_IN;
+        paint.setBlendMode(blendMode);
+    }
 
     @Override
-    public final int b(k74 k74Var, m11 m11Var) {
-        long j;
-        ?? r3;
-        ?? r2;
-        long j2;
-        long j3;
-        long j4;
-        gu3 gu3Var;
-        gu8 gu8Var = this.d;
-        uob uobVar = gu8Var.b;
-        this.j.getClass();
-        long j5 = ((ja3) k74Var).c;
-        int i = (j5 > (-1L) ? 1 : (j5 == (-1L) ? 0 : -1));
-        long j6 = -9223372036854775807L;
-        if (i != 0 && !gu8Var.d) {
-            xu7 xu7Var = gu8Var.c;
-            if (!gu8Var.f) {
-                ja3 ja3Var = (ja3) k74Var;
-                long j7 = ja3Var.c;
-                int min = (int) Math.min(20000L, j7);
-                long j8 = j7 - min;
-                if (ja3Var.d != j8) {
-                    m11Var.a = j8;
-                    return 1;
-                }
-                xu7Var.K(min);
-                ja3Var.f = 0;
-                ja3Var.d(xu7Var.a, 0, min, false);
-                int i2 = xu7Var.b;
-                int i3 = xu7Var.c - 4;
-                while (true) {
-                    if (i3 < i2) {
-                        break;
-                    }
-                    if (gu8.b(i3, xu7Var.a) == 442) {
-                        xu7Var.N(i3 + 4);
-                        long c = gu8.c(xu7Var);
-                        if (c != -9223372036854775807L) {
-                            j6 = c;
-                            break;
-                        }
-                    }
-                    i3--;
-                }
-                gu8Var.h = j6;
-                gu8Var.f = true;
-                return 0;
-            } else if (gu8Var.h == -9223372036854775807L) {
-                gu8Var.a((ja3) k74Var);
-                return 0;
-            } else if (!gu8Var.e) {
-                ja3 ja3Var2 = (ja3) k74Var;
-                int min2 = (int) Math.min(20000L, ja3Var2.c);
-                if (ja3Var2.d != 0) {
-                    m11Var.a = 0L;
-                    return 1;
-                }
-                xu7Var.K(min2);
-                ja3Var2.f = 0;
-                ja3Var2.d(xu7Var.a, 0, min2, false);
-                int i4 = xu7Var.b;
-                int i5 = xu7Var.c;
-                while (true) {
-                    if (i4 >= i5 - 3) {
-                        break;
-                    }
-                    if (gu8.b(i4, xu7Var.a) == 442) {
-                        xu7Var.N(i4 + 4);
-                        long c2 = gu8.c(xu7Var);
-                        if (c2 != -9223372036854775807L) {
-                            j6 = c2;
-                            break;
-                        }
-                    }
-                    i4++;
-                }
-                gu8Var.g = j6;
-                gu8Var.e = true;
-                return 0;
-            } else {
-                long j9 = gu8Var.g;
-                if (j9 == -9223372036854775807L) {
-                    gu8Var.a((ja3) k74Var);
-                    return 0;
-                }
-                gu8Var.i = uobVar.c(gu8Var.h) - uobVar.b(j9);
-                gu8Var.a((ja3) k74Var);
-                return 0;
-            }
+    public final void a(float f) {
+        RenderNode renderNode = this.d;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        renderNode.setRenderEffect(RenderEffect.createBlurEffect(f, f, tileMode));
+        this.c.setRenderEffect(RenderEffect.createBlurEffect(f, f, tileMode));
+        this.a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
+    }
+
+    @Override
+    public final void b(jz7 jz7Var, Canvas canvas) {
+        Paint paint;
+        float R1;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        Paint paint2;
+        ku8 ku8Var = this.k;
+        Paint paint3 = ku8Var.a;
+        Path path = ku8Var.b;
+        if (!canvas.isHardwareAccelerated()) {
+            return;
         }
-        if (!this.k) {
-            this.k = true;
-            long j10 = gu8Var.i;
-            if (j10 != -9223372036854775807L) {
-                j = 0;
-                r3 = 1;
-                r2 = 0;
-                zh4 zh4Var = new zh4(new Object(), new sk4(uobVar), j10, 1 + j10, 0L, j5, 188L, 1000);
-                this.i = zh4Var;
-                this.j.g0(zh4Var.a);
-            } else {
-                r3 = 1;
-                r2 = 0;
-                j = 0;
-                this.j.g0(new oc0(j10));
+        RectF rectF = this.g;
+        rectF.set(0.0f, 0.0f, ku8Var.getWidth(), ku8Var.getHeight());
+        int childCount = ku8Var.getChildCount();
+        RectF rectF2 = this.j;
+        if (childCount > 0) {
+            View childAt = ku8Var.getChildAt(0);
+            float scaleX = childAt.getScaleX() * childAt.getWidth();
+            float scaleY = childAt.getScaleY() * childAt.getHeight();
+            float x = childAt.getX();
+            float y = childAt.getY();
+            rectF2.set(x, y, scaleX + x, scaleY + y);
+            um7 um7Var = ku8Var.n;
+            if (um7Var != null) {
+                rectF2.union(um7Var.e);
             }
+            rectF2.inset(-hl.L(20.0f), -hl.L(20.0f));
+            rectF2.intersect(rectF);
+            rectF2.top = 0.0f;
         } else {
-            j = 0;
-            r3 = 1;
-            r2 = 0;
+            rectF2.set(rectF);
         }
-        zh4 zh4Var2 = this.i;
-        if (zh4Var2 != null && zh4Var2.c != null) {
-            return zh4Var2.a((ja3) k74Var, m11Var);
+        rectF2.bottom += hl.L(32.0f);
+        int ceil = (int) Math.ceil(rectF2.width());
+        int ceil2 = (int) Math.ceil(rectF2.height());
+        float f5 = rectF2.left;
+        float f6 = rectF2.top;
+        this.b.setPosition(0, 0, ceil, ceil2);
+        this.e.setPosition(0, 0, ceil, ceil2);
+        this.d.setPosition(0, 0, ceil, ceil2);
+        this.c.setPosition(0, 0, ceil, ceil2);
+        float f7 = ceil;
+        float f8 = ceil2;
+        rectF2.set(0.0f, 0.0f, f7, f8);
+        RecordingCanvas beginRecording = this.b.beginRecording();
+        float f9 = -f5;
+        float f10 = -f6;
+        beginRecording.translate(f9, f10);
+        int x1 = (int) ((1.0f - hl.x1(ku8Var.e, 0.5f, 1.0f)) * 255.0f);
+        int b = ete.b(x1, 0, 255);
+        ((ku8) jz7Var.b).a(beginRecording);
+        this.b.endRecording();
+        float f11 = this.f;
+        float A = qd4.A(f11, 1.0f, 2.0f, c00.x(ku8Var.f, 0.5f, f11, (f11 / 4.0f) + 1.0f));
+        RecordingCanvas beginRecording2 = this.e.beginRecording();
+        float f12 = 1.0f / A;
+        beginRecording2.scale(f12, f12, 0.0f, 0.0f);
+        beginRecording2.drawRenderNode(this.b);
+        this.e.endRecording();
+        float f13 = f11 + 2.0f;
+        RecordingCanvas beginRecording3 = this.d.beginRecording();
+        float f14 = 1.0f / f13;
+        beginRecording3.scale(f14, f14, 0.0f, 0.0f);
+        Paint paint4 = this.i;
+        if (b < 255) {
+            beginRecording3.saveLayer(rectF2, null);
+            beginRecording3.drawRenderNode(this.b);
+            beginRecording3.drawRect(rectF2, paint4);
+            beginRecording3.restore();
         }
-        ja3 ja3Var3 = (ja3) k74Var;
-        ja3Var3.f = r2;
-        if (i != 0) {
-            j2 = j5 - ja3Var3.f();
+        float L = hl.L(7.0f) * f13;
+        float f15 = ku8Var.e;
+        if (f15 < 0.5f) {
+            paint = paint4;
+            R1 = hl.R1(0.0f, L, f15 / 0.5f);
         } else {
-            j2 = -1;
+            paint = paint4;
+            R1 = hl.R1(L, 0.0f, (f15 - 0.5f) / 0.5f);
         }
-        if (j2 != -1 && j2 < 4) {
-            g();
-            return -1;
-        }
-        xu7 xu7Var2 = this.c;
-        if (!ja3Var3.d(xu7Var2.a, r2, 4, r3)) {
-            g();
-            return -1;
-        }
-        xu7Var2.N(r2);
-        int m = xu7Var2.m();
-        if (m == 441) {
-            g();
-            return -1;
-        } else if (m == 442) {
-            ja3Var3.d(xu7Var2.a, r2, 10, r2);
-            xu7Var2.N(9);
-            ja3Var3.l((xu7Var2.A() & 7) + 14, r2);
-            return r2;
-        } else if (m == 443) {
-            ja3Var3.d(xu7Var2.a, r2, 2, r2);
-            xu7Var2.N(r2);
-            ja3Var3.l(xu7Var2.H() + 6, r2);
-            return r2;
-        } else if (((m & (-256)) >> 8) != r3) {
-            ja3Var3.l(r3, r2);
-            return r2;
+        if (ku8Var.getChildCount() > 0) {
+            View childAt2 = ku8Var.getChildAt(0);
+            float scaleX2 = (((childAt2.getScaleX() * childAt2.getWidth()) / 2.0f) + childAt2.getX()) - f5;
+            f = R1;
+            float scaleY2 = ((((childAt2.getScaleY() * childAt2.getHeight()) / 2.0f) + childAt2.getY()) + hl.L(32.0f)) - f6;
+            float scaleX3 = childAt2.getScaleX() * (childAt2.getWidth() / 2.0f);
+            path.rewind();
+            float f16 = scaleX2 - scaleX3;
+            float f17 = scaleY2 - (0.70710677f * scaleX3);
+            path.moveTo(f16, f17);
+            path.lineTo(scaleX2, (scaleY2 - scaleX3) - (0.25f * f));
+            path.lineTo(scaleX2 + scaleX3, f17);
+            path.close();
+            beginRecording3.drawPath(path, paint3);
         } else {
-            int i6 = m & 255;
-            SparseArray sparseArray = this.b;
-            hu8 hu8Var = (hu8) sparseArray.get(i6);
-            if (!this.e) {
-                if (hu8Var == null) {
-                    if (i6 == 189) {
-                        gu3Var = new f4("video/mp2p");
-                        this.f = r3;
-                        this.h = ja3Var3.d;
-                    } else if ((m & 224) == 192) {
-                        gu3Var = new sf7(null, r2, "video/mp2p");
-                        this.f = r3;
-                        this.h = ja3Var3.d;
-                    } else if ((m & 240) == 224) {
-                        gu3Var = new yb5(null, "video/mp2p");
-                        this.g = r3;
-                        this.h = ja3Var3.d;
-                    } else {
-                        gu3Var = null;
-                    }
-                    if (gu3Var != null) {
-                        gu3Var.h(this.j, new l2c(i6, 256));
-                        hu8Var = new hu8(gu3Var, this.a);
-                        sparseArray.put(i6, hu8Var);
-                    }
-                }
-                if (this.f && this.g) {
-                    j4 = this.h + 8192;
-                } else {
-                    j4 = 1048576;
-                }
-                if (ja3Var3.d > j4) {
-                    this.e = r3;
-                    this.j.z();
-                }
+            f = R1;
+        }
+        if (b > 0) {
+            if (b != 255) {
+                beginRecording3.saveLayerAlpha(rectF2, b);
             }
-            ja3Var3.d(xu7Var2.a, r2, 2, r2);
-            xu7Var2.N(r2);
-            int H = xu7Var2.H() + 6;
-            if (hu8Var == null) {
-                ja3Var3.l(H, r2);
-                return r2;
+            beginRecording3.drawRenderNode(this.b);
+            if (b != 255) {
+                beginRecording3.restore();
             }
-            xu7Var2.K(H);
-            ja3Var3.c(xu7Var2.a, r2, H, r2);
-            xu7Var2.N(6);
-            gu3 gu3Var2 = hu8Var.a;
-            qd1 qd1Var = hu8Var.c;
-            xu7Var2.k(r2, 3, qd1Var.b);
-            qd1Var.l(r2);
-            qd1Var.n(8);
-            hu8Var.d = qd1Var.e();
-            hu8Var.e = qd1Var.e();
-            qd1Var.n(6);
-            xu7Var2.k(r2, qd1Var.f(8), qd1Var.b);
-            qd1Var.l(r2);
-            uob uobVar2 = hu8Var.b;
-            if (hu8Var.d) {
-                qd1Var.n(4);
-                qd1Var.n(r3);
-                qd1Var.n(r3);
-                long f = (qd1Var.f(3) << 30) | (qd1Var.f(15) << 15) | qd1Var.f(15);
-                qd1Var.n(r3);
-                if (!hu8Var.f && hu8Var.e) {
-                    qd1Var.n(4);
-                    qd1Var.n(r3);
-                    qd1Var.n(r3);
-                    qd1Var.n(r3);
-                    uobVar2.b((qd1Var.f(3) << 30) | (qd1Var.f(15) << 15) | qd1Var.f(15));
-                    hu8Var.f = r3;
-                }
-                j3 = uobVar2.b(f);
+        }
+        this.d.endRecording();
+        RecordingCanvas beginRecording4 = this.c.beginRecording();
+        beginRecording4.scale(f14, f14, 0.0f, 0.0f);
+        if (ku8Var.n != null) {
+            beginRecording4.translate(f9, f10);
+            beginRecording4.translate(0.0f, hl.L(32.0f));
+            um7 um7Var2 = ku8Var.n;
+            if (um7Var2.c) {
+                float min = Math.min(um7Var2.e.width(), ku8Var.n.e.height()) / 2.0f;
+                RectF rectF3 = ku8Var.n.e;
+                float width = rectF3.bottom - (rectF3.width() / 2.0f);
+                beginRecording4.drawCircle(ku8Var.n.e.centerX(), width, min, paint3);
+                path.rewind();
+                float f18 = f / 2.0f;
+                path.moveTo(ku8Var.n.e.centerX() - f18, width);
+                path.lineTo(ku8Var.n.e.centerX(), min + width + f);
+                path.lineTo(ku8Var.n.e.centerX() + f18, width);
+                path.close();
+                beginRecording4.drawPath(path, paint3);
+            } else if (um7Var2.b) {
+                beginRecording4.drawPath(um7Var2.d, paint3);
             } else {
-                j3 = j;
+                float max = Math.max(um7Var2.e.width(), ku8Var.n.e.height()) / 2.0f;
+                RectF rectF4 = ku8Var.n.e;
+                RectF rectF5 = this.h;
+                rectF5.set(rectF4);
+                beginRecording4.drawRoundRect(rectF5, max, max, paint3);
+                path.rewind();
+                float f19 = f / 2.0f;
+                path.moveTo(rectF5.centerX() - f19, rectF5.bottom);
+                path.lineTo(rectF5.centerX(), rectF5.bottom + f);
+                path.lineTo(rectF5.centerX() + f19, rectF5.bottom);
+                path.close();
+                beginRecording4.drawPath(path, paint3);
             }
-            gu3Var2.g(4, j3);
-            gu3Var2.b(xu7Var2);
-            gu3Var2.e();
-            xu7Var2.M(xu7Var2.a.length);
-            return r2;
-        }
-    }
-
-    @Override
-    public final boolean c(k74 k74Var) {
-        byte[] bArr = new byte[14];
-        ja3 ja3Var = (ja3) k74Var;
-        ja3Var.d(bArr, 0, 14, false);
-        if (442 == (((bArr[0] & 255) << 24) | ((bArr[1] & 255) << 16) | ((bArr[2] & 255) << 8) | (bArr[3] & 255)) && (bArr[4] & 196) == 68 && (bArr[6] & 4) == 4 && (bArr[8] & 4) == 4 && (bArr[9] & 1) == 1 && (bArr[12] & 3) == 3) {
-            ja3Var.a(bArr[13] & 7, false);
-            ja3Var.d(bArr, 0, 3, false);
-            if (1 == (((bArr[0] & 255) << 16) | ((bArr[1] & 255) << 8) | (bArr[2] & 255))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void d(long j, long j2) {
-        boolean z;
-        uob uobVar = this.a;
-        boolean z2 = true;
-        if (uobVar.e() == -9223372036854775807L) {
-            z = true;
+            f2 = f8;
+            f3 = f7;
+            f4 = A;
+            paint2 = paint;
         } else {
-            z = false;
+            f2 = f8;
+            f3 = f7;
+            f4 = A;
+            paint2 = paint;
+            beginRecording4.drawRect(0.0f, 0.0f, f3, hl.L(32.0f), paint3);
+            path.rewind();
+            path.moveTo((f3 - f) / 2.0f, hl.L(32.0f));
+            path.lineTo(f3 / 2.0f, hl.L(32.0f) + f);
+            path.lineTo((f3 + f) / 2.0f, hl.L(32.0f));
+            path.close();
+            beginRecording4.drawPath(path, paint3);
         }
-        if (!z) {
-            long d = uobVar.d();
-            if (d == -9223372036854775807L || d == 0 || d == j2) {
-                z2 = false;
-            }
-            z = z2;
+        this.c.endRecording();
+        canvas.save();
+        canvas.translate(f5, f6 - hl.L(32.0f));
+        um7 um7Var3 = ku8Var.n;
+        if (um7Var3 != null) {
+            canvas.clipRect(0.0f, um7Var3.e.top, f3, f2);
         }
-        if (z) {
-            uobVar.g(j2);
-        }
-        zh4 zh4Var = this.i;
-        if (zh4Var != null) {
-            zh4Var.d(j2);
-        }
-        int i = 0;
-        while (true) {
-            SparseArray sparseArray = this.b;
-            if (i < sparseArray.size()) {
-                hu8 hu8Var = (hu8) sparseArray.valueAt(i);
-                hu8Var.f = false;
-                hu8Var.a.d();
-                i++;
+        Paint paint5 = this.a;
+        canvas.saveLayer(rectF2, paint5);
+        canvas.scale(f13, f13);
+        canvas.drawRenderNode(this.c);
+        canvas.drawRenderNode(this.d);
+        canvas.restore();
+        int b2 = ete.b((x1 * 3) / 4, 0, 255);
+        if (b2 < 255) {
+            canvas.saveLayer(rectF2, null);
+            if (ku8Var.f != 0.0f) {
+                canvas.saveLayer(rectF2, paint5);
+                canvas.scale(f4, f4);
+                canvas.drawRenderNode(this.e);
+                canvas.restore();
             } else {
-                return;
+                canvas.drawRenderNode(this.b);
             }
+            canvas.drawRect(rectF2, paint2);
+            canvas.restore();
         }
-    }
-
-    @Override
-    public final List e() {
-        km5 km5Var = mm5.b;
-        return w59.e;
-    }
-
-    @Override
-    public final void f(l74 l74Var) {
-        this.j = l74Var;
-    }
-
-    public final void g() {
-        int i = 0;
-        while (true) {
-            SparseArray sparseArray = this.b;
-            if (i < sparseArray.size()) {
-                ((hu8) sparseArray.valueAt(i)).a.f();
-                i++;
+        if (b2 > 0) {
+            if (b2 != 255) {
+                canvas.saveLayerAlpha(rectF2, b2);
+            }
+            if (ku8Var.f != 0.0f) {
+                canvas.saveLayer(rectF2, paint5);
+                canvas.scale(f4, f4);
+                canvas.drawRenderNode(this.e);
+                canvas.restore();
             } else {
-                return;
+                canvas.drawRenderNode(this.b);
+            }
+            if (b2 != 255) {
+                canvas.restore();
             }
         }
+        canvas.restore();
     }
 
     @Override
-    public final j74 a() {
-        return this;
+    public final void c(float f) {
+        Shader.TileMode tileMode;
+        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
+        RenderNode renderNode = this.e;
+        if (i == 0) {
+            renderNode.setRenderEffect(null);
+            return;
+        }
+        float f2 = (f * this.k.d) / this.f;
+        tileMode = Shader.TileMode.DECAL;
+        renderNode.setRenderEffect(RenderEffect.createBlurEffect(f2, f2, tileMode));
     }
 
     @Override
-    public final void release() {
+    public final void d(int i, int i2) {
     }
 }

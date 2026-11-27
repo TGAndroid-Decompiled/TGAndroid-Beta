@@ -1,22 +1,30 @@
 package defpackage;
-public abstract class ak6 extends zg2 {
-    public final long s;
+public final class ak6 implements h56 {
+    public final i56 a;
+    public final bk6 b;
 
-    public ak6(o63 o63Var, u63 u63Var, fm4 fm4Var, int i, Object obj, long j, long j2, long j3, String str) {
-        super(o63Var, u63Var, 1, fm4Var, i, obj, j, j2, str);
-        fm4Var.getClass();
-        this.s = j3;
+    public ak6(bk6 bk6Var, i56 i56Var) {
+        this.b = bk6Var;
+        this.a = i56Var;
     }
 
-    public long b() {
-        long j = this.s;
-        if (j == -1) {
-            return -1L;
-        }
-        return j + 1;
+    @Override
+    public final void d() {
+        this.b.d.j0();
     }
 
-    public boolean c() {
-        throw null;
+    @Override
+    public final void f() {
+        ck6 ck6Var = this.b.d;
+        ck6Var.m0 = new bt5(this.a.getContext(), ck6Var.e, ck6Var.d, ck6Var.l0, ck6Var, ck6Var.n, true, ck6Var.h);
+        ck6Var.m0.show();
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void h() {
     }
 }

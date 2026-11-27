@@ -1,86 +1,45 @@
 package defpackage;
 
-import android.content.Context;
-import android.icu.util.ULocale;
-import android.os.Build;
-import android.provider.Settings;
-import android.text.TextUtils;
-import android.view.inputmethod.InputMethodInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.view.inputmethod.InputMethodSubtype;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-public abstract class qm3 {
-    public static final HashMap a = new HashMap();
+public final class qm3 {
+    public final sm3 a;
+    public final nm3 b;
+    public final String c;
+    public final bf d;
+    public volatile int[] g;
+    public int i;
+    public boolean j;
+    public volatile boolean k;
+    public volatile boolean l;
+    public volatile String n;
+    public tn3 o;
+    public final StringBuilder e = new StringBuilder();
+    public final ArrayList f = new ArrayList();
+    public String h = "";
+    public volatile int m = -1;
 
-    public static void a(LinkedHashMap linkedHashMap, Locale locale) {
-        if (locale != null) {
-            String language = locale.getLanguage();
-            if (!TextUtils.isEmpty(language) && !"und".equals(language) && !linkedHashMap.containsKey(language)) {
-                String country = locale.getCountry();
-                if (TextUtils.isEmpty(country) && Build.VERSION.SDK_INT >= 24) {
-                    country = ULocale.addLikelySubtags(z2.a(language)).getCountry();
-                }
-                if (country == null) {
-                    country = "";
-                }
-                linkedHashMap.put(language, new Locale(language, country).toLanguageTag());
-            }
-        }
+    public qm3(sm3 sm3Var, pm3 pm3Var, bf bfVar) {
+        this.a = sm3Var;
+        this.b = (nm3) pm3Var.b;
+        this.c = (String) pm3Var.c;
+        this.d = bfVar;
     }
 
-    public static void b(LinkedHashMap linkedHashMap, Context context) {
-        try {
-            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService("input_method");
-            if (inputMethodManager != null) {
-                a(linkedHashMap, d(inputMethodManager.getCurrentInputMethodSubtype()));
-                String string = Settings.Secure.getString(context.getContentResolver(), "default_input_method");
-                for (InputMethodInfo inputMethodInfo : inputMethodManager.getEnabledInputMethodList()) {
-                    if (TextUtils.equals(inputMethodInfo.getId(), string)) {
-                        for (InputMethodSubtype inputMethodSubtype : inputMethodManager.getEnabledInputMethodSubtypeList(inputMethodInfo, true)) {
-                            a(linkedHashMap, d(inputMethodSubtype));
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public final void a(java.lang.String r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qm3.a(java.lang.String):void");
     }
 
-    public static ArrayList c(Context context, long j) {
-        ArrayList arrayList = (ArrayList) a.get(Long.valueOf(j));
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return new ArrayList(arrayList);
+    public final void b(Runnable runnable) {
+        String sb = this.e.toString();
+        String str = this.h;
+        boolean z = this.j;
+        int i = this.i;
+        ArrayList arrayList = this.f;
+        int size = arrayList.size();
+        int[] iArr = new int[size];
+        for (int i2 = 0; i2 < size; i2++) {
+            iArr[i2] = ((Integer) arrayList.get(i2)).intValue();
         }
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        b(linkedHashMap, context);
-        return new ArrayList(linkedHashMap.values());
-    }
-
-    public static Locale d(InputMethodSubtype inputMethodSubtype) {
-        String str;
-        if (inputMethodSubtype == null || !"keyboard".equals(inputMethodSubtype.getMode())) {
-            return null;
-        }
-        if (Build.VERSION.SDK_INT >= 24) {
-            str = inputMethodSubtype.getLanguageTag();
-        } else {
-            str = null;
-        }
-        if (TextUtils.isEmpty(str)) {
-            String locale = inputMethodSubtype.getLocale();
-            if (locale == null) {
-                str = null;
-            } else {
-                str = locale.replace('_', '-');
-            }
-        }
-        if (TextUtils.isEmpty(str)) {
-            return null;
-        }
-        return Locale.forLanguageTag(str);
+        hl.c3(new et(this, iArr, sb, str, z, i, runnable));
     }
 }

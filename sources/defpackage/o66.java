@@ -1,6 +1,6 @@
 package defpackage;
-public final class o66 implements wl3 {
-    @Override
-    public final void a(boolean z) {
-    }
+
+import android.text.style.ClickableSpan;
+public interface o66 {
+    void a(ClickableSpan clickableSpan);
 }

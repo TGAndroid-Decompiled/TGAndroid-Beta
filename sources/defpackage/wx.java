@@ -1,64 +1,48 @@
 package defpackage;
+public final class wx implements nw8 {
+    public final byte a;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class wx implements aka {
-    public final byte a = 2;
-    public final long b;
-    public final int c;
-    public final byte d;
-
-    public wx(int i, long j, int i2) {
-        this.c = i;
-        this.b = j;
-        this.d = i2;
+    public wx(int i) {
+        this.a = i;
     }
 
-    public final boolean a(int i, int i2) {
-        byte b = this.d;
-        if (b != 1) {
-            if ((b == 2 || b == 3) && ConnectionsManager.getInstance(i).getCurrentTime() >= this.b) {
+    @Override
+    public final Class annotationType() {
+        return nw8.class;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof nw8) {
+                nw8 nw8Var = (nw8) obj;
+                if (this.a == nw8Var.tag() && mw8.a.equals(nw8Var.intEncoding())) {
+                    return true;
+                }
                 return false;
             }
-        } else if (this.c >= i2) {
             return false;
         }
         return true;
     }
 
-    public final int b() {
-        byte b = this.d;
-        if (b != 2) {
-            if (b != 3) {
-                return 14;
-            }
-            return 16;
-        }
-        return 15;
+    @Override
+    public final int hashCode() {
+        return (this.a ^ 14552422) + (mw8.a.hashCode() ^ 2041407134);
     }
 
+    @Override
+    public final mw8 intEncoding() {
+        return mw8.a;
+    }
+
+    @Override
+    public final int tag() {
+        return this.a;
+    }
+
+    @Override
     public final String toString() {
-        switch (this.a) {
-            case 0:
-                StringBuilder sb = new StringBuilder("AtomSizeTooSmall{type=");
-                sb.append(g8c.f0(this.c));
-                sb.append(", size=");
-                sb.append(this.b);
-                sb.append(", minHeaderSize=");
-                return de9.l(sb, this.d, "}");
-            default:
-                return super.toString();
-        }
-    }
-
-    public wx(long j, int i, int i2) {
-        this.b = j;
-        this.c = i;
-        this.d = i2;
-    }
-
-    public wx(int i, int i2, long j) {
-        this.d = i;
-        this.b = j;
-        this.c = i2;
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + ((int) this.a) + "intEncoding=" + mw8.a + ')';
     }
 }

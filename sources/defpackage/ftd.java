@@ -1,10 +1,17 @@
 package defpackage;
-
-import java.util.logging.Logger;
-public abstract class ftd {
-    public static final int a = 0;
+public final class ftd implements zq7 {
+    public static final ftd a = new Object();
 
     static {
-        Logger.getLogger(ftd.class.getName());
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,17 +1,35 @@
 package defpackage;
-public final class yae implements zn7 {
-    public static final yae a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)));
-    }
+import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+public final class yae extends q6f implements Serializable {
+    public final MessageDigest b;
+    public final int c;
+    public final boolean d;
+    public final String e;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+    public yae() {
+        boolean z;
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            this.b = messageDigest;
+            this.c = messageDigest.getDigestLength();
+            this.e = "Hashing.sha256()";
+            try {
+                messageDigest.clone();
+                z = true;
+            } catch (CloneNotSupportedException unused) {
+                z = false;
+            }
+            this.d = z;
+        } catch (NoSuchAlgorithmException e) {
+            hz6.e(e);
             throw null;
         }
-        throw new ClassCastException();
+    }
+
+    public final String toString() {
+        return this.e;
     }
 }

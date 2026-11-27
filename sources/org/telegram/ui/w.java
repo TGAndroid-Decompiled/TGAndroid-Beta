@@ -22,9 +22,9 @@ public final class w extends AnimatorListenerAdapter {
         if (photoViewer.s4) {
             photoViewer.G0(xVar.b.intValue());
         }
-        o98 o98Var = xVar.a;
-        if (o98Var != null) {
-            o98Var.e();
+        ed8 ed8Var = xVar.a;
+        if (ed8Var != null) {
+            ed8Var.e();
         }
     }
 }

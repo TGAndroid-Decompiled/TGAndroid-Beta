@@ -1,16 +1,17 @@
 package defpackage;
-public interface vud {
-    Object a();
+public final class vud implements zq7 {
+    public static final vud a = new Object();
 
-    void b(Object obj);
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)), 5)));
+    }
 
-    void c(Object obj, byte[] bArr, int i, int i2, sad sadVar);
-
-    void d(vid vidVar, vid vidVar2);
-
-    int e(vid vidVar);
-
-    boolean f(vid vidVar, vid vidVar2);
-
-    boolean g(Object obj);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

@@ -1,291 +1,315 @@
 package defpackage;
 
-import android.net.TrafficStats;
-import android.net.Uri;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InterruptedIOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.NoRouteToHostException;
-import java.net.URL;
+import android.media.ResourceBusyException;
+import android.media.UnsupportedSchemeException;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-public final class wa3 extends qf0 {
-    public final boolean a;
-    public final int b;
-    public final int c;
-    public final String d;
-    public final wk4 e;
-    public final wk4 f;
-    public u63 h;
-    public HttpURLConnection n;
-    public InputStream r;
-    public boolean s;
-    public int w;
-    public long x;
-    public long y;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+public final class wa3 implements pr3 {
+    public final Set E;
+    public int F;
+    public d64 G;
+    public ta3 H;
+    public ta3 I;
+    public Looper J;
+    public Handler K;
+    public byte[] L;
+    public ig8 M;
+    public volatile d1 N;
+    public final UUID a;
+    public final xi4 b;
+    public final vh4 c;
+    public final HashMap d;
+    public final boolean e;
+    public final int[] f;
+    public final boolean h;
+    public final qx6 n;
+    public final z6f r;
+    public final ri6 s;
+    public final int w;
+    public final ArrayList x;
+    public final Set y;
 
-    public wa3(String str, int i, int i2, boolean z, wk4 wk4Var) {
-        super(true);
-        this.d = str;
-        this.b = i;
-        this.c = i2;
-        this.a = z;
-        this.e = wk4Var;
-        this.f = new wk4();
+    public wa3(UUID uuid, vh4 vh4Var, HashMap hashMap, boolean z, int[] iArr, boolean z2, z6f z6fVar) {
+        uuid.getClass();
+        yve.e("Use C.CLEARKEY_UUID instead", !o51.c.equals(uuid));
+        this.a = uuid;
+        this.b = qr4.d;
+        this.c = vh4Var;
+        this.d = hashMap;
+        this.e = z;
+        this.f = iArr;
+        this.h = z2;
+        this.r = z6fVar;
+        this.n = new qx6((byte) 19);
+        this.s = new ri6(this, (byte) 25);
+        this.x = new ArrayList();
+        this.y = Collections.newSetFromMap(new IdentityHashMap());
+        this.E = Collections.newSetFromMap(new IdentityHashMap());
+        this.w = 300000;
     }
 
+    public static boolean d(ta3 ta3Var) {
+        ta3Var.p();
+        if (ta3Var.p == 1) {
+            ir3 g = ta3Var.g();
+            g.getClass();
+            Throwable cause = g.getCause();
+            if ((cause instanceof ResourceBusyException) || ije.c(cause)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static ArrayList h(hr3 hr3Var, UUID uuid, boolean z) {
+        ArrayList arrayList = new ArrayList(hr3Var.d);
+        for (int i = 0; i < hr3Var.d; i++) {
+            gr3 gr3Var = hr3Var.a[i];
+            if ((gr3Var.a(uuid) || (o51.d.equals(uuid) && gr3Var.a(o51.c))) && (gr3Var.e != null || z)) {
+                arrayList.add(gr3Var);
+            }
+        }
+        return arrayList;
+    }
+
+    @Override
     public final void a() {
-        HttpURLConnection httpURLConnection = this.n;
-        if (httpURLConnection != null) {
-            try {
-                httpURLConnection.disconnect();
-            } catch (Exception e) {
-                lad.d("DefaultHttpDataSource", "Unexpected error while disconnecting", e);
-            }
-        }
-    }
-
-    @Override
-    public final void close() {
-        try {
-            InputStream inputStream = this.r;
-            if (inputStream != null) {
+        d64 sjfVar;
+        j(true);
+        int i = this.F;
+        this.F = i + 1;
+        if (i == 0) {
+            if (this.G == null) {
+                UUID uuid = this.a;
+                this.b.getClass();
                 try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    String str = g8c.a;
-                    throw new jg5(e, 2000, 3);
+                    try {
+                        sjfVar = new qr4(uuid);
+                    } catch (gac unused) {
+                        efd.c("FrameworkMediaDrm", "Failed to instantiate a FrameworkMediaDrm for uuid: " + uuid + ".");
+                        sjfVar = new sjf((byte) 18);
+                    }
+                    this.G = sjfVar;
+                    sjfVar.m(new wz4(this));
+                } catch (UnsupportedSchemeException e) {
+                    throw new Exception(e);
+                } catch (Exception e2) {
+                    throw new Exception(e2);
+                }
+            } else if (this.w != -9223372036854775807L) {
+                int i2 = 0;
+                while (true) {
+                    ArrayList arrayList = this.x;
+                    if (i2 < arrayList.size()) {
+                        ((ta3) arrayList.get(i2)).d(null);
+                        i2++;
+                    } else {
+                        return;
+                    }
                 }
             }
-        } finally {
-            this.r = null;
-            a();
-            if (this.s) {
-                this.s = false;
-                transferEnded();
-            }
-            this.n = null;
-            this.h = null;
-            TrafficStats.clearThreadStatsTag();
         }
     }
 
-    public final URL e(URL url, String str) {
-        if (str != null) {
-            try {
-                URL url2 = new URL(url, str);
-                String protocol = url2.getProtocol();
-                if (!"https".equals(protocol) && !"http".equals(protocol)) {
-                    throw new jg5(b00.h("Unsupported protocol redirect: ", protocol), 2001);
-                }
-                if (!this.a && !protocol.equals(url.getProtocol())) {
-                    String protocol2 = url.getProtocol();
-                    throw new jg5("Disallowed cross-protocol redirect (" + protocol2 + " to " + protocol + ")", 2001);
-                }
-                return url2;
-            } catch (MalformedURLException e) {
-                throw new jg5(e, 2001, 1);
-            }
-        }
-        throw new jg5("Null location redirect", 2001);
+    public final defpackage.jr3 b(android.os.Looper r7, defpackage.mr3 r8, defpackage.ko4 r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wa3.b(android.os.Looper, mr3, ko4, boolean):jr3");
     }
 
     @Override
-    public final Map getResponseHeaders() {
-        HttpURLConnection httpURLConnection = this.n;
-        if (httpURLConnection == null) {
-            return b69.h;
+    public final jr3 c(mr3 mr3Var, ko4 ko4Var) {
+        boolean z = false;
+        j(false);
+        if (this.F > 0) {
+            z = true;
         }
-        return new va3(httpURLConnection.getHeaderFields());
+        yve.p(z);
+        this.J.getClass();
+        return b(this.J, mr3Var, ko4Var, true);
+    }
+
+    public final ta3 e(List list, boolean z, mr3 mr3Var) {
+        this.G.getClass();
+        d64 d64Var = this.G;
+        byte[] bArr = this.L;
+        Looper looper = this.J;
+        looper.getClass();
+        ig8 ig8Var = this.M;
+        ig8Var.getClass();
+        ta3 ta3Var = new ta3(this.a, d64Var, this.n, this.s, list, this.h | z, z, bArr, this.d, this.c, looper, this.r, ig8Var);
+        ta3Var.d(mr3Var);
+        if (this.w != -9223372036854775807L) {
+            ta3Var.d(null);
+        }
+        return ta3Var;
     }
 
     @Override
-    public final Uri getUri() {
-        HttpURLConnection httpURLConnection = this.n;
-        if (httpURLConnection != null) {
-            return Uri.parse(httpURLConnection.getURL().toString());
-        }
-        u63 u63Var = this.h;
-        if (u63Var != null) {
-            return u63Var.a;
-        }
-        return null;
-    }
-
-    public final HttpURLConnection i(u63 u63Var) {
+    public final or3 f(mr3 mr3Var, ko4 ko4Var) {
         boolean z;
-        HttpURLConnection j;
-        URL url = new URL(u63Var.a.toString());
-        byte b = u63Var.b;
-        byte[] bArr = u63Var.c;
-        long j2 = u63Var.e;
-        long j3 = u63Var.f;
-        byte b2 = 1;
-        int i = 0;
-        if ((u63Var.h & 1) == 1) {
+        if (this.F > 0) {
             z = true;
         } else {
             z = false;
         }
-        if (!this.a) {
-            return j(url, b, bArr, j2, j3, z, true, u63Var.d);
+        yve.p(z);
+        this.J.getClass();
+        va3 va3Var = new va3(this, mr3Var);
+        Handler handler = this.K;
+        handler.getClass();
+        handler.post(new bv2(va3Var, ko4Var, (byte) 26));
+        return va3Var;
+    }
+
+    public final ta3 g(List list, boolean z, mr3 mr3Var, boolean z2) {
+        ta3 e = e(list, z, mr3Var);
+        boolean d = d(e);
+        int i = this.w;
+        Set set = this.E;
+        if (d && !set.isEmpty()) {
+            v9c n = bp5.q(set).n();
+            while (n.hasNext()) {
+                ((jr3) n.next()).c(null);
+            }
+            e.c(mr3Var);
+            if (i != -9223372036854775807L) {
+                e.c(null);
+            }
+            e = e(list, z, mr3Var);
         }
-        while (true) {
-            int i2 = i + 1;
-            if (i <= 20) {
-                j = j(url, b, bArr, j2, j3, z, false, u63Var.d);
-                int responseCode = j.getResponseCode();
-                String headerField = j.getHeaderField("Location");
-                if ((b != b2 && b != 3) || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303 && responseCode != 307 && responseCode != 308)) {
-                    if (b != 2 || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303)) {
+        if (d(e) && z2) {
+            Set set2 = this.y;
+            if (!set2.isEmpty()) {
+                v9c n2 = bp5.q(set2).n();
+                while (n2.hasNext()) {
+                    ((va3) n2.next()).release();
+                }
+                if (!set.isEmpty()) {
+                    v9c n3 = bp5.q(set).n();
+                    while (n3.hasNext()) {
+                        ((jr3) n3.next()).c(null);
+                    }
+                }
+                e.c(mr3Var);
+                if (i != -9223372036854775807L) {
+                    e.c(null);
+                }
+                return e(list, z, mr3Var);
+            }
+        }
+        return e;
+    }
+
+    public final void i() {
+        if (this.G != null && this.F == 0 && this.x.isEmpty() && this.y.isEmpty()) {
+            d64 d64Var = this.G;
+            d64Var.getClass();
+            d64Var.release();
+            this.G = null;
+        }
+    }
+
+    public final void j(boolean z) {
+        if (z && this.J == null) {
+            efd.g("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed before setPlayer(), possibly on the wrong thread.", new IllegalStateException());
+            return;
+        }
+        Thread currentThread = Thread.currentThread();
+        Looper looper = this.J;
+        looper.getClass();
+        if (currentThread != looper.getThread()) {
+            efd.g("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + this.J.getThread().getName(), new IllegalStateException());
+        }
+    }
+
+    @Override
+    public final void release() {
+        j(true);
+        int i = this.F - 1;
+        this.F = i;
+        if (i != 0) {
+            return;
+        }
+        if (this.w != -9223372036854775807L) {
+            ArrayList arrayList = new ArrayList(this.x);
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                ((ta3) arrayList.get(i2)).c(null);
+            }
+        }
+        v9c n = bp5.q(this.y).n();
+        while (n.hasNext()) {
+            ((va3) n.next()).release();
+        }
+        i();
+    }
+
+    @Override
+    public final void w(Looper looper, ig8 ig8Var) {
+        boolean z;
+        synchronized (this) {
+            Looper looper2 = this.J;
+            if (looper2 == null) {
+                this.J = looper;
+                this.K = new Handler(looper);
+            } else {
+                if (looper2 == looper) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                yve.p(z);
+                this.K.getClass();
+            }
+        }
+        this.M = ig8Var;
+    }
+
+    @Override
+    public final int x(ko4 ko4Var) {
+        j(false);
+        d64 d64Var = this.G;
+        d64Var.getClass();
+        int v = d64Var.v();
+        hr3 hr3Var = ko4Var.x;
+        if (hr3Var == null) {
+            int h = dg7.h(ko4Var.t);
+            int i = 0;
+            while (true) {
+                int[] iArr = this.f;
+                if (i < iArr.length) {
+                    if (iArr[i] == h) {
                         break;
                     }
-                    j.disconnect();
-                    url = e(url, headerField);
-                    bArr = null;
-                    b = 1;
+                    i++;
                 } else {
-                    j.disconnect();
-                    url = e(url, headerField);
-                }
-                i = i2;
-                b2 = 1;
-            } else {
-                throw new jg5(new NoRouteToHostException(de9.k(i2, "Too many redirects: ")), 2001, 1);
-            }
-        }
-        return j;
-    }
-
-    public final HttpURLConnection j(URL url, int i, byte[] bArr, long j, long j2, boolean z, boolean z2, Map map) {
-        String sb;
-        String str;
-        boolean z3;
-        String str2;
-        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-        httpURLConnection.setConnectTimeout(this.b);
-        httpURLConnection.setReadTimeout(this.c);
-        HashMap hashMap = new HashMap();
-        hashMap.putAll(this.e.X());
-        hashMap.putAll(this.f.X());
-        hashMap.putAll(map);
-        for (Map.Entry entry : hashMap.entrySet()) {
-            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-        }
-        Pattern pattern = og5.a;
-        if (j == 0 && j2 == -1) {
-            sb = null;
-        } else {
-            StringBuilder o = ug8.o(j, "bytes=", "-");
-            if (j2 != -1) {
-                o.append((j + j2) - 1);
-            }
-            sb = o.toString();
-        }
-        if (sb != null) {
-            httpURLConnection.setRequestProperty("Range", sb);
-        }
-        String str3 = this.d;
-        if (str3 != null) {
-            httpURLConnection.setRequestProperty("User-Agent", str3);
-        }
-        if (z) {
-            str = "gzip";
-        } else {
-            str = "identity";
-        }
-        httpURLConnection.setRequestProperty("Accept-Encoding", str);
-        httpURLConnection.setInstanceFollowRedirects(z2);
-        if (bArr != null) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        httpURLConnection.setDoOutput(z3);
-        int i2 = u63.i;
-        if (i != 1) {
-            if (i != 2) {
-                if (i == 3) {
-                    str2 = "HEAD";
-                } else {
-                    sdb.a();
-                    return null;
-                }
-            } else {
-                str2 = "POST";
-            }
-        } else {
-            str2 = "GET";
-        }
-        httpURLConnection.setRequestMethod(str2);
-        if (bArr != null) {
-            httpURLConnection.setFixedLengthStreamingMode(bArr.length);
-            httpURLConnection.connect();
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            outputStream.write(bArr);
-            outputStream.close();
-            return httpURLConnection;
-        }
-        httpURLConnection.connect();
-        return httpURLConnection;
-    }
-
-    public final void k(long j) {
-        if (j != 0) {
-            byte[] bArr = new byte[4096];
-            while (j > 0) {
-                InputStream inputStream = this.r;
-                String str = g8c.a;
-                int read = inputStream.read(bArr, 0, (int) Math.min(j, 4096L));
-                if (!Thread.currentThread().isInterrupted()) {
-                    if (read != -1) {
-                        j -= read;
-                        bytesTransferred(read);
-                    } else {
-                        throw new jg5();
-                    }
-                } else {
-                    throw new jg5(new InterruptedIOException(), 2000, 1);
+                    i = -1;
+                    break;
                 }
             }
-        }
-    }
-
-    @Override
-    public final long open(defpackage.u63 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wa3.open(u63):long");
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        if (i2 == 0) {
-            return 0;
-        }
-        try {
-            long j = this.x;
-            if (j != -1) {
-                long j2 = j - this.y;
-                if (j2 != 0) {
-                    i2 = (int) Math.min(i2, j2);
+            if (i == -1) {
+                return 0;
+            }
+        } else if (this.L == null) {
+            UUID uuid = this.a;
+            if (h(hr3Var, uuid, true).isEmpty()) {
+                if (hr3Var.d == 1 && hr3Var.a[0].a(o51.c)) {
+                    efd.f("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
                 }
-                return -1;
+                return 1;
             }
-            InputStream inputStream = this.r;
-            String str = g8c.a;
-            int read = inputStream.read(bArr, i, i2);
-            if (read != -1) {
-                this.y += read;
-                bytesTransferred(read);
-                return read;
+            String str = hr3Var.c;
+            if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
+                return 1;
             }
-            return -1;
-        } catch (IOException e) {
-            String str2 = g8c.a;
-            throw jg5.a(e, 2);
         }
+        return v;
     }
 }

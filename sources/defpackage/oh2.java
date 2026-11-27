@@ -1,93 +1,215 @@
 package defpackage;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
+import android.net.Uri;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.DesugarCollections;
+import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-public final class oh2 implements mh2, zu5, xu5 {
-    public static final Map b;
-    public final Class a;
+import java.util.Arrays;
+public final class oh2 {
+    public int a;
+    public int b;
+    public final Object c;
+    public Object d;
+    public Object e;
+    public Object f;
+    public Object g;
+    public Object h;
 
-    static {
-        int i = 0;
-        List b2 = zk2.b(op4.class, qp4.class, eq4.class, gq4.class, hq4.class, iq4.class, jq4.class, kq4.class, lq4.class, mq4.class, pp4.class, rp4.class, sp4.class, tp4.class, up4.class, vp4.class, wp4.class, xp4.class, yp4.class, zp4.class, bq4.class, cq4.class, dq4.class);
-        ArrayList arrayList = new ArrayList(al2.c(b2, 10));
-        for (Object obj : b2) {
-            int i2 = i + 1;
-            if (i >= 0) {
-                arrayList.add(new ku7((Class) obj, Integer.valueOf(i)));
-                i = i2;
-            } else {
-                throw new ArithmeticException("Index overflow has happened.");
+    public oh2(RecyclerView recyclerView) {
+        this.h = recyclerView;
+        ArrayList arrayList = new ArrayList();
+        this.c = arrayList;
+        this.d = null;
+        this.e = new ArrayList();
+        this.f = DesugarCollections.unmodifiableList(arrayList);
+        this.a = 2;
+        this.b = 2;
+    }
+
+    public final void a(f89 f89Var, boolean z) {
+        RecyclerView.n(f89Var);
+        if (f89Var.e(16384)) {
+            f89Var.p(0, 16384);
+            ihc.l(f89Var.a, null);
+        }
+        if (z) {
+            RecyclerView recyclerView = (RecyclerView) this.h;
+            j79 j79Var = recyclerView.x;
+            if (j79Var != null) {
+                j79Var.A(f89Var);
+            }
+            if (recyclerView.v0 != null) {
+                recyclerView.f.r(f89Var);
             }
         }
-        b = qi6.e(arrayList);
-    }
-
-    public oh2(Class cls) {
-        cls.getClass();
-        this.a = cls;
-    }
-
-    @Override
-    public final Class a() {
-        return this.a;
-    }
-
-    public final String b() {
-        String b2;
-        Class cls = this.a;
-        cls.getClass();
-        String str = null;
-        if (cls.isAnonymousClass()) {
-            return null;
+        f89Var.t = null;
+        x79 x79Var = (x79) this.g;
+        if (x79Var == null) {
+            x79Var = new x79();
+            this.g = x79Var;
         }
-        if (cls.isLocalClass()) {
-            String simpleName = cls.getSimpleName();
-            Method enclosingMethod = cls.getEnclosingMethod();
-            if (enclosingMethod != null) {
-                return f9b.j(simpleName, enclosingMethod.getName() + '$', simpleName);
+        int i = f89Var.f;
+        ArrayList arrayList = x79Var.b(i).a;
+        ((w79) x79Var.a.get(i)).getClass();
+        if (20 <= arrayList.size()) {
+            return;
+        }
+        f89Var.o();
+        arrayList.add(f89Var);
+    }
+
+    public final int b(int i) {
+        RecyclerView recyclerView = (RecyclerView) this.h;
+        c89 c89Var = recyclerView.v0;
+        if (i >= 0 && i < c89Var.b()) {
+            if (!c89Var.g) {
+                return i;
             }
-            Constructor<?> enclosingConstructor = cls.getEnclosingConstructor();
-            if (enclosingConstructor != null) {
-                return f9b.j(simpleName, enclosingConstructor.getName() + '$', simpleName);
+            return recyclerView.d.f(i, 0);
+        }
+        StringBuilder m = uh9.m(i, "invalid position ", ". State item count is ");
+        m.append(c89Var.b());
+        m.append(recyclerView.D());
+        throw new IndexOutOfBoundsException(m.toString());
+    }
+
+    public final oh2 c(s00 s00Var) {
+        return new oh2((ko4) this.c, (ko4) this.d, this.a, this.b, s00Var, (l20) this.f, (asb) this.g, this.h);
+    }
+
+    public final boolean d() {
+        return Objects.equals(((ko4) this.c).t, "audio/raw");
+    }
+
+    public final void e(j79 j79Var, j79 j79Var2) {
+        ((ArrayList) this.c).clear();
+        f();
+        x79 x79Var = (x79) this.g;
+        if (x79Var == null) {
+            x79Var = new x79();
+            this.g = x79Var;
+        }
+        if (j79Var != null) {
+            x79Var.b--;
+        }
+        if (x79Var.b == 0) {
+            x79Var.a();
+        }
+        if (j79Var2 != null) {
+            x79Var.b++;
+        }
+    }
+
+    public final void f() {
+        ArrayList arrayList = (ArrayList) this.e;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            g(size);
+        }
+        arrayList.clear();
+        int[] iArr = RecyclerView.R0;
+        pn pnVar = ((RecyclerView) this.h).u0;
+        int[] iArr2 = pnVar.a;
+        if (iArr2 != null) {
+            Arrays.fill(iArr2, -1);
+        }
+        pnVar.d = 0;
+    }
+
+    public final void g(int i) {
+        ArrayList arrayList = (ArrayList) this.e;
+        a((f89) arrayList.get(i), true);
+        arrayList.remove(i);
+    }
+
+    public final void h(View view) {
+        RecyclerView recyclerView = (RecyclerView) this.h;
+        f89 V = RecyclerView.V(view);
+        if (V.l()) {
+            recyclerView.removeDetachedView(view, false);
+        }
+        if (V.k()) {
+            V.p.l(V);
+        } else if (V.s()) {
+            V.l &= -33;
+        }
+        i(V);
+        if (recyclerView.d0 != null && !V.i()) {
+            recyclerView.d0.f(V);
+        }
+    }
+
+    public final void i(defpackage.f89 r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.oh2.i(f89):void");
+    }
+
+    public final void j(View view) {
+        o79 o79Var;
+        RecyclerView recyclerView = (RecyclerView) this.h;
+        f89 V = RecyclerView.V(view);
+        if (!V.e(12) && V.m() && (o79Var = recyclerView.d0) != null && !o79Var.c(V, V.d())) {
+            ArrayList arrayList = (ArrayList) this.d;
+            if (arrayList == null) {
+                arrayList = new ArrayList();
+                this.d = arrayList;
             }
-            int g = f9b.g(simpleName, '$', 0, 6);
-            if (g == -1) {
-                return simpleName;
-            }
-            return simpleName.substring(g + 1, simpleName.length());
-        } else if (cls.isArray()) {
-            Class<?> componentType = cls.getComponentType();
-            if (componentType.isPrimitive() && (b2 = drd.b(componentType.getName())) != null) {
-                str = b2.concat("Array");
-            }
-            if (str == null) {
-                return "Array";
-            }
-            return str;
+            V.p = this;
+            V.q = true;
+            arrayList.add(V);
+        } else if (V.h() && !V.j() && !recyclerView.x.b) {
+            lq5.j("Called scrap view with an invalid view. Invalid views cannot be reused from scrap, they should rebound from recycler pool.".concat(recyclerView.D()));
         } else {
-            String b3 = drd.b(cls.getName());
-            if (b3 == null) {
-                return cls.getSimpleName();
-            }
-            return b3;
+            V.p = this;
+            V.q = false;
+            ((ArrayList) this.c).add(V);
         }
     }
 
-    public final boolean equals(Object obj) {
-        if ((obj instanceof oh2) && qle.a(this).equals(qle.a((oh2) obj))) {
-            return true;
+    public final defpackage.f89 k(int r29, long r30) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.oh2.k(int, long):f89");
+    }
+
+    public final void l(f89 f89Var) {
+        if (f89Var.q) {
+            ((ArrayList) this.d).remove(f89Var);
+        } else {
+            ((ArrayList) this.c).remove(f89Var);
         }
-        return false;
+        f89Var.p = null;
+        f89Var.q = false;
+        f89Var.l &= -33;
     }
 
-    public final int hashCode() {
-        return qle.a(this).hashCode();
+    public final void m() {
+        int i;
+        ArrayList arrayList = (ArrayList) this.e;
+        q79 q79Var = ((RecyclerView) this.h).y;
+        if (q79Var != null) {
+            i = q79Var.i;
+        } else {
+            i = 0;
+        }
+        this.b = this.a + i;
+        for (int size = arrayList.size() - 1; size >= 0 && arrayList.size() > this.b; size--) {
+            g(size);
+        }
     }
 
-    public final String toString() {
-        return this.a + " (Kotlin reflection is not available)";
+    public oh2(ko4 ko4Var, ko4 ko4Var2, int i, int i2, s00 s00Var, l20 l20Var, asb asbVar, Object obj) {
+        this.c = ko4Var;
+        this.d = ko4Var2;
+        this.a = i;
+        this.b = i2;
+        this.e = s00Var;
+        this.f = l20Var;
+        this.g = asbVar;
+        this.h = obj;
+    }
+
+    public oh2(String str, Uri uri, String str2) {
+        this.c = str;
+        this.g = uri;
+        this.d = str2;
     }
 }

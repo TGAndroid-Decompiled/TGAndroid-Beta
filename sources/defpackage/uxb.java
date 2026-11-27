@@ -1,186 +1,109 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.util.Date;
-public final class uxb extends g2 {
-    public static final z24 F;
-    public static final z24 G;
-    public static final z24 H;
-    public static final z24 I;
-    public static final z24 J;
-    public static final z24 K;
-    public static final z24 L;
-    public static final z24 M;
-    public static final z24 N;
-    public static final z24 O;
-    public static final z24 P;
-    public static final z24 Q;
-    public static final z24 R;
-    public static final z24 S;
-    public static final z24 T;
-    public static final z24 U;
-    public static final z24 V;
-    public static final z24 W;
-    public static final z24 X;
-    public static final z24 Y;
-    public static final z24 Z;
-    public static final z24 a0;
-    public static final z24 b0;
-    public static final z24 c0;
-    public double E;
-    public Date e;
-    public Date f;
-    public long h;
-    public long n;
-    public int r;
-    public int s;
-    public float w;
-    public jj6 x;
-    public double y;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.Utilities;
+public final class uxb extends FrameLayout {
+    public final byte a;
+    public float b;
+    public boolean c;
+    public Object d;
 
-    static {
-        z74 z74Var = new z74(uxb.class, "TrackHeaderBox.java");
-        F = z74Var.e(z74Var.d("getCreationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "java.util.Date"));
-        G = z74Var.e(z74Var.d("getModificationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "java.util.Date"));
-        O = z74Var.e(z74Var.d("getContent", "com.coremedia.iso.boxes.TrackHeaderBox", "java.nio.ByteBuffer", "byteBuffer", "void"));
-        P = z74Var.e(z74Var.d("toString", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "java.lang.String"));
-        Q = z74Var.e(z74Var.d("setCreationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "java.util.Date", "creationTime", "void"));
-        R = z74Var.e(z74Var.d("setModificationTime", "com.coremedia.iso.boxes.TrackHeaderBox", "java.util.Date", "modificationTime", "void"));
-        S = z74Var.e(z74Var.d("setTrackId", "com.coremedia.iso.boxes.TrackHeaderBox", "long", "trackId", "void"));
-        T = z74Var.e(z74Var.d("setDuration", "com.coremedia.iso.boxes.TrackHeaderBox", "long", "duration", "void"));
-        U = z74Var.e(z74Var.d("setLayer", "com.coremedia.iso.boxes.TrackHeaderBox", "int", "layer", "void"));
-        V = z74Var.e(z74Var.d("setAlternateGroup", "com.coremedia.iso.boxes.TrackHeaderBox", "int", "alternateGroup", "void"));
-        W = z74Var.e(z74Var.d("setVolume", "com.coremedia.iso.boxes.TrackHeaderBox", "float", "volume", "void"));
-        X = z74Var.e(z74Var.d("setMatrix", "com.coremedia.iso.boxes.TrackHeaderBox", "com.googlecode.mp4parser.util.Matrix", "matrix", "void"));
-        H = z74Var.e(z74Var.d("getTrackId", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "long"));
-        Y = z74Var.e(z74Var.d("setWidth", "com.coremedia.iso.boxes.TrackHeaderBox", "double", "width", "void"));
-        Z = z74Var.e(z74Var.d("setHeight", "com.coremedia.iso.boxes.TrackHeaderBox", "double", "height", "void"));
-        z74Var.e(z74Var.d("isEnabled", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        z74Var.e(z74Var.d("isInMovie", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        z74Var.e(z74Var.d("isInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        z74Var.e(z74Var.d("isInPoster", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
-        a0 = z74Var.e(z74Var.d("setEnabled", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "enabled", "void"));
-        b0 = z74Var.e(z74Var.d("setInMovie", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inMovie", "void"));
-        c0 = z74Var.e(z74Var.d("setInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPreview", "void"));
-        z74Var.e(z74Var.d("setInPoster", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPoster", "void"));
-        I = z74Var.e(z74Var.d("getDuration", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "long"));
-        J = z74Var.e(z74Var.d("getLayer", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "int"));
-        K = z74Var.e(z74Var.d("getAlternateGroup", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "int"));
-        L = z74Var.e(z74Var.d("getVolume", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "float"));
-        z74Var.e(z74Var.d("getMatrix", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "com.googlecode.mp4parser.util.Matrix"));
-        M = z74Var.e(z74Var.d("getWidth", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "double"));
-        N = z74Var.e(z74Var.d("getHeight", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "double"));
+    public uxb(Context context, byte b) {
+        super(context);
+        this.a = b;
     }
 
     @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        f(byteBuffer);
-        if (e() == 1) {
-            this.e = nce.b(hle.h(byteBuffer));
-            this.f = nce.b(hle.h(byteBuffer));
-            this.h = hle.g(byteBuffer);
-            hle.g(byteBuffer);
-            long j = byteBuffer.getLong();
-            this.n = j;
-            if (j < -1) {
-                wn4.j("The tracks duration is bigger than Long.MAX_VALUE");
+    public final void dispatchDraw(Canvas canvas) {
+        float f = 1.0f;
+        switch (this.a) {
+            case 0:
+                float f2 = ((1.0f - this.b) * 0.2f) + 0.8f;
+                canvas.save();
+                canvas.scale(f2, f2, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
+                super.dispatchDraw(canvas);
+                canvas.restore();
+                if (isPressed()) {
+                    float f3 = this.b;
+                    if (f3 != 1.0f) {
+                        this.b = Utilities.i(f3 + 0.16f, 1.0f, 0.0f);
+                        invalidate();
+                        return;
+                    }
+                    return;
+                }
                 return;
-            }
-        } else {
-            this.e = nce.b(hle.g(byteBuffer));
-            this.f = nce.b(hle.g(byteBuffer));
-            this.h = hle.g(byteBuffer);
-            hle.g(byteBuffer);
-            this.n = hle.g(byteBuffer);
+            default:
+                super.dispatchDraw(canvas);
+                boolean z = this.c;
+                float f4 = this.b;
+                int i = 1;
+                if (z) {
+                    float f5 = f4 + 0.013333334f;
+                    this.b = f5;
+                    if (f5 > 1.0f) {
+                        this.c = false;
+                        this.b = 1.0f;
+                    } else {
+                        f = f5;
+                    }
+                } else {
+                    f = f4 - 0.013333334f;
+                    this.b = f;
+                    if (f < 0.0f) {
+                        this.c = true;
+                        this.b = 0.0f;
+                        f = 0.0f;
+                    }
+                }
+                TextView textView = (TextView) this.d;
+                float interpolation = k43.f.getInterpolation(f) * hl.L(8.0f);
+                if (ob6.a0) {
+                    i = -1;
+                }
+                textView.setTranslationX(interpolation * i);
+                invalidate();
+                return;
         }
-        hle.g(byteBuffer);
-        hle.g(byteBuffer);
-        this.r = hle.f(byteBuffer);
-        this.s = hle.f(byteBuffer);
-        this.w = hle.e(byteBuffer);
-        hle.f(byteBuffer);
-        this.x = jj6.a(byteBuffer);
-        this.y = hle.d(byteBuffer);
-        this.E = hle.d(byteBuffer);
     }
 
     @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        c5a c = z74.c(O, this, this, byteBuffer);
-        n89.a().getClass();
-        n89.b(c);
-        i(byteBuffer);
-        int e = e();
-        Date date = this.e;
-        if (e == 1) {
-            byteBuffer.putLong(nce.a(date));
-            byteBuffer.putLong(nce.a(this.f));
-            byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt(0);
-            byteBuffer.putLong(this.n);
-        } else {
-            byteBuffer.putInt((int) nce.a(date));
-            byteBuffer.putInt((int) nce.a(this.f));
-            byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt(0);
-            byteBuffer.putInt((int) this.n);
+    public final void setPressed(boolean z) {
+        ValueAnimator valueAnimator;
+        switch (this.a) {
+            case 0:
+                super.setPressed(z);
+                if (this.c != z) {
+                    this.c = z;
+                    invalidate();
+                    if (z && (valueAnimator = (ValueAnimator) this.d) != null) {
+                        valueAnimator.removeAllListeners();
+                        ((ValueAnimator) this.d).cancel();
+                    }
+                    if (!z) {
+                        float f = this.b;
+                        if (f != 0.0f) {
+                            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
+                            this.d = ofFloat;
+                            ofFloat.addUpdateListener(new ija(this, (byte) 28));
+                            ((ValueAnimator) this.d).addListener(new omb(this, (byte) 4));
+                            c00.o(5.0f, (ValueAnimator) this.d);
+                            ((ValueAnimator) this.d).setDuration(350L);
+                            ((ValueAnimator) this.d).start();
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.setPressed(z);
+                return;
         }
-        byteBuffer.putInt(0);
-        byteBuffer.putInt(0);
-        ile.d(this.r, byteBuffer);
-        ile.d(this.s, byteBuffer);
-        ile.c(byteBuffer, this.w);
-        ile.d(0, byteBuffer);
-        this.x.b(byteBuffer);
-        ile.b(byteBuffer, this.y);
-        ile.b(byteBuffer, this.E);
-    }
-
-    @Override
-    public final long getContentSize() {
-        long j;
-        if (e() == 1) {
-            j = 36;
-        } else {
-            j = 24;
-        }
-        return j + 60;
-    }
-
-    public final String toString() {
-        c5a b = z74.b(P, this, this);
-        n89.a().getClass();
-        n89.b(b);
-        StringBuilder sb = new StringBuilder("TrackHeaderBox[creationTime=");
-        oo1.r(z74.b(F, this, this));
-        sb.append(this.e);
-        sb.append(";modificationTime=");
-        oo1.r(z74.b(G, this, this));
-        sb.append(this.f);
-        sb.append(";trackId=");
-        oo1.r(z74.b(H, this, this));
-        sb.append(this.h);
-        sb.append(";duration=");
-        oo1.r(z74.b(I, this, this));
-        sb.append(this.n);
-        sb.append(";layer=");
-        oo1.r(z74.b(J, this, this));
-        sb.append(this.r);
-        sb.append(";alternateGroup=");
-        oo1.r(z74.b(K, this, this));
-        sb.append(this.s);
-        sb.append(";volume=");
-        oo1.r(z74.b(L, this, this));
-        sb.append(this.w);
-        sb.append(";matrix=");
-        sb.append(this.x);
-        sb.append(";width=");
-        oo1.r(z74.b(M, this, this));
-        sb.append(this.y);
-        sb.append(";height=");
-        oo1.r(z74.b(N, this, this));
-        sb.append(this.E);
-        sb.append("]");
-        return sb.toString();
     }
 }

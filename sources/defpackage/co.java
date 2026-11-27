@@ -1,35 +1,46 @@
 package defpackage;
 
 import android.os.Build;
-import java.util.HashSet;
-public abstract class co {
-    public static final HashSet c = new HashSet();
-    public final String a;
-    public final String b;
+public class co extends eo {
+    public final byte d;
 
-    public co(String str, String str2) {
-        this.a = str;
-        this.b = str2;
-        c.add(this);
+    public co(String str, String str2, byte b) {
+        super(str, str2);
+        this.d = b;
     }
 
-    public boolean a() {
-        if (Build.VERSION.SDK_INT >= 33) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean b() {
-        HashSet hashSet = ao.a;
-        String str = this.b;
-        if (!hashSet.contains(str)) {
-            String str2 = Build.TYPE;
-            if ((!"eng".equals(str2) && !"userdebug".equals(str2)) || !hashSet.contains(str.concat(":dev"))) {
+    @Override
+    public final boolean a() {
+        switch (this.d) {
+            case 0:
+                return true;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 24) {
+                    return true;
+                }
                 return false;
-            }
-            return true;
+            case 2:
+                return false;
+            case 3:
+                if (Build.VERSION.SDK_INT >= 26) {
+                    return true;
+                }
+                return false;
+            case 4:
+                if (Build.VERSION.SDK_INT >= 27) {
+                    return true;
+                }
+                return false;
+            case 5:
+                if (Build.VERSION.SDK_INT >= 28) {
+                    return true;
+                }
+                return false;
+            default:
+                if (Build.VERSION.SDK_INT >= 29) {
+                    return true;
+                }
+                return false;
         }
-        return true;
     }
 }

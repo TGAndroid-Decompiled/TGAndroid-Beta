@@ -1,59 +1,32 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.Utilities;
-public final class rd0 implements Runnable {
-    public final byte a = 0;
-    public final wd0 b;
-    public final Runnable[] c;
-    public final ip5 d;
-    public final int e;
-    public final tnd[] f;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+public abstract class rd0 {
+    public static ExecutorService a;
+    public static final int[] b = {16842755, 16843041, 16843093, 16843097, 16843551, 16843754, 16843771, 16843778, 16843779};
+    public static final int[] c = {16842755, 16843189, 16843190, 16843556, 16843557, 16843558, 16843866, 16843867};
+    public static final int[] d = {16842755, 16843780, 16843781, 16843782, 16843783, 16843784, 16843785, 16843786, 16843787, 16843788, 16843789, 16843979, 16843980, 16844062};
+    public static final int[] e = {16842755, 16843781, 16844062};
+    public static final int[] f = {16843161};
+    public static final int[] g = {16842755, 16843213};
+    public static final int[] h = {16843073, 16843160, 16843198, 16843199, 16843200, 16843486, 16843487, 16843488};
+    public static final int[] i = {16843490};
+    public static final int[] j = {16843486, 16843487, 16843488, 16843489};
+    public static final int[] k = {16842788, 16843073, 16843488, 16843992};
+    public static final int[] l = {16843489, 16843781, 16843892, 16843893};
 
-    public rd0(wd0 wd0Var, ip5 ip5Var, Runnable[] runnableArr, int i, tnd[] tndVarArr) {
-        this.b = wd0Var;
-        this.d = ip5Var;
-        this.c = runnableArr;
-        this.e = i;
-        this.f = tndVarArr;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                wd0 wd0Var = this.b;
-                ip5 ip5Var = this.d;
-                Runnable[] runnableArr = this.c;
-                int i = this.e;
-                tnd[] tndVarArr = this.f;
-                try {
-                    GradientDrawable.Orientation orientation = wd0Var.getOrientation();
-                    int[] iArr = wd0Var.a;
-                    int i2 = ip5Var.a;
-                    int i3 = ip5Var.b;
-                    Rect d = wd0.d(orientation, i2, i3);
-                    Bitmap createBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, d.left, d.top, d.right, d.bottom);
-                    gl.c3(new jf(wd0Var, runnableArr, createBitmap, ip5Var, i, tndVarArr, (byte) 2));
-                    return;
-                } catch (Throwable th) {
-                    gl.c3(new rd0(wd0Var, runnableArr, ip5Var, i, tndVarArr));
-                    throw th;
-                }
-            default:
-                this.b.e(this.c, null, this.d, this.e, this.f);
-                return;
+    public static synchronized Executor a() {
+        ExecutorService executorService;
+        synchronized (rd0.class) {
+            executorService = a;
+            if (executorService == null) {
+                String str = gcc.a;
+                executorService = Executors.newSingleThreadExecutor(new lr2("ExoPlayer:BackgroundExecutor", (byte) 1));
+                a = executorService;
+            }
         }
-    }
-
-    public rd0(wd0 wd0Var, Runnable[] runnableArr, ip5 ip5Var, int i, tnd[] tndVarArr) {
-        this.b = wd0Var;
-        this.c = runnableArr;
-        this.d = ip5Var;
-        this.e = i;
-        this.f = tndVarArr;
+        return executorService;
     }
 }

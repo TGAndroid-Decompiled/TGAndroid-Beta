@@ -1,34 +1,39 @@
 package defpackage;
-public final class cgb extends zfb {
-    public final Runnable c;
+public final class cgb {
+    public char a;
+    public String b;
+    public int c;
+    public int d;
 
-    public cgb(long j, boolean z, Runnable runnable) {
-        super(j, z);
-        this.c = runnable;
+    public static void c(char c) {
+        throw new RuntimeException("Unexpected char '" + c + "'.");
     }
 
-    @Override
-    public final void run() {
-        this.c.run();
+    public final float a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.cgb.a():float");
     }
 
-    public final String toString() {
-        String str;
-        StringBuilder sb = new StringBuilder("Task[");
-        Runnable runnable = this.c;
-        sb.append(runnable.getClass().getSimpleName());
-        sb.append('@');
-        sb.append(s83.a(runnable));
-        sb.append(", ");
-        sb.append(this.a);
-        sb.append(", ");
-        if (this.b) {
-            str = "Blocking";
-        } else {
-            str = "Non-blocking";
+    public final char b() {
+        int i = this.c;
+        int i2 = this.d;
+        if (i < i2) {
+            i++;
+            this.c = i;
         }
-        sb.append(str);
-        sb.append(']');
-        return sb.toString();
+        if (i == i2) {
+            return (char) 0;
+        }
+        return this.b.charAt(i);
+    }
+
+    public final void d() {
+        while (true) {
+            int i = this.c;
+            if (i < this.d && Character.isWhitespace(this.b.charAt(i))) {
+                this.a = b();
+            } else {
+                return;
+            }
+        }
     }
 }

@@ -2,119 +2,105 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
+import android.graphics.Matrix;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
-import org.telegram.tgnet.tl.TL_account;
-public final class d41 extends FrameLayout {
-    public final jia a;
-    public final wla b;
-    public final jia c;
-    public final wjb d;
-    public boolean e;
-    public TL_account.TL_businessChatLink f;
+import android.widget.ToggleButton;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.ActionBar.a;
+public final class d41 extends ImageView {
+    public final byte a;
 
-    public d41(Context context, wjb wjbVar) {
+    public d41(iu3 iu3Var, Context context) {
         super(context);
-        int i;
-        int i2;
-        this.d = wjbVar;
-        setWillNotDraw(false);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(2131232205);
-        imageView.setPadding(gl.L(9.0f), gl.L(9.0f), gl.L(9.0f), gl.L(9.0f));
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        int L = gl.L(36.0f);
-        int i3 = bkb.Ei;
-        ShapeDrawable K = bkb.K(L, bkb.w0(null, i3, false));
-        vkb M = zkb.M(i3);
-        imageView.setBackground(K);
-        zkb.j(imageView, K, M, null, null);
-        imageView.setOnClickListener(new j1(this, (byte) 24));
-        addView(imageView, nme.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-        jia jiaVar = new jia(context);
-        this.a = jiaVar;
-        jiaVar.setTextSize(15);
-        zkb.W(jiaVar, bkb.F6, null);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
+        this.a = (byte) 1;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.a) {
+            case 1:
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        jiaVar.setGravity(i);
-        addView(jiaVar, nme.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-        jia jiaVar2 = new jia(context);
-        this.c = jiaVar2;
-        jiaVar2.setTextSize(14);
-        int i4 = bkb.y6;
-        zkb.W(jiaVar2, i4, null);
-        if (k96.a0) {
-            i2 = 3;
-        } else {
-            i2 = 5;
-        }
-        jiaVar2.setGravity(i2);
-        addView(jiaVar2, nme.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
-        wla wlaVar = new wla(context);
-        this.b = wlaVar;
-        wlaVar.setTextSize(1, 13.0f);
-        wlaVar.setMaxLines(1);
-        wlaVar.setEllipsize(TextUtils.TruncateAt.END);
-        zkb.X(wlaVar, i4, wjbVar);
-        wlaVar.setGravity(k96.a0 ? 5 : 3);
-        wlaVar.r = false;
-        wlaVar.setUseAlphaForEmoji(false);
-        kk7.i(wlaVar);
-        addView(wlaVar, nme.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f;
-        super.onDraw(canvas);
-        if (this.e) {
-            Paint U0 = bkb.U0("paintDivider", this.d);
-            if (U0 == null) {
-                U0 = bkb.j0;
-            }
-            Paint paint = U0;
-            float f2 = 64.0f;
-            if (k96.a0) {
-                f = 0.0f;
-            } else {
-                f = 64.0f;
-            }
-            float L = gl.L(f);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!k96.a0) {
-                f2 = 0.0f;
-            }
-            canvas.drawRect(L, measuredHeight, width - gl.L(f2), getMeasuredHeight(), paint);
+        switch (this.a) {
+            case 3:
+                super.onDraw(canvas);
+                invalidate();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        boolean z2 = k96.a0;
-        jia jiaVar = this.c;
-        jia jiaVar2 = this.a;
-        if (z2) {
-            jiaVar2.setPadding(jiaVar.getTextWidth(), 0, 0, 0);
-        } else {
-            jiaVar2.setPadding(0, 0, jiaVar.getTextWidth(), 0);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.a) {
+            case 5:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
+                accessibilityNodeInfo.setCheckable(true);
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
         }
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(56.0f) + (this.e ? 1 : 0), 1073741824));
+        float f;
+        float f2;
+        switch (this.a) {
+            case 0:
+                super.onMeasure(i, i2);
+                Matrix imageMatrix = getImageMatrix();
+                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+                int intrinsicWidth = getDrawable().getIntrinsicWidth();
+                int intrinsicHeight = getDrawable().getIntrinsicHeight();
+                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                    f = measuredHeight;
+                    f2 = intrinsicHeight;
+                } else {
+                    f = measuredWidth;
+                    f2 = intrinsicWidth;
+                }
+                float f3 = f / f2;
+                imageMatrix.setScale(f3, f3);
+                setImageMatrix(imageMatrix);
+                return;
+            case 1:
+            case 3:
+            default:
+                super.onMeasure(i, i2);
+                return;
+            case 2:
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(a.getCurrentActionBarHeight(), 1073741824));
+                return;
+            case 4:
+                int size = View.MeasureSpec.getSize(i);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+        }
+    }
+
+    public d41(Context context, byte b) {
+        super(context);
+        this.a = b;
     }
 }

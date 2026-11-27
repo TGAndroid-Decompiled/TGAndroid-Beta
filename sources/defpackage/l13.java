@@ -1,70 +1,36 @@
 package defpackage;
+public final class l13 implements Runnable {
+    public final byte a;
+    public final r13 b;
 
-import android.os.Bundle;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-public abstract class l13 {
-    public Object a;
+    public l13(r13 r13Var, byte b) {
+        this.a = b;
+        this.b = r13Var;
+    }
 
-    public l13(byte b) {
+    @Override
+    public final void run() {
+        byte b = this.a;
+        r13 r13Var = this.b;
         switch (b) {
-            case 2:
-                this.a = new Object();
-                return;
-            case 3:
+            case 0:
+                h23 h23Var = r13Var.f;
+                if (h23Var != null) {
+                    h23Var.B(new v03("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", (byte) 2));
+                    return;
+                } else {
+                    ur5.e("callback");
+                    throw null;
+                }
             default:
-                this.a = new LinkedHashMap();
-                return;
-            case 4:
-                this.a = new HashMap();
-                return;
+                h23 h23Var2 = r13Var.f;
+                if (h23Var2 != null) {
+                    h23Var2.B(new v03("No provider data returned.", (byte) 2));
+                    return;
+                } else {
+                    ur5.e("callback");
+                    throw null;
+                }
         }
-    }
-
-    public abstract Object a(Object obj);
-
-    public Object b(k13 k13Var) {
-        return null;
-    }
-
-    public final Object c(Object obj) {
-        synchronized (((HashMap) this.a)) {
-            if (((HashMap) this.a).containsKey(obj)) {
-                return ((HashMap) this.a).get(obj);
-            }
-            Object a = a(obj);
-            ((HashMap) this.a).put(obj, a);
-            return a;
-        }
-    }
-
-    public void d() {
-        synchronized (this.a) {
-        }
-    }
-
-    public final void e() {
-        synchronized (this) {
-        }
-    }
-
-    public final void f() {
-        synchronized (this) {
-        }
-        e();
-    }
-
-    public final void g() {
-        synchronized (this) {
-        }
-    }
-
-    public l13(String str, Bundle bundle) {
-        bundle.getClass();
-        this.a = bundle;
-    }
-
-    public l13(buc bucVar, String str, pd5 pd5Var) {
-        this.a = bucVar;
     }
 }

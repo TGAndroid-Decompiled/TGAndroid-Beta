@@ -1,47 +1,65 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class ls1 extends AnimatorListenerAdapter {
-    public final boolean a;
-    public final boolean b;
-    public final boolean c;
-    public final mu1 d;
+import android.app.Activity;
+import android.text.style.CharacterStyle;
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.LaunchActivity;
+public final class ls1 extends UndoView {
+    public final byte k0 = 1;
+    public final Object l0;
 
-    public ls1(mu1 mu1Var, boolean z, boolean z2, boolean z3) {
-        this.d = mu1Var;
-        this.a = z;
-        this.b = z2;
-        this.c = z3;
+    public ls1(zu1 zu1Var, Activity activity, zu1 zu1Var2, vnb vnbVar) {
+        super(activity, zu1Var2, true, vnbVar);
+        this.l0 = zu1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i;
+    public final void b(CharacterStyle characterStyle) {
+        switch (this.k0) {
+            case 0:
+                ((zu1) this.l0).m6(characterStyle, false, null, null);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void invalidate() {
+        switch (this.k0) {
+            case 1:
+                super.invalidate();
+                ((g75) this.l0).invalidate();
+                return;
+            default:
+                super.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public final void k(long j, int i, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        float f;
         int i2;
-        mu1 mu1Var = this.d;
-        mu1Var.b3 = null;
-        ImageView imageView = mu1Var.Y2;
-        int i3 = 4;
-        if (this.a) {
-            i = 0;
-        } else {
-            i = 4;
+        switch (this.k0) {
+            case 0:
+                hr1 hr1Var = ((zu1) this.l0).m2;
+                if (hr1Var != null && (((i2 = hr1Var.U) == 1 || i2 == 3) && hr1Var.T)) {
+                    f = hl.L(hr1Var.getStyleHeight());
+                } else {
+                    f = 0.0f;
+                }
+                setAdditionalTranslationY(f);
+                super.k(j, i, obj, obj2, runnable, runnable2);
+                return;
+            default:
+                super.k(j, i, obj, obj2, runnable, runnable2);
+                return;
         }
-        imageView.setVisibility(i);
-        ImageView imageView2 = mu1Var.a3;
-        if (this.b) {
-            i2 = 0;
-        } else {
-            i2 = 4;
-        }
-        imageView2.setVisibility(i2);
-        RadialProgressView radialProgressView = mu1Var.Z2;
-        if (this.c) {
-            i3 = 0;
-        }
-        radialProgressView.setVisibility(i3);
+    }
+
+    public ls1(g75 g75Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.l0 = g75Var;
     }
 }

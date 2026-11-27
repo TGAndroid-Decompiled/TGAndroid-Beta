@@ -1,16 +1,24 @@
 package defpackage;
+public final class ny7 implements Runnable {
+    public final byte a;
+    public final ok2 b;
 
-import android.app.PendingIntent;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ny7 extends b4 {
-    public static final Parcelable.Creator<ny7> CREATOR = new xff((byte) 16);
-    public PendingIntent a;
+    public ny7(ok2 ok2Var, byte b) {
+        this.a = b;
+        this.b = ok2Var;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 1, this.a, i);
-        jte.s(parcel, r);
+    public final void run() {
+        byte b = this.a;
+        ok2 ok2Var = this.b;
+        switch (b) {
+            case 0:
+                ok2Var.D(1.0f);
+                return;
+            default:
+                ok2Var.D(1.0f);
+                return;
+        }
     }
 }

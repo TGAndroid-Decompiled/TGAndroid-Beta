@@ -1,84 +1,240 @@
 package defpackage;
 
-import android.util.Log;
-import java.util.concurrent.Executor;
-public final class z1 implements qp4 {
-    public final byte a;
-    public final Object b;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.WritableByteChannel;
+public abstract class z1 implements qy0 {
+    static final boolean $assertionsDisabled = false;
+    private static ge6 LOG = ge6.a(z1.class);
+    private ByteBuffer content;
+    long contentStartPosition;
+    g73 dataSource;
+    long offset;
+    private qv2 parent;
+    protected String type;
+    private byte[] userType;
+    long memMapSize = -1;
+    private ByteBuffer deadBytes = null;
+    boolean isRead = true;
+    boolean isParsed = true;
 
-    public z1(td5 td5Var, String str) {
-        this.a = (byte) 5;
-        this.b = str;
+    public z1(String str) {
+        this.type = str;
     }
 
-    @Override
-    public final Object invoke(Object obj) {
-        byte b = this.a;
-        g5c g5cVar = g5c.a;
-        Object obj2 = this.b;
-        switch (b) {
-            case 0:
-                if (obj == ((y2) obj2)) {
-                    return "(this Collection)";
-                }
-                return String.valueOf(obj);
-            case 1:
-                y03 y03Var = (y03) obj2;
-                d03 d03Var = (d03) obj;
-                d03Var.getClass();
-                Executor executor = y03Var.g;
-                if (executor != null) {
-                    executor.execute(new u03(y03Var, d03Var, (byte) 0));
-                    return g5cVar;
-                }
-                rp5.e("executor");
-                throw null;
-            case 2:
-                w13 w13Var = (w13) obj2;
-                us4 us4Var = (us4) obj;
-                us4Var.getClass();
-                w13Var.f().execute(new v13(w13Var, us4Var, (byte) 2));
-                return g5cVar;
-            case 3:
-                d23 d23Var = (d23) obj2;
-                d03 d03Var2 = (d03) obj;
-                d03Var2.getClass();
-                Executor executor2 = d23Var.g;
-                if (executor2 != null) {
-                    executor2.execute(new c23(d23Var, d03Var2, (byte) 2));
-                    return g5cVar;
-                }
-                rp5.e("executor");
-                throw null;
-            case 4:
-                fx2 fx2Var = (fx2) obj;
-                fx2Var.getClass();
-                Log.w("FirebaseSessions", "CorruptionException in session data DataStore", fx2Var);
-                return new w5a(((x5a) obj2).a.a(null), null, null);
-            case 5:
-                String str = (String) obj2;
-                ih7 ih7Var = (ih7) obj;
-                ih7Var.c(td5.d, str);
-                td5.f(ih7Var, str);
-                return null;
-            case 6:
-                Throwable th = (Throwable) obj;
-                ((nh7) obj2).f(null);
-                return g5cVar;
-            default:
-                gd8 gd8Var = (gd8) obj2;
-                int intValue = ((Integer) obj).intValue();
-                return gd8Var.e[intValue] + ": " + gd8Var.i(intValue).a();
+    public final void a(ByteBuffer byteBuffer) {
+        if (b()) {
+            byteBuffer.putInt((int) getSize());
+            byteBuffer.put(qt5.d(getType()));
+        } else {
+            byteBuffer.putInt(1);
+            byteBuffer.put(qt5.d(getType()));
+            byteBuffer.putLong(getSize());
+        }
+        if ("uuid".equals(getType())) {
+            byteBuffer.put(getUserType());
         }
     }
 
-    public z1(nh7 nh7Var, mh7 mh7Var) {
-        this.a = (byte) 6;
-        this.b = nh7Var;
+    public final boolean b() {
+        int i;
+        int i2;
+        if ("uuid".equals(getType())) {
+            i = 24;
+        } else {
+            i = 8;
+        }
+        if (this.isRead) {
+            if (this.isParsed) {
+                long contentSize = getContentSize();
+                ByteBuffer byteBuffer = this.deadBytes;
+                if (byteBuffer != null) {
+                    i2 = byteBuffer.limit();
+                } else {
+                    i2 = 0;
+                }
+                if (contentSize + i2 + i < 4294967296L) {
+                    return true;
+                }
+                return false;
+            } else if (this.content.limit() + i < 4294967296L) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (this.memMapSize + i < 4294967296L) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public z1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public final synchronized void c() {
+        if (!this.isRead) {
+            try {
+                ge6 ge6Var = LOG;
+                ge6Var.b("mem mapping " + getType());
+                throw null;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @Override
+    public void getBox(WritableByteChannel writableByteChannel) {
+        int i = 8;
+        int i2 = 0;
+        int i3 = 16;
+        if (this.isRead) {
+            if (this.isParsed) {
+                ByteBuffer allocate = ByteBuffer.allocate(cvd.a(getSize()));
+                a(allocate);
+                getContent(allocate);
+                ByteBuffer byteBuffer = this.deadBytes;
+                if (byteBuffer != null) {
+                    byteBuffer.rewind();
+                    while (this.deadBytes.remaining() > 0) {
+                        allocate.put(this.deadBytes);
+                    }
+                }
+                writableByteChannel.write((ByteBuffer) allocate.rewind());
+                return;
+            }
+            if (!b()) {
+                i = 16;
+            }
+            if (!"uuid".equals(getType())) {
+                i3 = 0;
+            }
+            ByteBuffer allocate2 = ByteBuffer.allocate(i + i3);
+            a(allocate2);
+            writableByteChannel.write((ByteBuffer) allocate2.rewind());
+            writableByteChannel.write((ByteBuffer) this.content.position(0));
+            return;
+        }
+        if (!b()) {
+            i = 16;
+        }
+        if ("uuid".equals(getType())) {
+            i2 = 16;
+        }
+        ByteBuffer allocate3 = ByteBuffer.allocate(i + i2);
+        a(allocate3);
+        writableByteChannel.write((ByteBuffer) allocate3.rewind());
+        throw null;
+    }
+
+    public long getContentSize() {
+        return 8L;
+    }
+
+    public long getOffset() {
+        return this.offset;
+    }
+
+    @Override
+    public qv2 getParent() {
+        return this.parent;
+    }
+
+    public String getPath() {
+        return k18.a(this, "");
+    }
+
+    @Override
+    public long getSize() {
+        long j;
+        int i;
+        int i2;
+        int i3;
+        int i4 = 0;
+        if (this.isRead) {
+            if (this.isParsed) {
+                j = getContentSize();
+            } else {
+                ByteBuffer byteBuffer = this.content;
+                if (byteBuffer != null) {
+                    i3 = byteBuffer.limit();
+                } else {
+                    i3 = 0;
+                }
+                j = i3;
+            }
+        } else {
+            j = this.memMapSize;
+        }
+        if (j >= 4294967288L) {
+            i = 8;
+        } else {
+            i = 0;
+        }
+        int i5 = i + 8;
+        if ("uuid".equals(getType())) {
+            i2 = 16;
+        } else {
+            i2 = 0;
+        }
+        long j2 = j + i5 + i2;
+        ByteBuffer byteBuffer2 = this.deadBytes;
+        if (byteBuffer2 != null) {
+            i4 = byteBuffer2.limit();
+        }
+        return j2 + i4;
+    }
+
+    @Override
+    public String getType() {
+        return this.type;
+    }
+
+    public byte[] getUserType() {
+        return this.userType;
+    }
+
+    public boolean isParsed() {
+        return this.isParsed;
+    }
+
+    public void parse(g73 g73Var, ByteBuffer byteBuffer, long j, yy0 yy0Var) {
+        long position = g73Var.position();
+        this.contentStartPosition = position;
+        this.offset = position - byteBuffer.remaining();
+        this.memMapSize = j;
+        g73Var.position();
+        g73Var.m9position();
+        this.isRead = false;
+        this.isParsed = false;
+    }
+
+    public final synchronized void parseDetails() {
+        c();
+        ge6 ge6Var = LOG;
+        ge6Var.b("parsing details of " + getType());
+        ByteBuffer byteBuffer = this.content;
+        if (byteBuffer != null) {
+            this.isParsed = true;
+            byteBuffer.rewind();
+            _parseDetails(byteBuffer);
+            if (byteBuffer.remaining() > 0) {
+                this.deadBytes = byteBuffer.slice();
+            }
+            this.content = null;
+        }
+    }
+
+    public void setDeadBytes(ByteBuffer byteBuffer) {
+        this.deadBytes = byteBuffer;
+    }
+
+    @Override
+    public void setParent(qv2 qv2Var) {
+        this.parent = qv2Var;
+    }
+
+    public void _parseDetails(ByteBuffer byteBuffer) {
+    }
+
+    public void getContent(ByteBuffer byteBuffer) {
     }
 }

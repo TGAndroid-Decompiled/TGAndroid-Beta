@@ -1,3 +1,4 @@
 package defpackage;
-public final class rk6 extends hk6 {
+public interface rk6 {
+    Object c(Object obj, Object obj2);
 }

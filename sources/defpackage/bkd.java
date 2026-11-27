@@ -1,18 +1,17 @@
 package defpackage;
+public final class bkd implements zq7 {
+    public static final bkd a = new Object();
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class bkd extends ej5 {
-    public final Boolean b;
-    public final TaskCompletionSource c;
-
-    public bkd(Boolean bool, TaskCompletionSource taskCompletionSource) {
-        this.b = bool;
-        this.c = taskCompletionSource;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)));
     }
 
     @Override
-    public final void T(Status status) {
-        dve.a(status, this.b, this.c);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

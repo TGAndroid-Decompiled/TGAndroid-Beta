@@ -1,43 +1,34 @@
 package defpackage;
-public final class wr2 extends q01 {
-    public final o01 G;
+public final class wr2 extends vr2 {
+    public double d;
+    public double e;
+    public double f;
+    public double g;
 
-    public wr2(int i, o01 o01Var) {
-        super(i);
-        this.G = o01Var;
-        if (o01Var != o01.a) {
-            if (i >= 1) {
-                return;
-            }
-            v0b.a(tb4.n(i, "Buffered channel capacity must be at least 1, but ", " was specified"));
-            throw null;
+    public final xr2 u(js2 js2Var) {
+        boolean z;
+        double d = this.d;
+        if (d >= this.e && d <= this.f) {
+            z = true;
+        } else {
+            z = false;
         }
-        String b = f59.a(q01.class).b();
-        throw new IllegalArgumentException(("This implementation does not support suspension for senders, use " + b + " instead").toString());
+        r(z, Double.valueOf(d));
+        xr2 xr2Var = new xr2(s(), this.d, this.e, this.f, this.g, this.a);
+        q(js2Var, xr2Var);
+        return xr2Var;
     }
 
-    public final java.lang.Object G(java.lang.Object r16, boolean r17) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wr2.G(java.lang.Object, boolean):java.lang.Object");
-    }
-
-    @Override
-    public final Object a(fw2 fw2Var, Object obj) {
-        if (!(G(obj, true) instanceof ej1)) {
-            return g5c.a;
+    public final void v(double d) {
+        if (d >= 0.0d) {
+            this.g = d;
+            return;
         }
-        throw n();
+        throw new IllegalArgumentException("precision " + d);
     }
 
-    @Override
-    public final Object d(Object obj) {
-        return G(obj, false);
-    }
-
-    @Override
-    public final boolean u() {
-        if (this.G == o01.b) {
-            return true;
-        }
-        return false;
+    public final void w() {
+        this.e = 0.0d;
+        this.f = Double.MAX_VALUE;
     }
 }

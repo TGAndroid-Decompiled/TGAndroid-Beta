@@ -1,15 +1,29 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
-import android.view.View;
-public abstract class fdc {
-    public static View.AccessibilityDelegate a(View view) {
-        return view.getAccessibilityDelegate();
+import org.telegram.tgnet.InputSerializedData;
+public final class fdc implements qcc {
+    public final byte a;
+    public final InputSerializedData b;
+
+    public fdc(InputSerializedData inputSerializedData, byte b) {
+        this.a = b;
+        this.b = inputSerializedData;
     }
 
-    public static void b(View view, Context context, int[] iArr, AttributeSet attributeSet, TypedArray typedArray, int i, int i2) {
-        view.saveAttributeDataForStyleable(context, iArr, attributeSet, typedArray, i, i2);
+    @Override
+    public final Object a(Object obj) {
+        byte b = this.a;
+        InputSerializedData inputSerializedData = this.b;
+        boolean booleanValue = ((Boolean) obj).booleanValue();
+        switch (b) {
+            case 0:
+                return Long.valueOf(inputSerializedData.readInt64(booleanValue));
+            case 1:
+                return Integer.valueOf(inputSerializedData.readInt32(booleanValue));
+            case 2:
+                return inputSerializedData.readString(booleanValue);
+            default:
+                return inputSerializedData.readByteArray(booleanValue);
+        }
     }
 }

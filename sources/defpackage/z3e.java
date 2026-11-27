@@ -1,23 +1,17 @@
 package defpackage;
-public enum z3e {
-    VOID(Void.class),
-    INT(Integer.class),
-    LONG(Long.class),
-    FLOAT(Float.class),
-    DOUBLE(Double.class),
-    BOOLEAN(Boolean.class),
-    STRING(String.class),
-    BYTE_STRING(zud.class),
-    ENUM(Integer.class),
-    MESSAGE(Object.class);
-    
-    public final Class a;
+public final class z3e implements zq7 {
+    public static final z3e a = new Object();
 
     static {
-        zud zudVar = zud.c;
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
-    z3e(Class cls) {
-        this.a = cls;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

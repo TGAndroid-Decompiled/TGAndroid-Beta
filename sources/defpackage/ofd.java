@@ -1,36 +1,41 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.util.Comparator;
-public final class ofd extends kld implements Serializable {
-    public final Comparator a;
-
-    public ofd(Comparator comparator) {
-        comparator.getClass();
-        this.a = comparator;
-    }
-
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        return this.a.compare(obj, obj2);
-    }
+import java.util.Set;
+public abstract class ofd extends qdd implements Set {
+    public transient ted f;
 
     @Override
     public final boolean equals(Object obj) {
-        if (obj == this) {
+        if (obj == this || obj == this) {
             return true;
         }
-        if (obj instanceof ofd) {
-            return this.a.equals(((ofd) obj).a);
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
         }
         return false;
     }
 
+    @Override
     public final int hashCode() {
-        return this.a.hashCode();
-    }
-
-    public final String toString() {
-        return this.a.toString();
+        int i;
+        int i2 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i = obj.hashCode();
+            } else {
+                i = 0;
+            }
+            i2 += i;
+        }
+        return i2;
     }
 }

@@ -1,35 +1,58 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class n28 implements Runnable {
-    public final byte a;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout b;
-    public final int c;
+import org.telegram.ui.p;
+public final class n28 extends d6 {
+    public final p a;
 
-    public n28(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i, byte b) {
-        this.a = b;
-        this.b = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.c = i;
+    public n28(p pVar) {
+        this.a = pVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        int i = this.c;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.b;
-        switch (b) {
-            case 0:
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(i);
+    public final void b(int i) {
+        p pVar = this.a;
+        if (i == -1) {
+            if (!pVar.Q0) {
+                pVar.finishFragment();
+            }
+        } else if (i == 1 && !pVar.Q0) {
+            if (pVar.v0 != 3) {
+                hl.t1(pVar.getParentActivity().getCurrentFocus());
+            }
+            byte b = pVar.v0;
+            if (b != 0) {
+                int i2 = 0;
+                if (b != 1) {
+                    if (b != 2) {
+                        if (b != 3) {
+                            if (b == 6) {
+                                pVar.G0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        pVar.Z();
+                        return;
+                    }
+                    pVar.D0();
                     return;
                 }
-                return;
-            default:
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(i);
-                    return;
+                while (true) {
+                    i29[] i29VarArr = pVar.h;
+                    if (i2 >= i29VarArr.length) {
+                        break;
+                    } else if (i29VarArr[i2].b.f) {
+                        pVar.H0 = pVar.F0.shipping_options.get(i2);
+                        break;
+                    } else {
+                        i2++;
+                    }
                 }
+                pVar.h0();
                 return;
+            }
+            pVar.J0(true);
+            pVar.F0();
         }
     }
 }

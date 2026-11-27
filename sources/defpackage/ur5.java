@@ -1,69 +1,58 @@
 package defpackage;
 
-import android.view.View;
-public final class ur5 implements View.OnClickListener {
-    public final byte a;
-    public final cs5 b;
-    public final Runnable c;
+import com.google.android.gms.tasks.CancellationTokenSource;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
+public abstract class ur5 {
+    public static final ic a = new ic((byte) 1);
 
-    public ur5(cs5 cs5Var, Runnable runnable, byte b) {
-        this.a = b;
-        this.b = cs5Var;
-        this.c = runnable;
+    public static boolean a(Object obj, Object obj2) {
+        if (obj == null) {
+            if (obj2 == null) {
+                return true;
+            }
+            return false;
+        }
+        return obj.equals(obj2);
     }
 
-    @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        Runnable runnable = this.c;
-        cs5 cs5Var = this.b;
-        switch (b) {
-            case 0:
-                cs5Var.u();
-                runnable.run();
-                return;
-            case 1:
-                runnable.run();
-                if (cs5Var.J) {
-                    cs5Var.u();
-                    return;
-                }
-                return;
-            case 2:
-                runnable.run();
-                if (cs5Var.J) {
-                    cs5Var.u();
-                    return;
-                }
-                return;
-            case 3:
-                if (runnable != null) {
-                    int i = -cs5Var.K;
-                    cs5Var.K = i;
-                    gl.A3(i, view, null);
-                    pw0.APP_ERROR.a();
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 4:
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (cs5Var.J) {
-                    cs5Var.u();
-                    return;
-                }
-                return;
-            default:
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (cs5Var.J) {
-                    cs5Var.u();
-                    return;
-                }
-                return;
+    public static int b(int i, int i2) {
+        if (i < i2) {
+            return -1;
         }
+        if (i == i2) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public static Task c(Task task, Task task2) {
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource(cancellationTokenSource.getToken());
+        fu2 fu2Var = new fu2(taskCompletionSource, new AtomicBoolean(false), cancellationTokenSource, (byte) 1);
+        ic icVar = a;
+        task.continueWithTask(icVar, fu2Var);
+        task2.continueWithTask(icVar, fu2Var);
+        return taskCompletionSource.getTask();
+    }
+
+    public static void d(RuntimeException runtimeException, String str) {
+        StackTraceElement[] stackTrace = runtimeException.getStackTrace();
+        int length = stackTrace.length;
+        int i = -1;
+        for (int i2 = 0; i2 < length; i2++) {
+            if (str.equals(stackTrace[i2].getClassName())) {
+                i = i2;
+            }
+        }
+        runtimeException.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i + 1, length));
+    }
+
+    public static void e(String str) {
+        RuntimeException runtimeException = new RuntimeException(qd4.y("lateinit property ", str, " has not been initialized"));
+        d(runtimeException, ur5.class.getName());
+        throw runtimeException;
     }
 }

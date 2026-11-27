@@ -1,121 +1,201 @@
 package defpackage;
 
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import java.util.Set;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
 public final class c87 implements Runnable {
     public final byte a;
-    public final na7 b;
+    public final uc7 b;
+    public final TLObject c;
 
-    public c87(na7 na7Var, byte b) {
+    public c87(uc7 uc7Var, TLObject tLObject, byte b) {
         this.a = b;
-        this.b = na7Var;
+        this.b = uc7Var;
+        this.c = tLObject;
     }
 
     @Override
     public final void run() {
+        Set set;
+        boolean z;
+        boolean z2;
+        boolean z3;
         byte b = this.a;
-        na7 na7Var = this.b;
+        boolean z4 = true;
+        uc7 uc7Var = this.b;
+        TLObject tLObject = this.c;
         switch (b) {
             case 0:
-                na7Var.getNotificationCenter().k(2, 64);
+                uc7Var.l2 = false;
+                SharedPreferences.Editor edit = uc7Var.W3.edit();
+                edit.putBoolean("EnableContactJoined", tLObject instanceof TLRPC.TL_boolFalse);
+                edit.commit();
+                uc7Var.getUserConfig().U = true;
+                uc7Var.getUserConfig().u(false);
                 return;
             case 1:
-                TLRPC.Dialog dialog = na7Var.q2;
-                if (dialog != null) {
-                    long j = dialog.id;
-                    if (j < 0) {
-                        TLRPC.Chat K0 = na7Var.K0(Long.valueOf(-j));
-                        if (hc2.r0(K0) || K0.restricted) {
-                            na7Var.i4(na7Var.q2);
-                        }
+                if (tLObject instanceof TL_account.contentSettings) {
+                    uc7Var.b5 = (TL_account.contentSettings) tLObject;
+                    uc7Var.a5 = System.currentTimeMillis();
+                }
+                uc7Var.Y4 = false;
+                TL_account.contentSettings contentsettings = uc7Var.b5;
+                if (contentsettings != null && (set = uc7Var.K3) != null) {
+                    if (contentsettings.sensitive_enabled) {
+                        set.add("sensitive");
                     } else {
-                        na7Var.i4(dialog);
+                        set.remove("sensitive");
                     }
-                    na7Var.q2 = null;
-                    na7Var.Z4(null);
-                    na7Var.getNotificationCenter().k(3, new Object[0]);
+                    SharedPreferences sharedPreferences = uc7Var.X3;
+                    if (sharedPreferences != null) {
+                        sharedPreferences.edit().putStringSet("ignoreRestrictionReasons", uc7Var.K3).apply();
+                    }
+                }
+                ArrayList arrayList = uc7Var.Z4;
+                if (arrayList != null) {
+                    int size = arrayList.size();
+                    int i = 0;
+                    while (i < size) {
+                        Object obj = arrayList.get(i);
+                        i++;
+                        ((pcc) obj).a(uc7Var.b5);
+                    }
+                    uc7Var.Z4.clear();
+                    uc7Var.Z4 = null;
+                }
+                uc7Var.getNotificationCenter().k(247, new Object[0]);
+                return;
+            case 2:
+                TLRPC.TL_help_recentMeUrls tL_help_recentMeUrls = (TLRPC.TL_help_recentMeUrls) tLObject;
+                uc7Var.j4(tL_help_recentMeUrls.users, false);
+                uc7Var.c4(tL_help_recentMeUrls.chats, false);
+                ArrayList arrayList2 = uc7Var.s;
+                arrayList2.clear();
+                arrayList2.addAll(tL_help_recentMeUrls.urls);
+                uc7Var.getNotificationCenter().k(3, new Object[0]);
+                return;
+            case 3:
+                uc7Var.k2--;
+                if (tLObject instanceof TL_account.TL_reactionsNotifySettings) {
+                    TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings = (TL_account.TL_reactionsNotifySettings) tLObject;
+                    SharedPreferences.Editor edit2 = uc7Var.W3.edit();
+                    if (tL_reactionsNotifySettings.messages_notify_from != null) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    edit2.putBoolean("EnableReactionsMessages", z);
+                    TL_account.ReactionNotificationsFrom reactionNotificationsFrom = tL_reactionsNotifySettings.messages_notify_from;
+                    if (reactionNotificationsFrom != null) {
+                        edit2.putBoolean("EnableReactionsMessagesContacts", reactionNotificationsFrom instanceof TL_account.TL_reactionNotificationsFromContacts);
+                    }
+                    if (tL_reactionsNotifySettings.stories_notify_from != null) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    edit2.putBoolean("EnableReactionsStories", z2);
+                    TL_account.ReactionNotificationsFrom reactionNotificationsFrom2 = tL_reactionsNotifySettings.stories_notify_from;
+                    if (reactionNotificationsFrom2 != null) {
+                        edit2.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom2 instanceof TL_account.TL_reactionNotificationsFromContacts);
+                    }
+                    edit2.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings.show_previews);
+                    uc7Var.getNotificationsController().h0.a(tL_reactionsNotifySettings.sound, edit2, 0L, 0L, 4);
+                    edit2.apply();
+                }
+                if (uc7Var.k2 == 0) {
+                    uc7Var.getUserConfig().T = true;
+                    uc7Var.getUserConfig().u(false);
                     return;
                 }
                 return;
-            case 2:
-                na7Var.j3();
-                return;
-            case 3:
-                na7Var.getNotificationCenter().k(2, 8192);
-                return;
             case 4:
-                na7Var.getNotificationCenter().k(2, 8192);
-                return;
+                if (tLObject instanceof Vector) {
+                    Vector vector = (Vector) tLObject;
+                    int size2 = vector.objects.size();
+                    int i2 = 0;
+                    while (true) {
+                        uc7 uc7Var2 = this.b;
+                        if (i2 < size2) {
+                            TLRPC.DialogPeer dialogPeer = (TLRPC.DialogPeer) vector.objects.get(i2);
+                            if (dialogPeer instanceof TLRPC.TL_dialogPeer) {
+                                TLRPC.Peer peer = ((TLRPC.TL_dialogPeer) dialogPeer).peer;
+                                long j = peer.user_id;
+                                if (j == 0) {
+                                    long j2 = peer.chat_id;
+                                    if (j2 != 0) {
+                                        j = -j2;
+                                    } else {
+                                        j = -peer.channel_id;
+                                    }
+                                }
+                                long j3 = j;
+                                uc7Var2.getMessagesStorage().C1(j3, true);
+                                TLRPC.Dialog dialog = (TLRPC.Dialog) uc7Var2.R.f(j3);
+                                if (dialog != null && !dialog.unread_mark) {
+                                    dialog.unread_mark = true;
+                                    if (dialog.unread_count == 0) {
+                                        uc7Var2.p2(j3, 0L, null);
+                                    }
+                                }
+                            }
+                            i2++;
+                        } else {
+                            uc7Var2.getUserConfig().x = true;
+                            uc7Var2.getUserConfig().u(false);
+                            uc7Var2.getNotificationCenter().k(2, 256);
+                            uc7Var2.W1 = false;
+                            return;
+                        }
+                    }
+                } else {
+                    return;
+                }
+                break;
             case 5:
-                na7Var.E(true);
+                if (tLObject instanceof TL_account.TL_reactionsNotifySettings) {
+                    TL_account.TL_reactionsNotifySettings tL_reactionsNotifySettings2 = (TL_account.TL_reactionsNotifySettings) tLObject;
+                    SharedPreferences.Editor edit3 = uc7Var.W3.edit();
+                    if (tL_reactionsNotifySettings2.messages_notify_from != null) {
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    edit3.putBoolean("EnableReactionsMessages", z3);
+                    TL_account.ReactionNotificationsFrom reactionNotificationsFrom3 = tL_reactionsNotifySettings2.messages_notify_from;
+                    if (reactionNotificationsFrom3 != null) {
+                        edit3.putBoolean("EnableReactionsMessagesContacts", reactionNotificationsFrom3 instanceof TL_account.TL_reactionNotificationsFromContacts);
+                    }
+                    if (tL_reactionsNotifySettings2.stories_notify_from == null) {
+                        z4 = false;
+                    }
+                    edit3.putBoolean("EnableReactionsStories", z4);
+                    TL_account.ReactionNotificationsFrom reactionNotificationsFrom4 = tL_reactionsNotifySettings2.stories_notify_from;
+                    if (reactionNotificationsFrom4 != null) {
+                        edit3.putBoolean("EnableReactionsStoriesContacts", reactionNotificationsFrom4 instanceof TL_account.TL_reactionNotificationsFromContacts);
+                    }
+                    edit3.putBoolean("EnableReactionsPreview", tL_reactionsNotifySettings2.show_previews);
+                    uc7Var.getNotificationsController().h0.a(tL_reactionsNotifySettings2.sound, edit3, 0L, 0L, 4);
+                    edit3.apply();
+                    uc7Var.getNotificationCenter().k(43, new Object[0]);
+                    return;
+                }
                 return;
             case 6:
-                na7Var.X1 = false;
-                return;
-            case 7:
-                na7Var.getMessagesController().Z4(null);
-                na7Var.getNotificationCenter().k(3, Boolean.TRUE);
-                return;
-            case 8:
-                na7Var.getNotificationCenter().k(2, 8192);
-                return;
-            case 9:
-                na7Var.X1 = false;
-                return;
-            case 10:
-                na7Var.getNotificationCenter().k(2, 8192);
-                return;
-            case 11:
-                na7Var.J(true);
-                return;
-            case 12:
-                na7Var.getNotificationCenter().k(2, 4);
-                return;
-            case 13:
-                na7Var.I1.clear();
-                na7Var.J1.b();
-                na7Var.K1.clear();
-                na7Var.L1.clear();
-                na7Var.V0.clear();
-                na7Var.W0.clear();
-                na7Var.X0.clear();
-                na7Var.S0.b();
-                na7Var.T0.b();
-                na7Var.Y0 = 0L;
-                na7Var.Z0 = 0L;
-                na7Var.a1 = 0L;
-                na7Var.l0.clear();
-                na7Var.m0.clear();
-                na7Var.Y1 = false;
-                na7Var.f2 = null;
-                na7Var.g2 = null;
-                return;
-            case 14:
-                fa4.b("cleanup: isUpdating = false");
-                na7Var.getConnectionsManager().setIsUpdating(false);
-                na7Var.N0.b();
-                na7Var.O0.clear();
-                na7Var.Q0.b();
-                na7Var.P0.clear();
-                na7Var.q0.clear();
-                na7Var.r0.b();
-                na7Var.s0.clear();
-                na7Var.t0.b();
-                return;
-            case 15:
-                na7Var.getNotificationCenter().k(188, new Object[0]);
-                na7Var.getNotificationCenter().k(184, new Object[0]);
-                na7Var.getNotificationCenter().k(3, new Object[0]);
-                return;
-            case 16:
-                na7Var.m4();
-                return;
-            case 17:
-                na7Var.getNotificationCenter().k(2, 4);
+                uc7Var.K0 = false;
+                ArrayList arrayList3 = uc7Var.M0;
+                arrayList3.clear();
+                if (tLObject instanceof Vector) {
+                    arrayList3.addAll(((Vector) tLObject).objects);
+                }
+                uc7Var.getNotificationCenter().k(189, new Object[0]);
                 return;
             default:
-                na7Var.getNotificationCenter().k(46, new Object[0]);
-                na7Var.getNotificationCenter().k(2, 2);
-                na7Var.getUserConfig().u(true);
+                uc7Var.Y3((TLRPC.Updates) tLObject, false);
                 return;
         }
     }

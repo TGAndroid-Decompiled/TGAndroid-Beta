@@ -1,28 +1,36 @@
 package defpackage;
+public final class gda implements Runnable {
+    public final byte a;
+    public final kea b;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.FragmentContextView;
-public final class gda extends FragmentContextView {
-    public final nfa X0;
-
-    public gda(nfa nfaVar, Context context, d dVar, nfa nfaVar2, wjb wjbVar) {
-        super(context, dVar, nfaVar2, false, wjbVar);
-        this.X0 = nfaVar;
+    public gda(kea keaVar, byte b) {
+        this.a = b;
+        this.b = keaVar;
     }
 
     @Override
-    public final void setVisibility(int i) {
-        boolean z;
-        nfa nfaVar = this.X0;
-        fj3 fj3Var = nfaVar.S0;
-        FrameLayout frameLayout = nfaVar.T0;
-        if (i == 0) {
-            z = true;
-        } else {
-            z = false;
+    public final void run() {
+        byte b = this.a;
+        kea keaVar = this.b;
+        switch (b) {
+            case 0:
+                keaVar.v2 = true;
+                rq4 rq4Var = keaVar.t2;
+                rq4Var.r.setText("");
+                hl.E3(rq4Var.r);
+                return;
+            default:
+                pg6 pg6Var = new pg6((byte) 24);
+                if (keaVar.d) {
+                    rq4 rq4Var2 = keaVar.t2;
+                    if (rq4Var2 != null) {
+                        hl.t1(rq4Var2.r);
+                    }
+                    hl.d3(pg6Var, 300L);
+                    return;
+                }
+                pg6Var.run();
+                return;
         }
-        fj3Var.j(frameLayout, z, true);
     }
 }

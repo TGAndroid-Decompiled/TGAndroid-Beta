@@ -1,28 +1,28 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stars;
-public final class xy implements Runnable {
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.ProfileActivity;
+public final class xy implements View.OnClickListener {
     public final byte a;
-    public final Context b;
-    public final wjb c;
-    public final TL_stars.StarGift d;
+    public final ax0 b;
 
-    public xy(Context context, wjb wjbVar, TL_stars.StarGift starGift, byte b) {
+    public xy(ax0 ax0Var, byte b) {
         this.a = b;
-        this.b = context;
-        this.c = wjbVar;
-        this.d = starGift;
+        this.b = ax0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
+    public final void onClick(View view) {
+        byte b = this.a;
+        ax0 ax0Var = this.b;
+        switch (b) {
             case 0:
-                ez.b1(this.c, this.b, this.d);
+                ax0Var.run();
                 return;
             default:
-                ez.b1(this.c, this.b, this.d);
+                RectF rectF = ProfileActivity.Z6;
+                ax0Var.run();
                 return;
         }
     }

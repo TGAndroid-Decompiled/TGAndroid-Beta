@@ -1,504 +1,303 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import java.io.EOFException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public final class gh5 extends g00 {
-    public static final Logger s = Logger.getLogger(gh5.class.getName());
-    public byte r;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
+import j$.util.Objects;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+public final class gh5 extends rg0 {
+    public final ib3 i;
+    public final z8d j;
+    public final rg7 k;
+    public final pr3 l;
+    public final z6f m;
+    public final boolean n;
+    public final boolean o;
+    public final mb3 p;
+    public final long q;
+    public at6 r;
+    public v2c s;
+    public ft6 t;
 
-    public static boolean b(rg6 rg6Var) {
-        boolean z;
-        rg6Var.mark(3);
-        try {
-            if (rg6Var.read() == 73 && rg6Var.read() == 68) {
-                if (rg6Var.read() == 51) {
-                    z = true;
-                    return z;
-                }
+    static {
+        gt6.a("media3.exoplayer.hls");
+    }
+
+    public gh5(ft6 ft6Var, z8d z8dVar, ib3 ib3Var, rg7 rg7Var, pr3 pr3Var, z6f z6fVar, mb3 mb3Var, long j, boolean z, int i) {
+        this.t = ft6Var;
+        this.r = ft6Var.c;
+        this.j = z8dVar;
+        this.i = ib3Var;
+        this.k = rg7Var;
+        this.l = pr3Var;
+        this.m = z6fVar;
+        this.p = mb3Var;
+        this.q = j;
+        this.n = z;
+        this.o = i;
+    }
+
+    public static ah5 u(po5 po5Var, long j) {
+        ah5 ah5Var = null;
+        for (int i = 0; i < po5Var.size(); i++) {
+            ah5 ah5Var2 = (ah5) po5Var.get(i);
+            if (ah5Var2.e > j) {
+                break;
             }
+            if (ah5Var2.x) {
+                ah5Var = ah5Var2;
+            }
+        }
+        return ah5Var;
+    }
+
+    @Override
+    public final boolean a(ft6 ft6Var) {
+        ft6 i = i();
+        bt6 bt6Var = i.b;
+        bt6Var.getClass();
+        bt6 bt6Var2 = ft6Var.b;
+        if (bt6Var2 != null && bt6Var2.a.equals(bt6Var.a) && bt6Var2.e.equals(bt6Var.e) && Objects.equals(bt6Var2.c, bt6Var.c) && i.c.equals(ft6Var.c)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final xt6 c(vz6 vz6Var, rx6 rx6Var, long j) {
+        lp b = b(vz6Var);
+        mr3 mr3Var = new mr3(this.d.c, 0, vz6Var);
+        v2c v2cVar = this.s;
+        ig8 ig8Var = this.g;
+        ig8Var.getClass();
+        return new wg5(this.i, this.p, this.j, v2cVar, this.l, mr3Var, this.m, b, rx6Var, this.k, this.n, this.o ? 1 : 0, ig8Var);
+    }
+
+    @Override
+    public final synchronized ft6 i() {
+        return this.t;
+    }
+
+    @Override
+    public final void k() {
+        mb3 mb3Var = this.p;
+        rx6 rx6Var = mb3Var.h;
+        if (rx6Var != null) {
+            rx6Var.g();
+        }
+        hy7 hy7Var = mb3Var.x;
+        if (hy7Var == null) {
+            Uri uri = mb3Var.I;
+            if (uri != null) {
+                mb3Var.j(uri);
+                return;
+            }
+            return;
+        }
+        throw hy7Var;
+    }
+
+    @Override
+    public final void m(v2c v2cVar) {
+        boolean z;
+        this.s = v2cVar;
+        Looper myLooper = Looper.myLooper();
+        myLooper.getClass();
+        ig8 ig8Var = this.g;
+        ig8Var.getClass();
+        pr3 pr3Var = this.l;
+        pr3Var.w(myLooper, ig8Var);
+        pr3Var.a();
+        lp b = b(null);
+        bt6 bt6Var = i().b;
+        bt6Var.getClass();
+        Uri uri = bt6Var.a;
+        la3 la3Var = this.h;
+        la3Var.getClass();
+        Handler q = gcc.q(null);
+        mb3 mb3Var = this.p;
+        mb3Var.n = q;
+        mb3Var.f = b;
+        mb3Var.r = this;
+        mb3Var.s = la3Var;
+        Map map = Collections.EMPTY_MAP;
+        yve.l(uri, "The uri must be set.");
+        jy7 jy7Var = new jy7(((f73) mb3Var.a.b).createDataSource(), new n73(uri, 1, null, map, 0L, -1L, null, 1), 4, mb3Var.b.c());
+        if (mb3Var.h == null) {
+            z = true;
+        } else {
             z = false;
-            return z;
-        } finally {
-            rg6Var.reset();
         }
+        yve.p(z);
+        rx6 rx6Var = new rx6("DefaultHlsPlaylistTracker:MultivariantPlaylist");
+        mb3Var.h = rx6Var;
+        rx6Var.w0(jy7Var, mb3Var, mb3Var.c.v3(jy7Var.c));
     }
 
-    public static ce3 c(eh5 eh5Var) {
-        bh5 b = eh5Var.b();
-        eh5Var.c(3, bh5.ISO_8859_1);
-        return new ce3(eh5Var.d(200, b), eh5Var.c((int) eh5Var.a.e(), b), (byte) 3);
+    @Override
+    public final void q() {
+        mb3 mb3Var = this.p;
+        HashMap hashMap = mb3Var.d;
+        mb3Var.I = null;
+        mb3Var.J = null;
+        mb3Var.w = null;
+        ug5 ug5Var = mb3Var.y;
+        if (ug5Var != null) {
+            ug5Var.f();
+        }
+        mb3Var.E = null;
+        mb3Var.F = null;
+        mb3Var.G = null;
+        mb3Var.H = null;
+        mb3Var.x = null;
+        mb3Var.M = -9223372036854775807L;
+        mb3Var.h.g0(null);
+        mb3Var.h = null;
+        for (lb3 lb3Var : hashMap.values()) {
+            for (kb3 kb3Var : lb3Var.b.values()) {
+                kb3Var.c.g0(null);
+            }
+        }
+        mb3Var.n.removeCallbacksAndMessages(null);
+        mb3Var.n = null;
+        mb3Var.s = null;
+        hashMap.clear();
+        this.l.release();
     }
 
-    public static String e(eh5 eh5Var) {
-        return eh5Var.c((int) eh5Var.a.e(), eh5Var.b());
+    @Override
+    public final synchronized void t(ft6 ft6Var) {
+        this.t = ft6Var;
     }
 
-    public final void d(eh5 eh5Var) {
-        int i;
-        fh5 fh5Var = eh5Var.c;
-        Level level = Level.FINEST;
-        Logger logger = s;
-        if (logger.isLoggable(level)) {
-            logger.log(level, "Parsing frame: " + fh5Var.a);
+    public final void v(fh5 fh5Var) {
+        long j;
+        long j2;
+        long j3;
+        gma gmaVar;
+        long j4;
+        long j5;
+        long j6;
+        long j7;
+        boolean z;
+        float f;
+        long j8;
+        long j9;
+        boolean z2 = fh5Var.p;
+        boolean z3 = fh5Var.g;
+        po5 po5Var = fh5Var.r;
+        long j10 = fh5Var.u;
+        long j11 = fh5Var.e;
+        byte b = fh5Var.d;
+        long j12 = fh5Var.h;
+        if (z2) {
+            j = gcc.i0(j12);
+        } else {
+            j = -9223372036854775807L;
         }
-        String str = fh5Var.a;
-        str.getClass();
-        int i2 = 0;
-        char c = 65535;
-        switch (str.hashCode()) {
-            case 66913:
-                if (str.equals("COM")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case 79210:
-                if (str.equals("PIC")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case 82815:
-                if (str.equals("TAL")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case 82878:
-                if (str.equals("TCM")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case 82880:
-                if (str.equals("TCO")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case 82881:
-                if (str.equals("TCP")) {
-                    c = 5;
-                    break;
-                }
-                break;
-            case 82883:
-                if (str.equals("TCR")) {
-                    c = 6;
-                    break;
-                }
-                break;
-            case 83149:
-                if (str.equals("TLE")) {
-                    c = 7;
-                    break;
-                }
-                break;
-            case 83253:
-                if (str.equals("TP1")) {
-                    c = '\b';
-                    break;
-                }
-                break;
-            case 83254:
-                if (str.equals("TP2")) {
-                    c = '\t';
-                    break;
-                }
-                break;
-            case 83269:
-                if (str.equals("TPA")) {
-                    c = '\n';
-                    break;
-                }
-                break;
-            case 83341:
-                if (str.equals("TRK")) {
-                    c = 11;
-                    break;
-                }
-                break;
-            case 83377:
-                if (str.equals("TT1")) {
-                    c = '\f';
-                    break;
-                }
-                break;
-            case 83378:
-                if (str.equals("TT2")) {
-                    c = '\r';
-                    break;
-                }
-                break;
-            case 83552:
-                if (str.equals("TYE")) {
-                    c = 14;
-                    break;
-                }
-                break;
-            case 84125:
-                if (str.equals("ULT")) {
-                    c = 15;
-                    break;
-                }
-                break;
-            case 2015625:
-                if (str.equals("APIC")) {
-                    c = 16;
-                    break;
-                }
-                break;
-            case 2074380:
-                if (str.equals("COMM")) {
-                    c = 17;
-                    break;
-                }
-                break;
-            case 2567331:
-                if (str.equals("TALB")) {
-                    c = 18;
-                    break;
-                }
-                break;
-            case 2569298:
-                if (str.equals("TCMP")) {
-                    c = 19;
-                    break;
-                }
-                break;
-            case 2569357:
-                if (str.equals("TCOM")) {
-                    c = 20;
-                    break;
-                }
-                break;
-            case 2569358:
-                if (str.equals("TCON")) {
-                    c = 21;
-                    break;
-                }
-                break;
-            case 2569360:
-                if (str.equals("TCOP")) {
-                    c = 22;
-                    break;
-                }
-                break;
-            case 2570401:
-                if (str.equals("TDRC")) {
-                    c = 23;
-                    break;
-                }
-                break;
-            case 2575250:
-                if (str.equals("TIT1")) {
-                    c = 24;
-                    break;
-                }
-                break;
-            case 2575251:
-                if (str.equals("TIT2")) {
-                    c = 25;
-                    break;
-                }
-                break;
-            case 2577697:
-                if (str.equals("TLEN")) {
-                    c = 26;
-                    break;
-                }
-                break;
-            case 2581512:
-                if (str.equals("TPE1")) {
-                    c = 27;
-                    break;
-                }
-                break;
-            case 2581513:
-                if (str.equals("TPE2")) {
-                    c = 28;
-                    break;
-                }
-                break;
-            case 2581856:
-                if (str.equals("TPOS")) {
-                    c = 29;
-                    break;
-                }
-                break;
-            case 2583398:
-                if (str.equals("TRCK")) {
-                    c = 30;
-                    break;
-                }
-                break;
-            case 2590194:
-                if (str.equals("TYER")) {
-                    c = 31;
-                    break;
-                }
-                break;
-            case 2614438:
-                if (str.equals("USLT")) {
-                    c = ' ';
-                    break;
-                }
-                break;
+        if (b != 2 && b != 1) {
+            j2 = -9223372036854775807L;
+        } else {
+            j2 = j;
         }
-        switch (c) {
-            case 0:
-            case 17:
-                ce3 c2 = c(eh5Var);
-                if (this.i != null && !"".equals(c2.b)) {
-                    return;
+        mb3 mb3Var = this.p;
+        mb3Var.w.getClass();
+        z6f z6fVar = new z6f((byte) 20);
+        if (mb3Var.L) {
+            eh5 eh5Var = fh5Var.v;
+            long j13 = eh5Var.c;
+            long j14 = eh5Var.d;
+            long j15 = j12 - mb3Var.M;
+            boolean z4 = fh5Var.o;
+            if (z4) {
+                j4 = j15 + j10;
+            } else {
+                j4 = -9223372036854775807L;
+            }
+            if (fh5Var.p) {
+                j5 = gcc.T(gcc.E(this.q)) - (j12 + j10);
+            } else {
+                j5 = 0;
+            }
+            long j16 = this.r.a;
+            if (j16 != -9223372036854775807L) {
+                j7 = gcc.T(j16);
+            } else {
+                if (j11 != -9223372036854775807L) {
+                    j6 = j10 - j11;
+                } else if (j14 != -9223372036854775807L && fh5Var.n != -9223372036854775807L) {
+                    j6 = j14;
+                } else if (j13 != -9223372036854775807L) {
+                    j6 = j13;
+                } else {
+                    j6 = 3 * fh5Var.m;
                 }
-                this.i = c2.c;
-                return;
-            case 1:
-            case 16:
-                if (this.o == null || this.r != 3) {
-                    bh5 b = eh5Var.b();
-                    z24 z24Var = eh5Var.d;
-                    if (eh5Var.b.a == 2) {
-                        eh5Var.c(3, bh5.ISO_8859_1).toUpperCase().getClass();
+                j7 = j6 + j5;
+            }
+            long j17 = j10 + j5;
+            long j18 = gcc.j(j7, j5, j17);
+            at6 at6Var = i().c;
+            boolean z5 = false;
+            if (at6Var.d == -3.4028235E38f && at6Var.e == -3.4028235E38f && j13 == -9223372036854775807L && j14 == -9223372036854775807L) {
+                z = true;
+            } else {
+                z = false;
+            }
+            zs6 a = this.r.a();
+            a.a = gcc.i0(j18);
+            float f2 = 1.0f;
+            if (z) {
+                f = 1.0f;
+            } else {
+                f = this.r.d;
+            }
+            a.d = f;
+            if (!z) {
+                f2 = this.r.e;
+            }
+            a.e = f2;
+            at6 at6Var2 = new at6(a);
+            this.r = at6Var2;
+            if (j11 == -9223372036854775807L) {
+                j11 = j17 - gcc.T(at6Var2.a);
+            }
+            if (z3) {
+                j9 = j11;
+            } else {
+                ah5 u = u(fh5Var.s, j11);
+                if (u != null) {
+                    j8 = u.e;
+                } else if (po5Var.isEmpty()) {
+                    j9 = 0;
+                } else {
+                    ch5 ch5Var = (ch5) po5Var.get(gcc.d(po5Var, Long.valueOf(j11), true));
+                    ah5 u2 = u(ch5Var.y, j11);
+                    if (u2 != null) {
+                        j8 = u2.e;
                     } else {
-                        eh5Var.d(20, bh5.ISO_8859_1);
-                    }
-                    byte Z = z24Var.Z();
-                    eh5Var.d(200, b);
-                    int e = (int) eh5Var.a.e();
-                    byte[] bArr = new byte[e];
-                    int i3 = 0;
-                    while (i3 < e) {
-                        int read = ((a51) z24Var.b).read(bArr, i3, e - i3);
-                        if (read > 0) {
-                            i3 += read;
-                        } else {
-                            throw new EOFException();
-                        }
-                    }
-                    if (this.o == null || Z == 3 || Z == 0) {
-                        try {
-                            BitmapFactory.Options options = new BitmapFactory.Options();
-                            options.inJustDecodeBounds = true;
-                            options.inSampleSize = 1;
-                            BitmapFactory.decodeByteArray(bArr, 0, e, options);
-                            int i4 = options.outWidth;
-                            if (i4 > 800 || options.outHeight > 800) {
-                                for (int max = Math.max(i4, options.outHeight); max > 800; max /= 2) {
-                                    options.inSampleSize <<= 1;
-                                }
-                            }
-                            options.inJustDecodeBounds = false;
-                            Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, e, options);
-                            this.o = decodeByteArray;
-                            if (decodeByteArray != null) {
-                                float max2 = Math.max(decodeByteArray.getWidth(), this.o.getHeight()) / 120.0f;
-                                int i5 = (max2 > 0.0f ? 1 : (max2 == 0.0f ? 0 : -1));
-                                Bitmap bitmap = this.o;
-                                if (i5 > 0) {
-                                    bitmap = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() / max2), (int) (this.o.getHeight() / max2), true);
-                                    this.p = bitmap;
-                                } else {
-                                    this.p = bitmap;
-                                }
-                                if (bitmap == null) {
-                                    this.p = this.o;
-                                }
-                            }
-                        } catch (Throwable th) {
-                            th.printStackTrace();
-                        }
-                        this.r = Z;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-            case 18:
-                this.f = e(eh5Var);
-                return;
-            case 3:
-            case 20:
-                this.m = e(eh5Var);
-                return;
-            case 4:
-            case 21:
-                String e2 = e(eh5Var);
-                if (e2.length() > 0) {
-                    this.h = e2;
-                    try {
-                        if (e2.charAt(0) == '(') {
-                            int indexOf = e2.indexOf(41);
-                            if (indexOf > 1 && (i2 = tb4.b(Integer.parseInt(e2.substring(1, indexOf)))) == 0 && e2.length() > (i = indexOf + 1)) {
-                                this.h = e2.substring(i);
-                            }
-                        } else {
-                            i2 = tb4.b(Integer.parseInt(e2));
-                        }
-                        if (i2 != 0) {
-                            this.h = tb4.d(i2);
-                            return;
-                        }
-                        return;
-                    } catch (NumberFormatException unused) {
-                        return;
+                        j8 = ch5Var.e;
                     }
                 }
-                return;
-            case 5:
-            case 19:
-                "1".equals(e(eh5Var));
-                return;
-            case 6:
-            case 22:
-                this.l = e(eh5Var);
-                return;
-            case 7:
-            case 26:
-                String e3 = e(eh5Var);
-                try {
-                    this.b = Long.valueOf(e3).longValue();
-                    return;
-                } catch (NumberFormatException unused2) {
-                    if (logger.isLoggable(level)) {
-                        logger.log(level, "Could not parse track duration: ".concat(e3));
-                        return;
-                    }
-                    return;
+                j9 = j8;
+            }
+            if (b == 2 && fh5Var.f) {
+                z5 = true;
+            }
+            gmaVar = new gma(j2, j, j4, fh5Var.u, j15, j9, true, !z4, z5, z6fVar, i(), this.r);
+        } else {
+            if (j11 != -9223372036854775807L && !po5Var.isEmpty()) {
+                if (!z3 && j11 != j10) {
+                    j11 = ((ch5) po5Var.get(gcc.d(po5Var, Long.valueOf(j11), true))).e;
                 }
-            case '\b':
-            case 27:
-                this.d = e(eh5Var);
-                return;
-            case '\t':
-            case 28:
-                this.e = e(eh5Var);
-                return;
-            case '\n':
-            case 29:
-                String e4 = e(eh5Var);
-                if (e4.length() > 0) {
-                    int indexOf2 = e4.indexOf(47);
-                    if (indexOf2 < 0) {
-                        try {
-                            this.k = Short.valueOf(e4).shortValue();
-                            return;
-                        } catch (NumberFormatException unused3) {
-                            if (logger.isLoggable(level)) {
-                                logger.log(level, "Could not parse disc number: ".concat(e4));
-                                return;
-                            }
-                            return;
-                        }
-                    }
-                    try {
-                        this.k = Short.valueOf(e4.substring(0, indexOf2)).shortValue();
-                    } catch (NumberFormatException unused4) {
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "Could not parse disc number: ".concat(e4));
-                        }
-                    }
-                    try {
-                        Short.valueOf(e4.substring(indexOf2 + 1));
-                        return;
-                    } catch (NumberFormatException unused5) {
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "Could not parse number of discs: ".concat(e4));
-                            return;
-                        }
-                        return;
-                    }
-                }
-                return;
-            case 11:
-            case 30:
-                String e5 = e(eh5Var);
-                if (e5.length() > 0) {
-                    int indexOf3 = e5.indexOf(47);
-                    if (indexOf3 < 0) {
-                        try {
-                            this.j = Short.valueOf(e5).shortValue();
-                            return;
-                        } catch (NumberFormatException unused6) {
-                            if (logger.isLoggable(level)) {
-                                logger.log(level, "Could not parse track number: ".concat(e5));
-                                return;
-                            }
-                            return;
-                        }
-                    }
-                    try {
-                        this.j = Short.valueOf(e5.substring(0, indexOf3)).shortValue();
-                    } catch (NumberFormatException unused7) {
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "Could not parse track number: ".concat(e5));
-                        }
-                    }
-                    try {
-                        Short.valueOf(e5.substring(indexOf3 + 1));
-                        return;
-                    } catch (NumberFormatException unused8) {
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "Could not parse number of tracks: ".concat(e5));
-                            return;
-                        }
-                        return;
-                    }
-                }
-                return;
-            case '\f':
-            case 24:
-                e(eh5Var);
-                return;
-            case '\r':
-            case 25:
-                this.c = e(eh5Var);
-                return;
-            case 14:
-            case 31:
-                String e6 = e(eh5Var);
-                if (e6.length() > 0) {
-                    try {
-                        this.g = Short.valueOf(e6).shortValue();
-                        return;
-                    } catch (NumberFormatException unused9) {
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "Could not parse year: ".concat(e6));
-                            return;
-                        }
-                        return;
-                    }
-                }
-                return;
-            case 15:
-            case ' ':
-                if (this.n == null) {
-                    this.n = c(eh5Var).c;
-                    return;
-                }
-                return;
-            case 23:
-                String e7 = e(eh5Var);
-                if (e7.length() >= 4) {
-                    try {
-                        this.g = Short.valueOf(e7.substring(0, 4)).shortValue();
-                        return;
-                    } catch (NumberFormatException unused10) {
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "Could not parse year from: ".concat(e7));
-                            return;
-                        }
-                        return;
-                    }
-                }
-                return;
-            default:
-                return;
+                j3 = j11;
+            } else {
+                j3 = 0;
+            }
+            long j19 = fh5Var.u;
+            gmaVar = new gma(j2, j, j19, j19, 0L, j3, true, false, true, z6fVar, i(), null);
         }
+        n(gmaVar);
     }
 }

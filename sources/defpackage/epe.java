@@ -1,17 +1,14 @@
 package defpackage;
-public final class epe implements zn7 {
-    public static final epe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class epe {
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
         }
-        throw new ClassCastException();
+        parcel.writeInt(0);
     }
 }

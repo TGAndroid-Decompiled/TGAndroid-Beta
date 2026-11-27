@@ -1,17 +1,25 @@
 package defpackage;
-public final class oud implements zn7 {
-    public static final oud a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.util.LinkedHashMap;
+public final class oud {
+    public static bud a(Object obj, Object obj2) {
+        bud budVar = (bud) obj;
+        bud budVar2 = (bud) obj2;
+        if (!budVar2.isEmpty()) {
+            if (!budVar.a) {
+                if (budVar.isEmpty()) {
+                    budVar = new bud();
+                } else {
+                    ?? linkedHashMap = new LinkedHashMap(budVar);
+                    linkedHashMap.a = true;
+                    budVar = linkedHashMap;
+                }
+            }
+            budVar.b();
+            if (!budVar2.isEmpty()) {
+                budVar.putAll(budVar2);
+            }
         }
-        throw new ClassCastException();
+        return budVar;
     }
 }

@@ -1,127 +1,87 @@
 package defpackage;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.Locale;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-public final class vl9 extends d {
-    public static final int[] d = {750000, 1000000, 1200000, 2000000};
-    public final byte a;
-    public o39 b;
-    public n39 c;
+import j$.util.Objects;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.tl.TL_iv;
+public final class vl9 extends a8c {
+    public static final int b = 0;
 
-    public vl9(Bundle bundle, byte b) {
-        super(bundle);
-        this.a = b;
+    static {
+        a8c.h(new a8c());
     }
 
-    public static String a0(int i) {
-        if (i % 1000000 == 0) {
-            return (i / 1000000) + " Mbps";
-        } else if (i > 1000000) {
-            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i / 1000000.0f));
+    @Override
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        boolean z2;
+        xl9 xl9Var = (xl9) view;
+        mk0 mk0Var = (mk0) b8cVar.H;
+        xh9 xh9Var = (xh9) b8cVar.I;
+        zl9 zl9Var = xl9Var.w;
+        boolean z3 = true;
+        if (xl9Var.a != mk0Var) {
+            z2 = true;
         } else {
-            return (i / 1000) + " kbps";
+            z2 = false;
         }
-    }
-
-    public final void b0(int i) {
-        if (i == 1) {
-            im0 im0Var = wcd.b;
-            boolean z = !MediaController.r0(this.currentAccount);
-            synchronized (im0Var) {
-                im0Var.d = z;
-                im0Var.c = true;
-                im0Var.b = true;
-                j8a.a.edit().putBoolean("audio_recorder_v2_enabled", z).apply();
+        xl9Var.a = mk0Var;
+        xl9Var.F = xh9Var;
+        xl9Var.E = ob6.a0;
+        xl9Var.c(mk0Var);
+        TL_iv.PageBlock pageBlock = mk0Var.b;
+        if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
+            return;
+        }
+        ajb ajbVar = new ajb((TL_iv.pageBlockTable) pageBlock);
+        xl9Var.G = ajbVar;
+        zl9Var.setModel(ajbVar);
+        LinkedHashSet linkedHashSet = xl9Var.I;
+        Objects.requireNonNull(linkedHashSet);
+        zl9Var.setSelectionProvider(new ye9(linkedHashSet, (byte) 9));
+        xl9Var.A();
+        dg9 dg9Var = xl9Var.r;
+        mk0 mk0Var2 = xl9Var.a;
+        if (mk0Var2 != null) {
+            TL_iv.PageBlock pageBlock2 = mk0Var2.b;
+            if (pageBlock2 instanceof TL_iv.pageBlockTable) {
+                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
+                TL_iv.RichText richText = pageblocktable.title;
+                if (richText == null) {
+                    richText = new TL_iv.textEmpty();
+                    pageblocktable.title = richText;
+                }
+                String l = mm9.l(richText);
+                SpannableStringBuilder r = mm9.r(pageblocktable.title, null, true);
+                mk0 mk0Var3 = xl9Var.a;
+                if (!mk0Var3.s) {
+                    mk0Var3.s = true;
+                    if (r.length() != 0 && (mm9.q(0, r.length(), r) & 1) == 0) {
+                        z3 = false;
+                    }
+                    mk0Var3.r = z3;
+                }
+                dg9Var.setAutoBold(xl9Var.a.r);
+                if (z2 || !String.valueOf(dg9Var.getText()).equals(l)) {
+                    dg9Var.setTextSilently(pv3.m(r, dg9Var.getPaint().getFontMetricsInt(), false, null, 0));
+                    dg9Var.f();
+                }
             }
-            ((s20) this.c).f();
-        } else if (MediaController.r0(this.currentAccount) && i == 2) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.a.S = k96.M0(2131753919, null);
-            alertDialog$Builder.e(new CharSequence[]{k96.M0(2131753918, null), k96.M0(2131753917, null)}, new r20(this, (byte) 0));
-            showDialog(alertDialog$Builder.a);
         }
-    }
-
-    public final void c0(int i, CharSequence[] charSequenceArr, sc8 sc8Var) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-        String M0 = k96.M0(i, null);
-        hd hdVar = alertDialog$Builder.a;
-        hdVar.S = M0;
-        alertDialog$Builder.e(charSequenceArr, new fe(this, sc8Var, (byte) 10));
-        showDialog(hdVar);
+        xl9Var.updateColors();
+        xl9Var.x.requestLayout();
     }
 
     @Override
-    public final View createView(Context context) {
-        switch (this.a) {
-            case 0:
-                setHasOwnBackground(true);
-                this.simpleActionBar.setBackButtonImage(2131231243);
-                this.simpleActionBar.setTitle(k96.M0(2131745792, null));
-                this.simpleActionBar.setActionBarMenuOnItemClick(new kk8(this, (byte) 9));
-                FrameLayout frameLayout = new FrameLayout(context);
-                this.fragmentView = frameLayout;
-                o39 o39Var = new o39(context, null);
-                this.b = o39Var;
-                o39Var.r1();
-                this.b.setSectionsDrawBackground(true);
-                this.b.setLayoutManager(new t26());
-                this.b.setVerticalScrollBarEnabled(false);
-                o39 o39Var2 = this.b;
-                gx0 gx0Var = new gx0(context);
-                this.c = gx0Var;
-                o39Var2.setAdapter(gx0Var);
-                this.b.setOnItemClickListener(new f09(this, (byte) 3));
-                frameLayout.addView(this.b, nme.c(-1.0f, -1));
-                return this.fragmentView;
-            default:
-                setHasOwnBackground(true);
-                this.simpleActionBar.setBackButtonImage(2131231243);
-                this.simpleActionBar.setTitle(k96.M0(2131753916, null));
-                this.simpleActionBar.setActionBarMenuOnItemClick(new r8(this, (byte) 4));
-                FrameLayout frameLayout2 = new FrameLayout(context);
-                this.fragmentView = frameLayout2;
-                o39 o39Var3 = new o39(context, null);
-                this.b = o39Var3;
-                o39Var3.setSectionsDrawBackground(true);
-                this.b.r1();
-                this.b.setLayoutManager(new t26());
-                this.b.setVerticalScrollBarEnabled(false);
-                o39 o39Var4 = this.b;
-                s20 s20Var = new s20(this, context, (byte) 0);
-                this.c = s20Var;
-                o39Var4.setAdapter(s20Var);
-                this.b.setOnItemClickListener(new u(this, (byte) 5));
-                frameLayout2.addView(this.b, nme.c(-1.0f, -1));
-                return this.fragmentView;
-        }
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        xl9 xl9Var = new xl9(context, vnbVar);
+        xl9Var.setBackground(new vg9(aob.v0(aob.d6, vnbVar)));
+        return xl9Var;
     }
 
     @Override
-    public final o39 getListViewForSimpleGlass() {
-        switch (this.a) {
-            case 0:
-                return this.b;
-            default:
-                return this.b;
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        byte b = this.a;
-        return true;
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        byte b = this.a;
-        return true;
+    public final boolean f() {
+        return false;
     }
 }

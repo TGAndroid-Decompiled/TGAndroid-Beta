@@ -1,17 +1,68 @@
 package defpackage;
-public final class lze implements zn7 {
-    public static final lze a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+public abstract class lze {
+    public static String a(String str) {
+        if (d(str)) {
+            return null;
+        }
+        if ("American Express".equalsIgnoreCase(str)) {
+            return "American Express";
+        }
+        if ("MasterCard".equalsIgnoreCase(str)) {
+            return "MasterCard";
+        }
+        if ("Diners Club".equalsIgnoreCase(str)) {
+            return "Diners Club";
+        }
+        if ("Discover".equalsIgnoreCase(str)) {
+            return "Discover";
+        }
+        if ("JCB".equalsIgnoreCase(str)) {
+            return "JCB";
+        }
+        if ("Visa".equalsIgnoreCase(str)) {
+            return "Visa";
+        }
+        return "Unknown";
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static String b(String str) {
+        if (d(str)) {
+            return null;
         }
-        throw new ClassCastException();
+        if ("credit".equalsIgnoreCase(str)) {
+            return "credit";
+        }
+        if ("debit".equalsIgnoreCase(str)) {
+            return "debit";
+        }
+        if ("prepaid".equalsIgnoreCase(str)) {
+            return "prepaid";
+        }
+        return "unknown";
+    }
+
+    public static boolean c(String str, String... strArr) {
+        if (str != null) {
+            for (String str2 : strArr) {
+                if (str.startsWith(str2)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean d(String str) {
+        if (str != null && str.trim().length() != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String e(String str) {
+        if (d(str)) {
+            return null;
+        }
+        return str;
     }
 }

@@ -1,187 +1,136 @@
 package defpackage;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import org.telegram.ui.o;
-public final class wb extends TextView {
-    public final byte a;
+import android.view.ViewGroup;
+import org.telegram.ui.ActionBar.e;
+public final class wb extends l9c {
+    public final byte Q;
+    public final Object R;
 
-    public wb(Context context, byte b) {
-        super(context);
-        this.a = b;
+    public wb(KeyEvent.Callback callback, d79 d79Var, Context context, int i, icc iccVar, vnb vnbVar, byte b) {
+        super(d79Var, context, i, 0, false, iccVar, vnbVar);
+        this.Q = b;
+        this.R = callback;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                super.dispatchDraw(canvas);
-                canvas.drawCircle(gl.L(3.5f), gl.L(11.5f), gl.L(2.5f), getPaint());
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final CharSequence getAccessibilityClassName() {
-        switch (this.a) {
-            case 1:
-                return Button.class.getName();
+    public final void t(f89 f89Var, int i) {
+        h96 h96Var;
+        m96 m96Var;
+        switch (this.Q) {
             case 2:
-                return Button.class.getName();
-            case 3:
-                return Button.class.getName();
-            case 4:
-                return Button.class.getName();
-            case 5:
-                return Button.class.getName();
-            case 6:
-                return Button.class.getName();
-            case 7:
-                return Button.class.getName();
-            case 8:
-                return Button.class.getName();
-            case 9:
-                return Button.class.getName();
-            case 10:
-            case 11:
-            default:
-                return super.getAccessibilityClassName();
-            case 12:
-                return Button.class.getName();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.a) {
-            case 11:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, o.t1);
-                super.onDraw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3 = 0;
-        switch (this.a) {
-            case 14:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), gl.L(220.0f)), View.MeasureSpec.getMode(i)), i2);
-                return;
-            case 15:
-                if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE && getLayout() != null) {
-                    Layout layout = getLayout();
-                    int i4 = 0;
-                    while (i3 < layout.getLineCount()) {
-                        i4 = Math.max(i4, (int) Math.ceil(layout.getLineWidth(i3)));
-                        i3++;
-                    }
-                    i = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + i4, 1073741824);
-                }
-                super.onMeasure(i, i2);
-                return;
-            case 16:
-                if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE && getLayout() != null) {
-                    Layout layout2 = getLayout();
-                    int i5 = 0;
-                    while (i3 < layout2.getLineCount()) {
-                        i5 = Math.max(i5, (int) Math.ceil(layout2.getLineWidth(i3)));
-                        i3++;
-                    }
-                    i = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + i5, 1073741824);
-                }
-                super.onMeasure(i, i2);
-                return;
-            case 17:
-                if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE && getLayout() != null) {
-                    Layout layout3 = getLayout();
-                    int i6 = 0;
-                    while (i3 < layout3.getLineCount()) {
-                        i6 = Math.max(i6, (int) Math.ceil(layout3.getLineWidth(i3)));
-                        i3++;
-                    }
-                    i = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + i6, 1073741824);
-                }
-                super.onMeasure(i, i2);
-                return;
-            case 18:
-                super.onMeasure(i, i2);
-                try {
-                    Layout layout4 = getLayout();
-                    if (layout4.getLineCount() > 1) {
-                        for (int lineCount = layout4.getLineCount() - 1; lineCount >= 0; lineCount--) {
-                            i3 = Math.max(i3, Math.round(layout4.getPaint().measureText(getText(), layout4.getLineStart(lineCount), layout4.getLineEnd(lineCount))));
-                        }
-                        super.onMeasure(Math.min(i3 + getPaddingLeft() + getPaddingRight(), getMeasuredWidth()) | 1073741824, getMeasuredHeight() | 1073741824);
+                super.t(f89Var, i);
+                b58 b58Var = (b58) this.R;
+                if (b58Var.E) {
+                    View view = f89Var.a;
+                    if ((view instanceof h96) && (m96Var = (h96Var = (h96) view).L) != null && m96Var.a == b58Var.y) {
+                        h96Var.a();
+                        b58Var.E = false;
                         return;
                     }
                     return;
-                } catch (Exception unused) {
-                    return;
                 }
-            case 19:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - gl.L(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(42.0f), 1073741824));
                 return;
-            case 20:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - gl.L(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(42.0f), 1073741824));
-                return;
-            case 21:
-            case 26:
             default:
-                super.onMeasure(i, i2);
-                return;
-            case 22:
-                super.onMeasure(i, i2);
-                return;
-            case 23:
-                if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-                    i = ug8.f(52.0f, View.MeasureSpec.getSize(i), Integer.MIN_VALUE);
-                }
-                super.onMeasure(i, i2);
-                return;
-            case 24:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), Integer.MIN_VALUE));
-                return;
-            case 25:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i2), gl.L(100.0f)), Integer.MIN_VALUE));
-                return;
-            case 27:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), Integer.MIN_VALUE));
-                return;
-            case 28:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), Integer.MIN_VALUE));
+                super.t(f89Var, i);
                 return;
         }
     }
 
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.a) {
-            case 10:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 13:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 21:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 26:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public final f89 x(ViewGroup viewGroup, int i) {
+        vnb vnbVar;
+        vnb vnbVar2;
+        vnb vnbVar3;
+        byte b = this.Q;
+        Object obj = this.R;
+        switch (b) {
+            case 0:
+                cc ccVar = (cc) obj;
+                if (i == 42) {
+                    Activity parentActivity = ccVar.getParentActivity();
+                    int i2 = aob.L6;
+                    vnbVar = ((e) ccVar).resourceProvider;
+                    mf5 mf5Var = new mf5(parentActivity, i2, 21, 0, false, vnbVar);
+                    mf5Var.setHeight(25);
+                    return new f89(mf5Var);
+                }
+                return super.x(viewGroup, i);
+            case 1:
+                ng1 ng1Var = (ng1) obj;
+                if (i == 42) {
+                    mf5 mf5Var2 = new mf5(ng1Var.getParentActivity(), aob.L6, 21, 0, false, ng1.C0(ng1Var));
+                    mf5Var2.setHeight(25);
+                    return new f89(mf5Var2);
+                }
+                return super.x(viewGroup, i);
+            case 2:
+            default:
+                return super.x(viewGroup, i);
+            case 3:
+                md9 md9Var = (md9) obj;
+                if (i == 0) {
+                    return new f89(new mf5(md9Var.getContext(), aob.L6, 13, 12, 4, false, false, md9Var.J0));
+                }
+                if (i == 42) {
+                    return new f89(new mf5(md9Var.getContext(), aob.L6, 13, 12, 4, false, true, md9Var.J0));
+                }
+                return super.x(viewGroup, i);
+            case 4:
+                nza nzaVar = (nza) obj;
+                if (i == 42) {
+                    Activity parentActivity2 = nzaVar.getParentActivity();
+                    int i3 = aob.L6;
+                    vnbVar2 = ((e) nzaVar).resourceProvider;
+                    mf5 mf5Var3 = new mf5(parentActivity2, i3, 21, 0, false, vnbVar2);
+                    mf5Var3.setHeight(25);
+                    return new f89(mf5Var3);
+                }
+                return super.x(viewGroup, i);
+            case 5:
+                thb thbVar = (thb) obj;
+                if (i == 42) {
+                    Activity parentActivity3 = thbVar.getParentActivity();
+                    int i4 = aob.L6;
+                    vnbVar3 = ((e) thbVar).resourceProvider;
+                    mf5 mf5Var4 = new mf5(parentActivity3, i4, 21, 0, false, vnbVar3);
+                    mf5Var4.setHeight(25);
+                    return new f89(mf5Var4);
+                }
+                return super.x(viewGroup, i);
+        }
+    }
+
+    @Override
+    public final void y(f89 f89Var) {
+        h96 h96Var;
+        m96 m96Var;
+        switch (this.Q) {
+            case 2:
+                super.y(f89Var);
+                b58 b58Var = (b58) this.R;
+                if (b58Var.E) {
+                    View view = f89Var.a;
+                    if ((view instanceof h96) && (m96Var = (h96Var = (h96) view).L) != null && m96Var.a == b58Var.y) {
+                        h96Var.a();
+                        b58Var.E = false;
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                super.setText(charSequence, bufferType);
+                super.y(f89Var);
                 return;
         }
+    }
+
+    public wb(m15 m15Var, d79 d79Var, Activity activity, int i, int i2, icc iccVar, vnb vnbVar, byte b) {
+        super(d79Var, activity, i, i2, true, iccVar, vnbVar);
+        this.Q = b;
+        this.R = m15Var;
     }
 }

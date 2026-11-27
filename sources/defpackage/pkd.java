@@ -1,15 +1,15 @@
 package defpackage;
-public final class pkd implements zn7 {
+public final class pkd implements zq7 {
     public static final pkd a = new Object();
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)));
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+            ar7 ar7Var = (ar7) obj2;
             throw null;
         }
         throw new ClassCastException();

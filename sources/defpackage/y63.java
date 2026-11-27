@@ -1,18 +1,37 @@
 package defpackage;
-public final class y63 {
-    public final lh7 a;
-    public final z49 b;
-    public final c59 c;
-    public final v73 d;
 
-    public y63(lh7 lh7Var, z49 z49Var, c59 c59Var, v73 v73Var) {
-        this.a = lh7Var;
-        this.b = z49Var;
-        this.c = c59Var;
-        this.d = v73Var;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+public final class y63 extends yfb implements is4 {
+    public Iterator a;
+    public oja b;
+    public Object c;
+    public byte d;
+    public Object e;
+    public final List f;
+    public final ArrayList h;
+
+    public y63(List list, ArrayList arrayList, zw2 zw2Var) {
+        super(2, zw2Var);
+        this.f = list;
+        this.h = arrayList;
     }
 
-    public final java.lang.Object a(defpackage.f63 r9, defpackage.gw2 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.y63.a(f63, gw2):java.lang.Object");
+    @Override
+    public final zw2 create(Object obj, zw2 zw2Var) {
+        y63 y63Var = new y63(this.f, this.h, zw2Var);
+        y63Var.e = obj;
+        return y63Var;
+    }
+
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        return ((y63) create(obj, (zw2) obj2)).invokeSuspend(f9c.a);
+    }
+
+    @Override
+    public final java.lang.Object invokeSuspend(java.lang.Object r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.y63.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 }

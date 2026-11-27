@@ -1,6 +1,6 @@
 package defpackage;
-public final class tu4 {
-    public String a;
-    public String b;
-    public jq0 c;
+
+import android.view.GestureDetector;
+public abstract class tu4 extends GestureDetector.SimpleOnGestureListener {
+    public abstract boolean a();
 }

@@ -1,76 +1,35 @@
 package defpackage;
 
+import android.content.Context;
 import android.view.View;
-public final class v12 extends p02 {
-    public fu n;
-    public int r;
-    public ar0 s;
-    public dy0 w;
-    public byte x;
-    public vs2 y;
+public final class v12 extends a8c {
+    static {
+        a8c.h(new a8c());
+    }
 
-    @Override
-    public final void C(int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v12.C(int, int):void");
+    public static b8c i(CharSequence charSequence, String str) {
+        b8c K = b8c.K(v12.class);
+        K.m = str;
+        K.n = charSequence;
+        return K;
     }
 
     @Override
-    public final void I(p02 p02Var) {
-        x02 x02Var = this.b;
-        try {
-            x02Var.U2.getTitleTextView().setBuildFullLayout(true);
-        } catch (Exception unused) {
-        }
-        x02Var.U2.setTitle(k96.M0(2131745471, null));
-        this.s.g1(0, 0);
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        w12 w12Var = (w12) view;
+        CharSequence charSequence = b8cVar.m;
+        CharSequence charSequence2 = b8cVar.n;
+        w12Var.b.setText(charSequence);
+        w12Var.c.setText(charSequence2);
     }
 
     @Override
-    public final void K() {
-        this.n.z0(0);
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new w12(context, vnbVar);
     }
 
     @Override
-    public int getCurrentItemTop() {
-        fu fuVar = this.n;
-        if (fuVar.getChildCount() <= 0) {
-            fuVar.setTopGlowOffset(fuVar.getPaddingTop());
-            return Integer.MAX_VALUE;
-        }
-        View childAt = fuVar.getChildAt(0);
-        y29 y29Var = (y29) fuVar.G(childAt);
-        int top = childAt.getTop();
-        int L = gl.L(7.0f);
-        if (top < gl.L(7.0f) || y29Var == null || y29Var.b() != 0) {
-            top = L;
-        }
-        fuVar.setTopGlowOffset(top);
-        return top;
-    }
-
-    @Override
-    public int getFirstOffset() {
-        return gl.L(56.0f) + getListTopPadding();
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.n.getPaddingTop();
-    }
-
-    @Override
-    public final int j() {
-        return 1;
-    }
-
-    public void setDelegate(vs2 vs2Var) {
-        this.y = vs2Var;
-    }
-
-    @Override
-    public void setTranslationY(float f) {
-        super.setTranslationY(f);
-        this.b.b.invalidate();
-        invalidate();
+    public final boolean f() {
+        return false;
     }
 }

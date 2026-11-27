@@ -1,38 +1,10 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class qr9 implements yr9 {
-    public final nt2 a;
+import android.view.Surface;
+public interface qr9 {
+    void a(int i, int i2);
 
-    public qr9(nt2 nt2Var) {
-        this.a = nt2Var;
-    }
+    boolean b();
 
-    @Override
-    public final vf6 O0() {
-        return null;
-    }
-
-    @Override
-    public final boolean U1(int i) {
-        return true;
-    }
-
-    @Override
-    public final void r(int i) {
-        nt2 nt2Var = this.a;
-        nt2Var.f();
-        if (i != 0) {
-            nt2Var.F();
-        }
-    }
-
-    @Override
-    public final vf6 t1() {
-        return null;
-    }
-
-    @Override
-    public final void m2(ArrayList arrayList) {
-    }
+    Surface getSurface();
 }

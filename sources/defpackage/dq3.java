@@ -1,30 +1,29 @@
 package defpackage;
-public final class dq3 implements sw2 {
-    public final sw2 a;
-    public final Throwable b;
 
-    public dq3(sw2 sw2Var, Throwable th) {
-        this.a = sw2Var;
-        this.b = th;
+import android.view.ViewGroup;
+public final class dq3 implements Runnable {
+    public final byte a;
+    public final eq3 b;
+
+    public dq3(eq3 eq3Var, byte b) {
+        this.a = b;
+        this.b = eq3Var;
     }
 
     @Override
-    public final Object fold(Object obj, eq4 eq4Var) {
-        return this.a.fold(obj, eq4Var);
-    }
-
-    @Override
-    public final qw2 get(rw2 rw2Var) {
-        return this.a.get(rw2Var);
-    }
-
-    @Override
-    public final sw2 minusKey(rw2 rw2Var) {
-        return this.a.minusKey(rw2Var);
-    }
-
-    @Override
-    public final sw2 plus(sw2 sw2Var) {
-        return this.a.plus(sw2Var);
+    public final void run() {
+        byte b = this.a;
+        eq3 eq3Var = this.b;
+        switch (b) {
+            case 0:
+                if (eq3Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) eq3Var.getParent()).removeView(eq3Var);
+                    return;
+                }
+                return;
+            default:
+                eq3Var.a();
+                return;
+        }
     }
 }

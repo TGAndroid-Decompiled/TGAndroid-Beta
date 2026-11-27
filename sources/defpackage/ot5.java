@@ -1,22 +1,18 @@
 package defpackage;
-public final class ot5 extends qq4 implements gq4 {
-    public static final ot5 a = new qq4(3, pt5.class, "registerSelectForOnJoin", "registerSelectForOnJoin(Lkotlinx/coroutines/selects/SelectInstance;Ljava/lang/Object;)V", 0);
+public final class ot5 extends iv5 {
+    public final ur4 e;
+
+    public ot5(ur4 ur4Var) {
+        this.e = ur4Var;
+    }
 
     @Override
-    public final Object a(Object obj, Object obj2, Object obj3) {
-        Object v;
-        pt5 pt5Var = (pt5) obj;
-        if (obj2 == null) {
-            int i = pt5.c;
-            do {
-                v = pt5Var.v();
-                if (!(v instanceof en5)) {
-                    throw null;
-                }
-            } while (pt5Var.K(v) < 0);
-            nle.c(pt5Var, true, new qb6());
-            throw null;
-        }
-        throw new ClassCastException();
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void l(Throwable th) {
+        this.e.invoke(th);
     }
 }

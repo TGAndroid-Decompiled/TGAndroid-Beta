@@ -1,21 +1,30 @@
 package defpackage;
-public abstract class qc3 {
-    public final int a;
-    public final sxb b;
-    public final int c;
-    public final fm4 d;
+public final class qc3 extends o54 {
+    public static final qc3 d;
+    public tx2 c;
 
-    public qc3(int i, sxb sxbVar, int i2) {
-        this.a = i;
-        this.b = sxbVar;
-        this.c = i2;
-        this.d = sxbVar.d[i2];
+    static {
+        int i = zjb.c;
+        int i2 = zjb.d;
+        long j = zjb.e;
+        String str = zjb.a;
+        ?? px2Var = new px2();
+        px2Var.c = new tx2(i, j, str, i2);
+        d = px2Var;
     }
 
-    public abstract int a();
+    @Override
+    public final void c(mx2 mx2Var, Runnable runnable) {
+        this.c.b(runnable, false);
+    }
 
-    public boolean b(qc3 qc3Var) {
-        kc3 kc3Var = (kc3) qc3Var;
-        return false;
+    @Override
+    public final void close() {
+        throw new UnsupportedOperationException("Dispatchers.Default cannot be closed");
+    }
+
+    @Override
+    public final String toString() {
+        return "Dispatchers.Default";
     }
 }

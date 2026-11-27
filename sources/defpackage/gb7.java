@@ -1,23 +1,45 @@
 package defpackage;
 
-import java.util.concurrent.CountDownLatch;
+import android.app.Activity;
 public final class gb7 implements Runnable {
     public final byte a;
-    public final ad7 b;
-    public final long c;
-    public final boolean[] d;
-    public final CountDownLatch e;
+    public final Activity b;
+    public final id c;
 
-    public gb7(ad7 ad7Var, long j, boolean[] zArr, CountDownLatch countDownLatch, byte b) {
+    public gb7(Activity activity, id idVar, byte b) {
         this.a = b;
-        this.b = ad7Var;
-        this.c = j;
-        this.d = zArr;
-        this.e = countDownLatch;
+        this.b = activity;
+        this.c = idVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gb7.run():void");
+        byte b = this.a;
+        id idVar = this.c;
+        Activity activity = this.b;
+        switch (b) {
+            case 0:
+                if (!activity.isFinishing()) {
+                    try {
+                        idVar.dismiss();
+                        return;
+                    } catch (Exception e) {
+                        cc4.g(e, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                try {
+                    if (!activity.isFinishing()) {
+                        idVar.dismiss();
+                        return;
+                    }
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
+                }
+        }
     }
 }

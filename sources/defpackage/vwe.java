@@ -1,67 +1,167 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import java.io.File;
-import java.util.List;
-public abstract class vwe {
-    public static bm4 e(bm4[] bm4VarArr, int i) {
-        int i2;
-        boolean z;
-        int i3;
-        if ((i & 1) == 0) {
-            i2 = 400;
-        } else {
-            i2 = 700;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Log;
+import com.google.android.gms.cast.CastDevice;
+public final class vwe {
+    public static final he6 j = new he6("ApplicationAnalytics", null);
+    public final wae a;
+    public final ibd b;
+    public final v4f c;
+    public final SharedPreferences f;
+    public e1f g;
+    public md1 h;
+    public boolean i;
+    public final b99 e = new b99(Looper.getMainLooper(), (byte) 3);
+    public final dhe d = new dhe(this, (byte) 0);
+
+    public vwe(SharedPreferences sharedPreferences, wae waeVar, ibd ibdVar, Bundle bundle, String str) {
+        this.f = sharedPreferences;
+        this.a = waeVar;
+        this.b = ibdVar;
+        this.c = new v4f(str, bundle);
+    }
+
+    public static void a(vwe vweVar, int i) {
+        j.b("log session ended with error = %d", Integer.valueOf(i));
+        vweVar.c();
+        vweVar.a.a(vweVar.c.a(vweVar.g, i), 228);
+        vweVar.e.removeCallbacks(vweVar.d);
+        if (!vweVar.i) {
+            vweVar.g = null;
         }
-        if ((i & 2) != 0) {
+    }
+
+    public static void b(vwe vweVar) {
+        e1f e1fVar = vweVar.g;
+        SharedPreferences sharedPreferences = vweVar.f;
+        e1fVar.getClass();
+        if (sharedPreferences == null) {
+            return;
+        }
+        e1f.k.b("Save the ApplicationAnalyticsSession to SharedPreferences %s", sharedPreferences);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("application_id", e1fVar.b);
+        edit.putString("receiver_metrics_id", e1fVar.c);
+        edit.putLong("analytics_session_id", e1fVar.d);
+        edit.putInt("event_sequence_number", e1fVar.e);
+        edit.putString("receiver_session_id", e1fVar.f);
+        edit.putInt("device_capabilities", e1fVar.g);
+        edit.putString("device_model_name", e1fVar.h);
+        edit.putInt("analytics_session_start_type", e1fVar.j);
+        edit.putBoolean("is_output_switcher_enabled", e1fVar.i);
+        edit.apply();
+    }
+
+    public final void c() {
+        CastDevice castDevice;
+        e1f e1fVar;
+        if (f()) {
+            md1 md1Var = this.h;
+            if (md1Var != null) {
+                xve.e("Must be called from the main thread.");
+                castDevice = md1Var.k;
+            } else {
+                castDevice = null;
+            }
+            if (castDevice != null) {
+                String str = castDevice.x;
+                if (!TextUtils.equals(this.g.c, str) && (e1fVar = this.g) != null) {
+                    e1fVar.c = str;
+                    e1fVar.g = castDevice.r;
+                    e1fVar.h = castDevice.e;
+                }
+            }
+            xve.h(this.g);
+            return;
+        }
+        he6 he6Var = j;
+        Log.w(he6Var.a, he6Var.d("The analyticsSession should not be null for logging. Create a dummy one.", new Object[0]));
+        d();
+    }
+
+    public final void d() {
+        boolean z;
+        CastDevice castDevice;
+        e1f e1fVar;
+        int i = 0;
+        j.b("Create a new ApplicationAnalyticsSession based on CastSession", new Object[0]);
+        e1f e1fVar2 = new e1f(this.b);
+        e1f.l++;
+        this.g = e1fVar2;
+        md1 md1Var = this.h;
+        if (md1Var != null && md1Var.g.f) {
             z = true;
         } else {
             z = false;
         }
-        bm4 bm4Var = null;
-        int i4 = Integer.MAX_VALUE;
-        for (bm4 bm4Var2 : bm4VarArr) {
-            int abs = Math.abs(bm4Var2.c - i2) << 1;
-            if (bm4Var2.d == z) {
-                i3 = 0;
-            } else {
-                i3 = 1;
-            }
-            int i5 = abs + i3;
-            if (bm4Var == null || i4 > i5) {
-                bm4Var = bm4Var2;
-                i4 = i5;
-            }
+        e1fVar2.i = z;
+        he6 he6Var = id1.l;
+        xve.e("Must be called from the main thread.");
+        id1 id1Var = id1.n;
+        xve.h(id1Var);
+        xve.e("Must be called from the main thread.");
+        e1fVar2.b = id1Var.e.a;
+        md1 md1Var2 = this.h;
+        if (md1Var2 == null) {
+            castDevice = null;
+        } else {
+            xve.e("Must be called from the main thread.");
+            castDevice = md1Var2.k;
         }
-        return bm4Var;
+        if (castDevice != null && (e1fVar = this.g) != null) {
+            e1fVar.c = castDevice.x;
+            e1fVar.g = castDevice.r;
+            e1fVar.h = castDevice.e;
+        }
+        e1f e1fVar3 = this.g;
+        xve.h(e1fVar3);
+        md1 md1Var3 = this.h;
+        if (md1Var3 != null) {
+            i = md1Var3.e();
+        }
+        e1fVar3.j = i;
+        xve.h(this.g);
     }
 
-    public abstract Typeface a(Context context, xl4 xl4Var, Resources resources, int i);
-
-    public abstract Typeface b(Context context, bm4[] bm4VarArr, int i);
-
-    public Typeface c(Context context, List list, int i) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
+    public final void e() {
+        this.e.postDelayed(this.d, 300000L);
     }
 
-    public Typeface d(Context context, Resources resources, int i, String str, int i2) {
-        File c = ywe.c(context);
-        Typeface typeface = null;
-        if (c == null) {
-            return null;
+    public final boolean f() {
+        String str;
+        he6 he6Var = j;
+        if (this.g == null) {
+            he6Var.b("The analytics session is null when matching with application ID.", new Object[0]);
+            return false;
         }
-        try {
-            if (ywe.a(c, resources, i)) {
-                typeface = Typeface.createFromFile(c.getPath());
-            }
-        } catch (RuntimeException unused) {
-        } catch (Throwable th) {
-            c.delete();
-            throw th;
+        he6 he6Var2 = id1.l;
+        xve.e("Must be called from the main thread.");
+        id1 id1Var = id1.n;
+        xve.h(id1Var);
+        xve.e("Must be called from the main thread.");
+        String str2 = id1Var.e.a;
+        if (str2 != null && (str = this.g.b) != null && TextUtils.equals(str, str2)) {
+            xve.h(this.g);
+            return true;
         }
-        c.delete();
-        return typeface;
+        he6Var.b("The analytics session doesn't match the application ID %s", str2);
+        return false;
+    }
+
+    public final boolean g(String str) {
+        String str2;
+        if (!f()) {
+            return false;
+        }
+        xve.h(this.g);
+        if (str != null && (str2 = this.g.f) != null && TextUtils.equals(str2, str)) {
+            return true;
+        }
+        j.b("The analytics session doesn't match the receiver session ID %s.", str);
+        return false;
     }
 }

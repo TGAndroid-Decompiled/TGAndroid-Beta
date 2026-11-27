@@ -1,7 +1,8 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
+import android.graphics.fonts.Font;
 public final class uv7 {
-    public AnimatorSet a;
-    public float b;
+    public Font a;
+    public String b;
+    public String c;
 }

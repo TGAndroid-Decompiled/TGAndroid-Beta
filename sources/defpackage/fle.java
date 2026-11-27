@@ -1,14 +1,17 @@
 package defpackage;
-public abstract class fle {
-    public static final wke a = new Object();
-    public static final wke b;
+public final class fle implements zq7 {
+    public static final fle a = new Object();
 
     static {
-        wke wkeVar = null;
-        try {
-            wkeVar = (wke) Class.forName("com.google.protobuf.ExtensionSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
+        xnb.y(xnb.q(bpd.class, new tnd(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        b = wkeVar;
+        throw new ClassCastException();
     }
 }

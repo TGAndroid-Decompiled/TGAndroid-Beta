@@ -1,255 +1,195 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.Canvas;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-public final class zt3 extends d {
-    public vt3 E;
-    public wt3 a;
-    public o39 b;
-    public is5 c;
-    public ImageView d;
-    public final ArrayList e;
-    public yt3 f;
-    public boolean h;
-    public int n;
-    public int r;
-    public int s;
-    public int w;
-    public final int x;
-    public final int y;
+import org.telegram.tgnet.TLRPC;
+public class zt3 extends FrameLayout implements snb {
+    public boolean E;
+    public final vnb a;
+    public int b;
+    public boolean c;
+    public final yt3 d;
+    public final int e;
+    public boolean f;
+    public int h;
+    public boolean n;
+    public boolean r;
+    public boolean s;
+    public final ll w;
+    public int x;
+    public final hn y;
 
-    public zt3(int i, int i2) {
-        super(null);
-        ArrayList arrayList = new ArrayList();
-        this.e = arrayList;
-        this.x = i;
-        this.y = i2;
-        ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = new ArrayList();
-        getMessagesStorage().n0(i2, i, arrayList, arrayList2, arrayList3, true);
-        getMessagesController().b4(arrayList2, true);
-        getMessagesController().V3(arrayList3, true);
-        d0();
+    public zt3(Context context, String str, boolean z, boolean z2, int i, vnb vnbVar) {
+        super(context);
+        int i2;
+        int i3;
+        this.h = -1;
+        this.w = new ll(this);
+        hn hnVar = new hn(false, true, true);
+        this.y = hnVar;
+        hnVar.n(0.2f, 160L, k43.h);
+        hnVar.w(hl.L(15.33f));
+        hnVar.b = 5;
+        this.e = i;
+        yt3 yt3Var = new yt3(this, context, vnbVar, i, vnbVar, z2);
+        this.d = yt3Var;
+        hnVar.setCallback(yt3Var);
+        yt3Var.setTextSize(1, 17.0f);
+        yob.D(yt3Var, aob.H6, vnbVar);
+        int i4 = aob.G6;
+        yob.X(yt3Var, i4, vnbVar);
+        yt3Var.setBackground(null);
+        if (z) {
+            yt3Var.setMaxLines(5);
+            yt3Var.setSingleLine(false);
+        } else {
+            yt3Var.setMaxLines(1);
+            yt3Var.setSingleLine(true);
+        }
+        int L = hl.L(21.0f);
+        int L2 = hl.L(15.0f);
+        if (i > 0) {
+            i2 = 42;
+        } else {
+            i2 = 0;
+        }
+        yt3Var.setPadding(L, L2, hl.L(i2 + 21), hl.L(15.0f));
+        yt3Var.setGravity((ob6.a0 ? 5 : 3) | 48);
+        if (z) {
+            i3 = 131072;
+        } else {
+            i3 = 0;
+        }
+        yt3Var.setInputType(i3 | 573441);
+        yt3Var.setRawInputType((z ? 131072 : 0) | 573441);
+        yt3Var.setHint(str);
+        this.a = vnbVar;
+        int v0 = aob.v0(i4, vnbVar);
+        this.b = v0;
+        yt3Var.setCursorColor(v0);
+        yt3Var.setCursorSize(hl.L(19.0f));
+        yt3Var.setCursorWidth(1.5f);
+        yt3Var.addTextChangedListener(new gi(this, i, z));
+        yt3Var.setOnFocusChangeListener(new nt3(this, (byte) 1));
+        addView(yt3Var, tre.e(-1, -1, 48));
+        c();
     }
 
-    @Override
-    public final void addThemeColorKeys(HashSet hashSet) {
-        super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.A6));
-        hashSet.add(Integer.valueOf(bkb.a7));
-        hashSet.add(Integer.valueOf(bkb.c7));
-        hashSet.add(Integer.valueOf(bkb.h6));
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.u8));
-        hashSet.add(Integer.valueOf(bkb.r8));
-        hashSet.add(Integer.valueOf(bkb.c6));
-    }
-
-    public final void b0() {
-        if (getParentActivity() == null) {
+    public final void c() {
+        int i;
+        String valueOf;
+        if (this.d == null) {
             return;
         }
-        getParentActivity().finish();
-        gl.d3(new li3(this, (byte) 14), 1000L);
-    }
-
-    public final void c0(Context context, int i) {
-        ir5 ir5Var;
-        boolean z;
-        int i2;
-        int c;
-        Object V1;
-        if (i == this.h) {
-            jr5 jr5Var = new jr5(context, this.currentAccount, null, 0L, this, null);
-            jr5Var.g2 = new vu2(this, (byte) 28);
-            kk7.f(jr5Var.a).b(jr5Var, kk7.r);
-            jr5Var.h2 = new ArrayList(na7.q1(jr5Var.a).F);
-            jr5Var.O0();
-            ArrayList arrayList = this.e;
-            int size = arrayList.size();
-            int i3 = 0;
-            int i4 = 0;
-            while (true) {
-                ir5Var = jr5Var.O1;
-                if (i4 >= size) {
-                    break;
-                }
-                Long l = (Long) arrayList.get(i4);
-                long longValue = l.longValue();
-                boolean y = cf3.y(longValue);
-                int i5 = jr5Var.a;
-                if (y) {
-                    V1 = na7.q1(i5).K0(Long.valueOf(-longValue));
-                } else {
-                    V1 = na7.q1(i5).V1(l);
-                }
-                ya5 ya5Var = new ya5(ir5Var.getContext(), V1);
-                ir5Var.a(ya5Var, false);
-                ya5Var.setOnClickListener(jr5Var.l2);
-                i4++;
-            }
-            jr5Var.N0(false);
-            int childCount = ir5Var.getChildCount();
-            Point point = gl.q;
-            if (point.x < point.y) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (!gl.O1() && !z) {
-                jr5Var.m2 = gl.L(56.0f);
-            } else {
-                jr5Var.m2 = gl.L(144.0f);
-            }
-            boolean O1 = gl.O1();
-            int i6 = point.x;
-            if (O1) {
-                i2 = (int) (Math.min(i6, point.y) * 0.8f);
-            } else {
-                if (!z) {
-                    i6 = (int) Math.max(i6 * 0.8f, Math.min(gl.L(480.0f), point.x));
-                }
-                i2 = i6;
-            }
-            int L = i2 - gl.L(26.0f);
-            int L2 = gl.L(10.0f);
-            int i7 = 0;
-            for (int i8 = 0; i8 < childCount; i8++) {
-                View childAt = ir5Var.getChildAt(i8);
-                if (childAt instanceof ya5) {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(gl.L(32.0f), 1073741824));
-                    if (childAt.getMeasuredWidth() + i7 > L) {
-                        L2 = de9.w(8.0f, childAt.getMeasuredHeight(), L2);
-                        i7 = 0;
-                    }
-                    i7 = de9.w(9.0f, childAt.getMeasuredWidth(), i7);
-                }
-            }
-            int L3 = gl.L(42.0f) + L2;
-            if (jr5Var.g2 != null) {
-                if (jr5Var.a2) {
-                    c = Math.min(jr5Var.m2, L3);
-                } else {
-                    c = 0;
-                }
-            } else {
-                c = b00.c(52.0f, Math.min(jr5Var.m2, L3), 0);
-            }
-            int i9 = jr5Var.o2;
-            if (jr5Var.Z1.m() > 0) {
-                i3 = gl.L(56.0f);
-            }
-            jr5Var.o2 = i3;
-            if (c != jr5Var.i2 || i9 != i3) {
-                jr5Var.i2 = c;
-            }
-            showDialog(jr5Var);
-        }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(2131231243);
-        this.actionBar.setAllowOverlayTitle(false);
-        ui5 ui5Var = this.parentLayout;
-        if (ui5Var != null && ((ActionBarLayout) ui5Var).T0) {
-            this.actionBar.setOccupyStatusBar(false);
-        }
-        a aVar = this.actionBar;
-        if (this.x == 0) {
-            aVar.setTitle(k96.M0(2131742614, null));
+        this.x = this.e - getText().length();
+        if ((TextUtils.isEmpty(getText()) && !this.f) || ((this.n && (!this.s || this.r)) || ((i = this.h) != -1 && this.x > i))) {
+            valueOf = "";
         } else {
-            aVar.setTitle(k96.M0(2131742605, null));
+            valueOf = String.valueOf(this.x);
         }
-        this.actionBar.t().e(1, k96.M0(2131751342, null).toUpperCase());
-        this.actionBar.setActionBarMenuOnItemClick(new vm2(this, (byte) 13));
-        this.a = new wt3(this, context);
-        FrameLayout frameLayout = new FrameLayout(context);
-        zkb.h(bkb.Z6, null, frameLayout);
-        this.fragmentView = frameLayout;
-        o39 o39Var = new o39(context, null);
-        this.b = o39Var;
-        o39Var.setLayoutManager(new t26(1, false));
-        this.b.setVerticalScrollBarEnabled(false);
-        this.b.setAdapter(this.a);
-        ((gb3) this.b.getItemAnimator()).C = false;
-        frameLayout.addView(this.b, nme.c(-1.0f, -1));
-        is5 is5Var = new is5(new xt3(this));
-        this.c = is5Var;
-        is5Var.h(this.b);
-        this.b.setOnItemClickListener(new k0(this, context, (byte) 12));
-        this.b.setOnItemLongClickListener(new lv6(this));
-        return this.fragmentView;
+        this.y.t(valueOf, true, true);
     }
 
-    public final void d0() {
-        this.w = 2;
-        this.h = true;
-        ArrayList arrayList = this.e;
-        if (arrayList.isEmpty()) {
-            this.n = -1;
-            this.r = -1;
-        } else {
-            int i = this.w;
-            this.n = i;
-            int size = arrayList.size() + i;
-            this.w = size;
-            this.r = size;
-        }
-        int i2 = this.w;
-        this.w = i2 + 1;
-        this.s = i2;
-        wt3 wt3Var = this.a;
-        if (wt3Var != null) {
-            wt3Var.f();
-        }
+    public CharSequence getText() {
+        return this.d.getText();
+    }
+
+    public TLRPC.TL_textWithEntities getTextWithEntities() {
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        CharSequence[] charSequenceArr = {getText()};
+        tL_textWithEntities.entities = ls6.d0(yac.t0).Y(charSequenceArr, true, true);
+        tL_textWithEntities.text = charSequenceArr[0].toString();
+        return tL_textWithEntities;
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new blb(this.actionBar, Integer.MIN_VALUE, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.F8));
-        arrayList.add(new blb(this.actionBar, 1073741824, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.D8));
-        arrayList.add(new blb(this.actionBar, 1073741832, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.E8));
-        int i = bkb.p6;
-        arrayList.add(new blb(this.b, 0, new Class[]{wgb.class}, new String[]{"textView"}, (Drawable[]) null, (alb) null, i));
-        arrayList.add(new blb(this.b, 0, new Class[]{wgb.class}, new String[]{"imageView"}, (Drawable[]) null, (alb) null, i));
-        return arrayList;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean onBackPressed(boolean z) {
-        if (this.E == null) {
-            if (z) {
-                b0();
-                return false;
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i;
+        super.onDraw(canvas);
+        if (this.E) {
+            if (ob6.a0) {
+                L = 0.0f;
+            } else {
+                L = hl.L(22.0f);
             }
-            return false;
+            float f = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (ob6.a0) {
+                i = hl.L(22.0f);
+            } else {
+                i = 0;
+            }
+            canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, aob.j0);
         }
-        return super.onBackPressed(z);
+    }
+
+    public void setDivider(boolean z) {
+        this.E = z;
+        setWillNotDraw(!z);
+    }
+
+    public void setShowLimitOnFocus(boolean z) {
+        this.n = z;
+    }
+
+    public void setShowLimitWhenEmpty(boolean z) {
+        this.f = z;
+        if (z) {
+            c();
+        }
+    }
+
+    public void setShowLimitWhenNear(int i) {
+        this.h = i;
+        c();
+    }
+
+    public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.c = true;
+        CharSequence h0 = r47.h0(tL_textWithEntities, false);
+        yt3 yt3Var = this.d;
+        yt3Var.setText(h0);
+        yt3Var.setSelection(yt3Var.getText().length());
+        this.c = false;
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        cj3.t4(j5.a(this.currentAccount));
-        getMediaDataController().O0(true);
-        return super.onFragmentCreate();
+    public final void updateColors() {
+        yt3 yt3Var = this.d;
+        if (yt3Var != null) {
+            try {
+                int v0 = aob.v0(aob.G6, this.a);
+                if (v0 != this.b) {
+                    this.b = v0;
+                    yt3Var.setCursorColor(v0);
+                }
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        }
+    }
+
+    public void a(boolean z) {
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+    }
+
+    public void b(Editable editable) {
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.c = true;
+        yt3 yt3Var = this.d;
+        yt3Var.setText(charSequence);
+        yt3Var.setSelection(yt3Var.getText().length());
+        this.c = false;
     }
 }

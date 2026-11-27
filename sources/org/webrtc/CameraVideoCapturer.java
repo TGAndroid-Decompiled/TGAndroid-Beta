@@ -31,14 +31,11 @@ public interface CameraVideoCapturer extends VideoCapturer {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    int round = Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f);
-                    Logging.d("CameraStatistics", "Camera fps: " + round + ".");
+                    Logging.d("CameraStatistics", "Camera fps: " + Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f) + ".");
                     int i = CameraStatistics.this.frameCount;
                     CameraStatistics cameraStatistics = CameraStatistics.this;
-                    if (i != 0) {
-                        cameraStatistics.freezePeriodCount = 0;
-                    } else {
-                        CameraStatistics.access$104(cameraStatistics);
+                    if (i == 0) {
+                        cameraStatistics.freezePeriodCount++;
                         if (CameraStatistics.this.freezePeriodCount * 2000 >= 4000 && CameraStatistics.this.eventsHandler != null) {
                             Logging.e("CameraStatistics", "Camera freezed.");
                             boolean isTextureInUse = CameraStatistics.this.surfaceTextureHelper.isTextureInUse();
@@ -51,6 +48,8 @@ public interface CameraVideoCapturer extends VideoCapturer {
                                 return;
                             }
                         }
+                    } else {
+                        cameraStatistics.freezePeriodCount = 0;
                     }
                     CameraStatistics.this.frameCount = 0;
                     CameraStatistics.this.surfaceTextureHelper.getHandler().postDelayed(this, 2000L);
@@ -65,21 +64,15 @@ public interface CameraVideoCapturer extends VideoCapturer {
                 surfaceTextureHelper.getHandler().postDelayed(runnable, 2000L);
                 return;
             }
-            w26.j("SurfaceTextureHelper is null");
+            lq5.j("SurfaceTextureHelper is null");
             throw null;
-        }
-
-        public static int access$104(CameraStatistics cameraStatistics) {
-            int i = cameraStatistics.freezePeriodCount + 1;
-            cameraStatistics.freezePeriodCount = i;
-            return i;
         }
 
         private void checkThread() {
             if (Thread.currentThread() == this.surfaceTextureHelper.getHandler().getLooper().getThread()) {
                 return;
             }
-            sc8.j("Wrong thread");
+            grb.i("Wrong thread");
         }
 
         public void addFrame() {

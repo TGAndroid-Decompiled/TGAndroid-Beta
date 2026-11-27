@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class t93 {
+public interface t93 {
+    void b(u93 u93Var);
 }

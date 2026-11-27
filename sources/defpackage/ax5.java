@@ -1,20 +1,13 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class ax5 {
-    public static final ax5 a = new Object();
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof ax5) && cqe.a(null, null) && cqe.a(null, null)) {
-                return true;
-            }
-            return false;
-        }
-        return true;
+import java.util.regex.Pattern;
+public abstract class ax5 {
+    static {
+        Pattern.compile("\\\\.");
+        Pattern.compile("[\\\\\"/\b\f\n\r\t]");
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, null});
+    public static boolean a(java.lang.Object r4, java.lang.Object r5) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ax5.a(java.lang.Object, java.lang.Object):boolean");
     }
 }

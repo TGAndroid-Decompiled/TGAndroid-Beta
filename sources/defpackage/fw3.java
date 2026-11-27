@@ -1,252 +1,237 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.text.TextUtils;
 import android.view.View;
-public final class fw3 extends View {
-    public final wjb E;
-    public i8c F;
-    public int G;
-    public boolean H;
-    public long I;
-    public boolean J;
-    public final int a;
-    public final Drawable[] b;
-    public final Drawable c;
-    public final Drawable d;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fw3 extends c79 {
     public String e;
-    public boolean f;
-    public int h;
-    public final int[] n;
-    public final int[] r;
-    public final Paint s;
-    public final RectF w;
-    public final lm x;
-    public final lm y;
+    public TLRPC.User f;
+    public String h;
+    public boolean n;
+    public final hw3 s;
+    public final zg3 c = new zg3(this, (byte) 29);
+    public int d = -1;
+    public boolean r = false;
 
-    public fw3(Context context, wjb wjbVar) {
-        super(context);
-        float f;
-        if (gl.O1()) {
-            f = 40.0f;
-        } else {
-            f = 32.0f;
-        }
-        this.a = gl.L(f);
-        this.b = new Drawable[11];
-        this.n = new int[]{0, 0};
-        this.r = new int[]{0, 0};
-        this.s = new Paint(1);
-        this.w = new RectF();
-        s33 s33Var = s33.h;
-        this.x = new lm(125L, this, s33Var);
-        this.y = new lm(125L, this, s33Var);
-        this.G = -1;
-        this.H = true;
-        this.E = wjbVar;
-        this.c = getResources().getDrawable(2131232761);
-        this.d = getResources().getDrawable(2131232762);
-        a();
-    }
-
-    public final void a() {
-        int i = bkb.g5;
-        wjb wjbVar = this.E;
-        bkb.A1(bkb.v0(i, wjbVar), this.c);
-        bkb.A1(bkb.v0(i, wjbVar), this.d);
-        qq2.b.setColorFilter(new PorterDuffColorFilter(bkb.v0(bkb.Df, wjbVar), PorterDuff.Mode.SRC_IN));
-    }
-
-    public String getEmoji() {
-        return this.e;
+    public fw3(hw3 hw3Var) {
+        this.s = hw3Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int L;
-        lm lmVar;
-        float f;
-        int L2;
-        int U1;
-        fw3 fw3Var = this;
-        int measuredWidth = fw3Var.getMeasuredWidth();
-        int measuredHeight = fw3Var.getMeasuredHeight() - gl.L(2.0f);
-        Drawable drawable = fw3Var.c;
-        boolean z = false;
-        drawable.setBounds(0, 0, measuredWidth, measuredHeight);
-        drawable.draw(canvas);
-        int L3 = fw3Var.h - gl.L(9.0f);
-        int measuredHeight2 = fw3Var.getMeasuredHeight() - gl.L(6.34f);
-        int L4 = gl.L(9.0f) + fw3Var.h;
-        int measuredHeight3 = fw3Var.getMeasuredHeight();
-        Drawable drawable2 = fw3Var.d;
-        drawable2.setBounds(L3, measuredHeight2, L4, measuredHeight3);
-        drawable2.draw(canvas);
-        if (fw3Var.e != null) {
-            boolean z2 = fw3Var.f;
-            wjb wjbVar = fw3Var.E;
-            int[] iArr = fw3Var.n;
-            lm lmVar2 = fw3Var.x;
-            Paint paint = fw3Var.s;
-            Drawable[] drawableArr = fw3Var.b;
-            RectF rectF = fw3Var.w;
-            float f2 = 1.0f;
-            int i = fw3Var.a;
-            if (z2) {
-                int i2 = 0;
-                while (i2 < 2) {
-                    if (i2 == 0) {
-                        lmVar = lmVar2;
-                    } else {
-                        lmVar = fw3Var.y;
-                    }
-                    float e = lmVar.e(z, iArr[i2]);
-                    boolean z3 = z;
-                    float max = Math.max(0.0f, Math.min(f2, -e));
-                    rectF.set((int) ((i * (e + f2)) + gl.L((f * 4.0f) + (Math.max(0.0f, Math.min(f2, f)) * 3.0f) + 5.0f)), gl.U1(max, ((gl.L(f2) + i) * i2) + gl.L(3.0f), (fw3Var.getMeasuredHeight() - i) / 2), L2 + i, U1 + i);
-                    rectF.inset(gl.L(-2.0f), gl.L(max * (-2.0f)));
-                    paint.setColor(bkb.p1(gl.R1(f2, 0.5f, max), bkb.v0(bkb.h6, wjbVar)));
-                    canvas.drawRoundRect(rectF, gl.L(4.0f), gl.L(4.0f), paint);
-                    int i3 = z3;
-                    while (i3 < 5) {
-                        i3++;
-                        int i4 = (i2 * 5) + i3;
-                        int L5 = gl.L((i3 << 2) + 8) + (i * i3);
-                        int L6 = ((gl.L(f2) + i) * i2) + gl.L(3.0f);
-                        drawableArr[i4].setBounds(L5, L6, L5 + i, L6 + i);
-                        drawableArr[i4].draw(canvas);
-                        f2 = f2;
-                    }
-                    i2++;
-                    fw3Var = this;
-                    z = z3;
-                }
-                boolean z4 = z;
-                drawableArr[z4 ? 1 : 0].setBounds(gl.L(5.0f), (getMeasuredHeight() - i) / 2, gl.L(5.0f) + i, (getMeasuredHeight() + i) / 2);
-                drawableArr[z4 ? 1 : 0].draw(canvas);
-                canvas.drawRect(gl.L(8.45f) + i, gl.L(2.0f), de9.w(8.45f, i, 1), getMeasuredHeight() - gl.L(6.0f), bkb.j0);
-                return;
-            }
-            float e2 = lmVar2.e(false, iArr[0]);
-            float f3 = i;
-            int L7 = gl.L(5.0f);
-            float f4 = L7;
-            int i5 = L7 + i;
-            rectF.set((int) ((f3 * e2) + gl.L((e2 * 4.0f) + 5.0f)), f4, L + i, i5);
-            rectF.inset(gl.L(-2.0f), gl.L(-2.0f));
-            paint.setColor(bkb.v0(bkb.h6, wjbVar));
-            canvas.drawRoundRect(rectF, gl.L(4.0f), gl.L(4.0f), paint);
-            for (int i6 = 0; i6 < 6; i6++) {
-                Drawable drawable3 = drawableArr[i6];
-                if (drawable3 != null) {
-                    int L8 = gl.L((i6 << 2) + 5) + (i * i6);
-                    float min = ((1.0f - (Math.min(0.5f, Math.abs(i6 - e2)) * 2.0f)) * 0.1f) + 0.9f;
-                    canvas.save();
-                    float f5 = f3 / 2.0f;
-                    canvas.scale(min, min, L8 + f5, f5 + f4);
-                    drawable3.setBounds(L8, L7, L8 + i, i5);
-                    drawable3.draw(canvas);
-                    canvas.restore();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z;
-        int i;
-        int i2;
-        boolean z2;
-        int i3;
-        if (this.J) {
-            this.J = false;
-            return false;
-        } else if (!this.f) {
-            return super.onTouchEvent(motionEvent);
-        } else {
-            int i4 = 0;
-            while (true) {
-                Drawable[] drawableArr = this.b;
-                if (i4 < drawableArr.length) {
-                    if (drawableArr[i4].getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) || ((i3 = this.G) != -1 && ((i4 == 0 || ((i3 == 0 && i4 >= 1 && i4 <= 5) || (i3 == 1 && i4 >= 6 && i4 <= 10))) && ((int) motionEvent.getX()) >= drawableArr[i4].getBounds().left && ((int) motionEvent.getX()) <= drawableArr[i4].getBounds().right))) {
-                        break;
-                    }
-                    i4++;
-                } else {
-                    i4 = -1;
-                    break;
-                }
-            }
-            if (motionEvent.getAction() != 0 && motionEvent.getAction() != 2 && motionEvent.getAction() != 1) {
-                return false;
-            }
-            int action = motionEvent.getAction();
-            int[] iArr = this.n;
-            if (action == 0) {
-                this.G = -1;
-                this.I = System.currentTimeMillis();
-                if (iArr[0] == iArr[1]) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                this.H = z2;
-            }
-            int i5 = iArr[0];
-            int[] iArr2 = this.r;
-            iArr2[0] = i5;
-            iArr2[1] = iArr[1];
-            if (System.currentTimeMillis() - this.I > 300 && motionEvent.getAction() == 2) {
-                z = true;
-            } else {
-                z = false;
-            }
-            if (i4 == 0) {
-                iArr[0] = -1;
-                iArr[1] = -1;
-            } else if (i4 >= 1 && i4 <= 5 && ((i2 = this.G) == -1 || i2 == 0)) {
-                this.G = 0;
-                int i6 = i4 - 1;
-                iArr[0] = i6;
-                if (iArr[1] == -1 || (this.H && z)) {
-                    iArr[1] = i6;
-                }
-            } else if (i4 >= 6 && i4 <= 10 && ((i = this.G) == -1 || i == 1)) {
-                this.G = 1;
-                int i7 = i4 - 6;
-                iArr[1] = i7;
-                if (iArr[0] == -1 || (this.H && z)) {
-                    iArr[0] = i7;
-                }
-            }
-            if (iArr2[0] != iArr[0] || iArr2[1] != iArr[1]) {
-                gl.W3(this);
-                i8c i8cVar = this.F;
-                if (i8cVar != null) {
-                    i8cVar.a(Integer.valueOf(iArr[0]), Integer.valueOf(iArr[1]));
-                }
-            }
-            invalidate();
-            if (motionEvent.getAction() == 1) {
-                this.G = -1;
-            }
+    public final boolean D(f89 f89Var) {
+        if (f89Var.f == 2) {
             return true;
         }
+        return false;
     }
 
-    public void setArrowX(int i) {
-        this.h = i;
-        invalidate();
+    public final Object E(int i) {
+        int i2 = i - 1;
+        hw3 hw3Var = this.s;
+        ArrayList arrayList = hw3Var.n;
+        ArrayList arrayList2 = hw3Var.h;
+        if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+            if (i2 >= 0 && i2 < arrayList2.size()) {
+                return arrayList2.get(i2);
+            }
+            i2 -= arrayList2.size();
+        }
+        if (!arrayList.isEmpty()) {
+            if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+                i2--;
+            }
+            if (i2 >= 0 && i2 < arrayList.size()) {
+                return arrayList.get(i2);
+            }
+            return null;
+        }
+        return null;
     }
 
-    public void setOnSelectionUpdateListener(i8c i8cVar) {
-        this.F = i8cVar;
+    public final void F() {
+        hw3 hw3Var = this.s;
+        zw3 zw3Var = hw3Var.r;
+        if (!this.r) {
+            this.r = true;
+            hw3Var.d.c(true);
+            if (this.d >= 0) {
+                int i = zw3.C1;
+                ConnectionsManager.getInstance(zw3Var.a).cancelRequest(this.d, true);
+                this.d = -1;
+            }
+            if (this.f == null) {
+                int i2 = zw3.C1;
+                TLObject c2 = uc7.s1(zw3Var.a).c2(uc7.s1(zw3Var.a).o3);
+                if (c2 instanceof TLRPC.User) {
+                    this.f = (TLRPC.User) c2;
+                }
+            }
+            if (this.f == null) {
+                if (!this.n) {
+                    TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                    int i3 = zw3.C1;
+                    tL_contacts_resolveUsername.username = uc7.s1(zw3Var.a).o3;
+                    this.d = ConnectionsManager.getInstance(zw3Var.a).sendRequest(tL_contacts_resolveUsername, new ye(this, (byte) 22));
+                    return;
+                }
+                return;
+            }
+            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+            int i4 = zw3.C1;
+            tL_messages_getInlineBotResults.bot = uc7.s1(zw3Var.a).q1(this.f);
+            String str = this.e;
+            String str2 = "";
+            if (str == null) {
+                str = "";
+            }
+            tL_messages_getInlineBotResults.query = str;
+            boolean isEmpty = TextUtils.isEmpty(this.h);
+            String str3 = this.h;
+            if (str3 != null) {
+                str2 = str3;
+            }
+            tL_messages_getInlineBotResults.offset = str2;
+            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+            String str4 = "gif_search_" + tL_messages_getInlineBotResults.query + "_" + tL_messages_getInlineBotResults.offset;
+            jf7.Y(zw3Var.a).L(str4, new si1(this, isEmpty, tL_messages_getInlineBotResults, str4));
+        }
+    }
+
+    public final void G(String str) {
+        hw3 hw3Var = this.s;
+        sw3 sw3Var = hw3Var.d;
+        if (!TextUtils.equals(this.e, str)) {
+            if (this.d != -1) {
+                zw3 zw3Var = hw3Var.r;
+                int i = zw3.C1;
+                ConnectionsManager.getInstance(zw3Var.a).cancelRequest(this.d, true);
+                this.d = -1;
+            }
+            this.r = false;
+            this.h = "";
+        }
+        boolean isEmpty = TextUtils.isEmpty(this.e);
+        this.e = str;
+        zg3 zg3Var = this.c;
+        hl.r(zg3Var);
+        if (TextUtils.isEmpty(str)) {
+            hw3Var.n.clear();
+            sw3Var.c(false);
+            f();
+            return;
+        }
+        if (isEmpty) {
+            f();
+        }
+        sw3Var.c(true);
+        hl.d3(zg3Var, 1500L);
+    }
+
+    public final void H(boolean z) {
+        hw3 hw3Var = this.s;
+        ArrayList arrayList = hw3Var.h;
+        arrayList.clear();
+        zw3 zw3Var = hw3Var.r;
+        int i = zw3.C1;
+        arrayList.addAll(new ArrayList(ls6.d0(zw3Var.a).j0));
+        if (z) {
+            f();
+        }
+    }
+
+    @Override
+    public final int b() {
+        int i;
+        hw3 hw3Var = this.s;
+        ArrayList arrayList = hw3Var.n;
+        ArrayList arrayList2 = hw3Var.h;
+        int i2 = 0;
+        if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+            i = arrayList2.size();
+        } else {
+            i = 0;
+        }
+        int i3 = i + 1;
+        if (!arrayList.isEmpty()) {
+            if (!arrayList2.isEmpty() && TextUtils.isEmpty(this.e)) {
+                i2 = 1;
+            }
+            i2 += arrayList.size();
+        }
+        return i3 + i2;
+    }
+
+    @Override
+    public final int d(int i) {
+        hw3 hw3Var = this.s;
+        ArrayList arrayList = hw3Var.h;
+        if (i == 0) {
+            return 0;
+        }
+        int i2 = i - 1;
+        if (!arrayList.isEmpty() && TextUtils.isEmpty(this.e)) {
+            i2 -= arrayList.size();
+        }
+        if (!hw3Var.n.isEmpty() && !arrayList.isEmpty() && TextUtils.isEmpty(this.e) && i2 == 0) {
+            return 1;
+        }
+        return 2;
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        int i2 = f89Var.f;
+        View view = f89Var.a;
+        if (i2 == 0) {
+            view.setTag(34);
+            view.setLayoutParams(new r79(-1, (int) this.s.r.r1));
+        } else if (i2 == 2) {
+            vw2 vw2Var = (vw2) view;
+            Object E = E(i);
+            if (E instanceof TLRPC.Document) {
+                TLRPC.Document document = (TLRPC.Document) E;
+                vw2Var.getClass();
+                vw2Var.d(0, "gif" + document, document);
+            } else if (E instanceof TLRPC.BotInlineResult) {
+                vw2Var.e((TLRPC.BotInlineResult) E, this.f, true, false, false, true);
+            }
+        }
+    }
+
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        View view;
+        hw3 hw3Var = this.s;
+        if (i == 0) {
+            view = new View(hw3Var.getContext());
+        } else if (i == 1) {
+            Context context = hw3Var.getContext();
+            zw3 zw3Var = hw3Var.r;
+            int i2 = zw3.C1;
+            t3b t3bVar = new t3b(context, false, false, zw3Var.J0, false);
+            t3bVar.a(0, ob6.M0(2131750799, null));
+            r79 r79Var = new r79(-1, -2);
+            ((ViewGroup.MarginLayoutParams) r79Var).topMargin = hl.L(2.5f);
+            ((ViewGroup.MarginLayoutParams) r79Var).bottomMargin = hl.L(5.5f);
+            t3bVar.setLayoutParams(r79Var);
+            view = t3bVar;
+        } else {
+            vw2 vw2Var = new vw2(hw3Var.getContext());
+            vw2Var.getPhotoImage().m0(7);
+            if (vw2Var.e0 == null) {
+                v41 v41Var = new v41(vw2Var, 1.0f, 3.0f);
+                v41Var.e = (byte) 120;
+                vw2Var.e0 = v41Var;
+            }
+            vw2Var.setIsKeyboard(true);
+            vw2Var.setCanPreviewGif(true);
+            view = vw2Var;
+        }
+        return new f89(view);
     }
 }

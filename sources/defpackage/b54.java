@@ -1,19 +1,19 @@
 package defpackage;
-public final class b54 {
-    public final long a;
-    public final long b;
+public final class b54 extends c54 {
+    public final nsb c;
 
-    public b54(long j, long j2) {
-        if (j2 == 0) {
-            this.a = 0L;
-            this.b = 1L;
-            return;
-        }
-        this.a = j;
-        this.b = j2;
+    public b54(long j, nsb nsbVar) {
+        super(j);
+        this.c = nsbVar;
     }
 
+    @Override
+    public final void run() {
+        this.c.run();
+    }
+
+    @Override
     public final String toString() {
-        return this.a + "/" + this.b;
+        return super.toString() + this.c;
     }
 }

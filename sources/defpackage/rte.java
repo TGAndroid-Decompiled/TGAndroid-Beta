@@ -1,32 +1,120 @@
 package defpackage;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.util.Base64;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 public abstract class rte {
-    public static boolean a(pr9 pr9Var, String str) {
+    public static boolean a() {
+        ApplicationInfo applicationInfo;
+        Bundle bundle;
         try {
-            Signature[] signatureArr = pr9Var.getPackageManager().getPackageInfo(str, 64).signatures;
-            if (signatureArr != null && signatureArr.length == 1) {
-                String encodeToString = Base64.encodeToString(signatureArr[0].toByteArray(), 2);
-                boolean equals = encodeToString.equals("MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKtWLgDYO6IIrgqWbxJOKdoR8qtW0I9Y4sypEwPpt1TTcvZApxsdyxMJZ2JORland2qSGT2y5b+3JKkedxiLDmpHpDsz2WCbdxgxRczfey5YZnTJ4VZbH0xqWVW/8lGmPav5xVwnIiJS6HXk+BVKZF+JcWjAsb/GEuq/eFdpuzSqeYTcfi6idkyugwfYwXFU1+5fZKUaRKYCwkkFQVfcAs1fXA5V+++FGfvjJ/CxURaSxaBvGdGDhfXE28LWuT9ozCl5xw4Yq5OGazvV24mZVSoOO0yZ31j7kYvtwYK6NeADwbSxDdJEqO4k//0zOHKrUiGYXtqw/A0LFFtqoZKFjnkCAQOjgdkwgdYwHQYDVR0OBBYEFMd9jMIhF1Ylmn/Tgt9r45jk14alMIGmBgNVHSMEgZ4wgZuAFMd9jMIhF1Ylmn/Tgt9r45jk14aloXikdjB0MQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLR29vZ2xlIEluYy4xEDAOBgNVBAsTB0FuZHJvaWQxEDAOBgNVBAMTB0FuZHJvaWSCCQDC4IdGZEowjTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBAUAA4IBAQBt0lLO74UwLDYKqs6Tm8/yzKkEu116FmH4rkaymUIE0P9KaMftGlMexFlaYjzmB2OxZyl6euNXEsQH8gjwyxCUKRJNexBiGcCEyj6z+a1fuHHvkiaai+KL8W1EyNmgjmyy8AW7P+LLlkR+ho5zEHatRbM/YAnqGcFh5iZBqpknHf1SKMXFh4dd239FJ1jWYfbMDMy3NS5CTMQ2XFI1MvcyUTdZPErjQfTbQe3aDQsQcafEQPD+nqActifKZ0Np0IS9L9kR/wbNvyz6ENwPiTrjV2KRkEjH78ZMcUQXg0L3BYHJ3lc69Vs5Ddf9uUGGMYldX3WfMBEmh/9iFBDAaTCK");
-                boolean equals2 = encodeToString.equals("MIIDxjCCAq6gAwIBAgIUQpOEpEV+tc0MoKDoDiFB5heFCJMwDQYJKoZIhvcNAQELBQAwdDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBJbmMuMRAwDgYDVQQLEwdBbmRyb2lkMRAwDgYDVQQDEwdBbmRyb2lkMB4XDTE3MDgyOTIxNTIyMloXDTQ3MDgyOTIxNTIyMlowdDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC0dvb2dsZSBJbmMuMRAwDgYDVQQLEwdBbmRyb2lkMRAwDgYDVQQDEwdBbmRyb2lkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApYSqhKG2MotkT5U/TGom1gRQzLP8iL740FsyfndkTpLsOVneOsnuwZ5A/Ib7mmQNxpORhNZtVNIrOBLb0kHvlWJmqz8+oV6eBpB+JdMbYd/nYnbiMefxxk+T4essQbhkk++L8bFmX/5V+5ToZsVM6qlwlMocTjigCSbJRj4TJiiP8PFhkgoKWlYlu4RHLjsFcUxW9/TUkE3EaUiYvAOcWlyL12dOKP18ZoUkq1rRGhg9YNhD04ZXsHQ6pGG4kU1ePnthrQu1sB0Xfw79F25sk2V6+BNOP9z2tGUqSL4r6aiOIWLTjQkVR24cEsTuMNrfvFLpfuJ1YugKbwwGqCCQswIDAQABo1AwTjAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBSKakZvplUINpCyDvLfXl+3qlnPejAfBgNVHSMEGDAWgBSKakZvplUINpCyDvLfXl+3qlnPejANBgkqhkiG9w0BAQsFAAOCAQEAHPKJf87Mlk7oQ+VPeP5laUfu5ImezSCMdgQKql0AohzaMjB6T9UJSQNkOt+C75kUilNqZJrfg5l/2g5/rV17/LZb43Z5gp/nIuuxWiSJ0pjtBLIAKLigJvv0593T/gJdh785W+Wzlu1Q1w4H+HoXOCtsr/dzind3/ahlYceWmmkV/kIb/vyVJh/OZfE7U7oKqN7E4paORUwoTn4dzG9LUdM0EkG/SEkDJZpYTHEodAeZupigXAV0iGfkS7lgZF2Jgt2Hy55Bs34XYFw+cP/AQVByqCItGfKtFwPJNzfUFQsQ8WHmYIOVRje8ChqLLd1ZyTIp+6zPmAZQgnAZyFrwwA==");
-                Log.d("SAVerificationClientU", "Package " + str + " GSA signed status " + equals + " AssistantGo signed status " + equals2);
-                if (!equals && !equals2) {
-                    return false;
-                }
-                return true;
+            ji4.c();
+            ji4 c = ji4.c();
+            c.a();
+            Context context = c.a;
+            SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
+            if (sharedPreferences.contains("export_to_big_query")) {
+                return sharedPreferences.getBoolean("export_to_big_query", false);
             }
-            Log.d("SAVerificationClientU", "Wrong number of signatures returned");
+            try {
+                PackageManager packageManager = context.getPackageManager();
+                if (packageManager != null && (applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 128)) != null && (bundle = applicationInfo.metaData) != null && bundle.containsKey("delivery_metrics_exported_to_big_query_enabled")) {
+                    return applicationInfo.metaData.getBoolean("delivery_metrics_exported_to_big_query_enabled", false);
+                }
+            } catch (PackageManager.NameNotFoundException unused) {
+            }
             return false;
-        } catch (PackageManager.NameNotFoundException e) {
-            String valueOf = String.valueOf(e);
-            StringBuilder sb = new StringBuilder(valueOf.length() + 34);
-            sb.append("Unexpected NameNotFoundException: ");
-            sb.append(valueOf);
-            Log.d("SAVerificationClientU", sb.toString());
+        } catch (IllegalStateException unused2) {
+            Log.i("FirebaseMessaging", "FirebaseApp has not being initialized. Device might be in direct boot mode. Skip exporting delivery metrics to Big Query");
             return false;
         }
+    }
+
+    public static void b(android.content.Intent r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rte.b(android.content.Intent):void");
+    }
+
+    public static void c(String str, Bundle bundle) {
+        String str2;
+        try {
+            ji4.c();
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            Bundle bundle2 = new Bundle();
+            String string = bundle.getString("google.c.a.c_id");
+            if (string != null) {
+                bundle2.putString("_nmid", string);
+            }
+            String string2 = bundle.getString("google.c.a.c_l");
+            if (string2 != null) {
+                bundle2.putString("_nmn", string2);
+            }
+            String string3 = bundle.getString("google.c.a.m_l");
+            if (!TextUtils.isEmpty(string3)) {
+                bundle2.putString("label", string3);
+            }
+            String string4 = bundle.getString("google.c.a.m_c");
+            if (!TextUtils.isEmpty(string4)) {
+                bundle2.putString("message_channel", string4);
+            }
+            String string5 = bundle.getString("from");
+            String str3 = null;
+            if (string5 == null || !string5.startsWith("/topics/")) {
+                string5 = null;
+            }
+            if (string5 != null) {
+                bundle2.putString("_nt", string5);
+            }
+            String string6 = bundle.getString("google.c.a.ts");
+            if (string6 != null) {
+                try {
+                    bundle2.putInt("_nmt", Integer.parseInt(string6));
+                } catch (NumberFormatException e) {
+                    Log.w("FirebaseMessaging", "Error while parsing timestamp in GCM event", e);
+                }
+            }
+            if (bundle.containsKey("google.c.a.udt")) {
+                str3 = bundle.getString("google.c.a.udt");
+            }
+            if (str3 != null) {
+                try {
+                    bundle2.putInt("_ndt", Integer.parseInt(str3));
+                } catch (NumberFormatException e2) {
+                    Log.w("FirebaseMessaging", "Error while parsing use_device_time in GCM event", e2);
+                }
+            }
+            if (ot6.f(bundle)) {
+                str2 = "display";
+            } else {
+                str2 = "data";
+            }
+            if ("_nr".equals(str) || "_nf".equals(str)) {
+                bundle2.putString("_nmc", str2);
+            }
+            if (Log.isLoggable("FirebaseMessaging", 3)) {
+                Log.d("FirebaseMessaging", "Logging to scion event=" + str + " scionPayload=" + bundle2);
+            }
+            if (ji4.c().b(rj.class) == null) {
+                Log.w("FirebaseMessaging", "Unable to log event: analytics library is missing");
+            } else {
+                grb.o();
+            }
+        } catch (IllegalStateException unused) {
+            Log.e("FirebaseMessaging", "Default FirebaseApp has not been initialized. Skip logging event to GA.");
+        }
+    }
+
+    public static boolean d(Intent intent) {
+        Bundle extras;
+        if (intent == null || "com.google.firebase.messaging.RECEIVE_DIRECT_BOOT".equals(intent.getAction()) || (extras = intent.getExtras()) == null) {
+            return false;
+        }
+        return "1".equals(extras.getString("google.c.a.e"));
     }
 }

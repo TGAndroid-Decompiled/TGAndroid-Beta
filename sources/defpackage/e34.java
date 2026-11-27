@@ -1,87 +1,76 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
+import android.animation.ValueAnimator;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public abstract class e34 extends FrameLayout {
-    public boolean a;
-    public final d34 b;
-    public boolean c;
-    public float d;
-    public float e;
-    public boolean f;
+import java.io.Serializable;
+public final class e34 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final int b;
+    public final Object c;
+    public final Object d;
 
-    public e34(Context context, d34 d34Var) {
-        super(context);
-        this.b = d34Var;
+    public e34(gha ghaVar, int i, jga jgaVar) {
+        this.a = (byte) 3;
+        this.c = ghaVar;
+        this.b = i;
+        this.d = jgaVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        if (this.a && (view instanceof e09)) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j);
-    }
-
-    @Override
-    public final void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
-        if (view instanceof vhb) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            view.measure(ViewGroup.getChildMeasureSpec(i, getPaddingRight() + getPaddingLeft() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), 0);
-            return;
-        }
-        super.measureChildWithMargins(view, i, i2, i3, i4);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d34 d34Var = this.b;
-        l34 A = d34Var.A();
-        if (A == null) {
-            return false;
-        }
-        if (motionEvent.getPointerCount() == 1) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked == 0) {
-                this.c = false;
-                A.n = false;
-                A.r = false;
-                this.d = motionEvent.getX();
-                this.e = motionEvent.getY();
-                this.f = false;
-                return true;
-            }
-            if (!this.f && actionMasked == 2) {
-                float x = motionEvent.getX();
-                float y = motionEvent.getY();
-                if (this.c || loe.a(x, y, this.d, this.e) > gl.e) {
-                    this.c = true;
-                    A.n = true;
-                    A.e(x - this.d, y - this.e);
-                    this.d = x;
-                    this.e = y;
-                    return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f;
+        byte b = this.a;
+        Object obj = this.d;
+        int i = this.b;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                g34 g34Var = (g34) obj2;
+                float[] fArr = (float[]) obj;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                for (int i2 = 0; i2 < 3; i2++) {
+                    float[] fArr2 = g34Var.f;
+                    float f2 = fArr[i2];
+                    if (i2 == i) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.0f;
+                    }
+                    fArr2[i2] = hl.R1(f2, f, floatValue);
                 }
-            } else if (actionMasked == 1 || actionMasked == 3) {
-                A.n = false;
-                A.r = true;
-                if (!this.c) {
-                    d34Var.u();
+                g34Var.a();
+                return;
+            case 1:
+                wy5 wy5Var = (wy5) obj2;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wy5Var.u1.a = vm2.f(floatValue2, ((Integer) obj).intValue(), i);
+                ty5 ty5Var = wy5Var.M0;
+                if (ty5Var != null) {
+                    ty5Var.invalidate();
+                    return;
                 }
-                invalidate();
-                return false;
-            }
-            return true;
+                return;
+            case 2:
+                dx7 dx7Var = (dx7) obj2;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dx7Var.k1.a = vm2.f(floatValue3, ((Integer) obj).intValue(), i);
+                ax7 ax7Var = dx7Var.D0;
+                if (ax7Var != null) {
+                    ax7Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((gha) obj2).e.S1.put(i, (Float) valueAnimator.getAnimatedValue());
+                ((jga) obj).invalidate();
+                return;
         }
-        A.n = false;
-        A.r = true;
-        this.c = false;
-        this.f = true;
-        invalidate();
-        return true;
+    }
+
+    public e34(ViewGroup viewGroup, Serializable serializable, int i, byte b) {
+        this.a = b;
+        this.c = viewGroup;
+        this.d = serializable;
+        this.b = i;
     }
 }

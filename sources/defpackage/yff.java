@@ -1,32 +1,39 @@
 package defpackage;
+public final class yff extends ljf {
+    private static final pjf zzb = new Object();
+    private static final yff zzd;
+    private int zze;
+    private int zzf;
+    private int zzg;
+    private int zzi;
+    private long zzk;
+    private ojf zzh = mjf.d;
+    private tjf zzj = hlf.d;
 
-import j$.util.DesugarCollections;
-import java.util.List;
-public abstract class yff {
-    public static final uff a = new Object();
-    public static final wff b = new Object();
-
-    public void a(Object obj, long j) {
-        Object unmodifiableList;
-        List list = (List) ghf.g(obj, j);
-        if (list instanceof sff) {
-            unmodifiableList = ((sff) list).zzd();
-        } else if (!uff.c.isAssignableFrom(list.getClass())) {
-            if ((list instanceof pgf) && (list instanceof dff)) {
-                ldf ldfVar = (ldf) ((dff) list);
-                boolean z = ldfVar.a;
-                if (z && z) {
-                    ldfVar.a = false;
-                    return;
-                }
-                return;
-            }
-            unmodifiableList = DesugarCollections.unmodifiableList(list);
-        } else {
-            return;
-        }
-        ghf.i(obj, j, unmodifiableList);
+    static {
+        yff yffVar = new yff();
+        zzd = yffVar;
+        ljf.e(yff.class, yffVar);
     }
 
-    public abstract void b(Object obj, long j, Object obj2);
+    @Override
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzd;
+                    }
+                    return new kjf(zzd);
+                }
+                return new yff();
+            }
+            return new ilf(zzd, "\u0001\u0006\u0000\u0001\u0001\u0007\u0006\u0000\u0002\u0000\u0001᠌\u0000\u0002᠌\u0001\u0003ࠞ\u0005᠌\u0002\u0006\u001b\u0007ဂ\u0003", new Object[]{"zze", "zzf", sae.x, "zzg", rj2.r, "zzh", rg7.y, "zzi", rg7.n, "zzj", nff.class, "zzk"});
+        }
+        return (byte) 1;
+    }
 }

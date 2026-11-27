@@ -1,26 +1,29 @@
 package defpackage;
 
-import android.content.DialogInterface;
-public final class bn9 implements DialogInterface.OnDismissListener {
-    public final byte a;
-    public final on9 b;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class bn9 extends ViewOutlineProvider {
+    public final byte a = 1;
+    public float b;
 
-    public bn9(on9 on9Var, byte b) {
-        this.a = b;
-        this.b = on9Var;
+    public bn9(int i) {
+        this.b = i;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        byte b = this.a;
-        on9 on9Var = this.b;
-        switch (b) {
+    public final void getOutline(View view, Outline outline) {
+        switch (this.a) {
             case 0:
-                on9Var.K0 = null;
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), hl.N(this.b));
                 return;
             default:
-                on9Var.dismiss();
+                outline.setRoundRect(view.getPaddingLeft(), view.getPaddingTop(), view.getMeasuredWidth() - view.getPaddingRight(), view.getMeasuredHeight() - view.getPaddingBottom(), this.b);
                 return;
         }
+    }
+
+    public bn9(float f) {
+        this.b = f;
     }
 }

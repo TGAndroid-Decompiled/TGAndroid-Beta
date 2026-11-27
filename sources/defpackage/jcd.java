@@ -1,4 +1,50 @@
 package defpackage;
-public abstract class jcd implements r24 {
-    public static final nu5 a = new nu5((byte) 2);
+
+import j$.util.Objects;
+public final class jcd extends tbd {
+    public static final jcd w = new jcd(0, new Object[0]);
+    public final transient Object[] r;
+    public final transient int s;
+
+    public jcd(int i, Object[] objArr) {
+        super((byte) 3);
+        this.r = objArr;
+        this.s = i;
+    }
+
+    @Override
+    public final Object get(int i) {
+        t8f.a(i, this.s);
+        Object obj = this.r[i];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override
+    public final Object[] r() {
+        return this.r;
+    }
+
+    @Override
+    public final int s() {
+        return 0;
+    }
+
+    @Override
+    public final int size() {
+        return this.s;
+    }
+
+    @Override
+    public final int t() {
+        return this.s;
+    }
+
+    @Override
+    public final int w(Object[] objArr) {
+        Object[] objArr2 = this.r;
+        int i = this.s;
+        System.arraycopy(objArr2, 0, objArr, 0, i);
+        return i;
+    }
 }

@@ -60,7 +60,7 @@ public class DefaultTeXFont implements TeXFont {
                 return;
             }
         }
-        k93.g("DefaultTeXFont.xml", "GeneralSettings", "mufontid", "contains an unknown font id!");
+        da3.b("DefaultTeXFont.xml", "GeneralSettings", "mufontid", "contains an unknown font id!");
     }
 
     public DefaultTeXFont(float f) {
@@ -513,11 +513,11 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     public static void addAlphabet(Character.UnicodeBlock unicodeBlock, String str) {
-        String i = b00.i("fonts/", str, "/language_", str, ".xml");
-        String i2 = b00.i("fonts/", str, "/symbols_", str, ".xml");
-        String i3 = b00.i("fonts/", str, "/mappings_", str, ".xml");
+        String j = c00.j("fonts/", str, "/language_", str, ".xml");
+        String j2 = c00.j("fonts/", str, "/symbols_", str, ".xml");
+        String j3 = c00.j("fonts/", str, "/mappings_", str, ".xml");
         try {
-            addAlphabet(unicodeBlock, JLatexMathAndroid.getResourceAsStream(i), i, JLatexMathAndroid.getResourceAsStream(i2), i2, JLatexMathAndroid.getResourceAsStream(i3), i3);
+            addAlphabet(unicodeBlock, JLatexMathAndroid.getResourceAsStream(j), j, JLatexMathAndroid.getResourceAsStream(j2), j2, JLatexMathAndroid.getResourceAsStream(j3), j3);
         } catch (FontAlreadyLoadedException unused) {
         }
     }

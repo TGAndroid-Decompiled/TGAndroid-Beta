@@ -1,10 +1,21 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class nzb extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
+import androidx.recyclerview.widget.RecyclerView;
+public final class nzb extends v79 {
+    public final byte a;
+
+    public nzb(byte b) {
+        this.a = b;
+    }
+
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.33f), View.MeasureSpec.getSize(i2)), 1073741824));
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        byte b = this.a;
+    }
+
+    private final void c(RecyclerView recyclerView, int i, int i2) {
+    }
+
+    private final void d(RecyclerView recyclerView, int i, int i2) {
     }
 }

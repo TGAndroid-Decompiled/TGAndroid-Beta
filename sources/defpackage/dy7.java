@@ -1,17 +1,17 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.Vector;
-public final class dy7 {
-    public double a;
-    public Vector b;
-    public int c;
-    public float d;
-    public m01 e;
+import android.app.ActivityManager;
+import android.os.Build;
+public abstract class dy7 {
+    public static final boolean a;
 
-    public dy7(hd8[] hd8VarArr) {
-        Vector vector = new Vector();
-        this.b = vector;
-        vector.addAll(Arrays.asList(hd8VarArr));
+    static {
+        ClassLoader classLoader;
+        char[] cArr = ey7.d;
+        boolean z = true;
+        if (!jrd.a("robolectric", Build.FINGERPRINT) && (((classLoader = ey7.class.getClassLoader()) == null || (classLoader.getResource("androidx/test/espresso/Espresso.class") == null && classLoader.getResource("org/junit/runner/Runner.class") == null && classLoader.getResource("androidx/test/platform/app/InstrumentationRegistry.class") == null)) && !ActivityManager.isRunningInTestHarness())) {
+            z = false;
+        }
+        a = z;
     }
 }

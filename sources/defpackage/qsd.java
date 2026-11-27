@@ -1,17 +1,24 @@
 package defpackage;
-public final class qsd implements zn7 {
-    public static final qsd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)), 5)), 6)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.io.File;
+public abstract class qsd {
+    public static boolean a(File file) {
+        if (file.isDirectory()) {
+            File[] listFiles = file.listFiles();
+            if (listFiles == null) {
+                return false;
+            }
+            boolean z = true;
+            for (File file2 : listFiles) {
+                if (a(file2) && z) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            }
+            return z;
         }
-        throw new ClassCastException();
+        file.delete();
+        return true;
     }
 }

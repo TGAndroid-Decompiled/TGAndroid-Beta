@@ -1,29 +1,12 @@
 package defpackage;
 
-import java.io.Serializable;
-public final class sa9 implements Serializable {
-    public final Throwable a;
+import java.util.ArrayList;
+public final class sa9 implements Comparable {
+    public long b = -9223372036854775807L;
+    public final ArrayList a = new ArrayList();
 
-    public sa9(Throwable th) {
-        th.getClass();
-        this.a = th;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof sa9) {
-            if (rp5.a(this.a, ((sa9) obj).a)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
-    }
-
-    public final String toString() {
-        return "Failure(" + this.a + ')';
+    @Override
+    public final int compareTo(Object obj) {
+        return Long.compare(this.b, ((sa9) obj).b);
     }
 }

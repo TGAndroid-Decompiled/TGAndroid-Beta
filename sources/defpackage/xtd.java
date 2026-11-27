@@ -1,10 +1,17 @@
 package defpackage;
-public abstract class xtd {
-    public static final oh2 a(w4a w4aVar) {
-        w4aVar.getClass();
-        if (w4aVar instanceof x4a) {
-            return a(((x4a) w4aVar).a);
+public final class xtd implements zq7 {
+    public static final xtd a = new Object();
+
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return null;
+        throw new ClassCastException();
     }
 }

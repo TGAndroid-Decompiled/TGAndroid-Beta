@@ -1,22 +1,17 @@
 package defpackage;
+public final class wkd implements zq7 {
+    public static final wkd a = new Object();
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class wkd extends ane {
-    public final TaskCompletionSource b;
-    public final dmd c;
-
-    public wkd(TaskCompletionSource taskCompletionSource, dmd dmdVar) {
-        this.b = taskCompletionSource;
-        this.c = dmdVar;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)), 5)), 6)), 7)));
     }
 
     @Override
-    public final void t(w5e w5eVar) {
-        dve.a(w5eVar.a, null, this.b);
-    }
-
-    @Override
-    public final void zze() {
-        this.c.T();
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

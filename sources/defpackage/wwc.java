@@ -1,8 +1,15 @@
 package defpackage;
 
-import android.view.Window;
+import java.util.TimeZone;
 public abstract class wwc {
-    public static void a(Window.Callback callback, boolean z) {
-        callback.onPointerCaptureChanged(z);
+    public static String a;
+    public static vwc b;
+
+    public static boolean a() {
+        String id = TimeZone.getDefault().getID();
+        if (!id.startsWith("US/") && !"America/Nassau".equals(id) && !"America/Belize".equals(id) && !"America/Cayman".equals(id) && !"Pacific/Palau".equals(id)) {
+            return true;
+        }
+        return false;
     }
 }

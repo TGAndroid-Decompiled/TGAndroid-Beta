@@ -1,38 +1,20 @@
 package defpackage;
+public final class ga1 extends la1 {
+    public final ha1 h0;
 
-import org.telegram.messenger.camera.CameraView;
-public final class ga1 implements Runnable {
-    public final byte a;
-    public final CameraView.CameraGLThread b;
-
-    public ga1(CameraView.CameraGLThread cameraGLThread, byte b) {
-        this.a = b;
-        this.b = cameraGLThread;
+    public ga1(ha1 ha1Var, int i) {
+        super(i);
+        this.h0 = ha1Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        CameraView.CameraGLThread cameraGLThread = this.b;
-        switch (b) {
-            case 0:
-                cameraGLThread.lambda$onDraw$4();
-                return;
-            case 1:
-                cameraGLThread.lambda$onDraw$5();
-                return;
-            case 2:
-                cameraGLThread.lambda$new$0();
-                return;
-            case 3:
-                cameraGLThread.lambda$new$1();
-                return;
-            case 4:
-                cameraGLThread.lambda$new$2();
-                return;
-            default:
-                cameraGLThread.lambda$new$3();
-                return;
-        }
+    public final void finishFragment() {
+        setFinishing(true);
+        this.h0.dismiss();
+    }
+
+    @Override
+    public final void removeSelfFromStack() {
+        this.h0.dismiss();
     }
 }

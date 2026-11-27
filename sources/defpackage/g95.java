@@ -1,51 +1,83 @@
 package defpackage;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public abstract class g95 extends fx0 {
-    public gec l1;
-    public e95 m1;
-    public LinearLayout n1;
-    public TextView[] o1;
-    public float p1;
-    public int q1;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.view.View;
+public final class g95 extends Drawable {
+    public long b;
+    public boolean d;
+    public final View e;
+    public final Paint a = new Paint(1);
+    public float c = 1.0f;
 
-    public final void D0() {
-        TextView textView;
-        TextView[] textViewArr = this.o1;
-        int i = this.q1;
-        TextView textView2 = textViewArr[i];
-        if (i < textViewArr.length - 1) {
-            textView = textViewArr[i + 1];
+    public g95(View view) {
+        this.e = view;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int L;
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        View view = this.e;
+        if (view instanceof ema) {
+            L = hl.L(1.0f) + centerY;
+            centerX -= hl.L(3.0f);
         } else {
-            textView = null;
+            L = hl.L(2.0f) + centerY;
         }
-        this.b.getMeasuredWidth();
-        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (this.b.getMeasuredWidth() / 2) - measuredWidth;
-        if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * this.p1;
+        Paint paint = this.a;
+        paint.setColor(-1147527);
+        paint.setAlpha((int) (this.c * 255.0f));
+        canvas.drawCircle(centerX, L, hl.L(4.0f), paint);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j = elapsedRealtime - this.b;
+        if (j > 17) {
+            j = 17;
         }
-        for (int i2 = 0; i2 < textViewArr.length; i2++) {
-            int i3 = this.q1;
-            float f = 0.9f;
-            float f2 = 0.7f;
-            if (i2 >= i3 && i2 <= i3 + 1) {
-                float f3 = this.p1;
-                float f4 = 0.3f * f3;
-                if (i2 == i3) {
-                    f2 = 1.0f - f4;
-                    f = 1.0f - (f3 * 0.1f);
-                } else {
-                    f2 = 0.7f + f4;
-                    f = 0.9f + (f3 * 0.1f);
-                }
+        this.b = elapsedRealtime;
+        boolean z = this.d;
+        if (!z) {
+            float f = (((float) j) / 2000.0f) + this.c;
+            this.c = f;
+            if (f >= 1.0f) {
+                this.c = 1.0f;
+                this.d = true;
             }
-            textViewArr[i2].setAlpha(f2);
-            textViewArr[i2].setScaleX(f);
-            textViewArr[i2].setScaleY(f);
+        } else if (z) {
+            float f2 = this.c - (((float) j) / 2000.0f);
+            this.c = f2;
+            if (f2 < 0.5f) {
+                this.c = 0.5f;
+                this.d = false;
+            }
         }
-        this.n1.setTranslationX(measuredWidth2);
-        this.m1.invalidate();
+        view.invalidate();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return hl.L(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return hl.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

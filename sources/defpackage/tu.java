@@ -1,224 +1,304 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.o;
-public final class tu extends View implements eib {
-    public TL_iv.pageBlockEmbedPost E;
-    public final vg5 a;
-    public final dx b;
-    public final ImageReceiver c;
-    public final pb0 d;
-    public bw e;
-    public bw f;
-    public bw h;
-    public bw n;
-    public boolean r;
-    public int s;
-    public int w;
-    public int x;
-    public int y;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
+import android.net.http.SslError;
+import android.text.TextUtils;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import java.io.ByteArrayInputStream;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.j;
+public final class tu extends WebViewClient {
+    public final byte a;
+    public final Object b;
 
-    public tu(Activity activity, vg5 vg5Var, dx dxVar) {
-        super(activity);
-        this.a = vg5Var;
-        this.b = dxVar;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.c = imageReceiver;
-        imageReceiver.q0(gl.L(20.0f));
-        imageReceiver.i0(gl.L(32.0f), gl.L(8.0f), gl.L(40.0f), gl.L(40.0f));
-        this.d = new pb0((wjb) null);
+    public tu(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
-    @Override
-    public final void k(ArrayList arrayList) {
-        bw bwVar = this.f;
-        if (bwVar != null) {
-            arrayList.add(bwVar);
-        }
-        bw bwVar2 = this.e;
-        if (bwVar2 != null) {
-            arrayList.add(bwVar2);
-        }
-        bw bwVar3 = this.h;
-        if (bwVar3 != null) {
-            arrayList.add(bwVar3);
-        }
-        bw bwVar4 = this.n;
-        if (bwVar4 != null) {
-            arrayList.add(bwVar4);
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        bw bwVar = this.f;
-        if (bwVar != null) {
-            bwVar.i(this);
-        }
-        bw bwVar2 = this.e;
-        if (bwVar2 != null) {
-            bwVar2.i(this);
-        }
-        bw bwVar3 = this.h;
-        if (bwVar3 != null) {
-            bwVar3.i(this);
-        }
-        bw bwVar4 = this.n;
-        if (bwVar4 != null) {
-            bwVar4.i(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        bw bwVar = this.f;
-        if (bwVar != null) {
-            bwVar.f(this);
-        }
-        bw bwVar2 = this.e;
-        if (bwVar2 != null) {
-            bwVar2.f(this);
-        }
-        bw bwVar3 = this.h;
-        if (bwVar3 != null) {
-            bwVar3.f(this);
-        }
-        bw bwVar4 = this.n;
-        if (bwVar4 != null) {
-            bwVar4.f(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        int i;
-        int i2;
-        float f;
-        TL_iv.pageBlockEmbedPost pageblockembedpost = this.E;
-        if (pageblockembedpost != null) {
-            boolean z = pageblockembedpost instanceof uw;
-            vg5 vg5Var = this.a;
-            int i3 = 0;
-            if (!z) {
-                if (this.r) {
-                    this.c.h(canvas, null);
+    public final boolean a(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            Uri parse = Uri.parse(str);
+            if ("tg".equals(parse.getScheme())) {
+                ((jzc) this.b).finishFragment(false);
+                try {
+                    Intent intent = new Intent("android.intent.action.VIEW", parse);
+                    intent.setComponent(new ComponentName(a.b.getPackageName(), LaunchActivity.class.getName()));
+                    intent.putExtra("com.android.browser.application_id", a.b.getPackageName());
+                    a.b.startActivity(intent);
+                    return true;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return true;
                 }
-                int i4 = 54;
-                if (this.f != null) {
-                    canvas.save();
-                    if (this.r) {
-                        i2 = 54;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLoadResource(WebView webView, String str) {
+        switch (this.a) {
+            case 4:
+                if (!a(str)) {
+                    super.onLoadResource(webView, str);
+                    return;
+                }
+                return;
+            default:
+                super.onLoadResource(webView, str);
+                return;
+        }
+    }
+
+    @Override
+    public final void onPageFinished(WebView webView, String str) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 1:
+                super.onPageFinished(webView, str);
+                iv3 iv3Var = (iv3) obj;
+                ImageView imageView = iv3Var.w1;
+                if (!iv3Var.x1) {
+                    iv3Var.r1.setVisibility(4);
+                    iv3Var.q1.setVisibility(4);
+                    imageView.setEnabled(true);
+                    imageView.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 2:
+                super.onPageFinished(webView, str);
+                nc8 nc8Var = (nc8) obj;
+                b8 b8Var = nc8Var.r;
+                if (!nc8Var.y) {
+                    nc8Var.n.setVisibility(4);
+                    nc8Var.h.setVisibility(4);
+                    b8Var.setEnabled(true);
+                    b8Var.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 3:
+            default:
+                super.onPageFinished(webView, str);
+                return;
+            case 4:
+                super.onPageFinished(webView, str);
+                jzc jzcVar = (jzc) obj;
+                ww2 ww2Var = jzcVar.c;
+                if (ww2Var != null && ww2Var.getVisibility() == 0) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    jzcVar.b.getContentView().setVisibility(0);
+                    jzcVar.b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(jzcVar.c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(jzcVar.c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(jzcVar.c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(jzcVar.b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(jzcVar.b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(jzcVar.b.getContentView(), "alpha", 0.0f, 1.0f));
+                    animatorSet.addListener(new ztc(this, (byte) 2));
+                    animatorSet.setDuration(150L);
+                    animatorSet.start();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
+        switch (this.a) {
+            case 3:
+                if (webResourceRequest.isForMainFrame()) {
+                    pyc pycVar = (pyc) this.b;
+                    if (webView == pycVar.o) {
+                        pycVar.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedError(webView, webResourceRequest, webResourceError);
+                return;
+        }
+    }
+
+    @Override
+    public final void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
+        switch (this.a) {
+            case 3:
+                if (webResourceRequest.isForMainFrame()) {
+                    pyc pycVar = (pyc) this.b;
+                    if (webView == pycVar.o) {
+                        pycVar.h();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
+                return;
+        }
+    }
+
+    @Override
+    public final void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+        switch (this.a) {
+            case 3:
+                sslErrorHandler.cancel();
+                pyc pycVar = (pyc) this.b;
+                if (webView == pycVar.o) {
+                    pycVar.h();
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedSslError(webView, sslErrorHandler, sslError);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                try {
+                    LaunchActivity launchActivity = LaunchActivity.H1;
+                    if (launchActivity == null || !launchActivity.isFinishing()) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, ((j) obj).getContext());
+                        id idVar = alertDialog$Builder.a;
+                        idVar.S = ob6.M0(2131752069, null);
+                        idVar.U = hl.N2(ob6.M0(2131752070, null), -1, 0, new c1(this, (byte) 22), null);
+                        alertDialog$Builder.j(ob6.M0(2131747558, null), null);
+                        alertDialog$Builder.o();
+                    }
+                    return true;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return false;
+                }
+            case 1:
+                iv3 iv3Var = (iv3) obj;
+                try {
+                    if (hl.K1(iv3Var.getContext())) {
+                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, iv3Var.J0, iv3Var.getContext());
+                        id idVar2 = alertDialog$Builder2.a;
+                        idVar2.S = ob6.M0(2131752069, null);
+                        idVar2.U = hl.N2(ob6.M0(2131752070, null), -1, 0, new zg3(this, (byte) 25), null);
+                        alertDialog$Builder2.j(ob6.M0(2131747558, null), null);
+                        alertDialog$Builder2.o();
+                    }
+                    return true;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return false;
+                }
+            case 2:
+            default:
+                return super.onRenderProcessGone(webView, renderProcessGoneDetail);
+            case 3:
+                pyc pycVar = (pyc) obj;
+                if (webView == pycVar.o) {
+                    pycVar.h();
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public final WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+        switch (this.a) {
+            case 2:
+                String uri = webResourceRequest.getUrl().toString();
+                if (((nc8) this.b).y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                    Utilities.j.c(new sa8(this, uri, webResourceRequest, (byte) 2));
+                }
+                return null;
+            case 3:
+                Uri url = webResourceRequest.getUrl();
+                if (!"http".equalsIgnoreCase(url.getScheme()) && !"https".equalsIgnoreCase(url.getScheme())) {
+                    return null;
+                }
+                pyc pycVar = (pyc) this.b;
+                pycVar.getClass();
+                String path = url.getPath();
+                if ("https".equalsIgnoreCase(url.getScheme()) && pycVar.c.equalsIgnoreCase(url.getHost()) && url.getUserInfo() == null && ((url.getPort() == -1 || url.getPort() == 443) && path != null && path.startsWith(pycVar.d))) {
+                    return null;
+                }
+                return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
+            default:
+                return super.shouldInterceptRequest(webView, webResourceRequest);
+        }
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                j jVar = (j) obj;
+                if (!jVar.s) {
+                    return false;
+                }
+                m01.u(jVar.y.M, str);
+                return true;
+            case 1:
+                if (((iv3) obj).x1) {
+                    m01.u(webView.getContext(), str);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 2:
+                if (((nc8) obj).y) {
+                    m01.u(webView.getContext(), str);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 3:
+            default:
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 4:
+                if (!a(str) && !super.shouldOverrideUrlLoading(webView, str)) {
+                    return false;
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
+        switch (this.a) {
+            case 3:
+                if (webResourceRequest.isForMainFrame()) {
+                    pyc pycVar = (pyc) this.b;
+                    Uri url = webResourceRequest.getUrl();
+                    if (url != null) {
+                        if (pycVar.g.equals(url.toString())) {
+                            return false;
+                        }
                     } else {
-                        i2 = 0;
+                        pycVar.getClass();
                     }
-                    float L = gl.L(i2 + 32);
-                    if (this.e != null) {
-                        f = 10.0f;
-                    } else {
-                        f = 19.0f;
-                    }
-                    canvas.translate(L, gl.L(f));
-                    o.s(vg5Var, canvas, this, 0);
-                    this.f.d(canvas, this);
-                    canvas.restore();
-                    i = 1;
-                } else {
-                    i = 0;
                 }
-                if (this.e != null) {
-                    canvas.save();
-                    if (!this.r) {
-                        i4 = 0;
-                    }
-                    canvas.translate(gl.L(i4 + 32), gl.L(29.0f));
-                    o.s(vg5Var, canvas, this, i);
-                    this.e.d(canvas, this);
-                    canvas.restore();
-                    i++;
-                }
-                float L2 = gl.L(18.0f);
-                float L3 = gl.L(6.0f);
-                float L4 = gl.L(20.0f);
-                int i5 = this.y;
-                if (this.E.level == 0) {
-                    i3 = gl.L(6.0f);
-                }
-                canvas2 = canvas;
-                canvas2.drawRect(L2, L3, L4, i5 - i3, o.s1);
-                i3 = i;
-            } else {
-                canvas2 = canvas;
-            }
-            if (this.h != null) {
-                canvas2.save();
-                canvas2.translate(this.s, this.w);
-                o.s(vg5Var, canvas2, this, i3);
-                this.h.d(canvas2, this);
-                canvas2.restore();
-                i3++;
-            }
-            if (this.n != null) {
-                canvas2.save();
-                canvas2.translate(this.s, this.w + this.x);
-                o.s(vg5Var, canvas2, this, i3);
-                this.n.d(canvas2, this);
-                canvas2.restore();
-            }
+                return true;
+            default:
+                return super.shouldOverrideUrlLoading(webView, webResourceRequest);
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        StringBuilder sb = new StringBuilder(k96.M0(2131754866, null));
-        if (this.f != null) {
-            sb.append(", ");
-            sb.append(this.f.d.getText());
-        }
-        if (this.e != null) {
-            sb.append(", ");
-            sb.append(this.e.d.getText());
-        }
-        if (this.h != null) {
-            sb.append(", ");
-            sb.append(this.h.d.getText());
-        }
-        if (this.n != null) {
-            sb.append(", ");
-            sb.append(this.n.d.getText());
-        }
-        accessibilityNodeInfo.setText(sb);
-    }
-
-    @Override
-    public final void onMeasure(int r31, int r32) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tu.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!o.i(this.a, this.b, motionEvent, this, this.h, this.s, this.w)) {
-            if (!o.i(this.a, this.b, motionEvent, this, this.n, this.s, this.w + this.x) && !super.onTouchEvent(motionEvent)) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public void setBlock(TL_iv.pageBlockEmbedPost pageblockembedpost) {
-        this.E = pageblockembedpost;
-        requestLayout();
     }
 }

@@ -1,12 +1,30 @@
 package defpackage;
-public final class yn {
-    public final op5 a;
-    public final wn b;
-    public final String c;
 
-    public yn(String str, op5 op5Var, wn wnVar) {
-        this.c = str;
-        this.a = op5Var;
-        this.b = wnVar;
+import android.window.BackEvent;
+public final class yn {
+    public static final yn a = new Object();
+
+    public final BackEvent a(float f, float f2, float f3, int i) {
+        return new BackEvent(f, f2, f3, i);
+    }
+
+    public final float b(BackEvent backEvent) {
+        backEvent.getClass();
+        return backEvent.getProgress();
+    }
+
+    public final int c(BackEvent backEvent) {
+        backEvent.getClass();
+        return backEvent.getSwipeEdge();
+    }
+
+    public final float d(BackEvent backEvent) {
+        backEvent.getClass();
+        return backEvent.getTouchX();
+    }
+
+    public final float e(BackEvent backEvent) {
+        backEvent.getClass();
+        return backEvent.getTouchY();
     }
 }

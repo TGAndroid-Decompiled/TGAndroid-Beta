@@ -1,59 +1,34 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-public final class kw2 implements Iterable {
-    public final Object a = new Object();
-    public final HashMap b = new HashMap();
-    public Set c = Collections.EMPTY_SET;
-    public List d = Collections.EMPTY_LIST;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class kw2 extends n8 {
+    public final nw2 o;
 
-    public final int h(vq3 vq3Var) {
-        int i;
-        synchronized (this.a) {
-            if (this.b.containsKey(vq3Var)) {
-                i = ((Integer) this.b.get(vq3Var)).intValue();
-            } else {
-                i = 0;
-            }
-        }
-        return i;
-    }
-
-    public final void i(vq3 vq3Var) {
-        synchronized (this.a) {
-            Integer num = (Integer) this.b.get(vq3Var);
-            if (num == null) {
-                return;
-            }
-            ArrayList arrayList = new ArrayList(this.d);
-            arrayList.remove(vq3Var);
-            this.d = DesugarCollections.unmodifiableList(arrayList);
-            int intValue = num.intValue();
-            HashMap hashMap = this.b;
-            if (intValue == 1) {
-                hashMap.remove(vq3Var);
-                HashSet hashSet = new HashSet(this.c);
-                hashSet.remove(vq3Var);
-                this.c = DesugarCollections.unmodifiableSet(hashSet);
-            } else {
-                hashMap.put(vq3Var, Integer.valueOf(num.intValue() - 1));
-            }
-        }
+    public kw2(nw2 nw2Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.o = nw2Var;
     }
 
     @Override
-    public final Iterator iterator() {
-        Iterator it;
-        synchronized (this.a) {
-            it = this.d.iterator();
+    public final void dismiss() {
+        d(true);
+        rw2 rw2Var = this.o.a;
+        rw2Var.k = null;
+        rw2Var.K = false;
+        if (rw2Var.R) {
+            rw2Var.b();
         }
-        return it;
+        View view = rw2Var.h;
+        if (view != null) {
+            if (view instanceof x2b) {
+                ((x2b) view).setScaled(false);
+            } else if (view instanceof u2b) {
+                ((u2b) view).setScaled(false);
+            } else if (view instanceof vw2) {
+                ((vw2) view).setScaled(false);
+            }
+            rw2Var.h = null;
+        }
     }
 }

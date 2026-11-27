@@ -1,96 +1,32 @@
 package defpackage;
 
-import android.os.Bundle;
+import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
 public final class ly implements View.OnClickListener {
     public final byte a;
-    public final long b;
-    public final Object c;
+    public final Context b;
+    public final vnb c;
 
-    public ly(Object obj, long j, byte b) {
+    public ly(Context context, vnb vnbVar, byte b) {
         this.a = b;
-        this.c = obj;
-        this.b = j;
+        this.b = context;
+        this.c = vnbVar;
     }
 
     @Override
     public final void onClick(View view) {
-        byte b = this.a;
-        long j = this.b;
-        Object obj = this.c;
-        switch (b) {
+        switch (this.a) {
             case 0:
-                ty tyVar = (ty) obj;
-                d S = LaunchActivity.S();
-                if (S != null) {
-                    if (!l7c.C(j)) {
-                        Bundle bundle = new Bundle();
-                        if (j > 0) {
-                            bundle.putLong("user_id", j);
-                            if (j == y6c.h(tyVar.a).e()) {
-                                bundle.putBoolean("my_profile", true);
-                            }
-                        } else {
-                            bundle.putLong("chat_id", -j);
-                        }
-                        bundle.putBoolean("open_gifts", true);
-                        S.presentFragment(new ProfileActivity(bundle, null));
-                    } else {
-                        return;
-                    }
-                }
-                Runnable runnable = tyVar.i2;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                tyVar.dismiss();
+                new eza(this.b, this.c).show();
                 return;
             case 1:
-                cj3 cj3Var = (cj3) obj;
-                na7 messagesController = cj3Var.getMessagesController();
-                long j2 = this.b;
-                boolean n2 = messagesController.n2(j2, 0L, null);
-                if (!n2) {
-                    cj3Var.getNotificationsController().T(j2, 3, 0L);
-                } else {
-                    cj3Var.getNotificationsController().T(j2, 4, 0L);
-                }
-                u21.A(cj3Var, !n2, null).j();
-                cj3Var.finishPreviewFragment();
+                new eza(this.b, this.c).show();
                 return;
             case 2:
-                tv4 tv4Var = (tv4) obj;
-                d S2 = LaunchActivity.S();
-                if (S2 != null) {
-                    tv4Var.dismiss();
-                    S2.presentFragment(ProfileActivity.P2(j));
-                    return;
-                }
-                return;
-            case 3:
-                fu5 fu5Var = (fu5) obj;
-                fu5Var.dismiss();
-                TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-                tL_messages_importChatInvite.hash = fu5Var.m1;
-                ConnectionsManager.getInstance(fu5Var.a).sendRequestTyped(tL_messages_importChatInvite, null, new et4(fu5Var, this.b, tL_messages_importChatInvite, (byte) 1), 2);
-                return;
-            case 4:
-                y28 y28Var = (y28) obj;
-                Bundle bundle2 = new Bundle();
-                if (j >= 0) {
-                    bundle2.putLong("user_id", j);
-                } else {
-                    bundle2.putLong("chat_id", -j);
-                }
-                y28Var.z0.L(new ProfileActivity(bundle2, null));
+                new eza(this.b, this.c).show();
                 return;
             default:
-                ((b29) obj).f.a(Long.valueOf(j));
+                new eza(this.b, this.c).show();
                 return;
         }
     }

@@ -1,20 +1,20 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-public final class uw5 extends b4 {
-    public static final Parcelable.Creator<uw5> CREATOR = new qyd((byte) 3);
-    public String a;
-    public String b;
-    public ArrayList c;
+import j$.util.DesugarTimeZone;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+public final class uw5 implements ycc {
+    public static final SimpleDateFormat a;
+
+    static {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        a = simpleDateFormat;
+        simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.l(parcel, 3, this.b);
-        jte.p(parcel, 4, this.c);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        ((zcc) obj2).b(a.format((Date) obj));
     }
 }

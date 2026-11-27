@@ -1,102 +1,189 @@
 package defpackage;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class zua extends fy0 implements gk7 {
-    public final long S1;
-    public final dr0 T1;
-    public final FrameLayout U1;
-    public final qh4 V1;
-    public Runnable W1;
-    public final TLRPC.InputPeer X1;
-    public final boolean Y1;
-    public l5c Z1;
-    public boolean a2;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.a;
+public final class zua extends View {
+    public final yua a;
+    public final vnb b;
+    public float c;
+    public float d;
+    public Drawable e;
 
-    public zua(android.content.Context r17, defpackage.wjb r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zua.<init>(android.content.Context, wjb, long, int, java.lang.String, java.lang.Runnable, long):void");
+    public zua(int i, vnb vnbVar, Context context) {
+        super(context);
+        this.b = vnbVar;
+        yua yuaVar = new yua(i, vnbVar, this);
+        this.a = yuaVar;
+        yuaVar.y.setCallback(this);
+        jn7.i(this);
     }
 
-    @Override
-    public final n39 G0(o39 o39Var) {
-        l5c l5cVar = new l5c(this.n1, getContext(), this.a, 0, true, new tf8(this, (byte) 26), this.J0);
-        this.Z1 = l5cVar;
-        return l5cVar;
-    }
-
-    @Override
-    public final void I() {
-        super.I();
-        kk7.f(this.a).n(this, kk7.w3);
-        kk7.f(this.a).n(this, kk7.z3);
-    }
-
-    @Override
-    public final CharSequence J0() {
-        dr0 dr0Var = this.T1;
-        if (dr0Var == null) {
-            return null;
+    public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z) {
+        float L;
+        float f;
+        yua yuaVar = this.a;
+        ul ulVar = yuaVar.e;
+        vx4 vx4Var = yuaVar.j;
+        ImageReceiver imageReceiver = yuaVar.d;
+        yuaVar.N = false;
+        yuaVar.Q = null;
+        yuaVar.R = null;
+        yuaVar.p = false;
+        yuaVar.k = (TL_stars.starGiftAttributeBackdrop) jxa.i(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        yuaVar.l = (TL_stars.starGiftAttributePattern) jxa.i(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeModel stargiftattributemodel = yuaVar.m;
+        yuaVar.m = (TL_stars.starGiftAttributeModel) jxa.i(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class);
+        Paint paint = yuaVar.f;
+        yuaVar.h = null;
+        paint.setShader(null);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = yuaVar.l;
+        if (stargiftattributepattern != null) {
+            ulVar.i(stargiftattributepattern.document, false);
+        } else {
+            ulVar.g(null, false);
         }
-        return ((TextView) dr0Var.b).getText();
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        Runnable runnable;
-        if (i == kk7.w3 || i == kk7.z3) {
-            l5c l5cVar = this.Z1;
-            if (l5cVar != null) {
-                l5cVar.O(true);
-            }
-            long j = gta.v(this.a, false).m().amount;
-            long j2 = this.S1;
-            ((TextView) this.T1.b).setText(k96.H(',', "StarsNeededTitle", (int) (j2 - j)));
-            by0 by0Var = this.o1;
-            if (by0Var != null) {
-                by0Var.setTitle(J0());
-            }
-            if (j >= j2 && (runnable = this.W1) != null) {
-                runnable.run();
-                this.W1 = null;
-                dismiss();
-            }
+        TL_stars.starGiftAttributeModel stargiftattributemodel2 = yuaVar.m;
+        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.id != stargiftattributemodel2.document.id)) {
+            imageReceiver.N(0);
+            imageReceiver.e();
+            imageReceiver.M(0);
+            nza.e1(imageReceiver, yuaVar.m.document, 110);
         }
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        dr0 dr0Var = this.T1;
-        if (dr0Var != null) {
-            ((er4) dr0Var.c).setPaused(true);
+        boolean z2 = tL_starGiftUnique.burned;
+        yuaVar.L = z2;
+        if (z2) {
+            vx4Var.f(aob.v0(aob.q7, yuaVar.c));
+            yuaVar.M = yob.b;
+            vx4Var.g(11, ob6.M0(2131749839, null), true);
+        } else {
+            vx4Var.e(yuaVar.k, true, false);
+            vx4Var.g(11, ob6.M0(2131749840, null), true);
         }
-    }
-
-    @Override
-    public final void show() {
-        ar1 ar1Var;
-        if (!this.Y1) {
-            ir2.v(null, 2131747204, new u21(f11.a(getContext()), this.J0), 2131624221, 36);
-        } else if (gta.v(this.a, false).m().amount >= this.S1) {
-            Runnable runnable = this.W1;
-            if (runnable != null) {
-                runnable.run();
-                this.W1 = null;
+        if (yuaVar.S) {
+            imageReceiver.I();
+            ulVar.a();
+            yuaVar.y.d.I();
+        }
+        if (hl.O1()) {
+            L = hl.P0() * 0.6f;
+        } else {
+            L = (hl.q.x * 0.62f) - hl.L(34.0f);
+        }
+        yuaVar.O = c00.y(64.0f, (hl.q.y - a.getCurrentActionBarHeight()) - hl.m, (int) L);
+        if (!hl.O1()) {
+            yuaVar.O = (int) (yuaVar.O * 1.2f);
+        }
+        yuaVar.O -= hl.L(8.0f);
+        yuaVar.h(tL_starGiftUnique, j, tL_textWithEntities, str);
+        t84 t84Var = yuaVar.T;
+        if (z) {
+            if (t84Var.h) {
+                f = t84Var.g;
+            } else {
+                f = t84Var.f;
+            }
+            int round = Math.round(f);
+            int i = yuaVar.O;
+            if (round != i) {
+                t84Var.a(i);
             }
         } else {
-            d Q = LaunchActivity.Q();
-            if (Q instanceof mu1) {
-                mu1 mu1Var = (mu1) Q;
-                if (mu1Var.Q7() && (ar1Var = mu1Var.a0) != null) {
-                    ar1Var.S();
-                }
-            }
-            super.show();
-            kk7.f(this.a).b(this, kk7.w3);
-            kk7.f(this.a).b(this, kk7.z3);
+            t84Var.c(yuaVar.O);
         }
+        requestLayout();
+        invalidate();
+    }
+
+    public yua getLayout() {
+        return this.a;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        yua yuaVar = this.a;
+        yuaVar.S = false;
+        yuaVar.d.K();
+        yuaVar.e.b();
+        iw4 iw4Var = yuaVar.y;
+        iw4Var.d.K();
+        hm.release((View) null, iw4Var.q);
+        iw4Var.q = null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i;
+        if (getParent() instanceof View) {
+            i = ((View) getParent()).getHeight();
+        } else {
+            i = 0;
+        }
+        vnb vnbVar = this.b;
+        if (vnbVar != null) {
+            vnbVar.b(0.0f, getY(), getMeasuredWidth(), i);
+        } else {
+            aob.q(0.0f, getY(), getMeasuredWidth(), i);
+        }
+        yua yuaVar = this.a;
+        this.c = (getWidth() - ((int) yuaVar.T.f)) / 2.0f;
+        float L = yuaVar.T.f + hl.L(8.0f);
+        float width = (getWidth() - L) / 2.0f;
+        float L2 = this.d - hl.L(4.0f);
+        RectF rectF = hl.P;
+        rectF.set(width, L2, L + width, yuaVar.P + L2 + hl.L(8.0f));
+        Rect rect = hl.Q;
+        rectF.round(rect);
+        this.e.setBounds(rect);
+        this.e.draw(canvas);
+        canvas.save();
+        canvas.translate(this.c, this.d);
+        yuaVar.b(canvas);
+        yuaVar.c(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        yua yuaVar = this.a;
+        this.c = (size - ((int) yuaVar.T.f)) / 2.0f;
+        float paddingTop = getPaddingTop();
+        this.d = paddingTop;
+        setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + yuaVar.P);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.a.e(this.c, this.d, motionEvent);
+    }
+
+    public void setLayoutBackground(Drawable drawable) {
+        this.e = drawable;
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && drawable != this.a.y) {
+            return false;
+        }
+        return true;
     }
 }

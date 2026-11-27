@@ -1,9 +1,25 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface b22 {
-    void a(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2);
+import org.telegram.tgnet.RequestDelegate;
+public final class b22 implements RequestDelegate {
+    public final byte a;
+    public final int b;
+    public final Object c;
 
-    void b(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j);
+    public b22(int i, zo2 zo2Var) {
+        this.a = (byte) 7;
+        this.b = i;
+        this.c = zo2Var;
+    }
+
+    @Override
+    public final void run(org.telegram.tgnet.TLObject r13, org.telegram.tgnet.TLRPC.TL_error r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b22.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    }
+
+    public b22(Object obj, int i, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = i;
+    }
 }

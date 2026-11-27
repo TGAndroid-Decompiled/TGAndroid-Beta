@@ -1,26 +1,10 @@
 package defpackage;
-public final class reb extends veb {
-    public int d;
+public interface reb {
+    heb j(int i, int i2, byte[] bArr);
 
-    @Override
-    public final int a(efb efbVar, xeb xebVar, qeb qebVar, int i, boolean z) {
-        return Math.max(0, this.a - qebVar.a(xebVar, i));
-    }
+    void l(byte[] bArr, int i, int i2, qeb qebVar, ot2 ot2Var);
 
-    @Override
-    public final void b(int i, int i2) {
-        super.b(i, i2);
-        this.d = Math.max(this.d, i + i2);
-    }
+    void reset();
 
-    @Override
-    public final void c() {
-        super.c();
-        this.d = Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final int d(boolean z) {
-        return Math.max(super.d(z), this.d);
-    }
+    int s();
 }

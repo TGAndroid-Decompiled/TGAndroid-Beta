@@ -1,63 +1,72 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class rk2 extends FrameLayout {
-    public final hn a;
-    public final View b;
-    public final wjb c;
+import android.util.Pair;
+import j$.util.Objects;
+import java.util.Locale;
+import java.util.regex.Pattern;
+public abstract class rk2 {
+    public static final byte[] a = {0, 0, 0, 1};
+    public static final String[] b = {"", "A", "B", "C"};
+    public static final Pattern c = Pattern.compile("^\\D?(\\d+)$");
+    public static final byte[] d = {-75, 0, -112, 0, 1};
 
-    public rk2(Context context, wjb wjbVar) {
-        super(context);
-        int i;
-        this.c = wjbVar;
-        hn hnVar = new hn(context, false, false, false);
-        this.a = hnVar;
-        int i2 = bkb.F6;
-        zkb.U(hnVar, i2, wjbVar);
-        hnVar.setTextSize(gl.L(14.0f));
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        hnVar.setGravity(i);
-        hnVar.setImportantForAccessibility(2);
-        hnVar.setOnWidthUpdatedListener(new mk2(this, (byte) 1));
-        addView(hnVar, nme.i(-2.0f, -2.0f, 8388627, 21.0f, 0.0f, 38.0f, 3.0f));
-        View view = new View(context);
-        this.b = view;
-        Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
-        zkb.x(this, mutate, i2, wjbVar, PorterDuff.Mode.MULTIPLY);
-        view.setBackground(mutate);
-        addView(view, nme.i(14.0f, 14.0f, 8388627, 21.0f, 1.0f, 0.0f, 3.0f));
-    }
-
-    public final void a() {
-        float c = this.a.getDrawable().c() + gl.L(1.0f);
-        boolean z = k96.a0;
-        View view = this.b;
+    public static String a(int i, int i2, int i3, int i4, boolean z, int[] iArr) {
+        char c2;
+        String str = b[i];
+        Integer valueOf = Integer.valueOf(i2);
+        Integer valueOf2 = Integer.valueOf(i3);
         if (z) {
-            view.setTranslationX(-c);
+            c2 = 'H';
         } else {
-            view.setTranslationX(c);
+            c2 = 'L';
         }
+        Object[] objArr = {str, valueOf, valueOf2, Character.valueOf(c2), Integer.valueOf(i4)};
+        String str2 = gcc.a;
+        StringBuilder sb = new StringBuilder(String.format(Locale.US, "hvc1.%s%d.%X.%c%d", objArr));
+        int length = iArr.length;
+        while (length > 0 && iArr[length - 1] == 0) {
+            length--;
+        }
+        for (int i5 = 0; i5 < length; i5++) {
+            sb.append(String.format(".%02X", Integer.valueOf(iArr[i5])));
+        }
+        return sb.toString();
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(46.0f), 1073741824));
-        a();
+    public static Pair b(ko4 ko4Var) {
+        boolean z;
+        qk2 d2 = d(ko4Var);
+        if (d2 != null && (z = d2.c)) {
+            yve.p(z);
+            Integer valueOf = Integer.valueOf(d2.a);
+            yve.p(z);
+            return new Pair(valueOf, Integer.valueOf(d2.b));
+        }
+        return null;
     }
 
-    public void setColor(int i) {
-        wjb wjbVar = this.c;
-        int v0 = bkb.v0(i, wjbVar);
-        zkb.U(this.a, i, wjbVar);
-        this.b.getBackground().setColorFilter(new PorterDuffColorFilter(v0, PorterDuff.Mode.MULTIPLY));
+    public static defpackage.qk2 c(java.lang.String r12, java.lang.String[] r13, defpackage.bm2 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rk2.c(java.lang.String, java.lang.String[], bm2):qk2");
+    }
+
+    public static defpackage.qk2 d(defpackage.ko4 r33) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rk2.d(ko4):qk2");
+    }
+
+    public static boolean e(ko4 ko4Var) {
+        if (Objects.equals(ko4Var.t, "application/x-itut-t35")) {
+            for (byte[] bArr : ko4Var.w) {
+                int length = bArr.length;
+                byte[] bArr2 = d;
+                if (length >= bArr2.length) {
+                    for (int i = 0; i < bArr2.length; i++) {
+                        if (bArr[i] == bArr2[i]) {
+                        }
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

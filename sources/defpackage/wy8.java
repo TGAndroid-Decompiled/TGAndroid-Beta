@@ -1,128 +1,96 @@
 package defpackage;
 
-import android.content.Context;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.ui.Components.RadioButton;
-public final class wy8 extends FrameLayout {
-    public final TextView a;
-    public final TextView b;
-    public final RadioButton c;
-    public byte d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class wy8 extends j79 {
+    public final pz8 c;
 
-    public wy8(Context context, wjb wjbVar) {
-        super(context);
-        int i;
+    public wy8(pz8 pz8Var) {
+        this.c = pz8Var;
+    }
+
+    @Override
+    public final int b() {
+        return this.c.s;
+    }
+
+    @Override
+    public final int d(int i) {
+        pz8 pz8Var = this.c;
+        az8 az8Var = (az8) pz8Var.n.get(pz8Var.f(i));
+        if (az8Var.b != null && i == az8Var.d) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        String str;
         int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        int i8;
-        this.d = (byte) 50;
-        RadioButton radioButton = new RadioButton(context);
-        this.c = radioButton;
-        radioButton.setSize(gl.L(20.0f));
-        zkb.O(radioButton, bkb.C5, bkb.D5, wjbVar);
-        boolean z = k96.a0;
-        if (z) {
-            i = 5;
-        } else {
-            i = 3;
+        pz8 pz8Var = this.c;
+        az8 az8Var = (az8) pz8Var.n.get(pz8Var.f(i));
+        int i3 = f89Var.f;
+        View view = f89Var.a;
+        int i4 = 1;
+        int i5 = 0;
+        if (i3 == 0) {
+            zy8 zy8Var = (zy8) view;
+            String str2 = az8Var.b;
+            if (pz8Var.x || az8Var.a != 2) {
+                i4 = 0;
+            }
+            TextView textView = zy8Var.b;
+            TextView textView2 = zy8Var.a;
+            if (str2 != null) {
+                str = str2.replace('\n', ' ');
+            } else {
+                str = null;
+            }
+            textView2.setText(str);
+            textView2.setTextColor(zy8Var.c.y);
+            if (i4 != 0) {
+                i2 = 0;
+            } else {
+                i2 = 8;
+            }
+            textView.setVisibility(i2);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView2.getLayoutParams();
+            int L = hl.L(15.0f);
+            if (i4 != 0) {
+                i5 = hl.L(6.0f) + hl.L(20.0f) + hl.L(12.0f) + ((int) Math.ceil(textView.getPaint().measureText(textView.getText().toString())));
+            }
+            int i6 = L + i5;
+            if (layoutParams.rightMargin != i6) {
+                layoutParams.rightMargin = i6;
+                textView2.setLayoutParams(layoutParams);
+                return;
+            }
+            return;
         }
-        int i9 = i | 48;
-        if (z) {
-            i2 = 0;
-        } else {
-            i2 = 18;
+        ArrayList arrayList = az8Var.c;
+        int i7 = i - az8Var.d;
+        if (az8Var.b == null) {
+            i4 = 0;
         }
-        addView(radioButton, nme.d(22, 22.0f, i9, i2, 14.0f, z ? 18 : 0, 0.0f));
-        TextView textView = new TextView(context);
-        this.a = textView;
-        zkb.X(textView, bkb.i5, wjbVar);
-        ug8.w(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        if (k96.a0) {
-            i3 = 5;
-        } else {
-            i3 = 3;
-        }
-        textView.setGravity(i3 | 16);
-        boolean z2 = k96.a0;
-        if (z2) {
-            i4 = 5;
-        } else {
-            i4 = 3;
-        }
-        int i10 = i4 | 48;
-        if (z2) {
-            i5 = 21;
-        } else {
-            i5 = 51;
-        }
-        float f = i5;
-        if (z2) {
-            i6 = 51;
-        } else {
-            i6 = 21;
-        }
-        addView(textView, nme.d(-2, -2.0f, i10, f, 13.0f, i6, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.b = textView2;
-        zkb.X(textView2, bkb.x6, wjbVar);
-        textView2.setTextSize(1, 14.0f);
-        if (k96.a0) {
-            i7 = 5;
-        } else {
-            i7 = 3;
-        }
-        textView2.setGravity(i7 | 16);
-        textView2.setVisibility(8);
-        boolean z3 = k96.a0;
-        int i11 = (z3 ? 5 : 3) | 48;
-        if (z3) {
-            i8 = 21;
-        } else {
-            i8 = 51;
-        }
-        addView(textView2, nme.d(-2, -2.0f, i11, i8, 37.0f, z3 ? 51 : 21, 0.0f));
-    }
-
-    public final void a(int i, int i2) {
-        this.c.b(i, i2);
-    }
-
-    public final void b(CharSequence charSequence, boolean z) {
-        this.a.setText(charSequence);
-        this.b.setVisibility(8);
-        this.c.a(z, false);
+        ((xy8) view).set((TLRPC.Document) arrayList.get(i7 - i4));
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.c.f);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        TextView textView = this.b;
-        if (textView.getVisibility() == 0) {
-            textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) - gl.L(72.0f), 1073741824), i2);
-        }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        int L = gl.L(this.d);
-        if (textView.getVisibility() == 0) {
-            i3 = textView.getMeasuredHeight() + gl.L(4.0f);
+    public final f89 x(ViewGroup viewGroup, int i) {
+        View xy8Var;
+        pz8 pz8Var = this.c;
+        if (i == 0) {
+            xy8Var = new zy8(pz8Var, viewGroup.getContext());
+            xy8Var.setLayoutParams(new r79(-1, hl.L(44.0f)));
         } else {
-            i3 = 0;
+            xy8Var = new xy8(viewGroup.getContext(), pz8Var.a);
+            xy8Var.setLayoutParams(new r79(-1, -2));
         }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(L + i3, 1073741824));
+        return new f89(xy8Var);
     }
 }

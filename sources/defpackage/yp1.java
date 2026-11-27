@@ -1,48 +1,42 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-public final class yp1 implements uc7 {
-    public final byte a;
+public final class yp1 implements Runnable {
+    public final boolean a;
     public final boolean b;
-    public final Object c;
+    public final int c;
+    public final boolean d;
+    public final i49 e;
+    public final float f;
+    public final float h;
+    public final w49 n;
+    public final r47 r;
+    public final zu1 s;
 
-    public yp1(byte b, Object obj, boolean z) {
-        this.a = b;
-        this.c = obj;
-        this.b = z;
+    public yp1(zu1 zu1Var, boolean z, boolean z2, int i, boolean z3, i49 i49Var, float f, float f2, w49 w49Var, r47 r47Var) {
+        this.s = zu1Var;
+        this.a = z;
+        this.b = z2;
+        this.c = i;
+        this.d = z3;
+        this.e = i49Var;
+        this.f = f;
+        this.h = f2;
+        this.n = w49Var;
+        this.r = r47Var;
     }
 
     @Override
-    public final void a(int i) {
-        t21 t21Var;
-        byte b = this.a;
-        Object obj = this.c;
-        switch (b) {
-            case 0:
-                mu1 mu1Var = ((aq1) obj).b;
-                if (i > 0 && mu1Var.getParentActivity() != null) {
-                    u21 b0 = u21.b0(mu1Var);
-                    if (this.b) {
-                        t21Var = t21.H;
-                    } else {
-                        t21Var = t21.J;
-                    }
-                    b0.m(t21Var, i, 0, 0, mu1Var.Ba).j();
-                    return;
+    public final void run() {
+        if (!this.a) {
+            zu1 zu1Var = this.s;
+            if (zu1Var.Xc != null) {
+                zu1Var.Xc = null;
+                if (this.b) {
+                    zu1Var.z6(new xp1(this, this.c, this.d, this.e, this.f, this.h, this.n, (byte) 0));
+                } else {
+                    zu1Var.z6(new jj1(this, this.r, (byte) 20));
                 }
-                return;
-            default:
-                zp1 zp1Var = (zp1) obj;
-                mu1 mu1Var2 = zp1Var.b.b;
-                if (i >= 50) {
-                    TLRPC.Chat chat = mu1Var2.e;
-                    TLRPC.User user = mu1Var2.f;
-                    boolean z = this.b;
-                    ij.r(mu1Var2, true, chat, user, false, false, false, z, new rh1(zp1Var, z));
-                    return;
-                }
-                mu1Var2.xa(mu1Var2.s4, true);
-                return;
+                zu1Var.M5(true);
+            }
         }
     }
 }

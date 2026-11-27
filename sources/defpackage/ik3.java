@@ -1,13 +1,24 @@
 package defpackage;
-public final class ik3 {
-    public s49 a;
-    public s49 b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
+public final class ik3 implements Runnable {
+    public final byte a;
+    public final nk3 b;
 
-    public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.a + ", newHolder=" + this.b + ", fromX=" + this.c + ", fromY=" + this.d + ", toX=" + this.e + ", toY=" + this.f + '}';
+    public ik3(nk3 nk3Var, byte b) {
+        this.a = b;
+        this.b = nk3Var;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        nk3 nk3Var = this.b;
+        switch (b) {
+            case 0:
+                nk3Var.X(false);
+                return;
+            default:
+                nk3Var.O(true);
+                return;
+        }
     }
 }

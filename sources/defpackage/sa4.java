@@ -1,33 +1,48 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class sa4 implements Runnable {
-    public final byte a;
-    public final ab4 b;
-    public final TLRPC.TL_messages_sendMultiMedia c;
-    public final Object[] d;
+import java.lang.annotation.Annotation;
+import java.util.Collections;
+import java.util.Map;
+public final class sa4 {
+    public final String a;
+    public final Map b;
 
-    public sa4(ab4 ab4Var, TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr, byte b) {
-        this.a = b;
-        this.b = ab4Var;
-        this.c = tL_messages_sendMultiMedia;
-        this.d = objArr;
+    public sa4(String str, Map map) {
+        this.a = str;
+        this.b = map;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        Object[] objArr = this.d;
-        ab4 ab4Var = this.b;
-        switch (b) {
-            case 0:
-                boolean booleanValue = ((Boolean) objArr[5]).booleanValue();
-                ab4Var.getSendMessagesHelper().O(this.c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (k3a) objArr[4], booleanValue);
-                return;
-            default:
-                ab4Var.getSendMessagesHelper().O(this.c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (k3a) objArr[4], ((Boolean) objArr[5]).booleanValue());
-                return;
+    public static lh2 a(String str) {
+        return new lh2(str);
+    }
+
+    public static sa4 c(String str) {
+        return new sa4(str, Collections.EMPTY_MAP);
+    }
+
+    public final Annotation b(Class cls) {
+        return (Annotation) this.b.get(cls);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof sa4) {
+                sa4 sa4Var = (sa4) obj;
+                if (this.a.equals(sa4Var.a) && this.b.equals(sa4Var.b)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode() + (this.a.hashCode() * 31);
+    }
+
+    public final String toString() {
+        return "FieldDescriptor{name=" + this.a + ", properties=" + this.b.values() + "}";
     }
 }

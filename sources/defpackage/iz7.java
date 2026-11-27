@@ -1,116 +1,51 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.HashMap;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.p;
-public final class iz7 implements TextWatcher {
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.PasskeysActivity;
+public final class iz7 implements icc {
     public final byte a;
-    public final p b;
+    public final PasskeysActivity b;
 
-    public iz7(p pVar, byte b) {
+    public iz7(PasskeysActivity passkeysActivity, byte b) {
         this.a = b;
-        this.b = pVar;
+        this.b = passkeysActivity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z;
-        String str;
-        String str2;
+    public final void a(Object obj, Object obj2) {
         byte b = this.a;
-        p pVar = this.b;
+        PasskeysActivity passkeysActivity = this.b;
         switch (b) {
             case 0:
-                if (pVar.d0 != 0 && editable.length() == pVar.d0) {
-                    pVar.F0(false);
-                    return;
+                ArrayList arrayList = (ArrayList) obj;
+                l9c l9cVar = (l9c) obj2;
+                ArrayList arrayList2 = passkeysActivity.b;
+                passkeysActivity.addPasskeyRow = -1;
+                String M0 = ob6.M0(2131747356, null);
+                b8c b8cVar = new b8c(2);
+                b8cVar.m = M0;
+                b8cVar.k = 2131624114;
+                arrayList.add(b8cVar);
+                for (int i = 0; i < arrayList2.size(); i++) {
+                    am7 am7Var = new am7(passkeysActivity, (byte) 7);
+                    int i2 = kz7.b;
+                    b8c K = b8c.K(kz7.class);
+                    K.H = (TL_account.Passkey) arrayList2.get(i);
+                    K.E = am7Var;
+                    arrayList.add(K);
                 }
+                if (arrayList2.size() + 1 <= passkeysActivity.getMessagesController().k4.F.f()) {
+                    passkeysActivity.addPasskeyRow = arrayList.size();
+                    b8c c = b8c.c(-1, 2131231849, ob6.M0(2131747377, null));
+                    c.r = true;
+                    arrayList.add(c);
+                }
+                arrayList.add(b8c.C(hl.D2(hl.N2(ob6.M0(2131747362, null), -1, 0, new fe7(passkeysActivity, (byte) 21), null), true)));
                 return;
             default:
-                HashMap hashMap = pVar.c;
-                if (!pVar.n0) {
-                    pVar.n0 = true;
-                    String h = p38.h(pVar.f[8].getText().toString(), false);
-                    pVar.f[8].setText(h);
-                    fe5 fe5Var = (fe5) pVar.f[9];
-                    if (h.length() == 0) {
-                        fe5Var.setHintText((String) null);
-                        fe5Var.setHint(k96.M0(2131747179, null));
-                    } else {
-                        int i = 4;
-                        if (h.length() > 4) {
-                            while (true) {
-                                if (i >= 1) {
-                                    String substring = h.substring(0, i);
-                                    if (((String) hashMap.get(substring)) != null) {
-                                        pVar.f[8].setText(substring);
-                                        str = h.substring(i) + pVar.f[9].getText().toString();
-                                        h = substring;
-                                        z = true;
-                                    } else {
-                                        i--;
-                                    }
-                                } else {
-                                    z = false;
-                                    str = null;
-                                }
-                            }
-                            if (!z) {
-                                str = h.substring(1) + pVar.f[9].getText().toString();
-                                EditTextBoldCursor editTextBoldCursor = pVar.f[8];
-                                h = h.substring(0, 1);
-                                editTextBoldCursor.setText(h);
-                            }
-                        } else {
-                            z = false;
-                            str = null;
-                        }
-                        String str3 = (String) hashMap.get(h);
-                        if (str3 != null && pVar.a.indexOf(str3) != -1 && (str2 = (String) pVar.d.get(h)) != null) {
-                            fe5Var.setHintText(str2.replace('X', (char) 8211));
-                            fe5Var.setHint((CharSequence) null);
-                        } else {
-                            fe5Var.setHintText((String) null);
-                            fe5Var.setHint(k96.M0(2131747179, null));
-                        }
-                        if (!z) {
-                            EditTextBoldCursor editTextBoldCursor2 = pVar.f[8];
-                            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-                        }
-                        if (str != null) {
-                            fe5Var.requestFocus();
-                            fe5Var.setText(str);
-                            fe5Var.setSelection(fe5Var.length());
-                        }
-                    }
-                    pVar.n0 = false;
-                    return;
-                }
+                passkeysActivity.a0((TL_account.Passkey) obj, (String) obj2);
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    private final void a(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

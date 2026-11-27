@@ -1,138 +1,119 @@
 package defpackage;
 
-import android.app.Activity;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class x4c extends FrameLayout implements tjb {
-    public final LinearLayout a;
-    public final TextView b;
-    public final TextView c;
-    public final w4c d;
-    public final w4c e;
-    public int f;
-    public int h;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class x4c extends TLObject {
+    public TLRPC.TL_textWithEntities a;
+    public ArrayList b = new ArrayList();
+    public TLRPC.TL_textWithEntities c;
 
-    public x4c(Activity activity) {
-        super(activity);
-        setClickable(true);
-        LinearLayout linearLayout = new LinearLayout(activity);
-        this.a = linearLayout;
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(activity);
-        this.b = textView;
-        textView.setGravity(17);
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(gl.o());
-        textView.setText(k96.M0(2131743652, null));
-        linearLayout.addView(textView, nme.q(-1, -2, 0.0f, 55, 28, 8, 28, 0));
-        TextView textView2 = new TextView(activity);
-        this.c = textView2;
-        textView2.setGravity(17);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setLineSpacing(gl.N(2.0f), 1.0f);
-        linearLayout.addView(textView2, nme.q(-1, -2, 0.0f, 55, 28, 2, 28, 0));
-        LinearLayout linearLayout2 = new LinearLayout(activity);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setGravity(17);
-        linearLayout2.addView(new Space(activity), nme.p(-2, 1, 17.0f, 1));
-        w4c w4cVar = new w4c(activity);
-        this.d = w4cVar;
-        w4cVar.setPadding(gl.L(10.0f), gl.L(5.0f), gl.L(10.0f), gl.L(7.0f));
-        w4cVar.setTypeface(gl.o());
-        w4cVar.setTextSize(1, 14.22f);
-        w4cVar.setText(k96.M0(2131743671, null));
-        linearLayout2.addView(w4cVar, nme.o(-2, 30));
-        linearLayout2.addView(new Space(activity), nme.p(-2, 1, 17.0f, 1));
-        w4c w4cVar2 = new w4c(activity);
-        this.e = w4cVar2;
-        w4cVar2.setPadding(gl.L(10.0f), gl.L(5.0f), gl.L(10.0f), gl.L(7.0f));
-        w4cVar2.setTypeface(gl.o());
-        w4cVar2.setTextSize(1, 14.22f);
-        w4cVar2.setText(k96.M0(2131743661, null));
-        linearLayout2.addView(w4cVar2, nme.o(-2, 30));
-        linearLayout2.addView(new Space(activity), nme.p(-2, 1, 17.0f, 1));
-        linearLayout.addView(linearLayout2, nme.k(28.0f, 4.0f, 28.0f, 8.0f, -1, -2));
-        addView(linearLayout, nme.e(-1, -1, 119));
-        updateColors();
+    public static x4c a(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
+        TLRPC.Poll poll = tL_messageMediaPoll.poll;
+        x4c x4cVar = new x4c();
+        x4cVar.a = poll.question;
+        for (int i = 0; i < poll.answers.size(); i++) {
+            TLRPC.PollAnswer pollAnswer = poll.answers.get(i);
+            TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
+            tL_pollAnswer.text = pollAnswer.text;
+            tL_pollAnswer.option = pollAnswer.option;
+            x4cVar.b.add(tL_pollAnswer);
+        }
+        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
+        if (pollResults != null && !TextUtils.isEmpty(pollResults.solution)) {
+            TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+            x4cVar.c = tL_textWithEntities;
+            TLRPC.PollResults pollResults2 = tL_messageMediaPoll.results;
+            tL_textWithEntities.text = pollResults2.solution;
+            tL_textWithEntities.entities = pollResults2.solution_entities;
+        }
+        return x4cVar;
     }
 
-    public static String a(u4c u4cVar) {
-        if (u4cVar == null) {
-            return "";
+    public static boolean b(r47 r47Var, x4c x4cVar) {
+        TLRPC.TL_messageMediaPoll tL_messageMediaPoll;
+        TLRPC.Poll poll;
+        boolean z;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        TLRPC.MessageMedia m1 = r47.m1(r47Var);
+        if (!(m1 instanceof TLRPC.TL_messageMediaPoll) || (poll = (tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) m1).poll) == null) {
+            return true;
         }
-        String str = u4cVar.f;
-        String valueOf = String.valueOf(u4cVar.e);
-        if (!TextUtils.isEmpty(str) && !valueOf.isEmpty()) {
-            valueOf = valueOf.concat(", ");
+        if (poll.question != null) {
+            z = true;
+        } else {
+            z = false;
         }
-        return b00.h(valueOf, str);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        if (size <= 0) {
-            size = gl.q.x;
+        if (x4cVar.a != null) {
+            z2 = true;
+        } else {
+            z2 = false;
         }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(gl.q.y, Integer.MIN_VALUE);
-        LinearLayout linearLayout = this.a;
-        linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));
+        if (z != z2) {
+            return false;
+        }
+        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
+        if (pollResults != null && pollResults.solution != null) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        if (x4cVar.c != null) {
+            z4 = true;
+        } else {
+            z4 = false;
+        }
+        if (z3 == z4 && poll.answers.size() == x4cVar.b.size()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void updateColors() {
-        TextView textView;
-        w4c w4cVar;
-        w4c w4cVar2;
-        float f;
-        TextView textView2 = this.b;
-        if (textView2 != null && (textView = this.c) != null && (w4cVar = this.d) != null && (w4cVar2 = this.e) != null) {
-            textView2.setTextColor(bkb.w0(null, bkb.F6, false));
-            textView.setTextColor(bkb.w0(null, bkb.x6, false));
-            int i = bkb.H6;
-            w4cVar.setTextColor(bkb.w0(null, i, false));
-            int w0 = bkb.w0(null, i, false);
-            float f2 = 0.15f;
-            if (bkb.I.o()) {
-                f = 0.3f;
-            } else {
-                f = 0.15f;
-            }
-            int p1 = bkb.p1(f, w0);
-            if (w4cVar.getBackground() != null) {
-                if (p1 != this.f) {
-                    bkb.F1(w4cVar.getBackground(), p1, true);
-                }
-            } else {
-                w4cVar.setBackground(bkb.f0(p1, 7, gl.L(8.0f)));
-            }
-            int i2 = bkb.p7;
-            w4cVar2.setTextColor(bkb.w0(null, i2, false));
-            int w02 = bkb.w0(null, i2, false);
-            if (bkb.I.o()) {
-                f2 = 0.3f;
-            }
-            int p12 = bkb.p1(f2, w02);
-            if (w4cVar2.getBackground() != null) {
-                if (p12 != this.h) {
-                    bkb.F1(w4cVar2.getBackground(), p12, true);
-                }
-            } else {
-                w4cVar2.setBackground(bkb.f0(p12, 7, gl.L(8.0f)));
-            }
-            this.f = p1;
-            this.h = p12;
+    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+        int readInt32 = inputSerializedData.readInt32(z);
+        if ((readInt32 & 1) != 0) {
+            this.a = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+        if ((readInt32 & 2) != 0) {
+            this.b = Vector.deserialize(inputSerializedData, new grb((byte) 9), z);
+        }
+        if ((readInt32 & 4) != 0) {
+            this.c = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i;
+        outputSerializedData.writeInt32(613759672);
+        if (this.a != null) {
+            i = 1;
+        } else {
+            i = 0;
+        }
+        ArrayList arrayList = this.b;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            i |= 2;
+        }
+        if (this.c != null) {
+            i |= 4;
+        }
+        outputSerializedData.writeInt32(i);
+        if ((i & 1) != 0) {
+            this.a.serializeToStream(outputSerializedData);
+        }
+        if ((i & 2) != 0) {
+            Vector.serialize(outputSerializedData, this.b);
+        }
+        if ((i & 4) != 0) {
+            this.c.serializeToStream(outputSerializedData);
+        }
     }
 }

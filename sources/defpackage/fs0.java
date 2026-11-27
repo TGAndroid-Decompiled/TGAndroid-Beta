@@ -1,62 +1,78 @@
 package defpackage;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.io.Serializable;
-public final class fs0 implements x74, zga, bha, ed, n8c {
-    public final ss0 a;
-
-    public fs0(ss0 ss0Var) {
-        this.a = ss0Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class fs0 implements al1 {
+    @Override
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final int b() {
-        return this.a.n;
+    public final long c() {
+        return 0L;
     }
 
     @Override
-    public final float c(RecyclerView recyclerView) {
-        return dha.j(recyclerView);
+    public final boolean h() {
+        return true;
     }
 
     @Override
-    public final RecyclerView h(View view) {
-        ss0 ss0Var = this.a;
-        if (ss0Var.a) {
-            return ((rs0) view).c;
-        }
-        ss0Var.L.getClass();
-        return ((gva) view).a;
+    public final boolean i0(dl1 dl1Var, float f, float f2) {
+        return false;
     }
 
     @Override
-    public final void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f = (Float) serializable;
-        Float f2 = (Float) serializable2;
-        this.a.u0((c4c) obj);
+    public final e w() {
+        return null;
     }
 
     @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
-        this.a.x0();
+    public final void I(long j) {
     }
 
     @Override
-    public final void t(RecyclerView recyclerView) {
-        de9.d(recyclerView);
+    public final void J(dl1 dl1Var) {
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        ss0 ss0Var = this.a;
-        ss0Var.getClass();
-        ss0Var.presentFragment(new p3c(6, null));
+    public final void X(dl1 dl1Var) {
     }
 
     @Override
-    public final void F(float f, int i) {
+    public final void j(dl1 dl1Var) {
+    }
+
+    @Override
+    public final void o(dl1 dl1Var) {
+    }
+
+    @Override
+    public final void x(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    }
+
+    @Override
+    public final void B(dl1 dl1Var, int i) {
+    }
+
+    @Override
+    public final void k(dl1 dl1Var, String str) {
+    }
+
+    @Override
+    public final void f0(dl1 dl1Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    }
+
+    @Override
+    public final void n(dl1 dl1Var, int i, int i2) {
+    }
+
+    @Override
+    public final void q(dl1 dl1Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    }
+
+    @Override
+    public final void y(dl1 dl1Var, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
     }
 }

@@ -1,653 +1,672 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.Build;
+import android.text.Layout;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Magnifier;
+import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class mmb extends n39 {
-    public final Context c;
-    public final ArrayList d;
-    public final boolean e;
-    public final qmb f;
+import org.telegram.messenger.a;
+public abstract class mmb {
+    public final rt3 A;
+    public final Rect B;
+    public lmb C;
+    public b0f D;
+    public d79 E;
+    public ViewGroup F;
+    public Magnifier G;
+    public float H;
+    public float I;
+    public float J;
+    public float K;
+    public float L;
+    public float M;
+    public boolean N;
+    public boolean O;
+    public boolean P;
+    public boolean Q;
+    public boolean R;
+    public final RectF S;
+    public final RectF T;
+    public float U;
+    public float V;
+    public hmb W;
+    public hmb X;
+    public cl4 Y;
+    public boolean Z;
+    public int a;
+    public final dj2 a0;
+    public int b;
+    public int b0;
+    public int c;
+    public final OvershootInterpolator c0;
+    public int d;
+    public int d0;
+    public boolean e;
+    public final xlb e0;
+    public float f;
+    public final xlb f0;
+    public float g;
+    public vnb g0;
+    public final int[] h = new int[2];
+    public boolean h0;
+    public boolean i;
+    public boolean i0;
+    public boolean j;
+    public boolean j0;
+    public boolean k;
+    public xs k0;
+    public final int l;
+    public ValueAnimator l0;
+    public final int m;
+    public final s8b m0;
+    public final float n;
+    public final xlb n0;
+    public final Paint o;
+    public final gmb o0;
+    public final Paint p;
+    public final jx2 q;
+    public final Path r;
+    public int s;
+    public int t;
+    public int u;
+    public int v;
+    public int w;
+    public int x;
+    public boolean y;
+    public boolean z;
 
-    public mmb(qmb qmbVar, Context context) {
-        boolean z;
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        int i8;
-        int i9;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        TLRPC.Chat chat;
-        int i18;
-        k27 k27Var;
-        int i19;
-        int i20;
-        int i21;
-        int i22;
-        int i23;
-        int i24;
-        int i25;
-        int i26;
-        this.f = qmbVar;
-        byte b = qmbVar.b;
-        if (b == 0 && Utilities.b.nextInt(100) <= 1) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.e = z;
-        this.c = context;
-        ArrayList arrayList = new ArrayList();
-        this.d = arrayList;
-        int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        int i27 = currentTimeMillis - 3600;
-        if (b == 2) {
-            if (qmbVar.L1 >= 0) {
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                if (qmbVar.D1 instanceof krc) {
-                    tL_message.message = k96.M0(2131753744, null);
-                } else {
-                    tL_message.message = k96.M0(2131753736, null);
-                }
-                tL_message.date = currentTimeMillis - 3540;
-                tL_message.dialog_id = 1L;
-                tL_message.flags = 259;
-                tL_message.id = 1;
-                tL_message.media = new TLRPC.TL_messageMediaEmpty();
-                tL_message.out = true;
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_message.from_id = tL_peerUser;
-                i24 = ((d) qmbVar).currentAccount;
-                tL_peerUser.user_id = y6c.h(i24).e();
-                TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
-                tL_message.peer_id = tL_peerUser2;
-                i25 = ((d) qmbVar).currentAccount;
-                tL_peerUser2.user_id = y6c.h(i25).e();
-                i26 = ((d) qmbVar).currentAccount;
-                k27 k27Var2 = new k27(i26, tL_message, true, false);
-                k27Var2.T = 1L;
-                k27Var2.S1 = false;
-                arrayList.add(k27Var2);
-            }
-            TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
-            if (qmbVar.L1 < 0) {
-                chat = qmbVar.getMessagesController().K0(Long.valueOf(-qmbVar.L1));
-            } else {
-                chat = null;
-            }
-            if (chat != null) {
-                tL_message2.message = k96.M0(2131752444, null);
-                TLRPC.TL_message tL_message3 = new TLRPC.TL_message();
-                tL_message3.message = k96.M0(2131752442, null);
-                i23 = ((d) qmbVar).currentAccount;
-                k27 k27Var3 = new k27(i23, tL_message3, true, false);
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_message2.from_id = tL_peerChannel;
-                tL_peerChannel.channel_id = chat.id;
-                TLRPC.TL_peerChannel tL_peerChannel2 = new TLRPC.TL_peerChannel();
-                tL_message2.peer_id = tL_peerChannel2;
-                tL_peerChannel2.channel_id = chat.id;
-                k27Var = k27Var3;
-            } else {
-                if (qmbVar.L1 != 0) {
-                    tL_message2.message = k96.M0(2131753743, null);
-                } else if (qmbVar.D1 instanceof krc) {
-                    tL_message2.message = k96.M0(2131753745, null);
-                } else {
-                    tL_message2.message = k96.M0(2131753737, null);
-                }
-                tL_message2.from_id = new TLRPC.TL_peerUser();
-                TLRPC.TL_peerUser tL_peerUser3 = new TLRPC.TL_peerUser();
-                tL_message2.peer_id = tL_peerUser3;
-                i18 = ((d) qmbVar).currentAccount;
-                tL_peerUser3.user_id = y6c.h(i18).e();
-                k27Var = null;
-            }
-            int i28 = currentTimeMillis - 3540;
-            tL_message2.date = i28;
-            tL_message2.dialog_id = 1L;
-            tL_message2.flags = 265;
-            tL_message2.id = 1;
-            tL_message2.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message2.out = false;
-            i19 = ((d) qmbVar).currentAccount;
-            k27 k27Var4 = new k27(i19, tL_message2, k27Var, true, false);
-            if (k27Var != null) {
-                k27Var4.D0 = k96.M0(2131752443, null);
-            }
-            k27Var4.T = 1L;
-            k27Var4.S1 = false;
-            arrayList.add(k27Var4);
-            if (qmbVar.L1 != 0 && qmbVar.s0 == null) {
-                TLRPC.User V1 = qmbVar.getMessagesController().V1(Long.valueOf(qmbVar.L1));
-                TLRPC.TL_message tL_message4 = new TLRPC.TL_message();
-                tL_message4.message = "";
-                i20 = ((d) qmbVar).currentAccount;
-                k27 k27Var5 = new k27(i20, tL_message4, true, false);
-                k27Var5.T = 1L;
-                k27Var5.U = 5;
-                arrayList.add(k27Var5);
-                TLRPC.TL_message tL_message5 = new TLRPC.TL_message();
-                if (V1 != null) {
-                    tL_message5.message = k96.a0(null, null, 2131752231, l7c.k(V1, true));
-                } else {
-                    tL_message5.message = k96.M0(2131752445, null);
-                }
-                tL_message5.date = i28;
-                tL_message5.dialog_id = 1L;
-                tL_message5.flags = 265;
-                tL_message5.from_id = new TLRPC.TL_peerUser();
-                tL_message5.id = 1;
-                tL_message5.media = new TLRPC.TL_messageMediaEmpty();
-                tL_message5.out = false;
-                TLRPC.TL_peerUser tL_peerUser4 = new TLRPC.TL_peerUser();
-                tL_message5.peer_id = tL_peerUser4;
-                i21 = ((d) qmbVar).currentAccount;
-                tL_peerUser4.user_id = y6c.h(i21).e();
-                i22 = ((d) qmbVar).currentAccount;
-                k27 k27Var6 = new k27(i22, tL_message5, true, false);
-                k27Var6.T = 1L;
-                k27Var6.S1 = false;
-                k27Var6.U = 1;
-                arrayList.add(k27Var6);
-                return;
-            }
-            return;
-        }
-        boolean z2 = z;
-        if (b == 1) {
-            TLRPC.TL_message tL_message6 = new TLRPC.TL_message();
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-            tL_message6.media = tL_messageMediaDocument;
-            tL_messageMediaDocument.document = new TLRPC.TL_document();
-            TLRPC.Document document = tL_message6.media.document;
-            document.mime_type = "audio/mp3";
-            document.file_reference = new byte[0];
-            document.id = -2147483648L;
-            document.size = 2621440L;
-            document.dc_id = Integer.MIN_VALUE;
-            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = k96.M0(2131748061, null).concat(".mp3");
-            tL_message6.media.document.attributes.add(tL_documentAttributeFilename);
-            int i29 = currentTimeMillis - 3540;
-            tL_message6.date = i29;
-            tL_message6.dialog_id = 1L;
-            tL_message6.flags = 259;
-            TLRPC.TL_peerUser tL_peerUser5 = new TLRPC.TL_peerUser();
-            tL_message6.from_id = tL_peerUser5;
-            tL_peerUser5.user_id = y6c.h(y6c.t0).e();
-            tL_message6.id = 1;
-            tL_message6.out = true;
-            TLRPC.TL_peerUser tL_peerUser6 = new TLRPC.TL_peerUser();
-            tL_message6.peer_id = tL_peerUser6;
-            tL_peerUser6.user_id = 0L;
-            k27 k27Var7 = new k27(y6c.t0, tL_message6, true, false);
-            boolean z3 = w01.a;
-            TLRPC.TL_message tL_message7 = new TLRPC.TL_message();
-            String M0 = k96.M0(2131748064, null);
-            StringBuilder sb = new StringBuilder(M0);
-            int indexOf = M0.indexOf(42);
-            int lastIndexOf = M0.lastIndexOf(42);
-            if (indexOf != -1 && lastIndexOf != -1) {
-                sb.replace(lastIndexOf, lastIndexOf + 1, "");
-                sb.replace(indexOf, indexOf + 1, "");
-                TLRPC.TL_messageEntityTextUrl tL_messageEntityTextUrl = new TLRPC.TL_messageEntityTextUrl();
-                tL_messageEntityTextUrl.offset = indexOf;
-                tL_messageEntityTextUrl.length = (lastIndexOf - indexOf) - 1;
-                tL_messageEntityTextUrl.url = "https://telegram.org";
-                tL_message7.entities.add(tL_messageEntityTextUrl);
-            }
-            tL_message7.message = sb.toString();
-            tL_message7.date = currentTimeMillis - 2640;
-            tL_message7.dialog_id = 1L;
-            tL_message7.flags = 259;
-            TLRPC.TL_peerUser tL_peerUser7 = new TLRPC.TL_peerUser();
-            tL_message7.from_id = tL_peerUser7;
-            tL_peerUser7.user_id = y6c.h(y6c.t0).e();
-            tL_message7.id = 1;
-            tL_message7.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message7.out = true;
-            TLRPC.TL_peerUser tL_peerUser8 = new TLRPC.TL_peerUser();
-            tL_message7.peer_id = tL_peerUser8;
-            tL_peerUser8.user_id = 0L;
-            k27 k27Var8 = new k27(y6c.t0, tL_message7, true, false);
-            k27Var8.S1 = false;
-            k27Var8.T = 1L;
-            arrayList.add(k27Var8);
-            TLRPC.TL_message tL_message8 = new TLRPC.TL_message();
-            tL_message8.message = k96.M0(2131748065, null);
-            tL_message8.date = i29;
-            tL_message8.dialog_id = 1L;
-            tL_message8.flags = 265;
-            tL_message8.from_id = new TLRPC.TL_peerUser();
-            tL_message8.id = 1;
-            TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
-            tL_message8.reply_to = tL_messageReplyHeader;
-            tL_messageReplyHeader.flags |= 16;
-            tL_messageReplyHeader.reply_to_msg_id = 5;
-            tL_message8.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message8.out = false;
-            TLRPC.TL_peerUser tL_peerUser9 = new TLRPC.TL_peerUser();
-            tL_message8.peer_id = tL_peerUser9;
-            tL_peerUser9.user_id = y6c.h(y6c.t0).e();
-            k27 k27Var9 = new k27(y6c.t0, tL_message8, true, false);
-            k27Var9.D0 = k96.M0(2131748063, null);
-            k27Var8.D0 = "Test User";
-            k27Var9.T = 1L;
-            k27Var9.S1 = false;
-            k27Var9.C = k27Var7;
-            k27Var8.C = k27Var9;
-            arrayList.add(k27Var9);
-            arrayList.add(k27Var7);
-            TLRPC.TL_message tL_message9 = new TLRPC.TL_message();
-            tL_message9.date = currentTimeMillis - 3480;
-            tL_message9.dialog_id = 1L;
-            tL_message9.flags = 259;
-            tL_message9.out = false;
-            tL_message9.from_id = new TLRPC.TL_peerUser();
-            tL_message9.id = 1;
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument2 = new TLRPC.TL_messageMediaDocument();
-            tL_message9.media = tL_messageMediaDocument2;
-            tL_messageMediaDocument2.flags |= 3;
-            tL_messageMediaDocument2.document = new TLRPC.TL_document();
-            TLRPC.Document document2 = tL_message9.media.document;
-            document2.mime_type = "audio/ogg";
-            document2.file_reference = new byte[0];
-            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-            tL_documentAttributeAudio.flags = 1028;
-            tL_documentAttributeAudio.duration = 3.0d;
-            tL_documentAttributeAudio.voice = true;
-            tL_documentAttributeAudio.waveform = new byte[]{0, 4, 17, -50, -93, 86, -103, -45, -12, -26, 63, -25, -3, 109, -114, -54, -4, -1, -1, -1, -1, -29, -1, -1, -25, -1, -1, -97, -43, 57, -57, -108, 1, -91, -4, -47, 21, 99, 10, 97, 43, 45, 115, -112, -77, 51, -63, 66, 40, 34, -122, -116, 48, -124, 16, 66, -120, 16, 68, 16, 33, 4, 1};
-            tL_message9.media.document.attributes.add(tL_documentAttributeAudio);
-            tL_message9.out = true;
-            TLRPC.TL_peerUser tL_peerUser10 = new TLRPC.TL_peerUser();
-            tL_message9.peer_id = tL_peerUser10;
-            tL_peerUser10.user_id = 0L;
-            i17 = ((d) qmbVar).currentAccount;
-            k27 k27Var10 = new k27(i17, tL_message9, true, false);
-            k27Var10.i0 = 1;
-            k27Var10.b0 = 0.3f;
-            k27Var10.E0 = true;
-            arrayList.add(k27Var10);
-        } else if (z2) {
-            TLRPC.TL_user tL_user = new TLRPC.TL_user();
-            tL_user.id = 2147483647L;
-            tL_user.first_name = "Me";
-            TLRPC.TL_user tL_user2 = new TLRPC.TL_user();
-            tL_user2.id = 2147483646L;
-            tL_user2.first_name = "Serj";
-            ArrayList arrayList2 = new ArrayList();
-            arrayList2.add(tL_user);
-            arrayList2.add(tL_user2);
-            i13 = ((d) qmbVar).currentAccount;
-            na7.q1(i13).b4(arrayList2, true);
-            TLRPC.TL_message tL_message10 = new TLRPC.TL_message();
-            tL_message10.message = "Guess why Half-Life 3 was never released.";
-            int i30 = currentTimeMillis - 2640;
-            tL_message10.date = i30;
-            tL_message10.dialog_id = -1L;
-            tL_message10.flags = 259;
-            tL_message10.id = 2147483646;
-            tL_message10.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message10.out = false;
-            TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
-            tL_message10.peer_id = tL_peerChat;
-            tL_peerChat.chat_id = 1L;
-            TLRPC.TL_peerUser tL_peerUser11 = new TLRPC.TL_peerUser();
-            tL_message10.from_id = tL_peerUser11;
-            tL_peerUser11.user_id = tL_user2.id;
-            i14 = ((d) qmbVar).currentAccount;
-            arrayList.add(new k27(i14, tL_message10, true, false));
-            TLRPC.TL_message tL_message11 = new TLRPC.TL_message();
-            tL_message11.message = "No.\nAnd every unnecessary ping of the dev delays the release for 10 days.\nEvery request for ETA delays the release for 2 weeks.";
-            tL_message11.date = i30;
-            tL_message11.dialog_id = -1L;
-            tL_message11.flags = 259;
-            tL_message11.id = 1;
-            tL_message11.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message11.out = false;
-            TLRPC.TL_peerChat tL_peerChat2 = new TLRPC.TL_peerChat();
-            tL_message11.peer_id = tL_peerChat2;
-            tL_peerChat2.chat_id = 1L;
-            TLRPC.TL_peerUser tL_peerUser12 = new TLRPC.TL_peerUser();
-            tL_message11.from_id = tL_peerUser12;
-            tL_peerUser12.user_id = tL_user2.id;
-            i15 = ((d) qmbVar).currentAccount;
-            arrayList.add(new k27(i15, tL_message11, true, false));
-            TLRPC.TL_message tL_message12 = new TLRPC.TL_message();
-            tL_message12.message = "Is source code for Android coming anytime soon?";
-            tL_message12.date = currentTimeMillis - 3000;
-            tL_message12.dialog_id = -1L;
-            tL_message12.flags = 259;
-            tL_message12.id = 1;
-            tL_message12.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message12.out = false;
-            TLRPC.TL_peerChat tL_peerChat3 = new TLRPC.TL_peerChat();
-            tL_message12.peer_id = tL_peerChat3;
-            tL_peerChat3.chat_id = 1L;
-            TLRPC.TL_peerUser tL_peerUser13 = new TLRPC.TL_peerUser();
-            tL_message12.from_id = tL_peerUser13;
-            tL_peerUser13.user_id = tL_user.id;
-            i16 = ((d) qmbVar).currentAccount;
-            arrayList.add(new k27(i16, tL_message12, true, false));
-        } else {
-            TLRPC.TL_message tL_message13 = new TLRPC.TL_message();
-            tL_message13.message = k96.M0(2131743914, null);
-            int i31 = currentTimeMillis - 3540;
-            tL_message13.date = i31;
-            tL_message13.dialog_id = 1L;
-            tL_message13.flags = 259;
-            TLRPC.TL_peerUser tL_peerUser14 = new TLRPC.TL_peerUser();
-            tL_message13.from_id = tL_peerUser14;
-            i = ((d) qmbVar).currentAccount;
-            tL_peerUser14.user_id = y6c.h(i).e();
-            tL_message13.id = 1;
-            tL_message13.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message13.out = true;
-            TLRPC.TL_peerUser tL_peerUser15 = new TLRPC.TL_peerUser();
-            tL_message13.peer_id = tL_peerUser15;
-            tL_peerUser15.user_id = 0L;
-            i2 = ((d) qmbVar).currentAccount;
-            k27 k27Var11 = new k27(i2, tL_message13, true, false);
-            TLRPC.TL_message tL_message14 = new TLRPC.TL_message();
-            tL_message14.message = k96.M0(2131743913, null);
-            tL_message14.date = currentTimeMillis - 2640;
-            tL_message14.dialog_id = 1L;
-            tL_message14.flags = 259;
-            TLRPC.TL_peerUser tL_peerUser16 = new TLRPC.TL_peerUser();
-            tL_message14.from_id = tL_peerUser16;
-            i3 = ((d) qmbVar).currentAccount;
-            tL_peerUser16.user_id = y6c.h(i3).e();
-            tL_message14.id = 1;
-            tL_message14.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message14.out = true;
-            TLRPC.TL_peerUser tL_peerUser17 = new TLRPC.TL_peerUser();
-            tL_message14.peer_id = tL_peerUser17;
-            tL_peerUser17.user_id = 0L;
-            i4 = ((d) qmbVar).currentAccount;
-            arrayList.add(new k27(i4, tL_message14, true, false));
-            TLRPC.TL_message tL_message15 = new TLRPC.TL_message();
-            tL_message15.date = currentTimeMillis - 3470;
-            tL_message15.dialog_id = 1L;
-            tL_message15.flags = 259;
-            tL_message15.from_id = new TLRPC.TL_peerUser();
-            tL_message15.id = 5;
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument3 = new TLRPC.TL_messageMediaDocument();
-            tL_message15.media = tL_messageMediaDocument3;
-            tL_messageMediaDocument3.flags |= 3;
-            tL_messageMediaDocument3.document = new TLRPC.TL_document();
-            TLRPC.Document document3 = tL_message15.media.document;
-            document3.mime_type = "audio/mp4";
-            document3.file_reference = new byte[0];
-            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2 = new TLRPC.TL_documentAttributeAudio();
-            tL_documentAttributeAudio2.duration = 243.0d;
-            tL_documentAttributeAudio2.performer = k96.M0(2131743909, null);
-            tL_documentAttributeAudio2.title = k96.M0(2131743908, null);
-            tL_message15.media.document.attributes.add(tL_documentAttributeAudio2);
-            tL_message15.out = false;
-            TLRPC.TL_peerUser tL_peerUser18 = new TLRPC.TL_peerUser();
-            tL_message15.peer_id = tL_peerUser18;
-            i5 = ((d) qmbVar).currentAccount;
-            tL_peerUser18.user_id = y6c.h(i5).e();
-            i6 = ((d) qmbVar).currentAccount;
-            arrayList.add(new k27(i6, tL_message15, true, false));
-            TLRPC.TL_message tL_message16 = new TLRPC.TL_message();
-            tL_message16.message = k96.M0(2131743912, null);
-            tL_message16.date = i31;
-            tL_message16.dialog_id = 1L;
-            tL_message16.flags = 265;
-            tL_message16.from_id = new TLRPC.TL_peerUser();
-            tL_message16.id = 1;
-            TLRPC.TL_messageReplyHeader tL_messageReplyHeader2 = new TLRPC.TL_messageReplyHeader();
-            tL_message16.reply_to = tL_messageReplyHeader2;
-            tL_messageReplyHeader2.flags |= 16;
-            tL_messageReplyHeader2.reply_to_msg_id = 5;
-            tL_message16.media = new TLRPC.TL_messageMediaEmpty();
-            tL_message16.out = false;
-            TLRPC.TL_peerUser tL_peerUser19 = new TLRPC.TL_peerUser();
-            tL_message16.peer_id = tL_peerUser19;
-            i7 = ((d) qmbVar).currentAccount;
-            tL_peerUser19.user_id = y6c.h(i7).e();
-            i8 = ((d) qmbVar).currentAccount;
-            k27 k27Var12 = new k27(i8, tL_message16, true, false);
-            k27Var12.D0 = k96.M0(2131743911, null);
-            k27Var12.C = k27Var11;
-            arrayList.add(k27Var12);
-            TLRPC.TL_message tL_message17 = new TLRPC.TL_message();
-            tL_message17.date = currentTimeMillis - 3480;
-            tL_message17.dialog_id = 1L;
-            tL_message17.flags = 259;
-            TLRPC.TL_peerUser tL_peerUser20 = new TLRPC.TL_peerUser();
-            tL_message17.from_id = tL_peerUser20;
-            i9 = ((d) qmbVar).currentAccount;
-            tL_peerUser20.user_id = y6c.h(i9).e();
-            tL_message17.id = 1;
-            TLRPC.TL_messageMediaDocument tL_messageMediaDocument4 = new TLRPC.TL_messageMediaDocument();
-            tL_message17.media = tL_messageMediaDocument4;
-            tL_messageMediaDocument4.flags |= 3;
-            tL_messageMediaDocument4.document = new TLRPC.TL_document();
-            TLRPC.Document document4 = tL_message17.media.document;
-            document4.mime_type = "audio/ogg";
-            document4.file_reference = new byte[0];
-            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio3 = new TLRPC.TL_documentAttributeAudio();
-            tL_documentAttributeAudio3.flags = 1028;
-            tL_documentAttributeAudio3.duration = 3.0d;
-            tL_documentAttributeAudio3.voice = true;
-            tL_documentAttributeAudio3.waveform = new byte[]{0, 4, 17, -50, -93, 86, -103, -45, -12, -26, 63, -25, -3, 109, -114, -54, -4, -1, -1, -1, -1, -29, -1, -1, -25, -1, -1, -97, -43, 57, -57, -108, 1, -91, -4, -47, 21, 99, 10, 97, 43, 45, 115, -112, -77, 51, -63, 66, 40, 34, -122, -116, 48, -124, 16, 66, -120, 16, 68, 16, 33, 4, 1};
-            tL_message17.media.document.attributes.add(tL_documentAttributeAudio3);
-            tL_message17.out = true;
-            TLRPC.TL_peerUser tL_peerUser21 = new TLRPC.TL_peerUser();
-            tL_message17.peer_id = tL_peerUser21;
-            tL_peerUser21.user_id = 0L;
-            i10 = ((d) qmbVar).currentAccount;
-            k27 k27Var13 = new k27(i10, tL_message17, true, false);
-            k27Var13.i0 = 1;
-            k27Var13.b0 = 0.3f;
-            k27Var13.E0 = true;
-            arrayList.add(k27Var13);
-            arrayList.add(k27Var11);
-            TLRPC.TL_message tL_message18 = new TLRPC.TL_message();
-            tL_message18.date = currentTimeMillis - 3590;
-            tL_message18.dialog_id = 1L;
-            tL_message18.flags = 257;
-            tL_message18.from_id = new TLRPC.TL_peerUser();
-            tL_message18.id = 1;
-            TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = new TLRPC.TL_messageMediaPhoto();
-            tL_message18.media = tL_messageMediaPhoto;
-            tL_messageMediaPhoto.flags |= 3;
-            tL_messageMediaPhoto.photo = new TLRPC.TL_photo();
-            TLRPC.Photo photo = tL_message18.media.photo;
-            photo.file_reference = new byte[0];
-            photo.has_stickers = false;
-            photo.id = 1L;
-            photo.access_hash = 0L;
-            photo.date = i27;
-            TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
-            tL_photoSize.size = 0;
-            tL_photoSize.w = 500;
-            tL_photoSize.h = 302;
-            tL_photoSize.type = "s";
-            tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
-            tL_message18.media.photo.sizes.add(tL_photoSize);
-            tL_message18.message = k96.M0(2131743910, null);
-            tL_message18.out = false;
-            TLRPC.TL_peerUser tL_peerUser22 = new TLRPC.TL_peerUser();
-            tL_message18.peer_id = tL_peerUser22;
-            i11 = ((d) qmbVar).currentAccount;
-            tL_peerUser22.user_id = y6c.h(i11).e();
-            i12 = ((d) qmbVar).currentAccount;
-            k27 k27Var14 = new k27(i12, tL_message18, true, false);
-            k27Var14.E0 = true;
-            arrayList.add(k27Var14);
-        }
+    public mmb() {
+        Paint paint = new Paint(1);
+        this.o = paint;
+        this.p = new Paint(1);
+        jx2 jx2Var = new jx2();
+        this.q = jx2Var;
+        this.r = new Path();
+        this.u = -1;
+        this.v = -1;
+        this.A = new rt3(this, new ut3(this), (byte) 2);
+        this.B = new Rect();
+        this.S = new RectF();
+        this.T = new RectF();
+        this.a0 = new Object();
+        this.c0 = new OvershootInterpolator();
+        this.e0 = new xlb(this, (byte) 0);
+        this.f0 = new xlb(this, (byte) 1);
+        this.h0 = true;
+        this.k0 = null;
+        this.m0 = new s8b(this, (byte) 16);
+        this.n0 = new xlb(this, (byte) 2);
+        ?? path = new Path();
+        path.a = 0.0f;
+        path.b = new ArrayList(1);
+        path.c = 0;
+        this.o0 = path;
+        this.l = ViewConfiguration.getLongPressTimeout();
+        this.m = ViewConfiguration.get(a.b).getScaledTouchSlop();
+        float L = hl.L(6.0f);
+        this.n = L;
+        paint.setPathEffect(new CornerPathEffect(L));
+        jx2Var.d = 1.0f;
     }
 
-    @Override
-    public final boolean D(s49 s49Var) {
-        return false;
-    }
-
-    public final boolean E() {
-        qmb qmbVar = this.f;
-        byte b = qmbVar.b;
-        if (qmbVar.B0 == null || b != 1 || qmbVar.n != 3 || qmbVar.w.g == 0) {
-            if (qmbVar.A0 != null) {
-                if (b != 2 && (b != 1 || qmbVar.n != 2)) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    public static boolean x(char c) {
+        if (!Character.isLetter(c) && !Character.isDigit(c) && c != '_') {
+            return false;
         }
         return true;
     }
 
-    @Override
-    public final int b() {
-        int size = this.d.size();
-        if (E()) {
-            return size + 1;
+    public final int[] A(int i) {
+        dj2 dj2Var = this.a0;
+        h(i, dj2Var, false);
+        Layout layout = (Layout) dj2Var.d;
+        int i2 = i - dj2Var.a;
+        int[] iArr = this.h;
+        if (layout != null && i2 >= 0 && i2 <= layout.getText().length()) {
+            int lineForOffset = layout.getLineForOffset(i2);
+            iArr[0] = (int) (layout.getPrimaryHorizontal(i2) + dj2Var.c);
+            int lineBottom = layout.getLineBottom(lineForOffset);
+            iArr[1] = lineBottom;
+            iArr[1] = (int) (lineBottom + dj2Var.b);
         }
-        return size;
+        return iArr;
     }
 
-    @Override
-    public final int d(int i) {
-        if (E()) {
-            if (i == 0) {
-                if (this.f.n == 3) {
-                    return 3;
-                }
-                return 2;
-            }
-            i--;
-        }
-        if (i >= 0) {
-            ArrayList arrayList = this.d;
-            if (i < arrayList.size()) {
-                return ((k27) arrayList.get(i)).U;
-            }
-            return 4;
-        }
-        return 4;
+    public boolean B() {
+        return false;
     }
 
-    @Override
-    public final void t(s49 s49Var, int i) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        int i2 = s49Var.f;
-        if (i2 != 2 && i2 != 3) {
-            if (E()) {
-                i--;
-            }
-            ArrayList arrayList = this.d;
-            k27 k27Var = (k27) arrayList.get(i);
-            View view = s49Var.a;
-            boolean z4 = view instanceof gb2;
-            qmb qmbVar = this.f;
-            if (z4) {
-                gb2 gb2Var = (gb2) view;
-                boolean z5 = false;
-                gb2Var.f6 = false;
-                int i3 = i - 1;
-                int d = d(i3);
-                int i4 = i + 1;
-                int d2 = d(i4);
-                if (!(k27Var.k.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && d == s49Var.f) {
-                    k27 k27Var2 = (k27) arrayList.get(i3);
-                    if (k27Var2.O3() == k27Var.O3() && Math.abs(k27Var2.k.date - k27Var.k.date) <= 300) {
-                        z = true;
-                        if (d2 != s49Var.f && i4 < arrayList.size()) {
-                            k27 k27Var3 = (k27) arrayList.get(i4);
-                            if (!(k27Var3.k.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && k27Var3.O3() == k27Var.O3() && Math.abs(k27Var3.k.date - k27Var.k.date) <= 300) {
-                                z3 = true;
-                            } else {
-                                z3 = false;
-                            }
-                            z2 = z3;
-                        } else {
-                            z2 = false;
-                        }
-                        if (!this.e || qmbVar.L1 < 0) {
-                            z5 = true;
-                        }
-                        gb2Var.f6 = z5;
-                        gb2Var.setFullyDraw(true);
-                        gb2Var.z3(k27Var, null, z, z2, false, false);
+    public final void F() {
+        lmb lmbVar;
+        if (w() && (lmbVar = this.C) != null) {
+            this.Q = true;
+            lmbVar.invalidate();
+            t();
+        }
+    }
+
+    public boolean I() {
+        return false;
+    }
+
+    public void K(hmb hmbVar, hmb hmbVar2) {
+        imb imbVar = (imb) hmbVar;
+        imb imbVar2 = (imb) hmbVar2;
+    }
+
+    public final boolean L(MotionEvent motionEvent) {
+        mmb mmbVar;
+        int action = motionEvent.getAction();
+        xlb xlbVar = this.f0;
+        if (action != 0) {
+            if (action != 1) {
+                if (action != 2) {
+                    if (action != 3) {
+                        return false;
                     }
-                }
-                z = false;
-                if (d2 != s49Var.f) {
-                }
-                z2 = false;
-                if (!this.e) {
-                }
-                z5 = true;
-                gb2Var.f6 = z5;
-                gb2Var.setFullyDraw(true);
-                gb2Var.z3(k27Var, null, z, z2, false, false);
-            } else if (view instanceof uk1) {
-                uk1 uk1Var = (uk1) view;
-                uk1Var.setMessageObject(k27Var);
-                uk1Var.setAlpha(1.0f);
-                qmbVar.W0();
-            }
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        ar8 ar8Var;
-        gb2 gb2Var;
-        int i2;
-        qmb qmbVar = this.f;
-        if (i == 0) {
-            i2 = ((d) qmbVar).currentAccount;
-            gb2 gb2Var2 = new gb2(this.c, i2, false, null, new fd(this, (byte) 4));
-            gb2Var2.setDelegate(new i2f((byte) 27));
-            gb2Var = gb2Var2;
-        } else {
-            Context context = this.c;
-            if (i == 1) {
-                uk1 uk1Var = new uk1(qmbVar.a, context, false);
-                uk1Var.setDelegate(new o5f((byte) 27));
-                gb2Var = uk1Var;
-            } else {
-                if (i == 2) {
-                    if (qmbVar.A0.getParent() != null) {
-                        ((ViewGroup) qmbVar.A0.getParent()).removeView(qmbVar.A0);
-                    }
-                    ar8Var = new ar8(context, (byte) 14);
-                    ar8Var.addView(qmbVar.A0, nme.e(-1, 76, 17));
-                } else if (i == 5) {
-                    gb2Var = new d62(qmbVar.getParentActivity(), (byte) 28);
                 } else {
-                    if (qmbVar.B0.getParent() != null) {
-                        ((ViewGroup) qmbVar.B0.getParent()).removeView(qmbVar.B0);
+                    int y = this.t - ((int) motionEvent.getY());
+                    int x = this.s - ((int) motionEvent.getX());
+                    int i = (x * x) + (y * y);
+                    int i2 = this.m;
+                    if (i > i2 * i2) {
+                        hl.r(xlbVar);
+                        this.z = false;
                     }
-                    ar8Var = new ar8(context, (byte) 15);
-                    ar8Var.addView(qmbVar.B0, nme.e(-1, 76, 17));
+                    return this.z;
                 }
-                gb2Var = ar8Var;
+            }
+            hl.r(xlbVar);
+            this.z = false;
+            return false;
+        }
+        this.s = (int) motionEvent.getX();
+        this.t = (int) motionEvent.getY();
+        this.z = false;
+        Rect rect = this.B;
+        rect.inset(-hl.L(8.0f), -hl.L(8.0f));
+        if (rect.contains(this.s, this.t) && this.X != null) {
+            rect.inset(hl.L(8.0f), hl.L(8.0f));
+            int i3 = this.s;
+            int i4 = this.t;
+            int i5 = rect.right;
+            if (i3 > i5) {
+                i3 = i5 - 1;
+            }
+            int i6 = rect.left;
+            if (i3 < i6) {
+                i3 = i6 + 1;
+            }
+            int i7 = i3;
+            int i8 = rect.top;
+            if (i4 < i8) {
+                i4 = i8 + 1;
+            }
+            int i9 = rect.bottom;
+            if (i4 > i9) {
+                i4 = i9 - 1;
+            }
+            mmbVar = this;
+            int j = mmbVar.j(i7, i4, this.c, this.d, this.X, true);
+            CharSequence r = mmbVar.r(mmbVar.X, true);
+            if (j >= r.length()) {
+                dj2 dj2Var = mmbVar.a0;
+                mmbVar.h(j, dj2Var, true);
+                Layout layout = (Layout) dj2Var.d;
+                if (layout == null) {
+                    mmbVar.z = false;
+                    return false;
+                }
+                int lineCount = layout.getLineCount() - 1;
+                float f = i7 - mmbVar.c;
+                if (f < ((Layout) dj2Var.d).getLineRight(lineCount) + hl.L(4.0f) && f > ((Layout) dj2Var.d).getLineLeft(lineCount)) {
+                    j = r.length() - 1;
+                }
+            }
+            if (j >= 0 && j < r.length() && r.charAt(j) != '\n') {
+                hl.r(xlbVar);
+                hl.d3(xlbVar, mmbVar.l);
+                mmbVar.z = true;
+            }
+        } else {
+            mmbVar = this;
+        }
+        return mmbVar.z;
+    }
+
+    public boolean O(int i, int i2) {
+        return false;
+    }
+
+    public final void P() {
+        this.i0 = true;
+    }
+
+    public final void Q(ViewGroup viewGroup) {
+        if (viewGroup instanceof d79) {
+            this.E = (d79) viewGroup;
+        }
+        this.F = viewGroup;
+    }
+
+    public final void R() {
+        if (this.C != null && !this.i && w() && c()) {
+            if (!this.P) {
+                cl4 cl4Var = this.Y;
+                rt3 rt3Var = this.A;
+                if (cl4Var == null) {
+                    cl4 cl4Var2 = new cl4(this.C.getContext(), rt3Var, this.C, new lm4(this.C.getContext(), this.C, 1, p(), null));
+                    this.Y = cl4Var2;
+                    rt3Var.onCreateActionMode(cl4Var2, cl4Var2.c);
+                }
+                cl4 cl4Var3 = this.Y;
+                rt3Var.onPrepareActionMode(cl4Var3, cl4Var3.c);
+                this.Y.hide(1L);
+            }
+            hl.r(this.n0);
+            this.P = true;
+        }
+    }
+
+    public final void S() {
+        if (this.V != 1.0f && this.C != null) {
+            ValueAnimator valueAnimator = this.l0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.V, 1.0f);
+            this.l0 = ofFloat;
+            ofFloat.addUpdateListener(new ija(this, (byte) 22));
+            this.l0.setDuration(Math.abs(1.0f - this.V) * 250.0f);
+            this.l0.start();
+        }
+    }
+
+    public final void T(int i) {
+        int i2;
+        int lineRight;
+        int lineLeft;
+        if (Build.VERSION.SDK_INT >= 28 && this.W != null && !this.k && this.i && this.C != null) {
+            if (this.j) {
+                i2 = this.u;
+            } else {
+                i2 = this.v;
+            }
+            dj2 dj2Var = this.a0;
+            h(i2, dj2Var, false);
+            Layout layout = (Layout) dj2Var.d;
+            if (layout != null) {
+                int lineForOffset = layout.getLineForOffset(Utilities.j(i2 - dj2Var.a, layout.getText().length(), 0));
+                int lineBottom = layout.getLineBottom(lineForOffset) - layout.getLineTop(lineForOffset);
+                int[] k = k();
+                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + this.b) + k[1]) - lineBottom) - hl.L(8.0f)) + dj2Var.b);
+                hmb hmbVar = this.W;
+                if (hmbVar instanceof vv) {
+                    lineLeft = k[0];
+                    lineRight = ((View) hmbVar).getMeasuredWidth() + lineLeft;
+                } else {
+                    float f = k[0] + this.a + dj2Var.c;
+                    lineRight = (int) (layout.getLineRight(lineForOffset) + k[0] + this.a + dj2Var.c);
+                    lineLeft = (int) (layout.getLineLeft(lineForOffset) + f);
+                }
+                if (i < lineLeft) {
+                    i = lineLeft;
+                } else if (i > lineRight) {
+                    i = lineRight;
+                }
+                float f2 = this.I;
+                float f3 = lineTop;
+                if (f2 != f3) {
+                    this.I = f3;
+                    this.J = (f3 - this.H) / 200.0f;
+                    f2 = f3;
+                }
+                float f4 = this.L;
+                float f5 = i;
+                if (f4 != f5) {
+                    this.L = f5;
+                    this.M = (f5 - this.K) / 100.0f;
+                    f4 = f5;
+                }
+                Magnifier magnifier = this.G;
+                if (magnifier == null) {
+                    Magnifier magnifier2 = new Magnifier(this.C);
+                    this.G = magnifier2;
+                    float f6 = this.I;
+                    this.H = f6;
+                    f4 = this.L;
+                    this.K = f4;
+                    f2 = f6;
+                    magnifier = magnifier2;
+                }
+                float f7 = this.H;
+                if (f7 != f2) {
+                    f7 += this.J * 16.0f;
+                    this.H = f7;
+                }
+                float f8 = this.J;
+                if (f8 > 0.0f && f7 > f2) {
+                    this.H = f2;
+                } else if (f8 < 0.0f && f7 < f2) {
+                    this.H = f2;
+                } else {
+                    f2 = f7;
+                }
+                float f9 = this.K;
+                if (f9 != f4) {
+                    f9 += this.M * 16.0f;
+                    this.K = f9;
+                }
+                float f10 = this.M;
+                if (f10 > 0.0f && f9 > f4) {
+                    this.K = f4;
+                } else if (f10 < 0.0f && f9 < f4) {
+                    this.K = f4;
+                } else {
+                    f4 = f9;
+                }
+                magnifier.show(f4, (lineBottom * 1.5f) + f2 + hl.L(8.0f));
+                this.G.update();
             }
         }
-        return ls6.h(gb2Var, gb2Var, -1, -2);
+    }
+
+    public final void U() {
+        this.Q = false;
+        this.C.invalidate();
+        s8b s8bVar = this.m0;
+        hl.r(s8bVar);
+        hl.c3(s8bVar);
+    }
+
+    public boolean a() {
+        return true;
+    }
+
+    public boolean b(int i) {
+        if (i != this.u && i != this.v) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean c() {
+        if (this.W != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean d() {
+        return false;
+    }
+
+    public void e(boolean z) {
+        D(z);
+        this.u = -1;
+        this.v = -1;
+        u();
+        t();
+        v();
+        this.W = null;
+        this.w = 0;
+        hl.r(this.f0);
+        this.z = false;
+        lmb lmbVar = this.C;
+        if (lmbVar != null) {
+            lmbVar.setVisibility(8);
+            this.C.c();
+        }
+        this.V = 0.0f;
+        b0f b0fVar = this.D;
+        if (b0fVar != null) {
+            b0fVar.a(false);
+        }
+        this.s = -1;
+        this.t = -1;
+        this.c = -1;
+        this.d = -1;
+        this.f = 0.0f;
+        this.g = 0.0f;
+        this.i = false;
+    }
+
+    public final void f(Layout layout, int i, int i2, int i3, boolean z, boolean z2, float f) {
+        float f2;
+        float f3;
+        int i4;
+        jx2 jx2Var;
+        float f4;
+        float f5;
+        float f6;
+        int lineTop;
+        gmb gmbVar = this.o0;
+        gmbVar.reset();
+        layout.getSelectionPath(i2, i3, gmbVar);
+        if (gmbVar.a < layout.getLineBottom(i)) {
+            f3 = layout.getLineTop(i);
+            f2 = (layout.getLineBottom(i) - lineTop) / (gmbVar.a - f3);
+        } else {
+            f2 = 1.0f;
+            f3 = 0.0f;
+        }
+        int i5 = 0;
+        while (true) {
+            i4 = gmbVar.c;
+            jx2Var = this.q;
+            f4 = this.n;
+            if (i5 >= i4) {
+                break;
+            }
+            RectF rectF = (RectF) gmbVar.b.get(i5);
+            float max = Math.max(f, rectF.left);
+            if (z) {
+                f5 = f4 / 2.0f;
+            } else {
+                f5 = 0.0f;
+            }
+            float f7 = (int) (max - f5);
+            float A = (int) qd4.A(rectF.top, f3, f2, f3);
+            float max2 = Math.max(f, rectF.right);
+            if (z2) {
+                f6 = f4 / 2.0f;
+            } else {
+                f6 = 0.0f;
+            }
+            rectF.set(f7, A, (int) (max2 + f6), (int) qd4.A(rectF.bottom, f3, f2, f3));
+            jx2Var.addRect(rectF, Path.Direction.CW);
+            i5++;
+        }
+        if (i4 == 0 && !z2) {
+            try {
+                jx2Var.addRect(((int) layout.getPrimaryHorizontal(i2)) - (f4 / 2.0f), layout.getLineTop(i), (f4 / 4.0f) + ((int) layout.getPrimaryHorizontal(i3)), layout.getLineBottom(i), Path.Direction.CW);
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        }
+    }
+
+    public final void g(android.graphics.Canvas r21, android.text.Layout r22, int r23, int r24, boolean r25, boolean r26, float r27) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mmb.g(android.graphics.Canvas, android.text.Layout, int, int, boolean, boolean, float):void");
+    }
+
+    public abstract void h(int i, dj2 dj2Var, boolean z);
+
+    public boolean i() {
+        return false;
+    }
+
+    public abstract int j(int i, int i2, int i3, int i4, hmb hmbVar, boolean z);
+
+    public final int[] k() {
+        int i;
+        View view = (View) this.W;
+        int i2 = 0;
+        if (view != null && this.F != null) {
+            i = 0;
+            int i3 = 0;
+            while (view != this.F) {
+                if (view != null) {
+                    i = (int) (view.getY() + i);
+                    i3 = (int) (view.getX() + i3);
+                    if (view instanceof NestedScrollView) {
+                        i -= view.getScrollY();
+                        i3 -= view.getScrollX();
+                    }
+                    if (view.getParent() instanceof View) {
+                        view = (View) view.getParent();
+                    }
+                }
+            }
+            i2 = i3;
+            return new int[]{i2, i};
+        }
+        i = 0;
+        return new int[]{i2, i};
+    }
+
+    public abstract int l();
+
+    public final lmb m(Context context) {
+        lmb lmbVar = this.C;
+        if (lmbVar == null) {
+            lmb lmbVar2 = new lmb(this, context);
+            this.C = lmbVar2;
+            return lmbVar2;
+        }
+        return lmbVar;
+    }
+
+    public int n() {
+        return 0;
+    }
+
+    public int o() {
+        return 0;
+    }
+
+    public vnb p() {
+        return this.g0;
+    }
+
+    public CharSequence q() {
+        CharSequence r = r(this.W, false);
+        if (r != null) {
+            return r.subSequence(this.u, this.v);
+        }
+        return null;
+    }
+
+    public CharSequence r(hmb hmbVar, boolean z) {
+        return ((imb) hmbVar).getText();
+    }
+
+    public int s(int i) {
+        return aob.v0(i, this.g0);
+    }
+
+    public final void t() {
+        cl4 cl4Var;
+        if (this.Y != null && this.P) {
+            this.P = false;
+            this.n0.run();
+        }
+        this.P = false;
+        if (!w() && (cl4Var = this.Y) != null) {
+            cl4Var.finish();
+            this.Y = null;
+        }
+    }
+
+    public final void u() {
+        Magnifier magnifier;
+        if (Build.VERSION.SDK_INT >= 28 && (magnifier = this.G) != null) {
+            magnifier.dismiss();
+            this.G = null;
+        }
+    }
+
+    public void v() {
+        hmb hmbVar = this.W;
+        if (hmbVar != null) {
+            hmbVar.invalidate();
+        }
+        lmb lmbVar = this.C;
+        if (lmbVar != null) {
+            lmbVar.invalidate();
+        }
+    }
+
+    public final boolean w() {
+        if (this.u >= 0 && this.v >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean y(r47 r47Var) {
+        if (r47Var == null || this.w != r47Var.e1()) {
+            return false;
+        }
+        return true;
+    }
+
+    public void z(int i, int i2, boolean z, float f, float f2, hmb hmbVar) {
+        int i3;
+        int i4;
+        if (this.j) {
+            this.u = i2;
+            if (!z && i2 > (i4 = this.v)) {
+                this.v = i2;
+                this.u = i4;
+                this.j = false;
+            }
+            this.y = true;
+            return;
+        }
+        this.v = i2;
+        if (!z && (i3 = this.u) > i2) {
+            this.v = i3;
+            this.u = i2;
+            this.j = true;
+        }
+        this.y = true;
+    }
+
+    public void C() {
+    }
+
+    public void E() {
+    }
+
+    public void G() {
+    }
+
+    public void M() {
+    }
+
+    public void N() {
+    }
+
+    public void D(boolean z) {
+    }
+
+    public void J(float f, float f2) {
+    }
+
+    public void H(int i, int i2, r47 r47Var) {
     }
 }

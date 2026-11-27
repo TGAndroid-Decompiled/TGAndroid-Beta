@@ -1,28 +1,34 @@
 package defpackage;
-
-import android.text.TextPaint;
-public final class wb1 implements rmc {
+public final class wb1 implements pcc {
     public final byte a;
-    public final TextPaint b;
+    public final hbb b;
 
-    public wb1(TextPaint textPaint, byte b) {
+    public wb1(hbb hbbVar, byte b) {
         this.a = b;
-        this.b = textPaint;
+        this.b = hbbVar;
     }
 
     @Override
-    public final void a(float f, float f2, int i) {
-        this.b.setShadowLayer(f, 0.0f, f2, i);
-    }
-
-    public final float b(CharSequence charSequence) {
+    public final void a(Object obj) {
         byte b = this.a;
-        TextPaint textPaint = this.b;
+        hbb hbbVar = this.b;
+        Integer num = (Integer) obj;
         switch (b) {
             case 0:
-                return textPaint.measureText(charSequence, 0, charSequence.length());
+                hbbVar.setPeriod(num.intValue());
+                pcc pccVar = hbbVar.B1;
+                if (pccVar != null) {
+                    pccVar.a(num);
+                    return;
+                }
+                return;
             default:
-                return textPaint.measureText(charSequence, 0, charSequence.length());
+                pcc pccVar2 = hbbVar.C1;
+                if (pccVar2 != null) {
+                    pccVar2.a(num);
+                    return;
+                }
+                return;
         }
     }
 }

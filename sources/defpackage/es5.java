@@ -1,85 +1,138 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
+import android.content.Context;
 import android.view.View;
-public final class es5 implements Animator.AnimatorListener {
-    public final int E;
-    public final s49 F;
-    public final is5 G;
-    public final float a;
-    public final float b;
-    public final float c;
-    public final float d;
-    public final s49 e;
-    public final byte f;
-    public final ValueAnimator h;
-    public boolean n;
-    public float r;
-    public float s;
-    public boolean w = false;
-    public boolean x = false;
-    public float y;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.Timer;
+public final class es5 extends c79 {
+    public final Context c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public Timer f;
+    public boolean h;
+    public final hs5 n;
 
-    public es5(is5 is5Var, s49 s49Var, int i, float f, float f2, float f3, float f4, int i2, s49 s49Var2) {
-        this.G = is5Var;
-        this.E = i2;
-        this.F = s49Var2;
-        this.f = i;
-        this.e = s49Var;
-        this.a = f;
-        this.b = f2;
-        this.c = f3;
-        this.d = f4;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.h = ofFloat;
-        ofFloat.addUpdateListener(new ae0(this, (byte) 7));
-        ofFloat.setTarget(s49Var.a);
-        ofFloat.addListener(this);
-        this.y = 0.0f;
+    public es5(hs5 hs5Var, Context context) {
+        this.n = hs5Var;
+        this.c = context;
     }
 
-    public final void a(Animator animator) {
-        if (!this.x) {
-            this.e.q(true);
+    @Override
+    public final void A(f89 f89Var) {
+        View view = f89Var.a;
+        if (view instanceof mt5) {
+            ((mt5) view).a.getImageReceiver().c();
         }
-        this.x = true;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.y = 1.0f;
+    public final boolean D(f89 f89Var) {
+        if (f89Var.f != 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void E(String str) {
+        try {
+            Timer timer = this.f;
+            if (timer != null) {
+                timer.cancel();
+            }
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
+        if (str == null) {
+            this.d.clear();
+            this.e.clear();
+            f();
+            return;
+        }
+        Timer timer2 = new Timer();
+        this.f = timer2;
+        timer2.schedule(new iy2(this, str, (byte) 1), 200L, 300L);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        a(animator);
-        if (!this.w) {
-            int i = this.E;
-            s49 s49Var = this.F;
-            is5 is5Var = this.G;
-            if (i <= 0) {
-                is5Var.y.a(is5Var.I, s49Var);
+    public final int b() {
+        if (this.h) {
+            return this.d.size();
+        }
+        return this.n.w.size() + 2;
+    }
+
+    @Override
+    public final int d(int i) {
+        if (!this.h) {
+            if (i == 0) {
+                return 1;
+            }
+            if (i == 1) {
+                return 2;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void f() {
+        int i;
+        super.f();
+        hs5 hs5Var = this.n;
+        es5 es5Var = hs5Var.s;
+        if (es5Var != null && !hs5Var.y) {
+            int b = es5Var.b();
+            z2b z2bVar = hs5Var.r;
+            if (b == 2) {
+                i = 0;
             } else {
-                is5Var.a.add(s49Var.a);
-                this.n = true;
-                if (i > 0) {
-                    is5Var.I.post(new tq4(is5Var, this, i));
-                }
+                i = 4;
             }
-            View view = is5Var.N;
-            View view2 = s49Var.a;
-            if (view == view2 && view2 == view) {
-                is5Var.N = null;
+            z2bVar.setVisibility(i);
+        }
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        iv2 iv2Var;
+        CharSequence charSequence;
+        if (f89Var.f == 0) {
+            mt5 mt5Var = (mt5) f89Var.a;
+            boolean z = this.h;
+            hs5 hs5Var = this.n;
+            if (z) {
+                iv2Var = (iv2) this.d.get(i);
+                charSequence = (CharSequence) this.e.get(i);
+            } else {
+                iv2Var = (iv2) hs5Var.w.get(i - 2);
+                charSequence = null;
+            }
+            mt5Var.a(iv2Var, charSequence);
+            boolean containsKey = hs5Var.E.containsKey(iv2Var.b);
+            og2 og2Var = mt5Var.e;
+            if (og2Var != null) {
+                og2Var.a(containsKey, false);
             }
         }
     }
 
     @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
+    public final f89 x(ViewGroup viewGroup, int i) {
+        skb skbVar;
+        Context context = this.c;
+        if (i == 1) {
+            skb skbVar2 = new skb(context);
+            int i2 = aob.G6;
+            skbVar2.g(i2, i2);
+            skbVar2.u(ob6.M0(2131745155, null), "", false, 2131232370, false);
+            skbVar = skbVar2;
+        } else if (i == 2) {
+            skbVar = new rca(context, (uh9) null);
+        } else {
+            skbVar = new mt5(context, true);
+        }
+        return new f89(skbVar);
     }
 }

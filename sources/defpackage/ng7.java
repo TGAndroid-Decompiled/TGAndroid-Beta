@@ -1,53 +1,75 @@
 package defpackage;
 
-import androidx.datastore.core.NativeSharedCounter;
-public final class ng7 extends ccb implements eq4 {
-    public final byte a;
-    public final rg7 b;
+import android.util.Pair;
+public final class ng7 implements ez9 {
+    public final long[] a;
+    public final long[] b;
+    public final long c;
 
-    public ng7(rg7 rg7Var, fw2 fw2Var, byte b) {
-        super(2, fw2Var);
-        this.a = b;
-        this.b = rg7Var;
+    public ng7(long j, long[] jArr, long[] jArr2) {
+        this.a = jArr;
+        this.b = jArr2;
+        this.c = j == -9223372036854775807L ? gcc.T(jArr2[jArr2.length - 1]) : j;
+    }
+
+    public static Pair i(long j, long[] jArr, long[] jArr2) {
+        double d;
+        int f = gcc.f(jArr, j, true);
+        long j2 = jArr[f];
+        long j3 = jArr2[f];
+        int i = f + 1;
+        if (i == jArr.length) {
+            return Pair.create(Long.valueOf(j2), Long.valueOf(j3));
+        }
+        long j4 = jArr[i];
+        long j5 = jArr2[i];
+        if (j4 == j2) {
+            d = 0.0d;
+        } else {
+            d = (j - j2) / (j4 - j2);
+        }
+        return Pair.create(Long.valueOf(j), Long.valueOf(((long) (d * (j5 - j3))) + j3));
     }
 
     @Override
-    public final fw2 create(Object obj, fw2 fw2Var) {
-        byte b = this.a;
-        rg7 rg7Var = this.b;
-        switch (b) {
-            case 0:
-                return new ng7(rg7Var, fw2Var, (byte) 0);
-            default:
-                return new ng7(rg7Var, fw2Var, (byte) 1);
-        }
+    public final long a() {
+        return -1L;
     }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        byte b = this.a;
-        g5c g5cVar = g5c.a;
-        ax2 ax2Var = (ax2) obj;
-        fw2 fw2Var = (fw2) obj2;
-        switch (b) {
-            case 0:
-                return ((ng7) create(ax2Var, fw2Var)).invokeSuspend(g5cVar);
-            default:
-                return ((ng7) create(ax2Var, fw2Var)).invokeSuspend(g5cVar);
-        }
+    public final long b() {
+        return 0L;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        byte b = this.a;
-        NativeSharedCounter nativeSharedCounter = hba.b;
-        rg7 rg7Var = this.b;
-        qse.b(obj);
-        switch (b) {
-            case 0:
-                return new Integer(nativeSharedCounter.nativeGetCounterValue(((hba) rg7Var.i.getValue()).a));
-            default:
-                return new Integer(nativeSharedCounter.nativeIncrementAndGetCounterValue(((hba) rg7Var.i.getValue()).a));
-        }
+    public final boolean c() {
+        return true;
+    }
+
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final yy9 e(long j) {
+        Pair i = i(gcc.i0(gcc.j(j, 0L, this.c)), this.b, this.a);
+        bz9 bz9Var = new bz9(gcc.T(((Long) i.first).longValue()), ((Long) i.second).longValue());
+        return new yy9(bz9Var, bz9Var);
+    }
+
+    @Override
+    public final long f(long j) {
+        return gcc.T(((Long) i(j, this.a, this.b).second).longValue());
+    }
+
+    @Override
+    public final int g() {
+        return -2147483647;
+    }
+
+    @Override
+    public final long h() {
+        return this.c;
     }
 }

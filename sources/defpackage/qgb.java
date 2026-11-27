@@ -1,43 +1,78 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class qgb implements ed {
-    public final byte a;
-    public final sgb b;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Build;
+import android.util.Log;
+import com.google.firebase.messaging.FirebaseMessaging;
+public final class qgb extends BroadcastReceiver {
+    public final byte a = 0;
+    public Context b;
+    public Object c;
 
-    public qgb(sgb sgbVar, byte b) {
-        this.a = b;
-        this.b = sgbVar;
+    public qgb(p3f p3fVar) {
+        this.c = p3fVar;
+    }
+
+    public final void a() {
+        if (Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3))) {
+            Log.d("FirebaseMessaging", "Connectivity change received registered");
+        }
+        IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        pr0 pr0Var = (pr0) this.c;
+        if (pr0Var != null) {
+            Context context = ((FirebaseMessaging) pr0Var.d).b;
+            this.b = context;
+            context.registerReceiver(this, intentFilter);
+        }
+    }
+
+    public final synchronized void b() {
+        Context context = this.b;
+        if (context != null) {
+            context.unregisterReceiver(this);
+        }
+        this.b = null;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        sgb sgbVar = this.b;
-        switch (b) {
+    public final void onReceive(Context context, Intent intent) {
+        String str = null;
+        switch (this.a) {
             case 0:
-                sgbVar.a();
-                return;
-            case 1:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(sgbVar.getContext());
-                String M0 = k96.M0(2131743737, null);
-                hd hdVar2 = alertDialog$Builder.a;
-                hdVar2.U = M0;
-                hdVar2.S = k96.M0(2131689472, null);
-                alertDialog$Builder.j(k96.M0(2131751640, null), new qgb(sgbVar, (byte) 2));
-                alertDialog$Builder.g(k96.M0(2131752577, null), null);
-                alertDialog$Builder.o();
+                pr0 pr0Var = (pr0) this.c;
+                if (pr0Var != null && pr0Var.a()) {
+                    if (Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3))) {
+                        Log.d("FirebaseMessaging", "Connectivity changed. Starting background sync.");
+                    }
+                    pr0 pr0Var2 = (pr0) this.c;
+                    Object obj = pr0Var2.d;
+                    FirebaseMessaging.b(pr0Var2, 0L);
+                    Context context2 = this.b;
+                    if (context2 != null) {
+                        context2.unregisterReceiver(this);
+                    }
+                    this.c = null;
+                    return;
+                }
                 return;
             default:
-                hd hdVar3 = new hd(3, null, sgbVar.getContext());
-                hdVar3.j0 = false;
-                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
-                deleteaccount.reason = "Decline ToS update";
-                ConnectionsManager.getInstance(sgbVar.d).sendRequest(deleteaccount, new apa(sgbVar, hdVar3, (byte) 11));
-                hdVar3.show();
+                Uri data = intent.getData();
+                if (data != null) {
+                    str = data.getSchemeSpecificPart();
+                }
+                if ("com.google.android.gms".equals(str)) {
+                    ((p3f) this.c).a();
+                    b();
+                    return;
+                }
                 return;
         }
+    }
+
+    public qgb() {
     }
 }

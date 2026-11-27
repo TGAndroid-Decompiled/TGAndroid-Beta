@@ -1,13 +1,18 @@
 package defpackage;
 public final class x90 {
     public final String a;
-    public final long b;
-    public final long c;
+    public final String b;
+    public final String c;
 
-    public x90(long j, String str, long j2) {
-        this.a = str;
-        this.b = j;
-        this.c = j2;
+    public x90(String str, String str2, String str3) {
+        if (str != null) {
+            this.a = str;
+            this.b = str2;
+            this.c = str3;
+            return;
+        }
+        p3d.h("Null crashlyticsInstallId");
+        throw null;
     }
 
     public final boolean equals(Object obj) {
@@ -16,25 +21,45 @@ public final class x90 {
         }
         if (obj instanceof x90) {
             x90 x90Var = (x90) obj;
-            if (this.a.equals(x90Var.a) && this.b == x90Var.b && this.c == x90Var.c) {
-                return true;
+            if (this.a.equals(x90Var.a)) {
+                String str = x90Var.b;
+                String str2 = this.b;
+                if (str2 != null ? str2.equals(str) : str == null) {
+                    String str3 = x90Var.c;
+                    String str4 = this.c;
+                    if (str4 != null ? str4.equals(str3) : str3 == null) {
+                        return true;
+                    }
+                }
             }
         }
         return false;
     }
 
     public final int hashCode() {
-        long j = this.b;
-        long j2 = this.c;
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2));
+        int hashCode;
+        int hashCode2 = (this.a.hashCode() ^ 1000003) * 1000003;
+        int i = 0;
+        String str = this.b;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
+        }
+        int i2 = (hashCode2 ^ hashCode) * 1000003;
+        String str2 = this.c;
+        if (str2 != null) {
+            i = str2.hashCode();
+        }
+        return i2 ^ i;
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("InstallationTokenResult{token=");
+        StringBuilder sb = new StringBuilder("InstallIds{crashlyticsInstallId=");
         sb.append(this.a);
-        sb.append(", tokenExpirationTimestamp=");
+        sb.append(", firebaseInstallationId=");
         sb.append(this.b);
-        sb.append(", tokenCreationTimestamp=");
-        return ls6.p(sb, this.c, "}");
+        sb.append(", firebaseAuthenticationToken=");
+        return c00.k(sb, this.c, "}");
     }
 }

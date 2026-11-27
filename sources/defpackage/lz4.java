@@ -1,32 +1,30 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class lz4 implements Runnable {
-    public final byte a;
-    public final d b;
-    public final TwoStepVerificationActivity c;
+import j$.util.Objects;
+public final class lz4 {
+    public final boolean a;
+    public final boolean b;
 
-    public lz4(d dVar, TwoStepVerificationActivity twoStepVerificationActivity, byte b) {
-        this.a = b;
-        this.b = dVar;
-        this.c = twoStepVerificationActivity;
+    public lz4(boolean z, boolean z2) {
+        this.a = z;
+        this.b = z2;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        TwoStepVerificationActivity twoStepVerificationActivity = this.c;
-        d dVar = this.b;
-        switch (b) {
-            case 0:
-                dVar.presentFragment(twoStepVerificationActivity);
-                return;
-            default:
-                ?? obj = new Object();
-                obj.a = true;
-                dVar.showAsSheet(twoStepVerificationActivity, obj);
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof lz4)) {
+            return false;
+        }
+        lz4 lz4Var = (lz4) obj;
+        if (this.a == lz4Var.a && this.b == lz4Var.b) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Boolean.valueOf(this.a), Boolean.valueOf(this.b));
     }
 }

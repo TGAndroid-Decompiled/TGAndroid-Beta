@@ -1,12 +1,23 @@
 package defpackage;
-public final class hv2 {
-    public final gv2 a;
 
-    public hv2(gv2 gv2Var) {
-        this.a = gv2Var;
+import java.text.CollationKey;
+import java.text.Collator;
+public final class hv2 extends Collator {
+    @Override
+    public final int compare(String str, String str2) {
+        if (str != null && str2 != null) {
+            return str.compareTo(str2);
+        }
+        return 0;
     }
 
-    public final String toString() {
-        return this.a.toString();
+    @Override
+    public final CollationKey getCollationKey(String str) {
+        return null;
+    }
+
+    @Override
+    public final int hashCode() {
+        return 0;
     }
 }

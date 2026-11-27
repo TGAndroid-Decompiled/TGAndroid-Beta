@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class ic1 {
+public interface ic1 {
+    long get();
 }

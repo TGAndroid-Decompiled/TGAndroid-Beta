@@ -1,167 +1,92 @@
 package defpackage;
+public final class zd5 implements av3 {
+    public static final double[] r = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
+    public String a;
+    public x1c b;
+    public final oz9 c;
+    public final String d;
+    public final ey7 e;
+    public final xj7 f;
+    public final boolean[] g = new boolean[4];
+    public final yd5 h;
+    public long i;
+    public boolean j;
+    public boolean k;
+    public long l;
+    public long m;
+    public long n;
+    public long o;
+    public boolean p;
+    public boolean q;
 
-import java.util.Collections;
-import java.util.List;
-public final class zd5 {
-    public final List a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final int g;
-    public final int h;
-    public final int i;
-    public final int j;
-    public final int k;
-    public final float l;
-    public final int m;
-    public final String n;
-    public final c5a o;
-
-    public zd5(List list, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, float f, int i11, String str, c5a c5aVar) {
-        this.a = list;
-        this.b = i;
-        this.c = i2;
-        this.d = i3;
-        this.e = i4;
-        this.f = i5;
-        this.g = i6;
-        this.h = i7;
-        this.i = i8;
-        this.j = i9;
-        this.k = i10;
-        this.l = f;
-        this.m = i11;
-        this.n = str;
-        this.o = c5aVar;
+    public zd5(oz9 oz9Var, String str) {
+        this.c = oz9Var;
+        this.d = str;
+        ?? obj = new Object();
+        obj.a = new byte[128];
+        this.h = obj;
+        if (oz9Var != null) {
+            this.f = new xj7(178);
+            this.e = new ey7();
+        } else {
+            this.f = null;
+            this.e = null;
+        }
+        this.m = -9223372036854775807L;
+        this.o = -9223372036854775807L;
     }
 
-    public static zd5 a(xu7 xu7Var, boolean z, c5a c5aVar) {
-        String str;
-        boolean z2;
-        List singletonList;
-        g30 h;
-        int i;
-        int i2 = 4;
-        try {
-            if (z) {
-                xu7Var.O(4);
-            } else {
-                xu7Var.O(21);
-            }
-            int A = xu7Var.A() & 3;
-            int A2 = xu7Var.A();
-            int i3 = xu7Var.b;
-            int i4 = 0;
-            int i5 = 0;
-            int i6 = 0;
-            while (true) {
-                z2 = true;
-                if (i5 >= A2) {
-                    break;
-                }
-                xu7Var.O(1);
-                int H = xu7Var.H();
-                for (int i7 = 0; i7 < H; i7++) {
-                    int H2 = xu7Var.H();
-                    i6 += H2 + 4;
-                    xu7Var.O(H2);
-                }
-                i5++;
-            }
-            xu7Var.N(i3);
-            byte[] bArr = new byte[i6];
-            c5a c5aVar2 = c5aVar;
-            int i8 = -1;
-            int i9 = -1;
-            int i10 = -1;
-            int i11 = -1;
-            int i12 = -1;
-            int i13 = -1;
-            int i14 = -1;
-            int i15 = -1;
-            int i16 = -1;
-            int i17 = -1;
-            float f = 1.0f;
-            String str2 = null;
-            int i18 = 0;
-            int i19 = 0;
-            while (i18 < A2) {
-                int A3 = xu7Var.A() & 63;
-                int H3 = xu7Var.H();
-                int i20 = i4;
-                c5a c5aVar3 = c5aVar2;
-                while (i20 < H3) {
-                    boolean z3 = z2;
-                    int H4 = xu7Var.H();
-                    int i21 = A;
-                    System.arraycopy(yad.a, i4, bArr, i19, i2);
-                    int i22 = i19 + 4;
-                    System.arraycopy(xu7Var.a, xu7Var.b, bArr, i22, H4);
-                    if (A3 == 32 && i20 == 0) {
-                        c5aVar3 = yad.j(i22, i22 + H4, bArr);
-                    } else {
-                        if (A3 == 33 && i20 == 0) {
-                            th7 i23 = yad.i(bArr, i22, i22 + H4, c5aVar3);
-                            i8 = i23.a + 1;
-                            i9 = i23.g;
-                            int i24 = i23.h;
-                            i11 = i23.c + 8;
-                            i12 = i23.d + 8;
-                            int i25 = i23.k;
-                            i10 = i24;
-                            int i26 = i23.l;
-                            int i27 = i23.m;
-                            float f2 = i23.i;
-                            int i28 = i23.j;
-                            qh7 qh7Var = i23.b;
-                            if (qh7Var != null) {
-                                i = i28;
-                                str2 = wj2.a(qh7Var.a, qh7Var.c, qh7Var.d, qh7Var.f, qh7Var.b, qh7Var.e);
-                            } else {
-                                i = i28;
-                            }
-                            i17 = i;
-                            f = f2;
-                            i15 = i27;
-                            i14 = i26;
-                            i13 = i25;
-                        } else if (A3 == 39 && i20 == 0 && (h = yad.h(i22, i22 + H4, bArr)) != null && c5aVar3 != null) {
-                            i4 = 0;
-                            if (h.a == ((ph7) ((mm5) c5aVar3.b).get(0)).b) {
-                                i16 = 4;
-                            } else {
-                                i16 = 5;
-                            }
-                        }
-                        i4 = 0;
-                    }
-                    i19 = i22 + H4;
-                    xu7Var.O(H4);
-                    i20++;
-                    z2 = z3;
-                    A = i21;
-                    i2 = 4;
-                }
-                i18++;
-                c5aVar2 = c5aVar3;
-                i2 = 4;
-            }
-            int i29 = A;
-            if (i6 == 0) {
-                singletonList = Collections.EMPTY_LIST;
-            } else {
-                singletonList = Collections.singletonList(bArr);
-            }
-            return new zd5(singletonList, i29 + 1, i8, i9, i10, i11, i12, i13, i14, i15, i16, f, i17, str2, c5aVar2);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            if (z) {
-                str = "L-HEVC config";
-            } else {
-                str = "HEVC config";
-            }
-            throw av7.a("Error parsing".concat(str), e);
+    @Override
+    public final void b(defpackage.ey7 r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zd5.b(ey7):void");
+    }
+
+    @Override
+    public final void d() {
+        rfd.a(this.g);
+        yd5 yd5Var = this.h;
+        yd5Var.d = false;
+        yd5Var.b = 0;
+        yd5Var.c = 0;
+        xj7 xj7Var = this.f;
+        if (xj7Var != null) {
+            xj7Var.c();
         }
+        this.i = 0L;
+        this.j = false;
+        this.m = -9223372036854775807L;
+        this.o = -9223372036854775807L;
+    }
+
+    @Override
+    public final void f() {
+        this.b.getClass();
+        long j = this.o;
+        if (j != -9223372036854775807L) {
+            boolean z = this.p;
+            this.b.a(j, z ? 1 : 0, (int) (this.i - this.n), 0, null);
+        }
+    }
+
+    @Override
+    public final void g(int i, long j) {
+        this.m = j;
+    }
+
+    @Override
+    public final void h(g84 g84Var, l6c l6cVar) {
+        l6cVar.a();
+        l6cVar.b();
+        this.a = l6cVar.e;
+        l6cVar.b();
+        this.b = g84Var.e0(l6cVar.d, 2);
+        oz9 oz9Var = this.c;
+        if (oz9Var != null) {
+            oz9Var.b(g84Var, l6cVar);
+        }
+    }
+
+    @Override
+    public final void e() {
     }
 }

@@ -1,6 +1,6 @@
 package defpackage;
-
-import android.graphics.Bitmap;
 public interface xj0 {
-    Object a(Bitmap bitmap);
+    x76 X(nt6 nt6Var);
+
+    x76 b0(byte[] bArr);
 }

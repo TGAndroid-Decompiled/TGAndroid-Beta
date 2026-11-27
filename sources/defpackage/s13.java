@@ -1,16 +1,9 @@
 package defpackage;
+public final class s13 extends w03 {
+    public static final int b = 0;
+    public static final int c = 0;
 
-import android.content.Context;
-import android.os.CancellationSignal;
-import java.util.concurrent.Executor;
-public interface s13 {
-    boolean isAvailableOnDevice();
-
-    void onCreateCredential(Context context, i03 i03Var, CancellationSignal cancellationSignal, Executor executor, o13 o13Var);
-
-    void onGetCredential(Context context, si8 si8Var, CancellationSignal cancellationSignal, Executor executor, o13 o13Var);
-
-    void onGetCredential(Context context, ws4 ws4Var, CancellationSignal cancellationSignal, Executor executor, o13 o13Var);
-
-    void onPrepareCredential(ws4 ws4Var, CancellationSignal cancellationSignal, Executor executor, o13 o13Var);
+    public s13(defpackage.i1 r2, java.lang.String r3) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.s13.<init>(i1, java.lang.String):void");
+    }
 }

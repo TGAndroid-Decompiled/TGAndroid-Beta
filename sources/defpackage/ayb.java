@@ -1,129 +1,73 @@
 package defpackage;
 
-import java.util.HashMap;
-import java.util.HashSet;
-public class ayb {
-    public boolean A;
-    public w59 B;
-    public int C;
-    public boolean D;
-    public boolean E;
-    public boolean F;
-    public boolean G;
-    public HashMap H;
-    public HashSet I;
-    public int e;
-    public int f;
-    public int g;
-    public int h;
-    public w59 m;
-    public w59 n;
-    public w59 o;
-    public int p;
-    public w59 q;
-    public w59 r;
-    public int s;
-    public int t;
-    public int u;
-    public w59 v;
-    public zxb w;
-    public boolean x;
-    public w59 y;
-    public int z;
-    public int a = Integer.MAX_VALUE;
-    public int b = Integer.MAX_VALUE;
-    public int c = Integer.MAX_VALUE;
-    public int d = Integer.MAX_VALUE;
-    public int i = Integer.MAX_VALUE;
-    public int j = Integer.MAX_VALUE;
-    public boolean k = true;
-    public boolean l = true;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+public abstract class ayb extends View {
+    public final byb a;
+    public pcc b;
+    public final vnb c;
+    public int d;
 
-    public ayb() {
-        km5 km5Var = mm5.b;
-        w59 w59Var = w59.e;
-        this.m = w59Var;
-        this.n = w59Var;
-        this.o = w59Var;
-        this.p = 0;
-        this.q = w59Var;
-        this.r = w59Var;
-        this.s = 0;
-        this.t = Integer.MAX_VALUE;
-        this.u = Integer.MAX_VALUE;
-        this.v = w59Var;
-        this.w = zxb.d;
-        this.x = false;
-        this.y = w59Var;
-        this.z = 0;
-        this.A = true;
-        this.B = w59Var;
-        this.C = 0;
-        this.D = false;
-        this.E = false;
-        this.F = false;
-        this.G = false;
-        this.H = new HashMap();
-        this.I = new HashSet();
+    public ayb(int i, vnb vnbVar, Context context) {
+        super(context);
+        this.c = vnbVar;
+        byb bybVar = new byb(i, this, vnbVar, false);
+        this.a = bybVar;
+        bybVar.s = new s8b(this, (byte) 28);
     }
 
-    public static w59 e(String[] strArr) {
-        jm5 p = mm5.p();
-        for (String str : strArr) {
-            str.getClass();
-            p.c(g8c.U(str));
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        vnb vnbVar = this.c;
+        if (vnbVar != null) {
+            vnbVar.b(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        } else {
+            aob.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
         }
-        return p.f();
+        this.a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
     }
 
-    public void a(yxb yxbVar) {
-        this.H.put(yxbVar.a, yxbVar);
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.a.a();
     }
 
-    public byb b() {
-        return new byb(this);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.a.b();
     }
 
-    public ayb c() {
-        this.H.clear();
-        return this;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(33.0f), 1073741824));
     }
 
-    public final void d(byb bybVar) {
-        this.a = bybVar.a;
-        this.b = bybVar.b;
-        this.c = bybVar.c;
-        this.d = bybVar.d;
-        this.e = bybVar.e;
-        this.f = bybVar.f;
-        this.g = bybVar.g;
-        this.h = bybVar.h;
-        this.i = bybVar.i;
-        this.j = bybVar.j;
-        this.k = bybVar.k;
-        this.l = bybVar.l;
-        this.n = bybVar.n;
-        this.m = bybVar.m;
-        this.o = bybVar.o;
-        this.p = bybVar.p;
-        this.q = bybVar.q;
-        this.s = bybVar.s;
-        this.r = bybVar.r;
-        this.t = bybVar.t;
-        this.u = bybVar.u;
-        this.v = bybVar.v;
-        this.w = bybVar.w;
-        this.x = bybVar.x;
-        this.y = bybVar.y;
-        this.z = bybVar.A;
-        this.A = bybVar.B;
-        this.B = bybVar.z;
-        this.C = bybVar.C;
-        this.D = bybVar.D;
-        this.E = bybVar.E;
-        this.F = bybVar.F;
-        this.G = bybVar.G;
-        this.I = new HashSet(bybVar.I);
-        this.H = new HashMap(bybVar.H);
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void set(r47 r47Var) {
+        byb bybVar = this.a;
+        bybVar.e(r47Var);
+        if (isAttachedToWindow()) {
+            bybVar.a();
+        }
+    }
+
+    public void setBackgroundHeight(int i) {
+        this.d = i;
+    }
+
+    public void setOnTopicClickListener(pcc pccVar) {
+        this.b = pccVar;
     }
 }

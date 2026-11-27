@@ -1,88 +1,64 @@
 package defpackage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.ViewParent;
-import android.webkit.WebView;
-public final class ku3 extends WebView {
-    public final byte a;
-    public final Context b;
-    public final KeyEvent.Callback c;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ku3 extends FrameLayout {
+    public final EditTextBoldCursor a;
 
-    public ku3(KeyEvent.Callback callback, Context context, Context context2, byte b) {
+    public ku3(Context context) {
         super(context);
-        this.a = b;
-        this.c = callback;
-        this.b = context2;
+        int i;
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.a = editTextBoldCursor;
+        yob.X(editTextBoldCursor, aob.G6, null);
+        yob.D(editTextBoldCursor, aob.H6, null);
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        editTextBoldCursor.setLines(1);
+        editTextBoldCursor.setMaxLines(1);
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setEllipsize(TextUtils.TruncateAt.END);
+        if (ob6.a0) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        editTextBoldCursor.setGravity(i | 16);
+        editTextBoldCursor.setBackgroundDrawable(null);
+        editTextBoldCursor.setPadding(0, 0, 0, 0);
+        editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 16384);
+        addView(editTextBoldCursor, tre.d(-1, -1.0f, (ob6.a0 ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
+    }
+
+    public final void a(String str) {
+        EditTextBoldCursor editTextBoldCursor = this.a;
+        editTextBoldCursor.setText("");
+        editTextBoldCursor.setHint(str);
+        setWillNotDraw(true);
+    }
+
+    public String getText() {
+        return this.a.getText().toString();
+    }
+
+    public EditTextBoldCursor getTextView() {
+        return this.a;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.a) {
-            case 1:
-                super.draw(canvas);
-                ViewParent parent = getParent();
-                x88 x88Var = (x88) this.c;
-                if (parent != x88Var && x88Var.h.getVisibility() == 0) {
-                    canvas.drawColor(-16777216);
-                    x88Var.j(canvas, getWidth(), getHeight());
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), hl.L(50.0f));
+        this.a.measure(View.MeasureSpec.makeMeasureSpec(((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - hl.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+    }
+
+    public void setTextColor(int i) {
+        this.a.setTextColor(i);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        switch (this.a) {
-            case 0:
-                gl.u((Activity) this.b, true);
-                super.onAttachedToWindow();
-                return;
-            default:
-                gl.u(this.b, true);
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.a) {
-            case 0:
-                gl.u((Activity) this.b, false);
-                super.onDetachedFromWindow();
-                return;
-            default:
-                gl.u(this.b, false);
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (onTouchEvent) {
-                    int action = motionEvent.getAction();
-                    ou3 ou3Var = (ou3) this.c;
-                    if (action == 1) {
-                        ou3Var.E0 = false;
-                    } else {
-                        ou3Var.E0 = true;
-                    }
-                }
-                return onTouchEvent;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+    public final void onDraw(Canvas canvas) {
     }
 }

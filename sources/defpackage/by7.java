@@ -1,19 +1,43 @@
 package defpackage;
+public final class by7 extends y1 {
+    public final ay7 a = new yi6();
+    public final j66 b = new j66();
 
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class by7 extends TwoStepVerificationActivity {
-    public final h24 e0;
-
-    public by7(h24 h24Var) {
-        this.e0 = h24Var;
+    @Override
+    public final void a(java.lang.CharSequence r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.by7.a(java.lang.CharSequence):void");
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        h24 h24Var = this.e0;
-        if ((((iu4) h24Var.c) != null || ((c05) h24Var.d) != null) && !h24Var.b) {
-            h24Var.f();
+    public final boolean c() {
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        if (this.b.b.length() == 0) {
+            this.a.g();
         }
-        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final hk0 e() {
+        return this.a;
+    }
+
+    @Override
+    public final void g(tp5 tp5Var) {
+        StringBuilder sb = this.b.b;
+        if (sb.length() > 0) {
+            tp5Var.a(sb.toString(), this.a);
+        }
+    }
+
+    @Override
+    public final qk2 h(mp3 mp3Var) {
+        if (!mp3Var.h) {
+            return qk2.a(mp3Var.b);
+        }
+        return null;
     }
 }

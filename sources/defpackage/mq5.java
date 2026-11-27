@@ -1,45 +1,66 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class mq5 extends o39 {
-    public int f3;
-    public final zq5 g3;
+import android.graphics.Insets;
+public final class mq5 {
+    public static final mq5 e = new mq5(0, 0, 0, 0);
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
 
-    public mq5(zq5 zq5Var, Context context) {
-        super(context, null);
-        this.g3 = zq5Var;
+    public mq5(int i, int i2, int i3, int i4) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        zq5 zq5Var = this.g3;
-        mq5 mq5Var = zq5Var.P1;
-        if (this.f3 != View.MeasureSpec.getSize(i2)) {
-            this.f3 = View.MeasureSpec.getSize(i2);
-            zq5Var.U1 = true;
-            mq5Var.setPadding(0, 0, 0, 0);
-            zq5Var.U1 = false;
-            measure(i, View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
-            int measuredHeight = getMeasuredHeight();
-            int i3 = this.f3;
-            int i4 = (int) ((i3 / 5.0f) * 2.0f);
-            if (i4 < gl.L(60.0f) + (i3 - measuredHeight)) {
-                i4 = this.f3 - measuredHeight;
-            }
-            zq5Var.U1 = true;
-            mq5Var.setPadding(0, i4, 0, 0);
-            zq5Var.U1 = false;
-            measure(i, View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
-        }
-        super.onMeasure(i, i2);
+    public static mq5 a(mq5 mq5Var, mq5 mq5Var2) {
+        return b(Math.max(mq5Var.a, mq5Var2.a), Math.max(mq5Var.b, mq5Var2.b), Math.max(mq5Var.c, mq5Var2.c), Math.max(mq5Var.d, mq5Var2.d));
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.g3.U1) {
-            return;
+    public static mq5 b(int i, int i2, int i3, int i4) {
+        if (i == 0 && i2 == 0 && i3 == 0 && i4 == 0) {
+            return e;
         }
-        super.requestLayout();
+        return new mq5(i, i2, i3, i4);
+    }
+
+    public static mq5 c(Insets insets) {
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        i = insets.left;
+        i2 = insets.top;
+        i3 = insets.right;
+        i4 = insets.bottom;
+        return b(i, i2, i3, i4);
+    }
+
+    public final Insets d() {
+        return sr.m(this.a, this.b, this.c, this.d);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || mq5.class != obj.getClass()) {
+            return false;
+        }
+        mq5 mq5Var = (mq5) obj;
+        if (this.d == mq5Var.d && this.a == mq5Var.a && this.c == mq5Var.c && this.b == mq5Var.b) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (((((this.a * 31) + this.b) * 31) + this.c) * 31) + this.d;
+    }
+
+    public final String toString() {
+        return "Insets{left=" + this.a + ", top=" + this.b + ", right=" + this.c + ", bottom=" + this.d + '}';
     }
 }

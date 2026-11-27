@@ -1,104 +1,75 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
-public final class gw3 extends PopupWindow {
-    public static Field f;
-    public static final e8 g = new Object();
-    public ViewTreeObserver.OnScrollChangedListener a;
-    public ViewTreeObserver b;
-    public final fw3 c;
-    public boolean d;
-    public final int e;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class gw3 extends q74 {
+    public final qma X;
+    public final hw3 Y;
 
-    public gw3(fw3 fw3Var) {
-        super(fw3Var);
-        float f2;
-        if (gl.O1()) {
-            f2 = 40.0f;
-        } else {
-            f2 = 32.0f;
-        }
-        this.e = gl.L(f2);
-        this.c = fw3Var;
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(2);
-        setSoftInputMode(0);
-        fw3Var.setFocusableInTouchMode(true);
-        fw3Var.setOnKeyListener(new w6(this, (byte) 3));
+    public gw3(hw3 hw3Var) {
+        super(100, true);
+        this.Y = hw3Var;
+        this.X = new Object();
+        this.O = new ar1(this, (byte) 3);
     }
 
-    public final void a(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (this.a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
+    @Override
+    public final qma B1(int i) {
+        TLRPC.Document document;
+        ArrayList<TLRPC.DocumentAttribute> arrayList;
+        TLRPC.PhotoSize w;
+        int i2;
+        int i3;
+        qma qmaVar = this.X;
+        qmaVar.c = false;
+        Object E = this.Y.c.E(i);
+        if (E instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) E;
+            document = botInlineResult.document;
+            if (document != null) {
+                arrayList = document.attributes;
             } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.b.removeOnScrollChangedListener(this.a);
+                TLRPC.WebDocument webDocument = botInlineResult.content;
+                if (webDocument != null) {
+                    arrayList = webDocument.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
+                    if (webDocument2 != null) {
+                        arrayList = webDocument2.attributes;
+                    } else {
+                        arrayList = null;
+                    }
                 }
-                this.b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.a);
+            }
+        } else if (E instanceof TLRPC.Document) {
+            document = (TLRPC.Document) E;
+            arrayList = document.attributes;
+        } else {
+            qmaVar.c = true;
+            return qmaVar;
+        }
+        qmaVar.b = 100.0f;
+        qmaVar.a = 100.0f;
+        qmaVar.c = false;
+        if (document != null && (w = xb4.w(document.thumbs, 90, false, null, false)) != null && (i2 = w.w) != 0 && (i3 = w.h) != 0) {
+            qmaVar.a = i2;
+            qmaVar.b = i3;
+        }
+        if (arrayList != null) {
+            for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i4);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    qmaVar.a = documentAttribute.w;
+                    qmaVar.b = documentAttribute.h;
+                    break;
                 }
             }
         }
+        return qmaVar;
     }
 
     @Override
-    public final void dismiss() {
-        ViewTreeObserver viewTreeObserver;
-        setFocusable(false);
-        try {
-            super.dismiss();
-        } catch (Exception unused) {
-        }
-        if (this.a != null && (viewTreeObserver = this.b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.b.removeOnScrollChangedListener(this.a);
-            }
-            this.b = null;
-        }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i, int i2) {
-        try {
-            super.showAsDropDown(view, i, i2);
-            a(view);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i, int i2, int i3) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i, i2, i3);
-        if (this.a != null && (viewTreeObserver = this.b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.b.removeOnScrollChangedListener(this.a);
-            }
-            this.b = null;
-        }
-    }
-
-    @Override
-    public final void update(View view, int i, int i2, int i3, int i4) {
-        super.update(view, i, i2, i3, i4);
-        a(view);
-    }
-
-    @Override
-    public final void update(View view, int i, int i2) {
-        super.update(view, i, i2);
-        a(view);
+    public final int z() {
+        return A();
     }
 }

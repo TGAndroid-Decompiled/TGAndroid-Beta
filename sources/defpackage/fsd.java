@@ -1,17 +1,15 @@
 package defpackage;
-public final class fsd implements zn7 {
-    public static final fsd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
-    }
-
+import dalvik.system.PathClassLoader;
+public final class fsd extends PathClassLoader {
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final Class loadClass(String str, boolean z) {
+        if (!str.startsWith("java.") && !str.startsWith("android.")) {
+            try {
+                return findClass(str);
+            } catch (ClassNotFoundException unused) {
+            }
         }
-        throw new ClassCastException();
+        return super.loadClass(str, z);
     }
 }

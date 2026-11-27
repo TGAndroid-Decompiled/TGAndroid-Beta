@@ -1,22 +1,93 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class a34 extends InputFilter.LengthFilter {
-    public final c34 a;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+public final class a34 implements Set, Serializable {
+    public static final a34 a = new Object();
 
-    public a34(c34 c34Var) {
-        super(128);
-        this.a = c34Var;
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
-        CharSequence filter = super.filter(charSequence, i, i2, spanned, i3, i4);
-        if (filter != null && filter.length() == 0) {
-            gl.z3(this.a.a);
-            pw0.APP_ERROR.a();
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return false;
+    }
+
+    @Override
+    public final boolean containsAll(Collection collection) {
+        collection.getClass();
+        return collection.isEmpty();
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if ((obj instanceof Set) && ((Set) obj).isEmpty()) {
+            return true;
         }
-        return filter;
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return w24.a;
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final int size() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        return l93.c(this, objArr);
+    }
+
+    public final String toString() {
+        return "[]";
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return l93.b(this);
     }
 }

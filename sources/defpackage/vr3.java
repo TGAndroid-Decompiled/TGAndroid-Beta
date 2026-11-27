@@ -1,221 +1,240 @@
 package defpackage;
 
-import java.util.Collections;
-import java.util.List;
-public final class vr3 implements gu3 {
-    public final byte a;
-    public boolean b;
-    public long c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import java.lang.reflect.InvocationTargetException;
+public class vr3 extends ListView {
+    public final Rect a;
+    public int b;
+    public int c;
     public int d;
     public int e;
-    public final Object f;
-    public Object g;
+    public int f;
+    public tr3 h;
+    public boolean n;
+    public final boolean r;
+    public boolean s;
+    public w76 w;
+    public p1 x;
 
-    public vr3(List list) {
-        this.a = (byte) 0;
-        this.f = list;
-        this.g = new wxb[list.size()];
-        this.c = -9223372036854775807L;
+    public vr3(Context context, boolean z) {
+        super(context, null, 2130968772);
+        this.a = new Rect();
+        this.b = 0;
+        this.c = 0;
+        this.d = 0;
+        this.e = 0;
+        this.r = z;
+        setCacheColorHint(0);
+    }
+
+    public final int a(int i, int i2) {
+        int i3;
+        int listPaddingTop = getListPaddingTop();
+        int listPaddingBottom = getListPaddingBottom();
+        int dividerHeight = getDividerHeight();
+        Drawable divider = getDivider();
+        ListAdapter adapter = getAdapter();
+        int i4 = listPaddingTop + listPaddingBottom;
+        if (adapter == null) {
+            return i4;
+        }
+        dividerHeight = (dividerHeight <= 0 || divider == null) ? 0 : 0;
+        int count = adapter.getCount();
+        int i5 = 0;
+        View view = null;
+        for (int i6 = 0; i6 < count; i6++) {
+            int itemViewType = adapter.getItemViewType(i6);
+            if (itemViewType != i5) {
+                view = null;
+                i5 = itemViewType;
+            }
+            view = adapter.getView(i6, view, this);
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams == null) {
+                layoutParams = generateDefaultLayoutParams();
+                view.setLayoutParams(layoutParams);
+            }
+            int i7 = layoutParams.height;
+            if (i7 > 0) {
+                i3 = View.MeasureSpec.makeMeasureSpec(i7, 1073741824);
+            } else {
+                i3 = 0;
+            }
+            view.measure(i, i3);
+            view.forceLayout();
+            if (i6 > 0) {
+                i4 += dividerHeight;
+            }
+            i4 += view.getMeasuredHeight();
+            if (i4 >= i2) {
+                return i2;
+            }
+        }
+        return i4;
+    }
+
+    public final boolean b(int r18, android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vr3.b(int, android.view.MotionEvent):boolean");
     }
 
     @Override
-    public final void b(xu7 xu7Var) {
-        wxb[] wxbVarArr;
-        boolean z;
-        boolean z2;
-        switch (this.a) {
-            case 0:
-                if (this.b) {
-                    if (this.d == 2) {
-                        if (xu7Var.a() == 0) {
-                            z2 = false;
-                        } else {
-                            if (xu7Var.A() != 32) {
-                                this.b = false;
-                            }
-                            this.d--;
-                            z2 = this.b;
-                        }
-                        if (!z2) {
-                            return;
-                        }
-                    }
-                    if (this.d == 1) {
-                        if (xu7Var.a() == 0) {
-                            z = false;
-                        } else {
-                            if (xu7Var.A() != 0) {
-                                this.b = false;
-                            }
-                            this.d--;
-                            z = this.b;
-                        }
-                        if (!z) {
-                            return;
-                        }
-                    }
-                    int i = xu7Var.b;
-                    int a = xu7Var.a();
-                    for (wxb wxbVar : (wxb[]) this.g) {
-                        xu7Var.N(i);
-                        wxbVar.e(a, xu7Var);
-                    }
-                    this.e += a;
-                    return;
-                }
-                return;
-            default:
-                xu7 xu7Var2 = (xu7) this.f;
-                ((wxb) this.g).getClass();
-                if (this.b) {
-                    int a2 = xu7Var.a();
-                    int i2 = this.e;
-                    if (i2 < 10) {
-                        int min = Math.min(a2, 10 - i2);
-                        System.arraycopy(xu7Var.a, xu7Var.b, xu7Var2.a, this.e, min);
-                        if (this.e + min == 10) {
-                            xu7Var2.N(0);
-                            if (73 == xu7Var2.A() && 68 == xu7Var2.A() && 51 == xu7Var2.A()) {
-                                xu7Var2.O(3);
-                                this.d = xu7Var2.z() + 10;
-                            } else {
-                                lad.f("Id3Reader", "Discarding invalid ID3 tag");
-                                this.b = false;
-                                return;
-                            }
-                        }
-                    }
-                    int min2 = Math.min(a2, this.d - this.e);
-                    ((wxb) this.g).e(min2, xu7Var);
-                    this.e += min2;
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable selector;
+        Rect rect = this.a;
+        if (!rect.isEmpty() && (selector = getSelector()) != null) {
+            selector.setBounds(rect);
+            selector.draw(canvas);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        if (this.x == null) {
+            super.drawableStateChanged();
+            tr3 tr3Var = this.h;
+            if (tr3Var != null) {
+                tr3Var.b = true;
+            }
+            Drawable selector = getSelector();
+            if (selector != null && this.s && isPressed()) {
+                selector.setState(getDrawableState());
+            }
         }
     }
 
     @Override
-    public final void d() {
-        switch (this.a) {
-            case 0:
-                this.b = false;
-                this.c = -9223372036854775807L;
-                return;
-            default:
-                this.b = false;
-                this.c = -9223372036854775807L;
-                return;
+    public final boolean hasFocus() {
+        if (!this.r && !super.hasFocus()) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final void e() {
-        int i;
-        boolean z = true;
-        switch (this.a) {
-            case 0:
-                if (this.b) {
-                    if (this.c == -9223372036854775807L) {
-                        z = false;
+    public final boolean hasWindowFocus() {
+        if (!this.r && !super.hasWindowFocus()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean isFocused() {
+        if (!this.r && !super.isFocused()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean isInTouchMode() {
+        if ((this.r && this.n) || super.isInTouchMode()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        this.x = null;
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public boolean onHoverEvent(MotionEvent motionEvent) {
+        int i = Build.VERSION.SDK_INT;
+        if (i < 26) {
+            return super.onHoverEvent(motionEvent);
+        }
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 10 && this.x == null) {
+            p1 p1Var = new p1(this, (byte) 27);
+            this.x = p1Var;
+            post(p1Var);
+        }
+        boolean onHoverEvent = super.onHoverEvent(motionEvent);
+        if (actionMasked != 9 && actionMasked != 7) {
+            setSelection(-1);
+            return onHoverEvent;
+        }
+        int pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (pointToPosition != -1 && pointToPosition != getSelectedItemPosition()) {
+            View childAt = getChildAt(pointToPosition - getFirstVisiblePosition());
+            if (childAt.isEnabled()) {
+                requestFocus();
+                if (i >= 30 && rr3.d) {
+                    try {
+                        rr3.a.invoke(this, Integer.valueOf(pointToPosition), childAt, Boolean.FALSE, -1, -1);
+                        rr3.b.invoke(this, Integer.valueOf(pointToPosition));
+                        rr3.c.invoke(this, Integer.valueOf(pointToPosition));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e2) {
+                        e2.printStackTrace();
                     }
-                    gre.p(z);
-                    for (wxb wxbVar : (wxb[]) this.g) {
-                        wxbVar.a(this.c, 1, this.e, 0, null);
-                    }
-                    this.b = false;
-                    return;
+                } else {
+                    setSelectionFromTop(pointToPosition, childAt.getTop() - getTop());
                 }
-                return;
-            default:
-                ((wxb) this.g).getClass();
-                if (this.b && (i = this.d) != 0 && this.e == i) {
-                    if (this.c == -9223372036854775807L) {
-                        z = false;
-                    }
-                    gre.p(z);
-                    ((wxb) this.g).a(this.c, 1, this.d, 0, null);
-                    this.b = false;
-                    return;
-                }
-                return;
+            }
+            Drawable selector = getSelector();
+            if (selector != null && this.s && isPressed()) {
+                selector.setState(getDrawableState());
+            }
         }
+        return onHoverEvent;
     }
 
     @Override
-    public final void f() {
-        byte b = this.a;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY());
+        }
+        p1 p1Var = this.x;
+        if (p1Var != null) {
+            vr3 vr3Var = (vr3) p1Var.b;
+            vr3Var.x = null;
+            vr3Var.removeCallbacks(p1Var);
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setListSelectionHidden(boolean z) {
+        this.n = z;
     }
 
     @Override
-    public final void g(int i, long j) {
-        int i2 = i & 4;
-        switch (this.a) {
-            case 0:
-                if (i2 != 0) {
-                    this.b = true;
-                    this.c = j;
-                    this.e = 0;
-                    this.d = 2;
-                    return;
-                }
-                return;
-            default:
-                if (i2 != 0) {
-                    this.b = true;
-                    this.c = j;
-                    this.d = 0;
-                    this.e = 0;
-                    return;
-                }
-                return;
+    public void setSelector(Drawable drawable) {
+        tr3 tr3Var = null;
+        if (drawable != 0) {
+            ?? drawable2 = new Drawable();
+            Drawable drawable3 = drawable2.a;
+            if (drawable3 != null) {
+                drawable3.setCallback(null);
+            }
+            drawable2.a = drawable;
+            drawable.setCallback(drawable2);
+            drawable2.b = true;
+            tr3Var = drawable2;
         }
-    }
-
-    @Override
-    public final void h(l74 l74Var, l2c l2cVar) {
-        switch (this.a) {
-            case 0:
-                wxb[] wxbVarArr = (wxb[]) this.g;
-                for (int i = 0; i < wxbVarArr.length; i++) {
-                    k2c k2cVar = (k2c) ((List) this.f).get(i);
-                    l2cVar.a();
-                    l2cVar.b();
-                    wxb S = l74Var.S(l2cVar.d, 3);
-                    em4 em4Var = new em4();
-                    l2cVar.b();
-                    em4Var.a = l2cVar.e;
-                    em4Var.r = ud7.n("video/mp2t");
-                    em4Var.s = ud7.n("application/dvbsubs");
-                    em4Var.v = Collections.singletonList(k2cVar.b);
-                    em4Var.d = k2cVar.a;
-                    yjb.v(em4Var, S);
-                    wxbVarArr[i] = S;
-                }
-                return;
-            default:
-                l2cVar.a();
-                l2cVar.b();
-                wxb S2 = l74Var.S(l2cVar.d, 5);
-                this.g = S2;
-                em4 em4Var2 = new em4();
-                l2cVar.b();
-                em4Var2.a = l2cVar.e;
-                em4Var2.r = ud7.n("video/mp2t");
-                em4Var2.s = ud7.n("application/id3");
-                yjb.v(em4Var2, S2);
-                return;
+        this.h = tr3Var;
+        super.setSelector(tr3Var);
+        Rect rect = new Rect();
+        if (drawable != 0) {
+            drawable.getPadding(rect);
         }
-    }
-
-    private final void a() {
-    }
-
-    private final void c() {
-    }
-
-    public vr3() {
-        this.a = (byte) 1;
-        this.f = new xu7(10);
-        this.c = -9223372036854775807L;
+        this.b = rect.left;
+        this.c = rect.top;
+        this.d = rect.right;
+        this.e = rect.bottom;
     }
 }

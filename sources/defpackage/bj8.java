@@ -1,86 +1,45 @@
 package defpackage;
 
-import java.util.List;
-public final class bj8 implements w4a {
-    public final String a;
-    public final aj8 b;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.PopupNotificationActivity;
+public final class bj8 implements ViewTreeObserver.OnPreDrawListener {
+    public final byte a;
+    public final PopupNotificationActivity b;
 
-    public bj8(String str, aj8 aj8Var) {
-        aj8Var.getClass();
-        this.a = str;
-        this.b = aj8Var;
+    public bj8(PopupNotificationActivity popupNotificationActivity, byte b) {
+        this.a = b;
+        this.b = popupNotificationActivity;
     }
 
     @Override
-    public final String a() {
-        return this.a;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int d(String str) {
-        str.getClass();
-        throw new IllegalStateException("Primitive descriptor does not have elements");
-    }
-
-    @Override
-    public final vte e() {
-        return this.b;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof bj8) {
-                bj8 bj8Var = (bj8) obj;
-                if (this.a.equals(bj8Var.a) && rp5.a(this.b, bj8Var.b)) {
-                    return true;
+    public final boolean onPreDraw() {
+        byte b = this.a;
+        PopupNotificationActivity popupNotificationActivity = this.b;
+        switch (b) {
+            case 0:
+                FrameLayout frameLayout = popupNotificationActivity.f;
+                if (frameLayout != null) {
+                    frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
                 }
-                return false;
-            }
-            return false;
+                int D = ik8.D(48.0f, a.getCurrentActionBarHeight(), 2);
+                FrameLayout frameLayout2 = popupNotificationActivity.f;
+                frameLayout2.setPadding(frameLayout2.getPaddingLeft(), D, popupNotificationActivity.f.getPaddingRight(), D);
+                return true;
+            default:
+                popupNotificationActivity.n.getViewTreeObserver().removeOnPreDrawListener(this);
+                if (!popupNotificationActivity.c() && !popupNotificationActivity.Y) {
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity.n.getLayoutParams();
+                    marginLayoutParams.topMargin = a.getCurrentActionBarHeight();
+                    marginLayoutParams.bottomMargin = hl.L(48.0f);
+                    marginLayoutParams.width = -1;
+                    marginLayoutParams.height = -1;
+                    popupNotificationActivity.n.setLayoutParams(marginLayoutParams);
+                    popupNotificationActivity.a(0);
+                }
+                return true;
         }
-        return true;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final String g(int i) {
-        throw new IllegalStateException("Primitive descriptor does not have elements");
-    }
-
-    @Override
-    public final List getAnnotations() {
-        return c24.a;
-    }
-
-    @Override
-    public final List h(int i) {
-        throw new IllegalStateException("Primitive descriptor does not have elements");
-    }
-
-    public final int hashCode() {
-        return (this.b.hashCode() * 31) + this.a.hashCode();
-    }
-
-    @Override
-    public final w4a i(int i) {
-        throw new IllegalStateException("Primitive descriptor does not have elements");
-    }
-
-    @Override
-    public final boolean isInline() {
-        return false;
-    }
-
-    public final String toString() {
-        return "PrimitiveDescriptor(" + this.a + ')';
     }
 }

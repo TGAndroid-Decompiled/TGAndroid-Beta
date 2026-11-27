@@ -1,749 +1,344 @@
 package defpackage;
 
-import android.net.Uri;
-import android.util.SparseArray;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
-import java.util.List;
-import java.util.Map;
-public final class ue5 implements sr6, mf5 {
-    public final boolean E;
-    public final uc8 F;
-    public final gi3 G = new gi3(this);
-    public rr6 H;
-    public int I;
-    public txb J;
-    public tf5[] K;
-    public tf5[] L;
-    public int M;
-    public lq2 N;
-    public final long O;
-    public final pa3 a;
-    public final ta3 b;
-    public final l69 c;
-    public final vyb d;
-    public final yq3 e;
-    public final vq3 f;
-    public final i2f h;
-    public final kp n;
-    public final mv6 r;
-    public final IdentityHashMap s;
-    public final g29 w;
-    public final ie7 x;
-    public final boolean y;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
+public final class ue5 extends e implements fn7 {
+    public boolean E;
+    public float F;
+    public ValueAnimator G;
+    public final String a;
+    public final String b;
+    public final String c;
+    public final p5b d;
+    public b6 e;
+    public jr1 f;
+    public FrameLayout h;
+    public re5 n;
+    public xc7 r;
+    public FrameLayout s;
+    public TextView w;
+    public float x;
+    public ValueAnimator y;
 
-    public ue5(pa3 pa3Var, ta3 ta3Var, l69 l69Var, vyb vybVar, yq3 yq3Var, vq3 vq3Var, i2f i2fVar, kp kpVar, mv6 mv6Var, ie7 ie7Var, boolean z, int i, uc8 uc8Var) {
-        this.a = pa3Var;
-        this.b = ta3Var;
-        this.c = l69Var;
-        this.d = vybVar;
-        this.e = yq3Var;
-        this.f = vq3Var;
-        this.h = i2fVar;
-        this.n = kpVar;
-        this.r = mv6Var;
-        this.x = ie7Var;
-        this.y = z;
-        this.E = i;
-        this.F = uc8Var;
-        ie7Var.getClass();
-        km5 km5Var = mm5.b;
-        w59 w59Var = w59.e;
-        this.N = new lq2(w59Var, w59Var);
-        this.s = new IdentityHashMap();
-        this.w = new g29((byte) 18);
-        this.K = new tf5[0];
-        this.L = new tf5[0];
-        this.O = Long.MIN_VALUE;
-    }
-
-    public static fm4 h(fm4 fm4Var, fm4 fm4Var2, boolean z) {
-        ld7 ld7Var;
-        int i;
-        String str;
-        String str2;
-        mm5 mm5Var;
-        int i2;
-        int i3;
-        String str3;
-        int i4;
-        km5 km5Var = mm5.b;
-        w59 w59Var = w59.e;
-        int i5 = -1;
-        if (fm4Var2 != null) {
-            str2 = fm4Var2.l;
-            ld7Var = fm4Var2.m;
-            i2 = fm4Var2.N;
-            i = fm4Var2.e;
-            i3 = fm4Var2.f;
-            str = fm4Var2.d;
-            str3 = fm4Var2.b;
-            mm5Var = fm4Var2.c;
+    public ue5(String str, vnb vnbVar) {
+        super(null);
+        setResourceProvider(vnbVar);
+        String str2 = "";
+        String trim = (str == null ? "" : str).trim();
+        if (!trim.startsWith("#") && !trim.startsWith("$")) {
+            trim = "#".concat(trim);
+        }
+        int indexOf = trim.indexOf("@");
+        if (indexOf > 0) {
+            String substring = trim.substring(0, indexOf);
+            this.b = substring;
+            this.c = trim.substring(indexOf + 1);
+            trim = substring;
         } else {
-            String w = g8c.w(1, fm4Var.l);
-            ld7Var = fm4Var.m;
-            if (z) {
-                i2 = fm4Var.N;
-                i = fm4Var.e;
-                i3 = fm4Var.f;
-                str = fm4Var.d;
-                str3 = fm4Var.b;
-                str2 = w;
-                mm5Var = fm4Var.c;
-            } else {
-                i = 0;
-                str = null;
-                str2 = w;
-                mm5Var = w59Var;
-                i2 = -1;
-                i3 = 0;
-                str3 = null;
-            }
+            this.b = trim;
+            this.c = null;
         }
-        String d = ud7.d(str2);
-        if (z) {
-            int i6 = fm4Var.i;
-            i5 = fm4Var.j;
-            i4 = i6;
-        } else {
-            i4 = -1;
+        if (!TextUtils.isEmpty(this.c)) {
+            str2 = "@" + this.c;
         }
-        em4 em4Var = new em4();
-        em4Var.a = fm4Var.a;
-        em4Var.b = str3;
-        em4Var.c = mm5.q(mm5Var);
-        em4Var.r = ud7.n(fm4Var.s);
-        em4Var.s = ud7.n(d);
-        em4Var.k = str2;
-        em4Var.l = ld7Var;
-        em4Var.i = i4;
-        em4Var.j = i5;
-        em4Var.M = i2;
-        em4Var.e = i;
-        em4Var.f = i3;
-        em4Var.d = str;
-        return new fm4(em4Var);
+        this.a = trim.concat(str2);
+        this.d = new p5b(this.currentAccount, this.c, trim);
     }
 
-    @Override
-    public final void a() {
-        tf5[] tf5VarArr;
-        mm5 mm5Var;
-        long j;
-        for (tf5 tf5Var : this.K) {
-            mv6 mv6Var = tf5Var.s;
-            re5 re5Var = tf5Var.d;
-            ArrayList arrayList = tf5Var.E;
-            if (!arrayList.isEmpty()) {
-                te5 te5Var = (te5) jle.b(arrayList);
-                int c = re5Var.c(te5Var);
-                int i = te5Var.F;
-                boolean z = true;
-                if (c == 1) {
-                    if (!te5Var.h()) {
-                        if (i == -1) {
-                            z = false;
-                        }
-                        gre.p(z);
-                        df5 b = re5Var.g.b(te5Var.y, false);
-                        b.getClass();
-                        mm5 mm5Var2 = b.r;
-                        int i2 = (int) (te5Var.s - b.k);
-                        if (i2 < 0) {
-                            j = 0;
-                        } else {
-                            if (i2 < mm5Var2.size()) {
-                                mm5Var = ((af5) mm5Var2.get(i2)).y;
-                            } else {
-                                mm5Var = b.s;
-                            }
-                            j = ((ye5) mm5Var.get(i)).c;
-                        }
-                        te5Var.b0 = j;
-                    }
-                } else if (c == 0) {
-                    tf5Var.I.post(new hb5(tf5Var, te5Var, (byte) 4));
-                } else if (c == 2 && !tf5Var.k0 && mv6Var.W()) {
-                    mv6Var.p();
-                }
-            }
-        }
-        this.H.b(this);
-    }
-
-    @Override
-    public final boolean b(Uri uri, dd ddVar, boolean z) {
+    public final int Y() {
         int i;
-        boolean z2;
-        boolean z3;
-        of5 of5Var;
-        d86 d86Var;
-        int v;
-        boolean z4;
-        of5 of5Var2;
-        tf5[] tf5VarArr = this.K;
-        int length = tf5VarArr.length;
-        int i2 = 0;
-        boolean z5 = false;
-        while (i2 < length) {
-            tf5 tf5Var = tf5VarArr[i2];
-            re5 re5Var = tf5Var.d;
-            of5[] of5VarArr = re5Var.e;
-            HashMap hashMap = re5Var.g.d;
-            int length2 = of5VarArr.length;
-            int i3 = 0;
-            while (true) {
-                if (i3 >= length2) {
-                    break;
-                }
-                of5 of5Var3 = of5VarArr[i3];
-                sa3 sa3Var = (sa3) hashMap.get(uri);
-                if (sa3Var != null) {
-                    of5Var = sa3Var.a;
-                } else {
-                    of5Var = null;
-                }
-                if (of5Var3.equals(of5Var)) {
-                    if (!z) {
-                        c86 a = re5Var.a(uri);
-                        tf5Var.r.getClass();
-                        d86Var = i2f.u3(a, ddVar);
-                    } else {
-                        d86Var = null;
-                    }
-                    re5Var.p = uri;
-                    if (d86Var != null) {
-                        byte b = d86Var.a;
-                        se5 se5Var = re5Var.h;
-                        if (se5Var == null || !se5Var.k) {
-                            se5Var = null;
-                        }
-                        i = i2;
-                        boolean z6 = false;
-                        long j = d86Var.b;
-                        if (b != 1) {
-                            if (b == 2) {
-                                int i4 = 0;
-                                while (true) {
-                                    if (i4 < of5VarArr.length) {
-                                        of5 of5Var4 = of5VarArr[i4];
-                                        z2 = z6;
-                                        sa3 sa3Var2 = (sa3) hashMap.get(uri);
-                                        if (sa3Var2 != null) {
-                                            of5Var2 = sa3Var2.a;
-                                        } else {
-                                            of5Var2 = null;
-                                        }
-                                        if (of5Var4.equals(of5Var2)) {
-                                            break;
-                                        }
-                                        i4++;
-                                        z6 = z2;
-                                    } else {
-                                        z2 = z6;
-                                        i4 = -1;
-                                        break;
-                                    }
-                                }
-                                if (i4 != -1 && (v = re5Var.s.v(i4)) != -1 && re5Var.s.q(v, j)) {
-                                    sa3 sa3Var3 = (sa3) hashMap.get(uri);
-                                    if (sa3Var3 != null) {
-                                        z4 = sa3Var3.a(j, uri, null);
-                                    } else {
-                                        z4 = z2;
-                                    }
-                                    if (z4) {
-                                        z3 = true;
-                                    }
-                                }
-                            } else {
-                                sc8.j(de9.k(b, "Invalid fallback selection type: "));
-                                return false;
-                            }
-                        } else {
-                            z2 = false;
-                            if (se5Var != null) {
-                                re5Var.s.f();
-                                z3 = se5Var.a(j);
-                            } else {
-                                sa3 sa3Var4 = (sa3) hashMap.get(uri);
-                                if (sa3Var4 != null) {
-                                    z3 = sa3Var4.a(j, uri, null);
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    i3++;
-                }
-            }
-            i = i2;
-            z2 = false;
-            z3 = z2;
-            z5 |= z3;
-            i2 = i + 1;
+        if (this.simpleActionBar.getOccupyStatusBar()) {
+            i = hl.m;
+        } else {
+            i = 0;
         }
-        this.H.b(this);
-        return z5;
+        return a.getCurrentActionBarHeight() + i;
     }
 
-    public final defpackage.tf5 c(java.lang.String r18, int r19, defpackage.of5[] r20, defpackage.fm4[] r21, defpackage.fm4 r22, java.util.List r23, java.util.Map r24, long r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ue5.c(java.lang.String, int, of5[], fm4[], fm4, java.util.List, java.util.Map, long):tf5");
-    }
-
-    @Override
-    public final boolean d() {
-        return this.N.d();
-    }
-
-    @Override
-    public final long e(defpackage.k64[] r41, boolean[] r42, defpackage.ip9[] r43, boolean[] r44, long r45) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ue5.e(k64[], boolean[], ip9[], boolean[], long):long");
-    }
-
-    @Override
-    public final long g() {
-        return this.N.g();
-    }
-
-    @Override
-    public final long i(long j, gv9 gv9Var) {
-        df5 df5Var;
-        long j2;
-        tf5[] tf5VarArr = this.L;
-        int length = tf5VarArr.length;
+    public final void Z(boolean z, boolean z2) {
+        float f;
+        float f2;
+        float f3;
+        gv1 gv1Var;
+        gu guVar;
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
         int i = 0;
-        while (true) {
-            if (i >= length) {
-                break;
-            }
-            tf5 tf5Var = tf5VarArr[i];
-            if (tf5Var.R == 2) {
-                re5 re5Var = tf5Var.d;
-                ta3 ta3Var = re5Var.g;
-                int d = re5Var.s.d();
-                of5[] of5VarArr = re5Var.e;
-                if (d < of5VarArr.length && d != -1) {
-                    df5Var = ta3Var.b(of5VarArr[re5Var.s.n()].b(), true);
-                } else {
-                    df5Var = null;
-                }
-                if (df5Var != null) {
-                    mm5 mm5Var = df5Var.r;
-                    if (!mm5Var.isEmpty()) {
-                        long j3 = df5Var.h - ta3Var.M;
-                        long j4 = j - j3;
-                        int d2 = g8c.d(mm5Var, Long.valueOf(j4), true);
-                        long j5 = ((af5) mm5Var.get(d2)).e;
-                        if (df5Var.c && d2 != mm5Var.size() - 1) {
-                            j2 = ((af5) mm5Var.get(d2 + 1)).e;
-                        } else {
-                            j2 = j5;
-                        }
-                        return gv9Var.a(j4, j5, j2) + j3;
-                    }
-                }
+        float f4 = 0.0f;
+        if (!z2) {
+            this.E = z;
+            if (z) {
+                f = 1.0f;
             } else {
-                i++;
+                f = 0.0f;
             }
-        }
-        return j;
-    }
-
-    @Override
-    public final void k() {
-        tf5[] tf5VarArr;
-        for (tf5 tf5Var : this.K) {
-            tf5Var.C();
-            if (tf5Var.k0 && !tf5Var.U) {
-                throw av7.a("Loading finished before preparation is complete.", null);
+            this.F = f;
+            re5 re5Var = this.n;
+            if (z) {
+                f2 = 1.0f;
+            } else {
+                f2 = 0.95f;
             }
-        }
-    }
-
-    @Override
-    public final long l(long j) {
-        tf5[] tf5VarArr = this.L;
-        if (tf5VarArr.length > 0) {
-            boolean F = tf5VarArr[0].F(j, false);
-            int i = 1;
-            while (true) {
-                tf5[] tf5VarArr2 = this.L;
-                if (i >= tf5VarArr2.length) {
-                    break;
-                }
-                tf5VarArr2[i].F(j, F);
-                i++;
+            re5Var.setScaleX(f2);
+            re5 re5Var2 = this.n;
+            if (z) {
+                f3 = 1.0f;
+            } else {
+                f3 = 0.95f;
             }
-            if (F) {
-                ((SparseArray) this.w.b).clear();
+            re5Var2.setScaleY(f3);
+            FrameLayout frameLayout = this.h;
+            if (z) {
+                f4 = 1.0f;
             }
-        }
-        return j;
-    }
-
-    @Override
-    public final void m(long j) {
-        tf5[] tf5VarArr;
-        for (tf5 tf5Var : this.L) {
-            if (tf5Var.T && !tf5Var.A()) {
-                int length = tf5Var.M.length;
-                for (int i = 0; i < length; i++) {
-                    tf5Var.M[i].k(j, tf5Var.e0[i]);
-                }
+            frameLayout.setAlpha(f4);
+            FrameLayout frameLayout2 = this.h;
+            if (!z) {
+                i = 8;
             }
-        }
-    }
-
-    @Override
-    public final long o() {
-        return -9223372036854775807L;
-    }
-
-    @Override
-    public final void p(rr6 rr6Var, long j) {
-        String str;
-        pa3 pa3Var;
-        boolean z;
-        Map map;
-        tf5[] tf5VarArr;
-        int i;
-        ArrayList arrayList;
-        int i2;
-        mm5 mm5Var;
-        Map map2;
-        ArrayList arrayList2;
-        HashSet hashSet;
-        boolean z2;
-        boolean z3;
-        boolean z4;
-        int i3;
-        boolean z5;
-        List list;
-        this.H = rr6Var;
-        ta3 ta3Var = this.b;
-        ta3Var.e.add(this);
-        hf5 hf5Var = ta3Var.w;
-        hf5Var.getClass();
-        Map map3 = Collections.EMPTY_MAP;
-        mm5 c = ta3Var.c(0);
-        c.getClass();
-        mm5 c2 = ta3Var.c(2);
-        c2.getClass();
-        mm5 c3 = ta3Var.c(3);
-        c3.getClass();
-        boolean isEmpty = c.isEmpty();
-        this.I = 0;
-        ArrayList arrayList3 = new ArrayList();
-        pa3 pa3Var2 = this.a;
-        boolean z6 = this.y;
-        if (isEmpty) {
-            str = "ID3";
-            pa3Var = pa3Var2;
-            z = z6;
-            map = map3;
+            frameLayout2.setVisibility(i);
+            jr1 jr1Var = this.f;
+            if (jr1Var != null && (gv1Var = jr1Var.a) != null && (guVar = gv1Var.a4) != null) {
+                guVar.setScaleX(hl.R1(1.0f, 0.95f, this.F));
+                this.f.a.a4.setScaleY(hl.R1(1.0f, 0.95f, this.F));
+            }
+        } else if (this.E == z) {
         } else {
-            fm4 fm4Var = hf5Var.j;
-            List list2 = hf5Var.k;
-            int size = c.size();
-            int[] iArr = new int[size];
-            int i4 = 0;
-            int i5 = 0;
-            for (int i6 = 0; i6 < c.size(); i6++) {
-                fm4 fm4Var2 = ((of5) c.get(i6)).a.a;
-                int i7 = fm4Var2.B;
-                String str2 = fm4Var2.l;
-                if (i7 <= 0 && g8c.w(2, str2) == null) {
-                    if (g8c.w(1, str2) != null) {
-                        iArr[i6] = 1;
-                        i5++;
-                    } else {
-                        iArr[i6] = -1;
-                    }
-                } else {
-                    iArr[i6] = 2;
-                    i4++;
-                    i5 = i5;
-                }
+            this.E = z;
+            this.h.setVisibility(0);
+            float f5 = this.F;
+            if (z) {
+                f4 = 1.0f;
             }
-            int i8 = i5;
-            if (i4 > 0) {
-                z4 = false;
-                i3 = i4;
-                z3 = true;
-            } else if (i8 < size) {
-                int i9 = size - i8;
-                z3 = false;
-                i3 = i9;
-                z4 = true;
-            } else {
-                z3 = false;
-                z4 = false;
-                i3 = size;
-            }
-            of5[] of5VarArr = new of5[i3];
-            fm4[] fm4VarArr = new fm4[i3];
-            int i10 = 0;
-            boolean z7 = z3;
-            int i11 = 0;
-            while (i11 < c.size()) {
-                if (z7) {
-                    list = list2;
-                    if (iArr[i11] != 2) {
-                        i11++;
-                        list2 = list;
-                    }
-                } else {
-                    list = list2;
-                }
-                if (!z4 || iArr[i11] != 1) {
-                    of5 of5Var = (of5) c.get(i11);
-                    of5VarArr[i10] = of5Var;
-                    fm4VarArr[i10] = of5Var.a.a;
-                    i10++;
-                }
-                i11++;
-                list2 = list;
-            }
-            List list3 = list2;
-            String str3 = fm4VarArr[0].l;
-            int v = g8c.v(2, str3);
-            int i12 = 1;
-            int v2 = g8c.v(1, str3);
-            if ((v2 == 1 || (v2 == 0 && c2.isEmpty())) && v <= 1 && v2 + v > 0) {
-                z5 = true;
-            } else {
-                z5 = false;
-            }
-            z = z6;
-            tf5 c4 = c("main", (z7 || v2 <= 0) ? 0 : 0, of5VarArr, fm4VarArr, fm4Var, list3, map3, j);
-            arrayList3.add(c4);
-            if (z && z5) {
-                ArrayList arrayList4 = new ArrayList();
-                if (v > 0) {
-                    fm4[] fm4VarArr2 = new fm4[i3];
-                    int i13 = 0;
-                    while (i13 < i3) {
-                        fm4 fm4Var3 = fm4VarArr[i13];
-                        fm4[] fm4VarArr3 = fm4VarArr;
-                        String w = g8c.w(2, fm4Var3.l);
-                        String d = ud7.d(w);
-                        em4 em4Var = new em4();
-                        em4Var.a = fm4Var3.a;
-                        em4Var.b = fm4Var3.b;
-                        em4Var.c = mm5.q(fm4Var3.c);
-                        em4Var.r = ud7.n(fm4Var3.s);
-                        em4Var.s = ud7.n(d);
-                        em4Var.k = w;
-                        em4Var.l = fm4Var3.m;
-                        em4Var.i = fm4Var3.i;
-                        em4Var.j = fm4Var3.j;
-                        em4Var.z = fm4Var3.A;
-                        em4Var.A = fm4Var3.B;
-                        em4Var.a(fm4Var3.F);
-                        em4Var.e = fm4Var3.e;
-                        em4Var.f = fm4Var3.f;
-                        em4Var.K = fm4Var3.L;
-                        fm4VarArr2[i13] = new fm4(em4Var);
-                        i13++;
-                        fm4VarArr = fm4VarArr3;
-                        map3 = map3;
-                    }
-                    fm4[] fm4VarArr4 = fm4VarArr;
-                    map = map3;
-                    arrayList4.add(new sxb("main", fm4VarArr2));
-                    if (v2 > 0 && (fm4Var != null || c2.isEmpty())) {
-                        em4 a = h(fm4VarArr4[0], fm4Var, false).a();
-                        a.m = "main";
-                        arrayList4.add(new sxb("main:audio", new fm4(a)));
-                    }
-                    if (list3 != null) {
-                        for (int i14 = 0; i14 < list3.size(); i14++) {
-                            String k = de9.k(i14, "main:cc:");
-                            em4 a2 = pa3Var2.e((fm4) list3.get(i14)).a();
-                            a2.m = "main";
-                            arrayList4.add(new sxb(k, new fm4(a2)));
-                        }
-                    }
-                    pa3Var = pa3Var2;
-                } else {
-                    map = map3;
-                    pa3Var = pa3Var2;
-                    fm4[] fm4VarArr5 = new fm4[i3];
-                    for (int i15 = 0; i15 < i3; i15++) {
-                        fm4VarArr5[i15] = h(fm4VarArr[i15], fm4Var, true);
-                    }
-                    arrayList4.add(new sxb("main", fm4VarArr5));
-                }
-                em4 em4Var2 = new em4();
-                str = "ID3";
-                em4Var2.a = str;
-                em4Var2.s = ud7.n("application/id3");
-                em4Var2.m = "main";
-                sxb sxbVar = new sxb("main:id3", new fm4(em4Var2));
-                arrayList4.add(sxbVar);
-                c4.D((sxb[]) arrayList4.toArray(new sxb[0]), arrayList4.indexOf(sxbVar));
-            } else {
-                map = map3;
-                str = "ID3";
-                pa3Var = pa3Var2;
-            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f5, f4);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new se5(this, (byte) 1));
+            this.G.addListener(new te5(this, z, (byte) 1));
+            this.G.setDuration(320L);
+            this.G.setInterpolator(k43.h);
+            this.G.start();
         }
-        ArrayList arrayList5 = new ArrayList(c2.size());
-        ArrayList arrayList6 = new ArrayList(c2.size());
-        HashSet hashSet2 = new HashSet();
-        int i16 = 0;
-        while (i16 < c2.size()) {
-            String str4 = ((of5) c2.get(i16)).a.c;
-            str4.getClass();
-            if (!hashSet2.add(str4)) {
-                arrayList = arrayList5;
-                i2 = i16;
-                mm5Var = c2;
-                map2 = map;
-                arrayList2 = arrayList6;
-                hashSet = hashSet2;
+    }
+
+    public final void a0(boolean z, boolean z2) {
+        float f;
+        int i;
+        float f2;
+        int i2;
+        this.r.animate().cancel();
+        ValueAnimator valueAnimator = this.y;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        xc7 xc7Var = this.r;
+        float f3 = 0.0f;
+        if (!z2) {
+            if (z) {
+                i = 0;
             } else {
-                arrayList5.clear();
-                arrayList6.clear();
-                boolean z8 = true;
-                for (int i17 = 0; i17 < c2.size(); i17++) {
-                    if (str4.equals(((of5) c2.get(i17)).a.c)) {
-                        of5 of5Var2 = (of5) c2.get(i17);
-                        fm4 fm4Var4 = of5Var2.a.a;
-                        arrayList5.add(of5Var2);
-                        arrayList6.add(fm4Var4);
-                        if (g8c.v(1, fm4Var4.l) == 1) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                        z8 &= z2;
-                    }
-                }
-                String concat = "audio:".concat(str4);
-                String str5 = g8c.a;
-                arrayList = arrayList5;
-                i2 = i16;
-                mm5Var = c2;
-                map2 = map;
-                arrayList2 = arrayList6;
-                hashSet = hashSet2;
-                tf5 c5 = c(concat, 1, (of5[]) arrayList5.toArray(new of5[0]), (fm4[]) arrayList6.toArray(new fm4[0]), null, Collections.EMPTY_LIST, map2, j);
-                arrayList3.add(c5);
-                if (z && z8) {
-                    String concat2 = concat.concat(":id3");
-                    em4 em4Var3 = new em4();
-                    em4Var3.a = str;
-                    em4Var3.s = ud7.n("application/id3");
-                    em4Var3.m = concat;
-                    c5.D(new sxb[]{new sxb(concat, (fm4[]) arrayList2.toArray(new fm4[0])), new sxb(concat2, new fm4(em4Var3))}, 1);
-                }
+                i = 8;
             }
-            i16 = i2 + 1;
-            arrayList6 = arrayList2;
-            arrayList5 = arrayList;
-            c2 = mm5Var;
-            hashSet2 = hashSet;
-            map = map2;
-        }
-        Map map4 = map;
-        this.M = arrayList3.size();
-        ArrayList arrayList7 = new ArrayList(c3.size());
-        ArrayList arrayList8 = new ArrayList(c3.size());
-        HashSet hashSet3 = new HashSet();
-        int i18 = 0;
-        while (i18 < c3.size()) {
-            String str6 = ((of5) c3.get(i18)).a.c;
-            str6.getClass();
-            if (!hashSet3.add(str6)) {
-                i = i18;
+            xc7Var.setVisibility(i);
+            xc7 xc7Var2 = this.r;
+            if (z) {
+                f2 = 0.0f;
             } else {
-                arrayList7.clear();
-                arrayList8.clear();
-                for (int i19 = 0; i19 < c3.size(); i19++) {
-                    if (str6.equals(((of5) c3.get(i19)).a.c)) {
-                        of5 of5Var3 = (of5) c3.get(i19);
-                        arrayList7.add(of5Var3);
-                        arrayList8.add(of5Var3.a.a);
-                    }
-                }
-                String concat3 = "subtitle:".concat(str6);
-                fm4[] fm4VarArr6 = (fm4[]) arrayList8.toArray(new fm4[0]);
-                String str7 = g8c.a;
-                km5 km5Var = mm5.b;
-                i = i18;
-                tf5 c6 = c(concat3, 3, (of5[]) arrayList7.toArray(new of5[0]), fm4VarArr6, null, w59.e, map4, j);
-                arrayList3.add(c6);
-                int length = fm4VarArr6.length;
-                fm4[] fm4VarArr7 = new fm4[length];
-                for (int i20 = 0; i20 < length; i20++) {
-                    fm4VarArr7[i20] = pa3Var.e(fm4VarArr6[i20]);
-                }
-                c6.D(new sxb[]{new sxb(concat3, fm4VarArr7)}, new int[0]);
+                f2 = -hl.L(48.0f);
             }
-            i18 = i + 1;
-        }
-        tf5[] tf5VarArr2 = (tf5[]) arrayList3.toArray(new tf5[0]);
-        this.K = tf5VarArr2;
-        this.I = tf5VarArr2.length;
-        int i21 = 0;
-        while (true) {
-            int i22 = this.M;
-            tf5VarArr = this.K;
-            if (i21 >= i22) {
-                break;
+            xc7Var2.setTranslationY(f2);
+            b6 b6Var = this.e;
+            if (z) {
+                f3 = hl.L(48.0f);
             }
-            tf5VarArr[i21].d.m = true;
-            i21++;
-        }
-        for (tf5 tf5Var : tf5VarArr) {
-            if (!tf5Var.U) {
-                s86 s86Var = new s86();
-                s86Var.a = tf5Var.g0;
-                tf5Var.r(new t86(s86Var));
+            b6Var.setTranslationY(f3);
+            b6 b6Var2 = this.e;
+            if (z) {
+                i2 = hl.L(48.0f);
+            } else {
+                i2 = 0;
             }
+            b6Var2.setPadding(0, 0, 0, i2);
+            return;
         }
-        this.L = this.K;
+        xc7Var.setVisibility(0);
+        ViewPropertyAnimator animate = this.r.animate();
+        if (z) {
+            f = 0.0f;
+        } else {
+            f = -hl.L(48.0f);
+        }
+        ViewPropertyAnimator duration = animate.translationY(f).withEndAction(new xac((byte) 22, this, z)).setDuration(320L);
+        k43 k43Var = k43.h;
+        duration.setInterpolator(k43Var).start();
+        float f4 = this.x;
+        if (z) {
+            f3 = 1.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f4, f3);
+        this.y = ofFloat;
+        ofFloat.addUpdateListener(new se5(this, (byte) 0));
+        this.y.addListener(new te5(this, z, (byte) 0));
+        this.y.setDuration(320L);
+        this.y.setInterpolator(k43Var);
+        this.y.start();
     }
 
     @Override
-    public final txb q() {
-        txb txbVar = this.J;
-        txbVar.getClass();
-        return txbVar;
+    public final View createView(Context context) {
+        this.simpleActionBar.setBackButtonImage(2131231243);
+        jla jlaVar = this.simpleActionBar;
+        String str = this.a;
+        jlaVar.setTitle(str);
+        this.simpleActionBar.setActionBarMenuOnItemClick(new kg2(this, (byte) 28));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        int i = aob.d6;
+        yob.h(i, getResourceProvider(), frameLayout);
+        frameLayout.setClipChildren(false);
+        b6 b6Var = new b6(context, (byte) 17);
+        this.e = b6Var;
+        b6Var.setClipChildren(false);
+        frameLayout.addView(this.e, tre.e(-1, -1, 119));
+        hl.v3(this.e, 0, Y(), 0, 0);
+        df5.a(this.currentAccount).b(3).a();
+        Bundle bundle = new Bundle();
+        bundle.putInt("chatMode", 7);
+        bundle.putInt("searchType", 3);
+        bundle.putString("searchHashtag", str);
+        jr1 jr1Var = new jr1(context, getParentLayout(), bundle, (byte) 1);
+        jr1Var.h = false;
+        this.f = jr1Var;
+        this.e.addView(jr1Var, tre.e(-1, -1, 119));
+        re5 re5Var = new re5(this, context, new wia(null), this, new Object(), this.resourceProvider);
+        this.n = re5Var;
+        if (re5Var.getSearchOptionsItem() != null) {
+            yob.s(this.n.getSearchOptionsItem(), aob.G6, this.resourceProvider, PorterDuff.Mode.SRC_IN);
+        }
+        this.n.setPinnedToTop(true);
+        this.n.u0.setTranslationY(0.0f);
+        if (this.n.getSearchOptionsItem() != null) {
+            this.n.getSearchOptionsItem().setTranslationY(0.0f);
+        }
+        re5 re5Var2 = this.n;
+        p5b p5bVar = this.d;
+        re5Var2.X1 = p5bVar;
+        oha ohaVar = re5Var2.f0;
+        ohaVar.s = p5bVar;
+        ohaVar.f();
+        bja bjaVar = re5Var2.g0;
+        bjaVar.s = p5bVar;
+        bjaVar.f();
+        this.n.i1(0, eg0.e(hl.m) + hl.L(48.0f) + Y(), hl.L(8.0f), 0);
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.h = frameLayout2;
+        frameLayout2.setClipChildren(false);
+        this.h.addView(this.n, tre.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 49.0f));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.s = frameLayout3;
+        yob.h(i, getResourceProvider(), frameLayout3);
+        TextView textView = new TextView(context);
+        this.w = textView;
+        textView.setTypeface(hl.o());
+        this.w.setTextSize(1, 15.0f);
+        yob.X(this.w, aob.qf, getResourceProvider());
+        this.w.setText(ob6.G(p5bVar.J, "FoundStories", new Object[0]));
+        this.s.addView(this.w, tre.d(-1, -2.0f, 19, 18.0f, 0.0f, 18.0f, 0.0f));
+        View view = new View(context);
+        yob.h(aob.d7, this.resourceProvider, view);
+        this.s.addView(view, tre.a(-1.0f, 1.0f / hl.p, 55));
+        this.h.addView(this.s, tre.e(-1, 49, 87));
+        this.e.addView(this.h, tre.e(-1, -1, 119));
+        xc7 xc7Var = new xc7(context, this.resourceProvider);
+        this.r = xc7Var;
+        int themedColor = getThemedColor(i);
+        int i2 = aob.i6;
+        hf0 g0 = aob.g0(themedColor, getThemedColor(i2));
+        uob M = yob.M(i);
+        uob M2 = yob.M(i2);
+        vnb resourceProvider = getResourceProvider();
+        xc7Var.setBackground(g0);
+        yob.j(xc7Var, g0, M, M2, resourceProvider);
+        this.r.setOnClickListener(new sa5(this, (byte) 8));
+        a0(this.r.a(p5bVar), false);
+        this.r.b(df5.a(this.currentAccount).d.m, this.b, this.c);
+        frameLayout.addView(this.r, tre.e(-1, 48, 55));
+        hl.v3(this.r, 0, Y(), 0, 0);
+        eg0 baseSimpleGlass = getBaseSimpleGlass();
+        baseSimpleGlass.i(frameLayout, this.simpleActionBar, getResourceProvider());
+        baseSimpleGlass.o = new dg0(this, frameLayout, (byte) 5);
+        this.n.setPagesGlassEngine(this.glassEngine);
+        jla jlaVar2 = this.simpleActionBar;
+        jlaVar2.setBackground(baseSimpleGlass.a(jlaVar2));
+        Z(false, false);
+        return this.fragmentView;
     }
 
     @Override
-    public final boolean r(t86 t86Var) {
-        tf5[] tf5VarArr;
-        if (this.J == null) {
-            for (tf5 tf5Var : this.K) {
-                if (!tf5Var.U) {
-                    s86 s86Var = new s86();
-                    s86Var.a = tf5Var.g0;
-                    tf5Var.r(new t86(s86Var));
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        jr1 jr1Var;
+        if (i == jn7.A5) {
+            Object obj = objArr[0];
+            p5b p5bVar = this.d;
+            if (obj == p5bVar) {
+                xc7 xc7Var = this.r;
+                if (xc7Var != null) {
+                    a0(xc7Var.a(p5bVar), true);
+                }
+                TextView textView = this.w;
+                if (textView != null) {
+                    textView.setText(ob6.G(p5bVar.J, "FoundStories", new Object[0]));
                 }
             }
-            return false;
+        } else if (i == jn7.I0 && (jr1Var = this.f) != null && jr1Var.a != null && ((Integer) objArr[0]).intValue() == this.f.a.getClassGuid()) {
+            int intValue = ((Integer) objArr[1]).intValue();
+            xc7 xc7Var2 = this.r;
+            if (xc7Var2 != null) {
+                xc7Var2.b(intValue, this.b, this.c);
+            }
         }
-        return this.N.r(t86Var);
     }
 
     @Override
-    public final long s() {
-        return this.N.s();
+    public final boolean isLightStatusBar() {
+        if (vm2.h(aob.w0(null, aob.d6, true)) > 0.699999988079071d) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void t(long j) {
-        this.N.t(j);
+    public final boolean onFragmentCreate() {
+        ArrayList arrayList = getMessagesController().O1().I;
+        p5b p5bVar = this.d;
+        arrayList.add(p5bVar);
+        jn7.f(this.currentAccount).b(this, jn7.A5);
+        jn7.f(this.currentAccount).b(this, jn7.I0);
+        p5bVar.p(18, true);
+        return super.onFragmentCreate();
     }
 
     @Override
-    public final void f() {
+    public final void onFragmentDestroy() {
+        getMessagesController().O1().I.remove(this.d);
+        jn7.f(this.currentAccount).n(this, jn7.A5);
+        jn7.f(this.currentAccount).n(this, jn7.I0);
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

@@ -1,18 +1,38 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class xh extends g4c {
-    public final AlertDialog$Builder e;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.NumberTextView;
+public final class xh implements TextWatcher {
+    public final short a;
+    public final NumberTextView b;
 
-    public xh(String str, AlertDialog$Builder alertDialog$Builder) {
-        super(str, (vib) null);
-        this.e = alertDialog$Builder;
+    public xh(int i, NumberTextView numberTextView) {
+        this.a = i;
+        this.b = numberTextView;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.e.a.M0.run();
-        super.onClick(view);
+    public final void afterTextChanged(Editable editable) {
+        boolean z = false;
+        int codePointCount = this.a - Character.codePointCount(editable, 0, editable.length());
+        NumberTextView numberTextView = this.b;
+        if (codePointCount < 30) {
+            if (numberTextView.getVisibility() == 0) {
+                z = true;
+            }
+            numberTextView.a(codePointCount, z);
+            hl.R3(numberTextView, true);
+            return;
+        }
+        hl.R3(numberTextView, false);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

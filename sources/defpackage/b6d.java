@@ -1,79 +1,70 @@
 package defpackage;
 
-import java.util.ListIterator;
-public final class b6d extends v5c implements ListIterator {
-    public final int b;
-    public int c;
-    public final r6d d;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+import java.util.concurrent.locks.ReentrantLock;
+public final class b6d extends b99 {
+    public final byte a;
+    public final Object b;
 
-    public b6d(r6d r6dVar, int i) {
-        super((byte) 6);
-        int size = r6dVar.size();
-        k4f.b(i, size);
-        this.b = size;
-        this.c = i;
-        this.d = r6dVar;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
+    public b6d(Object obj, Looper looper, byte b) {
+        super(looper, (byte) 1);
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
+    public final void handleMessage(Message message) {
+        switch (this.a) {
+            case 0:
+                d6d d6dVar = (d6d) this.b;
+                int i = message.what;
+                if (i != 1) {
+                    if (i != 2) {
+                        StringBuilder sb = new StringBuilder(String.valueOf(i).length() + 20);
+                        sb.append("Unknown message id: ");
+                        sb.append(i);
+                        Log.w("GoogleApiClientImpl", sb.toString());
+                        return;
+                    }
+                    d6dVar.g();
+                    return;
+                }
+                ReentrantLock reentrantLock = d6dVar.b;
+                reentrantLock.lock();
+                try {
+                    if (d6dVar.e()) {
+                        d6dVar.i();
+                    }
+                    return;
+                } finally {
+                    reentrantLock.unlock();
+                }
+            default:
+                int i2 = message.what;
+                if (i2 != 1) {
+                    if (i2 != 2) {
+                        StringBuilder sb2 = new StringBuilder(String.valueOf(i2).length() + 20);
+                        sb2.append("Unknown message id: ");
+                        sb2.append(i2);
+                        Log.w("GACStateManager", sb2.toString());
+                        return;
+                    }
+                    throw ((RuntimeException) message.obj);
+                }
+                h6d h6dVar = (h6d) message.obj;
+                i6d i6dVar = (i6d) this.b;
+                h6dVar.getClass();
+                i6dVar.a.lock();
+                try {
+                    if (i6dVar.m == h6dVar.a) {
+                        h6dVar.a();
+                    }
+                    return;
+                } finally {
+                    i6dVar.a.unlock();
+                }
         }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
     }
 }

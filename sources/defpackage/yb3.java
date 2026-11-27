@@ -1,20 +1,16 @@
 package defpackage;
+public class yb3 {
+    public final f89 a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
 
-import java.util.concurrent.Executor;
-import java.util.logging.Logger;
-public final class yb3 {
-    public static final Logger f = Logger.getLogger(i1c.class.getName());
-    public final xl3 a;
-    public final Executor b;
-    public final md7 c;
-    public final lo9 d;
-    public final lo9 e;
-
-    public yb3(Executor executor, md7 md7Var, xl3 xl3Var, lo9 lo9Var, lo9 lo9Var2) {
-        this.b = executor;
-        this.c = md7Var;
-        this.a = xl3Var;
-        this.d = lo9Var;
-        this.e = lo9Var2;
+    public yb3(f89 f89Var, int i, int i2, int i3, int i4) {
+        this.a = f89Var;
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
     }
 }

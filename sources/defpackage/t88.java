@@ -1,61 +1,221 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.ui.PhotoViewer;
-public final class t88 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final u88 b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class t88 extends FrameLayout {
+    public static final float O = hl.L(20.0f);
+    public static final float P = hl.L(30.0f);
+    public static final float Q = hl.L(30.0f);
+    public boolean E;
+    public boolean F;
+    public boolean G;
+    public boolean H;
+    public int I;
+    public Paint J;
+    public Paint K;
+    public boolean L;
+    public s88 M;
+    public int N;
+    public PointF a;
+    public float b;
+    public float c;
+    public qma d;
+    public PointF e;
+    public float f;
+    public float h;
+    public float n;
+    public RectF r;
+    public float s;
+    public float w;
+    public float x;
+    public float y;
 
-    public t88(u88 u88Var, byte b) {
-        this.a = b;
-        this.b = u88Var;
+    public static float a(float f) {
+        return (f * 3.1415927f) / 180.0f;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        u88 u88Var = this.b;
-        switch (b) {
-            case 0:
-                PhotoViewer photoViewer = (PhotoViewer) u88Var.b;
-                photoViewer.R1.getNextView().setText((CharSequence) null);
-                r88 r88Var = photoViewer.U1;
-                r88Var.l0 = false;
-                if (r88Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) r88Var.o0.getLayoutParams()).topMargin = r88Var.m0;
-                    r88Var.m0 = -1;
-                    r88Var.requestLayout();
+    public static float b(MotionEvent motionEvent) {
+        if (motionEvent.getPointerCount() != 2) {
+            return 0.0f;
+        }
+        float x = motionEvent.getX(0);
+        float y = motionEvent.getY(0);
+        float x2 = x - motionEvent.getX(1);
+        float y2 = y - motionEvent.getY(1);
+        return (float) Math.sqrt((y2 * y2) + (x2 * x2));
+    }
+
+    private PointF getActualCenterPoint() {
+        int i;
+        qma qmaVar = this.d;
+        float f = qmaVar.a;
+        float width = (this.e.x * f) + ((getWidth() - f) / 2.0f);
+        if (!this.L) {
+            i = hl.m;
+        } else {
+            i = 0;
+        }
+        float height = getHeight();
+        float f2 = qmaVar.b;
+        float z = bp1.z(height, f2, 2.0f, i);
+        float f3 = qmaVar.a;
+        return new PointF(width, (this.e.y * f3) + qd4.x(f3, f2, 2.0f, z));
+    }
+
+    private float getActualInnerRadius() {
+        qma qmaVar = this.d;
+        return Math.min(qmaVar.a, qmaVar.b) * this.f;
+    }
+
+    private float getActualOuterRadius() {
+        qma qmaVar = this.d;
+        return Math.min(qmaVar.a, qmaVar.b) * this.h;
+    }
+
+    public final void c(int r22, android.view.MotionEvent r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.t88.c(int, android.view.MotionEvent):void");
+    }
+
+    public final void d(int i, MotionEvent motionEvent) {
+        if (i != 1) {
+            if (i != 2) {
+                if (i == 3 || i == 4 || i == 5) {
+                    this.N = 1;
                     return;
                 }
                 return;
-            default:
-                ((PhotoViewer) u88Var.b).R1.setTranslationY(0.0f);
-                return;
+            }
+        } else {
+            this.x = b(motionEvent);
+            this.y = 1.0f;
+            this.N = 5;
+        }
+        float b = b(motionEvent);
+        float B = c00.B(b - this.x, hl.p, 0.01f, this.y);
+        this.y = B;
+        float max = Math.max(0.1f, this.f * B);
+        this.f = max;
+        this.h = Math.max(max + 0.02f, this.h * this.y);
+        this.y = 1.0f;
+        this.x = b;
+        invalidate();
+        s88 s88Var = this.M;
+        if (s88Var != null) {
+            PointF pointF = this.e;
+            float f = this.f;
+            float f2 = this.h;
+            c98 c98Var = ((w88) s88Var).a;
+            c98Var.b0 = f2;
+            c98Var.c0 = pointF;
+            c98Var.d0 = f;
+            c98Var.e0 = a(this.n) + 1.5707964f;
+            rf4 rf4Var = c98Var.m0;
+            if (rf4Var != null) {
+                rf4Var.b(false, false, false);
+            }
         }
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.a) {
-            case 0:
-                r88 r88Var = ((PhotoViewer) this.b.b).U1;
-                Method method = r88Var.f0;
-                if (method != null) {
-                    try {
-                        method.invoke(r88Var, null);
-                        return;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                        return;
-                    }
+    public final void onDraw(Canvas canvas) {
+        Paint paint;
+        Canvas canvas2 = canvas;
+        Paint paint2 = this.K;
+        RectF rectF = this.r;
+        Paint paint3 = paint2;
+        Paint paint4 = this.J;
+        super.onDraw(canvas);
+        PointF actualCenterPoint = getActualCenterPoint();
+        float actualInnerRadius = getActualInnerRadius();
+        float actualOuterRadius = getActualOuterRadius();
+        canvas2.translate(actualCenterPoint.x, actualCenterPoint.y);
+        int i = this.I;
+        int i2 = 0;
+        if (i == 0) {
+            canvas2.rotate(this.n);
+            float L = hl.L(6.0f);
+            float L2 = hl.L(12.0f);
+            float L3 = hl.L(1.5f);
+            int i3 = 0;
+            while (i3 < 30) {
+                float f = L2 + L;
+                float f2 = i3 * f;
+                float f3 = -actualInnerRadius;
+                float f4 = f2 + L2;
+                float f5 = L3 - actualInnerRadius;
+                canvas2.drawRect(f2, f3, f4, f5, paint4);
+                float f6 = ((-i3) * f) - L;
+                float f7 = f6 - L2;
+                canvas.drawRect(f7, f3, f6, f5, paint4);
+                float f8 = L3 + actualInnerRadius;
+                float f9 = actualInnerRadius;
+                canvas.drawRect(f2, f9, f4, f8, paint4);
+                canvas.drawRect(f7, f9, f6, f8, paint4);
+                i3++;
+                canvas2 = canvas;
+                actualInnerRadius = f9;
+            }
+            float L4 = hl.L(6.0f);
+            while (i2 < 64) {
+                float f10 = L4 + L;
+                float f11 = i2 * f10;
+                float f12 = -actualOuterRadius;
+                float f13 = L4 + f11;
+                float f14 = L3 - actualOuterRadius;
+                canvas.drawRect(f11, f12, f13, f14, paint4);
+                float f15 = ((-i2) * f10) - L;
+                float f16 = f15 - L4;
+                canvas.drawRect(f16, f12, f15, f14, paint4);
+                float f17 = L3 + actualOuterRadius;
+                float f18 = actualOuterRadius;
+                canvas.drawRect(f11, f18, f13, f17, paint4);
+                canvas.drawRect(f16, f18, f15, f17, paint4);
+                i2++;
+                actualOuterRadius = f18;
+            }
+            paint = paint4;
+        } else {
+            paint = paint4;
+            if (i == 1) {
+                float f19 = -actualInnerRadius;
+                rectF.set(f19, f19, actualInnerRadius, actualInnerRadius);
+                int i4 = 0;
+                while (i4 < 22) {
+                    Paint paint5 = paint3;
+                    RectF rectF2 = rectF;
+                    canvas.drawArc(rectF2, i4 * 16.35f, 10.2f, false, paint5);
+                    i4++;
+                    rectF = rectF2;
+                    paint3 = paint5;
                 }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+                RectF rectF3 = rectF;
+                Paint paint6 = paint3;
+                float f20 = -actualOuterRadius;
+                rectF3.set(f20, f20, actualOuterRadius, actualOuterRadius);
+                while (i2 < 64) {
+                    canvas.drawArc(rectF3, 5.62f * i2, 3.6f, false, paint6);
+                    i2++;
+                }
+            }
         }
+        canvas.drawCircle(0.0f, 0.0f, hl.L(8.0f), paint);
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.t88.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void setDelegate(s88 s88Var) {
+        this.M = s88Var;
+    }
+
+    public void setType(int i) {
+        this.I = i;
+        invalidate();
     }
 }

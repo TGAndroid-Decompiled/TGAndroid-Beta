@@ -1,50 +1,42 @@
 package defpackage;
 
-import java.util.List;
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.LaunchActivity;
-public final class tm3 implements Runnable {
-    public final byte a = 3;
-    public final int b;
-    public final long c;
-    public final boolean d;
-    public final Object e;
-    public final Object f;
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.d;
+public final class tm3 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final bn3 b;
 
-    public tm3(um3 um3Var, boolean z, float[] fArr, long j, int i) {
-        this.e = um3Var;
-        this.d = z;
-        this.f = fArr;
-        this.c = j;
-        this.b = i;
+    public tm3(bn3 bn3Var, byte b) {
+        this.a = b;
+        this.b = bn3Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tm3.run():void");
-    }
-
-    public tm3(ad7 ad7Var, long j, List list, boolean z, int i) {
-        this.e = ad7Var;
-        this.c = j;
-        this.f = list;
-        this.d = z;
-        this.b = i;
-    }
-
-    public tm3(ad7 ad7Var, boolean z, String str, long j, int i, String str2) {
-        this.e = ad7Var;
-        this.d = z;
-        this.f = str;
-        this.c = j;
-        this.b = i;
-    }
-
-    public tm3(LaunchActivity launchActivity, TLObject tLObject, int i, long j, boolean z) {
-        this.e = launchActivity;
-        this.f = tLObject;
-        this.b = i;
-        this.c = j;
-        this.d = z;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        bn3 bn3Var = this.b;
+        switch (b) {
+            case 0:
+                d dVar = bn3Var.f;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ChatActivityEnterView chatActivityEnterView = dVar.a;
+                chatActivityEnterView.A1 = floatValue;
+                chatActivityEnterView.x2();
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bn3Var.c0 = floatValue2;
+                bn3Var.f.e(floatValue2);
+                return;
+            default:
+                bn3Var.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rt1 rt1Var = bn3Var.F0;
+                if (rt1Var != null && !rt1Var.e0()) {
+                    bn3Var.F0.c0();
+                    return;
+                }
+                return;
+        }
     }
 }

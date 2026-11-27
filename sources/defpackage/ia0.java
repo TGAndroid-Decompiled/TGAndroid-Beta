@@ -1,38 +1,99 @@
 package defpackage;
-public final class ia0 extends kj9 {
-    public final String b;
+public final class ia0 {
+    public static final int h = 0;
+    public final String a;
+    public final int b;
     public final String c;
     public final String d;
-    public final String e;
+    public final long e;
     public final long f;
+    public final String g;
 
-    public ia0(String str, String str2, String str3, String str4, long j) {
-        if (str != null) {
-            this.b = str;
-            if (str2 != null) {
-                this.c = str2;
-                this.d = str3;
-                if (str4 != null) {
-                    this.e = str4;
-                    this.f = j;
-                    return;
-                }
-                fvc.f("Null variantId");
-                throw null;
-            }
-            fvc.f("Null parameterKey");
-            throw null;
+    static {
+        byte b = (byte) (((byte) (0 | 2)) | 1);
+        if (b == 3) {
+            return;
         }
-        fvc.f("Null rolloutId");
-        throw null;
+        StringBuilder sb = new StringBuilder();
+        if ((b & 1) == 0) {
+            sb.append(" expiresInSecs");
+        }
+        if ((b & 2) == 0) {
+            sb.append(" tokenCreationEpochInSecs");
+        }
+        grb.i(bs2.o("Missing required properties:", sb));
+    }
+
+    public ia0(String str, int i, String str2, String str3, long j, long j2, String str4) {
+        this.a = str;
+        this.b = i;
+        this.c = str2;
+        this.d = str3;
+        this.e = j;
+        this.f = j2;
+        this.g = str4;
+    }
+
+    public final ha0 a() {
+        ?? obj = new Object();
+        obj.a = this.a;
+        obj.b = this.b;
+        obj.c = this.c;
+        obj.d = this.d;
+        obj.e = this.e;
+        obj.f = this.f;
+        obj.g = this.g;
+        obj.h = (byte) 3;
+        return obj;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
-            if (obj instanceof kj9) {
-                ia0 ia0Var = (ia0) ((kj9) obj);
-                if (this.b.equals(ia0Var.b) && this.c.equals(ia0Var.c) && this.d.equals(ia0Var.d) && this.e.equals(ia0Var.e) && this.f == ia0Var.f) {
-                    return true;
+            if (obj instanceof ia0) {
+                ia0 ia0Var = (ia0) obj;
+                String str = ia0Var.a;
+                String str2 = this.a;
+                if (str2 == null) {
+                    if (str != null) {
+                        return false;
+                    }
+                } else if (!str2.equals(str)) {
+                    return false;
+                }
+                if (ik8.c(this.b, ia0Var.b)) {
+                    String str3 = ia0Var.c;
+                    String str4 = this.c;
+                    if (str4 == null) {
+                        if (str3 != null) {
+                            return false;
+                        }
+                    } else if (!str4.equals(str3)) {
+                        return false;
+                    }
+                    String str5 = ia0Var.d;
+                    String str6 = this.d;
+                    if (str6 == null) {
+                        if (str5 != null) {
+                            return false;
+                        }
+                    } else if (!str6.equals(str5)) {
+                        return false;
+                    }
+                    if (this.e == ia0Var.e && this.f == ia0Var.f) {
+                        String str7 = ia0Var.g;
+                        String str8 = this.g;
+                        if (str8 == null) {
+                            if (str7 == null) {
+                                return true;
+                            }
+                            return false;
+                        } else if (str8.equals(str7)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    return false;
                 }
                 return false;
             }
@@ -42,20 +103,77 @@ public final class ia0 extends kj9 {
     }
 
     public final int hashCode() {
-        long j = this.f;
-        return ((((((((this.b.hashCode() ^ 1000003) * 1000003) ^ this.c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ ((int) ((j >>> 32) ^ j));
+        int hashCode;
+        int hashCode2;
+        int hashCode3;
+        int i = 0;
+        String str = this.a;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
+        }
+        int F = (((hashCode ^ 1000003) * 1000003) ^ ik8.F(this.b)) * 1000003;
+        String str2 = this.c;
+        if (str2 == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str2.hashCode();
+        }
+        int i2 = (F ^ hashCode2) * 1000003;
+        String str3 = this.d;
+        if (str3 == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = str3.hashCode();
+        }
+        long j = this.e;
+        long j2 = this.f;
+        int i3 = (((((i2 ^ hashCode3) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003;
+        String str4 = this.g;
+        if (str4 != null) {
+            i = str4.hashCode();
+        }
+        return i3 ^ i;
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("RolloutAssignment{rolloutId=");
-        sb.append(this.b);
-        sb.append(", parameterKey=");
+        String str;
+        StringBuilder sb = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
+        sb.append(this.a);
+        sb.append(", registrationStatus=");
+        int i = this.b;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        if (i != 5) {
+                            str = "null";
+                        } else {
+                            str = "REGISTER_ERROR";
+                        }
+                    } else {
+                        str = "REGISTERED";
+                    }
+                } else {
+                    str = "UNREGISTERED";
+                }
+            } else {
+                str = "NOT_GENERATED";
+            }
+        } else {
+            str = "ATTEMPT_MIGRATION";
+        }
+        sb.append(str);
+        sb.append(", authToken=");
         sb.append(this.c);
-        sb.append(", parameterValue=");
+        sb.append(", refreshToken=");
         sb.append(this.d);
-        sb.append(", variantId=");
+        sb.append(", expiresInSecs=");
         sb.append(this.e);
-        sb.append(", templateVersion=");
-        return ls6.p(sb, this.f, "}");
+        sb.append(", tokenCreationEpochInSecs=");
+        sb.append(this.f);
+        sb.append(", fisError=");
+        return c00.k(sb, this.g, "}");
     }
 }

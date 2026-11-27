@@ -8,10 +8,14 @@ public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
 
     public static final class InstanceHolder {
-        static final VoipAudioManager instance = new VoipAudioManager();
+        static final VoipAudioManager instance = new VoipAudioManager(0);
 
         private InstanceHolder() {
         }
+    }
+
+    public VoipAudioManager(int i) {
+        this();
     }
 
     public static VoipAudioManager get() {
@@ -40,12 +44,12 @@ public class VoipAudioManager {
         return true;
     }
 
-    public static void lambda$isBluetoothAndSpeakerOnAsync$3(i8c i8cVar, boolean z, boolean z2) {
-        i8cVar.a(Boolean.valueOf(z), Boolean.valueOf(z2));
+    public static void lambda$isBluetoothAndSpeakerOnAsync$3(icc iccVar, boolean z, boolean z2) {
+        iccVar.a(Boolean.valueOf(z), Boolean.valueOf(z2));
     }
 
-    public void lambda$isBluetoothAndSpeakerOnAsync$4(i8c i8cVar) {
-        gl.c3(new sy3(i8cVar, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), (byte) 4));
+    public void lambda$isBluetoothAndSpeakerOnAsync$4(icc iccVar) {
+        hl.c3(new mz3(iccVar, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), (byte) 4));
     }
 
     public static void lambda$stopBluetooth$2(AudioManager audioManager) {
@@ -66,8 +70,8 @@ public class VoipAudioManager {
         return null;
     }
 
-    public void isBluetoothAndSpeakerOnAsync(i8c i8cVar) {
-        Utilities.e.c(new mhc(this, i8cVar, (byte) 7));
+    public void isBluetoothAndSpeakerOnAsync(icc iccVar) {
+        Utilities.e.c(new vlc(this, iccVar, (byte) 6));
     }
 
     public boolean isBluetoothOn() {
@@ -101,7 +105,7 @@ public class VoipAudioManager {
 
     public void setSpeakerphoneOn(boolean z) {
         this.isSpeakerphoneOn = Boolean.valueOf(z);
-        Utilities.e.c(new k08((byte) 27, getAudioManager(), z));
+        Utilities.e.c(new q38((byte) 28, getAudioManager(), z));
     }
 
     public void startBluetooth() {
@@ -112,7 +116,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.e.c(new mhc(audioManager, findBluetoothDevice, (byte) 6));
+            Utilities.e.c(new vlc(audioManager, findBluetoothDevice, (byte) 5));
             return;
         }
         audioManager.startBluetoothSco();
@@ -121,7 +125,7 @@ public class VoipAudioManager {
     public void stopBluetooth() {
         AudioManager audioManager = getAudioManager();
         if (Build.VERSION.SDK_INT >= 31) {
-            Utilities.e.c(new rhc(audioManager, (byte) 1));
+            Utilities.e.c(new ylc(audioManager, (byte) 1));
         } else {
             audioManager.stopBluetoothSco();
         }

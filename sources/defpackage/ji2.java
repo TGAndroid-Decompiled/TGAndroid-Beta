@@ -1,52 +1,22 @@
 package defpackage;
+public final class ji2 {
+    public static final ji2 a;
+    public static final ji2[] b;
+    ji2 EF0;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ji2 extends b4 {
-    public static final Parcelable.Creator<ji2> CREATOR = new hv6((byte) 28);
-    public final int a;
-    public final String b;
-
-    public ji2(int i, String str) {
-        this.a = i;
-        this.b = str;
+    static {
+        Enum r0 = new Enum("NONE", 0);
+        Enum r1 = new Enum("ALL_JSON_OBJECTS", 1);
+        ?? r3 = new Enum("POLYMORPHIC", 2);
+        a = r3;
+        b = new ji2[]{r0, r1, r3};
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof ji2)) {
-            return false;
-        }
-        ji2 ji2Var = (ji2) obj;
-        if (ji2Var.a == this.a && cqe.a(ji2Var.b, this.b)) {
-            return true;
-        }
-        return false;
+    public static ji2 valueOf(String str) {
+        return (ji2) Enum.valueOf(ji2.class, str);
     }
 
-    public final int hashCode() {
-        return this.a;
-    }
-
-    public final String toString() {
-        int i = this.a;
-        int length = String.valueOf(i).length();
-        String str = this.b;
-        StringBuilder sb = new StringBuilder(length + 1 + String.valueOf(str).length());
-        sb.append(i);
-        sb.append(":");
-        sb.append(str);
-        return sb.toString();
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 2, this.b);
-        jte.s(parcel, r);
+    public static ji2[] values() {
+        return (ji2[]) b.clone();
     }
 }

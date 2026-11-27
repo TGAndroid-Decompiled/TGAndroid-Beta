@@ -1,62 +1,50 @@
 package defpackage;
-public final class t96 implements Runnable {
-    public final byte a;
-    public final qa6 b;
 
-    public t96(qa6 qa6Var, byte b) {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class t96 implements RequestDelegate {
+    public final byte a;
+    public final w96 b;
+
+    public t96(w96 w96Var, byte b) {
         this.a = b;
-        this.b = qa6Var;
+        this.b = w96Var;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        qa6 qa6Var = this.b;
+        w96 w96Var = this.b;
         switch (b) {
             case 0:
-                qa6Var.t0();
-                return;
-            case 1:
-                qh5 qh5Var = qa6Var.G;
-                if (qh5Var != null) {
-                    qa6Var.F.h(qh5Var);
-                    qa6Var.G = null;
+                if (tLObject instanceof TLRPC.Updates) {
+                    uc7.s1(w96Var.e).Y3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
+            case 1:
+                hl.c3(new ls5(w96Var, tLObject, tL_error, (byte) 15));
+                return;
             case 2:
-                qa6Var.w0();
-                return;
-            case 3:
-                qa6Var.getLocationController().o(0, qa6Var.m0, true);
-                qa6Var.y = false;
-                return;
-            case 4:
-                ty4 ty4Var = qa6Var.F;
-                if (ty4Var != null) {
-                    ty4Var.n(gl.L(70.0f), 0, gl.L(70.0f), qa6Var.n0());
+                int i = w96Var.e;
+                if (tLObject instanceof TLRPC.Updates) {
+                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                    uc7.s1(i).j4(updates.users, false);
+                    uc7.s1(i).c4(updates.chats, false);
+                    uc7.s1(i).Y3(updates, false);
+                    return;
+                } else if (tL_error != null && "GROUPCALL_ALREADY_DISCARDED".equalsIgnoreCase(tL_error.text)) {
+                    hl.c3(new u96(w96Var, (byte) 7));
+                    return;
+                } else {
+                    return;
                 }
-                if (!qa6Var.O.getRadiusSet()) {
-                    double d = qa6Var.M;
-                    int i = (d > 0.0d ? 1 : (d == 0.0d ? 0 : -1));
-                    sk4 sk4Var = qa6Var.L;
-                    if (i > 0) {
-                        sk4Var.n0(d);
-                    } else if (sk4Var != null) {
-                        sk4Var.h0();
-                        qa6Var.L = null;
-                    }
-                }
-                qa6Var.O = null;
-                return;
-            case 5:
-                qa6Var.C0();
-                return;
-            case 6:
-                qa6Var.C0();
-                return;
             default:
-                gl.c3(new t96(qa6Var, (byte) 1));
+                if (tLObject instanceof TLRPC.Updates) {
+                    uc7.s1(w96Var.e).Y3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
                 return;
         }
     }

@@ -1,79 +1,101 @@
 package defpackage;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.ui.Components.RadialProgressView;
-public final class ma2 extends FrameLayout implements tjb {
-    public final st a;
-    public final RadialProgressView b;
-    public final wjb c;
-    public float d;
-    public int e;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class ma2 extends c79 {
+    public final Context c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public la2 f;
+    public final na2 h;
 
-    public ma2(Context context, wjb wjbVar) {
-        super(context);
-        int i;
-        this.c = wjbVar;
-        st stVar = new st(this, context);
-        this.a = stVar;
-        stVar.setWillNotDraw(false);
-        addView(stVar, nme.e(36, 36, 17));
-        RadialProgressView radialProgressView = new RadialProgressView(context, wjbVar);
-        this.b = radialProgressView;
-        radialProgressView.setSize(gl.L(28.0f));
-        if (bkb.g1(wjbVar)) {
-            i = bkb.Ja;
-        } else {
-            i = bkb.Yc;
-        }
-        radialProgressView.setProgressColor(bkb.v0(i, wjbVar));
-        stVar.addView(radialProgressView, nme.e(32, 32, 17));
-    }
-
-    public final void a(float f, int i) {
-        if (this.d != f) {
-            invalidate();
-        }
-        this.d = f;
-        this.e = i;
+    public ma2(na2 na2Var, Context context) {
+        this.h = na2Var;
+        this.c = context;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(44.0f), 1073741824));
-    }
-
-    public void setProgressVisible(boolean z) {
-        int i;
-        if (z) {
-            i = 0;
-        } else {
-            i = 4;
+    public final void A(f89 f89Var) {
+        View view = f89Var.a;
+        if (view instanceof lj6) {
+            ((lj6) view).a();
         }
-        this.a.setVisibility(i);
     }
 
     @Override
-    public final void updateColors() {
-        int i;
-        wjb wjbVar = this.c;
-        try {
-            RadialProgressView radialProgressView = this.b;
-            if (bkb.g1(wjbVar)) {
-                i = bkb.Ja;
-            } else {
-                i = bkb.Yc;
+    public final boolean D(f89 f89Var) {
+        if (f89Var.f != 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void E(ArrayList arrayList, ArrayList arrayList2) {
+        na2 na2Var = this.h;
+        if (!na2Var.O) {
+            return;
+        }
+        this.d = arrayList;
+        this.e = arrayList2;
+        if (na2Var.b.getAdapter() == na2Var.e) {
+            na2Var.d.c();
+        }
+        super.f();
+    }
+
+    public final void F(String str) {
+        if (this.f != null) {
+            Utilities.g.a(this.f);
+            this.f = null;
+        }
+        if (TextUtils.isEmpty(str)) {
+            this.d.clear();
+            this.e.clear();
+            super.f();
+            return;
+        }
+        to3 to3Var = Utilities.g;
+        la2 la2Var = new la2(this, str, (byte) 0);
+        this.f = la2Var;
+        to3Var.d(la2Var, 300L);
+    }
+
+    @Override
+    public final int b() {
+        return this.d.size();
+    }
+
+    @Override
+    public final int d(int i) {
+        return 0;
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        TLRPC.Chat chat = (TLRPC.Chat) this.d.get(i);
+        String K = xc2.K(chat, false);
+        CharSequence charSequence = (CharSequence) this.e.get(i);
+        CharSequence charSequence2 = null;
+        if (charSequence != null && !TextUtils.isEmpty(K)) {
+            if (charSequence.toString().startsWith("@" + K)) {
+                charSequence2 = charSequence;
+                charSequence = null;
             }
-            radialProgressView.setProgressColor(bkb.v0(i, wjbVar));
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
         }
+        lj6 lj6Var = (lj6) f89Var.a;
+        lj6Var.setTag(Integer.valueOf(i));
+        lj6Var.c(chat, charSequence, charSequence2, false);
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final f89 x(ViewGroup viewGroup, int i) {
+        lj6 lj6Var = new lj6(this.c, 6, 2, false, null);
+        yob.h(aob.d6, null, lj6Var);
+        return new f89(lj6Var);
     }
 }

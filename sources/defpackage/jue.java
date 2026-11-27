@@ -1,34 +1,61 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import org.telegram.messenger.a;
 public abstract class jue {
-    public static FrameLayout a(Activity activity, wjb wjbVar, int i, String str, String str2) {
-        FrameLayout frameLayout = new FrameLayout(activity);
-        ImageView imageView = new ImageView(activity);
-        int i2 = bkb.i5;
-        imageView.setColorFilter(new PorterDuffColorFilter(bkb.v0(i2, wjbVar), PorterDuff.Mode.SRC_IN));
-        imageView.setImageResource(i);
-        frameLayout.addView(imageView, nme.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(activity);
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(activity);
-        textView.setTextColor(bkb.v0(i2, wjbVar));
-        textView.setTypeface(gl.o());
-        textView.setTextSize(0, gl.L(14.0f));
-        textView.setText(str);
-        linearLayout.addView(textView, nme.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        TextView textView2 = new TextView(activity);
-        textView2.setTextColor(bkb.v0(bkb.y6, wjbVar));
-        textView2.setTextSize(0, gl.L(14.0f));
-        textView2.setText(str2);
-        linearLayout.addView(textView2, nme.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        frameLayout.addView(linearLayout, nme.d(-1, -2.0f, 55, 41.0f, 0.0f, 0.0f, 0.0f));
-        return frameLayout;
+    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i, int i2) {
+        if (bitmap != null) {
+            if (!bitmap.isRecycled()) {
+                if (i >= 0 && i < bitmap.getWidth() && i2 >= 0 && i2 < bitmap.getHeight()) {
+                    return new NinePatchDrawable(a.b.getResources(), bitmap, c(i, i + 1, i2, i2 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i, i2)).array(), rect, null);
+                }
+                StringBuilder p = bs2.p("center pixel is outside bitmap: (", i, ", ", i2, ") for ");
+                p.append(bitmap.getWidth());
+                p.append("x");
+                p3d.f(bitmap.getHeight(), p);
+                return null;
+            }
+            lq5.j("bitmap is recycled");
+            return null;
+        }
+        lq5.j("bitmap == null");
+        return null;
+    }
+
+    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r39, int r40, float[] r41, float r42, int r43, float r44, int r45) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.jue.b(android.graphics.Bitmap[], int, float[], float, int, float, int):android.graphics.drawable.NinePatchDrawable");
+    }
+
+    public static ByteBuffer c(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
+        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
+        order.put((byte) 1);
+        order.put((byte) 2);
+        order.put((byte) 2);
+        order.put((byte) 9);
+        order.putInt(0);
+        order.putInt(0);
+        order.putInt(i5);
+        order.putInt(i7);
+        order.putInt(i6);
+        order.putInt(i8);
+        order.putInt(0);
+        order.putInt(i);
+        order.putInt(i2);
+        order.putInt(i3);
+        order.putInt(i4);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(i9);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        order.putInt(1);
+        return order;
     }
 }

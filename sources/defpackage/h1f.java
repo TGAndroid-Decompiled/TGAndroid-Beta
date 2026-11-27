@@ -1,12 +1,12 @@
 package defpackage;
-public abstract class h1f {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj == obj2) {
-            return true;
-        }
-        if (obj != null && obj.equals(obj2)) {
-            return true;
-        }
-        return false;
+public final class h1f {
+    public final cwe a;
+    public final b2f b;
+    public final kve c;
+
+    public h1f(htd htdVar) {
+        this.a = (cwe) htdVar.b;
+        this.b = (b2f) htdVar.c;
+        this.c = (kve) htdVar.d;
     }
 }

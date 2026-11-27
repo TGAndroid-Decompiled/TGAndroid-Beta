@@ -1,20 +1,20 @@
 package defpackage;
-public final class kk6 {
-    public static final kk6 i = new kk6(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, 0);
-    public final long a;
-    public final long b;
-    public final long c;
-    public long e;
-    public int f;
-    public boolean g;
-    public final iq d = new iq();
-    public long h = -9223372036854775807L;
 
-    public kk6(long j, long j2, long j3, long j4, int i2) {
-        this.a = j;
-        this.b = j2;
-        this.c = j3;
-        this.e = j4;
-        this.f = i2;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class kk6 extends c4 {
+    public static final Parcelable.Creator<kk6> CREATOR = new g3e((byte) 22);
+    public final String a;
+
+    public kk6(String str) {
+        xve.i(str, "json must not be null");
+        this.a = str;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 2, this.a);
+        bye.s(parcel, r);
     }
 }

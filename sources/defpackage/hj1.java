@@ -1,56 +1,87 @@
 package defpackage;
 
-import java.util.concurrent.atomic.AtomicReferenceArray;
-public final class hj1 extends nv9 {
-    public final q01 g;
-    public final AtomicReferenceArray h;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+public final class hj1 extends FrameLayout {
+    public final vnb a;
+    public final gm b;
+    public final TextView c;
+    public final TextView d;
+    public final DecimalFormat e;
+    public boolean f;
 
-    public hj1(long j, hj1 hj1Var, q01 q01Var, int i) {
-        super(j, hj1Var, i);
-        this.g = q01Var;
-        this.h = new AtomicReferenceArray(s01.b << 1);
+    public hj1(Context context, vnb vnbVar) {
+        super(context);
+        this.a = vnbVar;
+        LinearLayout j = uh9.j(context, 1);
+        addView(j, tre.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
+        TextView textView = new TextView(context);
+        this.c = textView;
+        textView.setTextSize(1, 16.0f);
+        yob.X(textView, aob.G6, vnbVar);
+        j.addView(textView, tre.o(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 13.0f);
+        yob.X(textView2, aob.y6, vnbVar);
+        j.addView(textView2, tre.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
+        gm gmVar = new gm(context);
+        this.b = gmVar;
+        gmVar.setTypeface(hl.o());
+        gmVar.setTextSize(1, 13.0f);
+        addView(gmVar, tre.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+        this.e = decimalFormat;
+        decimalFormat.setMinimumFractionDigits(2);
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(false);
     }
 
     @Override
-    public final int g() {
-        return s01.b;
-    }
-
-    @Override
-    public final void h(int r5, defpackage.sw2 r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.hj1.h(int, sw2):void");
-    }
-
-    public final boolean k(int i, Object obj, Object obj2) {
-        AtomicReferenceArray atomicReferenceArray;
-        int i2 = (i << 1) + 1;
-        do {
-            atomicReferenceArray = this.h;
-            if (atomicReferenceArray.compareAndSet(i2, obj, obj2)) {
-                return true;
+    public final void onDraw(Canvas canvas) {
+        Paint paint;
+        float L;
+        int i;
+        super.onDraw(canvas);
+        if (this.f) {
+            vnb vnbVar = this.a;
+            if (vnbVar != null) {
+                paint = vnbVar.d("paintDivider");
+            } else {
+                paint = aob.j0;
             }
-        } while (atomicReferenceArray.get(i2) == obj);
-        return false;
-    }
-
-    public final Object l(int i) {
-        return this.h.get((i << 1) + 1);
-    }
-
-    public final void m(int i, boolean z) {
-        if (z) {
-            q01 q01Var = this.g;
-            q01Var.getClass();
-            q01Var.F((this.d * s01.b) + i);
+            Paint paint2 = paint;
+            if (paint2 != null) {
+                if (ob6.a0) {
+                    L = 0.0f;
+                } else {
+                    L = hl.L(17.0f);
+                }
+                float f = L;
+                float measuredHeight = getMeasuredHeight() - 1;
+                int measuredWidth = getMeasuredWidth();
+                if (ob6.a0) {
+                    i = hl.L(17.0f);
+                } else {
+                    i = 0;
+                }
+                canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, paint2);
+            }
         }
-        i();
     }
 
-    public final void n(int i, Object obj) {
-        this.h.set(i << 1, obj);
-    }
-
-    public final void o(int i, lo5 lo5Var) {
-        this.h.set((i << 1) + 1, lo5Var);
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 }

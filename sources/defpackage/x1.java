@@ -1,42 +1,37 @@
 package defpackage;
-public abstract class x1 {
-    public boolean b(gk0 gk0Var) {
-        return this instanceof kk0;
-    }
 
-    public boolean c() {
-        return this instanceof geb;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class x1 implements Parcelable {
+    public final Parcelable a;
+    public static final v1 b = new x1();
+    public static final Parcelable.Creator<x1> CREATOR = new w1((byte) 0);
 
-    public abstract gk0 e();
-
-    public boolean f() {
-        return this instanceof kk0;
-    }
-
-    public vj2 h(vo3 vo3Var) {
-        char charAt;
-        int i = vo3Var.e;
-        String str = vo3Var.a;
-        if (vo3Var.g < 4 && i < str.length() && str.charAt(i) == '>') {
-            int i2 = vo3Var.c + vo3Var.g;
-            int i3 = i2 + 1;
-            String str2 = vo3Var.a;
-            int i4 = i + 1;
-            if (i4 < str2.length() && ((charAt = str2.charAt(i4)) == '\t' || charAt == ' ')) {
-                i3 = i2 + 2;
-            }
-            return new vj2(-1, i3, false);
+    public x1(Parcelable parcelable) {
+        if (parcelable != null) {
+            this.a = parcelable == b ? null : parcelable;
+        } else {
+            lq5.j("superState must not be null");
+            throw null;
         }
-        return null;
     }
 
-    public void d() {
+    @Override
+    public final int describeContents() {
+        return 0;
     }
 
-    public void a(CharSequence charSequence) {
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(this.a, i);
     }
 
-    public void g(qn5 qn5Var) {
+    public x1() {
+        this.a = null;
+    }
+
+    public x1(Parcel parcel, ClassLoader classLoader) {
+        Parcelable readParcelable = parcel.readParcelable(classLoader);
+        this.a = readParcelable == null ? b : readParcelable;
     }
 }

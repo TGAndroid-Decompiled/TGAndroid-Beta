@@ -1,28 +1,108 @@
 package defpackage;
+public final class w70 extends ck {
+    public final Integer a;
+    public final String b;
+    public final String c;
+    public final String d;
+    public final String e;
+    public final String f;
+    public final String g;
+    public final String h;
+    public final String i;
+    public final String j;
+    public final String k;
+    public final String l;
 
-import java.util.ArrayList;
-public final class w70 extends ah0 {
-    public final ArrayList a;
-
-    public w70(ArrayList arrayList) {
-        this.a = arrayList;
+    public w70(Integer num, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11) {
+        this.a = num;
+        this.b = str;
+        this.c = str2;
+        this.d = str3;
+        this.e = str4;
+        this.f = str5;
+        this.g = str6;
+        this.h = str7;
+        this.i = str8;
+        this.j = str9;
+        this.k = str10;
+        this.l = str11;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+        if (obj != this) {
+            if (obj instanceof ck) {
+                ck ckVar = (ck) obj;
+                if (this.a.equals(((w70) ckVar).a)) {
+                    if (this.b.equals(((w70) ckVar).b)) {
+                        if (this.c.equals(((w70) ckVar).c)) {
+                            if (this.d.equals(((w70) ckVar).d)) {
+                                if (this.e.equals(((w70) ckVar).e)) {
+                                    if (this.f.equals(((w70) ckVar).f)) {
+                                        if (this.g.equals(((w70) ckVar).g)) {
+                                            if (this.h.equals(((w70) ckVar).h)) {
+                                                if (this.i.equals(((w70) ckVar).i)) {
+                                                    if (this.j.equals(((w70) ckVar).j)) {
+                                                        if (this.k.equals(((w70) ckVar).k)) {
+                                                            if (this.l.equals(((w70) ckVar).l)) {
+                                                                return true;
+                                                            }
+                                                            return false;
+                                                        }
+                                                        return false;
+                                                    }
+                                                    return false;
+                                                }
+                                                return false;
+                                            }
+                                            return false;
+                                        }
+                                        return false;
+                                    }
+                                    return false;
+                                }
+                                return false;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
-        if (obj instanceof ah0) {
-            return this.a.equals(((w70) ((ah0) obj)).a);
-        }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        return 1000003 ^ this.a.hashCode();
+        return ((((((((((((((((((((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ this.f.hashCode()) * 1000003) ^ this.g.hashCode()) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.i.hashCode()) * 1000003) ^ this.j.hashCode()) * 1000003) ^ this.k.hashCode()) * 1000003) ^ this.l.hashCode();
     }
 
     public final String toString() {
-        return "BatchedLogRequest{logRequests=" + this.a + "}";
+        StringBuilder sb = new StringBuilder("AndroidClientInfo{sdkVersion=");
+        sb.append(this.a);
+        sb.append(", model=");
+        sb.append(this.b);
+        sb.append(", hardware=");
+        sb.append(this.c);
+        sb.append(", device=");
+        sb.append(this.d);
+        sb.append(", product=");
+        sb.append(this.e);
+        sb.append(", osBuild=");
+        sb.append(this.f);
+        sb.append(", manufacturer=");
+        sb.append(this.g);
+        sb.append(", fingerprint=");
+        sb.append(this.h);
+        sb.append(", locale=");
+        sb.append(this.i);
+        sb.append(", country=");
+        sb.append(this.j);
+        sb.append(", mccMnc=");
+        sb.append(this.k);
+        sb.append(", applicationBuild=");
+        return c00.k(sb, this.l, "}");
     }
 }

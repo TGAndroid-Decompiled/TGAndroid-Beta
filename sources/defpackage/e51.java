@@ -1,4 +1,9 @@
 package defpackage;
-public interface e51 {
-    byte[] g(int i, int i2, byte[] bArr);
+public final class e51 implements f73 {
+    public final byte[] a;
+
+    @Override
+    public final h73 createDataSource() {
+        return new f51(this.a);
+    }
 }

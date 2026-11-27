@@ -1,85 +1,90 @@
 package defpackage;
 
-import android.view.View;
+import android.os.Handler;
 import java.util.HashMap;
-public abstract class cr2 {
-    public int a = 1;
-    public Object b;
-    public Object c;
+import java.util.concurrent.CopyOnWriteArrayList;
+public abstract class cr2 extends rg0 {
+    public final HashMap i = new HashMap();
+    public Handler j;
 
-    public abstract int a(View view);
-
-    public abstract int b(View view);
-
-    public abstract int c(View view);
-
-    public abstract int d(View view);
-
-    public abstract int e();
-
-    public abstract int f();
-
-    public abstract int g();
-
-    public abstract int h();
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract int k();
-
-    public abstract int l(View view);
-
-    public abstract int m(View view);
-
-    public final void n() {
-        this.a = 2;
-    }
-
-    public final void o(String str) {
-        this.b = str;
-    }
-
-    public abstract void p(int i);
-
-    public final void q(qr2 qr2Var, fr2 fr2Var) {
-        String str = (String) this.c;
-        if (str != null && !str.isEmpty()) {
-            fr2Var.b = (String) this.c;
+    @Override
+    public final void e() {
+        for (br2 br2Var : this.i.values()) {
+            br2Var.a.d(br2Var.b);
         }
-        HashMap hashMap = qr2Var.a;
-        String str2 = fr2Var.a;
-        if (!hashMap.containsKey(str2)) {
-            if (qr2Var.b.add(fr2Var.e())) {
-                hashMap.put(str2, fr2Var);
-                return;
-            } else {
-                wn4.p(fr2Var.e(), "Config storage key used twice: ");
-                return;
+    }
+
+    @Override
+    public final void g() {
+        for (br2 br2Var : this.i.values()) {
+            br2Var.a.f(br2Var.b);
+        }
+    }
+
+    @Override
+    public void k() {
+        for (br2 br2Var : this.i.values()) {
+            br2Var.a.k();
+        }
+    }
+
+    @Override
+    public void q() {
+        HashMap hashMap = this.i;
+        for (br2 br2Var : hashMap.values()) {
+            rg0 rg0Var = br2Var.a;
+            ar2 ar2Var = br2Var.c;
+            rg0Var.p(br2Var.b);
+            rg0Var.s(ar2Var);
+            rg0Var.r(ar2Var);
+        }
+        hashMap.clear();
+    }
+
+    public abstract vz6 u(Integer num, vz6 vz6Var);
+
+    public abstract void x(Integer num, rg0 rg0Var, asb asbVar);
+
+    public final void y(final Integer num, rg0 rg0Var) {
+        HashMap hashMap = this.i;
+        yve.f(!hashMap.containsKey(num));
+        ?? r1 = new wz6() {
+            @Override
+            public final void a(rg0 rg0Var2, asb asbVar) {
+                cr2.this.x(num, rg0Var2, asbVar);
             }
+        };
+        ar2 ar2Var = new ar2(this, num);
+        hashMap.put(num, new br2(rg0Var, r1, ar2Var));
+        Handler handler = this.j;
+        handler.getClass();
+        rg0Var.getClass();
+        ?? obj = new Object();
+        obj.a = handler;
+        obj.b = ar2Var;
+        ((CopyOnWriteArrayList) rg0Var.c.d).add(obj);
+        Handler handler2 = this.j;
+        handler2.getClass();
+        CopyOnWriteArrayList copyOnWriteArrayList = rg0Var.d.c;
+        ?? obj2 = new Object();
+        obj2.a = handler2;
+        obj2.b = ar2Var;
+        copyOnWriteArrayList.add(obj2);
+        ig8 ig8Var = this.g;
+        ig8Var.getClass();
+        la3 la3Var = this.h;
+        la3Var.getClass();
+        rg0Var.l(r1, ig8Var, la3Var);
+        if (this.b.isEmpty()) {
+            rg0Var.d(r1);
         }
-        sc8.j(b00.h("Config key registered twice: ", str2));
     }
 
-    public final void r(boolean z, Number number) {
-        if (z) {
-            return;
-        }
-        String s = s();
-        throw new IllegalStateException("Config key " + s + ": default " + number + " is outside its range");
+    public long v(long j, Integer num) {
+        return j;
     }
 
-    public final String s() {
-        String str = (String) this.b;
-        if (str != null && !str.isEmpty()) {
-            return (String) this.b;
-        }
-        sc8.j("Config key without a name");
-        return null;
-    }
-
-    public final void t(String str) {
-        this.c = str;
+    public int w(int i, Integer num) {
+        return i;
     }
 }

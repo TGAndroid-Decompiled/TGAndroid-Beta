@@ -1,359 +1,107 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.view.animation.LinearInterpolator;
-import android.widget.FrameLayout;
-import j$.util.Objects;
-public final class kic extends FrameLayout {
-    public final ye7 E;
-    public int F;
-    public int G;
-    public short H;
-    public int I;
-    public float J;
-    public boolean K;
-    public final Path L;
-    public int M;
-    public int N;
-    public ValueAnimator O;
-    public ValueAnimator P;
-    public AnimatorSet Q;
-    public final AnimatorSet R;
-    public boolean S;
-    public volatile boolean T;
-    public final lfc U;
-    public final boolean V;
-    public int W;
-    public final Drawable a;
-    public final Drawable b;
-    public final ye7 c;
-    public final ye7 d;
-    public final Drawable e;
-    public final Drawable f;
-    public final ye7 h;
-    public final ye7 n;
-    public final Drawable r;
-    public final Drawable s;
-    public final ye7 w;
-    public final ye7 x;
-    public final ye7 y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class kic extends AnimatorListenerAdapter {
+    public final byte a;
+    public final vic b;
 
-    public kic(Activity activity, boolean z, lfc lfcVar) {
-        super(activity);
-        Drawable ye7Var;
-        Drawable ye7Var2;
-        Drawable ye7Var3;
-        Drawable ye7Var4;
-        Drawable ye7Var5;
-        Drawable ye7Var6;
-        this.F = 0;
-        this.G = 0;
-        this.H = (short) 0;
-        this.I = 0;
-        this.J = 0.0f;
-        this.K = false;
-        this.L = new Path();
-        this.M = 0;
-        this.N = 0;
-        this.S = false;
-        this.T = false;
-        this.U = lfcVar;
-        boolean e = e66.e(512);
-        this.V = e;
-        if (z) {
-            ye7Var = new jic();
-        } else {
-            ye7Var = new ye7(-4958504, -8304404, -14637865, -12612630, false, true);
-        }
-        this.a = ye7Var;
-        if (z) {
-            ye7Var2 = new jic();
-        } else {
-            ye7Var2 = new ye7(-12224791, -12879119, -16207709, -15226140, false, true);
-        }
-        this.b = ye7Var2;
-        this.c = new ye7(-16275028, -16270749, -5649306, -10833593, false, true);
-        this.d = new ye7(-1545896, -1613425, -2387892, -2198984, false, true);
-        if (z) {
-            ye7Var3 = new jic();
-        } else {
-            ye7Var3 = new ye7(-5818672, -9819171, -15755831, -14124319, false, true);
-        }
-        this.e = ye7Var3;
-        if (z) {
-            ye7Var4 = new jic();
-        } else {
-            ye7Var4 = new ye7(-13803306, -13866273, -16738923, -16608823, false, true);
-        }
-        this.f = ye7Var4;
-        ye7 ye7Var7 = new ye7(-16741490, -16673972, -7357129, -13525721, false, true);
-        this.h = ye7Var7;
-        ye7 ye7Var8 = new ye7(-1949911, -1691537, -3705322, -2663914, false, true);
-        this.n = ye7Var8;
-        if (z) {
-            ye7Var5 = new jic();
-        } else {
-            ye7Var5 = new ye7(-2726657, -7186179, -13778695, -11034113, false, true);
-        }
-        this.r = ye7Var5;
-        if (z) {
-            ye7Var6 = new jic();
-        } else {
-            ye7Var6 = new ye7(-11170817, -10507265, -16458548, -14105857, false, true);
-        }
-        this.s = ye7Var6;
-        ye7 ye7Var9 = new ye7(-16723243, -16129415, -3674272, -9578153, false, true);
-        this.w = ye7Var9;
-        ye7 ye7Var10 = new ye7(-34714, -32091, -85931, -29103, false, true);
-        this.x = ye7Var10;
-        this.y = new ye7(-16723243, -16129415, -3674272, -9578153, false, true);
-        this.E = new ye7(-16741490, -16673972, -7357129, -13525721, false, true);
-        ye7Var3.setBounds(0, 0, 80, 80);
-        ye7Var4.setBounds(0, 0, 80, 80);
-        ye7Var7.setBounds(0, 0, 80, 80);
-        ye7Var8.setBounds(0, 0, 80, 80);
-        ye7Var5.setBounds(0, 0, 80, 80);
-        ye7Var6.setBounds(0, 0, 80, 80);
-        ye7Var9.setBounds(0, 0, 80, 80);
-        ye7Var10.setBounds(0, 0, 80, 80);
-        setWillNotDraw(false);
-        setLayerType(2, null);
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.R = animatorSet;
-        ValueAnimator ofInt = ValueAnimator.ofInt(0, 360);
-        ofInt.addUpdateListener(new vhc(this, lfcVar, (byte) 1));
-        ofInt.setRepeatCount(-1);
-        ofInt.setRepeatMode(1);
-        animatorSet.setInterpolator(new LinearInterpolator());
-        animatorSet.playTogether(ofInt);
-        animatorSet.setDuration(12000L);
-        if (e) {
-            animatorSet.start();
-        }
-        if (this.W != 1) {
-            this.W = 1;
-            this.G = 255;
-            ValueAnimator ofInt2 = ValueAnimator.ofInt(255, 0, 255);
-            this.O = ofInt2;
-            ofInt2.addUpdateListener(new iic(this, (byte) 3));
-            this.O.setRepeatCount(-1);
-            this.O.setRepeatMode(1);
-            this.O.setInterpolator(new LinearInterpolator());
-            this.O.setDuration(12000L);
-            if (e) {
-                this.O.start();
-            }
-        }
-    }
-
-    public final void a() {
-        if (this.S) {
-            this.S = false;
-            AnimatorSet animatorSet = this.R;
-            if (animatorSet.isPaused()) {
-                animatorSet.resume();
-            }
-            AnimatorSet animatorSet2 = this.Q;
-            if (animatorSet2 != null && animatorSet2.isPaused()) {
-                this.Q.resume();
-            }
-        }
-    }
-
-    public final void b(int i, int i2, boolean z) {
-        long j;
-        int i3 = this.W;
-        if (i3 != 2 && i3 != 3) {
-            this.W = 2;
-            ValueAnimator valueAnimator = this.O;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllUpdateListeners();
-                this.O.cancel();
-                this.O = null;
-            }
-            this.M = i;
-            this.N = i2;
-            Point point = gl.q;
-            int i4 = point.x - i;
-            int i5 = i4 * i4;
-            int i6 = ((point.y + gl.m) + gl.n) - i2;
-            int i7 = i6 * i6;
-            double sqrt = Math.sqrt(i5 + i7);
-            int i8 = i * i;
-            double sqrt2 = Math.sqrt(i7 + i8);
-            int i9 = i2 * i2;
-            double max = Math.max(Math.max(Math.max(sqrt, sqrt2), Math.sqrt(i8 + i9)), Math.sqrt(i5 + i9));
-            this.K = true;
-            this.U.e = true;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, (float) max);
-            ofFloat.addUpdateListener(new iic(this, (byte) 1));
-            ofFloat.addListener(new iab(this, (byte) 23));
-            if (z) {
-                j = 400;
-            } else {
-                j = 0;
-            }
-            ofFloat.setDuration(j);
-            ofFloat.start();
-        }
-    }
-
-    public final void c() {
-        if (this.Q != null) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.O;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllUpdateListeners();
-            this.O.cancel();
-            this.O = null;
-        }
-        this.H = (short) 255;
-        this.Q = new AnimatorSet();
-        ValueAnimator ofInt = ValueAnimator.ofInt(0, 255, 255, 255, 0);
-        ofInt.addUpdateListener(new iic(this, (byte) 4));
-        ofInt.setRepeatCount(-1);
-        ofInt.setRepeatMode(1);
-        ValueAnimator ofInt2 = ValueAnimator.ofInt(0, 0, 255, 0, 0);
-        ofInt2.addUpdateListener(new iic(this, (byte) 5));
-        ofInt2.setRepeatCount(-1);
-        ofInt2.setRepeatMode(1);
-        this.Q.playTogether(ofInt2, ofInt);
-        this.Q.setInterpolator(new LinearInterpolator());
-        this.Q.setDuration(24000L);
-        if (this.V) {
-            this.Q.start();
-        } else {
-            this.G = 0;
-            this.F = 0;
-        }
-        invalidate();
+    public kic(vic vicVar, byte b) {
+        this.a = b;
+        this.b = vicVar;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AnimatorSet animatorSet = this.R;
-        if (animatorSet != null) {
-            animatorSet.cancel();
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        vic vicVar = this.b;
+        switch (b) {
+            case 0:
+                View[] viewArr = vicVar.e;
+                View[] viewArr2 = vicVar.e;
+                if (viewArr[1] != null) {
+                    vicVar.H();
+                    vicVar.h.put(vicVar.f[1], viewArr2[1]);
+                    vicVar.removeView(viewArr2[1]);
+                    vicVar.G(viewArr2[0], 0.0f);
+                    viewArr2[1] = null;
+                }
+                vicVar.T = null;
+                vicVar.y(true);
+                lic licVar = vicVar.N;
+                if (licVar != null) {
+                    licVar.w.invalidate();
+                    vicVar.N.w.i1();
+                    vicVar.N.invalidate();
+                }
+                vicVar.v();
+                vicVar.K.e();
+                return;
+            case 1:
+                vicVar.x = null;
+                View[] viewArr3 = vicVar.e;
+                if (viewArr3[1] != null) {
+                    if (!vicVar.G) {
+                        vicVar.H();
+                    }
+                    vicVar.h.put(vicVar.f[1], viewArr3[1]);
+                    vicVar.removeView(viewArr3[1]);
+                    viewArr3[1].setVisibility(8);
+                    viewArr3[1] = null;
+                }
+                vicVar.y = false;
+                vicVar.J = false;
+                lic licVar2 = vicVar.N;
+                if (licVar2 != null) {
+                    licVar2.setEnabled(true);
+                }
+                vicVar.y(false);
+                vicVar.v();
+                vicVar.K.e();
+                return;
+            case 2:
+                vicVar.x = null;
+                View[] viewArr4 = vicVar.e;
+                View view = viewArr4[1];
+                if (view != null) {
+                    vicVar.removeView(view);
+                    viewArr4[1] = null;
+                }
+                vicVar.y = false;
+                lic licVar3 = vicVar.N;
+                if (licVar3 != null) {
+                    licVar3.setEnabled(true);
+                    lic licVar4 = vicVar.N;
+                    licVar4.K = false;
+                    licVar4.a = 1.0f;
+                    licVar4.w.i1();
+                    vicVar.N.invalidate();
+                    return;
+                }
+                return;
+            default:
+                vicVar.x = null;
+                View[] viewArr5 = vicVar.e;
+                if (viewArr5[1] != null) {
+                    if (!vicVar.G) {
+                        vicVar.H();
+                    }
+                    vicVar.h.put(vicVar.f[1], viewArr5[1]);
+                    vicVar.removeView(viewArr5[1]);
+                    viewArr5[1].setVisibility(8);
+                    viewArr5[1] = null;
+                }
+                vicVar.y = false;
+                vicVar.J = false;
+                lic licVar5 = vicVar.N;
+                if (licVar5 != null) {
+                    licVar5.setEnabled(true);
+                }
+                vicVar.y(false);
+                vicVar.v();
+                vicVar.K.e();
+                return;
         }
-        AnimatorSet animatorSet2 = this.Q;
-        if (animatorSet2 != null) {
-            animatorSet2.cancel();
-        }
-        ValueAnimator valueAnimator = this.O;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.T) {
-            return;
-        }
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        canvas.save();
-        float sqrt = ((float) Math.sqrt((height * width) + (width * width))) / Math.min(height, width);
-        canvas.scale(sqrt, sqrt, width, height);
-        canvas.rotate(this.U.h, width, height);
-        PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        ((Canvas) this.U.a.b).drawColor(0, mode);
-        ((Canvas) this.U.b.b).drawColor(0, mode);
-        short s = this.H;
-        if (s != 0 && this.I != 255) {
-            this.c.setAlpha(s);
-            this.w.setAlpha(this.H);
-            this.h.setAlpha(this.H);
-            this.c.draw(canvas);
-            this.w.draw((Canvas) this.U.a.b);
-            this.h.draw((Canvas) this.U.b.b);
-        }
-        int i = this.G;
-        if (i != 0 && this.I != 255) {
-            this.b.setAlpha(i);
-            this.f.setAlpha(this.G);
-            this.s.setAlpha(this.G);
-            this.b.draw(canvas);
-            this.f.draw((Canvas) this.U.b.b);
-            this.s.draw((Canvas) this.U.a.b);
-        }
-        int i2 = this.F;
-        if (i2 != 0 && this.I != 255) {
-            this.a.setAlpha(i2);
-            this.e.setAlpha(this.F);
-            this.r.setAlpha(this.F);
-            this.a.draw(canvas);
-            this.e.draw((Canvas) this.U.b.b);
-            this.r.draw((Canvas) this.U.a.b);
-        }
-        int i3 = this.I;
-        if (i3 != 0) {
-            this.d.setAlpha(i3);
-            this.n.setAlpha(this.I);
-            this.x.setAlpha(this.I);
-            this.d.draw(canvas);
-            this.n.draw((Canvas) this.U.b.b);
-            this.x.draw((Canvas) this.U.a.b);
-        }
-        canvas.restore();
-        if (this.K) {
-            this.L.rewind();
-            float f = this.J;
-            Path.Direction direction = Path.Direction.CW;
-            this.L.addCircle(this.M, this.N, f, direction);
-            canvas.clipPath(this.L);
-            Objects.requireNonNull(this.U);
-            Objects.requireNonNull(this.U);
-            canvas.scale(1.12f, 1.12f, width, height);
-            this.c.setAlpha(255);
-            this.c.draw(canvas);
-            this.L.rewind();
-            this.L.addCircle(this.M / 4.0f, this.N / 4.0f, this.J / 4.0f, direction);
-            ((Canvas) this.U.c.b).drawColor(0, mode);
-            ((Canvas) this.U.c.b).save();
-            ((Canvas) this.U.c.b).clipPath(this.L);
-            this.y.setAlpha(255);
-            this.y.draw((Canvas) this.U.c.b);
-            ((Canvas) this.U.c.b).restore();
-            ((Canvas) this.U.d.b).drawColor(0, mode);
-            ((Canvas) this.U.d.b).save();
-            ((Canvas) this.U.d.b).clipPath(this.L);
-            this.E.setAlpha(255);
-            this.E.draw((Canvas) this.U.d.b);
-            ((Canvas) this.U.d.b).restore();
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.c.setBounds(0, 0, getWidth(), getHeight());
-        this.d.setBounds(0, 0, getWidth(), getHeight());
-        this.b.setBounds(0, 0, getWidth(), getHeight());
-        this.a.setBounds(0, 0, getWidth(), getHeight());
-        this.y.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
-        this.E.setBounds(0, 0, getWidth() / 4, getHeight() / 4);
-        int width = getWidth();
-        int height = getHeight();
-        lfc lfcVar = this.U;
-        lfcVar.f = width;
-        lfcVar.g = height;
-        int i5 = width / 4;
-        int i6 = height / 4;
-        lfcVar.c = new ep(i5, i6);
-        ep epVar = new ep(i5, i6);
-        lfcVar.d = epVar;
-        ((Paint) epVar.a).setAlpha(180);
     }
 }

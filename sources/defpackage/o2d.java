@@ -1,62 +1,58 @@
 package defpackage;
 
-import android.os.DeadObjectException;
-import android.os.RemoteException;
-import android.util.Log;
-import com.google.android.gms.common.api.Status;
-import java.util.Map;
-public final class o2d extends x2d {
-    public final ig0 b;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowInsetsController;
+public class o2d extends c3f {
+    public final WindowInsetsController a;
+    public final Window b;
 
-    public o2d(int i, ig0 ig0Var) {
-        super(i);
-        this.b = ig0Var;
+    public o2d(Window window, ve9 ve9Var) {
+        this.a = window.getInsetsController();
+        this.b = window;
     }
 
     @Override
-    public final void a(Status status) {
-        try {
-            this.b.o(status);
-        } catch (IllegalStateException e) {
-            Log.w("ApiCallRunner", "Exception reporting failure", e);
+    public final void a() {
+        this.a.hide(519);
+    }
+
+    @Override
+    public final void b() {
+        g(16);
+        this.a.setSystemBarsAppearance(0, 16);
+    }
+
+    @Override
+    public final void c(boolean z) {
+        if (z) {
+            f(8192);
+            this.a.setSystemBarsAppearance(8, 8);
+            return;
         }
+        g(8192);
+        this.a.setSystemBarsAppearance(0, 8);
     }
 
     @Override
-    public final void b(RuntimeException runtimeException) {
-        String simpleName = runtimeException.getClass().getSimpleName();
-        String localizedMessage = runtimeException.getLocalizedMessage();
-        try {
-            this.b.o(new Status(10, ls6.o(simpleName, ": ", localizedMessage, new StringBuilder(simpleName.length() + 2 + String.valueOf(localizedMessage).length())), null, null));
-        } catch (IllegalStateException e) {
-            Log.w("ApiCallRunner", "Exception reporting failure", e);
-        }
+    public void d() {
+        this.b.getDecorView().setTag(356039078, 2);
+        g(2048);
+        f(4096);
     }
 
     @Override
-    public final void c(aec aecVar, boolean z) {
-        Boolean valueOf = Boolean.valueOf(z);
-        ig0 ig0Var = this.b;
-        ((Map) aecVar.b).put(ig0Var, valueOf);
-        ig0Var.b(new m3d(aecVar, ig0Var));
+    public final void e() {
+        this.a.show(519);
     }
 
-    @Override
-    public final void d(u1d u1dVar) {
-        try {
-            ig0 ig0Var = this.b;
-            try {
-                try {
-                    ig0Var.n(u1dVar.b);
-                } catch (DeadObjectException e) {
-                    ig0Var.o(new Status(8, e.getLocalizedMessage(), null, null));
-                    throw e;
-                }
-            } catch (RemoteException e2) {
-                ig0Var.o(new Status(8, e2.getLocalizedMessage(), null, null));
-            }
-        } catch (RuntimeException e3) {
-            b(e3);
-        }
+    public final void f(int i) {
+        View decorView = this.b.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | i);
+    }
+
+    public final void g(int i) {
+        View decorView = this.b.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() & (~i));
     }
 }

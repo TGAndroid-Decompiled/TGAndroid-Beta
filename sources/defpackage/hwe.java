@@ -1,26 +1,17 @@
 package defpackage;
-public final class hwe {
-    public final String a;
+public final class hwe implements zq7 {
+    public static final hwe a = new Object();
 
-    public hwe(String str) {
-        this.a = str;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        if ((obj instanceof hwe) && this.a.equals(((hwe) obj).a)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
-    }
-
-    public final String toString() {
-        return tb4.y("MLKitLoggingOptions{libraryName=", this.a, ", enableFirelog=true, firelogEventType=1}");
+        throw new ClassCastException();
     }
 }

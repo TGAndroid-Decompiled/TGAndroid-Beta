@@ -1,69 +1,25 @@
 package defpackage;
 
-import android.view.View;
-public final class us1 extends qn {
-    public final byte b;
-    public final ts1 c;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+public final class us1 extends yc8 {
+    public final Bitmap a;
+    public final ArrayList b;
+    public final zu1 c;
 
-    public us1(ts1 ts1Var, byte b) {
-        super("p2", (byte) 0);
-        this.b = b;
-        switch (b) {
-            case 1:
-                this.c = ts1Var;
-                super("progress", (byte) 0);
-                return;
-            case 2:
-                this.c = ts1Var;
-                super("alpha", (byte) 0);
-                return;
-            default:
-                this.c = ts1Var;
-                return;
-        }
+    public us1(zu1 zu1Var, Bitmap bitmap, ArrayList arrayList) {
+        this.c = zu1Var;
+        this.a = bitmap;
+        this.b = arrayList;
     }
 
     @Override
-    public final void c(Object obj, float f) {
-        byte b = this.b;
-        ts1 ts1Var = this.c;
-        switch (b) {
-            case 0:
-                ((g27) obj).e = f;
-                View view = ts1Var.c.R.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                ((g27) obj).g = f;
-                View view2 = ts1Var.c.R.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((g27) obj).f = f;
-                View view3 = ts1Var.c.R.fragmentView;
-                if (view3 != null) {
-                    view3.invalidate();
-                    return;
-                }
-                return;
-        }
+    public final void L(int i, oec oecVar, boolean z, int i2, int i3, boolean z2) {
+        this.c.G((no6) this.b.get(0), oecVar, z, i2, z2, 0L);
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.b) {
-            case 0:
-                return Float.valueOf(((g27) obj).e);
-            case 1:
-                return Float.valueOf(((g27) obj).g);
-            default:
-                return Float.valueOf(((g27) obj).f);
-        }
+    public final mn5 k(int i) {
+        return new mn5(this.a, null, 0);
     }
 }

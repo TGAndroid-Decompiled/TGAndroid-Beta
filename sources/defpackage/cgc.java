@@ -1,187 +1,266 @@
 package defpackage;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.a;
-public final class cgc extends FrameLayout {
-    public float a;
-    public float b;
-    public boolean c;
-    public long d;
-    public final hgc e;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.view.View;
+import j$.util.Comparator$CC;
+import java.io.File;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AnimatedFileDrawableStream;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public abstract class cgc extends View implements fn7 {
+    public String E;
+    public int F;
+    public final TextPaint G;
+    public BitmapShader H;
+    public final RectF I;
+    public final Paint J;
+    public final Paint K;
+    public final RectF L;
+    public final Matrix M;
+    public final fa8 N;
+    public nc8 O;
+    public double P;
+    public boolean Q;
+    public final ImageReceiver R;
+    public int S;
+    public int T;
+    public int U;
+    public int V;
+    public final Path W;
+    public boolean a;
+    public long a0;
+    public lm b;
+    public long b0;
+    public long c;
+    public int c0;
+    public Uri d;
+    public int d0;
+    public Runnable e;
+    public ArrayList e0;
+    public agc f;
+    public TLRPC.Document f0;
+    public String g0;
+    public float h;
+    public int h0;
+    public int n;
+    public int r;
+    public boolean s;
+    public Bitmap w;
+    public Bitmap x;
+    public final Drawable y;
 
-    public cgc(hgc hgcVar, Activity activity) {
-        super(activity);
-        this.e = hgcVar;
+    public cgc(Context context, fa8 fa8Var) {
+        super(context);
+        this.n = -1;
+        TextPaint textPaint = new TextPaint(1);
+        this.G = textPaint;
+        this.I = new RectF();
+        this.J = new Paint(2);
+        this.K = new Paint(2);
+        this.L = new RectF();
+        this.M = new Matrix();
+        this.W = new Path();
+        this.h0 = -1;
+        setVisibility(4);
+        this.y = context.getResources().getDrawable(2131232822);
+        textPaint.setTextSize(hl.L(13.0f));
+        textPaint.setColor(-1);
+        this.N = fa8Var;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.R = imageReceiver;
+        imageReceiver.p0(this);
+        imageReceiver.h1 = new ftb(this, (byte) 11);
     }
 
-    @Override
-    public final boolean drawChild(android.graphics.Canvas r5, android.view.View r6, long r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.cgc.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        hgc hgcVar = this.e;
-        sfc sfcVar = hgcVar.T0;
-        if (motionEvent.getActionMasked() == 1) {
-            hgcVar.E.b(false, false);
-            hgcVar.w.a();
-            gl.r(sfcVar);
-            if (hgcVar.p0 == 3) {
-                gl.d3(sfcVar, 10000L);
+    public final void a() {
+        if (this.e != null) {
+            Utilities.e.a(this.e);
+            this.e = null;
+        }
+        if (this.f != null) {
+            Utilities.e.a(this.f);
+            this.f = null;
+        }
+        lm lmVar = this.b;
+        if (lmVar != null) {
+            AnimatedFileDrawableStream animatedFileDrawableStream = lmVar.v0;
+            if (animatedFileDrawableStream != null) {
+                animatedFileDrawableStream.b(true);
+            }
+            if (lmVar.e0 != null) {
+                lmVar.e0.h();
             }
         }
-        return super.onInterceptTouchEvent(motionEvent);
+        Utilities.e.c(new azb(this, (byte) 20));
+        setVisibility(4);
+        this.x = null;
+        this.H = null;
+        invalidate();
+        this.n = -1;
+        this.d = null;
+        this.s = false;
+        this.a = false;
+        if (this.a0 != 0) {
+            this.a0 = 0L;
+            this.g0 = null;
+            this.f0 = null;
+            this.e0 = null;
+            b(-1);
+        }
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        aic aicVar;
-        cg2 cg2Var;
-        hgc hgcVar = this.e;
-        sfc sfcVar = hgcVar.T0;
-        if (motionEvent.getActionMasked() == 1) {
-            hgcVar.E.b(false, false);
-            hgcVar.w.a();
-            gl.r(sfcVar);
-            if (hgcVar.p0 == 3) {
-                gl.d3(sfcVar, 10000L);
-            }
+    public final void b(int i) {
+        int i2 = this.h0;
+        if (i2 == i) {
+            return;
         }
-        if (!hgcVar.h1 && !hgcVar.a1 && !hgcVar.g1 && motionEvent.getActionMasked() != 0) {
-            hgcVar.e();
-            return false;
-        }
-        if (motionEvent.getActionMasked() == 0) {
-            hgcVar.h1 = false;
-            hgcVar.a1 = false;
-            hgcVar.g1 = false;
-        }
-        if (hgcVar.m0) {
-            aicVar = hgcVar.d0;
+        int i3 = jn7.Z1;
+        int i4 = jn7.Y1;
+        if (i == -1) {
+            jn7.f(i2).n(this, i4);
+            jn7.f(this.h0).n(this, i3);
         } else {
-            aicVar = hgcVar.e0;
+            jn7.f(i).b(this, i4);
+            jn7.f(i).b(this, i3);
         }
-        if (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5) {
-            if (motionEvent.getActionMasked() == 2 && hgcVar.a1) {
-                int i = -1;
-                int i2 = -1;
-                for (int i3 = 0; i3 < motionEvent.getPointerCount(); i3++) {
-                    if (hgcVar.d1 == motionEvent.getPointerId(i3)) {
-                        i = i3;
-                    }
-                    if (hgcVar.e1 == motionEvent.getPointerId(i3)) {
-                        i2 = i3;
-                    }
-                }
-                if (i != -1 && i2 != -1) {
-                    float hypot = ((float) Math.hypot(motionEvent.getX(i2) - motionEvent.getX(i), motionEvent.getY(i2) - motionEvent.getY(i))) / hgcVar.X0;
-                    hgcVar.f1 = hypot;
-                    if (hypot > 1.005f && !hgcVar.g1) {
-                        hgcVar.X0 = (float) Math.hypot(motionEvent.getX(i2) - motionEvent.getX(i), motionEvent.getY(i2) - motionEvent.getY(i));
-                        float x = (motionEvent.getX(i2) + motionEvent.getX(i)) / 2.0f;
-                        hgcVar.b1 = x;
-                        hgcVar.V0 = x;
-                        float y = (motionEvent.getY(i2) + motionEvent.getY(i)) / 2.0f;
-                        hgcVar.c1 = y;
-                        hgcVar.W0 = y;
-                        hgcVar.f1 = 1.0f;
-                        hgcVar.Y0 = 0.0f;
-                        hgcVar.Z0 = 0.0f;
-                        getParent().requestDisallowInterceptTouchEvent(true);
-                        hgcVar.g1 = true;
-                        hgcVar.a1 = true;
-                    }
-                    float x2 = motionEvent.getX(i);
-                    float y2 = motionEvent.getY(i);
-                    float x3 = hgcVar.V0 - ((motionEvent.getX(i2) + x2) / 2.0f);
-                    float y3 = hgcVar.W0 - ((motionEvent.getY(i2) + y2) / 2.0f);
-                    float f = hgcVar.f1;
-                    hgcVar.Y0 = (-x3) / f;
-                    hgcVar.Z0 = (-y3) / f;
-                    invalidate();
-                } else {
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                    hgcVar.e();
-                }
-            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((hgcVar.d1 == motionEvent.getPointerId(0) && hgcVar.e1 == motionEvent.getPointerId(1)) || (hgcVar.d1 == motionEvent.getPointerId(1) && hgcVar.e1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
-                getParent().requestDisallowInterceptTouchEvent(false);
-                hgcVar.e();
-            }
-        } else {
-            if (motionEvent.getActionMasked() == 0) {
-                RectF rectF = gl.P;
-                rectF.set(aicVar.getX(), aicVar.getY(), aicVar.getX() + aicVar.getMeasuredWidth(), aicVar.getY() + aicVar.getMeasuredHeight());
-                rectF.inset(((aicVar.getMeasuredHeight() * aicVar.U) - aicVar.getMeasuredHeight()) / 2.0f, ((aicVar.getMeasuredWidth() * aicVar.U) - aicVar.getMeasuredWidth()) / 2.0f);
-                boolean z = h75.u5;
-                float f2 = rectF.top;
-                if (!z) {
-                    rectF.top = Math.max(f2, a.getCurrentActionBarHeight());
-                    rectF.bottom = Math.min(rectF.bottom, aicVar.getMeasuredHeight() - gl.L(90.0f));
-                } else {
-                    rectF.top = Math.max(f2, a.getCurrentActionBarHeight());
-                    rectF.right = Math.min(rectF.right, aicVar.getMeasuredWidth() - gl.L(90.0f));
-                }
-                boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
-                hgcVar.h1 = contains;
-                if (!contains) {
-                    hgcVar.e();
-                }
-            }
-            if (hgcVar.h1 && !hgcVar.a1 && motionEvent.getPointerCount() == 2) {
-                hgcVar.X0 = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
-                float x4 = (motionEvent.getX(1) + motionEvent.getX(0)) / 2.0f;
-                hgcVar.b1 = x4;
-                hgcVar.V0 = x4;
-                float y4 = (motionEvent.getY(1) + motionEvent.getY(0)) / 2.0f;
-                hgcVar.c1 = y4;
-                hgcVar.W0 = y4;
-                hgcVar.f1 = 1.0f;
-                hgcVar.d1 = motionEvent.getPointerId(0);
-                hgcVar.e1 = motionEvent.getPointerId(1);
-                hgcVar.a1 = true;
-            }
-        }
-        hgcVar.s.invalidate();
-        int action = motionEvent.getAction();
-        if (action != 0) {
-            if (action != 1) {
-                if (action == 3) {
-                    this.c = false;
-                }
-            } else if (this.c) {
-                float x5 = motionEvent.getX() - this.a;
-                float y5 = motionEvent.getY() - this.b;
-                long currentTimeMillis = System.currentTimeMillis();
-                float f3 = (y5 * y5) + (x5 * x5);
-                float f4 = hgcVar.t0;
-                if (f3 < f4 * f4 && currentTimeMillis - this.d < 300 && currentTimeMillis - hgcVar.K0 > 300) {
-                    hgcVar.K0 = System.currentTimeMillis();
-                    if (hgcVar.C0) {
-                        hgcVar.c(false);
-                    } else if (hgcVar.z0) {
-                        hgcVar.r(!hgcVar.x0);
-                        hgcVar.q0 = hgcVar.p0;
-                        if (!hgcVar.x0 && (cg2Var = hgcVar.N0) != null && cg2Var.W) {
-                            cg2Var.f(true);
+        this.h0 = i;
+    }
+
+    public final void c(defpackage.r47 r12, defpackage.kfc r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.cgc.c(r47, kfc):void");
+    }
+
+    public final void d(File file) {
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            ArrayList arrayList = new ArrayList();
+            long j = 0;
+            int i = 0;
+            int i2 = 0;
+            while (true) {
+                String readLine = randomAccessFile.readLine();
+                if (readLine != null) {
+                    if (readLine.startsWith("file=mtproto:")) {
+                        j = Long.parseLong(readLine.substring(13));
+                    } else if (readLine.startsWith("frame_width=")) {
+                        i = Integer.parseInt(readLine.substring(12));
+                    } else if (readLine.startsWith("frame_height=")) {
+                        i2 = Integer.parseInt(readLine.substring(13));
+                    } else {
+                        String[] split = readLine.split(",");
+                        if (split.length == 3) {
+                            arrayList.add(new bgc(Integer.parseInt(split[1]), Integer.parseInt(split[2]), Double.parseDouble(split[0])));
                         }
-                        hgcVar.y();
                     }
+                } else {
+                    Collections.sort(arrayList, Comparator$CC.comparingDouble(new mp7((byte) 6)));
+                    this.b0 = j;
+                    this.c0 = i;
+                    this.d0 = i2;
+                    this.e0 = arrayList;
+                    return;
                 }
-                this.c = false;
             }
-        } else {
-            this.a = motionEvent.getX();
-            this.b = motionEvent.getY();
-            this.c = true;
-            this.d = System.currentTimeMillis();
+        } catch (Exception e) {
+            cc4.g(e, true);
+            this.e0 = null;
         }
-        if (!hgcVar.h1 && !this.c) {
-            return false;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.Y1) {
+            if (((String) objArr[0]).equals(this.g0)) {
+                xb4.G(i2);
+                File I = xb4.I(this.f0);
+                if (I != null && I.exists()) {
+                    d(I);
+                }
+                this.g0 = null;
+                this.f0 = null;
+                b(-1);
+            }
+        } else if (i == jn7.Z1 && ((String) objArr[0]).equals(this.g0)) {
+            this.g0 = null;
+            this.f0 = null;
+            b(-1);
         }
-        return true;
+    }
+
+    public final void e(defpackage.r47 r18, final float r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.cgc.e(r47, float, int):void");
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.R.I();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.R.K();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Bitmap bitmap = this.w;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.w = null;
+        }
+        boolean z = this.Q;
+        TextPaint textPaint = this.G;
+        Drawable drawable = this.y;
+        if (z) {
+            canvas.save();
+            Path path = this.W;
+            path.rewind();
+            RectF rectF = hl.P;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            path.addRoundRect(rectF, hl.L(6.0f), hl.L(6.0f), Path.Direction.CW);
+            canvas.clipPath(path);
+            canvas.scale(getWidth() / this.U, getHeight() / this.V);
+            canvas.translate(-this.S, -this.T);
+            ImageReceiver imageReceiver = this.R;
+            imageReceiver.i0(0.0f, 0.0f, imageReceiver.q(), imageReceiver.o());
+            imageReceiver.h(canvas, null);
+            canvas.restore();
+            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            drawable.draw(canvas);
+            canvas.drawText(this.E, (getMeasuredWidth() - this.F) / 2.0f, getMeasuredHeight() - hl.L(9.0f), textPaint);
+        } else if (this.x != null && this.H != null) {
+            Matrix matrix = this.M;
+            matrix.reset();
+            float measuredWidth = getMeasuredWidth() / this.x.getWidth();
+            matrix.preScale(measuredWidth, measuredWidth);
+            RectF rectF2 = this.L;
+            rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            canvas.drawRoundRect(rectF2, hl.L(6.0f), hl.L(6.0f), this.K);
+            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            drawable.draw(canvas);
+            canvas.drawText(this.E, (getMeasuredWidth() - this.F) / 2.0f, getMeasuredHeight() - hl.L(9.0f), textPaint);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        setPivotY(getMeasuredHeight());
     }
 }

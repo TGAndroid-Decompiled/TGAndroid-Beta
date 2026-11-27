@@ -1,33 +1,29 @@
 package defpackage;
-public final class maf extends vef {
-    private static final maf zzb;
-    private int zzd;
-    private String zze = "";
 
-    static {
-        maf mafVar = new maf();
-        zzb = mafVar;
-        vef.e(maf.class, mafVar);
-    }
-
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new maf();
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class maf extends v3d implements raf {
+    public final kaf Z(br7 br7Var, zaf zafVar) {
+        kaf v3dVar;
+        Parcel R = R();
+        int i = mld.a;
+        R.writeStrongBinder(br7Var);
+        R.writeInt(1);
+        zafVar.writeToParcel(R, 0);
+        Parcel T = T(R, 1);
+        IBinder readStrongBinder = T.readStrongBinder();
+        if (readStrongBinder == null) {
+            v3dVar = 0;
+        } else {
+            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.mlkit.vision.label.aidls.IImageLabeler");
+            if (queryLocalInterface instanceof kaf) {
+                v3dVar = (kaf) queryLocalInterface;
+            } else {
+                v3dVar = new v3d(readStrongBinder, "com.google.mlkit.vision.label.aidls.IImageLabeler", (byte) 7);
             }
-            return new sgf(zzb, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001ဈ\u0000", new Object[]{"zzd", "zze"});
         }
-        return (byte) 1;
+        T.recycle();
+        return v3dVar;
     }
 }

@@ -1,120 +1,81 @@
 package defpackage;
 
-import android.os.SystemClock;
-import java.util.List;
-public final class yb8 {
-    public static final rx6 u = new rx6(new Object());
-    public final aob a;
-    public final rx6 b;
-    public final long c;
-    public final long d;
-    public final int e;
-    public final j54 f;
-    public final boolean g;
-    public final txb h;
-    public final cyb i;
-    public final List j;
-    public final rx6 k;
-    public final boolean l;
-    public final int m;
-    public final int n;
-    public final zb8 o;
-    public final boolean p;
-    public volatile long q;
-    public volatile long r;
-    public volatile long s;
-    public volatile long t;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.VideoFramesRewinder;
+import org.telegram.messenger.video.VideoPlayerRewinder;
+import org.telegram.ui.PhotoViewer;
+public final class yb8 extends VideoPlayerRewinder {
+    public final PhotoViewer a;
 
-    public yb8(aob aobVar, rx6 rx6Var, long j, long j2, int i, j54 j54Var, boolean z, txb txbVar, cyb cybVar, List list, rx6 rx6Var2, boolean z2, int i2, int i3, zb8 zb8Var, long j3, long j4, long j5, long j6, boolean z3) {
-        this.a = aobVar;
-        this.b = rx6Var;
-        this.c = j;
-        this.d = j2;
-        this.e = i;
-        this.f = j54Var;
-        this.g = z;
-        this.h = txbVar;
-        this.i = cybVar;
-        this.j = list;
-        this.k = rx6Var2;
-        this.l = z2;
-        this.m = i2;
-        this.n = i3;
-        this.o = zb8Var;
-        this.q = j3;
-        this.r = j4;
-        this.s = j5;
-        this.t = j6;
-        this.p = z3;
+    public yb8(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
+        super(videoFramesRewinder);
+        this.a = photoViewer;
     }
 
-    public static yb8 k(cyb cybVar) {
-        wnb wnbVar = aob.a;
-        txb txbVar = txb.d;
-        km5 km5Var = mm5.b;
-        w59 w59Var = w59.e;
-        zb8 zb8Var = zb8.d;
-        rx6 rx6Var = u;
-        return new yb8(wnbVar, rx6Var, -9223372036854775807L, 0L, 1, null, false, txbVar, cybVar, w59Var, rx6Var, false, 1, 0, zb8Var, 0L, 0L, 0L, 0L, false);
-    }
-
-    public final yb8 a() {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.q, this.r, l(), SystemClock.elapsedRealtime(), this.p);
-    }
-
-    public final yb8 b(boolean z) {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, this.f, z, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final yb8 c(rx6 rx6Var) {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, rx6Var, this.l, this.m, this.n, this.o, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final yb8 d(rx6 rx6Var, long j, long j2, long j3, long j4, txb txbVar, cyb cybVar, List list) {
-        return new yb8(this.a, rx6Var, j2, j3, this.e, this.f, this.g, txbVar, cybVar, list, this.k, this.l, this.m, this.n, this.o, this.q, j4, j, SystemClock.elapsedRealtime(), this.p);
-    }
-
-    public final yb8 e(int i, int i2, boolean z) {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, z, i, i2, this.o, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final yb8 f(j54 j54Var) {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, j54Var, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final yb8 g(zb8 zb8Var) {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, zb8Var, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final yb8 h(int i) {
-        return new yb8(this.a, this.b, this.c, this.d, i, this.f, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final yb8 i(boolean z) {
-        return new yb8(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.q, this.r, this.s, this.t, z);
-    }
-
-    public final yb8 j(aob aobVar) {
-        return new yb8(aobVar, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.l, this.m, this.n, this.o, this.q, this.r, this.s, this.t, this.p);
-    }
-
-    public final long l() {
-        long j;
-        long j2;
-        if (!m()) {
-            return this.s;
+    @Override
+    public final void onRewindCanceled() {
+        xl4 xl4Var;
+        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+        Drawable[] drawableArr = PhotoViewer.d9;
+        PhotoViewer photoViewer = this.a;
+        photoViewer.h1(obtain);
+        photoViewer.A1.d(false);
+        me8 me8Var = photoViewer.U8;
+        if (me8Var != null && (xl4Var = me8Var.e) != null) {
+            xl4Var.I.d(false);
         }
-        do {
-            j = this.t;
-            j2 = this.s;
-        } while (j != this.t);
-        return g8c.T(g8c.i0(j2) + (((float) (SystemClock.elapsedRealtime() - j)) * this.o.a));
     }
 
-    public final boolean m() {
-        if (this.e == 3 && this.l && this.n == 0) {
-            return true;
+    @Override
+    public final void onRewindStart(boolean z) {
+        xl4 xl4Var;
+        PhotoViewer photoViewer = this.a;
+        photoViewer.A1.c(false);
+        boolean z2 = !z;
+        photoViewer.A1.b(z2);
+        photoViewer.A1.d(true);
+        photoViewer.f0.invalidate();
+        me8 me8Var = photoViewer.U8;
+        if (me8Var != null && (xl4Var = me8Var.e) != null) {
+            rec recVar = xl4Var.I;
+            recVar.c(false);
+            recVar.b(z2);
+            recVar.d(true);
+            vl4 vl4Var = xl4Var.q;
+            if (vl4Var != null) {
+                vl4Var.invalidate();
+            }
+            pl4 pl4Var = xl4Var.o;
+            if (pl4Var != null) {
+                pl4Var.invalidate();
+            }
         }
-        return false;
+    }
+
+    @Override
+    public final void updateRewindProgressUi(long j, float f, boolean z) {
+        xl4 xl4Var;
+        PhotoViewer photoViewer = this.a;
+        photoViewer.A1.e(Math.abs(j));
+        if (z) {
+            photoViewer.q3.h(false, f);
+            photoViewer.r3.invalidate();
+        }
+        me8 me8Var = photoViewer.U8;
+        if (me8Var != null && (xl4Var = me8Var.e) != null) {
+            xl4Var.I.e(0L);
+            if (z) {
+                xl4Var.L = f;
+                vl4 vl4Var = xl4Var.q;
+                if (vl4Var != null) {
+                    vl4Var.invalidate();
+                }
+                pl4 pl4Var = xl4Var.o;
+                if (pl4Var != null) {
+                    pl4Var.invalidate();
+                }
+            }
+        }
     }
 }

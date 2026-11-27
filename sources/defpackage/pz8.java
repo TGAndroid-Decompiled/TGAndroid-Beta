@@ -1,33 +1,43 @@
 package defpackage;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-public final class pz8 extends be0 {
-    public final boolean H;
-    public final qz8 I;
+public final class pz8 extends dz8 {
+    public final rz8 N;
 
-    public pz8(qz8 qz8Var, Context context, int i) {
-        super(context);
-        this.I = qz8Var;
-        this.H = i;
+    public pz8(rz8 rz8Var, Activity activity, int i, oz8 oz8Var) {
+        super(activity, i, oz8Var);
+        this.N = rz8Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        qz8 qz8Var = this.I;
-        j72 j72Var = qz8Var.F;
-        p37 p37Var = qz8.I;
-        if (this.H) {
-            j72Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            x2b.h(qz8Var.E, canvas, getImageReceiver(), j72Var);
-            return;
+    public final void dispatchDraw(Canvas canvas) {
+        rz8 rz8Var = this.N;
+        float min = Math.min(getHeight(), rz8Var.w - (getTranslationY() + getTop()));
+        ny3 ny3Var = rz8Var.y;
+        if (ny3Var != null) {
+            ny3Var.H = min;
         }
-        super.onDraw(canvas);
+        rz8Var.L = min;
+        if (ny3Var != null) {
+            ny3Var.V = rz8Var.s - ny3Var.getLeft();
+        }
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.I.F.a(this, motionEvent);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        rz8 rz8Var = this.N;
+        f09 f09Var = rz8Var.d;
+        if (f09Var != null && (f09Var.m1 > 0.5f || f09Var.l1 > 0.5f)) {
+            if (motionEvent.getActionMasked() == 1) {
+                f09 f09Var2 = rz8Var.d;
+                f09Var2.m1 = 0.0f;
+                f09Var2.invalidate();
+            }
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

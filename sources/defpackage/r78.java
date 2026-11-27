@@ -1,23 +1,85 @@
 package defpackage;
 
-import org.telegram.ui.PhotoViewer;
-public final class r78 implements ub5 {
-    public final PhotoViewer a;
+import android.animation.AnimatorSet;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class r78 extends nx0 {
+    public static final int I1 = 0;
+    public final int A1;
+    public final int B1;
+    public final int C1;
+    public final boolean D1;
+    public s22 E1;
+    public final ArrayList F1;
+    public final ArrayList G1;
+    public final TLRPC.TL_userContact_old2 H1;
+    public final xh4 l1;
+    public final k78 m1;
+    public final LinearLayout n1;
+    public final l78 o1;
+    public final View p1;
+    public final View q1;
+    public final TextView r1;
+    public final e s1;
+    public boolean t1;
+    public final Paint u1;
+    public int v1;
+    public AnimatorSet w1;
+    public AnimatorSet x1;
+    public final int y1;
+    public final int z1;
 
-    public r78(PhotoViewer photoViewer) {
-        this.a = photoViewer;
+    public r78(org.telegram.ui.ActionBar.e r19, defpackage.iv2 r20, org.telegram.tgnet.TLRPC.User r21, android.net.Uri r22, java.io.File r23, java.lang.String r24, java.lang.String r25, java.lang.String r26, final defpackage.vnb r27) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r78.<init>(org.telegram.ui.ActionBar.e, iv2, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, vnb):void");
     }
 
-    public final void a(int i) {
-        PhotoViewer photoViewer = this.a;
-        photoViewer.O4 = -1;
-        jl5 jl5Var = photoViewer.i5;
-        if (jl5Var != null) {
-            jl5Var.a();
-            photoViewer.i5 = null;
+    @Override
+    public final boolean D() {
+        return false;
+    }
+
+    public final void E0() {
+        TextView textView = this.r1;
+        if (textView != null) {
+            int v0 = aob.v0(aob.Ji, this.J0);
+            if (!textView.isEnabled()) {
+                v0 &= Integer.MAX_VALUE;
+            }
+            if (textView.getCurrentTextColor() != v0) {
+                textView.setTextColor(v0);
+            }
         }
-        photoViewer.k5 = true;
-        photoViewer.K1(i);
-        photoViewer.k5 = false;
+    }
+
+    public final void F0(boolean r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r78.F0(boolean):void");
+    }
+
+    @Override
+    public final void onStart() {
+        super.onStart();
+        v21.a((FrameLayout) this.b, new py((byte) 10));
+    }
+
+    @Override
+    public final void onStop() {
+        super.onStop();
+        v21.h((FrameLayout) this.b);
+    }
+
+    @Override
+    public final void p0() {
+        super.p0();
+        try {
+            E0();
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
     }
 }

@@ -1,32 +1,42 @@
 package defpackage;
-public final class fc5 {
-    public final wxb a;
-    public long b;
-    public boolean c;
-    public int d;
-    public long e;
-    public boolean f;
-    public boolean g;
-    public boolean h;
-    public boolean i;
-    public boolean j;
-    public long k;
-    public long l;
-    public boolean m;
 
-    public fc5(wxb wxbVar) {
-        this.a = wxbVar;
+import android.view.View;
+public final class fc5 implements View.OnClickListener {
+    public final byte a;
+    public final rc5 b;
+
+    public fc5(rc5 rc5Var, byte b) {
+        this.a = b;
+        this.b = rc5Var;
     }
 
-    public final void a(int i) {
-        long j = this.l;
-        if (j != -9223372036854775807L) {
-            long j2 = this.b;
-            long j3 = this.k;
-            if (j2 != j3) {
-                boolean z = this.m;
-                this.a.a(j, z ? 1 : 0, (int) (j2 - j3), i, null);
-            }
+    @Override
+    public final void onClick(View view) {
+        byte b = this.a;
+        rc5 rc5Var = this.b;
+        switch (b) {
+            case 0:
+                rc5Var.Y = null;
+                rc5Var.a0.b();
+                rc5Var.h.b();
+                rc5Var.l0();
+                rc5Var.w0();
+                rc5Var.x0();
+                return;
+            case 1:
+                rc5Var.f.r.clearFocus();
+                rc5Var.f.r.requestFocus();
+                hl.E3(rc5Var.f.r);
+                return;
+            case 2:
+                rc5Var.r0();
+                return;
+            case 3:
+                rc5Var.q0(rc5Var.n0());
+                return;
+            default:
+                rc5Var.q0(rc5Var.n0());
+                return;
         }
     }
 }

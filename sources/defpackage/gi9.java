@@ -1,87 +1,68 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import j$.util.Objects;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class gi9 extends b4c {
-    public static final int b = 0;
+public final class gi9 {
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final pi9 e;
 
-    static {
-        b4c.h(new b4c());
+    public gi9(pi9 pi9Var, int i, int i2, int i3, int i4) {
+        this.e = pi9Var;
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
     }
 
-    @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        boolean z2;
-        ii9 ii9Var = (ii9) view;
-        lk0 lk0Var = (lk0) c4cVar.H;
-        ge9 ge9Var = (ge9) c4cVar.I;
-        ki9 ki9Var = ii9Var.w;
-        boolean z3 = true;
-        if (ii9Var.a != lk0Var) {
-            z2 = true;
+    public final TL_iv.RichMessage a() {
+        int i;
+        TL_iv.PageBlock L4;
+        pi9 pi9Var = this.e;
+        ArrayList arrayList = pi9Var.t3;
+        int i2 = this.a;
+        mk0 mk0Var = (mk0) arrayList.get(i2);
+        ArrayList arrayList2 = pi9Var.t3;
+        int i3 = this.b;
+        mk0 mk0Var2 = (mk0) arrayList2.get(i3);
+        TL_iv.PageBlock pageBlock = mk0Var.b;
+        TL_iv.PageBlock pageBlock2 = mk0Var2.b;
+        int i4 = this.d;
+        if (i2 == i3) {
+            i = i4;
         } else {
-            z2 = false;
+            i = -1;
         }
-        ii9Var.a = lk0Var;
-        ii9Var.F = ge9Var;
-        ii9Var.E = k96.a0;
-        ii9Var.c(lk0Var);
-        TL_iv.PageBlock pageBlock = lk0Var.b;
-        if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
-            return;
+        TL_iv.PageBlock L42 = pi9Var.L4(mk0Var, this.c, i);
+        if (i2 == i3) {
+            L4 = null;
+        } else {
+            L4 = pi9Var.L4(mk0Var2, 0, i4);
         }
-        ffb ffbVar = new ffb((TL_iv.pageBlockTable) pageBlock);
-        ii9Var.G = ffbVar;
-        ki9Var.setModel(ffbVar);
-        LinkedHashSet linkedHashSet = ii9Var.I;
-        Objects.requireNonNull(linkedHashSet);
-        ki9Var.setSelectionProvider(new wh9(linkedHashSet, (byte) 2));
-        ii9Var.A();
-        mc9 mc9Var = ii9Var.r;
-        lk0 lk0Var2 = ii9Var.a;
-        if (lk0Var2 != null) {
-            TL_iv.PageBlock pageBlock2 = lk0Var2.b;
-            if (pageBlock2 instanceof TL_iv.pageBlockTable) {
-                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
-                TL_iv.RichText richText = pageblocktable.title;
-                if (richText == null) {
-                    richText = new TL_iv.textEmpty();
-                    pageblocktable.title = richText;
-                }
-                String l = yi9.l(richText);
-                SpannableStringBuilder r = yi9.r(pageblocktable.title, null, true);
-                lk0 lk0Var3 = ii9Var.a;
-                if (!lk0Var3.s) {
-                    lk0Var3.s = true;
-                    if (r.length() != 0 && (yi9.q(0, r.length(), r) & 1) == 0) {
-                        z3 = false;
-                    }
-                    lk0Var3.r = z3;
-                }
-                mc9Var.setAutoBold(ii9Var.a.r);
-                if (z2 || !String.valueOf(mc9Var.getText()).equals(l)) {
-                    mc9Var.setTextSilently(vu3.m(r, mc9Var.getPaint().getFontMetricsInt(), false, null, 0));
-                    mc9Var.f();
-                }
-            }
+        if (L42 != null) {
+            mk0Var.b = L42;
         }
-        ii9Var.updateColors();
-        ii9Var.x.requestLayout();
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        ii9 ii9Var = new ii9(context, wjbVar);
-        ii9Var.setBackground(new ed9(bkb.v0(bkb.c6, wjbVar)));
-        return ii9Var;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+        if (L4 != null) {
+            mk0Var2.b = L4;
+        }
+        try {
+            ArrayList<TL_iv.PageBlock> V2 = pi9Var.V2(i2, i3 + 1, 0, false);
+            ArrayList<TLRPC.Photo> x2 = pi9Var.x2(i2, i3);
+            ArrayList<TLRPC.Document> w2 = pi9Var.w2(i2, i3);
+            mk0Var.b = pageBlock;
+            mk0Var2.b = pageBlock2;
+            TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
+            richMessage.blocks = V2;
+            richMessage.photos = x2;
+            richMessage.documents = w2;
+            return richMessage;
+        } catch (Throwable th) {
+            mk0Var.b = pageBlock;
+            mk0Var2.b = pageBlock2;
+            throw th;
+        }
     }
 }

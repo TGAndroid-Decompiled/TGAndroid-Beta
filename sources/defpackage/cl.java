@@ -1,60 +1,24 @@
 package defpackage;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.view.MotionEvent;
-import android.widget.TextView;
-public final class cl extends LinkMovementMethod {
-    public final byte a;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class cl extends CharacterStyle {
+    public final boolean a;
+    public final int b;
+    public final vnb c;
 
-    public cl(byte b) {
-        this.a = b;
+    public cl(boolean z, int i, vnb vnbVar) {
+        this.a = z;
+        this.b = i;
+        this.c = vnbVar;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                try {
-                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        Selection.removeSelection(spannable);
-                    }
-                    return onTouchEvent;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return false;
-                }
-            case 1:
-                try {
-                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        Selection.removeSelection(spannable);
-                    }
-                    return onTouchEvent2;
-                } catch (Exception e2) {
-                    fa4.g(e2, true);
-                    return false;
-                }
-            case 2:
-                try {
-                    return super.onTouchEvent(textView, spannable, motionEvent);
-                } catch (Exception e3) {
-                    fa4.g(e3, true);
-                    return false;
-                }
-            default:
-                try {
-                    boolean onTouchEvent3 = super.onTouchEvent(textView, spannable, motionEvent);
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        Selection.removeSelection(spannable);
-                    }
-                    return onTouchEvent3;
-                } catch (Exception e4) {
-                    fa4.g(e4, true);
-                    return false;
-                }
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
+        if (this.a) {
+            textPaint.setTypeface(hl.o());
         }
+        textPaint.setColor(aob.v0(this.b, this.c));
     }
 }

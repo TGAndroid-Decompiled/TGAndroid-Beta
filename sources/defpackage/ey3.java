@@ -1,55 +1,55 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.widget.TextView;
-public final class ey3 extends efe {
-    public final dy3 a;
+import android.animation.ValueAnimator;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class ey3 extends View {
+    public ln5[] a;
+    public nl b;
+    public hm c;
+    public ValueAnimator d;
+    public float e;
 
-    public ey3(TextView textView) {
-        this.a = new dy3(textView);
+    public TLRPC.Document getDocument() {
+        hm hmVar = this.c;
+        if (hmVar != null) {
+            TLRPC.Document document = hmVar.document;
+            if (document == null) {
+                return wl.e(yac.t0, hmVar.getDocumentId());
+            }
+            return document;
+        }
+        return null;
     }
 
     @Override
-    public final InputFilter[] a(InputFilter[] inputFilterArr) {
-        boolean z;
-        if (lw3.j != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (!z) {
-            return inputFilterArr;
-        }
-        return this.a.a(inputFilterArr);
+    public final void onMeasure(int i, int i2) {
+        setPadding(hl.L(2.0f), hl.L(2.0f), hl.L(2.0f), hl.L(2.0f));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824));
     }
 
     @Override
-    public final void b(boolean z) {
-        boolean z2;
-        if (lw3.j != null) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        if (!z2) {
-            return;
-        }
-        this.a.b(z);
-    }
-
-    @Override
-    public final void c(boolean z) {
-        boolean z2;
-        if (lw3.j != null) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        dy3 dy3Var = this.a;
-        if (!z2) {
-            dy3Var.c = z;
-        } else {
-            dy3Var.c(z);
+    public void setPressed(boolean z) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z) {
+            super.setPressed(z);
+            invalidate();
+            if (z && (valueAnimator = this.d) != null) {
+                valueAnimator.removeAllListeners();
+                this.d.cancel();
+            }
+            if (!z) {
+                float f = this.e;
+                if (f != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
+                    this.d = ofFloat;
+                    ofFloat.addUpdateListener(new az1(this, (byte) 20));
+                    this.d.addListener(new cn2(this, (byte) 16));
+                    c00.o(5.0f, this.d);
+                    this.d.setDuration(350L);
+                    this.d.start();
+                }
+            }
         }
     }
 }

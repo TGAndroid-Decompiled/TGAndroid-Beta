@@ -64,7 +64,7 @@ final class AudioRecorderNative {
         if (!this.b.get()) {
             return nFlush(this.a);
         }
-        sc8.j("Native audio recorder is already released");
+        grb.i("Native audio recorder is already released");
         return 0L;
     }
 
@@ -90,7 +90,7 @@ final class AudioRecorderNative {
         if (!this.b.get()) {
             return nWriteFrame(this.a, byteBuffer, i);
         }
-        sc8.j("Native audio recorder is already released");
+        grb.i("Native audio recorder is already released");
         return 0;
     }
 }

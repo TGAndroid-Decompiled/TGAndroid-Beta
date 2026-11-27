@@ -1,88 +1,93 @@
 package defpackage;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class c97 implements RequestDelegate {
+import org.telegram.tgnet.tl.TL_bots;
+public final class c97 implements pcc {
     public final byte a = 1;
-    public final long b;
+    public final uc7 b;
     public final int c;
     public final Object d;
     public final Object e;
-    public final Object f;
+    public final TLObject f;
+    public final Runnable g;
 
-    public c97(na7 na7Var, TLRPC.User user, long j, p8c p8cVar, int i) {
-        this.d = na7Var;
-        this.e = user;
-        this.b = j;
-        this.f = p8cVar;
+    public c97(uc7 uc7Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i, TLRPC.Chat chat, sa8 sa8Var) {
+        this.b = uc7Var;
+        this.d = tL_messages_invitedUsers;
+        this.e = iArr;
         this.c = i;
+        this.f = chat;
+        this.g = sa8Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void a(Object obj) {
         byte b = this.a;
-        Object obj = this.f;
+        Runnable runnable = this.g;
+        TLObject tLObject = this.f;
+        int i = this.c;
         Object obj2 = this.e;
         Object obj3 = this.d;
+        uc7 uc7Var = this.b;
         switch (b) {
             case 0:
-                na7 na7Var = (na7) obj3;
-                TLRPC.User user = (TLRPC.User) obj2;
-                p8c p8cVar = (p8c) obj;
-                ConcurrentHashMap concurrentHashMap = na7Var.j1;
-                if (tL_error == null) {
-                    TLRPC.TL_users_userFull tL_users_userFull = (TLRPC.TL_users_userFull) tLObject;
-                    TLRPC.UserFull userFull = tL_users_userFull.full_user;
-                    int size = tL_users_userFull.users.size();
-                    int i = 0;
-                    while (true) {
-                        if (i < size) {
-                            TLRPC.User user2 = tL_users_userFull.users.get(i);
-                            if (user2 != null) {
-                                long j = user2.id;
-                                if (j == user.id && user2.bot && !user2.min) {
-                                    Integer num = (Integer) concurrentHashMap.get(Long.valueOf(j));
-                                    if (num == null || user2.bot_info_version > num.intValue()) {
-                                        concurrentHashMap.put(Long.valueOf(user2.id), Integer.valueOf(user2.bot_info_version));
-                                    }
-                                }
+                boolean[] zArr = (boolean[]) obj3;
+                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) obj2;
+                TLRPC.User user = (TLRPC.User) tLObject;
+                b97 b97Var = (b97) runnable;
+                TL_bots.BotInfo botInfo = (TL_bots.BotInfo) obj;
+                if (!zArr[0]) {
+                    botInfoArr[0] = botInfo;
+                    if (botInfo == null) {
+                        TLRPC.UserFull Y1 = uc7Var.Y1(user.id);
+                        if (Y1 == null) {
+                            if (!zArr[0]) {
+                                uc7Var.f3(user, i, true, new gt(zArr, botInfoArr, b97Var, (byte) 28));
+                                return;
                             }
-                            i++;
+                            return;
                         }
+                        botInfoArr[0] = Y1.bot_info;
+                        b97Var.run();
+                        return;
                     }
-                    na7Var.b4(tL_users_userFull.users, false);
-                    na7Var.V3(tL_users_userFull.chats, false);
-                    TLRPC.UserFull userFull2 = tL_users_userFull.full_user;
-                    userFull2.user = na7Var.V1(Long.valueOf(userFull2.id));
-                    na7Var.getMessagesStorage().g2(userFull, false);
-                    na7Var.M1().p0(this.b, userFull.stories);
-                    je2 e = je2.e(na7Var.currentAccount);
-                    TLRPC.UserFull userFull3 = tL_users_userFull.full_user;
-                    e.p(userFull3.id, userFull3.wallpaper);
-                    if (p8cVar != null) {
-                        p8cVar.a(userFull);
-                    }
-                    gl.c3(new tn6(na7Var, userFull, user, this.c, (byte) 1));
+                    b97Var.run();
                     return;
                 }
-                gl.c3(new c57(na7Var, user, (byte) 1));
                 return;
             default:
-                hp8 hp8Var = (hp8) obj3;
-                hp8Var.getClass();
-                gl.c3(new ue(hp8Var, tLObject, (ad7) obj2, this.b, this.c, (ArrayList) obj));
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj3;
+                int[] iArr = (int[]) obj2;
+                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                sa8 sa8Var = (sa8) runnable;
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
+                uc7Var.getClass();
+                if (tL_messages_invitedUsers2 != null) {
+                    tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
+                }
+                int i2 = iArr[0] + 1;
+                iArr[0] = i2;
+                if (i2 >= i) {
+                    if (!tL_messages_invitedUsers.missing_invitees.isEmpty()) {
+                        hl.c3(new es6((Object) uc7Var, (Object) chat, (Object) tL_messages_invitedUsers, (byte) 2));
+                    }
+                    if (sa8Var != null) {
+                        sa8Var.run();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }
 
-    public c97(hp8 hp8Var, ad7 ad7Var, long j, int i, ArrayList arrayList) {
-        this.d = hp8Var;
-        this.e = ad7Var;
-        this.b = j;
+    public c97(uc7 uc7Var, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i, b97 b97Var) {
+        this.b = uc7Var;
+        this.d = zArr;
+        this.e = botInfoArr;
+        this.f = user;
         this.c = i;
-        this.f = arrayList;
+        this.g = b97Var;
     }
 }

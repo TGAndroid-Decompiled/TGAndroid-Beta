@@ -1,12 +1,17 @@
 package defpackage;
-public final class goe {
-    public final jfe a;
-    public final mge b;
-    public final hne c;
+public final class goe implements zq7 {
+    public static final goe a = new Object();
 
-    public goe(rod rodVar) {
-        this.a = (jfe) rodVar.b;
-        this.b = (mge) rodVar.c;
-        this.c = (hne) rodVar.d;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

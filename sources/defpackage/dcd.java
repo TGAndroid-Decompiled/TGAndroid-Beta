@@ -1,77 +1,76 @@
 package defpackage;
 
-import java.util.Iterator;
 import java.util.Map;
-public final class dcd implements Iterator {
-    public final byte a;
-    public Iterator b;
+public final class dcd extends n3 {
+    public final Object b;
+    public int c;
+    public final lp2 d;
 
-    public dcd(Iterator it, byte b) {
-        this.a = b;
-        switch (b) {
-            case 1:
-                it.getClass();
-                this.b = it;
+    public dcd(lp2 lp2Var, int i) {
+        super((byte) 2, false);
+        this.d = lp2Var;
+        Object[] objArr = lp2Var.d;
+        objArr.getClass();
+        this.b = objArr[i];
+        this.c = i;
+    }
+
+    public final void a() {
+        int i = this.c;
+        Object obj = this.b;
+        lp2 lp2Var = this.d;
+        if (i != -1 && i < lp2Var.size()) {
+            int i2 = this.c;
+            Object[] objArr = lp2Var.d;
+            objArr.getClass();
+            if (e6f.a(obj, objArr[i2])) {
                 return;
-            default:
-                it.getClass();
-                this.b = it;
-                return;
+            }
         }
+        Object obj2 = lp2.w;
+        this.c = lp2Var.s(obj);
     }
 
     @Override
-    public final boolean hasNext() {
-        switch (this.a) {
-            case 0:
-                return this.b.hasNext();
-            case 1:
-                return this.b.hasNext();
-            case 2:
-                return this.b.hasNext();
-            case 3:
-                return this.b.hasNext();
-            default:
-                return this.b.hasNext();
-        }
+    public final Object getKey() {
+        return this.b;
     }
 
     @Override
-    public final Object next() {
-        switch (this.a) {
-            case 0:
-                return ((Map.Entry) this.b.next()).getValue();
-            case 1:
-                return ((Map.Entry) this.b.next()).getValue();
-            case 2:
-                return (String) this.b.next();
-            case 3:
-                return (String) this.b.next();
-            default:
-                return (String) this.b.next();
+    public final Object getValue() {
+        lp2 lp2Var = this.d;
+        Map m = lp2Var.m();
+        if (m != null) {
+            return m.get(this.b);
         }
+        a();
+        int i = this.c;
+        if (i == -1) {
+            return null;
+        }
+        Object[] objArr = lp2Var.e;
+        objArr.getClass();
+        return objArr[i];
     }
 
     @Override
-    public final void remove() {
-        switch (this.a) {
-            case 0:
-                this.b.remove();
-                return;
-            case 1:
-                this.b.remove();
-                return;
-            case 2:
-                throw new UnsupportedOperationException();
-            case 3:
-                throw new UnsupportedOperationException();
-            default:
-                throw new UnsupportedOperationException();
+    public final Object setValue(Object obj) {
+        lp2 lp2Var = this.d;
+        Map m = lp2Var.m();
+        Object obj2 = this.b;
+        if (m != null) {
+            return m.put(obj2, obj);
         }
-    }
-
-    public dcd(ehf ehfVar) {
-        this.a = (byte) 4;
-        this.b = ehfVar.a.iterator();
+        a();
+        int i = this.c;
+        if (i == -1) {
+            lp2Var.put(obj2, obj);
+            return null;
+        }
+        Object[] objArr = lp2Var.e;
+        objArr.getClass();
+        Object obj3 = objArr[i];
+        objArr[i] = obj;
+        return obj3;
     }
 }

@@ -1,55 +1,38 @@
 package defpackage;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class rf3 extends ka {
-    public final boolean d;
-    public final oh3 e;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.widget.ImageView;
+import org.telegram.ui.PhotoViewer;
+public final class rf3 implements DialogInterface.OnDismissListener {
+    public final byte a;
+    public final Object b;
 
-    public rf3(oh3 oh3Var, boolean z) {
-        this.e = oh3Var;
-        this.d = z;
+    public rf3(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        ArrayList arrayList;
-        boolean z = this.d;
-        oh3 oh3Var = this.e;
-        if (z) {
-            arrayList = oh3Var.E;
-        } else {
-            arrayList = oh3Var.y;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                tf3 tf3Var = (tf3) obj;
+                Dialog dialog = tf3Var.w0;
+                if (dialog != null) {
+                    tf3Var.onDismiss(dialog);
+                    return;
+                }
+                return;
+            default:
+                ImageView imageView = ((PhotoViewer) obj).E3;
+                if (imageView != null) {
+                    imageView.animate().alpha(0.0f).withEndAction(new x38(this, (byte) 11)).setDuration(150L).start();
+                    return;
+                }
+                return;
         }
-        return arrayList.size();
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        uf3 uf3Var = (uf3) s49Var.a;
-        uf3Var.b = i;
-        boolean z = this.d;
-        oh3 oh3Var = this.e;
-        if (z) {
-            uf3Var.setDialogId(((sf3) oh3Var.E.get(i)).c);
-        } else {
-            uf3Var.setDialogId(((sf3) oh3Var.y.get(i)).c);
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        uf3 uf3Var = new uf3(this.e, viewGroup.getContext());
-        boolean z = this.d;
-        uf3Var.O = z;
-        if (z) {
-            uf3Var.d(1.0f, 1.0f, 0.0f, false);
-        }
-        return new s49(uf3Var);
     }
 }

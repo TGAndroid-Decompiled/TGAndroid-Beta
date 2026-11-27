@@ -1,28 +1,28 @@
 package org.webrtc;
 public class TurnCustomizer {
-    private long nativeTurnCustomizer;
+    private final NativeLifecycleLock lifecycleLock;
+
+    public interface Natives {
+        void freeTurnCustomizer(long j);
+    }
 
     public TurnCustomizer(long j) {
-        this.nativeTurnCustomizer = j;
+        this.lifecycleLock = new NativeLifecycleLock("TurnCustomizer", j);
     }
 
-    private void checkTurnCustomizerExists() {
-        if (this.nativeTurnCustomizer != 0) {
-            return;
-        }
-        sc8.j("TurnCustomizer has been disposed.");
+    public static void a(long j) {
+        lambda$dispose$0(j);
     }
 
-    private static native void nativeFreeTurnCustomizer(long j);
+    public static void lambda$dispose$0(long j) {
+        TurnCustomizerJni.get().freeTurnCustomizer(j);
+    }
 
     public void dispose() {
-        checkTurnCustomizerExists();
-        nativeFreeTurnCustomizer(this.nativeTurnCustomizer);
-        this.nativeTurnCustomizer = 0L;
+        this.lifecycleLock.dispose(new grb((byte) 14));
     }
 
     public long getNativeTurnCustomizer() {
-        checkTurnCustomizerExists();
-        return this.nativeTurnCustomizer;
+        return this.lifecycleLock.getNativePointer();
     }
 }

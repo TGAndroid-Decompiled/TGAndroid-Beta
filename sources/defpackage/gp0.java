@@ -9,11 +9,11 @@ public final class gp0 extends AsyncTask {
     public String a;
     public long b;
     public final String c;
-    public final f d;
+    public final c d;
 
-    public gp0(String str, f fVar) {
+    public gp0(String str, c cVar) {
         this.c = str;
-        this.d = fVar;
+        this.d = cVar;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class gp0 extends AsyncTask {
             httpURLConnection.getInputStream().close();
             return null;
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return null;
         }
     }

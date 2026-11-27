@@ -1,22 +1,28 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
-public final class t12 extends u26 {
-    public final ar0 r;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.FragmentContextView;
+public final class t12 extends FragmentContextView {
+    public final FrameLayout X0;
+    public final x12 Y0;
 
-    public t12(ar0 ar0Var, Context context) {
-        super(context);
-        this.r = ar0Var;
+    public t12(x12 x12Var, Context context, e eVar, FrameLayout frameLayout, vnb vnbVar, FrameLayout frameLayout2) {
+        super(context, eVar, frameLayout, false, vnbVar);
+        this.Y0 = x12Var;
+        this.X0 = frameLayout2;
     }
 
     @Override
-    public final int k(int i, View view) {
-        return de9.f(7.0f, ((v12) this.r.R).n.getPaddingTop(), super.k(i, view));
-    }
-
-    @Override
-    public final int m(int i) {
-        return super.m(i) << 1;
+    public final void setVisibility(int i) {
+        boolean z;
+        xj3 xj3Var = this.Y0.y;
+        if (i == 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        xj3Var.j(this.X0, z, true);
     }
 }

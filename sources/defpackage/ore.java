@@ -1,43 +1,24 @@
 package defpackage;
-public abstract class ore {
-    public static final int a(int i, int i2, int i3) {
-        if (i3 > 0) {
-            if (i < i2) {
-                int i4 = i2 % i3;
-                if (i4 < 0) {
-                    i4 += i3;
-                }
-                int i5 = i % i3;
-                if (i5 < 0) {
-                    i5 += i3;
-                }
-                int i6 = (i4 - i5) % i3;
-                if (i6 < 0) {
-                    i6 += i3;
-                }
-                return i2 - i6;
-            }
-        } else if (i3 < 0) {
-            if (i > i2) {
-                int i7 = -i3;
-                int i8 = i % i7;
-                if (i8 < 0) {
-                    i8 += i7;
-                }
-                int i9 = i2 % i7;
-                if (i9 < 0) {
-                    i9 += i7;
-                }
-                int i10 = (i8 - i9) % i7;
-                if (i10 < 0) {
-                    i10 += i7;
-                }
-                return i10 + i2;
-            }
-        } else {
-            w26.j("Step is zero.");
-            return 0;
-        }
-        return i2;
+
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ore extends c4 {
+    public static final Parcelable.Creator<ore> CREATOR = new ime((byte) 17);
+    public Bundle a;
+    public a94[] b;
+    public int c;
+    public ys2 d;
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.b(parcel, 1, this.a);
+        bye.o(parcel, 2, this.b, i);
+        int i2 = this.c;
+        bye.q(parcel, 3, 4);
+        parcel.writeInt(i2);
+        bye.k(parcel, 4, this.d, i);
+        bye.s(parcel, r);
     }
 }

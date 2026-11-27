@@ -1,24 +1,17 @@
 package defpackage;
+public final class lne implements zq7 {
+    public static final lne a = new Object();
 
-import java.util.List;
-public abstract class lne {
-    public static void a(kab kabVar, int i, us2 us2Var) {
-        long h = kabVar.h(i);
-        List l = kabVar.l(h);
-        if (!l.isEmpty()) {
-            if (i != kabVar.t() - 1) {
-                long h2 = kabVar.h(i + 1) - kabVar.h(i);
-                if (h2 > 0) {
-                    us2Var.accept(new x33(h, h2, l));
-                    return;
-                }
-                return;
-            }
-            sdb.a();
-        }
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)), 4)), 5)));
     }
 
-    public static void b(defpackage.kab r12, defpackage.tab r13, defpackage.us2 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lne.b(kab, tab, us2):void");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

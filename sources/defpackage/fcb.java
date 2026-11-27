@@ -1,10 +1,7 @@
 package defpackage;
 
+import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class fcb {
-    public final RectF a;
-
-    public fcb(RectF rectF) {
-        this.a = rectF;
-    }
+public interface fcb {
+    void f(float f, Canvas canvas, RectF rectF, boolean z);
 }

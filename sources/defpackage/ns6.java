@@ -1,8 +1,13 @@
 package defpackage;
 
-import android.view.View;
-public final class ns6 implements View.OnClickListener {
-    @Override
-    public final void onClick(View view) {
+import android.media.MediaDescription;
+import android.net.Uri;
+public abstract class ns6 {
+    public static Uri a(MediaDescription mediaDescription) {
+        return mediaDescription.getMediaUri();
+    }
+
+    public static void b(MediaDescription.Builder builder, Uri uri) {
+        builder.setMediaUri(uri);
     }
 }

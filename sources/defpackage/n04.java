@@ -1,50 +1,12 @@
 package defpackage;
-
-import android.view.View;
-import android.widget.FrameLayout;
-public final class n04 extends pr7 {
-    public final t14 c;
-
-    public n04(t14 t14Var) {
-        this.c = t14Var;
-    }
-
+public final class n04 extends zu1 {
     @Override
-    public final void a(gec gecVar, Object obj) {
-        gecVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.c.e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i) {
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    return null;
-                }
-                return k96.M0(2131754755, null);
-            }
-            return k96.M0(2131754879, null);
+    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+        nr1 nr1Var;
+        super.onTransitionAnimationEnd(z, z2);
+        if (z && (nr1Var = this.a0) != null) {
+            nr1Var.h2();
+            this.a0.postDelayed(new lw3(this, (byte) 4), 100L);
         }
-        return k96.M0(2131751184, null);
-    }
-
-    @Override
-    public final Object e(gec gecVar, int i) {
-        FrameLayout frameLayout = ((p14) this.c.e.get(i)).b;
-        gecVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
     }
 }

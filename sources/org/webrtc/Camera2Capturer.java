@@ -6,11 +6,9 @@ import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
 public class Camera2Capturer extends CameraCapturer {
     private final CameraManager cameraManager;
-    private final Context context;
 
     public Camera2Capturer(Context context, String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
         super(str, cameraEventsHandler, new Camera2Enumerator(context));
-        this.context = context;
         this.cameraManager = (CameraManager) context.getSystemService("camera");
     }
 
@@ -32,6 +30,11 @@ public class Camera2Capturer extends CameraCapturer {
     @Override
     public void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
         super.initialize(surfaceTextureHelper, context, capturerObserver);
+    }
+
+    @Override
+    public boolean isCapturing() {
+        return super.isCapturing();
     }
 
     @Override

@@ -1,61 +1,32 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class rua extends be0 {
-    public pla H;
-    public Path I;
-    public RectF J;
-    public Drawable K;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.tgnet.tl.TL_stars;
+public final class rua extends AnimatorListenerAdapter {
+    public final sua a;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        rua ruaVar;
-        Canvas canvas2;
-        RectF rectF = this.J;
-        Path path = this.I;
-        Drawable drawable = this.K;
-        super.dispatchDraw(canvas);
-        pla plaVar = this.H;
-        if (plaVar == null) {
-            plaVar = pla.e(this);
-            this.H = plaVar;
-        }
-        if (plaVar != null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            path.rewind();
-            path.addRoundRect(rectF, gl.L(24.0f), gl.L(24.0f), Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            ruaVar = this;
-            canvas2 = canvas;
-            this.H.c(canvas2, ruaVar, getWidth(), getHeight(), 1.0f, false);
-            canvas2.restore();
-        } else {
-            ruaVar = this;
-            canvas2 = canvas;
-        }
-        drawable.setBounds((ruaVar.getWidth() - drawable.getIntrinsicWidth()) / 2, (ruaVar.getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + ruaVar.getWidth()) / 2, (drawable.getIntrinsicHeight() + ruaVar.getHeight()) / 2);
-        drawable.draw(canvas2);
+    public rua(sua suaVar) {
+        this.a = suaVar;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        pla plaVar = this.H;
-        if (plaVar != null) {
-            plaVar.a(this);
+    public final void onAnimationEnd(Animator animator) {
+        sua suaVar = this.a;
+        uoa uoaVar = suaVar.p0;
+        suaVar.z0 = suaVar.y0;
+        suaVar.d(suaVar.b0);
+        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = suaVar.e;
+        int i = 2 - suaVar.y0;
+        stargiftattributemodelArr[i] = (TL_stars.starGiftAttributeModel) suaVar.d0.f;
+        nza.e1(suaVar.d[i].getImageReceiver(), stargiftattributemodelArr[2 - suaVar.y0].document, 160);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) suaVar.e0.f;
+        if (stargiftattributepattern != null) {
+            wl l = wl.l(yac.t0, 7, stargiftattributepattern.document);
+            l.m = true;
+            l.u();
         }
-        super.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        pla plaVar = this.H;
-        if (plaVar != null) {
-            plaVar.b(this);
-        }
-        super.onDetachedFromWindow();
+        hl.r(uoaVar);
+        hl.d3(uoaVar, 2500L);
     }
 }

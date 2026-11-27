@@ -1,56 +1,91 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public final class co6 implements Runnable {
-    public final byte a = 0;
-    public final hq6 b;
-    public final zc7 c;
-    public final TLRPC.Message d;
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.PhotoViewer;
+public final class co6 implements ifc {
+    public final int a;
+    public final r47 b;
+    public final int[] c;
+    public final boolean d;
+    public final MediaController e;
 
-    public co6(hq6 hq6Var, zc7 zc7Var, TLRPC.Message message) {
-        this.b = hq6Var;
-        this.c = zc7Var;
-        this.d = message;
+    public co6(MediaController mediaController, int i, r47 r47Var, int[] iArr, boolean z) {
+        this.e = mediaController;
+        this.a = i;
+        this.b = r47Var;
+        this.c = iArr;
+        this.d = z;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        TLRPC.Message message = this.d;
-        zc7 zc7Var = this.c;
-        hq6 hq6Var = this.b;
-        switch (b) {
-            case 0:
-                hq6Var.getNotificationCenter().k(69, message, zc7Var);
-                return;
-            default:
-                vf6 vf6Var = hq6Var.B1;
-                HashMap hashMap = hq6Var.A1;
-                TLRPC.Message message2 = (TLRPC.Message) hashMap.get(zc7Var);
-                hashMap.put(zc7Var, message);
-                vf6 vf6Var2 = hq6Var.z1;
-                ArrayList arrayList = (ArrayList) vf6Var2.f(zc7Var.a);
-                if (arrayList == null) {
-                    arrayList = new ArrayList();
-                }
-                arrayList.add(message);
-                vf6Var2.k(arrayList, zc7Var.a);
-                if (k27.v0(message) == 0) {
-                    if (message2 != null) {
-                        vf6Var.e(message2.id);
-                    }
-                    vf6Var.k(zc7Var, message.id);
-                }
-                hq6Var.getNotificationCenter().k(69, message, zc7Var);
-                return;
+    public final void onError(kfc kfcVar, Exception exc) {
+        cc4.g(exc, true);
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+        String[] strArr = MediaController.W1;
+        MediaController mediaController = this.e;
+        mediaController.E();
+        jx jxVar = mediaController.M0;
+        if (jxVar != null && !jxVar.d) {
+            mediaController.N0 = true;
+            jxVar.setDrawingReady(true);
+            mediaController.O0.setTag(1);
+        }
+        if (mediaController.F0 != null && go.w()) {
+            mediaController.F0.s0(true);
         }
     }
 
-    public co6(hq6 hq6Var, TLRPC.Message message, zc7 zc7Var) {
-        this.b = hq6Var;
-        this.d = message;
-        this.c = zc7Var;
+    @Override
+    public final void onStateChanged(boolean z, int i) {
+        MediaController mediaController = this.e;
+        if (this.a != mediaController.n0) {
+            return;
+        }
+        mediaController.L0(this.b, this.c, this.d, z, i);
+    }
+
+    @Override
+    public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        if (this.e.F0 == null || !PhotoViewer.C0() || PhotoViewer.q0().S2 == null) {
+            return false;
+        }
+        PhotoViewer.q0().T2 = surfaceTexture;
+        return true;
+    }
+
+    @Override
+    public final void onVideoSizeChanged(int i, int i2, int i3, float f) {
+        float f2;
+        if (i2 == 0) {
+            f2 = 1.0f;
+        } else {
+            f2 = (i * f) / i2;
+        }
+        MediaController mediaController = this.e;
+        mediaController.P0 = f2;
+        jx jxVar = mediaController.M0;
+        if (jxVar != null) {
+            jxVar.a(f2, 0);
+        }
+    }
+
+    @Override
+    public final void onSeekFinished(uj ujVar) {
+    }
+
+    @Override
+    public final void onSeekStarted(uj ujVar) {
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public final void onRenderedFirstFrame(uj ujVar) {
     }
 }

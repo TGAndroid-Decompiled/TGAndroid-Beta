@@ -1,20 +1,18 @@
 package defpackage;
-public final class jaf extends vef {
+public final class jaf extends ljf {
     private static final jaf zzb;
     private int zzd;
-    private long zze;
-    private boolean zzf;
-    private long zzg;
-    private boolean zzh;
+    private int zze;
+    private int zzf;
 
     static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(jaf.class, vefVar);
+        ?? ljfVar = new ljf();
+        zzb = ljfVar;
+        ljf.e(jaf.class, ljfVar);
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
+    public final Object h(int i, ljf ljfVar) {
         int i2 = i - 1;
         if (i2 != 0) {
             if (i2 != 2) {
@@ -25,11 +23,11 @@ public final class jaf extends vef {
                         }
                         return zzb;
                     }
-                    return new uef(zzb);
+                    return new kjf(zzb);
                 }
-                return new vef();
+                return new ljf();
             }
-            return new sgf(zzb, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001ဂ\u0000\u0002ဇ\u0001\u0003ဂ\u0002\u0004ဇ\u0003", new Object[]{"zzd", "zze", "zzf", "zzg", "zzh"});
+            return new ilf(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001᠌\u0000\u0002᠌\u0001", new Object[]{"zzd", "zze", z6f.r, "zzf", sae.h});
         }
         return (byte) 1;
     }

@@ -1,40 +1,67 @@
 package defpackage;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class fda extends eba {
-    public final nfa m0;
+import android.os.Build;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowInsets;
+public final class fda implements ry4, nr7, l8, sy4 {
+    public final byte a;
+    public final kea b;
 
-    public fda(nfa nfaVar, Context context) {
-        super(context);
-        this.m0 = nfaVar;
+    public fda(kea keaVar, byte b) {
+        this.a = b;
+        this.b = keaVar;
     }
 
     @Override
-    public final boolean d(k27 k27Var) {
-        ArrayList arrayList;
-        long playlistTopicId;
-        nfa nfaVar = this.m0;
-        cfa[] cfaVarArr = nfaVar.w1;
-        if (!k27.Q4(k27Var.k) && !k27Var.g4()) {
-            if (!k27Var.I3()) {
-                return false;
+    public final l2d S(View view, l2d l2dVar) {
+        WindowInsets g = l2dVar.g();
+        kea keaVar = this.b;
+        keaVar.q0(g);
+        mq5 f = l2dVar.a.f(519);
+        if (!keaVar.B2.equals(f)) {
+            keaVar.B2 = f;
+            keaVar.c.requestLayout();
+        }
+        return l2d.b;
+    }
+
+    @Override
+    public final int h() {
+        return aob.v0(aob.d6, this.b.J0);
+    }
+
+    @Override
+    public final void k(int i) {
+        kea keaVar = this.b;
+        tq3 tq3Var = keaVar.J2;
+        if (Build.VERSION.SDK_INT >= 31 && tq3Var != null) {
+            if (vsd.a(i, 4)) {
+                tq3Var.h(keaVar.X0.e());
             }
-            MediaController w = MediaController.w();
-            ArrayList arrayList2 = cfaVarArr[4].a;
-            long j = nfaVar.f1;
-            playlistTopicId = nfaVar.getPlaylistTopicId();
-            return w.n0(arrayList2, k27Var, j, true, null, playlistTopicId);
+            tq3Var.e(keaVar.O2, keaVar.b.getWidth(), keaVar.b.getHeight());
         }
-        boolean R = MediaController.w().R(k27Var);
-        MediaController w2 = MediaController.w();
-        if (R) {
-            arrayList = cfaVarArr[4].a;
-        } else {
-            arrayList = null;
+    }
+
+    @Override
+    public final void o(KeyEvent keyEvent) {
+        n8 n8Var;
+        n8 n8Var2;
+        byte b = this.a;
+        kea keaVar = this.b;
+        switch (b) {
+            case 2:
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n8Var = keaVar.E2) != null && n8Var.isShowing()) {
+                    keaVar.E2.d(true);
+                    return;
+                }
+                return;
+            default:
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n8Var2 = keaVar.E2) != null && n8Var2.isShowing()) {
+                    keaVar.E2.d(true);
+                    return;
+                }
+                return;
         }
-        w2.q0(arrayList, false);
-        return R;
     }
 }

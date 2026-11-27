@@ -1,38 +1,45 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class zt9 implements Runnable {
+import org.telegram.ui.ActionBar.e;
+public final class zt9 implements pcc {
     public final byte a;
-    public final bu9 b;
-    public final ArrayList c;
+    public final du9 b;
 
-    public zt9(bu9 bu9Var, ArrayList arrayList, byte b) {
+    public zt9(du9 du9Var, byte b) {
         this.a = b;
-        this.b = bu9Var;
-        this.c = arrayList;
+        this.b = du9Var;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj) {
+        boolean z;
         byte b = this.a;
-        ArrayList arrayList = this.c;
-        bu9 bu9Var = this.b;
+        du9 du9Var = this.b;
         switch (b) {
             case 0:
-                for (int i = 0; i < arrayList.size(); i++) {
-                    k27 k27Var = new k27(bu9Var.currentAccount, (TLRPC.Message) arrayList.get(i), false, true);
-                    k27Var.C0 = true;
-                    bu9Var.getSendMessagesHelper().j0(0L, k27Var, true);
+                cu9 cu9Var = (cu9) obj;
+                du9Var.I = null;
+                du9Var.F = cu9Var;
+                if (cu9Var != null) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                du9Var.E = z;
+                du9Var.a();
+                du9Var.invalidate();
+                bab babVar = du9Var.b;
+                if (babVar != null) {
+                    babVar.run();
+                    return;
                 }
                 return;
             default:
-                bu9Var.getClass();
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    k27 k27Var2 = (k27) bu9Var.getMessagesController().T.f(((Long) arrayList.get(i2)).longValue());
-                    if (k27Var2 != null) {
-                        k27Var2.Z = true;
-                    }
+                e eVar = (e) obj;
+                cu9 cu9Var2 = du9Var.F;
+                if (cu9Var2 != null || eVar == null) {
+                    cu9Var2.c(eVar);
+                    return;
                 }
                 return;
         }

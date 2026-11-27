@@ -1,59 +1,42 @@
 package defpackage;
 
-import android.text.style.CharacterStyle;
-public final class op1 extends c01 {
-    public final byte d;
-    public final int e;
-    public final gb2 f;
-    public final mu1 g;
-    public final Object h;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class op1 extends l37 {
+    public final zu1 f;
 
-    public op1(mu1 mu1Var, int i, Object obj, gb2 gb2Var, byte b) {
-        this.d = b;
-        this.g = mu1Var;
-        this.e = i;
-        this.h = obj;
-        this.f = gb2Var;
-    }
-
-    @Override
-    public final void c(boolean z) {
-        switch (this.d) {
-            case 0:
-                if (!z) {
-                    gl.d3(new eg(this, this.e, (byte) 14), 240L);
-                    return;
-                }
-                return;
-            default:
-                if (!z) {
-                    gl.d3(new eg(this, this.e, (byte) 17), 240L);
-                    return;
-                }
-                return;
+    public op1(zu1 zu1Var, Context context, int i, r47 r47Var) {
+        super(context);
+        this.f = zu1Var;
+        this.a = null;
+        if (!r47Var.g4()) {
+            r47Var.O4();
         }
-    }
-
-    @Override
-    public final void d() {
-        byte b = this.d;
-        gb2 gb2Var = this.f;
-        Object obj = this.h;
-        int i = this.e;
-        mu1 mu1Var = this.g;
-        switch (b) {
-            case 0:
-                mu1Var.ac = i;
-                mu1Var.bc = 1;
-                mu1Var.cc = (CharacterStyle) obj;
-                gb2Var.invalidate();
-                return;
-            default:
-                mu1Var.ac = i;
-                mu1Var.bc = 3;
-                mu1Var.dc = (String) obj;
-                gb2Var.invalidate();
-                return;
-        }
+        tk4 tk4Var = new tk4(context, null);
+        this.c = tk4Var;
+        tk4Var.e(aob.G8, aob.i6, -1);
+        tk4Var.setViewType(13);
+        tk4Var.setIsSingleCell(false);
+        addView(tk4Var, tre.c(-1.0f, -2));
+        p66 p66Var = new p66(context, null);
+        this.b = p66Var;
+        p66Var.setTextSize(1, 14.0f);
+        p66Var.setGravity(19);
+        yob.X(p66Var, aob.E8, null);
+        yob.G(p66Var, aob.Xc, null);
+        p66Var.setEllipsize(TextUtils.TruncateAt.END);
+        p66Var.setSingleLine();
+        p66Var.setLines(1);
+        p66Var.setMaxLines(1);
+        addView(p66Var, tre.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
+        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
+        tL_channels_getMessageAuthor.channel = uc7.s1(i).h1(-r47.B0(r47Var.k));
+        tL_channels_getMessageAuthor.id = r47Var.e1();
+        p66Var.setAlpha(0.0f);
+        ConnectionsManager.getInstance(i).sendRequest(tL_channels_getMessageAuthor, new b22(this, i, (byte) 3));
+        setBackground(aob.Y(aob.w0(null, aob.I5, false), 6, 0));
+        setEnabled(false);
     }
 }

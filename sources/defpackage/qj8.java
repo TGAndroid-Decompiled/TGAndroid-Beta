@@ -1,29 +1,52 @@
 package defpackage;
 
-import org.telegram.ui.PrivacyControlActivity;
-public final class qj8 implements ed {
-    public final byte a;
-    public final PrivacyControlActivity b;
+import java.io.Serializable;
+import java.util.List;
+public final class qj8 implements pj8, Serializable {
+    public final List a;
 
-    public qj8(PrivacyControlActivity privacyControlActivity, byte b) {
-        this.a = b;
-        this.b = privacyControlActivity;
+    public qj8(List list) {
+        this.a = list;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        PrivacyControlActivity privacyControlActivity = this.b;
-        switch (b) {
-            case 0:
-                privacyControlActivity.I0();
-                return;
-            case 1:
-                privacyControlActivity.finishFragment();
-                return;
-            default:
-                privacyControlActivity.finishFragment();
-                return;
+    public final boolean apply(Object obj) {
+        int i = 0;
+        while (true) {
+            List list = this.a;
+            if (i < list.size()) {
+                if (!((pj8) list.get(i)).apply(obj)) {
+                    return false;
+                }
+                i++;
+            } else {
+                return true;
+            }
         }
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof qj8) {
+            return this.a.equals(((qj8) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode() + 306654252;
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("Predicates.and(");
+        boolean z = true;
+        for (Object obj : this.a) {
+            if (!z) {
+                sb.append(',');
+            }
+            sb.append(obj);
+            z = false;
+        }
+        sb.append(')');
+        return sb.toString();
     }
 }

@@ -1,26 +1,61 @@
 package defpackage;
 public abstract class w8e {
-    public static final void a(sw2 sw2Var, Throwable th) {
-        Throwable runtimeException;
-        for (dk dkVar : ww2.a) {
-            try {
-                dkVar.c(th);
-            } catch (Throwable th2) {
-                if (th == th2) {
-                    runtimeException = th;
+    public static final char[] a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+    public final boolean equals(Object obj) {
+        boolean z;
+        boolean z2;
+        if (obj instanceof w8e) {
+            byte[] bArr = ((r8e) this).b;
+            int length = bArr.length << 3;
+            byte[] bArr2 = ((r8e) ((w8e) obj)).b;
+            if (length == (bArr2.length << 3)) {
+                if (bArr.length == bArr2.length) {
+                    z = true;
+                    for (int i = 0; i < bArr.length; i++) {
+                        if (bArr[i] == bArr2[i]) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                        z &= z2;
+                    }
                 } else {
-                    runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th2);
-                    tfe.a(runtimeException, th);
+                    z = false;
                 }
-                Thread currentThread = Thread.currentThread();
-                currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, runtimeException);
+                if (z) {
+                    return true;
+                }
             }
         }
-        try {
-            tfe.a(th, new ge3(sw2Var));
-        } catch (Throwable unused) {
+        return false;
+    }
+
+    public final int hashCode() {
+        byte[] bArr = ((r8e) this).b;
+        if ((bArr.length << 3) >= 32) {
+            int length = bArr.length;
+            if (length >= 4) {
+                return (bArr[0] & 255) | ((bArr[1] & 255) << 8) | ((bArr[2] & 255) << 16) | ((bArr[3] & 255) << 24);
+            }
+            grb.i(d5f.a("HashCode#asInt() requires >= 4 bytes (it only has %s bytes).", Integer.valueOf(length)));
+            return 0;
         }
-        Thread currentThread2 = Thread.currentThread();
-        currentThread2.getUncaughtExceptionHandler().uncaughtException(currentThread2, th);
+        int i = bArr[0] & 255;
+        for (int i2 = 1; i2 < bArr.length; i2++) {
+            i |= (bArr[i2] & 255) << (i2 << 3);
+        }
+        return i;
+    }
+
+    public final String toString() {
+        byte[] bArr = ((r8e) this).b;
+        StringBuilder sb = new StringBuilder(bArr.length << 1);
+        for (byte b : bArr) {
+            char[] cArr = a;
+            sb.append(cArr[(b >> 4) & 15]);
+            sb.append(cArr[b & 15]);
+        }
+        return sb.toString();
     }
 }

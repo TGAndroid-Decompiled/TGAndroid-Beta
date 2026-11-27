@@ -1,161 +1,195 @@
 package defpackage;
 
-import java.util.Arrays;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import androidx.core.graphics.drawable.IconCompat;
+import java.util.ArrayList;
 public final class wn7 {
-    public transient Object[] a;
-    public transient int[] b;
-    public transient int c;
-    public transient int[] d;
-    public transient long[] e;
-    public transient float f;
-    public transient int g;
+    public yd6 A;
+    public long B;
+    public boolean C;
+    public final boolean D;
+    public un7 E;
+    public final Notification F;
+    public final ArrayList G;
+    public final Context a;
+    public final ArrayList b;
+    public final ArrayList c;
+    public final ArrayList d;
+    public CharSequence e;
+    public CharSequence f;
+    public PendingIntent g;
+    public IconCompat h;
+    public int i;
+    public int j;
+    public boolean k;
+    public fo7 l;
+    public CharSequence m;
+    public byte n;
+    public int o;
+    public boolean p;
+    public String q;
+    public boolean r;
+    public String s;
+    public boolean t;
+    public String u;
+    public Bundle v;
+    public int w;
+    public int x;
+    public String y;
+    public String z;
 
-    public final void a(int i) {
-        if (i > this.e.length) {
-            f(i);
-        }
-        if (i >= this.g) {
-            g(Math.max(2, Integer.highestOneBit(i - 1) << 1));
-        }
+    public wn7(Context context, String str) {
+        this.b = new ArrayList();
+        this.c = new ArrayList();
+        this.d = new ArrayList();
+        this.k = true;
+        this.t = false;
+        this.w = 0;
+        this.x = 0;
+        this.C = false;
+        Notification notification = new Notification();
+        this.F = notification;
+        this.a = context;
+        this.y = str;
+        notification.when = System.currentTimeMillis();
+        notification.audioStreamType = -1;
+        this.j = 0;
+        this.G = new ArrayList();
+        this.D = true;
     }
 
-    public final int b(Object obj) {
-        int c = c(obj);
-        if (c == -1) {
-            return 0;
+    public static CharSequence c(CharSequence charSequence) {
+        if (charSequence == null) {
+            return charSequence;
         }
-        return this.b[c];
+        if (charSequence.length() > 5120) {
+            return charSequence.subSequence(0, 5120);
+        }
+        return charSequence;
     }
 
-    public final int c(Object obj) {
-        int b = cje.b(obj);
-        int[] iArr = this.d;
-        int i = iArr[(iArr.length - 1) & b];
-        while (i != -1) {
-            long j = this.e[i];
-            if (((int) (j >>> 32)) == b && bqe.a(obj, this.a[i])) {
-                return i;
+    public final void a(int i, PendingIntent pendingIntent, String str) {
+        IconCompat iconCompat = null;
+        if (i != 0) {
+            iconCompat = IconCompat.e(null, "", i);
+        }
+        this.b.add(new ln7(iconCompat, str, pendingIntent, new Bundle(), null, true, 0, true));
+    }
+
+    public final Notification b() {
+        Notification build;
+        q31 q31Var = new q31(this);
+        wn7 wn7Var = (wn7) q31Var.d;
+        fo7 fo7Var = wn7Var.l;
+        if (fo7Var != null) {
+            fo7Var.b(q31Var);
+        }
+        Notification.Builder builder = (Notification.Builder) q31Var.c;
+        boolean z = q31Var.a;
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 26) {
+            build = builder.build();
+        } else if (i >= 24) {
+            build = builder.build();
+            if (z) {
+                if (build.getGroup() != null && (build.flags & 512) != 0 && z) {
+                    q31.b(build);
+                }
+                if (build.getGroup() != null && (build.flags & 512) == 0 && z) {
+                    q31.b(build);
+                }
             }
-            i = (int) j;
-        }
-        return -1;
-    }
-
-    public final void d(int i) {
-        boolean z;
-        if (i >= 0) {
-            z = true;
         } else {
-            z = false;
-        }
-        gre.e("Initial capacity must be non-negative", z);
-        int max = Math.max(i, 2);
-        int highestOneBit = Integer.highestOneBit(max);
-        if (max > ((int) (1.0d * highestOneBit)) && (highestOneBit = highestOneBit << 1) <= 0) {
-            highestOneBit = 1073741824;
-        }
-        int[] iArr = new int[highestOneBit];
-        Arrays.fill(iArr, -1);
-        this.d = iArr;
-        this.f = 1.0f;
-        this.a = new Object[i];
-        this.b = new int[i];
-        long[] jArr = new long[i];
-        Arrays.fill(jArr, -1L);
-        this.e = jArr;
-        this.g = Math.max(1, (int) (highestOneBit * 1.0f));
-    }
-
-    public final void e(int i, Object obj) {
-        long j;
-        if (i > 0) {
-            long[] jArr = this.e;
-            Object[] objArr = this.a;
-            int[] iArr = this.b;
-            int b = cje.b(obj);
-            int[] iArr2 = this.d;
-            int length = (iArr2.length - 1) & b;
-            int i2 = this.c;
-            int i3 = iArr2[length];
-            if (i3 == -1) {
-                iArr2[length] = i2;
-                j = 4294967295L;
-            } else {
-                while (true) {
-                    long j2 = jArr[i3];
-                    j = 4294967295L;
-                    if (((int) (j2 >>> 32)) == b && bqe.a(obj, objArr[i3])) {
-                        int i4 = iArr[i3];
-                        iArr[i3] = i;
-                        return;
-                    }
-                    int i5 = (int) j2;
-                    if (i5 == -1) {
-                        jArr[i3] = (j2 & (-4294967296L)) | (i2 & 4294967295L);
-                        break;
-                    }
-                    i3 = i5;
+            builder.setExtras((Bundle) q31Var.e);
+            build = builder.build();
+            if (z) {
+                if (build.getGroup() != null && (build.flags & 512) != 0 && z) {
+                    q31.b(build);
+                }
+                if (build.getGroup() != null && (build.flags & 512) == 0 && z) {
+                    q31.b(build);
                 }
             }
-            int i6 = Integer.MAX_VALUE;
-            if (i2 != Integer.MAX_VALUE) {
-                int i7 = i2 + 1;
-                int length2 = this.e.length;
-                if (i7 > length2) {
-                    int max = Math.max(1, length2 >>> 1) + length2;
-                    if (max >= 0) {
-                        i6 = max;
-                    }
-                    if (i6 != length2) {
-                        f(i6);
-                    }
-                }
-                this.e[i2] = (b << 32) | j;
-                this.a[i2] = obj;
-                this.b[i2] = i;
-                this.c = i7;
-                if (i2 >= this.g) {
-                    g(this.d.length << 1);
-                    return;
-                }
-                return;
+        }
+        if (fo7Var != null) {
+            wn7Var.l.getClass();
+            Bundle bundle = build.extras;
+            if (bundle != null) {
+                fo7Var.a(bundle);
             }
-            sc8.j("Cannot contain more than Integer.MAX_VALUE elements!");
-            return;
         }
-        w26.j(de9.k(i, "count must be positive but was: "));
+        return build;
     }
 
-    public final void f(int i) {
-        this.a = Arrays.copyOf(this.a, i);
-        this.b = Arrays.copyOf(this.b, i);
-        long[] jArr = this.e;
-        int length = jArr.length;
-        long[] copyOf = Arrays.copyOf(jArr, i);
-        if (i > length) {
-            Arrays.fill(copyOf, length, i, -1L);
-        }
-        this.e = copyOf;
+    public final void d(String str) {
+        this.f = c(str);
     }
 
-    public final void g(int i) {
-        if (this.d.length >= 1073741824) {
-            this.g = Integer.MAX_VALUE;
-            return;
+    public final void e(CharSequence charSequence) {
+        this.e = c(charSequence);
+    }
+
+    public final void f(int i, boolean z) {
+        Notification notification = this.F;
+        if (z) {
+            notification.flags |= i;
+        } else {
+            notification.flags &= ~i;
         }
-        int i2 = ((int) (i * this.f)) + 1;
-        int[] iArr = new int[i];
-        Arrays.fill(iArr, -1);
-        long[] jArr = this.e;
-        int i3 = i - 1;
-        for (int i4 = 0; i4 < this.c; i4++) {
-            int i5 = (int) (jArr[i4] >>> 32);
-            int i6 = i5 & i3;
-            int i7 = iArr[i6];
-            iArr[i6] = i4;
-            jArr[i4] = (i5 << 32) | (i7 & 4294967295L);
+    }
+
+    public final void g(Bitmap bitmap) {
+        IconCompat c;
+        if (bitmap == null) {
+            c = null;
+        } else {
+            if (Build.VERSION.SDK_INT < 27) {
+                Resources resources = this.a.getResources();
+                int dimensionPixelSize = resources.getDimensionPixelSize(2131165308);
+                int dimensionPixelSize2 = resources.getDimensionPixelSize(2131165307);
+                if (bitmap.getWidth() > dimensionPixelSize || bitmap.getHeight() > dimensionPixelSize2) {
+                    double min = Math.min(dimensionPixelSize / Math.max(1, bitmap.getWidth()), dimensionPixelSize2 / Math.max(1, bitmap.getHeight()));
+                    bitmap = Bitmap.createScaledBitmap(bitmap, (int) Math.ceil(bitmap.getWidth() * min), (int) Math.ceil(bitmap.getHeight() * min), true);
+                }
+            }
+            c = IconCompat.c(bitmap);
         }
-        this.g = i2;
-        this.d = iArr;
+        this.h = c;
+    }
+
+    public final void h(Uri uri) {
+        Notification notification = this.F;
+        notification.sound = uri;
+        notification.audioStreamType = 5;
+        notification.audioAttributes = vn7.a(vn7.d(vn7.c(vn7.b(), 4), 5));
+    }
+
+    public final void i(fo7 fo7Var) {
+        if (this.l != fo7Var) {
+            this.l = fo7Var;
+            if (fo7Var.a != this) {
+                fo7Var.a = this;
+                i(fo7Var);
+            }
+        }
+    }
+
+    public final void j(String str) {
+        this.m = c(str);
+    }
+
+    public final void k(String str) {
+        this.F.tickerText = c(str);
+    }
+
+    public wn7(Context context) {
+        this(context, null);
     }
 }

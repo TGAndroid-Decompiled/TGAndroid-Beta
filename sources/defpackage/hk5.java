@@ -1,16 +1,49 @@
 package defpackage;
 
-import java.util.concurrent.Executor;
-public final class hk5 extends fe7 implements gk5 {
-    public final f84 f;
+import android.os.IBinder;
+import android.os.Parcel;
+public final class hk5 implements jk5 {
+    public IBinder a;
 
-    public hk5(mg6 mg6Var, Executor executor, f84 f84Var) {
-        super(mg6Var, executor);
-        this.f = f84Var;
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
     }
 
     @Override
-    public final f84[] a() {
-        return new f84[]{this.f};
+    public final void g(int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(i);
+            this.a.transact(9, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void i(int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(i);
+            this.a.transact(12, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void j(sf8 sf8Var) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(1);
+            sf8Var.writeToParcel(obtain, 0);
+            this.a.transact(3, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
     }
 }

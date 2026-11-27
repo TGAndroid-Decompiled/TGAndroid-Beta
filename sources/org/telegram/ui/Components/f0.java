@@ -50,22 +50,22 @@ public final class f0 implements TextWatcher {
         int length = obj.length();
         ThemeEditorView.EditorAlert editorAlert = this.a.c;
         if (length != 0) {
-            g24 g24Var = editorAlert.o1;
-            if (g24Var != null) {
-                g24Var.setText(k96.M0(2131747975, null));
+            b34 b34Var = editorAlert.o1;
+            if (b34Var != null) {
+                b34Var.setText(ob6.M0(2131747898, null));
             }
         } else {
-            w39 adapter = editorAlert.m1.getAdapter();
+            j79 adapter = editorAlert.m1.getAdapter();
             ThemeEditorView.EditorAlert editorAlert2 = this.a.c;
             if (adapter != editorAlert2.r1) {
-                int D0 = editorAlert2.D0();
-                this.a.c.o1.setText(k96.M0(2131748038, null));
+                int E0 = editorAlert2.E0();
+                this.a.c.o1.setText(ob6.M0(2131747961, null));
                 this.a.c.o1.c();
                 ThemeEditorView.EditorAlert editorAlert3 = this.a.c;
                 editorAlert3.m1.setAdapter(editorAlert3.r1);
                 this.a.c.r1.f();
-                if (D0 > 0) {
-                    this.a.c.q1.g1(0, -D0);
+                if (E0 > 0) {
+                    this.a.c.q1.g1(0, -E0);
                 }
             }
         }
@@ -80,14 +80,14 @@ public final class f0 implements TextWatcher {
                 c0Var.e.clear();
                 ThemeEditorView.EditorAlert editorAlert4 = c0Var.r;
                 int i = ThemeEditorView.EditorAlert.G1;
-                editorAlert4.z1 = editorAlert4.D0();
+                editorAlert4.z1 = editorAlert4.E0();
                 c0Var.d = -1;
                 c0Var.f();
                 return;
             }
             int i2 = c0Var.d + 1;
             c0Var.d = i2;
-            c0Var.h = new t79(c0Var, obj, i2, (byte) 23);
+            c0Var.h = new a39(c0Var, obj, i2, (byte) 24);
             Utilities.g.d(c0Var.h, 300L);
         }
     }

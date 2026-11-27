@@ -1,68 +1,92 @@
 package defpackage;
 
-import android.text.StaticLayout;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class fb2 {
-    public StaticLayout A;
-    public cm B;
-    public int C;
-    public int D;
-    public final gb2 E;
-    public int a;
-    public int b;
-    public int c;
-    public int d;
-    public float e;
-    public int f;
-    public float g;
-    public float h;
-    public boolean i;
-    public int j;
-    public boolean k;
-    public boolean l;
-    public float m;
-    public float n;
-    public boolean o;
-    public StaticLayout p;
-    public tgb q;
-    public cm r;
-    public TLRPC.PollAnswer s;
-    public TLRPC.TodoItem t;
-    public boolean u;
-    public int v;
-    public ff0 w;
-    public wd8 x;
-    public pb0 y;
-    public ImageReceiver z;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.text.Spannable;
+import android.text.style.ClickableSpan;
+import android.view.accessibility.AccessibilityNodeProvider;
+import java.util.ArrayList;
+public final class fb2 extends AccessibilityNodeProvider {
+    public final wb2 a;
+    public final Path b = new Path();
+    public final RectF c = new RectF();
+    public final Rect d = new Rect();
 
-    public fb2(gb2 gb2Var) {
-        this.E = gb2Var;
+    public fb2(wb2 wb2Var) {
+        this.a = wb2Var;
     }
 
-    public final void a() {
-        ImageReceiver imageReceiver = this.z;
-        if (imageReceiver != null) {
-            imageReceiver.I();
+    public final ClickableSpan a(int i, boolean z) {
+        if (i != 5000) {
+            wb2 wb2Var = this.a;
+            if (z) {
+                int i2 = i - 3000;
+                CharSequence charSequence = wb2Var.Q5.z;
+                if ((charSequence instanceof Spannable) && i2 >= 0) {
+                    Spannable spannable = (Spannable) charSequence;
+                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(0, spannable.length(), ClickableSpan.class);
+                    if (clickableSpanArr.length > i2) {
+                        return clickableSpanArr[i2];
+                    }
+                    return null;
+                }
+                return null;
+            }
+            int i3 = i - 2000;
+            CharSequence charSequence2 = wb2Var.Q5.v;
+            if ((charSequence2 instanceof Spannable) && i3 >= 0) {
+                Spannable spannable2 = (Spannable) charSequence2;
+                ClickableSpan[] clickableSpanArr2 = (ClickableSpan[]) spannable2.getSpans(0, spannable2.length(), ClickableSpan.class);
+                if (clickableSpanArr2.length > i3) {
+                    return clickableSpanArr2[i3];
+                }
+                return null;
+            }
+            return null;
         }
-        wd8 wd8Var = this.x;
-        if (wd8Var != null) {
-            wd8Var.b.a();
-            wd8Var.c.I();
-            wd8Var.F.e();
-        }
+        return null;
     }
 
-    public final void b() {
-        ImageReceiver imageReceiver = this.z;
-        if (imageReceiver != null) {
-            imageReceiver.K();
+    public final dk9 b(int[] iArr, int i) {
+        hl9 hl9Var;
+        int i2;
+        r47 r47Var = this.a.Q5;
+        if (r47Var != null && (hl9Var = r47Var.y2) != null) {
+            ArrayList arrayList = hl9Var.g;
+            int i3 = i - 6000;
+            if (i3 >= 0) {
+                int i4 = 0;
+                for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                    dk9 dk9Var = (dk9) arrayList.get(i5);
+                    if (dk9Var.R()) {
+                        if (dk9Var.r == null) {
+                            i2 = 0;
+                        } else {
+                            i2 = 1;
+                        }
+                        int A = dk9Var.A() + i2 + i4;
+                        if (i3 < A) {
+                            iArr[0] = i3 - i4;
+                            return dk9Var;
+                        }
+                        i4 = A;
+                    }
+                }
+                return null;
+            }
+            return null;
         }
-        wd8 wd8Var = this.x;
-        if (wd8Var != null) {
-            wd8Var.b.b();
-            wd8Var.c.K();
-            wd8Var.F.f();
-        }
+        return null;
+    }
+
+    @Override
+    public final android.view.accessibility.AccessibilityNodeInfo createAccessibilityNodeInfo(int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fb2.createAccessibilityNodeInfo(int):android.view.accessibility.AccessibilityNodeInfo");
+    }
+
+    @Override
+    public final boolean performAction(int r10, int r11, android.os.Bundle r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fb2.performAction(int, int, android.os.Bundle):boolean");
     }
 }

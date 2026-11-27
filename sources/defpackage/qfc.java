@@ -1,39 +1,25 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.messenger.voip.VoIPService;
-public final class qfc implements View.OnClickListener {
+import org.telegram.messenger.video.VideoPlayerRewinder;
+public final class qfc implements Runnable {
     public final byte a;
-    public final hgc b;
-    public final VoIPService c;
+    public final VideoPlayerRewinder b;
 
-    public qfc(hgc hgcVar, VoIPService voIPService, byte b) {
+    public qfc(VideoPlayerRewinder videoPlayerRewinder, byte b) {
         this.a = b;
-        this.b = hgcVar;
-        this.c = voIPService;
+        this.b = videoPlayerRewinder;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         byte b = this.a;
-        VoIPService voIPService = this.c;
-        hgc hgcVar = this.b;
+        VideoPlayerRewinder videoPlayerRewinder = this.b;
         switch (b) {
             case 0:
-                gl.c3(new sfc(hgcVar, (byte) 8));
-                int i = hgcVar.M;
-                if (i > 0) {
-                    voIPService.sendCallRating(i);
-                    return;
-                }
+                VideoPlayerRewinder.a(videoPlayerRewinder);
                 return;
             default:
-                gl.c3(new sfc(hgcVar, (byte) 10));
-                int i2 = hgcVar.M;
-                if (i2 > 0) {
-                    voIPService.sendCallRating(i2);
-                    return;
-                }
+                VideoPlayerRewinder.b(videoPlayerRewinder);
                 return;
         }
     }

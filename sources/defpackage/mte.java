@@ -1,123 +1,37 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.util.LongSparseArray;
-import org.telegram.messenger.a;
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 public abstract class mte {
-    public static sp9 a;
-    public static sp9 b;
-    public static sp9 c;
-
-    public static sp9 a(int i) {
-        if (i == 1) {
-            return a;
-        }
-        if (i == 2) {
-            return b;
-        }
-        if (i == 4) {
-            return c;
-        }
-        return null;
-    }
-
-    public static void b(SharedPreferences sharedPreferences) {
-        int i;
+    public static int a(Context context) {
         boolean z;
-        boolean z2;
-        boolean z3 = false;
-        if (sharedPreferences.getBoolean("save_gallery", false) && w01.b) {
-            i = 7;
+        int i;
+        float fraction;
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
+            z = true;
         } else {
-            i = sharedPreferences.getInt("save_gallery_flags", -1);
+            z = false;
         }
-        if (i != -1) {
-            sharedPreferences.edit().remove("save_gallery").remove("save_gallery_flags").apply();
-            ?? rp9Var = new rp9();
-            a = rp9Var;
-            if ((i & 1) != 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            rp9Var.b = z;
-            rp9Var.a = z;
-            rp9Var.c = 104857600L;
-            rp9Var.e("user", sharedPreferences);
-            ?? rp9Var2 = new rp9();
-            b = rp9Var2;
-            sp9 sp9Var = a;
-            if ((i & 2) != 0) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            sp9Var.b = z2;
-            rp9Var2.a = z2;
-            rp9Var2.c = 104857600L;
-            rp9Var2.e("groups", sharedPreferences);
-            ?? rp9Var3 = new rp9();
-            c = rp9Var3;
-            if ((i & 4) != 0) {
-                z3 = true;
-            }
-            rp9Var3.b = z3;
-            rp9Var3.a = z3;
-            rp9Var3.c = 104857600L;
-            rp9Var3.e("channels", sharedPreferences);
+        TypedValue typedValue = new TypedValue();
+        Resources resources = context.getResources();
+        if (z) {
+            i = 2131165335;
         } else {
-            a = sp9.d("user", sharedPreferences);
-            b = sp9.d("groups", sharedPreferences);
-            c = sp9.d("channels", sharedPreferences);
+            i = 2131165334;
         }
-        a.d = (byte) 1;
-        b.d = (byte) 2;
-        c.d = (byte) 4;
-    }
-
-    public static LongSparseArray c(SharedPreferences sharedPreferences) {
-        LongSparseArray longSparseArray = new LongSparseArray();
-        int i = sharedPreferences.getInt("count", 0);
-        for (int i2 = 0; i2 < i; i2++) {
-            ?? rp9Var = new rp9();
-            rp9Var.d = sharedPreferences.getLong(i2 + "_dialog_id", 0L);
-            rp9Var.a = sharedPreferences.getBoolean(i2 + "_photo", false);
-            rp9Var.b = sharedPreferences.getBoolean(i2 + "_video", false);
-            rp9Var.c = sharedPreferences.getLong(i2 + "_limitVideo", 104857600L);
-            long j = rp9Var.d;
-            if (j != 0) {
-                longSparseArray.put(j, rp9Var);
-            }
+        resources.getValue(i, typedValue, true);
+        int i2 = typedValue.type;
+        if (i2 == 5) {
+            fraction = typedValue.getDimension(displayMetrics);
+        } else if (i2 == 6) {
+            int i3 = displayMetrics.widthPixels;
+            fraction = typedValue.getFraction(i3, i3);
+        } else {
+            return -2;
         }
-        return longSparseArray;
-    }
-
-    public static boolean d(int r7, defpackage.ka4 r8, defpackage.k27 r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.mte.d(int, ka4, k27, int):boolean");
-    }
-
-    public static void e(SharedPreferences sharedPreferences, LongSparseArray longSparseArray) {
-        sharedPreferences.edit().clear().apply();
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt("count", longSparseArray.size());
-        for (int i = 0; i < longSparseArray.size(); i++) {
-            qp9 qp9Var = (qp9) longSparseArray.valueAt(i);
-            edit.putLong(oo1.n(i, "_dialog_id"), qp9Var.d);
-            edit.putBoolean(i + "_photo", qp9Var.a);
-            edit.putBoolean(i + "_video", qp9Var.b);
-            edit.putLong(i + "_limitVideo", qp9Var.c);
-        }
-        edit.apply();
-    }
-
-    public static void f(int i) {
-        SharedPreferences sharedPreferences = a.b.getSharedPreferences("mainconfig", 0);
-        if (i == 1) {
-            a.e("user", sharedPreferences);
-        } else if (i == 2) {
-            b.e("groups", sharedPreferences);
-        } else if (i == 4) {
-            c.e("channels", sharedPreferences);
-        }
+        return (int) fraction;
     }
 }

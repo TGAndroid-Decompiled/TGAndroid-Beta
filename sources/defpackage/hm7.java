@@ -1,30 +1,42 @@
 package defpackage;
 
-import android.util.Pair;
-import java.util.HashMap;
-public final class hm7 {
-    public final long a;
-    public String b;
-    public final HashMap c;
-    public boolean d;
-    public long e;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class hm7 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a = 0;
+    public final boolean b;
+    public final FrameLayout c;
+    public final Object d;
 
-    public hm7(String str, long j, int i, long j2, long j3) {
-        HashMap hashMap = new HashMap();
-        this.c = hashMap;
-        this.a = j;
-        this.b = str;
-        hashMap.put(Integer.valueOf(i), new Pair(Long.valueOf(j2), Long.valueOf(j3)));
-        this.e = j2;
+    public hm7(v94 v94Var, r47 r47Var, boolean z) {
+        this.c = v94Var;
+        this.d = r47Var;
+        this.b = z;
     }
 
-    public final long a() {
-        long j = -1;
-        for (Pair pair : this.c.values()) {
-            if (j == -1 || j > ((Long) pair.first).longValue()) {
-                j = ((Long) pair.first).longValue();
-            }
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        Object obj = this.d;
+        boolean z = this.b;
+        FrameLayout frameLayout = this.c;
+        switch (b) {
+            case 0:
+                v94 v94Var = (v94) frameLayout;
+                if (v94Var.getMessage() == ((r47) obj)) {
+                    v94Var.o(z, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    return;
+                }
+                return;
+            default:
+                ((xd8) frameLayout).i(z, (pt2) obj, valueAnimator);
+                return;
         }
-        return j;
+    }
+
+    public hm7(xd8 xd8Var, boolean z, pt2 pt2Var) {
+        this.c = xd8Var;
+        this.b = z;
+        this.d = pt2Var;
     }
 }

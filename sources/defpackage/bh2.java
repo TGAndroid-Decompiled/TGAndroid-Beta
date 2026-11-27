@@ -1,20 +1,32 @@
 package defpackage;
-public abstract class bh2 extends g2 {
-    public static final z24 e;
+public final class bh2 implements Runnable {
+    public final byte a;
+    public final ch2 b;
 
-    static {
-        z74 z74Var = new z74(bh2.class, "ChunkOffsetBox.java");
-        e = z74Var.e(z74Var.d("toString", "com.coremedia.iso.boxes.ChunkOffsetBox", "", "", "java.lang.String"));
+    public bh2(ch2 ch2Var, byte b) {
+        this.a = b;
+        this.b = ch2Var;
     }
 
-    public final String toString() {
-        c5a b = z74.b(e, this, this);
-        n89.a().getClass();
-        n89.b(b);
-        StringBuilder sb = new StringBuilder(getClass().getSimpleName());
-        sb.append("[entryCount=");
-        kwa kwaVar = (kwa) this;
-        oo1.r(z74.b(kwa.h, kwaVar, kwaVar));
-        return de9.l(sb, kwaVar.f.length, "]");
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ch2 ch2Var = this.b;
+        switch (b) {
+            case 0:
+                wa waVar = ch2Var.a;
+                if (waVar != null) {
+                    waVar.g3.O(true);
+                    return;
+                }
+                return;
+            default:
+                wa waVar2 = ch2Var.a;
+                if (waVar2 != null) {
+                    waVar2.g3.O(true);
+                    return;
+                }
+                return;
+        }
     }
 }

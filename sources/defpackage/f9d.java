@@ -1,6 +1,18 @@
 package defpackage;
-public interface f9d {
-    void L(String str, long j, int i, r8d r8dVar, long j2, long j3);
 
-    void g0(String str, long j, long j2, long j3);
+import android.os.Process;
+public final class f9d extends Thread {
+    @Override
+    public final void run() {
+        Process.setThreadPriority(19);
+        synchronized (this) {
+            while (true) {
+                try {
+                    wait();
+                } catch (InterruptedException unused) {
+                    return;
+                }
+            }
+        }
+    }
 }

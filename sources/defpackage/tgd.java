@@ -1,55 +1,23 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class tgd extends b4 {
-    public static final Parcelable.Creator<tgd> CREATOR = new igd((byte) 18);
-    public final boolean a;
-    public final long b;
-    public final long c;
+import android.content.pm.PackageInfo;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+public abstract class tgd {
+    public static final sjf a = new sjf((byte) 23);
 
-    public tgd(long j, long j2, boolean z) {
-        this.a = z;
-        this.b = j;
-        this.c = j2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public static void a(PackageInfo packageInfo, File file) {
+        try {
+            DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(new File(file, "profileinstaller_profileWrittenFor_lastUpdateTime.dat")));
+            dataOutputStream.writeLong(packageInfo.lastUpdateTime);
+            dataOutputStream.close();
+        } catch (IOException unused) {
         }
-        if (obj instanceof tgd) {
-            tgd tgdVar = (tgd) obj;
-            if (this.a == tgdVar.a && this.b == tgdVar.b && this.c == tgdVar.c) {
-                return true;
-            }
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.a), Long.valueOf(this.b), Long.valueOf(this.c)});
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("CollectForDebugParcelable[skipPersistentStorage: ");
-        sb.append(this.a);
-        sb.append(",collectForDebugStartTimeMillis: ");
-        sb.append(this.b);
-        sb.append(",collectForDebugExpiryTimeMillis: ");
-        return ls6.p(sb, this.c, "]");
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a ? 1 : 0);
-        jte.q(parcel, 2, 8);
-        parcel.writeLong(this.c);
-        jte.q(parcel, 3, 8);
-        parcel.writeLong(this.b);
-        jte.s(parcel, r);
+    public static void b(android.content.Context r18, java.util.concurrent.Executor r19, defpackage.mu8 r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.tgd.b(android.content.Context, java.util.concurrent.Executor, mu8, boolean):void");
     }
 }

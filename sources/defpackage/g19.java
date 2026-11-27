@@ -1,52 +1,29 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class g19 extends f19 {
-    public final i19 g0;
+import android.view.animation.Interpolator;
+public final class g19 implements Interpolator {
+    public final boolean a;
+    public final float b;
+    public final float c;
+    public final Interpolator d;
 
-    public g19(i19 i19Var, f19 f19Var, TLRPC.ReactionCount reactionCount, boolean z) {
-        super(f19Var, i19Var.l, i19Var.w, reactionCount, z, i19Var.y);
-        this.g0 = i19Var;
+    public g19(boolean z, float f, float f2, Interpolator interpolator) {
+        this.a = z;
+        this.b = f;
+        this.c = f2;
+        this.d = interpolator;
     }
 
     @Override
-    public final float j() {
-        return this.g0.a;
-    }
-
-    @Override
-    public final ImageReceiver k() {
-        return (ImageReceiver) this.g0.E.get(this.r);
-    }
-
-    @Override
-    public final boolean l() {
-        return this.g0.x.O3();
-    }
-
-    @Override
-    public final boolean m() {
-        i19 i19Var = this.g0;
-        int e1 = i19Var.x.e1();
-        long c1 = i19Var.x.c1();
-        d19 d19Var = d19.B;
-        if (d19Var != null) {
-            int i = d19Var.a;
-            if (i == 2 || i == 0) {
-                long j = d19Var.o;
-                if (((j != 0 && c1 == j) || e1 == d19Var.n) && d19Var.p.equals(this.r)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public final float getInterpolation(float f) {
+        boolean z = this.a;
+        float f2 = this.b;
+        float f3 = this.c;
+        Interpolator interpolator = this.d;
+        float f4 = (f - f2) / (f3 - f2);
+        if (z) {
+            return 1.0f - interpolator.getInterpolation(1.0f - ete.a(f4, 0.0f, 1.0f));
         }
-        return false;
-    }
-
-    @Override
-    public final void n() {
-        this.g0.E.remove(this.r);
+        return interpolator.getInterpolation(ete.a(f4, 0.0f, 1.0f));
     }
 }

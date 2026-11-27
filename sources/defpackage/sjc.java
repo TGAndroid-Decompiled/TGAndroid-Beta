@@ -1,108 +1,44 @@
 package defpackage;
 
 import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.animation.LinearInterpolator;
-import java.security.SecureRandom;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class sjc {
-    public final tl a;
-    public ValueAnimator b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
-    public int g;
-    public int h;
-    public int i;
-    public int j;
-    public final hic k;
-    public final int l;
-    public int m = 0;
-    public float n = 0.0f;
-    public int o;
-    public int p;
-    public boolean q;
-    public ValueAnimator r;
+import android.view.ViewTreeObserver;
+public final class sjc implements ViewTreeObserver.OnPreDrawListener {
+    public final float a;
+    public final float b;
+    public final ujc c;
 
-    public sjc(TLRPC.User user, hic hicVar, int i) {
-        this.k = hicVar;
-        this.l = i;
-        boolean e = e66.e(512);
-        long o = l7c.o(user);
-        if (e && o != 0) {
-            tl tlVar = new tl(i, 13, hicVar, false);
-            this.a = tlVar;
-            tlVar.j(o, false);
-            tlVar.k(-16777216);
-            tlVar.w = this.m;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.b = ofFloat;
-            ofFloat.addUpdateListener(new vhc(this, hicVar, (byte) 3));
-            this.e = gl.L(12.0f) + this.c;
-            this.f = gl.L(12.0f) + this.d;
-            SecureRandom secureRandom = Utilities.b;
-            this.c = gl.L(12.0f) + secureRandom.nextInt(gl.L(16.0f));
-            this.d = gl.L(12.0f) + secureRandom.nextInt(gl.L(16.0f));
-            this.b.setInterpolator(new LinearInterpolator());
-            this.b.addListener(new rjc(this));
-            this.b.setDuration(2000L);
-        }
+    public sjc(ujc ujcVar, float f, float f2) {
+        this.c = ujcVar;
+        this.a = f;
+        this.b = f2;
     }
 
-    public final void a(Canvas canvas) {
-        tl tlVar = this.a;
-        if (tlVar == null) {
-            return;
-        }
-        canvas.save();
-        float f = this.n;
-        canvas.scale(f, f, this.o / 2.0f, gl.L(300.0f));
-        canvas.translate(this.i - this.p, this.j);
-        int i = this.g;
-        int i2 = this.h;
-        int i3 = this.l;
-        tlVar.setBounds(i, i2, i + i3, i3 + i2);
-        tlVar.w = this.m;
-        tlVar.draw(canvas);
-        canvas.restore();
-    }
-
-    public final void b(int i, int i2) {
-        int i3;
-        ml mlVar;
-        tl tlVar = this.a;
-        if (tlVar != null) {
-            this.i = i;
-            this.j = i2;
-            this.k.invalidate();
-            if (!this.q) {
-                Drawable drawable = tlVar.f[0];
-                if ((drawable instanceof vl) && ((mlVar = ((vl) drawable).k) == null || !mlVar.C())) {
-                    return;
-                }
-                this.q = true;
-                if (this.i > this.o / 2) {
-                    i3 = gl.L(12.0f);
-                } else {
-                    i3 = -gl.L(12.0f);
-                }
-                this.p = i3;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.setInterpolator(new s33(0.34d, 1.36d, 0.64d, 1.0d));
-                ofFloat.addUpdateListener(new qjc(this, (byte) 0));
-                ofFloat.setDuration(350L);
-                ofFloat.setStartDelay(180L);
-                ofFloat.start();
-                ValueAnimator ofInt = ValueAnimator.ofInt(0, 255, 255);
-                ofInt.setInterpolator(s33.f);
-                ofInt.addUpdateListener(new qjc(this, (byte) 1));
-                ofInt.setStartDelay(180L);
-                ofInt.setDuration(350L);
-                ofInt.start();
+    @Override
+    public final boolean onPreDraw() {
+        ujc ujcVar = this.c;
+        if (!ujcVar.Q) {
+            ValueAnimator valueAnimator = ujcVar.e0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(ujcVar.K, 0.0f);
+            ujcVar.e0 = ofFloat;
+            ofFloat.addUpdateListener(ujcVar.f0);
+            ujcVar.e0.setDuration(300L);
+            ujcVar.e0.start();
+            float measuredWidth = this.a - ((ujcVar.getMeasuredWidth() - (ujcVar.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.b - ((ujcVar.getMeasuredHeight() - (ujcVar.getMeasuredHeight() * 0.23f)) / 2.0f);
+            ujcVar.getViewTreeObserver().removeOnPreDrawListener(this);
+            ujcVar.setTranslationX(measuredWidth);
+            ujcVar.setTranslationY(measuredHeight);
+            ujcVar.setScaleX(0.23f);
+            ujcVar.setScaleY(0.23f);
+            ujcVar.animate().setListener(null).cancel();
+            ujcVar.animate().setListener(new omb(this, (byte) 18)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(k43.f).start();
+            return false;
         }
+        ujcVar.N = false;
+        ujcVar.requestLayout();
+        return false;
     }
 }

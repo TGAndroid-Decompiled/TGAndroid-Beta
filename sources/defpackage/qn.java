@@ -1,38 +1,45 @@
 package defpackage;
 
-import android.util.Property;
-public abstract class qn extends Property {
-    public final byte a;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+public final class qn extends rn {
+    public final byte b;
 
     public qn(String str, byte b) {
-        super(Float.class, str);
-        this.a = b;
-        switch (b) {
+        super(str, (byte) 1);
+        this.b = b;
+    }
+
+    @Override
+    public final void b(int i, Object obj) {
+        switch (this.b) {
+            case 0:
+                ((Paint) obj).setAlpha(i);
+                return;
             case 1:
-                super(Integer.class, str);
+                ((Paint) obj).setColor(i);
+                return;
+            case 2:
+                ((Drawable) obj).setAlpha(i);
                 return;
             default:
+                ((ShapeDrawable) obj).getPaint().setAlpha(i);
                 return;
         }
     }
 
-    public final void a(Object obj, Float f) {
-        c(obj, f.floatValue());
-    }
-
-    public abstract void b(int i, Object obj);
-
-    public abstract void c(Object obj, float f);
-
     @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.a) {
+    public final Object get(Object obj) {
+        switch (this.b) {
             case 0:
-                c(obj, ((Float) obj2).floatValue());
-                return;
+                return Integer.valueOf(((Paint) obj).getAlpha());
+            case 1:
+                return Integer.valueOf(((Paint) obj).getColor());
+            case 2:
+                return Integer.valueOf(((Drawable) obj).getAlpha());
             default:
-                b(((Integer) obj2).intValue(), obj);
-                return;
+                return Integer.valueOf(((ShapeDrawable) obj).getPaint().getAlpha());
         }
     }
 }

@@ -1,46 +1,50 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.HashMap;
-public final class t9 implements b16 {
-    public final String a;
-    public final r9 b;
-    public final s9 c;
-    public final qp2 d;
+import android.content.Intent;
+import java.util.ArrayList;
+import java.util.Iterator;
+public final class t9 {
+    public final byte a;
 
-    public t9(qp2 qp2Var, String str, r9 r9Var, s9 s9Var) {
-        this.d = qp2Var;
-        this.a = str;
-        this.b = r9Var;
-        this.c = s9Var;
-    }
-
-    @Override
-    public final void b(e16 e16Var, u06 u06Var) {
-        boolean equals = u06.ON_START.equals(u06Var);
-        String str = this.a;
-        qp2 qp2Var = this.d;
-        if (equals) {
-            HashMap hashMap = qp2Var.e;
-            Bundle bundle = qp2Var.g;
-            HashMap hashMap2 = qp2Var.f;
-            r9 r9Var = this.b;
-            s9 s9Var = this.c;
-            hashMap.put(str, new v9(r9Var, s9Var));
-            if (hashMap2.containsKey(str)) {
-                Object obj = hashMap2.get(str);
-                hashMap2.remove(str);
-                r9Var.i(obj);
-            }
-            q9 q9Var = (q9) bundle.getParcelable(str);
-            if (q9Var != null) {
-                bundle.remove(str);
-                r9Var.i(s9Var.a(q9Var.b, q9Var.a));
-            }
-        } else if (u06.ON_STOP.equals(u06Var)) {
-            qp2Var.e.remove(str);
-        } else if (u06.ON_DESTROY.equals(u06Var)) {
-            qp2Var.e(str);
+    public final Object a(Intent intent, int i) {
+        boolean z;
+        switch (this.a) {
+            case 0:
+                if (i == -1 && intent != null) {
+                    String[] stringArrayExtra = intent.getStringArrayExtra("androidx.activity.result.contract.extra.PERMISSIONS");
+                    int[] intArrayExtra = intent.getIntArrayExtra("androidx.activity.result.contract.extra.PERMISSION_GRANT_RESULTS");
+                    if (intArrayExtra != null && stringArrayExtra != null) {
+                        ArrayList arrayList = new ArrayList(intArrayExtra.length);
+                        for (int i2 : intArrayExtra) {
+                            if (i2 == 0) {
+                                z = true;
+                            } else {
+                                z = false;
+                            }
+                            arrayList.add(Boolean.valueOf(z));
+                        }
+                        ArrayList arrayList2 = new ArrayList();
+                        for (String str : stringArrayExtra) {
+                            if (str != null) {
+                                arrayList2.add(str);
+                            }
+                        }
+                        Iterator it = arrayList2.iterator();
+                        Iterator it2 = arrayList.iterator();
+                        ArrayList arrayList3 = new ArrayList(Math.min(ul2.c(arrayList2, 10), ul2.c(arrayList, 10)));
+                        while (it.hasNext() && it2.hasNext()) {
+                            arrayList3.add(new rx7(it.next(), it2.next()));
+                        }
+                        return uk6.e(arrayList3);
+                    }
+                }
+                return y24.a;
+            case 1:
+                return new r9(intent, i);
+            case 2:
+                return new r9(intent, i);
+            default:
+                return new r9(intent, i);
         }
     }
 }

@@ -1,5 +1,8 @@
 package defpackage;
-public final class d27 {
-    public int[] a;
-    public float[] b;
+
+import android.view.MenuItem;
+public interface d27 {
+    boolean B(f27 f27Var, MenuItem menuItem);
+
+    void Q1(f27 f27Var);
 }

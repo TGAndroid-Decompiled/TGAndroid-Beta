@@ -1,37 +1,28 @@
 package defpackage;
 
-import android.os.BadParcelableException;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class mgd {
-    static {
-        mgd.class.getClassLoader();
+import java.io.Serializable;
+public final class mgd extends n3 implements Serializable {
+    public final Object b;
+    public final m3 c;
+
+    public mgd(Object obj, m3 m3Var) {
+        super((byte) 1, false);
+        this.b = obj;
+        this.c = m3Var;
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
+    @Override
+    public final Object getKey() {
+        return this.b;
     }
 
-    public static void b(Parcel parcel, IInterface iInterface) {
-        if (iInterface == null) {
-            parcel.writeStrongBinder(null);
-        } else {
-            parcel.writeStrongBinder(iInterface.asBinder());
-        }
+    @Override
+    public final Object getValue() {
+        return this.c;
     }
 
-    public static void c(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder(String.valueOf(dataAvail).length() + 45);
-        sb.append("Parcel data not fully consumed, unread size: ");
-        sb.append(dataAvail);
-        throw new BadParcelableException(sb.toString());
+    @Override
+    public final Object setValue(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

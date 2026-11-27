@@ -1,42 +1,54 @@
 package defpackage;
-public abstract class wj1 implements bg8 {
-    public static wj1 a(String str) {
-        int length = str.length();
-        if (length != 0) {
-            if (length != 1) {
-                if (length != 2) {
-                    return new rj1(str);
-                }
-                return new uj1(str.charAt(0), str.charAt(1));
+
+import java.util.Arrays;
+public final class wj1 {
+    public final byte a;
+    public char[] b;
+    public int c;
+
+    public final void a(int i, int i2) {
+        int i3 = i2 + i;
+        char[] cArr = this.b;
+        if (cArr.length <= i3) {
+            int i4 = i << 1;
+            if (i3 < i4) {
+                i3 = i4;
             }
-            return new tj1(str.charAt(0), (byte) 0);
+            this.b = Arrays.copyOf(cArr, i3);
         }
-        return qj1.f;
     }
 
-    public static String d(char c) {
-        char[] cArr = new char[6];
-        cArr[0] = '\\';
-        cArr[1] = 'u';
-        cArr[2] = 0;
-        cArr[3] = 0;
-        cArr[4] = 0;
-        cArr[5] = 0;
-        for (int i = 0; i < 4; i++) {
-            cArr[5 - i] = "0123456789ABCDEF".charAt(c & 15);
-            c = (char) (c >> 4);
+    public final void b() {
+        vj1 vj1Var = vj1.c;
+        char[] cArr = this.b;
+        vj1Var.getClass();
+        cArr.getClass();
+        synchronized (vj1Var) {
+            int i = vj1Var.b;
+            if (cArr.length + i < rs.a) {
+                vj1Var.b = i + cArr.length;
+                vj1Var.a.addLast(cArr);
+            }
         }
-        return String.copyValueOf(cArr);
     }
 
-    @Override
-    public final boolean apply(Object obj) {
-        return b(((Character) obj).charValue());
+    public final void c(String str) {
+        str.getClass();
+        int length = str.length();
+        if (length == 0) {
+            return;
+        }
+        a(this.c, length);
+        str.getChars(0, str.length(), this.b, this.c);
+        this.c += length;
     }
 
-    public abstract boolean b(char c);
-
-    public wj1 c() {
-        return new rj1(this);
+    public final String toString() {
+        switch (this.a) {
+            case 0:
+                return new String(this.b, 0, this.c);
+            default:
+                return new String(this.b, 0, this.c);
+        }
     }
 }

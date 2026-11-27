@@ -1,6 +1,9 @@
 package defpackage;
-
-import android.text.style.ClickableSpan;
-public interface k46 {
-    void a(ClickableSpan clickableSpan);
+public final class k46 {
+    public int a;
+    public String b;
+    public String c;
+    public String d;
+    public int e;
+    public int f;
 }

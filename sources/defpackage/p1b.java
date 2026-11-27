@@ -1,21 +1,36 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.os.Bundle;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class p1b implements RequestDelegate {
-    public final long a;
-    public final p8c b;
-    public final g2b c;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ProfileActivity;
+public final class p1b {
+    public TLRPC.User a;
+    public String b;
 
-    public p1b(g2b g2bVar, long j, p8c p8cVar) {
-        this.c = g2bVar;
-        this.a = j;
-        this.b = p8cVar;
+    public static TLRPC.User a(ArrayList arrayList, long j) {
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            TLRPC.User user = (TLRPC.User) obj;
+            if (user.id == j) {
+                return user;
+            }
+        }
+        return null;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        gl.c3(new mx8(this, tLObject, this.a, this.b, (byte) 12));
+    public final void b(e eVar) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", this.a.id);
+        uc7.s1(yac.t0).i4(this.a, false, false);
+        eVar.presentFragment(new ProfileActivity(bundle, null));
+    }
+
+    public final void c(final org.telegram.tgnet.TLRPC.ChatFull r17, final defpackage.w1b r18, final defpackage.id[] r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.p1b.c(org.telegram.tgnet.TLRPC$ChatFull, w1b, id[], boolean):void");
     }
 }

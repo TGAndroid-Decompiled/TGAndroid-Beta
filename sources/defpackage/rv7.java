@@ -1,195 +1,268 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.graphics.Point;
-import android.util.Property;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
-import java.util.ArrayList;
-public final class rv7 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int a;
-    public final int b;
-    public final hb5 c;
-    public final yv7 d;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import java.util.List;
+public final class rv7 extends LinearLayout {
+    public final e29[] a;
+    public qv7 b;
+    public final Paint c;
+    public final int d;
+    public boolean e;
+    public int f;
+    public int h;
+    public float n;
+    public ValueAnimator r;
 
-    public rv7(yv7 yv7Var, int i, int i2, hb5 hb5Var) {
-        this.d = yv7Var;
-        this.a = i;
-        this.b = i2;
-        this.c = hb5Var;
+    public rv7(Context context, boolean z) {
+        super(context);
+        Object[] objArr;
+        Object[] objArr2;
+        float f;
+        float f2;
+        List list = v01.a;
+        this.a = new e29[list.size() + 2];
+        Paint paint = new Paint(1);
+        this.c = paint;
+        this.f = 1;
+        this.h = -1;
+        this.n = 0.0f;
+        setOrientation(0);
+        setGravity(16);
+        setWillNotDraw(false);
+        setClipToPadding(false);
+        paint.setColor(822083583);
+        this.d = list.size() - (!z ? 1 : 0);
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            List list2 = v01.a;
+            if (i < list2.size() + 2) {
+                e29[] e29VarArr = this.a;
+                if (i == 0) {
+                    objArr = 1;
+                } else {
+                    objArr = null;
+                }
+                if (i == list2.size() + 1) {
+                    objArr2 = 1;
+                } else {
+                    objArr2 = null;
+                }
+                ImageView imageView = new ImageView(getContext());
+                if (objArr != null) {
+                    f = 0.0f;
+                } else {
+                    f = 8.0f;
+                }
+                int L = hl.L(f);
+                int L2 = hl.L(8.0f);
+                if (objArr2 != null) {
+                    f2 = 0.0f;
+                } else {
+                    f2 = 8.0f;
+                }
+                imageView.setPadding(L, L2, hl.L(f2), hl.L(8.0f));
+                imageView.setLayoutParams(tre.l(1.0f, 0, 40));
+                imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                e29VarArr[i2] = imageView;
+                if (i == 0) {
+                    this.a[i2].setOnClickListener(new View.OnClickListener(this) {
+                        public final rv7 b;
+
+                        {
+                            this.b = this;
+                        }
+
+                        @Override
+                        public final void onClick(View view) {
+                            byte b = r2;
+                            rv7 rv7Var = this.b;
+                            switch (b) {
+                                case 0:
+                                    rv7Var.b.a();
+                                    return;
+                                default:
+                                    rv7Var.b.z();
+                                    return;
+                            }
+                        }
+                    });
+                } else if (i > 0 && i <= list2.size()) {
+                    v01 v01Var = (v01) list2.get(i - 1);
+                    if (z || !(v01Var instanceof p01)) {
+                        this.a[i2].f(v01Var.d(), 28, 28, null);
+                        this.a[i2].setOnClickListener(new ae(this, i2, v01Var, (byte) 11));
+                    } else {
+                        i++;
+                    }
+                } else if (i == list2.size() + 1) {
+                    this.a[i2].setImageResource(2131232047);
+                    this.a[i2].setOnClickListener(new View.OnClickListener(this) {
+                        public final rv7 b;
+
+                        {
+                            this.b = this;
+                        }
+
+                        @Override
+                        public final void onClick(View view) {
+                            byte b = r2;
+                            rv7 rv7Var = this.b;
+                            switch (b) {
+                                case 0:
+                                    rv7Var.b.a();
+                                    return;
+                                default:
+                                    rv7Var.b.z();
+                                    return;
+                            }
+                        }
+                    });
+                }
+                addView(this.a[i2]);
+                i2++;
+                i++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void a(int i) {
+        if (i >= 0) {
+            e29[] e29VarArr = this.a;
+            if (i < e29VarArr.length) {
+                if (this.r == null || this.h != i) {
+                    e29 e29Var = e29VarArr[i];
+                    if (e29Var != null) {
+                        Drawable drawable = e29Var.getDrawable();
+                        if (drawable instanceof b29) {
+                            b29 b29Var = (b29) drawable;
+                            b29Var.H(0);
+                            b29Var.start();
+                        }
+                    }
+                    ValueAnimator valueAnimator = this.r;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                    }
+                    if (this.f != i) {
+                        if (this.e) {
+                            this.e = false;
+                            hl.L3(e29VarArr[this.d + 1], 2131232047);
+                        }
+                        this.h = i;
+                        this.n = 0.0f;
+                        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
+                        this.r = duration;
+                        duration.setInterpolator(k43.f);
+                        this.r.addUpdateListener(new pv7(this, (byte) 0));
+                        this.r.addListener(new ad5(this, (byte) 21));
+                        this.r.start();
+                    }
+                }
+            }
+        }
+    }
+
+    public final void b(int i) {
+        a(i);
+        this.b.w().i(i - 1, true);
     }
 
     @Override
-    public final void onGlobalLayout() {
-        float f;
-        int L;
-        float f2;
-        a6 a6Var;
-        int[] iArr;
-        double d;
-        View view;
-        AnimatorSet animatorSet;
-        float f3;
-        float f4;
-        float f5;
-        float f6;
-        long j;
-        yv7 yv7Var = this.d;
-        a6 a6Var2 = yv7Var.e;
-        ArrayList arrayList = yv7Var.a0;
-        int[] iArr2 = yv7Var.i0;
-        ry8 ry8Var = yv7Var.N;
-        yv7Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        if (!yv7Var.Q && yv7Var.isAttachedToWindow()) {
-            yv7Var.setAlpha(1.0f);
-            ry8Var.getAnimatedDrawable().I(0, false, false);
-            ry8Var.getAnimatedDrawable().K(37);
-            ry8Var.d();
-            yv7Var.o(true);
-            gl.d3(new oq7(this, (byte) 5), 350L);
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            yv7Var.R = animatorSet2;
-            ArrayList arrayList2 = new ArrayList();
-            Point point = gl.q;
-            int i = point.x;
-            int i2 = point.y + gl.m;
-            int i3 = this.a;
-            int i4 = i - i3;
-            int i5 = i4 * i4;
-            int i6 = this.b;
-            int i7 = i2 - i6;
-            int i8 = i7 * i7;
-            int i9 = i3 * i3;
-            int i10 = 1;
-            int i11 = i6 * i6;
-            double max = Math.max(Math.max(Math.max(Math.sqrt(i8 + i5), Math.sqrt(i8 + i9)), Math.sqrt(i9 + i11)), Math.sqrt(i11 + i5));
-            arrayList.clear();
-            int childCount = a6Var2.getChildCount();
-            int i12 = 0;
-            while (i12 < childCount) {
-                View childAt = a6Var2.getChildAt(i12);
-                childAt.setScaleX(0.7f);
-                childAt.setScaleY(0.7f);
-                childAt.setAlpha(0.0f);
-                ?? obj = new Object();
-                childAt.getLocationInWindow(iArr2);
-                int measuredWidth = i3 - ((childAt.getMeasuredWidth() / 2) + iArr2[0]);
-                int measuredHeight = i6 - ((childAt.getMeasuredHeight() / 2) + iArr2[i10]);
-                obj.b = ((float) Math.sqrt((measuredHeight * measuredHeight) + (measuredWidth * measuredWidth))) - gl.L(40.0f);
-                if (i12 != -1) {
-                    animatorSet = new AnimatorSet();
-                    Property property = View.SCALE_X;
-                    a6Var = a6Var2;
-                    float[] fArr = new float[i10];
-                    fArr[0] = 1.0f;
-                    view = childAt;
-                    iArr = iArr2;
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(view, property, fArr), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f));
-                    d = max;
-                    animatorSet.setDuration(140L);
-                    animatorSet.setInterpolator(new DecelerateInterpolator());
-                } else {
-                    a6Var = a6Var2;
-                    iArr = iArr2;
-                    d = max;
-                    view = childAt;
-                    animatorSet = null;
-                }
-                AnimatorSet animatorSet3 = new AnimatorSet();
-                obj.a = animatorSet3;
-                Property property2 = View.SCALE_X;
-                if (i12 == -1) {
-                    f3 = 1.0f;
-                    f4 = 0.9f;
-                } else {
-                    f3 = 1.04f;
-                    f4 = 0.6f;
-                }
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property2, f4, f3);
-                Property property3 = View.SCALE_Y;
-                if (i12 == -1) {
-                    f5 = 1.0f;
-                    f6 = 0.9f;
-                } else {
-                    f5 = 1.04f;
-                    f6 = 0.6f;
-                }
-                animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property3, f6, f5), ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f));
-                obj.a.addListener(new v85(animatorSet, (byte) 25));
-                AnimatorSet animatorSet4 = obj.a;
-                if (i12 == -1) {
-                    j = 232;
-                } else {
-                    j = 200;
-                }
-                animatorSet4.setDuration(j);
-                obj.a.setInterpolator(new DecelerateInterpolator());
-                arrayList.add(obj);
-                i12++;
-                a6Var2 = a6Var;
-                iArr2 = iArr;
-                max = d;
-                i10 = 1;
-            }
-            final double d2 = max;
-            arrayList2.add(ObjectAnimator.ofFloat(yv7Var.w, View.ALPHA, 0.0f, 1.0f));
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            arrayList2.add(ofFloat2);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    yv7 yv7Var2 = rv7.this.d;
-                    double animatedFraction = d2 * valueAnimator.getAnimatedFraction();
-                    int i13 = 0;
-                    while (true) {
-                        ArrayList arrayList3 = yv7Var2.a0;
-                        if (i13 < arrayList3.size()) {
-                            uv7 uv7Var = (uv7) arrayList3.get(i13);
-                            if (uv7Var.b <= animatedFraction) {
-                                uv7Var.a.start();
-                                arrayList3.remove(i13);
-                                i13--;
-                            }
-                            i13++;
-                        } else {
-                            return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
+            float x = motionEvent.getX();
+            motionEvent.getY();
+            for (int i = 1; i < getChildCount() - 1; i++) {
+                View childAt = getChildAt(i);
+                if (x >= childAt.getLeft() && x <= childAt.getRight()) {
+                    if (this.r != null) {
+                        if (this.h != i) {
+                            a(i);
+                            post(new vc(childAt, (byte) 3));
+                            return true;
                         }
+                    } else if (this.f != i) {
+                        a(i);
+                        post(new vc(childAt, (byte) 3));
+                        return true;
                     }
                 }
-            });
-            s33 s33Var = s33.h;
-            animatorSet2.setInterpolator(s33Var);
-            animatorSet2.setDuration(500L);
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(yv7Var.b0, 1.0f);
-            ofFloat3.addUpdateListener(new ni4(this, (byte) 29));
-            ofFloat3.addListener(new qv7(this, (byte) 0));
-            ofFloat3.setDuration(420L);
-            ofFloat3.setInterpolator(s33Var);
-            arrayList2.add(ofFloat3);
-            animatorSet2.playTogether(arrayList2);
-            animatorSet2.addListener(new qv7(this, (byte) 1));
-            animatorSet2.start();
-            AnimatorSet animatorSet5 = new AnimatorSet();
-            yv7Var.S = animatorSet5;
-            animatorSet5.setDuration(332L);
-            if (!gl.O1() && yv7Var.getContext().getResources().getConfiguration().orientation == 2) {
-                if (gba.q == 0) {
-                    f2 = i / 2.0f;
-                } else {
-                    f2 = i;
-                }
-                f = f2 / 2.0f;
-                L = gl.L(30.0f);
-            } else {
-                f = i / 2.0f;
-                L = gl.L(29.0f);
             }
-            animatorSet5.playTogether(ObjectAnimator.ofFloat(ry8Var, View.TRANSLATION_X, i3 - gl.L(29.0f), f - L), ObjectAnimator.ofFloat(ry8Var, View.TRANSLATION_Y, i6 - gl.L(29.0f), yv7Var.M), ObjectAnimator.ofFloat(ry8Var, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(ry8Var, View.SCALE_Y, 0.5f, 1.0f));
-            animatorSet5.setInterpolator(s33.g);
-            animatorSet5.start();
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        e29 e29Var;
+        float f;
+        float f2;
+        float f3;
+        super.onDraw(canvas);
+        int i = this.f;
+        e29[] e29VarArr = this.a;
+        e29 e29Var2 = e29VarArr[i];
+        int i2 = this.h;
+        if (i2 != -1) {
+            e29Var = e29VarArr[i2];
+        } else {
+            e29Var = null;
+        }
+        float f4 = 0.0f;
+        if (e29Var != null) {
+            f = this.n;
+        } else {
+            f = 0.0f;
+        }
+        float f5 = 1.0f;
+        if (f > 0.25f && f < 0.75f) {
+            f5 = (f <= 0.25f || f >= 0.5f) ? qd4.x(0.75f, f, 0.25f, 1.0f) : (0.5f - f) / 0.25f;
+        }
+        float L = (hl.L(3.0f) * f5) + (Math.min((e29Var2.getWidth() - e29Var2.getPaddingLeft()) - e29Var2.getPaddingRight(), (e29Var2.getHeight() - e29Var2.getPaddingTop()) - e29Var2.getPaddingBottom()) / 2.0f) + hl.L(3.0f);
+        float width = (e29Var2.getWidth() / 2.0f) + e29Var2.getX();
+        int i3 = this.f;
+        int i4 = this.d;
+        if (i3 == i4 + 1) {
+            f2 = hl.L(4.0f);
+        } else {
+            f2 = 0.0f;
+        }
+        float f6 = f2 + width;
+        if (e29Var != null) {
+            f3 = (e29Var.getWidth() / 2.0f) + e29Var.getX();
+        } else {
+            f3 = 0.0f;
+        }
+        int i5 = this.h;
+        if (i5 != -1 && i5 == i4 + 1) {
+            f4 = hl.L(4.0f);
+        }
+        canvas.drawCircle(hl.R1(f6, f3 + f4, f), (e29Var2.getHeight() / 2.0f) + e29Var2.getY(), L, this.c);
+    }
+
+    public void setDelegate(qv7 qv7Var) {
+        this.b = qv7Var;
+    }
+
+    public void setSelectedIndex(int i) {
+        this.f = i;
+        if (this.e) {
+            this.e = false;
+            hl.L3(this.a[this.d + 1], 2131232047);
+        }
+        invalidate();
     }
 }

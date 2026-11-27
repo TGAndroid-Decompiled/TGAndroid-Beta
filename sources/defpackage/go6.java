@@ -1,100 +1,90 @@
 package defpackage;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class go6 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final long c;
-    public final Object d;
+public abstract class go6 {
+    public fo6 A;
+    public CharSequence a;
+    public boolean b;
+    public String c;
+    public long d;
+    public TLRPC.Photo e;
+    public r47 f;
+    public String g;
+    public String h;
+    public String i;
+    public String j;
+    public String k;
+    public String l;
+    public long m;
+    public ArrayList n;
+    public po6 o;
+    public ArrayList p;
+    public ArrayList q;
+    public ArrayList r;
+    public oec s;
+    public long t;
+    public boolean u;
+    public boolean v;
+    public boolean w;
+    public int x;
+    public long y;
+    public Boolean z;
 
-    public go6(Object obj, long j, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = j;
-        this.d = obj2;
-    }
+    public abstract String a();
 
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.go6.a():void");
-    }
-
-    private final void b() {
-        boolean z;
-        vp9 vp9Var = (vp9) this.b;
-        TLObject tLObject = (TLObject) this.d;
-        vf6 vf6Var = vp9Var.p;
-        int i = vp9Var.a;
-        if (tLObject instanceof TLRPC.messages_Messages) {
-            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            int size = messages_messages.messages.size();
-            if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
-                size = ((TLRPC.TL_messages_messagesSlice) messages_messages).count;
-            }
-            na7.q1(i).b4(messages_messages.users, false);
-            na7.q1(i).V3(messages_messages.chats, false);
-            ad7.Y(i).j1(messages_messages.users, messages_messages.chats, true, true);
-            if (size > 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            long j = this.c;
-            if (size > 0) {
-                if (!vp9Var.q(size, j, true)) {
-                    if (!messages_messages.messages.isEmpty()) {
-                        up9 a = up9.a(i, messages_messages.messages.get(0));
-                        a.e = size;
-                        a.i = true;
-                        vp9Var.c.add(a);
-                        vp9Var.k();
-                    }
-                } else {
-                    vp9Var.k();
-                }
-            }
-            ArrayList arrayList = (ArrayList) vf6Var.f(j);
-            vf6Var.l(j);
-            if (arrayList != null) {
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    ((p8c) arrayList.get(i2)).a(Boolean.valueOf(z));
-                }
-            }
+    public final boolean b() {
+        ArrayList arrayList;
+        if (!this.b) {
+            return false;
         }
-    }
-
-    private final void c() {
-        vqa vqaVar = (vqa) this.b;
-        ((c01) this.d).c(false);
-        vqaVar.v2((int) this.c, vqaVar.getContext(), true);
-    }
-
-    private final void d() {
-        TL_stories.Boost boost = (TL_stories.Boost) this.d;
-        fx0 fx0Var = ((fx0[]) this.b)[0];
-        if (fx0Var != null) {
-            fx0Var.dismiss();
+        oec oecVar = this.s;
+        if (oecVar != null && (oecVar.t || oecVar.a > 0 || oecVar.b > 0)) {
+            return true;
         }
-        d S = LaunchActivity.S();
-        if (S == null) {
-            return;
+        fo6 fo6Var = this.A;
+        if ((fo6Var == null || fo6Var.b()) && this.o == null && this.j == null && (((arrayList = this.p) == null || arrayList.isEmpty()) && this.g == null)) {
+            return false;
         }
-        S.presentFragment(mu1.V9(boost.giveaway_msg_id, this.c));
+        return true;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.go6.run():void");
+    public final boolean c() {
+        Boolean bool = this.z;
+        if (bool == null) {
+            return xea.d1;
+        }
+        return bool.booleanValue();
     }
 
-    public go6(Object obj, Object obj2, long j, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.d = obj2;
-        this.c = j;
+    public boolean d() {
+        if ((this instanceof no6) && ((no6) this).d()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void e() {
+        this.a = null;
+        this.g = null;
+        this.e = null;
+        this.f = null;
+        this.c = null;
+        this.i = null;
+        this.h = null;
+        this.j = null;
+        this.l = null;
+        this.k = null;
+        this.u = false;
+        this.v = false;
+        this.w = false;
+        this.x = 0;
+        this.p = null;
+        this.s = null;
+        this.n = null;
+        this.o = null;
+        this.r = null;
+        this.A = null;
+        this.z = null;
     }
 }

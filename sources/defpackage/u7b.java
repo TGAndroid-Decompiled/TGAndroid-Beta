@@ -1,71 +1,464 @@
 package defpackage;
 
 import android.animation.ValueAnimator;
-import org.telegram.messenger.Utilities;
-public final class u7b implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final m8b b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class u7b extends View implements snb {
+    public static Object J;
+    public static Vector K;
+    public float E;
+    public int F;
+    public CharSequence G;
+    public int H;
+    public ValueAnimator I;
+    public final x53 a;
+    public final TextPaint b;
+    public final PorterDuffColorFilter c;
+    public StaticLayout d;
+    public float e;
+    public dm f;
+    public final va6 h;
+    public final Path n;
+    public final ArrayList r;
+    public final ArrayList s;
+    public boolean w;
+    public boolean x;
+    public final Object y;
 
-    public u7b(m8b m8bVar, byte b) {
-        this.a = b;
-        this.b = m8bVar;
+    public u7b(Context context, int i, TLObject tLObject, Object obj, boolean z, ArrayList arrayList, x53 x53Var) {
+        super(context);
+        Vector vector;
+        this.H = -12;
+        this.a = x53Var;
+        setMinimumWidth(hl.L(196.0f));
+        setPadding(hl.L(13.0f), hl.L(8.0f), hl.L(13.0f), hl.L(8.0f));
+        int i2 = aob.i6;
+        hf0 Y = aob.Y(aob.v0(i2, x53Var), 0, 8);
+        uob M = yob.M(i2);
+        setBackground(Y);
+        yob.j(this, Y, null, M, x53Var);
+        setClickable(true);
+        TextPaint textPaint = new TextPaint(1);
+        this.b = textPaint;
+        textPaint.setTextSize(hl.L(13.0f));
+        int i3 = aob.E8;
+        textPaint.setColor(aob.v0(i3, x53Var));
+        this.c = new PorterDuffColorFilter(aob.v0(i3, x53Var), PorterDuff.Mode.SRC_IN);
+        va6 va6Var = new va6(x53Var);
+        this.h = va6Var;
+        va6Var.setCallback(this);
+        va6Var.f(aob.p1(0.2f, -1), aob.p1(0.05f, -1));
+        Path path = new Path();
+        this.n = path;
+        va6Var.y = path;
+        va6Var.j(4.0f);
+        boolean[] zArr = {true};
+        this.y = obj;
+        if (z) {
+            this.r = new ArrayList();
+            this.s = new ArrayList();
+            this.w = false;
+            this.x = false;
+            TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = new TLRPC.TL_messages_getAttachedStickers();
+            if (tLObject instanceof TLRPC.Photo) {
+                TLRPC.Photo photo = (TLRPC.Photo) tLObject;
+                TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
+                TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+                tL_inputStickeredMediaPhoto.id = tL_inputPhoto;
+                tL_inputPhoto.id = photo.id;
+                tL_inputPhoto.access_hash = photo.access_hash;
+                byte[] bArr = photo.file_reference;
+                tL_inputPhoto.file_reference = bArr;
+                if (bArr == null) {
+                    tL_inputPhoto.file_reference = new byte[0];
+                }
+                tL_messages_getAttachedStickers.media = tL_inputStickeredMediaPhoto;
+            } else if (tLObject instanceof TLRPC.Document) {
+                TLRPC.Document document = (TLRPC.Document) tLObject;
+                TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
+                TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                tL_inputStickeredMediaDocument.id = tL_inputDocument;
+                tL_inputDocument.id = document.id;
+                tL_inputDocument.access_hash = document.access_hash;
+                byte[] bArr2 = document.file_reference;
+                tL_inputDocument.file_reference = bArr2;
+                if (bArr2 == null) {
+                    tL_inputDocument.file_reference = new byte[0];
+                }
+                tL_messages_getAttachedStickers.media = tL_inputStickeredMediaDocument;
+            }
+            eu0 eu0Var = new eu0(this, obj, arrayList, zArr, i);
+            if (J == obj && (vector = K) != null) {
+                zArr[0] = false;
+                eu0Var.run(vector, null);
+                return;
+            }
+            ConnectionsManager.getInstance(i).sendRequest(tL_messages_getAttachedStickers, new lh(obj, i, tL_messages_getAttachedStickers, eu0Var, (byte) 10));
+            return;
+        }
+        this.w = true;
+        this.x = false;
+        ArrayList arrayList2 = new ArrayList();
+        this.s = arrayList2;
+        arrayList2.addAll(arrayList);
+        if (this.s.size() == 1) {
+            ls6.d0(i).m0((TLRPC.InputStickerSet) this.s.get(0), 0, false, false, new t7b(this, (byte) 0));
+            return;
+        }
+        set(this.s.size());
+        a(false);
+    }
+
+    private void set(TLRPC.StickerSetCovered stickerSetCovered) {
+        CharSequence charSequence;
+        String M0;
+        SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
+        spannableString.setSpan(new ho4(aob.Xc, this.h.a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new y7c(hl.o()), 0, spannableString.length(), 33);
+        TLRPC.Document document = stickerSetCovered.cover;
+        if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
+            ArrayList<TLRPC.Document> arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (arrayList.get(i).id == stickerSetCovered.set.thumb_document_id) {
+                    document = arrayList.get(i);
+                }
+            }
+            if (document == null && !arrayList.isEmpty()) {
+                document = arrayList.get(0);
+            }
+        }
+        if (document != null) {
+            spannableString.setSpan(new hm(document, this.b.getFontMetricsInt()), 0, 1, 33);
+            charSequence = spannableString;
+        } else {
+            charSequence = spannableString.subSequence(2, spannableString.length());
+        }
+        if (this.w) {
+            if (this.x) {
+                M0 = ob6.M0(2131744349, null);
+            } else {
+                M0 = ob6.M0(2131744354, null);
+            }
+        } else {
+            M0 = ob6.M0(2131744346, null);
+        }
+        setText(hl.G2(M0, charSequence, "%s"));
+    }
+
+    public final void a(boolean z) {
+        ValueAnimator valueAnimator = this.I;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (z) {
+            boolean z2 = false;
+            this.I = ValueAnimator.ofFloat(this.E, 1.0f);
+            if (this.d == null || Math.abs(getMeasuredHeight() - (getPaddingBottom() + (this.d.getHeight() + getPaddingTop()))) > hl.L(3.0f)) {
+                z2 = true;
+            }
+            this.I.addUpdateListener(new e20((byte) 9, this, z2));
+            this.I.setInterpolator(k43.h);
+            this.I.setStartDelay(150L);
+            this.I.setDuration(400L);
+            this.I.start();
+            return;
+        }
+        this.E = 1.0f;
+        invalidate();
+        post(new uoa(this, (byte) 28));
+    }
+
+    public final void b(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        set(tL_messages_stickerSet);
+        a(false);
+    }
+
+    public final void c(TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        int i2;
+        int size;
+        if (!(tLObject instanceof Vector)) {
+            return;
+        }
+        Vector vector = (Vector) tLObject;
+        J = obj;
+        K = vector;
+        int i3 = 0;
+        while (true) {
+            int size2 = vector.objects.size();
+            arrayList2 = this.s;
+            arrayList3 = this.r;
+            if (i3 >= size2) {
+                break;
+            }
+            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) vector.objects.get(i3);
+            arrayList3.add(stickerSetCovered);
+            TLRPC.StickerSet stickerSet = stickerSetCovered.set;
+            if (stickerSet != null) {
+                arrayList2.add(ls6.b0(stickerSet));
+                TLRPC.StickerSet stickerSet2 = stickerSetCovered.set;
+                if (stickerSet2.emojis) {
+                    this.w = true;
+                } else if (!stickerSet2.masks) {
+                    this.x = true;
+                }
+            }
+            i3++;
+        }
+        if (arrayList != null) {
+            i2 = arrayList.size();
+        } else {
+            i2 = 0;
+        }
+        if (arrayList3 == null) {
+            size = 0;
+        } else {
+            size = arrayList3.size();
+        }
+        int i4 = i2 + size;
+        if (arrayList2 != null && arrayList != null && !arrayList.isEmpty()) {
+            for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) arrayList.get(i5);
+                long j = inputStickerSet.id;
+                int i6 = 0;
+                while (true) {
+                    if (i6 < arrayList2.size()) {
+                        if (((TLRPC.InputStickerSet) arrayList2.get(i6)).id != j) {
+                            i6++;
+                        }
+                    } else {
+                        arrayList2.add(inputStickerSet);
+                        break;
+                    }
+                }
+            }
+            this.w = true;
+        }
+        if (i4 == 1) {
+            if (arrayList3.size() >= 1) {
+                set((TLRPC.StickerSetCovered) arrayList3.get(0));
+            } else if (arrayList != null && arrayList.size() >= 1) {
+                zArr[0] = false;
+                ls6.d0(i).m0((TLRPC.InputStickerSet) arrayList.get(0), 0, false, false, new t7b(this, (byte) 1));
+                return;
+            } else {
+                set(0);
+            }
+        } else {
+            set(i4);
+        }
+        a(zArr[0]);
+    }
+
+    public final void d(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        set(tL_messages_stickerSet);
+        a(true);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        y28 currentPeerView;
-        byte b = this.a;
-        m8b m8bVar = this.b;
-        switch (b) {
-            case 0:
-                m8bVar.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m8bVar.l();
-                a8b a8bVar = m8bVar.s;
-                if (a8bVar != null) {
-                    a8bVar.invalidate();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f = this.E;
+        if (f < 1.0f) {
+            va6 va6Var = this.h;
+            va6Var.setAlpha((int) ((1.0f - f) * 255.0f));
+            Path path = this.n;
+            path.rewind();
+            float paddingLeft = getPaddingLeft();
+            float paddingTop = getPaddingTop();
+            float measuredWidth = getMeasuredWidth() - getPaddingRight();
+            int paddingTop2 = getPaddingTop();
+            Path.Direction direction = Path.Direction.CW;
+            path.addRect(paddingLeft, paddingTop, measuredWidth, hl.L(12.0f) + paddingTop2, direction);
+            path.addRect(getPaddingLeft(), hl.L(16.0f) + getPaddingTop(), (((getMeasuredWidth() - getPaddingRight()) - getPaddingLeft()) * 0.46f) + getPaddingLeft(), hl.L(28.0f) + getPaddingTop(), direction);
+            va6Var.draw(canvas);
+            invalidate();
+        }
+        if (this.d != null) {
+            float f2 = 0.0f;
+            if (this.E > 0.0f) {
+                canvas.save();
+                float paddingLeft2 = getPaddingLeft();
+                if (!ob6.a0) {
+                    f2 = this.e;
                 }
-                t76 t76Var = m8bVar.B0;
-                if (t76Var != null) {
-                    t76Var.F((1.0f - m8bVar.W) * m8bVar.V);
-                    return;
+                canvas.translate(paddingLeft2 - f2, getPaddingTop());
+                this.b.setAlpha((int) (this.E * 255.0f));
+                this.d.draw(canvas);
+                hm.drawAnimatedEmojis(canvas, this.d, this.f, 0.0f, null, 0.0f, 0.0f, 0.0f, this.E, this.c);
+                canvas.restore();
+            }
+        }
+    }
+
+    public ly3 getAlert() {
+        ArrayList arrayList = this.s;
+        if (arrayList == null) {
+            int i = -this.H;
+            this.H = i;
+            hl.A3(i, this, null);
+            yw0.APP_ERROR.a();
+            return null;
+        }
+        return new ly3(null, getContext(), this.a, arrayList);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        boolean z;
+        int height;
+        int minimumWidth;
+        if (View.MeasureSpec.getMode(i) == 1073741824) {
+            z = true;
+        } else {
+            z = false;
+        }
+        int paddingTop = getPaddingTop();
+        int L = hl.L(29.0f);
+        StaticLayout staticLayout = this.d;
+        if (staticLayout == null) {
+            height = hl.L(29.0f);
+        } else {
+            height = staticLayout.getHeight();
+        }
+        int paddingBottom = getPaddingBottom() + hl.U1(this.E, L, height) + paddingTop;
+        if (z) {
+            minimumWidth = View.MeasureSpec.getSize(i);
+        } else {
+            minimumWidth = getMinimumWidth();
+        }
+        setMeasuredDimension(minimumWidth, paddingBottom);
+        int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
+        if (z) {
+            CharSequence charSequence = this.G;
+            if (charSequence != null || (this.d != null && this.F != size)) {
+                if (charSequence == null) {
+                    charSequence = this.d.getText();
                 }
-                return;
-            case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m8bVar.V = floatValue;
-                b8b b8bVar = m8bVar.w;
-                if (b8bVar != null && floatValue > 0.6f && qg5.c && b8bVar.a) {
-                    b8bVar.a(false);
-                }
-                t76 t76Var2 = m8bVar.B0;
-                if (t76Var2 != null) {
-                    t76Var2.F((1.0f - m8bVar.W) * m8bVar.V);
-                }
-                m8bVar.l();
-                a8b a8bVar2 = m8bVar.s;
-                if (a8bVar2 != null) {
-                    a8bVar2.invalidate();
-                    return;
-                }
-                return;
-            case 2:
-                m8bVar.a0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m8bVar.e0 = Utilities.i(m8bVar.a0 / gl.L(200.0f), 1.0f, 0.0f);
-                c8b c8bVar = m8bVar.o0;
-                if (c8bVar == null) {
-                    currentPeerView = null;
-                } else {
-                    currentPeerView = c8bVar.getCurrentPeerView();
-                }
-                if (currentPeerView != null) {
-                    currentPeerView.invalidate();
-                    return;
-                }
-                return;
-            default:
-                m8bVar.f0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m8bVar.w.invalidate();
-                return;
+                setText(charSequence);
+                this.G = null;
+                this.F = size;
+            }
+        }
+    }
+
+    public void setText(CharSequence charSequence) {
+        float f;
+        if (getMeasuredWidth() <= 0) {
+            this.G = charSequence;
+            return;
+        }
+        int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+        if (measuredWidth <= 0) {
+            this.G = charSequence;
+            return;
+        }
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.b, measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.d = staticLayout;
+        if (staticLayout.getLineCount() > 0) {
+            f = this.d.getLineLeft(0);
+        } else {
+            f = 0.0f;
+        }
+        this.e = f;
+        if (this.d.getLineCount() > 0) {
+            this.d.getLineWidth(0);
+        }
+        this.f = hm.update(0, this, this.f, this.d);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            TextPaint textPaint = this.b;
+            if (textPaint != null) {
+                textPaint.setColor(aob.v0(aob.E8, this.a));
+                invalidate();
+            }
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.h && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+    }
+
+    private void set(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.Document document;
+        CharSequence charSequence;
+        String M0;
+        if (tL_messages_stickerSet == null) {
+            return;
+        }
+        SpannableString spannableString = new SpannableString("x " + tL_messages_stickerSet.set.title);
+        spannableString.setSpan(new ho4(aob.Xc, this.h.a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new y7c(hl.o()), 0, spannableString.length(), 33);
+        ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
+        int i = 0;
+        while (true) {
+            if (i >= arrayList.size()) {
+                document = null;
+                break;
+            } else if (arrayList.get(i).id == tL_messages_stickerSet.set.thumb_document_id) {
+                document = arrayList.get(i);
+                break;
+            } else {
+                i++;
+            }
+        }
+        if (document == null && !arrayList.isEmpty()) {
+            document = arrayList.get(0);
+        }
+        if (document != null) {
+            spannableString.setSpan(new hm(document, this.b.getFontMetricsInt()), 0, 1, 33);
+            charSequence = spannableString;
+        } else {
+            charSequence = spannableString.subSequence(2, spannableString.length());
+        }
+        if (!this.w) {
+            M0 = ob6.M0(2131744346, null);
+        } else if (this.x) {
+            M0 = ob6.M0(2131744349, null);
+        } else {
+            M0 = ob6.M0(2131744354, null);
+        }
+        setText(hl.G2(M0, charSequence, "%s"));
+    }
+
+    private void set(int i) {
+        boolean z = this.w;
+        va6 va6Var = this.h;
+        if (!z) {
+            setText(hl.N2(ob6.G(i, "StoryContainsStickers", new Object[0]), 0, aob.v0(aob.Xc, va6Var.a), null, null));
+        } else if (this.x) {
+            setText(hl.N2(ob6.G(i, "StoryContainsStickersEmoji", new Object[0]), 0, aob.v0(aob.Xc, va6Var.a), null, null));
+        } else {
+            setText(hl.N2(ob6.G(i, "StoryContainsEmoji", new Object[0]), 0, aob.v0(aob.Xc, va6Var.a), null, null));
         }
     }
 }

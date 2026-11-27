@@ -1,42 +1,26 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class i17 extends CharacterStyle {
-    public final byte a;
+import android.location.Location;
+import org.telegram.tgnet.TLRPC;
+public final class i17 implements n7a {
+    public final r17 a;
 
-    public i17(j17 j17Var) {
-        this.a = (byte) 0;
+    public i17(r17 r17Var) {
+        this.a = r17Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.a) {
-            case 0:
-                textPaint.setTypeface(gl.o());
-                int alpha = textPaint.getAlpha();
-                textPaint.setColor(bkb.w0(null, bkb.m6, false));
-                textPaint.setAlpha(alpha);
-                return;
-            case 1:
-                textPaint.setTextSize(textPaint.getTextSize() * 0.8f);
-                textPaint.setColor(bkb.S2.getColor());
-                return;
-            case 2:
-                textPaint.setColor(bkb.n2.linkColor);
-                return;
-            case 3:
-                return;
-            default:
-                textPaint.setAlpha(128);
-                return;
+    public final void O() {
+        this.a.Q();
+    }
+
+    @Override
+    public final void T(Location location) {
+        r17 r17Var = this.a;
+        TLRPC.User user = r17Var.x0;
+        if (user != null && user.bot_inline_geo) {
+            r17Var.A0 = location;
+            r17Var.T(true, user, r17Var.s0, "");
         }
-    }
-
-    public i17(byte b) {
-        this.a = b;
-    }
-
-    private final void a(TextPaint textPaint) {
     }
 }

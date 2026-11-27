@@ -1,227 +1,71 @@
 package defpackage;
 
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.PopupNotificationActivity;
-public final class mf8 implements hy1 {
-    public final PopupNotificationActivity a;
+import android.view.animation.AnimationUtils;
+public final class mf8 extends Drawable {
+    public final Paint a;
+    public final int b;
+    public boolean c;
+    public float d;
+    public long e;
+    public View f;
+    public int g = 255;
+    public float h = 300.0f;
 
-    public mf8(PopupNotificationActivity popupNotificationActivity) {
-        this.a = popupNotificationActivity;
+    public mf8(int i) {
+        this.b = hl.L(i);
+        Paint paint = new Paint(1);
+        this.a = paint;
+        paint.setColor(-1);
     }
 
-    @Override
-    public final bu1 D() {
-        return null;
-    }
-
-    @Override
-    public final boolean H0() {
-        return false;
-    }
-
-    @Override
-    public final boolean M() {
-        return true;
-    }
-
-    @Override
-    public final boolean Q0() {
-        return false;
-    }
-
-    @Override
-    public final void W0() {
-        PopupNotificationActivity popupNotificationActivity = this.a;
-        k27 k27Var = popupNotificationActivity.R;
-        if (k27Var != null) {
-            na7.q1(k27Var.K1).H4(0, popupNotificationActivity.L, k27.B0(popupNotificationActivity.R.k), 0L, null);
+    public final void a(boolean z, boolean z2) {
+        float f;
+        if (this.c != z) {
+            this.c = z;
+            if (!z2) {
+                if (z) {
+                    f = 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+                this.d = f;
+            }
+            this.e = AnimationUtils.currentAnimationTimeMillis();
+            invalidateSelf();
         }
     }
 
     @Override
-    public final boolean g() {
-        return false;
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mf8.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final int h() {
-        return 0;
+    public final int getIntrinsicHeight() {
+        return this.b;
     }
 
     @Override
-    public final TLRPC.Peer i() {
-        return null;
+    public final int getIntrinsicWidth() {
+        return this.b;
     }
 
     @Override
-    public final int o0() {
-        return 0;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final TL_stories.StoryItem t0() {
-        return null;
+    public final void setAlpha(int i) {
+        this.g = i;
     }
 
     @Override
-    public final void u(CharSequence charSequence, boolean z, int i, int i2, long j) {
-        PopupNotificationActivity popupNotificationActivity = this.a;
-        ArrayList arrayList = popupNotificationActivity.b0;
-        if (popupNotificationActivity.R == null) {
-            return;
-        }
-        int i3 = popupNotificationActivity.T;
-        if (i3 >= 0 && i3 < arrayList.size()) {
-            arrayList.remove(popupNotificationActivity.T);
-        }
-        na7.q1(popupNotificationActivity.R.K1).l3(k27.B0(popupNotificationActivity.R.k), popupNotificationActivity.R.e1(), Math.max(0, popupNotificationActivity.R.e1()), popupNotificationActivity.R.k.date, true, 0L, 0, true, 0);
-        popupNotificationActivity.R = null;
-        popupNotificationActivity.f();
-    }
-
-    @Override
-    public final boolean u0(long j) {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_channels_sendAsPeers v() {
-        return null;
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
-    }
-
-    @Override
-    public final void B() {
-    }
-
-    @Override
-    public final void G0() {
-    }
-
-    @Override
-    public final void H() {
-    }
-
-    @Override
-    public final void I0() {
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void L0() {
-    }
-
-    @Override
-    public final void R0() {
-    }
-
-    @Override
-    public final void S() {
-    }
-
-    @Override
-    public final void U() {
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void e() {
-    }
-
-    @Override
-    public final void e1() {
-    }
-
-    @Override
-    public final void g0() {
-    }
-
-    @Override
-    public final void g1() {
-    }
-
-    @Override
-    public final void j() {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o1() {
-    }
-
-    @Override
-    public final void p1() {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void s1() {
-    }
-
-    @Override
-    public final void y() {
-    }
-
-    @Override
-    public final void P0(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void f1(int i) {
-    }
-
-    @Override
-    public final void j1(boolean z) {
-    }
-
-    @Override
-    public final void k(float f) {
-    }
-
-    @Override
-    public final void m(boolean z) {
-    }
-
-    @Override
-    public final void n0(int i) {
-    }
-
-    @Override
-    public final void z(boolean z) {
-    }
-
-    @Override
-    public final void w(float f, int i) {
-    }
-
-    @Override
-    public final void C0(CharSequence charSequence, boolean z, boolean z2) {
-    }
-
-    @Override
-    public final void O0(View view, CharSequence charSequence, boolean z) {
-    }
-
-    @Override
-    public final void k1(int i, int i2, int i3, long j, long j2, boolean z) {
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
     }
 }

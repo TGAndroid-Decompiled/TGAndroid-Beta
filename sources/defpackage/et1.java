@@ -1,18 +1,18 @@
 package defpackage;
 
 import android.content.Context;
-public abstract class et1 extends o39 implements n2b {
-    public final mu1 f3;
+public final class et1 extends eq0 {
+    public final it1 M;
 
-    public et1(mu1 mu1Var, Context context, ku1 ku1Var) {
-        super(context, ku1Var);
-        this.f3 = mu1Var;
+    public et1(it1 it1Var, Context context, int i, vnb vnbVar) {
+        super(i, vnbVar, context);
+        this.M = it1Var;
     }
 
     @Override
-    public final void b(int[] iArr) {
-        mu1 mu1Var = this.f3;
-        iArr[0] = ((int) mu1Var.P9) - gl.L(4.0f);
-        iArr[1] = de9.f(3.0f, mu1Var.A0.getPaddingBottom(), mu1Var.A0.getMeasuredHeight());
+    public final int getSideMenuWidth() {
+        zu1 zu1Var = this.M.R;
+        int i = zu1.Ad;
+        return zu1Var.o7();
     }
 }

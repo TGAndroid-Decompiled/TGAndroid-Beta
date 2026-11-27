@@ -17,7 +17,7 @@ public final class im0 {
         }
         synchronized (this) {
             if (!this.b) {
-                SharedPreferences sharedPreferences = j8a.a;
+                SharedPreferences sharedPreferences = zba.a;
                 this.c = sharedPreferences.contains(this.a);
                 this.d = sharedPreferences.getBoolean(this.a, true);
                 this.b = true;

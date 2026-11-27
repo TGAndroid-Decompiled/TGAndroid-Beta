@@ -1,68 +1,114 @@
 package defpackage;
 
-import org.telegram.messenger.support.SparseLongArray;
-import org.telegram.ui.ActionBar.d;
-public final class x11 extends t11 implements gk7 {
-    public final u11 d;
-    public SparseLongArray e;
-    public final d f;
-    public final int h;
-    public m21 n;
+import android.animation.AnimatorSet;
+import java.util.LinkedList;
+public final class x11 implements ps3 {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public x11(int i, d dVar) {
-        super(dVar.getContext(), dVar.getResourceProvider());
-        this.f = dVar;
-        this.h = i;
-        this.b.setLayoutParams(nme.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.a.setLayoutParams(nme.h(56.0f, 48.0f, 8388659));
-        u11 u11Var = new u11(this, dVar, getContext(), dVar.getCurrentAccount(), dVar.getResourceProvider());
-        this.d = u11Var;
-        u11Var.setPadding(gl.L(4.0f), gl.L(24.0f), gl.L(4.0f), gl.L(0.0f));
-        this.d.setDelegate(new w11(this));
-        this.d.setTop(true);
-        this.d.setClipChildren(false);
-        this.d.setClipToPadding(false);
-        this.d.setVisibility(0);
-        this.d.setBubbleOffset(-gl.L(80.0f));
-        this.d.setHint(k96.M0(2131745683, null));
-        addView(this.d, nme.d(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
-        this.d.m(null, null, true);
+    public x11(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.l3) {
-            this.e = (SparseLongArray) objArr[0];
+    public final void a(vpa vpaVar, boolean z, float f, float f2) {
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                fv0 fv0Var = (fv0) obj;
+                ((z11) obj2).setInOutOffset(0.0f);
+                if (!z) {
+                    fv0Var.run();
+                    return;
+                }
+                return;
+            case 1:
+                on1 on1Var = (on1) obj;
+                AnimatorSet animatorSet = ((n12) obj2).A0;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    on1Var.run();
+                    return;
+                }
+                return;
+            case 2:
+                n12 n12Var = (n12) ((v02) obj2).d;
+                n12Var.w2.setTranslationY(0.0f);
+                n12Var.w2.m(n12Var.i4);
+                n12Var.X0.g();
+                n12Var.b.invalidate();
+                ((vq0) obj).run();
+                n12Var.L1(0);
+                return;
+            case 3:
+                i22 i22Var = (i22) obj2;
+                Runnable runnable = (Runnable) obj;
+                if (vpaVar == i22Var.H) {
+                    i22Var.H = null;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    Runnable runnable2 = i22Var.F;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                    float f3 = i22Var.h;
+                    if (f3 != -1.0f) {
+                        boolean z2 = i22Var.s;
+                        i22Var.s = true;
+                        i22Var.setOffsetY(f3);
+                        i22Var.h = -1.0f;
+                        i22Var.s = z2;
+                    }
+                    i22Var.n = -2.1474836E9f;
+                    return;
+                }
+                return;
+            case 4:
+                ((zv4) obj2).b(0.0f);
+                ((rj4) obj).run();
+                return;
+            case 5:
+                fz7 fz7Var = (fz7) obj2;
+                hh7 hh7Var = (hh7) obj;
+                LinkedList linkedList = fz7Var.V;
+                fz7Var.U = null;
+                hh7Var.C = null;
+                hh7Var.x();
+                if (!z) {
+                    hh7Var.h = 1.0f;
+                    hh7Var.x();
+                    if (!linkedList.isEmpty()) {
+                        ((Runnable) linkedList.poll()).run();
+                        fz7Var.W.poll();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 6:
+                b8a b8aVar = (b8a) obj2;
+                vpa vpaVar2 = (vpa) obj;
+                if (!z) {
+                    b8aVar.z.remove(vpaVar2);
+                    vpaVar.d();
+                    return;
+                }
+                return;
+            default:
+                ix1 ix1Var = (ix1) obj2;
+                vpa vpaVar3 = (vpa) obj;
+                if (!z) {
+                    ix1Var.z.remove(vpaVar3);
+                    vpaVar.d();
+                    return;
+                }
+                ix1Var.getClass();
+                return;
         }
-    }
-
-    public final void f() {
-        if (this.d.getReactionsWindow() != null) {
-            this.d.b();
-            if (this.d.getReactionsWindow().a != null) {
-                this.d.getReactionsWindow().a.animate().alpha(0.0f).setDuration(180L).start();
-            }
-        }
-    }
-
-    @Override
-    public int getMeasuredBackgroundHeight() {
-        return gl.L(30.0f) + this.b.getMeasuredHeight();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        kk7.f(y6c.t0).b(this, kk7.l3);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        kk7.f(y6c.t0).n(this, kk7.l3);
-    }
-
-    public void setBulletin(m21 m21Var) {
-        this.n = m21Var;
     }
 }

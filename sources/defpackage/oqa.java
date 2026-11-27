@@ -1,38 +1,86 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class oqa implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final rqa b;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+public final class oqa implements pe3 {
+    public final char a;
+    public int b = 0;
+    public final LinkedList c = new LinkedList();
 
-    public oqa(rqa rqaVar, byte b) {
-        this.a = b;
-        this.b = rqaVar;
+    public oqa(char c) {
+        this.a = c;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        rqa rqaVar = this.b;
-        switch (b) {
-            case 0:
-                rqaVar.z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rqaVar.d(rqaVar.b0);
-                return;
-            case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float w = b00.w((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
-                rqaVar.A0 = w;
-                FrameLayout frameLayout = rqaVar.b;
-                frameLayout.setScaleX(w);
-                frameLayout.setScaleY(rqaVar.A0);
-                rqaVar.invalidate();
-                return;
-            default:
-                rqaVar.z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rqaVar.d(rqaVar.b0);
-                return;
+    public final void a(qkb qkbVar, qkb qkbVar2, int i) {
+        pe3 pe3Var;
+        LinkedList linkedList = this.c;
+        Iterator it = linkedList.iterator();
+        while (true) {
+            if (it.hasNext()) {
+                pe3Var = (pe3) it.next();
+                if (pe3Var.c() <= i) {
+                    break;
+                }
+            } else {
+                pe3Var = (pe3) linkedList.getFirst();
+                break;
+            }
         }
+        pe3Var.a(qkbVar, qkbVar2, i);
+    }
+
+    @Override
+    public final char b() {
+        return this.a;
+    }
+
+    @Override
+    public final int c() {
+        return this.b;
+    }
+
+    @Override
+    public final int d(oe3 oe3Var, oe3 oe3Var2) {
+        pe3 pe3Var;
+        int i = oe3Var.g;
+        LinkedList linkedList = this.c;
+        Iterator it = linkedList.iterator();
+        while (true) {
+            if (it.hasNext()) {
+                pe3Var = (pe3) it.next();
+                if (pe3Var.c() <= i) {
+                    break;
+                }
+            } else {
+                pe3Var = (pe3) linkedList.getFirst();
+                break;
+            }
+        }
+        return pe3Var.d(oe3Var, oe3Var2);
+    }
+
+    @Override
+    public final char e() {
+        return this.a;
+    }
+
+    public final void f(pe3 pe3Var) {
+        int c = pe3Var.c();
+        LinkedList linkedList = this.c;
+        ListIterator listIterator = linkedList.listIterator();
+        while (listIterator.hasNext()) {
+            int c2 = ((pe3) listIterator.next()).c();
+            if (c > c2) {
+                listIterator.previous();
+                listIterator.add(pe3Var);
+                return;
+            } else if (c == c2) {
+                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.a + "' and minimum length " + c);
+            }
+        }
+        linkedList.add(pe3Var);
+        this.b = c;
     }
 }

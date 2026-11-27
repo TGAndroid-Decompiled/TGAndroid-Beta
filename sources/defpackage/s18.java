@@ -1,31 +1,51 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import org.telegram.ui.ActionBar.d;
-public final class s18 extends uz6 {
-    public final y28 V;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public class s18 extends c4 {
+    public static final Parcelable.Creator<s18> CREATOR = new ime((byte) 7);
+    public final int a;
+    public final Float b;
 
-    public s18(y28 y28Var, Context context, long j, d dVar, f53 f53Var) {
-        super(context, j, 0L, dVar, f53Var);
-        this.V = y28Var;
+    public s18(int i, Float f) {
+        boolean z = true;
+        if (i != 1 && (f == null || f.floatValue() < 0.0f)) {
+            z = false;
+        }
+        xve.a("Invalid PatternItem: type=" + i + " length=" + f, z);
+        this.a = i;
+        this.b = f;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof s18)) {
+            return false;
+        }
+        s18 s18Var = (s18) obj;
+        if (this.a == s18Var.a && vue.a(this.b, s18Var.b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.a), this.b});
+    }
+
+    public String toString() {
+        return "[PatternItem: type=" + this.a + " length=" + this.b + "]";
     }
 
     @Override
-    public final void f(Canvas canvas, Rect rect, float f) {
-        y28 y28Var = this.V;
-        ep epVar = y28Var.F1;
-        epVar.i(getX(), -getY(), getX() + getMeasuredWidth(), (-getY()) + getMeasuredHeight());
-        RectF rectF = gl.P;
-        rectF.set(rect);
-        rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f, f, (Paint) epVar.a);
-        canvas.drawRoundRect(rectF, f, f, y28Var.d2);
-        if (rectF.top < getMeasuredHeight() - 1) {
-            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, y28Var.r0.d("paintDivider"));
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.e(parcel, 3, this.b);
+        bye.s(parcel, r);
     }
 }

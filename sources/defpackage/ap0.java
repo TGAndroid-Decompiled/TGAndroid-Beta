@@ -8,14 +8,14 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 public abstract class ap0 extends FrameLayout {
     public ObjectAnimator a;
-    public zw8 b;
-    public fu c;
+    public l09 b;
+    public gu c;
     public Paint d;
     public float e;
     public boolean f;
     public float h;
     public boolean n;
-    public il0 r;
+    public jl0 r;
 
     public final void a() {
         ObjectAnimator objectAnimator = this.a;
@@ -27,12 +27,12 @@ public abstract class ap0 extends FrameLayout {
     }
 
     public final void b() {
-        fu fuVar = this.c;
-        il0 il0Var = this.r;
-        if (il0Var != null) {
-            il0Var.setBounds(0, ((int) this.h) - gl.L(25.0f), getMeasuredWidth(), gl.L(5.0f) + getMeasuredHeight());
-            fuVar.invalidateOutline();
-            fuVar.invalidate();
+        gu guVar = this.c;
+        jl0 jl0Var = this.r;
+        if (jl0Var != null) {
+            jl0Var.setBounds(0, ((int) this.h) - hl.L(25.0f), getMeasuredWidth(), hl.L(5.0f) + getMeasuredHeight());
+            guVar.invalidateOutline();
+            guVar.invalidate();
         }
     }
 
@@ -40,14 +40,14 @@ public abstract class ap0 extends FrameLayout {
         if (!this.f) {
             this.f = true;
             a();
-            fu fuVar = this.c;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(fuVar, FrameLayout.TRANSLATION_Y, fuVar.getTranslationY(), (getMeasuredHeight() - this.h) + gl.L(40.0f));
+            gu guVar = this.c;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(guVar, FrameLayout.TRANSLATION_Y, guVar.getTranslationY(), (getMeasuredHeight() - this.h) + hl.L(40.0f));
             this.a = ofFloat;
-            ofFloat.addListener(new g0(this, (byte) 23));
+            ofFloat.addListener(new h0(this, (byte) 23));
             this.a.setDuration(150L);
-            this.a.setInterpolator(s33.f);
+            this.a.setInterpolator(k43.f);
             this.a.start();
-            ep0 ep0Var = ((cx1) this).w.m0;
+            ep0 ep0Var = ((qx1) this).w.m0;
             if (ep0Var != null) {
                 ep0Var.setOpened(false);
             }
@@ -58,28 +58,28 @@ public abstract class ap0 extends FrameLayout {
         if (this.f) {
             return;
         }
-        fu fuVar = this.c;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(fuVar, FrameLayout.TRANSLATION_Y, fuVar.getTranslationY(), 0.0f);
+        gu guVar = this.c;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(guVar, FrameLayout.TRANSLATION_Y, guVar.getTranslationY(), 0.0f);
         this.a = ofFloat;
         if (z) {
             ofFloat.setDuration(320L);
             this.a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.a.setInterpolator(s33.f);
+            this.a.setInterpolator(k43.f);
         }
         this.a.start();
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.h - gl.L(24.0f)) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.h - hl.L(24.0f)) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public o39 getListView() {
+    public d79 getListView() {
         return this.c;
     }
 
@@ -90,10 +90,10 @@ public abstract class ap0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i, int i2) {
-        fu fuVar = this.c;
+        gu guVar = this.c;
         super.onMeasure(i, i2);
         if (this.n && !this.f) {
-            fuVar.setTranslationY(gl.L(16.0f) + (fuVar.getMeasuredHeight() - fuVar.getPaddingTop()));
+            guVar.setTranslationY(hl.L(16.0f) + (guVar.getMeasuredHeight() - guVar.getPaddingTop()));
             d(true);
             this.n = false;
         }
@@ -112,10 +112,10 @@ public abstract class ap0 extends FrameLayout {
 
     @Override
     public final void onNestedPreScroll(View view, int i, int i2, int[] iArr) {
-        fu fuVar = this.c;
+        gu guVar = this.c;
         if (!this.f) {
             a();
-            float translationY = fuVar.getTranslationY();
+            float translationY = guVar.getTranslationY();
             float f = 0.0f;
             if (translationY > 0.0f && i2 > 0) {
                 float f2 = translationY - i2;
@@ -123,7 +123,7 @@ public abstract class ap0 extends FrameLayout {
                 if (f2 >= 0.0f) {
                     f = f2;
                 }
-                fuVar.setTranslationY(f);
+                guVar.setTranslationY(f);
                 invalidate();
             }
         }
@@ -131,15 +131,15 @@ public abstract class ap0 extends FrameLayout {
 
     @Override
     public final void onNestedScroll(View view, int i, int i2, int i3, int i4) {
-        fu fuVar = this.c;
+        gu guVar = this.c;
         if (!this.f) {
             a();
             if (i4 != 0) {
-                float translationY = fuVar.getTranslationY() - i4;
+                float translationY = guVar.getTranslationY() - i4;
                 if (translationY < 0.0f) {
                     translationY = 0.0f;
                 }
-                fuVar.setTranslationY(translationY);
+                guVar.setTranslationY(translationY);
                 invalidate();
             }
         }
@@ -169,23 +169,23 @@ public abstract class ap0 extends FrameLayout {
         if (z || z) {
             return;
         }
-        if (this.c.getTranslationY() > gl.L(16.0f)) {
+        if (this.c.getTranslationY() > hl.L(16.0f)) {
             c();
         } else {
             d(false);
         }
     }
 
-    public void setBackgroundDrawable(il0 il0Var) {
-        this.r = il0Var;
-        il0Var.r(gl.L(22.0f));
-        this.r.q(gl.L(5.0f));
-        fu fuVar = this.c;
-        cl0 cl0Var = il0Var.T;
-        if (cl0Var == null) {
-            cl0Var = new cl0(il0Var, (byte) 0);
-            il0Var.T = cl0Var;
+    public void setBackgroundDrawable(jl0 jl0Var) {
+        this.r = jl0Var;
+        jl0Var.r(hl.L(22.0f));
+        this.r.q(hl.L(5.0f));
+        gu guVar = this.c;
+        dl0 dl0Var = jl0Var.T;
+        if (dl0Var == null) {
+            dl0Var = new dl0(jl0Var, (byte) 0);
+            jl0Var.T = dl0Var;
         }
-        fuVar.setOutlineProvider(cl0Var);
+        guVar.setOutlineProvider(dl0Var);
     }
 }

@@ -1,28 +1,15 @@
 package defpackage;
-public abstract class rm4 implements fv9 {
-    public final fv9 a;
+public final class rm4 implements mm4 {
+    public final wz4 a;
+    public final x73 b;
 
-    public rm4(fv9 fv9Var) {
-        this.a = fv9Var;
+    public rm4(wz4 wz4Var, x73 x73Var) {
+        this.a = wz4Var;
+        this.b = x73Var;
     }
 
     @Override
-    public final boolean c() {
-        return this.a.c();
-    }
-
-    @Override
-    public final boolean d() {
-        return this.a.d();
-    }
-
-    @Override
-    public ev9 f(long j) {
-        return this.a.f(j);
-    }
-
-    @Override
-    public long h() {
-        return this.a.h();
+    public final java.lang.Object k(defpackage.nm4 r9, defpackage.zw2 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rm4.k(nm4, zw2):java.lang.Object");
     }
 }

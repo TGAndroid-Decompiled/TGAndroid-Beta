@@ -1,84 +1,87 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.tgnet.tl.TL_stories;
-public final class rdb implements Vector.TLDeserializer {
-    public final byte a;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.HashSet;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+public final class rdb extends SSLSocketFactory {
+    public final SSLSocketFactory a = HttpsURLConnection.getDefaultSSLSocketFactory();
+    public final boolean b;
+    public final boolean c;
 
-    public rdb(byte b) {
-        this.a = b;
+    public rdb() {
+        String[] strArr;
+        try {
+            strArr = SSLContext.getDefault().getSupportedSSLParameters().getProtocols();
+        } catch (NoSuchAlgorithmException unused) {
+            strArr = new String[0];
+        }
+        boolean z = false;
+        boolean z2 = false;
+        for (String str : strArr) {
+            if (str.equals("TLSv1.1")) {
+                z = true;
+            } else if (str.equals("TLSv1.2")) {
+                z2 = true;
+            }
+        }
+        this.b = z;
+        this.c = z2;
+    }
+
+    public final Socket a(Socket socket) {
+        if (!(socket instanceof SSLSocket)) {
+            return socket;
+        }
+        SSLSocket sSLSocket = (SSLSocket) socket;
+        HashSet hashSet = new HashSet(Arrays.asList(sSLSocket.getEnabledProtocols()));
+        if (this.b) {
+            hashSet.add("TLSv1.1");
+        }
+        if (this.c) {
+            hashSet.add("TLSv1.2");
+        }
+        sSLSocket.setEnabledProtocols((String[]) hashSet.toArray(new String[0]));
+        return sSLSocket;
     }
 
     @Override
-    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-        switch (this.a) {
-            case 0:
-                return TL_payments.connectedBotStarRef.TLdeserialize(inputSerializedData, i, z);
-            case 1:
-                return TL_payments.starRefProgram.TLdeserialize(inputSerializedData, i, z);
-            case 2:
-                return TLRPC.PhoneConnection.TLdeserialize(inputSerializedData, i, z);
-            case 3:
-                return TLRPC.GroupCallParticipant.TLdeserialize(inputSerializedData, i, z);
-            case 4:
-                return TL_phone.groupCallDonor.TLdeserialize(inputSerializedData, i, z);
-            case 5:
-                return TL_phone.TL_groupCallStreamChannel.TLdeserialize(inputSerializedData, i, z);
-            case 6:
-                return TL_stars.TL_starsGiftOption.TLdeserialize(inputSerializedData, i, z);
-            case 7:
-                return TL_stars.TL_starsGiveawayOption.TLdeserialize(inputSerializedData, i, z);
-            case 8:
-                return TL_stars.TL_starsTopupOption.TLdeserialize(inputSerializedData, i, z);
-            case 9:
-                return TL_stars.SavedStarGift.TLdeserialize(inputSerializedData, i, z);
-            case 10:
-                return TL_stars.TL_payments_starGiftOnchainOfferTxMessage.TLdeserialize(inputSerializedData, i, z);
-            case 11:
-                return TL_stars.StarsSubscription.TLdeserialize(inputSerializedData, i, z);
-            case 12:
-                return TL_stars.StarsTransaction.TLdeserialize(inputSerializedData, i, z);
-            case 13:
-                return TL_stars.TL_AuctionBidLevel.TLdeserialize(inputSerializedData, i, z);
-            case 14:
-                return TL_stars.StarGiftAuctionRound.TLdeserialize(inputSerializedData, i, z);
-            case 15:
-                return TL_stars.TL_starGiftCollection.TLdeserialize(inputSerializedData, i, z);
-            case 16:
-                return TL_stars.StarGiftAttribute.TLdeserialize(inputSerializedData, i, z);
-            case 17:
-                return TL_stars.StarsAmount.TLdeserialize(inputSerializedData, i, z);
-            case 18:
-                return TL_stars.StarGift.TLdeserialize(inputSerializedData, i, z);
-            case 19:
-                return TL_stars.TL_starsGiveawayWinnersOption.TLdeserialize(inputSerializedData, i, z);
-            case 20:
-                return TLRPC.MessageMedia.TLdeserialize(inputSerializedData, i, z);
-            case 21:
-                return TL_stars.starGiftAttributeCounter.TLdeserialize(inputSerializedData, i, z);
-            case 22:
-                return TL_stars.StarGiftUpgradePrice.TLdeserialize(inputSerializedData, i, z);
-            case 23:
-                return TL_stats.BroadcastRevenueTransaction.TLdeserialize(inputSerializedData, i, z);
-            case 24:
-                return TL_stats.PostInteractionCounters.TLdeserialize(inputSerializedData, i, z);
-            case 25:
-                return TL_stats.TL_statsGroupTopPoster.TLdeserialize(inputSerializedData, i, z);
-            case 26:
-                return TL_stats.TL_statsGroupTopAdmin.TLdeserialize(inputSerializedData, i, z);
-            case 27:
-                return TL_stats.TL_statsGroupTopInviter.TLdeserialize(inputSerializedData, i, z);
-            case 28:
-                return TL_stats.PublicForward.TLdeserialize(inputSerializedData, i, z);
-            default:
-                return TL_stories.TL_storyAlbum.TLdeserialize(inputSerializedData, i, z);
-        }
+    public final Socket createSocket(Socket socket, String str, int i, boolean z) {
+        return a(this.a.createSocket(socket, str, i, z));
+    }
+
+    @Override
+    public final String[] getDefaultCipherSuites() {
+        return this.a.getDefaultCipherSuites();
+    }
+
+    @Override
+    public final String[] getSupportedCipherSuites() {
+        return this.a.getSupportedCipherSuites();
+    }
+
+    @Override
+    public final Socket createSocket(String str, int i) {
+        return a(this.a.createSocket(str, i));
+    }
+
+    @Override
+    public final Socket createSocket(String str, int i, InetAddress inetAddress, int i2) {
+        return a(this.a.createSocket(str, i, inetAddress, i2));
+    }
+
+    @Override
+    public final Socket createSocket(InetAddress inetAddress, int i) {
+        return a(this.a.createSocket(inetAddress, i));
+    }
+
+    @Override
+    public final Socket createSocket(InetAddress inetAddress, int i, InetAddress inetAddress2, int i2) {
+        return a(this.a.createSocket(inetAddress, i, inetAddress2, i2));
     }
 }

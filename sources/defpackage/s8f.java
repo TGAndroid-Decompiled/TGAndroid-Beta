@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class s8f {
+public final class s8f extends kjf {
 }

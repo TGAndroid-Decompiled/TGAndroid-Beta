@@ -1,17 +1,33 @@
 package defpackage;
-public final class cre implements zn7 {
-    public static final cre a = new Object();
+public final class cre extends s6e {
+    private static final cre zzb;
+    private int zzd;
+    private int zze;
 
     static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+        ?? s6eVar = new s6e();
+        zzb = s6eVar;
+        s6e.k(cre.class, s6eVar);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final Object d(int i) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 == 5) {
+                            return zzb;
+                        }
+                        throw null;
+                    }
+                    return new u4e(zzb);
+                }
+                return new s6e();
+            }
+            return new lfe(zzb, "\u0004\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", ovd.g});
         }
-        throw new ClassCastException();
+        return (byte) 1;
     }
 }

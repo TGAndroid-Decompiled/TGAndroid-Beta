@@ -1,36 +1,17 @@
 package defpackage;
-
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class ql3 implements Runnable {
+public enum ql3 {
+    d(2131745483, 2131745482, "All"),
+    EF30(2131745474, 2131745473, "Private"),
+    EF45(2131745476, 2131745475, "Groups"),
+    EF60(2131745481, 2131745480, "Channels");
+    
     public final byte a;
+    public final int b;
+    public final int c;
 
-    public ql3(byte b) {
-        this.a = b;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ql3.run():void");
-    }
-
-    public ql3(View view, m46 m46Var, ClickableSpan clickableSpan, byte b) {
-        this.a = b;
-    }
-
-    public ql3(Object obj, byte b) {
-        this.a = b;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+    ql3(int i, int i2, String str) {
+        this.a = r2;
+        this.b = i;
+        this.c = i2;
     }
 }

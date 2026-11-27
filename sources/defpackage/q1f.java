@@ -1,47 +1,26 @@
 package defpackage;
-public abstract class q1f {
-    public static void a(int i, int i2) {
-        String a;
-        if (i >= 0 && i < i2) {
-            return;
-        }
-        if (i >= 0) {
-            if (i2 < 0) {
-                w26.j(de9.k(i2, "negative size: "));
-                return;
-            }
-            a = z1f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
-        } else {
-            a = z1f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
-        }
-        throw new IndexOutOfBoundsException(a);
+
+import android.content.Context;
+import java.util.ArrayList;
+public final class q1f implements g2f {
+    public final ArrayList a;
+
+    public q1f(Context context, y0f y0fVar) {
+        ArrayList arrayList = new ArrayList();
+        this.a = arrayList;
+        y0fVar.getClass();
+        arrayList.add(new k3f(context, y0fVar));
     }
 
-    public static void b(int i, int i2, int i3) {
-        String c;
-        if (i >= 0 && i2 >= i && i2 <= i3) {
-            return;
+    @Override
+    public final void a(rx rxVar) {
+        ArrayList arrayList = this.a;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((g2f) obj).a(rxVar);
         }
-        if (i >= 0 && i <= i3) {
-            if (i2 >= 0 && i2 <= i3) {
-                c = z1f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
-            } else {
-                c = c(i2, i3, "end index");
-            }
-        } else {
-            c = c(i, i3, "start index");
-        }
-        throw new IndexOutOfBoundsException(c);
-    }
-
-    public static String c(int i, int i2, String str) {
-        if (i < 0) {
-            return z1f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
-        }
-        if (i2 >= 0) {
-            return z1f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
-        }
-        w26.j(de9.k(i2, "negative size: "));
-        return null;
     }
 }

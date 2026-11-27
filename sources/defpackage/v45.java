@@ -1,26 +1,19 @@
 package defpackage;
 
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.ui.LaunchActivity;
-public final class v45 extends c20 {
-    public final LaunchActivity E;
-    public final h75 F;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class v45 {
+    public final String a;
+    public final String b;
+    public final String c;
+    public final String d;
+    public TL_wallet.tonConnectSession e;
+    public boolean f;
 
-    public v45(h75 h75Var, LaunchActivity launchActivity, LaunchActivity launchActivity2) {
-        super(launchActivity);
-        this.F = h75Var;
-        this.E = launchActivity2;
-    }
-
-    @Override
-    public final TextView a() {
-        TextView textView = new TextView(this.E);
-        tb4.w(textView, bkb.Xg, null, 1, 20.0f);
-        textView.setGravity(51);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new xf3(this, textView, (byte) 20));
-        return textView;
+    public v45(TL_wallet.tonConnectSession tonconnectsession, String str, String str2, String str3, String str4) {
+        this.e = tonconnectsession;
+        this.a = str;
+        this.b = str2;
+        this.c = str3;
+        this.d = str4;
     }
 }

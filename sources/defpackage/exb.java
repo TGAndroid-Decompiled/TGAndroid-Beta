@@ -2,59 +2,122 @@ package defpackage;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class exb extends b4c {
-    public static final int b = 0;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import androidx.appcompat.widget.Toolbar;
+import java.util.ArrayList;
+public final class exb implements z27 {
+    public f27 a;
+    public j27 b;
+    public final Toolbar c;
 
-    static {
-        b4c.h(new b4c());
+    public exb(Toolbar toolbar) {
+        this.c = toolbar;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        boolean z2;
-        int i;
-        fxb fxbVar = (fxb) view;
-        boolean z3 = false;
-        if (c4cVar.s) {
-            fxbVar.f();
-        } else {
-            Object obj = c4cVar.H;
-            if (obj == null) {
-                if (c4cVar.d == -2) {
-                    fxbVar.c();
-                } else {
-                    if ((c4cVar.z & 1) != 0) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    fxbVar.d(z2, c4cVar.r, c4cVar.e);
-                }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                boolean z4 = c4cVar.J;
-                long j = c4cVar.y;
-                if (!z4) {
-                    fxbVar.g(j, (TLRPC.TL_forumTopic) obj, c4cVar.e);
-                } else {
-                    fxbVar.b(j, (TLRPC.TL_forumTopic) obj, c4cVar.e);
-                }
+    public final boolean b(zdb zdbVar) {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final boolean e(j27 j27Var) {
+        Toolbar toolbar = this.c;
+        View view = toolbar.r;
+        if (view instanceof ml2) {
+            ((ml2) view).onActionViewCollapsed();
+        }
+        toolbar.removeView(toolbar.r);
+        toolbar.removeView(toolbar.n);
+        toolbar.r = null;
+        ArrayList arrayList = toolbar.V;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            toolbar.addView((View) arrayList.get(size));
+        }
+        arrayList.clear();
+        this.b = null;
+        toolbar.requestLayout();
+        j27Var.C = false;
+        j27Var.n.p(false);
+        toolbar.t();
+        return true;
+    }
+
+    @Override
+    public final boolean i(j27 j27Var) {
+        Toolbar toolbar = this.c;
+        toolbar.c();
+        ViewParent parent = toolbar.n.getParent();
+        if (parent != toolbar) {
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(toolbar.n);
+            }
+            toolbar.addView(toolbar.n);
+        }
+        View actionView = j27Var.getActionView();
+        toolbar.r = actionView;
+        this.b = j27Var;
+        ViewParent parent2 = actionView.getParent();
+        if (parent2 != toolbar) {
+            if (parent2 instanceof ViewGroup) {
+                ((ViewGroup) parent2).removeView(toolbar.r);
+            }
+            fxb h = Toolbar.h();
+            h.a = (toolbar.E & 112) | 8388611;
+            h.b = (byte) 2;
+            toolbar.r.setLayoutParams(h);
+            toolbar.addView(toolbar.r);
+        }
+        for (int childCount = toolbar.getChildCount() - 1; childCount >= 0; childCount--) {
+            View childAt = toolbar.getChildAt(childCount);
+            if (((fxb) childAt.getLayoutParams()).b != 2 && childAt != toolbar.a) {
+                toolbar.removeViewAt(childCount);
+                toolbar.V.add(childAt);
             }
         }
-        if (fod.a(c4cVar.z, 8)) {
-            i = gl.L(10.0f);
-        } else {
-            i = 0;
+        toolbar.requestLayout();
+        j27Var.C = true;
+        j27Var.n.p(false);
+        View view = toolbar.r;
+        if (view instanceof ml2) {
+            ((ml2) view).onActionViewExpanded();
         }
-        fxbVar.M = i;
-        if (q5cVar != null && q5cVar.k3 && fxbVar.s) {
-            z3 = true;
-        }
-        fxbVar.setReorder(z3);
+        toolbar.t();
+        return true;
     }
 
     @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new fxb(i, wjbVar, context);
+    public final void j() {
+        if (this.b != null) {
+            f27 f27Var = this.a;
+            if (f27Var != null) {
+                int size = f27Var.f.size();
+                for (int i = 0; i < size; i++) {
+                    if (this.a.getItem(i) == this.b) {
+                        return;
+                    }
+                }
+            }
+            e(this.b);
+        }
+    }
+
+    @Override
+    public final void k(Context context, f27 f27Var) {
+        j27 j27Var;
+        f27 f27Var2 = this.a;
+        if (f27Var2 != null && (j27Var = this.b) != null) {
+            f27Var2.d(j27Var);
+        }
+        this.a = f27Var;
+    }
+
+    @Override
+    public final void f(f27 f27Var, boolean z) {
     }
 }

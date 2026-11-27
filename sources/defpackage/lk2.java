@@ -1,15 +1,13 @@
 package defpackage;
-public final class lk2 implements Runnable {
-    public final byte a;
-    public final qk2 b;
 
-    public lk2(qk2 qk2Var, byte b) {
-        this.a = b;
-        this.b = qk2Var;
-    }
+import android.text.Spannable;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+public final class lk2 {
+    public final WeakReference a;
+    public final HashMap b = new HashMap();
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lk2.run():void");
+    public lk2(Spannable spannable) {
+        this.a = new WeakReference(spannable);
     }
 }

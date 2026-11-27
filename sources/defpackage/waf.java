@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class waf {
+public final class waf extends kjf {
 }

@@ -1,15 +1,37 @@
 package defpackage;
 
-import android.app.Activity;
-import android.view.View;
-public interface vo5 {
-    void E(jm6 jm6Var, oac oacVar, boolean z, int i, boolean z2, long j);
+import java.util.Collection;
+import java.util.Map;
+public final class vo5 extends jo5 {
+    public final qo5 b;
 
-    int getClassGuid();
+    public vo5(qo5 qo5Var) {
+        this.b = qo5Var;
+    }
 
-    View getFragmentView();
+    @Override
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            Collection collection = (Collection) this.b.a().get(key);
+            if (collection != null && collection.contains(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    Activity getParentActivity();
+    @Override
+    public final v9c iterator() {
+        qo5 qo5Var = this.b;
+        qo5Var.getClass();
+        return new uo5(qo5Var);
+    }
 
-    boolean y();
+    @Override
+    public final int size() {
+        return this.b.f;
+    }
 }

@@ -1,12 +1,15 @@
 package org.webrtc;
 public class LibvpxVp9Encoder extends WrappedNativeVideoEncoder {
-    public static native long nativeCreateEncoder();
 
-    public static native boolean nativeIsSupported();
+    public interface Natives {
+        long create(long j);
+
+        boolean isSupported();
+    }
 
     @Override
-    public long createNativeVideoEncoder() {
-        return nativeCreateEncoder();
+    public long createNative(long j) {
+        return LibvpxVp9EncoderJni.get().create(j);
     }
 
     @Override

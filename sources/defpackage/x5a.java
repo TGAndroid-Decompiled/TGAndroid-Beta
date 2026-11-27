@@ -1,36 +1,34 @@
 package defpackage;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-public final class x5a implements a5a {
-    public final h6a a;
+import java.util.List;
+public final class x5a implements Runnable {
+    public final byte a;
+    public final r7a b;
+    public final String c;
+    public final List d;
 
-    public x5a(h6a h6aVar) {
-        h6aVar.getClass();
-        this.a = h6aVar;
+    public x5a(r7a r7aVar, String str, List list, byte b) {
+        this.a = b;
+        this.b = r7aVar;
+        this.c = str;
+        this.d = list;
     }
 
     @Override
-    public final Object e() {
-        return new w5a(this.a.a(null), null, null);
-    }
-
-    @Override
-    public final void i(Object obj, p4c p4cVar) {
-        byte[] bytes = lu5.d.b(w5a.Companion.serializer(), (w5a) obj).getBytes(bk1.a);
-        bytes.getClass();
-        p4cVar.a.write(bytes);
-    }
-
-    @Override
-    public final Object m(FileInputStream fileInputStream) {
-        try {
-            lu5 lu5Var = lu5.d;
-            String str = new String(cqd.b(fileInputStream), bk1.a);
-            cff cffVar = lu5Var.b;
-            return (w5a) lu5Var.a(w5a.Companion.serializer(), str);
-        } catch (Exception e) {
-            throw new IOException("Cannot parse session data", e);
+    public final void run() {
+        byte b = this.a;
+        List list = this.d;
+        String str = this.c;
+        r7a r7aVar = this.b;
+        switch (b) {
+            case 0:
+                r7aVar.r.remove(str);
+                list.remove(str);
+                return;
+            default:
+                r7aVar.r.remove(str);
+                list.remove(str);
+                return;
         }
     }
 }

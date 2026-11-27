@@ -1,22 +1,16 @@
 package defpackage;
 
-import java.lang.ref.WeakReference;
-public final class h1d extends z0d {
-    public final WeakReference c;
+import android.text.TextPaint;
+import java.util.ArrayList;
+public final class h1d {
+    public static final TextPaint b = new TextPaint();
+    public final ArrayList a;
 
-    public h1d(j1d j1dVar) {
-        super((byte) 1);
-        this.c = new WeakReference(j1dVar);
+    public h1d(ArrayList arrayList) {
+        this.a = arrayList;
     }
 
-    @Override
-    public final void U(c3d c3dVar) {
-        j1d j1dVar = (j1d) this.c.get();
-        if (j1dVar == null) {
-            return;
-        }
-        f1d f1dVar = new f1d(this, j1dVar, j1dVar, c3dVar);
-        k1d k1dVar = j1dVar.a.e;
-        k1dVar.sendMessage(k1dVar.obtainMessage(1, f1dVar));
+    public static defpackage.h1d a(java.lang.String r38, defpackage.ftb r39, float r40) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h1d.a(java.lang.String, ftb, float):h1d");
     }
 }

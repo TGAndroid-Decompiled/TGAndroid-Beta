@@ -1,203 +1,233 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
+import android.os.Build;
+import android.text.Editable;
 import android.view.View;
-public final class xz1 extends o39 {
-    public final byte f3;
-    public final Paint g3;
-    public final Paint h3;
-    public boolean i3;
-    public boolean j3;
-    public final Object k3;
-    public final Object l3;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class xz1 implements fd, wa9, t69, sy4, nl0, ry4, n7, r42, z62, hj, u12 {
+    public final byte a;
+    public final n12 b;
 
-    public xz1(Context context, byte b) {
-        super(context, null);
-        this.f3 = b;
+    public xz1(n12 n12Var, byte b) {
+        this.a = b;
+        this.b = n12Var;
+    }
+
+    @Override
+    public final void a(org.telegram.tgnet.TLRPC.MessageMedia r87, android.text.Editable r88, defpackage.ih8 r89, java.util.ArrayList r90, final boolean r91, final int r92, final long r93) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xz1.a(org.telegram.tgnet.TLRPC$MessageMedia, android.text.Editable, ih8, java.util.ArrayList, boolean, int, long):void");
+    }
+
+    @Override
+    public final void b(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        byte b = this.a;
+        n12 n12Var = this.b;
         switch (b) {
-            case 1:
-                super(context, null);
-                Paint paint = new Paint(1);
-                this.g3 = paint;
-                Paint paint2 = new Paint(1);
-                this.h3 = paint2;
-                this.k3 = new lm(this);
-                this.l3 = new lm(this);
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
-                paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, gl.L(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
+            case 11:
+                ((zu1) n12Var.Z1).b(messageMedia, i, z, i2, 0L);
+                return;
+            case 12:
+                ((zu1) n12Var.Z1).b(messageMedia, i, z, i2, j);
                 return;
             default:
-                s33 s33Var = s33.h;
-                this.k3 = new fm0(320L, this, s33Var);
-                this.l3 = new fm0(320L, this, s33Var);
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, gl.L(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
-                LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, gl.L(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
-                Paint paint3 = new Paint(1);
-                this.g3 = paint3;
-                Paint paint4 = new Paint(1);
-                this.h3 = paint4;
-                paint3.setShader(linearGradient);
-                PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
-                paint3.setXfermode(new PorterDuffXfermode(mode));
-                paint4.setShader(linearGradient2);
-                paint4.setXfermode(new PorterDuffXfermode(mode));
+                ((zu1) n12Var.Z1).b(messageMedia, i, z, i2, j);
                 return;
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void d(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        Editable editable2;
+        n12 n12Var = this.b;
+        u12 u12Var = n12Var.S1;
+        if (u12Var != null) {
+            u12Var.d(arrayList, editable, z, i, i2, j, z2, j2);
+            return;
+        }
+        e eVar = n12Var.Z1;
+        if (eVar != null && (eVar instanceof zu1)) {
+            zu1 zu1Var = (zu1) eVar;
+            if (zu1Var.r5()) {
+                zu1Var.F6(editable, null);
+                k5 accountInstance = zu1Var.getAccountInstance();
+                if (editable != null) {
+                    editable2 = editable;
+                } else {
+                    editable2 = null;
+                }
+                long j3 = zu1Var.l6;
+                r47 r47Var = zu1Var.F5;
+                r47 r47Var2 = zu1Var.m4;
+                r47 r47Var3 = zu1Var.H5;
+                c5a X6 = zu1Var.X6();
+                to3 to3Var = r7a.J;
+                new Thread(new o5a(null, arrayList, j3, accountInstance, editable2, false, null, r47Var3, r47Var, r47Var2, z, i, i2, null, X6, j, z2, j2, null)).start();
+                zu1Var.E4();
+                return;
+            }
+            return;
+        }
+        l12 l12Var = n12Var.W3;
+        if (l12Var != null) {
+            l12Var.f0(arrayList, editable, z, i, i2, j, z2, j2);
+        }
+    }
+
+    @Override
+    public final boolean e(int i, View view) {
+        TLRPC.User user;
+        if (view instanceof g12) {
+            g12 g12Var = (g12) view;
+            n12 n12Var = this.b;
+            if (!n12Var.P1 && (user = g12Var.b) != null) {
+                n12Var.g1(g12Var.c, user);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void f(xa9 xa9Var) {
+        this.b.e1();
+    }
+
+    @Override
+    public final void g(int i) {
+        this.b.U2.getActionBarMenuOnItemClick().b(i);
+    }
+
+    @Override
+    public final int h() {
+        return aob.v0(aob.d6, this.b.J0);
+    }
+
+    @Override
+    public final void k(int i) {
+        n12 n12Var = this.b;
+        tq3 tq3Var = n12Var.C4;
+        if (Build.VERSION.SDK_INT >= 31 && tq3Var != null) {
+            if (vsd.a(i, 4)) {
+                fz4 e = n12Var.X0.e();
+                e.b(n12Var.b.getY(), n12Var.b.getWidth(), n12Var.b.getY() + n12Var.b.getHeight());
+                tq3Var.h(e);
+            }
+            tq3Var.e(n12Var.F4, n12Var.b.getWidth(), n12Var.b.getHeight());
+        }
+    }
+
+    @Override
+    public final int l(vnb vnbVar, boolean z) {
         float f;
-        byte b = this.f3;
-        Object obj = this.l3;
-        Object obj2 = this.k3;
+        int i;
+        byte b = this.a;
+        n12 n12Var = this.b;
         switch (b) {
-            case 0:
-                this.j3 = false;
-                this.i3 = false;
-                super.dispatchDraw(canvas);
-                ((fm0) obj2).a(this.i3, true);
-                ((fm0) obj).a(this.j3, true);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                lm lmVar = (lm) obj2;
-                float f2 = 1.0f;
-                if (this.i3) {
-                    f = 1.0f;
+            case 4:
+                if (i86.e(262144)) {
+                    f = 0.85f;
                 } else {
-                    f = 0.0f;
+                    f = 0.76f;
                 }
-                Paint paint = this.g3;
-                paint.setAlpha((int) (lmVar.e(false, f) * 255.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), gl.L(8.0f), paint);
-                lm lmVar2 = (lm) obj;
-                if (!this.j3) {
-                    f2 = 0.0f;
-                }
-                Paint paint2 = this.h3;
-                paint2.setAlpha((int) (lmVar2.e(false, f2) * 255.0f));
-                canvas.save();
-                canvas.translate(0.0f, getHeight() - gl.L(8.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), gl.L(8.0f), paint2);
-                canvas.restore();
-                return;
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        boolean z;
-        boolean z2;
-        switch (this.f3) {
-            case 0:
-                float x = view.getX();
-                float width = view.getWidth() + x;
-                boolean z3 = true;
-                if (x < gl.L(10.0f)) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (width > getMeasuredWidth() - gl.L(10.0f)) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                if (!z && !z2) {
-                    z3 = false;
-                }
-                this.i3 |= z;
-                this.j3 |= z2;
-                canvas.save();
-                if (z3) {
-                    canvas.clipRect(gl.L(19.0f), 0, getMeasuredWidth() - gl.L(19.0f), getMeasuredHeight());
-                }
-                boolean drawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
                 if (z) {
-                    float L = gl.L(11.0f);
-                    canvas.saveLayer(L, getPaddingTop(), gl.L(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j);
-                    canvas.save();
-                    canvas.translate(ls6.B(1.0f, ((fm0) this.k3).e, gl.L(8.0f), L), 0.0f);
-                    canvas.drawPaint(this.g3);
-                    canvas.restore();
-                    canvas.restore();
+                    i = aob.a7;
+                } else {
+                    i = aob.i5;
                 }
-                if (z2) {
-                    float measuredWidth = getMeasuredWidth() - gl.L(19.0f);
-                    canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - gl.L(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j);
-                    canvas.save();
-                    canvas.translate(tb4.A(1.0f, ((fm0) this.l3).e, gl.L(8.0f), measuredWidth), 0.0f);
-                    canvas.drawPaint(this.h3);
-                    canvas.restore();
-                    canvas.restore();
+                int v0 = aob.v0(i, vnbVar);
+                int v02 = aob.v0(aob.d6, vnbVar);
+                if (n12Var.j4) {
+                    return vm2.f(0.75f, v02, n12Var.k4);
                 }
-                return drawChild;
+                return dtd.m(f, v0, v02);
+            case 5:
+                if (n12Var.j4) {
+                    return 0;
+                }
+                if (!z) {
+                    return -1;
+                }
+                return 687865855;
+            case 6:
+                if (n12Var.j4) {
+                    return 0;
+                }
+                if (!z) {
+                    return -1;
+                }
+                return 352321535;
             default:
-                return super.drawChild(canvas, view, j);
+                if (n12Var.j4) {
+                    if (hl.B(n12Var.k4) <= 0.72f) {
+                        return 1090519039;
+                    }
+                } else if (z) {
+                    return 0;
+                }
+                return 536870912;
         }
     }
 
     @Override
-    public final void m0(int i) {
-        switch (this.f3) {
-            case 1:
-                boolean canScrollVertically = canScrollVertically(-1);
-                boolean canScrollVertically2 = canScrollVertically(1);
-                if (canScrollVertically != this.i3 || canScrollVertically2 != this.j3) {
-                    this.i3 = canScrollVertically;
-                    this.j3 = canScrollVertically2;
-                    invalidate();
+    public final void w(id idVar, int i) {
+        n12 n12Var = this.b;
+        n12Var.A4 = true;
+        n12Var.dismiss();
+    }
+
+    @Override
+    public final void y(int i, int i2, boolean z) {
+        long j;
+        boolean q1;
+        switch (this.a) {
+            case 14:
+                n12 n12Var = this.b;
+                f12 f12Var = n12Var.v2;
+                if (f12Var != n12Var.d2 && f12Var != n12Var.k2) {
+                    if (!f12Var.K(z, i, i2, 0L, n12Var.b1())) {
+                        n12Var.A4 = true;
+                        n12Var.dismiss();
+                        return;
+                    }
+                    return;
+                }
+                n12Var.q1(z, i, 0, n12Var.K2, n12Var.b1());
+                return;
+            default:
+                n12 n12Var2 = this.b;
+                ox1 ox1Var = n12Var2.b2;
+                if (ox1Var != null) {
+                    j = ox1Var.i();
+                } else {
+                    j = 0;
+                }
+                long j2 = j;
+                u02 u02Var = n12Var2.F2;
+                n12Var2.K2 = j2;
+                u02Var.setEffect(j2);
+                f12 f12Var2 = n12Var2.v2;
+                if (f12Var2 != n12Var2.d2 && f12Var2 != n12Var2.k2) {
+                    if (!f12Var2.K(z, i, i2, j2, n12Var2.b1())) {
+                        n12Var2.dismiss();
+                    }
+                    q1 = false;
+                } else {
+                    q1 = n12Var2.q1(z, i, i2, j2, n12Var2.b1());
+                }
+                ox1 ox1Var2 = n12Var2.b2;
+                if (ox1Var2 != null) {
+                    ox1Var2.f(!q1);
+                    n12Var2.b2 = null;
                     return;
                 }
                 return;
-            default:
-                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        int i3;
-        switch (this.f3) {
-            case 0:
-                int childCount = getChildCount();
-                int size = (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight();
-                float f2 = 0.0f;
-                for (int i4 = 0; i4 < childCount; i4++) {
-                    View childAt = getChildAt(i4);
-                    if (childAt instanceof s02) {
-                        f2 = ((s02) childAt).a.d() + f2;
-                    }
-                }
-                if (size > f2 && childCount > 0) {
-                    i3 = (int) Math.floor((f - f2) / childCount);
-                } else {
-                    i3 = 0;
-                }
-                for (int i5 = 0; i5 < childCount; i5++) {
-                    View childAt2 = getChildAt(i5);
-                    if (childAt2 instanceof s02) {
-                        ((s02) childAt2).a.setAdditionalWidth(i3);
-                    }
-                }
-                super.onMeasure(i, i2);
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
+    public final void c() {
     }
 }

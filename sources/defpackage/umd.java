@@ -1,17 +1,169 @@
 package defpackage;
-public final class umd implements zn7 {
-    public static final umd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
+import j$.util.Map;
+import java.io.Serializable;
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+public abstract class umd implements Map, Serializable, j$.util.Map {
+    public static final Map.Entry[] b = new Map.Entry[0];
+    public transient dnd a;
+
+    @Override
+    public final dnd entrySet() {
+        dnd dndVar = this.a;
+        if (dndVar == null) {
+            eod eodVar = (eod) this;
+            if (eodVar.isEmpty()) {
+                dndVar = jqd.G;
+            } else {
+                dndVar = new wnd(eodVar);
+            }
+            this.a = dndVar;
+        }
+        return dndVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object compute(Object obj, BiFunction biFunction) {
+        return Map.CC.$default$compute(this, obj, biFunction);
+    }
+
+    @Override
+    public final Object computeIfAbsent(Object obj, Function function) {
+        return Map.CC.$default$computeIfAbsent(this, obj, function);
+    }
+
+    @Override
+    public final Object computeIfPresent(Object obj, BiFunction biFunction) {
+        return Map.CC.$default$computeIfPresent(this, obj, biFunction);
+    }
+
+    @Override
+    public final boolean containsKey(Object obj) {
+        if (get(obj) != null) {
+            return true;
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    @Override
+    public final boolean containsValue(Object obj) {
+        return ((eod) this).d.contains(obj);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof java.util.Map)) {
+            return false;
+        }
+        return ((eod) this).entrySet().equals(((java.util.Map) obj).entrySet());
+    }
+
+    @Override
+    public final void forEach(BiConsumer biConsumer) {
+        Map.CC.$default$forEach(this, biConsumer);
+    }
+
+    @Override
+    public abstract Object get(Object obj);
+
+    @Override
+    public final Object getOrDefault(Object obj, Object obj2) {
+        Object obj3 = get(obj);
+        if (obj3 != null) {
+            return obj3;
+        }
+        return obj2;
+    }
+
+    @Override
+    public final int hashCode() {
+        return t5f.a(entrySet());
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        if (((eod) this).size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object merge(Object obj, Object obj2, BiFunction biFunction) {
+        return Map.CC.$default$merge(this, obj, obj2, biFunction);
+    }
+
+    @Override
+    public final Object put(Object obj, Object obj2) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void putAll(java.util.Map map) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object putIfAbsent(Object obj, Object obj2) {
+        return Map.CC.$default$putIfAbsent(this, obj, obj2);
+    }
+
+    @Override
+    public final Object remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object replace(Object obj, Object obj2) {
+        return Map.CC.$default$replace(this, obj, obj2);
+    }
+
+    @Override
+    public final void replaceAll(BiFunction biFunction) {
+        Map.CC.$default$replaceAll(this, biFunction);
+    }
+
+    public final String toString() {
+        eod eodVar = (eod) this;
+        int size = eodVar.size();
+        if (size >= 0) {
+            StringBuilder sb = new StringBuilder((int) Math.min(size << 3, 1073741824L));
+            sb.append('{');
+            boolean z = true;
+            for (Map.Entry entry : eodVar.entrySet()) {
+                if (!z) {
+                    sb.append(", ");
+                }
+                sb.append(entry.getKey());
+                sb.append('=');
+                sb.append(entry.getValue());
+                z = false;
+            }
+            sb.append('}');
+            return sb.toString();
+        }
+        lq5.j(uh9.k(size, "size cannot be negative but was: "));
+        return null;
+    }
+
+    @Override
+    public final boolean replace(Object obj, Object obj2, Object obj3) {
+        return Map.CC.$default$replace(this, obj, obj2, obj3);
+    }
+
+    @Override
+    public final boolean remove(Object obj, Object obj2) {
+        return Map.CC.$default$remove(this, obj, obj2);
     }
 }

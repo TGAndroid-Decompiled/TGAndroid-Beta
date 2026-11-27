@@ -1,17 +1,18 @@
 package defpackage;
-public final class eie implements zn7 {
-    public static final eie a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.os.Build;
+public abstract class eie {
+    public static boolean a(int i) {
+        if (i == 8 || i == 7) {
+            return true;
         }
-        throw new ClassCastException();
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 31 && (i == 26 || i == 27)) {
+            return true;
+        }
+        if (i2 >= 33 && i == 30) {
+            return true;
+        }
+        return false;
     }
 }

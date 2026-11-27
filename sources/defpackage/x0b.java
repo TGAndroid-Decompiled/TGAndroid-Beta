@@ -1,10 +1,7 @@
 package defpackage;
-
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.d;
-public final class x0b extends AlertDialog$Builder {
-    public ArrayList c;
-    public boolean d;
-    public d e;
+public final class x0b extends zb3 {
+    @Override
+    public final long K(long j, long j2, long j3) {
+        return j;
+    }
 }

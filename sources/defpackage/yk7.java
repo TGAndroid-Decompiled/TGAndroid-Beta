@@ -1,20 +1,22 @@
 package defpackage;
 
-import android.app.Notification;
-import android.os.Build;
-import android.support.v4.media.session.MediaSessionCompat$Token;
-public final class yk7 extends gl7 {
-    public int[] e;
-    public MediaSessionCompat$Token f;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.view.View;
+public final class yk7 extends View.BaseSavedState {
+    public static final Parcelable.Creator<yk7> CREATOR = new mx6((byte) 4);
+    public int a;
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("HorizontalScrollView.SavedState{");
+        sb.append(Integer.toHexString(System.identityHashCode(this)));
+        sb.append(" scrollPosition=");
+        return uh9.l(sb, this.a, "}");
+    }
 
     @Override
-    public final void b(h31 h31Var) {
-        int i = Build.VERSION.SDK_INT;
-        Notification.Builder builder = (Notification.Builder) h31Var.c;
-        if (i >= 34) {
-            nk7.d(builder, nk7.b(ok7.a(nk7.a(), null, 0, null, Boolean.FALSE), this.e, this.f));
-        } else {
-            nk7.d(builder, nk7.b(nk7.a(), this.e, this.f));
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeInt(this.a);
     }
 }

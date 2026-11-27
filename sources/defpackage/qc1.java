@@ -1,3 +1,3 @@
 package defpackage;
-public final class qc1 {
+public abstract class qc1 {
 }

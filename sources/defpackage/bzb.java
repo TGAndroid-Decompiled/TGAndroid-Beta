@@ -1,10 +1,24 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class bzb extends FrameLayout {
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class bzb extends lt5 {
+    public final long u2;
+    public final dzb v2;
+
+    public bzb(dzb dzbVar, Context context, int i, zh6 zh6Var, long j, e eVar, long j2) {
+        super(context, i, zh6Var, j, eVar, null);
+        this.v2 = dzbVar;
+        this.u2 = j2;
+    }
+
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    public final boolean N0() {
+        TLRPC.Chat M0 = this.v2.b.getMessagesController().M0(Long.valueOf(this.u2));
+        if (M0 != null && xc2.y(3, M0)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -1,33 +1,35 @@
 package defpackage;
 
-import android.view.ViewTreeObserver;
-import android.widget.TextView;
-public final class i2b implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final TextView a;
-    public final a8b b;
-    public final TextView c;
-    public final k2b d;
+import j$.util.Objects;
+import java.util.HashMap;
+public final class i2b {
+    public final String a;
+    public final to5 b;
+    public final to5 c;
+    public final to5 d;
 
-    public i2b(k2b k2bVar, TextView textView, a8b a8bVar, TextView textView2) {
-        this.d = k2bVar;
-        this.a = textView;
-        this.b = a8bVar;
-        this.c = textView2;
+    public i2b(String str, HashMap hashMap, HashMap hashMap2, HashMap hashMap3) {
+        this.a = str;
+        this.b = to5.b(hashMap);
+        this.c = to5.b(hashMap2);
+        this.d = to5.b(hashMap3);
     }
 
-    @Override
-    public final void onGlobalLayout() {
-        int[] iArr = new int[2];
-        TextView textView = this.a;
-        textView.getLocationOnScreen(iArr);
-        int L = gl.L(24.0f) + iArr[1];
-        int measuredHeight = this.b.getMeasuredHeight();
-        k2b k2bVar = this.d;
-        if (L > measuredHeight) {
-            textView.setLayoutParams(nme.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-            this.c.setLayoutParams(nme.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
-            k2bVar.requestLayout();
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof i2b) {
+                i2b i2bVar = (i2b) obj;
+                if (Objects.equals(this.a, i2bVar.a) && this.b.equals(i2bVar.b) && this.c.equals(i2bVar.c) && this.d.equals(i2bVar.d)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-        k2bVar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.a, this.b, this.c, this.d);
     }
 }

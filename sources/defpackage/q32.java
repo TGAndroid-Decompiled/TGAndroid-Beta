@@ -1,74 +1,33 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.widget.TextView;
-public final class q32 implements TextWatcher {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q32 extends AnimatorListenerAdapter {
     public final byte a = 0;
-    public boolean b;
-    public final TextView c;
+    public final r32 b;
 
-    public q32(p32 p32Var, TextView textView) {
-        this.c = textView;
-        this.b = TextUtils.isEmpty(p32Var.getText());
+    public q32(r32 r32Var) {
+        this.b = r32Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
+    public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
-        int i = 2131754483;
-        TextView textView = this.c;
+        r32 r32Var = this.b;
         switch (b) {
             case 0:
-                boolean isEmpty = TextUtils.isEmpty(editable);
-                if (isEmpty != this.b) {
-                    this.b = isEmpty;
-                    if (isEmpty) {
-                        i = 2131746128;
-                    }
-                    textView.setText(k96.M0(i, null));
-                    return;
-                }
+                ((t32) r32Var.d).V.e();
                 return;
             default:
-                boolean isEmpty2 = TextUtils.isEmpty(editable);
-                if (isEmpty2 != this.b) {
-                    this.b = isEmpty2;
-                    if (isEmpty2) {
-                        i = 2131746128;
-                    }
-                    textView.setText(k96.M0(i, null));
-                    return;
-                }
+                tk4 tk4Var = r32Var.b;
+                tk4Var.setAlpha(1.0f);
+                q79.w0(tk4Var);
+                ((t32) r32Var.d).Y.r.removeView(tk4Var);
                 return;
         }
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    public q32(p32 p32Var, TextView textView, byte b) {
-        this.c = textView;
-        this.b = TextUtils.isEmpty(p32Var.getText());
-    }
-
-    private final void a(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
+    public q32(r32 r32Var, q79 q79Var) {
+        this.b = r32Var;
     }
 }

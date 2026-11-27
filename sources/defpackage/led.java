@@ -1,18 +1,18 @@
 package defpackage;
-public abstract class led {
-    public static final f84 a;
-    public static final f84 b;
-    public static final f84[] c;
 
-    static {
-        f84 f84Var = new f84("GET_CREDENTIAL", 1L);
-        a = f84Var;
-        f84 f84Var2 = new f84("CREDENTIAL_REGISTRY", 1L);
-        f84 f84Var3 = new f84("CLEAR_REGISTRY", 2L);
-        f84 f84Var4 = new f84("CLEAR_CREATION_OPTIONS", 1L);
-        f84 f84Var5 = new f84("CLEAR_CREDENTIAL_STATE", 1L);
-        f84 f84Var6 = new f84("CREATE_CREDENTIAL", 3L);
-        b = f84Var6;
-        c = new f84[]{f84Var, f84Var2, f84Var3, f84Var4, f84Var5, f84Var6, new f84("REGISTER_CREATION_OPTIONS", 1L), new f84("REGISTER_EXPORT", 1L), new f84("IMPORT_CREDENTIALS", 1L), new f84("SIGNAL_CREDENTIAL_STATE", 1L), new f84("CLEAR_EXPORT", 1L), new f84("IMPORT_CREDENTIALS_FOR_DEVICE_SETUP", 3L), new f84("EXPORT_CREDENTIALS_TO_DEVICE_SETUP", 3L), new f84("GET_CREDENTIAL_TRANSFER_CAPABILITIES", 3L)};
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class led extends c4 {
+    public static final Parcelable.Creator<led> CREATOR = new ced((byte) 4);
+    public String a;
+    public Bundle b;
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 2, this.a);
+        bye.b(parcel, 3, this.b);
+        bye.s(parcel, r);
     }
 }

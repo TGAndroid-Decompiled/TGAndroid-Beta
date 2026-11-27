@@ -1,46 +1,24 @@
 package defpackage;
+public final class pz7 implements zw2 {
+    public final pn1 a;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.ui.p;
-public final class pz7 implements TextWatcher {
-    public int a = -1;
-    public boolean b;
-    public int c;
-    public final p d;
-
-    public pz7(p pVar) {
-        this.d = pVar;
+    public pz7(pn1 pn1Var) {
+        this.a = pn1Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pz7.afterTextChanged(android.text.Editable):void");
+    public final mx2 getContext() {
+        return u24.a;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        boolean z = false;
-        if (i2 == 0 && i3 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f[1].getText(), '/') != -1) {
-                z = true;
-            }
-            this.b = z;
-            this.a = 1;
-        } else if (i2 == 1 && i3 == 0) {
-            if (charSequence.charAt(i) == '/' && i > 0) {
-                this.b = false;
-                this.a = 3;
-                this.c = i - 1;
-                return;
-            }
-            this.a = 2;
+    public final void resumeWith(Object obj) {
+        boolean z = obj instanceof ge9;
+        pn1 pn1Var = this.a;
+        if (z) {
+            pn1Var.a(null, ((ge9) obj).a);
         } else {
-            this.a = -1;
+            pn1Var.a(obj, null);
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

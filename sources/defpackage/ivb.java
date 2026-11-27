@@ -1,25 +1,31 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-public final class ivb extends ja {
-    public final TLRPC.TL_forumTopic c;
-
-    public ivb(int i, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i, true);
-        this.c = tL_forumTopic;
+public enum ivb extends rwb {
+    public ivb() {
+        super("Rcdata", 2);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && ivb.class == obj.getClass()) {
-            ivb ivbVar = (ivb) obj;
-            int i = this.a;
-            if (i == ivbVar.a && i == 0 && this.c.id == ivbVar.c.id) {
-                return true;
+    @Override
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char i = ik1Var.i();
+        if (i != 0) {
+            if (i != '&') {
+                if (i != '<') {
+                    if (i != 65535) {
+                        bubVar.h(ik1Var.g('&', '<', 0));
+                        return;
+                    } else {
+                        bubVar.g(new ttb());
+                        return;
+                    }
+                }
+                bubVar.a(rwb.s);
+                return;
             }
+            bubVar.a(rwb.d);
+            return;
         }
-        return false;
+        bubVar.m(this);
+        ik1Var.a();
+        bubVar.f((char) 65533);
     }
 }

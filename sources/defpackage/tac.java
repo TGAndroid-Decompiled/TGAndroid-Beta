@@ -1,4 +1,12 @@
 package defpackage;
-public interface tac {
-    public static final w59 a = mm5.u(new eef((byte) 28));
+
+import android.graphics.Canvas;
+public final class tac extends vl {
+    @Override
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(0.0f, hl.L(1.0f));
+        super.draw(canvas);
+        canvas.restore();
+    }
 }

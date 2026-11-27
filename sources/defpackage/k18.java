@@ -1,33 +1,33 @@
 package defpackage;
-public final class k18 implements Runnable {
-    public final byte a;
-    public final Runnable b;
-    public final long c;
 
-    public k18(Runnable runnable, long j, byte b) {
-        this.a = b;
-        this.b = runnable;
-        this.c = j;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+public abstract class k18 {
+    static {
+        Pattern.compile("(....|\\.\\.)(\\[(.*)\\])?");
     }
 
-    @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                Runnable runnable = this.b;
-                gl.r(runnable);
-                gl.d3(runnable, Math.max(0L, 32 - (System.currentTimeMillis() - this.c)));
-                return;
-            case 1:
-                Runnable runnable2 = this.b;
-                gl.r(runnable2);
-                gl.d3(runnable2, Math.max(0L, 32 - (System.currentTimeMillis() - this.c)));
-                return;
-            default:
-                Runnable runnable3 = this.b;
-                gl.r(runnable3);
-                gl.d3(runnable3, Math.max(0L, 32 - (System.currentTimeMillis() - this.c)));
-                return;
+    public static String a(qy0 qy0Var, String str) {
+        qv2 parent = qy0Var.getParent();
+        ArrayList arrayList = ((zg0) parent).b;
+        int size = arrayList.size();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            qy0 qy0Var2 = (qy0) obj;
+            if (qy0Var2.getType().equals(qy0Var.getType())) {
+                if (qy0Var2 == qy0Var) {
+                    break;
+                }
+                i++;
+            }
         }
+        String concat = String.format("/%s[%d]", qy0Var.getType(), Integer.valueOf(i)).concat(str);
+        if (parent instanceof qy0) {
+            return a((qy0) parent, concat);
+        }
+        return concat;
     }
 }

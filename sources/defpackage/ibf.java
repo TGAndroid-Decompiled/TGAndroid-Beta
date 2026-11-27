@@ -1,23 +1,23 @@
 package defpackage;
-public final class ibf extends vef {
-    private static final zef zzb = new Object();
-    private static final ibf zzd;
-    private int zze;
+public final class ibf extends ljf {
+    private static final ibf zzb;
+    private int zzd;
+    private boolean zze;
     private int zzf;
     private int zzg;
-    private int zzi;
-    private long zzk;
-    private yef zzh = wef.d;
-    private dff zzj = rgf.d;
+    private int zzh;
+    private bdf zzi;
+    private int zzj;
+    private boolean zzk;
 
     static {
-        ibf ibfVar = new ibf();
-        zzd = ibfVar;
-        vef.e(ibf.class, ibfVar);
+        ?? ljfVar = new ljf();
+        zzb = ljfVar;
+        ljf.e(ibf.class, ljfVar);
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
+    public final Object h(int i, ljf ljfVar) {
         int i2 = i - 1;
         if (i2 != 0) {
             if (i2 != 2) {
@@ -26,13 +26,13 @@ public final class ibf extends vef {
                         if (i2 != 5) {
                             return null;
                         }
-                        return zzd;
+                        return zzb;
                     }
-                    return new uef(zzd);
+                    return new kjf(zzb);
                 }
-                return new ibf();
+                return new ljf();
             }
-            return new sgf(zzd, "\u0001\u0006\u0000\u0001\u0001\u0007\u0006\u0000\u0002\u0000\u0001᠌\u0000\u0002᠌\u0001\u0003ࠞ\u0005᠌\u0002\u0006\u001b\u0007ဂ\u0003", new Object[]{"zze", "zzf", c6e.x, "zzg", vi2.r, "zzh", ie7.y, "zzi", ie7.n, "zzj", xaf.class, "zzk"});
+            return new ilf(zzb, "\u0001\u0007\u0000\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001ဇ\u0000\u0002᠌\u0001\u0003᠌\u0002\u0004᠌\u0003\u0005ဉ\u0004\u0006᠌\u0005\u0007ဇ\u0006", new Object[]{"zzd", "zze", "zzf", rj2.r, "zzg", sae.n, "zzh", faf.n, "zzi", "zzj", rg7.r, "zzk"});
         }
         return (byte) 1;
     }

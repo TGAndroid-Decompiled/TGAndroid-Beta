@@ -1,50 +1,13 @@
 package defpackage;
 
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
+import java.util.LinkedHashMap;
 public abstract class ux8 {
-    public static final DecelerateInterpolator a = new DecelerateInterpolator();
-    public static final LinearInterpolator b;
-    public static final tx8 c;
-    public static final tx8 d;
-    public static final tx8 e;
-    public static final tx8 f;
-    public static final tx8 g;
-    public static final tx8 h;
-    public static final tx8 i;
-    public static final tx8 j;
-    public static final tx8 k;
-    public static final tx8 l;
-    public static final tx8 m;
-    public static final tx8 n;
-    public static final tx8 o;
-    public static final tx8 p;
-    public static final tx8 q;
-    public static final tx8 r;
-    public static final tx8 s;
-    public static final tx8 t;
+    public static final LinkedHashMap a;
 
     static {
-        LinearInterpolator linearInterpolator = new LinearInterpolator();
-        b = linearInterpolator;
-        c = vx8.i(new DecelerateInterpolator(), 0, 240, 240, false);
-        d = vx8.i(linearInterpolator, 0, 240, 240, false);
-        e = vx8.i(new DecelerateInterpolator(), 220, 240, 240, false);
-        f = vx8.i(new s33(0.7f, -0.6f, 0.4f, 1.0f), 0, 200, 560, false);
-        g = vx8.i(new s33(0.7f, -0.6f, 0.4f, 1.0f), 200, 400, 560, true);
-        h = vx8.i(new DecelerateInterpolator(), 0, 150, 560, false);
-        i = vx8.i(new DecelerateInterpolator(), 210, 425, 560, false);
-        s33 s33Var = s33.h;
-        j = vx8.i(s33Var, 0, 320, 560, false);
-        k = vx8.i(s33Var, 40, 320, 560, false);
-        l = vx8.i(new DecelerateInterpolator(), 0, 250, 560, false);
-        m = vx8.i(s33Var, 0, 460, 560, false);
-        n = vx8.i(s33Var, 0, 325, 560, false);
-        o = vx8.i(new DecelerateInterpolator(), 150, 250, 560, false);
-        p = vx8.i(new DecelerateInterpolator(), 200, 480, 560, false);
-        q = vx8.i(s33Var, 60, 320, 560, false);
-        r = vx8.i(s33Var, 90, 380, 560, false);
-        s = vx8.i(s33Var, 110, 440, 560, false);
-        t = vx8.i(new DecelerateInterpolator(), 200, 460, 560, false);
+        rx7[] rx7VarArr = {new rx7(q44.UNKNOWN_ERR, new i1((byte) 26)), new rx7(q44.ABORT_ERR, new i1((byte) 0)), new rx7(q44.ATTESTATION_NOT_PRIVATE_ERR, new i1((byte) 16)), new rx7(q44.CONSTRAINT_ERR, new i1((byte) 1)), new rx7(q44.DATA_ERR, new i1((byte) 3)), new rx7(q44.INVALID_STATE_ERR, new i1((byte) 10)), new rx7(q44.ENCODING_ERR, new i1((byte) 4)), new rx7(q44.NETWORK_ERR, new i1((byte) 12)), new rx7(q44.NOT_ALLOWED_ERR, new i1((byte) 14)), new rx7(q44.NOT_SUPPORTED_ERR, new i1((byte) 17)), new rx7(q44.SECURITY_ERR, new i1((byte) 22)), new rx7(q44.TIMEOUT_ERR, new i1((byte) 24))};
+        LinkedHashMap linkedHashMap = new LinkedHashMap(uk6.b(12));
+        uk6.d(linkedHashMap, rx7VarArr);
+        a = linkedHashMap;
     }
 }

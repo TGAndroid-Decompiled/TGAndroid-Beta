@@ -1,10 +1,10 @@
 package defpackage;
-public interface nl2 {
-    void a(boolean z);
 
-    void b();
-
-    void c(int i, int i2, boolean z);
-
-    int d(int i);
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class nl2 extends CharacterStyle {
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setAlpha((int) (textPaint.getAlpha() * 0.65f));
+    }
 }

@@ -1,27 +1,34 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class rq5 implements RequestDelegate {
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.q;
+public final class rq5 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final tq5 b;
+    public final q b;
 
-    public rq5(tq5 tq5Var, byte b) {
+    public rq5(q qVar, byte b) {
         this.a = b;
-        this.b = tq5Var;
+        this.b = qVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        tq5 tq5Var = this.b;
+        q qVar = this.b;
         switch (b) {
             case 0:
-                gl.c3(new jf4(tq5Var, tL_error, tLObject, (byte) 26));
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * qVar.getMeasuredHeight() * 0.5f;
+                qVar.z0 = floatValue;
+                qVar.w.setTranslationY(floatValue + qVar.y0);
                 return;
             default:
-                gl.c3(new hb5(tq5Var, tL_error, (byte) 14));
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qVar.B0 = floatValue2;
+                jp9 jp9Var = qVar.Q;
+                if (jp9Var != null) {
+                    jp9Var.y(floatValue2);
+                    return;
+                }
                 return;
         }
     }

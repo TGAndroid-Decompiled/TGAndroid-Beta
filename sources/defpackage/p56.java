@@ -1,27 +1,28 @@
 package defpackage;
 
-import androidx.car.app.model.Action;
-import androidx.car.app.model.ActionStrip;
-import androidx.car.app.model.CarText;
-import androidx.car.app.model.ItemList;
-import androidx.car.app.model.ListTemplate;
-import java.util.ArrayList;
-public final class p56 {
-    public final boolean a;
-    public final ItemList b;
-    public final ArrayList c;
-    public final CarText d;
-    public final Action e;
-    public final ActionStrip f;
-    public final ArrayList g;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class p56 extends u1 {
+    public final byte b = 1;
 
-    public p56(ListTemplate listTemplate) {
-        this.a = listTemplate.isLoading();
-        this.e = listTemplate.getHeaderAction();
-        this.d = listTemplate.getTitle();
-        this.b = listTemplate.getSingleList();
-        this.c = new ArrayList(listTemplate.getSectionedLists());
-        this.f = listTemplate.getActionStrip();
-        this.g = new ArrayList(listTemplate.getActions());
+    public p56(Context context) {
+        super(context, (byte) 9);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.b) {
+            case 0:
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                invalidate();
+                return;
+        }
+    }
+
+    public p56(v56 v56Var, Context context) {
+        super(context, (byte) 9);
     }
 }

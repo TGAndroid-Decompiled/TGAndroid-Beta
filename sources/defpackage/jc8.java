@@ -1,47 +1,63 @@
 package defpackage;
 
-import android.util.SparseBooleanArray;
-public final class jc8 {
-    public static final gi4 b;
-    public static final gi4 c;
-    public final e31 a;
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.ui.PhotoViewer;
+public final class jc8 extends Fade {
+    public final byte a;
+    public final boolean b;
+    public final boolean c;
+    public final PhotoViewer d;
 
-    static {
-        int[] iArr;
-        int[] iArr2;
-        SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-        for (int i : new int[]{16, 17, 18, 21, 22, 23, 28, 30}) {
-            gre.p(!false);
-            sparseBooleanArray.append(i, true);
-        }
-        gre.p(!false);
-        b = new gi4(sparseBooleanArray);
-        SparseBooleanArray sparseBooleanArray2 = new SparseBooleanArray();
-        for (int i2 : new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 31, 20, 24, 25, 33, 26, 34, 35, 27, 29, 32}) {
-            gre.p(!false);
-            sparseBooleanArray2.append(i2, true);
-        }
-        gre.p(!false);
-        c = new gi4(sparseBooleanArray2);
-    }
-
-    public jc8(kc8 kc8Var) {
-        e31 e31Var = new e31();
-        this.a = e31Var;
-        e31Var.c(kc8Var.a);
-    }
-
-    public final void a(int i, boolean z) {
-        if (z) {
-            this.a.b(i);
+    public jc8(PhotoViewer photoViewer, boolean z, boolean z2, byte b) {
+        super(1);
+        this.a = b;
+        switch (b) {
+            case 1:
+                this.d = photoViewer;
+                this.b = z;
+                this.c = z2;
+                super(2);
+                return;
+            default:
+                this.d = photoViewer;
+                this.b = z;
+                this.c = z2;
+                return;
         }
     }
 
-    public final kc8 b() {
-        return new kc8(this.a.f());
+    @Override
+    public final Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.a) {
+            case 0:
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.b && !this.c && view == this.d.R1) {
+                    onAppear.addListener(new n88(this, (byte) 7));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new pv7(this, (byte) 4));
+                }
+                return onAppear;
+            default:
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
     }
 
-    public jc8() {
-        this.a = new e31();
+    @Override
+    public final Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.b && this.c && view == this.d.R1) {
+                    onDisappear.addListener(new n88(this, (byte) 8));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new pv7(this, (byte) 5));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+        }
     }
 }

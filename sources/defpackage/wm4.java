@@ -1,69 +1,19 @@
 package defpackage;
-
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class wm4 extends FrameLayout implements tjb {
-    public final wjb a;
-    public final ImageView b;
-    public final TextView c;
+public final class wm4 extends ax2 {
+    public xm4 a;
+    public Object b;
+    public final xm4 c;
     public int d;
-    public boolean e;
 
-    public wm4(Context context, wjb wjbVar) {
-        super(context);
-        this.a = wjbVar;
-        ImageView imageView = new ImageView(context);
-        this.b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131232062);
-        addView(imageView, nme.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.c = textView;
-        textView.setText(k96.M0(2131751154, null));
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(gl.o());
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, nme.d(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
-        updateColors();
-    }
-
-    public final int a(float f) {
-        return bm2.o(bkb.v0(bkb.Ml, this.a), (int) (f * 255.0f));
+    public wm4(xm4 xm4Var, zw2 zw2Var) {
+        super(zw2Var);
+        this.c = xm4Var;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.Ml));
-    }
-
-    public void setOnBackClickListener(View.OnClickListener onClickListener) {
-        this.b.setOnClickListener(onClickListener);
-    }
-
-    @Override
-    public final void updateColors() {
-        this.c.setTextColor(a(0.6f));
-        int a = a(1.0f);
-        if (this.e && a == this.d) {
-            return;
-        }
-        this.e = true;
-        this.d = a;
-        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
-        ImageView imageView = this.b;
-        imageView.setColorFilter(porterDuffColorFilter);
-        if (imageView.getBackground() != null) {
-            bkb.F1(imageView.getBackground(), a(0.1f), true);
-        } else {
-            imageView.setBackground(bkb.f0(a(0.1f), 1, -1));
-        }
+    public final Object invokeSuspend(Object obj) {
+        this.b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.c.c(null, this);
     }
 }

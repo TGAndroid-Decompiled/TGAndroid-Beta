@@ -1,83 +1,41 @@
 package defpackage;
+public final class scf extends ljf {
+    private static final scf zzb;
+    private int zzd;
+    private int zze;
+    private int zzf;
+    private int zzg;
+    private byte zzh = 2;
 
-import java.util.ListIterator;
-public final class scf extends v5c implements ListIterator {
-    public final int b;
-    public int c;
-    public final jff d;
+    static {
+        scf scfVar = new scf();
+        zzb = scfVar;
+        ljf.e(scf.class, scfVar);
+    }
 
-    public scf(jff jffVar, int i) {
-        super((byte) 4);
-        int size = jffVar.size();
-        if (i >= 0 && i <= size) {
-            this.b = size;
-            this.c = i;
-            this.d = jffVar;
-            return;
+    @Override
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            byte b = 1;
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            if (ljfVar == null) {
+                                b = 0;
+                            }
+                            this.zzh = b;
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new kjf(zzb);
+                }
+                return new scf();
+            }
+            return new ilf(zzb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0001\u0001ᴌ\u0000\u0002င\u0001\u0003᠌\u0002", new Object[]{"zzd", "zze", qf5.s, "zzf", "zzg", sjf.F});
         }
-        k93.i(r2f.c(i, size, "index"));
-        throw null;
-    }
-
-    public final Object a(int i) {
-        return this.d.get(i);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.c < this.b) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i = this.c;
-            this.c = i + 1;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i = this.c - 1;
-            this.c = i;
-            return a(i);
-        }
-        w26.g();
-        return null;
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        return Byte.valueOf(this.zzh);
     }
 }

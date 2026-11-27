@@ -1,76 +1,40 @@
 package defpackage;
+public final class c78 {
+    public final float a;
+    public final float b;
+    public final float c;
+    public final float d;
+    public final float e;
+    public final float f;
+    public final float g;
+    public final float h;
+    public final float i;
 
-import android.graphics.drawable.Drawable;
-import android.view.ViewPropertyAnimator;
-import org.telegram.ui.PhotoViewer;
-public final class c78 implements u48 {
-    public final PhotoViewer a;
-
-    public c78(PhotoViewer photoViewer) {
-        this.a = photoViewer;
+    public c78(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9) {
+        this.a = f;
+        this.b = f4;
+        this.c = f7;
+        this.d = f2;
+        this.e = f5;
+        this.f = f8;
+        this.g = f3;
+        this.h = f6;
+        this.i = f9;
     }
 
-    public final void a() {
-        boolean z;
-        int i;
-        u3b u3bVar;
-        Drawable[] drawableArr = PhotoViewer.d9;
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.o7 == null) {
-            return;
+    public static c78 a(float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8) {
+        float f9 = ((f - f3) + f5) - f7;
+        float f10 = ((f2 - f4) + f6) - f8;
+        if (f9 == 0.0f && f10 == 0.0f) {
+            return new c78(f3 - f, f5 - f3, f, f4 - f2, f6 - f4, f2, 0.0f, 0.0f, 1.0f);
         }
-        mbc mbcVar = photoViewer.k7;
-        boolean z2 = false;
-        if (mbcVar != null && (u3bVar = mbcVar.b) != null && u3bVar.f != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z && mbcVar.d) {
-            z2 = true;
-        }
-        photoViewer.p0.Q(126, z);
-        photoViewer.p7.a(z2, true);
-        a8 a8Var = photoViewer.o7;
-        if (z2) {
-            i = 2131743347;
-        } else {
-            i = 2131743348;
-        }
-        a8Var.setSubtext(k96.M0(i, null));
-    }
-
-    public final void b(boolean z) {
-        float f;
-        boolean z2 = !z;
-        Drawable[] drawableArr = PhotoViewer.d9;
-        PhotoViewer photoViewer = this.a;
-        if (photoViewer.W0.isClickable() != z2) {
-            photoViewer.W0.setClickable(z2);
-            photoViewer.W0.setVisibility(0);
-            photoViewer.W0.clearAnimation();
-            ViewPropertyAnimator animate = photoViewer.W0.animate();
-            if (!z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            animate.alpha(f).setInterpolator(s33.f).setDuration(150L).withEndAction(new k08((byte) 1, photoViewer, z2));
-        }
-    }
-
-    public final void c() {
-        PhotoViewer photoViewer = this.a;
-        lbc lbcVar = photoViewer.G2;
-        if (lbcVar == null) {
-            return;
-        }
-        lbcVar.o0(((float) lbcVar.U()) * photoViewer.B8);
-        photoViewer.G2.f0();
-        photoViewer.X7.setProgress(photoViewer.B8);
-        photoViewer.n();
-        oq7 oq7Var = new oq7(this, (byte) 29);
-        photoViewer.I2 = oq7Var;
-        gl.d3(oq7Var, 860L);
+        float f11 = f3 - f5;
+        float f12 = f7 - f5;
+        float f13 = f4 - f6;
+        float f14 = f8 - f6;
+        float f15 = (f11 * f14) - (f12 * f13);
+        float c = c00.c(f12, f10, f14 * f9, f15);
+        float c2 = c00.c(f9, f13, f11 * f10, f15);
+        return new c78((c * f3) + (f3 - f), (c2 * f7) + (f7 - f), f, (c * f4) + (f4 - f2), (c2 * f8) + (f8 - f2), f2, c, c2, 1.0f);
     }
 }

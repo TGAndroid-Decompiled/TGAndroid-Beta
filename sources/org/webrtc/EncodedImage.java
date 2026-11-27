@@ -31,7 +31,7 @@ public class EncodedImage implements RefCounted {
                     return frameType;
                 }
             }
-            w26.j(de9.k(i, "Unknown native frame type: "));
+            lq5.j(uh9.k(i, "Unknown native frame type: "));
             return null;
         }
 
@@ -53,7 +53,7 @@ public class EncodedImage implements RefCounted {
     }
 
     public static Builder builder() {
-        return new Builder();
+        return new Builder(0);
     }
 
     private ByteBuffer getBuffer() {
@@ -104,8 +104,12 @@ public class EncodedImage implements RefCounted {
         private Runnable releaseCallback;
         private int rotation;
 
+        public Builder(int i) {
+            this();
+        }
+
         public EncodedImage createEncodedImage() {
-            return new EncodedImage(this.buffer, this.releaseCallback, this.encodedWidth, this.encodedHeight, this.captureTimeNs, this.frameType, this.rotation, this.qp);
+            return new EncodedImage(this.buffer, this.releaseCallback, this.encodedWidth, this.encodedHeight, this.captureTimeNs, this.frameType, this.rotation, this.qp, 0);
         }
 
         public Builder setBuffer(ByteBuffer byteBuffer, Runnable runnable) {
@@ -152,5 +156,9 @@ public class EncodedImage implements RefCounted {
 
         private Builder() {
         }
+    }
+
+    public EncodedImage(ByteBuffer byteBuffer, Runnable runnable, int i, int i2, long j, FrameType frameType, int i3, Integer num, int i4) {
+        this(byteBuffer, runnable, i, i2, j, frameType, i3, num);
     }
 }

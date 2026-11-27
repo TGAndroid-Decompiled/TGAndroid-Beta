@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class kaf {
+public final class kaf extends v3d {
 }

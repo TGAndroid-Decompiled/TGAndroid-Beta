@@ -1,37 +1,17 @@
 package defpackage;
-public abstract class hye {
-    public static int a(int i) {
-        if (i != 1) {
-            if (i == 2) {
-                return 1;
-            }
-            if (i == 4) {
-                return 2;
-            }
-            if (i != 8) {
-                if (i == 16) {
-                    return 4;
-                }
-                if (i != 32) {
-                    if (i != 64) {
-                        if (i != 128) {
-                            if (i == 256) {
-                                return 8;
-                            }
-                            if (i == 512) {
-                                return 9;
-                            }
-                            w26.j(de9.k(i, "type needs to be >= FIRST and <= LAST, type="));
-                            return 0;
-                        }
-                        return 7;
-                    }
-                    return 6;
-                }
-                return 5;
-            }
-            return 3;
+public final class hye implements zq7 {
+    public static final hye a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return 0;
+        throw new ClassCastException();
     }
 }

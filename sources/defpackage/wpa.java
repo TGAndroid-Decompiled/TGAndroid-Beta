@@ -1,119 +1,110 @@
 package defpackage;
+public final class wpa {
+    public double a;
+    public double b;
+    public boolean c;
+    public double d;
+    public double e;
+    public double f;
+    public double g;
+    public double h;
+    public double i;
+    public final s1 j;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stars;
-public final class wpa extends View implements tjb {
-    public final jqa a;
-    public final ImageReceiver b;
-    public final Path c;
-    public final Paint d;
-
-    public wpa(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
-        super(context);
-        Path path = new Path();
-        this.c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        ykb ykbVar = zkb.a;
-        jqa jqaVar = new jqa(this, starGift, 60, 0.27f);
-        this.a = jqaVar;
-        jqaVar.L = (byte) 3;
-        pb0 pb0Var = new pb0((wjb) null);
-        pb0Var.k(tLObject);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.b = imageReceiver;
-        imageReceiver.q0(gl.L(30.0f));
-        imageReceiver.U(tLObject, pb0Var, null);
-        paint.setColor(bkb.w0(null, bkb.D6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(gl.L(2.0f));
-        path.rewind();
-        path.moveTo(0.0f, -gl.L(8.0f));
-        path.lineTo(gl.L(6.166f), 0.0f);
-        path.lineTo(0.0f, gl.L(8.0f));
+    public wpa() {
+        this.a = 38.72983346207417d;
+        this.b = 0.5d;
+        this.c = false;
+        this.i = Double.MAX_VALUE;
+        this.j = new Object();
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.b.I();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.b.K();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int width = (getWidth() / 2) - (gl.L(156.0f) / 2);
-        int height = (getHeight() / 2) - gl.L(30.0f);
-        jqa jqaVar = this.a;
-        jqaVar.setBounds(width, height, gl.L(60.0f) + width, gl.L(60.0f) + height);
-        jqaVar.draw(canvas);
-        canvas.save();
-        canvas.translate((getWidth() / 2.0f) - (gl.L(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.c, this.d);
-        canvas.restore();
-        ImageReceiver imageReceiver = this.b;
-        imageReceiver.i0(gl.L(96.0f) + width, height, gl.L(60.0f), gl.L(60.0f));
-        imageReceiver.h(canvas, null);
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(100.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        Paint paint = this.d;
-        try {
-            int i = bkb.D6;
-            paint.setColor(bkb.w0(null, i, false));
-            paint.setColor(bkb.w0(null, i, false));
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public final void a(float f) {
+        if (f >= 0.0f) {
+            this.b = f;
+            this.c = false;
+            return;
         }
+        lq5.j("Damping ratio must be non-negative");
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void b(float f) {
+        if (f > 0.0f) {
+            this.a = Math.sqrt(f);
+            this.c = false;
+            return;
+        }
+        lq5.j("Spring stiffness constant must be positive.");
     }
 
-    public wpa(Context context, TL_stars.StarGift starGift) {
-        super(context);
-        Path path = new Path();
-        this.c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        ykb ykbVar = zkb.a;
-        jqa jqaVar = new jqa(this, starGift, 60, 0.27f);
-        this.a = jqaVar;
-        jqaVar.L = (byte) 3;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.b = imageReceiver;
-        imageReceiver.q0(gl.L(30.0f));
-        imageReceiver.g0(o5a.a(60, "fragment"));
-        paint.setColor(bkb.w0(null, bkb.D6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(gl.L(2.33f));
-        path.rewind();
-        path.moveTo(0.0f, -gl.L(8.0f));
-        path.lineTo(gl.L(6.166f), 0.0f);
-        path.lineTo(0.0f, gl.L(8.0f));
+    public final s1 c(double d, double d2, long j) {
+        double sin;
+        double cos;
+        if (!this.c) {
+            if (this.i != Double.MAX_VALUE) {
+                double d3 = this.b;
+                if (d3 > 1.0d) {
+                    double d4 = this.a;
+                    this.f = (Math.sqrt((d3 * d3) - 1.0d) * d4) + ((-d3) * d4);
+                    double d5 = this.b;
+                    double d6 = this.a;
+                    this.g = ((-d5) * d6) - (Math.sqrt((d5 * d5) - 1.0d) * d6);
+                } else if (d3 >= 0.0d && d3 < 1.0d) {
+                    this.h = Math.sqrt(1.0d - (d3 * d3)) * this.a;
+                }
+                this.c = true;
+            } else {
+                grb.i("Error: Final position of the spring must be set before the animation starts");
+                return null;
+            }
+        }
+        double d7 = j / 1000.0d;
+        double d8 = d - this.i;
+        double d9 = this.b;
+        int i = (d9 > 1.0d ? 1 : (d9 == 1.0d ? 0 : -1));
+        if (i > 0) {
+            double d10 = this.g;
+            double d11 = ((d10 * d8) - d2) / (d10 - this.f);
+            double d12 = d8 - d11;
+            sin = (Math.pow(2.718281828459045d, this.f * d7) * d11) + (Math.pow(2.718281828459045d, d10 * d7) * d12);
+            double d13 = this.g;
+            double pow = Math.pow(2.718281828459045d, d13 * d7) * d12 * d13;
+            double d14 = this.f;
+            cos = (Math.pow(2.718281828459045d, d14 * d7) * d11 * d14) + pow;
+        } else if (i == 0) {
+            double d15 = this.a;
+            double d16 = (d15 * d8) + d2;
+            double d17 = (d16 * d7) + d8;
+            double pow2 = Math.pow(2.718281828459045d, (-d15) * d7) * d17;
+            double pow3 = Math.pow(2.718281828459045d, (-this.a) * d7) * d17;
+            double d18 = -this.a;
+            cos = (Math.pow(2.718281828459045d, d18 * d7) * d16) + (pow3 * d18);
+            sin = pow2;
+        } else {
+            double d19 = 1.0d / this.h;
+            double d20 = this.a;
+            double d21 = ((d9 * d20 * d8) + d2) * d19;
+            sin = ((Math.sin(this.h * d7) * d21) + (Math.cos(this.h * d7) * d8)) * Math.pow(2.718281828459045d, (-d9) * d20 * d7);
+            double d22 = this.a;
+            double d23 = this.b;
+            double d24 = (-d22) * sin * d23;
+            double pow4 = Math.pow(2.718281828459045d, (-d23) * d22 * d7);
+            double d25 = this.h;
+            double sin2 = Math.sin(d25 * d7) * (-d25) * d8;
+            double d26 = this.h;
+            cos = (((Math.cos(d26 * d7) * d21 * d26) + sin2) * pow4) + d24;
+        }
+        s1 s1Var = this.j;
+        s1Var.a = (float) (sin + this.i);
+        s1Var.b = (float) cos;
+        return s1Var;
+    }
+
+    public wpa(float f) {
+        this.a = 38.72983346207417d;
+        this.b = 0.5d;
+        this.c = false;
+        this.j = new Object();
+        this.i = f;
     }
 }

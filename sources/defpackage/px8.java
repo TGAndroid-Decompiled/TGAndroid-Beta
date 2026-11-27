@@ -1,61 +1,79 @@
 package defpackage;
-
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.a;
-public final class px8 extends TextView {
+public final class px8 {
     public final byte a;
+    public final usb b;
+    public final ey7 c;
+    public boolean d;
+    public boolean e;
+    public boolean f;
+    public long g;
+    public long h;
+    public long i;
 
-    public px8(Context context, byte b) {
-        super(context);
+    public px8(byte b) {
         this.a = b;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                if (getPaddingLeft() > 0) {
-                    canvas.drawCircle((getPaddingLeft() - gl.L(2.5f)) / 2.0f, gl.L(10.0f), gl.L(2.5f), getPaint());
-                }
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.a) {
+        switch (b) {
             case 1:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(gl.L(26.0f)), 1073741824));
+                this.b = new usb(0L);
+                this.g = -9223372036854775807L;
+                this.h = -9223372036854775807L;
+                this.i = -9223372036854775807L;
+                this.c = new ey7();
                 return;
-            case 2:
             default:
-                super.onMeasure(i, i2);
-                return;
-            case 3:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(a.getCurrentActionBarHeight(), 1073741824));
+                this.b = new usb(0L);
+                this.g = -9223372036854775807L;
+                this.h = -9223372036854775807L;
+                this.i = -9223372036854775807L;
+                this.c = new ey7();
                 return;
         }
     }
 
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.a) {
-            case 2:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public static int b(int i, byte[] bArr) {
+        return ((bArr[i] & 255) << 24) | ((bArr[i + 1] & 255) << 16) | ((bArr[i + 2] & 255) << 8) | (bArr[i + 3] & 255);
+    }
+
+    public static long c(ey7 ey7Var) {
+        int i = ey7Var.b;
+        if (ey7Var.a() >= 9) {
+            byte[] bArr = new byte[9];
+            ey7Var.k(0, 9, bArr);
+            ey7Var.N(i);
+            byte b = bArr[0];
+            if ((b & 196) == 68) {
+                byte b2 = bArr[2];
+                if ((b2 & 4) == 4) {
+                    byte b3 = bArr[4];
+                    if ((b3 & 4) == 4 && (bArr[5] & 1) == 1 && (bArr[8] & 3) == 3) {
+                        long j = b;
+                        long j2 = b2;
+                        return (((56 & j) >> 3) << 30) | ((j & 3) << 28) | ((bArr[1] & 255) << 20) | (((j2 & 248) >> 3) << 15) | ((j2 & 3) << 13) | ((bArr[3] & 255) << 5) | ((b3 & 248) >> 3);
+                    }
+                    return -9223372036854775807L;
+                }
+                return -9223372036854775807L;
+            }
+            return -9223372036854775807L;
+        }
+        return -9223372036854775807L;
+    }
+
+    public final void a(cb3 cb3Var) {
+        byte b = this.a;
+        ey7 ey7Var = this.c;
+        switch (b) {
+            case 0:
+                byte[] bArr = gcc.b;
+                ey7Var.L(bArr.length, bArr);
+                this.d = true;
+                cb3Var.f = 0;
                 return;
-            case 3:
             default:
-                super.setText(charSequence, bufferType);
-                return;
-            case 4:
-                super.setText(vu3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                byte[] bArr2 = gcc.b;
+                ey7Var.L(bArr2.length, bArr2);
+                this.d = true;
+                cb3Var.f = 0;
                 return;
         }
     }

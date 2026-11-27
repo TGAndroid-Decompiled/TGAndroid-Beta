@@ -14,9 +14,9 @@ public final class WidgetEngineBackend {
     private static final int MAX_CACHED_WIDTHS = 8192;
     private static final int PART = 262144;
     private static final int TEXT_PIECE = 65536;
-    private static final LinkedHashMap<String, Float> WIDTHS = new np4(4096, 0.75f, true, (byte) 3);
+    private static final LinkedHashMap<String, Float> WIDTHS = new rr4(4096, 0.75f, true, (byte) 3);
     private static volatile boolean localFonts = true;
-    private final jj5 client;
+    private final ll5 client;
     private final float density;
     private long imageBytes;
     private int nextFont;
@@ -24,16 +24,16 @@ public final class WidgetEngineBackend {
     private final ConcurrentHashMap<Integer, String> fontKeys = new ConcurrentHashMap<>();
     private final Object largeLock = new Object();
 
-    public WidgetEngineBackend(jj5 jj5Var, float f) {
-        this.client = jj5Var;
+    public WidgetEngineBackend(ll5 ll5Var, float f) {
+        this.client = ll5Var;
         this.density = f;
     }
 
-    private static void call(kvc kvcVar) {
+    private static void call(zzc zzcVar) {
         try {
-            kvcVar.mo21run();
+            zzcVar.mo20run();
         } catch (RemoteException e) {
-            wn4.i(e, "Widget client: ");
+            xi4.k(e, "Widget client: ");
         }
     }
 
@@ -93,16 +93,16 @@ public final class WidgetEngineBackend {
 
     private float remoteWidth(final int i, final byte[] bArr) {
         final float[] fArr = new float[1];
-        call(new kvc() {
+        call(new zzc() {
             @Override
-            public final void mo21run() {
+            public final void mo20run() {
                 WidgetEngineBackend.this.lambda$remoteWidth$1(fArr, i, bArr);
             }
         });
         return fArr[0];
     }
 
-    private void send(byte[] bArr, lvc lvcVar) {
+    private void send(byte[] bArr, a0d a0dVar) {
         if (bArr != null && bArr.length > 262144) {
             synchronized (this.largeLock) {
                 for (int i = 0; i < bArr.length; i += 262144) {
@@ -111,11 +111,11 @@ public final class WidgetEngineBackend {
                     System.arraycopy(bArr, i, bArr2, 0, min);
                     call(new l(this, bArr2, (byte) 1));
                 }
-                call(new g(lvcVar));
+                call(new g(a0dVar));
             }
             return;
         }
-        call(new l(lvcVar, bArr, (byte) 0));
+        call(new l(a0dVar, bArr, (byte) 0));
     }
 
     public static void warmFonts(float f) {
@@ -138,9 +138,9 @@ public final class WidgetEngineBackend {
 
     public byte[] canvasRead(final int i, final int i2, final int i3, final int i4, final int i5) {
         final byte[][] bArr = new byte[1];
-        call(new kvc() {
+        call(new zzc() {
             @Override
-            public final void mo21run() {
+            public final void mo20run() {
                 WidgetEngineBackend.this.lambda$canvasRead$9(bArr, i, i2, i3, i4, i5);
             }
         });
@@ -162,9 +162,9 @@ public final class WidgetEngineBackend {
         final int i2 = this.nextFont + 1;
         this.nextFont = i2;
         final float[][] fArr = new float[1];
-        call(new kvc() {
+        call(new zzc() {
             @Override
-            public final void mo21run() {
+            public final void mo20run() {
                 WidgetEngineBackend.this.lambda$createFont$0(fArr, i2, bArr, f, i, z, bArr2);
             }
         });
@@ -183,7 +183,7 @@ public final class WidgetEngineBackend {
             }
             return fArr[0];
         }
-        sc8.j("Widget client: font");
+        grb.i("Widget client: font");
         return null;
     }
 
@@ -197,7 +197,7 @@ public final class WidgetEngineBackend {
     }
 
     public byte[] formatIntl(byte[] bArr) {
-        return i00.d(WidgetSandboxBackend.text(bArr)).getBytes(StandardCharsets.UTF_8);
+        return j00.d(WidgetSandboxBackend.text(bArr)).getBytes(StandardCharsets.UTF_8);
     }
 
     public float[] loadImage(final int i, byte[] bArr) {
@@ -216,7 +216,7 @@ public final class WidgetEngineBackend {
             decodeImage.copyPixelsToBuffer(allocate);
             final int width = decodeImage.getWidth();
             final int height = decodeImage.getHeight();
-            send(allocate.array(), new lvc() {
+            send(allocate.array(), new a0d() {
                 @Override
                 public final void a(byte[] bArr2) {
                     WidgetEngineBackend.this.lambda$loadImage$2(i, width, height, bArr2);
@@ -228,7 +228,7 @@ public final class WidgetEngineBackend {
     }
 
     public void record(byte[] bArr, final byte[] bArr2, final double d, final int i, final int i2, final float f, final float f2, final int i3, final int i4) {
-        send(bArr, new lvc() {
+        send(bArr, new a0d() {
             @Override
             public final void a(byte[] bArr3) {
                 WidgetEngineBackend.this.lambda$record$7(bArr2, d, i, i2, f, f2, i3, i4, bArr3);
@@ -237,7 +237,7 @@ public final class WidgetEngineBackend {
     }
 
     public void recordLayer(final int i, final int i2, byte[] bArr) {
-        send(bArr, new lvc() {
+        send(bArr, new a0d() {
             @Override
             public final void a(byte[] bArr2) {
                 WidgetEngineBackend.this.lambda$recordLayer$6(i, i2, bArr2);
@@ -254,9 +254,9 @@ public final class WidgetEngineBackend {
     }
 
     public void state(final int i, final float f) {
-        call(new kvc() {
+        call(new zzc() {
             @Override
-            public final void mo21run() {
+            public final void mo20run() {
                 WidgetEngineBackend.this.lambda$state$4(i, f);
             }
         });

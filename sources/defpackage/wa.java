@@ -1,57 +1,127 @@
 package defpackage;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class wa extends b4c {
-    public static final int b = 0;
+public final class wa extends q9c {
+    public final byte n3 = 3;
+    public final Object o3;
 
-    static {
-        b4c.h(new b4c());
+    public wa(Context context, int i, hj8 hj8Var, vt8 vt8Var, vt8 vt8Var2, vnb vnbVar, cga cgaVar) {
+        super(context, i, 0, false, hj8Var, vt8Var, vt8Var2, vnbVar, 3, 1);
+        this.o3 = cgaVar;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
+    public final boolean G0(float f) {
         int i;
-        xa xaVar = (xa) view;
-        if (c4cVar.H == null) {
-            xaVar.setAsShowMore((eb) c4cVar.I);
-            return;
+        switch (this.n3) {
+            case 1:
+                n12 n12Var = ((x12) this.o3).b;
+                int L = hl.L(30.0f) + n12Var.Y3[0];
+                if (!n12Var.a2) {
+                    i = hl.m;
+                } else {
+                    i = 0;
+                }
+                if (f < L + i) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.G0(f);
         }
-        int i2 = c4cVar.A;
-        String charSequence = c4cVar.m.toString();
-        View.OnClickListener onClickListener = c4cVar.E;
-        eb ebVar = (eb) c4cVar.I;
-        ImageView imageView = xaVar.a;
-        imageView.setVisibility(0);
-        int i3 = ebVar.G;
-        int i4 = ebVar.I;
-        TextView textView = xaVar.b;
-        textView.setTextColor(i4);
-        int p1 = bkb.p1(0.6f, i4);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(p1, mode));
-        ImageView imageView2 = xaVar.c;
-        imageView2.setColorFilter(new PorterDuffColorFilter(bkb.p1(0.6f, i4), mode));
-        imageView2.setBackground(bkb.Z(0, bkb.p1(0.15f, i4), gl.L(4.0f), gl.L(4.0f)));
-        if (i2 == 0) {
-            i = 2131232099;
-        } else {
-            i = 2131232359;
-        }
-        imageView.setImageResource(i);
-        textView.setText(charSequence);
-        imageView2.setOnClickListener(onClickListener);
-        xaVar.d.setColor(bkb.p1(0.1f, ebVar.I));
-        xaVar.e = z;
-        xaVar.setWillNotDraw(!z);
     }
 
     @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new xa(context);
+    public final void G1() {
+        switch (this.n3) {
+            case 1:
+                x12 x12Var = (x12) this.o3;
+                x12Var.b.I1(x12Var, 0);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void L1() {
+        switch (this.n3) {
+            case 2:
+                hl.d0(((nab) this.o3).b, new ii7(this, (byte) 2));
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final Integer X0(int i) {
+        switch (this.n3) {
+            case 2:
+                return 0;
+            default:
+                return super.X0(i);
+        }
+    }
+
+    @Override
+    public final void n0(int i) {
+        db dbVar;
+        switch (this.n3) {
+            case 0:
+                if (!canScrollVertically(1) && (dbVar = ((fb) this.o3).E) != null && dbVar.h) {
+                    dbVar.d();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        byte b = this.n3;
+        Object obj = this.o3;
+        switch (b) {
+            case 1:
+                super.onLayout(z, i, i2, i3, i4);
+                x12 x12Var = (x12) obj;
+                x12Var.b.I1(x12Var, 0);
+                return;
+            case 2:
+            default:
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+            case 3:
+                super.onLayout(z, i, i2, i3, i4);
+                ((cga) obj).p();
+                return;
+            case 4:
+                super.onLayout(z, i, i2, i3, i4);
+                ((n9c) obj).c = -1;
+                return;
+        }
+    }
+
+    public wa(nab nabVar, Activity activity, int i, hj7 hj7Var, bm6 bm6Var, x53 x53Var) {
+        super(activity, i, 0, false, hj7Var, bm6Var, null, x53Var, -1, 0);
+        this.o3 = nabVar;
+    }
+
+    public wa(fb fbVar, Activity activity, int i, c cVar, ua uaVar, uk5 uk5Var) {
+        super(activity, i, 0, false, cVar, uaVar, null, uk5Var);
+        this.o3 = fbVar;
+    }
+
+    public wa(x12 x12Var, Context context, int i, c cVar, r12 r12Var, r12 r12Var2, vnb vnbVar) {
+        super(context, i, 0, false, cVar, r12Var, r12Var2, vnbVar);
+        this.o3 = x12Var;
+    }
+
+    public wa(n9c n9cVar, n9c n9cVar2, l8b l8bVar, m9c m9cVar, m9c m9cVar2) {
+        super(n9cVar2, l8bVar, m9cVar, m9cVar2);
+        this.o3 = n9cVar;
     }
 }

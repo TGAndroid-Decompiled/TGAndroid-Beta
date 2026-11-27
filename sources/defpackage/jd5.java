@@ -1,40 +1,42 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class jd5 extends AnimatorListenerAdapter {
-    public final float[] a;
-    public final float b;
-    public final float c;
-    public final boolean d;
-    public final kd5 e;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class jd5 implements TextWatcher {
+    public final kd5 a;
 
-    public jd5(kd5 kd5Var, float[] fArr, float f, float f2, boolean z) {
-        this.e = kd5Var;
-        this.a = fArr;
-        this.b = f;
-        this.c = f2;
-        this.d = z;
+    public jd5(kd5 kd5Var) {
+        this.a = kd5Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i;
-        float[] fArr = this.a;
-        fArr[0] = 1.0f;
-        this.e.a.b.l = gl.R1(this.b, this.c, 1.0f);
-        uq4 uq4Var = this.e.a.b;
-        float f = uq4Var.f;
-        float f2 = (1.0f - fArr[0]) * 360.0f;
-        if (this.d) {
-            i = 1;
-        } else {
-            i = -1;
+    public final void afterTextChanged(Editable editable) {
+        String trim = editable.toString().trim();
+        kd5 kd5Var = this.a;
+        nd5 nd5Var = kd5Var.h;
+        if (kd5Var.c != 0) {
+            nd5Var.getConnectionsManager().cancelRequest(kd5Var.c, true);
+            kd5Var.c = 0;
         }
-        uq4Var.f = (f2 * i) + f;
-        this.e.a.b.b();
-        kd5 kd5Var = this.e;
-        kd5Var.a(kd5Var.a.b.l);
-        this.e.a.j(750L);
+        se4 se4Var = kd5Var.d;
+        if (se4Var != null) {
+            hl.r(se4Var);
+        }
+        kd5Var.e = null;
+        if (trim.isEmpty()) {
+            nd5Var.h0(null);
+            return;
+        }
+        se4 se4Var2 = new se4(this, trim, (byte) 27);
+        kd5Var.d = se4Var2;
+        hl.d3(se4Var2, 300L);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

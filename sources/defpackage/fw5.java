@@ -1,48 +1,29 @@
 package defpackage;
-public final class fw5 implements yt7 {
-    public final byte a;
-    public final Object b;
-    public final float c;
 
-    public fw5(Object obj, float f, byte b) {
+import android.content.DialogInterface;
+public final class fw5 implements DialogInterface.OnDismissListener {
+    public final byte a;
+    public final jw5 b;
+    public final boolean c;
+
+    public fw5(jw5 jw5Var, boolean z, byte b) {
         this.a = b;
-        this.b = obj;
-        this.c = f;
+        this.b = jw5Var;
+        this.c = z;
     }
 
     @Override
-    public final void O(float f) {
+    public final void onDismiss(DialogInterface dialogInterface) {
         byte b = this.a;
-        float f2 = this.c;
-        Object obj = this.b;
+        boolean z = this.c;
+        jw5 jw5Var = this.b;
         switch (b) {
             case 0:
-                vhb vhbVar = (vhb) obj;
-                vhbVar.B0 = true;
-                vhbVar.setBaseFontSize((int) (f2 * f));
+                jw5.F0(jw5Var.getContext(), jw5Var.n1, jw5Var.s1, z);
                 return;
             default:
-                vhb vhbVar2 = (vhb) obj;
-                vhbVar2.B0 = true;
-                vhbVar2.setBaseFontSize((int) (f2 * f));
+                jw5.F0(jw5Var.getContext(), jw5Var.n1, jw5Var.s1, z);
                 return;
         }
-    }
-
-    @Override
-    public final float get() {
-        float baseFontSize;
-        float f;
-        switch (this.a) {
-            case 0:
-                baseFontSize = ((vhb) this.b).getBaseFontSize();
-                f = this.c;
-                break;
-            default:
-                baseFontSize = ((vhb) this.b).getBaseFontSize();
-                f = this.c;
-                break;
-        }
-        return baseFontSize / f;
     }
 }

@@ -1,208 +1,115 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-public final class zt7 extends View {
-    public final lm E;
-    public c79 F;
-    public float G;
-    public float H;
-    public mcb I;
-    public Runnable J;
-    public boolean K;
-    public yt7 L;
-    public final Paint a;
-    public final Paint b;
-    public final Path c;
-    public final gi3 d;
-    public final RectF e;
-    public boolean f;
-    public boolean h;
-    public float n;
-    public float r;
-    public long s;
-    public boolean w;
-    public final lm x;
-    public final lm y;
+import android.content.Intent;
+import android.text.TextUtils;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.util.ArrayList;
+public abstract class zt7 {
+    public static final a94[] a = new a94[0];
+    public static final a94 b;
+    public static final a94 c;
+    public static final odd d;
 
-    public zt7(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.a = paint;
-        Paint paint2 = new Paint(1);
-        this.b = paint2;
-        this.c = new Path();
-        this.e = new RectF();
-        this.w = true;
-        this.x = new lm(this);
-        this.y = new lm(this);
-        this.E = new lm(this);
-        this.I = new mcb(1.0f, 0.016773745f, -1);
-        this.K = true;
-        this.d = new gi3(context, new xt7(this));
-        paint2.setColor(-1);
-        paint2.setShadowLayer(gl.L(4.0f), 0.0f, gl.L(2.0f), 1342177280);
-        paint.setColor(1090519039);
-        paint.setShadowLayer(gl.L(3.0f), 0.0f, gl.L(1.0f), 637534208);
-    }
-
-    public final void a(float f, float f2, float f3, Canvas canvas, boolean z) {
-        if (z) {
-            RectF rectF = gl.P;
-            rectF.set((f - f3) - gl.L(6.0f), (f2 - f3) - gl.L(6.0f), f + f3 + gl.L(6.0f), f2 + f3 + gl.L(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.r * 255.0f), 31);
+    static {
+        a94 a94Var = new a94("vision.barcode", 1L);
+        a94 a94Var2 = new a94("vision.custom.ica", 1L);
+        a94 a94Var3 = new a94("vision.face", 1L);
+        a94 a94Var4 = new a94("vision.ica", 1L);
+        a94 a94Var5 = new a94("vision.ocr", 1L);
+        a94 a94Var6 = new a94("mlkit.langid", 1L);
+        b = a94Var6;
+        a94 a94Var7 = new a94("mlkit.nlclassifier", 1L);
+        a94 a94Var8 = new a94("tflite_dynamite", 1L);
+        a94 a94Var9 = new a94("mlkit.barcode.ui", 1L);
+        a94 a94Var10 = new a94("mlkit.smartreply", 1L);
+        c = new a94("mlkit.segmentation.subject", 1L);
+        lp lpVar = new lp((byte) 18);
+        lpVar.C("barcode", a94Var);
+        lpVar.C("custom_ica", a94Var2);
+        lpVar.C("face", a94Var3);
+        lpVar.C("ica", a94Var4);
+        lpVar.C("ocr", a94Var5);
+        lpVar.C("langid", a94Var6);
+        lpVar.C("nlclassifier", a94Var7);
+        lpVar.C("tflite_dynamite", a94Var8);
+        lpVar.C("barcode_ui", a94Var9);
+        lpVar.C("smart_reply", a94Var10);
+        obd obdVar = (obd) lpVar.d;
+        if (obdVar == null) {
+            odd c2 = odd.c(lpVar.b, (Object[]) lpVar.c, lpVar);
+            obd obdVar2 = (obd) lpVar.d;
+            if (obdVar2 == null) {
+                d = c2;
+                lp lpVar2 = new lp((byte) 18);
+                lpVar2.C("com.google.android.gms.vision.barcode", a94Var);
+                lpVar2.C("com.google.android.gms.vision.custom.ica", a94Var2);
+                lpVar2.C("com.google.android.gms.vision.face", a94Var3);
+                lpVar2.C("com.google.android.gms.vision.ica", a94Var4);
+                lpVar2.C("com.google.android.gms.vision.ocr", a94Var5);
+                lpVar2.C("com.google.android.gms.mlkit.langid", a94Var6);
+                lpVar2.C("com.google.android.gms.mlkit.nlclassifier", a94Var7);
+                lpVar2.C("com.google.android.gms.tflite_dynamite", a94Var8);
+                lpVar2.C("com.google.android.gms.mlkit_smartreply", a94Var10);
+                obd obdVar3 = (obd) lpVar2.d;
+                if (obdVar3 == null) {
+                    odd.c(lpVar2.b, (Object[]) lpVar2.c, lpVar2);
+                    obd obdVar4 = (obd) lpVar2.d;
+                    if (obdVar4 == null) {
+                        return;
+                    }
+                    throw obdVar4.a();
+                }
+                throw obdVar3.a();
+            }
+            throw obdVar2.a();
         }
-        canvas.drawCircle(f, f2, f3, this.b);
-        if (z) {
-            canvas.restore();
+        throw obdVar.a();
+    }
+
+    public static void a(Context context) {
+        uad uadVar = kbd.n;
+        Object[] objArr = {"ica"};
+        x3f.a(1, objArr);
+        ucd ucdVar = new ucd(1, objArr);
+        j05.b.getClass();
+        if (c15.a(context) >= 221500000) {
+            int i = ucdVar.s;
+            a94[] a94VarArr = new a94[i];
+            for (int i2 = 0; i2 < i; i2++) {
+                a94 a94Var = (a94) d.get(ucdVar.get(i2));
+                xve.h(a94Var);
+                a94VarArr[i2] = a94Var;
+            }
+            b(context, a94VarArr);
+            return;
         }
+        Intent intent = new Intent();
+        intent.setClassName("com.google.android.gms", "com.google.android.gms.vision.DependencyBroadcastReceiverProxy");
+        intent.setAction("com.google.android.gms.vision.DEPENDENCY");
+        intent.putExtra("com.google.android.gms.vision.DEPENDENCIES", TextUtils.join(",", ucdVar));
+        intent.putExtra("requester_app_package", context.getApplicationInfo().packageName);
+        context.sendBroadcast(intent);
     }
 
-    public final void b(float f, float f2) {
-        this.G = f;
-        this.H = f2;
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        super.onDraw(canvas);
-        long min = Math.min(16L, System.currentTimeMillis() - this.s);
-        this.s = System.currentTimeMillis();
-        yt7 yt7Var = this.L;
-        if (yt7Var != null) {
-            f = yt7Var.get();
+    public static void b(Context context, a94[] a94VarArr) {
+        Task e;
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(new u9f(a94VarArr, (byte) 0));
+        xve.a("APIs must not be empty.", !arrayList.isEmpty());
+        h05 h05Var = new h05(context, qa4.p, wn.g, g05.c);
+        fo b2 = fo.b(arrayList, true);
+        if (b2.a.isEmpty()) {
+            e = Tasks.forResult(new xg7(0, false));
         } else {
-            f = this.I.c;
+            wjb b3 = xjb.b();
+            b3.c = new a94[]{nid.a};
+            b3.b = true;
+            b3.d = (char) 27304;
+            b3.a = new k7b(h05Var, b2, (byte) 11);
+            e = h05Var.e(0, b3.a());
         }
-        float e = this.x.e(false, f);
-        float e2 = this.y.e(false, this.G);
-        float e3 = this.E.e(false, this.H);
-        boolean z = this.h;
-        float f2 = this.n;
-        if (z) {
-            if (f2 != 1.0f) {
-                this.n = ls6.z((float) min, 200.0f, f2, 1.0f);
-                invalidate();
-            }
-        } else if (f2 != 0.0f) {
-            this.n = oo1.x((float) min, 200.0f, f2, 0.0f);
-            invalidate();
-        }
-        boolean z2 = this.f;
-        float f3 = this.r;
-        if (z2) {
-            if (f3 != 1.0f) {
-                this.r = ls6.z((float) min, 200.0f, f3, 1.0f);
-                invalidate();
-            }
-        } else if (f3 != 0.0f) {
-            this.r = oo1.x((float) min, 200.0f, f3, 0.0f);
-            invalidate();
-        }
-        RectF rectF = this.e;
-        float height = rectF.height();
-        int L = gl.L(16.0f);
-        int L2 = gl.L(3.0f);
-        int L3 = gl.L(3.0f);
-        Path path = this.c;
-        path.rewind();
-        path.moveTo(0.0f, 0.0f);
-        RectF rectF2 = gl.P;
-        int i = -L3;
-        int i2 = -L;
-        rectF2.set(gl.U1(this.r, i, i2), 0.0f, gl.U1(this.r, L3, L), gl.U1(this.r, L3, L) << 1);
-        path.arcTo(rectF2, -90.0f, 90.0f);
-        path.lineTo(gl.U1(this.r, L3, L2), height);
-        rectF2.set(gl.U1(this.r, i, -L2), height - (L2 << 1), gl.U1(this.r, L3, L2), height);
-        path.arcTo(rectF2, 0.0f, 180.0f);
-        float f4 = L;
-        path.lineTo(gl.U1(this.r, i, i2), f4);
-        rectF2.set(gl.U1(this.r, i, i2), 0.0f, gl.U1(this.r, L3, L), L << 1);
-        path.arcTo(rectF2, -180.0f, 90.0f);
-        path.close();
-        if (this.n != 0.0f) {
-            rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.saveLayerAlpha(rectF2, (int) ((1.0f - this.n) * 255.0f), 31);
-        }
-        canvas.save();
-        s33 s33Var = s33.f;
-        canvas.translate(s33Var.getInterpolation(this.r) * gl.L(32.0f), rectF.top);
-        canvas.drawPath(path, this.a);
-        canvas.restore();
-        float f5 = (e - e2) / (e3 - e2);
-        float f6 = L2 * 1.5f;
-        a(s33Var.getInterpolation(this.r) * gl.L(32.0f), moe.a(tb4.A(1.0f, f5, rectF.height(), rectF.top), rectF.top + f4, rectF.bottom - Math.min(f6, f4)), gl.R1(gl.L(12.0f), gl.R1(Math.min(f6, f4), f4, f5), this.r), canvas, false);
-        if (this.K && this.r != 0.0f && this.w && this.F != null) {
-            c79 c79Var = this.F;
-            float f7 = c79Var.c.g.a;
-            a(getWidth() / 2.0f, getHeight() / 2.0f, c79Var.getCurrentBrush().g() * b00.w(f7, 0.043945312f, e, 0.00390625f * f7) * this.F.getCurrentBrush().f(), canvas, true);
-        }
-        if (this.n != 0.0f) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        int height = (int) (getHeight() * 0.3f);
-        this.e.set(0.0f, (getHeight() - height) / 2.0f, gl.L(32.0f), (getHeight() + height) / 2.0f);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.a).onTouchEvent(motionEvent);
-        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
-            return onTouchEvent;
-        }
-        this.f = false;
-        invalidate();
-        return onTouchEvent;
-    }
-
-    public void setBrushWeight(float f) {
-        this.I.c = f;
-        invalidate();
-    }
-
-    public void setColorSwatch(mcb mcbVar) {
-        this.I = mcbVar;
-        invalidate();
-    }
-
-    public void setDrawCenter(boolean z) {
-        this.K = z;
-        invalidate();
-    }
-
-    public void setOnUpdate(Runnable runnable) {
-        this.J = runnable;
-    }
-
-    public void setRenderView(c79 c79Var) {
-        this.F = c79Var;
-    }
-
-    public void setShowPreview(boolean z) {
-        this.w = z;
-        invalidate();
-    }
-
-    public void setValueOverride(yt7 yt7Var) {
-        this.L = yt7Var;
-        invalidate();
-    }
-
-    public void setViewHidden(boolean z) {
-        this.h = z;
-        invalidate();
+        e.addOnFailureListener(new s9d((byte) 4));
     }
 }

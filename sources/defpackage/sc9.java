@@ -1,71 +1,59 @@
 package defpackage;
 
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
-public final class sc9 implements Runnable {
-    public final byte a;
-    public final hd9 b;
-    public final lk0 c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class sc9 extends a8c {
+    public static final int b = 0;
 
-    public sc9(hd9 hd9Var, lk0 lk0Var, byte b) {
-        this.a = b;
-        this.b = hd9Var;
-        this.c = lk0Var;
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        lk0 lk0Var = this.c;
-        hd9 hd9Var = this.b;
-        switch (b) {
-            case 0:
-                ye9 ye9Var = hd9Var.Q;
-                ArrayList arrayList = ye9.A4;
-                TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
-                pageblockpullquote.caption = new TL_iv.textEmpty();
-                ye9Var.X4(this.c, pageblockpullquote, 0, 0, false, false);
-                return;
-            case 1:
-                hd9Var.Q.Y4(lk0Var, new TL_iv.pageBlockPreformatted());
-                return;
-            case 2:
-                hd9Var.Q.Y4(lk0Var, new TL_iv.pageBlockFooter());
-                return;
-            case 3:
-                hd9Var.Q.Y4(lk0Var, new TL_iv.pageBlockParagraph());
-                return;
-            case 4:
-                ye9 ye9Var2 = hd9Var.Q;
-                ArrayList arrayList2 = ye9.A4;
-                TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
-                pageblockblockquote.caption = new TL_iv.textEmpty();
-                ye9Var2.X4(this.c, pageblockblockquote, 0, 0, false, false);
-                return;
-            case 5:
-                hd9Var.Q.Z4(lk0Var, 0);
-                return;
-            case 6:
-                hd9Var.Q.Z4(lk0Var, 1);
-                return;
-            case 7:
-                hd9Var.Q.Z4(lk0Var, 2);
-                return;
-            case 8:
-                hd9Var.Q.Z4(lk0Var, 3);
-                return;
-            default:
-                View C1 = hd9Var.Q.C1(lk0Var);
-                boolean z = C1 instanceof pf9;
-                ye9 ye9Var3 = hd9Var.Q;
-                if (z) {
-                    ((pf9) C1).g(lk0Var, ye9Var3.getMapDelegate());
-                    return;
-                } else {
-                    ye9Var3.g3.O(false);
-                    return;
-                }
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        rc9 rc9Var;
+        tc9 tc9Var = (tc9) view;
+        TL_stars.StarGift starGift = (TL_stars.StarGift) b8cVar.H;
+        String str = (String) b8cVar.m;
+        boolean z2 = b8cVar.e;
+        e29 e29Var = tc9Var.c;
+        TLRPC.Document document = starGift.getDocument();
+        if (document != null && ((rc9Var = tc9Var.b0) == null || tc9Var.a0 != document.id)) {
+            tc9Var.a0 = document.id;
+            if (rc9Var != null) {
+                rc9Var.o(e29Var);
+            }
+            tc9Var.b0 = new wl(3, tc9Var.W, document);
         }
+        if (tc9Var.b0 != null && e29Var.isAttachedToWindow()) {
+            tc9Var.b0.b(e29Var);
+        }
+        CharSequence charSequence = starGift.title;
+        if (charSequence == null) {
+            charSequence = "";
+        }
+        if (!TextUtils.isEmpty(str)) {
+            charSequence = hl.u1(charSequence, str, tc9Var.P);
+        }
+        SpannableStringBuilder spannableStringBuilder = charSequence;
+        if (starGift.availability_resale > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) ob6.E(starGift.availability_resale, ','));
+            spannableStringBuilder2.setSpan(new y7c(hl.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        tc9Var.j(spannableStringBuilder, 0, tc9Var.b0);
+        tc9Var.setChecked(z2);
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new tc9(i, vnbVar, context);
     }
 }

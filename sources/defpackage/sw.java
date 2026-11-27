@@ -1,515 +1,353 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.app.Dialog;
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.b;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ActionBar.a;
 import org.telegram.ui.m;
 import org.telegram.ui.o;
-public final class sw implements zf0, vx0 {
-    public ValueAnimator E;
-    public ValueAnimator F;
-    public boolean G;
-    public boolean H;
-    public boolean I;
-    public float J;
-    public boolean K;
-    public final o L;
-    public final on a = new on(null);
-    public d b;
-    public final rw c;
-    public View d;
-    public lx0 e;
-    public boolean f;
-    public boolean h;
-    public boolean n;
-    public boolean r;
-    public boolean s;
-    public g28 w;
-    public float x;
-    public float y;
+public final class sw extends wma implements ey0 {
+    public final Paint g0;
+    public final Paint h0;
+    public final Paint i0;
+    public final Paint j0;
+    public final mm k0;
+    public boolean l0;
+    public final Path m0;
+    public final RectF n0;
+    public final RectF o0;
+    public final Path p0;
+    public boolean q0;
+    public final tw r0;
 
-    public sw(o oVar, d dVar) {
-        this.L = oVar;
-        this.b = dVar;
-        dVar.getResourceProvider();
-        rw rwVar = new rw(this, dVar.getContext());
-        this.c = rwVar;
-        new mv5(rwVar, true, new be2(this, (byte) 4));
+    public sw(tw twVar, Context context) {
+        super(context, null);
+        this.r0 = twVar;
+        this.g0 = new Paint(1);
+        this.h0 = new Paint(1);
+        this.i0 = new Paint(1);
+        this.j0 = new Paint(1);
+        new Paint(1);
+        this.k0 = new mm(this, 0L, 420L, k43.h);
+        this.m0 = new Path();
+        this.n0 = new RectF();
+        this.o0 = new RectF();
+        this.p0 = new Path();
     }
 
-    public final void A() {
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z;
+        boolean z2;
+        boolean z3;
+        int i;
         float f;
-        View view = this.d;
-        if (view == null) {
+        boolean z4;
+        int i2;
+        boolean z5;
+        tw twVar = this.r0;
+        o oVar = twVar.L;
+        if (this.l0) {
             return;
         }
-        float w = w();
-        float f2 = 1.0f - this.x;
-        if (this.n) {
-            f = 0.0f;
+        float min = Math.min(twVar.x, 1.0f - twVar.y);
+        Paint paint = this.g0;
+        paint.setColor(-16777216);
+        paint.setAlpha((int) ((1.0f - twVar.J) * 96.0f * min));
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        int x = twVar.x() - hl.L(20.0f);
+        if (x < a.getCurrentActionBarHeight() + hl.m && min > 0.95f) {
+            z = true;
         } else {
-            f = this.y;
+            z = false;
         }
-        view.setTranslationY(Math.max(f2, f) * w);
-        this.c.invalidate();
-    }
-
-    @Override
-    public final void a(boolean z) {
-        if (this.h) {
-            return;
+        if (twVar.G != z) {
+            twVar.G = z;
+            twVar.t();
         }
-        this.h = true;
-        this.n = z;
-        if (z) {
-            LaunchActivity.H1.x0.b(this);
+        float d = this.k0.d(z);
+        boolean z6 = twVar.H;
+        int i3 = (d > 0.999f ? 1 : (d == 0.999f ? 0 : -1));
+        if (i3 >= 0) {
+            z2 = true;
         } else {
-            m(true, new b1(this, (byte) 24));
+            z2 = false;
         }
-        s();
-        r();
-    }
-
-    @Override
-    public final void b(boolean z) {
-        this.K = z;
-        o oVar = this.L;
-        oVar.v0[0].setLastVisible(z);
-        oVar.v0[1].setLastVisible(false);
-    }
-
-    @Override
-    public final px0 c() {
-        int w0;
-        int w02;
-        float progress;
-        px0 px0Var = new px0();
-        o oVar = this.L;
-        px0Var.E = oVar.i0.getTitle();
-        px0Var.J = oVar;
-        m mVar = oVar.v0[0];
-        Bitmap bitmap = null;
-        if (mVar != null && gba.s0) {
-            w0 = mVar.getActionBarColor();
-        } else {
-            w0 = bkb.w0(null, bkb.Fl, false);
-        }
-        px0Var.q = w0;
-        m mVar2 = oVar.v0[0];
-        if (mVar2 != null && gba.s0) {
-            w02 = mVar2.getBackgroundColor();
-        } else {
-            w02 = bkb.w0(null, bkb.Fl, false);
-        }
-        px0Var.r = w02;
-        px0Var.n = true;
-        if (!this.G) {
-            progress = 0.0f;
-        } else {
-            progress = oVar.v0[0].getProgress();
-        }
-        px0Var.I = progress;
-        m mVar3 = oVar.v0[0];
-        px0Var.c = mVar3;
-        if (mVar3 != null && mVar3.getWebView() != null) {
-            bitmap = oVar.v0[0].getWebView().getFavicon();
-        }
-        px0Var.F = bitmap;
-        m mVar4 = px0Var.c;
-        if (mVar4 != null) {
-            px0Var.g = mVar4.getWidth();
-            px0Var.h = px0Var.c.getHeight();
-        }
-        px0Var.i = x();
-        px0Var.D = bkb.I.o();
-        return px0Var;
-    }
-
-    @Override
-    public final wx0 mo23d() {
-        return this.c;
-    }
-
-    @Override
-    public final void dismiss() {
-        a(true);
-    }
-
-    @Override
-    public final int e(int i) {
-        float min;
-        if (this.n) {
-            min = 0.0f;
-        } else {
-            min = Math.min(this.x, 1.0f - this.y) * (1.0f - this.J);
-        }
-        int v = v();
-        wt wtVar = this.L.i0;
-        if (wtVar != null) {
-            v = bm2.f(wtVar.b0, v, wtVar.y);
-        }
-        return bm2.f(min, i, v);
-    }
-
-    @Override
-    public final boolean f() {
-        float min;
-        int f;
-        float f2 = 0.0f;
-        if (this.n) {
-            min = 0.0f;
-        } else {
-            min = (1.0f - this.J) * Math.min(this.x, 1.0f - this.y);
-        }
-        if (this.G && min > 0.25f) {
-            if (!gba.s0) {
-                f = bkb.w0(null, bkb.Fl, false);
+        if (z6 != z2) {
+            if (i3 >= 0) {
+                z5 = true;
             } else {
-                o oVar = this.L;
-                if (oVar.v0[0].getVisibility() == 0) {
-                    f2 = 1.0f - (oVar.v0[0].getTranslationX() / oVar.v0[0].getWidth());
-                }
-                f = bm2.f(1.0f - f2, oVar.v0[0].getActionBarColor(), oVar.v0[1].getActionBarColor());
+                z5 = false;
             }
-            if (gl.B(f) >= 0.721f) {
+            twVar.H = z5;
+            twVar.r();
+        }
+        int U1 = hl.U1(Utilities.l(d), x, 0);
+        float max = Math.max(1.0f - twVar.x, twVar.y) * twVar.w();
+        canvas.save();
+        canvas.translate(getWidth() * twVar.J, max);
+        float f2 = U1;
+        int height = getHeight();
+        RectF rectF = this.n0;
+        rectF.set(0.0f, f2, getWidth(), hl.L(16.0f) + height);
+        float f3 = 1.0f - d;
+        float L = hl.L(24.0f) * f3;
+        int i4 = (d > 1.0f ? 1 : (d == 1.0f ? 0 : -1));
+        if (i4 < 0) {
+            Paint paint2 = this.h0;
+            paint2.setColor(0);
+            i = 0;
+            z3 = z;
+            f = 0.0f;
+            paint2.setShadowLayer(hl.L(18.0f), 0.0f, -hl.L(3.0f), aob.p1(min * 0.26f, -16777216));
+            canvas.drawRoundRect(rectF, L, L, paint2);
+        } else {
+            z3 = z;
+            i = 0;
+            f = 0.0f;
+        }
+        if (L <= f) {
+            canvas.clipRect(rectF);
+        } else {
+            Path path = this.m0;
+            path.rewind();
+            path.addRoundRect(rectF, L, L, Path.Direction.CW);
+            canvas.clipPath(path);
+        }
+        int backgroundColor = oVar.v0[1].getBackgroundColor();
+        Paint paint3 = this.i0;
+        paint3.setColor(backgroundColor);
+        canvas.drawRect(rectF, paint3);
+        paint3.setColor(oVar.v0[i].getBackgroundColor());
+        RectF rectF2 = hl.P;
+        rectF2.set(rectF);
+        rectF2.left = oVar.v0[i].getX();
+        canvas.drawRect(rectF2, paint3);
+        xt xtVar = oVar.i0;
+        if (z3 && hl.L(20.0f) + x <= hl.m + oVar.K0) {
+            z4 = true;
+        } else {
+            z4 = i;
+        }
+        xtVar.t0 = z4;
+        if (d > 0.0f) {
+            canvas.save();
+            float U12 = hl.U1(d, hl.L(20.0f) + x + 1, i);
+            canvas.translate(0.0f, U12);
+            oVar.i0.a(canvas, uh9.w(20.0f, x, 1) - U12, d, true);
+            canvas.restore();
+        }
+        canvas.translate(0.0f, -max);
+        if (!hl.m0 && (!oVar.v0[0].e() || canvas.isHardwareAccelerated())) {
+            super.dispatchDraw(canvas);
+        }
+        canvas.translate(0.0f, max);
+        if (i4 < 0) {
+            if (hl.B(twVar.v()) < 0.721f) {
+                i2 = -1;
+            } else {
+                i2 = -16777216;
+            }
+            int f4 = vm2.f(d, aob.p1(0.15f, i2), -16777216);
+            Paint paint4 = this.j0;
+            paint4.setColor(f4);
+            paint4.setAlpha((int) (paint4.getAlpha() * f3));
+            float width = getWidth() / 2.0f;
+            float L2 = ((hl.L(20.0f) / 2.0f) + f2) - (hl.L(8.0f) * d);
+            float U13 = hl.U1(d, hl.L(32.0f), hl.L(48.0f)) / 2.0f;
+            rectF.set(width - U13, L2 - hl.L(2.0f), width + U13, L2 + hl.L(2.0f));
+            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint4);
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int x;
+        if (motionEvent.getAction() == 0) {
+            float y = motionEvent.getY();
+            tw twVar = this.r0;
+            if (twVar.G) {
+                x = 0;
+            } else {
+                x = twVar.x();
+            }
+            if (y < x) {
+                twVar.a(true);
                 return true;
             }
         }
-        return false;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean h() {
-        if (this.H && this.y <= 0.0f && this.x >= 1.0f && this.J <= 0.0f && !this.n && !this.h) {
-            return true;
+    public RectF getRect() {
+        int x;
+        tw twVar = this.r0;
+        if (twVar.G) {
+            x = 0;
+        } else {
+            x = twVar.x() - hl.L(20.0f);
         }
-        return false;
+        float max = Math.max(1.0f - twVar.x, twVar.y) * twVar.w();
+        RectF rectF = this.o0;
+        rectF.set(0.0f, max + x, getWidth(), getHeight());
+        return rectF;
     }
 
     @Override
-    public final boolean i() {
-        return this.f;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.r0.A();
     }
 
     @Override
-    public final defpackage.u21 j() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sw.j():u21");
+    public final boolean onNestedPreFling(View view, float f, float f2) {
+        boolean z;
+        boolean onNestedPreFling = super.onNestedPreFling(view, f, f2);
+        tw twVar = this.r0;
+        o oVar = twVar.L;
+        if (!oVar.Q0.w()) {
+            m mVar = oVar.v0[0];
+            if (mVar.b()) {
+                z = !mVar.b.canScrollVertically(-1);
+            } else {
+                z = false;
+            }
+            if (z && f2 < -1000.0f) {
+                twVar.a(true);
+            } else {
+                twVar.m(false, null);
+            }
+        }
+        if (f != 0.0f || f2 != 0.0f) {
+            amb ambVar = oVar.Q0;
+            hl.r(ambVar.f0);
+            ambVar.z = false;
+        }
+        this.q0 = true;
+        return onNestedPreFling;
     }
 
     @Override
-    public final boolean k(lx0 lx0Var) {
-        this.e = lx0Var;
-        if (lx0Var != null) {
-            this.f = true;
+    public final void onNestedPreScroll(View view, int i, int i2, int[] iArr) {
+        boolean z;
+        boolean z2;
+        tw twVar = this.r0;
+        o oVar = twVar.L;
+        if (!twVar.I) {
+            if (i2 != 0) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            twVar.I = z2;
+        }
+        m mVar = oVar.v0[0];
+        if (mVar.b()) {
+            z = !mVar.b.canScrollVertically(-1);
+        } else {
+            z = false;
+        }
+        if (z && !oVar.Q0.w()) {
+            iArr[1] = Math.min((int) (twVar.w() * twVar.y), i2);
+            twVar.y = Utilities.i(twVar.y - (i2 / twVar.w()), 1.0f, 0.0f);
+            twVar.A();
+            twVar.r();
+        }
+        if (i == 0 && i2 == 0) {
+            return;
+        }
+        amb ambVar = oVar.Q0;
+        hl.r(ambVar.f0);
+        ambVar.z = false;
+    }
+
+    @Override
+    public final boolean onStartNestedScroll(View view, View view2, int i) {
+        this.q0 = false;
+        if (i != 2) {
+            return false;
         }
         return true;
     }
 
-    public final ValueAnimator l(float f) {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.J, f);
-        ofFloat.addUpdateListener(new pw(this, (byte) 0));
-        return ofFloat;
-    }
-
-    public final void m(boolean z, b1 b1Var) {
-        float f;
-        ValueAnimator valueAnimator = this.F;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        float f2 = this.y;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
-        this.F = ofFloat;
-        ofFloat.addUpdateListener(new pw(this, (byte) 2));
-        this.F.addListener(new qw(this, z, b1Var, (byte) 0));
-        this.F.setInterpolator(s33.h);
-        this.F.setDuration(250L);
-        this.F.start();
-    }
-
     @Override
-    public final void n(Runnable runnable) {
-        this.w = (g28) runnable;
-    }
-
-    public final void o() {
-        ValueAnimator valueAnimator = this.E;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.x, 1.0f);
-        this.E = ofFloat;
-        ofFloat.addUpdateListener(new pw(this, (byte) 1));
-        this.E.addListener(new g0(this, (byte) 13));
-        this.E.setInterpolator(s33.h);
-        this.E.setDuration(320L);
-        this.E.start();
-    }
-
-    public final void p(d dVar) {
-        mu1 mu1Var;
-        ar1 ar1Var;
-        this.r = false;
-        this.b = dVar;
-        dVar.getResourceProvider();
-        if ((dVar instanceof mu1) && (ar1Var = (mu1Var = (mu1) dVar).a0) != null) {
-            ar1Var.S();
-            mu1Var.a0.K0(true, false, true);
-        }
-        lx0 lx0Var = this.e;
-        if (lx0Var != null) {
-            if (!lx0Var.e) {
-                lx0Var.e = true;
-                try {
-                    lx0Var.show();
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                }
-            }
-        } else {
-            rw rwVar = this.c;
-            gl.B2(rwVar);
-            if (dVar.getLayoutContainer() != null) {
-                dVar.getLayoutContainer().addView(rwVar);
-            }
-        }
-        o oVar = this.L;
-        m mVar = oVar.v0[0];
-        if (mVar != null && mVar.G) {
-            if (mVar.getWebView() != null) {
-                mVar.getWebView().onResume();
-            }
-            mVar.G = false;
-        }
-        m mVar2 = oVar.v0[1];
-        if (mVar2 != null && mVar2.G) {
-            if (mVar2.getWebView() != null) {
-                mVar2.getWebView().onResume();
-            }
-            mVar2.G = false;
-        }
-        o.d1.add(oVar);
-    }
-
-    @Override
-    public final void q() {
-        o oVar = this.L;
-        if (oVar.p0) {
-            gl.t1(this.c);
-            return;
-        }
-        wt wtVar = oVar.i0;
-        if (wtVar.U) {
-            wtVar.h(false);
-        } else if (wtVar.a0) {
-            wtVar.k(false);
-        } else {
-            if (oVar.G()) {
-                m mVar = oVar.v0[0];
-                if (mVar.s) {
-                    if (mVar.e() && mVar.getWebView() != null) {
-                        mVar.getWebView().goBack();
-                        return;
-                    }
-                    return;
-                }
-            }
-            if (oVar.e0.size() > 1) {
-                oVar.D();
+    public final void onStopNestedScroll(View view) {
+        tw twVar = this.r0;
+        twVar.I = false;
+        if (!this.q0 && !twVar.L.Q0.w()) {
+            if (twVar.y > 0.25f) {
+                twVar.a(true);
             } else {
-                a(false);
+                twVar.m(false, null);
             }
         }
+        super.onStopNestedScroll(view);
     }
 
-    public final void r() {
-        if (this.s != h()) {
-            this.s = h();
-            if (this.b.getParentLayout() instanceof ActionBarLayout) {
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.b.getParentLayout();
-                b bVar = actionBarLayout.s;
-                if (bVar != null) {
-                    bVar.invalidate();
-                }
-                b bVar2 = actionBarLayout.x;
-                if (bVar2 != null) {
-                    bVar2.invalidate();
-                    return;
-                }
-                return;
-            }
-            rw rwVar = this.c;
-            if (rwVar.getParent() instanceof View) {
-                ((View) rwVar.getParent()).invalidate();
-            }
+    @Override
+    public void setDrawingFromOverlay(boolean z) {
+        if (this.l0 != z) {
+            this.l0 = z;
+            invalidate();
         }
     }
 
     @Override
-    public final void release() {
-        this.r = true;
-        o oVar = this.L;
-        m[] mVarArr = oVar.v0;
-        m mVar = mVarArr[0];
-        if (mVar != null && mVar.h) {
-            iw iwVar = mVar.e;
-            iwVar.setSwipeOffsetY((-iwVar.f) + iwVar.e);
-            mVarArr = oVar.v0;
-            mVarArr[0].h = false;
-        }
-        m mVar2 = mVarArr[0];
-        if (mVar2 != null && !mVar2.G) {
-            if (mVar2.getWebView() != null) {
-                mVar2.getWebView().onPause();
-            }
-            mVar2.G = true;
-        }
-        m mVar3 = oVar.v0[1];
-        if (mVar3 != null && !mVar3.G) {
-            if (mVar3.getWebView() != null) {
-                mVar3.getWebView().onPause();
-            }
-            mVar3.G = true;
-        }
-        lx0 lx0Var = this.e;
-        if (lx0Var != null) {
-            lx0Var.b();
-        }
-        this.b.removeSheet(this);
-        if (this.e == null) {
-            gl.B2(this.c);
-        }
-        g28 g28Var = this.w;
-        if (g28Var != null) {
-            g28Var.run();
-            this.w = null;
-        }
-        o.d1.remove(oVar);
-    }
-
-    public final void s() {
-        View view;
-        lx0 lx0Var = this.e;
-        rw rwVar = this.c;
-        if (lx0Var != null) {
-            view = lx0Var.b;
-        } else {
-            view = rwVar;
-        }
-        gl.m3(view, f());
-        lx0 lx0Var2 = this.e;
-        boolean z = false;
-        if (lx0Var2 != null) {
-            int e = lx0Var2.a.e(bkb.w0(null, bkb.Z6, false));
-            lx0Var2.d.setColor(e);
-            lx0Var2.c.invalidate();
-            gl.o3(lx0Var2, e, true, null);
-            if (gl.B(e) >= 0.721f) {
-                z = true;
-            }
-            gl.i3(lx0Var2, z);
-            LaunchActivity.H1.H(true, true, true);
-            return;
-        }
-        LaunchActivity.H1.H(true, true, true);
-        if (gl.B(e(bkb.w0(null, bkb.Z6, false))) >= 0.721f) {
-            z = true;
-        }
-        gl.j3(rwVar, z);
-    }
-
-    @Override
-    public final boolean t() {
-        rw rwVar;
-        if (!this.h && !this.r && this.x > 0.5f && (rwVar = this.c) != null && rwVar.isAttachedToWindow()) {
-            if (gl.U1(Utilities.l(rwVar.q0.c), rwVar.x0.x() - gl.L(20.0f), 0) < rwVar.getHeight() && this.J < 1.0f) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean u(Dialog dialog) {
-        return false;
-    }
-
-    public final int v() {
-        float translationX;
-        if (!gba.s0) {
-            return bkb.w0(null, bkb.Il, false);
-        }
-        o oVar = this.L;
-        if (oVar.v0[0].getVisibility() != 0) {
-            translationX = 0.0f;
-        } else {
-            translationX = 1.0f - (oVar.v0[0].getTranslationX() / oVar.v0[0].getWidth());
-        }
-        return bm2.f(1.0f - translationX, oVar.v0[0].getBackgroundColor(), oVar.v0[1].getBackgroundColor());
-    }
-
-    public final int w() {
-        int height;
-        int L = gl.L(16.0f);
-        View view = this.d;
-        if (view == null) {
-            height = gl.q.y;
-        } else {
-            height = view.getHeight();
-        }
-        return de9.f(20.0f, x(), L + height);
-    }
-
-    public final int x() {
-        float f;
-        o oVar = this.L;
+    public final float y(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2) {
+        rectF2.set(getRect());
+        hl.X1(rectF2, rectF, f, rectF2);
+        tw twVar = this.r0;
+        o oVar = twVar.L;
+        float min = Math.min(twVar.x, 1.0f - twVar.y);
+        float f3 = 1.0f - f;
+        Paint paint = this.g0;
+        paint.setColor(-16777216);
+        paint.setAlpha((int) ((1.0f - twVar.J) * min * f3 * 96.0f));
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        float U1 = hl.U1(f, hl.L(16.0f), hl.L(18.0f));
         int i = 0;
-        m mVar = oVar.v0[0];
-        if (mVar != null && mVar.getVisibility() == 0) {
-            f = 1.0f - (oVar.v0[0].getTranslationX() / oVar.v0[0].getWidth());
-        } else {
-            f = 0.0f;
+        int w0 = aob.w0(null, aob.d6, false);
+        Paint paint2 = this.i0;
+        paint2.setColor(w0);
+        Path path = this.p0;
+        path.rewind();
+        path.addRoundRect(rectF2, U1, U1, Path.Direction.CW);
+        canvas.drawPath(path, paint2);
+        if (getChildCount() == 1) {
+            if (twVar.G) {
+                canvas.save();
+                canvas.clipPath(path);
+                canvas.translate(0.0f, rectF2.top);
+                oVar.i0.draw(canvas);
+                canvas.restore();
+            }
+            View childAt = getChildAt(0);
+            canvas.save();
+            float R1 = hl.R1(1.0f, 0.99f, f);
+            float f4 = R1 - 1.0f;
+            if (Math.abs(f4) > 0.01f) {
+                canvas.scale(R1, R1, rectF2.centerX(), rectF2.centerY());
+            }
+            canvas.clipPath(path);
+            if (Math.abs(f4) > 0.01f) {
+                float f5 = 1.0f / R1;
+                canvas.scale(f5, f5, rectF2.centerX(), rectF2.centerY());
+            }
+            float f6 = (-twVar.x()) + rectF2.top;
+            if (twVar.G) {
+                i = oVar.i0.getMeasuredHeight();
+            }
+            canvas.translate(0.0f, (i * f3) + f6);
+            childAt.draw(canvas);
+            canvas.restore();
         }
-        float f2 = 1.0f - f;
-        m mVar2 = oVar.v0[0];
-        if (mVar2 != null && mVar2.getVisibility() == 0) {
-            i = (int) (oVar.v0[0].getAlpha() * oVar.v0[0].getListTop() * f);
-        }
-        m mVar3 = oVar.v0[1];
-        if (mVar3 != null && mVar3.getVisibility() == 0) {
-            return i + ((int) (oVar.v0[1].getAlpha() * oVar.v0[1].getListTop() * f2));
-        }
-        return i;
-    }
-
-    public final void y() {
-        o oVar = this.L;
-        oVar.v0[0].setLastVisible(this.K);
-        oVar.v0[1].setLastVisible(false);
-    }
-
-    @Override
-    public final boolean z() {
-        return this.c.isAttachedToWindow();
-    }
-
-    @Override
-    public final View d() {
-        return this.c;
-    }
-
-    @Override
-    public final void g(int i) {
+        return U1;
     }
 }

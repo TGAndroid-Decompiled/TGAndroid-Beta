@@ -1,93 +1,41 @@
 package defpackage;
+public final class tfc implements Runnable {
+    public final byte a = 0;
+    public final k7b b;
+    public final long c;
+    public final int d;
 
-import android.view.View;
-import org.telegram.messenger.voip.VoIPService;
-public final class tfc implements View.OnClickListener {
-    public final byte a;
-    public final hgc b;
-
-    public tfc(hgc hgcVar, byte b) {
-        this.a = b;
-        this.b = hgcVar;
+    public tfc(k7b k7bVar, int i, long j) {
+        this.b = k7bVar;
+        this.d = i;
+        this.c = j;
     }
 
     @Override
-    public final void onClick(View view) {
-        VoIPService sharedInstance;
+    public final void run() {
         byte b = this.a;
-        int i = 1;
-        hgc hgcVar = this.b;
+        int i = this.d;
+        long j = this.c;
+        k7b k7bVar = this.b;
         switch (b) {
             case 0:
-                if (VoIPService.getSharedInstance() != null) {
-                    gl.r(hgcVar.S0);
-                    hgcVar.R0 = false;
-                    VoIPService.getSharedInstance().hangUp();
-                    return;
-                }
-                return;
-            case 1:
-                if (hgcVar.n0 && hgcVar.m0 && System.currentTimeMillis() - hgcVar.K0 > 500) {
-                    gl.r(hgcVar.S0);
-                    hgcVar.R0 = false;
-                    hgcVar.K0 = System.currentTimeMillis();
-                    hgcVar.a0.setRelativePosition(hgcVar.Z);
-                    hgcVar.b0 = true;
-                    hgcVar.H0 = true;
-                    hgcVar.q0 = hgcVar.p0;
-                    hgcVar.y();
-                    return;
-                }
-                return;
-            case 2:
-                if (hgcVar.H0 && System.currentTimeMillis() - hgcVar.K0 > 500) {
-                    gl.r(hgcVar.S0);
-                    hgcVar.R0 = false;
-                    hgcVar.K0 = System.currentTimeMillis();
-                    hgcVar.Z.setRelativePosition(hgcVar.a0);
-                    hgcVar.b0 = false;
-                    hgcVar.H0 = false;
-                    hgcVar.q0 = hgcVar.p0;
-                    hgcVar.y();
-                    return;
-                }
-                return;
-            case 3:
-                if (System.currentTimeMillis() - hgcVar.K0 >= 500) {
-                    hgcVar.K0 = System.currentTimeMillis();
-                    boolean z = hgcVar.C0;
-                    if (!z && hgcVar.B0) {
-                        hgcVar.c(!z);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                if (System.currentTimeMillis() - hgcVar.K0 >= 500) {
-                    hgcVar.K0 = System.currentTimeMillis();
-                    if (hgcVar.B0) {
-                        hgcVar.c(!hgcVar.C0);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                if (hgcVar.L.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
-                    hgcVar.s();
-                    if (sharedInstance.isBluetoothOn()) {
-                        i = 2;
-                    } else if (sharedInstance.isSpeakerphoneOn()) {
-                        i = 0;
-                    }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(hgcVar.b, false, Integer.valueOf(i));
-                    return;
-                }
+                String str = gcc.a;
+                ea3 ea3Var = ((n64) ((vfc) k7bVar.c)).a.s;
+                uj R = ea3Var.R((vz6) ea3Var.d.e);
+                ea3Var.V(R, 1018, new aa3(R, i, j));
                 return;
             default:
-                hgcVar.g();
+                String str2 = gcc.a;
+                ea3 ea3Var2 = ((n64) ((vfc) k7bVar.c)).a.s;
+                uj R2 = ea3Var2.R((vz6) ea3Var2.d.e);
+                ea3Var2.V(R2, 1021, new aa3(R2, j, i));
                 return;
         }
+    }
+
+    public tfc(k7b k7bVar, long j, int i) {
+        this.b = k7bVar;
+        this.c = j;
+        this.d = i;
     }
 }

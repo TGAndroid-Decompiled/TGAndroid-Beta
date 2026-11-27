@@ -1,149 +1,125 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public abstract class of0 implements fw2, cx2, Serializable {
-    private final fw2 completion;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+public final class of0 {
+    public int a;
+    public boolean b;
+    public int c;
+    public Object d;
+    public Object e;
+    public final Object f;
+    public final Object g;
+    public final Object h;
 
-    public of0(fw2 fw2Var) {
-        this.completion = fw2Var;
+    public of0(xt xtVar) {
+        this.h = xtVar;
+        hn hnVar = new hn(true, true, true);
+        this.d = hnVar;
+        hn hnVar2 = new hn(true, true, true);
+        this.e = hnVar2;
+        this.f = new mm(xtVar, 0L, 300L, k43.h);
+        this.b = false;
+        hnVar.L = true;
+        hnVar.w(hl.L(18.33f));
+        hnVar.B = 0.6f;
+        hnVar.x(hl.o());
+        hnVar.q(false);
+        hnVar.setCallback(xtVar);
+        hnVar.N = 9999999;
+        hnVar2.L = true;
+        hnVar2.w(hl.L(14.0f));
+        hnVar2.q(false);
+        hnVar2.setCallback(xtVar);
+        hnVar2.N = 9999999;
+        this.g = xtVar.getContext().getResources().getDrawable(2131232874).mutate();
     }
 
-    public fw2 create(fw2 fw2Var) {
-        fw2Var.getClass();
-        throw new UnsupportedOperationException("create(Continuation) has not been overridden");
-    }
-
-    @Override
-    public cx2 getCallerFrame() {
-        fw2 fw2Var = this.completion;
-        if (fw2Var instanceof cx2) {
-            return (cx2) fw2Var;
+    public final void a(Canvas canvas, float f, float f2, float f3) {
+        Drawable drawable = (Drawable) this.g;
+        xt xtVar = (xt) this.h;
+        RectF rectF = xtVar.a;
+        rectF.set(0.0f, 0.0f, f, f2);
+        canvas.saveLayerAlpha(rectF, (int) (f3 * 255.0f), 31);
+        hn hnVar = (hn) this.d;
+        float i = hnVar.i();
+        hn hnVar2 = (hn) this.e;
+        float i2 = hnVar2.i();
+        TextPaint textPaint = hnVar2.a;
+        float f4 = i2 * i;
+        canvas.save();
+        float f5 = 0.82f * f2;
+        canvas.translate(0.0f, qd4.A(1.0f, xtVar.H, f5, -hl.L(1.0f)));
+        canvas.translate(0.0f, (-hl.L(4.0f)) * f4);
+        float R1 = hl.R1(1.0f, 0.86f, f4) * xtVar.H;
+        canvas.scale(R1, R1, 0.0f, 0.0f);
+        hnVar.o(0.0f, 0.0f, f, f2);
+        hnVar.draw(canvas);
+        canvas.restore();
+        float d = ((mm) this.f).d(this.b);
+        canvas.save();
+        canvas.translate(0.0f, qu6.B(1.0f, f4, hl.L(4.0f), (hl.L(14.0f) * f4) + ((1.0f - xtVar.H) * f5 * f4) + (-hl.L(1.0f))));
+        float R12 = hl.R1(1.15f, 0.9f, f4) * xtVar.H;
+        canvas.scale(R12, R12, 0.0f, 0.0f);
+        hnVar2.u(vm2.f(d, this.a, aob.w0(null, aob.q7, false)));
+        if (d > 0.0f) {
+            if (this.c != textPaint.getColor()) {
+                int color = textPaint.getColor();
+                this.c = color;
+                drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+            }
+            drawable.setAlpha((int) (d * 255.0f));
+            drawable.setBounds(0, ((int) (f2 - hl.L(16.0f))) / 2, hl.L(16.0f), ((int) (hl.L(16.0f) + f2)) / 2);
+            drawable.draw(canvas);
         }
-        return null;
+        hnVar2.o(hl.L(20.0f) * d, 0.0f, f, f2);
+        hnVar2.draw(canvas);
+        canvas.restore();
+        rectF.set(f - hl.L(12.0f), 0.0f, f, f2);
+        xtVar.s0.r(canvas, rectF, 2, 1.0f);
+        canvas.restore();
     }
 
-    public final fw2 getCompletion() {
-        return this.completion;
-    }
-
-    public StackTraceElement getStackTraceElement() {
-        int i;
-        String str;
-        Method method;
-        Object invoke;
-        Method method2;
-        Object invoke2;
-        Object obj;
-        Integer num;
-        int i2;
-        n83 n83Var = (n83) getClass().getAnnotation(n83.class);
-        String str2 = null;
-        if (n83Var == null) {
-            return null;
+    public final Bitmap b(int i, int i2) {
+        Canvas canvas;
+        Paint paint = (Paint) this.g;
+        RectF rectF = (RectF) this.f;
+        int v0 = aob.v0(aob.d6, (vnb) this.h);
+        int i3 = (i + i2) << 10;
+        if (i3 == this.a && !this.b) {
+            if (v0 != this.c && (canvas = (Canvas) this.e) != null && ((Bitmap) this.d) != null) {
+                this.c = v0;
+                canvas.drawColor(v0, PorterDuff.Mode.SRC);
+                ((Canvas) this.e).drawRoundRect(rectF, hl.L(6.0f), hl.L(6.0f), paint);
+            }
+        } else {
+            this.b = false;
+            this.a = i3;
+            this.d = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
+            this.e = new Canvas((Bitmap) this.d);
+            rectF.set(0.0f, 0.0f, i2, i);
+            this.c = v0;
+            ((Canvas) this.e).drawColor(v0);
+            ((Canvas) this.e).drawRoundRect(rectF, hl.L(6.0f), hl.L(6.0f), paint);
         }
-        int v = n83Var.v();
-        if (v <= 1) {
-            int i3 = -1;
-            try {
-                Field declaredField = getClass().getDeclaredField("label");
-                declaredField.setAccessible(true);
-                Object obj2 = declaredField.get(this);
-                if (obj2 instanceof Integer) {
-                    num = (Integer) obj2;
-                } else {
-                    num = null;
-                }
-                if (num != null) {
-                    i2 = num.intValue();
-                } else {
-                    i2 = 0;
-                }
-                i = i2 - 1;
-            } catch (Exception unused) {
-                i = -1;
-            }
-            if (i >= 0) {
-                i3 = n83Var.l()[i];
-            }
-            pe7 pe7Var = tad.b;
-            pe7 pe7Var2 = tad.a;
-            if (pe7Var == null) {
-                try {
-                    pe7 pe7Var3 = new pe7(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    tad.b = pe7Var3;
-                    pe7Var = pe7Var3;
-                } catch (Exception unused2) {
-                    tad.b = pe7Var2;
-                    pe7Var = pe7Var2;
-                }
-            }
-            if (pe7Var != pe7Var2 && (method = pe7Var.a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = pe7Var.b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = pe7Var.c;
-                if (method3 != null) {
-                    obj = method3.invoke(invoke2, null);
-                } else {
-                    obj = null;
-                }
-                if (obj instanceof String) {
-                    str2 = obj;
-                }
-            }
-            if (str2 == null) {
-                str = n83Var.c();
-            } else {
-                str = str2 + '/' + n83Var.c();
-            }
-            return new StackTraceElement(str, n83Var.m(), n83Var.f(), i3);
-        }
-        throw new IllegalStateException(("Debug metadata version mismatch. Expected: 1, got " + v + ". Please update the Kotlin standard library.").toString());
+        return (Bitmap) this.d;
     }
 
-    public Object invokeSuspend(Object obj) {
-        qse.b(obj);
-        return g5c.a;
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        while (true) {
-            of0 of0Var = this;
-            fw2 fw2Var = of0Var.completion;
-            fw2Var.getClass();
-            try {
-                obj = of0Var.invokeSuspend(obj);
-                if (obj == bx2.a) {
-                    return;
-                }
-            } catch (Throwable th) {
-                obj = new sa9(th);
-            }
-            of0Var.releaseIntercepted();
-            if (fw2Var instanceof of0) {
-                this = fw2Var;
-            } else {
-                fw2Var.resumeWith(obj);
-                return;
-            }
-        }
-    }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder("Continuation at ");
-        Object stackTraceElement = getStackTraceElement();
-        if (stackTraceElement == null) {
-            stackTraceElement = getClass().getName();
-        }
-        sb.append(stackTraceElement);
-        return sb.toString();
-    }
-
-    public fw2 create(Object obj, fw2 fw2Var) {
-        fw2Var.getClass();
-        throw new UnsupportedOperationException("create(Any?;Continuation) has not been overridden");
-    }
-
-    public void releaseIntercepted() {
+    public of0(vnb vnbVar) {
+        this.f = new RectF();
+        Paint paint = new Paint(1);
+        this.g = paint;
+        this.a = 0;
+        this.b = true;
+        paint.setColor(0);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.h = vnbVar;
     }
 }

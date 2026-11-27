@@ -1,38 +1,111 @@
 package defpackage;
-public final class k8f extends vef {
-    private static final k8f zzb;
-    private int zzd;
-    private int zze;
-    private int zzf;
-    private boolean zzg;
-    private boolean zzh;
-    private int zzi;
-    private int zzj;
 
-    static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(k8f.class, vefVar);
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+public final class k8f implements Runnable {
+    public final byte a = 1;
+    public final long b;
+    public final Object c;
+    public final Object d;
+
+    public k8f(ijf ijfVar, ywd ywdVar, long j) {
+        gaf gafVar = gaf.UNKNOWN_EVENT;
+        this.c = ijfVar;
+        this.d = ywdVar;
+        this.b = j;
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
+    public final void run() {
+        byte b = this.a;
+        long j = this.b;
+        Object obj = this.d;
+        Object obj2 = this.c;
+        switch (b) {
+            case 0:
+                q8f q8fVar = (q8f) obj2;
+                std stdVar = (std) obj;
+                HashMap hashMap = q8fVar.j;
+                vxe vxeVar = vxe.AGGREGATED_ON_DEVICE_IMAGE_LABEL_DETECTION;
+                if (!hashMap.containsKey(vxeVar)) {
+                    lp2 lp2Var = new lp2((byte) 2);
+                    ?? obj3 = new Object();
+                    if (lp2Var.isEmpty()) {
+                        obj3.c = lp2Var;
+                        hashMap.put(vxeVar, obj3);
+                    } else {
+                        iy8.d();
+                        throw null;
                     }
-                    return new uef(zzb);
                 }
-                return new vef();
-            }
-            return new sgf(zzb, "\u0001\u0006\u0000\u0001\u0001\u0006\u0006\u0000\u0000\u0000\u0001င\u0000\u0002᠌\u0001\u0003ဇ\u0002\u0004ဇ\u0003\u0005᠌\u0004\u0006ဆ\u0005", new Object[]{"zzd", "zze", "zzf", c6e.r, "zzg", "zzh", "zzi", o5f.r, "zzj"});
+                ccd ccdVar = (ccd) hashMap.get(vxeVar);
+                Long valueOf = Long.valueOf(j);
+                lp2 lp2Var2 = ccdVar.c;
+                Collection collection = (Collection) lp2Var2.get(stdVar);
+                if (collection == null) {
+                    ArrayList arrayList = new ArrayList(3);
+                    if (arrayList.add(valueOf)) {
+                        ccdVar.d++;
+                        lp2Var2.put(stdVar, arrayList);
+                    } else {
+                        hz6.e("New Collection violated the Collection spec");
+                        return;
+                    }
+                } else if (collection.add(valueOf)) {
+                    ccdVar.d++;
+                }
+                long elapsedRealtime = SystemClock.elapsedRealtime();
+                if (q8fVar.c(vxeVar, elapsedRealtime)) {
+                    q8fVar.i.put(vxeVar, Long.valueOf(elapsedRealtime));
+                    xnb.c(1, new dhe(q8fVar, (byte) 2));
+                    return;
+                }
+                return;
+            default:
+                ijf ijfVar = (ijf) obj2;
+                gaf gafVar = gaf.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
+                ywd ywdVar = (ywd) obj;
+                HashMap hashMap2 = ijfVar.j;
+                if (!hashMap2.containsKey(gafVar)) {
+                    lp2 lp2Var3 = new lp2((byte) 1);
+                    ?? obj4 = new Object();
+                    if (lp2Var3.isEmpty()) {
+                        obj4.c = lp2Var3;
+                        hashMap2.put(gafVar, obj4);
+                    } else {
+                        iy8.d();
+                        throw null;
+                    }
+                }
+                Long valueOf2 = Long.valueOf(j);
+                lp2 lp2Var4 = ((lmf) hashMap2.get(gafVar)).c;
+                Collection collection2 = (Collection) lp2Var4.get(ywdVar);
+                if (collection2 == null) {
+                    ArrayList arrayList2 = new ArrayList(3);
+                    if (arrayList2.add(valueOf2)) {
+                        lp2Var4.put(ywdVar, arrayList2);
+                    } else {
+                        hz6.e("New Collection violated the Collection spec");
+                        return;
+                    }
+                } else {
+                    collection2.add(valueOf2);
+                }
+                long elapsedRealtime2 = SystemClock.elapsedRealtime();
+                if (ijfVar.d(gafVar, elapsedRealtime2)) {
+                    ijfVar.i.put(gafVar, Long.valueOf(elapsedRealtime2));
+                    xnb.c(1, new dhe(ijfVar));
+                    return;
+                }
+                return;
         }
-        return (byte) 1;
+    }
+
+    public k8f(q8f q8fVar, std stdVar, long j) {
+        this.c = q8fVar;
+        this.d = stdVar;
+        this.b = j;
     }
 }

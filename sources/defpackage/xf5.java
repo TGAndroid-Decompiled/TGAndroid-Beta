@@ -1,206 +1,204 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-public final class xf5 extends HorizontalScrollView {
-    public static final RectF w = new RectF();
-    public final wjb a;
-    public final lm b;
-    public final lm c;
-    public final LinearLayout d;
-    public final Paint e;
-    public final TextPaint f;
-    public boolean h;
-    public int n;
-    public final Path r;
-    public final Path s;
+import android.util.Pair;
+import java.util.List;
+public final class xf5 implements e84 {
+    public final byte a;
+    public final lma b;
+    public g84 c;
+    public e84 d;
+    public Pair e;
+    public final e84 f;
 
-    public xf5(Context context, wjb wjbVar) {
-        super(context);
-        this.e = new Paint(1);
-        TextPaint textPaint = new TextPaint(1);
-        this.f = textPaint;
-        this.r = new Path();
-        this.s = new Path();
-        this.a = wjbVar;
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.d = linearLayout;
-        linearLayout.setLayerType(0, null);
-        linearLayout.setOrientation(0);
-        addView(linearLayout, nme.x(-1, -1, 8388611));
-        textPaint.setTextSize(gl.L(13.0f));
-        textPaint.setTypeface(gl.o());
-        lm lmVar = new lm(new Runnable(this) {
-            public final xf5 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                int i = 0;
-                xf5 xf5Var = this.b;
-                switch (b) {
-                    case 0:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout2 = xf5Var.d;
-                        linearLayout2.invalidate();
-                        while (i < linearLayout2.getChildCount()) {
-                            linearLayout2.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
-                    default:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout3 = xf5Var.d;
-                        linearLayout3.invalidate();
-                        while (i < linearLayout3.getChildCount()) {
-                            linearLayout3.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
+    public xf5(int i, byte b) {
+        pw5 pw5Var;
+        wf5 wf5Var;
+        this.a = b;
+        switch (b) {
+            case 1:
+                this.b = new lma(65496, 2, "image/jpeg");
+                if ((i & 1) == 0) {
+                    pw5Var = new pw5();
+                } else {
+                    pw5Var = null;
                 }
-            }
-        });
-        this.b = lmVar;
-        lmVar.g = 180L;
-        lm lmVar2 = new lm(new Runnable(this) {
-            public final xf5 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final void run() {
-                byte b = r2;
-                int i = 0;
-                xf5 xf5Var = this.b;
-                switch (b) {
-                    case 0:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout2 = xf5Var.d;
-                        linearLayout2.invalidate();
-                        while (i < linearLayout2.getChildCount()) {
-                            linearLayout2.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
-                    default:
-                        xf5Var.invalidate();
-                        LinearLayout linearLayout3 = xf5Var.d;
-                        linearLayout3.invalidate();
-                        while (i < linearLayout3.getChildCount()) {
-                            linearLayout3.getChildAt(i).invalidate();
-                            i++;
-                        }
-                        return;
+                this.f = pw5Var;
+                return;
+            default:
+                this.b = new lma(-1, -1, "image/heif");
+                if ((i & 1) != 0) {
+                    wf5Var = null;
+                } else {
+                    wf5Var = new wf5();
                 }
-            }
-        });
-        this.c = lmVar2;
-        lmVar2.g = 180L;
-        setVerticalScrollBarEnabled(false);
-        setHorizontalScrollBarEnabled(false);
-    }
-
-    public final void a(int i, boolean z) {
-        this.n = i;
-        LinearLayout linearLayout = this.d;
-        boolean z2 = !z;
-        this.b.e(z2, linearLayout.getChildAt(i).getLeft());
-        this.c.e(z2, linearLayout.getChildAt(i).getRight());
-    }
-
-    public final void b(ArrayList arrayList, uc7 uc7Var) {
-        LinearLayout linearLayout = this.d;
-        linearLayout.removeAllViews();
-        for (int i = 0; i < arrayList.size(); i++) {
-            CharSequence charSequence = (CharSequence) arrayList.get(i);
-            sb sbVar = new sb(getContext(), (byte) 15);
-            sbVar.setDrawingCacheEnabled(false);
-            sbVar.setOnClickListener(new wg(this, i, uc7Var, (byte) 8));
-            sbVar.setPadding(gl.L(12.0f), gl.L(5.0f), gl.L(12.0f), gl.L(5.0f));
-            LinearLayout.LayoutParams o = nme.o(-2, -2);
-            if (i < arrayList.size() - 1) {
-                o.rightMargin = gl.L(4.0f);
-            }
-            sbVar.b = new tgb(charSequence, this.f);
-            linearLayout.addView(sbVar, o);
+                this.f = wf5Var;
+                return;
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int v0;
-        int v02;
-        RectF rectF = w;
-        rectF.set(this.b.c(), 0.0f, this.c.c(), getMeasuredHeight());
-        Path path = this.r;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, gl.L(13.0f), gl.L(13.0f), direction);
-        path.close();
-        Path path2 = this.s;
-        path2.rewind();
-        LinearLayout linearLayout = this.d;
-        path2.addRect(0.0f, 0.0f, linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
-        path2.addRoundRect(rectF, gl.L(13.0f), gl.L(13.0f), Path.Direction.CCW);
-        path2.close();
-        boolean z = this.h;
-        wjb wjbVar = this.a;
-        if (z) {
-            v0 = bkb.p1(0.1f, bkb.v0(bkb.Ei, wjbVar));
-        } else {
-            v0 = bkb.v0(bkb.x6, wjbVar) & 520093695;
-        }
-        Paint paint = this.e;
-        paint.setColor(v0);
-        canvas.drawPath(path, paint);
-        int v03 = bkb.v0(bkb.x6, wjbVar);
-        TextPaint textPaint = this.f;
-        textPaint.setColor(v03);
-        canvas.save();
-        canvas.clipPath(path2);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (this.h) {
-            v02 = bkb.v0(bkb.Ei, wjbVar);
-        } else {
-            v02 = bkb.v0(bkb.X8, wjbVar);
-        }
-        textPaint.setColor(v02);
-        canvas.save();
-        canvas.clipPath(path);
-        for (int i = 0; i < linearLayout.getChildCount(); i++) {
-            View childAt = linearLayout.getChildAt(i);
-            if (rectF.right >= childAt.getLeft() && rectF.left <= childAt.getRight()) {
-                canvas.save();
-                canvas.translate(childAt.getLeft(), childAt.getTop());
-                childAt.draw(canvas);
-                canvas.restore();
-            }
-        }
-        canvas.restore();
+    public final e84 a() {
+        byte b = this.a;
+        return this;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        a(this.n, false);
+    public final int b(f84 f84Var, v11 v11Var) {
+        byte b = this.a;
+        e84 e84Var = this.b;
+        boolean z = true;
+        e84 e84Var2 = this.f;
+        switch (b) {
+            case 0:
+                e84 e84Var3 = this.d;
+                if (e84Var3 == null) {
+                    e84 e84Var4 = (wf5) e84Var2;
+                    if (e84Var3 != null) {
+                        z = false;
+                    }
+                    yve.p(z);
+                    e84Var4.getClass();
+                    if (e84Var4.c(f84Var)) {
+                        e84Var = e84Var4;
+                    }
+                    this.d = e84Var;
+                    ((cb3) f84Var).f = 0;
+                    Pair pair = this.e;
+                    if (pair != null) {
+                        e84Var.d(((Long) pair.first).longValue(), ((Long) this.e.second).longValue());
+                        this.e = null;
+                    }
+                    e84 e84Var5 = this.d;
+                    g84 g84Var = this.c;
+                    g84Var.getClass();
+                    e84Var5.f(g84Var);
+                }
+                return this.d.b(f84Var, v11Var);
+            default:
+                e84 e84Var6 = this.d;
+                if (e84Var6 == null) {
+                    e84 e84Var7 = (pw5) e84Var2;
+                    if (e84Var6 != null) {
+                        z = false;
+                    }
+                    yve.p(z);
+                    e84Var7.getClass();
+                    if (e84Var7.c(f84Var)) {
+                        e84Var = e84Var7;
+                    }
+                    this.d = e84Var;
+                    ((cb3) f84Var).f = 0;
+                    Pair pair2 = this.e;
+                    if (pair2 != null) {
+                        e84Var.d(((Long) pair2.first).longValue(), ((Long) this.e.second).longValue());
+                        this.e = null;
+                    }
+                    e84 e84Var8 = this.d;
+                    g84 g84Var2 = this.c;
+                    g84Var2.getClass();
+                    e84Var8.f(g84Var2);
+                }
+                return this.d.b(f84Var, v11Var);
+        }
     }
 
-    public void setAccent(boolean z) {
-        this.h = z;
+    @Override
+    public final boolean c(f84 f84Var) {
+        byte b = this.a;
+        e84 e84Var = this.f;
+        switch (b) {
+            case 0:
+                if (((wf5) e84Var) != null && boe.a((cb3) f84Var, true)) {
+                    return true;
+                }
+                cb3 cb3Var = (cb3) f84Var;
+                cb3Var.f = 0;
+                return boe.a(cb3Var, false);
+            default:
+                pw5 pw5Var = (pw5) e84Var;
+                if (pw5Var != null && pw5Var.c(f84Var)) {
+                    return true;
+                }
+                ((cb3) f84Var).f = 0;
+                return this.b.c(f84Var);
+        }
+    }
+
+    @Override
+    public final void d(long j, long j2) {
+        switch (this.a) {
+            case 0:
+                e84 e84Var = this.d;
+                if (e84Var != null) {
+                    e84Var.d(j, j2);
+                    return;
+                } else {
+                    this.e = Pair.create(Long.valueOf(j), Long.valueOf(j2));
+                    return;
+                }
+            default:
+                e84 e84Var2 = this.d;
+                if (e84Var2 != null) {
+                    e84Var2.d(j, j2);
+                    return;
+                } else {
+                    this.e = Pair.create(Long.valueOf(j), Long.valueOf(j2));
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final List e() {
+        byte b = this.a;
+        no5 no5Var = po5.b;
+        return j99.e;
+    }
+
+    @Override
+    public final void f(g84 g84Var) {
+        byte b = this.a;
+        lma lmaVar = this.b;
+        e84 e84Var = this.f;
+        switch (b) {
+            case 0:
+                this.c = g84Var;
+                if (((wf5) e84Var) == null) {
+                    this.d = lmaVar;
+                    lmaVar.f(g84Var);
+                    return;
+                }
+                return;
+            default:
+                this.c = g84Var;
+                if (((pw5) e84Var) == null) {
+                    this.d = lmaVar;
+                    lmaVar.f(g84Var);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void release() {
+        byte b = this.a;
+        e84 e84Var = this.f;
+        switch (b) {
+            case 0:
+                wf5 wf5Var = (wf5) e84Var;
+                if (wf5Var != null) {
+                    wf5Var.release();
+                    return;
+                }
+                return;
+            default:
+                pw5 pw5Var = (pw5) e84Var;
+                if (pw5Var != null) {
+                    pw5Var.release();
+                    return;
+                }
+                return;
+        }
     }
 }

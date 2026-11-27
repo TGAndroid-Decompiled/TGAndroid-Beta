@@ -45,7 +45,7 @@ public interface EglBase {
             }
             if (this.supportsPixelBuffer) {
                 arrayList.add(12339);
-                arrayList.add(1);
+                arrayList.add(5);
             }
             if (this.isRecordable) {
                 arrayList.add(12610);
@@ -74,7 +74,7 @@ public interface EglBase {
                 this.openGlesVersion = i;
                 return this;
             }
-            w26.j(tb4.n(i, "OpenGL ES version ", " not supported"));
+            lq5.j(qd4.n(i, "OpenGL ES version ", " not supported"));
             return null;
         }
 
@@ -90,6 +90,9 @@ public interface EglBase {
         long getNativeEglContext();
     }
 
+    public interface EglConnection extends RefCounted {
+    }
+
     static {
         int i = c.a;
         CONFIG_PLAIN = new ConfigBuilder().createConfigAttributes();
@@ -98,8 +101,6 @@ public interface EglBase {
         CONFIG_PIXEL_RGBA_BUFFER = new ConfigBuilder().setHasAlphaChannel(true).setSupportsPixelBuffer(true).createConfigAttributes();
         CONFIG_RECORDABLE = new ConfigBuilder().setIsRecordable(true).createConfigAttributes();
     }
-
-    void createBackgroundSurface(SurfaceTexture surfaceTexture);
 
     void createDummyPbufferSurface();
 
@@ -113,23 +114,21 @@ public interface EglBase {
 
     Context getEglBaseContext();
 
-    boolean hasBackgroundSurface();
-
     boolean hasSurface();
-
-    void makeBackgroundCurrent();
 
     void makeCurrent();
 
     void release();
 
-    void releaseSurface(boolean z);
+    void releaseSurface();
+
+    void setDetachSurfaceOnRelease(boolean z);
 
     int surfaceHeight();
 
     int surfaceWidth();
 
-    void swapBuffers(long j, boolean z);
+    void swapBuffers();
 
-    void swapBuffers(boolean z);
+    void swapBuffers(long j);
 }

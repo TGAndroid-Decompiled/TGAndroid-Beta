@@ -1,13 +1,18 @@
 package defpackage;
-public final class r11 extends t11 {
-    public l46 d;
+public interface r11 {
+    boolean a();
 
-    @Override
-    public void setTextColor(int i) {
-        super.setTextColor(i);
-        l46 l46Var = this.d;
-        if (l46Var != null) {
-            l46Var.setTextColor(i);
-        }
-    }
+    void b(float f);
+
+    void c(v21 v21Var);
+
+    boolean d();
+
+    int e(int i);
+
+    boolean f(int i);
+
+    void g(v21 v21Var);
+
+    int h(int i);
 }

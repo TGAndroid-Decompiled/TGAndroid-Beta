@@ -47,7 +47,7 @@ public final class a0 extends FrameLayout {
         int i;
         float f;
         this.J = editorAlert;
-        this.b = gl.L(20.0f);
+        this.b = hl.L(20.0f);
         this.n = new EditTextBoldCursor[4];
         this.s = new float[]{0.0f, 0.0f, 1.0f};
         this.w = 1.0f;
@@ -55,7 +55,7 @@ public final class a0 extends FrameLayout {
         this.I = new DecelerateInterpolator();
         setWillNotDraw(false);
         this.e = new Paint(1);
-        this.f = b00.d(context, 2131231603);
+        this.f = c00.e(context, 2131231603);
         Paint paint = new Paint();
         this.c = paint;
         paint.setAntiAlias(true);
@@ -67,17 +67,17 @@ public final class a0 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.a = linearLayout;
         linearLayout.setOrientation(0);
-        addView(linearLayout, nme.e(-2, -2, 49));
+        addView(linearLayout, tre.e(-2, -2, 49));
         for (int i2 = 0; i2 < 4; i2++) {
             this.n[i2] = new EditTextBoldCursor(context);
             this.n[i2].setInputType(2);
             this.n[i2].setTextColor(-14606047);
             this.n[i2].setCursorColor(-14606047);
-            this.n[i2].setCursorSize(gl.L(20.0f));
+            this.n[i2].setCursorSize(hl.L(20.0f));
             this.n[i2].setCursorWidth(1.5f);
             this.n[i2].setTextSize(1, 18.0f);
             this.n[i2].setBackground(null);
-            zkb.F(this.n[i2], bkb.t5, bkb.u5, bkb.p7, null);
+            yob.F(this.n[i2], aob.u5, aob.v5, aob.q7, null);
             this.n[i2].setMaxLines(1);
             this.n[i2].setTag(Integer.valueOf(i2));
             this.n[i2].setGravity(17);
@@ -105,14 +105,14 @@ public final class a0 extends FrameLayout {
             } else {
                 f = 0.0f;
             }
-            linearLayout2.addView(editTextBoldCursor2, nme.k(0.0f, 0.0f, f, 0.0f, 55, 36));
+            linearLayout2.addView(editTextBoldCursor2, tre.k(0.0f, 0.0f, f, 0.0f, 55, 36));
             this.n[i2].addTextChangedListener(new z(this, i2));
-            this.n[i2].setOnEditorActionListener(new ng((byte) 5));
+            this.n[i2].setOnEditorActionListener(new mh((byte) 5));
         }
     }
 
     public final void a(Canvas canvas, int i, int i2, int i3) {
-        int L = gl.L(13.0f);
+        int L = hl.L(13.0f);
         Drawable drawable = this.f;
         drawable.setBounds(i - L, i2 - L, i + L, L + i2);
         drawable.draw(canvas);
@@ -120,9 +120,9 @@ public final class a0 extends FrameLayout {
         paint.setColor(-1);
         float f = i;
         float f2 = i2;
-        canvas.drawCircle(f, f2, gl.L(11.0f), paint);
+        canvas.drawCircle(f, f2, hl.L(11.0f), paint);
         paint.setColor(i3);
-        canvas.drawCircle(f, f2, gl.L(9.0f), paint);
+        canvas.drawCircle(f, f2, hl.L(9.0f), paint);
     }
 
     public final int b() {
@@ -169,14 +169,14 @@ public final class a0 extends FrameLayout {
         editorAlert.D1 = z;
         AnimatorSet animatorSet2 = new AnimatorSet();
         editorAlert.C1 = animatorSet2;
-        gc gcVar = editorAlert.Z;
-        pn pnVar = rn.d;
+        hc hcVar = editorAlert.Z;
+        qn qnVar = sn.d;
         if (z) {
             i = 0;
         } else {
             i = 51;
         }
-        ObjectAnimator ofInt = ObjectAnimator.ofInt(gcVar, pnVar, i);
+        ObjectAnimator ofInt = ObjectAnimator.ofInt(hcVar, qnVar, i);
         ViewGroup viewGroup = editorAlert.b;
         if (z) {
             f = 0.2f;
@@ -194,7 +194,7 @@ public final class a0 extends FrameLayout {
         char c;
         int i = this.b;
         int width = (getWidth() / 2) - (i << 1);
-        int height = (getHeight() / 2) - gl.L(8.0f);
+        int height = (getHeight() / 2) - hl.L(8.0f);
         Bitmap bitmap = this.h;
         int i2 = this.r;
         canvas.drawBitmap(bitmap, width - i2, height - i2, (Paint) null);
@@ -210,7 +210,7 @@ public final class a0 extends FrameLayout {
         int i3 = this.r;
         int i4 = width + i3 + i;
         int i5 = height - i3;
-        int L = gl.L(9.0f);
+        int L = hl.L(9.0f);
         int i6 = this.r << 1;
         LinearGradient linearGradient = this.y;
         if (linearGradient == null) {
@@ -237,7 +237,7 @@ public final class a0 extends FrameLayout {
         }
         paint.setShader(linearGradient2);
         canvas.drawRect(i8, f3, L + i8, f4, paint);
-        a(canvas, i8 + i7, (int) tb4.A(1.0f, this.w, f5, f3), (Color.HSVToColor(fArr) & 16777215) | (((int) (this.w * 255.0f)) << 24));
+        a(canvas, i8 + i7, (int) qd4.A(1.0f, this.w, f5, f3), (Color.HSVToColor(fArr) & 16777215) | (((int) (this.w * 255.0f)) << 24));
     }
 
     @Override
@@ -249,10 +249,10 @@ public final class a0 extends FrameLayout {
 
     @Override
     public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        int c = b00.c(20.0f, (i / 2) - (this.b << 1), 1);
-        this.r = c;
-        int i5 = c << 1;
-        int i6 = c << 1;
+        int d = c00.d(20.0f, (i / 2) - (this.b << 1), 1);
+        this.r = d;
+        int i5 = d << 1;
+        int i6 = d << 1;
         Bitmap createBitmap = Bitmap.createBitmap(i5, i6, Bitmap.Config.ARGB_8888);
         int[] iArr = new int[13];
         float[] fArr = {0.0f, 1.0f, 1.0f};

@@ -1,18 +1,18 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class ahd {
-    public static final int a = 0;
-
-    static {
-        ahd.class.getClassLoader();
+import j$.util.Objects;
+public final class ahd implements tq2, pjf {
+    public static final CharSequence a(Object obj) {
+        Objects.requireNonNull(obj);
+        if (obj instanceof CharSequence) {
+            return (CharSequence) obj;
+        }
+        return obj.toString();
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
+    @Override
+    public final Object b0(am2 am2Var) {
+        pi2 pi2Var = (pi2) am2Var.a(pi2.class);
+        return new rj2((byte) 0);
     }
 }

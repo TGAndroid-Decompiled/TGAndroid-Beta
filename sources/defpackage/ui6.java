@@ -1,202 +1,89 @@
 package defpackage;
+public final class ui6 {
+    public static final int[][] h = {new int[]{11025, -1, 22050, 44100}, new int[]{12000, -1, 24000, 48000}, new int[]{8000, -1, 16000, 32000}, new int[]{-1, -1, -1, -1}};
+    public static final int[][] i = {new int[]{0, 0, 0, 0, 0}, new int[]{32000, 32000, 32000, 32000, 8000}, new int[]{64000, 48000, 40000, 48000, 16000}, new int[]{96000, 56000, 48000, 56000, 24000}, new int[]{128000, 64000, 56000, 64000, 32000}, new int[]{160000, 80000, 64000, 80000, 40000}, new int[]{192000, 96000, 80000, 96000, 48000}, new int[]{224000, 112000, 96000, 112000, 56000}, new int[]{256000, 128000, 112000, 128000, 64000}, new int[]{288000, 160000, 128000, 144000, 80000}, new int[]{320000, 192000, 160000, 160000, 96000}, new int[]{352000, 224000, 192000, 176000, 112000}, new int[]{384000, 256000, 224000, 192000, 128000}, new int[]{416000, 320000, 256000, 224000, 144000}, new int[]{448000, 384000, 320000, 256000, 160000}, new int[]{-1, -1, -1, -1, -1}};
+    public static final int[][] j = {new int[]{-1, 4, 4, 3}, new int[]{-1, -1, -1, -1}, new int[]{-1, 4, 4, 3}, new int[]{-1, 2, 1, 0}};
+    public static final int[][] k = {new int[]{-1, 72, 144, 12}, new int[]{-1, -1, -1, -1}, new int[]{-1, 72, 144, 12}, new int[]{-1, 144, 144, 12}};
+    public static final int[] l = {-1, 1, 1, 4};
+    public static final int[][] m = {new int[]{17, -1, 17, 32}, new int[]{17, -1, 17, 32}, new int[]{17, -1, 17, 32}, new int[]{9, -1, 9, 17}};
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class ui6 extends ild {
-    public int a;
-    public final TL_iv.PageBlock b;
-    public TL_iv.textConcat c = new TL_iv.textConcat();
-
-    public ui6(TL_iv.PageBlock pageBlock) {
-        this.b = pageBlock;
-    }
-
-    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
-        if (textconcat.texts.isEmpty()) {
-            return new TL_iv.textEmpty();
-        }
-        if (textconcat.texts.size() == 1) {
-            return textconcat.texts.get(0);
-        }
-        return textconcat;
-    }
-
-    @Override
-    public final void a(ik0 ik0Var) {
-        int i = this.a;
-        if (i >= 64) {
-            return;
-        }
-        this.a = i + 1;
-        try {
-            v(ik0Var);
-        } finally {
-            this.a--;
-        }
-    }
-
-    @Override
-    public final void b(x01 x01Var) {
-        int i = this.a;
-        if (i >= 64) {
-            return;
-        }
-        this.a = i + 1;
-        try {
-            v(x01Var);
-        } finally {
-            this.a--;
-        }
-    }
-
-    @Override
-    public final void c(cj2 cj2Var) {
-        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-        textfixed.text = xi6.l(cj2Var.h);
-        w(textfixed);
-    }
-
-    @Override
-    public final void d(o43 o43Var) {
-        if (o43Var instanceof x8b) {
-            TL_iv.textStrike textstrike = new TL_iv.textStrike();
-            textstrike.text = y(o43Var);
-            w(textstrike);
-        } else if (o43Var instanceof ts5) {
-            w(xi6.h(((ts5) o43Var).g));
-        } else {
-            v(o43Var);
-        }
-    }
-
-    @Override
-    public final void e(u14 u14Var) {
-        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-        textitalic.text = y(u14Var);
-        w(textitalic);
-    }
-
-    @Override
-    public final void i(bk5 bk5Var) {
-        w(y(bk5Var));
-    }
-
-    @Override
-    public final void k(y46 y46Var) {
-        if (y46Var instanceof qs5) {
-            if (!this.c.texts.isEmpty()) {
-                w(xi6.l("\n"));
+    public ui6(int i2, int i3, int i4) {
+        int i5 = (i2 >> 3) & 3;
+        this.a = i5;
+        if (i5 != 1) {
+            int i6 = (i2 >> 1) & 3;
+            this.b = i6;
+            if (i6 != 0) {
+                int i7 = (i3 >> 4) & 15;
+                this.d = i7;
+                if (i7 != 15) {
+                    if (i7 != 0) {
+                        int i8 = (i3 >> 2) & 3;
+                        this.c = i8;
+                        if (i8 != 3) {
+                            int i9 = (i4 >> 6) & 3;
+                            this.e = i9;
+                            this.f = (i3 >> 1) & 1;
+                            int i10 = i2 & 1;
+                            this.g = i10;
+                            int i11 = i10 != 0 ? 4 : 6;
+                            i11 = i6 == 1 ? i11 + m[i9][i5] : i11;
+                            if (b() >= i11) {
+                                return;
+                            }
+                            throw new Exception(uh9.k(i11, "Frame size must be at least "));
+                        }
+                        throw new Exception("Reserved frequency");
+                    }
+                    throw new Exception("Free bitrate");
+                }
+                throw new Exception("Reserved bitrate");
             }
-            w(xi6.h(((qs5) y46Var).g));
-            w(xi6.l("\n"));
-            return;
+            throw new Exception("Reserved layer");
         }
-        v(y46Var);
+        throw new Exception("Reserved version");
     }
 
-    @Override
-    public final void l(f56 f56Var) {
-        int i = this.a;
-        if (i >= 64) {
-            return;
-        }
-        this.a = i + 1;
-        try {
-            v(f56Var);
-        } finally {
-            this.a--;
-        }
+    public final int a() {
+        return i[this.d][j[this.a][this.b]];
     }
 
-    @Override
-    public final void m(xq7 xq7Var) {
-        int i = this.a;
-        if (i >= 64) {
-            return;
-        }
-        this.a = i + 1;
-        try {
-            v(xq7Var);
-        } finally {
-            this.a--;
-        }
+    public final int b() {
+        int[][] iArr = k;
+        int i2 = this.a;
+        int[] iArr2 = iArr[i2];
+        int i3 = this.b;
+        return (((a() * iArr2[i3]) / h[this.c][i2]) + this.f) * l[i3];
     }
 
-    @Override
-    public final void n(tu7 tu7Var) {
-        if (!this.c.texts.isEmpty()) {
-            w(xi6.l("\n\n"));
-        }
-        v(tu7Var);
-    }
-
-    @Override
-    public final void o(ugb ugbVar) {
-        w(xi6.l(ugbVar.g));
-    }
-
-    @Override
-    public final void q(cj2 cj2Var) {
-        w(xi6.l(cj2Var.h));
-    }
-
-    @Override
-    public final void r(u14 u14Var) {
-        w(xi6.l("\n"));
-    }
-
-    @Override
-    public final void s(bk5 bk5Var) {
-        String str = bk5Var.h;
-        if (str == null) {
-            str = "";
-        }
-        String trim = str.trim();
-        if (trim.startsWith("mailto:")) {
-            TL_iv.RichText textemail = new TL_iv.textEmail();
-            textemail.text = y(bk5Var);
-            textemail.email = trim.substring(7);
-            w(textemail);
-        } else if (trim.startsWith("tel:")) {
-            TL_iv.textPhone textphone = new TL_iv.textPhone();
-            textphone.text = y(bk5Var);
-            textphone.phone = trim.substring(4);
-            w(textphone);
+    public final long c(long j2) {
+        int i2;
+        if (this.b == 3) {
+            i2 = 384;
         } else {
-            TL_iv.RichText texturl = new TL_iv.textUrl();
-            texturl.text = y(bk5Var);
-            texturl.url = trim;
-            w(texturl);
+            i2 = 1152;
         }
-    }
-
-    @Override
-    public final void t(u14 u14Var) {
-        String str;
-        if (this.b instanceof TL_iv.pageBlockBlockquote) {
-            str = "\n";
-        } else {
-            str = " ";
+        int b = b();
+        int[] iArr = h[this.c];
+        int i3 = this.a;
+        long j3 = ((i2 * j2) * 1000) / (iArr[i3] * b);
+        if (i3 != 3 && this.e == 3) {
+            return j3 / 2;
         }
-        w(xi6.l(str));
+        return j3;
     }
 
-    @Override
-    public final void u(u14 u14Var) {
-        TL_iv.textBold textbold = new TL_iv.textBold();
-        textbold.text = y(u14Var);
-        w(textbold);
-    }
-
-    public final void w(TL_iv.RichText richText) {
-        this.c.texts.add(richText);
-    }
-
-    public final TL_iv.RichText y(tg6 tg6Var) {
-        TL_iv.textConcat textconcat = this.c;
-        this.c = new TL_iv.textConcat();
-        v(tg6Var);
-        TL_iv.RichText x = x(this.c);
-        this.c = textconcat;
-        return x;
+    public final boolean d(ui6 ui6Var) {
+        if (this.b == ui6Var.b && this.a == ui6Var.a && this.c == ui6Var.c && this.e == ui6Var.e) {
+            return true;
+        }
+        return false;
     }
 }

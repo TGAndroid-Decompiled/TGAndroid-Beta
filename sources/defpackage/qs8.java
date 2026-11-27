@@ -1,148 +1,114 @@
 package defpackage;
 
-import android.net.Uri;
-import java.io.InterruptedIOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-public final class qs8 implements k86 {
-    public final ts8 E;
-    public final Uri b;
-    public final zxa c;
-    public final mv6 d;
-    public final ts8 e;
-    public final vq2 f;
-    public volatile boolean n;
-    public long s;
-    public wxb x;
-    public boolean y;
-    public final m11 h = new Object();
-    public boolean r = true;
-    public final long a = f86.h.getAndIncrement();
-    public u63 w = b(0, null);
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.os.Build;
+import android.view.View;
+import java.util.Iterator;
+public final class qs8 {
+    public static final float[] m = new ColorMatrix().getArray();
+    public static final float[] n;
+    public static final uif o;
+    public final jy4 a;
+    public final iy4 b;
+    public final ll0 c;
+    public final ll0 d;
+    public final ll0 e;
+    public final pz4 f;
+    public final r89 g;
+    public final r89 h;
+    public int i;
+    public boolean j;
+    public float k;
+    public float l;
 
-    public qs8(ts8 ts8Var, Uri uri, o63 o63Var, mv6 mv6Var, ts8 ts8Var2, vq2 vq2Var) {
-        this.E = ts8Var;
-        this.b = uri;
-        this.c = new zxa(o63Var);
-        this.d = mv6Var;
-        this.e = ts8Var2;
-        this.f = vq2Var;
+    static {
+        ColorMatrix colorMatrix = new ColorMatrix();
+        hl.i(colorMatrix, 0.65f);
+        hl.l2(colorMatrix, 0.5f);
+        n = colorMatrix.getArray();
+        o = new uif((byte) 23);
     }
 
-    @Override
-    public final void a() {
-        g63 g63Var;
-        j74 j74Var;
-        int i;
-        int i2 = 0;
-        String str = null;
-        while (i2 == 0 && !this.n) {
-            try {
-                long j = this.h.a;
-                u63 b = b(j, str);
-                this.w = b;
-                long open = this.c.open(b);
-                if (this.n) {
-                    return;
-                }
-                List list = (List) this.c.a.getResponseHeaders().get("ETag");
-                if (list != null && !list.isEmpty()) {
-                    str = (String) list.get(0);
-                } else {
-                    str = null;
-                }
-                if (open != -1) {
-                    open += j;
-                    ts8 ts8Var = this.E;
-                    ts8Var.I.post(new ns8(ts8Var, (byte) 0));
-                }
-                long j2 = open;
-                this.E.K = pj5.d(this.c.a.getResponseHeaders());
-                zxa zxaVar = this.c;
-                pj5 pj5Var = this.E.K;
-                if (pj5Var != null && (i = pj5Var.f) != -1) {
-                    g63Var = new nj5(zxaVar, i, this);
-                    wxb y = this.E.y(new ss8(0, true));
-                    this.x = y;
-                    y.g(ts8.m0);
-                } else {
-                    g63Var = zxaVar;
-                }
-                this.d.U(g63Var, this.b, this.c.a.getResponseHeaders(), j, j2, this.e);
-                if (this.E.K != null && (j74Var = (j74) this.d.c) != null) {
-                    j74 a = j74Var.a();
-                    if (a instanceof hf7) {
-                        ((hf7) a).t = true;
-                    }
-                }
-                if (this.r) {
-                    mv6 mv6Var = this.d;
-                    long j3 = this.s;
-                    j74 j74Var2 = (j74) mv6Var.c;
-                    j74Var2.getClass();
-                    j74Var2.d(j, j3);
-                    this.r = false;
-                }
-                while (i2 == 0 && !this.n) {
-                    try {
-                        vq2 vq2Var = this.f;
-                        synchronized (vq2Var) {
-                            while (!vq2Var.b) {
-                                vq2Var.a.getClass();
-                                vq2Var.wait();
-                            }
-                        }
-                        mv6 mv6Var2 = this.d;
-                        m11 m11Var = this.h;
-                        j74 j74Var3 = (j74) mv6Var2.c;
-                        j74Var3.getClass();
-                        ja3 ja3Var = (ja3) mv6Var2.d;
-                        ja3Var.getClass();
-                        i2 = j74Var3.b(ja3Var, m11Var);
-                        long M = this.d.M();
-                        if (M > this.E.s + j) {
-                            this.f.d();
-                            ts8 ts8Var2 = this.E;
-                            ts8Var2.I.post(ts8Var2.H);
-                            j = M;
-                        }
-                    } catch (InterruptedException unused) {
-                        throw new InterruptedIOException();
-                    }
-                }
-                if (i2 == 1) {
-                    i2 = 0;
-                } else if (this.d.M() != -1) {
-                    this.h.a = this.d.M();
-                }
-                vbe.a(this.c);
-            } finally {
-                if (i2 != 1 && this.d.M() != -1) {
-                    this.h.a = this.d.M();
-                }
-                vbe.a(this.c);
+    public qs8(vy4 vy4Var, eg0 eg0Var) {
+        iy4 iy4Var;
+        r89 r89Var = new r89(0, false);
+        this.g = r89Var;
+        r89 r89Var2 = new r89(0, false);
+        this.h = r89Var2;
+        if (Build.VERSION.SDK_INT >= 31) {
+            eg0Var.l = true;
+            jy4 jy4Var = eg0Var.g;
+            this.a = jy4Var;
+            if (jy4Var != null) {
+                iy4Var = jy4Var.d(4);
+            } else {
+                iy4Var = null;
             }
+            this.b = iy4Var;
+        } else {
+            this.a = null;
+            this.b = null;
+        }
+        ps8 ps8Var = new ps8(this, null);
+        ps8 ps8Var2 = new ps8(this, new os8(eg0Var.c));
+        ll0 ll0Var = new ll0(ps8Var, ps8Var, ps8Var);
+        ll0Var.j = vy4Var;
+        ll0Var.g = r89Var;
+        ll0Var.f = r89Var2;
+        this.c = ll0Var;
+        ll0 ll0Var2 = new ll0(ps8Var2, ps8Var2, ps8Var2);
+        ll0Var2.j = vy4Var;
+        ll0Var2.g = r89Var;
+        ll0Var2.f = r89Var2;
+        this.d = ll0Var2;
+        ll0Var2.k = true;
+        pz4 pz4Var = new pz4(ps8Var2, new os8(eg0Var.f));
+        this.f = pz4Var;
+        ll0 ll0Var3 = new ll0(pz4Var, pz4Var, pz4Var);
+        ll0Var3.j = vy4Var;
+        ll0Var3.g = r89Var;
+        ll0Var3.f = r89Var2;
+        this.e = ll0Var3;
+        ll0Var3.k = true;
+    }
+
+    public final void a() {
+        Iterator it = this.h.iterator();
+        while (it.hasNext()) {
+            ((jl0) it.next()).updateColors();
+        }
+        Iterator it2 = this.g.iterator();
+        while (it2.hasNext()) {
+            ((View) it2.next()).invalidate();
         }
     }
 
-    public final u63 b(long j, String str) {
-        Map map = ts8.l0;
-        if (str != null && !str.startsWith("W/")) {
-            kp kpVar = new kp(4);
-            kpVar.x(map.entrySet());
-            kpVar.w("If-Range", str);
-            map = kpVar.e();
+    public final void b(float f) {
+        jy4 jy4Var;
+        ColorMatrixColorFilter colorMatrixColorFilter;
+        if (this.k != f) {
+            this.k = f;
+            if (Build.VERSION.SDK_INT >= 31 && (jy4Var = this.a) != null) {
+                if (f > 0.0f) {
+                    float[] fArr = m;
+                    int length = fArr.length;
+                    float[] fArr2 = new float[length];
+                    for (int i = 0; i < length; i++) {
+                        fArr2[i] = hl.R1(fArr[i], n[i], f);
+                    }
+                    colorMatrixColorFilter = new ColorMatrixColorFilter(fArr2);
+                } else {
+                    colorMatrixColorFilter = null;
+                }
+                if (jy4Var.k != colorMatrixColorFilter) {
+                    jy4Var.k = colorMatrixColorFilter;
+                    for (int i2 = 0; i2 < jy4Var.b; i2++) {
+                        ((hy4) jy4Var.a.get(i2)).c(colorMatrixColorFilter);
+                    }
+                }
+            }
+            a();
         }
-        Map map2 = Collections.EMPTY_MAP;
-        String str2 = this.E.r;
-        Uri uri = this.b;
-        gre.l(uri, "The uri must be set.");
-        return new u63(uri, 1, null, map, j, -1L, str2, 6);
-    }
-
-    @Override
-    public final void d() {
-        this.n = true;
     }
 }

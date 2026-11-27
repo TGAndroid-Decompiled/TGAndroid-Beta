@@ -1,139 +1,193 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Spanned;
-import android.text.style.ReplacementSpan;
+import android.text.SpannableString;
+import android.view.KeyEvent;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_iv;
-public final class qg9 extends ReplacementSpan {
-    public final og9 a;
-    public final TL_iv.textButton b;
-    public final RectF c = new RectF();
-    public float d;
-    public boolean e;
-    public int f;
-    public View h;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.StickersActivity;
+public final class qg9 implements p14 {
+    public final yg9 a;
 
-    public qg9(defpackage.rh9 r21, int r22, org.telegram.tgnet.tl.TL_iv.textButton r23, java.lang.Boolean r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qg9.<init>(rh9, int, org.telegram.tgnet.tl.TL_iv$textButton, java.lang.Boolean):void");
-    }
-
-    public final void a(View view) {
-        this.h = view;
-        this.a.a.i(view);
+    public qg9(yg9 yg9Var) {
+        this.a = yg9Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        int i6;
-        float f2;
-        og9 og9Var = this.a;
-        int i7 = og9Var.a.s;
-        int i8 = 0;
-        if (i7 > 0 && this.f > 0) {
-            i6 = 1;
-        } else {
-            i6 = 0;
-        }
-        if (i6 == 0 && i7 > 0 && (charSequence instanceof Spanned)) {
-            oh9[] oh9VarArr = (oh9[]) ((Spanned) charSequence).getSpans(i, i2, oh9.class);
-            int length = oh9VarArr.length;
-            int i9 = 0;
-            while (true) {
-                if (i9 >= length) {
-                    break;
-                } else if ((oh9VarArr[i9].b & 15) == 14) {
-                    i6 = 1;
-                    break;
-                } else {
-                    i9++;
-                }
-            }
-        }
-        if (i6 != 0) {
-            f2 = (i3 + i5) / 2.0f;
-        } else {
-            Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-            f2 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + i4;
-        }
-        canvas.save();
-        if (!og9Var.s) {
-            i8 = gl.L(1.0f);
-        }
-        int round = Math.round(f + i8);
-        int ceil = (int) Math.ceil((f2 - (og9Var.c() / 2.0f)) + (i6 ^ 1));
-        float f3 = round;
-        float f4 = ceil;
-        this.c.set(f3, f4, round + og9Var.e, og9Var.c() + ceil);
-        canvas.translate(f3, f4);
-        og9Var.a(canvas);
-        canvas.restore();
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        boolean z;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        int i8 = 0;
-        if (this.e && fontMetricsInt != null) {
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final void j(int i) {
+        dg9 focusedEditTextOrNull;
+        boolean z = false;
+        yg9 yg9Var = this.a;
+        if (i != 0 && (focusedEditTextOrNull = yg9Var.Q.getFocusedEditTextOrNull()) != null) {
+            yg9Var.S0 = focusedEditTextOrNull;
+            yg9Var.T0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
+        }
+        if (i != 0) {
             z = true;
-        } else {
-            z = false;
         }
-        if (z) {
-            i3 = fontMetricsInt.top;
-            i4 = fontMetricsInt.ascent;
-            i5 = fontMetricsInt.descent;
-            i6 = fontMetricsInt.bottom;
-            i7 = fontMetricsInt.leading;
-        } else {
-            i3 = 0;
-            i4 = 0;
-            i5 = 0;
-            i6 = 0;
-            i7 = 0;
+        yg9Var.D0 = z;
+        yg9Var.a0(z);
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        dg9 s0 = this.a.s0();
+        if (s0 == null || s0.length() == 0) {
+            return false;
         }
-        int L = gl.L(8.0f);
-        int L2 = gl.L(10.0f);
-        og9 og9Var = this.a;
-        if (fontMetricsInt != null && og9Var.s) {
-            float f = this.d;
-            int i9 = (int) (((-L2) - L) * f);
-            fontMetricsInt.top = i9;
-            int i10 = (int) ((L2 - L) * f);
-            fontMetricsInt.bottom = i10;
-            fontMetricsInt.ascent = i9;
-            fontMetricsInt.descent = i10;
-            fontMetricsInt.leading = 0;
-        }
-        if (z) {
-            fontMetricsInt.top = i3;
-            fontMetricsInt.ascent = i4;
-            fontMetricsInt.descent = i5;
-            fontMetricsInt.bottom = i6;
-            fontMetricsInt.leading = i7;
-            int i11 = this.f;
-            int i12 = i5 - i4;
-            if (i11 > i12) {
-                int i13 = i11 - i12;
-                int i14 = (i13 + 1) / 2;
-                int i15 = i4 - i14;
-                fontMetricsInt.ascent = i15;
-                fontMetricsInt.descent = i5 + (i13 - i14);
-                fontMetricsInt.top = Math.min(i3, i15);
-                fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
+        s0.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void m(String str) {
+        yg9 yg9Var = this.a;
+        dg9 s0 = yg9Var.s0();
+        if (s0 != null) {
+            int t0 = yg9Var.t0(s0);
+            try {
+                CharSequence m = pv3.m(str, s0.getPaint().getFontMetricsInt(), false, null, 0);
+                s0.setText(s0.getText().insert(t0, m));
+                int length = t0 + m.length();
+                s0.setSelection(length, length);
+                if (s0 == yg9Var.S0) {
+                    yg9Var.T0 = length;
+                }
+            } catch (Exception unused) {
             }
         }
-        int i16 = og9Var.e;
-        if (!og9Var.s) {
-            i8 = gl.L(1.0f) << 1;
+    }
+
+    @Override
+    public final float o() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+        this.a.presentFragment(new StickersActivity(5, arrayList));
+    }
+
+    @Override
+    public final void v() {
+        this.a.presentFragment(new StickersActivity(0, null));
+    }
+
+    @Override
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        hm hmVar;
+        yg9 yg9Var = this.a;
+        dg9 s0 = yg9Var.s0();
+        if (s0 != null) {
+            int t0 = yg9Var.t0(s0);
+            try {
+                if (str == null) {
+                    str = "😀";
+                }
+                SpannableString spannableString = new SpannableString(str);
+                if (document != null) {
+                    hmVar = new hm(document, s0.getPaint().getFontMetricsInt());
+                } else {
+                    hmVar = new hm(j, s0.getPaint().getFontMetricsInt());
+                }
+                hmVar.cacheType = wl.f();
+                spannableString.setSpan(hmVar, 0, spannableString.length(), 33);
+                s0.setText(s0.getText().insert(t0, spannableString));
+                int length = t0 + spannableString.length();
+                s0.setSelection(length, length);
+                if (s0 == yg9Var.S0) {
+                    yg9Var.T0 = length;
+                }
+            } catch (Exception unused) {
+            }
         }
-        return i16 + i8;
+    }
+
+    @Override
+    public final boolean z() {
+        return this.a.D0;
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void g(d6c d6cVar) {
+    }
+
+    @Override
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, n47 n47Var, boolean z, int i) {
     }
 }

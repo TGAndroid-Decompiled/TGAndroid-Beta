@@ -1,417 +1,165 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.opengl.GLES20;
-import android.opengl.Matrix;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.util.Locale;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-public final class td4 extends do3 {
-    public final float[] E;
-    public final int[] F;
-    public boolean G;
-    public boolean H;
-    public final sl0 I;
-    public xl0 J;
-    public final wd4 K;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class td4 extends x46 {
+    public final SparseArray I;
+    public int J;
+    public int K;
     public int L;
     public int M;
-    public int N;
-    public int O;
-    public int P;
-    public int Q;
-    public int R;
+    public final d79 N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
     public int S;
-    public int T;
-    public boolean U;
-    public int V;
-    public int W;
-    public int X;
-    public int Y;
-    public final FloatBuffer Z;
-    public final SurfaceTexture a;
-    public boolean a0;
-    public EGL10 b;
-    public long b0;
-    public EGLDisplay c;
-    public final hza c0;
-    public EGLContext d;
-    public boolean d0;
-    public EGLSurface e;
-    public final Runnable e0;
-    public boolean f;
-    public final boolean h;
-    public volatile int n;
-    public volatile int r;
-    public Bitmap s;
-    public final int w;
-    public SurfaceTexture x;
-    public boolean y;
+    public final boolean T;
 
-    public td4(SurfaceTexture surfaceTexture, Bitmap bitmap, int i, boolean z, boolean z2, sl0 sl0Var, int i2, int i3) {
-        super("PhotoFilterGLThread", false);
-        boolean z3;
-        this.E = new float[16];
-        this.F = new int[1];
-        this.e0 = new rd4(this, (byte) 1);
-        this.a = surfaceTexture;
-        this.n = i2;
-        this.r = i3;
-        this.s = bitmap;
-        this.w = i;
-        this.I = sl0Var;
-        if (sl0Var != null) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        this.H = z3;
-        if (z3) {
-            xl0 xl0Var = new xl0();
-            this.J = xl0Var;
-            sl0 sl0Var2 = xl0Var.t;
-            if (sl0Var2 != null && sl0Var2.m != null) {
-                sl0Var2.m = null;
-            }
-            xl0Var.t = sl0Var;
-            if (sl0Var != null && sl0Var.m != xl0Var) {
-                sl0Var.m = xl0Var;
-                sl0Var.d();
-            }
-        }
-        this.h = false;
-        wd4 wd4Var = new wd4(false, null);
-        this.K = wd4Var;
-        wd4Var.i1 = z2;
-        float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-        if (z) {
-            fArr[2] = 0.0f;
-            fArr[0] = 1.0f;
-            fArr[6] = 0.0f;
-            fArr[4] = 1.0f;
-        }
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        this.Z = asFloatBuffer;
-        asFloatBuffer.put(fArr);
-        asFloatBuffer.position(0);
-        start();
-    }
-
-    public final void a() {
-        if (!this.d.equals(this.b.eglGetCurrentContext()) || !this.e.equals(this.b.eglGetCurrentSurface(12377))) {
-            EGL10 egl10 = this.b;
-            EGLDisplay eGLDisplay = this.c;
-            EGLSurface eGLSurface = this.e;
-            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d) && w01.a) {
-                b00.v(this.b, new StringBuilder("eglMakeCurrent failed "));
-            }
-        }
-    }
-
-    public final void b(boolean z, boolean z2, boolean z3) {
-        postRunnable(new sd4(this, z, z3, z2, (byte) 0));
-    }
-
-    public final void c(vd4 vd4Var) {
-        postRunnable(new vc4(this, vd4Var, (byte) 5));
-    }
-
-    public final void d() {
-        int i;
-        int i2;
-        if (!this.a0 && (i = this.X) > 0 && (i2 = this.Y) > 0) {
-            this.K.i(this.s, this.w, this.F[0], i, i2);
-            this.a0 = true;
-            wd4 wd4Var = this.K;
-            this.V = wd4Var.X0;
-            this.W = wd4Var.Y0;
-        }
-    }
-
-    public final boolean e(e4b e4bVar) {
-        int i;
-        String str;
-        int h;
-        int h2;
-        if (e4bVar != null) {
-            i = e4bVar.a();
-        } else {
-            i = 0;
-        }
-        if (i == 1) {
-            str = gl.v2(null, 2131624046);
-        } else if (i == 2) {
-            str = gl.v2(null, 2131624047);
-        } else {
-            str = "";
-        }
-        if (i != 0) {
-            h = wd4.h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-            h2 = wd4.h(35632, String.format(Locale.US, "%1$s\nvarying highp vec2 vTextureCoord;void main() {gl_FragColor = TEX(vTextureCoord);}", str));
-        } else {
-            h = wd4.h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-            h2 = wd4.h(35632, "#extension GL_OES_EGL_image_external : require\n" + "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}".replace("sampler2D", "samplerExternalOES"));
-        }
-        if (h == 0 || h2 == 0) {
-            return false;
-        }
-        int i2 = this.P;
-        if (i2 != 0) {
-            GLES20.glDeleteProgram(i2);
-        }
-        int glCreateProgram = GLES20.glCreateProgram();
-        this.P = glCreateProgram;
-        GLES20.glAttachShader(glCreateProgram, h);
-        GLES20.glAttachShader(this.P, h2);
-        GLES20.glBindAttribLocation(this.P, 0, "position");
-        GLES20.glBindAttribLocation(this.P, 1, "inputTexCoord");
-        GLES20.glLinkProgram(this.P);
-        int[] iArr = new int[1];
-        GLES20.glGetProgramiv(this.P, 35714, iArr, 0);
-        int i3 = iArr[0];
-        int i4 = this.P;
-        if (i3 == 0) {
-            GLES20.glDeleteProgram(i4);
-            this.P = 0;
-        } else {
-            this.Q = GLES20.glGetAttribLocation(i4, "position");
-            this.S = GLES20.glGetAttribLocation(this.P, "inputTexCoord");
-            this.T = GLES20.glGetUniformLocation(this.P, "sourceImage");
-            this.R = GLES20.glGetUniformLocation(this.P, "videoMatrix");
-        }
-        return true;
-    }
-
-    public final void f(int i, int i2) {
-        if (this.J == null) {
-            return;
-        }
-        postRunnable(new qd4(this, i, i2, (byte) 2));
-    }
-
-    public final void finish() {
-        this.s = null;
-        if (this.e != null) {
-            EGL10 egl10 = this.b;
-            EGLDisplay eGLDisplay = this.c;
-            EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-            egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-            this.b.eglDestroySurface(this.c, this.e);
-            this.e = null;
-        }
-        EGLContext eGLContext = this.d;
-        if (eGLContext != null) {
-            sl0 sl0Var = this.I;
-            if (sl0Var != null) {
-                synchronized (sl0Var.f) {
-                    if (sl0Var.g == eGLContext) {
-                        sl0Var.g = null;
-                    }
-                }
-            }
-            this.b.eglDestroyContext(this.c, this.d);
-            this.d = null;
-        }
-        EGLDisplay eGLDisplay2 = this.c;
-        if (eGLDisplay2 != null) {
-            this.b.eglTerminate(eGLDisplay2);
-            this.c = null;
-        }
-        SurfaceTexture surfaceTexture = this.a;
-        if (surfaceTexture != null) {
-            surfaceTexture.release();
-        }
+    public td4(int i, int i2, d79 d79Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = d79Var;
+        this.M = i;
     }
 
     @Override
-    public final void run() {
-        EGLContext eGLContext;
-        int i;
-        int i2;
-        xl0 xl0Var;
-        EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.b = egl10;
-        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        this.c = eglGetDisplay;
-        boolean z = false;
-        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            if (w01.a) {
-                b00.v(this.b, new StringBuilder("eglGetDisplay failed "));
-            }
-            finish();
-        } else if (!this.b.eglInitialize(eglGetDisplay, new int[2])) {
-            if (w01.a) {
-                b00.v(this.b, new StringBuilder("eglInitialize failed "));
-            }
-            finish();
-        } else {
-            int[] iArr = new int[1];
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.b.eglChooseConfig(this.c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                if (w01.a) {
-                    b00.v(this.b, new StringBuilder("eglChooseConfig failed "));
-                }
-                finish();
-            } else if (iArr[0] > 0) {
-                EGLConfig eGLConfig = eGLConfigArr[0];
-                int[] iArr2 = {12440, 2, 12344};
-                sl0 sl0Var = this.I;
-                if (sl0Var != null) {
-                    synchronized (sl0Var.f) {
-                        eGLContext = sl0Var.g;
-                        if (eGLContext == null) {
-                            eGLContext = EGL10.EGL_NO_CONTEXT;
-                        }
-                    }
-                } else {
-                    eGLContext = EGL10.EGL_NO_CONTEXT;
-                }
-                EGLContext eglCreateContext = this.b.eglCreateContext(this.c, eGLConfig, eGLContext, iArr2);
-                this.d = eglCreateContext;
-                if (eglCreateContext == null) {
-                    if (w01.a) {
-                        b00.v(this.b, new StringBuilder("eglCreateContext failed "));
-                    }
-                    finish();
-                } else {
-                    sl0 sl0Var2 = this.I;
-                    if (sl0Var2 != null) {
-                        sl0Var2.a(eglCreateContext);
-                    }
-                    SurfaceTexture surfaceTexture = this.a;
-                    if (surfaceTexture != null) {
-                        EGLSurface eglCreateWindowSurface = this.b.eglCreateWindowSurface(this.c, eGLConfig, surfaceTexture, null);
-                        this.e = eglCreateWindowSurface;
-                        if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
-                            if (!this.b.eglMakeCurrent(this.c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
-                                if (w01.a) {
-                                    b00.v(this.b, new StringBuilder("eglMakeCurrent failed "));
-                                }
-                                finish();
-                            } else {
-                                int h = wd4.h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
-                                int h2 = wd4.h(35632, "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}");
-                                if (h != 0 && h2 != 0) {
-                                    int glCreateProgram = GLES20.glCreateProgram();
-                                    this.L = glCreateProgram;
-                                    GLES20.glAttachShader(glCreateProgram, h);
-                                    GLES20.glAttachShader(this.L, h2);
-                                    GLES20.glBindAttribLocation(this.L, 0, "position");
-                                    GLES20.glBindAttribLocation(this.L, 1, "inputTexCoord");
-                                    GLES20.glLinkProgram(this.L);
-                                    int[] iArr3 = new int[1];
-                                    GLES20.glGetProgramiv(this.L, 35714, iArr3, 0);
-                                    int i3 = iArr3[0];
-                                    int i4 = this.L;
-                                    if (i3 == 0) {
-                                        GLES20.glDeleteProgram(i4);
-                                        this.L = 0;
-                                    } else {
-                                        this.M = GLES20.glGetAttribLocation(i4, "position");
-                                        this.N = GLES20.glGetAttribLocation(this.L, "inputTexCoord");
-                                        this.O = GLES20.glGetUniformLocation(this.L, "sourceImage");
-                                    }
-                                    if (e(null)) {
-                                        Bitmap bitmap = this.s;
-                                        if (bitmap != null) {
-                                            i = bitmap.getWidth();
-                                            i2 = this.s.getHeight();
-                                        } else {
-                                            i = this.X;
-                                            i2 = this.Y;
-                                        }
-                                        int i5 = i;
-                                        int i6 = i2;
-                                        if (this.c0 != null) {
-                                            GLES20.glGenTextures(1, this.F, 0);
-                                            Matrix.setIdentityM(this.E, 0);
-                                            SurfaceTexture surfaceTexture2 = new SurfaceTexture(this.F[0]);
-                                            this.x = surfaceTexture2;
-                                            surfaceTexture2.setOnFrameAvailableListener(new ha1(this, (byte) 1));
-                                            GLES20.glBindTexture(36197, this.F[0]);
-                                            GLES20.glTexParameterf(36197, 10240, 9729.0f);
-                                            GLES20.glTexParameterf(36197, 10241, 9728.0f);
-                                            GLES20.glTexParameteri(36197, 10242, 33071);
-                                            GLES20.glTexParameteri(36197, 10243, 33071);
-                                            gl.c3(new rd4(this, (byte) 2));
-                                        }
-                                        if (this.H && (xl0Var = this.J) != null && !xl0Var.b(this.n / this.r, this.I.a ? 1 : 0)) {
-                                            fa4.d("Failed to create uiBlurFramebuffer");
-                                            this.H = false;
-                                            this.J = null;
-                                        }
-                                        if (!this.K.a()) {
-                                            finish();
-                                        } else {
-                                            if (i5 != 0 && i6 != 0) {
-                                                this.K.i(this.s, this.w, this.F[0], i5, i6);
-                                                this.a0 = true;
-                                                wd4 wd4Var = this.K;
-                                                this.V = wd4Var.X0;
-                                                this.W = wd4Var.Y0;
-                                            }
-                                            z = true;
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if (w01.a) {
-                                b00.v(this.b, new StringBuilder("createWindowSurface failed "));
-                            }
-                            finish();
-                        }
-                    } else {
-                        finish();
-                    }
-                }
+    public final void O(View view) {
+        f89 U;
+        if (this.T) {
+            d79 d79Var = this.N;
+            View G = d79Var.G(view);
+            if (G == null) {
+                U = null;
             } else {
-                if (w01.a) {
-                    fa4.d("eglConfig not initialized");
-                }
-                finish();
+                U = d79Var.U(G);
+            }
+            if (U.b() == A() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((r79) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
         }
-        this.f = z;
-        super.run();
+        super.O(view);
     }
 
-    public td4(SurfaceTexture surfaceTexture, hza hzaVar, e4b e4bVar, sl0 sl0Var, int i, int i2) {
-        super("VideoFilterGLThread", false);
-        this.E = new float[16];
-        this.F = new int[1];
-        this.e0 = new rd4(this, (byte) 1);
-        this.a = surfaceTexture;
-        this.n = i;
-        this.r = i2;
-        this.c0 = hzaVar;
-        this.I = sl0Var;
-        boolean z = sl0Var != null;
-        this.H = z;
-        if (z) {
-            xl0 xl0Var = new xl0();
-            this.J = xl0Var;
-            sl0 sl0Var2 = xl0Var.t;
-            if (sl0Var2 != null && sl0Var2.m != null) {
-                sl0Var2.m = null;
+    @Override
+    public final void P() {
+        this.I.clear();
+        o1();
+    }
+
+    @Override
+    public final void U(RecyclerView recyclerView, int i, int i2) {
+        o1();
+    }
+
+    @Override
+    public final void V(RecyclerView recyclerView) {
+        this.I.clear();
+        o1();
+    }
+
+    @Override
+    public final void W(RecyclerView recyclerView, int i, int i2) {
+        o1();
+    }
+
+    @Override
+    public final void X(RecyclerView recyclerView, int i, int i2) {
+        o1();
+    }
+
+    @Override
+    public final void Y() {
+        o1();
+    }
+
+    @Override
+    public final void Z(RecyclerView recyclerView, int i, int i2, Object obj) {
+        o1();
+        o1();
+    }
+
+    @Override
+    public final void c0(oh2 oh2Var, c89 c89Var, int i, int i2) {
+        int i3 = this.K;
+        this.L = View.MeasureSpec.getSize(i);
+        int size = View.MeasureSpec.getSize(i2);
+        this.K = size;
+        if (i3 != size) {
+            o1();
+        }
+        super.c0(oh2Var, c89Var, i, i2);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.Q;
+    }
+
+    public final void o1() {
+        d79 d79Var;
+        j79 adapter;
+        if (this.K <= 0 || (adapter = (d79Var = this.N).getAdapter()) == null) {
+            return;
+        }
+        int b = adapter.b() - 1;
+        int i = 0;
+        int i2 = 0;
+        for (int i3 = this.O; i3 < b; i3++) {
+            int d = adapter.d(i3);
+            SparseArray sparseArray = this.I;
+            f89 f89Var = (f89) sparseArray.get(d, null);
+            if (f89Var == null) {
+                f89Var = adapter.a(d79Var, d);
+                View view = f89Var.a;
+                sparseArray.put(d, f89Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
             }
-            xl0Var.t = sl0Var;
-            if (sl0Var != null && sl0Var.m != xl0Var) {
-                sl0Var.m = xl0Var;
-                sl0Var.d();
+            View view2 = f89Var.a;
+            if (this.P) {
+                adapter.t(f89Var, i3);
+            }
+            r79 r79Var = (r79) view2.getLayoutParams();
+            view2.measure(q79.s(d(), this.L, this.k, D() + C() + ((ViewGroup.MarginLayoutParams) r79Var).leftMargin + ((ViewGroup.MarginLayoutParams) r79Var).rightMargin, ((ViewGroup.MarginLayoutParams) r79Var).width), q79.s(this.Q, this.K, this.l, B() + E() + ((ViewGroup.MarginLayoutParams) r79Var).topMargin + ((ViewGroup.MarginLayoutParams) r79Var).bottomMargin, ((ViewGroup.MarginLayoutParams) r79Var).height));
+            i += view2.getMeasuredHeight();
+            if (i3 == 0) {
+                i2 = view2.getMeasuredHeight();
+            }
+            boolean z = this.R;
+            int i4 = this.K;
+            if (z) {
+                if (i >= i4 + i2) {
+                    break;
+                }
+            } else if (i >= i4) {
+                break;
             }
         }
-        this.h = true;
-        this.K = new wd4(true, e4bVar);
-        start();
+        boolean z2 = this.R;
+        int i5 = this.S;
+        int i6 = this.K - i;
+        if (z2) {
+            this.J = Math.max(i5, ((i6 - this.M) - d79Var.getPaddingBottom()) + i2);
+        } else {
+            this.J = Math.max(i5, (i6 - this.M) - d79Var.getPaddingBottom());
+        }
+    }
+
+    public td4(int i, d79 d79Var) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = d79Var;
+        this.M = i;
     }
 }

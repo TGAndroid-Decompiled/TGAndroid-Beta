@@ -1,36 +1,24 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class v84 extends b4 {
-    public static final Parcelable.Creator<v84> CREATOR = new xff((byte) 11);
-    public final String a;
-
-    public v84(String str) {
-        fre.h(str);
-        this.a = str;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof v84)) {
-            return false;
-        }
-        return this.a.equals(((v84) obj).a);
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a});
-    }
-
-    public final String toString() {
-        return b00.j(new StringBuilder("FidoAppIdExtension{appid='"), this.a, "'}");
-    }
+import java.util.Random;
+public final class v84 extends ThreadLocal {
+    public final byte a;
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.s(parcel, r);
+    public final Object initialValue() {
+        switch (this.a) {
+            case 0:
+                return new Random();
+            case 1:
+                ?? obj = new Object();
+                obj.a = new byte[4096];
+                return obj;
+            case 2:
+                return Long.valueOf(System.currentTimeMillis() - 1000);
+            case 3:
+                return Boolean.FALSE;
+            default:
+                return 0L;
+        }
     }
 }

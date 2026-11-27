@@ -1,4 +1,5 @@
 package defpackage;
-public interface ct8 {
-    int a();
+
+import android.view.View;
+public final class ct8 extends View {
 }

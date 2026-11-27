@@ -17,15 +17,15 @@ public final class br0 extends fr0 {
         if (gr0Var.r.getVisibility() == 0) {
             gr0Var.x.f();
         }
-        zya zyaVar = gr0Var.E;
-        if (zyaVar != null) {
-            s1b s1bVar = this.e;
-            if (s1bVar != null && s1bVar.C) {
+        z2b z2bVar = gr0Var.E;
+        if (z2bVar != null) {
+            o5b o5bVar = this.e;
+            if (o5bVar != null && o5bVar.C) {
                 z = true;
             } else {
                 z = false;
             }
-            zyaVar.e(z, true);
+            z2bVar.e(z, true);
         }
     }
 }

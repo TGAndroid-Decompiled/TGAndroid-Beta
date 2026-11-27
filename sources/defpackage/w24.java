@@ -1,52 +1,52 @@
 package defpackage;
 
-import android.animation.TimeInterpolator;
-import android.app.Activity;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public final class w24 extends FrameLayout {
-    public final v24 a;
-    public final TransitionSet b;
-    public boolean c;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class w24 implements ListIterator {
+    public static final w24 a = new Object();
 
-    public w24(Activity activity) {
-        super(activity);
-        this.c = false;
-        setWillNotDraw(false);
-        v24 v24Var = new v24(activity);
-        this.a = v24Var;
-        addView(v24Var, nme.e(52, 52, 5));
-        TransitionSet transitionSet = new TransitionSet();
-        this.b = transitionSet;
-        transitionSet.setOrdering(0);
-        transitionSet.addTransition(new z5((byte) 1));
-        transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) s33.f);
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    public final void a(View.OnClickListener onClickListener, boolean z) {
-        if (this.c) {
-            return;
-        }
-        this.c = true;
-        if (z) {
-            TransitionManager.beginDelayedTransition(this, this.b);
-        }
-        v24 v24Var = this.a;
-        v24Var.w = 255;
-        v24Var.n = -1;
-        v24Var.s = 0;
-        v24Var.r = gl.L(8.0f);
-        ViewGroup.LayoutParams layoutParams = v24Var.getLayoutParams();
-        layoutParams.width = -1;
-        v24Var.setLayoutParams(layoutParams);
-        gl.d3(new eu3(this, onClickListener, (byte) 11), 500L);
+    @Override
+    public final boolean hasNext() {
+        return false;
     }
 
-    public v24 getEndCloseView() {
-        return this.a;
+    @Override
+    public final boolean hasPrevious() {
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int nextIndex() {
+        return 0;
+    }
+
+    @Override
+    public final Object previous() {
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return -1;
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

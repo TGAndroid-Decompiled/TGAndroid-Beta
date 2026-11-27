@@ -44,7 +44,7 @@ public class VideoCodecInfo {
         return this.name;
     }
 
-    public Map getParams() {
+    public Map<String, String> getParams() {
         return this.params;
     }
 

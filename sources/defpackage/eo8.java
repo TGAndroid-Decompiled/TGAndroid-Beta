@@ -1,12 +1,12 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.d;
-public final class eo8 extends s1 {
-    public final ko8 f0;
+import org.webrtc.RendererCommon;
+public final class eo8 implements RendererCommon.RendererEvents {
+    @Override
+    public final void onFirstFrameRendered() {
+    }
 
-    public eo8(ko8 ko8Var, Context context, d dVar, wjb wjbVar) {
-        super(context, dVar, wjbVar);
-        this.f0 = ko8Var;
+    @Override
+    public final void onFrameResolutionChanged(int i, int i2, int i3) {
     }
 }

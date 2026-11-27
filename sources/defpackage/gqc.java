@@ -2,33 +2,30 @@ package defpackage;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class gqc extends b4c {
-    public static final int b = 0;
+public final class gqc extends View {
+    public final byte a;
+    public final uqc b;
 
-    static {
-        b4c.h(new b4c());
+    public gqc(uqc uqcVar, Context context, byte b) {
+        super(context);
+        this.a = b;
+        this.b = uqcVar;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        hqc hqcVar = (hqc) view;
-        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) c4cVar.H;
-        hqcVar.getClass();
-        TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession.manifest;
-        if (tonconnectmanifest != null) {
-            TLRPC.WebDocument webDocument = tonconnectmanifest.icon;
-            if (webDocument != null) {
-                hqcVar.b.p(gl5.p(usc.c(webDocument)), "28_28", null, tonconnectsession.manifest);
-            }
-            hqcVar.c.setText(tonconnectsession.manifest.name);
-            hqcVar.d.setText(gl.J0(tonconnectsession.manifest.url, false));
+    public final void onMeasure(int i, int i2) {
+        byte b = this.a;
+        uqc uqcVar = this.b;
+        switch (b) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i);
+                uqcVar.a0.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - hl.L(24.0f)), 1073741824), 0);
+                setMeasuredDimension(size, hl.L(36.0f) + uqcVar.a0.getMeasuredHeight());
+                return;
+            default:
+                uqcVar.e.measure(i, 0);
+                setMeasuredDimension(View.MeasureSpec.getSize(i), uqcVar.e.getMeasuredHeight());
+                return;
         }
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new hqc(context, wjbVar);
     }
 }

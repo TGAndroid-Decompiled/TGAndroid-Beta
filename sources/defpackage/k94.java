@@ -1,17 +1,20 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
 public final class k94 {
-    public int a;
-    public long b;
-    public int c;
-    public int d;
-    public long e;
-    public TLRPC.TL_upload_file f;
-    public TLRPC.TL_upload_webFile g;
-    public TLRPC.TL_upload_cdnFile h;
-    public boolean i;
-    public boolean j;
-    public boolean k;
-    public Runnable l;
+    public final byte a;
+    public final int b;
+    public final String c;
+    public final String d;
+    public final byte e;
+
+    public k94(int i, int i2, String str, String str2) {
+        this.a = (byte) 1;
+        this.b = i;
+        this.c = str;
+        this.d = str2;
+        this.e = i2;
+    }
+
+    public k94(int i) {
+        this.a = i;
+    }
 }

@@ -1,114 +1,73 @@
 package defpackage;
+public final class vz6 {
+    public final Object a;
+    public final int b;
+    public final int c;
+    public final long d;
+    public final int e;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import androidx.appcompat.view.menu.ListMenuItemView;
-import java.util.ArrayList;
-public final class vz6 extends BaseAdapter {
-    public final yz6 a;
-    public int b = -1;
-    public boolean c;
-    public final boolean d;
-    public final LayoutInflater e;
-    public final int f;
-
-    public vz6(yz6 yz6Var, LayoutInflater layoutInflater, boolean z, int i) {
-        this.d = z;
-        this.e = layoutInflater;
-        this.a = yz6Var;
-        this.f = i;
-        a();
+    public vz6(Object obj, int i, int i2, long j, int i3) {
+        this.a = obj;
+        this.b = i;
+        this.c = i2;
+        this.d = j;
+        this.e = i3;
     }
 
-    public final void a() {
-        yz6 yz6Var = this.a;
-        c07 c07Var = yz6Var.v;
-        if (c07Var != null) {
-            yz6Var.i();
-            ArrayList arrayList = yz6Var.j;
-            int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                if (((c07) arrayList.get(i)) == c07Var) {
-                    this.b = i;
-                    return;
-                }
-            }
+    public final vz6 a(Object obj) {
+        if (this.a.equals(obj)) {
+            return this;
         }
-        this.b = -1;
+        return new vz6(obj, this.b, this.c, this.d, this.e);
     }
 
-    @Override
-    public final c07 getItem(int i) {
-        ArrayList l;
-        boolean z = this.d;
-        yz6 yz6Var = this.a;
-        if (z) {
-            yz6Var.i();
-            l = yz6Var.j;
-        } else {
-            l = yz6Var.l();
+    public final boolean b(vz6 vz6Var) {
+        if (vz6Var == null) {
+            return false;
         }
-        int i2 = this.b;
-        if (i2 >= 0 && i >= i2) {
-            i++;
+        if (this == vz6Var) {
+            return true;
         }
-        return (c07) l.get(i);
+        if (!this.a.equals(vz6Var.a) || this.b != vz6Var.b || this.c != vz6Var.c || this.d != vz6Var.d) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final int getCount() {
-        ArrayList l;
-        boolean z = this.d;
-        yz6 yz6Var = this.a;
-        if (z) {
-            yz6Var.i();
-            l = yz6Var.j;
-        } else {
-            l = yz6Var.l();
+    public final boolean c() {
+        if (this.b != -1) {
+            return true;
         }
-        if (this.b < 0) {
-            return l.size();
-        }
-        return l.size() - 1;
+        return false;
     }
 
-    @Override
-    public final long getItemId(int i) {
-        return i;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof vz6)) {
+            return false;
+        }
+        vz6 vz6Var = (vz6) obj;
+        if (b(vz6Var) && this.e == vz6Var.e) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final View getView(int i, View view, ViewGroup viewGroup) {
-        int i2;
-        boolean z = false;
-        if (view == null) {
-            view = this.e.inflate(this.f, viewGroup, false);
-        }
-        int i3 = getItem(i).b;
-        int i4 = i - 1;
-        if (i4 >= 0) {
-            i2 = getItem(i4).b;
-        } else {
-            i2 = i3;
-        }
-        ListMenuItemView listMenuItemView = (ListMenuItemView) view;
-        if (this.a.m() && i3 != i2) {
-            z = true;
-        }
-        listMenuItemView.setGroupDividerEnabled(z);
-        u07 u07Var = (u07) view;
-        if (this.c) {
-            listMenuItemView.setForceShowIcon(true);
-        }
-        u07Var.a(getItem(i));
-        return view;
+    public final int hashCode() {
+        return ((((((((this.a.hashCode() + 527) * 31) + this.b) * 31) + this.c) * 31) + ((int) this.d)) * 31) + this.e;
     }
 
-    @Override
-    public final void notifyDataSetChanged() {
-        a();
-        super.notifyDataSetChanged();
+    public vz6(long j, Object obj) {
+        this(obj, -1, -1, j, -1);
+    }
+
+    public vz6(Object obj, long j, int i) {
+        this(obj, -1, -1, j, i);
+    }
+
+    public vz6(Object obj) {
+        this(-1L, obj);
     }
 }

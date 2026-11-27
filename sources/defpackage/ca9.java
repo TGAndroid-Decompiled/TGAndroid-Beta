@@ -1,42 +1,23 @@
 package defpackage;
 
-import java.util.concurrent.atomic.AtomicReferenceArray;
+import android.net.Uri;
+import java.net.URL;
 public final class ca9 {
-    private volatile AtomicReferenceArray<Object> array;
+    public final tr a;
+    public final mx2 b;
 
-    public ca9(int i) {
-        this.array = new AtomicReferenceArray<>(i);
+    public ca9(tr trVar, mx2 mx2Var) {
+        trVar.getClass();
+        mx2Var.getClass();
+        this.a = trVar;
+        this.b = mx2Var;
     }
 
-    public final int a() {
-        return this.array.length();
-    }
-
-    public final Object b(int i) {
-        AtomicReferenceArray<Object> atomicReferenceArray = this.array;
-        if (i < atomicReferenceArray.length()) {
-            return atomicReferenceArray.get(i);
-        }
-        return null;
-    }
-
-    public final void c(int i, xw2 xw2Var) {
-        AtomicReferenceArray<Object> atomicReferenceArray = this.array;
-        int length = atomicReferenceArray.length();
-        if (i < length) {
-            atomicReferenceArray.set(i, xw2Var);
-            return;
-        }
-        int i2 = i + 1;
-        int i3 = length << 1;
-        if (i2 < i3) {
-            i2 = i3;
-        }
-        AtomicReferenceArray<Object> atomicReferenceArray2 = new AtomicReferenceArray<>(i2);
-        for (int i4 = 0; i4 < length; i4++) {
-            atomicReferenceArray2.set(i4, atomicReferenceArray.get(i4));
-        }
-        atomicReferenceArray2.set(i, xw2Var);
-        this.array = atomicReferenceArray2;
+    public final URL a() {
+        Uri.Builder appendPath = new Uri.Builder().scheme("https").authority("firebase-settings.crashlytics.com").appendPath("spi").appendPath("v2").appendPath("platforms").appendPath("android").appendPath("gmp");
+        tr trVar = this.a;
+        Uri.Builder appendPath2 = appendPath.appendPath(trVar.a).appendPath("settings");
+        yj yjVar = trVar.b;
+        return new URL(appendPath2.appendQueryParameter("build_version", yjVar.c).appendQueryParameter("display_version", yjVar.b).build().toString());
     }
 }

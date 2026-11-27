@@ -1,252 +1,83 @@
 package defpackage;
 
-import android.graphics.Color;
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class xib extends b4 {
-    public static final Parcelable.Creator<xib> CREATOR = new rpd((byte) 6);
-    public float a;
-    public int b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
-    public int h;
-    public int n;
-    public String r;
-    public int s;
-    public int w;
-    public String x;
-    public JSONObject y;
+import android.graphics.Rect;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class xib extends m74 {
+    public final Rect o;
+    public final zib p;
 
-    public xib(float f, int i, int i2, int i3, int i4, int i5, int i6, int i7, String str, int i8, int i9, String str2) {
-        this.a = f;
-        this.b = i;
-        this.c = i2;
-        this.d = i3;
-        this.e = i4;
-        this.f = i5;
-        this.h = i6;
-        this.n = i7;
-        this.r = str;
-        this.s = i8;
-        this.w = i9;
-        this.x = str2;
-        if (str2 != null) {
-            try {
-                this.y = new JSONObject(this.x);
-                return;
-            } catch (JSONException unused) {
-                this.y = null;
-                this.x = null;
-                return;
-            }
-        }
-        this.y = null;
-    }
-
-    public static final int c(String str) {
-        if (str != null && str.length() == 9 && str.charAt(0) == '#') {
-            try {
-                return Color.argb(Integer.parseInt(str.substring(7, 9), 16), Integer.parseInt(str.substring(1, 3), 16), Integer.parseInt(str.substring(3, 5), 16), Integer.parseInt(str.substring(5, 7), 16));
-            } catch (NumberFormatException unused) {
-            }
-        }
-        return 0;
-    }
-
-    public static final String d(int i) {
-        return String.format("#%02X%02X%02X%02X", Integer.valueOf(Color.red(i)), Integer.valueOf(Color.green(i)), Integer.valueOf(Color.blue(i)), Integer.valueOf(Color.alpha(i)));
-    }
-
-    public final JSONObject b() {
-        JSONObject jSONObject = new JSONObject();
-        try {
-            jSONObject.put("fontScale", this.a);
-            int i = this.b;
-            if (i != 0) {
-                jSONObject.put("foregroundColor", d(i));
-            }
-            int i2 = this.c;
-            if (i2 != 0) {
-                jSONObject.put("backgroundColor", d(i2));
-            }
-            int i3 = this.d;
-            if (i3 != 0) {
-                if (i3 != 1) {
-                    if (i3 != 2) {
-                        if (i3 != 3) {
-                            if (i3 == 4) {
-                                jSONObject.put("edgeType", "DEPRESSED");
-                            }
-                        } else {
-                            jSONObject.put("edgeType", "RAISED");
-                        }
-                    } else {
-                        jSONObject.put("edgeType", "DROP_SHADOW");
-                    }
-                } else {
-                    jSONObject.put("edgeType", "OUTLINE");
-                }
-            } else {
-                jSONObject.put("edgeType", "NONE");
-            }
-            int i4 = this.e;
-            if (i4 != 0) {
-                jSONObject.put("edgeColor", d(i4));
-            }
-            int i5 = this.f;
-            if (i5 != 0) {
-                if (i5 != 1) {
-                    if (i5 == 2) {
-                        jSONObject.put("windowType", "ROUNDED_CORNERS");
-                    }
-                } else {
-                    jSONObject.put("windowType", "NORMAL");
-                }
-            } else {
-                jSONObject.put("windowType", "NONE");
-            }
-            int i6 = this.h;
-            if (i6 != 0) {
-                jSONObject.put("windowColor", d(i6));
-            }
-            if (this.f == 2) {
-                jSONObject.put("windowRoundedCornerRadius", this.n);
-            }
-            String str = this.r;
-            if (str != null) {
-                jSONObject.put("fontFamily", str);
-            }
-            switch (this.s) {
-                case 0:
-                    jSONObject.put("fontGenericFamily", "SANS_SERIF");
-                    break;
-                case 1:
-                    jSONObject.put("fontGenericFamily", "MONOSPACED_SANS_SERIF");
-                    break;
-                case 2:
-                    jSONObject.put("fontGenericFamily", "SERIF");
-                    break;
-                case 3:
-                    jSONObject.put("fontGenericFamily", "MONOSPACED_SERIF");
-                    break;
-                case 4:
-                    jSONObject.put("fontGenericFamily", "CASUAL");
-                    break;
-                case 5:
-                    jSONObject.put("fontGenericFamily", "CURSIVE");
-                    break;
-                case 6:
-                    jSONObject.put("fontGenericFamily", "SMALL_CAPITALS");
-                    break;
-            }
-            int i7 = this.w;
-            if (i7 != 0) {
-                if (i7 != 1) {
-                    if (i7 != 2) {
-                        if (i7 == 3) {
-                            jSONObject.put("fontStyle", "BOLD_ITALIC");
-                        }
-                    } else {
-                        jSONObject.put("fontStyle", "ITALIC");
-                    }
-                } else {
-                    jSONObject.put("fontStyle", "BOLD");
-                }
-            } else {
-                jSONObject.put("fontStyle", "NORMAL");
-            }
-            JSONObject jSONObject2 = this.y;
-            if (jSONObject2 != null) {
-                jSONObject.put("customData", jSONObject2);
-            }
-        } catch (JSONException unused) {
-        }
-        return jSONObject;
-    }
-
-    public final boolean equals(Object obj) {
-        boolean z;
-        boolean z2;
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof xib)) {
-            return false;
-        }
-        xib xibVar = (xib) obj;
-        JSONObject jSONObject = this.y;
-        if (jSONObject != null) {
-            z = false;
-        } else {
-            z = true;
-        }
-        JSONObject jSONObject2 = xibVar.y;
-        if (jSONObject2 != null) {
-            z2 = false;
-        } else {
-            z2 = true;
-        }
-        if (z != z2) {
-            return false;
-        }
-        if ((jSONObject == null || jSONObject2 == null || vu5.a(jSONObject, jSONObject2)) && this.a == xibVar.a && this.b == xibVar.b && this.c == xibVar.c && this.d == xibVar.d && this.e == xibVar.e && this.f == xibVar.f && this.h == xibVar.h && this.n == xibVar.n && id1.d(this.r, xibVar.r) && this.s == xibVar.s && this.w == xibVar.w) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.a), Integer.valueOf(this.b), Integer.valueOf(this.c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f), Integer.valueOf(this.h), Integer.valueOf(this.n), this.r, Integer.valueOf(this.s), Integer.valueOf(this.w), String.valueOf(this.y)});
+    public xib(zib zibVar, zib zibVar2) {
+        super(zibVar2);
+        this.p = zibVar;
+        this.o = new Rect();
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        String jSONObject;
-        JSONObject jSONObject2 = this.y;
-        if (jSONObject2 == null) {
-            jSONObject = null;
-        } else {
-            jSONObject = jSONObject2.toString();
+    public final int g(float f, float f2) {
+        int i;
+        zib zibVar = this.p;
+        int childCount = zibVar.getChildCount();
+        for (int i2 = 0; i2 < childCount; i2++) {
+            sib d = zibVar.d(i2);
+            int i3 = d.k;
+            if (i3 > 0 && (i = d.l) > 0) {
+                int i4 = d.p;
+                if (f >= i4 && f < i4 + i3) {
+                    int i5 = d.q;
+                    if (f2 >= i5 && f2 < i5 + i) {
+                        return i2;
+                    }
+                }
+            }
         }
-        this.x = jSONObject;
-        int r = jte.r(parcel, 20293);
-        float f = this.a;
-        jte.q(parcel, 2, 4);
-        parcel.writeFloat(f);
-        int i2 = this.b;
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(i2);
-        int i3 = this.c;
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(i3);
-        int i4 = this.d;
-        jte.q(parcel, 5, 4);
-        parcel.writeInt(i4);
-        int i5 = this.e;
-        jte.q(parcel, 6, 4);
-        parcel.writeInt(i5);
-        int i6 = this.f;
-        jte.q(parcel, 7, 4);
-        parcel.writeInt(i6);
-        int i7 = this.h;
-        jte.q(parcel, 8, 4);
-        parcel.writeInt(i7);
-        int i8 = this.n;
-        jte.q(parcel, 9, 4);
-        parcel.writeInt(i8);
-        jte.l(parcel, 10, this.r);
-        int i9 = this.s;
-        jte.q(parcel, 11, 4);
-        parcel.writeInt(i9);
-        int i10 = this.w;
-        jte.q(parcel, 12, 4);
-        parcel.writeInt(i10);
-        jte.l(parcel, 13, this.x);
-        jte.s(parcel, r);
+        return Integer.MIN_VALUE;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        zib zibVar = this.p;
+        int childCount = zibVar.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            sib d = zibVar.d(i);
+            if (d.k > 0 && d.l > 0) {
+                arrayList.add(Integer.valueOf(i));
+            }
+        }
+    }
+
+    @Override
+    public final void l(int i, v4 v4Var) {
+        String str;
+        Rect rect = this.o;
+        if (i >= 0) {
+            zib zibVar = this.p;
+            if (i < zibVar.getChildCount()) {
+                sib d = zibVar.d(i);
+                int i2 = d.p;
+                int i3 = d.q;
+                rect.set(i2, i3, d.k + i2, d.l + i3);
+                v4Var.h(rect);
+                v4Var.i("android.widget.TextView");
+                v4Var.a.setEnabled(true);
+                rib ribVar = d.b;
+                if (ribVar != null) {
+                    str = ribVar.getText();
+                } else {
+                    str = null;
+                }
+                v4Var.o((str == null || str.length() == 0) ? " " : " ");
+                TL_iv.pageTableCell pagetablecell = d.c;
+                if (pagetablecell != null && pagetablecell.header) {
+                    v4Var.k(true);
+                    return;
+                }
+                return;
+            }
+        }
+        rect.set(0, 0, 1, 1);
+        v4Var.h(rect);
+        v4Var.p(false);
+        v4Var.j("");
     }
 }

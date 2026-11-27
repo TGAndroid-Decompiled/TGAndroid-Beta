@@ -1,8 +1,8 @@
 package defpackage;
-public interface imb {
-    void E(boolean z);
 
-    boolean a();
+import android.text.Layout;
+public interface imb extends hmb {
+    Layout getStaticTextLayout();
 
-    boolean w();
+    CharSequence getText();
 }

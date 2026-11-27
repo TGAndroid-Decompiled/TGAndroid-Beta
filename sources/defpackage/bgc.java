@@ -1,19 +1,12 @@
 package defpackage;
+public final class bgc {
+    public final double a;
+    public final int b;
+    public final int c;
 
-import android.content.Context;
-public final class bgc extends sk8 {
-    public final hgc W;
-
-    public bgc(hgc hgcVar, Context context, float f, float f2) {
-        super(context, f, f2);
-        this.W = hgcVar;
-    }
-
-    @Override
-    public final int[] getFloatingViewLocation() {
-        int[] iArr = new int[2];
-        hgc hgcVar = this.W;
-        hgcVar.Z.getLocationOnScreen(iArr);
-        return new int[]{iArr[0], iArr[1], hgcVar.Z.getMeasuredWidth()};
+    public bgc(int i, int i2, double d) {
+        this.a = d;
+        this.b = i;
+        this.c = i2;
     }
 }

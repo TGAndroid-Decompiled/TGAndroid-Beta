@@ -1,3 +1,3 @@
 package defpackage;
-public class sc1 extends s9b {
+public abstract class sc1 {
 }

@@ -1,62 +1,35 @@
 package defpackage;
-public final class a90 extends ty2 {
-    public final long a;
-    public final String b;
-    public final String c;
-    public final long d;
-    public final int e;
 
-    public a90(String str, int i, String str2, long j, long j2) {
-        this.a = j;
-        this.b = str;
-        this.c = str2;
-        this.d = j2;
-        this.e = i;
+import java.util.List;
+public final class a90 extends pz2 {
+    public final String a;
+    public final int b;
+    public final List c;
+
+    public a90(String str, int i, List list) {
+        this.a = str;
+        this.b = i;
+        this.c = list;
     }
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof ty2) {
-            a90 a90Var = (a90) ((ty2) obj);
-            if (this.a == a90Var.a && this.b.equals(a90Var.b)) {
-                String str = a90Var.c;
-                String str2 = this.c;
-                if (str2 != null ? str2.equals(str) : str == null) {
-                    if (this.d == a90Var.d && this.e == a90Var.e) {
-                        return true;
-                    }
-                }
+        if (obj instanceof pz2) {
+            a90 a90Var = (a90) ((pz2) obj);
+            if (this.a.equals(a90Var.a) && this.b == a90Var.b && this.c.equals(a90Var.c)) {
+                return true;
             }
         }
         return false;
     }
 
     public final int hashCode() {
-        int hashCode;
-        long j = this.a;
-        int hashCode2 = (((((int) ((j >>> 32) ^ j)) ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003;
-        String str = this.c;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        long j2 = this.d;
-        return ((((hashCode2 ^ hashCode) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003) ^ this.e;
+        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b) * 1000003) ^ this.c.hashCode();
     }
 
     public final String toString() {
-        StringBuilder sb = new StringBuilder("Frame{pc=");
-        sb.append(this.a);
-        sb.append(", symbol=");
-        sb.append(this.b);
-        sb.append(", file=");
-        sb.append(this.c);
-        sb.append(", offset=");
-        sb.append(this.d);
-        sb.append(", importance=");
-        return de9.l(sb, this.e, "}");
+        return "Thread{name=" + this.a + ", importance=" + this.b + ", frames=" + this.c + "}";
     }
 }

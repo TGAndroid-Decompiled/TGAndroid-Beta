@@ -1,87 +1,45 @@
 package defpackage;
 
-import android.view.View;
-import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-public final class d92 extends n39 {
-    public final e92 c;
+public final class d92 extends yc8 {
+    public final g92 a;
 
-    public d92(e92 e92Var) {
-        this.c = e92Var;
+    public d92(g92 g92Var) {
+        this.a = g92Var;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        if (s49Var.f == 1) {
+    public final void F() {
+        this.a.e.getImageReceiver().v0(true, true);
+    }
+
+    @Override
+    public final defpackage.fd8 M(defpackage.r47 r7, org.telegram.tgnet.TLRPC.FileLocation r8, int r9, boolean r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.d92.M(r47, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):fd8");
+    }
+
+    @Override
+    public final boolean N() {
+        g92 g92Var = this.a;
+        long j = g92Var.C0;
+        if (j == 0) {
             return true;
         }
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = g92Var.getMessagesController().o1(j);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.id = new TLRPC.TL_inputPhotoEmpty();
+        g92Var.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new ye(this, (byte) 12));
         return false;
     }
 
     @Override
-    public final int b() {
-        return this.c.i3.O.size() + 2;
+    public final void g(String str, String str2, boolean z) {
+        this.a.s.p(str, str2, z);
     }
 
     @Override
-    public final int d(int i) {
-        if (i == 0) {
-            return 0;
-        }
-        if (i <= this.c.i3.O.size()) {
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        e92 e92Var = this.c;
-        f92 f92Var = e92Var.i3;
-        int i2 = s49Var.f;
-        View view = s49Var.a;
-        if (i2 != 0) {
-            boolean z = true;
-            if (i2 != 1) {
-                if (i2 == 2) {
-                    ((mhb) view).setText(k96.M0(2131743404, null));
-                    return;
-                }
-                return;
-            }
-            TLRPC.TL_username tL_username = (TLRPC.TL_username) f92Var.O.get(i - 1);
-            ie1 ie1Var = (ie1) view;
-            if (ie1Var.I) {
-                f92Var.P = null;
-            }
-            if (i >= f92Var.O.size()) {
-                z = false;
-            }
-            ie1Var.a(tL_username, z, false, 0L);
-            if (tL_username != null && tL_username.editable) {
-                f92Var.P = ie1Var;
-                return;
-            }
-            return;
-        }
-        ld5 ld5Var = (ld5) view;
-        zkb.h(bkb.c6, e92Var.o2, ld5Var);
-        ld5Var.setText(k96.M0(2131743405, null));
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        e92 e92Var = this.c;
-        wjb wjbVar = e92Var.o2;
-        if (i != 0) {
-            if (i != 1) {
-                if (i != 2) {
-                    return null;
-                }
-                return new s49(new mhb(12, wjbVar, e92Var.getContext()));
-            }
-            return new s49(new ee1(this, e92Var.getContext(), wjbVar));
-        }
-        return new s49(new ld5(e92Var.getContext(), wjbVar));
+    public final int x() {
+        return 1;
     }
 }

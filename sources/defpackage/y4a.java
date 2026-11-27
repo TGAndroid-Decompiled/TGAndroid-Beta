@@ -1,5 +1,21 @@
 package defpackage;
-public final class y4a extends vte {
-    public static final y4a b = new vte();
-    public static final y4a c = new vte();
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class y4a extends FrameLayout {
+    public final float a;
+
+    public y4a(Context context, float f) {
+        super(context);
+        this.a = f;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth() * this.a, getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
 }

@@ -1,35 +1,106 @@
 package defpackage;
-public final class f50 implements zn7 {
-    public static final f50 a = new Object();
-    public static final w84 b = w84.c("sdkVersion");
-    public static final w84 c = w84.c("model");
-    public static final w84 d = w84.c("hardware");
-    public static final w84 e = w84.c("device");
-    public static final w84 f = w84.c("product");
-    public static final w84 g = w84.c("osBuild");
-    public static final w84 h = w84.c("manufacturer");
-    public static final w84 i = w84.c("fingerprint");
-    public static final w84 j = w84.c("locale");
-    public static final w84 k = w84.c("country");
-    public static final w84 l = w84.c("mccMnc");
-    public static final w84 m = w84.c("applicationBuild");
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class f50 extends c4 {
+    public static final Parcelable.Creator<f50> CREATOR = new t4f((byte) 2);
+    public final cy a;
+    public final Boolean b;
+    public final ubc c;
+    public final pd9 d;
+
+    public f50(String str, Boolean bool, String str2, String str3) {
+        cy a;
+        ubc a2;
+        if (str == null) {
+            a = null;
+        } else {
+            try {
+                a = cy.a(str);
+            } catch (ay | od9 | xgd e) {
+                throw new IllegalArgumentException(e);
+            }
+        }
+        this.a = a;
+        this.b = bool;
+        if (str2 == null) {
+            a2 = null;
+        } else {
+            a2 = ubc.a(str2);
+        }
+        this.c = a2;
+        this.d = str3 != null ? pd9.a(str3) : null;
+    }
+
+    public final pd9 b() {
+        pd9 pd9Var = this.d;
+        if (pd9Var == null) {
+            pd9Var = null;
+            Boolean bool = this.b;
+            if (bool != null) {
+                if (!bool.booleanValue()) {
+                    return null;
+                }
+                return pd9.RESIDENT_KEY_REQUIRED;
+            }
+        }
+        return pd9Var;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof f50)) {
+            return false;
+        }
+        f50 f50Var = (f50) obj;
+        if (!vue.a(this.a, f50Var.a) || !vue.a(this.b, f50Var.b) || !vue.a(this.c, f50Var.c) || !vue.a(b(), f50Var.b())) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, this.c, b()});
+    }
+
+    public final String toString() {
+        String valueOf = String.valueOf(this.a);
+        String valueOf2 = String.valueOf(this.c);
+        String valueOf3 = String.valueOf(this.d);
+        StringBuilder p = ik8.p("AuthenticatorSelectionCriteria{\n attachment=", valueOf, ", \n requireResidentKey=");
+        p.append(this.b);
+        p.append(", \n requireUserVerification=");
+        p.append(valueOf2);
+        p.append(", \n residentKeyRequirement=");
+        return c00.k(p, valueOf3, "\n }");
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        bk bkVar = (bk) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ((u70) bkVar).a);
-        u70 u70Var = (u70) bkVar;
-        ao7Var.a(c, u70Var.b);
-        ao7Var.a(d, u70Var.c);
-        ao7Var.a(e, u70Var.d);
-        ao7Var.a(f, u70Var.e);
-        ao7Var.a(g, u70Var.f);
-        ao7Var.a(h, u70Var.g);
-        ao7Var.a(i, u70Var.h);
-        ao7Var.a(j, u70Var.i);
-        ao7Var.a(k, u70Var.j);
-        ao7Var.a(l, u70Var.k);
-        ao7Var.a(m, u70Var.l);
+    public final void writeToParcel(Parcel parcel, int i) {
+        String str;
+        String str2;
+        int r = bye.r(parcel, 20293);
+        String str3 = null;
+        cy cyVar = this.a;
+        if (cyVar == null) {
+            str = null;
+        } else {
+            str = cyVar.a;
+        }
+        bye.l(parcel, 2, str);
+        bye.a(parcel, 3, this.b);
+        ubc ubcVar = this.c;
+        if (ubcVar == null) {
+            str2 = null;
+        } else {
+            str2 = ubcVar.a;
+        }
+        bye.l(parcel, 4, str2);
+        pd9 b = b();
+        if (b != null) {
+            str3 = b.a;
+        }
+        bye.l(parcel, 5, str3);
+        bye.s(parcel, r);
     }
 }

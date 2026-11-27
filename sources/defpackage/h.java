@@ -2,13 +2,13 @@ package defpackage;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_aicompose;
-public final class h implements p8c {
+public final class h implements pcc {
     public final byte a;
-    public final a1 b;
+    public final b1 b;
 
-    public h(a1 a1Var, byte b) {
+    public h(b1 b1Var, byte b) {
         this.a = b;
-        this.b = a1Var;
+        this.b = b1Var;
     }
 
     @Override
@@ -16,22 +16,22 @@ public final class h implements p8c {
         int f;
         byte b = this.a;
         int i = 0;
-        a1 a1Var = this.b;
+        b1 b1Var = this.b;
         switch (b) {
             case 0:
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-                z0 z0Var = a1Var.u2;
-                je5 je5Var = a1Var.y2;
-                if (je5Var != null) {
-                    je5Var.f(true);
+                a1 a1Var = b1Var.u2;
+                kg5 kg5Var = b1Var.y2;
+                if (kg5Var != null) {
+                    kg5Var.f(true);
                 }
-                if (aiComposeTone instanceof t0) {
-                    z0Var.d(aiComposeTone, true);
-                    a1Var.O2.O(true);
-                    gl.d3(new a(a1Var, (byte) 3), 150L);
+                if (aiComposeTone instanceof u0) {
+                    a1Var.d(aiComposeTone, true);
+                    b1Var.Q2.O(true);
+                    hl.d3(new a(b1Var, (byte) 3), 150L);
                     return;
                 } else if (aiComposeTone == null) {
-                    ArrayList arrayList = a1Var.r2.b;
+                    ArrayList arrayList = b1Var.r2.b;
                     int i2 = 0;
                     while (i < arrayList.size()) {
                         if (arrayList.get(i) instanceof TL_aicompose.TL_aiComposeTone) {
@@ -40,83 +40,83 @@ public final class h implements p8c {
                         i++;
                     }
                     int i3 = i2 + 1;
-                    boolean p = y6c.h(a1Var.a).p();
-                    int i4 = a1Var.a;
+                    boolean p = yac.h(b1Var.a).p();
+                    int i4 = b1Var.a;
                     if (p) {
-                        f = na7.q1(i4).k4.X.f();
+                        f = uc7.s1(i4).k4.e0.f();
                     } else {
-                        f = na7.q1(i4).k4.W.f();
+                        f = uc7.s1(i4).k4.d0.f();
                     }
                     if (i3 > f) {
-                        a1.q1(new u21(a1Var.D2, a1Var.J0), a1Var.a);
+                        b1.s1(new d31(b1Var.D2, b1Var.J0), b1Var.a);
                         return;
                     }
-                    r0 r0Var = new r0(a1Var.getContext(), a1Var.J0);
-                    r0Var.f2 = new h(a1Var, (byte) 1);
-                    r0Var.show();
+                    s0 s0Var = new s0(b1Var.getContext(), b1Var.J0);
+                    s0Var.f2 = new h(b1Var, (byte) 1);
+                    s0Var.show();
                     return;
-                } else if (z0Var.getSelectedTone() == aiComposeTone) {
-                    if (a1Var.V2 || a1Var.X1) {
-                        a1Var.a1();
+                } else if (a1Var.getSelectedTone() == aiComposeTone) {
+                    if (b1Var.X2 || b1Var.X1) {
+                        b1Var.b1();
                     }
-                    z0Var.c(-1, true);
-                    a1Var.X1 = false;
-                    a1Var.Y1 = null;
-                    a1Var.Z1 = null;
-                    a1Var.W2[1] = null;
-                    if (a1Var.h1() && ec.b(a1Var.a, a1Var.g2) != null) {
-                        ec.e(a1Var.a, a1Var.g2, null);
-                        uv1 uv1Var = a1Var.R2;
-                        if (uv1Var != null) {
-                            uv1Var.run();
+                    a1Var.c(-1, true);
+                    b1Var.X1 = false;
+                    b1Var.Y1 = null;
+                    b1Var.Z1 = null;
+                    b1Var.Y2[1] = null;
+                    if (b1Var.i1() && fc.b(b1Var.a, b1Var.g2) != null) {
+                        fc.e(b1Var.a, b1Var.g2, null);
+                        fw1 fw1Var = b1Var.T2;
+                        if (fw1Var != null) {
+                            fw1Var.run();
                         }
                     }
-                    a1Var.s1(true);
-                    a1Var.k1();
-                    a1Var.O2.O(true);
+                    b1Var.u1(true);
+                    b1Var.m1();
+                    b1Var.Q2.O(true);
                     return;
                 } else {
-                    z0Var.d(aiComposeTone, true);
-                    a1Var.k1();
-                    a1Var.O2.O(true);
+                    a1Var.d(aiComposeTone, true);
+                    b1Var.m1();
+                    b1Var.Q2.O(true);
                     return;
                 }
             case 1:
                 TL_aicompose.AiComposeTone aiComposeTone2 = (TL_aicompose.AiComposeTone) obj;
-                a1Var.r2.b.add(0, aiComposeTone2);
-                a1Var.v1();
-                new u21(a1Var.D2, a1Var.J0).p(aiComposeTone2.emoji_id, k96.a0(null, null, 2131754956, aiComposeTone2.title), k96.M0(2131754957, null)).j();
+                b1Var.r2.b.add(0, aiComposeTone2);
+                b1Var.w1();
+                new d31(b1Var.D2, b1Var.J0).p(aiComposeTone2.emoji_id, ob6.a0(null, null, 2131754953, aiComposeTone2.title), ob6.M0(2131754954, null)).j();
                 return;
             case 2:
                 TL_aicompose.AiComposeTone aiComposeTone3 = (TL_aicompose.AiComposeTone) obj;
                 if (aiComposeTone3 instanceof TL_aicompose.TL_aiComposeTone) {
-                    ic icVar = a1Var.r2;
+                    jc jcVar = b1Var.r2;
                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone3;
-                    ArrayList arrayList2 = icVar.b;
+                    ArrayList arrayList2 = jcVar.b;
                     while (true) {
                         if (i < arrayList2.size()) {
                             if ((arrayList2.get(i) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) arrayList2.get(i)).id == tL_aiComposeTone.id) {
                                 arrayList2.set(i, tL_aiComposeTone);
-                                icVar.c();
+                                jcVar.c();
                             } else {
                                 i++;
                             }
                         }
                     }
                 }
-                a1Var.v1();
+                b1Var.w1();
                 return;
             default:
                 int intValue = ((Integer) obj).intValue();
-                z0 z0Var2 = a1Var.t2;
-                if (z0Var2.getSelectedTab() != intValue) {
-                    je5 je5Var2 = a1Var.y2;
-                    if (je5Var2 != null) {
-                        je5Var2.f(true);
+                a1 a1Var2 = b1Var.t2;
+                if (a1Var2.getSelectedTab() != intValue) {
+                    kg5 kg5Var2 = b1Var.y2;
+                    if (kg5Var2 != null) {
+                        kg5Var2.f(true);
                     }
-                    z0Var2.c(intValue, true);
-                    a1Var.k1();
-                    a1Var.O2.O(true);
+                    a1Var2.c(intValue, true);
+                    b1Var.m1();
+                    b1Var.Q2.O(true);
                     return;
                 }
                 return;

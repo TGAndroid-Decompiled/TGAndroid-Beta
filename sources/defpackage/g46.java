@@ -1,77 +1,75 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-public abstract class g46 extends jia {
-    public final i46 N0;
-    public final Paint O0;
-    public m46 P0;
+import android.graphics.PorterDuff;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class g46 extends FrameLayout {
+    public final ImageView a;
+    public final ema b;
+    public final jo0 c;
+    public final ema d;
+    public f46 e;
+    public e46 f;
 
-    public g46(Context context) {
+    public g46(l46 l46Var, Context context, vnb vnbVar) {
         super(context);
-        this.N0 = new i46(this);
-        this.O0 = new Paint(1);
-    }
-
-    private int getLinkColor() {
-        return bm2.o(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
+        int i;
+        float f;
+        float f2;
+        int i2 = l46.R2;
+        int i3 = l46Var.u0;
+        setPadding(i3, 0, i3, 0);
+        ImageView imageView = new ImageView(context);
+        this.a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        yob.s(imageView, aob.Ck, vnbVar, PorterDuff.Mode.SRC_IN);
+        if (ob6.a0) {
+            i = 5;
+        } else {
+            i = 3;
+        }
+        addView(imageView, tre.d(24, 24.0f, i | 16, 24.0f, 0.0f, 24.0f, 0.0f));
+        ema emaVar = new ema(context);
+        this.b = emaVar;
+        emaVar.setWidthWrapContent(true);
+        yob.W(emaVar, aob.j5, vnbVar);
+        emaVar.setTextSize(14);
+        boolean z = ob6.a0;
+        int i4 = (z ? 5 : 3) | 16;
+        if (z) {
+            f = 30.0f;
+        } else {
+            f = 60.0f;
+        }
+        if (z) {
+            f2 = 60.0f;
+        } else {
+            f2 = 30.0f;
+        }
+        addView(emaVar, tre.d(-2, -2.0f, i4, f, 0.0f, f2, 0.0f));
+        ema emaVar2 = new ema(context);
+        this.d = emaVar2;
+        emaVar2.setTextColor(-1);
+        emaVar2.setWidthWrapContent(true);
+        emaVar2.setTypeface(hl.o());
+        emaVar2.setTextSize(14);
+        jo0 jo0Var = new jo0(this, context, vnbVar);
+        this.c = jo0Var;
+        jo0Var.setWillNotDraw(false);
+        jo0Var.addView(emaVar2, tre.e(-2, -2, 17));
+        addView(jo0Var, tre.c(-1.0f, -1));
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        if (isClickable()) {
-            RectF rectF = gl.P;
-            rectF.set(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight());
-            int linkColor = getLinkColor();
-            Paint paint = this.O0;
-            paint.setColor(linkColor);
-            canvas.drawRoundRect(rectF, gl.L(4.0f), gl.L(4.0f), paint);
+    public final void onMeasure(int i, int i2) {
+        float f;
+        if (this.f != null) {
+            f = 49.0f;
+        } else {
+            f = 36.0f;
         }
-        super.onDraw(canvas);
-        if (isClickable() && this.N0.g(canvas)) {
-            invalidate();
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!isClickable()) {
-            return super.onTouchEvent(motionEvent);
-        }
-        i46 i46Var = this.N0;
-        if (i46Var != null) {
-            if (motionEvent.getAction() == 0) {
-                m46 m46Var = new m46(null, null, motionEvent.getX(), motionEvent.getY(), 0);
-                m46Var.d(getLinkColor());
-                this.P0 = m46Var;
-                i46Var.a(m46Var, null);
-                b46 b = this.P0.b();
-                b.e(null, 0, 0.0f, 0.0f);
-                b.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
-                gl.d3(new kz5(this, m46Var, (byte) 5), ViewConfiguration.getLongPressTimeout());
-                return true;
-            } else if (motionEvent.getAction() == 1) {
-                i46Var.e(true);
-                if (this.P0 != null) {
-                    performClick();
-                }
-                this.P0 = null;
-                return true;
-            } else if (motionEvent.getAction() == 3) {
-                i46Var.e(true);
-                this.P0 = null;
-                return true;
-            }
-        }
-        if (this.P0 == null && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(f), 1073741824));
     }
 }

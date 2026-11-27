@@ -1,5 +1,6 @@
 package defpackage;
-public final class iy7 {
-    public float a;
-    public float b;
+
+import android.net.Uri;
+public interface iy7 {
+    Object I(Uri uri, l73 l73Var);
 }

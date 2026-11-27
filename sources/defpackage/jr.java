@@ -1,314 +1,288 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-public final class jr extends w39 {
-    public final byte c;
+import java.util.LinkedHashMap;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class jr implements r69 {
+    public final byte a;
+    public final fn7 b;
+    public final Object c;
     public final Object d;
 
-    public jr(Object obj, byte b) {
-        this.c = b;
-        this.d = obj;
+    public jr(Object obj, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.b = (fn7) obj;
+        this.c = obj2;
+        this.d = obj3;
     }
 
-    public static int D(gb2 gb2Var, int i, boolean z) {
+    @Override
+    public final void e(int i, View view) {
+        e3a e3aVar;
+        TLRPC.User user;
+        TLRPC.WebPage webPage;
         int i2;
-        ArrayList arrayList;
-        CharSequence charSequence;
-        int lineTop;
-        float p;
-        i27 i27Var;
-        int lineTop2;
-        if (gb2Var != null) {
-            nb2 nb2Var = gb2Var.ub;
-            k27 messageObject = gb2Var.getMessageObject();
-            if (messageObject != null) {
-                if (messageObject.y2 != null) {
-                    gb2Var.V2(true);
-                    rh9 rh9Var = messageObject.y2;
-                    ArrayList arrayList2 = rh9Var.n;
-                    int size = arrayList2.size() - 1;
-                    while (true) {
-                        if (size < 0) {
-                            break;
-                        }
-                        int intValue = ((Integer) rh9Var.o.get(size)).intValue();
-                        if (i < intValue) {
-                            size--;
-                        } else {
-                            Layout a = ((pib) arrayList2.get(size)).a();
-                            if (a != null) {
-                                int lineForOffset = a.getLineForOffset(Math.min(i - intValue, a.getText().length()));
-                                int y = ((pib) arrayList2.get(size)).getY() + gb2Var.u0;
-                                if (z) {
-                                    lineTop2 = a.getLineBottom(lineForOffset);
-                                } else {
-                                    lineTop2 = a.getLineTop(lineForOffset);
-                                }
-                                return y + lineTop2;
-                            }
+        byte b = this.a;
+        String str = null;
+        Object obj = this.c;
+        Object obj2 = this.d;
+        fn7 fn7Var = this.b;
+        boolean z = false;
+        boolean z2 = false;
+        z = false;
+        switch (b) {
+            case 0:
+                pr prVar = (pr) fn7Var;
+                e eVar = (e) obj;
+                Context context = (Context) obj2;
+                or orVar = (or) view;
+                g26 g26Var = (g26) prVar.f3.get(i);
+                if (g26Var.e && !yac.n()) {
+                    eVar.showDialog(new xk8(eVar, 10, true));
+                    return;
+                } else if (!ere.a(g26Var)) {
+                    y46 y46Var = new y46(context);
+                    y46Var.a = i;
+                    prVar.g3.v0(y46Var);
+                    ere.b(g26Var);
+                    int i3 = or.h;
+                    orVar.b(true, true);
+                    for (int i4 = 0; i4 < prVar.getChildCount(); i4++) {
+                        or orVar2 = (or) prVar.getChildAt(i4);
+                        if (orVar2 != orVar) {
+                            orVar2.b(false, true);
                         }
                     }
-                } else if (messageObject.c1() == 0) {
-                    if (!TextUtils.isEmpty(messageObject.z) && (i27Var = gb2Var.m3) != null) {
-                        i2 = (int) gb2Var.t3;
-                        charSequence = messageObject.z;
-                        arrayList = i27Var.e;
+                    jn7.e().k(296, 5, g26Var);
+                    return;
+                } else {
+                    return;
+                }
+            case 1:
+                bx4 bx4Var = (bx4) fn7Var;
+                LinkedHashMap linkedHashMap = bx4Var.Z1;
+                zw4 zw4Var = (zw4) obj;
+                xw4 xw4Var = (xw4) obj2;
+                ex0 ex0Var = bx4Var.c;
+                b8c G = bx4Var.i2.G(i - 1);
+                if (G != null) {
+                    if (G.d == 1 && G.a == 3) {
+                        jj.l(bx4Var.getContext(), ob6.M0(2131751203, null), ob6.M0(2131751208, null), null, new rw4(bx4Var, (byte) 2), new qw4(bx4Var, (byte) 3), false, false, bx4Var.J0).o1();
+                        return;
+                    } else if (zw4Var != null) {
+                        if (G.H(yw4.class)) {
+                            bx4Var.i1(G.d);
+                            return;
+                        }
+                        Object obj3 = G.H;
+                        if (obj3 instanceof TLRPC.User) {
+                            bx4Var.i1(((TLRPC.User) obj3).id);
+                            return;
+                        } else if (obj3 instanceof TLRPC.Chat) {
+                            bx4Var.i1(-((TLRPC.Chat) obj3).id);
+                            return;
+                        } else {
+                            return;
+                        }
                     } else {
-                        gb2Var.V2(true);
-                        int i3 = gb2Var.u0;
-                        CharSequence charSequence2 = messageObject.v;
-                        ArrayList arrayList3 = messageObject.B2;
-                        if (gb2Var.v1) {
-                            i2 = de9.w(10.0f, gb2Var.W1, i3);
-                        } else {
-                            i2 = i3;
-                        }
-                        arrayList = arrayList3;
-                        charSequence = charSequence2;
-                    }
-                    if (arrayList != null && charSequence != null) {
-                        for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                            h27 h27Var = (h27) arrayList.get(i4);
-                            StaticLayout staticLayout = h27Var.e;
-                            String charSequence3 = staticLayout.getText().toString();
-                            int i5 = h27Var.n;
-                            if (i > i5) {
-                                if (i - i5 > charSequence3.length() - 1) {
-                                    p = i2 + ((int) (h27Var.p(arrayList, nb2Var) + h27Var.f + h27Var.w));
-                                } else {
-                                    int lineForOffset2 = staticLayout.getLineForOffset(i - h27Var.n);
-                                    if (z) {
-                                        lineTop = staticLayout.getLineBottom(lineForOffset2);
-                                    } else {
-                                        lineTop = staticLayout.getLineTop(lineForOffset2);
+                        Object obj4 = G.H;
+                        if (obj4 instanceof TLRPC.User) {
+                            if (xw4Var != null) {
+                                TLRPC.User user2 = (TLRPC.User) obj4;
+                                d79 d79Var = bx4Var.n1;
+                                if (linkedHashMap.remove(Long.valueOf(user2.id)) == null) {
+                                    int size = linkedHashMap.size();
+                                    bx4Var.U1.getClass();
+                                    if (size >= 10) {
+                                        new d31(ex0Var, bx4Var.J0).Q(2131623982, 36, ob6.G(10, "BotMultiContactsSelectorLimit", new Object[0])).k(true);
+                                        try {
+                                            ex0Var.performHapticFeedback(3, 2);
+                                            return;
+                                        } catch (Exception unused) {
+                                            return;
+                                        }
                                     }
-                                    p = lineTop + h27Var.p(arrayList, nb2Var) + i2 + h27Var.f;
+                                    linkedHashMap.put(Long.valueOf(user2.id), user2);
                                 }
-                                return (int) p;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    @Override
-    public final int b() {
-        byte b = this.c;
-        Object obj = this.d;
-        switch (b) {
-            case 0:
-                return ((or) obj).f3.size();
-            case 1:
-                return ((ib0) obj).f3.size() + 1;
-            case 2:
-                return ((b81) obj).L;
-            case 3:
-            case 4:
-                return 1;
-            case 5:
-                m27 m27Var = ((f37) obj).r;
-                if (m27Var == null) {
-                    return 0;
-                }
-                return m27Var.f.size();
-            default:
-                return ((z08) obj).f.size();
-        }
-    }
-
-    @Override
-    public final long c(int i) {
-        byte b = this.c;
-        Object obj = this.d;
-        switch (b) {
-            case 1:
-                ArrayList arrayList = ((ib0) obj).f3;
-                if (i >= arrayList.size()) {
-                    return 1L;
-                }
-                return ((hb0) arrayList.get(i)).a;
-            case 2:
-                b81 b81Var = (b81) obj;
-                return ((b81Var.J - (i / 12)) * 100) + (b81Var.K - (i % 12));
-            default:
-                return super.c(i);
-        }
-    }
-
-    @Override
-    public final int d(int i) {
-        switch (this.c) {
-            case 1:
-                if (i < ((ib0) this.d).f3.size()) {
-                    return 0;
-                }
-                return 1;
-            case 5:
-                return 0;
-            default:
-                return super.d(i);
-        }
-    }
-
-    @Override
-    public final void t(defpackage.s49 r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jr.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        byte b = this.c;
-        Object obj = this.d;
-        switch (b) {
-            case 0:
-                Context context = viewGroup.getContext();
-                ?? linearLayout = new LinearLayout(context);
-                Paint paint = new Paint(1);
-                linearLayout.a = paint;
-                Paint paint2 = new Paint(1);
-                linearLayout.b = paint2;
-                linearLayout.setOrientation(1);
-                linearLayout.setWillNotDraw(false);
-                mr mrVar = new mr(context);
-                linearLayout.c = mrVar;
-                mrVar.setPadding(gl.L(8.0f), gl.L(8.0f), gl.L(8.0f), gl.L(8.0f));
-                linearLayout.addView(mrVar, nme.r(58, 58, 1));
-                TextView textView = new TextView(context);
-                linearLayout.d = textView;
-                textView.setSingleLine();
-                textView.setTextSize(1, 13.0f);
-                textView.setTextColor(bkb.w0(null, bkb.F6, false));
-                linearLayout.addView(textView, nme.t(-2, -2, 1, 0, 4, 0, 0));
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(Math.max(2, gl.L(0.5f)));
-                paint2.setColor(-1);
-                return new s49(linearLayout);
-            case 1:
-                ib0 ib0Var = (ib0) obj;
-                return new s49(new jb0(ib0Var.k3, ib0Var.getContext()));
-            case 2:
-                return new s49(new y71((b81) obj, viewGroup.getContext()));
-            case 3:
-                return new s49(((m52) obj).w);
-            case 4:
-                return new s49(new sb((byte) 6, ((f72) obj).getContext(), this));
-            case 5:
-                Context context2 = viewGroup.getContext();
-                f37 f37Var = (f37) obj;
-                l37 l37Var = f37Var.d0;
-                d37 d37Var = new d37(this, context2, l37Var.x, f37Var.K, l37Var.G);
-                d37Var.setClipChildren(false);
-                d37Var.setClipToPadding(false);
-                d37Var.setDelegate(new e37(this));
-                return new s49(d37Var);
-            default:
-                l46 l46Var = new l46(viewGroup.getContext(), null);
-                l46Var.setGravity(17);
-                l46Var.setTypeface(gl.o());
-                l46Var.setTextSize(1, 14.0f);
-                l46Var.setPadding(gl.L(12.0f), 0, gl.L(12.0f), 0);
-                l46Var.setEllipsize(TextUtils.TruncateAt.END);
-                l46Var.setSingleLine();
-                l46Var.setMaxLines(1);
-                l46Var.setLayoutParams(new e49(-2, gl.L(28.0f)));
-                ote.b(l46Var, 0.075f, 1.4f);
-                return new s49(l46Var);
-        }
-    }
-
-    @Override
-    public final void y(s49 s49Var) {
-        int i;
-        boolean z;
-        boolean z2;
-        int i2;
-        int[] f;
-        switch (this.c) {
-            case 5:
-                f37 f37Var = (f37) this.d;
-                z27 z27Var = f37Var.e;
-                l37 l37Var = f37Var.d0;
-                if (f37Var.r != null && (i = f37Var.a) != 1) {
-                    View view = s49Var.a;
-                    if (view instanceof gb2) {
-                        gb2 gb2Var = (gb2) view;
-                        if (i == 0) {
-                            f27 c = f37Var.c(gb2Var.getMessageObject());
-                            if (c == null) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            gb2Var.setDrawSelectionBackground(z);
-                            if (c == null) {
-                                z2 = true;
-                            } else {
-                                z2 = false;
-                            }
-                            gb2Var.o3(true, z2, false);
-                            o27 o27Var = l37Var.d;
-                            if (!o27Var.i && o27Var.d != null && f37Var.d(gb2Var)) {
-                                k27 messageObject = gb2Var.getMessageObject();
-                                o27 o27Var2 = l37Var.d;
-                                bu1 bu1Var = o27Var2.d;
-                                if (bu1Var.m && messageObject != null && messageObject.y2 != null && ((i2 = o27Var2.e) < 0 || o27Var2.f <= i2)) {
-                                    String str = bu1Var.i;
-                                    if (str == null) {
-                                        f = null;
-                                    } else {
-                                        f = vh9.f(messageObject, str, bu1Var.o);
-                                    }
-                                    o27 o27Var3 = l37Var.d;
-                                    if (f != null) {
-                                        o27Var3.e = f[0];
-                                        o27Var3.f = f[1];
-                                    } else {
-                                        o27Var3.e = 0;
-                                        o27Var3.f = Math.min(na7.q1(l37Var.x).k4.N1.f(), bu1.d(messageObject));
+                                boolean containsKey = linkedHashMap.containsKey(Long.valueOf(user2.id));
+                                for (int i5 = 0; i5 < bx4Var.i2.E.size(); i5++) {
+                                    b8c G2 = bx4Var.i2.G(i5);
+                                    if (G2 != null && (G2.H instanceof TLRPC.User) && G2.y == user2.id) {
+                                        G2.e = containsKey;
                                     }
                                 }
-                            }
-                            o27 o27Var4 = l37Var.d;
-                            if (!o27Var4.i && o27Var4.d != null && o27Var4.e >= 0 && f37Var.d(gb2Var) && !z27Var.w()) {
-                                o27 o27Var5 = l37Var.d;
-                                z27Var.Z(gb2Var, o27Var5.e, o27Var5.f);
-                                if (f37Var.c0) {
-                                    f37Var.M = D(gb2Var, l37Var.d.e, false);
-                                    f37Var.N = D(gb2Var, l37Var.d.f, true);
-                                    f37Var.O = true;
-                                    f37Var.c0 = false;
+                                for (int i6 = 0; i6 < d79Var.getChildCount(); i6++) {
+                                    View childAt = d79Var.getChildAt(i6);
+                                    if ((childAt instanceof e3a) && (user = (e3aVar = (e3a) childAt).getUser()) != null && user.id == user2.id) {
+                                        e3aVar.c(containsKey, true);
+                                    }
+                                }
+                                c51 c51Var = bx4Var.a2;
+                                if (c51Var != null) {
+                                    c51Var.c(linkedHashMap.size(), true);
+                                    c51Var.setEnabled(!linkedHashMap.isEmpty());
                                     return;
                                 }
                                 return;
                             }
+                            TLRPC.User user3 = (TLRPC.User) obj4;
+                            hl.t1(bx4Var.p2);
+                            if (bx4Var.S1) {
+                                zya zyaVar = new zya(bx4Var.getContext(), bx4Var.J0, user3, new qw4(bx4Var, (byte) 1));
+                                if (!hl.O1()) {
+                                    zyaVar.X(bx4Var.i1);
+                                }
+                                zyaVar.show();
+                                return;
+                            } else if (lbc.b(user3.id)) {
+                                c00.v(ob6.a0(null, null, 2131743397, wf3.s(user3.id)), new d31(ex0Var, bx4Var.J0), 2131624012, 36);
+                                return;
+                            } else {
+                                yx4 yx4Var = new yx4(bx4Var.getContext(), bx4Var.a, user3.id, on0.d(on0.c(1, bx4Var.h2)), new rw4(bx4Var, (byte) 0));
+                                long j = user3.id;
+                                nj0 nj0Var = bx4Var.T1;
+                                if (nj0Var != null && nj0Var.a(j)) {
+                                    z = true;
+                                }
+                                yx4Var.b1(z);
+                                yx4Var.show();
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                b58 b58Var = (b58) fn7Var;
+                h96 h96Var = (h96) view;
+                m96 m96Var = h96Var.L;
+                fu5 G3 = fu5.G((zbb) obj, new x53(), view);
+                G3.o(15, -1, ob6.a0(null, null, 2131748562, ob6.x(m96Var.d, true)));
+                G3.j();
+                G3.b(2131232271, ob6.M0(2131747513, null), new z56((lcb) obj2, m96Var, (byte) 5), false);
+                G3.k(2131232108, ob6.M0(2131751732, null), new z56(b58Var, h96Var, (byte) 6), !m96Var.e);
+                G3.k(2131232113, ob6.M0(2131751563, null), new z56(b58Var, m96Var, (byte) 7), (b58Var.N == yac.h(b58Var.O).e() || b58Var.e()) ? true : true);
+                G3.a0();
+                return;
+            case 3:
+                ((zu8) fn7Var).n0((Context) obj2, (String) obj, view, i);
+                return;
+            case 4:
+                r1a r1aVar = (r1a) fn7Var;
+                pcc pccVar = (pcc) obj;
+                x53 x53Var = (x53) obj2;
+                if (view instanceof vea) {
+                    r47 message = ((vea) view).getMessage();
+                    if (message != null) {
+                        lq3.q(r1aVar.a).v(r1aVar);
+                        if (r1aVar.b2 != null) {
+                            xb4.G(r1aVar.a).f(r1aVar.b2.F0());
+                            r1aVar.b2 = null;
+                        }
+                        if (!message.y0 && !message.z0) {
+                            String S0 = message.S0();
+                            if (!TextUtils.isEmpty(S0)) {
+                                r1aVar.b2 = message;
+                                lq3.q(r1aVar.a).a(S0, message, r1aVar);
+                                xb4.G(r1aVar.a).X(message.F0(), message, 1, 0);
+                                return;
+                            }
                             return;
                         }
-                        gb2Var.setDrawSelectionBackground(false);
+                        r1aVar.a2.a(message);
+                        r1a r1aVar2 = r1aVar.V1;
+                        if (r1aVar2 != null) {
+                            r1aVar2.dismiss();
+                        }
+                        r1aVar.dismiss();
                         return;
                     }
                     return;
                 }
+                b8c G4 = r1aVar.j2.G(i - 1);
+                if (G4 != null) {
+                    int i7 = G4.d;
+                    if (i7 == 1) {
+                        new r1a(r1aVar.getContext(), true, r1aVar, pccVar, x53Var).show();
+                        return;
+                    } else if (i7 == 2) {
+                        r1aVar.Z1.b();
+                        return;
+                    } else if (i7 == 3) {
+                        r1aVar.d1();
+                        return;
+                    } else if (i7 == 4) {
+                        r1aVar.c1();
+                        return;
+                    } else {
+                        return;
+                    }
+                }
                 return;
             default:
+                r8b r8bVar = (r8b) fn7Var;
+                Context context2 = (Context) obj2;
+                gbb gbbVar = (gbb) obj;
+                zt3 zt3Var = r8bVar.U1;
+                zt3 zt3Var2 = r8bVar.T1;
+                b8c G5 = r8bVar.S1.G(i - 1);
+                if (G5 != null) {
+                    if (G5.H(p8b.class) && (webPage = r8bVar.b2) != null && !r8b.c1(webPage)) {
+                        k8b k8bVar = new k8b(context2, r8bVar.a);
+                        g66 g66Var = new g66();
+                        g66Var.c = zt3Var2.d.getText().toString();
+                        if (r8bVar.h2) {
+                            str = zt3Var.d.getText().toString();
+                        }
+                        g66Var.b = str;
+                        TLRPC.WebPage webPage2 = r8bVar.b2;
+                        g66Var.d = webPage2;
+                        g66Var.e = r8bVar.j2;
+                        g66Var.f = r8bVar.i2;
+                        sh9 sh9Var = new sh9(r8bVar, (byte) 16);
+                        k8bVar.H = g66Var;
+                        if (webPage2 != null && (webPage2.photo != null || r47.J4(webPage2.document))) {
+                            i2 = 0;
+                        } else {
+                            i2 = 8;
+                        }
+                        r57 r57Var = k8bVar.y;
+                        r57Var.setVisibility(i2);
+                        k8bVar.f.b(k8bVar.a, g66Var, false);
+                        k8bVar.x.a(!g66Var.f, false);
+                        r57Var.a(!g66Var.e, false);
+                        k8bVar.I = sh9Var;
+                        k8bVar.e.setImageDrawable(new g6(gbbVar, (byte) 6));
+                        k8bVar.show();
+                        return;
+                    } else if (G5.d == 2 && (view instanceof wkb)) {
+                        boolean z3 = !r8bVar.h2;
+                        r8bVar.h2 = z3;
+                        ((wkb) view).setChecked(z3);
+                        r8bVar.S1.O(true);
+                        if (r8bVar.h2) {
+                            zt3Var.requestFocus();
+                            return;
+                        } else {
+                            zt3Var2.requestFocus();
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
                 return;
         }
     }
 
-    private final void E(s49 s49Var, int i) {
-    }
-
-    private final void F(s49 s49Var, int i) {
+    public jr(fn7 fn7Var, Context context, Object obj, byte b) {
+        this.a = b;
+        this.b = fn7Var;
+        this.d = context;
+        this.c = obj;
     }
 }

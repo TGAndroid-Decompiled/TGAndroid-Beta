@@ -1,24 +1,42 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ice extends b4 {
-    public static final Parcelable.Creator<ice> CREATOR = new rhe((byte) 1);
-    public final int a;
-    public final boolean b;
+import java.util.Iterator;
+public final class ice extends g9e {
+    public final transient Object s;
 
-    public ice(int i, boolean z) {
-        this.a = i;
-        this.b = z;
+    public ice(Object obj) {
+        super((byte) 5);
+        this.s = obj;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.b ? 1 : 0);
-        jte.s(parcel, r);
+    public final boolean contains(Object obj) {
+        return this.s.equals(obj);
+    }
+
+    @Override
+    public final int hashCode() {
+        return this.s.hashCode();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new l9e(this.s);
+    }
+
+    @Override
+    public final int p(Object[] objArr) {
+        objArr[0] = this.s;
+        return 1;
+    }
+
+    @Override
+    public final int size() {
+        return 1;
+    }
+
+    @Override
+    public final String toString() {
+        return qd4.y("[", this.s.toString(), "]");
     }
 }

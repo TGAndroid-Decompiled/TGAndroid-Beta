@@ -18,27 +18,27 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public class ProfileStoriesView extends View implements gk7 {
+public class ProfileStoriesView extends View implements fn7 {
     public static final int t0 = 0;
-    public ty8 E;
+    public g29 E;
     public boolean F;
     public boolean G;
     public float H;
     public float I;
     public float J;
     public int K;
-    public f2b L;
-    public final v2b M;
-    public final g2b N;
+    public b6b L;
+    public final r6b M;
+    public final c6b N;
     public float O;
     public float P;
     public final RectF Q;
     public final RectF R;
     public final RectF S;
     public final Path T;
-    public final lm U;
-    public final lm V;
-    public final lm W;
+    public final mm U;
+    public final mm V;
+    public final mm W;
     public final Paint a;
     public float a0;
     public final Paint b;
@@ -49,130 +49,130 @@ public class ProfileStoriesView extends View implements gk7 {
     public final Matrix d0;
     public final boolean e;
     public final PathMeasure e0;
-    public final oc6 f;
+    public final d26 f;
     public final Path f0;
     public float g0;
-    public final xm8 h;
+    public final iq8 h;
     public float h0;
     public float i0;
     public float j0;
     public float k0;
     public boolean l0;
-    public final lm m0;
-    public final gn n;
-    public final lm n0;
-    public final pj4 o0;
-    public final yr8 p0;
+    public final mm m0;
+    public final hn n;
+    public final mm n0;
+    public final xh4 o0;
+    public final hv8 p0;
     public long q0;
     public int r;
     public float r0;
     public int s;
     public float s0;
-    public zr8 w;
+    public iv8 w;
     public final ArrayList x;
     public boolean y;
 
-    public ProfileStoriesView(Context context, int i, long j, boolean z, oc6 oc6Var, xm8 xm8Var, wjb wjbVar) {
+    public ProfileStoriesView(Context context, int i, long j, boolean z, d26 d26Var, iq8 iq8Var, vnb vnbVar) {
         super(context);
         Paint paint = new Paint(1);
         this.a = paint;
         Paint paint2 = new Paint(1);
         this.b = paint2;
         Paint paint3 = new Paint(1);
-        gn gnVar = new gn(false, true, true);
-        this.n = gnVar;
+        hn hnVar = new hn(false, true, true);
+        this.n = hnVar;
         Paint paint4 = new Paint(1);
         this.x = new ArrayList();
         Paint paint5 = new Paint(1);
         this.H = 1.0f;
         this.I = 1.0f;
-        this.M = new v2b(this);
+        this.M = new r6b(this);
         this.Q = new RectF();
         this.R = new RectF();
         this.S = new RectF();
         this.T = new Path();
-        s33 s33Var = s33.h;
-        this.U = new lm(this, 0L, 480L, s33Var);
-        this.V = new lm(this, 0L, 240L, s33Var);
-        this.W = new lm(this, 0L, 150L, s33.f);
+        k43 k43Var = k43.h;
+        this.U = new mm(this, 0L, 480L, k43Var);
+        this.V = new mm(this, 0L, 240L, k43Var);
+        this.W = new mm(this, 0L, 150L, k43.f);
         this.a0 = 1.0f;
         this.c0 = new Path();
         this.d0 = new Matrix();
         this.e0 = new PathMeasure();
         this.f0 = new Path();
-        this.m0 = new lm(this, 0L, 350L, s33Var);
-        this.n0 = new lm(this, 0L, 350L, s33Var);
-        an8 an8Var = (an8) this;
-        this.o0 = new pj4(an8Var, (byte) 28);
-        this.p0 = new yr8(an8Var, (byte) 0);
+        this.m0 = new mm(this, 0L, 350L, k43Var);
+        this.n0 = new mm(this, 0L, 350L, k43Var);
+        lq8 lq8Var = (lq8) this;
+        this.o0 = new xh4(lq8Var, (byte) 25);
+        this.p0 = new hv8(lq8Var, (byte) 0);
         this.c = i;
         this.d = j;
         this.e = z;
-        this.f = oc6Var;
-        this.h = xm8Var;
-        xm8Var.getImageReceiver().F1 = new yr8(an8Var, (byte) 1);
-        this.N = na7.q1(i).M1();
+        this.f = d26Var;
+        this.h = iq8Var;
+        iq8Var.getImageReceiver().F1 = new hv8(lq8Var, (byte) 1);
+        this.N = uc7.s1(i).O1();
         paint.setColor(1526726655);
         paint.getAlpha();
-        paint.setStrokeWidth(gl.N(1.5f));
+        paint.setStrokeWidth(hl.N(1.5f));
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
         paint.setStrokeCap(cap);
-        paint2.setColor(bkb.v0(bkb.dl, wjbVar));
-        paint2.setStrokeWidth(gl.N(1.5f));
+        paint2.setColor(aob.v0(aob.el, vnbVar));
+        paint2.setStrokeWidth(hl.N(1.5f));
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        paint3.setColor(bkb.v0(bkb.c6, wjbVar));
-        gnVar.w(gl.L(18.0f));
-        gnVar.n(0.4f, 320L, s33Var);
-        gnVar.x(gl.o());
-        gnVar.u(-1);
-        gnVar.q(true);
-        gnVar.setCallback(this);
+        paint3.setColor(aob.v0(aob.d6, vnbVar));
+        hnVar.w(hl.L(18.0f));
+        hnVar.n(0.4f, 320L, k43Var);
+        hnVar.x(hl.o());
+        hnVar.u(-1);
+        hnVar.q(true);
+        hnVar.setCallback(this);
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        paint5.setStrokeWidth(gl.N(2.33f));
+        paint5.setStrokeWidth(hl.N(2.33f));
         paint5.setStyle(style);
         f(false, false);
     }
 
-    public static zr8 d(zr8 zr8Var, zr8 zr8Var2, zr8 zr8Var3) {
-        if (zr8Var3 != null) {
-            RectF rectF = zr8Var3.n;
-            if (zr8Var == null) {
-                if (zr8Var2 != null) {
-                    return zr8Var2;
+    public static iv8 d(iv8 iv8Var, iv8 iv8Var2, iv8 iv8Var3) {
+        if (iv8Var3 != null) {
+            RectF rectF = iv8Var3.n;
+            if (iv8Var == null) {
+                if (iv8Var2 != null) {
+                    return iv8Var2;
                 }
                 return null;
             }
-            RectF rectF2 = zr8Var.n;
-            if (zr8Var2 != null) {
-                RectF rectF3 = zr8Var2.n;
+            RectF rectF2 = iv8Var.n;
+            if (iv8Var2 != null) {
+                RectF rectF3 = iv8Var2.n;
                 if (Math.min(Math.abs(rectF2.left - rectF.right), Math.abs(rectF2.right - rectF.left)) <= Math.min(Math.abs(rectF3.left - rectF.right), Math.abs(rectF3.right - rectF.left))) {
-                    return zr8Var2;
+                    return iv8Var2;
                 }
             }
-            return zr8Var;
+            return iv8Var;
         }
         return null;
     }
 
     private float getExpandRight() {
-        return this.j0 - (this.m0.d(this.l0) * gl.L(71.0f));
+        return this.j0 - (this.m0.d(this.l0) * hl.L(71.0f));
     }
 
-    public final void a(Canvas canvas, zr8 zr8Var, zr8 zr8Var2) {
-        if (zr8Var2 == null) {
+    public final void a(Canvas canvas, iv8 iv8Var, iv8 iv8Var2) {
+        if (iv8Var2 == null) {
             return;
         }
-        RectF rectF = zr8Var2.m;
-        RectF rectF2 = gl.P;
+        RectF rectF = iv8Var2.m;
+        RectF rectF2 = hl.P;
         rectF2.set(rectF);
-        float f = -(gl.N(1.66f) * zr8Var2.j);
+        float f = -(hl.N(1.66f) * iv8Var2.j);
         rectF2.inset(f, f);
         float centerX = rectF.centerX();
         float width = rectF.width() / 2.0f;
-        RectF rectF3 = zr8Var.m;
+        RectF rectF3 = iv8Var.m;
         float centerX2 = rectF3.centerX();
         float width2 = rectF3.width() / 2.0f;
         Path path = this.T;
@@ -193,7 +193,7 @@ public class ProfileStoriesView extends View implements gk7 {
     }
 
     public final void b(float f, float f2, Canvas canvas, Paint paint, RectF rectF) {
-        if (hc2.b0(y6c.t0, this.d)) {
+        if (xc2.b0(yac.t0, this.d)) {
             float height = rectF.height() * 0.32f;
             if (Math.abs(f2) == 360.0f) {
                 canvas.drawRoundRect(rectF, height, height, paint);
@@ -222,23 +222,23 @@ public class ProfileStoriesView extends View implements gk7 {
         canvas.drawArc(rectF, f, f2, false, paint);
     }
 
-    public final void c(Canvas canvas, zr8 zr8Var, zr8 zr8Var2, zr8 zr8Var3, Paint paint) {
+    public final void c(Canvas canvas, iv8 iv8Var, iv8 iv8Var2, iv8 iv8Var3, Paint paint) {
         boolean z;
         double degrees;
         double degrees2;
         float width;
-        zr8 zr8Var4 = zr8Var;
-        RectF rectF = zr8Var2.n;
-        if (zr8Var4 == null) {
-            if (zr8Var3 == null) {
+        iv8 iv8Var4 = iv8Var;
+        RectF rectF = iv8Var2.n;
+        if (iv8Var4 == null) {
+            if (iv8Var3 == null) {
                 b(0.0f, 360.0f, canvas, paint, rectF);
                 return;
             }
-            zr8Var4 = zr8Var3;
+            iv8Var4 = iv8Var3;
         } else {
-            RectF rectF2 = zr8Var4.n;
-            if (zr8Var3 != null) {
-                RectF rectF3 = zr8Var3.n;
+            RectF rectF2 = iv8Var4.n;
+            if (iv8Var3 != null) {
+                RectF rectF3 = iv8Var3.n;
                 float centerX = rectF2.centerX();
                 float width2 = rectF2.width() / 2.0f;
                 float centerX2 = rectF.centerX();
@@ -286,7 +286,7 @@ public class ProfileStoriesView extends View implements gk7 {
                 }
             }
         }
-        RectF rectF4 = zr8Var4.n;
+        RectF rectF4 = iv8Var4.n;
         float centerX4 = rectF4.centerX();
         float width5 = rectF4.width() / 2.0f;
         float centerX5 = rectF.centerX();
@@ -303,7 +303,7 @@ public class ProfileStoriesView extends View implements gk7 {
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.x5) {
+        if (i == jn7.y5) {
             f(true, true);
         }
     }
@@ -321,17 +321,17 @@ public class ProfileStoriesView extends View implements gk7 {
         int i2;
         int i3;
         ArrayList arrayList2;
-        g2b g2bVar;
+        c6b c6bVar;
         int i4;
         int size;
         int i5;
         boolean z4;
         String str;
         int i6;
-        da7 d;
+        kc7 d;
         TLRPC.PeerColor peerColor;
         int i7;
-        da7 d2;
+        kc7 d2;
         TLRPC.PeerColor peerColor2;
         boolean z5;
         TL_stories.StoryItem storyItem;
@@ -343,7 +343,7 @@ public class ProfileStoriesView extends View implements gk7 {
             return;
         }
         int i11 = this.c;
-        long e = y6c.h(i11).e();
+        long e = yac.h(i11).e();
         long j = this.d;
         int i12 = 0;
         if (j == e) {
@@ -352,8 +352,8 @@ public class ProfileStoriesView extends View implements gk7 {
             z3 = false;
         }
         int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
-        TL_stories.PeerStories y = na7.q1(i11).M1().y(j);
-        TL_stories.PeerStories x = na7.q1(i11).M1().x(j);
+        TL_stories.PeerStories y = uc7.s1(i11).O1().y(j);
+        TL_stories.PeerStories x = uc7.s1(i11).O1().x(j);
         int i13 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
         if (i13 == 0) {
             peerStories = null;
@@ -497,17 +497,17 @@ public class ProfileStoriesView extends View implements gk7 {
         while (true) {
             arrayList2 = this.x;
             int size2 = arrayList2.size();
-            g2bVar = this.N;
+            c6bVar = this.N;
             i4 = -1;
             if (i26 >= size2) {
                 break;
             }
-            zr8 zr8Var = (zr8) arrayList2.get(i26);
+            iv8 iv8Var = (iv8) arrayList2.get(i26);
             int i27 = 0;
             while (true) {
                 if (i27 < arrayList3.size()) {
                     storyItem = (TL_stories.StoryItem) arrayList3.get(i27);
-                    if (storyItem.id == zr8Var.a) {
+                    if (storyItem.id == iv8Var.a) {
                         break;
                     }
                     i27++;
@@ -518,21 +518,21 @@ public class ProfileStoriesView extends View implements gk7 {
                 }
             }
             if (i27 == -1) {
-                zr8Var.e = 0.0f;
+                iv8Var.e = 0.0f;
             } else {
-                zr8Var.c = i27;
-                if (!z8 && (peerStories == null || storyItem == null || storyItem.id > g2bVar.w(j))) {
+                iv8Var.c = i27;
+                if (!z8 && (peerStories == null || storyItem == null || storyItem.id > c6bVar.w(j))) {
                     z6 = false;
                 } else {
                     z6 = z7;
                 }
-                zr8Var.d = z6;
+                iv8Var.d = z6;
             }
             if (!z) {
                 boolean z11 = z7;
-                zr8Var.f.f(zr8Var.d, z11);
-                zr8Var.g.e(z11, zr8Var.c);
-                zr8Var.h.e(z11, zr8Var.e);
+                iv8Var.f.f(iv8Var.d, z11);
+                iv8Var.g.e(z11, iv8Var.c);
+                iv8Var.h.e(z11, iv8Var.e);
             }
             i26++;
             z7 = true;
@@ -543,7 +543,7 @@ public class ProfileStoriesView extends View implements gk7 {
             int i29 = 0;
             while (true) {
                 if (i29 < arrayList2.size()) {
-                    if (((zr8) arrayList2.get(i29)).a == storyItem5.id) {
+                    if (((iv8) arrayList2.get(i29)).a == storyItem5.id) {
                         break;
                     }
                     i29++;
@@ -554,23 +554,23 @@ public class ProfileStoriesView extends View implements gk7 {
             }
             if (i29 == i4) {
                 storyItem5.dialogId = j;
-                zr8 zr8Var2 = new zr8(this, storyItem5);
-                zr8Var2.c = i28;
-                zr8Var2.e = 1.0f;
-                lm lmVar = zr8Var2.h;
-                lmVar.e(true, 0.0f);
+                iv8 iv8Var2 = new iv8(this, storyItem5);
+                iv8Var2.c = i28;
+                iv8Var2.e = 1.0f;
+                mm mmVar = iv8Var2.h;
+                mmVar.e(true, 0.0f);
                 if (!z8 && (peerStories == null || storyItem5.id > peerStories.max_read_id)) {
                     z5 = false;
                 } else {
                     z5 = true;
                 }
-                zr8Var2.d = z5;
+                iv8Var2.d = z5;
                 if (!z) {
-                    zr8Var2.f.f(z5, true);
-                    zr8Var2.g.e(true, zr8Var2.c);
-                    lmVar.e(true, zr8Var2.e);
+                    iv8Var2.f.f(z5, true);
+                    iv8Var2.g.e(true, iv8Var2.c);
+                    mmVar.e(true, iv8Var2.e);
                 }
-                arrayList2.add(zr8Var2);
+                arrayList2.add(iv8Var2);
             }
             i28++;
             i4 = -1;
@@ -581,14 +581,14 @@ public class ProfileStoriesView extends View implements gk7 {
             if (i30 >= arrayList2.size()) {
                 break;
             }
-            zr8 zr8Var3 = (zr8) arrayList2.get(i30);
-            if (zr8Var3.e > 0.0f) {
-                this.w = zr8Var3;
+            iv8 iv8Var3 = (iv8) arrayList2.get(i30);
+            if (iv8Var3.e > 0.0f) {
+                this.w = iv8Var3;
                 break;
             }
             i30++;
         }
-        ArrayList E = g2bVar.E(j);
+        ArrayList E = c6bVar.E(j);
         if (E == null) {
             size = 0;
         } else {
@@ -609,9 +609,9 @@ public class ProfileStoriesView extends View implements gk7 {
             boolean[] zArr = {false};
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.b0 = ofFloat;
-            ofFloat.addUpdateListener(new pk(this, zArr, (byte) 21));
-            this.b0.addListener(new eh8(this, zArr, (byte) 3));
-            b00.n(3.0f, this.b0);
+            ofFloat.addUpdateListener(new lk(this, zArr, (byte) 21));
+            this.b0.addListener(new wd8(this, zArr, (byte) 4));
+            c00.o(3.0f, this.b0);
             this.b0.setDuration(400L);
             this.b0.setStartDelay(120L);
             this.b0.start();
@@ -619,58 +619,58 @@ public class ProfileStoriesView extends View implements gk7 {
         this.s = i5;
         if (i5 > 0) {
             z4 = false;
-            str = k96.G(i5, "Stories", new Object[0]);
+            str = ob6.G(i5, "Stories", new Object[0]);
         } else {
             z4 = false;
             str = "";
         }
-        if (z && !k96.a0) {
+        if (z && !ob6.a0) {
             z4 = true;
         }
         this.n.t(str, z4, true);
-        v2b v2bVar = this.M;
+        r6b r6bVar = this.M;
         if (i13 >= 0) {
-            TLRPC.User V1 = na7.q1(i11).V1(Long.valueOf(j));
-            if (V1 != null) {
-                TLRPC.EmojiStatus emojiStatus = V1.emoji_status;
+            TLRPC.User X1 = uc7.s1(i11).X1(Long.valueOf(j));
+            if (X1 != null) {
+                TLRPC.EmojiStatus emojiStatus = X1.emoji_status;
                 if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-                    v2bVar.c(da7.a(emojiStatus), z);
+                    r6bVar.c(kc7.a(emojiStatus), z);
                 }
             }
-            v2bVar.getClass();
-            if (V1 != null && (peerColor2 = V1.profile_color) != null) {
+            r6bVar.getClass();
+            if (X1 != null && (peerColor2 = X1.profile_color) != null) {
                 i7 = peerColor2.color;
             } else {
                 i7 = -1;
             }
-            ea7 ea7Var = na7.q1(v2bVar.a).F3;
-            if (ea7Var == null) {
+            lc7 lc7Var = uc7.s1(r6bVar.a).F3;
+            if (lc7Var == null) {
                 d2 = null;
             } else {
-                d2 = ea7Var.d(i7);
+                d2 = lc7Var.d(i7);
             }
-            v2bVar.c(d2, z);
+            r6bVar.c(d2, z);
         } else {
-            TLRPC.Chat K0 = na7.q1(i11).K0(Long.valueOf(-j));
-            if (K0 != null) {
-                TLRPC.EmojiStatus emojiStatus2 = K0.emoji_status;
+            TLRPC.Chat M0 = uc7.s1(i11).M0(Long.valueOf(-j));
+            if (M0 != null) {
+                TLRPC.EmojiStatus emojiStatus2 = M0.emoji_status;
                 if (emojiStatus2 instanceof TLRPC.TL_emojiStatusCollectible) {
-                    v2bVar.c(da7.a(emojiStatus2), z);
+                    r6bVar.c(kc7.a(emojiStatus2), z);
                 }
             }
-            v2bVar.getClass();
-            if (K0 != null && (peerColor = K0.profile_color) != null) {
+            r6bVar.getClass();
+            if (M0 != null && (peerColor = M0.profile_color) != null) {
                 i6 = peerColor.color;
             } else {
                 i6 = -1;
             }
-            ea7 ea7Var2 = na7.q1(v2bVar.a).F3;
-            if (ea7Var2 == null) {
+            lc7 lc7Var2 = uc7.s1(r6bVar.a).F3;
+            if (lc7Var2 == null) {
                 d = null;
             } else {
-                d = ea7Var2.d(i6);
+                d = lc7Var2.d(i6);
             }
-            v2bVar.c(d, z);
+            r6bVar.c(d, z);
         }
         invalidate();
     }
@@ -687,10 +687,10 @@ public class ProfileStoriesView extends View implements gk7 {
         while (true) {
             ArrayList arrayList = this.x;
             if (i < arrayList.size()) {
-                ((zr8) arrayList.get(i)).b.I();
+                ((iv8) arrayList.get(i)).b.I();
                 i++;
             } else {
-                kk7.f(this.c).b(this, kk7.x5);
+                jn7.f(this.c).b(this, jn7.y5);
                 return;
             }
         }
@@ -704,10 +704,10 @@ public class ProfileStoriesView extends View implements gk7 {
         while (true) {
             ArrayList arrayList = this.x;
             if (i < arrayList.size()) {
-                ((zr8) arrayList.get(i)).b.K();
+                ((iv8) arrayList.get(i)).b.K();
                 i++;
             } else {
-                kk7.f(this.c).n(this, kk7.x5);
+                jn7.f(this.c).n(this, jn7.y5);
                 return;
             }
         }
@@ -718,39 +718,39 @@ public class ProfileStoriesView extends View implements gk7 {
         boolean z;
         if (this.O < 0.9f) {
             z = this.R.contains(motionEvent.getX(), motionEvent.getY());
-        } else if (motionEvent.getX() >= this.g0 && motionEvent.getX() <= this.h0 && Math.abs(motionEvent.getY() - this.i0) < gl.L(32.0f)) {
+        } else if (motionEvent.getX() >= this.g0 && motionEvent.getX() <= this.h0 && Math.abs(motionEvent.getY() - this.i0) < hl.L(32.0f)) {
             z = true;
         } else {
             z = false;
         }
-        yr8 yr8Var = this.p0;
+        hv8 hv8Var = this.p0;
         if (z && motionEvent.getAction() == 0) {
             this.q0 = System.currentTimeMillis();
             this.r0 = motionEvent.getX();
             this.s0 = motionEvent.getY();
-            gl.r(yr8Var);
-            gl.d3(yr8Var, ViewConfiguration.getLongPressTimeout());
+            hl.r(hv8Var);
+            hl.d3(hv8Var, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            gl.r(yr8Var);
-            if (z && System.currentTimeMillis() - this.q0 <= ViewConfiguration.getTapTimeout() && loe.a(this.r0, this.s0, motionEvent.getX(), motionEvent.getY()) <= gl.L(12.0f)) {
-                g2b g2bVar = this.N;
+            hl.r(hv8Var);
+            if (z && System.currentTimeMillis() - this.q0 <= ViewConfiguration.getTapTimeout() && dte.a(this.r0, this.s0, motionEvent.getX(), motionEvent.getY()) <= hl.L(12.0f)) {
+                c6b c6bVar = this.N;
                 long j = this.d;
-                if (g2bVar.L(j) || g2bVar.J(j) || !this.x.isEmpty()) {
+                if (c6bVar.L(j) || c6bVar.J(j) || !this.x.isEmpty()) {
                     e(this.o0);
                     return true;
                 }
             }
         } else if (motionEvent.getAction() == 3) {
             this.q0 = -1L;
-            gl.r(yr8Var);
+            hl.r(hv8Var);
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setActionBarActionMode(float f) {
-        if (bkb.I.o()) {
+        if (aob.I.o()) {
             return;
         }
         this.P = f;
@@ -792,6 +792,6 @@ public class ProfileStoriesView extends View implements gk7 {
         return true;
     }
 
-    public void e(pj4 pj4Var) {
+    public void e(xh4 xh4Var) {
     }
 }

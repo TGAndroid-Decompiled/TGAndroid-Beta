@@ -1,55 +1,80 @@
 package defpackage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.a;
+import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.tgnet.TLRPC;
 public final class q87 implements Runnable {
     public final byte a;
-    public final na7 b;
-    public final TLRPC.Dialog c;
+    public final uc7 b;
+    public final zh6 c;
 
-    public q87(na7 na7Var, TLRPC.Dialog dialog, byte b) {
+    public q87(uc7 uc7Var, zh6 zh6Var, byte b) {
         this.a = b;
-        this.b = na7Var;
-        this.c = dialog;
+        this.b = uc7Var;
+        this.c = zh6Var;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        TLRPC.Dialog dialog = this.c;
-        na7 na7Var = this.b;
-        switch (b) {
+        TLRPC.Message message;
+        switch (this.a) {
             case 0:
-                if (w01.a) {
-                    fa4.b("checkLastDialogMessage for " + dialog.id + " has not message");
-                }
-                if (na7Var.getMediaDataController().T(dialog.id, 0L) == null) {
-                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) na7Var.R.f(dialog.id);
-                    if (dialog2 == null) {
-                        if (w01.a) {
-                            fa4.b("checkLastDialogMessage for " + dialog.id + " current dialog not found");
+                uc7 uc7Var = this.b;
+                zh6 zh6Var = this.c;
+                ip7 notificationsController = uc7Var.getNotificationsController();
+                notificationsController.getClass();
+                if (zh6Var.m() != 0) {
+                    for (int i = 0; i < zh6Var.m(); i++) {
+                        ArrayList arrayList = (ArrayList) zh6Var.n(i);
+                        if (arrayList != null) {
+                            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                                r47 r47Var = (r47) arrayList.get(i2);
+                                if (r47Var != null && (message = r47Var.k) != null) {
+                                    TLRPC.MessageAction messageAction = message.action;
+                                    if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
+                                        TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
+                                        if (tL_messageActionConferenceCall.active || tL_messageActionConferenceCall.missed) {
+                                            VoIPGroupNotification.hide(a.b, notificationsController.currentAccount, r47Var.e1());
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        ad7 messagesStorage = na7Var.getMessagesStorage();
-                        messagesStorage.a.c(new go6(messagesStorage, dialog.id, new q87(na7Var, dialog, (byte) 2), (byte) 18));
-                        return;
                     }
-                    if (w01.a) {
-                        StringBuilder sb = new StringBuilder("checkLastDialogMessage for ");
-                        sb.append(dialog.id);
-                        sb.append(" current dialog top message ");
-                        b00.p(dialog2.top_message, sb);
+                    new ArrayList(0);
+                    ip7.l0.c(new pl7(notificationsController, zh6Var, (byte) 7));
+                }
+                qyb qybVar = uc7Var.g4;
+                qybVar.getClass();
+                HashSet hashSet = new HashSet();
+                for (int i3 = 0; i3 < zh6Var.m(); i3++) {
+                    ArrayList arrayList2 = (ArrayList) zh6Var.n(i3);
+                    for (int i4 = 0; i4 < arrayList2.size(); i4++) {
+                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) qybVar.e.f(qyb.p(((r47) arrayList2.get(i4)).e1(), -r47.B0(((r47) arrayList2.get(i4)).k)));
+                        if (tL_forumTopic != null) {
+                            tL_forumTopic.topMessage = ((r47) arrayList2.get(i4)).k;
+                            hashSet.add(Long.valueOf(-r47.B0(((r47) arrayList2.get(i4)).k)));
+                        }
                     }
-                    if (dialog2.top_message == 0) {
-                        na7Var.T(3, dialog.id, false);
-                        return;
-                    }
-                    return;
+                }
+                Iterator it = hashSet.iterator();
+                while (it.hasNext()) {
+                    qybVar.y(((Long) it.next()).longValue(), true);
                 }
                 return;
             case 1:
-                na7Var.U0.e(dialog.id);
+                hl.c3(new q87(this.b, this.c, (byte) 0));
                 return;
             default:
-                na7Var.T(3, dialog.id, false);
+                uc7 uc7Var2 = this.b;
+                zh6 zh6Var2 = this.c;
+                for (int i5 = 0; i5 < zh6Var2.m(); i5++) {
+                    uc7Var2.z5(0, zh6Var2.j(i5), (ArrayList) zh6Var2.n(i5));
+                }
+                uc7Var2.getNotificationCenter().k(3, new Object[0]);
                 return;
         }
     }

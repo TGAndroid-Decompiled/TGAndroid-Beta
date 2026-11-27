@@ -1,44 +1,25 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.util.LruCache;
 import java.util.ArrayList;
-public final class tff extends b4 {
-    public static final Parcelable.Creator<tff> CREATOR = new c0f((byte) 29);
-    public final ArrayList a;
-    public final float[] b;
-    public final Bitmap c;
-    public final ArrayList d;
+public final class tff extends LruCache {
+    public final bu6 a;
 
-    public tff(ArrayList arrayList, float[] fArr, Bitmap bitmap, ArrayList arrayList2) {
-        this.a = arrayList;
-        this.b = fArr;
-        this.c = bitmap;
-        this.d = arrayList2;
+    public tff(bu6 bu6Var) {
+        super(20);
+        this.a = bu6Var;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.p(parcel, 1, this.a);
-        float[] fArr = this.b;
-        if (fArr != null) {
-            int r2 = jte.r(parcel, 2);
-            parcel.writeFloatArray(fArr);
-            jte.s(parcel, r2);
+    public final void entryRemoved(boolean z, Object obj, Object obj2, Object obj3) {
+        ArrayList arrayList = this.a.g;
+        Integer num = (Integer) obj;
+        eu6 eu6Var = (eu6) obj2;
+        eu6 eu6Var2 = (eu6) obj3;
+        if (!z) {
+            return;
         }
-        jte.k(parcel, 3, this.c, i);
-        ArrayList arrayList = this.d;
-        if (arrayList != null) {
-            int r3 = jte.r(parcel, 4);
-            int size = arrayList.size();
-            parcel.writeInt(size);
-            for (int i2 = 0; i2 < size; i2++) {
-                parcel.writeFloat(((Float) arrayList.get(i2)).floatValue());
-            }
-            jte.s(parcel, r3);
-        }
-        jte.s(parcel, r);
+        xve.h(arrayList);
+        arrayList.add(num);
     }
 }

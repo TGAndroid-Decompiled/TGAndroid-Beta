@@ -70,7 +70,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.uiThreadHandler.removeCallbacks(CameraCapturer.this.openCameraTimeoutRunnable);
             synchronized (CameraCapturer.this.stateLock) {
                 CameraCapturer.this.capturerObserver.onCapturerStarted(false);
-                CameraCapturer.access$1710(CameraCapturer.this);
+                CameraCapturer cameraCapturer = CameraCapturer.this;
+                cameraCapturer.openAttemptsRemaining--;
                 if (CameraCapturer.this.openAttemptsRemaining <= 0) {
                     Logging.w("CameraCapturer", "Opening camera failed, passing: " + str);
                     CameraCapturer.this.sessionOpening = false;
@@ -85,11 +86,11 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                         CameraCapturer.this.switchState = switchState2;
                     }
                     CameraSession.FailureType failureType2 = CameraSession.FailureType.DISCONNECTED;
-                    CameraCapturer cameraCapturer = CameraCapturer.this;
+                    CameraCapturer cameraCapturer2 = CameraCapturer.this;
                     if (failureType == failureType2) {
-                        cameraCapturer.eventsHandler.onCameraDisconnected();
+                        cameraCapturer2.eventsHandler.onCameraDisconnected();
                     } else {
-                        cameraCapturer.eventsHandler.onCameraError(str);
+                        cameraCapturer2.eventsHandler.onCameraError(str);
                     }
                 } else {
                     Logging.w("CameraCapturer", "Opening camera failed, retry: " + str);
@@ -215,17 +216,11 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            w26.j(b00.j(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            lq5.j(c00.k(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
             throw null;
         }
-        wn4.j("No cameras attached.");
+        xi4.l("No cameras attached.");
         throw null;
-    }
-
-    public static int access$1710(CameraCapturer cameraCapturer) {
-        int i = cameraCapturer.openAttemptsRemaining;
-        cameraCapturer.openAttemptsRemaining = i - 1;
-        return i;
     }
 
     public void checkIsOnCameraThread() {
@@ -233,7 +228,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             return;
         }
         Logging.e("CameraCapturer", "Check is on camera thread failed.");
-        wn4.j("Not on camera thread.");
+        xi4.l("Not on camera thread.");
     }
 
     public void createSessionInternal(int i) {
@@ -257,7 +252,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(b00.h("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(c00.i("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -303,7 +298,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i, int i2, int i3) {
-        StringBuilder p = ir2.p("changeCaptureFormat: ", i, "x", i2, "@");
+        StringBuilder p = bs2.p("changeCaptureFormat: ", i, "x", i2, "@");
         p.append(i3);
         Logging.d("CameraCapturer", p.toString());
         synchronized (this.stateLock) {
@@ -337,6 +332,19 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
+    public boolean isCapturing() {
+        boolean z;
+        synchronized (this.stateLock) {
+            if (!this.sessionOpening && this.currentSession == null) {
+                z = false;
+            } else {
+                z = true;
+            }
+        }
+        return z;
+    }
+
+    @Override
     public boolean isScreencast() {
         return false;
     }
@@ -367,7 +375,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i, int i2, int i3) {
-        StringBuilder p = ir2.p("startCapture: ", i, "x", i2, "@");
+        StringBuilder p = bs2.p("startCapture: ", i, "x", i2, "@");
         p.append(i3);
         Logging.d("CameraCapturer", p.toString());
         if (this.applicationContext != null) {
@@ -385,7 +393,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 return;
             }
         }
-        wn4.j("CameraCapturer must be initialized before calling startCapture.");
+        xi4.l("CameraCapturer must be initialized before calling startCapture.");
     }
 
     @Override

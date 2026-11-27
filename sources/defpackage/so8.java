@@ -1,56 +1,87 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-public final class so8 {
-    public final String a;
-    public final Runnable b;
-    public final String c;
-    public final String[] d;
-    public final int e;
-    public final short f;
-    public int g;
-    public String h;
+import java.util.concurrent.CancellationException;
+import sun.misc.Unsafe;
+public final class so8 extends c2 implements xe1, o4a {
+    public final z01 e;
 
-    public so8(int i, String str, String str2, String str3, String str4, int i2, Runnable runnable) {
-        this.f = i;
-        this.a = str;
-        this.c = str2;
-        this.b = runnable;
-        this.e = i2;
-        if (str3 != null) {
-            if (str4 != null) {
-                this.d = new String[]{str3, str4};
+    public so8(mx2 mx2Var, z01 z01Var) {
+        super(mx2Var, true);
+        this.e = z01Var;
+    }
+
+    @Override
+    public final void P(Throwable th, boolean z) {
+        if (!this.e.c(th, false) && !z) {
+            sde.a(this.d, th);
+        }
+    }
+
+    @Override
+    public final void Q(Object obj) {
+        f9c f9cVar = (f9c) obj;
+        this.e.c(null, false);
+    }
+
+    public final void S(g23 g23Var) {
+        Unsafe unsafe;
+        Unsafe unsafe2;
+        z01 z01Var = this.e;
+        z01Var.getClass();
+        long j = z01.s;
+        do {
+            unsafe = fx.a;
+            if (unsafe.compareAndSwapObject(z01Var, z01.s, (Object) null, g23Var)) {
+                return;
+            }
+        } while (unsafe.getObjectVolatile(z01Var, j) == null);
+        while (true) {
+            Object objectVolatile = fx.a.getObjectVolatile(z01Var, j);
+            ow5 ow5Var = b11.q;
+            if (objectVolatile == ow5Var) {
+                ow5 ow5Var2 = b11.r;
+                do {
+                    unsafe2 = fx.a;
+                    if (unsafe2.compareAndSwapObject(z01Var, z01.s, ow5Var, ow5Var2)) {
+                        g23Var.invoke(z01Var.k());
+                        return;
+                    }
+                } while (unsafe2.getObjectVolatile(z01Var, j) == ow5Var);
+            } else if (objectVolatile == b11.r) {
+                grb.i("Another handler was already registered and successfully invoked");
+                return;
             } else {
-                this.d = new String[]{str3};
+                lq5.i(objectVolatile, "Another handler is already registered: ");
+                return;
             }
         }
     }
 
-    public final boolean equals(Object obj) {
-        if ((obj instanceof so8) && this.f == ((so8) obj).f) {
-            return true;
+    @Override
+    public final Object a(zw2 zw2Var, Object obj) {
+        return this.e.a(zw2Var, obj);
+    }
+
+    @Override
+    public final void cancel(CancellationException cancellationException) {
+        if (isCancelled()) {
+            return;
         }
-        return false;
+        if (cancellationException == null) {
+            cancellationException = new fv5(l(), null, this);
+        }
+        j(cancellationException);
     }
 
-    public final String toString() {
-        SerializedData serializedData = new SerializedData();
-        serializedData.writeInt32(this.g);
-        serializedData.writeInt32(1);
-        serializedData.writeInt32(this.f);
-        return Utilities.f(serializedData.toByteArray());
+    @Override
+    public final Object d(Object obj) {
+        return this.e.d(f9c.a);
     }
 
-    public so8(int i, String str, String str2, int i2, Runnable runnable) {
-        this(i, str, null, str2, null, i2, runnable);
-    }
-
-    public so8(int i, String str, String str2, String str3, int i2, Runnable runnable) {
-        this(i, str, str2, str3, null, i2, runnable);
-    }
-
-    public so8(int i, String str, int i2, Runnable runnable) {
-        this(i, str, null, null, null, i2, runnable);
+    @Override
+    public final void j(CancellationException cancellationException) {
+        CancellationException M = sv5.M(this, cancellationException);
+        this.e.c(M, true);
+        i(M);
     }
 }

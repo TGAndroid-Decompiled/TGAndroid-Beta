@@ -1,11 +1,11 @@
 package defpackage;
-public enum msb extends qsb {
-    public msb() {
-        super("ScriptData", 5);
-    }
 
-    @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        qsb.d(aqbVar, zj1Var, this, qsb.G);
+import java.util.concurrent.CancellationException;
+public final class msb extends CancellationException {
+    public final transient nsb a;
+
+    public msb(String str, nsb nsbVar) {
+        super(str);
+        this.a = nsbVar;
     }
 }

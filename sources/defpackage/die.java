@@ -1,17 +1,35 @@
 package defpackage;
-public final class die implements zn7 {
-    public static final die a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)), 6)));
-    }
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+public abstract class die {
+    public static Boolean a;
+    public static Boolean b;
+    public static Boolean c;
+    public static Boolean d;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static boolean a(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        Boolean bool = a;
+        if (bool == null) {
+            bool = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            a = bool;
         }
-        throw new ClassCastException();
+        if (!bool.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            Boolean bool2 = b;
+            if (bool2 == null) {
+                bool2 = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+                b = bool2;
+            }
+            if (bool2.booleanValue()) {
+                if (!rve.a() || Build.VERSION.SDK_INT >= 30) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
     }
 }

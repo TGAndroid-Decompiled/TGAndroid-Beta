@@ -1,14 +1,8 @@
 package defpackage;
-public final class mm6 {
-    public final k27 a;
-    public final float b;
-    public final int c;
-    public final int d;
+public class mm6 extends q93 {
+    public final int a;
 
-    public mm6(k27 k27Var) {
-        this.a = k27Var;
-        this.b = k27Var.b0;
-        this.c = k27Var.d0;
-        this.d = k27Var.i0;
+    public mm6(java.lang.IllegalStateException r3, defpackage.nm6 r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mm6.<init>(java.lang.IllegalStateException, nm6):void");
     }
 }

@@ -1,6 +1,11 @@
 package defpackage;
 
-import java.util.List;
-public interface jx6 {
-    void b(ad8 ad8Var, su6 su6Var, List list);
+import android.content.Context;
+import android.media.session.MediaSession;
+import android.os.Bundle;
+public class jx6 extends hx6 {
+    @Override
+    public MediaSession a(Context context, String str, Bundle bundle) {
+        return vk1.f(context, str, bundle);
+    }
 }

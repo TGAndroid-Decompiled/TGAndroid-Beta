@@ -1,27 +1,19 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-public class o59 extends Handler {
-    public o59(Looper looper, byte b) {
-        super(looper);
-        switch (b) {
-            case 3:
-                super(looper);
-                Looper.getMainLooper();
-                return;
-            case 4:
-                super(looper);
-                Looper.getMainLooper();
-                return;
-            default:
-                Looper.getMainLooper();
-                return;
-        }
+import android.content.Context;
+import android.view.View;
+public final class o59 extends a8c {
+    public static final int b = 0;
+
+    static {
+        a8c.h(new a8c());
     }
 
-    public o59(Looper looper, Handler.Callback callback) {
-        super(looper, callback);
-        Looper.getMainLooper();
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        tk4 tk4Var = new tk4(context, null);
+        tk4Var.setViewType(16);
+        tk4Var.setMinimumHeight(hl.L(48.0f));
+        return tk4Var;
     }
 }

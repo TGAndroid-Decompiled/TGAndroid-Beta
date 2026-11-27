@@ -1,67 +1,55 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.SystemClock;
-public final class o6a {
-    public static final String e;
-    public static final String f;
-    public static final String g;
-    public static final String h;
-    public final int a;
-    public final Bundle b;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLRPC;
+public final class o6a implements Runnable {
+    public final r7a a;
+    public final TLRPC.TL_messages_forwardMessages b;
     public final long c;
-    public final b6a d;
+    public final int d;
+    public final boolean e;
+    public final boolean f;
+    public final zh6 h;
+    public final ArrayList n;
+    public final ArrayList r;
+    public final r47 s;
+    public final TLRPC.Peer w;
 
-    static {
-        String str = g8c.a;
-        e = "0";
-        f = "1";
-        g = "2";
-        h = "3";
-    }
-
-    public o6a(int i, Bundle bundle, long j, b6a b6aVar) {
-        boolean z = true;
-        if (b6aVar != null && i >= 0 && i != 1) {
-            z = false;
-        }
-        gre.f(z);
-        this.a = i;
-        this.b = new Bundle(bundle);
+    public o6a(int i, long j, zh6 zh6Var, r47 r47Var, r7a r7aVar, ArrayList arrayList, ArrayList arrayList2, TLRPC.Peer peer, TLRPC.TL_messages_forwardMessages tL_messages_forwardMessages, boolean z, boolean z2) {
+        this.a = r7aVar;
+        this.b = tL_messages_forwardMessages;
         this.c = j;
-        if (b6aVar == null && i < 0) {
-            b6aVar = new b6a(i);
-        }
-        this.d = b6aVar;
+        this.d = i;
+        this.e = z;
+        this.f = z2;
+        this.h = zh6Var;
+        this.n = arrayList;
+        this.r = arrayList2;
+        this.s = r47Var;
+        this.w = peer;
     }
 
-    public static o6a a(Bundle bundle) {
-        b6a b6aVar;
-        int i = bundle.getInt(e, -1);
-        Bundle o = g8c.o(bundle.getBundle(f));
-        long j = bundle.getLong(g, SystemClock.elapsedRealtime());
-        Bundle bundle2 = bundle.getBundle(h);
-        if (bundle2 != null) {
-            int i2 = bundle2.getInt(b6a.d, 1000);
-            String string = bundle2.getString(b6a.e, "");
-            Bundle o2 = g8c.o(bundle2.getBundle(b6a.f));
-            if (o2 == null) {
-                o2 = Bundle.EMPTY;
+    @Override
+    public final void run() {
+        final r7a r7aVar = this.a;
+        ConnectionsManager connectionsManager = r7aVar.getConnectionsManager();
+        final int i = this.d;
+        final long j = this.c;
+        final zh6 zh6Var = this.h;
+        final r47 r47Var = this.s;
+        final ArrayList arrayList = this.n;
+        final ArrayList arrayList2 = this.r;
+        final TLRPC.Peer peer = this.w;
+        final TLRPC.TL_messages_forwardMessages tL_messages_forwardMessages = this.b;
+        final boolean z = this.e;
+        final boolean z2 = this.f;
+        connectionsManager.sendRequest(tL_messages_forwardMessages, new RequestDelegate() {
+            @Override
+            public final void run(org.telegram.tgnet.TLObject r33, org.telegram.tgnet.TLRPC.TL_error r34) {
+                throw new UnsupportedOperationException("Method not decompiled: defpackage.b7a.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
             }
-            b6aVar = new b6a(string, i2, o2);
-        } else if (i != 0) {
-            b6aVar = new b6a(i);
-        } else {
-            b6aVar = null;
-        }
-        b6a b6aVar2 = b6aVar;
-        if (o == null) {
-            o = Bundle.EMPTY;
-        }
-        return new o6a(i, o, j, b6aVar2);
-    }
-
-    public o6a(int i) {
-        this(i, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
+        }, 68);
     }
 }

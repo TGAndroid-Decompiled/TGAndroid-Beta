@@ -1,38 +1,29 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.os.Vibrator;
+import android.text.Spanned;
 import org.telegram.ui.Components.NumberTextView;
-public final class wh implements TextWatcher {
-    public final short a;
-    public final NumberTextView b;
+public final class wh extends yk2 {
+    public final Context b;
+    public final NumberTextView c;
 
-    public wh(int i, NumberTextView numberTextView) {
-        this.a = i;
-        this.b = numberTextView;
+    public wh(int i, Context context, NumberTextView numberTextView) {
+        super(i);
+        this.b = context;
+        this.c = numberTextView;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z = false;
-        int codePointCount = this.a - Character.codePointCount(editable, 0, editable.length());
-        NumberTextView numberTextView = this.b;
-        if (codePointCount < 30) {
-            if (numberTextView.getVisibility() == 0) {
-                z = true;
+    public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+        CharSequence filter = super.filter(charSequence, i, i2, spanned, i3, i4);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
+            Vibrator vibrator = (Vibrator) this.b.getSystemService("vibrator");
+            if (vibrator != null) {
+                vibrator.vibrate(200L);
             }
-            numberTextView.a(codePointCount, z);
-            gl.R3(numberTextView, true);
-            return;
+            hl.z3(this.c);
         }
-        gl.R3(numberTextView, false);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        return filter;
     }
 }

@@ -1,18 +1,17 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class ay3 extends zx3 {
-    public final by3 P;
+import org.telegram.tgnet.TLRPC;
+public final class ay3 extends kea {
+    public final ly3 U2;
 
-    public ay3(by3 by3Var, Context context, int i) {
-        super(by3Var.s, context, i);
-        this.P = by3Var;
+    public ay3(ly3 ly3Var, Context context, String str, String str2, vnb vnbVar) {
+        super(context, null, str, false, str2, false, vnbVar);
+        this.U2 = ly3Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.P.d(motionEvent);
-        return super.onTouchEvent(motionEvent);
+    public final void M0(zh6 zh6Var, int i, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        hl.d3(new ze7(this, zh6Var, i, (byte) 23), 100L);
     }
 }

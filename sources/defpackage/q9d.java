@@ -1,4 +1,6 @@
 package defpackage;
-public abstract class q9d {
-    public static final cff a = new cff((byte) 19);
+
+import android.graphics.Bitmap;
+public interface q9d {
+    void b(Bitmap bitmap);
 }

@@ -1,13 +1,6 @@
 package defpackage;
-public final class s84 extends gk0 {
-    public char g;
-    public int h;
-    public int i;
-    public String j;
-    public String k;
+public interface s84 {
+    void t(int i, float f, float f2, t84 t84Var);
 
-    @Override
-    public final void a(ild ildVar) {
-        ildVar.f(this);
-    }
+    void v0(float f, int i);
 }

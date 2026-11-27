@@ -1,46 +1,42 @@
 package defpackage;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.view.View;
+import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
 public final class cxa {
-    public final oi4 a;
-    public k26 b;
-    public final int c;
-    public final dxa d;
+    public final long a;
+    public final int b;
 
-    public cxa(dxa dxaVar, int i) {
-        this.d = dxaVar;
-        this.c = i;
-        ?? view = new View(dxaVar.getContext());
-        view.c = true;
-        TextPaint textPaint = new TextPaint(1);
-        view.e = textPaint;
-        view.f = new Paint(1);
-        Paint paint = new Paint(1);
-        view.h = paint;
-        Paint paint2 = new Paint(1);
-        view.n = paint2;
-        view.x = gl.L(35.0f);
-        view.y = gl.L(22.0f);
-        view.E = gl.L(8.0f);
-        view.F = gl.L(3.5f);
-        view.G = new RectF();
-        view.H = 0.0f;
-        textPaint.setTextSize(gl.L(14.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
-        paint.setStrokeWidth(gl.N(1.5f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(gl.L(2.0f));
-        this.a = view;
-        view.setPadding(gl.L(16.0f), 0, gl.L(16.0f), 0);
-        dxaVar.h.addView(view);
-        dxaVar.n.add(this);
+    public cxa(long j, int i) {
+        this.a = j;
+        this.b = i;
+    }
+
+    public static cxa a(int i, long j) {
+        return new cxa(j, i);
+    }
+
+    public static cxa b(r47 r47Var) {
+        if (r47Var == null) {
+            return null;
+        }
+        TLRPC.Message message = r47Var.k;
+        if (message != null && ((message.isThreadMessage || r47Var.k3()) && r47Var.k.fwd_from != null)) {
+            return new cxa(r47Var.Z0(), r47Var.k.fwd_from.saved_from_msg_id);
+        }
+        return new cxa(r47.B0(r47Var.k), r47Var.e1());
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof cxa) {
+            cxa cxaVar = (cxa) obj;
+            if (cxaVar.a == this.a && cxaVar.b == this.b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.a), Integer.valueOf(this.b));
     }
 }

@@ -1,12 +1,17 @@
 package defpackage;
-public abstract class j3f {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            if (obj == null || !obj.equals(obj2)) {
-                return false;
-            }
-            return true;
+public final class j3f implements zq7 {
+    public static final j3f a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return true;
+        throw new ClassCastException();
     }
 }

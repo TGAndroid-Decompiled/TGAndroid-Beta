@@ -1,45 +1,19 @@
 package defpackage;
-public final class tha implements t46, m7 {
-    public final wha a;
 
-    public tha(wha whaVar) {
-        this.a = whaVar;
-    }
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public interface tha {
+    void I();
 
-    @Override
-    public final void F() {
-        wha whaVar = this.a;
-        whaVar.d();
-        whaVar.a.invalidate();
-    }
+    void V();
 
-    @Override
-    public final void h(int i) {
-        c6 c6Var = this.a.a.W;
-        if (c6Var != null) {
-            c6Var.b(i);
-        }
-    }
+    boolean X();
 
-    @Override
-    public final boolean m() {
-        return false;
-    }
+    d79 d();
 
-    @Override
-    public final boolean n(float f) {
-        return false;
-    }
+    TLRPC.Chat e();
 
-    @Override
-    public final void c() {
-    }
+    boolean g(TLRPC.ChatParticipant chatParticipant, boolean z, boolean z2, View view);
 
-    @Override
-    public final void p() {
-    }
-
-    @Override
-    public final void k(boolean z) {
-    }
+    boolean u();
 }

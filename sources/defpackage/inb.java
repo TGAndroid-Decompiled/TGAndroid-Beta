@@ -1,13 +1,7 @@
 package defpackage;
-public final class inb implements ik4 {
-    public final Throwable a;
-
-    public inb(Throwable th) {
-        this.a = th;
-    }
-
+public final class inb extends hk0 {
     @Override
-    public final Object c(Object obj, fw2 fw2Var) {
-        throw this.a;
+    public final void a(zpd zpdVar) {
+        zpdVar.p(this);
     }
 }

@@ -1,92 +1,433 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.text.Spannable;
-import android.text.style.ClickableSpan;
-import android.view.accessibility.AccessibilityNodeProvider;
-import java.util.ArrayList;
-public final class pa2 extends AccessibilityNodeProvider {
-    public final gb2 a;
-    public final Path b = new Path();
-    public final RectF c = new RectF();
-    public final Rect d = new Rect();
+import android.text.TextUtils;
+import android.util.Property;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.RadioButton;
+public final class pa2 extends FrameLayout {
+    public final byte a;
+    public Object b;
+    public boolean c;
+    public Object d;
+    public Object e;
 
-    public pa2(gb2 gb2Var) {
-        this.a = gb2Var;
+    public pa2(bw5 bw5Var, Context context, boolean z) {
+        super(context);
+        float f;
+        int L;
+        this.a = (byte) 2;
+        this.e = bw5Var;
+        this.b = new TextView[2];
+        this.c = !z;
+        setBackground(null);
+        View view = new View(context);
+        this.d = view;
+        if (!z) {
+            view.setBackground(rnb.f(aob.Fi, 4.0f));
+        }
+        if (z) {
+            f = 0.0f;
+        } else {
+            f = 16.0f;
+        }
+        addView(view, tre.d(-1, -1.0f, 0, 16.0f, f, 16.0f, 16.0f));
+        for (int i = 0; i < 2; i++) {
+            ((TextView[]) this.b)[i] = new TextView(context);
+            ((TextView[]) this.b)[i].setFocusable(false);
+            ((TextView[]) this.b)[i].setLines(1);
+            ((TextView[]) this.b)[i].setSingleLine(true);
+            ((TextView[]) this.b)[i].setGravity(1);
+            ((TextView[]) this.b)[i].setEllipsize(TextUtils.TruncateAt.END);
+            ((TextView[]) this.b)[i].setGravity(17);
+            boolean z2 = this.c;
+            TextView[] textViewArr = (TextView[]) this.b;
+            if (z2) {
+                yob.X(textViewArr[i], aob.Ji, null);
+                ((TextView[]) this.b)[i].setTypeface(hl.o());
+            } else {
+                yob.X(textViewArr[i], aob.Fi, null);
+            }
+            ((TextView[]) this.b)[i].setImportantForAccessibility(2);
+            ((TextView[]) this.b)[i].setTextSize(1, 14.0f);
+            TextView textView = ((TextView[]) this.b)[i];
+            if (this.c) {
+                L = 0;
+            } else {
+                L = hl.L(13.0f);
+            }
+            textView.setPadding(0, 0, 0, L);
+            addView(((TextView[]) this.b)[i], tre.d(-2, -2.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
+            if (i == 1) {
+                ((TextView[]) this.b)[i].setAlpha(0.0f);
+            }
+        }
     }
 
-    public final ClickableSpan a(int i, boolean z) {
-        if (i != 5000) {
-            gb2 gb2Var = this.a;
-            if (z) {
-                int i2 = i - 3000;
-                CharSequence charSequence = gb2Var.Q5.z;
-                if ((charSequence instanceof Spannable) && i2 >= 0) {
-                    Spannable spannable = (Spannable) charSequence;
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(0, spannable.length(), ClickableSpan.class);
-                    if (clickableSpanArr.length > i2) {
-                        return clickableSpanArr[i2];
-                    }
-                    return null;
-                }
-                return null;
-            }
-            int i3 = i - 2000;
-            CharSequence charSequence2 = gb2Var.Q5.v;
-            if ((charSequence2 instanceof Spannable) && i3 >= 0) {
-                Spannable spannable2 = (Spannable) charSequence2;
-                ClickableSpan[] clickableSpanArr2 = (ClickableSpan[]) spannable2.getSpans(0, spannable2.length(), ClickableSpan.class);
-                if (clickableSpanArr2.length > i3) {
-                    return clickableSpanArr2[i3];
-                }
-                return null;
-            }
-            return null;
+    public final void a(String str, boolean z) {
+        TextView[] textViewArr = (TextView[]) this.b;
+        if (!z) {
+            textViewArr[0].setText(str);
+            return;
         }
-        return null;
+        textViewArr[1].setText(str);
+        ((bw5) this.e).A1 = true;
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(180L);
+        animatorSet.setInterpolator(k43.g);
+        Property property = View.ALPHA;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textViewArr[0], property, 1.0f, 0.0f);
+        TextView textView = textViewArr[0];
+        float[] fArr = {0.0f, -hl.L(10.0f)};
+        Property property2 = View.TRANSLATION_Y;
+        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView, property2, fArr), ObjectAnimator.ofFloat(textViewArr[1], property, 0.0f, 1.0f), ObjectAnimator.ofFloat(textViewArr[1], property2, hl.L(10.0f), 0.0f));
+        animatorSet.addListener(new ad5(this, (byte) 6));
+        animatorSet.start();
     }
 
-    public final mg9 b(int[] iArr, int i) {
-        rh9 rh9Var;
-        int i2;
-        k27 k27Var = this.a.Q5;
-        if (k27Var != null && (rh9Var = k27Var.y2) != null) {
-            ArrayList arrayList = rh9Var.g;
-            int i3 = i - 6000;
-            if (i3 >= 0) {
-                int i4 = 0;
-                for (int i5 = 0; i5 < arrayList.size(); i5++) {
-                    mg9 mg9Var = (mg9) arrayList.get(i5);
-                    if (mg9Var.S()) {
-                        if (mg9Var.r == null) {
-                            i2 = 0;
-                        } else {
-                            i2 = 1;
-                        }
-                        int C = mg9Var.C() + i2 + i4;
-                        if (i3 < C) {
-                            iArr[0] = i3 - i4;
-                            return mg9Var;
-                        }
-                        i4 = C;
-                    }
-                }
-                return null;
-            }
-            return null;
+    public final void b() {
+        int i;
+        boolean z = this.c;
+        TextView textView = (TextView) this.b;
+        ((TextView) this.e).setVisibility(8);
+        if (z) {
+            i = -1;
+        } else {
+            i = -15095832;
         }
-        return null;
+        textView.setTextColor(i);
     }
 
     @Override
-    public final android.view.accessibility.AccessibilityNodeInfo createAccessibilityNodeInfo(int r31) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pa2.createAccessibilityNodeInfo(int):android.view.accessibility.AccessibilityNodeInfo");
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        switch (this.a) {
+            case 4:
+                zqc zqcVar = (zqc) this.e;
+                wqc wqcVar = zqcVar.b;
+                if (wqcVar != null) {
+                    float[] fArr = (float[]) zqcVar.h.b;
+                    float[] fArr2 = wqcVar.k;
+                    float[] fArr3 = wqcVar.l;
+                    Paint paint = wqcVar.b;
+                    Paint paint2 = wqcVar.d;
+                    Path path = wqcVar.p;
+                    if (wqcVar.q != 0.0f && (Math.abs(Math.sin(Math.toRadians(wqcVar.S))) >= 0.009999999776482582d || Math.abs(Math.sin(Math.toRadians(wqcVar.T))) >= 0.009999999776482582d)) {
+                        int a = lsc.a(-16216082, fArr);
+                        int a2 = lsc.a(-15291399, fArr);
+                        paint.setShader(null);
+                        paint.setAlpha(255);
+                        paint.setColor(wqc.d(0.82500005f, 0.0f, 0.0f, a, a2));
+                        path.rewind();
+                        int i = 1;
+                        path.moveTo(fArr3[0], fArr3[1]);
+                        for (int i2 = 1; i2 < 76; i2++) {
+                            int i3 = i2 << 1;
+                            path.lineTo(fArr3[i3], fArr3[i3 + 1]);
+                        }
+                        path.close();
+                        canvas.drawPath(path, paint);
+                        paint2.setShader(null);
+                        paint2.setAlpha(255);
+                        paint2.setStrokeWidth(wqcVar.q * 0.6f);
+                        int[] iArr = wqcVar.o;
+                        int length = iArr.length;
+                        int i4 = 0;
+                        while (i4 < length) {
+                            int i5 = iArr[i4];
+                            int i6 = i5 << i;
+                            int i7 = ((i5 + 1) % 76) << 1;
+                            float[] fArr4 = wqcVar.j;
+                            float f2 = (fArr4[i6] + fArr4[i7]) * 0.5f;
+                            int i8 = i6 + 1;
+                            int i9 = i7 + 1;
+                            float f3 = (fArr4[i8] + fArr4[i9]) * 0.5f;
+                            int[] iArr2 = iArr;
+                            int i10 = length;
+                            float sqrt = 1.0f / ((float) Math.sqrt(bs2.i(f3, f3, f2 * f2, 0.0144f)));
+                            float f4 = f2 * sqrt;
+                            float f5 = f3 * sqrt;
+                            if (wqcVar.r) {
+                                f = -0.12f;
+                            } else {
+                                f = 0.12f;
+                            }
+                            float f6 = f * sqrt;
+                            float c = wqc.c((wqcVar.Y * f6) + (wqcVar.X * f5) + (wqcVar.W * f4));
+                            float f7 = f4 * wqcVar.Z;
+                            float f8 = wqcVar.b0 * f6;
+                            int i11 = i4;
+                            float[] fArr5 = fArr2;
+                            float[] fArr6 = fArr3;
+                            float z = xnb.z(c, 0.38f, 0.36f, 1.5f);
+                            float pow = ((float) Math.pow(wqc.c(f8 + (f5 * wqcVar.a0) + f7), 24.0d)) * 0.1f * 1.5f;
+                            int d = wqc.d(z, 0.089999996f, pow, a, a2);
+                            paint.setColor(d);
+                            paint2.setColor(d);
+                            path.rewind();
+                            path.moveTo(fArr5[i6], fArr5[i8]);
+                            path.lineTo(fArr5[i7], fArr5[i9]);
+                            path.lineTo(fArr6[i7], fArr6[i9]);
+                            path.lineTo(fArr6[i6], fArr6[i8]);
+                            path.close();
+                            paint2.setStrokeWidth(wqcVar.q * 0.6f);
+                            canvas.drawPath(path, paint);
+                            canvas.drawPath(path, paint2);
+                            paint2.setColor(wqc.d(z * 0.75f, 0.067499995f, pow * 0.75f, a, a2));
+                            paint2.setStrokeWidth(wqcVar.q * 0.7f);
+                            canvas.drawLine(fArr6[i6], fArr6[i8], fArr6[i7], fArr6[i9], paint2);
+                            i4 = i11 + 1;
+                            length = i10;
+                            fArr2 = fArr5;
+                            iArr = iArr2;
+                            fArr3 = fArr6;
+                            i = 1;
+                        }
+                    }
+                }
+                if (this.c) {
+                    int save = canvas.save();
+                    canvas.concat((Matrix) this.d);
+                    super.dispatchDraw(canvas);
+                    canvas.restoreToCount(save);
+                    return;
+                }
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final boolean performAction(int r10, int r11, android.os.Bundle r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pa2.performAction(int, int, android.os.Bundle):boolean");
+    public final void onDraw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pa2.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        int i;
+        switch (this.a) {
+            case 0:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(RadioButton.class.getName());
+                accessibilityNodeInfo.setChecked(((oa2) this.d).f);
+                accessibilityNodeInfo.setCheckable(true);
+                if (this.c) {
+                    i = 2131752188;
+                } else {
+                    i = 2131752189;
+                }
+                accessibilityNodeInfo.setContentDescription(ob6.M0(i, null));
+                return;
+            case 1:
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+            case 2:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName("android.widget.Button");
+                accessibilityNodeInfo.setClickable(true);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 1:
+                ah4 ah4Var = (ah4) this.e;
+                if (motionEvent.getAction() == 0 && ah4Var.r1 != 0 && motionEvent.getY() < ah4Var.r1) {
+                    ah4Var.dismiss();
+                    return true;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        switch (this.a) {
+            case 1:
+                super.onLayout(z, i, i2, i3, i4);
+                ((ah4) this.e).G0();
+                return;
+            default:
+                super.onLayout(z, i, i2, i3, i4);
+                return;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        float f;
+        switch (this.a) {
+            case 1:
+                int size = View.MeasureSpec.getSize(i2);
+                ah4 ah4Var = (ah4) this.e;
+                gu guVar = ah4Var.m1;
+                boolean z = true;
+                ah4Var.s1 = true;
+                int i4 = ah4Var.u0;
+                setPadding(i4, hl.m, i4, 0);
+                ah4Var.s1 = false;
+                int L = hl.L(48.0f);
+                int L2 = hl.L(48.0f);
+                int i5 = ah4Var.t0;
+                int b = (ah4Var.n1.b() * L2) + L + i5 + hl.m;
+                int i6 = size / 5;
+                if (b < i6 * 3.2d) {
+                    i3 = 0;
+                } else {
+                    i3 = i6 << 1;
+                }
+                if (i3 != 0 && b < size) {
+                    i3 -= size - b;
+                }
+                if (i3 != 0) {
+                    i5 = i3;
+                }
+                if (guVar.getPaddingTop() != i5) {
+                    ah4Var.s1 = true;
+                    guVar.setPadding(hl.L(10.0f), i5, hl.L(10.0f), 0);
+                    ah4Var.s1 = false;
+                }
+                if (b < size) {
+                    z = false;
+                }
+                this.c = z;
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(b, size), 1073741824));
+                return;
+            case 2:
+                if (this.c) {
+                    f = 80.0f;
+                } else {
+                    f = 50.0f;
+                }
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        switch (this.a) {
+            case 4:
+                super.onSizeChanged(i, i2, i3, i4);
+                zqc zqcVar = (zqc) this.e;
+                zqcVar.j0 = -1;
+                zqcVar.b(zqcVar.d0, zqcVar.g0);
+                return;
+            default:
+                super.onSizeChanged(i, i2, i3, i4);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.a) {
+            case 1:
+                if (!((ah4) this.e).J && super.onTouchEvent(motionEvent)) {
+                    return true;
+                }
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        switch (this.a) {
+            case 1:
+                if (!((ah4) this.e).s1) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
+        }
+    }
+
+    public pa2(ah4 ah4Var, Activity activity) {
+        super(activity);
+        this.a = (byte) 1;
+        this.e = ah4Var;
+        this.b = new RectF();
+    }
+
+    public pa2(Context context, byte b) {
+        super(context);
+        this.a = b;
+        switch (b) {
+            case 3:
+                super(context);
+                this.c = true;
+                setBackgroundColor(-15066598);
+                TextView textView = new TextView(context);
+                this.d = textView;
+                textView.setTextSize(1, 14.0f);
+                textView.setTextColor(-1);
+                textView.setGravity(17);
+                textView.setBackground(aob.f0(-12763843, 0, -1));
+                textView.setPadding(hl.L(20.0f), 0, hl.L(20.0f), 0);
+                textView.setText(ob6.M0(2131752570, null).toUpperCase());
+                textView.setTypeface(hl.o());
+                addView(textView, tre.e(-2, -1, 51));
+                TextView textView2 = new TextView(context);
+                this.b = textView2;
+                textView2.setTextSize(1, 14.0f);
+                textView2.setTextColor(-1);
+                textView2.setGravity(17);
+                textView2.setBackgroundDrawable(aob.f0(-12763843, 0, -1));
+                textView2.setPadding(hl.L(20.0f), 0, hl.L(20.0f), 0);
+                textView2.setText(ob6.M0(2131745368, null).toUpperCase());
+                textView2.setTypeface(hl.o());
+                addView(textView2, tre.e(-2, -1, 53));
+                TextView textView3 = new TextView(context);
+                this.e = textView3;
+                textView3.setTypeface(hl.o());
+                textView3.setTextSize(1, 13.0f);
+                textView3.setTextColor(-1);
+                textView3.setGravity(17);
+                textView3.setBackgroundResource(2131232549);
+                textView3.setMinWidth(hl.L(23.0f));
+                textView3.setPadding(hl.L(8.0f), 0, hl.L(8.0f), hl.L(1.0f));
+                addView(textView3, tre.d(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
+                return;
+            default:
+                return;
+        }
+    }
+
+    public pa2(zqc zqcVar, Context context) {
+        super(context);
+        this.a = (byte) 4;
+        this.e = zqcVar;
+        this.d = new Matrix();
+        this.b = new float[8];
+        setClipChildren(false);
+        setClipToPadding(false);
     }
 }

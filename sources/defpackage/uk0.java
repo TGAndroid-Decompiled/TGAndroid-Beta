@@ -2,68 +2,67 @@ package defpackage;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.messenger.Utilities;
-public final class uk0 implements Runnable {
-    public boolean a;
-    public int b;
-    public int c;
-    public final vk0 d;
+import android.graphics.Matrix;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+public abstract class uk0 {
+    public static final Matrix a = new Matrix();
+    public static final RectF b = new RectF();
+    public static final RectF c = new RectF();
 
-    public uk0(vk0 vk0Var) {
-        this.d = vk0Var;
+    public static void a(yi5 yi5Var, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup) {
+        b(yi5Var, canvas, rectF, view, viewGroup, 255);
     }
 
-    @Override
-    public final void run() {
-        int i;
-        Bitmap bitmap;
-        vk0 vk0Var = this.d;
-        Paint paint = vk0Var.w;
-        if (vk0Var.f == null) {
-            vk0Var.f = new Bitmap[2];
-            vk0Var.i = new Canvas[2];
-        }
-        int i2 = (int) (this.b / 15.0f);
-        for (int i3 = 0; i3 < 2; i3++) {
-            if (i3 == 0) {
-                i = vk0Var.s;
-            } else {
-                i = this.c;
-            }
-            int i4 = (int) (i / 15.0f);
-            Bitmap bitmap2 = vk0Var.f[i3];
-            if (bitmap2 != null && ((bitmap2.getHeight() != i4 || vk0Var.f[i3].getWidth() != i2) && (bitmap = vk0Var.f[i3]) != null)) {
-                bitmap.recycle();
-                vk0Var.f[i3] = null;
-            }
-            System.currentTimeMillis();
-            Bitmap[] bitmapArr = vk0Var.f;
-            if (bitmapArr[i3] == null) {
-                try {
-                    bitmapArr[i3] = Bitmap.createBitmap(i2, i4, Bitmap.Config.ARGB_8888);
-                    vk0Var.i[i3] = new Canvas(vk0Var.f[i3]);
-                    vk0Var.i[i3].scale(i2 / vk0Var.e[i3].getWidth(), i4 / vk0Var.e[i3].getHeight());
-                } catch (Throwable th) {
-                    fa4.g(th, true);
+    public static void b(yi5 yi5Var, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i) {
+        boolean z;
+        if (i > 0 && yi5Var != null) {
+            RectF rectF2 = c;
+            if (yic.c(view, viewGroup, rectF2)) {
+                float f = rectF2.left;
+                float f2 = rectF2.top;
+                RectF rectF3 = b;
+                rectF3.set(rectF);
+                rectF3.offset(-f, -f2);
+                boolean z2 = true;
+                if (f == 0.0f && f2 == 0.0f) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+                if (i == 255) {
+                    z2 = false;
+                }
+                if (z) {
+                    canvas.save();
+                    canvas.translate(f, f2);
+                }
+                if (z2) {
+                    canvas.saveLayerAlpha(rectF3, i);
+                }
+                yi5Var.g(canvas, rectF3);
+                if (z2) {
+                    canvas.restore();
+                }
+                if (z) {
+                    canvas.restore();
                 }
             }
-            Bitmap[] bitmapArr2 = vk0Var.f;
-            if (i3 == 1) {
-                bitmapArr2[i3].eraseColor(bkb.v0(bkb.c6, vk0Var.y));
-            } else {
-                bitmapArr2[i3].eraseColor(0);
-            }
-            paint.setAlpha(255);
-            Utilities.stackBlurBitmap(vk0Var.e[i3], 15);
-            Canvas canvas = vk0Var.i[i3];
-            if (canvas != null) {
-                canvas.drawBitmap(vk0Var.e[i3], 0.0f, 0.0f, paint);
-            }
-            if (this.a) {
-                return;
-            }
         }
-        gl.c3(new oz(this, (byte) 10));
+    }
+
+    public static void c(nz4 nz4Var, View view) {
+        Bitmap bitmap;
+        if (nz4Var != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = nz4Var.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
+            Matrix matrix = a;
+            matrix.reset();
+            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
+            nz4Var.b.set(matrix);
+        }
+    }
+
+    public static tk0 d(jl0 jl0Var, int i, int i2) {
+        return new tk0(i, i2, jl0Var);
     }
 }

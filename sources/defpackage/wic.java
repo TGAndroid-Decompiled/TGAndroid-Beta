@@ -1,7 +1,7 @@
 package defpackage;
-public final class wic {
-    public int a;
-    public int b;
-    public long c;
-    public float d;
+
+import android.graphics.RectF;
+import android.view.View;
+public interface wic {
+    void a(View view, RectF rectF);
 }

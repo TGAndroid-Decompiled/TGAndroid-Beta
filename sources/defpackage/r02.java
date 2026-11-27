@@ -1,54 +1,71 @@
 package defpackage;
 
 import android.content.Context;
-import android.widget.TextView;
-public final class r02 extends s02 {
-    public byte b;
-    public final x02 c;
+import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MotionEvent;
+import org.telegram.ui.ActionBar.e;
+public final class r02 extends iu3 {
+    public final n12 W;
 
-    public r02(x02 x02Var, Context context) {
-        super(context);
-        this.c = x02Var;
-        setWillNotDraw(false);
-        setFocusable(true);
-        int i = x02.G4;
-        wjb wjbVar = x02Var.J0;
-        ox4 ox4Var = new ox4(context);
-        ox4Var.d = wjbVar;
-        ox4Var.R = true;
-        TextView textView = ox4Var.a;
-        textView.setTextSize(1, 11.0f);
-        textView.setPadding(gl.L(8.0f), 0, gl.L(8.0f), 0);
-        ox4Var.b(false);
-        ox4Var.b.setLayoutParams(nme.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        ox4Var.x = bkb.v0(bkb.Sl, wjbVar);
-        ox4Var.s = bkb.v0(bkb.Ql, wjbVar);
-        ox4Var.w = bkb.v0(bkb.Rl, wjbVar);
-        ox4Var.a();
-        this.a = ox4Var;
-        addView(ox4Var, nme.c(-1.0f, -1));
-    }
-
-    public final void a(int i, String str, nx4 nx4Var) {
-        this.a.setText(str);
-        this.a.setTabAnimation(nx4Var);
-        this.b = i;
+    public r02(n12 n12Var, Context context, a12 a12Var, vnb vnbVar) {
+        super(context, a12Var, null, 1, true, vnbVar);
+        this.W = n12Var;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        boolean z;
-        super.onAttachedToWindow();
-        if (this.b == this.c.T2) {
-            z = true;
-        } else {
-            z = false;
+    public final void f() {
+        super.f();
+        o24 emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.x0 = false;
+            emojiView.x2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(hl.n);
         }
-        this.a.f(z, false);
+    }
+
+    @Override
+    public final void i(ActionMode actionMode, Menu menu) {
+        e eVar = this.W.Z1;
+        if (eVar instanceof zu1) {
+            zu1.E6(menu, ((zu1) eVar).h, true, true, true, true);
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        n12 n12Var = this.W;
+        r02 r02Var = n12Var.M2;
+        if (!n12Var.r3) {
+            if (motionEvent.getX() > r02Var.getEditText().getLeft() && motionEvent.getX() < r02Var.getEditText().getRight() && motionEvent.getY() > r02Var.getEditText().getTop() && motionEvent.getY() < r02Var.getEditText().getBottom()) {
+                n12Var.d1(r02Var.getEditText(), true);
+            } else {
+                n12Var.d1(r02Var.getEditText(), false);
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.W.M1();
+    }
+
+    @Override
+    public final void q(int i, int i2) {
+        boolean z;
+        n12 n12Var = this.W;
+        n12Var.M1();
+        if (n12Var.W1) {
+            if (i2 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
+                z = true;
+            } else {
+                z = false;
+            }
+            n12Var.x1(z);
+        }
     }
 }

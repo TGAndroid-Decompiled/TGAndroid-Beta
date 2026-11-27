@@ -1,8 +1,8 @@
 package defpackage;
-public final class snb {
-    public static final snb a = new Object();
 
-    public static onb a() {
-        return new onb(System.currentTimeMillis());
-    }
+import java.util.HashSet;
+public interface snb {
+    void addColorKeys(HashSet hashSet);
+
+    void updateColors();
 }

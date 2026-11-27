@@ -1,182 +1,103 @@
 package defpackage;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PasscodeActivity;
-import org.telegram.ui.Wallet.c;
-public final class pf6 extends d {
-    public s20 a;
-    public o39 b;
-    public int c;
-    public int d;
-    public int e;
-    public int f;
-    public int h;
-    public int n;
-    public int r;
-    public int s;
-    public int w;
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pf6 implements Runnable {
+    public final byte a = 0;
+    public final sf6 b;
+    public final TLRPC.TL_error c;
+    public final Bundle d;
+    public final TLObject e;
 
-    public final void Y(int i) {
-        Integer num = null;
-        if (i == this.c) {
-            int i2 = 0;
-            for (int i3 = 3; i3 >= 0; i3--) {
-                if (!y6c.h(i3).o()) {
-                    i2++;
-                    if (num == null) {
-                        num = Integer.valueOf(i3);
+    public pf6(sf6 sf6Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
+        this.b = sf6Var;
+        this.e = tLObject;
+        this.d = bundle;
+        this.c = tL_error;
+    }
+
+    @Override
+    public final void run() {
+        String str;
+        byte b = this.a;
+        TLObject tLObject = this.e;
+        Bundle bundle = this.d;
+        TLRPC.TL_error tL_error = this.c;
+        sf6 sf6Var = this.b;
+        switch (b) {
+            case 0:
+                qh6 qh6Var = sf6Var.b0;
+                sf6Var.N = false;
+                sf6Var.w.invalidate();
+                if (tLObject != null) {
+                    sf6Var.T = bundle;
+                    TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
+                    sf6Var.U = tL_auth_sentCode;
+                    qh6Var.q1(bundle, tL_auth_sentCode, true);
+                    return;
+                } else if (tL_error != null && (str = tL_error.text) != null) {
+                    if (str.contains("PHONE_NUMBER_INVALID")) {
+                        qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131748933, null));
+                        return;
+                    } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                        if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                            sf6Var.c(true);
+                            qh6Var.J1(0, true, null, true);
+                            qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131751986, null));
+                            return;
+                        } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                            qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131750647, null));
+                            return;
+                        } else if (tL_error.code != -1000) {
+                            String M0 = ob6.M0(2131745798, null);
+                            qh6Var.z1(M0, ob6.M0(2131751070, null) + "\n" + tL_error.text);
+                            return;
+                        } else {
+                            return;
+                        }
+                    } else {
+                        qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131748937, null));
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            default:
+                qh6 qh6Var2 = sf6Var.b0;
+                sf6Var.S = false;
+                if (tL_error == null) {
+                    qh6Var2.q1(bundle, (TLRPC.TL_auth_sentCode) tLObject, true);
+                } else {
+                    String str2 = tL_error.text;
+                    if (str2 != null) {
+                        if (str2.contains("PHONE_NUMBER_INVALID")) {
+                            qh6Var2.z1(ob6.M0(2131745798, null), ob6.M0(2131748933, null));
+                        } else if (!tL_error.text.contains("PHONE_CODE_EMPTY") && !tL_error.text.contains("PHONE_CODE_INVALID")) {
+                            if (tL_error.text.contains("PHONE_CODE_EXPIRED")) {
+                                sf6Var.c(true);
+                                qh6Var2.J1(0, true, null, true);
+                                qh6Var2.z1(ob6.M0(2131745798, null), ob6.M0(2131751986, null));
+                            } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                                qh6Var2.z1(ob6.M0(2131745798, null), ob6.M0(2131750647, null));
+                            } else if (tL_error.code != -1000) {
+                                String M02 = ob6.M0(2131745798, null);
+                                qh6Var2.z1(M02, ob6.M0(2131751070, null) + "\n" + tL_error.text);
+                            }
+                        } else {
+                            qh6Var2.z1(ob6.M0(2131745798, null), ob6.M0(2131748937, null));
+                        }
                     }
                 }
-            }
-            if (!y6c.n()) {
-                i2--;
-            }
-            if (i2 > 0 && num != null) {
-                presentFragment(new mf6(num.intValue()));
-            } else if (!y6c.n()) {
-                showDialog(new h26(7, this.currentAccount, null, getParentActivity(), this));
-            }
-        } else if (i == this.d) {
-            presentFragment(PasscodeActivity.m0());
-        } else if (i == this.e) {
-            presentFragment(new r61());
-        } else if (i == this.f) {
-            presentFragment(new u8(3));
-        } else if (i == this.h) {
-            showDialog(ij.R(this, null));
-        } else if (i == this.r && getParentActivity() != null) {
-            hd hdVar = new hd(3, null, getParentActivity());
-            hdVar.q(500L);
-            int i4 = this.currentAccount;
-            kz5 kz5Var = new kz5(this, hdVar, (byte) 28);
-            c[] cVarArr = c.R;
-            if (!na7.q1(i4).k4.n0.f) {
-                kz5Var.run();
-            } else {
-                gl.c3(new sm3(i4, kz5Var, (byte) 9));
-            }
+                qh6Var2.y1(false, true);
+                return;
         }
     }
 
-    public final void Z(defpackage.hd r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.pf6.Z(hd):void");
-    }
-
-    public final void a0() {
-        na7.q1(this.currentAccount).C3(1);
-    }
-
-    @Override
-    public final void addThemeColorKeys(HashSet hashSet) {
-        super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.l6));
-        hashSet.add(Integer.valueOf(bkb.y6));
-        hashSet.add(Integer.valueOf(bkb.F6));
-        hashSet.add(Integer.valueOf(bkb.A6));
-        hashSet.add(Integer.valueOf(bkb.a7));
-        hashSet.add(Integer.valueOf(bkb.K6));
-        hashSet.add(Integer.valueOf(bkb.o7));
-        hashSet.add(Integer.valueOf(bkb.c7));
-        hashSet.add(Integer.valueOf(bkb.h6));
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.u8));
-        hashSet.add(Integer.valueOf(bkb.r8));
-        hashSet.add(Integer.valueOf(bkb.c6));
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231243);
-        this.simpleActionBar.setTitle(k96.M0(2131748549, null));
-        ui5 ui5Var = this.parentLayout;
-        if (ui5Var != null && ((ActionBarLayout) ui5Var).T0) {
-            this.simpleActionBar.setOccupyStatusBar(false);
-        }
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bq5(this, (byte) 6));
-        this.a = new s20(this, context, (byte) 7);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        o39 o39Var = new o39(context, null);
-        this.b = o39Var;
-        o39Var.setVerticalScrollBarEnabled(false);
-        this.b.setLayoutManager(new t26(1, false));
-        frameLayout.addView(this.b, nme.e(-1, -1, 51));
-        this.b.setAdapter(this.a);
-        this.b.setOnItemClickListener(new of6(this));
-        this.b.r1();
-        this.b.setSectionsDrawBackground(true);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final o39 getListViewForSimpleGlass() {
-        return this.b;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        return new ArrayList();
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final void onDialogDismiss(Dialog dialog) {
-        up3.q(this.currentAccount).g();
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        super.onFragmentCreate();
-        this.w = 1;
-        if (y6c.c() < 4) {
-            int i = this.w;
-            this.w = i + 1;
-            this.c = i;
-        } else {
-            this.c = -1;
-        }
-        if (gba.r.length() <= 0) {
-            int i2 = this.w;
-            this.w = i2 + 1;
-            this.d = i2;
-        } else {
-            this.d = -1;
-        }
-        int i3 = this.w;
-        this.e = i3;
-        this.f = i3 + 1;
-        this.h = i3 + 2;
-        this.n = i3 + 3;
-        this.r = i3 + 4;
-        this.w = i3 + 6;
-        this.s = i3 + 5;
-        return true;
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        s20 s20Var = this.a;
-        if (s20Var != null) {
-            s20Var.f();
-        }
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public pf6(sf6 sf6Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
+        this.b = sf6Var;
+        this.c = tL_error;
+        this.d = bundle;
+        this.e = tLObject;
     }
 }

@@ -1,43 +1,98 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.style.ReplacementSpan;
-public final class hm3 extends ReplacementSpan {
-    public final Paint a;
-    public final Path b;
-    public final float c;
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import org.telegram.ui.Dictation.DictationAsr;
+public final class hm3 implements Runnable {
+    public final byte a;
+    public final boolean b;
+    public final nm3 c;
 
-    public hm3() {
-        Paint paint = new Paint(1);
-        this.a = paint;
-        this.b = new Path();
-        this.c = 3.25f;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gl.N(1.25f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
+    public hm3(boolean z, nm3 nm3Var, byte b) {
+        this.a = b;
+        this.b = z;
+        this.c = nm3Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        float L = f + gl.L(3.0f);
-        float textSize = i4 - (paint.getTextSize() * 0.36f);
-        int color = paint.getColor();
-        Paint paint2 = this.a;
-        paint2.setColor(color);
-        Path path = this.b;
-        path.rewind();
-        float f2 = this.c;
-        path.moveTo(L, textSize - gl.L(f2));
-        path.lineTo(gl.L(f2) + L, textSize);
-        path.lineTo(L, textSize + gl.L(f2));
-        canvas.drawPath(path, paint2);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return gl.L(this.c + 3.0f + 1.0f);
+    public final void run() {
+        int i;
+        CountDownLatch e;
+        int i2 = 0;
+        boolean z = true;
+        switch (this.a) {
+            case 0:
+                boolean z2 = this.b;
+                nm3 nm3Var = this.c;
+                nm3[] nm3VarArr = DictationAsr.a;
+                if (nm3Var.f == 0) {
+                    z = false;
+                }
+                if (z2 == z) {
+                    ArrayList arrayList = new ArrayList(nm3Var.l);
+                    nm3Var.l.clear();
+                    int size = arrayList.size();
+                    while (i2 < size) {
+                        Object obj = arrayList.get(i2);
+                        i2++;
+                        ((om3) obj).a(z2);
+                    }
+                    return;
+                }
+                return;
+            default:
+                final boolean z3 = this.b;
+                nm3 nm3Var2 = this.c;
+                DictationAsr.s().mkdirs();
+                if (qn3.d() && (e = qn3.e()) != null) {
+                    try {
+                        e.await(20000L, TimeUnit.MILLISECONDS);
+                    } catch (InterruptedException unused) {
+                    }
+                }
+                final ArrayList a = qn3.a();
+                Future submit = DictationAsr.f.submit(new Callable() {
+                    @Override
+                    public final Object call() {
+                        ArrayList arrayList2 = a;
+                        boolean z4 = z3;
+                        nm3[] nm3VarArr2 = DictationAsr.a;
+                        return Integer.valueOf(DictationAsr.v("silero_vad.onnx", qn3.f(arrayList2, "silero-vad"), null, z4));
+                    }
+                });
+                int v = DictationAsr.v(nm3Var2.b(), qn3.f(a, nm3Var2.c), nm3Var2, z3);
+                try {
+                    i = ((Integer) submit.get()).intValue();
+                } catch (Exception unused2) {
+                    i = -1;
+                }
+                int[] iArr = {i, v};
+                boolean z4 = false;
+                boolean z5 = true;
+                for (int i3 = 0; i3 < 2; i3++) {
+                    int i4 = iArr[i3];
+                    if (i4 < 0) {
+                        z5 = false;
+                    }
+                    if (i4 > 0) {
+                        z4 = true;
+                    }
+                }
+                nm3Var2.j = false;
+                if (z5) {
+                    uc7.e1().edit().putLong("tinyasr_checked_" + nm3Var2.a, System.currentTimeMillis()).apply();
+                }
+                if (DictationAsr.z(nm3Var2) && (z4 || nm3Var2.f == 0)) {
+                    nm3Var2.i = true;
+                    DictationAsr.d.execute(new km3(nm3Var2, (byte) 1));
+                } else if (!DictationAsr.z(nm3Var2)) {
+                    hl.c3(new hm3(false, nm3Var2, (byte) 0));
+                }
+                DictationAsr.o();
+                return;
+        }
     }
 }

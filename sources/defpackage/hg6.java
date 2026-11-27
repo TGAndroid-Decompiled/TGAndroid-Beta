@@ -1,518 +1,351 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.FilterInputStream;
-import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public final class hg6 extends g00 {
-    public static final Logger s = Logger.getLogger(hg6.class.getName());
-    public final Level r;
+import android.os.Bundle;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class hg6 implements RequestDelegate {
+    public final byte a;
+    public final tg6 b;
+    public final TLRPC.TL_auth_signIn c;
 
-    public hg6(BufferedInputStream bufferedInputStream) {
-        sg6 c;
-        char c2;
-        int i;
-        long readInt;
-        DataInputStream dataInputStream;
-        int i2;
-        long readInt2;
-        int i3;
-        Level level = Level.FINEST;
-        this.r = level;
-        ?? r6 = 1;
-        sg6 sg6Var = new sg6(new a51((FilterInputStream) bufferedInputStream), null, "", (byte) 1);
-        Logger logger = s;
-        if (logger.isLoggable(level)) {
-            logger.log(level, sg6Var.toString());
-        }
-        sg6 d = sg6Var.d("ftyp");
-        DataInputStream dataInputStream2 = (DataInputStream) d.e;
-        if (logger.isLoggable(level)) {
-            logger.log(level, d.toString());
-        }
-        int i4 = 4;
-        byte[] bArr = new byte[4];
-        dataInputStream2.readFully(bArr);
-        String str = new String(bArr, "ISO8859_1");
-        int indexOf = str.indexOf(0);
-        String trim = (indexOf >= 0 ? str.substring(0, indexOf) : str).trim();
-        this.a = trim;
-        if (trim.matches("M4V|MP4|mp42|isom")) {
-            StringBuilder sb = new StringBuilder();
-            StringBuffer stringBuffer = new StringBuffer();
-            sg6.h(stringBuffer, d);
-            sb.append(stringBuffer.toString());
-            sb.append(": brand=");
-            sb.append(this.a);
-            sb.append(" (experimental)");
-            logger.warning(sb.toString());
-        } else if (!this.a.matches("M4A|M4P")) {
-            StringBuilder sb2 = new StringBuilder();
-            StringBuffer stringBuffer2 = new StringBuffer();
-            sg6.h(stringBuffer2, d);
-            sb2.append(stringBuffer2.toString());
-            sb2.append(": brand=");
-            sb2.append(this.a);
-            sb2.append(" (expected M4A or M4P)");
-            logger.warning(sb2.toString());
-        }
-        String.valueOf(dataInputStream2.readInt());
-        do {
-            c = sg6Var.c();
-        } while (!((String) c.d).matches("moov"));
-        Level level2 = this.r;
-        if (logger.isLoggable(level2)) {
-            logger.log(level2, c.toString());
-        }
-        while (c.j()) {
-            sg6 c3 = c.c();
-            DataInputStream dataInputStream3 = (DataInputStream) c3.e;
-            String str2 = (String) c3.d;
-            int i5 = 2;
-            switch (str2.hashCode()) {
-                case 3363941:
-                    if (str2.equals("mvhd")) {
-                        c2 = 0;
-                        break;
-                    }
-                    c2 = 65535;
-                    break;
-                case 3568424:
-                    if (str2.equals("trak")) {
-                        c2 = r6;
-                        break;
-                    }
-                    c2 = 65535;
-                    break;
-                case 3585340:
-                    if (str2.equals("udta")) {
-                        c2 = 2;
-                        break;
-                    }
-                    c2 = 65535;
-                    break;
-                default:
-                    c2 = 65535;
-                    break;
-            }
-            switch (c2) {
-                case 0:
-                    if (logger.isLoggable(level2)) {
-                        logger.log(level2, c3.toString());
-                    }
-                    byte readByte = dataInputStream3.readByte();
-                    c3.n(3);
-                    if (readByte == r6) {
-                        i = 16;
-                    } else {
-                        i = 8;
-                    }
-                    c3.n(i);
-                    int readInt3 = dataInputStream3.readInt();
-                    if (readByte == r6) {
-                        readInt = dataInputStream3.readLong();
-                    } else {
-                        readInt = dataInputStream3.readInt();
-                    }
-                    if (this.b == 0) {
-                        this.b = (readInt * 1000) / readInt3;
-                    } else if (logger.isLoggable(level2)) {
-                        dataInputStream = dataInputStream3;
-                        long j = (readInt * 1000) / readInt3;
-                        if (Math.abs(this.b - j) > 2) {
-                            logger.log(level2, "mvhd: duration " + this.b + " -> " + j);
-                        }
-                        short readShort = dataInputStream.readShort();
-                        int readUnsignedShort = dataInputStream.readUnsignedShort();
-                        new BigDecimal(String.valueOf((int) readShort) + "" + String.valueOf(readUnsignedShort));
-                        byte readByte2 = dataInputStream.readByte();
-                        int readUnsignedByte = dataInputStream.readUnsignedByte();
-                        new BigDecimal(String.valueOf((int) readByte2) + "" + String.valueOf(readUnsignedByte));
-                        break;
-                    }
-                    dataInputStream = dataInputStream3;
-                    short readShort2 = dataInputStream.readShort();
-                    int readUnsignedShort2 = dataInputStream.readUnsignedShort();
-                    new BigDecimal(String.valueOf((int) readShort2) + "" + String.valueOf(readUnsignedShort2));
-                    byte readByte22 = dataInputStream.readByte();
-                    int readUnsignedByte2 = dataInputStream.readUnsignedByte();
-                    new BigDecimal(String.valueOf((int) readByte22) + "" + String.valueOf(readUnsignedByte2));
-                case 1:
-                    if (logger.isLoggable(level2)) {
-                        logger.log(level2, c3.toString());
-                    }
-                    sg6 k = c3.k("mdia");
-                    if (logger.isLoggable(level2)) {
-                        logger.log(level2, k.toString());
-                    }
-                    sg6 d2 = k.d("mdhd");
-                    DataInputStream dataInputStream4 = (DataInputStream) d2.e;
-                    if (logger.isLoggable(level2)) {
-                        logger.log(level2, d2.toString());
-                    }
-                    byte readByte3 = dataInputStream4.readByte();
-                    d2.n(3);
-                    if (readByte3 == r6) {
-                        i2 = 16;
-                    } else {
-                        i2 = 8;
-                    }
-                    d2.n(i2);
-                    int readInt4 = dataInputStream4.readInt();
-                    if (readByte3 == r6) {
-                        readInt2 = dataInputStream4.readLong();
-                    } else {
-                        readInt2 = dataInputStream4.readInt();
-                    }
-                    if (this.b == 0) {
-                        this.b = (readInt2 * 1000) / readInt4;
-                        break;
-                    } else if (logger.isLoggable(level2)) {
-                        long j2 = (readInt2 * 1000) / readInt4;
-                        if (Math.abs(this.b - j2) > 2) {
-                            logger.log(level2, "mdhd: duration " + this.b + " -> " + j2);
-                            break;
-                        } else {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                case 2:
-                    if (logger.isLoggable(level2)) {
-                        logger.log(level2, c3.toString());
-                    }
-                    while (true) {
-                        if (c3.j()) {
-                            sg6 c4 = c3.c();
-                            if ("meta".equals((String) c4.d)) {
-                                if (logger.isLoggable(level2)) {
-                                    logger.log(level2, c4.toString());
-                                }
-                                c4.n(i4);
-                                while (true) {
-                                    if (c4.j()) {
-                                        sg6 c5 = c4.c();
-                                        if ("ilst".equals((String) c5.d)) {
-                                            if (logger.isLoggable(level2)) {
-                                                logger.log(level2, c5.toString());
-                                            }
-                                            while (c5.j()) {
-                                                sg6 c6 = c5.c();
-                                                if (logger.isLoggable(level2)) {
-                                                    logger.log(level2, c6.toString());
+    public hg6(tg6 tg6Var, TLRPC.TL_auth_signIn tL_auth_signIn, byte b) {
+        this.a = b;
+        this.b = tg6Var;
+        this.c = tL_auth_signIn;
+    }
+
+    @Override
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.a) {
+            case 0:
+                final tg6 tg6Var = this.b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.c;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i;
+                        int i2;
+                        int i3;
+                        int i4;
+                        byte b = r5;
+                        TLRPC.TL_auth_signIn tL_auth_signIn2 = tL_auth_signIn;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        final tg6 tg6Var2 = tg6Var;
+                        switch (b) {
+                            case 0:
+                                byte b2 = tg6Var2.i0;
+                                qh6 qh6Var = tg6Var2.v0;
+                                tg6Var2.y(false);
+                                if (tL_error2 == null) {
+                                    tg6Var2.g0 = false;
+                                    qh6Var.K1(false, true);
+                                    tg6Var2.t();
+                                    tg6Var2.s();
+                                    if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
+                                        TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
+                                        if (tL_help_termsOfService != null) {
+                                            qh6Var.s0 = tL_help_termsOfService;
+                                        }
+                                        final Bundle bundle = new Bundle();
+                                        bundle.putString("phoneFormated", tg6Var2.d);
+                                        bundle.putString("phoneHash", tg6Var2.c);
+                                        bundle.putString("code", tL_auth_signIn2.phone_code);
+                                        tg6Var2.o(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                byte b3 = r3;
+                                                Bundle bundle2 = bundle;
+                                                tg6 tg6Var3 = tg6Var2;
+                                                switch (b3) {
+                                                    case 0:
+                                                        tg6Var3.v0.J1(5, true, bundle2, false);
+                                                        return;
+                                                    default:
+                                                        tg6Var3.v0.J1(6, true, bundle2, false);
+                                                        return;
                                                 }
-                                                if (c6.i() == 0) {
-                                                    if (logger.isLoggable(level2)) {
-                                                        StringBuilder sb3 = new StringBuilder();
-                                                        StringBuffer stringBuffer3 = new StringBuffer();
-                                                        sg6.h(stringBuffer3, c6);
-                                                        sb3.append(stringBuffer3.toString());
-                                                        sb3.append(": contains no value");
-                                                        logger.log(level2, sb3.toString());
-                                                    }
+                                            }
+                                        });
+                                    } else {
+                                        tg6Var2.o(new z56(tg6Var2, tLObject2, (byte) 20));
+                                    }
+                                } else {
+                                    String str = tL_error2.text;
+                                    tg6Var2.h0 = str;
+                                    if (str.contains("SESSION_PASSWORD_NEEDED")) {
+                                        TL_account.getPassword getpassword = new TL_account.getPassword();
+                                        i4 = ((e) qh6Var).currentAccount;
+                                        ConnectionsManager.getInstance(i4).sendRequest(getpassword, new hg6(tg6Var2, tL_auth_signIn2, (byte) 1), 10);
+                                        tg6Var2.t();
+                                        tg6Var2.s();
+                                    } else {
+                                        tg6Var2.g0 = false;
+                                        qh6Var.K1(false, true);
+                                        if ((b2 == 3 && ((i3 = tg6Var2.j0) == 4 || i3 == 2 || i3 == 17 || i3 == 16)) || ((b2 == 2 && ((i2 = tg6Var2.j0) == 4 || i2 == 3)) || (b2 == 4 && ((i = tg6Var2.j0) == 2 || i == 17 || i == 16)))) {
+                                            tg6Var2.r();
+                                        }
+                                        if (b2 == 15) {
+                                            jn7.e().a(tg6Var2, 261);
+                                        } else if (b2 == 2) {
+                                            hl.y3(true);
+                                            jn7.e().a(tg6Var2, 261);
+                                        } else if (b2 == 3) {
+                                            hl.x3(true);
+                                            jn7.e().a(tg6Var2, 262);
+                                            hl.c3(new jm3((byte) 29));
+                                        }
+                                        tg6Var2.f0 = true;
+                                        if (b2 != 3) {
+                                            if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
+                                                qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131748933, "InvalidPhoneNumber"));
+                                            } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
+                                                if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
+                                                    tg6Var2.c(true);
+                                                    qh6Var.J1(0, true, null, true);
+                                                    qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131751986, "CodeExpired"));
+                                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                                    qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131750647, "FloodWait"));
                                                 } else {
-                                                    sg6 k2 = c6.k("data");
-                                                    DataInputStream dataInputStream5 = (DataInputStream) k2.e;
-                                                    if (logger.isLoggable(level2)) {
-                                                        logger.log(level2, k2.toString());
-                                                    }
-                                                    k2.n(i4);
-                                                    k2.n(i4);
-                                                    String str3 = (String) ((tg6) k2.c).d;
-                                                    switch (str3.hashCode()) {
-                                                        case 2954818:
-                                                            if (str3.equals("aART")) {
-                                                                i3 = 0;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3059752:
-                                                            if (str3.equals("covr")) {
-                                                                i3 = r6;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3060304:
-                                                            if (str3.equals("cpil")) {
-                                                                i3 = i5;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3060591:
-                                                            if (str3.equals("cprt")) {
-                                                                i3 = 3;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3083677:
-                                                            if (str3.equals("disk")) {
-                                                                i3 = i4;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3177818:
-                                                            if (str3.equals("gnre")) {
-                                                                i3 = 5;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3511163:
-                                                            if (str3.equals("rtng")) {
-                                                                i3 = 6;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3564088:
-                                                            if (str3.equals("tmpo")) {
-                                                                i3 = 7;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 3568737:
-                                                            if (str3.equals("trkn")) {
-                                                                i3 = 8;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5099770:
-                                                            if (str3.equals("©ART")) {
-                                                                i3 = 9;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5131342:
-                                                            if (str3.equals("©alb")) {
-                                                                i3 = 10;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5133313:
-                                                            if (str3.equals("©cmt")) {
-                                                                i3 = 11;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5133368:
-                                                            if (str3.equals("©com")) {
-                                                                i3 = 12;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5133411:
-                                                            if (str3.equals("©cpy")) {
-                                                                i3 = 13;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5133907:
-                                                            if (str3.equals("©day")) {
-                                                                i3 = 14;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5136903:
-                                                            if (str3.equals("©gen")) {
-                                                                i3 = 15;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5137308:
-                                                            if (str3.equals("©grp")) {
-                                                                i3 = 16;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5142332:
-                                                            if (str3.equals("©lyr")) {
-                                                                i3 = 17;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5143505:
-                                                            if (str3.equals("©nam")) {
-                                                                i3 = 18;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        case 5152688:
-                                                            if (str3.equals("©wrt")) {
-                                                                i3 = 19;
-                                                                break;
-                                                            }
-                                                            i3 = -1;
-                                                            break;
-                                                        default:
-                                                            i3 = -1;
-                                                            break;
-                                                    }
-                                                    switch (i3) {
-                                                        case 0:
-                                                            this.e = k2.m();
-                                                            break;
-                                                        case 1:
-                                                            try {
-                                                                int i6 = (int) k2.i();
-                                                                byte[] bArr2 = new byte[i6];
-                                                                dataInputStream5.readFully(bArr2);
-                                                                BitmapFactory.Options options = new BitmapFactory.Options();
-                                                                options.inJustDecodeBounds = r6;
-                                                                options.inSampleSize = r6;
-                                                                BitmapFactory.decodeByteArray(bArr2, 0, i6, options);
-                                                                int i7 = options.outWidth;
-                                                                if (i7 > 800 || options.outHeight > 800) {
-                                                                    for (int max = Math.max(i7, options.outHeight); max > 800; max /= 2) {
-                                                                        options.inSampleSize <<= r6;
-                                                                    }
-                                                                }
-                                                                options.inJustDecodeBounds = false;
-                                                                Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr2, 0, i6, options);
-                                                                this.o = decodeByteArray;
-                                                                if (decodeByteArray != null) {
-                                                                    float max2 = Math.max(decodeByteArray.getWidth(), this.o.getHeight()) / 120.0f;
-                                                                    int i8 = (max2 > 0.0f ? 1 : (max2 == 0.0f ? 0 : -1));
-                                                                    Bitmap bitmap = this.o;
-                                                                    if (i8 > 0) {
-                                                                        bitmap = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() / max2), (int) (this.o.getHeight() / max2), r6);
-                                                                        this.p = bitmap;
-                                                                    } else {
-                                                                        this.p = bitmap;
-                                                                    }
-                                                                    if (bitmap == null) {
-                                                                        this.p = this.o;
-                                                                        break;
-                                                                    }
-                                                                }
-                                                            } catch (Exception e) {
-                                                                e.printStackTrace();
-                                                                break;
-                                                            }
-                                                            break;
-                                                        case 2:
-                                                            dataInputStream5.readBoolean();
-                                                            break;
-                                                        case 3:
-                                                        case 13:
-                                                            String str4 = this.l;
-                                                            if (str4 == null || str4.trim().length() == 0) {
-                                                                this.l = k2.m();
-                                                                break;
-                                                            }
-                                                            break;
-                                                        case 4:
-                                                            k2.n(i5);
-                                                            this.k = dataInputStream5.readShort();
-                                                            k2.l();
-                                                            break;
-                                                        case 5:
-                                                            String str5 = this.h;
-                                                            if (str5 == null || str5.trim().length() == 0) {
-                                                                if (k2.i() == 2) {
-                                                                    int b = tb4.b(dataInputStream5.readShort() - r6);
-                                                                    if (b != 0) {
-                                                                        this.h = tb4.d(b);
-                                                                        break;
-                                                                    }
-                                                                } else {
-                                                                    this.h = k2.m();
-                                                                    break;
-                                                                }
-                                                            }
-                                                            break;
-                                                        case 6:
-                                                            dataInputStream5.readByte();
-                                                            break;
-                                                        case 7:
-                                                            k2.l();
-                                                            break;
-                                                        case 8:
-                                                            k2.n(i5);
-                                                            this.j = dataInputStream5.readShort();
-                                                            k2.l();
-                                                            break;
-                                                        case 9:
-                                                            this.d = k2.m();
-                                                            break;
-                                                        case 10:
-                                                            this.f = k2.m();
-                                                            break;
-                                                        case 11:
-                                                            this.i = k2.m();
-                                                            break;
-                                                        case 12:
-                                                        case 19:
-                                                            String str6 = this.m;
-                                                            if (str6 == null || str6.trim().length() == 0) {
-                                                                this.m = k2.m();
-                                                                break;
-                                                            }
-                                                            break;
-                                                        case 14:
-                                                            String trim2 = k2.m().trim();
-                                                            if (trim2.length() >= i4) {
-                                                                try {
-                                                                    this.g = Short.valueOf(trim2.substring(0, i4)).shortValue();
-                                                                    break;
-                                                                } catch (NumberFormatException unused) {
-                                                                    break;
-                                                                }
-                                                            }
-                                                            break;
-                                                        case 15:
-                                                            String str7 = this.h;
-                                                            if (str7 == null || str7.trim().length() == 0) {
-                                                                this.h = k2.m();
-                                                                break;
-                                                            }
-                                                            break;
-                                                        case 16:
-                                                            k2.m();
-                                                            break;
-                                                        case 17:
-                                                            this.n = k2.m();
-                                                            break;
-                                                        case 18:
-                                                            this.c = k2.m();
-                                                            break;
-                                                    }
-                                                    i4 = 4;
-                                                    i5 = 2;
+                                                    qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131751070, "ErrorOccurred") + "\n" + tL_error2.text);
+                                                }
+                                            } else {
+                                                tg6Var2.w();
+                                                return;
+                                            }
+                                            int i5 = 0;
+                                            while (true) {
+                                                bk2 bk2Var = tg6Var2.f;
+                                                ok2[] ok2VarArr = bk2Var.f;
+                                                if (i5 < ok2VarArr.length) {
+                                                    ok2VarArr[i5].setText("");
+                                                    i5++;
+                                                } else {
+                                                    bk2Var.e = false;
+                                                    ok2VarArr[0].requestFocus();
+                                                    return;
                                                 }
                                             }
-                                            break;
+                                        } else {
+                                            return;
                                         }
                                     }
                                 }
-                            }
+                                if (b2 == 3) {
+                                    hl.T();
+                                    hl.x3(false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                tg6Var2.g0 = false;
+                                qh6 qh6Var2 = tg6Var2.v0;
+                                qh6Var2.K1(false, true);
+                                if (tL_error2 == null) {
+                                    TL_account.Password password = (TL_account.Password) tLObject2;
+                                    if (!TwoStepVerificationActivity.a0(password, true)) {
+                                        jj.u0(qh6Var2.getParentActivity(), ob6.M0(2131743475, "UpdateAppAlert"), true);
+                                        return;
+                                    }
+                                    final Bundle bundle2 = new Bundle();
+                                    SerializedData serializedData = new SerializedData(password.getObjectSize());
+                                    password.serializeToStream(serializedData);
+                                    bundle2.putString("password", Utilities.f(serializedData.toByteArray()));
+                                    bundle2.putString("phoneFormated", tg6Var2.d);
+                                    bundle2.putString("phoneHash", tg6Var2.c);
+                                    bundle2.putString("code", tL_auth_signIn2.phone_code);
+                                    tg6Var2.o(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            byte b3 = r3;
+                                            Bundle bundle22 = bundle2;
+                                            tg6 tg6Var3 = tg6Var2;
+                                            switch (b3) {
+                                                case 0:
+                                                    tg6Var3.v0.J1(5, true, bundle22, false);
+                                                    return;
+                                                default:
+                                                    tg6Var3.v0.J1(6, true, bundle22, false);
+                                                    return;
+                                            }
+                                        }
+                                    });
+                                    return;
+                                }
+                                qh6Var2.z1(ob6.M0(2131745798, null), tL_error2.text);
+                                return;
                         }
                     }
-                    break;
-            }
-            r6 = 1;
-            i4 = 4;
+                });
+                return;
+            default:
+                final tg6 tg6Var2 = this.b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.c;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i;
+                        int i2;
+                        int i3;
+                        int i4;
+                        byte b = r5;
+                        TLRPC.TL_auth_signIn tL_auth_signIn22 = tL_auth_signIn2;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        final tg6 tg6Var22 = tg6Var2;
+                        switch (b) {
+                            case 0:
+                                byte b2 = tg6Var22.i0;
+                                qh6 qh6Var = tg6Var22.v0;
+                                tg6Var22.y(false);
+                                if (tL_error2 == null) {
+                                    tg6Var22.g0 = false;
+                                    qh6Var.K1(false, true);
+                                    tg6Var22.t();
+                                    tg6Var22.s();
+                                    if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
+                                        TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
+                                        if (tL_help_termsOfService != null) {
+                                            qh6Var.s0 = tL_help_termsOfService;
+                                        }
+                                        final Bundle bundle = new Bundle();
+                                        bundle.putString("phoneFormated", tg6Var22.d);
+                                        bundle.putString("phoneHash", tg6Var22.c);
+                                        bundle.putString("code", tL_auth_signIn22.phone_code);
+                                        tg6Var22.o(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                byte b3 = r3;
+                                                Bundle bundle22 = bundle;
+                                                tg6 tg6Var3 = tg6Var22;
+                                                switch (b3) {
+                                                    case 0:
+                                                        tg6Var3.v0.J1(5, true, bundle22, false);
+                                                        return;
+                                                    default:
+                                                        tg6Var3.v0.J1(6, true, bundle22, false);
+                                                        return;
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        tg6Var22.o(new z56(tg6Var22, tLObject2, (byte) 20));
+                                    }
+                                } else {
+                                    String str = tL_error2.text;
+                                    tg6Var22.h0 = str;
+                                    if (str.contains("SESSION_PASSWORD_NEEDED")) {
+                                        TL_account.getPassword getpassword = new TL_account.getPassword();
+                                        i4 = ((e) qh6Var).currentAccount;
+                                        ConnectionsManager.getInstance(i4).sendRequest(getpassword, new hg6(tg6Var22, tL_auth_signIn22, (byte) 1), 10);
+                                        tg6Var22.t();
+                                        tg6Var22.s();
+                                    } else {
+                                        tg6Var22.g0 = false;
+                                        qh6Var.K1(false, true);
+                                        if ((b2 == 3 && ((i3 = tg6Var22.j0) == 4 || i3 == 2 || i3 == 17 || i3 == 16)) || ((b2 == 2 && ((i2 = tg6Var22.j0) == 4 || i2 == 3)) || (b2 == 4 && ((i = tg6Var22.j0) == 2 || i == 17 || i == 16)))) {
+                                            tg6Var22.r();
+                                        }
+                                        if (b2 == 15) {
+                                            jn7.e().a(tg6Var22, 261);
+                                        } else if (b2 == 2) {
+                                            hl.y3(true);
+                                            jn7.e().a(tg6Var22, 261);
+                                        } else if (b2 == 3) {
+                                            hl.x3(true);
+                                            jn7.e().a(tg6Var22, 262);
+                                            hl.c3(new jm3((byte) 29));
+                                        }
+                                        tg6Var22.f0 = true;
+                                        if (b2 != 3) {
+                                            if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
+                                                qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131748933, "InvalidPhoneNumber"));
+                                            } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
+                                                if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
+                                                    tg6Var22.c(true);
+                                                    qh6Var.J1(0, true, null, true);
+                                                    qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131751986, "CodeExpired"));
+                                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
+                                                    qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131750647, "FloodWait"));
+                                                } else {
+                                                    qh6Var.z1(ob6.M0(2131745798, null), ob6.M0(2131751070, "ErrorOccurred") + "\n" + tL_error2.text);
+                                                }
+                                            } else {
+                                                tg6Var22.w();
+                                                return;
+                                            }
+                                            int i5 = 0;
+                                            while (true) {
+                                                bk2 bk2Var = tg6Var22.f;
+                                                ok2[] ok2VarArr = bk2Var.f;
+                                                if (i5 < ok2VarArr.length) {
+                                                    ok2VarArr[i5].setText("");
+                                                    i5++;
+                                                } else {
+                                                    bk2Var.e = false;
+                                                    ok2VarArr[0].requestFocus();
+                                                    return;
+                                                }
+                                            }
+                                        } else {
+                                            return;
+                                        }
+                                    }
+                                }
+                                if (b2 == 3) {
+                                    hl.T();
+                                    hl.x3(false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                tg6Var22.g0 = false;
+                                qh6 qh6Var2 = tg6Var22.v0;
+                                qh6Var2.K1(false, true);
+                                if (tL_error2 == null) {
+                                    TL_account.Password password = (TL_account.Password) tLObject2;
+                                    if (!TwoStepVerificationActivity.a0(password, true)) {
+                                        jj.u0(qh6Var2.getParentActivity(), ob6.M0(2131743475, "UpdateAppAlert"), true);
+                                        return;
+                                    }
+                                    final Bundle bundle2 = new Bundle();
+                                    SerializedData serializedData = new SerializedData(password.getObjectSize());
+                                    password.serializeToStream(serializedData);
+                                    bundle2.putString("password", Utilities.f(serializedData.toByteArray()));
+                                    bundle2.putString("phoneFormated", tg6Var22.d);
+                                    bundle2.putString("phoneHash", tg6Var22.c);
+                                    bundle2.putString("code", tL_auth_signIn22.phone_code);
+                                    tg6Var22.o(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            byte b3 = r3;
+                                            Bundle bundle22 = bundle2;
+                                            tg6 tg6Var3 = tg6Var22;
+                                            switch (b3) {
+                                                case 0:
+                                                    tg6Var3.v0.J1(5, true, bundle22, false);
+                                                    return;
+                                                default:
+                                                    tg6Var3.v0.J1(6, true, bundle22, false);
+                                                    return;
+                                            }
+                                        }
+                                    });
+                                    return;
+                                }
+                                qh6Var2.z1(ob6.M0(2131745798, null), tL_error2.text);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
     }
 }

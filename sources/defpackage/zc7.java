@@ -1,35 +1,35 @@
 package defpackage;
+public final class zc7 implements Runnable {
+    public final byte a;
+    public final jf7 b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final long h;
 
-import j$.util.Objects;
-public final class zc7 {
-    public long a;
-    public long b;
-
-    public static zc7 a(long j, long j2) {
-        ?? obj = new Object();
-        obj.a = j;
-        obj.b = j2;
-        return obj;
+    public zc7(jf7 jf7Var, int i, int i2, int i3, int i4, long j) {
+        this.a = (byte) 1;
+        this.b = jf7Var;
+        this.c = i;
+        this.d = i2;
+        this.e = i3;
+        this.f = i4;
+        this.h = j;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && zc7.class == obj.getClass()) {
-            zc7 zc7Var = (zc7) obj;
-            if (this.a == zc7Var.a && this.b == zc7Var.b) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.zc7.run():void");
     }
 
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.a), Long.valueOf(this.b));
-    }
-
-    public final String toString() {
-        return "TopicKey{dialogId=" + this.a + ", topicId=" + this.b + '}';
+    public zc7(jf7 jf7Var, long j, int i, int i2, int i3, int i4, byte b) {
+        this.a = b;
+        this.b = jf7Var;
+        this.h = j;
+        this.c = i;
+        this.d = i2;
+        this.e = i3;
+        this.f = i4;
     }
 }

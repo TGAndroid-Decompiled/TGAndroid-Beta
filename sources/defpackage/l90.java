@@ -1,26 +1,31 @@
 package defpackage;
-public final class l90 extends fz2 {
-    public final String a;
+public final class l90 {
+    public int a;
+    public String b;
+    public String c;
+    public boolean d;
+    public byte e;
 
-    public l90(String str) {
-        this.a = str;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final m90 a() {
+        String str;
+        String str2;
+        if (this.e == 3 && (str = this.b) != null && (str2 = this.c) != null) {
+            return new m90(this.a, str, str2, this.d);
         }
-        if (obj instanceof fz2) {
-            return this.a.equals(((l90) ((fz2) obj)).a);
+        StringBuilder sb = new StringBuilder();
+        if ((this.e & 1) == 0) {
+            sb.append(" platform");
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 1000003 ^ this.a.hashCode();
-    }
-
-    public final String toString() {
-        return b00.j(new StringBuilder("User{identifier="), this.a, "}");
+        if (this.b == null) {
+            sb.append(" version");
+        }
+        if (this.c == null) {
+            sb.append(" buildVersion");
+        }
+        if ((this.e & 2) == 0) {
+            sb.append(" jailbroken");
+        }
+        grb.i(bs2.o("Missing required properties:", sb));
+        return null;
     }
 }

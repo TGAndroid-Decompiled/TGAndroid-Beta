@@ -1,275 +1,290 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Build;
+import android.graphics.Canvas;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import android.util.Pair;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import androidx.recyclerview.widget.RecyclerView;
+import java.io.Serializable;
+import java.net.IDN;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d;
-public final class m66 extends d {
-    public FrameLayout a;
-    public o39 b;
-    public t26 c;
-    public c83 d;
-    public m21 e;
-    public int f;
-    public final hj3 h;
-    public final boolean[] n;
-    public final ArrayList r;
-    public final ArrayList s;
+import java.util.Locale;
+public final class m66 {
+    public Object c;
+    public Object d;
+    public Serializable e = new ArrayList();
+    public int a = 0;
+    public Serializable f = new ArrayList();
+    public int b = 0;
 
-    public m66() {
-        super(null);
-        this.h = new hj3(this, (byte) 23);
-        this.n = new boolean[3];
-        this.r = new ArrayList();
-        this.s = new ArrayList();
+    public m66(View view) {
+        this.c = view;
     }
 
-    public final int Y(int i) {
-        if (i == 3) {
-            return 0;
+    public static va6 j(Layout layout, CharacterStyle characterStyle, float f) {
+        if (layout != null && characterStyle != null && (layout.getText() instanceof Spanned)) {
+            Spanned spanned = (Spanned) layout.getText();
+            f66 f66Var = new f66(0);
+            int spanStart = spanned.getSpanStart(characterStyle);
+            int spanEnd = spanned.getSpanEnd(characterStyle);
+            f66Var.d(layout, spanStart, f);
+            layout.getSelectionPath(spanStart, spanEnd, f66Var);
+            va6 va6Var = new va6();
+            va6Var.y = f66Var;
+            va6Var.D = true;
+            va6Var.j(4.0f);
+            va6Var.k();
+            return va6Var;
         }
-        if (i == 28700) {
-            return 1;
-        }
-        if (i == this.f) {
-            return 2;
-        }
-        return -1;
+        return null;
     }
 
-    public final void Z(int i) {
-        int i2 = 0;
-        while (true) {
-            ArrayList arrayList = this.s;
-            if (i2 < arrayList.size()) {
-                if (((g66) arrayList.get(i2)).e == i) {
-                    this.b.f1(new jh(this, i2, (byte) 11), 700, true);
-                    return;
-                }
-                i2++;
+    public final void a(q66 q66Var, Object obj) {
+        ((ArrayList) this.e).add(new Pair(q66Var, obj));
+        this.a++;
+        i(obj, true);
+    }
+
+    public final void b(va6 va6Var, Object obj) {
+        ((ArrayList) this.f).add(new Pair(va6Var, obj));
+        this.b++;
+        i(obj, true);
+    }
+
+    public final jx8 c() {
+        String str;
+        String str2;
+        if (this.a == 3) {
+            String str3 = (String) this.c;
+            boolean z = true;
+            if (TextUtils.isEmpty(str3)) {
+                str3 = "";
             } else {
-                return;
-            }
-        }
-    }
-
-    public final void a0(int i) {
-        int Y = Y(i);
-        if (Y == -1) {
-            return;
-        }
-        this.n[Y] = true;
-        c0();
-        b0();
-    }
-
-    public final void b0() {
-        String a0;
-        ArrayList arrayList = this.r;
-        arrayList.clear();
-        ArrayList arrayList2 = this.s;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
-        arrayList2.add(new g66(1, 0, 0, 0, null));
-        if (e66.c() <= 0) {
-            a0 = k96.M0(2131748679, null);
-        } else if (e66.c() >= 100) {
-            a0 = k96.M0(2131748678, null);
-        } else {
-            a0 = k96.a0(null, null, 2131748680, String.format("%d%%", Integer.valueOf(e66.c())));
-        }
-        arrayList2.add(new g66(2, 0, 0, 0, a0));
-        arrayList2.add(new g66(0, 0, 0, 0, k96.M0(2131748656, null)));
-        arrayList2.add(g66.c(2131232043, 3, k96.M0(2131748658, null)));
-        boolean[] zArr = this.n;
-        if (zArr[0]) {
-            arrayList2.add(g66.b(1, k96.M0(2131748670, null)));
-            arrayList2.add(g66.b(2, k96.M0(2131748672, null)));
-        }
-        arrayList2.add(g66.c(2131232041, 28700, k96.M0(2131748663, null)));
-        if (zArr[1]) {
-            arrayList2.add(g66.b(16388, k96.M0(2131748670, null)));
-            arrayList2.add(g66.b(8200, k96.M0(2131748669, null)));
-            arrayList2.add(g66.b(4112, k96.M0(2131748672, null)));
-        }
-        arrayList2.add(g66.c(2131232021, this.f, k96.M0(2131748664, null)));
-        if (zArr[2]) {
-            arrayList2.add(g66.b(32, k96.N0("LiteOptionsBackground")));
-            if (!gl.O1()) {
-                arrayList2.add(g66.b(64, k96.N0("LiteOptionsTopics")));
-            }
-            arrayList2.add(g66.b(128, k96.N0("LiteOptionsSpoiler")));
-            if (gba.o() < 1) {
-                boolean z = w01.a;
-            } else {
-                arrayList2.add(g66.b(256, k96.N0("LiteOptionsBlur2")));
-            }
-            if (Build.VERSION.SDK_INT >= 33) {
-                if (gba.o() < 1) {
-                    boolean z2 = w01.a;
+                int indexOf = str3.indexOf(47);
+                if (indexOf >= 0) {
+                    str2 = str3.substring(0, indexOf);
+                    str = str3.substring(indexOf + 1);
                 } else {
-                    arrayList2.add(g66.b(262144, k96.N0("LiteOptionsLiquidGlass")));
+                    str = null;
+                    str2 = str3;
                 }
-            }
-            arrayList2.add(g66.b(32768, k96.N0("LiteOptionsScale")));
-            if (ijb.c()) {
-                arrayList2.add(g66.b(65536, k96.N0("LiteOptionsThanos")));
-            }
-        }
-        arrayList2.add(g66.c(2131232025, 512, k96.M0(2131748665, null)));
-        arrayList2.add(g66.c(2131232045, 1024, k96.M0(2131748668, null)));
-        arrayList2.add(g66.c(2131232032, 2048, k96.M0(2131748671, null)));
-        arrayList2.add(g66.c(2131232532, 131072, k96.M0(2131748661, null)));
-        arrayList2.add(new g66(2, 0, 0, 0, ""));
-        arrayList2.add(new g66(5, 0, 0, 1, k96.M0(2131748654, null)));
-        arrayList2.add(new g66(2, 0, 0, 0, k96.N0("LiteSmoothTransitionsInfo")));
-        this.d.E(arrayList, arrayList2);
-    }
-
-    public final void c0() {
-        boolean z;
-        float f;
-        if (this.b != null) {
-            for (int i = 0; i < this.b.getChildCount(); i++) {
-                View childAt = this.b.getChildAt(i);
-                if (childAt != null) {
-                    this.b.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= 0) {
-                        ArrayList arrayList = this.s;
-                        if (R < arrayList.size()) {
-                            g66 g66Var = (g66) arrayList.get(R);
-                            int i2 = g66Var.a;
-                            if (i2 != 3 && i2 != 4) {
-                                if (i2 == 1) {
-                                    ((k66) childAt).a();
-                                }
-                            } else {
-                                l66 l66Var = (l66) childAt;
-                                ImageView imageView = l66Var.e;
-                                m66 m66Var = l66Var.E;
-                                int i3 = g66Var.e;
-                                if (i2 == 3) {
-                                    if (Integer.bitCount(i3) > 1) {
-                                        z = true;
-                                    } else {
-                                        z = false;
-                                    }
-                                    l66Var.w = z;
-                                    if (z) {
-                                        l66Var.c(g66Var, true);
-                                        int Y = m66Var.Y(i3);
-                                        imageView.clearAnimation();
-                                        ViewPropertyAnimator animate = imageView.animate();
-                                        if (Y >= 0 && m66Var.n[Y]) {
-                                            f = 180.0f;
-                                        } else {
-                                            f = 0.0f;
-                                        }
-                                        ug8.t(animate.rotation(f), s33.h, 240L);
-                                    }
-                                    l66Var.f.c(e66.e(i3), true);
-                                } else {
-                                    l66Var.h.a(e66.e(i3), true);
-                                }
-                                l66Var.b(e66.f(), true);
-                            }
+                if (!TextUtils.isEmpty(str2) && str2.indexOf(58) < 0 && str2.indexOf(63) < 0 && str2.indexOf(35) < 0 && (str == null || (str.length() <= 128 && jx8.g.matcher(str).matches()))) {
+                    try {
+                        String lowerCase = IDN.toASCII(str2, 3).toLowerCase(Locale.US);
+                        if (str == null) {
+                            str3 = lowerCase;
+                        } else {
+                            str3 = lowerCase + '/' + str;
                         }
+                    } catch (IllegalArgumentException unused) {
                     }
                 }
             }
-            if (this.e != null && !e66.f()) {
-                this.e.b();
-                this.e = null;
+            this.c = str3;
+            if (str3 == null || str3.indexOf(47) < 0) {
+                z = false;
+            }
+            String str4 = (String) this.f;
+            if (z) {
+                String b = jx8.b(str4);
+                if (b == null) {
+                    b = ((String) this.f).toLowerCase(Locale.US);
+                }
+                this.f = b;
+            } else {
+                this.f = str4.toLowerCase(Locale.US);
+            }
+        }
+        return new jx8(this);
+    }
+
+    public final void d() {
+        e(true);
+    }
+
+    public final void e(boolean z) {
+        ArrayList arrayList = (ArrayList) this.e;
+        if (z) {
+            for (int i = 0; i < this.a; i++) {
+                k(i);
+            }
+        } else if (this.a > 0) {
+            for (int i2 = 0; i2 < this.a; i2++) {
+                ((q66) ((Pair) arrayList.get(i2)).first).c();
+                i(((Pair) arrayList.get(i2)).second, false);
+            }
+            arrayList.clear();
+            this.a = 0;
+            i(null, true);
+        }
+    }
+
+    public final void f() {
+        for (int i = 0; i < this.b; i++) {
+            n(i, true);
+        }
+    }
+
+    public final boolean g(Canvas canvas) {
+        int i = 0;
+        boolean z = false;
+        while (i < this.b) {
+            ((va6) ((Pair) ((ArrayList) this.f).get(i)).first).draw(canvas);
+            i++;
+            z = true;
+        }
+        for (int i2 = 0; i2 < this.a; i2++) {
+            if (!((q66) ((Pair) ((ArrayList) this.e).get(i2)).first).a(canvas) && !z) {
+                z = false;
+            } else {
+                z = true;
+            }
+        }
+        return z;
+    }
+
+    public final boolean h(Canvas canvas, Object obj) {
+        boolean z;
+        ArrayList arrayList = (ArrayList) this.e;
+        ArrayList arrayList2 = (ArrayList) this.f;
+        boolean z2 = false;
+        for (int i = 0; i < this.b; i++) {
+            if (((Pair) arrayList2.get(i)).second == obj) {
+                ((va6) ((Pair) arrayList2.get(i)).first).draw(canvas);
+                z2 = true;
+            }
+        }
+        for (int i2 = 0; i2 < this.a; i2++) {
+            if (((Pair) arrayList.get(i2)).second == obj) {
+                if (!((q66) ((Pair) arrayList.get(i2)).first).a(canvas) && !z2) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+                z2 = z;
+            }
+        }
+        i(obj, false);
+        return z2;
+    }
+
+    public final void i(Object obj, boolean z) {
+        View view;
+        View view2;
+        if (obj instanceof View) {
+            ((View) obj).invalidate();
+        } else if (obj instanceof cw) {
+            cw cwVar = (cw) obj;
+            if (!cwVar.c && (view2 = cwVar.b) != null) {
+                view2.invalidate();
+            }
+        } else if (z && (view = (View) this.c) != null) {
+            view.invalidate();
+        }
+        ib2 ib2Var = (ib2) this.d;
+        if (ib2Var != null) {
+            ib2Var.run();
+        }
+    }
+
+    public final void k(int i) {
+        ArrayList arrayList = (ArrayList) this.e;
+        if (i >= 0 && i < this.a) {
+            Pair pair = (Pair) arrayList.get(i);
+            q66 q66Var = (q66) pair.first;
+            if (q66Var.p < 0) {
+                q66Var.p = Math.max(q66Var.o + q66Var.q, SystemClock.elapsedRealtime());
+                i(pair.second, true);
+                hl.d3(new l66(this, q66Var, (byte) 1), Math.max(0L, (q66Var.p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
 
-    @Override
-    public final View createView(Context context) {
-        int i;
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231243);
-        this.simpleActionBar.setTitle(k96.M0(2131746875, null));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bq5(this, (byte) 3));
-        ui5 ui5Var = this.parentLayout;
-        if (ui5Var != null && ((ActionBarLayout) ui5Var).U0) {
-            this.simpleActionBar.setBackButtonImage(2131231244);
-        }
-        this.a = new FrameLayout(context);
-        o39 o39Var = new o39(context, null);
-        this.b = o39Var;
-        o39Var.r1();
-        o39 o39Var2 = this.b;
-        t26 t26Var = new t26();
-        this.c = t26Var;
-        o39Var2.setLayoutManager(t26Var);
-        o39 o39Var3 = this.b;
-        c83 c83Var = new c83(this, (byte) 1);
-        this.d = c83Var;
-        o39Var3.setAdapter(c83Var);
-        this.b.setSectionsDrawBackground(true);
-        gb3 gb3Var = new gb3();
-        gb3Var.n(350L);
-        gb3Var.o(s33.h);
-        gb3Var.C = false;
-        gb3Var.m = false;
-        this.b.setItemAnimator(gb3Var);
-        this.a.addView(this.b, nme.c(-1.0f, -1));
-        this.b.setOnItemClickListener(new ry4(this, (byte) 23));
-        this.fragmentView = this.a;
-        if (gl.O1()) {
-            i = 360864;
-        } else {
-            i = 360928;
-        }
-        this.f = i;
-        b0();
-        return this.fragmentView;
-    }
-
-    @Override
-    public final o39 getListViewForSimpleGlass() {
-        return this.b;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        HashSet hashSet = e66.n;
-        if (hashSet != null) {
-            hashSet.remove(this.h);
+    public final void l(q66 q66Var, boolean z) {
+        Pair pair;
+        ArrayList arrayList = (ArrayList) this.e;
+        if (q66Var != null) {
+            int i = 0;
+            while (true) {
+                if (i < this.a) {
+                    if (((Pair) arrayList.get(i)).first == q66Var) {
+                        pair = (Pair) arrayList.get(i);
+                        break;
+                    }
+                    i++;
+                } else {
+                    pair = null;
+                    break;
+                }
+            }
+            if (pair != null) {
+                if (z) {
+                    if (q66Var.p < 0) {
+                        q66Var.p = Math.max(q66Var.o + q66Var.q, SystemClock.elapsedRealtime());
+                        i(pair.second, true);
+                        hl.d3(new l66(this, q66Var, (byte) 0), Math.max(0L, (q66Var.p - SystemClock.elapsedRealtime()) + 175));
+                        return;
+                    }
+                    return;
+                }
+                arrayList.remove(pair);
+                q66Var.c();
+                this.a = arrayList.size();
+                i(pair.second, true);
+            }
         }
     }
 
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        e66.a(this.h);
+    public final void m(va6 va6Var, boolean z) {
+        if (va6Var != null) {
+            for (int i = 0; i < this.b; i++) {
+                if (((Pair) ((ArrayList) this.f).get(i)).first == va6Var) {
+                    n(i, z);
+                    return;
+                }
+            }
+        }
     }
 
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        e66.k();
-        vl.t();
-        bkb.s1(true);
+    public final void n(int i, boolean z) {
+        Pair pair;
+        ArrayList arrayList = (ArrayList) this.f;
+        if (i >= 0 && i < this.b && (pair = (Pair) arrayList.get(i)) != null) {
+            va6 va6Var = (va6) pair.first;
+            if (z) {
+                if (!va6Var.c()) {
+                    if (!va6Var.d()) {
+                        va6Var.a();
+                    }
+                    z56 z56Var = new z56(this, va6Var, (byte) 3);
+                    long j = 0;
+                    if (va6Var.c > 0) {
+                        j = 320 - (SystemClock.elapsedRealtime() - va6Var.c);
+                    }
+                    hl.d3(z56Var, j);
+                    return;
+                }
+                m(va6Var, false);
+                return;
+            }
+            arrayList.remove(pair);
+            va6Var.b = -1L;
+            va6Var.c = -1L;
+            this.b = arrayList.size();
+            i(pair.second, true);
+        }
     }
 
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public final void o(int i) {
+        if (i == 0) {
+            i = 1;
+        }
+        this.a = i;
+    }
+
+    public m66() {
     }
 }

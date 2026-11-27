@@ -1,31 +1,32 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
 public final class c57 implements Runnable {
     public final byte a;
-    public final na7 b;
-    public final TLRPC.User c;
+    public final m57 b;
+    public final Context c;
 
-    public c57(na7 na7Var, TLRPC.User user, byte b) {
+    public c57(m57 m57Var, Context context, byte b) {
         this.a = b;
-        this.b = na7Var;
-        this.c = user;
+        this.b = m57Var;
+        this.c = context;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        TLRPC.User user = this.c;
-        na7 na7Var = this.b;
+        Context context = this.c;
+        m57 m57Var = this.b;
         switch (b) {
             case 0:
-                na7Var.Z2(user, na7Var.k1, true, null);
-                return;
-            case 1:
-                na7Var.h1.remove(Long.valueOf(user.id));
+                m57Var.d0.a(false);
+                hl.c3(new c57(m57Var, context, (byte) 1));
                 return;
             default:
-                na7Var.getContactsController().a(user);
+                if (hl.C1(context)) {
+                    new xk8(43, m57Var.d0.G, context).show();
+                    return;
+                }
                 return;
         }
     }

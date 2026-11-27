@@ -1,17 +1,20 @@
 package defpackage;
-public final class zvd implements zn7 {
-    public static final zvd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.net.Uri;
+public abstract class zvd {
+    public static Uri a(Uri uri) {
+        if (uri.isHierarchical() && uri.getQueryParameter("CMCD") != null) {
+            Uri.Builder buildUpon = uri.buildUpon();
+            buildUpon.clearQuery();
+            for (String str : uri.getQueryParameterNames()) {
+                if (!str.equals("CMCD")) {
+                    for (String str2 : uri.getQueryParameters(str)) {
+                        buildUpon.appendQueryParameter(str, str2);
+                    }
+                }
+            }
+            return buildUpon.build();
         }
-        throw new ClassCastException();
+        return uri;
     }
 }

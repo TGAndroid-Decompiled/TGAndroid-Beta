@@ -1,38 +1,57 @@
 package defpackage;
 
-import java.util.List;
-import java.util.RandomAccess;
-public final class x2 extends y2 implements RandomAccess {
-    public final y2 a;
-    public final int b;
-    public final int c;
+import java.util.ListIterator;
+public final class x2 extends w2 implements ListIterator {
+    public final z2 d;
 
-    public x2(y2 y2Var, int i, int i2) {
-        this.a = y2Var;
-        this.b = i;
-        zkd.a(i, i2, y2Var.h());
-        this.c = i2 - i;
+    public x2(z2 z2Var, int i) {
+        super(z2Var);
+        this.d = z2Var;
+        int h = z2Var.h();
+        if (i >= 0 && i <= h) {
+            this.b = i;
+        } else {
+            su3.g(c00.h(i, h, "index: ", ", size: "));
+            throw null;
+        }
     }
 
     @Override
-    public final Object get(int i) {
-        int i2 = this.c;
-        if (i >= 0 && i < i2) {
-            return this.a.get(this.b + i);
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.b > 0) {
+            return true;
         }
-        k93.i(b00.g(i, i2, "index: ", ", size: "));
+        return false;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.b;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i = this.b - 1;
+            this.b = i;
+            return this.d.get(i);
+        }
+        lq5.n();
         return null;
     }
 
     @Override
-    public final int h() {
-        return this.c;
+    public final int previousIndex() {
+        return this.b - 1;
     }
 
     @Override
-    public final List subList(int i, int i2) {
-        zkd.a(i, i2, this.c);
-        int i3 = this.b;
-        return new x2(this.a, i + i3, i3 + i2);
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

@@ -1,75 +1,97 @@
 package defpackage;
 
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
-public final class dy8 extends MetricAffectingSpan implements LineHeightSpan {
-    public ey8 a;
+import android.animation.ValueAnimator;
+public final class dy8 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final ey8 b;
 
-    @Override
-    public final void chooseHeight(CharSequence charSequence, int i, int i2, int i3, int i4, Paint.FontMetricsInt fontMetricsInt) {
-        int i5;
-        int i6;
-        ey8 ey8Var = this.a;
-        if (ey8Var.b) {
-            int i7 = 2;
-            if (ey8Var.f) {
-                i5 = 7;
-            } else {
-                i5 = 2;
-            }
-            if (i <= ey8Var.c) {
-                int i8 = fontMetricsInt.ascent;
-                if (ey8Var.n) {
-                    i6 = 2;
-                } else {
-                    i6 = 0;
-                }
-                fontMetricsInt.ascent = i8 - gl.L(i6 + i5);
-                int i9 = fontMetricsInt.top;
-                if (!this.a.n) {
-                    i7 = 0;
-                }
-                fontMetricsInt.top = i9 - gl.L(i7 + i5);
-            }
-            if (i2 >= this.a.d) {
-                float f = i5;
-                fontMetricsInt.descent = gl.L(f) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = gl.L(f) + fontMetricsInt.bottom;
-            }
-        }
+    public dy8(ey8 ey8Var, byte b) {
+        this.a = b;
+        this.b = ey8Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f;
-        if (textPaint == null) {
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        ey8 ey8Var = this.b;
+        switch (b) {
+            case 0:
+                ey8Var.p = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                of3 of3Var = ey8Var.H;
+                if (of3Var != null) {
+                    of3Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                ey8Var.o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                of3 of3Var2 = ey8Var.H;
+                if (of3Var2 != null) {
+                    of3Var2.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                ey8Var.x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                of3 of3Var3 = ey8Var.H;
+                if (of3Var3 != null) {
+                    of3Var3.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                ey8Var.getClass();
+                ey8Var.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                of3 of3Var4 = ey8Var.H;
+                if (of3Var4 != null) {
+                    of3Var4.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                ey8Var.getClass();
+                ey8Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ey8Var.F = true;
+                of3 of3Var5 = ey8Var.H;
+                if (of3Var5 != null) {
+                    of3Var5.invalidate();
+                    return;
+                }
+                return;
+            case 5:
+                ey8Var.getClass();
+                ey8Var.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ey8Var.F = false;
+                of3 of3Var6 = ey8Var.H;
+                if (of3Var6 != null) {
+                    of3Var6.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                ey8Var.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                of3 of3Var7 = ey8Var.H;
+                if (of3Var7 != null) {
+                    of3Var7.invalidate();
+                }
+                sl0 sl0Var = ey8Var.I;
+                if (sl0Var != null) {
+                    sl0Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ey8Var.w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                of3 of3Var8 = ey8Var.H;
+                if (of3Var8 != null) {
+                    of3Var8.invalidate();
+                }
+                sl0 sl0Var2 = ey8Var.I;
+                if (sl0Var2 != null) {
+                    sl0Var2.invalidate();
+                    return;
+                }
+                return;
         }
-        if (this.a.a) {
-            f = 16.0f;
-        } else {
-            f = gba.S0 - 2;
-        }
-        textPaint.setTextSize(gl.L(f));
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f;
-        float f2;
-        if (this.a.a) {
-            f = 16.0f;
-        } else {
-            f = gba.S0 - 2;
-        }
-        textPaint.setTextSize(gl.L(f));
-        if (this.a.a) {
-            f2 = 1.1f;
-        } else {
-            f2 = 1.0f;
-        }
-        textPaint.setTextScaleX(f2);
     }
 }

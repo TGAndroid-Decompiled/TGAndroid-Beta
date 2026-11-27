@@ -236,7 +236,7 @@ public class TL_stats {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.count = inputSerializedData.readInt32(z);
-            this.transactions = Vector.deserialize(inputSerializedData, new rdb((byte) 23), z);
+            this.transactions = Vector.deserialize(inputSerializedData, new mhb((byte) 28), z);
         }
 
         @Override
@@ -331,7 +331,7 @@ public class TL_stats {
             this.reactions_by_emotion_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.story_interactions_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.story_reactions_by_emotion_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.recent_posts_interactions = Vector.deserialize(inputSerializedData, new rdb((byte) 24), z);
+            this.recent_posts_interactions = Vector.deserialize(inputSerializedData, new mhb((byte) 29), z);
         }
 
         @Override
@@ -559,10 +559,10 @@ public class TL_stats {
             this.actions_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.top_hours_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.weekdays_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.top_posters = Vector.deserialize(inputSerializedData, new rdb((byte) 25), z);
-            this.top_admins = Vector.deserialize(inputSerializedData, new rdb((byte) 26), z);
-            this.top_inviters = Vector.deserialize(inputSerializedData, new rdb((byte) 27), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.top_posters = Vector.deserialize(inputSerializedData, new nhb((byte) 0), z);
+            this.top_admins = Vector.deserialize(inputSerializedData, new nhb((byte) 1), z);
+            this.top_inviters = Vector.deserialize(inputSerializedData, new nhb((byte) 2), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override
@@ -706,12 +706,12 @@ public class TL_stats {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            this.forwards = Vector.deserialize(inputSerializedData, new rdb((byte) 28), z);
+            this.forwards = Vector.deserialize(inputSerializedData, new nhb((byte) 3), z);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new v0b((byte) 17), z);
-            this.users = Vector.deserialize(inputSerializedData, new v0b((byte) 11), z);
+            this.chats = Vector.deserialize(inputSerializedData, new bya((byte) 19), z);
+            this.users = Vector.deserialize(inputSerializedData, new bya((byte) 13), z);
         }
 
         @Override

@@ -1,12 +1,17 @@
 package defpackage;
-public final class jfe {
-    public final Long a;
-    public final bhe b;
-    public final Boolean c;
+public final class jfe implements zq7 {
+    public static final jfe a = new Object();
 
-    public jfe(rod rodVar) {
-        this.a = (Long) rodVar.b;
-        this.b = (bhe) rodVar.c;
-        this.c = (Boolean) rodVar.d;
+    static {
+        xnb.y(xnb.q(bpd.class, new tnd(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

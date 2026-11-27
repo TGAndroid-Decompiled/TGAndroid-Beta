@@ -1,29 +1,36 @@
 package defpackage;
-public final class kma implements fw2, cx2 {
-    public final fw2 a;
-    public final sw2 b;
 
-    public kma(fw2 fw2Var, sw2 sw2Var) {
-        this.a = fw2Var;
-        this.b = sw2Var;
+import java.util.concurrent.atomic.AtomicInteger;
+public final class kma implements nr5 {
+    public final wj7 a = new wj7();
+    public final z8d b = new z8d((byte) 7);
+    public final k09 c = new k09(new yfb(2, null), (byte) 6);
+
+    public kma(String str) {
     }
 
     @Override
-    public final cx2 getCallerFrame() {
-        fw2 fw2Var = this.a;
-        if (fw2Var instanceof cx2) {
-            return (cx2) fw2Var;
-        }
-        return null;
+    public final Object a(n83 n83Var) {
+        return new Integer(((AtomicInteger) this.b.b).incrementAndGet());
     }
 
     @Override
-    public final sw2 getContext() {
-        return this.b;
+    public final Object b(zw2 zw2Var) {
+        return new Integer(((AtomicInteger) this.b.b).get());
     }
 
     @Override
-    public final void resumeWith(Object obj) {
-        this.a.resumeWith(obj);
+    public final java.lang.Object c(defpackage.ur4 r7, defpackage.zw2 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kma.c(ur4, zw2):java.lang.Object");
+    }
+
+    @Override
+    public final mm4 d() {
+        return this.c;
+    }
+
+    @Override
+    public final java.lang.Object e(defpackage.is4 r6, defpackage.zw2 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kma.e(is4, zw2):java.lang.Object");
     }
 }

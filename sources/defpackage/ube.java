@@ -1,20 +1,17 @@
 package defpackage;
+public final class ube implements zq7 {
+    public static final ube a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ube extends b4 {
-    public static final Parcelable.Creator<ube> CREATOR = new qyd((byte) 18);
-    public final int a;
-
-    public ube(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,18 +1,19 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class lmc extends View {
-    public boolean a;
-    public final mmc b;
+import org.webrtc.VideoFrame;
+public abstract class lmc {
+    public static final int[] a;
 
-    public lmc(mmc mmcVar, Context context) {
-        super(context);
-        this.b = mmcVar;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r42) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lmc.onDraw(android.graphics.Canvas):void");
+    static {
+        int[] iArr = new int[VideoFrame.TextureBuffer.Type.values().length];
+        a = iArr;
+        try {
+            iArr[VideoFrame.TextureBuffer.Type.OES.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            a[VideoFrame.TextureBuffer.Type.RGB.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
     }
 }

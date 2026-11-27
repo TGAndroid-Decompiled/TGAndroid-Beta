@@ -1,70 +1,85 @@
 package defpackage;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class kza {
-    public String a;
-    public String b;
-    public String c;
-    public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem e;
-    public TLRPC.TL_messageMediaDocument f;
-    public TLRPC.InputFile g;
-    public boolean h;
-    public long i;
-    public TLRPC.StickerSet j;
-    public TLRPC.Document k;
-    public String l;
-    public f m;
-    public pz1 n;
-    public boolean o;
-    public ArrayList p;
-    public ArrayList q;
-    public k27 r;
-    public oac s;
-    public float t;
-    public float u;
+import android.content.Context;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import org.telegram.ui.Wallet.c;
+public final class kza extends FrameLayout implements fn7 {
+    public final q9c a;
+    public final vnb b;
+    public final int c;
+    public final int d;
+    public final boolean e;
+    public final long f;
+    public final jza h;
+    public k2c n;
+    public String r;
 
-    public final void a() {
-        ArrayList arrayList = this.q;
-        ArrayList arrayList2 = this.p;
-        int size = arrayList2.size();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList2.get(i2);
-            i2++;
-            try {
-                ((File) obj).delete();
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
-        }
-        arrayList2.clear();
-        int size2 = arrayList.size();
-        while (i < size2) {
-            Object obj2 = arrayList.get(i);
-            i++;
-            try {
-                ((File) obj2).delete();
-            } catch (Exception e2) {
-                fa4.g(e2, true);
-            }
-        }
-        arrayList.clear();
+    public kza(Context context, boolean z, long j, int i, int i2, int i3, vnb vnbVar) {
+        super(context);
+        this.d = i;
+        this.e = z;
+        this.c = i2;
+        this.f = j;
+        this.b = vnbVar;
+        this.h = new jza(i2, i, j, z);
+        q9c q9cVar = new q9c(context, i2, i3, true, new hj8(this, (byte) 28), new hja(this, (byte) 10), null, vnbVar);
+        this.a = q9cVar;
+        addView(q9cVar, tre.c(-1.0f, -1));
+        q9cVar.setOnScrollListener(new e98(this, (byte) 27));
     }
 
-    public final float b() {
-        float f;
-        if (this.m == null) {
-            f = 0.9f;
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3 = jn7.B3;
+        q9c q9cVar = this.a;
+        if (i == i3) {
+            q9cVar.g3.O(true);
+            if (q9cVar.canScrollVertically(1)) {
+                for (int i4 = 0; i4 < q9cVar.getChildCount(); i4++) {
+                    if (!(q9cVar.getChildAt(i4) instanceof tk4)) {
+                    }
+                }
+                return;
+            }
+            this.h.run();
+        } else if (i == jn7.F3) {
+            if (((Long) objArr[0]).longValue() == this.f) {
+                q9cVar.g3.O(true);
+            }
+        } else if (i == jn7.d4 && this.n != null && !TextUtils.equals(this.r, c.C(this.c).x())) {
+            q9cVar.g3.O(true);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        int i = (this.f > 0L ? 1 : (this.f == 0L ? 0 : -1));
+        int i2 = this.c;
+        if (i != 0) {
+            jn7.f(i2).b(this, jn7.F3);
         } else {
-            f = 1.0f;
+            jn7.f(i2).b(this, jn7.B3);
+            if (this.e) {
+                jn7.f(i2).b(this, jn7.d4);
+            }
         }
-        if (this.s == null) {
-            return f * this.u;
+        this.a.g3.O(false);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i = (this.f > 0L ? 1 : (this.f == 0L ? 0 : -1));
+        int i2 = this.c;
+        if (i != 0) {
+            jn7.f(i2).n(this, jn7.F3);
+            return;
         }
-        return yjb.z(this.u, 0.5f, this.t * 0.5f, f);
+        jn7.f(i2).n(this, jn7.B3);
+        if (this.e) {
+            jn7.f(i2).n(this, jn7.d4);
+        }
     }
 }

@@ -1,21 +1,45 @@
 package defpackage;
 
-import android.content.Context;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 public final class zxe {
-    public final u84 a;
-    public final AtomicLong b;
-
-    public zxe(Context context, byte b) {
-        switch (b) {
-            case 1:
-                this.b = new AtomicLong(-1L);
-                this.a = new by4(context, u84.o, new ngb("mlkit:vision"), ay4.c);
-                return;
-            default:
-                this.b = new AtomicLong(-1L);
-                this.a = new by4(context, u84.o, new ngb("mlkit:natural_language"), ay4.c);
-                return;
+    public static rxe a(Object obj, Object obj2) {
+        rxe rxeVar = (rxe) obj;
+        rxe rxeVar2 = (rxe) obj2;
+        if (!rxeVar2.isEmpty()) {
+            if (!rxeVar.a) {
+                if (rxeVar.isEmpty()) {
+                    rxeVar = new rxe();
+                } else {
+                    ?? linkedHashMap = new LinkedHashMap(rxeVar);
+                    linkedHashMap.a = true;
+                    rxeVar = linkedHashMap;
+                }
+            }
+            rxeVar.c();
+            if (!rxeVar2.isEmpty()) {
+                rxeVar.putAll(rxeVar2);
+            }
         }
+        return rxeVar;
+    }
+
+    public static void b(Object obj, Object obj2) {
+        rxe rxeVar = (rxe) obj;
+        if (obj2 == null) {
+            if (!rxeVar.isEmpty()) {
+                Iterator it = rxeVar.entrySet().iterator();
+                if (!it.hasNext()) {
+                    return;
+                }
+                Map.Entry entry = (Map.Entry) it.next();
+                entry.getKey();
+                entry.getValue();
+                throw new NoSuchMethodError();
+            }
+            return;
+        }
+        grb.o();
     }
 }

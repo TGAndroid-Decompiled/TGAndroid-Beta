@@ -1,14 +1,12 @@
 package defpackage;
-public final class pe3 {
-    public String a;
-    public String b;
-    public byte c;
-    public byte d;
-    public boolean e;
-    public boolean f;
-    public byte g;
-    public int h;
-    public boolean i;
-    public boolean j;
-    public int k = -1;
+public interface pe3 {
+    void a(qkb qkbVar, qkb qkbVar2, int i);
+
+    char b();
+
+    int c();
+
+    int d(oe3 oe3Var, oe3 oe3Var2);
+
+    char e();
 }

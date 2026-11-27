@@ -1,15 +1,12 @@
 package defpackage;
-public final class un6 implements Runnable {
-    public final byte a;
-    public final hq6 b;
 
-    public un6(hq6 hq6Var, byte b) {
-        this.a = b;
-        this.b = hq6Var;
-    }
-
+import java.io.File;
+public final class un6 extends File {
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.un6.run():void");
+    public final boolean delete() {
+        if (f11.a) {
+            cc4.d("delete voice file (joined)");
+        }
+        return super.delete();
     }
 }

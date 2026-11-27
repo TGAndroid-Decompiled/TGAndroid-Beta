@@ -1,63 +1,86 @@
 package defpackage;
 
-import android.os.RemoteException;
-public final class nv6 implements Runnable {
-    public final byte a;
-    public final tv6 b;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.support.v4.media.MediaDescriptionCompat;
+import android.util.Log;
+import j$.util.Objects;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+public final class nv6 extends AsyncTask {
+    public final Bitmap a;
+    public final Uri b;
+    public int c;
+    public final wv6 d;
 
-    public nv6(tv6 tv6Var, byte b) {
-        this.a = b;
-        this.b = tv6Var;
+    public nv6(wv6 wv6Var) {
+        Bitmap bitmap;
+        this.d = wv6Var;
+        MediaDescriptionCompat mediaDescriptionCompat = wv6Var.c0;
+        if (mediaDescriptionCompat == null) {
+            bitmap = null;
+        } else {
+            bitmap = mediaDescriptionCompat.e;
+        }
+        if (bitmap != null && bitmap.isRecycled()) {
+            Log.w("MediaRouteCtrlDialog", "Can't fetch the given art bitmap because it's already recycled.");
+            bitmap = null;
+        }
+        this.a = bitmap;
+        MediaDescriptionCompat mediaDescriptionCompat2 = wv6Var.c0;
+        this.b = mediaDescriptionCompat2 != null ? mediaDescriptionCompat2.f : null;
+    }
+
+    public final BufferedInputStream a(Uri uri) {
+        InputStream openInputStream;
+        String lowerCase = uri.getScheme().toLowerCase();
+        if (!"android.resource".equals(lowerCase) && !"content".equals(lowerCase) && !"file".equals(lowerCase)) {
+            URLConnection openConnection = new URL(uri.toString()).openConnection();
+            openConnection.setConnectTimeout(30000);
+            openConnection.setReadTimeout(30000);
+            openInputStream = openConnection.getInputStream();
+        } else {
+            openInputStream = this.d.E.getContentResolver().openInputStream(uri);
+        }
+        if (openInputStream == null) {
+            return null;
+        }
+        return new BufferedInputStream(openInputStream);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        tv6 tv6Var = this.b;
-        switch (b) {
-            case 0:
-                tv6Var.getClass();
-                return;
-            case 1:
-                synchronized (tv6Var.a) {
-                    if (!tv6Var.v) {
-                        final l6a R0 = tv6Var.t.R0();
-                        if (!tv6Var.c.hasMessages(1)) {
-                            l6a l6aVar = tv6Var.s.c;
-                            nc8 nc8Var = R0.a;
-                            int i = nc8Var.b;
-                            nc8 nc8Var2 = l6aVar.a;
-                            if (i == nc8Var2.b && nc8Var.e == nc8Var2.e && nc8Var.h == nc8Var2.h && nc8Var.i == nc8Var2.i) {
-                                mv6 mv6Var = tv6Var.g.b;
-                                mm5 K = mv6Var.K();
-                                for (int i2 = 0; i2 < K.size(); i2++) {
-                                    final su6 su6Var = (su6) K.get(i2);
-                                    mv6Var.x0();
-                                    bs2 bs2Var = (bs2) ((ps) mv6Var.c).get(su6Var);
-                                    final boolean X = mv6Var.X(su6Var, 16);
-                                    final boolean X2 = mv6Var.X(su6Var, 17);
-                                    tv6Var.c(su6Var, new sv6() {
-                                        @Override
-                                        public final void f(ru6 ru6Var, int i3) {
-                                            ru6Var.i(i3, l6a.this, X, X2, su6Var.c);
-                                        }
-                                    });
-                                }
-                                try {
-                                    tv6Var.h.l.i(0, R0, true, true, 0);
-                                } catch (RemoteException e) {
-                                    lad.d("MediaSessionImpl", "Exception in using media1 API", e);
-                                }
-                            }
-                        }
-                        tv6Var.r();
-                        return;
-                    }
-                    return;
-                }
-            default:
-                tv6Var.r();
-                return;
+    public final java.lang.Object doInBackground(java.lang.Object[] r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nv6.doInBackground(java.lang.Object[]):java.lang.Object");
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        wv6 wv6Var = this.d;
+        wv6Var.d0 = null;
+        Bitmap bitmap2 = wv6Var.e0;
+        Bitmap bitmap3 = this.a;
+        boolean equals = Objects.equals(bitmap2, bitmap3);
+        Uri uri = this.b;
+        if (equals && Objects.equals(wv6Var.f0, uri)) {
+            return;
         }
+        wv6Var.e0 = bitmap3;
+        wv6Var.h0 = bitmap;
+        wv6Var.f0 = uri;
+        wv6Var.i0 = this.c;
+        wv6Var.g0 = true;
+        wv6Var.k();
+    }
+
+    @Override
+    public final void onPreExecute() {
+        wv6 wv6Var = this.d;
+        wv6Var.g0 = false;
+        wv6Var.h0 = null;
+        wv6Var.i0 = 0;
     }
 }

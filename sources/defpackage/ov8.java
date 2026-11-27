@@ -1,40 +1,44 @@
 package defpackage;
+public final class ov8 implements Runnable {
+    public final byte a;
+    public final sv8 b;
 
-import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class ov8 extends FrameLayout {
-    public final TextView a;
-    public final TextView b;
-    public final ew8 c;
+    public ov8(sv8 sv8Var, byte b) {
+        this.a = b;
+        this.b = sv8Var;
+    }
 
-    public ov8(ew8 ew8Var, Context context) {
-        super(context);
-        this.c = ew8Var;
-        TextView textView = new TextView(context);
-        this.a = textView;
-        textView.setTextColor(ew8Var.y);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(gl.o());
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(16);
-        addView(textView, nme.d(-1, -1.0f, 51, 15.0f, 8.0f, 15.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.b = textView2;
-        textView2.setTextColor(-1);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTypeface(gl.o());
-        textView2.setGravity(17);
-        textView2.setPadding(gl.L(10.0f), 0, gl.L(10.0f), 0);
-        textView2.setText(k96.M0(2131743637, null));
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(620756991);
-        gradientDrawable.setCornerRadius(gl.L(13.0f));
-        textView2.setBackground(gradientDrawable);
-        textView2.setOnClickListener(new ik8(this, (byte) 4));
-        addView(textView2, nme.d(-2, 26.0f, 21, 0.0f, 4.0f, 12.0f, 0.0f));
+    @Override
+    public final void run() {
+        byte b = this.a;
+        sv8 sv8Var = this.b;
+        switch (b) {
+            case 0:
+                if (!sv8Var.T && !sv8Var.S) {
+                    sv8Var.a(1.0f);
+                    return;
+                }
+                return;
+            default:
+                if (!sv8Var.T && !sv8Var.S) {
+                    uk0.c(sv8Var.F, sv8Var.h);
+                    sv8Var.G.d();
+                    frc frcVar = sv8Var.r;
+                    ov8 ov8Var = new ov8(sv8Var, (byte) 0);
+                    zqc zqcVar = frcVar.E;
+                    if (zqcVar != null) {
+                        if (zqcVar.b != null) {
+                            ov8Var.run();
+                            return;
+                        } else {
+                            zqcVar.d = ov8Var;
+                            return;
+                        }
+                    }
+                    ov8Var.run();
+                    return;
+                }
+                return;
+        }
     }
 }

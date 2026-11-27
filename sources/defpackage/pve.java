@@ -1,15 +1,17 @@
 package defpackage;
-public abstract class pve {
-    public static final tve a;
-    public static final tve b;
+public final class pve implements zq7 {
+    public static final pve a = new Object();
 
     static {
-        tve tveVar = null;
-        try {
-            tveVar = (tve) Class.forName("com.google.protobuf.NewInstanceSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        a = tveVar;
-        b = new Object();
+        throw new ClassCastException();
     }
 }

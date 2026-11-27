@@ -1,68 +1,74 @@
 package defpackage;
+public final class i99 extends fo5 {
+    public static final i99 r = new i99();
+    public final transient Object d;
+    public final transient Object[] e;
+    public final transient boolean f;
+    public final transient int h;
+    public final transient i99 n;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-public final class i99 extends TextView {
-    public final cm2 a;
-    public final int b;
-    public final boolean c;
-
-    public i99(wjb wjbVar, Context context, boolean z) {
-        super(context);
-        this.c = z;
-        if (z) {
-            zkb.X(this, bkb.F6, wjbVar);
-            setPadding(gl.L(14.0f), 0, gl.L(14.0f), 0);
-            setTextSize(1, 15.0f);
-            this.b = gl.L(40.0f);
+    public i99(int i, Object[] objArr) {
+        int i2;
+        this.e = objArr;
+        this.h = i;
+        this.f = false;
+        if (i >= 2) {
+            i2 = bp5.o(i);
         } else {
-            int i = bkb.x8;
-            int v0 = bkb.v0(i, wjbVar);
-            zkb.X(this, i, wjbVar);
-            ff0 Z = bkb.Z(bkb.p1(0.08f, v0), bkb.p1(0.15f, v0), gl.L(13.0f), gl.L(13.0f));
-            vkb K = zkb.K(0.08f, i);
-            vkb K2 = zkb.K(0.15f, i);
-            setBackground(Z);
-            zkb.j(this, Z, K, K2, wjbVar);
-            setPadding(gl.L(11.0f), 0, gl.L(11.0f), 0);
-            this.b = gl.L(26.0f);
+            i2 = 0;
         }
-        setGravity(17);
-        setTypeface(gl.o());
-        if (!z) {
-            ote.a(this);
+        Object h = o99.h(objArr, i, i2, 0);
+        if (!(h instanceof Object[])) {
+            this.d = h;
+            Object h2 = o99.h(objArr, i, i2, 1);
+            if (!(h2 instanceof Object[])) {
+                this.n = new i99(h2, objArr, i, this);
+                return;
+            }
+            throw ((so5) ((Object[]) h2)[2]).a();
         }
-        cm2 cm2Var = new cm2(2131230873, 0);
-        this.a = cm2Var;
-        cm2Var.H = 0.8f;
-        cm2Var.r = 0.0f;
-        cm2Var.s = gl.L(1.0f);
+        throw ((so5) ((Object[]) h)[2]).a();
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.b, 1073741824));
+    public final l99 c() {
+        boolean z = this.f;
+        return new l99(this, this.e, z ? 1 : 0, this.h);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.c && super.onTouchEvent(motionEvent)) {
-            return true;
+    public final m99 d() {
+        boolean z = this.f;
+        return new m99(this, new n99(z ? 1 : 0, this.h, this.e));
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        Object i = o99.i(this.d, this.e, this.h, this.f ? 1 : 0, obj);
+        if (i == null) {
+            return null;
         }
-        return false;
+        return i;
     }
 
-    public void setSorting(defpackage.p99 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.i99.setSorting(p99):void");
+    @Override
+    public final int size() {
+        return this.h;
     }
 
-    public void setValue(CharSequence charSequence) {
-        SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
-        int length = append.length();
-        append.setSpan(this.a, append.length() - 1, length, 33);
-        setText(append);
+    public i99() {
+        this.d = null;
+        this.e = new Object[0];
+        this.f = false;
+        this.h = 0;
+        this.n = this;
+    }
+
+    public i99(Object obj, Object[] objArr, int i, i99 i99Var) {
+        this.d = obj;
+        this.e = objArr;
+        this.f = true;
+        this.h = i;
+        this.n = i99Var;
     }
 }

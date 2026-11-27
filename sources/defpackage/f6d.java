@@ -1,53 +1,42 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import java.io.IOException;
-public final class f6d implements Continuation, v56, aq2, ohe {
-    public static final f6d b = new f6d((byte) 0);
-    public final byte a;
-
-    public f6d(byte b2) {
-        this.a = b2;
-    }
-
+import android.os.IBinder;
+import android.os.IInterface;
+public final class f6d extends d05 {
     @Override
-    public final void H(Object obj) {
-        ((ly4) obj).getClass();
-    }
-
-    @Override
-    public final Object L(gl2 gl2Var) {
-        switch (this.a) {
-            case 2:
-                ae7 ae7Var = (ae7) gl2Var.a(ae7.class);
-                synchronized (zdf.class) {
-                    zdf.a(new Object());
-                }
-                return new Object();
-            default:
-                return new sfa((Context) gl2Var.a(Context.class));
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
         }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.service.IClientNotificationTelemetryService");
+        if (queryLocalInterface instanceof p7d) {
+            return (p7d) queryLocalInterface;
+        }
+        return new v3d(iBinder, "com.google.android.gms.common.internal.service.IClientNotificationTelemetryService", (byte) 1);
     }
 
     @Override
-    public final byte[] a(int i, int i2, byte[] bArr) {
-        byte[] bArr2 = new byte[i2];
-        System.arraycopy(bArr, i, bArr2, 0, i2);
-        return bArr2;
+    public final a94[] f() {
+        return mid.c;
     }
 
     @Override
-    public final Object then(Task task) {
-        if (task.isSuccessful()) {
-            return (Bundle) task.getResult();
-        }
-        if (Log.isLoggable("Rpc", 3)) {
-            Log.d("Rpc", "Error making request: ".concat(String.valueOf(task.getException())));
-        }
-        throw new IOException("SERVICE_NOT_AVAILABLE", task.getException());
+    public final int i() {
+        return 253600000;
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.android.gms.common.internal.service.IClientNotificationTelemetryService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.common.telemetry.notification.service.START";
+    }
+
+    @Override
+    public final boolean p() {
+        return true;
     }
 }

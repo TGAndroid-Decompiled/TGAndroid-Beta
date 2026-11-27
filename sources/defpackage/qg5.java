@@ -1,54 +1,37 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import java.util.Iterator;
-public abstract class qg5 extends FrameLayout {
-    public static final HashSet b = new HashSet();
-    public static boolean c = false;
-    public final boolean a;
+import android.os.SystemClock;
+import java.util.List;
+public final class qg5 extends wg0 {
+    public int h;
 
-    public qg5(Context context) {
-        super(context);
-        boolean z;
-        if (gba.o() == 2) {
-            z = true;
-        } else {
-            z = false;
+    @Override
+    public final void b(long j, long j2, long j3, List list, gm6[] gm6VarArr) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (!a(this.h, elapsedRealtime)) {
+            return;
         }
-        this.a = z;
-    }
-
-    public final void a(boolean z) {
-        c = false;
-        if (z) {
-            setLayerType(0, null);
+        for (int i = this.b - 1; i >= 0; i--) {
+            if (!a(i, elapsedRealtime)) {
+                this.h = i;
+                return;
+            }
         }
-        HashSet hashSet = b;
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            ((View) it.next()).invalidate();
-        }
-        hashSet.clear();
+        grb.g();
     }
 
     @Override
-    public final void invalidate() {
-        if (c) {
-            b.add(this);
-        } else {
-            super.invalidate();
-        }
+    public final int d() {
+        return this.h;
     }
 
     @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        if (c) {
-            b.add(this);
-        } else {
-            super.invalidate(i, i2, i3, i4);
-        }
+    public final int o() {
+        return 0;
+    }
+
+    @Override
+    public final Object r() {
+        return null;
     }
 }

@@ -1,8 +1,19 @@
 package defpackage;
-public interface djd {
-    public static final int D = 0;
+public final class djd extends ybd {
+    public final transient Object[] e;
 
-    static {
-        qid.c(3, new Object[]{"com.android.vending.billing.PURCHASES_UPDATED", dke.PURCHASES_UPDATED_ACTION, "com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", dke.LOCAL_PURCHASES_UPDATED_ACTION, "com.android.vending.billing.ALTERNATIVE_BILLING", dke.ALTERNATIVE_BILLING_ACTION}, null);
+    public djd(Object[] objArr) {
+        super((byte) 1);
+        this.e = objArr;
+    }
+
+    @Override
+    public final java.lang.Object get(java.lang.Object r3) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.djd.get(java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public final int size() {
+        return 1;
     }
 }

@@ -1,11 +1,37 @@
 package defpackage;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class qfb extends ViewOutlineProvider {
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+public class qfb extends tf3 {
+    public AlertDialog B0;
+    public DialogInterface.OnCancelListener C0;
+    public AlertDialog D0;
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), gl.L(16.0f));
+    public final Dialog P() {
+        AlertDialog alertDialog = this.B0;
+        if (alertDialog == null) {
+            this.s0 = false;
+            AlertDialog alertDialog2 = this.D0;
+            if (alertDialog2 == null) {
+                Context n = n();
+                xve.h(n);
+                AlertDialog create = new AlertDialog.Builder(n).create();
+                this.D0 = create;
+                return create;
+            }
+            return alertDialog2;
+        }
+        return alertDialog;
+    }
+
+    @Override
+    public final void onCancel(DialogInterface dialogInterface) {
+        DialogInterface.OnCancelListener onCancelListener = this.C0;
+        if (onCancelListener != null) {
+            onCancelListener.onCancel(dialogInterface);
+        }
     }
 }

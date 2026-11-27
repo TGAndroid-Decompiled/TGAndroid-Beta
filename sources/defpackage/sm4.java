@@ -1,58 +1,21 @@
 package defpackage;
-public abstract class sm4 extends aob {
-    public final aob e;
+public final class sm4 extends ax2 {
+    public Object a;
+    public int b;
+    public final qx6 c;
+    public qx6 d;
+    public nm4 e;
+    public gs9 f;
 
-    public sm4(aob aobVar) {
-        this.e = aobVar;
+    public sm4(qx6 qx6Var, zw2 zw2Var) {
+        super(zw2Var);
+        this.c = qx6Var;
     }
 
     @Override
-    public final int a(boolean z) {
-        return this.e.a(z);
-    }
-
-    @Override
-    public int b(Object obj) {
-        return this.e.b(obj);
-    }
-
-    @Override
-    public final int c(boolean z) {
-        return this.e.c(z);
-    }
-
-    @Override
-    public int e(int i, int i2, boolean z) {
-        return this.e.e(i, i2, z);
-    }
-
-    @Override
-    public xnb f(int i, xnb xnbVar, boolean z) {
-        return this.e.f(i, xnbVar, z);
-    }
-
-    @Override
-    public final int h() {
-        return this.e.h();
-    }
-
-    @Override
-    public int k(int i, int i2, boolean z) {
-        return this.e.k(i, i2, z);
-    }
-
-    @Override
-    public Object l(int i) {
-        return this.e.l(i);
-    }
-
-    @Override
-    public znb m(int i, znb znbVar, long j) {
-        return this.e.m(i, znbVar, j);
-    }
-
-    @Override
-    public final int o() {
-        return this.e.o();
+    public final Object invokeSuspend(Object obj) {
+        this.a = obj;
+        this.b |= Integer.MIN_VALUE;
+        return this.c.k(null, this);
     }
 }

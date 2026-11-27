@@ -1,3 +1,3 @@
 package defpackage;
-public interface fdd {
+public final class fdd extends Exception {
 }

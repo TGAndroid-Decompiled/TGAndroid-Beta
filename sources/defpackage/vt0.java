@@ -1,151 +1,75 @@
 package defpackage;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.KeyEvent;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ShapeDrawable;
+import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class vt0 implements RequestDelegate {
-    public final byte a;
-    public final int b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-
-    public vt0(u41 u41Var, fx0[] fx0VarArr, int i, TLObject tLObject, String str) {
-        this.a = (byte) 12;
-        this.c = u41Var;
-        this.e = fx0VarArr;
-        this.b = i;
-        this.f = tLObject;
-        this.d = str;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        Object obj = this.d;
-        Object obj2 = this.e;
-        Object obj3 = this.f;
-        Object obj4 = this.c;
-        switch (b) {
-            case 0:
-                gl.c3(new qt((hv0) obj4, (String) obj, tLObject, tL_error, this.b, (cv0) obj2, (ev0) obj3));
-                return;
-            case 1:
-                gl.c3(new jf(tLObject, this.b, (hd) obj4, (Context) obj, (wjb) obj2, (fa5) obj3));
-                return;
-            case 2:
-                gl.c3(new jf((fc2) obj4, this.b, tLObject, (hs0) obj, (ArrayList) obj2, (HashSet) obj3, (byte) 5));
-                return;
-            case 3:
-                gl.c3(new qt(tL_error, tLObject, (ArrayList) obj4, this.b, (AtomicInteger) obj, (ArrayList) obj2, (jn1) obj3));
-                return;
-            case 4:
-                gl.c3(new qt((hd) obj4, (c01) obj, tLObject, this.b, (Activity) obj2, (TLRPC.TL_inputGroupCallSlug) obj3, tL_error));
-                return;
-            case 5:
-                String str = LaunchActivity.C1;
-                gl.c3(new qt((LaunchActivity) obj4, tLObject, (c01) obj2, tL_error, (na7) obj3, this.b, (String) obj, (byte) 10));
-                return;
-            case 6:
-                String str2 = LaunchActivity.C1;
-                gl.c3(new qt((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj2, (kz5) obj3, this.b, (String) obj));
-                return;
-            case 7:
-                String str3 = LaunchActivity.C1;
-                gl.c3(new qt((LaunchActivity) obj4, tL_error, tLObject, this.b, (hd) obj2, (kz5) obj3, (String) obj));
-                return;
-            case 8:
-                gl.c3(new qt((gz6) obj4, this.b, (ArrayList) obj, (vf6) obj2, tL_error, tLObject, (na7) obj3));
-                return;
-            case 9:
-                gl.c3(new jf(tLObject, this.b, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (os1) obj2, (ui5) obj3, (byte) 8));
-                return;
-            case 10:
-                gl.c3(new jf((gf8) obj4, (Integer[]) obj, this.b, tLObject, (ArrayList) obj2, (TLRPC.PollAnswerVoters) obj3, (byte) 9));
-                return;
-            case 11:
-                gl.c3(new jf((u41) obj4, tLObject, (fx0[]) obj, (wjb) obj2, this.b, (TLRPC.TL_messages_checkChatInvite) obj3));
-                return;
-            case 12:
-                gl.c3(new i57((u41) obj4, (fx0[]) obj2, this.b, (TLObject) obj3, (String) obj, (byte) 25));
-                return;
-            case 13:
-                gl.c3(new qt((hd) obj4, tLObject, this.b, (TLRPC.Document) obj, tL_error, this.e, (TLRPC.TL_stickers_addStickerToSet) obj3));
-                return;
-            default:
-                gl.c3(new jf((x3b) obj4, tLObject, this.d, (ArrayList) obj2, (boolean[]) obj3, this.b));
-                return;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class vt0 {
+    public static void a(Activity activity, int i, long j, long j2, TL_bots.BotVerifierSettings botVerifierSettings, qt0 qt0Var) {
+        String str;
+        TLRPC.User user;
+        int i2;
+        int i3 = (j2 > 0L ? 1 : (j2 == 0L ? 0 : -1));
+        if (i3 >= 0) {
+            TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(j2));
+            str = lbc.l(X1);
+            user = X1;
+        } else {
+            TLRPC.Chat M0 = uc7.s1(i).M0(Long.valueOf(-j2));
+            if (M0 == null) {
+                str = "";
+                user = M0;
+            } else {
+                str = M0.title;
+                user = M0;
+            }
         }
-    }
-
-    public vt0(int i, Object obj, Object obj2, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.b = i;
-        this.c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f = obj4;
-    }
-
-    public vt0(u41 u41Var, fx0[] fx0VarArr, wjb wjbVar, int i, TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite) {
-        this.a = (byte) 11;
-        this.c = u41Var;
-        this.d = fx0VarArr;
-        this.e = wjbVar;
-        this.b = i;
-        this.f = tL_messages_checkChatInvite;
-    }
-
-    public vt0(x3b x3bVar, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
-        this.a = (byte) 14;
-        this.c = x3bVar;
-        this.d = obj;
-        this.e = arrayList;
-        this.f = zArr;
-        this.b = i;
-    }
-
-    public vt0(KeyEvent.Callback callback, Object obj, int i, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.c = callback;
-        this.d = obj;
-        this.b = i;
-        this.e = obj2;
-        this.f = obj3;
-    }
-
-    public vt0(Object obj, int i, Object obj2, Object obj3, Object obj4, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = i;
-        this.d = obj2;
-        this.e = obj3;
-        this.f = obj4;
-    }
-
-    public vt0(LaunchActivity launchActivity, int i, hd hdVar, kz5 kz5Var, String str) {
-        this.a = (byte) 7;
-        this.c = launchActivity;
-        this.b = i;
-        this.e = hdVar;
-        this.f = kz5Var;
-        this.d = str;
-    }
-
-    public vt0(LaunchActivity launchActivity, Object obj, Object obj2, int i, String str, byte b) {
-        this.a = b;
-        this.c = launchActivity;
-        this.e = obj;
-        this.f = obj2;
-        this.b = i;
-        this.d = str;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        FrameLayout frameLayout2 = new FrameLayout(activity);
+        int L = hl.L(28.0f);
+        int L2 = hl.L(28.0f);
+        int i4 = aob.Ti;
+        ShapeDrawable c0 = aob.c0(L, L2, aob.w0(null, i4, false));
+        uob M = yob.M(i4);
+        frameLayout2.setBackground(c0);
+        yob.j(frameLayout2, c0, M, null, null);
+        de0 de0Var = new de0(activity);
+        de0Var.setRoundRadius(hl.L(28.0f));
+        rb0 rb0Var = new rb0((vnb) null);
+        rb0Var.k(user);
+        de0Var.f(user, rb0Var);
+        frameLayout2.addView(de0Var, tre.e(28, 28, 51));
+        de0 de0Var2 = new de0(activity);
+        de0Var2.setEmojiColorFilter(new PorterDuffColorFilter(aob.w0(null, aob.z9, false), PorterDuff.Mode.SRC_IN));
+        de0Var2.setAnimatedEmojiDrawable(wl.m(i, botVerifierSettings.icon, null, 3));
+        frameLayout2.addView(de0Var2, tre.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
+        ema emaVar = new ema(activity);
+        yob.W(emaVar, aob.j5, null);
+        emaVar.setTextSize(13);
+        emaVar.setEllipsizeByGradient(true);
+        emaVar.l(str, false);
+        emaVar.setWidthWrapContent(true);
+        frameLayout2.addView(emaVar, tre.d(-2, -2.0f, 19, 57.0f, 0.0f, 10.0f, 0.0f));
+        frameLayout.addView(frameLayout2, tre.d(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
+        boolean[] zArr = new boolean[1];
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
+        String M02 = ob6.M0(2131752978, null);
+        id idVar = alertDialog$Builder.a;
+        idVar.S = M02;
+        if (i3 >= 0) {
+            i2 = 2131752979;
+        } else {
+            i2 = 2131752980;
+        }
+        idVar.U = ob6.M0(i2, null);
+        alertDialog$Builder.n(frameLayout);
+        alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+        alertDialog$Builder.j(ob6.M0(2131746048, null), new tt0(zArr, i, j, j2, qt0Var));
+        alertDialog$Builder.c(-1);
+        alertDialog$Builder.o();
     }
 }

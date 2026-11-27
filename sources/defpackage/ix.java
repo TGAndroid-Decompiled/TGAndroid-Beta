@@ -1,62 +1,36 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Matrix;
-import android.widget.FrameLayout;
-public class ix extends FrameLayout {
-    public final hx a;
-    public float b;
-    public int c;
-    public boolean d;
-    public int e;
-    public final Matrix f;
+import org.telegram.ui.NotificationsSettingsActivity;
+public final class ix implements Runnable {
+    public final byte a;
+    public boolean b;
+    public final Object c;
 
-    public ix(Context context) {
-        super(context);
-        this.f = new Matrix();
-        this.c = 0;
-        this.a = new hx(this, (byte) 0);
-    }
-
-    public final void a(float f, int i) {
-        if (this.b != f) {
-            this.b = f;
-            this.e = i;
-            requestLayout();
-        }
-    }
-
-    public float getAspectRatio() {
-        return this.b;
-    }
-
-    public int getResizeMode() {
-        return this.c;
-    }
-
-    public int getVideoRotation() {
-        return this.e;
+    public ix(Object obj, byte b) {
+        this.a = b;
+        this.c = obj;
     }
 
     @Override
-    public void onMeasure(int r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ix.onMeasure(int, int):void");
-    }
-
-    public void setDrawingReady(boolean z) {
-        if (this.d == z) {
-            return;
+    public final void run() {
+        byte b = this.a;
+        Object obj = this.c;
+        switch (b) {
+            case 0:
+                this.b = false;
+                return;
+            case 1:
+                if (!this.b) {
+                    this.b = true;
+                    ((zu1) obj).presentFragment(new NotificationsSettingsActivity());
+                    return;
+                }
+                return;
+            default:
+                hq7 hq7Var = (hq7) obj;
+                hq7Var.a(this.b);
+                hq7Var.postDelayed(this, hq7Var.N);
+                return;
         }
-        this.d = z;
-    }
-
-    public void setResizeMode(int i) {
-        if (this.c != i) {
-            this.c = i;
-            requestLayout();
-        }
-    }
-
-    public void setAspectRatioListener(gx gxVar) {
     }
 }

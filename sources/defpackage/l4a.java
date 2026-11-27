@@ -1,17 +1,9 @@
 package defpackage;
-public final class l4a implements ik4 {
-    public final fl8 a;
-
-    public l4a(fl8 fl8Var) {
-        this.a = fl8Var;
-    }
-
-    @Override
-    public final Object c(Object obj, fw2 fw2Var) {
-        Object a = this.a.e.a(fw2Var, obj);
-        if (a == bx2.a) {
-            return a;
-        }
-        return g5c.a;
-    }
+public abstract class l4a {
+    public static final int a = rze.b(100, 12, "kotlinx.coroutines.semaphore.maxSpinCycles");
+    public static final ow5 b = new ow5("PERMIT", (byte) 1);
+    public static final ow5 c = new ow5("TAKEN", (byte) 1);
+    public static final ow5 d = new ow5("BROKEN", (byte) 1);
+    public static final ow5 e = new ow5("CANCELLED", (byte) 1);
+    public static final int f = rze.b(16, 12, "kotlinx.coroutines.semaphore.segmentSize");
 }

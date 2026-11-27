@@ -1,39 +1,24 @@
 package defpackage;
 
-import android.graphics.RectF;
+import android.view.TextureView;
 import android.view.View;
-import java.util.WeakHashMap;
-public final class eyc implements Runnable {
-    public final byte a;
-    public final fyc b;
+import android.view.ViewGroup;
+public interface eyc {
+    void a(boolean z, ayc aycVar, float f, boolean z2);
 
-    public eyc(fyc fycVar, byte b) {
-        this.a = b;
-        this.b = fycVar;
-    }
+    TextureView b(View view, boolean z, float f, int i, boolean z2);
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        fyc fycVar = this.b;
-        switch (b) {
-            case 0:
-                if (fycVar.w != 0) {
-                    fycVar.i(false);
-                    return;
-                }
-                return;
-            default:
-                int i = fycVar.H - 1;
-                fycVar.H = i;
-                if (i == 0) {
-                    View view = fycVar.F;
-                    RectF rectF = twc.e;
-                    WeakHashMap weakHashMap = jdc.a;
-                    fycVar.k(twc.a(cdc.a(view), view, view.getRootView()), false);
-                    return;
-                }
-                return;
-        }
-    }
+    void c();
+
+    void d(float f);
+
+    void e();
+
+    TextureView f(View view, boolean z, int i, int i2, boolean z2);
+
+    void g(hyc hycVar, boolean z);
+
+    ViewGroup h();
+
+    boolean i();
 }

@@ -1,84 +1,84 @@
 package defpackage;
 
-import android.media.MediaRoute2Info;
-import android.media.MediaRouter2;
-import android.media.MediaRouter2$TransferCallback;
-import android.text.TextUtils;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
-public final class es6 extends MediaRouter2$TransferCallback {
-    public final fs6 a;
+import android.media.AudioTrack;
+import android.os.Handler;
+import java.util.concurrent.ScheduledExecutorService;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class es6 implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
 
-    public es6(fs6 fs6Var) {
-        this.a = fs6Var;
+    public es6(TLObject tLObject, uc7 uc7Var, r2a r2aVar) {
+        this.a = (byte) 22;
+        this.d = tLObject;
+        this.c = uc7Var;
+        this.b = r2aVar;
     }
 
-    public final void onStop(MediaRouter2.RoutingController routingController) {
-        fs6 fs6Var = this.a;
-        vt6 vt6Var = (vt6) fs6Var.w.remove(routingController);
-        if (vt6Var != null) {
-            ux4 ux4Var = (ux4) fs6Var.s.a;
-            if (vt6Var == ux4Var.e) {
-                eu6 c = ux4Var.c();
-                if (ux4Var.e() != c) {
-                    ux4Var.j(c, 2);
-                    return;
+    private final void a() {
+        AudioTrack audioTrack = (AudioTrack) this.c;
+        Handler handler = (Handler) this.b;
+        e86 e86Var = (e86) this.d;
+        try {
+            audioTrack.flush();
+            audioTrack.release();
+            if (handler.getLooper().getThread().isAlive()) {
+                handler.post(new pz(e86Var, (byte) 3));
+            }
+            synchronized (l40.s) {
+                int i = l40.u - 1;
+                l40.u = i;
+                if (i == 0) {
+                    ScheduledExecutorService scheduledExecutorService = l40.t;
+                    scheduledExecutorService.getClass();
+                    scheduledExecutorService.shutdown();
+                    l40.t = null;
                 }
-                return;
             }
-            int i = ux4.F;
-            return;
-        }
-        Log.w("MR2Provider", "onStop: No matching routeController found. routingController=" + routingController);
-    }
-
-    public final void onTransfer(MediaRouter2.RoutingController routingController, MediaRouter2.RoutingController routingController2) {
-        eu6 eu6Var;
-        fs6 fs6Var = this.a;
-        fs6Var.w.remove(routingController);
-        if (routingController2 == fs6Var.r.getSystemController()) {
-            ux4 ux4Var = (ux4) fs6Var.s.a;
-            eu6 c = ux4Var.c();
-            if (ux4Var.e() != c) {
-                ux4Var.j(c, 3);
-                return;
+        } catch (Throwable th) {
+            if (handler.getLooper().getThread().isAlive()) {
+                handler.post(new pz(e86Var, (byte) 3));
             }
-            return;
-        }
-        List<MediaRoute2Info> selectedRoutes = routingController2.getSelectedRoutes();
-        if (selectedRoutes.isEmpty()) {
-            Log.w("MR2Provider", "Selected routes are empty. This shouldn't happen.");
-            return;
-        }
-        int i = 0;
-        String id = w26.e(selectedRoutes.get(0)).getId();
-        fs6Var.w.put(routingController2, new bs6(fs6Var, routingController2, id));
-        ux4 ux4Var2 = (ux4) fs6Var.s.a;
-        ArrayList arrayList = ux4Var2.j;
-        int size = arrayList.size();
-        while (true) {
-            if (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                eu6Var = (eu6) obj;
-                if (eu6Var.c() == ux4Var2.r && TextUtils.equals(id, eu6Var.b)) {
-                    break;
+            synchronized (l40.s) {
+                int i2 = l40.u - 1;
+                l40.u = i2;
+                if (i2 == 0) {
+                    ScheduledExecutorService scheduledExecutorService2 = l40.t;
+                    scheduledExecutorService2.getClass();
+                    scheduledExecutorService2.shutdown();
+                    l40.t = null;
                 }
-            } else {
-                eu6Var = null;
-                break;
+                throw th;
             }
         }
-        if (eu6Var == null) {
-            Log.w("GlobalMediaRouter", "onSelectRoute: The target RouteInfo is not found for descriptorId=" + id);
-        } else {
-            ux4Var2.j(eu6Var, 3);
-        }
-        fs6Var.r(routingController2);
     }
 
-    public final void onTransferFailure(MediaRoute2Info mediaRoute2Info) {
-        Log.w("MR2Provider", "Transfer failed. requestedRoute=" + mediaRoute2Info);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.es6.run():void");
+    }
+
+    public es6(Object obj, TLObject tLObject, Object obj2, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = tLObject;
+        this.b = obj2;
+    }
+
+    public es6(Object obj, Object obj2, Object obj3, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.b = obj2;
+        this.d = obj3;
+    }
+
+    public es6(TLRPC.TL_error tL_error, pcc pccVar, pcc pccVar2) {
+        this.a = (byte) 20;
+        this.b = tL_error;
+        this.c = pccVar;
+        this.d = pccVar2;
     }
 }

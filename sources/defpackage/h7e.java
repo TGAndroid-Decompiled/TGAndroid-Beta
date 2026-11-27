@@ -1,14 +1,17 @@
 package defpackage;
-public enum h7e {
-    DEFAULT(0),
-    UNMETERED_ONLY(1),
-    UNMETERED_OR_DAILY(2),
-    FAST_IF_RADIO_AWAKE(3),
-    NEVER(4);
-    
-    public final byte a;
+public final class h7e implements zq7 {
+    public static final h7e a = new Object();
 
-    h7e(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

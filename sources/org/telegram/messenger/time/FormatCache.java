@@ -70,7 +70,7 @@ public abstract class FormatCache<F extends Format> {
                 }
                 return pattern;
             } catch (ClassCastException unused) {
-                w26.i(locale, "No date time pattern for locale: ");
+                lq5.q(locale, "No date time pattern for locale: ");
                 return null;
             }
         }
@@ -103,7 +103,7 @@ public abstract class FormatCache<F extends Format> {
             }
             return f;
         }
-        fvc.f("pattern must not be null");
+        p3d.h("pattern must not be null");
         return null;
     }
 

@@ -1,51 +1,56 @@
 package defpackage;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.view.View;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class wpc implements zk3, ed {
-    public final ypc a;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class wpc extends nic {
+    public final ArrayList a;
+    public final Context b;
+    public final vnb c;
+    public final Rect d;
+    public final int e;
+    public final jl7[] f;
 
-    public wpc(ypc ypcVar) {
-        this.a = ypcVar;
+    public wpc(ArrayList arrayList, Context context, vnb vnbVar, Rect rect, int i, jl7[] jl7VarArr) {
+        this.a = arrayList;
+        this.b = context;
+        this.c = vnbVar;
+        this.d = rect;
+        this.e = i;
+        this.f = jl7VarArr;
     }
 
     @Override
-    public final void a(vf6 vf6Var, ArrayList arrayList) {
-        ypc ypcVar = this.a;
-        ArrayList arrayList2 = ypcVar.s;
-        if (!ypcVar.r) {
-            arrayList2.clear();
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                al3 al3Var = (al3) obj;
-                TLObject tLObject = al3Var.a;
-                if ((tLObject instanceof TLRPC.User) && ypc.d0((TLRPC.User) tLObject)) {
-                    arrayList2.add((TLRPC.User) al3Var.a);
-                }
-            }
-            va vaVar = ypcVar.a;
-            if (vaVar != null) {
-                vaVar.g3.O(true);
-            }
-        }
+    public final void b(View view, int i, int i2) {
+        FrameLayout frameLayout = (FrameLayout) view;
+        frameLayout.removeAllViews();
+        jl7[] jl7VarArr = this.f;
+        frameLayout.addView(uqc.j0(this.b, this.e, (TL_wallet.walletTransaction) this.a.get(i), null, null, null, null, this.c, jl7VarArr, true), tre.c(-2.0f, -1));
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        ypc ypcVar = this.a;
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + a.b.getPackageName()));
-            ypcVar.getParentActivity().startActivity(intent);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public final View d(int i) {
+        FrameLayout frameLayout = new FrameLayout(this.b);
+        int L = hl.L(20.0f);
+        int i2 = aob.d6;
+        vnb vnbVar = this.c;
+        ShapeDrawable c0 = aob.c0(L, 0, aob.v0(i2, vnbVar));
+        Rect rect = this.d;
+        InsetDrawable insetDrawable = new InsetDrawable((Drawable) c0, rect.left, 0, rect.right, 0);
+        uob M = yob.M(i2);
+        frameLayout.setBackground(insetDrawable);
+        yob.j(frameLayout, insetDrawable, M, null, vnbVar);
+        return frameLayout;
+    }
+
+    @Override
+    public final int e() {
+        return this.a.size();
     }
 }

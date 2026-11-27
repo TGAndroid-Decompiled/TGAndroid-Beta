@@ -1,128 +1,111 @@
 package defpackage;
-public final class f4 implements gu3 {
-    public final byte a;
-    public final qd1 b;
-    public final xu7 c;
-    public final String d;
-    public final int e;
-    public final String f;
-    public String g;
-    public wxb h;
-    public byte i;
-    public int j;
-    public boolean k;
-    public long l;
-    public fm4 m;
-    public int n;
-    public long o;
 
-    public f4(String str, int i, String str2, byte b) {
-        this.a = b;
-        switch (b) {
-            case 1:
-                qd1 qd1Var = new qd1(16, new byte[16]);
-                this.b = qd1Var;
-                this.c = new xu7(qd1Var.b);
-                this.i = (byte) 0;
-                this.j = 0;
-                this.k = false;
-                this.o = -9223372036854775807L;
-                this.d = str;
-                this.e = i;
-                this.f = str2;
-                return;
-            default:
-                qd1 qd1Var2 = new qd1(128, new byte[128]);
-                this.b = qd1Var2;
-                this.c = new xu7(qd1Var2.b);
-                this.i = (byte) 0;
-                this.o = -9223372036854775807L;
-                this.d = str;
-                this.e = i;
-                this.f = str2;
-                return;
+import java.util.List;
+public final class f4 implements e84 {
+    public final g4 a = new g4("audio/ac3");
+    public final ey7 b = new ey7(2786);
+    public boolean c;
+
+    @Override
+    public final int b(f84 f84Var, v11 v11Var) {
+        ey7 ey7Var = this.b;
+        int read = ((cb3) f84Var).read(ey7Var.a, 0, 2786);
+        if (read == -1) {
+            return -1;
         }
-    }
-
-    @Override
-    public final void b(defpackage.xu7 r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.f4.b(xu7):void");
-    }
-
-    @Override
-    public final void d() {
-        switch (this.a) {
-            case 0:
-                this.i = (byte) 0;
-                this.j = 0;
-                this.k = false;
-                this.o = -9223372036854775807L;
-                return;
-            default:
-                this.i = (byte) 0;
-                this.j = 0;
-                this.k = false;
-                this.o = -9223372036854775807L;
-                return;
+        ey7Var.N(0);
+        ey7Var.M(read);
+        boolean z = this.c;
+        g4 g4Var = this.a;
+        if (!z) {
+            g4Var.o = 0L;
+            this.c = true;
         }
+        g4Var.b(ey7Var);
+        return 0;
     }
 
     @Override
-    public final void e() {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void f() {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void g(int i, long j) {
-        switch (this.a) {
-            case 0:
-                this.o = j;
-                return;
-            default:
-                this.o = j;
-                return;
+    public final boolean c(f84 f84Var) {
+        cb3 cb3Var;
+        int a;
+        ey7 ey7Var = new ey7(10);
+        int i = 0;
+        while (true) {
+            cb3Var = (cb3) f84Var;
+            cb3Var.d(ey7Var.a, 0, 10, false);
+            ey7Var.N(0);
+            if (ey7Var.D() != 4801587) {
+                break;
+            }
+            ey7Var.O(3);
+            int z = ey7Var.z();
+            i += z + 10;
+            cb3Var.a(z, false);
         }
+        cb3Var.f = 0;
+        cb3Var.a(i, false);
+        int i2 = 0;
+        int i3 = i;
+        while (true) {
+            cb3Var.d(ey7Var.a, 0, 6, false);
+            ey7Var.N(0);
+            if (ey7Var.H() != 2935) {
+                cb3Var.f = 0;
+                i3++;
+                if (i3 - i >= 8192) {
+                    break;
+                }
+                cb3Var.a(i3, false);
+                i2 = 0;
+            } else {
+                i2++;
+                if (i2 >= 4) {
+                    return true;
+                }
+                byte[] bArr = ey7Var.a;
+                if (bArr.length < 6) {
+                    a = -1;
+                } else if (((bArr[5] & 248) >> 3) > 10) {
+                    a = ((((bArr[2] & 7) << 8) | (bArr[3] & 255)) + 1) << 1;
+                } else {
+                    byte b = bArr[4];
+                    a = ud3.a((b & 192) >> 6, b & 63);
+                }
+                if (a == -1) {
+                    break;
+                }
+                cb3Var.a(a - 6, false);
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void h(l74 l74Var, l2c l2cVar) {
-        switch (this.a) {
-            case 0:
-                l2cVar.a();
-                l2cVar.b();
-                this.g = l2cVar.e;
-                l2cVar.b();
-                this.h = l74Var.S(l2cVar.d, 1);
-                return;
-            default:
-                l2cVar.a();
-                l2cVar.b();
-                this.g = l2cVar.e;
-                l2cVar.b();
-                this.h = l74Var.S(l2cVar.d, 1);
-                return;
-        }
+    public final void d(long j, long j2) {
+        this.c = false;
+        this.a.d();
     }
 
-    private final void a() {
+    @Override
+    public final List e() {
+        no5 no5Var = po5.b;
+        return j99.e;
     }
 
-    private final void c() {
+    @Override
+    public final void f(g84 g84Var) {
+        this.a.h(g84Var, new l6c(0, 1));
+        g84Var.D();
+        g84Var.m0(new qc0(-9223372036854775807L));
     }
 
-    private final void i() {
+    @Override
+    public final e84 a() {
+        return this;
     }
 
-    private final void j() {
-    }
-
-    public f4(String str) {
-        this(null, 0, str, (byte) 0);
-        this.a = (byte) 0;
+    @Override
+    public final void release() {
     }
 }

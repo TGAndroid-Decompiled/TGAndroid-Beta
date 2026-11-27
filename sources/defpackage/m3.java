@@ -1,100 +1,774 @@
 package defpackage;
 
-import java.util.Map;
-public abstract class m3 implements Map.Entry {
-    public final byte a;
+import java.io.Serializable;
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public class m3 extends AbstractCollection implements List {
+    public final byte a = 1;
+    public final Object b;
+    public Collection c;
+    public final Collection d;
+    public final AbstractCollection e;
+    public final Serializable f;
+    public final Serializable h;
+
+    public m3(ccd ccdVar, Object obj, List list, m3 m3Var) {
+        Collection collection;
+        this.h = ccdVar;
+        this.f = ccdVar;
+        this.b = obj;
+        this.c = list;
+        this.e = m3Var;
+        if (m3Var == null) {
+            collection = null;
+        } else {
+            collection = m3Var.c;
+        }
+        this.d = collection;
+    }
+
+    @Override
+    public final boolean add(Object obj) {
+        byte b = this.a;
+        Serializable serializable = this.f;
+        switch (b) {
+            case 0:
+                i();
+                boolean isEmpty = this.c.isEmpty();
+                boolean add = this.c.add(obj);
+                if (add) {
+                    ((fj7) serializable).f++;
+                    if (isEmpty) {
+                        h();
+                    }
+                }
+                return add;
+            case 1:
+                zzb();
+                boolean isEmpty2 = this.c.isEmpty();
+                boolean add2 = this.c.add(obj);
+                if (add2) {
+                    ((ccd) serializable).d++;
+                    if (isEmpty2) {
+                        k();
+                        return true;
+                    }
+                }
+                return add2;
+            default:
+                zzb();
+                boolean isEmpty3 = this.c.isEmpty();
+                boolean add3 = this.c.add(obj);
+                if (add3 && isEmpty3) {
+                    k();
+                    return true;
+                }
+                return add3;
+        }
+    }
+
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        byte b = this.a;
+        Serializable serializable = this.h;
+        boolean z = false;
+        switch (b) {
+            case 0:
+                if (!collection.isEmpty()) {
+                    int size = size();
+                    z = ((List) this.c).addAll(i, collection);
+                    if (z) {
+                        ((fj7) serializable).f += this.c.size() - size;
+                        if (size == 0) {
+                            h();
+                        }
+                    }
+                }
+                return z;
+            case 1:
+                if (collection.isEmpty()) {
+                    return false;
+                }
+                int size2 = size();
+                boolean addAll = ((List) this.c).addAll(i, collection);
+                if (addAll) {
+                    ((ccd) serializable).d += this.c.size() - size2;
+                    if (size2 == 0) {
+                        k();
+                        return true;
+                    }
+                }
+                return addAll;
+            default:
+                if (collection.isEmpty()) {
+                    return false;
+                }
+                int size3 = size();
+                boolean addAll2 = ((List) this.c).addAll(i, collection);
+                if (addAll2) {
+                    this.c.size();
+                    if (size3 == 0) {
+                        k();
+                        return true;
+                    }
+                }
+                return addAll2;
+        }
+    }
+
+    @Override
+    public final void clear() {
+        byte b = this.a;
+        Serializable serializable = this.f;
+        switch (b) {
+            case 0:
+                int size = size();
+                if (size != 0) {
+                    this.c.clear();
+                    ((fj7) serializable).f -= size;
+                    j();
+                    return;
+                }
+                return;
+            case 1:
+                int size2 = size();
+                if (size2 != 0) {
+                    this.c.clear();
+                    ((ccd) serializable).d -= size2;
+                    l();
+                    return;
+                }
+                return;
+            default:
+                if (size() != 0) {
+                    this.c.clear();
+                    l();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        switch (this.a) {
+            case 0:
+                i();
+                return this.c.contains(obj);
+            case 1:
+                zzb();
+                return this.c.contains(obj);
+            default:
+                zzb();
+                return this.c.contains(obj);
+        }
+    }
+
+    @Override
+    public final boolean containsAll(Collection collection) {
+        switch (this.a) {
+            case 0:
+                i();
+                return this.c.containsAll(collection);
+            case 1:
+                zzb();
+                return this.c.containsAll(collection);
+            default:
+                zzb();
+                return this.c.containsAll(collection);
+        }
+    }
 
     @Override
     public final boolean equals(Object obj) {
         switch (this.a) {
             case 0:
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry = (Map.Entry) obj;
-                    if (bqe.a(getKey(), entry.getKey()) && bqe.a(getValue(), entry.getValue())) {
-                        return true;
-                    }
+                if (obj == this) {
+                    return true;
                 }
-                return false;
+                i();
+                return this.c.equals(obj);
             case 1:
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry2 = (Map.Entry) obj;
-                    if (s3f.a(getKey(), entry2.getKey()) && s3f.a(getValue(), entry2.getValue())) {
-                        return true;
-                    }
+                if (obj == this) {
+                    return true;
                 }
-                return false;
+                zzb();
+                return this.c.equals(obj);
             default:
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry3 = (Map.Entry) obj;
-                    if (m1f.a(getKey(), entry3.getKey()) && m1f.a(getValue(), entry3.getValue())) {
-                        return true;
-                    }
+                if (obj == this) {
+                    return true;
                 }
-                return false;
+                zzb();
+                return this.c.equals(obj);
+        }
+    }
+
+    @Override
+    public final Object get(int i) {
+        switch (this.a) {
+            case 0:
+                i();
+                return ((List) this.c).get(i);
+            case 1:
+                zzb();
+                return ((List) this.c).get(i);
+            default:
+                zzb();
+                return ((List) this.c).get(i);
+        }
+    }
+
+    public final void h() {
+        m3 m3Var = (m3) this.e;
+        if (m3Var != null) {
+            m3Var.h();
+        } else {
+            ((fj7) this.f).e.put(this.b, this.c);
         }
     }
 
     @Override
     public final int hashCode() {
-        int hashCode;
-        int i = 0;
         switch (this.a) {
             case 0:
-                Object key = getKey();
-                Object value = getValue();
-                if (key == null) {
-                    hashCode = 0;
-                } else {
-                    hashCode = key.hashCode();
-                }
-                if (value != null) {
-                    i = value.hashCode();
-                    break;
-                }
-                break;
+                i();
+                return this.c.hashCode();
             case 1:
-                Object key2 = getKey();
-                Object value2 = getValue();
-                if (key2 == null) {
-                    hashCode = 0;
-                } else {
-                    hashCode = key2.hashCode();
-                }
-                if (value2 != null) {
-                    i = value2.hashCode();
-                    break;
-                }
-                break;
+                zzb();
+                return this.c.hashCode();
             default:
-                Object key3 = getKey();
-                Object value3 = getValue();
-                if (key3 == null) {
-                    hashCode = 0;
-                } else {
-                    hashCode = key3.hashCode();
-                }
-                if (value3 != null) {
-                    i = value3.hashCode();
-                    break;
-                }
-                break;
+                zzb();
+                return this.c.hashCode();
         }
-        return hashCode ^ i;
+    }
+
+    public final void i() {
+        Collection collection;
+        m3 m3Var = (m3) this.e;
+        if (m3Var != null) {
+            m3Var.i();
+            if (m3Var.c != this.d) {
+                bg.b();
+            }
+        } else if (this.c.isEmpty() && (collection = (Collection) ((fj7) this.f).e.get(this.b)) != null) {
+            this.c = collection;
+        }
     }
 
     @Override
-    public Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int indexOf(Object obj) {
+        switch (this.a) {
+            case 0:
+                i();
+                return ((List) this.c).indexOf(obj);
+            case 1:
+                zzb();
+                return ((List) this.c).indexOf(obj);
+            default:
+                zzb();
+                return ((List) this.c).indexOf(obj);
+        }
     }
 
+    @Override
+    public final Iterator iterator() {
+        switch (this.a) {
+            case 0:
+                i();
+                return new d3(this);
+            case 1:
+                zzb();
+                return new d3(this, (byte) 0);
+            default:
+                zzb();
+                return new d3(this, (char) 0);
+        }
+    }
+
+    public final void j() {
+        m3 m3Var = (m3) this.e;
+        if (m3Var != null) {
+            m3Var.j();
+        } else if (this.c.isEmpty()) {
+            ((fj7) this.f).e.remove(this.b);
+        }
+    }
+
+    public final void k() {
+        byte b = this.a;
+        Object obj = this.b;
+        Serializable serializable = this.f;
+        AbstractCollection abstractCollection = this.e;
+        switch (b) {
+            case 1:
+                m3 m3Var = (m3) abstractCollection;
+                if (m3Var != null) {
+                    m3Var.k();
+                    return;
+                } else {
+                    ((ccd) serializable).c.put(obj, this.c);
+                    return;
+                }
+            default:
+                m3 m3Var2 = (m3) abstractCollection;
+                if (m3Var2 != null) {
+                    m3Var2.k();
+                    return;
+                } else {
+                    ((lmf) serializable).c.put(obj, this.c);
+                    return;
+                }
+        }
+    }
+
+    public final void l() {
+        byte b = this.a;
+        Object obj = this.b;
+        Serializable serializable = this.f;
+        AbstractCollection abstractCollection = this.e;
+        switch (b) {
+            case 1:
+                m3 m3Var = (m3) abstractCollection;
+                if (m3Var != null) {
+                    m3Var.l();
+                    return;
+                } else if (this.c.isEmpty()) {
+                    ((ccd) serializable).c.remove(obj);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                m3 m3Var2 = (m3) abstractCollection;
+                if (m3Var2 != null) {
+                    m3Var2.l();
+                    return;
+                } else if (this.c.isEmpty()) {
+                    ((lmf) serializable).c.remove(obj);
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        switch (this.a) {
+            case 0:
+                i();
+                return ((List) this.c).lastIndexOf(obj);
+            case 1:
+                zzb();
+                return ((List) this.c).lastIndexOf(obj);
+            default:
+                zzb();
+                return ((List) this.c).lastIndexOf(obj);
+        }
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        switch (this.a) {
+            case 0:
+                i();
+                return new l3(this);
+            case 1:
+                zzb();
+                return new dbd(this);
+            default:
+                zzb();
+                return new wjf(this);
+        }
+    }
+
+    @Override
+    public final Object remove(int i) {
+        byte b = this.a;
+        Serializable serializable = this.h;
+        switch (b) {
+            case 0:
+                i();
+                Object remove = ((List) this.c).remove(i);
+                fj7 fj7Var = (fj7) serializable;
+                fj7Var.f--;
+                j();
+                return remove;
+            case 1:
+                zzb();
+                Object remove2 = ((List) this.c).remove(i);
+                ccd ccdVar = (ccd) serializable;
+                ccdVar.d--;
+                l();
+                return remove2;
+            default:
+                zzb();
+                Object remove3 = ((List) this.c).remove(i);
+                l();
+                return remove3;
+        }
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        byte b = this.a;
+        Serializable serializable = this.f;
+        boolean z = false;
+        switch (b) {
+            case 0:
+                if (!collection.isEmpty()) {
+                    int size = size();
+                    z = this.c.removeAll(collection);
+                    if (z) {
+                        ((fj7) serializable).f += this.c.size() - size;
+                        j();
+                    }
+                }
+                return z;
+            case 1:
+                if (!collection.isEmpty()) {
+                    int size2 = size();
+                    z = this.c.removeAll(collection);
+                    if (z) {
+                        ((ccd) serializable).d += this.c.size() - size2;
+                        l();
+                    }
+                }
+                return z;
+            default:
+                if (!collection.isEmpty()) {
+                    size();
+                    z = this.c.removeAll(collection);
+                    if (z) {
+                        this.c.size();
+                        l();
+                    }
+                }
+                return z;
+        }
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        byte b = this.a;
+        Serializable serializable = this.f;
+        switch (b) {
+            case 0:
+                collection.getClass();
+                int size = size();
+                boolean retainAll = this.c.retainAll(collection);
+                if (retainAll) {
+                    ((fj7) serializable).f += this.c.size() - size;
+                    j();
+                }
+                return retainAll;
+            case 1:
+                collection.getClass();
+                int size2 = size();
+                boolean retainAll2 = this.c.retainAll(collection);
+                if (retainAll2) {
+                    ((ccd) serializable).d += this.c.size() - size2;
+                    l();
+                }
+                return retainAll2;
+            default:
+                collection.getClass();
+                size();
+                boolean retainAll3 = this.c.retainAll(collection);
+                if (retainAll3) {
+                    this.c.size();
+                    l();
+                }
+                return retainAll3;
+        }
+    }
+
+    @Override
+    public final Object set(int i, Object obj) {
+        switch (this.a) {
+            case 0:
+                i();
+                return ((List) this.c).set(i, obj);
+            case 1:
+                zzb();
+                return ((List) this.c).set(i, obj);
+            default:
+                zzb();
+                return ((List) this.c).set(i, obj);
+        }
+    }
+
+    @Override
+    public final int size() {
+        switch (this.a) {
+            case 0:
+                i();
+                return this.c.size();
+            case 1:
+                zzb();
+                return this.c.size();
+            default:
+                zzb();
+                return this.c.size();
+        }
+    }
+
+    @Override
+    public final List subList(int i, int i2) {
+        byte b = this.a;
+        Serializable serializable = this.h;
+        Object obj = this.b;
+        AbstractCollection abstractCollection = this.e;
+        switch (b) {
+            case 0:
+                i();
+                fj7 fj7Var = (fj7) serializable;
+                List subList = ((List) this.c).subList(i, i2);
+                m3 m3Var = (m3) abstractCollection;
+                if (m3Var != null) {
+                    this = m3Var;
+                }
+                if (subList instanceof RandomAccess) {
+                    return new m3(fj7Var, obj, subList, this);
+                }
+                return new m3(fj7Var, obj, subList, this);
+            case 1:
+                zzb();
+                ccd ccdVar = (ccd) serializable;
+                List subList2 = ((List) this.c).subList(i, i2);
+                m3 m3Var2 = (m3) abstractCollection;
+                if (m3Var2 != null) {
+                    this = m3Var2;
+                }
+                if (subList2 instanceof RandomAccess) {
+                    return new m3(ccdVar, obj, subList2, this);
+                }
+                return new m3(ccdVar, obj, subList2, this);
+            default:
+                zzb();
+                List subList3 = ((List) this.c).subList(i, i2);
+                m3 m3Var3 = (m3) abstractCollection;
+                if (m3Var3 != null) {
+                    this = m3Var3;
+                }
+                lmf lmfVar = (lmf) serializable;
+                if (subList3 instanceof RandomAccess) {
+                    return new m3(lmfVar, obj, subList3, this);
+                }
+                return new m3(lmfVar, obj, subList3, this);
+        }
+    }
+
+    @Override
     public final String toString() {
         switch (this.a) {
             case 0:
-                return getKey() + "=" + getValue();
+                i();
+                return this.c.toString();
             case 1:
-                return getKey() + "=" + getValue();
+                zzb();
+                return this.c.toString();
             default:
-                return tb4.y(String.valueOf(getKey()), "=", String.valueOf(getValue()));
+                zzb();
+                return this.c.toString();
+        }
+    }
+
+    public final void zzb() {
+        Collection collection;
+        Collection collection2;
+        byte b = this.a;
+        Object obj = this.b;
+        Serializable serializable = this.f;
+        Collection collection3 = this.d;
+        AbstractCollection abstractCollection = this.e;
+        switch (b) {
+            case 1:
+                m3 m3Var = (m3) abstractCollection;
+                if (m3Var != null) {
+                    m3Var.zzb();
+                    if (m3Var.c != collection3) {
+                        bg.b();
+                        return;
+                    }
+                    return;
+                } else if (this.c.isEmpty() && (collection = (Collection) ((ccd) serializable).c.get(obj)) != null) {
+                    this.c = collection;
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                m3 m3Var2 = (m3) abstractCollection;
+                if (m3Var2 != null) {
+                    m3Var2.zzb();
+                    if (m3Var2.c != collection3) {
+                        bg.b();
+                        return;
+                    }
+                    return;
+                } else if (this.c.isEmpty() && (collection2 = (Collection) ((lmf) serializable).c.get(obj)) != null) {
+                    this.c = collection2;
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    public m3(lmf lmfVar, Object obj, List list, m3 m3Var) {
+        this.h = lmfVar;
+        this.f = lmfVar;
+        this.b = obj;
+        this.c = list;
+        this.e = m3Var;
+        this.d = m3Var == null ? null : m3Var.c;
+    }
+
+    public m3(fj7 fj7Var, Object obj, List list, m3 m3Var) {
+        this.h = fj7Var;
+        this.f = fj7Var;
+        this.b = obj;
+        this.c = list;
+        this.e = m3Var;
+        this.d = m3Var == null ? null : m3Var.c;
+    }
+
+    @Override
+    public final ListIterator listIterator(int i) {
+        switch (this.a) {
+            case 0:
+                i();
+                return new l3(this, i);
+            case 1:
+                zzb();
+                return new dbd(this, i);
+            default:
+                zzb();
+                return new wjf(this, i);
+        }
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        byte b = this.a;
+        Serializable serializable = this.f;
+        switch (b) {
+            case 0:
+                i();
+                boolean remove = this.c.remove(obj);
+                if (remove) {
+                    fj7 fj7Var = (fj7) serializable;
+                    fj7Var.f--;
+                    j();
+                }
+                return remove;
+            case 1:
+                zzb();
+                boolean remove2 = this.c.remove(obj);
+                if (remove2) {
+                    ccd ccdVar = (ccd) serializable;
+                    ccdVar.d--;
+                    l();
+                }
+                return remove2;
+            default:
+                zzb();
+                boolean remove3 = this.c.remove(obj);
+                if (remove3) {
+                    l();
+                }
+                return remove3;
+        }
+    }
+
+    @Override
+    public final void add(int i, Object obj) {
+        byte b = this.a;
+        Serializable serializable = this.h;
+        switch (b) {
+            case 0:
+                i();
+                boolean isEmpty = this.c.isEmpty();
+                ((List) this.c).add(i, obj);
+                ((fj7) serializable).f++;
+                if (isEmpty) {
+                    h();
+                    return;
+                }
+                return;
+            case 1:
+                zzb();
+                boolean isEmpty2 = this.c.isEmpty();
+                ((List) this.c).add(i, obj);
+                ((ccd) serializable).d++;
+                if (isEmpty2) {
+                    k();
+                    return;
+                }
+                return;
+            default:
+                zzb();
+                boolean isEmpty3 = this.c.isEmpty();
+                ((List) this.c).add(i, obj);
+                if (isEmpty3) {
+                    k();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final boolean addAll(Collection collection) {
+        byte b = this.a;
+        Serializable serializable = this.f;
+        boolean z = false;
+        switch (b) {
+            case 0:
+                if (!collection.isEmpty()) {
+                    int size = size();
+                    z = this.c.addAll(collection);
+                    if (z) {
+                        ((fj7) serializable).f += this.c.size() - size;
+                        if (size == 0) {
+                            h();
+                        }
+                    }
+                }
+                return z;
+            case 1:
+                if (collection.isEmpty()) {
+                    return false;
+                }
+                int size2 = size();
+                boolean addAll = this.c.addAll(collection);
+                if (addAll) {
+                    ((ccd) serializable).d += this.c.size() - size2;
+                    if (size2 == 0) {
+                        k();
+                        return true;
+                    }
+                }
+                return addAll;
+            default:
+                if (collection.isEmpty()) {
+                    return false;
+                }
+                int size3 = size();
+                boolean addAll2 = this.c.addAll(collection);
+                if (addAll2) {
+                    this.c.size();
+                    if (size3 == 0) {
+                        k();
+                        return true;
+                    }
+                }
+                return addAll2;
         }
     }
 }

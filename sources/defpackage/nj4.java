@@ -1,26 +1,24 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class nj4 implements xr3 {
-    public final ArrayList a;
-    public final u23 b;
+import j$.util.DesugarCollections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+public final class nj4 {
+    public static final nj4 a = new Object();
+    public static final Map b = DesugarCollections.synchronizedMap(new LinkedHashMap());
 
-    public nj4(u23 u23Var, ArrayList arrayList) {
-        this.b = u23Var;
-        this.a = arrayList;
+    public static lj4 a(iaa iaaVar) {
+        Map map = b;
+        map.getClass();
+        Object obj = map.get(iaaVar);
+        if (obj != null) {
+            return (lj4) obj;
+        }
+        xi4.j(iaaVar, ". Dependencies should be added at class load time.", "Cannot get dependency ");
+        return null;
     }
 
-    @Override
-    public final void a(yla ylaVar, boolean z, float f, float f2) {
-        ArrayList arrayList = ylaVar.k;
-        int indexOf = arrayList.indexOf(this);
-        if (indexOf >= 0) {
-            arrayList.set(indexOf, null);
-        }
-        ArrayList arrayList2 = this.a;
-        arrayList2.add(ylaVar);
-        if (arrayList2.size() == 2) {
-            this.b.b();
-        }
+    public final java.lang.Object b(defpackage.zw2 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nj4.b(zw2):java.lang.Object");
     }
 }

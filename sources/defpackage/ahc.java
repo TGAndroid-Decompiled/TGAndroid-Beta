@@ -1,44 +1,73 @@
 package defpackage;
 
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ahc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-    public final TLObject c;
-    public final TLRPC.TL_error d;
-
-    public ahc(VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.a = (byte) 1;
-        this.b = voIPService;
-        this.c = tLObject;
-        this.d = tL_error;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        TLObject tLObject = this.c;
-        TLRPC.TL_error tL_error = this.d;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$acceptIncomingCall$97(tL_error, tLObject);
-                return;
-            case 1:
-                voIPService.lambda$startGroupCheckShortpoll$64(tLObject, tL_error);
-                return;
-            default:
-                voIPService.lambda$processAcceptedCall$22(tL_error, tLObject);
-                return;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowInsets;
+public abstract class ahc {
+    public static void a(WindowInsets windowInsets, View view) {
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296700);
+        if (onApplyWindowInsetsListener != null) {
+            onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
         }
     }
 
-    public ahc(VoIPService voIPService, TLRPC.TL_error tL_error, TLObject tLObject, byte b) {
-        this.a = b;
-        this.b = voIPService;
-        this.d = tL_error;
-        this.c = tLObject;
+    public static l2d b(View view, l2d l2dVar, Rect rect) {
+        WindowInsets g = l2dVar.g();
+        if (g != null) {
+            return l2d.h(view, view.computeSystemWindowInsets(g, rect));
+        }
+        rect.setEmpty();
+        return l2dVar;
+    }
+
+    public static ColorStateList c(View view) {
+        return view.getBackgroundTintList();
+    }
+
+    public static PorterDuff.Mode d(View view) {
+        return view.getBackgroundTintMode();
+    }
+
+    public static float e(View view) {
+        return view.getElevation();
+    }
+
+    public static void f(View view, ColorStateList colorStateList) {
+        view.setBackgroundTintList(colorStateList);
+    }
+
+    public static void g(View view, PorterDuff.Mode mode) {
+        view.setBackgroundTintMode(mode);
+    }
+
+    public static void h(View view, float f) {
+        view.setElevation(f);
+    }
+
+    public static void i(View view, nr7 nr7Var) {
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener;
+        if (nr7Var != null) {
+            onApplyWindowInsetsListener = new zgc(view, nr7Var);
+        } else {
+            onApplyWindowInsetsListener = null;
+        }
+        if (Build.VERSION.SDK_INT < 30) {
+            view.setTag(2131296689, onApplyWindowInsetsListener);
+        }
+        if (view.getTag(2131296688) != null) {
+            return;
+        }
+        if (onApplyWindowInsetsListener != null) {
+            view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
+        } else {
+            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296700));
+        }
+    }
+
+    public static void j(View view) {
+        view.stopNestedScroll();
     }
 }

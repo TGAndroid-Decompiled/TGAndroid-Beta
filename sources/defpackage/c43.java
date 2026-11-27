@@ -1,78 +1,92 @@
 package defpackage;
 
-import android.database.DataSetObserver;
-import org.telegram.ui.ProfileActivity;
-public final class c43 extends DataSetObserver {
-    public final byte a;
-    public final Object b;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class c43 extends Drawable {
+    public final Drawable a;
+    public final RectF b = new RectF();
+    public final Paint c;
+    public final Paint d;
+    public int e;
+    public final int f;
+    public float g;
+    public boolean h;
+    public float i;
+    public float j;
+    public float k;
 
-    public c43(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public c43(Context context, int i, int i2) {
+        Paint paint = new Paint(1);
+        this.c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.a = context.getDrawable(i);
+        this.f = i2;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(hl.N(1.7f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(hl.N(2.5f));
     }
 
-    @Override
-    public final void onChanged() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                kbb kbbVar = (kbb) obj;
-                kbbVar.a = true;
-                kbbVar.notifyDataSetChanged();
-                return;
-            case 1:
-                o56 o56Var = (o56) obj;
-                if (o56Var.P.isShowing()) {
-                    o56Var.f();
-                    return;
+    public final void a(boolean z, boolean z2) {
+        if (this.h != z) {
+            this.h = z;
+            float f = 0.0f;
+            if (!z2) {
+                if (z) {
+                    f = 1.0f;
                 }
-                return;
-            case 2:
-                mo8 mo8Var = (mo8) obj;
-                ProfileActivity profileActivity = mo8Var.n;
-                int realCount = profileActivity.o0.getRealCount();
-                if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.F) {
-                    profileActivity.B0 = (byte) 1;
+                this.g = f;
+            } else {
+                if (!z) {
+                    f = 1.0f;
                 }
-                mo8Var.a(false);
-                mo8Var.b(1.0f);
-                if (profileActivity.r0 != null) {
-                    if (profileActivity.T0.y()) {
-                        gl.d3(new w88(mo8Var, (byte) 24), 500L);
-                        return;
-                    } else {
-                        mo8Var.c();
-                        return;
-                    }
-                }
-                return;
-            default:
-                ((gec) obj).f();
-                return;
+                this.g = f;
+            }
+            invalidateSelf();
         }
     }
 
     @Override
-    public final void onInvalidated() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                kbb kbbVar = (kbb) obj;
-                kbbVar.a = false;
-                kbbVar.notifyDataSetInvalidated();
-                return;
-            case 1:
-                ((o56) obj).dismiss();
-                return;
-            case 2:
-            default:
-                super.onInvalidated();
-                return;
-            case 3:
-                ((gec) obj).f();
-                return;
-        }
+    public final void draw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.c43.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setBounds(int i, int i2, int i3, int i4) {
+        super.setBounds(i, i2, i3, i4);
+        this.a.setBounds(i, i2, i3, i4);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

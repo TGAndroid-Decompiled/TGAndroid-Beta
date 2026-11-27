@@ -2,182 +2,223 @@ package defpackage;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.text.Layout;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.o;
-public final class uu extends View implements eib, dw {
-    public final vg5 a;
-    public final dx b;
-    public bw c;
-    public int d;
-    public int e;
-    public TL_iv.pageBlockFooter f;
+public final class uu extends View implements zlb {
+    public TL_iv.pageBlockEmbedPost E;
+    public final xi5 a;
+    public final ex b;
+    public final ImageReceiver c;
+    public final rb0 d;
+    public cw e;
+    public cw f;
+    public cw h;
+    public cw n;
+    public boolean r;
+    public int s;
+    public int w;
+    public int x;
+    public int y;
 
-    public uu(Activity activity, vg5 vg5Var, dx dxVar) {
+    public uu(Activity activity, xi5 xi5Var, ex exVar) {
         super(activity);
-        this.a = vg5Var;
-        this.b = dxVar;
-    }
-
-    @Override
-    public int getBoundLeft() {
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return -1;
-        }
-        int i = bwVar.s;
-        return ug8.h(this.a, 18.0f, bwVar.k() + i);
-    }
-
-    @Override
-    public int getBoundRight() {
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return -1;
-        }
-        int i = bwVar.s;
-        return ug8.C(this.a, 18.0f, bwVar.l() + i);
-    }
-
-    @Override
-    public int getLastLineBoundRight() {
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return -1;
-        }
-        int i = bwVar.s;
-        return ug8.C(this.a, 18.0f, bwVar.m() + i);
-    }
-
-    public int getMinWidth() {
-        return ug8.a(this);
+        this.a = xi5Var;
+        this.b = exVar;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.c = imageReceiver;
+        imageReceiver.q0(hl.L(20.0f));
+        imageReceiver.i0(hl.L(32.0f), hl.L(8.0f), hl.L(40.0f), hl.L(40.0f));
+        this.d = new rb0((vnb) null);
     }
 
     @Override
     public final void k(ArrayList arrayList) {
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            arrayList.add(bwVar);
+        cw cwVar = this.f;
+        if (cwVar != null) {
+            arrayList.add(cwVar);
+        }
+        cw cwVar2 = this.e;
+        if (cwVar2 != null) {
+            arrayList.add(cwVar2);
+        }
+        cw cwVar3 = this.h;
+        if (cwVar3 != null) {
+            arrayList.add(cwVar3);
+        }
+        cw cwVar4 = this.n;
+        if (cwVar4 != null) {
+            arrayList.add(cwVar4);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.i(this);
+        cw cwVar = this.f;
+        if (cwVar != null) {
+            cwVar.i(this);
+        }
+        cw cwVar2 = this.e;
+        if (cwVar2 != null) {
+            cwVar2.i(this);
+        }
+        cw cwVar3 = this.h;
+        if (cwVar3 != null) {
+            cwVar3.i(this);
+        }
+        cw cwVar4 = this.n;
+        if (cwVar4 != null) {
+            cwVar4.i(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.f(this);
+        cw cwVar = this.f;
+        if (cwVar != null) {
+            cwVar.f(this);
+        }
+        cw cwVar2 = this.e;
+        if (cwVar2 != null) {
+            cwVar2.f(this);
+        }
+        cw cwVar3 = this.h;
+        if (cwVar3 != null) {
+            cwVar3.f(this);
+        }
+        cw cwVar4 = this.n;
+        if (cwVar4 != null) {
+            cwVar4.f(this);
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f == null) {
-            return;
+        Canvas canvas2;
+        int i;
+        int i2;
+        float f;
+        TL_iv.pageBlockEmbedPost pageblockembedpost = this.E;
+        if (pageblockembedpost != null) {
+            boolean z = pageblockembedpost instanceof vw;
+            xi5 xi5Var = this.a;
+            int i3 = 0;
+            if (!z) {
+                if (this.r) {
+                    this.c.h(canvas, null);
+                }
+                int i4 = 54;
+                if (this.f != null) {
+                    canvas.save();
+                    if (this.r) {
+                        i2 = 54;
+                    } else {
+                        i2 = 0;
+                    }
+                    float L = hl.L(i2 + 32);
+                    if (this.e != null) {
+                        f = 10.0f;
+                    } else {
+                        f = 19.0f;
+                    }
+                    canvas.translate(L, hl.L(f));
+                    o.s(xi5Var, canvas, this, 0);
+                    this.f.d(canvas, this);
+                    canvas.restore();
+                    i = 1;
+                } else {
+                    i = 0;
+                }
+                if (this.e != null) {
+                    canvas.save();
+                    if (!this.r) {
+                        i4 = 0;
+                    }
+                    canvas.translate(hl.L(i4 + 32), hl.L(29.0f));
+                    o.s(xi5Var, canvas, this, i);
+                    this.e.d(canvas, this);
+                    canvas.restore();
+                    i++;
+                }
+                float L2 = hl.L(18.0f);
+                float L3 = hl.L(6.0f);
+                float L4 = hl.L(20.0f);
+                int i5 = this.y;
+                if (this.E.level == 0) {
+                    i3 = hl.L(6.0f);
+                }
+                canvas2 = canvas;
+                canvas2.drawRect(L2, L3, L4, i5 - i3, o.s1);
+                i3 = i;
+            } else {
+                canvas2 = canvas;
+            }
+            if (this.h != null) {
+                canvas2.save();
+                canvas2.translate(this.s, this.w);
+                o.s(xi5Var, canvas2, this, i3);
+                this.h.d(canvas2, this);
+                canvas2.restore();
+                i3++;
+            }
+            if (this.n != null) {
+                canvas2.save();
+                canvas2.translate(this.s, this.w + this.x);
+                o.s(xi5Var, canvas2, this, i3);
+                this.n.d(canvas2, this);
+                canvas2.restore();
+            }
         }
-        bw bwVar = this.c;
-        vg5 vg5Var = this.a;
-        if (bwVar != null) {
-            canvas.save();
-            canvas.translate(this.d, this.e);
-            o.s(vg5Var, canvas, this, 0);
-            this.c.d(canvas, this);
-            canvas.restore();
-        }
-        o.r(canvas, vg5Var, this.f, getMeasuredHeight());
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setClickable(false);
-        accessibilityNodeInfo.setLongClickable(false);
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return;
+        StringBuilder sb = new StringBuilder(ob6.M0(2131754862, null));
+        if (this.f != null) {
+            sb.append(", ");
+            sb.append(this.f.d.getText());
         }
-        accessibilityNodeInfo.setText(o.f(2131754864, o.g(this.a, this.b, bwVar)));
+        if (this.e != null) {
+            sb.append(", ");
+            sb.append(this.e.d.getText());
+        }
+        if (this.h != null) {
+            sb.append(", ");
+            sb.append(this.h.d.getText());
+        }
+        if (this.n != null) {
+            sb.append(", ");
+            sb.append(this.n.d.getText());
+        }
+        accessibilityNodeInfo.setText(sb);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        uu uuVar;
-        int i3;
-        Layout.Alignment alignment;
-        int C;
-        int size = View.MeasureSpec.getSize(i);
-        TL_iv.pageBlockFooter pageblockfooter = this.f;
-        if (pageblockfooter != null) {
-            int i4 = pageblockfooter.level;
-            vg5 vg5Var = this.a;
-            i3 = 0;
-            if (i4 == 0) {
-                vg5Var.getClass();
-                this.e = gl.L(8.0f);
-                vg5Var.getClass();
-                this.d = gl.L(18.0f);
-            } else {
-                this.e = 0;
-                vg5Var.getClass();
-                this.d = gl.L((this.f.level * 14) + 18);
-            }
-            TL_iv.RichText richText = this.f.text;
-            vg5 vg5Var2 = this.a;
-            int h = ug8.h(vg5Var2, 36.0f, size) - this.d;
-            TL_iv.pageBlockFooter pageblockfooter2 = this.f;
-            dx dxVar = this.b;
-            if (dxVar != null && dxVar.H) {
-                alignment = lwa.a();
-            } else {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            }
-            uuVar = this;
-            bw n = o.n(vg5Var2, uuVar, null, richText, h, 0, pageblockfooter2, alignment, 0, this.b);
-            uuVar.c = n;
-            if (n != null) {
-                int height = n.d.getHeight();
-                if (uuVar.f.level > 0) {
-                    C = ug8.C(vg5Var, 8.0f, height);
-                } else {
-                    C = ug8.C(vg5Var, 16.0f, height);
-                }
-                i3 = C;
-                bw bwVar = uuVar.c;
-                bwVar.s = uuVar.d;
-                bwVar.w = uuVar.e;
-            }
-        } else {
-            uuVar = this;
-            i3 = 1;
-        }
-        uuVar.setMeasuredDimension(size, i3);
+    public final void onMeasure(int r31, int r32) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uu.onMeasure(int, int):void");
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!o.i(this.a, this.b, motionEvent, this, this.c, this.d, this.e) && !super.onTouchEvent(motionEvent)) {
-            return false;
+        if (!o.i(this.a, this.b, motionEvent, this, this.h, this.s, this.w)) {
+            if (!o.i(this.a, this.b, motionEvent, this, this.n, this.s, this.w + this.x) && !super.onTouchEvent(motionEvent)) {
+                return false;
+            }
+            return true;
         }
         return true;
     }
 
-    public void setBlock(TL_iv.pageBlockFooter pageblockfooter) {
-        this.f = pageblockfooter;
+    public void setBlock(TL_iv.pageBlockEmbedPost pageblockembedpost) {
+        this.E = pageblockembedpost;
         requestLayout();
     }
 }

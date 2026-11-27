@@ -10,18 +10,6 @@ public class CameraEnumerationAndroid {
     static final ArrayList<Size> COMMON_RESOLUTIONS = new ArrayList<>(Arrays.asList(new Size(160, 120), new Size(240, 160), new Size(320, 240), new Size(400, 240), new Size(480, 320), new Size(640, 360), new Size(640, 480), new Size(768, 480), new Size(854, 480), new Size(800, 600), new Size(960, 540), new Size(960, 640), new Size(1024, 576), new Size(1024, 600), new Size(1280, 720), new Size(1280, 1024), new Size(1920, 1080), new Size(1920, 1440), new Size(2560, 1440), new Size(3840, 2160)));
     private static final String TAG = "CameraEnumerationAndroid";
 
-    private static abstract class ClosestComparator<T> implements Comparator<T> {
-        private ClosestComparator() {
-        }
-
-        @Override
-        public int compare(T t, T t2) {
-            return diff(t) - diff(t2);
-        }
-
-        public abstract int diff(T t);
-    }
-
     public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i) {
         return (CaptureFormat.FramerateRange) Collections.min(list, new ClosestComparator<CaptureFormat.FramerateRange>() {
             private static final int MAX_FPS_DIFF_THRESHOLD = 5000;
@@ -32,14 +20,14 @@ public class CameraEnumerationAndroid {
             private static final int MIN_FPS_THRESHOLD = 8000;
 
             {
-                super();
+                super(0);
             }
 
             private int progressivePenalty(int i2, int i3, int i4, int i5) {
                 if (i2 < i3) {
                     return i2 * i4;
                 }
-                return oo1.h(i2, i3, i5, i4 * i3);
+                return bp1.h(i2, i3, i5, i4 * i3);
             }
 
             @Override
@@ -52,7 +40,7 @@ public class CameraEnumerationAndroid {
     public static Size getClosestSupportedSize(List<Size> list, final int i, final int i2) {
         return (Size) Collections.min(list, new ClosestComparator<Size>() {
             {
-                super();
+                super(0);
             }
 
             @Override
@@ -64,6 +52,22 @@ public class CameraEnumerationAndroid {
 
     public static void reportCameraResolution(Histogram histogram, Size size) {
         histogram.addSample(COMMON_RESOLUTIONS.indexOf(size) + 1);
+    }
+
+    private static abstract class ClosestComparator<T> implements Comparator<T> {
+        public ClosestComparator(int i) {
+            this();
+        }
+
+        @Override
+        public int compare(T t, T t2) {
+            return diff(t) - diff(t2);
+        }
+
+        public abstract int diff(T t);
+
+        private ClosestComparator() {
+        }
     }
 
     public static class CaptureFormat {
@@ -111,7 +115,7 @@ public class CameraEnumerationAndroid {
             if (i3 == 17) {
                 return (ImageFormat.getBitsPerPixel(i3) * (i * i2)) / 8;
             }
-            fyb.i("Don't know how to calculate the frame size of non-NV21 image formats.");
+            qyc.c("Don't know how to calculate the frame size of non-NV21 image formats.");
             return 0;
         }
 

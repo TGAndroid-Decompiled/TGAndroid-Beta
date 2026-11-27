@@ -1,64 +1,55 @@
 package defpackage;
 
-import android.graphics.Path;
-import java.util.ArrayList;
-public final class jy7 {
-    public Path a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public ArrayList g;
+import android.net.Uri;
+import java.io.IOException;
+public final class jy7 implements oa6 {
+    public final long a;
+    public final n73 b;
+    public final byte c;
+    public final b2b d;
+    public final iy7 e;
+    public volatile Object f;
 
-    public final void a(String str, float f) {
-        float f2 = this.e;
-        float f3 = this.d;
-        float f4 = this.c;
+    public jy7(lyc lycVar) {
+        this.d = new b2b((h73) lycVar.b);
+        this.b = (n73) lycVar.c;
+        this.c = (byte) 4;
+        this.e = (iy7) lycVar.d;
+        this.a = ja6.h.getAndIncrement();
+    }
+
+    @Override
+    public final void a() {
+        this.d.b = 0L;
+        l73 l73Var = new l73(this.d, this.b);
         try {
-            ?? obj = new Object();
-            obj.a = new ArrayList();
-            obj.b = f * this.f;
-            String[] split = str.split(" ");
-            int i = 0;
-            while (i < split.length) {
-                char charAt = split[i].charAt(0);
-                if (charAt != 'C') {
-                    if (charAt != 'L') {
-                        if (charAt == 'M') {
-                            ?? obj2 = new Object();
-                            obj2.a = (Float.parseFloat(split[i + 1]) + f3) * f4;
-                            i += 2;
-                            obj2.b = (Float.parseFloat(split[i]) + f2) * f4;
-                            obj.a.add(obj2);
-                        }
-                    } else {
-                        ?? obj3 = new Object();
-                        obj3.a = (Float.parseFloat(split[i + 1]) + f3) * f4;
-                        i += 2;
-                        obj3.b = (Float.parseFloat(split[i]) + f2) * f4;
-                        obj.a.add(obj3);
-                    }
-                } else {
-                    ?? obj4 = new Object();
-                    obj4.c = (Float.parseFloat(split[i + 1]) + f3) * f4;
-                    obj4.d = (Float.parseFloat(split[i + 2]) + f2) * f4;
-                    obj4.e = (Float.parseFloat(split[i + 3]) + f3) * f4;
-                    obj4.f = (Float.parseFloat(split[i + 4]) + f2) * f4;
-                    obj4.a = (Float.parseFloat(split[i + 5]) + f3) * f4;
-                    i += 6;
-                    obj4.b = (Float.parseFloat(split[i]) + f2) * f4;
-                    obj.a.add(obj4);
-                }
-                i++;
+            l73Var.a.open(l73Var.b);
+            l73Var.d = true;
+            Uri uri = this.d.a.getUri();
+            uri.getClass();
+            this.f = this.e.I(uri, l73Var);
+            try {
+                l73Var.close();
+            } catch (IOException unused) {
             }
-            this.g.add(obj);
-        } catch (Exception e) {
-            fa4.g(e, true);
+        } finally {
+            String str = gcc.a;
+            try {
+                l73Var.close();
+            } catch (IOException unused2) {
+            }
         }
     }
 
-    public final void b(android.graphics.Canvas r18, android.graphics.Paint r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jy7.b(android.graphics.Canvas, android.graphics.Paint, float):void");
+    @Override
+    public final void c() {
+    }
+
+    public jy7(h73 h73Var, n73 n73Var, int i, iy7 iy7Var) {
+        this.d = new b2b(h73Var);
+        this.b = n73Var;
+        this.c = i;
+        this.e = iy7Var;
+        this.a = ja6.h.getAndIncrement();
     }
 }

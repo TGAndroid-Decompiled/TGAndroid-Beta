@@ -8,27 +8,27 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
+import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-public final class bm0 implements p8c {
+public final class bm0 implements pcc {
     public final byte a;
 
-    public bm0(nh1 nh1Var) {
+    public bm0(wh1 wh1Var) {
         this.a = (byte) 3;
     }
 
     @Override
     public final void a(Object obj) {
-        k27 messageObject;
-        k27 messageObject2;
+        r47 messageObject;
+        r47 messageObject2;
         int i;
         switch (this.a) {
             case 0:
                 View view = (View) obj;
-                if (view instanceof bb) {
-                    ((bb) view).setChecked(false);
+                if (view instanceof cb) {
+                    ((cb) view).setChecked(false);
                     return;
                 }
                 return;
@@ -39,18 +39,18 @@ public final class bm0 implements p8c {
                 Boolean bool = (Boolean) obj;
                 return;
             case 3:
-                nh1.e1((View) obj);
+                wh1.f1((View) obj);
                 return;
             case 4:
                 View view2 = (View) obj;
-                if ((view2 instanceof gb2) && (messageObject = ((gb2) view2).getMessageObject()) != null) {
+                if ((view2 instanceof wb2) && (messageObject = ((wb2) view2).getMessageObject()) != null) {
                     messageObject.M1 = true;
                     return;
                 }
                 return;
             case 5:
                 View view3 = (View) obj;
-                if ((view3 instanceof gb2) && (messageObject2 = ((gb2) view3).getMessageObject()) != null) {
+                if ((view3 instanceof wb2) && (messageObject2 = ((wb2) view3).getMessageObject()) != null) {
                     messageObject2.M1 = true;
                     messageObject2.H = true;
                     return;
@@ -58,8 +58,8 @@ public final class bm0 implements p8c {
                 return;
             case 6:
                 View view4 = (View) obj;
-                if (view4 instanceof jx8) {
-                    ((jx8) view4).c.invalidate();
+                if (view4 instanceof v09) {
+                    ((v09) view4).c.invalidate();
                     return;
                 }
                 return;
@@ -73,15 +73,15 @@ public final class bm0 implements p8c {
                 ((View) obj).setTranslationY(0.0f);
                 return;
             case 9:
-                ((uf3) ((View) obj)).invalidate();
+                ((og3) ((View) obj)).invalidate();
                 return;
             case 10:
                 SurfaceTexture surfaceTexture = (SurfaceTexture) obj;
                 return;
             case 11:
                 View view6 = (View) obj;
-                if (view6 instanceof zw0) {
-                    ((zw0) view6).getTextView().invalidate();
+                if (view6 instanceof hx0) {
+                    ((hx0) view6).getTextView().invalidate();
                     return;
                 } else {
                     view6.invalidate();
@@ -91,18 +91,18 @@ public final class bm0 implements p8c {
                 ((View) obj).invalidate();
                 return;
             case 13:
-                ((i35) obj).a();
+                ((m55) obj).a();
                 return;
             case 14:
-                ((i35) obj).b();
+                ((m55) obj).b();
                 return;
             case 15:
                 ((Boolean) obj).getClass();
                 return;
             case 16:
                 View view7 = (View) obj;
-                if (view7 instanceof bb) {
-                    ((bb) view7).setChecked(false);
+                if (view7 instanceof cb) {
+                    ((cb) view7).setChecked(false);
                     return;
                 }
                 return;
@@ -111,13 +111,13 @@ public final class bm0 implements p8c {
                 return;
             case 18:
                 View view8 = (View) obj;
-                if (view8 instanceof yy6) {
-                    yy6 yy6Var = (yy6) view8;
-                    yy6Var.b.invalidate();
-                    yy6Var.c.invalidate();
+                if (view8 instanceof f17) {
+                    f17 f17Var = (f17) view8;
+                    f17Var.b.invalidate();
+                    f17Var.c.invalidate();
                     return;
-                } else if (view8 instanceof jx8) {
-                    ((jx8) view8).c.invalidate();
+                } else if (view8 instanceof v09) {
+                    ((v09) view8).c.invalidate();
                     return;
                 } else {
                     view8.invalidate();
@@ -126,26 +126,26 @@ public final class bm0 implements p8c {
             case 19:
                 Long l = (Long) obj;
                 if (l != null && l.longValue() != Long.MAX_VALUE) {
-                    d S = LaunchActivity.S();
+                    e S = LaunchActivity.S();
                     if (S != null) {
-                        S.presentFragment(ProfileActivity.P2(l.longValue()));
+                        S.presentFragment(ProfileActivity.Q2(l.longValue()));
                         return;
                     }
                     return;
                 }
-                gl.c3(new am6((byte) 5));
+                hl.c3(new pg6((byte) 7));
                 return;
             case 20:
                 SurfaceTexture surfaceTexture2 = (SurfaceTexture) obj;
                 Drawable[] drawableArr = PhotoViewer.d9;
-                if (surfaceTexture2 != null) {
-                    surfaceTexture2.release();
-                    return;
-                }
                 return;
             case 21:
                 SurfaceTexture surfaceTexture3 = (SurfaceTexture) obj;
                 Drawable[] drawableArr2 = PhotoViewer.d9;
+                if (surfaceTexture3 != null) {
+                    surfaceTexture3.release();
+                    return;
+                }
                 return;
             case 22:
                 Boolean bool2 = (Boolean) obj;
@@ -153,36 +153,36 @@ public final class bm0 implements p8c {
                 return;
             case 23:
                 View view9 = (View) obj;
-                if (view9 instanceof jx8) {
-                    ((jx8) view9).d.a(false, true);
+                if (view9 instanceof v09) {
+                    ((v09) view9).d.a(false, true);
                     return;
                 }
                 return;
             case 24:
                 HashSet hashSet = (HashSet) obj;
-                String str = k96.D0().B.f;
-                hashSet.addAll(qa9.b0());
-                SharedPreferences.Editor edit = na7.c1().edit();
+                String str = ob6.D0().B.f;
+                hashSet.addAll(ee9.b0());
+                SharedPreferences.Editor edit = uc7.e1().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
                     edit.remove("translate_button_restricted_languages");
                 } else {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                qa9.s = false;
+                ee9.s = false;
                 for (int i2 = 0; i2 < 4; i2++) {
                     try {
-                        na7.q1(i2).i4.f();
+                        uc7.s1(i2).i4.f();
                     } catch (Exception unused) {
                     }
                 }
                 return;
             case 25:
-                kk7 e = kk7.e();
+                jn7 e = jn7.e();
                 if (((Boolean) obj).booleanValue()) {
-                    i = 98;
-                } else {
                     i = 99;
+                } else {
+                    i = 100;
                 }
                 e.k(i, 4);
                 return;
@@ -196,15 +196,15 @@ public final class bm0 implements p8c {
                 return;
             case 28:
                 View view11 = (View) obj;
-                if (view11 instanceof xya) {
-                    ((xya) view11).a(true);
+                if (view11 instanceof x2b) {
+                    ((x2b) view11).a(true);
                     return;
                 }
                 return;
             default:
                 View view12 = (View) obj;
-                if (view12 instanceof xya) {
-                    ((xya) view12).c(true);
+                if (view12 instanceof x2b) {
+                    ((x2b) view12).c(true);
                     return;
                 }
                 return;

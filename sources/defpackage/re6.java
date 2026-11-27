@@ -1,44 +1,45 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.Components.EditTextBoldCursor;
 public final class re6 implements Runnable {
     public final byte a;
-    public final ve6 b;
+    public final cg6 b;
 
-    public re6(ve6 ve6Var, byte b) {
+    public re6(cg6 cg6Var, byte b) {
         this.a = b;
-        this.b = ve6Var;
+        this.b = cg6Var;
     }
 
     @Override
     public final void run() {
-        int i;
         byte b = this.a;
-        ve6 ve6Var = this.b;
+        cg6 cg6Var = this.b;
         switch (b) {
             case 0:
-                ve6Var.o();
+                cg6Var.N.m();
                 return;
             case 1:
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "sms");
-                mf6 mf6Var = ve6Var.w;
-                i = ((d) mf6Var).currentAccount;
-                premiumPreviewFragment.setCurrentAccount(i);
-                mf6Var.presentFragment(premiumPreviewFragment);
+                cg6Var.O = null;
+                cg6Var.P = null;
+                cg6Var.o(true);
+                cg6Var.e.m(null, null, cg6Var.f, null);
+                di1 di1Var = cg6Var.n;
+                b29 b29Var = cg6Var.K;
+                di1Var.setAnimation(b29Var);
+                b29Var.H(0);
+                cg6Var.M = true;
                 return;
             case 2:
-                mf6 mf6Var2 = ve6Var.w;
-                mf6Var2.I1(0, true, null, true);
-                mf6Var2.y1(k96.M0(2131745878, null), k96.M0(2131752009, null));
-                return;
-            case 3:
-                mf6 mf6Var3 = ve6Var.w;
-                mf6Var3.I1(0, true, null, true);
-                mf6Var3.y1(k96.M0(2131745878, null), k96.M0(2131752009, null));
+                cg6Var.M = true;
                 return;
             default:
-                ve6Var.b.setLoading(false);
+                EditTextBoldCursor editTextBoldCursor = cg6Var.c;
+                if (editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                    hl.E3(editTextBoldCursor);
+                    return;
+                }
                 return;
         }
     }

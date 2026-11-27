@@ -1,71 +1,78 @@
 package defpackage;
 
-import android.view.View;
-public final class vha implements v46, be3 {
-    public final View a;
-    public boolean b;
-    public float c = 1.0f;
-    public float d = 1.0f;
-    public float e = 1.0f;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class vha implements rv9, kj6 {
+    public final xha a;
 
-    public vha(View view) {
-        this.a = view;
+    public vha(xha xhaVar) {
+        this.a = xhaVar;
     }
 
     @Override
-    public final void a() {
-        View view = this.a;
-        if (!wha.g(view)) {
-            if (view instanceof xha) {
-                ((xha) view).X();
-            } else {
-                view.setVisibility(8);
-            }
-            c(1.0f, 1.0f);
-        }
+    public final boolean C1(int i) {
+        return true;
     }
 
     @Override
-    public final int b(boolean z) {
-        return 0;
+    public final zh6 D0() {
+        return null;
     }
 
-    public final void c(float f, float f2) {
-        float f3 = this.c;
-        if (f3 == f && this.d == f2) {
-            return;
-        }
-        int i = (f3 > 1.0f ? 1 : (f3 == 1.0f ? 0 : -1));
-        View view = this.a;
-        if (i == 0) {
-            this.e = view.getAlpha();
-        }
-        this.c = f;
-        this.d = f2;
-        view.setAlpha(this.e * f);
-        float min = Math.min(gl.R1(0.6f, 1.0f, f), f2);
-        view.setScaleX(min);
-        view.setScaleY(min);
+    @Override
+    public final zh6 Z0() {
+        return null;
     }
 
-    public final boolean equals(Object obj) {
-        if ((obj instanceof vha) && ((vha) obj).a == this.a) {
-            return true;
+    @Override
+    public final boolean a(lj6 lj6Var, boolean z) {
+        int intValue = ((Integer) lj6Var.getTag()).intValue();
+        xha xhaVar = this.a;
+        TLObject E = xhaVar.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = r47.B1(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return xhaVar.s.G1.g(tL_chatChannelParticipant, true, !z, lj6Var);
         }
         return false;
     }
 
     @Override
-    public final int getHeight() {
-        return this.a.getMeasuredHeight();
+    public final void p(int i) {
+        xha xhaVar = this.a;
+        xhaVar.f();
+        if (i == 1) {
+            int i2 = xhaVar.r - 1;
+            xhaVar.r = i2;
+            if (i2 == 0) {
+                int i3 = 0;
+                while (true) {
+                    eja ejaVar = xhaVar.s;
+                    zha[] zhaVarArr = ejaVar.n0;
+                    if (i3 < zhaVarArr.length) {
+                        zha zhaVar = zhaVarArr[i3];
+                        if (zhaVar.F == 7) {
+                            if (xhaVar.h == 0) {
+                                zhaVar.w.e(false, true);
+                            } else {
+                                ejaVar.i(zhaVar.h, 0, null);
+                            }
+                        }
+                        i3++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     @Override
-    public final int getWidth() {
-        return wha.e(this.a);
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
+    public final void X1(ArrayList arrayList) {
     }
 }

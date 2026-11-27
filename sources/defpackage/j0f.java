@@ -1,17 +1,17 @@
 package defpackage;
-public final class j0f {
-    public final boolean equals(Object obj) {
-        if (obj == this || (obj instanceof j0f)) {
-            return true;
+public final class j0f implements zq7 {
+    public static final j0f a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 1269983555;
-    }
-
-    public final String toString() {
-        return "MLKitLoggingOptions{libraryName=vision-common, enableFirelog=true, firelogEventType=1}";
+        throw new ClassCastException();
     }
 }

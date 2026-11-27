@@ -1,35 +1,40 @@
 package defpackage;
-public final class x5f extends vef {
-    private static final x5f zzb;
-    private int zzd;
-    private int zze = 0;
-    private Object zzf;
-    private long zzg;
-
-    static {
-        x5f x5fVar = new x5f();
-        zzb = x5fVar;
-        vef.e(x5f.class, x5fVar);
+public abstract class x5f {
+    public void a(p4f p4fVar, p4f p4fVar2) {
+        p4fVar.b = p4fVar2;
     }
 
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new x5f();
+    public void b(p4f p4fVar, Thread thread) {
+        p4fVar.a = thread;
+    }
+
+    public boolean c(p9f p9fVar, wge wgeVar, wge wgeVar2) {
+        synchronized (p9fVar) {
+            if (p9fVar.b == wgeVar) {
+                p9fVar.b = wgeVar2;
+                return true;
             }
-            return new sgf(zzb, "\u0001\u0004\u0001\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001စ\u0000\u0002:\u0000\u00035\u0000\u00048\u0000", new Object[]{"zzf", "zze", "zzd", "zzg"});
+            return false;
         }
-        return (byte) 1;
+    }
+
+    public boolean d(p9f p9fVar, Object obj, Object obj2) {
+        synchronized (p9fVar) {
+            if (p9fVar.a == obj) {
+                p9fVar.a = obj2;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public boolean e(p9f p9fVar, p4f p4fVar, p4f p4fVar2) {
+        synchronized (p9fVar) {
+            if (p9fVar.c == p4fVar) {
+                p9fVar.c = p4fVar2;
+                return true;
+            }
+            return false;
+        }
     }
 }

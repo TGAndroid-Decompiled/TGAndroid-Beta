@@ -1,60 +1,33 @@
 package defpackage;
+public final class j1f {
+    public final hie a;
+    public final String b;
+    public final Object[] c;
+    public final int d;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public abstract class j1f {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String sb;
-        int i = 0;
-        int i2 = 0;
+    public j1f(hie hieVar, String str, Object[] objArr) {
+        this.a = hieVar;
+        this.b = str;
+        this.c = objArr;
+        char charAt = str.charAt(0);
+        if (charAt < 55296) {
+            this.d = charAt;
+            return;
+        }
+        int i = charAt & 8191;
+        int i2 = 13;
+        int i3 = 1;
         while (true) {
-            length = objArr.length;
-            if (i2 >= length) {
-                break;
-            }
-            Object obj = objArr[i2];
-            if (obj == null) {
-                sb = "null";
+            int i4 = i3 + 1;
+            char charAt2 = str.charAt(i3);
+            if (charAt2 >= 55296) {
+                i |= (charAt2 & 8191) << i2;
+                i2 += 13;
+                i3 = i4;
             } else {
-                try {
-                    sb = obj.toString();
-                } catch (Exception e) {
-                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e);
-                    StringBuilder p = ug8.p("<", str2, " threw ");
-                    p.append(e.getClass().getName());
-                    p.append(">");
-                    sb = p.toString();
-                }
+                this.d = i | (charAt2 << i2);
+                return;
             }
-            objArr[i2] = sb;
-            i2++;
         }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length << 4));
-        int i3 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i >= length2 || (indexOf = str.indexOf("%s", i3)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i3, indexOf);
-            sb2.append(objArr[i]);
-            i++;
-            i3 = indexOf + 2;
-        }
-        sb2.append((CharSequence) str, i3, str.length());
-        if (i < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i]);
-            for (int i4 = i + 1; i4 < objArr.length; i4++) {
-                sb2.append(", ");
-                sb2.append(objArr[i4]);
-            }
-            sb2.append(']');
-        }
-        return sb2.toString();
     }
 }

@@ -1,26 +1,29 @@
 package defpackage;
 public final class ha0 {
-    public final Integer a;
+    public String a;
+    public int b;
+    public String c;
+    public String d;
+    public long e;
+    public long f;
+    public String g;
+    public byte h;
 
-    public ha0(Integer num) {
-        this.a = num;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final ia0 a() {
+        if (this.h == 3 && this.b != 0) {
+            return new ia0(this.a, this.b, this.c, this.d, this.e, this.f, this.g);
         }
-        if (obj instanceof ha0) {
-            return this.a.equals(((ha0) obj).a);
+        StringBuilder sb = new StringBuilder();
+        if (this.b == 0) {
+            sb.append(" registrationStatus");
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 1000003 ^ this.a.hashCode();
-    }
-
-    public final String toString() {
-        return "ProductData{productId=" + this.a + "}";
+        if ((this.h & 1) == 0) {
+            sb.append(" expiresInSecs");
+        }
+        if ((this.h & 2) == 0) {
+            sb.append(" tokenCreationEpochInSecs");
+        }
+        grb.i(bs2.o("Missing required properties:", sb));
+        return null;
     }
 }

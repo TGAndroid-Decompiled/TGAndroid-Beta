@@ -1,73 +1,67 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ei1 implements Runnable {
-    public final byte a;
-    public final zi1 b;
+import android.content.Context;
+import android.view.ContextThemeWrapper;
+import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.PhotoViewer;
+public final class ei1 extends RadialProgressView {
+    public final byte O;
+    public final Object P;
 
-    public ei1(zi1 zi1Var, byte b) {
-        this.a = b;
-        this.b = zi1Var;
+    public ei1(yn5 yn5Var, Context context, byte b) {
+        super(context, null);
+        this.O = b;
+        this.P = yn5Var;
     }
 
     @Override
-    public final void run() {
-        boolean z;
-        byte b = this.a;
-        boolean z2 = false;
-        zi1 zi1Var = this.b;
-        switch (b) {
-            case 0:
-                d01.t(zi1Var.getContext(), k96.M0(2131748212, null));
-                return;
-            case 1:
-                d01.t(zi1Var.getContext(), k96.M0(2131748178, null));
-                return;
-            case 2:
-                q5c q5cVar = zi1Var.X0;
-                if (q5cVar != null) {
-                    boolean z3 = zi1Var.f0;
-                    if (zi1Var.R0 != -1) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    l5c l5cVar = q5cVar.g3;
-                    if (z == zi1Var.a1.a()) {
-                        z2 = true;
-                    }
-                    l5cVar.O(z2);
-                    if (z3 && zi1Var.R0 != -1) {
-                        zi1Var.a();
-                        return;
-                    }
+    public final void invalidate() {
+        switch (this.O) {
+            case 3:
+                super.invalidate();
+                ad8 ad8Var = ((PhotoViewer) this.P).f0;
+                if (ad8Var != null) {
+                    ad8Var.invalidate();
                     return;
                 }
                 return;
-            case 3:
-                zi1Var.k1 = zi1Var.j1;
+            default:
+                super.invalidate();
                 return;
-            case 4:
-                zi1Var.J0.setLoading(false);
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f) {
+        byte b = this.O;
+        Object obj = this.P;
+        switch (b) {
+            case 0:
+                super.setAlpha(f);
+                ((gi1) obj).h.invalidate();
                 return;
-            case 5:
-                zi1Var.Y0.setVisibility(8);
+            case 1:
+                super.setAlpha(f);
+                ((xc5) obj).e.invalidate();
                 return;
-            case 6:
-                zi1Var.Y0.setVisibility(8);
+            case 2:
+                super.setAlpha(f);
+                ((cg6) obj).h.invalidate();
                 return;
             default:
-                int i = zi1Var.o0;
-                gl.r(zi1Var.s1);
-                if (zi1Var.j1 != zi1Var.k1) {
-                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = na7.q1(i).f1(-zi1Var.p0);
-                    tL_channels_restrictSponsoredMessages.restricted = zi1Var.j1;
-                    ConnectionsManager.getInstance(i).sendRequest(tL_channels_restrictSponsoredMessages, new ii1(zi1Var, (byte) 0));
+                super.setAlpha(f);
+                ad8 ad8Var = ((PhotoViewer) obj).f0;
+                if (ad8Var != null) {
+                    ad8Var.invalidate();
                     return;
                 }
                 return;
         }
+    }
+
+    public ei1(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, vnb vnbVar) {
+        super(contextThemeWrapper, vnbVar);
+        this.O = (byte) 3;
+        this.P = photoViewer;
     }
 }

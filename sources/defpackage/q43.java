@@ -1,41 +1,48 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class q43 extends ImageView {
-    public final byte a = 0;
-    public Object b;
-    public final ViewGroup c;
+import java.util.List;
+public final class q43 implements heb {
+    public static final d51 c = new d51(new p31((byte) 3), pk7.b);
+    public final po5 a;
+    public final long[] b;
 
-    public q43(s43 s43Var, Context context, gi3 gi3Var) {
-        super(context);
-        this.c = s43Var;
-        this.b = gi3Var;
+    public q43(defpackage.j99 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.q43.<init>(j99):void");
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                s43 s43Var = (s43) this.c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (s43Var.n || s43Var.f)) {
-                    s43Var.n = false;
-                    s43Var.f = false;
-                    removeCallbacks(s43Var.r);
-                    removeCallbacks(s43Var.h);
-                }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((gi3) this.b).a).onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final int b(long j) {
+        int b = gcc.b(this.b, j, false);
+        if (b < this.a.size()) {
+            return b;
         }
+        return -1;
     }
 
-    public q43(t09 t09Var, Context context) {
-        super(context);
-        this.c = t09Var;
+    @Override
+    public final long i(int i) {
+        boolean z;
+        if (i < this.a.size()) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.f(z);
+        return this.b[i];
+    }
+
+    @Override
+    public final List l(long j) {
+        int f = gcc.f(this.b, j, false);
+        if (f == -1) {
+            no5 no5Var = po5.b;
+            return j99.e;
+        }
+        return (po5) this.a.get(f);
+    }
+
+    @Override
+    public final int q() {
+        return this.a.size();
     }
 }

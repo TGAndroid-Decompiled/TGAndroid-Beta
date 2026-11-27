@@ -1,177 +1,91 @@
 package defpackage;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import java.util.ArrayList;
-import java.util.List;
-public class pw2 extends Path {
-    public static ArrayList g;
-    public int e;
-    public int f;
-    public boolean b = false;
-    public boolean c = true;
-    public float d = 0.0f;
-    public final ArrayList a = new ArrayList(1);
+import android.view.ViewGroup;
+import org.telegram.tgnet.TLRPC;
+public interface pw2 {
+    boolean A();
 
-    public pw2(int i) {
-    }
+    boolean C(TLRPC.Document document);
 
-    public final void a() {
-        if (Build.VERSION.SDK_INT >= 34 && this.c && !this.b) {
-            b(this.a);
-            this.b = true;
-        }
-    }
+    void D(TLRPC.Document document);
 
-    @Override
-    public final void addRect(RectF rectF, Path.Direction direction) {
-        RectF rectF2;
-        if (Build.VERSION.SDK_INT >= 34 && this.c) {
-            ArrayList arrayList = this.a;
-            if (arrayList.size() > 0 && ((RectF) b00.f(1, arrayList)).contains(rectF)) {
-                return;
-            }
-            if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) b00.f(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) b00.f(1, arrayList)).bottom) <= this.d) {
-                ((RectF) b00.f(1, arrayList)).union(rectF);
-            } else {
-                ArrayList arrayList2 = g;
-                if (arrayList2 != null && arrayList2.size() > 0) {
-                    rectF2 = (RectF) g.remove(0);
-                } else {
-                    rectF2 = new RectF();
-                }
-                rectF2.set(rectF);
-                arrayList.add(rectF2);
-            }
-            this.b = false;
-            return;
-        }
-        float f = rectF.left;
-        int i = this.e;
-        float f2 = f - i;
-        float f3 = rectF.top;
-        int i2 = this.f;
-        super.addRect(f2, f3 - i2, rectF.right + i, rectF.bottom + i2, direction);
-    }
+    String E(boolean z);
 
-    public final void b(List list) {
-        if (!list.isEmpty()) {
-            boolean z = false;
-            if (list.size() == 1) {
-                super.addRect(((RectF) list.get(0)).left - this.e, ((RectF) list.get(0)).top - this.f, ((RectF) list.get(0)).right + this.e, ((RectF) list.get(0)).bottom + this.f, Path.Direction.CW);
-                return;
-            }
-            RectF rectF = (RectF) list.get(0);
-            int size = list.size() - 1;
-            super.moveTo(rectF.left - this.e, rectF.top - this.f);
-            for (int i = 1; i < list.size(); i++) {
-                RectF rectF2 = (RectF) list.get(i);
-                if (rectF2.width() != 0.0f) {
-                    float f = rectF.bottom;
-                    int i2 = this.f;
-                    float f2 = f + i2;
-                    float f3 = rectF2.top;
-                    if (f2 >= f3 - i2) {
-                        float f4 = rectF.left;
-                        if (f4 <= rectF2.right) {
-                            float f5 = rectF.right;
-                            float f6 = rectF2.left;
-                            if (f5 >= f6) {
-                                if (f4 != f6) {
-                                    super.lineTo(f4 - this.e, f3);
-                                    super.lineTo(rectF2.left - this.e, rectF2.top);
-                                }
-                                rectF = rectF2;
-                            }
-                        }
-                    }
-                    z = true;
-                    size = i;
-                    break;
-                }
-            }
-            super.lineTo(rectF.left - this.e, rectF.bottom + this.f);
-            super.lineTo(rectF.right + this.e, rectF.bottom + this.f);
-            for (int i3 = size - 1; i3 >= 0; i3--) {
-                RectF rectF3 = (RectF) list.get(i3);
-                if (rectF3.width() != 0.0f) {
-                    float f7 = rectF.right;
-                    if (f7 != rectF3.right) {
-                        super.lineTo(f7 + this.e, rectF.top);
-                        super.lineTo(rectF3.right + this.e, rectF.top);
-                    }
-                    rectF = rectF3;
-                }
-            }
-            super.lineTo(rectF.right + this.e, rectF.top - this.f);
-            super.close();
-            if (z) {
-                b(list.subList(size, list.size()));
-            }
-        }
-    }
+    void F(CharSequence charSequence, String str, rx1 rx1Var);
 
-    @Override
-    public void reset() {
-        super.reset();
-        if (Build.VERSION.SDK_INT >= 34 && this.c) {
-            ArrayList arrayList = g;
-            ArrayList arrayList2 = this.a;
-            if (arrayList == null) {
-                arrayList = new ArrayList(arrayList2.size());
-                g = arrayList;
-            }
-            arrayList.addAll(arrayList2);
-            arrayList2.clear();
-            this.b = false;
-        }
-    }
+    void G(TLRPC.Document document);
 
-    @Override
-    public final void rewind() {
-        super.rewind();
-        if (Build.VERSION.SDK_INT >= 34 && this.c) {
-            ArrayList arrayList = g;
-            ArrayList arrayList2 = this.a;
-            if (arrayList == null) {
-                arrayList = new ArrayList(arrayList2.size());
-                g = arrayList;
-            }
-            arrayList.addAll(arrayList2);
-            arrayList2.clear();
-            this.b = false;
-        }
-    }
+    boolean H();
 
-    public pw2() {
-    }
+    fu5 J(ViewGroup viewGroup);
 
-    @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        RectF rectF;
-        if (Build.VERSION.SDK_INT >= 34 && this.c) {
-            ArrayList arrayList = this.a;
-            if (arrayList.size() <= 0 || !((RectF) b00.f(1, arrayList)).contains(f, f2, f3, f4)) {
-                if (arrayList.size() > 0 && Math.abs(f2 - ((RectF) b00.f(1, arrayList)).top) <= this.d && Math.abs(f4 - ((RectF) b00.f(1, arrayList)).bottom) <= this.d) {
-                    ((RectF) b00.f(1, arrayList)).union(f, f2, f3, f4);
-                } else {
-                    ArrayList arrayList2 = g;
-                    if (arrayList2 != null && arrayList2.size() > 0) {
-                        rectF = (RectF) g.remove(0);
-                    } else {
-                        rectF = new RectF();
-                    }
-                    rectF.set(f, f2, f3, f4);
-                    arrayList.add(rectF);
-                }
-                this.b = false;
-                return;
-            }
-            return;
-        }
-        int i = this.e;
-        int i2 = this.f;
-        super.addRect(f - i, f2 - i2, f3 + i, f4 + i2, direction);
-    }
+    void K(k7a k7aVar);
+
+    void L(Object obj, Object obj2);
+
+    boolean M();
+
+    void N();
+
+    void O();
+
+    void P(TLRPC.InputStickerSet inputStickerSet, boolean z);
+
+    boolean Q(TLRPC.Document document);
+
+    void R(String str);
+
+    Boolean S(TLRPC.Document document);
+
+    boolean T();
+
+    long a();
+
+    boolean b();
+
+    boolean c();
+
+    TLRPC.TL_messageMediaPoll d();
+
+    boolean e(TLRPC.Document document);
+
+    boolean f();
+
+    TLRPC.PollAnswer g();
+
+    boolean h();
+
+    boolean i();
+
+    boolean j(int i);
+
+    void k(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2);
+
+    void l(String str);
+
+    void m(TLRPC.Document document);
+
+    boolean n();
+
+    void o(TLRPC.Document document);
+
+    void p();
+
+    void r();
+
+    void s(TLRPC.Document document);
+
+    void t(TLRPC.StickerSet stickerSet, String str);
+
+    boolean u();
+
+    void v(Object obj, Object obj2, boolean z, int i, int i2);
+
+    void w(String str);
+
+    r47 x();
+
+    boolean y();
+
+    void z(TLRPC.Document document);
 }

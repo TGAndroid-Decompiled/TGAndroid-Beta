@@ -1,57 +1,19 @@
 package defpackage;
-public abstract class r4f {
-    public static String a(xdf xdfVar) {
-        StringBuilder sb = new StringBuilder(xdfVar.j());
-        for (int i = 0; i < xdfVar.j(); i++) {
-            byte h = xdfVar.h(i);
-            if (h != 34) {
-                if (h != 39) {
-                    if (h != 92) {
-                        switch (h) {
-                            case 7:
-                                sb.append("\\a");
-                                continue;
-                            case 8:
-                                sb.append("\\b");
-                                continue;
-                            case 9:
-                                sb.append("\\t");
-                                continue;
-                            case 10:
-                                sb.append("\\n");
-                                continue;
-                            case 11:
-                                sb.append("\\v");
-                                continue;
-                            case 12:
-                                sb.append("\\f");
-                                continue;
-                            case 13:
-                                sb.append("\\r");
-                                continue;
-                            default:
-                                if (h >= 32 && h <= 126) {
-                                    sb.append((char) h);
-                                    continue;
-                                } else {
-                                    sb.append('\\');
-                                    sb.append((char) (((h >>> 6) & 3) + 48));
-                                    sb.append((char) (((h >>> 3) & 7) + 48));
-                                    sb.append((char) ((h & 7) + 48));
-                                    break;
-                                }
-                                break;
-                        }
-                    } else {
-                        sb.append("\\\\");
-                    }
-                } else {
-                    sb.append("\\'");
-                }
-            } else {
-                sb.append("\\\"");
-            }
-        }
-        return sb.toString();
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class r4f extends c4 {
+    public static final Parcelable.Creator<r4f> CREATOR = new t4f((byte) 4);
+    public final byte[] a;
+
+    public r4f(byte[] bArr) {
+        this.a = bArr;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.c(parcel, 1, this.a);
+        bye.s(parcel, r);
     }
 }

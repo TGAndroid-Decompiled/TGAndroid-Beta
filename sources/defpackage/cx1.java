@@ -1,43 +1,55 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Paint;
+import android.widget.ImageView;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class cx1 extends ap0 {
-    public boolean s;
-    public final ChatActivityEnterView w;
+public final class cx1 extends ImageView {
+    public float a;
+    public final ChatActivityEnterView b;
 
     public cx1(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.w = chatActivityEnterView;
-        this.a = null;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f = true;
-        this.b = new zw8((byte) 3);
-        fu fuVar = new fu((byte) 1, context, this);
-        this.c = fuVar;
-        fuVar.setOverScrollMode(2);
-        fuVar.setClipToPadding(false);
-        fuVar.setClipToOutline(true);
-        fuVar.j(new y(this, (byte) 7));
-        addView(fuVar);
-        paint.setColor(bkb.w0(null, bkb.yj, false));
-        il0 il0Var = this.r;
-        if (il0Var != null) {
-            il0Var.updateColors();
-        }
-        invalidate();
-        setClipChildren(false);
-        this.s = false;
+        this.b = chatActivityEnterView;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        if (!this.s) {
-            this.s = true;
-            this.w.i2();
+    public final float getTranslationX() {
+        return this.a;
+    }
+
+    @Override
+    public final void setTranslationX(float f) {
+        float f2;
+        float alpha;
+        this.a = f;
+        float f3 = -44.0f;
+        float L = hl.L(-44.0f) + this.a;
+        ChatActivityEnterView chatActivityEnterView = this.b;
+        float f4 = L + chatActivityEnterView.E + chatActivityEnterView.y;
+        vw1 vw1Var = chatActivityEnterView.z2;
+        float f5 = 0.0f;
+        if (vw1Var != null && vw1Var.getVisibility() == 0) {
+            f2 = -44.0f;
+        } else {
+            f2 = 0.0f;
         }
+        float L2 = hl.L(f2);
+        vw1 vw1Var2 = chatActivityEnterView.z2;
+        if (vw1Var2 == null) {
+            alpha = 0.0f;
+        } else {
+            alpha = vw1Var2.getAlpha();
+        }
+        float f6 = (L2 * alpha) + f4;
+        vw1 vw1Var3 = chatActivityEnterView.m2;
+        if (vw1Var3 == null || vw1Var3.getVisibility() != 0) {
+            f3 = 0.0f;
+        }
+        float L3 = hl.L(f3);
+        vw1 vw1Var4 = chatActivityEnterView.m2;
+        if (vw1Var4 != null) {
+            f5 = vw1Var4.getAlpha();
+        }
+        super.setTranslationX((L3 * f5) + f6);
     }
 }

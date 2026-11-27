@@ -1,28 +1,17 @@
 package defpackage;
+public final class t0f implements zq7 {
+    public static final t0f a = new Object();
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-public abstract class t0f {
-    public static boolean a(o7a o7aVar, Collection collection) {
-        collection.getClass();
-        if (collection instanceof yed) {
-            collection = ((yed) collection).zza();
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        boolean z = false;
-        if ((collection instanceof Set) && collection.size() > o7aVar.size()) {
-            Iterator<E> it = o7aVar.iterator();
-            while (it.hasNext()) {
-                if (collection.contains(it.next())) {
-                    it.remove();
-                    z = true;
-                }
-            }
-            return z;
-        }
-        for (Object obj : collection) {
-            z |= o7aVar.remove(obj);
-        }
-        return z;
+        throw new ClassCastException();
     }
 }

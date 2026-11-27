@@ -1,17 +1,18 @@
 package defpackage;
-public final class pld implements zn7 {
-    public static final pld a = new Object();
+
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class pld {
+    public static final int a = 0;
 
     static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
+        pld.class.getClassLoader();
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        throw new ClassCastException();
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

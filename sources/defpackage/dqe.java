@@ -1,17 +1,42 @@
 package defpackage;
-public final class dqe implements zn7 {
-    public static final dqe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import java.util.AbstractCollection;
+import java.util.Iterator;
+import java.util.List;
+public abstract class dqe {
+    public static Object a(AbstractCollection abstractCollection, String str) {
+        Iterator it = abstractCollection.iterator();
+        if (it.hasNext()) {
+            return it.next();
+        }
+        return str;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static Object b(Iterable iterable) {
+        Object next;
+        if (iterable instanceof List) {
+            List list = (List) iterable;
+            if (!list.isEmpty()) {
+                return bp1.m(1, list);
+            }
+            lq5.n();
+            return null;
         }
-        throw new ClassCastException();
+        Iterator it = iterable.iterator();
+        do {
+            next = it.next();
+        } while (it.hasNext());
+        return next;
+    }
+
+    public static void c(List list, pj8 pj8Var, int i, int i2) {
+        for (int size = list.size() - 1; size > i2; size--) {
+            if (pj8Var.apply(list.get(size))) {
+                list.remove(size);
+            }
+        }
+        for (int i3 = i2 - 1; i3 >= i; i3--) {
+            list.remove(i3);
+        }
     }
 }

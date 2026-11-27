@@ -1,34 +1,37 @@
 package defpackage;
-public final class ma0 {
-    public final na0 a;
-    public final pa0 b;
-    public final oa0 c;
 
-    public ma0(na0 na0Var, pa0 pa0Var, oa0 oa0Var) {
-        this.a = na0Var;
-        this.b = pa0Var;
-        this.c = oa0Var;
+import java.util.Set;
+public final class ma0 {
+    public final long a;
+    public final long b;
+    public final Set c;
+
+    public ma0(long j, long j2, Set set) {
+        this.a = j;
+        this.b = j2;
+        this.c = set;
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof ma0) {
-                ma0 ma0Var = (ma0) obj;
-                if (this.a.equals(ma0Var.a) && this.b.equals(ma0Var.b) && this.c.equals(ma0Var.c)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+        if (obj == this) {
+            return true;
         }
-        return true;
+        if (obj instanceof ma0) {
+            ma0 ma0Var = (ma0) obj;
+            if (this.a == ma0Var.a && this.b == ma0Var.b && this.c.equals(ma0Var.c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode()) * 1000003) ^ this.c.hashCode();
+        long j = this.a;
+        long j2 = this.b;
+        return ((((((int) ((j >>> 32) ^ j)) ^ 1000003) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003) ^ this.c.hashCode();
     }
 
     public final String toString() {
-        return "StaticSessionData{appData=" + this.a + ", osData=" + this.b + ", deviceData=" + this.c + "}";
+        return "ConfigValue{delta=" + this.a + ", maxAllowedDelay=" + this.b + ", flags=" + this.c + "}";
     }
 }

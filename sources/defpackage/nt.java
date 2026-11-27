@@ -1,37 +1,45 @@
 package defpackage;
 
-import android.net.Uri;
+import java.util.HashMap;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.o;
-public final class nt implements h8c {
-    public final o a;
-    public final String b;
-    public final boolean[] c;
-    public final vt d;
+public final class nt implements RequestDelegate {
+    public final byte a = 0;
+    public final long b;
+    public final int c;
+    public final fn7 d;
 
-    public nt(o oVar, String str, boolean[] zArr, vt vtVar) {
-        this.a = oVar;
-        this.b = str;
-        this.c = zArr;
-        this.d = vtVar;
+    public nt(uc7 uc7Var, long j, int i) {
+        this.d = uc7Var;
+        this.b = j;
+        this.c = i;
     }
 
     @Override
-    public final Object run() {
-        String str = this.b;
-        if (!d01.g(Uri.parse(str), false, this.c)) {
-            return Boolean.FALSE;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        byte b = this.a;
+        fn7 fn7Var = this.d;
+        switch (b) {
+            case 0:
+                hl.c3(new r77((o) fn7Var, tLObject, this.c, this.b, (byte) 2));
+                return;
+            default:
+                uc7 uc7Var = (uc7) fn7Var;
+                HashMap hashMap = uc7Var.h5;
+                hashMap.remove(this.b + "_" + this.c);
+                if (tL_error == null && tLObject != null) {
+                    uc7Var.Y3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
+                return;
         }
-        o oVar = this.a;
-        vt vtVar = this.d;
-        if (vtVar != null) {
-            vtVar.c = new ee2(oVar, vtVar, (byte) 25);
-        } else {
-            sw swVar = oVar.L;
-            if (swVar != null) {
-                swVar.a(true);
-            }
-        }
-        d01.s(oVar.M, Uri.parse(str), true, true, false, vtVar, null, true, true, false, false);
-        return Boolean.TRUE;
+    }
+
+    public nt(o oVar, int i, long j) {
+        this.d = oVar;
+        this.c = i;
+        this.b = j;
     }
 }

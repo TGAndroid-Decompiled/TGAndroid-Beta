@@ -1,15 +1,11 @@
 package defpackage;
-public final class d6b implements Runnable {
-    public final byte a;
-    public final t7b b;
-
-    public d6b(t7b t7bVar, byte b) {
-        this.a = b;
-        this.b = t7bVar;
-    }
+public final class d6b extends o15 {
+    public int n;
+    public int o;
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d6b.run():void");
+    public final void e() {
+        d(aob.w0(null, this.n, false), aob.w0(null, this.o, false), 0, 0);
+        super.e();
     }
 }

@@ -1,32 +1,17 @@
 package defpackage;
-public final class tf2 extends ih2 {
-    public final byte i = 1;
 
-    public tf2(float f, float f2, int i) {
-        super(f, f2, i);
+import android.app.Activity;
+public final class tf2 extends by4 {
+    public final bg2 m1;
+
+    public tf2(bg2 bg2Var, Activity activity, bg2 bg2Var2) {
+        super(activity, bg2Var2);
+        this.m1 = bg2Var;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        switch (this.i) {
-            case 0:
-                return (int) ((this.b * 2.0f) + this.a);
-            default:
-                return gl.L(26.0f);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        switch (this.i) {
-            case 0:
-                return (int) ((this.b * 2.0f) + this.a);
-            default:
-                return gl.L(26.0f);
-        }
-    }
-
-    public tf2(int i) {
-        super(i);
+    public final void F0() {
+        bg2 bg2Var = this.m1;
+        bg2Var.getMessagesController().Q(bg2Var.getParentActivity(), bg2Var.n, bg2Var, new rd1(this, (byte) 27));
     }
 }

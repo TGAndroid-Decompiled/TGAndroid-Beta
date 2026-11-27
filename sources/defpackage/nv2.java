@@ -1,91 +1,62 @@
 package defpackage;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class nv2 implements View.OnClickListener {
-    public final byte a = 2;
-    public final boolean b;
-    public final Object c;
-    public final Object d;
+import org.telegram.messenger.voip.VoIPPendingCall;
+public final class nv2 implements fn7 {
+    public final byte a;
+    public final Object b;
 
-    public nv2(tv2 tv2Var, ArrayList arrayList, boolean z) {
-        this.c = tv2Var;
-        this.d = arrayList;
-        this.b = z;
+    public nv2(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        String str;
+    public final void didReceivedNotification(int i, int i2, Object[] objArr) {
+        wa waVar;
         byte b = this.a;
-        boolean z = this.b;
-        Object obj = this.d;
-        Object obj2 = this.c;
+        Object obj = this.b;
         switch (b) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                xv2 xv2Var = ((tv2) obj2).a;
-                if (xv2Var.w != null && xv2Var.l != null) {
-                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
-                    if (intValue == 0) {
-                        xv2Var.l.y(xv2Var.W);
-                    } else if (intValue == 1) {
-                        xv2Var.l.r(xv2Var.W);
-                    } else if (intValue == 2) {
-                        xv2Var.l.r(null);
-                    } else if (intValue == 3) {
-                        xv2Var.l.E(xv2Var.W);
-                    } else if (intValue == 4) {
-                        xv2Var.l.o(xv2Var.W);
-                    } else if (intValue == 5) {
-                        hq6.d0(xv2Var.r).d(2, xv2Var.b0, xv2Var.W, (int) (System.currentTimeMillis() / 1000), this.b);
-                    }
-                    xv2Var.d();
+                d30 d30Var = (d30) obj;
+                if (i == 25) {
+                    d30Var.o(false);
                     return;
                 }
                 return;
             case 1:
-                i61 i61Var = (i61) obj2;
-                Runnable runnable = (Runnable) obj;
-                d Q = LaunchActivity.Q();
-                if (Q != null) {
-                    if (z) {
-                        str = "lastseen";
-                    } else {
-                        str = "readtime";
-                    }
-                    Q.presentFragment(new PremiumPreviewFragment(0, str));
-                    i61Var.dismiss();
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
+                qmb qmbVar = (qmb) obj;
+                if (i == 263) {
+                    qmbVar.getTextView().invalidate();
                     return;
                 }
                 return;
-            default:
-                g29 g29Var = (g29) obj2;
-                Runnable runnable2 = (Runnable) obj;
-                if (z) {
-                    ((nfa) g29Var.b).J.p();
+            case 2:
+                ((fx0) obj).invalidate();
+                return;
+            case 3:
+                f09 f09Var = (f09) obj;
+                if (objArr.length > 1 && objArr[1] == f09Var.j2) {
+                    f09Var.y0();
+                    return;
                 }
-                runnable2.run();
+                return;
+            case 4:
+                dkb dkbVar = (dkb) obj;
+                if (i == 257) {
+                    hl.c3(new s8b(dkbVar, (byte) 13));
+                    return;
+                }
+                return;
+            case 5:
+                VoIPPendingCall.b((VoIPPendingCall) obj, i, i2, objArr);
+                return;
+            default:
+                muc mucVar = (muc) obj;
+                if (!mucVar.r && (waVar = mucVar.a) != null) {
+                    waVar.g3.O(true);
+                    return;
+                }
                 return;
         }
-    }
-
-    public nv2(g29 g29Var, boolean z, Runnable runnable) {
-        this.c = g29Var;
-        this.b = z;
-        this.d = runnable;
-    }
-
-    public nv2(boolean z, i61 i61Var, Runnable runnable) {
-        this.b = z;
-        this.c = i61Var;
-        this.d = runnable;
     }
 }

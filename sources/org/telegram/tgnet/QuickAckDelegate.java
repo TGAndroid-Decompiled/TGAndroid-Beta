@@ -1,4 +1,4 @@
 package org.telegram.tgnet;
 public interface QuickAckDelegate {
-    void run();
+    void mo24run();
 }

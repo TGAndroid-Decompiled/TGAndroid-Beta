@@ -1,66 +1,85 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.os.SystemClock;
-import com.google.android.gms.tasks.Task;
-import java.util.HashMap;
-public final class go5 {
-    public volatile Bitmap a;
-    public final int b;
-    public final int c;
-    public final int d;
+import java.io.OutputStream;
+import java.util.Arrays;
+public final class go5 extends OutputStream {
+    public byte[] a;
+    public int b;
 
-    public go5(int i, Bitmap bitmap) {
-        fre.h(bitmap);
-        this.a = bitmap;
-        this.b = bitmap.getWidth();
-        this.c = bitmap.getHeight();
-        boolean z = true;
-        if (i != 0 && i != 90 && i != 180 && i != 270) {
-            z = false;
-        }
-        fre.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z);
-        this.d = i;
+    public go5(int i) {
+        this.a = new byte[i];
     }
 
-    public static go5 a(int i, Bitmap bitmap) {
-        f1f b;
-        String a;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        go5 go5Var = new go5(i, bitmap);
-        int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
-        int allocationByteCount = bitmap.getAllocationByteCount();
-        synchronized (z1f.class) {
-            b = z1f.b(new Object());
+    public final void a(int i) {
+        byte[] bArr = this.a;
+        if (i - bArr.length > 0) {
+            int length = bArr.length << 1;
+            if (length - i < 0) {
+                length = i;
+            }
+            if (length - 2147483639 > 0) {
+                if (i >= 0) {
+                    if (i > 2147483639) {
+                        length = Integer.MAX_VALUE;
+                    } else {
+                        length = 2147483639;
+                    }
+                } else {
+                    throw new OutOfMemoryError();
+                }
+            }
+            this.a = Arrays.copyOf(bArr, length);
         }
-        long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
-        ule uleVar = ule.INPUT_IMAGE_CONSTRUCTION;
-        Task task = b.e;
-        long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = b.i;
-        if (hashMap.get(uleVar) != null && elapsedRealtime3 - ((Long) hashMap.get(uleVar)).longValue() <= 30000) {
-            return go5Var;
+    }
+
+    public final synchronized void b() {
+        this.b = 0;
+    }
+
+    public final void c(int i) {
+        a(this.b + 4);
+        byte[] bArr = this.a;
+        int i2 = this.b;
+        bArr[i2] = (byte) (i >>> 24);
+        bArr[i2 + 1] = (byte) (i >>> 16);
+        bArr[i2 + 2] = (byte) (i >>> 8);
+        bArr[i2 + 3] = (byte) i;
+        this.b = i2 + 4;
+    }
+
+    public final void d(long j) {
+        a(this.b + 8);
+        byte[] bArr = this.a;
+        int i = this.b;
+        bArr[i] = (byte) (j >>> 56);
+        bArr[i + 1] = (byte) (j >>> 48);
+        bArr[i + 2] = (byte) (j >>> 40);
+        bArr[i + 3] = (byte) (j >>> 32);
+        bArr[i + 4] = (byte) (j >>> 24);
+        bArr[i + 5] = (byte) (j >>> 16);
+        bArr[i + 6] = (byte) (j >>> 8);
+        bArr[i + 7] = (byte) j;
+        this.b = i + 8;
+    }
+
+    @Override
+    public final synchronized void write(byte[] bArr, int i, int i2) {
+        if (i >= 0) {
+            if (i <= bArr.length && i2 >= 0 && (i + i2) - bArr.length <= 0) {
+                a(this.b + i2);
+                System.arraycopy(bArr, i, this.a, this.b, i2);
+                this.b += i2;
+            }
         }
-        hashMap.put(uleVar, Long.valueOf(elapsedRealtime3));
-        ?? obj = new Object();
-        obj.c = nje.BITMAP;
-        obj.b = oke.BITMAP;
-        obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.a = Long.valueOf(elapsedRealtime2 & Long.MAX_VALUE);
-        obj.g = Integer.valueOf(i & Integer.MAX_VALUE);
-        xke xkeVar = new xke(obj);
-        rod rodVar = new rod((byte) 7);
-        rodVar.d = xkeVar;
-        aec aecVar = new aec(rodVar);
-        if (task.isSuccessful()) {
-            a = (String) task.getResult();
-        } else {
-            a = r06.c.a(b.g);
-        }
-        yjb.c(1, new ey1(b, aecVar, a));
-        return go5Var;
+        throw new IndexOutOfBoundsException();
+    }
+
+    @Override
+    public final synchronized void write(int i) {
+        a(this.b + 1);
+        byte[] bArr = this.a;
+        int i2 = this.b;
+        bArr[i2] = (byte) i;
+        this.b = i2 + 1;
     }
 }

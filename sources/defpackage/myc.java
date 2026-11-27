@@ -1,30 +1,26 @@
 package defpackage;
+public final class myc implements Runnable {
+    public final byte a;
+    public final pyc b;
 
-import android.content.Intent;
-import android.os.Binder;
-import android.os.Process;
-import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.FirebaseMessagingService;
-public final class myc extends Binder {
-    public final z24 a;
-
-    public myc(z24 z24Var) {
-        this.a = z24Var;
+    public myc(pyc pycVar, byte b) {
+        this.a = b;
+        this.b = pycVar;
     }
 
-    public final void a(nyc nycVar) {
-        if (Binder.getCallingUid() == Process.myUid()) {
-            if (Log.isLoggable("FirebaseMessaging", 3)) {
-                Log.d("FirebaseMessaging", "service received new intent via bind strategy");
+    private final void a() {
+        pyc pycVar = this.b;
+        pycVar.g();
+        synchronized (pycVar.a) {
+            if (pycVar.u) {
+                return;
             }
-            Intent intent = nycVar.a;
-            FirebaseMessagingService firebaseMessagingService = (FirebaseMessagingService) this.a.b;
-            TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-            firebaseMessagingService.a.execute(new mg3(firebaseMessagingService, intent, taskCompletionSource, (byte) 18));
-            taskCompletionSource.getTask().addOnCompleteListener(new hc((byte) 1), new dkc(nycVar, (byte) 11));
-            return;
+            hl.d3(new myc(pycVar, (byte) 2), 1000L);
         }
-        throw new SecurityException("Binding only allowed within app");
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.myc.run():void");
     }
 }

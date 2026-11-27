@@ -1,17 +1,44 @@
 package defpackage;
-public final class lfe implements zn7 {
-    public static final lfe a = new Object();
+public final class lfe {
+    public final hwd a;
+    public final String b;
+    public final Object[] c;
+    public final int d;
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+    public lfe(hwd hwdVar, String str, Object[] objArr) {
+        this.a = hwdVar;
+        this.b = str;
+        this.c = objArr;
+        char charAt = str.charAt(0);
+        if (charAt < 55296) {
+            this.d = charAt;
+            return;
+        }
+        int i = charAt & 8191;
+        int i2 = 1;
+        int i3 = 13;
+        while (true) {
+            int i4 = i2 + 1;
+            char charAt2 = str.charAt(i2);
+            if (charAt2 >= 55296) {
+                i |= (charAt2 & 8191) << i3;
+                i3 += 13;
+                i2 = i4;
+            } else {
+                this.d = i | (charAt2 << i3);
+                return;
+            }
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final int a() {
+        int i = this.d;
+        if ((i & 1) != 0) {
+            return 1;
         }
-        throw new ClassCastException();
+        if ((i & 4) == 4) {
+            return 3;
+        }
+        return 2;
     }
 }

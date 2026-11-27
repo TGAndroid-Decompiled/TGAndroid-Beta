@@ -1,118 +1,105 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class pw5 extends LinearLayout {
-    public final TextView a;
-    public final st b;
-    public ImageView c;
-    public ImageView d;
-    public float e;
-    public boolean f;
-    public ValueAnimator h;
-    public final ImageView n;
-    public final rw5 r;
+import j$.util.Objects;
+import java.util.List;
+public final class pw5 implements e84 {
+    public g84 b;
+    public byte c;
+    public int d;
+    public int e;
+    public nh7 g;
+    public cb3 h;
+    public zg2 i;
+    public yh7 j;
+    public final ey7 a = new ey7(2);
+    public long f = -1;
 
-    public pw5(rw5 rw5Var, Context context) {
-        super(context);
-        this.r = rw5Var;
-        setOrientation(0);
-        int i = bkb.h6;
-        tv5 tv5Var = rw5Var.G1;
-        setBackground(bkb.f0(bkb.v0(i, tv5Var), 2, -1));
-        st stVar = new st(this, context);
-        this.b = stVar;
-        addView(stVar, nme.t(-2, -2, 19, 16, 0, 16, 0));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.c;
-        int i2 = bkb.D8;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
-        zkb.s(imageView2, i2, tv5Var, mode);
-        stVar.addView(this.c, nme.e(-2, -2, 17));
-        ImageView imageView3 = new ImageView(context);
-        this.d = imageView3;
-        imageView3.setScaleType(scaleType);
-        zkb.s(this.d, i2, tv5Var, mode);
-        this.d.setVisibility(8);
-        stVar.addView(this.d, nme.e(-2, -2, 17));
-        TextView textView = new TextView(context);
-        this.a = textView;
-        zkb.X(textView, i2, tv5Var);
-        textView.setTextSize(1, 16.0f);
-        addView(textView, nme.t(-2, -2, 19, 0, 0, 16, 0));
-        ImageView imageView4 = new ImageView(context);
-        this.n = imageView4;
-        imageView4.setImageResource(2131232403);
-        imageView4.setScaleType(scaleType);
-        zkb.s(imageView4, bkb.g7, tv5Var, PorterDuff.Mode.MULTIPLY);
-        imageView4.setVisibility(8);
-        addView(imageView4, nme.o(50, -1));
+    @Override
+    public final int b(defpackage.f84 r26, defpackage.v11 r27) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pw5.b(f84, v11):int");
     }
 
-    public final void a(int i, boolean z, boolean z2) {
-        if (z2) {
-            ValueAnimator valueAnimator = this.h;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.h = null;
-                a(i, false, false);
-                return;
+    @Override
+    public final boolean c(f84 f84Var) {
+        String v;
+        ey7 ey7Var = this.a;
+        ey7Var.K(2);
+        ((cb3) f84Var).d(ey7Var.a, 0, 2, false);
+        if (ey7Var.H() == 65496) {
+            while (true) {
+                cb3 cb3Var = (cb3) f84Var;
+                ey7Var.K(2);
+                cb3Var.d(ey7Var.a, 0, 2, false);
+                int H = ey7Var.H();
+                this.d = H;
+                if (H == 65498) {
+                    break;
+                }
+                ey7Var.K(2);
+                cb3Var.d(ey7Var.a, 0, 2, false);
+                int H2 = ey7Var.H() - 2;
+                if (H2 < 0) {
+                    break;
+                } else if (this.d != 65505) {
+                    cb3Var.a(H2, false);
+                } else {
+                    ey7Var.K(H2);
+                    cb3Var.d(ey7Var.a, 0, H2, false);
+                    if (Objects.equals(ey7Var.v(), "http://ns.adobe.com/xap/1.0/") && (v = ey7Var.v()) != null) {
+                        for (int i = 0; i < 4; i++) {
+                            if (v.contains(jid.a[i] + "=\"1\"")) {
+                                return true;
+                            }
+                        }
+                        continue;
+                    }
+                }
             }
-            this.f = z;
-            this.d.setImageResource(i);
-            this.d.setVisibility(0);
-            this.d.setAlpha(1.0f);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.h = ofFloat;
-            ofFloat.addUpdateListener(new d20((byte) 4, this, z));
-            this.h.addListener(new v85(this, (byte) 9));
-            this.h.setInterpolator(s33.h);
-            this.h.setDuration(420L);
-            this.h.start();
-            return;
         }
-        this.c.setImageResource(i);
+        return false;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
+    public final void d(long j, long j2) {
+        if (j == 0) {
+            this.c = (byte) 0;
+            this.j = null;
+        } else if (this.c == 5) {
+            yh7 yh7Var = this.j;
+            yh7Var.getClass();
+            yh7Var.d(j, j2);
+        }
     }
 
     @Override
-    public final boolean performClick() {
-        rw5 rw5Var = this.r;
-        m8 m8Var = rw5Var.H1;
-        if (m8Var != null && m8Var.isShowing()) {
-            rw5Var.H1.d(true);
-        }
-        return super.performClick();
-    }
-
-    public void setIcon(int i) {
-        a(i, true, false);
+    public final List e() {
+        no5 no5Var = po5.b;
+        return j99.e;
     }
 
     @Override
-    public void setSelected(boolean z) {
-        int i;
-        if (z) {
-            i = 0;
-        } else {
-            i = 8;
-        }
-        this.n.setVisibility(i);
+    public final void f(g84 g84Var) {
+        this.b = g84Var;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.a.setText(charSequence);
+    public final void g() {
+        g84 g84Var = this.b;
+        g84Var.getClass();
+        g84Var.D();
+        this.b.m0(new qc0(-9223372036854775807L));
+        this.c = (byte) 6;
+    }
+
+    @Override
+    public final void release() {
+        yh7 yh7Var = this.j;
+        if (yh7Var != null) {
+            yh7Var.getClass();
+        }
+    }
+
+    @Override
+    public final e84 a() {
+        return this;
     }
 }

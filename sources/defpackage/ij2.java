@@ -1,25 +1,23 @@
 package defpackage;
+
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
 public final class ij2 {
-    public final String a;
-    public final String b;
+    public static final int e = 0;
+    public final vrb a;
+    public final List b;
+    public final b05 c;
+    public final String d;
 
-    public ij2(String str, String str2) {
-        this.a = str;
-        this.b = str2;
+    static {
+        DesugarCollections.unmodifiableList(new ArrayList());
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof ij2) {
-            ij2 ij2Var = (ij2) obj;
-            if (this.a.equals(ij2Var.a) && this.b.equals(ij2Var.b)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.b.hashCode() + (this.a.hashCode() * 31);
+    public ij2(vrb vrbVar, List list, b05 b05Var, String str) {
+        this.a = vrbVar;
+        this.b = list;
+        this.c = b05Var;
+        this.d = str;
     }
 }

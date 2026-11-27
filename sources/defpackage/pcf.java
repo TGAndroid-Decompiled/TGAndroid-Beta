@@ -1,60 +1,34 @@
 package defpackage;
+public final class pcf extends ljf {
+    private static final pcf zzb;
+    private int zzd;
+    private int zze;
+    private int zzf;
 
-import java.util.concurrent.Delayed;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-public final class pcf extends v1f implements ScheduledFuture, t56, Future {
-    public final vbf b;
-    public final ScheduledFuture c;
-
-    public pcf(vbf vbfVar, ScheduledFuture scheduledFuture) {
-        this.b = vbfVar;
-        this.c = scheduledFuture;
+    static {
+        ?? ljfVar = new ljf();
+        zzb = ljfVar;
+        ljf.e(pcf.class, ljfVar);
     }
 
     @Override
-    public final void b(Runnable runnable, Executor executor) {
-        this.b.b(runnable, executor);
-    }
-
-    @Override
-    public final boolean cancel(boolean z) {
-        boolean cancel = this.b.cancel(z);
-        if (cancel) {
-            this.c.cancel(z);
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new kjf(zzb);
+                }
+                return new ljf();
+            }
+            return new ilf(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001᠌\u0000\u0002င\u0001", new Object[]{"zzd", "zze", sjf.s, "zzf"});
         }
-        return cancel;
-    }
-
-    @Override
-    public final int compareTo(Delayed delayed) {
-        return this.c.compareTo(delayed);
-    }
-
-    @Override
-    public final Object get() {
-        return this.b.get();
-    }
-
-    @Override
-    public final long getDelay(TimeUnit timeUnit) {
-        return this.c.getDelay(timeUnit);
-    }
-
-    @Override
-    public final boolean isCancelled() {
-        return this.b.a instanceof nbf;
-    }
-
-    @Override
-    public final boolean isDone() {
-        return this.b.isDone();
-    }
-
-    @Override
-    public final Object get(long j, TimeUnit timeUnit) {
-        return this.b.get(j, timeUnit);
+        return (byte) 1;
     }
 }

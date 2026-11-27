@@ -1,30 +1,32 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class tlc extends View {
+import java.util.HashSet;
+import org.telegram.messenger.voip.VoIPService;
+public final class tlc implements Runnable {
     public final byte a;
-    public final hmc b;
+    public final VoIPService b;
+    public final HashSet c;
+    public final String d;
 
-    public tlc(hmc hmcVar, Context context, byte b) {
-        super(context);
+    public tlc(VoIPService voIPService, HashSet hashSet, String str, byte b) {
         this.a = b;
-        this.b = hmcVar;
+        this.b = voIPService;
+        this.c = hashSet;
+        this.d = str;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public final void run() {
         byte b = this.a;
-        hmc hmcVar = this.b;
+        String str = this.d;
+        HashSet hashSet = this.c;
+        VoIPService voIPService = this.b;
         switch (b) {
             case 0:
-                int size = View.MeasureSpec.getSize(i);
-                hmcVar.a0.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - gl.L(24.0f)), 1073741824), 0);
-                setMeasuredDimension(size, gl.L(36.0f) + hmcVar.a0.getMeasuredHeight());
+                voIPService.lambda$startConferenceGroupCall$53(hashSet, str);
                 return;
             default:
-                hmcVar.e.measure(i, 0);
-                setMeasuredDimension(View.MeasureSpec.getSize(i), hmcVar.e.getMeasuredHeight());
+                voIPService.lambda$startConferenceGroupCall$45(hashSet, str);
                 return;
         }
     }

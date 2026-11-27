@@ -1,34 +1,37 @@
 package defpackage;
-public abstract class jad {
-    public static final Class a;
-    public static final boolean b;
 
-    static {
-        Class<?> cls;
-        boolean z;
-        Class<?> cls2 = null;
-        try {
-            cls = Class.forName("libcore.io.Memory");
-        } catch (Throwable unused) {
-            cls = null;
-        }
-        a = cls;
-        try {
-            cls2 = Class.forName("org.robolectric.Robolectric");
-        } catch (Throwable unused2) {
-        }
-        if (cls2 != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
+import java.util.Iterator;
+public final class jad extends zlf {
+    public final transient vad h;
+    public final transient lad n;
+
+    public jad(vad vadVar, lad ladVar) {
+        super((byte) 3);
+        this.h = vadVar;
+        this.n = ladVar;
     }
 
-    public static boolean a() {
-        if (a != null && !b) {
+    @Override
+    public final boolean contains(Object obj) {
+        if (this.h.get(obj) != null) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        return this.n.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.n.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        this.h.getClass();
+        return 1;
     }
 }

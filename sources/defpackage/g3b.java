@@ -1,11 +1,8 @@
 package defpackage;
 
-import android.text.StaticLayout;
-public final class g3b {
-    public cm a;
-    public StaticLayout b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
+import android.graphics.Point;
+public final class g3b extends Point {
+    public g3b(float f, int i, int i2) {
+        super((int) (i * f), (int) (i2 * f));
+    }
 }

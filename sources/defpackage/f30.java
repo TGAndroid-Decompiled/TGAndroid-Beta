@@ -1,15 +1,22 @@
 package defpackage;
-
-import java.io.File;
 public final class f30 {
-    public final long a;
-    public final File b;
-    public long c;
-    public boolean d = true;
-    public boolean e;
+    public static final f30 a;
+    public static final f30 b;
+    public static final f30[] c;
 
-    public f30(long j, File file) {
-        this.a = j;
-        this.b = file;
+    static {
+        ?? r0 = new Enum("DISABLED", 0);
+        a = r0;
+        ?? r1 = new Enum("RNNOISE", 1);
+        b = r1;
+        c = new f30[]{r0, r1};
+    }
+
+    public static f30 valueOf(String str) {
+        return (f30) Enum.valueOf(f30.class, str);
+    }
+
+    public static f30[] values() {
+        return (f30[]) c.clone();
     }
 }

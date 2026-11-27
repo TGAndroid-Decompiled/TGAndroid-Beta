@@ -1,32 +1,17 @@
 package defpackage;
+public final class fqe implements zq7 {
+    public static final fqe a = new Object();
 
-import android.os.Build;
-import java.lang.reflect.Field;
-public abstract class fqe {
-    public static Boolean a;
-    public static int b;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
+    }
 
-    public static boolean a() {
-        Boolean bool;
-        int intValue;
-        Boolean bool2 = a;
-        if (bool2 != null) {
-            return bool2.booleanValue();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        try {
-            Field declaredField = Build.VERSION.class.getDeclaredField("SEM_PLATFORM_INT");
-            declaredField.setAccessible(true);
-            intValue = ((Integer) declaredField.get(null)).intValue();
-        } catch (Exception unused) {
-            bool = Boolean.FALSE;
-            a = bool;
-        }
-        if (intValue < 100000) {
-            return false;
-        }
-        b = intValue - 90000;
-        bool = Boolean.TRUE;
-        a = bool;
-        return bool.booleanValue();
+        throw new ClassCastException();
     }
 }

@@ -1,71 +1,76 @@
 package defpackage;
 
-import android.app.Notification;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import java.util.ArrayList;
-public final class el7 {
-    public final CharSequence a;
-    public final long b;
-    public final l38 c;
-    public final Bundle d = new Bundle();
-    public String e;
-    public Uri f;
+import android.util.SparseArray;
+public enum el7 {
+    UNKNOWN_MOBILE_SUBTYPE(0),
+    GPRS(1),
+    EDGE(2),
+    UMTS(3),
+    CDMA(4),
+    EVDO_0(5),
+    EVDO_A(6),
+    RTT(7),
+    HSDPA(8),
+    HSUPA(9),
+    HSPA(10),
+    IDEN(11),
+    EVDO_B(12),
+    LTE_CA(13),
+    TD_SCDMA(14),
+    IWLAN(15),
+    LTE_CA(16),
+    TD_SCDMA(17),
+    IWLAN(18),
+    LTE_CA(19),
+    COMBINED(100);
+    
+    public static final SparseArray a;
 
-    public el7(CharSequence charSequence, long j, l38 l38Var) {
-        this.a = charSequence;
-        this.b = j;
-        this.c = l38Var;
+    static {
+        el7 el7Var;
+        el7 el7Var2;
+        el7 el7Var3;
+        el7 el7Var4;
+        el7 el7Var5;
+        el7 el7Var6;
+        el7 el7Var7;
+        el7 el7Var8;
+        el7 el7Var9;
+        el7 el7Var10;
+        el7 el7Var11;
+        el7 el7Var12;
+        el7 el7Var13;
+        el7 el7Var14;
+        el7 el7Var15;
+        el7 el7Var16;
+        el7 el7Var17;
+        el7 el7Var18;
+        el7 el7Var19;
+        el7 el7Var20;
+        SparseArray sparseArray = new SparseArray();
+        a = sparseArray;
+        sparseArray.put(0, el7Var);
+        sparseArray.put(1, el7Var2);
+        sparseArray.put(2, el7Var3);
+        sparseArray.put(3, el7Var4);
+        sparseArray.put(4, el7Var5);
+        sparseArray.put(5, el7Var6);
+        sparseArray.put(6, el7Var7);
+        sparseArray.put(7, el7Var8);
+        sparseArray.put(8, el7Var9);
+        sparseArray.put(9, el7Var10);
+        sparseArray.put(10, el7Var11);
+        sparseArray.put(11, el7Var12);
+        sparseArray.put(12, el7Var13);
+        sparseArray.put(13, el7Var14);
+        sparseArray.put(14, el7Var15);
+        sparseArray.put(15, el7Var16);
+        sparseArray.put(16, el7Var17);
+        sparseArray.put(17, el7Var18);
+        sparseArray.put(18, el7Var19);
+        sparseArray.put(19, el7Var20);
     }
 
-    public static Bundle[] a(ArrayList arrayList) {
-        Bundle[] bundleArr = new Bundle[arrayList.size()];
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            el7 el7Var = (el7) arrayList.get(i);
-            l38 l38Var = el7Var.c;
-            Bundle bundle = new Bundle();
-            CharSequence charSequence = el7Var.a;
-            if (charSequence != null) {
-                bundle.putCharSequence("text", charSequence);
-            }
-            bundle.putLong("time", el7Var.b);
-            bundle.putCharSequence("sender", l38Var.a);
-            if (Build.VERSION.SDK_INT >= 28) {
-                bundle.putParcelable("sender_person", dl7.a(fo.G(l38Var)));
-            } else {
-                bundle.putBundle("person", l38Var.b());
-            }
-            String str = el7Var.e;
-            if (str != null) {
-                bundle.putString("type", str);
-            }
-            Uri uri = el7Var.f;
-            if (uri != null) {
-                bundle.putParcelable("uri", uri);
-            }
-            bundle.putBundle("extras", el7Var.d);
-            bundleArr[i] = bundle;
-        }
-        return bundleArr;
-    }
-
-    public final Notification.MessagingStyle.Message b() {
-        Notification.MessagingStyle.Message a;
-        int i = Build.VERSION.SDK_INT;
-        long j = this.b;
-        l38 l38Var = this.c;
-        CharSequence charSequence = this.a;
-        if (i >= 28) {
-            a = dl7.b(charSequence, j, fo.G(l38Var));
-        } else {
-            a = cl7.a(charSequence, j, l38Var.a);
-        }
-        String str = this.e;
-        if (str != null) {
-            cl7.b(a, str, this.f);
-        }
-        return a;
+    el7(int i) {
     }
 }

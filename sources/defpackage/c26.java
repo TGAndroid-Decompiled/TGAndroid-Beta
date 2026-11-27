@@ -1,75 +1,99 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
+import android.graphics.Canvas;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-public final class c26 extends FrameLayout {
-    public final ImageView a;
-    public final jia b;
-    public final jo0 c;
-    public final jia d;
-    public b26 e;
-    public a26 f;
+import android.widget.RelativeLayout;
+import java.util.WeakHashMap;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+public final class c26 extends RelativeLayout {
+    public mq5 a;
+    public boolean b;
+    public final LaunchActivity c;
 
-    public c26(h26 h26Var, Context context, wjb wjbVar) {
-        super(context);
-        int i;
-        float f;
-        float f2;
-        int i2 = h26.R2;
-        int i3 = h26Var.u0;
-        setPadding(i3, 0, i3, 0);
-        ImageView imageView = new ImageView(context);
-        this.a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        zkb.s(imageView, bkb.Bk, wjbVar, PorterDuff.Mode.SRC_IN);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
+    public c26(LaunchActivity launchActivity, LaunchActivity launchActivity2) {
+        super(launchActivity2);
+        this.c = launchActivity;
+        this.a = mq5.e;
+        e05 e05Var = new e05(this, (byte) 24);
+        WeakHashMap weakHashMap = ihc.a;
+        ahc.i(this, e05Var);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        ActionBarLayout actionBarLayout = this.c.q0;
+        if (actionBarLayout != null) {
+            actionBarLayout.P(canvas, this);
         }
-        addView(imageView, nme.d(24, 24.0f, i | 16, 24.0f, 0.0f, 24.0f, 0.0f));
-        jia jiaVar = new jia(context);
-        this.b = jiaVar;
-        jiaVar.setWidthWrapContent(true);
-        zkb.W(jiaVar, bkb.i5, wjbVar);
-        jiaVar.setTextSize(14);
-        boolean z = k96.a0;
-        int i4 = (z ? 5 : 3) | 16;
-        if (z) {
-            f = 30.0f;
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int measuredWidth = getMeasuredWidth();
+        getMeasuredHeight();
+        LaunchActivity launchActivity = this.c;
+        if (!launchActivity.N0) {
+            mq5 mq5Var = this.a;
+            int k1 = hl.k1(measuredWidth, mq5Var.a, mq5Var.c);
+            launchActivity.p0.getView().layout(0, 0, launchActivity.p0.getView().getMeasuredWidth(), launchActivity.p0.getView().getMeasuredHeight());
+            launchActivity.r0.getView().layout(k1, 0, launchActivity.r0.getView().getMeasuredWidth() + k1, launchActivity.r0.getView().getMeasuredHeight());
         } else {
-            f = 60.0f;
+            launchActivity.p0.getView().layout(0, 0, launchActivity.p0.getView().getMeasuredWidth(), launchActivity.p0.getView().getMeasuredHeight());
         }
-        if (z) {
-            f2 = 60.0f;
-        } else {
-            f2 = 30.0f;
-        }
-        addView(jiaVar, nme.d(-2, -2.0f, i4, f, 0.0f, f2, 0.0f));
-        jia jiaVar2 = new jia(context);
-        this.d = jiaVar2;
-        jiaVar2.setTextColor(-1);
-        jiaVar2.setWidthWrapContent(true);
-        jiaVar2.setTypeface(gl.o());
-        jiaVar2.setTextSize(14);
-        jo0 jo0Var = new jo0(this, context, wjbVar);
-        this.c = jo0Var;
-        jo0Var.setWillNotDraw(false);
-        jo0Var.addView(jiaVar2, nme.e(-2, -2, 17));
-        addView(jo0Var, nme.c(-1.0f, -1));
+        int measuredWidth2 = (measuredWidth - launchActivity.q0.getView().getMeasuredWidth()) / 2;
+        int L = hl.L(8.0f) + this.a.b;
+        launchActivity.q0.getView().layout(measuredWidth2, L, launchActivity.q0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.q0.getView().getMeasuredHeight() + L);
+        w81 w81Var = launchActivity.u0;
+        w81Var.layout(0, 0, w81Var.getMeasuredWidth(), launchActivity.u0.getMeasuredHeight());
+        FrameLayout frameLayout = launchActivity.t0;
+        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.t0.getMeasuredHeight());
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        float f;
-        if (this.f != null) {
-            f = 49.0f;
+        boolean z;
+        this.b = true;
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        setMeasuredDimension(size, size2);
+        String str = LaunchActivity.C1;
+        boolean z2 = hl.E;
+        LaunchActivity launchActivity = this.c;
+        if (!z2 && (!hl.N1() || launchActivity.getResources().getConfiguration().orientation == 2)) {
+            z = true;
         } else {
-            f = 36.0f;
+            z = false;
         }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(f), 1073741824));
+        if (z == launchActivity.N0 && !launchActivity.O0) {
+            launchActivity.O0 = true;
+            hl.c3(new ea5(this, (byte) 24));
+        }
+        if (!launchActivity.N0) {
+            mq5 mq5Var = this.a;
+            int k1 = hl.k1(size, mq5Var.a, mq5Var.c);
+            launchActivity.p0.getView().measure(View.MeasureSpec.makeMeasureSpec(k1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.r0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - k1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        } else {
+            launchActivity.p0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        }
+        launchActivity.u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        launchActivity.t0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        ViewGroup view = launchActivity.q0.getView();
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(hl.L(500.0f), size - hl.L(16.0f)), 1073741824);
+        mq5 mq5Var2 = this.a;
+        view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - mq5Var2.b) - mq5Var2.d) - hl.L(16.0f), 1073741824));
+        this.b = false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

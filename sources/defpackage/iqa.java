@@ -1,41 +1,89 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class iqa extends Drawable {
-    public final float a;
-    public final Paint b;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class iqa extends ok1 {
+    public long[] l;
+    public long[][] m;
+    public int n;
 
-    public iqa(float f, int i) {
-        Paint paint = new Paint(1);
-        this.b = paint;
-        this.a = f;
-        paint.setColor(i);
+    public iqa(ok1 ok1Var, long j) {
+        this.d = new ArrayList();
+        this.e = 0L;
+        this.f = Long.MAX_VALUE;
+        this.g = 0.0f;
+        this.h = 0.0f;
+        this.i = 0;
+        this.j = 0;
+        int binarySearch = Arrays.binarySearch(ok1Var.a, j);
+        int i = binarySearch - 4;
+        int i2 = binarySearch + 4;
+        if (i < 0) {
+            i2 += -i;
+            i = 0;
+        }
+        long[] jArr = ok1Var.a;
+        if (i2 > jArr.length - 1) {
+            i -= i2 - jArr.length;
+            i2 = jArr.length - 1;
+        }
+        i = i < 0 ? 0 : i;
+        int i3 = (i2 - i) + 1;
+        this.a = new long[i3];
+        this.b = new float[i3];
+        this.d = new ArrayList();
+        for (int i4 = 0; i4 < ok1Var.d.size(); i4++) {
+            nk1 nk1Var = new nk1();
+            nk1Var.a = new long[i3];
+            nk1Var.c = ((nk1) ok1Var.d.get(i4)).c;
+            nk1Var.d = ((nk1) ok1Var.d.get(i4)).d;
+            nk1Var.g = ((nk1) ok1Var.d.get(i4)).g;
+            nk1Var.h = ((nk1) ok1Var.d.get(i4)).h;
+            nk1Var.i = ((nk1) ok1Var.d.get(i4)).i;
+            this.d.add(nk1Var);
+        }
+        int i5 = 0;
+        while (i <= i2) {
+            this.a[i5] = ok1Var.a[i];
+            for (int i6 = 0; i6 < this.d.size(); i6++) {
+                ((nk1) this.d.get(i6)).a[i5] = ((nk1) ok1Var.d.get(i6)).a[i];
+            }
+            i5++;
+            i++;
+        }
+        this.k = 86400000L;
+        e();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        RectF rectF = gl.P;
-        rectF.set(getBounds());
-        Paint paint = this.b;
-        float f = this.a;
-        canvas.drawRoundRect(rectF, f, f, paint);
-        gl.P(canvas, rectF, f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void e() {
+        super.e();
+        this.n = 0;
+        int length = this.b.length;
+        int size = this.d.size();
+        int max = Math.max(1, Math.round(length / 140.0f));
+        int i = length / max;
+        this.m = (long[][]) Array.newInstance(Long.TYPE, size, i);
+        long[] jArr = new long[size];
+        for (int i2 = 0; i2 < length; i2++) {
+            for (int i3 = 0; i3 < size; i3++) {
+                long j = ((nk1) this.d.get(i3)).a[i2];
+                if (j > jArr[i3]) {
+                    jArr[i3] = j;
+                }
+            }
+            if (i2 % max == 0) {
+                for (int i4 = 0; i4 < size; i4++) {
+                    this.m[i4][this.n] = jArr[i4];
+                    jArr[i4] = 0;
+                }
+                int i5 = this.n + 1;
+                this.n = i5;
+                if (i5 >= i) {
+                    return;
+                }
+            }
+        }
     }
 }

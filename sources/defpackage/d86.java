@@ -1,17 +1,25 @@
 package defpackage;
 public final class d86 {
-    public final byte a;
-    public final int b;
+    public final Object a;
+    public n31 b = new n31();
+    public boolean c;
+    public boolean d;
 
-    public d86(int i, long j) {
-        boolean z;
-        if (j >= 0) {
-            z = true;
-        } else {
-            z = false;
+    public d86(Object obj) {
+        this.a = obj;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        gre.f(z);
-        this.a = i;
-        this.b = (int) j;
+        if (obj != null && d86.class == obj.getClass()) {
+            return this.a.equals(((d86) obj).a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
     }
 }

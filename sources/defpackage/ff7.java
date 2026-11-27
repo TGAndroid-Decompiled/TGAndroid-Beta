@@ -1,3 +1,6 @@
 package defpackage;
-public final class ff7 extends a2 {
+public final class ff7 {
+    public int a;
+    public int b;
+    public int c;
 }

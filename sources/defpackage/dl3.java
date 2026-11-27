@@ -1,31 +1,29 @@
 package defpackage;
 public final class dl3 implements Runnable {
     public final byte a;
-    public final hl3 b;
+    public final gx9 b;
     public final int c;
+    public final String d;
+    public final String e;
 
-    public dl3(hl3 hl3Var, int i, byte b) {
-        this.a = b;
-        this.b = hl3Var;
+    public dl3(gx9 gx9Var, int i, String str, String str2) {
+        this.a = (byte) 1;
+        this.b = gx9Var;
         this.c = i;
+        this.d = str;
+        this.e = str2;
     }
 
     @Override
     public final void run() {
-        switch (this.a) {
-            case 0:
-                hl3 hl3Var = this.b;
-                hl3Var.postOnAnimation(new dl3(hl3Var, this.c, (byte) 1));
-                return;
-            default:
-                hl3 hl3Var2 = this.b;
-                int i = this.c;
-                if (hl3Var2.e && !hl3Var2.r && i == hl3Var2.F) {
-                    hl3Var2.y = true;
-                    hl3Var2.requestRender();
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.dl3.run():void");
+    }
+
+    public dl3(gx9 gx9Var, String str, int i, String str2, byte b) {
+        this.a = b;
+        this.b = gx9Var;
+        this.d = str;
+        this.c = i;
+        this.e = str2;
     }
 }

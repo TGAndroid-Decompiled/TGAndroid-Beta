@@ -1,50 +1,23 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Wallet.c;
-public final class olc implements gk7 {
-    public final int a;
-    public final TL_wallet.walletTransaction[] b;
-    public final be5 c;
+import android.util.Log;
+public final class olc implements Runnable {
+    public final byte a;
+    public final Object b;
 
-    public olc(int i, TL_wallet.walletTransaction[] wallettransactionArr, be5 be5Var) {
-        this.a = i;
-        this.b = wallettransactionArr;
-        this.c = be5Var;
+    public olc(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
+    }
+
+    private final void a() {
+        d3d d3dVar = (d3d) this.b;
+        Log.w("FirebaseMessaging", "Service took too long to process intent: " + d3dVar.a.getAction() + " finishing.");
+        d3dVar.b.trySetResult(null);
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i == kk7.c4 || i == kk7.d4) {
-            ArrayList arrayList = c.C(this.a).G().c;
-            int size = arrayList.size();
-            int i3 = 0;
-            while (true) {
-                wallettransactionArr = this.b;
-                if (i3 < size) {
-                    Object obj = arrayList.get(i3);
-                    i3++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (c.t0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.c.a(wallettransaction);
-            }
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.olc.run():void");
     }
 }

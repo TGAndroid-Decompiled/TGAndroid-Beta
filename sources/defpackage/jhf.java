@@ -1,8 +1,8 @@
 package defpackage;
 
 import java.util.Set;
-public abstract class jhf extends x8d implements Set {
-    public transient jff f;
+public abstract class jhf extends qdd implements Set {
+    public transient wbf f;
 
     @Override
     public final boolean equals(Object obj) {
@@ -37,15 +37,5 @@ public abstract class jhf extends x8d implements Set {
             i2 += i;
         }
         return i2;
-    }
-
-    public final jff l() {
-        jff jffVar = this.f;
-        if (jffVar == null) {
-            zhf zhfVar = new zhf((c5d) this);
-            this.f = zhfVar;
-            return zhfVar;
-        }
-        return jffVar;
     }
 }

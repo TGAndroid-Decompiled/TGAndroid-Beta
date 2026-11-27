@@ -1,124 +1,243 @@
 package defpackage;
 
-import android.os.Parcel;
-public final class hdd extends dzc {
-    public final k6a b;
-    public final Class c;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+public final class hdd implements ar7 {
+    public static final Charset e = Charset.forName("UTF-8");
+    public static final sa4 f = new sa4("key", c00.n(xnb.o(bdd.class, new ubd(1))));
+    public static final sa4 g = new sa4("value", c00.n(xnb.o(bdd.class, new ubd(2))));
+    public static final lcd h = lcd.d;
+    public OutputStream a;
+    public final HashMap b;
+    public final HashMap c;
+    public final sw8 d = new sw8(this, (byte) 2);
 
-    public hdd(k6a k6aVar) {
-        super("com.google.android.gms.cast.framework.ISessionManagerListener", (byte) 4);
-        this.b = k6aVar;
-        this.c = ed1.class;
+    public hdd(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2) {
+        this.a = byteArrayOutputStream;
+        this.b = hashMap;
+        this.c = hashMap2;
+    }
+
+    public static int j(sa4 sa4Var) {
+        bdd bddVar = (bdd) sa4Var.b(bdd.class);
+        if (bddVar != null) {
+            return bddVar.zza();
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
     }
 
     @Override
-    public final boolean d(int i, Parcel parcel, Parcel parcel2) {
-        boolean z = false;
-        Class cls = this.c;
-        k6a k6aVar = this.b;
-        switch (i) {
-            case 1:
-                bo7 bo7Var = new bo7(k6aVar);
-                parcel2.writeNoException();
-                jgd.d(parcel2, bo7Var);
-                return true;
-            case 2:
-                yi5 T = bo7.T(parcel.readStrongBinder());
-                jgd.b(parcel);
-                d5a d5aVar = (d5a) bo7.U(T);
-                if (cls.isInstance(d5aVar) && k6aVar != null) {
-                    k6aVar.p((d5a) cls.cast(d5aVar));
+    public final ar7 a(sa4 sa4Var, Object obj) {
+        c(sa4Var, obj, true);
+        return this;
+    }
+
+    public final void b(sa4 sa4Var, double d, boolean z) {
+        if (z && d == 0.0d) {
+            return;
+        }
+        l((j(sa4Var) << 3) | 1);
+        this.a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+    }
+
+    public final void c(sa4 sa4Var, Object obj, boolean z) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z || charSequence.length() != 0) {
+                    l((j(sa4Var) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(e);
+                    l(bytes.length);
+                    this.a.write(bytes);
                 }
-                parcel2.writeNoException();
-                return true;
-            case 3:
-                yi5 T2 = bo7.T(parcel.readStrongBinder());
-                String readString = parcel.readString();
-                jgd.b(parcel);
-                d5a d5aVar2 = (d5a) bo7.U(T2);
-                if (cls.isInstance(d5aVar2) && k6aVar != null) {
-                    k6aVar.T((d5a) cls.cast(d5aVar2), readString);
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    c(sa4Var, obj2, false);
                 }
-                parcel2.writeNoException();
-                return true;
-            case 4:
-                yi5 T3 = bo7.T(parcel.readStrongBinder());
-                int readInt = parcel.readInt();
-                jgd.b(parcel);
-                d5a d5aVar3 = (d5a) bo7.U(T3);
-                if (cls.isInstance(d5aVar3) && k6aVar != null) {
-                    k6aVar.K((d5a) cls.cast(d5aVar3), readInt);
+            } else if (obj instanceof Map) {
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    k(h, sa4Var, entry, false);
                 }
-                parcel2.writeNoException();
-                return true;
-            case 5:
-                yi5 T4 = bo7.T(parcel.readStrongBinder());
-                jgd.b(parcel);
-                d5a d5aVar4 = (d5a) bo7.U(T4);
-                if (cls.isInstance(d5aVar4) && k6aVar != null) {
-                    k6aVar.z((d5a) cls.cast(d5aVar4));
+            } else if (obj instanceof Double) {
+                b(sa4Var, ((Double) obj).doubleValue(), z);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z || floatValue != 0.0f) {
+                    l((j(sa4Var) << 3) | 5);
+                    this.a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
                 }
-                parcel2.writeNoException();
-                return true;
-            case 6:
-                yi5 T5 = bo7.T(parcel.readStrongBinder());
-                int readInt2 = parcel.readInt();
-                jgd.b(parcel);
-                d5a d5aVar5 = (d5a) bo7.U(T5);
-                if (cls.isInstance(d5aVar5) && k6aVar != null) {
-                    k6aVar.n((d5a) cls.cast(d5aVar5), readInt2);
+            } else if (obj instanceof Number) {
+                i(sa4Var, ((Number) obj).longValue(), z);
+            } else if (obj instanceof Boolean) {
+                h(sa4Var, ((Boolean) obj).booleanValue() ? 1 : 0, z);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z && bArr.length == 0) {
+                    return;
                 }
-                parcel2.writeNoException();
-                return true;
-            case 7:
-                yi5 T6 = bo7.T(parcel.readStrongBinder());
-                String readString2 = parcel.readString();
-                jgd.b(parcel);
-                d5a d5aVar6 = (d5a) bo7.U(T6);
-                if (cls.isInstance(d5aVar6) && k6aVar != null) {
-                    k6aVar.R((d5a) cls.cast(d5aVar6), readString2);
+                l((j(sa4Var) << 3) | 2);
+                l(bArr.length);
+                this.a.write(bArr);
+            } else {
+                zq7 zq7Var = (zq7) this.b.get(obj.getClass());
+                if (zq7Var != null) {
+                    k(zq7Var, sa4Var, obj, z);
+                    return;
                 }
-                parcel2.writeNoException();
-                return true;
-            case 8:
-                yi5 T7 = bo7.T(parcel.readStrongBinder());
-                int i2 = jgd.a;
-                if (parcel.readInt() != 0) {
-                    z = true;
+                ycc yccVar = (ycc) this.c.get(obj.getClass());
+                if (yccVar != null) {
+                    sw8 sw8Var = this.d;
+                    sw8Var.b = false;
+                    sw8Var.d = sa4Var;
+                    sw8Var.c = z;
+                    yccVar.a(obj, sw8Var);
+                } else if (obj instanceof qcd) {
+                    h(sa4Var, ((qcd) obj).zza(), true);
+                } else if (obj instanceof Enum) {
+                    h(sa4Var, ((Enum) obj).ordinal(), true);
+                } else {
+                    k(lcd.e, sa4Var, obj, z);
                 }
-                jgd.b(parcel);
-                d5a d5aVar7 = (d5a) bo7.U(T7);
-                if (cls.isInstance(d5aVar7) && k6aVar != null) {
-                    k6aVar.E((d5a) cls.cast(d5aVar7), z);
+            }
+        }
+    }
+
+    @Override
+    public final ar7 d(sa4 sa4Var, boolean z) {
+        h(sa4Var, z ? 1 : 0, true);
+        return this;
+    }
+
+    @Override
+    public final ar7 e(sa4 sa4Var, int i) {
+        h(sa4Var, i, true);
+        return this;
+    }
+
+    @Override
+    public final ar7 f(sa4 sa4Var, double d) {
+        b(sa4Var, d, true);
+        return this;
+    }
+
+    @Override
+    public final ar7 g(sa4 sa4Var, long j) {
+        i(sa4Var, j, true);
+        return this;
+    }
+
+    public final void h(sa4 sa4Var, int i, boolean z) {
+        if (!z || i != 0) {
+            bdd bddVar = (bdd) sa4Var.b(bdd.class);
+            if (bddVar != null) {
+                int ordinal = bddVar.zzb().ordinal();
+                if (ordinal != 0) {
+                    if (ordinal != 1) {
+                        if (ordinal != 2) {
+                            return;
+                        }
+                        l((bddVar.zza() << 3) | 5);
+                        this.a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(i).array());
+                        return;
+                    }
+                    l(bddVar.zza() << 3);
+                    l((i << 1) ^ (i >> 31));
+                    return;
                 }
-                parcel2.writeNoException();
-                return true;
-            case 9:
-                yi5 T8 = bo7.T(parcel.readStrongBinder());
-                int readInt3 = parcel.readInt();
-                jgd.b(parcel);
-                d5a d5aVar8 = (d5a) bo7.U(T8);
-                if (cls.isInstance(d5aVar8) && k6aVar != null) {
-                    k6aVar.F((d5a) cls.cast(d5aVar8), readInt3);
+                l(bddVar.zza() << 3);
+                l(i);
+                return;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
+        }
+    }
+
+    public final void i(sa4 sa4Var, long j, boolean z) {
+        if (!z || j != 0) {
+            bdd bddVar = (bdd) sa4Var.b(bdd.class);
+            if (bddVar != null) {
+                int ordinal = bddVar.zzb().ordinal();
+                if (ordinal != 0) {
+                    if (ordinal != 1) {
+                        if (ordinal != 2) {
+                            return;
+                        }
+                        l((bddVar.zza() << 3) | 1);
+                        this.a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putLong(j).array());
+                        return;
+                    }
+                    l(bddVar.zza() << 3);
+                    m((j << 1) ^ (j >> 63));
+                    return;
                 }
-                parcel2.writeNoException();
-                return true;
-            case 10:
-                yi5 T9 = bo7.T(parcel.readStrongBinder());
-                int readInt4 = parcel.readInt();
-                jgd.b(parcel);
-                d5a d5aVar9 = (d5a) bo7.U(T9);
-                if (cls.isInstance(d5aVar9) && k6aVar != null) {
-                    k6aVar.q((d5a) cls.cast(d5aVar9), readInt4);
+                l(bddVar.zza() << 3);
+                m(j);
+                return;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
+        }
+    }
+
+    public final void k(zq7 zq7Var, sa4 sa4Var, Object obj, boolean z) {
+        r26 r26Var = new r26((byte) 2);
+        r26Var.b = 0L;
+        try {
+            OutputStream outputStream = this.a;
+            this.a = r26Var;
+            zq7Var.a(obj, this);
+            this.a = outputStream;
+            long j = r26Var.b;
+            r26Var.close();
+            if (z && j == 0) {
+                return;
+            }
+            l((j(sa4Var) << 3) | 2);
+            m(j);
+            zq7Var.a(obj, this);
+        } catch (Throwable th) {
+            try {
+                r26Var.close();
+            } catch (Throwable th2) {
+                try {
+                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th, th2);
+                } catch (Exception unused) {
                 }
-                parcel2.writeNoException();
-                return true;
-            case 11:
-                parcel2.writeNoException();
-                parcel2.writeInt(12451000);
-                return true;
-            default:
-                return false;
+            }
+            throw th;
+        }
+    }
+
+    public final void l(int i) {
+        while (true) {
+            int i2 = ((i & (-128)) > 0L ? 1 : ((i & (-128)) == 0L ? 0 : -1));
+            OutputStream outputStream = this.a;
+            if (i2 != 0) {
+                outputStream.write((i & 127) | 128);
+                i >>>= 7;
+            } else {
+                outputStream.write(i & 127);
+                return;
+            }
+        }
+    }
+
+    public final void m(long j) {
+        while (true) {
+            int i = (((-128) & j) > 0L ? 1 : (((-128) & j) == 0L ? 0 : -1));
+            OutputStream outputStream = this.a;
+            if (i != 0) {
+                outputStream.write((((int) j) & 127) | 128);
+                j >>>= 7;
+            } else {
+                outputStream.write(((int) j) & 127);
+                return;
+            }
         }
     }
 }

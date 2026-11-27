@@ -1,51 +1,44 @@
 package defpackage;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.ScrollView;
-import androidx.core.widget.NestedScrollView;
-public final class ni7 extends q4 {
-    @Override
-    public final void b(View view, AccessibilityEvent accessibilityEvent) {
-        boolean z;
-        super.b(view, accessibilityEvent);
-        NestedScrollView nestedScrollView = (NestedScrollView) view;
-        accessibilityEvent.setClassName(ScrollView.class.getName());
-        if (nestedScrollView.getScrollRange() > 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        accessibilityEvent.setScrollable(z);
-        accessibilityEvent.setScrollX(nestedScrollView.getScrollX());
-        accessibilityEvent.setScrollY(nestedScrollView.getScrollY());
-        accessibilityEvent.setMaxScrollX(nestedScrollView.getScrollX());
-        accessibilityEvent.setMaxScrollY(nestedScrollView.getScrollRange());
+import android.content.Context;
+public final class ni7 extends c51 {
+    public final byte m0;
+    public final ny0 n0;
+
+    public ni7(ny0 ny0Var, Context context, vnb vnbVar, byte b) {
+        super(vnbVar, context, true);
+        this.m0 = b;
+        this.n0 = ny0Var;
     }
 
     @Override
-    public final void c(View view, u4 u4Var) {
-        int scrollRange;
-        AccessibilityNodeInfo accessibilityNodeInfo = u4Var.a;
-        this.a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        NestedScrollView nestedScrollView = (NestedScrollView) view;
-        u4Var.i("android.widget.ScrollView");
-        if (nestedScrollView.isEnabled() && (scrollRange = nestedScrollView.getScrollRange()) > 0) {
-            accessibilityNodeInfo.setScrollable(true);
-            if (nestedScrollView.getScrollY() > 0) {
-                u4Var.b(r4.e);
-                u4Var.b(r4.f);
-            }
-            if (nestedScrollView.getScrollY() < scrollRange) {
-                u4Var.b(r4.d);
-                u4Var.b(r4.g);
-            }
+    public final float b(float f, float f2) {
+        byte b = this.m0;
+        boolean z = true;
+        ny0 ny0Var = this.n0;
+        switch (b) {
+            case 0:
+                pi7 pi7Var = (pi7) ny0Var;
+                if (pi7Var.i2 != 0.0f) {
+                    z = false;
+                }
+                pi7Var.i2 = f;
+                if (z) {
+                    pi7Var.j2 = new tg2(pi7Var, (byte) 2);
+                    pi7Var.a1(false);
+                }
+                return f;
+            default:
+                sbc sbcVar = (sbc) ny0Var;
+                if (sbcVar.n2 != 0.0f) {
+                    z = false;
+                }
+                sbcVar.n2 = f;
+                if (z) {
+                    sbcVar.o2 = new tg2(sbcVar, (byte) 4);
+                    sbcVar.f1(false);
+                }
+                return f;
         }
-    }
-
-    @Override
-    public final boolean d(android.view.View r4, int r5, android.os.Bundle r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ni7.d(android.view.View, int, android.os.Bundle):boolean");
     }
 }

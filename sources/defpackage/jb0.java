@@ -1,39 +1,39 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class jb0 extends View {
-    public hb0 a;
-    public final lm b;
-    public boolean c;
-    public boolean d;
-    public final kz4 e;
-    public Drawable f;
-    public Drawable h;
-    public boolean n;
-    public Paint r;
-    public Paint s;
-    public boolean w;
-    public final mb0 x;
+import j$.util.Objects;
+public final class jb0 {
+    public int a;
+    public boolean b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
 
-    public jb0(mb0 mb0Var, Context context) {
-        super(context);
-        this.x = mb0Var;
-        lm lmVar = new lm(400L, gl.H);
-        this.b = lmVar;
-        this.e = new kz4();
-        lmVar.a = this;
+    public final jb0 a() {
+        ?? obj = new Object();
+        obj.c = this.c;
+        obj.d = this.d;
+        obj.e = this.e;
+        obj.f = this.f;
+        obj.b = this.b;
+        return obj;
     }
 
-    @Override
-    public final void onDraw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jb0.onDraw(android.graphics.Canvas):void");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof jb0)) {
+            return false;
+        }
+        jb0 jb0Var = (jb0) obj;
+        if (this.c == jb0Var.c && this.d == jb0Var.d && this.e == jb0Var.e && this.f == jb0Var.f) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.x.Q, 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(48.0f), 1073741824));
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.a), Integer.valueOf(this.c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f));
     }
 }

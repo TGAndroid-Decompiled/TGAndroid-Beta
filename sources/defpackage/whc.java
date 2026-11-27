@@ -1,27 +1,23 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class whc extends AnimatorListenerAdapter {
-    public final byte a;
-    public final xhc b;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class whc extends ViewOutlineProvider {
+    public final int a;
+    public final float b;
 
-    public whc(xhc xhcVar, byte b) {
-        this.a = b;
-        this.b = xhcVar;
+    public whc(int i, float f) {
+        this.a = i;
+        this.b = f;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        xhc xhcVar = this.b;
-        switch (b) {
-            case 0:
-                xhcVar.b.setVisibility(8);
-                return;
-            default:
-                xhcVar.c.setVisibility(8);
-                return;
-        }
+    public final void getOutline(View view, Outline outline) {
+        int width = view.getWidth();
+        int i = this.a;
+        float f = this.b;
+        int i2 = this.a;
+        outline.setRoundRect(i2, i2, width - i, view.getHeight() - i, f);
     }
 }

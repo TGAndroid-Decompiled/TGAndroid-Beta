@@ -1,105 +1,47 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-public final class hr1 extends ive {
-    public final byte a;
-    public final Object b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class hr1 extends FragmentContextView {
+    public final byte X0;
+    public final zu1 Y0;
 
-    public hr1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
-    }
-
-    @Override
-    public final void a(boolean z) {
-        byte b = this.a;
-        k27 k27Var = null;
-        Object obj = this.b;
+    public hr1(zu1 zu1Var, Context context, zu1 zu1Var2, vnb vnbVar, byte b) {
+        super(context, zu1Var2, null, true, vnbVar);
+        this.X0 = b;
         switch (b) {
-            case 0:
-                mu1 mu1Var = (mu1) obj;
-                mu1Var.K9 = !z;
-                if (z) {
-                    if (mu1Var.v9 != null) {
-                        mu1Var.pc(0.0f);
-                        mu1Var.v9 = null;
-                    }
-                    mu1Var.w9 = false;
-                    mu1Var.C9 = false;
-                    es1 es1Var = mu1Var.E9;
-                    if (es1Var != null) {
-                        gl.r(es1Var.I);
-                        es1Var.a();
-                    }
-                }
-                mu1Var.Rc();
-                return;
             case 1:
-                f37 f37Var = (f37) obj;
-                z27 z27Var = f37Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = f37Var.s;
-                l37 l37Var = f37Var.d0;
-                if (l37Var.s) {
-                    if (!z) {
-                        if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b > 0.0f) {
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                            return;
-                        }
-                        return;
-                    } else if (z27Var.v - z27Var.u > na7.q1(l37Var.x).k4.N1.f()) {
-                        f37Var.f();
-                        return;
-                    } else {
-                        mib mibVar = z27Var.W;
-                        if (mibVar != null) {
-                            k27Var = ((gb2) mibVar).getMessageObject();
-                        }
-                        k27 a = f37Var.a(k27Var);
-                        o27 o27Var = l37Var.d;
-                        if (o27Var.d == null) {
-                            int i = z27Var.u;
-                            o27Var.e = i;
-                            int i2 = z27Var.v;
-                            o27Var.f = i2;
-                            o27Var.d = bu1.b(i, i2, a);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(f37Var.J);
-                            return;
-                        }
-                        return;
-                    }
-                }
+                this.Y0 = zu1Var;
+                super(context, zu1Var2, null, false, vnbVar);
                 return;
             default:
-                y28 y28Var = (y28) obj;
-                t28 t28Var = y28Var.G1;
-                boolean w = y28Var.A0.W.w();
-                m8b m8bVar = ((d8b) t28Var).d;
-                m8bVar.j1 = w;
-                m8bVar.U();
+                this.Y0 = zu1Var;
                 return;
         }
     }
 
     @Override
-    public final void b() {
-        a aVar;
-        a aVar2;
-        switch (this.a) {
+    public final void setVisibility(int i) {
+        byte b = this.X0;
+        boolean z = false;
+        zu1 zu1Var = this.Y0;
+        switch (b) {
             case 0:
-                mu1 mu1Var = (mu1) this.b;
-                aVar = ((d) mu1Var).actionBar;
-                if (aVar != null) {
-                    aVar2 = ((d) mu1Var).actionBar;
-                    if (aVar2.y()) {
-                        mu1Var.F5(false);
-                    }
+                wz1 wz1Var = zu1Var.b1;
+                FrameLayout frameLayout = zu1Var.p2;
+                if (i == 0) {
+                    z = true;
                 }
-                mu1Var.b6();
-                mu1Var.N3.j(58, 0L, null);
+                wz1Var.j(frameLayout, z, true);
                 return;
             default:
+                wz1 wz1Var2 = zu1Var.b1;
+                FrameLayout frameLayout2 = zu1Var.n2;
+                if (i == 0) {
+                    z = true;
+                }
+                wz1Var2.j(frameLayout2, z, true);
                 return;
         }
     }

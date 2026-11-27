@@ -28,12 +28,12 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
             int i5 = sharedPreferences.getInt("account" + i, -1);
             if (i5 == -1) {
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt(de9.k(i, "account"), y6c.t0);
+                edit.putInt(uh9.k(i, "account"), yac.t0);
                 edit.putInt("type" + i, 0).commit();
             }
             ArrayList arrayList = new ArrayList();
             if (i5 >= 0) {
-                ad7.Y(j5.a(i5).a).n0(i, 1, arrayList, null, null, false);
+                jf7.Y(k5.a(i5).a).n0(i, 1, arrayList, null, null, false);
             }
             int ceil = (int) Math.ceil(arrayList.size() / 2.0f);
             if (i3 != 1 && ceil > 1) {
@@ -67,8 +67,8 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
         for (int i = 0; i < iArr.length; i++) {
             int i2 = sharedPreferences.getInt("account" + iArr[i], -1);
             if (i2 >= 0) {
-                ad7 Y = ad7.Y(j5.a(i2).a);
-                Y.a.c(new wa7(Y, iArr[i], (byte) 1));
+                jf7 Y = jf7.Y(k5.a(i2).a);
+                Y.a.c(new ad7(Y, iArr[i], (byte) 1));
             }
             edit.remove("account" + iArr[i]);
             edit.remove("type" + iArr[i]);

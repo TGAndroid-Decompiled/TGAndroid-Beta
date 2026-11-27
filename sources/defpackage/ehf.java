@@ -1,50 +1,36 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.AbstractList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-public final class ehf extends AbstractList implements RandomAccess, sff {
-    public final qff a;
+import java.util.Arrays;
+public final class ehf {
+    public final Boolean a;
+    public final Boolean b;
+    public final Boolean c;
+    public final Boolean d;
+    public final Boolean e;
 
-    public ehf(qff qffVar) {
-        this.a = qffVar;
+    public ehf(am2 am2Var) {
+        this.a = (Boolean) am2Var.b;
+        this.b = (Boolean) am2Var.c;
+        this.c = (Boolean) am2Var.d;
+        this.d = (Boolean) am2Var.e;
+        this.e = (Boolean) am2Var.f;
     }
 
-    @Override
-    public final Object b(int i) {
-        return this.a.b.get(i);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ehf)) {
+            return false;
+        }
+        ehf ehfVar = (ehf) obj;
+        if (vue.a(this.a, ehfVar.a) && vue.a(this.b, ehfVar.b) && vue.a(this.c, ehfVar.c) && vue.a(this.d, ehfVar.d) && vue.a(this.e, ehfVar.e)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final Object get(int i) {
-        return this.a.get(i);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new dcd(this);
-    }
-
-    @Override
-    public final ListIterator listIterator(int i) {
-        return new fzd(this, i);
-    }
-
-    @Override
-    public final int size() {
-        return this.a.b.size();
-    }
-
-    @Override
-    public final List zzh() {
-        return DesugarCollections.unmodifiableList(this.a.b);
-    }
-
-    @Override
-    public final sff zzd() {
-        return this;
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, this.c, this.d, this.e});
     }
 }

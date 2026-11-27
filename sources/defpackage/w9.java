@@ -1,11 +1,10 @@
 package defpackage;
-
-import java.util.ArrayList;
 public final class w9 {
-    public final w06 a;
-    public final ArrayList b = new ArrayList();
+    public final s9 a;
+    public final t9 b;
 
-    public w9(w06 w06Var) {
-        this.a = w06Var;
+    public w9(s9 s9Var, t9 t9Var) {
+        this.a = s9Var;
+        this.b = t9Var;
     }
 }

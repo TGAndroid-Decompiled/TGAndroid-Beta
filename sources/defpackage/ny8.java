@@ -1,181 +1,105 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.RLottieNative;
-public class ny8 extends oy8 {
-    public volatile RLottieNative V0;
-    public boolean W0;
-    public boolean X0;
-    public volatile boolean Y0;
-    public boolean Z0;
-    public final int a1;
-    public int b1;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.net.Uri;
+import android.os.Handler;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
+public final class ny8 {
+    public boolean a;
+    public final Object b;
+    public Object c;
+    public final Object d;
+    public Object e;
+    public Object f;
+    public Object g;
+    public Object h;
+    public Object i;
+    public Object j;
 
-    public ny8(String str, int i, int i2) {
-        super(i, i2);
-        String str2;
-        this.a1 = -1;
-        this.K = (byte) 1;
-        if ("🎲".equals(str)) {
-            str2 = gl.v2(null, 2131623999);
-            this.a1 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = gl.v2(null, 2131623996);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.n0 = RLottieNative.b(str2, this.e, null, null);
+    public ny8(gl2 gl2Var) {
+        Paint paint = new Paint(1);
+        this.i = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-8697);
+        paint.setStrokeWidth(hl.L(6.0f));
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setShadowLayer(1.0804527E9f, 0.0f, hl.L(3.0f), hl.L(6.0f));
+        this.j = new Path();
+        this.b = gl2Var;
+        k43 k43Var = k43.g;
+        this.d = new mm(0.0f, gl2Var, 0L, 320L, k43Var);
+        this.e = new mm(0.0f, gl2Var, 0L, 160L, k43Var);
+        this.f = new mm(0.0f, gl2Var, 0L, 160L, k43Var);
+        this.g = new mm[]{new mm(0.0f, gl2Var, 0L, 160L, k43Var), new mm(0.0f, gl2Var, 0L, 160L, k43Var), new mm(0.0f, gl2Var, 0L, 160L, k43Var), new mm(0.0f, gl2Var, 0L, 160L, k43Var)};
+        this.h = new mm[]{new mm(0.0f, gl2Var, 0L, 160L, k43Var), new mm(0.0f, gl2Var, 0L, 160L, k43Var), new mm(0.0f, gl2Var, 0L, 160L, k43Var), new mm(0.0f, gl2Var, 0L, 160L, k43Var)};
     }
 
-    @Override
-    public void d() {
-        byte b = this.K;
-        if (b == 1) {
-            int i = this.b0 + 1;
-            int i2 = this.a1;
-            if (i2 == -1) {
-                i2 = this.e[0];
-            }
-            if (i < i2) {
-                this.b0 = i;
-                return;
-            }
-            this.b0 = 0;
-            this.O = false;
-            if (this.V0 != null) {
-                this.K = (byte) 2;
-            }
-            if (this.E) {
-                this.y = null;
-                this.E = false;
-            }
-        } else if (b == 2) {
-            int i3 = this.b0 + 1;
-            if (i3 < this.b1) {
-                this.b0 = i3;
-                return;
-            }
-            this.O = true;
-            this.N++;
-        }
+    public static ja6 a(jy7 jy7Var, long j, long j2) {
+        ia6 ia6Var = new ia6(jy7Var.a, jy7Var.b, j);
+        b2b b2bVar = jy7Var.d;
+        ia6Var.d = b2bVar.c;
+        ia6Var.e = b2bVar.d;
+        ia6Var.f = j2;
+        ia6Var.g = b2bVar.b;
+        return new ja6(ia6Var);
     }
 
-    @Override
-    public int e() {
-        if (this.m0) {
-            return 3;
+    public final void b() {
+        yve.p(this.a);
+        Uri uri = (Uri) this.e;
+        uri.getClass();
+        Uri.Builder buildUpon = uri.buildUpon();
+        v34 v34Var = (v34) this.f;
+        v34Var.getClass();
+        ug5 ug5Var = (ug5) v34Var.b;
+        yve.p(ug5Var.k);
+        String str = ug5Var.l;
+        String valueOf = String.valueOf(ug5Var.c.b());
+        awd.a("_HLS_pathway", str);
+        awd.a("_HLS_throughput", valueOf);
+        for (Map.Entry entry : new TreeMap(o99.g(2, new Object[]{"_HLS_pathway", str, "_HLS_throughput", valueOf}, null)).entrySet()) {
+            buildUpon.appendQueryParameter((String) entry.getKey(), (String) entry.getValue());
         }
-        if (this.n0 == null || (this.K == 2 && this.V0 == null)) {
-            return 2;
-        }
-        return 1;
+        Map map = Collections.EMPTY_MAP;
+        Uri build = buildUpon.build();
+        build.getClass();
+        jy7 jy7Var = new jy7(((e05) this.b).createDataSource(), new n73(build, 1, null, map, 0L, -1L, null, 0), 8, new z6f((byte) 26));
+        rx6 rx6Var = (rx6) this.j;
+        rx6Var.getClass();
+        rx6Var.w0(jy7Var, (k09) this.c, 0);
     }
 
-    @Override
-    public void k() {
-        if (this.W) {
-            i();
-            if (this.Q == null && this.n0 != null) {
-                y(true);
-            }
-        }
-        if (this.n0 == null && this.V0 == null && this.C0 == null) {
-            z();
-            return;
-        }
-        this.U = true;
-        if (!q()) {
-            stop();
-        }
-        if (this.l0) {
-            D();
-        }
-    }
-
-    @Override
-    public final boolean r() {
-        return this.Z0;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public int w(Bitmap bitmap, boolean z) {
-        RLottieNative rLottieNative;
-        byte b = this.K;
-        if (b == 1) {
-            rLottieNative = this.n0;
-        } else if (b == 2) {
-            rLottieNative = this.V0;
-            if (this.Y0) {
-                this.b0 = this.b1 - 1;
-            }
-        } else {
-            rLottieNative = this.n0;
-        }
-        if (rLottieNative.c(this.b0, bitmap, z) < 0) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void x(boolean z) {
-        this.l0 = false;
-        this.m0 = true;
-        i();
-        g();
-        if (!this.Z0 && !this.W0) {
-            if (this.Q == null && !this.y0) {
-                y(z);
-                dk0 dk0Var = this.C0;
-                if (dk0Var != null) {
-                    RandomAccessFile randomAccessFile = dk0Var.s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        dk0Var.s = null;
-                    }
-                    dk0Var.r = true;
-                    this.C0 = null;
+    public final void c(my8 my8Var) {
+        boolean z = false;
+        if (my8Var != null) {
+            this.c = my8Var;
+            float f = my8Var.d;
+            float f2 = my8Var.c;
+            PointF[] pointFArr = my8Var.b;
+            if (!this.a) {
+                ((mm) this.e).e(true, f2);
+                ((mm) this.f).e(true, f);
+                for (int i = 0; i < Math.min(4, pointFArr.length); i++) {
+                    ((mm[]) this.g)[i].e(true, pointFArr[i].x - f2);
+                    ((mm[]) this.h)[i].e(true, pointFArr[i].y - f);
                 }
-                z();
-                return;
             }
-            this.W = true;
-            return;
         }
-        this.X0 = true;
+        if (my8Var != null) {
+            z = true;
+        }
+        this.a = z;
+        ((gl2) this.b).run();
     }
 
-    @Override
-    public final void y(boolean z) {
-        RLottieNative rLottieNative = this.n0;
-        RLottieNative rLottieNative2 = this.V0;
-        this.n0 = null;
-        this.V0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
-            return;
-        }
-        lw8 lw8Var = new lw8(rLottieNative, rLottieNative2, (byte) 6);
-        if (z) {
-            eo3.a(lw8Var);
-        } else {
-            Utilities.e.c(lw8Var);
-        }
+    public ny8(e05 e05Var) {
+        this.b = e05Var;
+        this.c = new k09(this, (byte) 13);
+        this.d = new xgb(new Handler(gcc.z(), null));
     }
 }

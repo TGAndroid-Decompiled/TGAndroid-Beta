@@ -1,4 +1,4 @@
 package defpackage;
-public interface p8c {
-    void a(Object obj);
+public abstract class p8c extends px2 {
+    public static final int c = 0;
 }

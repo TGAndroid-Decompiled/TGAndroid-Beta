@@ -1,26 +1,25 @@
 package defpackage;
+public final class hp2 extends jp2 {
+    public final byte f;
+    public final lp2 h;
 
-import android.util.SparseArray;
-public final class hp2 {
-    public static final hp2 a;
-    public static final hp2[] b;
-    hp2 EF0;
-
-    static {
-        Enum r0 = new Enum("NOT_SET", 0);
-        ?? r1 = new Enum("EVENT_OVERRIDE", 1);
-        a = r1;
-        b = new hp2[]{r0, r1};
-        SparseArray sparseArray = new SparseArray();
-        sparseArray.put(0, r0);
-        sparseArray.put(5, r1);
+    public hp2(lp2 lp2Var, byte b) {
+        super(lp2Var);
+        this.f = b;
+        this.h = lp2Var;
     }
 
-    public static hp2 valueOf(String str) {
-        return (hp2) Enum.valueOf(hp2.class, str);
-    }
-
-    public static hp2[] values() {
-        return (hp2[]) b.clone();
+    @Override
+    public final Object a(int i) {
+        byte b = this.f;
+        lp2 lp2Var = this.h;
+        switch (b) {
+            case 0:
+                return lp2Var.g(i);
+            case 1:
+                return new kp2(lp2Var, i);
+            default:
+                return lp2Var.l(i);
+        }
     }
 }

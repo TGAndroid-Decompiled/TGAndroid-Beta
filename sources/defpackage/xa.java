@@ -1,57 +1,57 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-public final class xa extends FrameLayout {
-    public final ImageView a;
-    public final TextView b;
-    public final ImageView c;
-    public final Paint d;
-    public boolean e;
+public final class xa extends a8c {
+    public static final int b = 0;
 
-    public xa(Context context) {
-        super(context);
-        this.d = new Paint(1);
-        ImageView imageView = new ImageView(context);
-        this.a = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(2131231781);
-        addView(imageView, nme.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
-        TextView textView = new TextView(context);
-        this.b = textView;
-        textView.setTextSize(1, 16.0f);
-        addView(textView, nme.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.c = imageView2;
-        imageView2.setScaleType(scaleType);
-        imageView2.setImageResource(2131231772);
-        addView(imageView2, nme.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.e) {
-            canvas.drawRect(gl.L(64.0f), getHeight() - Math.max(gl.L(0.66f), 1), getWidth(), getHeight(), this.d);
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        int i;
+        ya yaVar = (ya) view;
+        if (b8cVar.H == null) {
+            yaVar.setAsShowMore((fb) b8cVar.I);
+            return;
         }
+        int i2 = b8cVar.A;
+        String charSequence = b8cVar.m.toString();
+        View.OnClickListener onClickListener = b8cVar.E;
+        fb fbVar = (fb) b8cVar.I;
+        ImageView imageView = yaVar.a;
+        imageView.setVisibility(0);
+        int i3 = fbVar.G;
+        int i4 = fbVar.I;
+        TextView textView = yaVar.b;
+        textView.setTextColor(i4);
+        int p1 = aob.p1(0.6f, i4);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(p1, mode));
+        ImageView imageView2 = yaVar.c;
+        imageView2.setColorFilter(new PorterDuffColorFilter(aob.p1(0.6f, i4), mode));
+        imageView2.setBackground(aob.Z(0, aob.p1(0.15f, i4), hl.L(4.0f), hl.L(4.0f)));
+        if (i2 == 0) {
+            i = 2131232099;
+        } else {
+            i = 2131232359;
+        }
+        imageView.setImageResource(i);
+        textView.setText(charSequence);
+        imageView2.setOnClickListener(onClickListener);
+        yaVar.d.setColor(aob.p1(0.1f, fbVar.I));
+        yaVar.e = z;
+        yaVar.setWillNotDraw(!z);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-    }
-
-    public void setAsShowMore(eb ebVar) {
-        ImageView imageView = this.a;
-        imageView.setImageResource(2131230871);
-        imageView.setColorFilter(new PorterDuffColorFilter(ebVar.I, PorterDuff.Mode.SRC_IN));
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new ya(context);
     }
 }

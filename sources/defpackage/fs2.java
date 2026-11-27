@@ -1,37 +1,33 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class fs2 extends b4 {
-    public static final Parcelable.Creator<fs2> CREATOR = new rhe((byte) 24);
-    public final mj9 a;
-    public final boolean b;
-    public final boolean c;
-    public final int[] d;
-    public final int e;
-    public final int[] f;
+import java.util.function.LongSupplier;
+public final class fs2 extends vr2 {
+    public long d;
+    public long e;
+    public long f;
 
-    public fs2(mj9 mj9Var, boolean z, boolean z2, int[] iArr, int i, int[] iArr2) {
-        this.a = mj9Var;
-        this.b = z;
-        this.c = z2;
-        this.d = iArr;
-        this.e = i;
-        this.f = iArr2;
+    public final gs2 u(js2 js2Var) {
+        boolean z;
+        long j = this.d;
+        if (j >= this.e && j <= this.f) {
+            z = true;
+        } else {
+            z = false;
+        }
+        r(z, Long.valueOf(j));
+        final long j2 = this.d;
+        ?? ai6Var = new ai6(s(), new LongSupplier() {
+            @Override
+            public final long getAsLong() {
+                return j2;
+            }
+        }, this.e, this.f, this.a);
+        q(js2Var, ai6Var);
+        return ai6Var;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 1, this.a, i);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.b ? 1 : 0);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.c ? 1 : 0);
-        jte.g(parcel, 4, this.d);
-        jte.q(parcel, 5, 4);
-        parcel.writeInt(this.e);
-        jte.g(parcel, 6, this.f);
-        jte.s(parcel, r);
+    public final void v() {
+        this.e = 0L;
+        this.f = Long.MAX_VALUE;
     }
 }

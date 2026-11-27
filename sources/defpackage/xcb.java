@@ -1,4 +1,4 @@
 package defpackage;
-public interface xcb {
-    Object m();
+public final class xcb implements r74 {
+    public final byte a;
 }

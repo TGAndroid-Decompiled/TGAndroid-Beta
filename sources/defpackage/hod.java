@@ -1,48 +1,184 @@
 package defpackage;
+public abstract class hod {
+    public static final gi0 a;
+    public static final gi0 b;
+    public static final gi0 c;
+    public static final gi0 d;
+    public static final gi0 e;
+    public static final gi0 f;
+    public static final gi0 g;
+    public static final gi0 h;
+    public static final gi0 i;
+    public static final gi0 j;
+    public static final gi0 k;
+    public static final gi0 l;
+    public static final gi0 m;
+    public static final gi0 n;
+    public static final gi0 o;
+    public static final gi0 p;
 
-import android.net.ConnectivityManager;
-import android.net.LinkProperties;
-import android.net.Network;
-public final class hod extends ConnectivityManager.NetworkCallback {
-    public final ood a;
-
-    public hod(ood oodVar) {
-        this.a = oodVar;
+    static {
+        h1 a2 = gi0.a();
+        a2.a = 3;
+        a2.c = "Google Play In-app Billing API version is less than 3";
+        a2.a();
+        h1 a3 = gi0.a();
+        a3.a = 3;
+        a3.c = "Google Play In-app Billing API version is less than 9";
+        a3.a();
+        h1 a4 = gi0.a();
+        a4.a = 3;
+        a4.c = "Billing service unavailable on device.";
+        a = a4.a();
+        h1 a5 = gi0.a();
+        a5.a = 2;
+        a5.c = "Billing service unavailable on device.";
+        b = a5.a();
+        h1 a6 = gi0.a();
+        a6.a = 5;
+        a6.c = "Client is already in the process of connecting to billing service.";
+        c = a6.a();
+        h1 a7 = gi0.a();
+        a7.a = 5;
+        a7.c = "The list of SKUs can't be empty.";
+        a7.a();
+        h1 a8 = gi0.a();
+        a8.a = 5;
+        a8.c = "SKU type can't be empty.";
+        a8.a();
+        h1 a9 = gi0.a();
+        a9.a = 5;
+        a9.c = "Product type can't be empty.";
+        d = a9.a();
+        h1 a10 = gi0.a();
+        a10.a = -2;
+        a10.c = "Client does not support extra params.";
+        e = a10.a();
+        h1 a11 = gi0.a();
+        a11.a = 5;
+        a11.c = "Invalid purchase token.";
+        a11.a();
+        h1 a12 = gi0.a();
+        a12.a = 6;
+        a12.c = "An internal error occurred.";
+        f = a12.a();
+        h1 a13 = gi0.a();
+        a13.a = 5;
+        a13.c = "SKU can't be null.";
+        a13.a();
+        h1 a14 = gi0.a();
+        a14.a = 0;
+        g = a14.a();
+        h1 a15 = gi0.a();
+        a15.a = -1;
+        a15.c = "Service connection is disconnected.";
+        h = a15.a();
+        h1 a16 = gi0.a();
+        a16.a = 2;
+        a16.c = "Timeout communicating with service.";
+        i = a16.a();
+        h1 a17 = gi0.a();
+        a17.a = -2;
+        a17.c = "Client does not support subscriptions.";
+        j = a17.a();
+        h1 a18 = gi0.a();
+        a18.a = -2;
+        a18.c = "Client does not support subscriptions update.";
+        a18.a();
+        h1 a19 = gi0.a();
+        a19.a = -2;
+        a19.c = "Client does not support get purchase history.";
+        a19.a();
+        h1 a20 = gi0.a();
+        a20.a = -2;
+        a20.c = "Client does not support price change confirmation.";
+        a20.a();
+        h1 a21 = gi0.a();
+        a21.a = -2;
+        a21.c = "Play Store version installed does not support cross selling products.";
+        a21.a();
+        h1 a22 = gi0.a();
+        a22.a = -2;
+        a22.c = "Client does not support multi-item purchases.";
+        k = a22.a();
+        h1 a23 = gi0.a();
+        a23.a = -2;
+        a23.c = "Client does not support offer_id_token.";
+        l = a23.a();
+        h1 a24 = gi0.a();
+        a24.a = -2;
+        a24.c = "Client does not support ProductDetails.";
+        m = a24.a();
+        h1 a25 = gi0.a();
+        a25.a = -2;
+        a25.c = "Client does not support in-app messages.";
+        a25.a();
+        h1 a26 = gi0.a();
+        a26.a = -2;
+        a26.c = "Client does not support user choice billing.";
+        a26.a();
+        h1 a27 = gi0.a();
+        a27.a = -2;
+        a27.c = "Play Store version installed does not support external offer.";
+        a27.a();
+        h1 a28 = gi0.a();
+        a28.a = -2;
+        a28.c = "Play Store version installed does not support multi-item purchases with season pass in one cart.";
+        a28.a();
+        h1 a29 = gi0.a();
+        a29.a = -2;
+        a29.c = "Play Store version installed does not support querying AutoPay plan purchase.";
+        a29.a();
+        h1 a30 = gi0.a();
+        a30.a = -2;
+        a30.c = "Play Store version installed does not support including suspended subscriptions.";
+        a30.a();
+        h1 a31 = gi0.a();
+        a31.a = 5;
+        a31.c = "Unknown feature";
+        a31.a();
+        h1 a32 = gi0.a();
+        a32.a = -2;
+        a32.c = "Play Store version installed does not support get billing config.";
+        a32.a();
+        h1 a33 = gi0.a();
+        a33.a = -2;
+        a33.c = "Query product details with serialized docid is not supported.";
+        a33.a();
+        h1 a34 = gi0.a();
+        a34.a = -2;
+        a34.c = "Play Store version installed does not support launching external offer flow.";
+        a34.a();
+        h1 a35 = gi0.a();
+        a35.a = 4;
+        a35.c = "Item is unavailable for purchase.";
+        n = a35.a();
+        h1 a36 = gi0.a();
+        a36.a = -2;
+        a36.c = "Query product details with developer specified account is not supported.";
+        a36.a();
+        h1 a37 = gi0.a();
+        a37.a = -2;
+        a37.c = "Play Store version installed does not support alternative billing only.";
+        a37.a();
+        h1 a38 = gi0.a();
+        a38.a = 5;
+        a38.c = "To use this API you must specify a PurchasesUpdateListener when initializing a BillingClient.";
+        o = a38.a();
+        h1 a39 = gi0.a();
+        a39.a = 6;
+        a39.c = "An error occurred while retrieving billing override.";
+        p = a39.a();
+        h1 a40 = gi0.a();
+        a40.a = -2;
+        a40.c = "Play Store version installed does not support the provided billing program.";
+        a40.a();
     }
 
-    @Override
-    public final void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
-        this.a.a(network, linkProperties);
-    }
-
-    @Override
-    public final void onLost(Network network) {
-        ood oodVar = this.a;
-        synchronized (oodVar.h) {
-            if (oodVar.d != null && oodVar.e != null) {
-                ood.j.b("the network is lost", new Object[0]);
-                if (oodVar.e.remove(network)) {
-                    oodVar.d.remove(network);
-                }
-                oodVar.b();
-            }
-        }
-    }
-
-    @Override
-    public final void onUnavailable() {
-        ood oodVar = this.a;
-        synchronized (oodVar.h) {
-            if (oodVar.d != null && oodVar.e != null) {
-                ood.j.b("all networks are unavailable.", new Object[0]);
-                oodVar.d.clear();
-                oodVar.e.clear();
-                oodVar.b();
-            }
-        }
-    }
-
-    @Override
-    public final void onAvailable(Network network) {
+    public static gi0 a(int i2, String str) {
+        h1 a2 = gi0.a();
+        a2.a = i2;
+        a2.c = str;
+        return a2.a();
     }
 }

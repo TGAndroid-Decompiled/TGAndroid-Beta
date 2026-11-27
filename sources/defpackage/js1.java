@@ -1,31 +1,37 @@
 package defpackage;
+public final class js1 implements Runnable {
+    public final byte a;
+    public final ks1 b;
 
-import android.app.Activity;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.UndoView;
-public final class js1 extends wv4 {
-    public final mu1 m1;
-
-    public js1(mu1 mu1Var, Activity activity, d dVar) {
-        super(activity, dVar);
-        this.m1 = mu1Var;
+    public js1(ks1 ks1Var, byte b) {
+        this.a = b;
+        this.b = ks1Var;
     }
 
     @Override
-    public final void D0() {
-        mu1 mu1Var = this.m1;
-        mu1Var.b6();
-        UndoView undoView = mu1Var.N3;
-        if (undoView == null) {
-            return;
+    public final void run() {
+        byte b = this.a;
+        ks1 ks1Var = this.b;
+        switch (b) {
+            case 0:
+                nr1 nr1Var = ks1Var.I.a0;
+                if (nr1Var != null) {
+                    nr1Var.o1();
+                    return;
+                }
+                return;
+            default:
+                nr1 nr1Var2 = ks1Var.I.a0;
+                if (nr1Var2 != null) {
+                    nr1Var2.U0 = false;
+                    my1 my1Var = nr1Var2.V0;
+                    if (my1Var != null) {
+                        my1Var.s(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        undoView.j(75, 0L, null);
-        mu1Var.getMessagesController().n4(mu1Var.l6, "CONVERT_GIGAGROUP");
-    }
-
-    @Override
-    public final void E0() {
-        mu1 mu1Var = this.m1;
-        mu1Var.getMessagesController().O(mu1Var.getParentActivity(), mu1Var.e, mu1Var, new rh1(this, (byte) 8));
     }
 }

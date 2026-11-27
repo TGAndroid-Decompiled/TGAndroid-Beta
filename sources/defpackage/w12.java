@@ -1,42 +1,56 @@
 package defpackage;
 
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class w12 implements e39, b22 {
-    public final k22 a;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class w12 extends FrameLayout implements snb {
+    public final vnb a;
+    public final TextView b;
+    public final TextView c;
 
-    public w12(k22 k22Var) {
-        this.a = k22Var;
+    public w12(Context context, vnb vnbVar) {
+        super(context);
+        this.a = vnbVar;
+        setPadding(0, hl.L(42.0f), 0, hl.L(42.0f));
+        setTag(-33024);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, tre.r(-1, -2, 17));
+        de0 de0Var = new de0(context);
+        de0Var.setImageDrawable(new b29(2131624315, hl.L(120.0f), hl.L(120.0f)));
+        linearLayout.addView(de0Var, tre.t(120, 120, 17, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.b = textView;
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(hl.o());
+        textView.setGravity(17);
+        TextView m = ik8.m(linearLayout, textView, tre.t(-1, -2, 17, 32, 12, 32, 8), context);
+        this.c = m;
+        m.setTextSize(1, 14.0f);
+        m.setGravity(17);
+        linearLayout.addView(m, tre.t(-1, -2, 17, 32, 0, 32, 0));
+        updateColors();
     }
 
     @Override
-    public final void b(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j) {
-        k22 k22Var = this.a;
-        k22Var.b.a(true);
-        k22Var.K.b(tL_userContact_old2, z, i, j);
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.G6));
+        hashSet.add(Integer.valueOf(aob.y6));
     }
 
     @Override
-    public final boolean d(int i, View view) {
-        Object O;
-        k22 k22Var = this.a;
-        w39 adapter = k22Var.s.getAdapter();
-        g22 g22Var = k22Var.G;
-        if (adapter == g22Var) {
-            O = g22Var.E(i);
-        } else {
-            e22 e22Var = k22Var.F;
-            O = e22Var.O(e22Var.S(i), e22Var.Q(i));
-        }
-        if (O != null) {
-            k22Var.Q((j22) view, O);
-            return true;
-        }
-        return false;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 
     @Override
-    public final void a(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2) {
+    public final void updateColors() {
+        int i = aob.G6;
+        vnb vnbVar = this.a;
+        this.b.setTextColor(aob.v0(i, vnbVar));
+        this.c.setTextColor(aob.v0(aob.y6, vnbVar));
     }
 }

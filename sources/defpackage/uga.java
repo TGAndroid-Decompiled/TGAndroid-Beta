@@ -1,12 +1,11 @@
 package defpackage;
-public final class uga {
-    public final String a;
-    public final String b;
-    public final oga c;
 
-    public uga(oga ogaVar, String str, String str2) {
-        this.c = ogaVar;
-        this.a = str;
-        this.b = str2;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class uga extends ViewOutlineProvider {
+    @Override
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), hl.L(16.0f));
     }
 }

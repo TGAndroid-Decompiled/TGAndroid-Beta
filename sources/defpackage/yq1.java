@@ -1,25 +1,63 @@
 package defpackage;
-public final class yq1 implements Runnable {
-    public final mu1 a;
+public final class yq1 extends bb2 {
+    public Runnable W;
+    public final zu1 X;
 
-    public yq1(mu1 mu1Var) {
-        this.a = mu1Var;
+    public yq1(zu1 zu1Var, zu1 zu1Var2, wq1 wq1Var, vnb vnbVar) {
+        super(zu1Var2, wq1Var, vnbVar);
+        this.X = zu1Var;
     }
 
     @Override
-    public final void run() {
-        String G;
-        mu1 mu1Var = this.a;
-        k27 k27Var = mu1Var.v5;
-        if (k27Var != null && mu1Var.l9 != null) {
-            int max = Math.max(0, k27Var.k.ttl_period - (mu1Var.getConnectionsManager().getCurrentTime() - mu1Var.v5.k.date));
-            if (max < 86400) {
-                G = gl.g0(max, false, true);
-            } else {
-                G = k96.G(Math.round(max / 86400.0f), "Days", new Object[0]);
-            }
-            mu1Var.l9.setSubtext(k96.a0(null, null, 2131753850, G));
-            gl.d3(mu1Var.m9, 1000L);
+    public final void F() {
+        zu1 zu1Var = this.X;
+        if (zu1Var.ea == -1) {
+            zu1Var.ea = zu1Var.getNotificationCenter().p(zu1.Gd, zu1Var.ea, false);
         }
+    }
+
+    @Override
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            hl.r(runnable);
+            this.W = null;
+        }
+        xq1 xq1Var = new xq1(this, (byte) 1);
+        this.W = xq1Var;
+        hl.c3(xq1Var);
+    }
+
+    @Override
+    public final void V() {
+        zu1 zu1Var = this.X;
+        zu1Var.ea = zu1Var.getNotificationCenter().p(zu1.Gd, zu1Var.ea, false);
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            hl.r(runnable);
+            this.W = null;
+        }
+        if (f11.a) {
+            cc4.b("chatItemAnimator disable notifications");
+        }
+        p1 p1Var = zu1Var.a0.getAdjustPanLayoutHelper().h;
+        hl.r(p1Var);
+        p1Var.run();
+        dx1 dx1Var = zu1Var.a0.M4;
+        hl.r(dx1Var);
+        dx1Var.run();
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            hl.r(runnable);
+        }
+        xq1 xq1Var = new xq1(this, (byte) 0);
+        this.W = xq1Var;
+        hl.c3(xq1Var);
     }
 }

@@ -1,39 +1,29 @@
 package defpackage;
 
-import android.os.Bundle;
-public final class h3d implements ey4, fy4 {
-    public final yn a;
-    public final boolean b;
-    public r1d c;
+import android.content.Context;
+public final class h3d {
+    public static final h3d b;
+    public di4 a;
 
-    public h3d(yn ynVar, boolean z) {
-        this.a = ynVar;
-        this.b = z;
+    static {
+        ?? obj = new Object();
+        obj.a = null;
+        b = obj;
     }
 
-    @Override
-    public final void onConnected(Bundle bundle) {
-        fre.i(this.c, "Callbacks must be attached to a ClientConnectionHelper instance before connecting the client.");
-        this.c.onConnected(bundle);
-    }
-
-    @Override
-    public final void onConnectionFailed(ds2 ds2Var) {
-        yn ynVar = this.a;
-        boolean z = this.b;
-        fre.i(this.c, "Callbacks must be attached to a ClientConnectionHelper instance before connecting the client.");
-        r1d r1dVar = this.c;
-        r1dVar.a.lock();
-        try {
-            r1dVar.m.a1(ds2Var, ynVar, z);
-        } finally {
-            r1dVar.a.unlock();
+    public static di4 a(Context context) {
+        di4 di4Var;
+        h3d h3dVar = b;
+        synchronized (h3dVar) {
+            di4Var = h3dVar.a;
+            if (di4Var == null) {
+                if (context.getApplicationContext() != null) {
+                    context = context.getApplicationContext();
+                }
+                di4Var = new di4(context);
+                h3dVar.a = di4Var;
+            }
         }
-    }
-
-    @Override
-    public final void onConnectionSuspended(int i) {
-        fre.i(this.c, "Callbacks must be attached to a ClientConnectionHelper instance before connecting the client.");
-        this.c.onConnectionSuspended(i);
+        return di4Var;
     }
 }

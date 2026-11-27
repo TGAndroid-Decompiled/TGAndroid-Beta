@@ -1,40 +1,21 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-public interface jka {
-    void a(int i, ByteBuffer byteBuffer);
+import java.util.ArrayList;
+import java.util.List;
+public abstract class jka {
+    public Object a(List list) {
+        return null;
+    }
 
-    void b(int i, ByteBuffer byteBuffer);
+    public List b() {
+        return new ArrayList();
+    }
 
-    void c(int i, int i2);
+    public Object c() {
+        return null;
+    }
 
-    void d(int i, int i2);
-
-    int e(int i, int i2, int i3);
-
-    void f();
-
-    void flush();
-
-    Object g();
-
-    Object h();
-
-    void i(int i);
-
-    boolean j();
-
-    void k(long j, int i, long j2);
-
-    Object l();
-
-    void m(int i, int i2, int i3, int i4, int i5);
-
-    void n(int i);
-
-    int o();
-
-    void p(int i);
-
-    int q(int i, int i2);
+    public Object d(List list) {
+        return null;
+    }
 }

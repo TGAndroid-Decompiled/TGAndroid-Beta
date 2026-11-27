@@ -1,19 +1,17 @@
 package defpackage;
+public final class a0f implements zq7 {
+    public static final a0f a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class a0f extends b4 {
-    public static final Parcelable.Creator<a0f> CREATOR = new c0f((byte) 4);
-    public final byte[] a;
-
-    public a0f(byte[] bArr) {
-        this.a = bArr;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.c(parcel, 1, this.a);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

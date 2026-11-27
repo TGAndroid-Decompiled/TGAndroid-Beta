@@ -1,59 +1,125 @@
 package defpackage;
 
-import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.os.Build;
-public final class cp8 implements gx4, rw4 {
-    public final kl0 a;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class cp8 implements pcc {
+    public final byte a = 1;
+    public final boolean b;
+    public final Object c;
+    public final fn7 d;
+    public final Object e;
+    public final Object f;
+    public final Object g;
 
-    public cp8(kl0 kl0Var) {
-        this.a = kl0Var;
+    public cp8(n1a n1aVar, boolean z, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
+        this.d = n1aVar;
+        this.b = z;
+        this.e = linkedHashSet;
+        this.c = str;
+        this.f = hashMap;
+        this.g = arrayList;
     }
 
     @Override
-    public final int a() {
-        return ((rw4) b()).a();
-    }
-
-    public final gx4 b() {
-        fx4 f = qw4.f();
-        boolean z = f.a;
-        kl0 kl0Var = this.a;
-        if (!z) {
-            return kl0Var.c;
+    public final void a(Object obj) {
+        boolean z;
+        ArrayList<TLRPC.Document> arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        byte b = this.a;
+        Object obj2 = this.c;
+        Object obj3 = this.g;
+        Object obj4 = this.f;
+        Object obj5 = this.e;
+        fn7 fn7Var = this.d;
+        switch (b) {
+            case 0:
+                ProfileActivity profileActivity = (ProfileActivity) fn7Var;
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj5;
+                TLRPC.User user = (TLRPC.User) obj4;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) obj3;
+                String str = (String) obj2;
+                Integer num = (Integer) obj;
+                RectF rectF = ProfileActivity.Z6;
+                boolean z2 = this.b;
+                if (channelParticipant != null) {
+                    profileActivity.e3(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z2);
+                    return;
+                } else {
+                    profileActivity.e3(num.intValue(), user, chatParticipant, null, null, str, z2);
+                    return;
+                }
+            case 1:
+                n1a n1aVar = (n1a) fn7Var;
+                LinkedHashSet linkedHashSet = (LinkedHashSet) obj5;
+                String str2 = (String) obj2;
+                HashMap hashMap = (HashMap) obj4;
+                ArrayList arrayList3 = (ArrayList) obj3;
+                Runnable runnable = (Runnable) obj;
+                int i = n1aVar.W;
+                if (this.b) {
+                    ArrayList t0 = ls6.d0(i).t0(5);
+                    for (int i2 = 0; i2 < t0.size(); i2++) {
+                        if (((TLRPC.TL_messages_stickerSet) t0.get(i2)).documents != null && (arrayList2 = ((TLRPC.TL_messages_stickerSet) t0.get(i2)).documents) != null) {
+                            for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+                                String V = r47.V(arrayList2.get(i3), null, null);
+                                long j = arrayList2.get(i3).id;
+                                if (V != null && !linkedHashSet.contains(Long.valueOf(j)) && str2.contains(V.toLowerCase())) {
+                                    linkedHashSet.add(Long.valueOf(j));
+                                }
+                            }
+                        }
+                    }
+                    ArrayList arrayList4 = ls6.d0(i).t0[1];
+                    for (int i4 = 0; i4 < arrayList4.size(); i4++) {
+                        if ((arrayList4.get(i4) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i4)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i4)).documents) != null) {
+                            for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                                String V2 = r47.V(arrayList.get(i5), null, null);
+                                long j2 = arrayList.get(i5).id;
+                                if (V2 != null && !linkedHashSet.contains(Long.valueOf(j2)) && str2.contains(V2)) {
+                                    linkedHashSet.add(Long.valueOf(j2));
+                                }
+                            }
+                        }
+                    }
+                    runnable.run();
+                    return;
+                }
+                ls6 d0 = ls6.d0(i);
+                String[] strArr = n1a.c2;
+                xg xgVar = new xg(n1aVar, linkedHashSet, hashMap, arrayList3, runnable);
+                if (n1aVar.a0 == 3) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                d0.X(strArr, str2, false, xgVar, true, z, false, false, 30);
+                return;
+            default:
+                ((r7a) fn7Var).O((TLObject) obj, (ArrayList) obj5, (ArrayList) obj4, (ArrayList) obj3, (d7a) obj2, this.b);
+                return;
         }
-        if (f.b && Build.VERSION.SDK_INT >= 33) {
-            return kl0Var.a;
-        }
-        return kl0Var.b;
     }
 
-    @Override
-    public final void d(float f, float f2, int i, Canvas canvas, RectF rectF) {
-        ((rw4) b()).d(f, f2, i, canvas, rectF);
+    public cp8(r7a r7aVar, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, d7a d7aVar, boolean z) {
+        this.d = r7aVar;
+        this.e = arrayList;
+        this.f = arrayList2;
+        this.g = arrayList3;
+        this.c = d7aVar;
+        this.b = z;
     }
 
-    @Override
-    public final void e(float f, float f2, float f3, float f4, Canvas canvas) {
-        b().e(f, f2, f3, f4, canvas);
-    }
-
-    @Override
-    public final int f() {
-        return ((rw4) b()).f();
-    }
-
-    @Override
-    public final int g() {
-        return ((rw4) b()).g();
-    }
-
-    @Override
-    public final boolean h() {
-        gx4 b = b();
-        if ((b instanceof rw4) && ((rw4) b).h()) {
-            return true;
-        }
-        return false;
+    public cp8(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z, String str) {
+        this.d = profileActivity;
+        this.e = channelParticipant;
+        this.f = user;
+        this.g = chatParticipant;
+        this.b = z;
+        this.c = str;
     }
 }

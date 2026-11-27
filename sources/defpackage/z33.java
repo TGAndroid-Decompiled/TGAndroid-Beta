@@ -1,104 +1,96 @@
 package defpackage;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class z33 implements Runnable {
-    public final byte a;
-    public final a43 b;
-    public final TL_wallet.currencyRates c;
+import android.graphics.Matrix;
+public final class z33 {
+    public float a;
+    public float b;
+    public float f;
+    public float h;
+    public boolean j;
+    public final b43 l;
+    public float c = 0.0f;
+    public float d = 0.0f;
+    public float e = 1.0f;
+    public final float g = 0.0f;
+    public float i = 0.0f;
+    public final Matrix k = new Matrix();
 
-    public z33(a43 a43Var, TL_wallet.currencyRates currencyrates, byte b) {
-        this.a = b;
-        this.b = a43Var;
-        this.c = currencyrates;
+    public z33(b43 b43Var, int i, int i2) {
+        this.l = b43Var;
+        this.a = i;
+        this.b = i2;
     }
 
-    @Override
-    public final void run() {
-        byte b;
-        boolean z;
-        String str;
-        switch (this.a) {
-            case 0:
-                a43 a43Var = this.b;
-                TL_wallet.currencyRates currencyrates = this.c;
-                boolean z2 = true;
-                if (currencyrates != null && currencyrates.rates != null) {
-                    try {
-                        InputStream open = a.b.getAssets().open("currencies.json");
-                        String str2 = g8c.a;
-                        JSONObject jSONObject = new JSONObject(new String(b51.b(open), ck1.a));
-                        ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
-                        int size = arrayList.size();
-                        int i = 0;
-                        while (i < size) {
-                            TL_wallet.currencyRate currencyrate = arrayList.get(i);
-                            i++;
-                            TL_wallet.currencyRate currencyrate2 = currencyrate;
-                            if (currencyrate2 != null) {
-                                JSONObject optJSONObject = jSONObject.optJSONObject(currencyrate2.currency);
-                                if (optJSONObject == null) {
-                                    String str3 = currencyrate2.currency;
-                                    currencyrate2.title = str3;
-                                    currencyrate2.symbol = str3;
-                                    currencyrate2.thousandsSeparator = ",";
-                                    currencyrate2.decimalSeparator = ".";
-                                    currencyrate2.spaceBetween = z2;
-                                    currencyrate2.exp = 2;
-                                } else {
-                                    currencyrate2.title = optJSONObject.optString("title", currencyrate2.currency);
-                                    String optString = optJSONObject.optString("native", currencyrate2.currency);
-                                    String optString2 = optJSONObject.optString("symbol", currencyrate2.currency);
-                                    if (("$".equals(optString) && !"USD".equals(currencyrate2.currency)) || "kr".equals(optString)) {
-                                        z = true;
-                                    } else {
-                                        z = false;
-                                    }
-                                    if ("AED".equals(currencyrate2.currency)) {
-                                        str = "\u20c3";
-                                    } else if ("GEL".equals(currencyrate2.currency)) {
-                                        str = "₾";
-                                    } else if (z) {
-                                        str = optString2;
-                                    } else {
-                                        str = optString;
-                                    }
-                                    currencyrate2.symbol = str;
-                                    currencyrate2.thousandsSeparator = optJSONObject.optString("thousands_sep", ",");
-                                    currencyrate2.decimalSeparator = optJSONObject.optString("decimal_sep", ".");
-                                    currencyrate2.symbolLeft = optJSONObject.optBoolean("symbol_left");
-                                    currencyrate2.spaceBetween = optJSONObject.optBoolean("space_between");
-                                    currencyrate2.dropZeros = optJSONObject.optBoolean("drop_zeros");
-                                    currencyrate2.exp = optJSONObject.optInt("exp", 2);
-                                    if ("AED".equals(currencyrate2.currency)) {
-                                        currencyrate2.title = currencyrate2.title.replace("United Arab Emirates", "UAE");
-                                    } else if ("USD".equalsIgnoreCase(currencyrate2.currency)) {
-                                        currencyrate2.title = currencyrate2.title.replace("United States", "US");
-                                    }
-                                    z2 = true;
-                                }
-                            }
-                        }
-                        open.close();
-                        b = 1;
-                    } catch (Exception e) {
-                        b = 1;
-                        fa4.g(e, true);
-                    }
-                } else {
-                    b = 1;
-                }
-                gl.c3(new z33(a43Var, currencyrates, b));
-                return;
-            default:
-                a43 a43Var2 = this.b;
-                a43Var2.d = this.c;
-                a43Var2.c = false;
-                a43Var2.b.S();
-                return;
+    public final float a() {
+        if ((this.h + this.g) % 180.0f != 0.0f) {
+            return this.a;
+        }
+        return this.b;
+    }
+
+    public final float b() {
+        if ((this.h + this.g) % 180.0f != 0.0f) {
+            return this.b;
+        }
+        return this.a;
+    }
+
+    public final boolean c() {
+        if (Math.abs(this.c) <= 1.0E-5f && Math.abs(this.d) <= 1.0E-5f && Math.abs(this.e - this.f) <= 1.0E-5f && Math.abs(this.i) <= 1.0E-5f && Math.abs(this.h) <= 1.0E-5f) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void d(float f) {
+        Matrix matrix = this.k;
+        matrix.reset();
+        this.c = 0.0f;
+        this.d = 0.0f;
+        this.i = 0.0f;
+        this.h = f;
+        h();
+        float f2 = this.f;
+        this.e = f2;
+        matrix.postScale(f2, f2);
+    }
+
+    public final void e(float f) {
+        this.i += f;
+        this.k.postRotate(f, 0.0f, 0.0f);
+    }
+
+    public final void f(float f, float f2, float f3) {
+        this.e *= f;
+        this.k.postScale(f, f, f2, f3);
+    }
+
+    public final void g(float f, float f2) {
+        this.c += f;
+        this.d += f2;
+        this.k.postTranslate(f, f2);
+    }
+
+    public final void h() {
+        float f;
+        float f2;
+        float f3 = this.h;
+        float f4 = this.g;
+        if ((f3 + f4) % 180.0f != 0.0f) {
+            f = this.b;
+        } else {
+            f = this.a;
+        }
+        if ((f3 + f4) % 180.0f != 0.0f) {
+            f2 = this.a;
+        } else {
+            f2 = this.b;
+        }
+        b43 b43Var = this.l;
+        if (b43Var.y) {
+            this.f = b43Var.a.getCropWidth() / f;
+        } else {
+            this.f = Math.max(b43Var.a.getCropWidth() / f, b43Var.a.getCropHeight() / f2);
         }
     }
 }

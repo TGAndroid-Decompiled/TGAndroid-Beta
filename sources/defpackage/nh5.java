@@ -1,6 +1,6 @@
 package defpackage;
-
-import android.location.Location;
 public interface nh5 {
-    void onLocationChanged(Location location);
+    iy7 a(jh5 jh5Var, fh5 fh5Var);
+
+    iy7 c();
 }

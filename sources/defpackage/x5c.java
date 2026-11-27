@@ -1,112 +1,43 @@
 package defpackage;
 
-import android.os.Build;
-import android.text.Spannable;
-import android.text.SpannableString;
-import j$.util.stream.IntStream;
-import java.util.stream.IntStream;
-public final class x5c implements Spannable {
-    public boolean a = false;
-    public Spannable b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class x5c implements q4b {
+    public final TLRPC.InputStickerSet a;
+    public final d6c b;
 
-    public x5c(CharSequence charSequence) {
-        this.b = new SpannableString(charSequence);
+    public x5c(d6c d6cVar, TLRPC.InputStickerSet inputStickerSet) {
+        this.b = d6cVar;
+        this.a = inputStickerSet;
     }
 
+    @Override
     public final void a() {
-        ie7 ie7Var;
-        Spannable spannable = this.b;
-        if (!this.a) {
-            if (Build.VERSION.SDK_INT < 28) {
-                ie7Var = new ie7((byte) 28);
-            } else {
-                ie7Var = new ie7((byte) 28);
+        d6c d6cVar = this.b;
+        j79 adapter = d6cVar.n.getAdapter();
+        c6c c6cVar = d6cVar.s;
+        TLRPC.InputStickerSet inputStickerSet = this.a;
+        int i = 0;
+        if (adapter == c6cVar) {
+            while (i < c6cVar.e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) c6cVar.e.get(i);
+                if (stickerSetCovered.set.id == inputStickerSet.id) {
+                    c6cVar.F(stickerSetCovered, null);
+                    return;
+                }
+                i++;
             }
-            if (ie7Var.c(spannable)) {
-                this.b = new SpannableString(spannable);
-            }
+            return;
         }
-        this.a = true;
-    }
-
-    @Override
-    public final char charAt(int i) {
-        return this.b.charAt(i);
-    }
-
-    @Override
-    public final IntStream chars() {
-        return IntStream.Wrapper.convert(chars());
-    }
-
-    @Override
-    public final java.util.stream.IntStream codePoints() {
-        return IntStream.Wrapper.convert(codePoints());
-    }
-
-    @Override
-    public final int getSpanEnd(Object obj) {
-        return this.b.getSpanEnd(obj);
-    }
-
-    @Override
-    public final int getSpanFlags(Object obj) {
-        return this.b.getSpanFlags(obj);
-    }
-
-    @Override
-    public final int getSpanStart(Object obj) {
-        return this.b.getSpanStart(obj);
-    }
-
-    @Override
-    public final Object[] getSpans(int i, int i2, Class cls) {
-        return this.b.getSpans(i, i2, cls);
-    }
-
-    @Override
-    public final int length() {
-        return this.b.length();
-    }
-
-    @Override
-    public final int nextSpanTransition(int i, int i2, Class cls) {
-        return this.b.nextSpanTransition(i, i2, cls);
-    }
-
-    @Override
-    public final void removeSpan(Object obj) {
-        a();
-        this.b.removeSpan(obj);
-    }
-
-    @Override
-    public final void setSpan(Object obj, int i, int i2, int i3) {
-        a();
-        this.b.setSpan(obj, i, i2, i3);
-    }
-
-    @Override
-    public final CharSequence subSequence(int i, int i2) {
-        return this.b.subSequence(i, i2);
-    }
-
-    @Override
-    public final String toString() {
-        return this.b.toString();
-    }
-
-    @Override
-    public final j$.util.stream.IntStream chars() {
-        return kh0.b(this.b);
-    }
-
-    @Override
-    public final j$.util.stream.IntStream codePoints() {
-        return kh0.c(this.b);
-    }
-
-    public x5c(Spannable spannable) {
-        this.b = spannable;
+        z4b z4bVar = d6cVar.w;
+        ArrayList arrayList = z4bVar.F;
+        while (i < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i);
+            if (stickerSetCovered2.set.id == inputStickerSet.id) {
+                z4bVar.F(stickerSetCovered2, null);
+                return;
+            }
+            i++;
+        }
     }
 }

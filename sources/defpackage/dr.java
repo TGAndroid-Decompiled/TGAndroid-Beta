@@ -1,45 +1,37 @@
 package defpackage;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.os.Build;
-import java.util.ArrayList;
+import android.util.AttributeSet;
+import android.view.View;
+import java.lang.reflect.Constructor;
 public final class dr {
-    public final String a;
-    public final String b;
-    public final ArrayList c;
-    public final String d;
-    public final String e;
-    public final String f;
-    public final String g;
-    public final lv6 h;
+    public static final Class[] b = {Context.class, AttributeSet.class};
+    public static final int[] c = {16843375};
+    public static final int[] d = {16844160};
+    public static final int[] e = {16844156};
+    public static final int[] f = {16844148};
+    public static final String[] g = {"android.widget.", "android.view.", "android.webkit."};
+    public static final vla h = new vla(0);
+    public final Object[] a = new Object[2];
 
-    public dr(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, lv6 lv6Var) {
-        this.a = str;
-        this.b = str2;
-        this.c = arrayList;
-        this.d = str3;
-        this.e = str4;
-        this.f = str5;
-        this.g = str6;
-        this.h = lv6Var;
-    }
-
-    public static dr a(Context context, wj5 wj5Var, String str, String str2, ArrayList arrayList, lv6 lv6Var) {
-        String num;
-        String packageName = context.getPackageName();
-        String d = wj5Var.d();
-        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
-        if (Build.VERSION.SDK_INT >= 28) {
-            num = Long.toString(packageInfo.getLongVersionCode());
-        } else {
-            num = Integer.toString(packageInfo.versionCode);
+    public final View a(Context context, String str, String str2) {
+        String concat;
+        vla vlaVar = h;
+        Constructor constructor = (Constructor) vlaVar.get(str);
+        if (constructor == null) {
+            if (str2 != null) {
+                try {
+                    concat = str2.concat(str);
+                } catch (Exception unused) {
+                    return null;
+                }
+            } else {
+                concat = str;
+            }
+            constructor = Class.forName(concat, false, context.getClassLoader()).asSubclass(View.class).getConstructor(b);
+            vlaVar.put(str, constructor);
         }
-        String str3 = num;
-        String str4 = packageInfo.versionName;
-        if (str4 == null) {
-            str4 = "0.0";
-        }
-        return new dr(str, str2, arrayList, d, packageName, str3, str4, lv6Var);
+        constructor.setAccessible(true);
+        return (View) constructor.newInstance(this.a);
     }
 }

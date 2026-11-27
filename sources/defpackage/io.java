@@ -1,54 +1,58 @@
 package defpackage;
 
-import j$.util.Objects;
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.Arrays;
-public final class io extends uj5 {
-    public final String b;
-    public final String c;
-    public final short d;
-    public final byte[] e;
+public final class io extends c4 {
+    public static final Parcelable.Creator<io> CREATOR = g31.b;
+    public static final io d;
+    public final cq2 a;
+    public final boolean b;
+    public boolean c;
 
-    public io(int i, String str, String str2, byte[] bArr) {
-        super("APIC");
-        this.b = str;
-        this.c = str2;
-        this.d = i;
-        this.e = bArr;
+    static {
+        io ioVar = new io(null, false);
+        ioVar.c = false;
+        d = ioVar;
     }
 
-    @Override
-    public final void b(hr6 hr6Var) {
-        hr6Var.a(this.d, this.e);
+    public io(cq2 cq2Var, boolean z) {
+        this.a = cq2Var;
+        this.b = z;
     }
 
     public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && io.class == obj.getClass()) {
-                io ioVar = (io) obj;
-                if (this.d == ioVar.d && this.b.equals(ioVar.b) && Objects.equals(this.c, ioVar.c) && Arrays.equals(this.e, ioVar.e)) {
-                    return true;
-                }
-                return false;
+        if (obj instanceof io) {
+            io ioVar = (io) obj;
+            if (vue.a(this.a, ioVar.a) && this.c == ioVar.c && this.b == ioVar.b) {
+                return true;
             }
             return false;
         }
-        return true;
+        return false;
     }
 
     public final int hashCode() {
-        int i;
-        int j = ir2.j((527 + this.d) * 31, 31, this.b);
-        String str = this.c;
-        if (str != null) {
-            i = str.hashCode();
-        } else {
-            i = 0;
-        }
-        return Arrays.hashCode(this.e) + ((j + i) * 31);
+        return Arrays.hashCode(new Object[]{this.a, Boolean.valueOf(this.c), Boolean.valueOf(this.b)});
+    }
+
+    public final String toString() {
+        String valueOf = String.valueOf(this.a);
+        return qu6.o("ApiMetadata(complianceOptions=", valueOf, ")", new StringBuilder(valueOf.length() + 31));
     }
 
     @Override
-    public final String toString() {
-        return this.a + ": mimeType=" + this.b + ", description=" + this.c;
+    public final void writeToParcel(Parcel parcel, int i) {
+        if (this.c) {
+            parcel.setDataPosition(parcel.dataPosition() - 4);
+            parcel.setDataSize(parcel.dataSize() - 4);
+            return;
+        }
+        parcel.writeInt(-204102970);
+        int r = bye.r(parcel, 20293);
+        bye.k(parcel, 1, this.a, i);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.b ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

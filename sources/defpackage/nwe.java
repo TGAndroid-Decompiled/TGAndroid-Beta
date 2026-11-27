@@ -1,19 +1,17 @@
 package defpackage;
-public final class nwe {
-    public static final dc6 k = new dc6("ApplicationAnalyticsSession", null);
-    public static long l = System.currentTimeMillis();
-    public final p6d a;
-    public String b;
-    public String c;
-    public long d = l;
-    public int e = 1;
-    public String f;
-    public int g;
-    public String h;
-    public boolean i;
-    public int j;
+public final class nwe implements zq7 {
+    public static final nwe a = new Object();
 
-    public nwe(p6d p6dVar) {
-        this.a = p6dVar;
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

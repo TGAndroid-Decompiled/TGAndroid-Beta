@@ -1,37 +1,67 @@
 package defpackage;
 
-import android.net.Uri;
-import java.util.ArrayList;
-public final class h89 extends i89 {
-    public final az8 f;
-    public final u39 h;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import androidx.recyclerview.widget.RecyclerView;
+public final class h89 extends r4 {
+    public final RecyclerView d;
+    public final g89 e = new g89(this);
 
-    public h89(fm4 fm4Var, mm5 mm5Var, sv9 sv9Var, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
-        super(fm4Var, mm5Var, sv9Var, arrayList, arrayList2, arrayList3);
-        az8 az8Var;
-        Uri.parse(((wg0) mm5Var.get(0)).a);
-        long j = sv9Var.e;
-        if (j <= 0) {
-            az8Var = null;
-        } else {
-            az8Var = new az8(sv9Var.d, null, j);
+    public h89(RecyclerView recyclerView) {
+        this.d = recyclerView;
+    }
+
+    @Override
+    public final void b(View view, AccessibilityEvent accessibilityEvent) {
+        super.b(view, accessibilityEvent);
+        if ((view instanceof RecyclerView) && !e()) {
+            RecyclerView recyclerView = (RecyclerView) view;
+            if (recyclerView.getLayoutManager() != null) {
+                x46 x46Var = (x46) recyclerView.getLayoutManager();
+                RecyclerView recyclerView2 = x46Var.b;
+                oh2 oh2Var = recyclerView2.b;
+                if (accessibilityEvent != null) {
+                    boolean z = true;
+                    if (!recyclerView2.canScrollVertically(1) && !x46Var.b.canScrollVertically(-1) && !x46Var.b.canScrollHorizontally(-1) && !x46Var.b.canScrollHorizontally(1)) {
+                        z = false;
+                    }
+                    accessibilityEvent.setScrollable(z);
+                    j79 j79Var = x46Var.b.x;
+                    if (j79Var != null) {
+                        accessibilityEvent.setItemCount(j79Var.b());
+                    }
+                }
+                if (x46Var.r() > 0) {
+                    accessibilityEvent.setFromIndex(x46Var.K0());
+                    accessibilityEvent.setToIndex(x46Var.M0());
+                }
+            }
         }
-        this.f = az8Var;
-        this.h = az8Var == null ? new u39(new az8(0L, null, -1L), (byte) 13) : null;
     }
 
     @Override
-    public final String a() {
-        return null;
+    public final void c(View view, v4 v4Var) {
+        this.a.onInitializeAccessibilityNodeInfo(view, v4Var.a);
+        if (!e()) {
+            RecyclerView recyclerView = this.d;
+            if (recyclerView.getLayoutManager() != null) {
+                q79 layoutManager = recyclerView.getLayoutManager();
+                RecyclerView recyclerView2 = layoutManager.b;
+                layoutManager.R(recyclerView2.b, recyclerView2.v0, v4Var);
+            }
+        }
     }
 
     @Override
-    public final r53 b() {
-        return this.h;
+    public final boolean d(android.view.View r3, int r4, android.os.Bundle r5) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h89.d(android.view.View, int, android.os.Bundle):boolean");
     }
 
-    @Override
-    public final az8 c() {
-        return this.f;
+    public final boolean e() {
+        RecyclerView recyclerView = this.d;
+        if (!recyclerView.b0() && !recyclerView.v0.g) {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,198 +1,203 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.os.Build;
+import android.util.Log;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
 import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-public final class vr7 extends View {
-    public final int a;
-    public final RectF b;
-    public final gn c;
-    public final tr7 d;
-    public final ArrayList e;
-    public final int[] f;
-    public final ArrayList h;
-    public float n;
-    public ValueAnimator r;
-    public boolean s;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.ListIterator;
+public final class vr7 {
+    public final Runnable a;
+    public final ls b = new ls();
+    public cq4 c;
+    public final OnBackInvokedCallback d;
+    public OnBackInvokedDispatcher e;
+    public boolean f;
+    public boolean g;
 
-    public vr7(Context context, int i) {
-        super(context);
-        this.b = new RectF();
-        s33 s33Var = s33.f;
-        gn gnVar = new gn(false, false, false);
-        this.c = gnVar;
-        this.e = new ArrayList();
-        this.f = new int[]{2131624214, 2131624215, 2131624216, 2131624217, 2131624218};
-        this.h = new ArrayList();
-        this.s = true;
-        this.a = i;
-        gnVar.setCallback(this);
-        gnVar.r(false, true);
-        gnVar.w(gl.L(40.0f));
-        gnVar.x(gl.n1("fonts/num.otf"));
-        gnVar.s(gl.L(12.0f), gl.L(3.5f), 0);
-        gnVar.N = gl.q.x;
-        gnVar.u(-1);
-        gnVar.b = 17;
-        this.d = new tr7(this, (byte) 0);
-    }
-
-    public final void a(float f, tr7 tr7Var) {
-        ValueAnimator valueAnimator = this.r;
-        if (valueAnimator != null) {
-            this.r = null;
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.n, f);
-        this.r = ofFloat;
-        ofFloat.addUpdateListener(new ni4(this, (byte) 26));
-        this.r.addListener(new ji4(this, f, tr7Var, (byte) 2));
-        this.r.setInterpolator(s33.h);
-        this.r.setDuration(320L);
-        this.r.start();
-    }
-
-    public final void b() {
-        this.s = true;
-        gl.r(this.d);
-        this.c.t("", true, true);
-        invalidate();
-        a(0.0f, new tr7(this, (byte) 1));
-    }
-
-    public final void c(wr7 wr7Var) {
-        this.b.set(wr7Var.getX() - getX(), wr7Var.getY() - getY(), (wr7Var.getX() - getX()) + wr7Var.getWidth(), (wr7Var.getY() - getY()) + wr7Var.getHeight());
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        float f2;
-        RectF rectF;
-        int i;
-        vr7 vr7Var = this;
-        Canvas canvas2 = canvas;
-        float f3 = 1.0f;
-        float R1 = gl.R1(1.0f, 1.8f, vr7Var.n);
-        float f4 = 90.0f;
-        int L = (int) (gl.L(90.0f) * R1);
-        boolean z = false;
-        int i2 = 0;
-        while (true) {
-            ArrayList arrayList = vr7Var.e;
-            int size = arrayList.size();
-            f = 255.0f;
-            f2 = 2.0f;
-            rectF = vr7Var.b;
-            if (i2 >= size) {
-                break;
-            }
-            oy8 oy8Var = (oy8) arrayList.get(i2);
-            if (oy8Var.b0 >= oy8Var.e[0]) {
-                arrayList.remove(i2);
-                i2--;
+    public vr7(Runnable runnable) {
+        OnBackInvokedCallback a;
+        this.a = runnable;
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 33) {
+            if (i >= 34) {
+                a = sr7.a.a(new or7(this, (byte) 0), new or7(this, (byte) 1), new pr7(this, (byte) 0), new pr7(this, (byte) 1));
             } else {
-                float f5 = L / 2.0f;
-                oy8Var.setBounds((int) (((gl.L(15.0f) * R1) + rectF.left) - f5), (int) (rectF.centerY() - f5), (int) ir2.i(gl.L(15.0f), R1, rectF.left, f5), (int) (rectF.centerY() + f5));
-                oy8Var.setAlpha((int) (vr7Var.n * 255.0f));
-                oy8Var.draw(canvas2);
+                a = qr7.a.a(new pr7(this, (byte) 2));
             }
-            i2++;
+            this.d = a;
         }
-        canvas2.save();
-        canvas2.translate(rectF.centerX(), rectF.top - gl.L(1.0f));
-        int i3 = 0;
-        while (true) {
-            ArrayList arrayList2 = vr7Var.h;
-            if (i3 < arrayList2.size()) {
-                ur7 ur7Var = (ur7) arrayList2.get(i3);
-                float f6 = ur7Var.c;
-                float f7 = ur7Var.b;
-                ImageReceiver imageReceiver = ur7Var.f;
-                float e = ur7Var.i.e(z, f3);
-                float d = ur7Var.j.d(ur7Var.h);
-                float f8 = f4;
-                float L2 = gl.L(23.0f) + ur7Var.g.c;
-                float L3 = gl.L(18.0f);
-                float f9 = f;
-                float f10 = f2;
-                float f11 = f3;
-                float R12 = gl.R1(0.0f, gl.R1(f3, 0.0f, d), Utilities.l(Math.min(gl.x1(e, f3, 0.85f), gl.x1(e, 0.0f, 0.12f))));
-                Paint paint = ur7Var.e;
-                int i4 = (int) (R12 * f9);
-                paint.setAlpha(i4);
-                oy8 oy8Var2 = ur7Var.d;
-                if (oy8Var2 != null) {
-                    oy8Var2.setAlpha(i4);
-                }
-                imageReceiver.setAlpha(R12);
-                canvas2.save();
-                double d2 = e;
-                float sin = (float) Math.sin(Math.pow(d2, 0.44999998807907104d) * 3.141592653589793d * 3.0d);
-                float f12 = (f7 * f10) - f11;
-                canvas2.translate(gl.L(4.0f) * f12, 0.0f);
-                float f13 = 1.5f * ((f6 * f10) - f11);
-                canvas2.rotate(f13);
-                int i5 = i3;
-                canvas2.translate(0.0f, ((float) Math.pow(d2, 0.800000011920929d)) * (-gl.L(200.0f)));
-                canvas2.translate(gl.L(5.0f) * sin * ((float) Math.pow(d2, 0.5d)), 0.0f);
-                canvas2.rotate(((float) (Math.sin((Math.pow(d2, 0.44999998807907104d) - 0.15000000596046448d) * 3.141592653589793d * 3.0d) * Utilities.l((float) Math.pow(d2, 0.20000000298023224d)))) * (-6.0f));
-                float R13 = gl.R1(0.4f, f11, R12);
-                canvas2.scale(R13, R13);
-                canvas2.translate((-L2) / f10, (-L3) / f10);
-                float f14 = L3 / f10;
-                canvas2.drawRoundRect(0.0f, 0.0f, L2, L3, f14, f14, paint);
-                imageReceiver.h(canvas2, null);
-                Canvas canvas3 = canvas2;
-                ur7Var.g.c(gl.L(18.0f), f14, R12, -1, canvas3);
-                canvas2 = canvas3;
-                canvas2.restore();
-                if (oy8Var2 != null) {
-                    canvas2.save();
-                    canvas2.translate(gl.L(4.0f) * f12, 0.0f);
-                    canvas2.rotate(f13);
-                    canvas2.translate(0.0f, (-gl.L(200.0f)) * ((float) Math.pow(d2, 0.800000011920929d)));
-                    canvas2.translate(sin * gl.L(5.0f) * ((float) Math.pow(d2, 0.5d)), 0.0f);
-                    int L4 = gl.L(f8);
-                    int i6 = (-L4) / 2;
-                    int i7 = L4 / 2;
-                    oy8Var2.setBounds(i6, gl.L(8.0f) + i6, i7, gl.L(8.0f) + i7);
-                    oy8Var2.draw(canvas2);
-                    canvas2.restore();
-                }
-                if (e < 1.0f && d < 1.0f) {
-                    i = i5;
+    }
+
+    public final void a() {
+        ?? r2;
+        cq4 cq4Var = this.c;
+        if (cq4Var == null) {
+            ls lsVar = this.b;
+            ListIterator listIterator = lsVar.listIterator(lsVar.c);
+            while (true) {
+                if (listIterator.hasPrevious()) {
+                    r2 = listIterator.previous();
+                    if (((cq4) r2).a) {
+                        break;
+                    }
                 } else {
-                    ((ur7) arrayList2.get(i5)).f.K();
-                    arrayList2.remove(i5);
-                    i = i5 - 1;
+                    r2 = 0;
+                    break;
                 }
-                i3 = i + 1;
-                vr7Var = this;
-                f4 = f8;
-                f = f9;
-                f2 = f10;
-                f3 = 1.0f;
-                z = false;
+            }
+            cq4Var = r2;
+        }
+        this.c = null;
+        if (cq4Var != null) {
+            kq4 kq4Var = cq4Var.d;
+            if (kq4.K(3)) {
+                Log.d("FragmentManager", "handleOnBackPressed. PREDICTIVE_BACK = true fragment manager " + kq4Var);
+            }
+            cq4 cq4Var2 = kq4Var.j;
+            ArrayList arrayList = kq4Var.n;
+            kq4Var.i = true;
+            kq4Var.A(true);
+            int i = 0;
+            kq4Var.i = false;
+            if (kq4Var.h != null) {
+                if (!arrayList.isEmpty()) {
+                    LinkedHashSet linkedHashSet = new LinkedHashSet(kq4.F(kq4Var.h));
+                    int size = arrayList.size();
+                    int i2 = 0;
+                    while (i2 < size) {
+                        Object obj = arrayList.get(i2);
+                        i2++;
+                        if (obj == null) {
+                            Iterator it = linkedHashSet.iterator();
+                            if (it.hasNext()) {
+                                gp4 gp4Var = (gp4) it.next();
+                                throw null;
+                            }
+                        } else {
+                            grb.o();
+                            return;
+                        }
+                    }
+                }
+                ArrayList arrayList2 = kq4Var.h.a;
+                int size2 = arrayList2.size();
+                int i3 = 0;
+                while (i3 < size2) {
+                    Object obj2 = arrayList2.get(i3);
+                    i3++;
+                    gp4 gp4Var2 = ((ar4) obj2).b;
+                    if (gp4Var2 != null) {
+                        gp4Var2.y = false;
+                    }
+                }
+                Iterator it2 = kq4Var.f(0, 1, new ArrayList(Collections.singletonList(kq4Var.h))).iterator();
+                while (it2.hasNext()) {
+                    tc3 tc3Var = (tc3) it2.next();
+                    ArrayList arrayList3 = tc3Var.c;
+                    if (kq4.K(3)) {
+                        Log.d("FragmentManager", "SpecialEffectsController: Completing Back ");
+                    }
+                    tc3Var.d(arrayList3);
+                    ArrayList arrayList4 = new ArrayList();
+                    int size3 = arrayList3.size();
+                    int i4 = 0;
+                    while (i4 < size3) {
+                        Object obj3 = arrayList3.get(i4);
+                        i4++;
+                        ((poa) obj3).getClass();
+                        yl2.d(null, arrayList4);
+                    }
+                    List k = sl2.k(sl2.m(arrayList4));
+                    int size4 = k.size();
+                    for (int i5 = 0; i5 < size4; i5++) {
+                        ((ooa) k.get(i5)).a(tc3Var.a);
+                    }
+                    int size5 = arrayList3.size();
+                    for (int i6 = 0; i6 < size5; i6++) {
+                        ((poa) arrayList3.get(i6)).getClass();
+                    }
+                    List k2 = sl2.k(arrayList3);
+                    if (k2.size() > 0) {
+                        ((poa) k2.get(0)).getClass();
+                        throw null;
+                    }
+                }
+                ArrayList arrayList5 = kq4Var.h.a;
+                int size6 = arrayList5.size();
+                while (i < size6) {
+                    Object obj4 = arrayList5.get(i);
+                    i++;
+                    gp4 gp4Var3 = ((ar4) obj4).b;
+                    if (gp4Var3 != null && gp4Var3.W == null) {
+                        kq4Var.g(gp4Var3).j();
+                    }
+                }
+                kq4Var.h = null;
+                kq4Var.h0();
+                if (kq4.K(3)) {
+                    Log.d("FragmentManager", "Op is being set to null");
+                    Log.d("FragmentManager", "OnBackPressedCallback enabled=" + cq4Var2.a + " for  FragmentManager " + kq4Var);
+                    return;
+                }
+                return;
+            } else if (cq4Var2.a) {
+                if (kq4.K(3)) {
+                    Log.d("FragmentManager", "Calling popBackStackImmediate via onBackPressed callback");
+                }
+                kq4Var.S();
+                return;
             } else {
-                canvas2.restore();
+                if (kq4.K(3)) {
+                    Log.d("FragmentManager", "Calling onBackPressed via onBackPressed callback");
+                }
+                kq4Var.g.a();
                 return;
             }
         }
+        this.a.run();
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.c && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void b(boolean z) {
+        OnBackInvokedCallback onBackInvokedCallback;
+        OnBackInvokedDispatcher onBackInvokedDispatcher = this.e;
+        if (onBackInvokedDispatcher != null && (onBackInvokedCallback = this.d) != null) {
+            boolean z2 = this.f;
+            qr7 qr7Var = qr7.a;
+            if (z) {
+                if (!z2) {
+                    qr7Var.b(onBackInvokedDispatcher, 0, onBackInvokedCallback);
+                    this.f = true;
+                }
+            } else if (z2) {
+                qr7Var.c(onBackInvokedDispatcher, onBackInvokedCallback);
+                this.f = false;
+            }
         }
-        return true;
+    }
+
+    public final void c() {
+        boolean z = this.g;
+        boolean z2 = false;
+        ls lsVar = this.b;
+        if (lsVar == null || !lsVar.isEmpty()) {
+            Iterator it = lsVar.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                } else if (((cq4) it.next()).a) {
+                    z2 = true;
+                    break;
+                }
+            }
+        }
+        this.g = z2;
+        if (z2 != z && Build.VERSION.SDK_INT >= 33) {
+            b(z2);
+        }
     }
 }

@@ -1,18 +1,53 @@
 package defpackage;
-public final class r5e implements zn7 {
-    public static final r5e a = new Object();
-    public static final w84 b = new w84("imageFormat", b00.m(yjb.q(kkd.class, new cjd(1))));
-    public static final w84 c = new w84("originalImageSize", b00.m(yjb.q(kkd.class, new cjd(2))));
-    public static final w84 d = new w84("compressedImageSize", b00.m(yjb.q(kkd.class, new cjd(3))));
-    public static final w84 e = new w84("isOdmlImage", b00.m(yjb.q(kkd.class, new cjd(4))));
+public final class r5e extends ese {
+    private static final r5e zzg;
+    private static volatile u0f zzh;
+    private int zzc;
+    private int zzd;
+    private int zze;
+    private String zzf = "";
+
+    static {
+        r5e r5eVar = new r5e();
+        zzg = r5eVar;
+        ese.g(r5e.class, r5eVar);
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        tqe tqeVar = (tqe) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, tqeVar.a);
-        ao7Var.a(c, tqeVar.b);
-        ao7Var.a(d, null);
-        ao7Var.a(e, null);
+    public final Object d(int i) {
+        u0f u0fVar;
+        switch (b7e.a[i - 1]) {
+            case 1:
+                return new r5e();
+            case 2:
+                return new ase(zzg);
+            case 3:
+                return new j1f(zzg, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001ဌ\u0000\u0002ဌ\u0001\u0003ဈ\u0002", new Object[]{"zzc", "zzd", r7e.h, "zze", r7e.i, "zzf"});
+            case 4:
+                return zzg;
+            case 5:
+                u0f u0fVar2 = zzh;
+                if (u0fVar2 == null) {
+                    synchronized (r5e.class) {
+                        u0f u0fVar3 = zzh;
+                        u0fVar = u0fVar3;
+                        if (u0fVar3 == null) {
+                            ?? obj = new Object();
+                            zzh = obj;
+                            u0fVar = obj;
+                        }
+                    }
+                    return u0fVar;
+                }
+                return u0fVar2;
+            case 6:
+                return (byte) 1;
+            case 7:
+                break;
+            default:
+                p3d.a();
+                break;
+        }
+        return null;
     }
 }

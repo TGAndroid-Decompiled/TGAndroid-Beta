@@ -1,28 +1,19 @@
 package defpackage;
-
-import java.util.Arrays;
-public final class h80 extends jy2 {
+public final class h80 extends dz2 {
     public final String a;
-    public final byte[] b;
+    public final String b;
 
-    public h80(String str, byte[] bArr) {
+    public h80(String str, String str2) {
         this.a = str;
-        this.b = bArr;
+        this.b = str2;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
-            if (obj instanceof jy2) {
-                jy2 jy2Var = (jy2) obj;
-                h80 h80Var = (h80) jy2Var;
-                if (this.a.equals(h80Var.a)) {
-                    if (jy2Var instanceof h80) {
-                        h80Var = (h80) jy2Var;
-                    }
-                    if (Arrays.equals(this.b, h80Var.b)) {
-                        return true;
-                    }
-                    return false;
+            if (obj instanceof dz2) {
+                h80 h80Var = (h80) ((dz2) obj);
+                if (this.a.equals(h80Var.a) && this.b.equals(h80Var.b)) {
+                    return true;
                 }
                 return false;
             }
@@ -32,10 +23,13 @@ public final class h80 extends jy2 {
     }
 
     public final int hashCode() {
-        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.b);
+        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode();
     }
 
     public final String toString() {
-        return "File{filename=" + this.a + ", contents=" + Arrays.toString(this.b) + "}";
+        StringBuilder sb = new StringBuilder("CustomAttribute{key=");
+        sb.append(this.a);
+        sb.append(", value=");
+        return c00.k(sb, this.b, "}");
     }
 }

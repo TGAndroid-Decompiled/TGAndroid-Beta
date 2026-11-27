@@ -1,89 +1,49 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
-public final class fq2 extends Drawable {
-    public final Drawable a;
-    public final Drawable b;
-    public int d;
-    public int e;
-    public final ArrayList c = new ArrayList();
-    public boolean f = false;
-    public final lm g = new lm(new mk2(this, (byte) 6), 420, s33.h);
-    public int h = 255;
+import j$.util.DesugarCollections;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+public final class fq2 {
+    public final String a;
+    public final Set b;
+    public final Set c;
+    public final byte d;
+    public final boolean e;
+    public final tq2 f;
+    public final Set g;
 
-    public fq2(Drawable drawable, Drawable drawable2) {
-        this.a = drawable;
-        this.b = drawable2;
-    }
-
-    public final void a(int i, int i2) {
+    public fq2(String str, Set set, Set set2, int i, int i2, tq2 tq2Var, Set set3) {
+        this.a = str;
+        this.b = DesugarCollections.unmodifiableSet(set);
+        this.c = DesugarCollections.unmodifiableSet(set2);
         this.d = i;
         this.e = i2;
+        this.f = tq2Var;
+        this.g = DesugarCollections.unmodifiableSet(set3);
     }
 
-    public final void b(boolean z) {
-        if (this.f == z) {
-            return;
+    public static eq2 a(h09 h09Var) {
+        return new eq2(h09Var, new h09[0]);
+    }
+
+    public static eq2 b(Class cls) {
+        return new eq2(cls, new Class[0]);
+    }
+
+    public static fq2 c(Object obj, Class cls, Class... clsArr) {
+        HashSet hashSet = new HashSet();
+        HashSet hashSet2 = new HashSet();
+        HashSet hashSet3 = new HashSet();
+        hashSet.add(h09.a(cls));
+        for (Class cls2 : clsArr) {
+            bwe.a(cls2, "Null interface");
+            hashSet.add(h09.a(cls2));
         }
-        this.f = z;
-        ArrayList arrayList = this.c;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((View) obj).invalidate();
-        }
-        invalidateSelf();
+        return new fq2(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new dq2(obj, (byte) 0), hashSet3);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        float d = this.g.d(this.f);
-        int i = this.h;
-        Drawable drawable = this.a;
-        drawable.setAlpha(i);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
-        if (d > 0.0f) {
-            Drawable drawable2 = this.b;
-            drawable2.setAlpha((int) (this.h * d));
-            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.e);
-            float R1 = gl.R1(0.5f, 1.0f, d);
-            canvas.save();
-            canvas.scale(R1, R1, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-            drawable2.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.h = i;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.a.setColorFilter(colorFilter);
-        this.b.setColorFilter(colorFilter);
+    public final String toString() {
+        return "Component<" + Arrays.toString(this.b.toArray()) + ">{" + ((int) this.d) + ", type=" + (this.e ? 1 : 0) + ", deps=" + Arrays.toString(this.c.toArray()) + "}";
     }
 }

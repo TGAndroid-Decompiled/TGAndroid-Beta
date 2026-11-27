@@ -1,114 +1,100 @@
 package defpackage;
 
-import android.text.Editable;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class ci9 implements lc9 {
-    public final li9 a;
-    public final ii9 b;
+public final class ci9 implements rj9 {
+    public final p07 a;
+    public final mk0 b;
+    public final pi9 c;
 
-    public ci9(ii9 ii9Var, li9 li9Var) {
-        this.b = ii9Var;
-        this.a = li9Var;
+    public ci9(pi9 pi9Var, p07 p07Var, mk0 mk0Var) {
+        this.c = pi9Var;
+        this.a = p07Var;
+        this.b = mk0Var;
     }
 
     @Override
-    public final boolean A(mc9 mc9Var) {
-        return false;
+    public final void a() {
+        p07 p07Var = this.a;
+        p07Var.a = (byte) 3;
+        pi9 pi9Var = this.c;
+        pi9Var.h4.remove(p07Var);
+        pi9Var.s4(this.b, p07Var);
+        pi9Var.p3.onContentChanged();
     }
 
     @Override
-    public final boolean H(mc9 mc9Var) {
-        return false;
-    }
-
-    @Override
-    public final void O(CharSequence charSequence) {
-        ge9 ge9Var = this.b.F;
-        if (ge9Var != null && charSequence != null && charSequence.length() > 0) {
-            ge9Var.a.u4(charSequence.toString());
+    public final void b(int i, int i2) {
+        if (i > 0 && i2 > 0) {
+            p07 p07Var = this.a;
+            p07Var.j = i;
+            p07Var.k = i2;
+        }
+        View D1 = this.c.D1(this.b);
+        if (D1 instanceof mj9) {
+            D1.requestLayout();
+            D1.invalidate();
         }
     }
 
     @Override
-    public final void U(Editable editable) {
-        TL_iv.pageTableCell pagetablecell = this.a.b;
-        if (pagetablecell != null) {
-            ffb.d(pagetablecell, editable);
+    public final void c(TLRPC.Photo photo) {
+        int i;
+        int i2;
+        p07 p07Var = this.a;
+        p07Var.g = photo;
+        p07Var.a = (byte) 2;
+        TLRPC.PhotoSize w = xb4.w(photo.sizes, hl.Y0(false), false, null, false);
+        if (w != null && (i = w.w) > 0 && (i2 = w.h) > 0) {
+            p07Var.j = i;
+            p07Var.k = i2;
         }
-        ii9 ii9Var = this.b;
-        ii9Var.w.requestLayout();
-        ge9 ge9Var = ii9Var.F;
-        if (ge9Var != null && ii9Var.a != null) {
-            ge9Var.a();
+        mk0 mk0Var = this.b;
+        TL_iv.PageBlock K3 = pi9.K3(mk0Var, p07Var);
+        if (K3 instanceof TL_iv.pageBlockPhoto) {
+            ((TL_iv.pageBlockPhoto) K3).photo_id = photo.id;
         }
+        pi9 pi9Var = this.c;
+        pi9Var.h4.remove(p07Var);
+        pi9Var.p4(mk0Var);
+        pi9Var.p3.onContentChanged();
     }
 
     @Override
-    public final boolean c0(boolean z) {
-        return this.b.u(this.a, z);
-    }
-
-    @Override
-    public final void d(mc9 mc9Var) {
-        ge9 ge9Var = this.b.F;
-        if (ge9Var != null) {
-            ye9 ye9Var = ge9Var.a;
-            ye9Var.i4(mc9Var);
-            ye9Var.p3.g(mc9Var, true);
+    public final void d(TLRPC.Document document) {
+        p07 p07Var = this.a;
+        p07Var.h = document;
+        p07Var.a = (byte) 2;
+        mk0 mk0Var = this.b;
+        TL_iv.PageBlock K3 = pi9.K3(mk0Var, p07Var);
+        if (K3 instanceof TL_iv.pageBlockVideo) {
+            ((TL_iv.pageBlockVideo) K3).video_id = document.id;
         }
+        pi9 pi9Var = this.c;
+        pi9Var.h4.remove(p07Var);
+        pi9Var.p4(mk0Var);
+        pi9Var.p3.onContentChanged();
     }
 
     @Override
-    public final boolean i() {
-        ii9 ii9Var = this.b;
-        ge9 ge9Var = ii9Var.F;
-        if (ge9Var != null && ii9Var.a != null) {
-            return ge9Var.a.V4();
+    public final void g(float f) {
+        this.a.f = f;
+        mk0 mk0Var = this.b;
+        pi9 pi9Var = this.c;
+        View D1 = pi9Var.D1(mk0Var);
+        if (D1 instanceof mj9) {
+            D1.requestLayout();
+            D1.invalidate();
         }
-        return false;
+        pi9Var.p3.onContentChanged();
     }
 
     @Override
-    public final void l(int i, int i2) {
-        ld9 ld9Var;
-        ii9 ii9Var = this.b;
-        ge9 ge9Var = ii9Var.F;
-        if (ge9Var != null && ii9Var.a != null && (ld9Var = ge9Var.a.R3) != null) {
-            ld9Var.f(i, i2);
-        }
+    public final void e(TLRPC.Document document) {
     }
 
     @Override
-    public final void t(final mc9 mc9Var, final int i, final int i2) {
-        ge9 ge9Var;
-        final fib textSelectionHelper;
-        final int m;
-        ii9 ii9Var = this.b;
-        if (!ii9Var.H && i != i2 && (ge9Var = ii9Var.F) != null && (textSelectionHelper = ge9Var.a.getTextSelectionHelper()) != null) {
-            if ((!textSelectionHelper.w() || textSelectionHelper.W != ii9Var) && (m = ii9Var.m(this.a.b)) >= 0) {
-                ii9Var.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ii9 ii9Var2 = ci9.this.b;
-                        mc9 mc9Var2 = mc9Var;
-                        int length = mc9Var2.length();
-                        int i3 = i2;
-                        if (length >= i3 && mc9Var2.getSelectionStart() != mc9Var2.getSelectionEnd() && textSelectionHelper.i0(ii9Var2, m, i, i3)) {
-                            ii9Var2.H = true;
-                            mc9Var2.setSelection(i3);
-                            ii9Var2.H = false;
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    @Override
-    public final void I() {
-    }
-
-    @Override
-    public final void Y(mc9 mc9Var) {
+    public final void f(TLRPC.Document document) {
     }
 }

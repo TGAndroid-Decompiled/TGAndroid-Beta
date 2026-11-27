@@ -1,57 +1,47 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.RandomAccessFile;
-public abstract class g00 {
-    public String a;
-    public long b;
-    public String c;
-    public String d;
-    public String e;
-    public String f;
-    public short g;
-    public String h;
-    public String i;
-    public short j;
-    public short k;
-    public String l;
-    public String m;
-    public String n;
-    public Bitmap o;
-    public Bitmap p;
-    public File q;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
+import android.os.Build;
+import android.os.Handler;
+import j$.util.Objects;
+public final class g00 {
+    public final byte a;
+    public final AudioManager.OnAudioFocusChangeListener b;
+    public final Handler c;
+    public final oz d;
+    public final boolean e;
+    public final Object f;
 
-    public static g00 a(File file) {
-        byte b;
-        try {
-            byte[] bArr = new byte[12];
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-            randomAccessFile.readFully(bArr, 0, 8);
-            randomAccessFile.close();
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-            if (bArr[4] == 102 && bArr[5] == 116 && bArr[6] == 121 && bArr[7] == 112) {
-                return new hg6(bufferedInputStream);
-            }
-            if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
-                br7 br7Var = new br7(file);
-                if (!br7Var.s) {
-                    return br7Var;
-                }
-                return null;
-            } else if (!file.getAbsolutePath().endsWith("mp3") && (((b = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b != 84 || bArr[1] != 65 || bArr[2] != 71))) {
-                br7 br7Var2 = new br7(file);
-                if (!br7Var2.s) {
-                    return br7Var2;
-                }
-                return null;
-            } else {
-                return new qg6(bufferedInputStream, file.length());
-            }
-        } catch (Exception unused) {
-            return null;
+    public g00(int i, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, oz ozVar, boolean z, boolean z2) {
+        this.a = i;
+        this.c = handler;
+        this.d = ozVar;
+        this.e = z;
+        if (Build.VERSION.SDK_INT < 26) {
+            this.b = new f00(onAudioFocusChangeListener, handler);
+            this.f = null;
+            return;
         }
+        this.b = onAudioFocusChangeListener;
+        this.f = new AudioFocusRequest.Builder(i).setAudioAttributes(ozVar.b()).setWillPauseWhenDucked(z).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z2).build();
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof g00) {
+                g00 g00Var = (g00) obj;
+                if (this.a == g00Var.a && this.e == g00Var.e && Objects.equals(this.b, g00Var.b) && this.c.equals(g00Var.c) && Objects.equals(this.d, g00Var.d)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.a), this.b, this.c, this.d, Boolean.valueOf(this.e));
     }
 }

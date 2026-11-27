@@ -1,17 +1,7 @@
 package defpackage;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.o;
-public final class au extends AnimatorListenerAdapter {
-    public final o a;
-
-    public au(o oVar) {
-        this.a = oVar;
-    }
-
+public final class au extends rna {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        gl.c3(new b1(this, (byte) 20));
+    public final int p() {
+        return -1;
     }
 }

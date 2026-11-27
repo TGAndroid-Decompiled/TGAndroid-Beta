@@ -1,34 +1,45 @@
 package defpackage;
 
-import android.content.Context;
-public final class o64 extends l5c {
-    public final byte Q;
+import android.media.MediaFormat;
+public final class o64 implements sec, lg8 {
+    public sec a;
+    public o64 b;
 
-    public o64(o39 o39Var, Context context, int i, int i2, boolean z, i8c i8cVar, wjb wjbVar, byte b) {
-        super(o39Var, context, i, i2, z, i8cVar, wjbVar);
-        this.Q = b;
-    }
-
-    @Override
-    public final boolean D(s49 s49Var) {
-        switch (this.Q) {
-            case 0:
-                return false;
-            default:
-                return super.D(s49Var);
+    public final void a() {
+        o64 o64Var = this.b;
+        if (o64Var != null) {
+            o64Var.a();
         }
     }
 
     @Override
-    public final int I(int i) {
-        switch (this.Q) {
-            case 1:
-                if (i == bkb.h5) {
-                    return -15921907;
+    public final void b(long j, long j2, ko4 ko4Var, MediaFormat mediaFormat) {
+        sec secVar = this.a;
+        if (secVar != null) {
+            secVar.b(j, j2, ko4Var, mediaFormat);
+        }
+    }
+
+    public final void c() {
+        o64 o64Var = this.b;
+        if (o64Var != null) {
+            o64Var.c();
+        }
+    }
+
+    @Override
+    public final void d(int i, Object obj) {
+        if (i != 7) {
+            if (i != 8) {
+                if (i != 10000 || obj == null) {
+                    return;
                 }
-                return bkb.v0(i, this.x);
-            default:
-                return super.I(i);
+                grb.o();
+                return;
+            }
+            this.b = (o64) obj;
+            return;
         }
+        this.a = (sec) obj;
     }
 }

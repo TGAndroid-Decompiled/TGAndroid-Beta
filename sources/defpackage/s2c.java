@@ -1,38 +1,51 @@
 package defpackage;
-public final class s2c {
-    public static s2c d;
-    public long a;
-    public long b;
-    public boolean c;
 
-    public final void a(double d2, double d3, long j) {
-        float f;
-        float f2;
-        double d4;
-        double d5 = (0.01720197f * (((float) (j - 946728000000L)) / 8.64E7f)) + 6.24006f;
-        double sin = (Math.sin(f2 * 3.0f) * 5.236000106378924E-6d) + (Math.sin(2.0f * f2) * 3.4906598739326E-4d) + (Math.sin(d5) * 0.03341960161924362d) + d5 + 1.796593063d + 3.141592653589793d;
-        double sin2 = (Math.sin(2.0d * sin) * (-0.0069d)) + (Math.sin(d5) * 0.0053d) + ((float) Math.round((f - 9.0E-4f) - d4)) + 9.0E-4f + ((-d3) / 360.0d);
-        double asin = Math.asin(Math.sin(sin) * 0.3979486262630266d);
-        double d6 = d2 * 0.01745329238474369d;
-        double sin3 = ((-0.10452846616578243d) - (Math.sin(asin) * Math.sin(d6))) / (Math.cos(asin) * Math.cos(d6));
-        if (sin3 >= 1.0d) {
-            this.c = true;
-            this.a = -1L;
-            this.b = -1L;
-        } else if (sin3 <= -1.0d) {
-            this.c = false;
-            this.a = -1L;
-            this.b = -1L;
-        } else {
-            double acos = (float) (Math.acos(sin3) / 6.283185307179586d);
-            this.a = Math.round((sin2 + acos) * 8.64E7d) + 946728000000L;
-            long round = Math.round((sin2 - acos) * 8.64E7d) + 946728000000L;
-            this.b = round;
-            if (round < j && this.a > j) {
-                this.c = false;
-            } else {
-                this.c = true;
-            }
+import android.os.SystemClock;
+import android.text.TextUtils;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public final class s2c implements mm3 {
+    public final Integer a;
+    public final r47 b;
+    public final int c;
+    public final long d;
+    public final long e;
+
+    public s2c(Integer num, r47 r47Var, int i, long j, long j2) {
+        this.a = num;
+        this.b = r47Var;
+        this.c = i;
+        this.d = j;
+        this.e = j2;
+    }
+
+    @Override
+    public final void a(String str, int[] iArr, boolean z) {
+        if (z) {
+            HashMap hashMap = u2c.S;
+            Integer num = this.a;
+            hashMap.remove(num);
+            u2c.R.remove(num);
         }
+        r47 r47Var = this.b;
+        if (str == null) {
+            u2c.n(r47Var);
+            return;
+        }
+        TLRPC.Message message = r47Var.k;
+        if (!z) {
+            if (TextUtils.isEmpty(str)) {
+                return;
+            }
+            message.voiceTranscription = str;
+            message.voiceTranscriptionWords = iArr;
+            message.voiceTranscriptionLocal = true;
+            message.voiceTranscriptionFinal = false;
+            message.voiceTranscriptionOpen = true;
+            u2c.q(r47Var);
+            jn7.f(this.c).k(jn7.A1, r47Var, null, null, Boolean.TRUE, Boolean.FALSE);
+            return;
+        }
+        hl.d3(new he(r47Var, message, str, iArr, this.c, this.d, (byte) 6), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.e)));
     }
 }

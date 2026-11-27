@@ -1,10 +1,17 @@
 package defpackage;
-public final class uhe extends dzc {
-    public final bce b;
+public final class uhe implements zq7 {
+    public static final uhe a = new Object();
 
-    public uhe(bce bceVar) {
-        super((byte) 5, false);
-        this.b = bceVar;
-        attachInterface(this, "com.google.android.gms.clearcut.internal.IClearcutLoggerCallbacks");
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

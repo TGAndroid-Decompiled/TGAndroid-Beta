@@ -1,38 +1,48 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.messenger.a;
 public final class ec6 implements Runnable {
     public final byte a;
-    public final mf6 b;
+    public final uc6 b;
+    public final xj5 c;
 
-    public ec6(mf6 mf6Var, byte b) {
+    public ec6(uc6 uc6Var, xj5 xj5Var, byte b) {
         this.a = b;
-        this.b = mf6Var;
+        this.b = uc6Var;
+        this.c = xj5Var;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        mf6 mf6Var = this.b;
-        switch (b) {
+        switch (this.a) {
             case 0:
-                mf6Var.d0 = false;
-                return;
-            case 1:
-                mf6Var.y0 = false;
-                mf6Var.M1(true, true);
+                uc6 uc6Var = this.b;
+                xj5 xj5Var = this.c;
+                if (uc6Var.H != null && uc6Var.getParentActivity() != null) {
+                    try {
+                        ((am2) xj5Var).F();
+                        ((z3f) a.j()).initializeMaps(a.b);
+                        ((am2) uc6Var.H).y(new hw(uc6Var, (byte) 9));
+                        uc6Var.x0 = true;
+                        if (uc6Var.y0) {
+                            ((am2) uc6Var.H).I();
+                            return;
+                        }
+                        return;
+                    } catch (Exception e) {
+                        cc4.g(e, true);
+                        return;
+                    }
+                }
                 return;
             default:
-                if (mf6Var.getParentActivity() != null && !mf6Var.getParentActivity().isFinishing() && mf6Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mf6Var.getParentActivity());
-                    String M0 = k96.M0(2131745878, null);
-                    hd hdVar = alertDialog$Builder.a;
-                    hdVar.S = M0;
-                    hdVar.U = k96.M0(2131745757, null);
-                    alertDialog$Builder.j(k96.M0(2131747638, null), new hc6(mf6Var, (byte) 1));
-                    alertDialog$Builder.o();
-                    return;
+                uc6 uc6Var2 = this.b;
+                xj5 xj5Var2 = this.c;
+                try {
+                    ((am2) xj5Var2).F();
+                } catch (Exception unused) {
                 }
+                hl.c3(new ec6(uc6Var2, xj5Var2, (byte) 0));
                 return;
         }
     }

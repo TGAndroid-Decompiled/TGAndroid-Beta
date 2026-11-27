@@ -1,12 +1,17 @@
 package defpackage;
-
-import java.nio.charset.Charset;
-public abstract class j5e {
-    public static final Object a;
+public final class j5e implements zq7 {
+    public static final j5e a = new Object();
 
     static {
-        Charset.forName("UTF-8");
-        Charset.forName("ISO-8859-1");
-        a = new Object();
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

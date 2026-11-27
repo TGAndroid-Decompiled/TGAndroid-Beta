@@ -1,45 +1,61 @@
 package defpackage;
-public abstract class ng8 {
-    public static final int[] a;
+public final class ng8 extends asb {
+    public static final Object j = new Object();
+    public final ft6 e;
+    public final boolean f;
+    public final boolean g;
+    public final at6 h;
+    public final long i;
 
-    static {
-        int[] iArr = new int[ug8.G(9).length];
-        try {
-            iArr[0] = 1;
-        } catch (NoSuchFieldError unused) {
+    public ng8(og8 og8Var) {
+        at6 at6Var;
+        this.e = og8Var.u();
+        this.f = og8Var.c0();
+        this.g = og8Var.u0();
+        if (og8Var.P0()) {
+            at6Var = at6.f;
+        } else {
+            at6Var = null;
         }
-        try {
-            iArr[1] = 2;
-        } catch (NoSuchFieldError unused2) {
+        this.h = at6Var;
+        this.i = gcc.T(og8Var.z());
+    }
+
+    @Override
+    public final int b(Object obj) {
+        if (j != obj) {
+            return -1;
         }
-        try {
-            iArr[6] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            iArr[2] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            iArr[3] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            iArr[4] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            iArr[5] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            iArr[7] = 8;
-        } catch (NoSuchFieldError unused8) {
-        }
-        try {
-            iArr[8] = 9;
-        } catch (NoSuchFieldError unused9) {
-        }
-        a = iArr;
+        return 0;
+    }
+
+    @Override
+    public final xrb f(int i, xrb xrbVar, boolean z) {
+        ea eaVar = ea.c;
+        Object obj = j;
+        xrbVar.h(obj, obj, 0, this.i, 0L, false);
+        return xrbVar;
+    }
+
+    @Override
+    public final int h() {
+        return 1;
+    }
+
+    @Override
+    public final Object l(int i) {
+        return j;
+    }
+
+    @Override
+    public final zrb m(int i, zrb zrbVar, long j2) {
+        zrbVar.b(j, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f, this.g, this.h, 0L, this.i, 0, 0, 0L);
+        zrbVar.j = false;
+        return zrbVar;
+    }
+
+    @Override
+    public final int o() {
+        return 1;
     }
 }

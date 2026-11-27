@@ -1,22 +1,40 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.view.View;
-public final class ap {
-    public int a;
-    public int b;
-    public byte c;
-    public int d;
-    public zo e;
-    public View f;
-    public View g;
-    public yz6 h;
-    public i56 i;
-    public ew2 j;
-    public boolean k;
-    public boolean l;
-    public boolean m;
-    public boolean n;
-    public boolean o;
-    public Bundle p;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import androidx.appcompat.widget.ContentFrameLayout;
+public final class ap extends ContentFrameLayout {
+    public final cp r;
+
+    public ap(cp cpVar, yw2 yw2Var) {
+        super(yw2Var);
+        this.r = cpVar;
+    }
+
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (!this.r.i(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            if (x < -5 || y < -5 || x > getWidth() + 5 || y > getHeight() + 5) {
+                cp cpVar = this.r;
+                cpVar.h(cpVar.o(0), true);
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void setBackgroundResource(int i) {
+        setBackgroundDrawable(yqd.a(getContext(), i));
+    }
 }

@@ -1,127 +1,77 @@
 package defpackage;
 
-import java.io.EOFException;
-public final class fh5 {
-    public final String a;
-    public final int b;
-    public final int c;
-    public final boolean d;
-    public final boolean e;
+import java.util.List;
+import java.util.Map;
+public final class fh5 extends kh5 {
+    public final byte d;
+    public final long e;
     public final boolean f;
-    public final int g;
+    public final boolean g;
+    public final long h;
+    public final boolean i;
+    public final int j;
+    public final long k;
+    public final int l;
+    public final long m;
+    public final long n;
+    public final boolean o;
+    public final boolean p;
+    public final hr3 q;
+    public final po5 r;
+    public final po5 s;
+    public final to5 t;
+    public final long u;
+    public final eh5 v;
+    public final po5 w;
+    public final ch5 x;
 
-    public fh5(xl3 xl3Var) {
-        int c0;
-        byte b;
-        byte b2;
-        boolean z;
-        boolean z2;
-        zy8 zy8Var = (zy8) xl3Var.b;
-        long j = zy8Var.b;
-        z24 z24Var = (z24) xl3Var.d;
-        a51 a51Var = (a51) z24Var.b;
-        int i = ((hh5) xl3Var.c).a;
-        byte b3 = 2;
-        if (i == 2) {
-            byte[] bArr = new byte[3];
-            int i2 = 0;
-            while (i2 < 3) {
-                int read = a51Var.read(bArr, i2, 3 - i2);
-                if (read > 0) {
-                    i2 += read;
-                } else {
-                    throw new EOFException();
-                }
-            }
-            this.a = new String(bArr, "ISO-8859-1");
+    public fh5(int i, String str, List list, long j, boolean z, long j2, boolean z2, int i2, long j3, int i3, long j4, long j5, boolean z3, boolean z4, boolean z5, hr3 hr3Var, List list2, List list3, eh5 eh5Var, Map map, List list4, ch5 ch5Var) {
+        super(str, list, z3);
+        long j6;
+        this.d = i;
+        this.h = j2;
+        this.g = z;
+        this.i = z2;
+        this.j = i2;
+        this.k = j3;
+        this.l = i3;
+        this.m = j4;
+        this.n = j5;
+        this.o = z4;
+        this.p = z5;
+        this.q = hr3Var;
+        this.r = po5.q(list2);
+        this.s = po5.q(list3);
+        this.t = to5.b(map);
+        this.w = po5.q(list4);
+        this.x = ch5Var;
+        if (!list3.isEmpty()) {
+            ah5 ah5Var = (ah5) dqe.b(list3);
+            j6 = ah5Var.e + ah5Var.c;
+            this.u = j6;
+        } else if (!list2.isEmpty()) {
+            ch5 ch5Var2 = (ch5) dqe.b(list2);
+            j6 = ch5Var2.e + ch5Var2.c;
+            this.u = j6;
         } else {
-            byte[] bArr2 = new byte[4];
-            int i3 = 0;
-            while (i3 < 4) {
-                int read2 = a51Var.read(bArr2, i3, 4 - i3);
-                if (read2 > 0) {
-                    i3 += read2;
-                } else {
-                    throw new EOFException();
-                }
-            }
-            this.a = new String(bArr2, "ISO-8859-1");
+            this.u = 0L;
+            j6 = 0;
         }
-        byte b4 = 8;
-        if (i == 2) {
-            c0 = ((z24Var.Z() & 255) << 16) | ((z24Var.Z() & 255) << 8) | (z24Var.Z() & 255);
-            this.c = c0;
-        } else if (i == 3) {
-            c0 = z24Var.a0();
-            this.c = c0;
-        } else {
-            c0 = z24Var.c0();
-            this.c = c0;
-        }
-        if (i > 2) {
-            z24Var.Z();
-            byte Z = z24Var.Z();
-            byte b5 = 64;
-            if (i == 3) {
-                b4 = 128;
-                b2 = 0;
-                b = 32;
-                b3 = 0;
+        long j7 = -9223372036854775807L;
+        if (j != -9223372036854775807L) {
+            if (j >= 0) {
+                j7 = Math.min(j6, j);
             } else {
-                b = 64;
-                b2 = 1;
-                b5 = 4;
-            }
-            if ((b4 & Z) != 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            this.e = z;
-            if ((b3 & Z) != 0) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            this.d = z2;
-            boolean z3 = (b5 & Z) != 0;
-            this.f = z3;
-            if (i == 3) {
-                if (z) {
-                    this.g = z24Var.a0();
-                    c0 -= 4;
-                    this.c = c0;
-                }
-                if (z3) {
-                    z24Var.Z();
-                    c0--;
-                    this.c = c0;
-                }
-                if ((Z & b) != 0) {
-                    z24Var.Z();
-                    this.c = c0 - 1;
-                }
-            } else {
-                if ((b & Z) != 0) {
-                    z24Var.Z();
-                    c0--;
-                    this.c = c0;
-                }
-                if (z3) {
-                    z24Var.Z();
-                    c0--;
-                    this.c = c0;
-                }
-                if ((Z & b2) != 0) {
-                    this.g = z24Var.c0();
-                    this.c = c0 - 4;
-                }
+                j7 = Math.max(0L, j6 + j);
             }
         }
-        this.b = (int) (zy8Var.b - j);
+        this.e = j7;
+        this.f = j >= 0;
+        this.v = eh5Var;
     }
 
-    public final String toString() {
-        return String.format("%s[id=%s, bodysize=%d]", fh5.class.getSimpleName(), this.a, Integer.valueOf(this.c));
+    @Override
+    public final Object a(List list) {
+        return this;
     }
 }

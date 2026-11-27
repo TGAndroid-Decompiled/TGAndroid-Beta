@@ -1,17 +1,25 @@
 package defpackage;
-public final class ipe implements zn7 {
-    public static final ipe a = new Object();
+
+import java.util.Collections;
+import java.util.Map;
+public final class ipe {
+    public static volatile ipe a;
+    public static volatile ipe b;
+    public static final ipe c;
 
     static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+        ?? obj = new Object();
+        Map map = Collections.EMPTY_MAP;
+        c = obj;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static void a() {
+        if (a == null) {
+            synchronized (ipe.class) {
+                if (a == null) {
+                    a = c;
+                }
+            }
         }
-        throw new ClassCastException();
     }
 }

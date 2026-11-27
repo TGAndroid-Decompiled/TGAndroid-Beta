@@ -1,9 +1,19 @@
 package defpackage;
+
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 public abstract class rne {
-    public static final void a(int i) {
-        if (i >= 1) {
-            return;
-        }
-        v0b.a(de9.k(i, "Expected positive parallelism level, but got "));
+    public abstract void b();
+
+    public abstract void c(Canvas canvas);
+
+    public boolean d() {
+        return false;
+    }
+
+    public abstract void e(float f);
+
+    public void a(Rect rect, RectF rectF) {
     }
 }

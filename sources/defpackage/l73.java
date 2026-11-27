@@ -1,43 +1,53 @@
 package defpackage;
-public final class l73 extends ccb implements eq4 {
-    public final byte a;
-    public byte b;
-    public final v73 c;
 
-    public l73(v73 v73Var, fw2 fw2Var, byte b) {
-        super(2, fw2Var);
-        this.a = b;
-        this.c = v73Var;
+import java.io.InputStream;
+public final class l73 extends InputStream {
+    public final h73 a;
+    public final n73 b;
+    public boolean d = false;
+    public boolean e = false;
+    public final byte[] c = new byte[1];
+
+    public l73(h73 h73Var, n73 n73Var) {
+        this.a = h73Var;
+        this.b = n73Var;
     }
 
     @Override
-    public final fw2 create(Object obj, fw2 fw2Var) {
-        byte b = this.a;
-        v73 v73Var = this.c;
-        switch (b) {
-            case 0:
-                return new l73(v73Var, fw2Var, (byte) 0);
-            default:
-                return new l73(v73Var, fw2Var, (byte) 1);
+    public final void close() {
+        if (!this.e) {
+            this.a.close();
+            this.e = true;
         }
     }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        byte b = this.a;
-        g5c g5cVar = g5c.a;
-        ax2 ax2Var = (ax2) obj;
-        fw2 fw2Var = (fw2) obj2;
-        switch (b) {
-            case 0:
-                return ((l73) create(ax2Var, fw2Var)).invokeSuspend(g5cVar);
-            default:
-                return ((l73) create(ax2Var, fw2Var)).invokeSuspend(g5cVar);
+    public final int read(byte[] bArr, int i, int i2) {
+        yve.p(!this.e);
+        boolean z = this.d;
+        h73 h73Var = this.a;
+        if (!z) {
+            h73Var.open(this.b);
+            this.d = true;
         }
+        int read = h73Var.read(bArr, i, i2);
+        if (read == -1) {
+            return -1;
+        }
+        return read;
     }
 
     @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.l73.invokeSuspend(java.lang.Object):java.lang.Object");
+    public final int read(byte[] bArr) {
+        return read(bArr, 0, bArr.length);
+    }
+
+    @Override
+    public final int read() {
+        byte[] bArr = this.c;
+        if (read(bArr, 0, bArr.length) == -1) {
+            return -1;
+        }
+        return bArr[0] & 255;
     }
 }

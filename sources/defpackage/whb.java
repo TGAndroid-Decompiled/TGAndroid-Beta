@@ -1,3 +1,3 @@
 package defpackage;
-public final class whb extends thb {
+public abstract class whb {
 }

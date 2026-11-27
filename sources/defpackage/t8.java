@@ -1,423 +1,459 @@
 package defpackage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-public final class t8 extends TextView {
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.UsersSelectActivity;
+public final class t8 extends ViewGroup {
     public final byte a;
-    public Object b;
-    public final Object c;
+    public final e b;
 
-    public t8(Activity activity, lfc lfcVar) {
-        super(activity);
-        this.a = (byte) 7;
-        this.b = new RectF();
-        this.c = lfcVar;
-        lfcVar.a(this);
-        setText(k96.M0(2131743061, null));
-        setContentDescription(k96.M0(2131743061, null));
-        setTextColor(-1);
-        setTypeface(gl.o());
-        setPadding(gl.L(14.0f), gl.L(4.0f), gl.L(14.0f), gl.L(4.0f));
-    }
-
-    public final void a() {
-        r86 r86Var = (r86) this.c;
-        b46 b46Var = (b46) this.b;
-        if (b46Var != null && r86Var != null) {
-            b46Var.rewind();
-            if (getLayout() != null && getLayout().getText() != null) {
-                b46Var.e(getLayout(), 0, getPaddingLeft(), getPaddingTop());
-                getLayout().getSelectionPath(0, getLayout().getText().length(), b46Var);
-            }
-            r86Var.k();
-        }
+    public t8(e eVar, Context context, byte b) {
+        super(context);
+        this.a = b;
+        this.b = eVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        byte b = this.a;
-        Object obj = this.c;
-        switch (b) {
-            case 1:
-                Paint paint = (Paint) this.b;
-                int L = gl.L(1.0f) + (getHeight() / 2);
-                int max = Math.max(1, gl.L(0.66f));
-                Layout layout = getLayout();
-                if (layout != null) {
-                    paint.setColor(bkb.p1(0.45f, bkb.v0(bkb.x6, ((gr0) obj).a0.c)));
-                    float f = L;
-                    float f2 = max / 2.0f;
-                    float f3 = f - f2;
-                    float f4 = f + f2;
-                    canvas.drawRect(0.0f, f3, (getWidth() - (layout.getLineWidth(0) + gl.L(16.0f))) / 2.0f, f4, paint);
-                    canvas.drawRect(((layout.getLineWidth(0) + getWidth()) + gl.L(16.0f)) / 2.0f, f3, getWidth(), f4, paint);
-                }
-                super.dispatchDraw(canvas);
-                return;
-            case 2:
-                Paint paint2 = (Paint) this.b;
-                int L2 = gl.L(1.0f) + (getHeight() / 2);
-                int max2 = Math.max(1, gl.L(0.66f));
-                Layout layout2 = getLayout();
-                if (layout2 != null) {
-                    paint2.setColor(bkb.p1(0.45f, bkb.v0(bkb.x6, (wjb) obj)));
-                    float f5 = L2;
-                    float f6 = max2 / 2.0f;
-                    float f7 = f5 - f6;
-                    float f8 = f5 + f6;
-                    canvas.drawRect(0.0f, f7, (getWidth() - (layout2.getLineWidth(0) + gl.L(16.0f))) / 2.0f, f8, paint2);
-                    canvas.drawRect(((layout2.getLineWidth(0) + getWidth()) + gl.L(16.0f)) / 2.0f, f7, getWidth(), f8, paint2);
-                }
-                super.dispatchDraw(canvas);
-                return;
-            case 9:
-                Paint paint3 = (Paint) this.b;
-                int i = bkb.y6;
-                h26 h26Var = ((f26) obj).e;
-                int i2 = h26.R2;
-                paint3.setColor(bkb.p1(0.8f, bkb.v0(i, h26Var.J0)));
-                paint3.setStyle(Paint.Style.STROKE);
-                paint3.setStrokeWidth(1.0f);
-                float height = getHeight() / 2.0f;
-                Layout layout3 = getLayout();
-                int i3 = 0;
-                for (int i4 = 0; i4 < layout3.getLineCount(); i4++) {
-                    i3 = Math.max(i3, (int) layout3.getLineWidth(i4));
-                }
-                float f9 = i3 / 2.0f;
-                canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f9) - gl.L(8.0f), height, paint3);
-                canvas.drawLine((getWidth() / 2.0f) + f9 + gl.L(8.0f), height, getWidth(), height, paint3);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        byte b = this.a;
-        Object obj = this.c;
-        switch (b) {
-            case 0:
-                ((u8) obj).b.draw(canvas);
-                super.draw(canvas);
-                return;
-            case 8:
-                ((wp5) obj).h.draw(canvas);
-                super.draw(canvas);
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        wk5 wk5Var;
         switch (this.a) {
-            case 12:
-                super.onDetachedFromWindow();
-                ((r86) this.c).b = -1L;
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i;
-        byte b = this.a;
-        Object obj = this.c;
-        switch (b) {
-            case 0:
-                super.onDraw(canvas);
-                if (((u8) obj).x) {
-                    RectF rectF = gl.P;
-                    rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    ((wd1) this.b).a(getMeasuredHeight() / 2.0f, canvas, rectF, null);
-                    invalidate();
-                    return;
-                }
-                return;
-            case 1:
             case 2:
-            case 9:
+                boolean drawChild = super.drawChild(canvas, view, j);
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.b;
+                if (view == usersSelectActivity.d || view == usersSelectActivity.f) {
+                    wk5Var = ((e) usersSelectActivity).parentLayout;
+                    ((ActionBarLayout) wk5Var).o(canvas, usersSelectActivity.a.getMeasuredHeight());
+                }
+                return drawChild;
             default:
-                super.onDraw(canvas);
-                return;
-            case 3:
-                Paint paint = (Paint) this.b;
-                paint.setColor(bkb.v0(bkb.Ei, ((x02) obj).J0));
-                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gl.L(14.0f), getWidth(), (getHeight() / 2.0f) + gl.L(14.0f), gl.L(14.0f), gl.L(14.0f), paint);
-                super.onDraw(canvas);
-                return;
-            case 4:
-                if (((bra) this.b) != null) {
-                    canvas.save();
-                    canvas.clipPath((Path) obj);
-                    ((bra) this.b).d(canvas);
-                    canvas.restore();
-                    invalidate();
-                }
-                super.onDraw(canvas);
-                return;
-            case 5:
-                Paint paint2 = (Paint) this.b;
-                paint2.setColor(((en2) obj).getThemedColor(bkb.Ei));
-                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gl.L(14.0f), getWidth(), gl.L(14.0f) + (getHeight() / 2.0f), gl.L(14.0f), gl.L(14.0f), paint2);
-                super.onDraw(canvas);
-                return;
-            case 6:
-                Paint paint3 = (Paint) this.b;
-                paint3.setColor(bkb.v0(bkb.Ei, ((xx2) obj).J0));
-                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - gl.L(14.0f), getWidth(), (getHeight() / 2.0f) + gl.L(14.0f), gl.L(14.0f), gl.L(14.0f), paint3);
-                super.onDraw(canvas);
-                return;
-            case 7:
-                RectF rectF2 = (RectF) this.b;
-                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                lfc lfcVar = (lfc) obj;
-                lfcVar.d(((View) getParent()).getX() + getX(), ((View) getParent()).getY() + getY());
-                canvas.drawRoundRect(rectF2, gl.L(16.0f), gl.L(16.0f), lfcVar.b());
-                super.onDraw(canvas);
-                return;
-            case 8:
-                super.onDraw(canvas);
-                RectF rectF3 = gl.P;
-                rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((wd1) this.b).a(getMeasuredHeight() / 2.0f, canvas, rectF3, null);
-                invalidate();
-                return;
-            case 10:
-                RectF rectF4 = gl.P;
-                rectF4.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                Paint[] paintArr = (Paint[]) this.b;
-                mk8 mk8Var = (mk8) obj;
-                paintArr[mk8Var.y].setAlpha(255);
-                canvas.drawRoundRect(rectF4, gl.L(6.0f), gl.L(6.0f), paintArr[mk8Var.y]);
-                float f = mk8Var.x;
-                if (f > 0.0f && (i = mk8Var.y + 1) < paintArr.length) {
-                    paintArr[i].setAlpha((int) (f * 255.0f));
-                    canvas.drawRoundRect(rectF4, gl.L(6.0f), gl.L(6.0f), paintArr[mk8Var.y + 1]);
-                }
-                super.onDraw(canvas);
-                return;
-            case 11:
-                Paint paint4 = (Paint) this.b;
-                lk0 lk0Var = ((wi9) obj).y;
-                if (lk0Var != null && lk0Var.c > 0 && lk0Var.d == 0 && !lk0Var.e) {
-                    paint4.setColor(getCurrentTextColor());
-                    canvas.drawCircle(getWidth() / 2.0f, getBaseline() - (getTextSize() * 0.35f), gl.N(4.3f) / 2.0f, paint4);
-                    return;
-                }
-                super.onDraw(canvas);
-                return;
+                return super.drawChild(canvas, view, j);
         }
     }
 
     @Override
     public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        switch (this.a) {
-            case 4:
-                super.onLayout(z, i, i2, i3, i4);
-                bra braVar = new bra(10);
-                this.b = braVar;
-                braVar.N = 100;
-                braVar.I = false;
-                braVar.L = true;
-                braVar.G = false;
-                braVar.J = true;
-                braVar.H = true;
-                braVar.r = (byte) 1;
-                braVar.w = 0.98f;
-                braVar.v = 0.98f;
-                braVar.u = 0.98f;
-                braVar.g = false;
-                braVar.o = 0.0f;
-                braVar.x = (short) 750;
-                braVar.y = (short) 750;
-                braVar.c();
-                RectF rectF = gl.P;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                ((bra) this.b).a.set(rectF);
-                ((bra) this.b).b.set(rectF);
-                ((bra) this.b).f();
-                Path path = (Path) this.c;
-                path.reset();
-                path.addRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, Path.Direction.CW);
+        a aVar;
+        float f;
+        float f2;
+        a aVar2;
+        a aVar3;
+        a aVar4;
+        a aVar5;
+        int measuredWidth;
+        byte b = this.a;
+        e eVar = this.b;
+        switch (b) {
+            case 0:
+                v8 v8Var = (v8) eVar;
+                aVar = ((e) v8Var).actionBar;
+                if (aVar != null) {
+                    aVar2 = ((e) v8Var).actionBar;
+                    aVar3 = ((e) v8Var).actionBar;
+                    aVar2.layout(0, 0, i3, aVar3.getMeasuredHeight());
+                }
+                int i5 = i3 - i;
+                int i6 = i4 - i2;
+                byte b2 = v8Var.w;
+                if (b2 != 0) {
+                    if (b2 != 3) {
+                        if (b2 != 5) {
+                            if (b2 == 6) {
+                                e29 e29Var = v8Var.a;
+                                if (i3 > i4) {
+                                    int measuredHeight = (i6 - e29Var.getMeasuredHeight()) / 2;
+                                    float f3 = i5;
+                                    int measuredWidth2 = ((int) ((0.5f * f3) - v8Var.a.getMeasuredWidth())) / 2;
+                                    e29 e29Var2 = v8Var.a;
+                                    e29Var2.layout(measuredWidth2, measuredHeight, e29Var2.getMeasuredWidth() + measuredWidth2, v8Var.a.getMeasuredHeight() + measuredHeight);
+                                    float f4 = 0.4f * f3;
+                                    int i7 = (int) f4;
+                                    float f5 = i6;
+                                    int i8 = (int) (0.14f * f5);
+                                    TextView textView = v8Var.e;
+                                    textView.layout(i7, i8, textView.getMeasuredWidth() + i7, v8Var.e.getMeasuredHeight() + i8);
+                                    int i9 = (int) (0.31f * f5);
+                                    TextView textView2 = v8Var.f;
+                                    textView2.layout(i7, i9, textView2.getMeasuredWidth() + i7, v8Var.f.getMeasuredHeight() + i9);
+                                    int z2 = (int) bp1.z(f3 * 0.6f, v8Var.c.getMeasuredWidth(), 2.0f, f4);
+                                    int i10 = (int) (f5 * 0.78f);
+                                    u8 u8Var = v8Var.c;
+                                    u8Var.layout(z2, i10, u8Var.getMeasuredWidth() + z2, v8Var.c.getMeasuredHeight() + i10);
+                                    return;
+                                }
+                                int i11 = (int) (i6 * 0.3f);
+                                int measuredWidth3 = (i5 - e29Var.getMeasuredWidth()) / 2;
+                                e29 e29Var3 = v8Var.a;
+                                e29Var3.layout(measuredWidth3, i11, e29Var3.getMeasuredWidth() + measuredWidth3, v8Var.a.getMeasuredHeight() + i11);
+                                int w = uh9.w(24.0f, v8Var.a.getMeasuredHeight(), i11);
+                                TextView textView3 = v8Var.e;
+                                textView3.layout(0, w, textView3.getMeasuredWidth(), v8Var.e.getMeasuredHeight() + w);
+                                int textSize = (int) (v8Var.e.getTextSize() + hl.L(16.0f) + w);
+                                TextView textView4 = v8Var.f;
+                                textView4.layout(0, textSize, textView4.getMeasuredWidth(), v8Var.f.getMeasuredHeight() + textSize);
+                                int measuredWidth4 = (i5 - v8Var.c.getMeasuredWidth()) / 2;
+                                int measuredHeight2 = (i6 - v8Var.c.getMeasuredHeight()) - hl.L(48.0f);
+                                u8 u8Var2 = v8Var.c;
+                                u8Var2.layout(measuredWidth4, measuredHeight2, u8Var2.getMeasuredWidth() + measuredWidth4, v8Var.c.getMeasuredHeight() + measuredHeight2);
+                                return;
+                            }
+                            return;
+                        } else if (i3 > i4) {
+                            int measuredHeight3 = (i6 - v8Var.a.getMeasuredHeight()) / 2;
+                            e29 e29Var4 = v8Var.a;
+                            e29Var4.layout(0, measuredHeight3, e29Var4.getMeasuredWidth(), v8Var.a.getMeasuredHeight() + measuredHeight3);
+                            float f6 = i5;
+                            float f7 = 0.4f * f6;
+                            int i12 = (int) f7;
+                            float f8 = i6;
+                            int i13 = (int) (0.08f * f8);
+                            TextView textView5 = v8Var.e;
+                            textView5.layout(i12, i13, textView5.getMeasuredWidth() + i12, v8Var.e.getMeasuredHeight() + i13);
+                            float f9 = f6 * 0.6f;
+                            int z3 = (int) bp1.z(f9, v8Var.h.getMeasuredWidth(), 2.0f, f7);
+                            int i14 = (int) (0.25f * f8);
+                            LinearLayout linearLayout = v8Var.h;
+                            linearLayout.layout(z3, i14, linearLayout.getMeasuredWidth() + z3, v8Var.h.getMeasuredHeight() + i14);
+                            int z4 = (int) bp1.z(f9, v8Var.c.getMeasuredWidth(), 2.0f, f7);
+                            int i15 = (int) (f8 * 0.78f);
+                            u8 u8Var3 = v8Var.c;
+                            u8Var3.layout(z4, i15, u8Var3.getMeasuredWidth() + z4, v8Var.c.getMeasuredHeight() + i15);
+                            return;
+                        } else {
+                            int i16 = hl.q.y;
+                            e29 e29Var5 = v8Var.a;
+                            if (i16 < 1800) {
+                                f = i6;
+                                int i17 = (int) (0.06f * f);
+                                e29Var5.layout(0, i17, e29Var5.getMeasuredWidth(), v8Var.a.getMeasuredHeight() + i17);
+                                int i18 = (int) (0.463f * f);
+                                TextView textView6 = v8Var.e;
+                                textView6.layout(0, i18, textView6.getMeasuredWidth(), v8Var.e.getMeasuredHeight() + i18);
+                                f2 = 0.543f;
+                            } else {
+                                f = i6;
+                                int i19 = (int) (0.148f * f);
+                                e29Var5.layout(0, i19, e29Var5.getMeasuredWidth(), v8Var.a.getMeasuredHeight() + i19);
+                                int i20 = (int) (0.551f * f);
+                                TextView textView7 = v8Var.e;
+                                textView7.layout(0, i20, textView7.getMeasuredWidth(), v8Var.e.getMeasuredHeight() + i20);
+                                f2 = 0.631f;
+                            }
+                            int i21 = (int) (f * f2);
+                            int measuredWidth5 = (getMeasuredWidth() - v8Var.h.getMeasuredWidth()) / 2;
+                            LinearLayout linearLayout2 = v8Var.h;
+                            linearLayout2.layout(measuredWidth5, i21, linearLayout2.getMeasuredWidth() + measuredWidth5, v8Var.h.getMeasuredHeight() + i21);
+                            int measuredWidth6 = (i5 - v8Var.c.getMeasuredWidth()) / 2;
+                            int i22 = (int) (i6 * 0.853f);
+                            u8 u8Var4 = v8Var.c;
+                            u8Var4.layout(measuredWidth6, i22, u8Var4.getMeasuredWidth() + measuredWidth6, v8Var.c.getMeasuredHeight() + i22);
+                            return;
+                        }
+                    }
+                    e29 e29Var6 = v8Var.a;
+                    if (i3 > i4) {
+                        float f10 = i6;
+                        int measuredHeight4 = ((int) ((0.95f * f10) - e29Var6.getMeasuredHeight())) / 2;
+                        int width = (int) ((getWidth() * 0.35f) - v8Var.a.getMeasuredWidth());
+                        e29 e29Var7 = v8Var.a;
+                        e29Var7.layout(width, measuredHeight4, e29Var7.getMeasuredWidth() + width, v8Var.a.getMeasuredHeight() + measuredHeight4);
+                        float f11 = i5;
+                        float f12 = 0.4f * f11;
+                        int i23 = (int) f12;
+                        int i24 = (int) (0.12f * f10);
+                        TextView textView8 = v8Var.e;
+                        textView8.layout(i23, i24, textView8.getMeasuredWidth() + i23, v8Var.e.getMeasuredHeight() + i24);
+                        int i25 = (int) (0.24f * f10);
+                        TextView textView9 = v8Var.f;
+                        textView9.layout(i23, i25, textView9.getMeasuredWidth() + i23, v8Var.f.getMeasuredHeight() + i25);
+                        float f13 = f11 * 0.6f;
+                        int z5 = (int) bp1.z(f13, v8Var.c.getMeasuredWidth(), 2.0f, f12);
+                        int i26 = (int) (f10 * 0.8f);
+                        u8 u8Var5 = v8Var.c;
+                        u8Var5.layout(z5, i26, u8Var5.getMeasuredWidth() + z5, v8Var.c.getMeasuredHeight() + i26);
+                        int z6 = (int) bp1.z(f13, v8Var.d.getMeasuredWidth(), 2.0f, f12);
+                        int B = ik8.B(16.0f, v8Var.d.getMeasuredHeight(), i26);
+                        TextView textView10 = v8Var.d;
+                        textView10.layout(z6, B, textView10.getMeasuredWidth() + z6, v8Var.d.getMeasuredHeight() + B);
+                        return;
+                    }
+                    int i27 = (int) (i6 * 0.3f);
+                    int measuredWidth7 = (i5 - e29Var6.getMeasuredWidth()) / 2;
+                    e29 e29Var8 = v8Var.a;
+                    e29Var8.layout(measuredWidth7, i27, e29Var8.getMeasuredWidth() + measuredWidth7, v8Var.a.getMeasuredHeight() + i27);
+                    int w2 = uh9.w(24.0f, v8Var.a.getMeasuredHeight(), i27);
+                    TextView textView11 = v8Var.e;
+                    textView11.layout(0, w2, textView11.getMeasuredWidth(), v8Var.e.getMeasuredHeight() + w2);
+                    int textSize2 = (int) (v8Var.e.getTextSize() + hl.L(16.0f) + w2);
+                    TextView textView12 = v8Var.f;
+                    textView12.layout(0, textSize2, textView12.getMeasuredWidth(), v8Var.f.getMeasuredHeight() + textSize2);
+                    int measuredWidth8 = (i5 - v8Var.c.getMeasuredWidth()) / 2;
+                    int measuredHeight5 = (i6 - v8Var.c.getMeasuredHeight()) - hl.L(48.0f);
+                    u8 u8Var6 = v8Var.c;
+                    u8Var6.layout(measuredWidth8, measuredHeight5, u8Var6.getMeasuredWidth() + measuredWidth8, v8Var.c.getMeasuredHeight() + measuredHeight5);
+                    int measuredWidth9 = (i5 - v8Var.d.getMeasuredWidth()) / 2;
+                    int B2 = ik8.B(32.0f, v8Var.d.getMeasuredHeight(), measuredHeight5);
+                    TextView textView13 = v8Var.d;
+                    textView13.layout(measuredWidth9, B2, textView13.getMeasuredWidth() + measuredWidth9, v8Var.d.getMeasuredHeight() + B2);
+                    return;
+                }
+                e29 e29Var9 = v8Var.a;
+                if (i3 > i4) {
+                    int measuredHeight6 = (i6 - e29Var9.getMeasuredHeight()) / 2;
+                    e29 e29Var10 = v8Var.a;
+                    e29Var10.layout(0, measuredHeight6, e29Var10.getMeasuredWidth(), v8Var.a.getMeasuredHeight() + measuredHeight6);
+                    float f14 = i5;
+                    float f15 = 0.4f * f14;
+                    int i28 = (int) f15;
+                    float f16 = i6;
+                    int i29 = (int) (0.22f * f16);
+                    TextView textView14 = v8Var.e;
+                    textView14.layout(i28, i29, textView14.getMeasuredWidth() + i28, v8Var.e.getMeasuredHeight() + i29);
+                    int i30 = (int) (0.39f * f16);
+                    TextView textView15 = v8Var.f;
+                    textView15.layout(i28, i30, textView15.getMeasuredWidth() + i28, v8Var.f.getMeasuredHeight() + i30);
+                    int z7 = (int) bp1.z(f14 * 0.6f, v8Var.c.getMeasuredWidth(), 2.0f, f15);
+                    int i31 = (int) (f16 * 0.69f);
+                    u8 u8Var7 = v8Var.c;
+                    u8Var7.layout(z7, i31, u8Var7.getMeasuredWidth() + z7, v8Var.c.getMeasuredHeight() + i31);
+                    return;
+                }
+                float f17 = i6;
+                int i32 = (int) (0.188f * f17);
+                e29Var9.layout(0, i32, e29Var9.getMeasuredWidth(), v8Var.a.getMeasuredHeight() + i32);
+                int i33 = (int) (0.651f * f17);
+                TextView textView16 = v8Var.e;
+                textView16.layout(0, i33, textView16.getMeasuredWidth(), v8Var.e.getMeasuredHeight() + i33);
+                int i34 = (int) (0.731f * f17);
+                TextView textView17 = v8Var.f;
+                textView17.layout(0, i34, textView17.getMeasuredWidth(), v8Var.f.getMeasuredHeight() + i34);
+                int measuredWidth10 = (i5 - v8Var.c.getMeasuredWidth()) / 2;
+                int i35 = (int) (f17 * 0.853f);
+                u8 u8Var8 = v8Var.c;
+                u8Var8.layout(measuredWidth10, i35, u8Var8.getMeasuredWidth() + measuredWidth10, v8Var.c.getMeasuredHeight() + i35);
+                return;
+            case 1:
+                o7c o7cVar = (o7c) eVar;
+                aVar4 = ((e) o7cVar).actionBar;
+                aVar5 = ((e) o7cVar).actionBar;
+                aVar4.layout(0, 0, i3, aVar5.getMeasuredHeight());
+                int i36 = i3 - i;
+                int i37 = i4 - i2;
+                e29 e29Var11 = o7cVar.a;
+                if (i3 > i4) {
+                    int measuredHeight7 = (i37 - e29Var11.getMeasuredHeight()) / 2;
+                    e29 e29Var12 = o7cVar.a;
+                    e29Var12.layout(0, measuredHeight7, e29Var12.getMeasuredWidth(), o7cVar.a.getMeasuredHeight() + measuredHeight7);
+                    float f18 = i36;
+                    float f19 = 0.4f * f18;
+                    int i38 = (int) f19;
+                    float f20 = i37;
+                    int i39 = (int) (0.22f * f20);
+                    TextView textView18 = o7cVar.c;
+                    textView18.layout(i38, i39, textView18.getMeasuredWidth() + i38, o7cVar.c.getMeasuredHeight() + i39);
+                    int i40 = (int) (0.39f * f20);
+                    tpa tpaVar = o7cVar.d;
+                    tpaVar.layout(i38, i40, tpaVar.getMeasuredWidth() + i38, o7cVar.d.getMeasuredHeight() + i40);
+                    int z8 = (int) bp1.z(f18 * 0.6f, o7cVar.b.getMeasuredWidth(), 2.0f, f19);
+                    int i41 = (int) (f20 * 0.64f);
+                    TextView textView19 = o7cVar.b;
+                    textView19.layout(z8, i41, textView19.getMeasuredWidth() + z8, o7cVar.b.getMeasuredHeight() + i41);
+                    return;
+                }
+                int i42 = (int) (i37 * 0.3f);
+                int measuredWidth11 = (i36 - e29Var11.getMeasuredWidth()) / 2;
+                e29 e29Var13 = o7cVar.a;
+                e29Var13.layout(measuredWidth11, i42, e29Var13.getMeasuredWidth() + measuredWidth11, o7cVar.a.getMeasuredHeight() + i42);
+                int w3 = uh9.w(16.0f, o7cVar.a.getMeasuredHeight(), i42);
+                TextView textView20 = o7cVar.c;
+                textView20.layout(0, w3, textView20.getMeasuredWidth(), o7cVar.c.getMeasuredHeight() + w3);
+                int w4 = uh9.w(12.0f, o7cVar.c.getMeasuredHeight(), w3);
+                tpa tpaVar2 = o7cVar.d;
+                tpaVar2.layout(0, w4, tpaVar2.getMeasuredWidth(), o7cVar.d.getMeasuredHeight() + w4);
+                int measuredWidth12 = (i36 - o7cVar.b.getMeasuredWidth()) / 2;
+                int measuredHeight8 = (i37 - o7cVar.b.getMeasuredHeight()) - hl.L(48.0f);
+                TextView textView21 = o7cVar.b;
+                textView21.layout(measuredWidth12, measuredHeight8, textView21.getMeasuredWidth() + measuredWidth12, o7cVar.b.getMeasuredHeight() + measuredHeight8);
                 return;
             default:
-                super.onLayout(z, i, i2, i3, i4);
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) eVar;
+                yc ycVar = usersSelectActivity.a;
+                ycVar.layout(0, 0, ycVar.getMeasuredWidth(), usersSelectActivity.a.getMeasuredHeight());
+                usersSelectActivity.d.layout(0, usersSelectActivity.a.getMeasuredHeight(), usersSelectActivity.d.getMeasuredWidth(), usersSelectActivity.d.getMeasuredHeight() + usersSelectActivity.a.getMeasuredHeight());
+                usersSelectActivity.f.layout(0, usersSelectActivity.a.getMeasuredHeight(), usersSelectActivity.f.getMeasuredWidth(), usersSelectActivity.f.getMeasuredHeight() + usersSelectActivity.a.getMeasuredHeight());
+                usersSelectActivity.e.layout(0, usersSelectActivity.a.getMeasuredHeight(), usersSelectActivity.f.getMeasuredWidth(), usersSelectActivity.e.getMeasuredHeight() + usersSelectActivity.a.getMeasuredHeight());
+                zp4 zp4Var = usersSelectActivity.r;
+                if (zp4Var != null) {
+                    boolean z9 = ob6.a0;
+                    FrameLayout.LayoutParams layoutParams = usersSelectActivity.s;
+                    if (z9) {
+                        measuredWidth = layoutParams.leftMargin;
+                    } else {
+                        measuredWidth = ((i3 - i) - layoutParams.rightMargin) - zp4Var.getMeasuredWidth();
+                    }
+                    int measuredHeight9 = ((i4 - i2) - usersSelectActivity.s.bottomMargin) - usersSelectActivity.r.getMeasuredHeight();
+                    zp4 zp4Var2 = usersSelectActivity.r;
+                    zp4Var2.layout(measuredWidth, measuredHeight9, zp4Var2.getMeasuredWidth() + measuredWidth, usersSelectActivity.r.getMeasuredHeight() + measuredHeight9);
+                    return;
+                }
                 return;
         }
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 8:
-                if (View.MeasureSpec.getSize(i) > gl.L(260.0f)) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.L(320.0f), 1073741824), i2);
-                    return;
+        a aVar;
+        a aVar2;
+        a aVar3;
+        int i3;
+        int L;
+        byte b = this.a;
+        e eVar = this.b;
+        switch (b) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                v8 v8Var = (v8) eVar;
+                byte b2 = v8Var.w;
+                aVar = ((e) v8Var).actionBar;
+                if (aVar != null) {
+                    aVar2 = ((e) v8Var).actionBar;
+                    aVar2.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
+                }
+                if (b2 != 0) {
+                    if (b2 != 3) {
+                        if (b2 != 5) {
+                            if (b2 == 6) {
+                                e29 e29Var = v8Var.a;
+                                if (b2 == 6) {
+                                    e29Var.measure(View.MeasureSpec.makeMeasureSpec(hl.L(140.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(140.0f), 1073741824));
+                                } else {
+                                    e29Var.measure(View.MeasureSpec.makeMeasureSpec(hl.L(100.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(100.0f), 1073741824));
+                                }
+                                TextView textView = v8Var.e;
+                                if (size > size2) {
+                                    int i4 = (int) (size * 0.6f);
+                                    textView.measure(View.MeasureSpec.makeMeasureSpec(i4, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                    v8Var.f.measure(View.MeasureSpec.makeMeasureSpec(i4, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                    v8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i4, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                                } else {
+                                    textView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                    v8Var.f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                    u8 u8Var = v8Var.c;
+                                    if (b2 == 6) {
+                                        u8Var.measure(ik8.f(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                                    } else {
+                                        u8Var.measure(ik8.f(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                                    }
+                                }
+                            }
+                        } else {
+                            e29 e29Var2 = v8Var.a;
+                            if (size > size2) {
+                                float f = size;
+                                e29Var2.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
+                                int i5 = (int) (f * 0.6f);
+                                v8Var.e.measure(View.MeasureSpec.makeMeasureSpec(i5, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                v8Var.h.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                v8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                            } else {
+                                e29Var2.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
+                                v8Var.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                v8Var.h.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                v8Var.c.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                            }
+                        }
+                    } else {
+                        v8Var.a.measure(View.MeasureSpec.makeMeasureSpec(hl.L(150.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(150.0f), 1073741824));
+                        if (size > size2) {
+                            float f2 = size;
+                            v8Var.d.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f2), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            int i6 = (int) (f2 * 0.6f);
+                            v8Var.e.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            v8Var.f.measure(View.MeasureSpec.makeMeasureSpec(i6, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            v8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i6, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                        } else {
+                            v8Var.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            v8Var.f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            v8Var.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            v8Var.c.measure(ik8.f(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                        }
+                    }
                 } else {
-                    super.onMeasure(i, i2);
+                    e29 e29Var3 = v8Var.a;
+                    if (size > size2) {
+                        float f3 = size;
+                        e29Var3.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f3), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
+                        int i7 = (int) (f3 * 0.6f);
+                        v8Var.e.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                        v8Var.f.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                        v8Var.c.measure(View.MeasureSpec.makeMeasureSpec(i7, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                    } else {
+                        e29Var3.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
+                        v8Var.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                        v8Var.f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                        v8Var.c.measure(ik8.f(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                    }
+                }
+                setMeasuredDimension(size, size2);
+                return;
+            case 1:
+                int size3 = View.MeasureSpec.getSize(i);
+                int size4 = View.MeasureSpec.getSize(i2);
+                o7c o7cVar = (o7c) eVar;
+                aVar3 = ((e) o7cVar).actionBar;
+                aVar3.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), i2);
+                if (size3 > size4) {
+                    float f4 = size3;
+                    o7cVar.a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f4), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size4 * 0.68f), 1073741824));
+                    int i8 = (int) (f4 * 0.6f);
+                    o7cVar.c.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    o7cVar.d.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    o7cVar.e.measure(View.MeasureSpec.makeMeasureSpec(i8, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    o7cVar.b.measure(View.MeasureSpec.makeMeasureSpec(i8, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(hl.L(42.0f), 1073741824));
+                } else {
+                    if (o7cVar.P == 7) {
+                        i3 = 160;
+                    } else {
+                        i3 = 140;
+                    }
+                    float f5 = i3;
+                    o7cVar.a.measure(View.MeasureSpec.makeMeasureSpec(hl.L(f5), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(f5), 1073741824));
+                    o7cVar.c.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    o7cVar.d.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    o7cVar.e.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    o7cVar.b.measure(ik8.f(48.0f, size3, 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(50.0f), 1073741824));
+                }
+                setMeasuredDimension(size3, size4);
+                return;
+            default:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) eVar;
+                int size5 = View.MeasureSpec.getSize(i);
+                int size6 = View.MeasureSpec.getSize(i2);
+                setMeasuredDimension(size5, size6);
+                if (!hl.O1() && size6 <= size5) {
+                    L = hl.L(56.0f);
+                } else {
+                    L = hl.L(144.0f);
+                }
+                usersSelectActivity.a.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE));
+                usersSelectActivity.d.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.a.getMeasuredHeight(), 1073741824));
+                usersSelectActivity.f.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.a.getMeasuredHeight(), 1073741824));
+                usersSelectActivity.e.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.a.getMeasuredHeight(), 1073741824));
+                zp4 zp4Var = usersSelectActivity.r;
+                if (zp4Var != null) {
+                    int i9 = usersSelectActivity.s.width;
+                    zp4Var.measure(View.MeasureSpec.makeMeasureSpec(i9, 1073741824), View.MeasureSpec.makeMeasureSpec(i9, 1073741824));
                     return;
                 }
-            case 12:
-                super.onMeasure(i, i2);
-                a();
-                return;
-            default:
-                super.onMeasure(i, i2);
                 return;
         }
-    }
-
-    @Override
-    public final void onSizeChanged(int r18, int r19, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.t8.onSizeChanged(int, int, int, int):void");
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.a) {
-            case 12:
-                super.setText(charSequence, bufferType);
-                a();
-                return;
-            default:
-                super.setText(charSequence, bufferType);
-                return;
-        }
-    }
-
-    @Override
-    public final void setTextColor(int i) {
-        switch (this.a) {
-            case 12:
-                super.setTextColor(bkb.p1(0.2f, i));
-                ((r86) this.c).g(bkb.p1(0.03f, i), bkb.p1(0.175f, i), bkb.p1(0.2f, i), bkb.p1(0.45f, i));
-                return;
-            default:
-                super.setTextColor(i);
-                return;
-        }
-    }
-
-    public t8(mk8 mk8Var, Context context) {
-        super(context);
-        this.a = (byte) 10;
-        this.c = mk8Var;
-        this.b = new Paint[mk8Var.f.length];
-        int i = 0;
-        while (true) {
-            Paint[] paintArr = (Paint[]) this.b;
-            if (i >= paintArr.length) {
-                return;
-            }
-            paintArr[i] = new Paint(1);
-            i++;
-        }
-    }
-
-    public t8(wi9 wi9Var, Context context) {
-        super(context);
-        this.a = (byte) 11;
-        this.c = wi9Var;
-        this.b = new Paint(1);
-    }
-
-    public t8(Context context, byte b) {
-        super(context);
-        this.a = b;
-        switch (b) {
-            case 12:
-                super(context);
-                b46 b46Var = new b46(0);
-                this.b = b46Var;
-                r86 r86Var = new r86();
-                this.c = r86Var;
-                r86Var.y = b46Var;
-                r86Var.u = 0.65f;
-                r86Var.j(4.0f);
-                setBackground(r86Var);
-                return;
-            default:
-                this.c = new Path();
-                return;
-        }
-    }
-
-    public t8(xx2 xx2Var, Context context) {
-        super(context);
-        this.a = (byte) 6;
-        this.c = xx2Var;
-        this.b = new Paint(1);
-    }
-
-    public t8(en2 en2Var, Context context) {
-        super(context);
-        this.a = (byte) 5;
-        this.c = en2Var;
-        this.b = new Paint(1);
-    }
-
-    public t8(wp5 wp5Var, Context context) {
-        super(context);
-        this.a = (byte) 8;
-        this.c = wp5Var;
-        wd1 wd1Var = new wd1();
-        this.b = wd1Var;
-        wd1Var.k = false;
-        wd1Var.m = 2.0f;
-    }
-
-    public t8(u8 u8Var, Context context) {
-        super(context);
-        this.a = (byte) 0;
-        this.c = u8Var;
-        wd1 wd1Var = new wd1();
-        this.b = wd1Var;
-        wd1Var.k = false;
-        wd1Var.m = 2.0f;
-    }
-
-    public t8(gr0 gr0Var, Context context) {
-        super(context);
-        this.a = (byte) 1;
-        this.c = gr0Var;
-        this.b = new Paint(1);
-    }
-
-    public t8(Context context, wjb wjbVar) {
-        super(context);
-        this.a = (byte) 2;
-        this.c = wjbVar;
-        this.b = new Paint(1);
-    }
-
-    public t8(f26 f26Var, Context context) {
-        super(context);
-        this.a = (byte) 9;
-        this.c = f26Var;
-        this.b = new Paint(1);
-    }
-
-    public t8(x02 x02Var, Context context) {
-        super(context);
-        this.a = (byte) 3;
-        this.c = x02Var;
-        this.b = new Paint(1);
     }
 }

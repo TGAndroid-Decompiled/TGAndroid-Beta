@@ -1,29 +1,15 @@
 package defpackage;
 
-import android.media.MediaRoute2Info;
-import java.util.Set;
-public abstract class fu6 {
-    public static void a(MediaRoute2Info.Builder builder, zs6 zs6Var) {
-        if (zs6Var.a.getBoolean("isVisibilityPublic", true)) {
-            builder.setVisibilityPublic();
-        } else {
-            builder.setVisibilityRestricted(zs6Var.a());
-        }
+import android.media.MediaRouter2;
+import android.media.MediaRouter2$ControllerCallback;
+public final class fu6 extends MediaRouter2$ControllerCallback {
+    public final ku6 a;
+
+    public fu6(ku6 ku6Var) {
+        this.a = ku6Var;
     }
 
-    public static Set<String> b(MediaRoute2Info mediaRoute2Info) {
-        return mediaRoute2Info.getDeduplicationIds();
-    }
-
-    public static int c(MediaRoute2Info mediaRoute2Info) {
-        return mediaRoute2Info.getType();
-    }
-
-    public static void d(MediaRoute2Info.Builder builder, Set<String> set) {
-        builder.setDeduplicationIds(set);
-    }
-
-    public static void e(MediaRoute2Info.Builder builder, int i) {
-        builder.setType(i);
+    public final void onControllerUpdated(MediaRouter2.RoutingController routingController) {
+        this.a.r(routingController);
     }
 }

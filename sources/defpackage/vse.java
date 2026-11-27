@@ -1,32 +1,17 @@
 package defpackage;
-public final class vse implements due {
-    public due[] a;
+public final class vse implements zq7 {
+    public static final vse a = new Object();
 
-    @Override
-    public final boolean zza(Class cls) {
-        for (due dueVar : this.a) {
-            if (dueVar.zza(cls)) {
-                return true;
-            }
-        }
-        return false;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
     }
 
     @Override
-    public final swe zzb(Class cls) {
-        due[] dueVarArr;
-        String str;
-        for (due dueVar : this.a) {
-            if (dueVar.zza(cls)) {
-                return dueVar.zzb(cls);
-            }
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        String name = cls.getName();
-        if (name.length() != 0) {
-            str = "No factory is available for message type: ".concat(name);
-        } else {
-            str = new String("No factory is available for message type: ");
-        }
-        throw new UnsupportedOperationException(str);
+        throw new ClassCastException();
     }
 }

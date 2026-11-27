@@ -1,24 +1,29 @@
 package defpackage;
-public final class xe7 implements Runnable {
-    public final byte a;
-    public final ye7 b;
 
-    public xe7(ye7 ye7Var, byte b) {
-        this.a = b;
-        this.b = ye7Var;
+import org.telegram.tgnet.TLRPC;
+public final class xe7 implements Runnable {
+    public final jf7 a;
+    public final String b;
+    public final long c;
+    public final TLRPC.Reaction d;
+    public final short e;
+    public final int f;
+    public final boolean h;
+    public final mcc n;
+
+    public xe7(jf7 jf7Var, String str, long j, TLRPC.Reaction reaction, int i, int i2, boolean z, mcc mccVar) {
+        this.a = jf7Var;
+        this.b = str;
+        this.c = j;
+        this.d = reaction;
+        this.e = i;
+        this.f = i2;
+        this.h = z;
+        this.n = mccVar;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        ye7 ye7Var = this.b;
-        switch (b) {
-            case 0:
-                ye7Var.x();
-                return;
-            default:
-                ye7Var.m(true);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xe7.run():void");
     }
 }

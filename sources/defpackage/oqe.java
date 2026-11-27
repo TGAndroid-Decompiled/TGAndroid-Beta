@@ -1,17 +1,14 @@
 package defpackage;
-public final class oqe extends c2e {
+public final class oqe extends s6e {
     private static final oqe zzb;
     private int zzd;
-    private int zze;
+    private boolean zze;
+    private boolean zzf;
 
     static {
-        ?? c2eVar = new c2e();
-        zzb = c2eVar;
-        c2e.k(oqe.class, c2eVar);
-    }
-
-    public static oqe n() {
-        return zzb;
+        ?? s6eVar = new s6e();
+        zzb = s6eVar;
+        s6e.k(oqe.class, s6eVar);
     }
 
     @Override
@@ -26,11 +23,11 @@ public final class oqe extends c2e {
                         }
                         throw null;
                     }
-                    return new e0e(zzb);
+                    return new u4e(zzb);
                 }
-                return new c2e();
+                return new s6e();
             }
-            return new vae(zzb, "\u0004\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", yqd.i});
+            return new lfe(zzb, "\u0004\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဇ\u0000\u0002ဇ\u0001", new Object[]{"zzd", "zze", "zzf"});
         }
         return (byte) 1;
     }

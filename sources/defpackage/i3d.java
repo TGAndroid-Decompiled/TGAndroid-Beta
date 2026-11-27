@@ -1,64 +1,75 @@
 package defpackage;
+public abstract class i3d extends cr2 {
+    public final rg0 k;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-public final class i3d extends xx4 {
-    public final ngb F;
+    public i3d(rg0 rg0Var) {
+        this.k = rg0Var;
+    }
 
-    public i3d(Context context, Looper looper, ntb ntbVar, ngb ngbVar, ey4 ey4Var, fy4 fy4Var) {
-        super(270, ey4Var, fy4Var, ntbVar, context, looper);
-        this.F = ngbVar;
+    public void A(asb asbVar) {
+        n(new ci6(asbVar, (byte) 0));
+    }
+
+    public void B() {
+        y(null, this.k);
     }
 
     @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.service.IClientTelemetryService");
-        if (queryLocalInterface instanceof a3d) {
-            return (a3d) queryLocalInterface;
-        }
-        return new ezc(iBinder, "com.google.android.gms.common.internal.service.IClientTelemetryService", (byte) 1);
+    public boolean a(ft6 ft6Var) {
+        return this.k.a(ft6Var);
     }
 
     @Override
-    public final f84[] f() {
-        return udd.c;
+    public asb h() {
+        return this.k.h();
     }
 
     @Override
-    public final Bundle h() {
-        ngb ngbVar = this.F;
-        ngbVar.getClass();
-        Bundle bundle = new Bundle();
-        String str = ngbVar.a;
-        if (str != null) {
-            bundle.putString("api", str);
-        }
-        return bundle;
+    public final ft6 i() {
+        return this.k.i();
     }
 
     @Override
-    public final int i() {
-        return 203400000;
+    public boolean j() {
+        return this.k.j();
     }
 
     @Override
-    public final String l() {
-        return "com.google.android.gms.common.internal.service.IClientTelemetryService";
+    public final void m(v2c v2cVar) {
+        this.j = gcc.q(null);
+        B();
     }
 
     @Override
-    public final String n() {
-        return "com.google.android.gms.common.telemetry.service.START";
+    public void t(ft6 ft6Var) {
+        this.k.t(ft6Var);
     }
 
     @Override
-    public final boolean p() {
-        return true;
+    public final vz6 u(Integer num, vz6 vz6Var) {
+        Void r1 = (Void) num;
+        return z(vz6Var);
+    }
+
+    @Override
+    public final long v(long j, Integer num) {
+        Void r3 = (Void) num;
+        return j;
+    }
+
+    @Override
+    public final int w(int i, Integer num) {
+        Void r2 = (Void) num;
+        return i;
+    }
+
+    @Override
+    public final void x(Integer num, rg0 rg0Var, asb asbVar) {
+        Void r1 = (Void) num;
+        A(asbVar);
+    }
+
+    public vz6 z(vz6 vz6Var) {
+        return vz6Var;
     }
 }

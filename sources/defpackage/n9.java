@@ -1,42 +1,81 @@
 package defpackage;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Build;
-import android.text.TextUtils;
-import java.util.Arrays;
-import java.util.HashSet;
-public abstract class n9 extends rr {
-    public static void v(Activity activity, String[] strArr, int i) {
-        String[] strArr2;
-        HashSet hashSet = new HashSet();
-        for (int i2 = 0; i2 < strArr.length; i2++) {
-            if (!TextUtils.isEmpty(strArr[i2])) {
-                if (Build.VERSION.SDK_INT < 33 && TextUtils.equals(strArr[i2], "android.permission.POST_NOTIFICATIONS")) {
-                    hashSet.add(Integer.valueOf(i2));
+import android.os.Handler;
+import java.lang.reflect.Method;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class n9 implements Runnable {
+    public final byte a;
+    public final Activity b;
+
+    public n9(Activity activity, byte b) {
+        this.a = b;
+        this.b = activity;
+    }
+
+    @Override
+    public final void run() {
+        Object obj;
+        boolean z;
+        byte b = this.a;
+        Activity activity = this.b;
+        switch (b) {
+            case 0:
+                if (!activity.isFinishing()) {
+                    Handler handler = q9.g;
+                    Method method = q9.f;
+                    int i = Build.VERSION.SDK_INT;
+                    if (i >= 28) {
+                        activity.recreate();
+                        return;
+                    }
+                    if (((i != 26 && i != 27) || method != null) && (q9.e != null || q9.d != null)) {
+                        try {
+                            Object obj2 = q9.c.get(activity);
+                            if (obj2 != null && (obj = q9.b.get(activity)) != null) {
+                                Application application = activity.getApplication();
+                                p9 p9Var = new p9(activity);
+                                application.registerActivityLifecycleCallbacks(p9Var);
+                                handler.post(new iqd(p9Var, obj2, (byte) 1));
+                                if (i != 26 && i != 27) {
+                                    z = false;
+                                } else {
+                                    z = true;
+                                }
+                                if (z) {
+                                    Boolean bool = Boolean.FALSE;
+                                    method.invoke(obj, obj2, null, null, 0, bool, null, null, bool, bool);
+                                } else {
+                                    activity.recreate();
+                                }
+                                handler.post(new xs4(application, p9Var, (byte) 2));
+                                return;
+                            }
+                        } catch (Throwable unused) {
+                        }
+                    }
+                    activity.recreate();
+                    return;
                 }
-            } else {
-                w26.j(b00.j(new StringBuilder("Permission request for permissions "), Arrays.toString(strArr), " must not contain null or empty values"));
                 return;
-            }
-        }
-        int size = hashSet.size();
-        if (size > 0) {
-            strArr2 = new String[strArr.length - size];
-        } else {
-            strArr2 = strArr;
-        }
-        if (size > 0) {
-            if (size == strArr.length) {
+            case 1:
+                int i2 = ChatActivityEnterView.X7;
+                hl.K3(activity);
                 return;
-            }
-            int i3 = 0;
-            for (int i4 = 0; i4 < strArr.length; i4++) {
-                if (!hashSet.contains(Integer.valueOf(i4))) {
-                    strArr2[i3] = strArr[i4];
-                    i3++;
-                }
-            }
+            case 2:
+                m01.u(activity, "https://promote.telegram.org/guidelines");
+                return;
+            case 3:
+                m01.u(activity, "https://promote.telegram.org/guidelines");
+                return;
+            case 4:
+                m01.u(activity, "https://promote.telegram.org/guidelines");
+                return;
+            default:
+                m01.u(activity, ob6.M0(2131744623, null));
+                return;
         }
-        activity.requestPermissions(strArr, i);
     }
 }

@@ -1,46 +1,60 @@
 package defpackage;
 
-import android.util.LongSparseArray;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class ny6 extends pf0 {
-    public static final ny6[] b = new ny6[4];
-    public final LongSparseArray a;
+import j$.util.Objects;
+public final class ny6 implements ww6 {
+    public final ry6 a;
 
-    public ny6(int i) {
-        super(i);
-        this.a = new LongSparseArray();
+    public ny6(ry6 ry6Var) {
+        this.a = ry6Var;
     }
 
-    public static ny6 a(int i) {
-        ny6 ny6Var;
-        ny6[] ny6VarArr = b;
-        ny6 ny6Var2 = ny6VarArr[i];
-        if (ny6Var2 == null) {
-            synchronized (ny6.class) {
-                ny6Var = ny6VarArr[i];
-                if (ny6Var == null) {
-                    ny6Var = new ny6(i);
-                    ny6VarArr[i] = ny6Var;
-                }
-            }
-            return ny6Var;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return ny6Var2;
+        if (obj != null && obj.getClass() == ny6.class) {
+            return Objects.equals(this.a, ((ny6) obj).a);
+        }
+        return false;
     }
 
-    public final void b(TL_update.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
-        long j = -k27.B1(tL_updatePendingJoinRequests.peer);
-        this.a.put(j, null);
-        TLRPC.ChatFull L0 = getMessagesController().L0(j);
-        if (L0 != null) {
-            L0.requests_pending = tL_updatePendingJoinRequests.requests_pending;
-            L0.recent_requesters = tL_updatePendingJoinRequests.recent_requesters;
-            L0.flags |= 131072;
-            getMessagesStorage().K1(L0, false);
-            kk7 notificationCenter = getNotificationCenter();
-            Boolean bool = Boolean.FALSE;
-            notificationCenter.k(kk7.S, L0, 0, bool, bool);
-        }
+    public final int hashCode() {
+        return Objects.hash(this.a);
+    }
+
+    @Override
+    public final void e() {
+    }
+
+    @Override
+    public final void b(int i) {
+    }
+
+    @Override
+    public final void a(int i, h9a h9aVar) {
+    }
+
+    @Override
+    public final void d(int i, u26 u26Var) {
+    }
+
+    @Override
+    public final void f(int i, zf8 zf8Var) {
+    }
+
+    @Override
+    public final void g(int i, gaa gaaVar) {
+    }
+
+    @Override
+    public final void c(int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void h(int i, kg8 kg8Var, zf8 zf8Var, boolean z, boolean z2) {
+    }
+
+    @Override
+    public final void i(int i, daa daaVar, boolean z, boolean z2, int i2) {
     }
 }

@@ -1,59 +1,153 @@
 package defpackage;
 
-import java.util.List;
-public final class src implements j74 {
-    public l74 a;
-    public wxb b;
-    public byte c;
-    public long d;
-    public qrc e;
-    public int f;
-    public long g;
+import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.SurfaceTexture;
+import android.view.Choreographer;
+import android.view.MotionEvent;
+import android.view.Surface;
+import android.view.TextureView;
+import android.view.View;
+public abstract class src extends TextureView implements TextureView.SurfaceTextureListener, Choreographer.FrameCallback {
+    public static final prc[] y = new prc[3];
+    public final prc a;
+    public final Rect b;
+    public final Runnable c;
+    public final short d;
+    public rrc e;
+    public boolean f;
+    public boolean h;
+    public boolean n;
+    public float r;
+    public float s;
+    public boolean w;
+    public boolean x;
 
-    @Override
-    public final int b(defpackage.k74 r26, defpackage.m11 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.src.b(k74, m11):int");
-    }
-
-    @Override
-    public final boolean c(k74 k74Var) {
-        return ldd.a((ja3) k74Var);
-    }
-
-    @Override
-    public final void d(long j, long j2) {
-        byte b;
-        if (j == 0) {
-            b = 0;
-        } else {
-            b = 4;
+    public src(Context context, Runnable runnable, int i) {
+        super(context);
+        this.b = new Rect();
+        this.h = true;
+        this.c = runnable;
+        prc[] prcVarArr = y;
+        if (prcVarArr[i] == null) {
+            prcVarArr[i] = new prc(context.getApplicationContext(), i);
         }
-        this.c = b;
-        qrc qrcVar = this.e;
-        if (qrcVar != null) {
-            qrcVar.b(j2);
+        prc prcVar = prcVarArr[i];
+        this.a = prcVar;
+        prcVar.getClass();
+        this.d = (short) 378;
+        setOpaque(false);
+        setSurfaceTextureListener(this);
+    }
+
+    public abstract void a();
+
+    @Override
+    public final void doFrame(long j) {
+        boolean z;
+        qrc qrcVar;
+        if (this.f && !this.h) {
+            this.c.run();
+            if (this.e != null) {
+                if (isShown() && getWindowVisibility() == 0 && getGlobalVisibleRect(this.b)) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                rrc rrcVar = this.e;
+                if (z) {
+                    qrcVar = new qrc(this.r, this.s, this.w, this.x);
+                } else {
+                    qrcVar = null;
+                }
+                rrcVar.e = qrcVar;
+                this.a.c();
+            }
+            Choreographer.getInstance().postFrameCallback(this);
         }
     }
 
     @Override
-    public final List e() {
-        km5 km5Var = mm5.b;
-        return w59.e;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f = true;
+        setPaused(this.h);
     }
 
     @Override
-    public final void f(l74 l74Var) {
-        this.a = l74Var;
-        this.b = l74Var.S(0, 1);
-        l74Var.z();
+    public final void onDetachedFromWindow() {
+        this.n = false;
+        this.f = false;
+        Choreographer.getInstance().removeFrameCallback(this);
+        super.onDetachedFromWindow();
     }
 
     @Override
-    public final j74 a() {
-        return this;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        this.n = false;
+        short s = this.d;
+        surfaceTexture.setDefaultBufferSize(s, s);
+        rrc rrcVar = new rrc(this, new Surface(surfaceTexture), this.d);
+        this.e = rrcVar;
+        prc prcVar = this.a;
+        prcVar.e.add(rrcVar);
+        prcVar.f = (rrc[]) prcVar.e.toArray(new rrc[0]);
+        prcVar.c();
+        setPaused(this.h);
     }
 
     @Override
-    public final void release() {
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        this.n = false;
+        rrc rrcVar = this.e;
+        this.e = null;
+        if (rrcVar != null) {
+            prc prcVar = this.a;
+            prcVar.getClass();
+            rrcVar.c = false;
+            prcVar.e.remove(rrcVar);
+            prcVar.f = (rrc[]) prcVar.e.toArray(new rrc[0]);
+            prcVar.b.post(new vlc(prcVar, rrcVar, (byte) 17));
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+        short s = this.d;
+        surfaceTexture.setDefaultBufferSize(s, s);
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        rrc rrcVar;
+        short s = this.d;
+        surfaceTexture.setDefaultBufferSize(s, s);
+        if (!this.n && (rrcVar = this.e) != null && rrcVar.d) {
+            this.n = true;
+            if (getParent() instanceof View) {
+                ((View) getParent()).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    public void setPaused(boolean z) {
+        this.h = z;
+        Choreographer.getInstance().removeFrameCallback(this);
+        if (this.f && !z) {
+            Choreographer.getInstance().postFrameCallback(this);
+            return;
+        }
+        rrc rrcVar = this.e;
+        if (rrcVar != null) {
+            rrcVar.e = null;
+            this.a.c();
+        }
     }
 }

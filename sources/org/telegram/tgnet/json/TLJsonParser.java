@@ -15,11 +15,11 @@ public class TLJsonParser {
         this.jsonObject = jSONObject;
     }
 
-    private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, q8c q8cVar) {
+    private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, qcc qccVar) {
         try {
-            return (T) q8cVar.a(tLJsonParser);
+            return (T) qccVar.a(tLJsonParser);
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return null;
         }
     }
@@ -34,7 +34,7 @@ public class TLJsonParser {
             }
             return z;
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return z;
         }
     }
@@ -49,7 +49,7 @@ public class TLJsonParser {
             }
             return i;
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return i;
         }
     }
@@ -64,7 +64,7 @@ public class TLJsonParser {
             }
             return j;
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return j;
         }
     }
@@ -88,10 +88,10 @@ public class TLJsonParser {
         return parseInt64(this.jsonObject.opt(str), i);
     }
 
-    public <T extends Deserializable> T readObject(String str, q8c q8cVar) {
+    public <T extends Deserializable> T readObject(String str, qcc qccVar) {
         JSONObject optJSONObject = this.jsonObject.optJSONObject(str);
         if (optJSONObject != null) {
-            return (T) parse(new TLJsonParser(optJSONObject), q8cVar);
+            return (T) parse(new TLJsonParser(optJSONObject), qccVar);
         }
         return null;
     }
@@ -100,19 +100,19 @@ public class TLJsonParser {
         return parseString(this.jsonObject.opt(str), str2);
     }
 
-    public <T extends Deserializable> ArrayList<T> readVector(String str, q8c q8cVar) {
+    public <T extends Deserializable> ArrayList<T> readVector(String str, qcc qccVar) {
         ArrayList<T> arrayList = (ArrayList<T>) new ArrayList();
         JSONArray optJSONArray = this.jsonObject.optJSONArray(str);
         if (optJSONArray != null) {
             int length = optJSONArray.length();
             for (int i = 0; i < length; i++) {
                 try {
-                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i)), q8cVar);
+                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i)), qccVar);
                     if (parse != null) {
                         arrayList.add(parse);
                     }
                 } catch (JSONException e) {
-                    fa4.g(e, true);
+                    cc4.g(e, true);
                 }
             }
         }

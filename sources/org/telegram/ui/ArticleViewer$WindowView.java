@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-public class ArticleViewer$WindowView extends FrameLayout implements tjb {
+public class ArticleViewer$WindowView extends FrameLayout implements snb {
     public int E;
     public int F;
     public int G;
@@ -55,7 +55,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
         boolean z2;
         m mVar;
         o oVar = this.I;
-        sw swVar = oVar.L;
+        tw twVar = oVar.L;
         if (oVar.w0 == null && !oVar.V0 && oVar.Q.getVisibility() != 0 && !oVar.Q0.w()) {
             if (motionEvent != null && motionEvent.getAction() == 0 && !this.d && !this.c) {
                 this.b = motionEvent.getPointerId(0);
@@ -80,18 +80,18 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                     z2 = true;
                 }
                 this.H = z2;
-                if ((swVar == null || !swVar.I) && this.c && !this.d && max >= gl.Z0(true, 0.4f) && Math.abs(max) / 3 > abs && this.H) {
+                if ((twVar == null || !twVar.I) && this.c && !this.d && max >= hl.Z0(true, 0.4f) && Math.abs(max) / 3 > abs && this.H) {
                     b(motionEvent);
                 } else if (this.d) {
                     oVar.d = null;
                     oVar.f = null;
                     if (this.e && (mVar = oVar.v0[0]) != null) {
                         mVar.setTranslationX(max);
-                    } else if (swVar != null) {
-                        swVar.J = max / getWidth();
-                        swVar.c.invalidate();
-                        swVar.s();
-                        swVar.r();
+                    } else if (twVar != null) {
+                        twVar.J = max / getWidth();
+                        twVar.c.invalidate();
+                        twVar.t();
+                        twVar.r();
                     } else {
                         a aVar = oVar.h0;
                         float f = max;
@@ -108,7 +108,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                 velocityTracker2.computeCurrentVelocity(1000);
                 float xVelocity = this.s.getXVelocity();
                 float yVelocity = this.s.getYVelocity();
-                if ((swVar == null || !swVar.I) && !this.d && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
+                if ((twVar == null || !twVar.I) && !this.d && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
                     b(motionEvent);
                 }
                 if (this.d) {
@@ -118,8 +118,8 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                     } else {
                         view = oVar.h0;
                     }
-                    if (!z3 && swVar != null) {
-                        x = swVar.J * swVar.c.getWidth();
+                    if (!z3 && twVar != null) {
+                        x = twVar.J * twVar.c.getWidth();
                     } else {
                         x = view.getX();
                     }
@@ -134,20 +134,20 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                         x = view.getMeasuredWidth() - x;
                         if (this.e) {
                             animatorSet.playTogether(ObjectAnimator.ofFloat(oVar.v0[0], property, view.getMeasuredWidth()));
-                        } else if (swVar != null) {
-                            animatorSet.playTogether(swVar.l(1.0f));
+                        } else if (twVar != null) {
+                            animatorSet.playTogether(twVar.l(1.0f));
                         } else {
                             animatorSet.playTogether(ObjectAnimator.ofFloat(oVar.h0, property, view.getMeasuredWidth()), ObjectAnimator.ofFloat(this, o.f1, view.getMeasuredWidth()));
                         }
                     } else if (this.e) {
                         animatorSet.playTogether(ObjectAnimator.ofFloat(oVar.v0[0], property, 0.0f));
-                    } else if (swVar != null) {
-                        animatorSet.playTogether(swVar.l(0.0f));
+                    } else if (twVar != null) {
+                        animatorSet.playTogether(twVar.l(0.0f));
                     } else {
                         animatorSet.playTogether(ObjectAnimator.ofFloat(oVar.h0, property, 0.0f), ObjectAnimator.ofFloat(this, o.f1, 0.0f));
                     }
                     animatorSet.setDuration(Math.max((int) ((420.0f / view.getMeasuredWidth()) * x), 250));
-                    animatorSet.setInterpolator(s33.h);
+                    animatorSet.setInterpolator(k43.h);
                     animatorSet.addListener(new n(this, z));
                     animatorSet.start();
                     oVar.V0 = true;
@@ -170,8 +170,8 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                     velocityTracker4.recycle();
                     this.s = null;
                 }
-                fib fibVar = oVar.Q0;
-                if (fibVar != null && !fibVar.w()) {
+                amb ambVar = oVar.Q0;
+                if (ambVar != null && !ambVar.w()) {
                     oVar.Q0.e(false);
                 }
             }
@@ -184,27 +184,27 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.Fl));
-        hashSet.add(Integer.valueOf(bkb.c6));
-        hashSet.add(Integer.valueOf(bkb.F6));
-        hashSet.add(Integer.valueOf(bkb.x6));
-        hashSet.add(Integer.valueOf(bkb.I6));
-        hashSet.add(Integer.valueOf(bkb.J6));
-        hashSet.add(Integer.valueOf(bkb.j6));
-        hashSet.add(Integer.valueOf(bkb.c7));
-        hashSet.add(Integer.valueOf(bkb.L6));
-        hashSet.add(Integer.valueOf(bkb.Kd));
+        hashSet.add(Integer.valueOf(aob.Gl));
+        hashSet.add(Integer.valueOf(aob.d6));
+        hashSet.add(Integer.valueOf(aob.G6));
+        hashSet.add(Integer.valueOf(aob.y6));
+        hashSet.add(Integer.valueOf(aob.J6));
+        hashSet.add(Integer.valueOf(aob.K6));
+        hashSet.add(Integer.valueOf(aob.k6));
+        hashSet.add(Integer.valueOf(aob.d7));
+        hashSet.add(Integer.valueOf(aob.M6));
+        hashSet.add(Integer.valueOf(aob.Ld));
     }
 
     public final void b(MotionEvent motionEvent) {
-        wt wtVar;
+        xt xtVar;
         int color;
         this.c = false;
         this.d = true;
         this.n = (int) motionEvent.getX();
         o oVar = this.I;
         ArrayList arrayList = oVar.e0;
-        if (arrayList.size() > 1 && ((wtVar = oVar.i0) == null || (!wtVar.U && !wtVar.a0))) {
+        if (arrayList.size() > 1 && ((xtVar = oVar.i0) == null || (!xtVar.U && !xtVar.a0))) {
             this.e = true;
             this.h = oVar.K0;
             oVar.v0[1].setVisibility(0);
@@ -276,17 +276,17 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
         if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
             o oVar = this.I;
             boolean isFocused = oVar.i0.W.isFocused();
-            wt wtVar = oVar.i0;
+            xt xtVar = oVar.i0;
             if (isFocused) {
-                wtVar.W.clearFocus();
-                gl.t1(oVar.i0.W);
+                xtVar.W.clearFocus();
+                hl.t1(oVar.i0.W);
                 return true;
-            } else if (wtVar.c0.isFocused()) {
+            } else if (xtVar.c0.isFocused()) {
                 oVar.i0.c0.clearFocus();
-                gl.t1(oVar.i0.c0);
+                hl.t1(oVar.i0.c0);
                 return true;
             } else if (oVar.p0) {
-                gl.t1(this);
+                hl.t1(this);
                 return true;
             } else {
                 m mVar = oVar.v0[0];
@@ -310,7 +310,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
             motionEvent.offsetLocation(-oVar.h0.getX(), -oVar.h0.getY());
             return oVar.S0.g(motionEvent);
         }
-        qib m = oVar.Q0.m(getContext());
+        lmb m = oVar.Q0.m(getContext());
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
         obtain.offsetLocation(-oVar.h0.getX(), -oVar.h0.getY());
         if (!oVar.Q0.w() || !oVar.Q0.m(getContext()).onTouchEvent(obtain)) {
@@ -351,7 +351,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                 }
                 oVar.o0.setColor(((int) (min * 153.0f)) << 24);
                 canvas.drawRect(0.0f, 0.0f, i, getHeight(), oVar.o0);
-                float max = Math.max(0.0f, Math.min(f / gl.L(20.0f), 1.0f));
+                float max = Math.max(0.0f, Math.min(f / hl.L(20.0f), 1.0f));
                 Drawable drawable = oVar.n0;
                 drawable.setBounds(i - drawable.getIntrinsicWidth(), view.getTop(), i, view.getBottom());
                 oVar.n0.setAlpha((int) (max * 255.0f));
@@ -482,12 +482,12 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
         if (oVar.U != null) {
             setMeasuredDimension(size, size2);
             WindowInsets windowInsets = oVar.U;
-            if (gl.y) {
-                int i3 = gl.q.y;
+            if (hl.y) {
+                int i3 = hl.q.y;
                 if (size2 > i3) {
                     size2 = i3;
                 }
-                size2 += gl.m;
+                size2 += hl.m;
             }
             int systemWindowInsetBottom = size2 - windowInsets.getSystemWindowInsetBottom();
             size -= windowInsets.getSystemWindowInsetLeft() + windowInsets.getSystemWindowInsetRight();
@@ -506,7 +506,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
             setMeasuredDimension(size, size2);
         }
         if (oVar.L == null) {
-            if (size2 < gl.q.y - gl.L(100.0f)) {
+            if (size2 < hl.q.y - hl.L(100.0f)) {
                 z = true;
             } else {
                 z = false;
@@ -539,14 +539,14 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
         oVar.m0.setAlpha(i);
         oVar.y0.setAlpha(i);
         this.x = f;
-        a06 a06Var = oVar.W0;
-        if (a06Var != null) {
+        e26 e26Var = oVar.W0;
+        if (e26Var != null) {
             if (oVar.W && f == 1.0f && this.w == 0.0f) {
                 z = true;
             } else {
                 z = false;
             }
-            a06Var.b(z);
+            e26Var.b(z);
         }
         invalidate();
     }
@@ -555,23 +555,23 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
         boolean z;
         this.w = f;
         o oVar = this.I;
-        a06 a06Var = oVar.W0;
-        if (a06Var != null) {
+        e26 e26Var = oVar.W0;
+        if (e26Var != null) {
             if (oVar.W && this.x == 1.0f && f == 0.0f) {
                 z = true;
             } else {
                 z = false;
             }
-            a06Var.b(z);
+            e26Var.b(z);
         }
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        hw hwVar;
-        lx0 lx0Var;
-        kx0 kx0Var;
+        iw iwVar;
+        tx0 tx0Var;
+        sx0 sx0Var;
         Paint paint;
         int w0;
         int i;
@@ -580,13 +580,13 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
         m mVar2;
         m[] mVarArr;
         int i3;
-        cw cwVar;
+        dw dwVar;
         boolean z;
         HashSet hashSet = o.d1;
         o oVar = this.I;
-        sw swVar = oVar.L;
+        tw twVar = oVar.L;
         try {
-            int w02 = bkb.w0(null, bkb.Fl, false);
+            int w02 = aob.w0(null, aob.Gl, false);
             m[] mVarArr2 = oVar.v0;
             if (mVarArr2 != null) {
                 int i4 = 0;
@@ -604,50 +604,50 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                             mVar3.y = w02;
                         }
                         mVar3.E = w02;
-                        if (mVar3.n && (cwVar = mVar3.r) != null) {
-                            if (gl.B(w02) <= 0.721f) {
+                        if (mVar3.n && (dwVar = mVar3.r) != null) {
+                            if (hl.B(w02) <= 0.721f) {
                                 z = true;
                             } else {
                                 z = false;
                             }
-                            cwVar.b(z, false);
+                            dwVar.b(z, false);
                         }
                     }
                     i4++;
                 }
                 mVarArr2 = mVarArr;
             }
-            wt wtVar = oVar.i0;
-            if (wtVar != null) {
-                if (mVarArr2 != null && (mVar2 = mVarArr2[0]) != null && gba.s0) {
+            xt xtVar = oVar.i0;
+            if (xtVar != null) {
+                if (mVarArr2 != null && (mVar2 = mVarArr2[0]) != null && xea.s0) {
                     i = mVar2.getBackgroundColor();
                 } else {
                     i = w02;
                 }
-                wtVar.setMenuColors(i);
-                wt wtVar2 = oVar.i0;
+                xtVar.setMenuColors(i);
+                xt xtVar2 = oVar.i0;
                 m[] mVarArr3 = oVar.v0;
-                if (mVarArr3 != null && (mVar = mVarArr3[0]) != null && gba.s0) {
+                if (mVarArr3 != null && (mVar = mVarArr3[0]) != null && xea.s0) {
                     i2 = mVar.getActionBarColor();
                 } else {
                     i2 = w02;
                 }
-                wtVar2.d(i2, false);
+                xtVar2.d(i2, false);
             }
             Paint paint2 = oVar.m0;
             if (paint2 != null) {
                 paint2.setColor(w02);
             }
             if (oVar.A0 && (paint = oVar.z0) != null) {
-                if (swVar == null) {
-                    w0 = bkb.w0(null, bkb.Z6, true);
+                if (twVar == null) {
+                    w0 = aob.w0(null, aob.a7, true);
                 } else {
-                    w0 = bkb.w0(null, bkb.Z6, false);
+                    w0 = aob.w0(null, aob.a7, false);
                 }
                 paint.setColor(w0);
             }
-            if (swVar != null && (lx0Var = swVar.e) != null && (kx0Var = lx0Var.b) != null) {
-                gl.m3(kx0Var, swVar.f());
+            if (twVar != null && (tx0Var = twVar.e) != null && (sx0Var = tx0Var.b) != null) {
+                hl.m3(sx0Var, twVar.f());
             }
             if (oVar.m0 != null && o.s1 != null) {
                 o.e0(oVar);
@@ -660,11 +660,11 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                         break;
                     }
                     m mVar4 = mVarArr4[i5];
-                    if (mVar4 != null && (hwVar = mVar4.b) != null) {
-                        for (int i6 = 0; i6 < hwVar.getChildCount(); i6++) {
-                            View childAt = hwVar.getChildAt(i6);
-                            if ((childAt instanceof uv) && ((uv) childAt).e != null) {
-                                ((uv) childAt).e.invalidate();
+                    if (mVar4 != null && (iwVar = mVar4.b) != null) {
+                        for (int i6 = 0; i6 < iwVar.getChildCount(); i6++) {
+                            View childAt = iwVar.getChildAt(i6);
+                            if ((childAt instanceof vv) && ((vv) childAt).e != null) {
+                                ((vv) childAt).e.invalidate();
                             }
                             childAt.invalidate();
                         }
@@ -677,7 +677,7 @@ public class ArticleViewer$WindowView extends FrameLayout implements tjb {
                 articleViewer$WindowView.invalidate();
             }
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
     }
 }

@@ -1,19 +1,22 @@
 package defpackage;
+public final class rka {
+    public static final rka a;
+    public static final rka b;
+    public static final rka[] c;
 
-import android.media.Spatializer;
-import android.media.Spatializer$OnSpatializerStateChangedListener;
-public final class rka implements Spatializer$OnSpatializerStateChangedListener {
-    public final Runnable a;
-
-    public rka(Runnable runnable) {
-        this.a = runnable;
+    static {
+        ?? r0 = new Enum("DEFAULT", 0);
+        a = r0;
+        ?? r1 = new Enum("RECORDING", 1);
+        b = r1;
+        c = new rka[]{r0, r1};
     }
 
-    public final void onSpatializerAvailableChanged(Spatializer spatializer, boolean z) {
-        this.a.run();
+    public static rka valueOf(String str) {
+        return (rka) Enum.valueOf(rka.class, str);
     }
 
-    public final void onSpatializerEnabledChanged(Spatializer spatializer, boolean z) {
-        this.a.run();
+    public static rka[] values() {
+        return (rka[]) c.clone();
     }
 }

@@ -1,70 +1,78 @@
 package defpackage;
-public abstract class lxc {
-    public final vxc a;
-    public io5[] b;
 
-    public lxc() {
-        this(new vxc());
+import android.webkit.ValueCallback;
+import android.webkit.WebView;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.ui.web.a;
+public final class lxc implements ValueCallback {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+
+    public lxc(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 
-    public final void a() {
-        io5[] io5VarArr = this.b;
-        if (io5VarArr != null) {
-            io5 io5Var = io5VarArr[0];
-            io5 io5Var2 = io5VarArr[1];
-            vxc vxcVar = this.a;
-            if (io5Var2 == null) {
-                io5Var2 = vxcVar.a.f(2);
-            }
-            if (io5Var == null) {
-                io5Var = vxcVar.a.f(1);
-            }
-            g(io5.a(io5Var, io5Var2));
-            io5 io5Var3 = this.b[hye.a(16)];
-            if (io5Var3 != null) {
-                f(io5Var3);
-            }
-            io5 io5Var4 = this.b[hye.a(32)];
-            if (io5Var4 != null) {
-                d(io5Var4);
-            }
-            io5 io5Var5 = this.b[hye.a(64)];
-            if (io5Var5 != null) {
-                h(io5Var5);
-            }
+    @Override
+    public final void onReceiveValue(Object obj) {
+        switch (this.a) {
+            case 0:
+                rxc rxcVar = (rxc) this.b;
+                nv0 nv0Var = (nv0) this.c;
+                File file = (File) this.d;
+                String str = (String) obj;
+                nv0Var.saveWebArchive(file.getAbsolutePath(), false, new lxc(rxcVar, nv0Var, file, (a) this.e, (byte) 1));
+                return;
+            case 1:
+                rxc rxcVar2 = (rxc) this.b;
+                File file2 = (File) this.d;
+                a aVar = (a) this.e;
+                String str2 = (String) obj;
+                ((nv0) this.c).evaluateJavascript(hl.v2(null, 2131624110).replace("$OPEN$", "false"), new Object());
+                try {
+                    lyc lycVar = new lyc(file2);
+                    rxcVar2.b = lycVar;
+                    if (!((ArrayList) lycVar.c).isEmpty()) {
+                        aVar.a(((ni6) ((ArrayList) rxcVar2.b.c).get(0)).a());
+                        return;
+                    }
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                }
+                aVar.a(null);
+                return;
+            default:
+                pyc pycVar = (pyc) this.b;
+                WebView webView = (WebView) this.d;
+                cv5 cv5Var = (cv5) this.e;
+                String str3 = (String) obj;
+                hl.r((jwc) this.c);
+                synchronized (pycVar.a) {
+                    if (!pycVar.u && pycVar.o == webView && pycVar.p == cv5Var && !pycVar.r) {
+                        if (!"true".equals(str3)) {
+                            cc4.d("WEB proxy: Base64 bridge installation failed; transport stopped");
+                            pycVar.q();
+                            return;
+                        } else if (!pycVar.j(webView)) {
+                            pycVar.h();
+                            return;
+                        } else {
+                            pycVar.s = false;
+                            pycVar.r = true;
+                            cc4.b("WEB proxy: Base64 bridge ready");
+                            pycVar.n(16, 0, new byte[]{1});
+                            return;
+                        }
+                    }
+                    return;
+                }
         }
-    }
-
-    public abstract vxc b();
-
-    public void c(int i, io5 io5Var) {
-        if (this.b == null) {
-            this.b = new io5[10];
-        }
-        for (int i2 = 1; i2 <= 512; i2 <<= 1) {
-            if ((i & i2) != 0) {
-                this.b[hye.a(i2)] = io5Var;
-            }
-        }
-    }
-
-    public abstract void e(io5 io5Var);
-
-    public abstract void g(io5 io5Var);
-
-    public lxc(vxc vxcVar) {
-        this.a = vxcVar;
-    }
-
-    public void d(io5 io5Var) {
-    }
-
-    public void f(io5 io5Var) {
-    }
-
-    public void h(io5 io5Var) {
-    }
-
-    public void i(int i, boolean z) {
     }
 }

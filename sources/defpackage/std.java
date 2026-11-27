@@ -1,24 +1,32 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class std extends b4 {
-    public static final Parcelable.Creator<std> CREATOR = new rpd((byte) 12);
-    public final int a;
-    public final boolean b;
+import java.util.Arrays;
+public final class std {
+    public final pxe a;
+    public final Boolean b;
+    public final b2f c;
 
-    public std(int i, boolean z) {
-        this.a = i;
-        this.b = z;
+    public std(htd htdVar) {
+        this.a = (pxe) htdVar.b;
+        this.b = (Boolean) htdVar.c;
+        this.c = (b2f) htdVar.d;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.b ? 1 : 0);
-        jte.s(parcel, r);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof std)) {
+            return false;
+        }
+        std stdVar = (std) obj;
+        if (vue.a(this.a, stdVar.a) && vue.a(this.b, stdVar.b) && vue.a(null, null) && vue.a(this.c, stdVar.c)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, this.b, null, this.c});
     }
 }

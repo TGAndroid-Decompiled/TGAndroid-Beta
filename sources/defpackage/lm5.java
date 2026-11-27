@@ -1,68 +1,35 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.ListIterator;
-public final class lm5 extends mm5 {
-    public final transient int c;
-    public final transient int d;
-    public final mm5 e;
+import java.util.Arrays;
+public final class lm5 {
+    public static final lm5 b;
+    public final float a;
 
-    public lm5(mm5 mm5Var, int i, int i2) {
-        this.e = mm5Var;
-        this.c = i;
-        this.d = i2;
+    static {
+        ?? obj = new Object();
+        obj.a = 0.5f;
+        b = new lm5(obj);
     }
 
-    @Override
-    public final Object get(int i) {
-        gre.j(i, this.d);
-        return this.e.get(i + this.c);
+    public lm5(xk4 xk4Var) {
+        this.a = xk4Var.a;
     }
 
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof lm5)) {
+            return false;
+        }
+        lm5 lm5Var = (lm5) obj;
+        if (lm5.class.equals(lm5.class) && Float.compare(this.a, lm5Var.a) == 0 && vue.a(null, null)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final Object[] j() {
-        return this.e.j();
-    }
-
-    @Override
-    public final int k() {
-        return this.e.l() + this.c + this.d;
-    }
-
-    @Override
-    public final int l() {
-        return this.e.l() + this.c;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final boolean m() {
-        return true;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
-    }
-
-    @Override
-    public final mm5 subList(int i, int i2) {
-        gre.n(i, i2, this.d);
-        int i3 = this.c;
-        return this.e.subList(i + i3, i2 + i3);
-    }
-
-    @Override
-    public final ListIterator listIterator(int i) {
-        return listIterator(i);
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{lm5.class, Float.valueOf(this.a), null});
     }
 }

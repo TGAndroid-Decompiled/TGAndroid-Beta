@@ -1,936 +1,171 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public class dha extends FrameLayout implements ti7 {
-    public final r39 E;
-    public o39 F;
-    public RecyclerView G;
-    public RecyclerView H;
-    public wec I;
-    public View J;
-    public View K;
-    public View L;
-    public View M;
-    public aha N;
-    public zga O;
-    public bha P;
-    public View Q;
-    public int R;
-    public int S;
-    public int T;
-    public int U;
-    public float V;
-    public float W;
-    public boolean a;
-    public float a0;
-    public int b;
-    public float b0;
-    public int c;
-    public float c0;
-    public long d;
-    public boolean d0;
-    public long e;
-    public boolean e0;
-    public long f;
-    public boolean f0;
-    public boolean g0;
-    public long h;
-    public boolean h0;
-    public boolean i0;
-    public final ln8 j0;
-    public final n58 k0;
-    public final qr1 l0;
-    public int n;
-    public int r;
-    public final RectF s;
-    public final oc6 w;
-    public final zw8 x;
-    public final int[] y;
+import android.widget.ImageView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class dha implements bv9 {
+    public final eja a;
 
-    public dha(Context context) {
-        super(context);
-        this.s = new RectF();
-        this.x = new zw8((byte) 3);
-        this.y = new int[2];
-        this.E = new Object();
-        this.j0 = new ln8(this, (byte) 15);
-        this.k0 = new n58(this, (byte) 22);
-        this.l0 = new qr1(this, (byte) 5);
-        setClipChildren(false);
-        setClipToPadding(false);
-        oc6 oc6Var = new oc6(this, context);
-        this.w = oc6Var;
-        addView(oc6Var, new FrameLayout.LayoutParams(-1, -1));
+    public dha(eja ejaVar) {
+        this.a = ejaVar;
     }
 
-    public static String h(View view) {
-        int b;
-        if (view == null) {
-            return "null";
-        }
-        String str = view.getClass().getSimpleName() + "@" + Integer.toHexString(System.identityHashCode(view)) + "(x=" + view.getTranslationX() + ",y=" + view.getTranslationY() + ",w=" + view.getWidth() + ",visibility=" + view.getVisibility() + ",attached=" + view.isAttachedToWindow() + ",top=" + view.getTop() + ",height=" + view.getHeight() + ",layoutRequested=" + view.isLayoutRequested();
-        if (view instanceof RecyclerView) {
-            RecyclerView recyclerView = (RecyclerView) view;
-            StringBuilder k = b00.k(str, ",scrollState=");
-            k.append(recyclerView.getScrollState());
-            k.append(",up=");
-            k.append(recyclerView.canScrollVertically(-1));
-            k.append(",down=");
-            k.append(recyclerView.canScrollVertically(1));
-            k.append(",layout=");
-            k.append(recyclerView.d0());
-            k.append(",pendingUpdates=");
-            k.append(recyclerView.a0());
-            k.append(",animating=");
-            k.append(recyclerView.c0());
-            k.append(",paddingTop=");
-            k.append(recyclerView.getPaddingTop());
-            k.append(",count=");
-            if (recyclerView.getAdapter() == null) {
-                b = 0;
-            } else {
-                b = recyclerView.getAdapter().b();
-            }
-            k.append(b);
-            str = k.toString();
-        }
-        return str.concat(")");
-    }
-
-    public static float j(RecyclerView recyclerView) {
-        d49 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
-            return 0.0f;
-        }
-        View m = layoutManager.m(0);
-        if (m == null) {
-            return Float.POSITIVE_INFINITY;
-        }
-        return Math.max(0.0f, (recyclerView.getPaddingTop() - d49.y(m)) + ((ViewGroup.MarginLayoutParams) ((e49) m.getLayoutParams())).topMargin);
-    }
-
-    private void setBleed(RecyclerView recyclerView) {
-        ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
-        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
-            int i = marginLayoutParams.topMargin;
-            int i2 = this.T;
-            if (i == (-i2) && marginLayoutParams.bottomMargin == (-this.U)) {
-                return;
-            }
-            marginLayoutParams.topMargin = -i2;
-            marginLayoutParams.bottomMargin = -this.U;
-            recyclerView.setLayoutParams(marginLayoutParams);
-        }
-    }
-
-    private void setTabsPinned(boolean z) {
-        String str;
-        if (this.f0 == z) {
-            return;
-        }
-        this.f0 = z;
-        if (z) {
-            str = "TABS_PINNED";
-        } else {
-            str = "TABS_UNPINNED";
-        }
-        f(str, this.F, 0, 0, true);
-        this.N.o(z);
-    }
-
-    public static void w(RecyclerView recyclerView, int i, int i2) {
-        View view;
-        int i3;
-        if (recyclerView.getPaddingTop() != i || recyclerView.getPaddingBottom() != i2) {
-            d49 layoutManager = recyclerView.getLayoutManager();
-            int i4 = 0;
-            if (layoutManager != null && layoutManager.r() != 0) {
-                view = layoutManager.q(0);
-            } else {
-                view = null;
-            }
-            if (view == null) {
-                i3 = -1;
-            } else {
-                layoutManager.getClass();
-                int b = ((e49) view.getLayoutParams()).b();
-                int y = (d49.y(view) - recyclerView.getPaddingTop()) - ((ViewGroup.MarginLayoutParams) ((e49) view.getLayoutParams())).topMargin;
-                i3 = b;
-                i4 = y;
-            }
-            recyclerView.setPadding(recyclerView.getPaddingLeft(), i, recyclerView.getPaddingRight(), i2);
-            if (i3 != -1 && (layoutManager instanceof t26)) {
-                ((t26) layoutManager).g1(i3, i4);
-            }
-        }
-    }
-
-    public final void A(int i, int i2) {
-        this.T = Math.max(0, i);
-        this.U = Math.max(0, i2);
-        requestLayout();
-        C();
-    }
-
-    public final void B() {
-        View[] viewPages;
-        f("STOP_SCROLLING", null, 0, 0, true);
-        o39 o39Var = this.F;
-        if (o39Var != null) {
-            o39Var.D0();
-        }
-        wec wecVar = this.I;
-        if (wecVar != null && this.P != null) {
-            for (View view : wecVar.getViewPages()) {
-                if (view != null) {
-                    this.P.h(view).D0();
+    @Override
+    public final boolean B0(int i, View view) {
+        TLRPC.UserFull userFull;
+        TLRPC.ProfileTab profileTab;
+        eja ejaVar = this.a;
+        e eVar = ejaVar.y1;
+        if (eVar != null) {
+            boolean m0 = ejaVar.m0();
+            if (eja.Y(i, m0) != null) {
+                if (m0) {
+                    if (xc2.w(5, eVar.getMessagesController().M0(Long.valueOf(ejaVar.g1.id)))) {
+                        profileTab = ejaVar.g1.main_tab;
+                        if (profileTab != null || (i != eja.Z(profileTab) && ejaVar.V1 != i)) {
+                            fu5 I = fu5.I(eVar, view);
+                            I.X(aob.b0(hl.L(24.0f), aob.w0(null, aob.d6, false)));
+                            I.b(2131232797, ob6.M0(2131746349, null), new t64(this, m0, i, (byte) 4), false);
+                            I.a0();
+                            return true;
+                        }
+                    }
+                } else if (ejaVar.m1 == eVar.getUserConfig().e() && (userFull = ejaVar.h1) != null) {
+                    profileTab = userFull.main_tab;
+                    if (profileTab != null) {
+                    }
+                    fu5 I2 = fu5.I(eVar, view);
+                    I2.X(aob.b0(hl.L(24.0f), aob.w0(null, aob.d6, false)));
+                    I2.b(2131232797, ob6.M0(2131746349, null), new t64(this, m0, i, (byte) 4), false);
+                    I2.a0();
+                    return true;
                 }
             }
         }
+        return false;
     }
 
-    public final void C() {
-        View[] viewPages;
-        float c;
-        View view;
-        r39 r39Var = this.E;
-        if (!this.d0 && this.N != null) {
-            boolean z = true;
-            this.d0 = true;
-            try {
-                float f = this.b0;
-                D();
-                o39 o39Var = this.F;
-                if (o39Var != null && !this.i0) {
-                    setBleed(o39Var);
-                    o39 o39Var2 = this.F;
-                    int i = this.T;
-                    this.N.getClass();
-                    w(o39Var2, i, this.U);
-                }
-                wec wecVar = this.I;
-                if (wecVar != null && this.P != null && this.K != null) {
-                    for (View view2 : wecVar.getViewPages()) {
-                        if (view2 != null && view2.getParent() == this.I) {
-                            b(this.P.h(view2));
-                        }
-                    }
-                    t();
-                    float p = p();
-                    boolean isInfinite = Float.isInfinite(p);
-                    oc6 oc6Var = this.w;
-                    float f2 = 0.0f;
-                    if (isInfinite) {
-                        this.b0 = Float.POSITIVE_INFINITY;
-                        this.J.setVisibility(4);
-                        this.K.setVisibility(4);
-                        o39 o39Var3 = this.F;
-                        if (o39Var3 != null) {
-                            o39Var3.setTranslationY(0.0f);
-                        }
-                        setTabsPinned(false);
-                        if (f != this.b0) {
-                            oc6Var.invalidate();
-                        }
-                    } else {
-                        float f3 = this.V;
-                        if (p > f3 + 0.5f) {
-                            f3 = p;
-                        }
-                        this.a0 = f3;
-                        this.J.setVisibility(0);
-                        this.K.setVisibility(0);
-                        if (this.e0) {
-                            this.b0 = r39Var.b();
-                            this.c0 = Math.max(r39Var.d, r39Var.b());
-                            View view3 = this.L;
-                            float max = Math.max(0.0f, r39Var.a - r39Var.d);
-                            if (!r39Var.f) {
-                                f2 = r39Var.b() - r39Var.b;
-                            }
-                            x(view3, max + f2);
-                            x(this.M, Math.max(r39Var.d, r39Var.b()) - r39Var.d);
-                        } else {
-                            RecyclerView recyclerView = this.G;
-                            if (recyclerView == null) {
-                                c = 0.0f;
-                            } else {
-                                c = this.P.c(recyclerView);
-                            }
-                            float max2 = this.a0 - Math.max(0.0f, Math.min(c, Math.max(0.0f, this.V - this.W)));
-                            this.b0 = max2;
-                            this.c0 = Math.max(this.V, max2);
-                            x(this.I.getCurrentView(), Math.max(0.0f, this.a0 - this.V));
-                        }
-                        this.F.setTranslationY(this.b0 - p);
-                        this.K.setTranslationY(this.c0 - view.getTop());
-                        if (this.c0 > this.V + 0.5f) {
-                            z = false;
-                        }
-                        setTabsPinned(z);
-                        this.N.getClass();
-                        if (f != this.b0) {
-                            oc6Var.invalidate();
-                        }
-                    }
-                }
-            } finally {
-                this.d0 = false;
-            }
-        }
-    }
-
-    public final void D() {
-        boolean z;
-        aha ahaVar = this.N;
-        if (ahaVar == null) {
-            return;
-        }
-        float P = ahaVar.P();
-        this.N.getClass();
-        if (!Float.isNaN(P) && !Float.isInfinite(P) && P >= 0.0f) {
-            if (this.g0 && (P != this.V || 0.0f != this.W)) {
-                float p = p();
-                if (!Float.isInfinite(p)) {
-                    float f = this.V;
-                    if (p > 0.5f + f && p >= P) {
-                        z = false;
-                    } else {
-                        z = true;
-                    }
-                    if (z && P != f) {
-                        this.h0 = true;
-                    }
-                    if (this.e0) {
-                        r39 r39Var = this.E;
-                        float f2 = r39Var.e;
-                        if (z) {
-                            p = P;
-                        }
-                        bha bhaVar = this.P;
-                        r39Var.a(p, bhaVar.c(bhaVar.h(this.L)), P, 0.0f);
-                        r39Var.e = Math.max(0.0f, Math.min(1.0f, f2));
-                        this.w.invalidate();
-                    }
-                }
-            }
-            this.V = P;
-            this.W = 0.0f;
-            this.g0 = true;
-            return;
-        }
-        w26.j("Require finite 0 <= commonHiddenTop <= tabsPinnedTop");
-    }
-
-    public final void a() {
-        zga zgaVar;
-        f("ALIGN_BOUNDARY", this.F, 0, 0, true);
-        if (this.F != null && (zgaVar = this.O) != null && this.N != null) {
-            int b = zgaVar.b();
-            d49 layoutManager = this.F.getLayoutManager();
-            if (b != -1 && (layoutManager instanceof t26)) {
-                D();
-                ((t26) layoutManager).g1(b, (Math.round(this.V) - this.F.getTop()) - this.F.getPaddingTop());
-                this.h0 = true;
-                requestLayout();
-            }
-        }
-    }
-
-    public final void b(RecyclerView recyclerView) {
+    @Override
+    public final void a(float f) {
+        zha zhaVar;
         int i;
-        if (this.N != null && recyclerView != null) {
-            D();
-            View view = this.K;
-            if (view == null) {
+        int i2;
+        zha zhaVar2;
+        eja ejaVar = this.a;
+        s7 s7Var = ejaVar.q0;
+        zha[] zhaVarArr = ejaVar.n0;
+        int i3 = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
+        if (i3 != 0 || zhaVarArr[1].getVisibility() == 0) {
+            if (ejaVar.k1) {
+                zhaVarArr[0].setTranslationX((-f) * zhaVar2.getMeasuredWidth());
+                zhaVarArr[1].setTranslationX(zhaVarArr[0].getMeasuredWidth() - (zhaVarArr[0].getMeasuredWidth() * f));
+            } else {
+                zhaVarArr[0].setTranslationX(zhaVar.getMeasuredWidth() * f);
+                zhaVarArr[1].setTranslationX((zhaVarArr[0].getMeasuredWidth() * f) - zhaVarArr[0].getMeasuredWidth());
+            }
+            ejaVar.T0(ejaVar.getTabProgress());
+            float U = ejaVar.U(f);
+            ejaVar.s0 = U;
+            ImageView imageView = ejaVar.u0;
+            int i4 = 4;
+            if (U != 0.0f && ejaVar.q() && !ejaVar.k0()) {
                 i = 0;
             } else {
-                int height = view.getHeight();
-                View view2 = this.K;
-                if (height > 0) {
-                    i = view2.getHeight();
+                i = 4;
+            }
+            imageView.setVisibility(i);
+            if (s7Var != null && !ejaVar.q()) {
+                if (ejaVar.s0()) {
+                    i2 = 8;
                 } else {
-                    i = view2.getLayoutParams().height;
+                    i2 = 4;
                 }
-            }
-            setBleed(recyclerView);
-            w(recyclerView, Math.max(0, i) + Math.round(this.V) + this.T, this.N.Q() + this.U);
-            if (!recyclerView.isNestedScrollingEnabled()) {
-                recyclerView.setNestedScrollingEnabled(true);
-            }
-        }
-    }
-
-    public final boolean c() {
-        wec wecVar = this.I;
-        if (wecVar != null && wecVar.getCurrentView() != null && !Float.isInfinite(p()) && this.c0 < getHeight()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d(android.graphics.Canvas r6, android.graphics.RectF r7, defpackage.cha r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dha.d(android.graphics.Canvas, android.graphics.RectF, cha):void");
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        dha dhaVar;
-        String str;
-        if (motionEvent.getActionMasked() == 0) {
-            if (this.a) {
-                this.n++;
-                this.e = 0L;
-                dhaVar = this;
-                dhaVar.f("TOUCH_DOWN", null, 0, 0, true);
+                ejaVar.setSearchItemVisibility(i2);
+                ejaVar.r0 = 0.0f;
             } else {
-                dhaVar = this;
+                ejaVar.r0 = ejaVar.V(f);
+                ejaVar.L1();
             }
-            dhaVar.B();
-        } else {
-            dhaVar = this;
-            if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-                if (motionEvent.getActionMasked() == 1) {
-                    str = "TOUCH_UP";
-                } else {
-                    str = "TOUCH_CANCEL";
-                }
-                dhaVar.f(str, null, 0, 0, true);
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final void e(String str, View view, int i, int i2) {
-        String str2;
-        if (this.a) {
-            long uptimeMillis = SystemClock.uptimeMillis();
-            if (uptimeMillis - this.e < 250) {
-                return;
-            }
-            this.e = uptimeMillis;
-            if (i2 == 0) {
-                str2 = "_TOUCH";
-            } else {
-                str2 = "_NON_TOUCH";
-            }
-            f(str.concat(str2), view, i, i, true);
-        }
-    }
-
-    public final void f(String str, View view, int i, int i2, boolean z) {
-        View view2;
-        View view3;
-        long j;
-        int b;
-        d49 layoutManager;
-        int top;
-        int height;
-        float f;
-        bha bhaVar;
-        if (this.a) {
-            long uptimeMillis = SystemClock.uptimeMillis();
-            if (!z) {
-                if (uptimeMillis - this.d < 250) {
-                    return;
-                }
-                this.d = uptimeMillis;
-            }
-            wec wecVar = this.I;
-            int i3 = 0;
-            View view4 = null;
-            if (wecVar == null) {
-                view2 = null;
-            } else {
-                view2 = wecVar.getViewPages()[0];
-            }
-            wec wecVar2 = this.I;
-            if (wecVar2 == null) {
-                view3 = null;
-            } else {
-                view3 = wecVar2.getViewPages()[1];
-            }
-            StringBuilder sb = new StringBuilder("root=");
-            sb.append(Integer.toHexString(System.identityHashCode(this)));
-            sb.append(" gesture=");
-            sb.append(this.n);
-            sb.append(" transition=");
-            sb.append(this.r);
-            sb.append(" event=");
-            sb.append(str);
-            sb.append(" target=");
-            sb.append(h(view));
-            sb.append(" dy=");
-            sb.append(i);
-            sb.append(" used=");
-            sb.append(i2);
-            sb.append(" transitioning=");
-            sb.append(this.e0);
-            sb.append(" progress=");
-            sb.append(this.E.e);
-            sb.append(" ageMs=");
-            long j2 = 0;
-            if (this.e0) {
-                j = uptimeMillis - this.f;
-            } else {
-                j = 0;
-            }
-            sb.append(j);
-            sb.append(" unchangedMs=");
-            if (this.e0) {
-                j2 = uptimeMillis - this.h;
-            }
-            sb.append(j2);
-            sb.append(" depth=");
-            sb.append(this.R);
-            sb.append(" updating=");
-            sb.append(this.d0);
-            sb.append(" callback=");
-            sb.append(h(this.Q));
-            sb.append(" common=");
-            sb.append(h(this.F));
-            sb.append(" active=");
-            sb.append(h(this.G));
-            sb.append(" current=");
-            sb.append(h(view2));
-            sb.append(" other=");
-            sb.append(h(view3));
-            sb.append(" source=");
-            sb.append(h(this.L));
-            sb.append(" incoming=");
-            sb.append(h(this.M));
-            sb.append(" boundary=");
-            sb.append(p());
-            sb.append(" pin=");
-            sb.append(this.V);
-            sb.append(" tail=");
-            sb.append(this.b0);
-            sb.append(" alignPending=");
-            sb.append(this.h0);
-            zga zgaVar = this.O;
-            int i4 = -1;
-            if (zgaVar == null) {
-                b = -1;
-            } else {
-                b = zgaVar.b();
-            }
-            o39 o39Var = this.F;
-            if (o39Var == null) {
-                layoutManager = null;
-            } else {
-                layoutManager = o39Var.getLayoutManager();
-            }
-            if (layoutManager != null && b != -1) {
-                view4 = layoutManager.m(b);
-            }
-            StringBuilder m = de9.m(b, " row=", " anchor=");
-            m.append(h(view4));
-            m.append(" anchorTop=");
-            if (view4 == null) {
-                top = 0;
-            } else {
-                top = view4.getTop();
-            }
-            m.append(top);
-            m.append(" anchorHeight=");
-            if (view4 == null) {
-                height = 0;
-            } else {
-                height = view4.getHeight();
-            }
-            m.append(height);
-            m.append(" decoratedTop=");
-            if (view4 != null) {
-                layoutManager.getClass();
-                i3 = d49.y(view4);
-            }
-            m.append(i3);
-            m.append(" adapterPosition=");
-            if (view4 != null) {
-                this.F.getClass();
-                i4 = RecyclerView.R(view4);
-            }
-            m.append(i4);
-            m.append(" pageOffset=");
-            RecyclerView recyclerView = this.G;
-            if (recyclerView != null && (bhaVar = this.P) != null) {
-                f = bhaVar.c(recyclerView);
-            } else {
-                f = 0.0f;
-            }
-            m.append(f);
-            m.append(" tabsTop=");
-            m.append(this.c0);
-            m.append(" draw=");
-            m.append(this.c);
-            sb.append(m.toString());
-            Log.d("SiblingScroll", sb.toString());
-        }
-    }
-
-    public final void g(String str) {
-        f(str, this.I, 0, 0, true);
-    }
-
-    public int getBottomBleed() {
-        return this.U;
-    }
-
-    @Override
-    public int getNestedScrollAxes() {
-        return this.x.b();
-    }
-
-    public float getTabsTop() {
-        return this.c0;
-    }
-
-    public int getTopBleed() {
-        return this.T;
-    }
-
-    public final void i(String str) {
-        dha dhaVar;
-        if (this.a) {
-            dhaVar = this;
-            dhaVar.f("TRANSITION_END_".concat(str), null, 0, 0, true);
-        } else {
-            dhaVar = this;
-        }
-        dhaVar.e0 = false;
-        dhaVar.M = null;
-        dhaVar.L = null;
-        dhaVar.w.invalidate();
-    }
-
-    @Override
-    public final void k(int i, View view) {
-        String str;
-        if (i == 0) {
-            str = "NESTED_STOP_TOUCH";
-        } else {
-            str = "NESTED_STOP_NON_TOUCH";
-        }
-        f(str, view, 0, 0, true);
-        zw8 zw8Var = this.x;
-        if (i == 1) {
-            zw8Var.c = 0;
-        } else {
-            zw8Var.b = 0;
-        }
-    }
-
-    @Override
-    public final void l(View view, int i, int i2, int i3, int i4, int i5, int[] iArr) {
-        o39 o39Var;
-        boolean z;
-        if (this.R == 0 && (view == (o39Var = this.F) || view == this.G)) {
-            if (this.e0) {
-                e("POST_BLOCKED", view, i4, i5);
-                iArr[1] = iArr[1] + i4;
-                return;
-            }
-            this.Q = view;
-            try {
-                ln8 ln8Var = this.j0;
-                int i6 = 0;
-                if (view == o39Var) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (z && i2 > 0 && i4 > 0) {
-                    dha dhaVar = (dha) ln8Var.b;
-                    zga zgaVar = dhaVar.O;
-                    if (zgaVar != null && zgaVar.b() != -1) {
-                        i6 = dhaVar.u(dhaVar.G, i4);
+            ejaVar.G1(false);
+            if (i3 == 0) {
+                zha zhaVar3 = zhaVarArr[0];
+                zhaVarArr[0] = zhaVarArr[1];
+                zhaVarArr[1] = zhaVar3;
+                zhaVar3.setVisibility(8);
+                if (s7Var != null && ejaVar.A0 == 2) {
+                    if (ejaVar.s0()) {
+                        i4 = 8;
                     }
-                } else if (!z && i4 < 0) {
-                    dha dhaVar2 = (dha) ln8Var.b;
-                    i6 = dhaVar2.u(dhaVar2.F, i4);
+                    ejaVar.setSearchItemVisibility(i4);
                 }
-                iArr[1] = iArr[1] + i6;
-                f("POST", view, i4, i6, false);
-                return;
-            } finally {
-                this.Q = null;
-                C();
+                ejaVar.A0 = (byte) 0;
+                ejaVar.q1();
             }
         }
-        f("POST_IGNORED", view, i4, 0, false);
     }
 
     @Override
-    public final void m(View view, int i, int i2, int i3, int i4, int i5) {
-        int[] iArr = this.y;
-        iArr[1] = 0;
-        iArr[0] = 0;
-        l(view, i, i2, i3, i4, i5, iArr);
-    }
-
-    @Override
-    public final boolean n(View view, View view2, int i, int i2) {
-        boolean z;
-        String str;
-        boolean z2 = false;
-        if ((i & 2) != 0) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (this.R == 0 && z && (view2 == this.F || view2 == this.G)) {
-            z2 = true;
-        }
-        if (this.a) {
-            if (z2) {
-                str = "NESTED_START";
-            } else {
-                str = "NESTED_REJECT";
-            }
-            f(str + "_axes=" + i + "_type=" + i2, view2, 0, 0, true);
-        }
-        return z2;
-    }
-
-    public final boolean o(float r4, float r5) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dha.o(float, float):boolean");
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        getViewTreeObserver().addOnPreDrawListener(this.l0);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        B();
-        getViewTreeObserver().removeOnPreDrawListener(this.l0);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final boolean onNestedFling(View view, float f, float f2, boolean z) {
-        return false;
-    }
-
-    @Override
-    public final boolean onNestedPreFling(View view, float f, float f2) {
-        return false;
-    }
-
-    @Override
-    public final void onNestedPreScroll(View view, int i, int i2, int[] iArr) {
-        r(view, i, i2, iArr, 0);
-    }
-
-    @Override
-    public final void onNestedScroll(View view, int i, int i2, int i3, int i4) {
-        m(view, i, i2, i3, i4, 0);
-    }
-
-    @Override
-    public final void onNestedScrollAccepted(View view, View view2, int i) {
-        q(view, view2, i, 0);
-    }
-
-    @Override
-    public final boolean onStartNestedScroll(View view, View view2, int i) {
-        return n(view, view2, i, 0);
-    }
-
-    @Override
-    public final void onStopNestedScroll(View view) {
-        k(0, view);
-    }
-
-    public final float p() {
-        View m;
-        o39 o39Var = this.F;
-        if (o39Var != null && this.O != null && o39Var.getLayoutManager() != null) {
-            d49 layoutManager = this.F.getLayoutManager();
-            int b = this.O.b();
-            if (b != -1 && (m = layoutManager.m(b)) != null) {
-                return (d49.y(m) + this.F.getTop()) - ((ViewGroup.MarginLayoutParams) ((e49) m.getLayoutParams())).topMargin;
-            }
-            return Float.POSITIVE_INFINITY;
-        }
-        return Float.POSITIVE_INFINITY;
-    }
-
-    @Override
-    public final void q(View view, View view2, int i, int i2) {
-        zw8 zw8Var = this.x;
-        if (i2 == 1) {
-            zw8Var.c = i;
-        } else {
-            zw8Var.b = i;
-        }
-    }
-
-    @Override
-    public final void r(android.view.View r12, int r13, int r14, int[] r15, int r16) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dha.r(android.view.View, int, int, int[], int):void");
-    }
-
-    public final void s() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dha.s():void");
-    }
-
-    public void setCommonInsetsManagedExternally(boolean z) {
-        if (this.i0 == z) {
+    public final void c(int i, boolean z) {
+        eja ejaVar = this.a;
+        zha[] zhaVarArr = ejaVar.n0;
+        if (zhaVarArr[0].F == i) {
             return;
         }
-        this.i0 = z;
-        C();
-        requestLayout();
+        fga fgaVar = ejaVar.c0;
+        if (fgaVar != null && i == 8) {
+            fgaVar.b.g(1.0f, 0);
+        }
+        zha zhaVar = zhaVarArr[1];
+        zhaVar.F = i;
+        zhaVar.setVisibility(0);
+        ejaVar.g0();
+        ejaVar.z1(true);
+        ejaVar.k1 = z;
+        ejaVar.S0();
+        ejaVar.j(!ejaVar.p0(i));
+        ejaVar.G1(true);
     }
 
-    public void setDebugLoggingEnabled(boolean z) {
-        this.a = z;
-        if (z) {
-            this.d = 0L;
-            this.e = 0L;
-            long uptimeMillis = SystemClock.uptimeMillis();
-            this.f = uptimeMillis;
-            this.h = uptimeMillis;
-            f("DEBUG_ENABLED", null, 0, 0, true);
-        }
-    }
-
-    public void setGeometry(aha ahaVar) {
-        this.N = ahaVar;
-        requestLayout();
-        C();
-    }
-
-    public final void t() {
-        RecyclerView recyclerView;
-        wec wecVar = this.I;
-        if (wecVar != null && this.P != null && wecVar.getCurrentView() != null) {
-            recyclerView = this.P.h(this.I.getCurrentView());
-        } else {
-            recyclerView = null;
-        }
-        RecyclerView recyclerView2 = recyclerView;
-        if (recyclerView2 != this.G) {
-            f("ACTIVE_CHANGE", recyclerView2, 0, 0, true);
-            RecyclerView recyclerView3 = this.G;
-            n58 n58Var = this.k0;
-            if (recyclerView3 != null) {
-                recyclerView3.D0();
-                ArrayList arrayList = this.G.x0;
-                if (arrayList != null) {
-                    arrayList.remove(n58Var);
-                }
-            }
-            this.G = recyclerView2;
-            if (recyclerView2 != null) {
-                recyclerView2.j(n58Var);
-            }
-        }
-    }
-
-    public final int u(RecyclerView recyclerView, int i) {
-        int min;
-        String str;
-        if (recyclerView != null && i != 0) {
-            if (recyclerView != this.Q) {
-                RecyclerView recyclerView2 = this.H;
-                int i2 = this.S;
-                this.H = recyclerView;
-                this.S = 0;
-                this.R++;
-                try {
-                    recyclerView.scrollBy(0, i);
-                    int i3 = this.S;
-                    if (i > 0) {
-                        min = Math.max(0, Math.min(i, i3));
-                    } else {
-                        min = Math.min(0, Math.max(i, i3));
-                    }
-                    int i4 = min;
-                    if (i3 == 0) {
-                        str = "TRANSFER_ZERO";
-                    } else {
-                        str = "TRANSFER";
-                    }
-                    f(str, recyclerView, i, i4, false);
-                    return i4;
-                } finally {
-                    this.R--;
-                    this.H = recyclerView2;
-                    this.S = i2;
-                }
-            }
-            f("TRANSFER_REENTRY", recyclerView, i, 0, true);
-            sc8.j("Reentrant scrollBy on nested source");
-            return 0;
-        }
+    @Override
+    public final void e() {
+        int a;
+        int K0;
+        eja ejaVar = this.a;
+        zha[] zhaVarArr = ejaVar.n0;
+        int i = zhaVarArr[0].F;
         if (i != 0) {
-            f("TRANSFER_NO_TARGET", recyclerView, i, 0, false);
-        }
-        return 0;
-    }
-
-    public final void v(o39 o39Var, zga zgaVar) {
-        o39 o39Var2 = this.F;
-        oc6 oc6Var = this.w;
-        n58 n58Var = this.k0;
-        if (o39Var2 != null) {
-            o39Var2.D0();
-            ArrayList arrayList = this.F.x0;
-            if (arrayList != null) {
-                arrayList.remove(n58Var);
+            if (i != 1 && i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        if (i != 5) {
+                            a = hl.L(58.0f);
+                        } else {
+                            a = hl.L(60.0f);
+                        }
+                    }
+                } else {
+                    a = hl.L(100.0f);
+                }
             }
-            oc6Var.removeView(this.F);
+            a = hl.L(56.0f);
+        } else {
+            a = kja.a(1);
         }
-        this.F = o39Var;
-        this.O = zgaVar;
-        oc6Var.addView(o39Var, new FrameLayout.LayoutParams(-1, -1));
-        o39Var.j(n58Var);
-        o39Var.setNestedScrollingEnabled(true);
-        C();
-    }
-
-    public final void x(View view, float f) {
-        if (view == null) {
+        zha zhaVar = zhaVarArr[0];
+        int i2 = zhaVar.F;
+        hga hgaVar = zhaVar.x;
+        if (i2 == 0) {
+            K0 = (hgaVar.K0() / ejaVar.p1[0]) * a;
+        } else {
+            K0 = hgaVar.K0() * a;
+        }
+        if (K0 >= zhaVarArr[0].h.getMeasuredHeight() * 1.2f) {
+            hw6 hw6Var = zhaVarArr[0].E;
+            hw6Var.b = 1;
+            hw6Var.k(0, 0, false, false);
             return;
         }
-        RecyclerView h = this.P.h(view);
-        float f2 = this.V;
-        h.setTranslationY((f + f2) - Math.round(f2));
-    }
-
-    public final void y(View view, wec wecVar, bha bhaVar) {
-        View view2 = this.J;
-        if (view2 != null) {
-            removeView(view2);
-        }
-        this.J = view;
-        this.I = wecVar;
-        this.P = bhaVar;
-        addView(view, 0, new FrameLayout.LayoutParams(-1, -1));
-        C();
-    }
-
-    public final void z(View view) {
-        View view2 = this.K;
-        if (view2 != null) {
-            removeView(view2);
-        }
-        this.K = view;
-        addView(view, new FrameLayout.LayoutParams(-1, -2, 48));
-        C();
+        zhaVarArr[0].h.A0(0);
     }
 }

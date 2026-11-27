@@ -1,104 +1,93 @@
 package defpackage;
-public final class qkc implements Runnable {
-    public final byte a;
-    public final hmc b;
 
-    public qkc(hmc hmcVar, byte b) {
-        this.a = b;
-        this.b = hmcVar;
+import android.app.Activity;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+public final class qkc implements zv5, fd {
+    public final TLRPC.User a;
+    public final TLRPC.Chat b;
+    public final String c;
+    public final boolean d;
+    public final boolean e;
+    public final boolean f;
+    public final Activity h;
+    public final e n;
+    public final k5 r;
+
+    public qkc(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, e eVar, k5 k5Var) {
+        this.a = user;
+        this.b = chat;
+        this.c = str;
+        this.d = z;
+        this.e = z2;
+        this.f = z3;
+        this.h = activity;
+        this.n = eVar;
+        this.r = k5Var;
     }
 
     @Override
-    public final void run() {
-        boolean z;
-        t05 t05Var;
-        byte b = this.a;
-        hmc hmcVar = this.b;
-        switch (b) {
-            case 0:
-                koc kocVar = hmcVar.k0;
-                if (kocVar != null && (t05Var = hmcVar.H0) != null) {
-                    kocVar.Y(t05Var);
-                }
-                t05 t05Var2 = hmcVar.H0;
-                if (t05Var2 != null && !t05Var2.a.isEmpty()) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                if (hmcVar.g0 != z) {
-                    hmcVar.O0(z);
-                }
-                if (z && hmcVar.I0) {
-                    zoc zocVar = hmcVar.j0;
-                    if (zocVar != null) {
-                        zocVar.b(false);
-                    }
-                    if (!hmcVar.g0) {
-                        hmcVar.I0 = true;
-                    } else {
-                        hmcVar.I0 = false;
-                        hmcVar.f0 = 1;
-                        vq1 vq1Var = hmcVar.s0;
-                        if (vq1Var != null) {
-                            vq1Var.setPosition(1);
-                        }
-                    }
-                }
-                va vaVar = hmcVar.a;
-                if (vaVar != null && vaVar.g3 != null) {
-                    hmcVar.b1(true);
-                    return;
-                }
-                return;
-            case 1:
-                hmcVar.h0(false);
-                return;
-            case 2:
-                hmcVar.G0();
-                return;
-            case 3:
-                hmcVar.F0();
-                return;
-            case 4:
-                if (hmcVar.S.isAttachedToWindow()) {
-                    if (!hmcVar.a.canScrollVertically(-1)) {
-                        hmcVar.a.f3.g1(0, 0);
-                    }
-                    hmcVar.S.requestLayout();
-                    return;
-                }
-                return;
-            case 5:
-                hmcVar.i0();
-                return;
-            case 6:
-                hmcVar.X0();
-                return;
-            case 7:
-                hmcVar.Q0 = null;
-                return;
-            case 8:
-                hmcVar.S.post(new qkc(hmcVar, (byte) 4));
-                return;
-            case 9:
-                u21.b0(hmcVar).N(k96.M0(2131745669, null), k96.M0(2131751093, null)).j();
-                return;
-            case 10:
-                hmcVar.y0();
-                return;
-            case 11:
-                hmcVar.presentFragment(new toc());
-                return;
-            case 12:
-                hmcVar.presentFragment(new ydb());
-                return;
-            case 13:
-                hmcVar.F0();
-                return;
-            default:
-                hmcVar.F0();
-                return;
+    public final void a(TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) {
+        boolean z4 = this.d;
+        Activity activity = this.h;
+        k5 k5Var = this.r;
+        TLRPC.Chat chat = this.b;
+        String str = this.c;
+        if (z4 && z2) {
+            j95.T0((LaunchActivity) activity, k5Var, chat, inputPeer, z, str);
+            return;
         }
+        TLRPC.User user = this.a;
+        boolean z5 = this.e;
+        boolean z6 = this.f;
+        e eVar = this.n;
+        if (!z && str != null) {
+            wkc wkcVar = new wkc(activity, chat, user, chat, str, inputPeer, z5, z6, z4, activity, eVar, k5Var, z3);
+            if (eVar != null) {
+                eVar.showDialog(wkcVar);
+                return;
+            }
+            return;
+        }
+        xkc.b(user, chat, str, inputPeer, z, z5, z6, z4, activity, eVar, k5Var, false, true, z3);
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        final TLRPC.User user = this.a;
+        final TLRPC.Chat chat = this.b;
+        final String str = this.c;
+        final boolean z = this.d;
+        final boolean z2 = this.e;
+        final boolean z3 = this.f;
+        final Activity activity = this.h;
+        final e eVar = this.n;
+        final k5 k5Var = this.r;
+        if (sharedInstance != null) {
+            VoIPService.getSharedInstance().hangUp(new Runnable() {
+                @Override
+                public final void run() {
+                    xkc.a = 0L;
+                    xkc.b(TLRPC.User.this, chat, str, null, false, z, z2, z3, activity, eVar, k5Var, true, true, false);
+                }
+            });
+        } else {
+            xkc.b(user, chat, str, null, false, z, z2, z3, activity, eVar, k5Var, true, true, false);
+        }
+    }
+
+    public qkc(boolean z, Activity activity, k5 k5Var, TLRPC.Chat chat, String str, TLRPC.User user, boolean z2, boolean z3, e eVar) {
+        this.d = z;
+        this.h = activity;
+        this.r = k5Var;
+        this.b = chat;
+        this.c = str;
+        this.a = user;
+        this.e = z2;
+        this.f = z3;
+        this.n = eVar;
     }
 }

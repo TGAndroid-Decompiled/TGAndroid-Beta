@@ -1,44 +1,45 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.Wallet.c;
-public final class q05 implements Runnable {
-    public volatile boolean a;
-    public Runnable b;
-    public final String c;
-    public final TL_wallet.nftItem d;
-    public final String e;
-    public final i8c f;
-    public final c h;
+import android.location.Location;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+public final class q05 implements OnCompleteListener {
+    public final byte a;
+    public final pt2 b;
 
-    public q05(c cVar, String str, TL_wallet.nftItem nftitem, String str2, i8c i8cVar) {
-        this.h = cVar;
-        this.c = str;
-        this.d = nftitem;
-        this.e = str2;
-        this.f = i8cVar;
+    public q05(pt2 pt2Var, byte b) {
+        this.a = b;
+        this.b = pt2Var;
     }
 
     @Override
-    public final synchronized void run() {
-        try {
-            try {
-                if (this.a) {
+    public final void onComplete(Task task) {
+        byte b = this.a;
+        pt2 pt2Var = this.b;
+        switch (b) {
+            case 0:
+                if (task.getException() == null) {
+                    pt2Var.accept((Location) task.getResult());
                     return;
                 }
-                WalletEngine2 walletEngine2 = this.h.b;
-                String str = this.c;
-                TL_wallet.nftItem nftitem = this.d;
-                String str2 = nftitem.address;
-                String str3 = this.e;
-                this.b = walletEngine2.emulateSendNFT(str, str2, str3, new eu0(this, nftitem, str3, this.f, (byte) 6));
-            } catch (Throwable th) {
-                th = th;
-                throw th;
-            }
-        } catch (Throwable th2) {
-            th = th2;
+                return;
+            default:
+                try {
+                    task.getResult(ao.class);
+                    pt2Var.accept(0);
+                    return;
+                } catch (ao e) {
+                    int statusCode = e.getStatusCode();
+                    if (statusCode != 6) {
+                        if (statusCode == 8502) {
+                            pt2Var.accept(2);
+                            return;
+                        }
+                        return;
+                    }
+                    pt2Var.accept(1);
+                    return;
+                }
         }
     }
 }

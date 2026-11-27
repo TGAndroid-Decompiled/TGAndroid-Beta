@@ -1,351 +1,190 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public class jr8 extends View {
-    public final n41 E;
-    public int F;
-    public boolean G;
-    public float H;
-    public int I;
-    public boolean J;
-    public RadialGradient K;
-    public float L;
-    public final Paint M;
-    public final Matrix N;
-    public il0 O;
-    public float P;
-    public float Q;
-    public final PorterDuffColorFilter a;
-    public final PorterDuffColorFilter b;
-    public tgb c;
-    public tgb d;
-    public jr8 e;
-    public jr8 f;
-    public final Paint h;
-    public final Paint n;
-    public final Path r;
-    public final Drawable s;
-    public final RectF w;
-    public final Paint x;
-    public final Path y;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class jr8 extends qie {
+    public int a;
+    public final SparseIntArray b = new SparseIntArray();
+    public final SparseIntArray c = new SparseIntArray();
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public int f;
+    public int g;
+    public final ProfileActivity h;
 
-    public jr8(Context context) {
-        super(context);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.a = new PorterDuffColorFilter(-1, mode);
-        this.b = new PorterDuffColorFilter(-16777216, mode);
-        this.h = new Paint();
-        Paint paint = new Paint();
-        this.n = paint;
-        Path path = new Path();
-        this.r = path;
-        this.w = new RectF();
-        this.x = new Paint(1);
-        this.y = new Path();
-        this.E = new n41(this);
-        this.F = -1;
-        this.M = new Paint(1);
-        this.N = new Matrix();
-        this.s = b00.d(context, 2131231075);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        path.moveTo(0.0f, -gl.N(3.33f));
-        path.lineTo(gl.N(3.16f), 0.0f);
-        path.lineTo(0.0f, gl.N(3.33f));
-        setColor(null);
-        e("Author", " - Title");
+    public jr8(ProfileActivity profileActivity) {
+        this.h = profileActivity;
     }
 
-    public final void a() {
-        boolean z;
-        int i;
-        PorterDuffColorFilter porterDuffColorFilter;
-        if (this.H < 0.8f && gl.B(this.I) > 0.72f) {
-            z = true;
-        } else {
-            z = false;
+    public static void f(int i, int i2, SparseIntArray sparseIntArray) {
+        if (i2 >= 0) {
+            sparseIntArray.put(i2, i);
         }
-        if (z) {
-            i = -16777216;
-        } else {
-            i = -1;
-        }
-        this.F = i;
-        if (z) {
-            porterDuffColorFilter = this.b;
-        } else {
-            porterDuffColorFilter = this.a;
-        }
-        this.s.setColorFilter(porterDuffColorFilter);
-        this.h.setColor(this.F);
-        this.n.setColor(bkb.p1(0.85f, this.F));
-        invalidate();
-    }
-
-    public void b(Canvas canvas, float f) {
-        float height = getHeight() / 2.0f;
-        int L = gl.L(13.0f);
-        int i = (int) height;
-        int i2 = L / 2;
-        int i3 = i - i2;
-        int i4 = i + i2;
-        Drawable drawable = this.s;
-        drawable.setBounds(0, i3, L, i4);
-        drawable.draw(canvas);
-        canvas.translate(gl.L(16.6f), 0.0f);
-        this.c.c(0.0f, height, f, this.F, canvas);
-        canvas.translate(this.c.j(), 0.0f);
-        this.d.c(0.0f, height, f * 0.85f, this.F, canvas);
-        canvas.translate(this.d.j(), 0.0f);
-        float N = gl.N(1.16f);
-        Paint paint = this.n;
-        paint.setStrokeWidth(N);
-        canvas.translate(gl.N(4.8f), height);
-        canvas.drawPath(this.r, paint);
-    }
-
-    public float c(float f) {
-        float max = Math.max(0.0f, ((f - gl.L(16.0f)) - gl.L(16.6f)) - gl.L(8.0f));
-        tgb tgbVar = this.c;
-        tgbVar.p = max / 2.0f;
-        this.d.p = Math.max(0.0f, max - tgbVar.j());
-        float j = this.c.j();
-        return this.d.j() + j + gl.L(16.6f) + gl.L(8.0f);
-    }
-
-    public final void d(int i, boolean z) {
-        jr8 jr8Var = this.e;
-        if (jr8Var != null) {
-            jr8Var.d(i, z);
-        }
-        if (this.I == i && this.J == z) {
-            return;
-        }
-        this.I = i;
-        this.J = z;
-        this.K = null;
-        this.x.setColor(i);
-        a();
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (Utilities.l(this.Q / gl.L(21.0f)) <= 0.0f) {
+    public final boolean a(int i, int i2) {
+        return b(i, i2);
+    }
+
+    @Override
+    public final boolean b(int i, int i2) {
+        TLRPC.ChatParticipant chatParticipant;
+        TLRPC.ChatParticipant chatParticipant2;
+        ProfileActivity profileActivity = this.h;
+        if (i2 >= profileActivity.x4 && i2 < profileActivity.y4 && i >= this.f && i < this.g) {
+            ArrayList arrayList = this.e;
+            boolean isEmpty = arrayList.isEmpty();
+            int i3 = this.f;
+            ArrayList arrayList2 = this.d;
+            int i4 = i - i3;
+            if (!isEmpty) {
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i4)).intValue());
+            } else {
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i4);
+            }
+            boolean isEmpty2 = profileActivity.D2.isEmpty();
+            ArrayList arrayList3 = profileActivity.U4;
+            if (!isEmpty2) {
+                chatParticipant2 = (TLRPC.ChatParticipant) arrayList3.get(((Integer) profileActivity.V4.get(i2 - profileActivity.x4)).intValue());
+            } else {
+                chatParticipant2 = (TLRPC.ChatParticipant) arrayList3.get(i2 - profileActivity.x4);
+            }
+            if (chatParticipant.user_id == chatParticipant2.user_id) {
+                return true;
+            }
             return false;
         }
-        int action = motionEvent.getAction();
-        RectF rectF = this.w;
-        n41 n41Var = this.E;
-        if (action == 0) {
-            n41Var.c(rectF.contains(motionEvent.getX(), motionEvent.getY()));
-        } else if (motionEvent.getAction() == 2 && n41Var.i) {
-            if (!rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-                n41Var.c(false);
-            }
-        } else if (motionEvent.getAction() == 3) {
-            n41Var.c(false);
-        } else if (motionEvent.getAction() == 1) {
-            if (n41Var.i) {
-                performClick();
-            }
-            n41Var.c(false);
+        int i5 = this.b.get(i, -1);
+        if (i5 == this.c.get(i2, -1) && i5 >= 0) {
+            return true;
         }
-        return n41Var.i;
-    }
-
-    public final void e(String str, String str2) {
-        this.c = new tgb(str, 11.0f, gl.o());
-        this.d = new tgb(str2, 11.0f, null);
-        setContentDescription(k96.M0(2131754798, null) + " " + ((Object) str) + " — " + ((Object) str2));
-    }
-
-    public final void f(float f, float f2) {
-        jr8 jr8Var = this.e;
-        if (jr8Var != null) {
-            jr8Var.f(f, f2);
-        }
-        this.Q = f2;
-        setTranslationY(f - gl.L(12.0f));
-        invalidate();
+        return false;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float c;
-        float width;
-        float f;
-        if (this.c != null && this.d != null) {
-            float l = Utilities.l(this.Q / gl.L(21.0f));
-            float a = this.E.a(0.02f);
-            if (l <= 0.0f) {
-                il0 il0Var = this.O;
-                if (il0Var != null) {
-                    il0Var.setAlpha(0);
-                    return;
-                }
-                return;
-            }
-            int width2 = getWidth() - (gl.L(12.0f) << 1);
-            jr8 jr8Var = this.e;
-            if (jr8Var == null) {
-                jr8Var = this.f;
-            }
-            if (jr8Var != null && jr8Var.getVisibility() == 0) {
-                jr8 jr8Var2 = this.f;
-                if (jr8Var2 == null) {
-                    jr8Var2 = this;
-                }
-                jr8 jr8Var3 = this.e;
-                if (jr8Var3 == null) {
-                    jr8Var3 = this;
-                }
-                float f2 = width2;
-                c = jr8Var3.c(f2 / 2.0f) + gl.L(16.0f);
-                float c2 = jr8Var2.c(Math.max(0.0f, (f2 - c) - gl.L(6.0f))) + gl.L(16.0f);
-                width = (((getWidth() - c2) - gl.L(6.0f)) - c) / 2.0f;
-                if (this.f != null) {
-                    width += c2 + gl.L(6.0f);
-                } else {
-                    c = c2;
-                }
-            } else {
-                c = c(width2) + gl.L(16.0f);
-                width = (getWidth() - c) / 2.0f;
-            }
-            RectF rectF = this.w;
-            rectF.set(width, gl.L(10.0f), c + width, (gl.L(17.0f) * l) + gl.L(10.0f));
-            canvas.save();
-            canvas.scale(a, a, rectF.centerX(), getHeight() / 2.0f);
-            if (this.O != null) {
-                float height = rectF.height() / 2.0f;
-                if (this.P != height) {
-                    this.P = height;
-                    this.O.r(height);
-                }
-                this.O.setBounds((int) rectF.left, (int) rectF.top, (int) Math.ceil(rectF.right), (int) Math.ceil(rectF.bottom));
-                this.O.setAlpha((int) (255.0f * l));
-                this.O.draw(canvas);
-            } else {
-                if (this.J) {
-                    f = 0.1f;
-                } else {
-                    f = 1.0f;
-                }
-                Paint paint = this.x;
-                paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                int alpha = paint.getAlpha();
-                paint.setAlpha((int) (alpha * l * f));
-                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint);
-                paint.setAlpha(alpha);
-                if (this.J && this.I != 0) {
-                    RadialGradient radialGradient = this.K;
-                    Paint paint2 = this.M;
-                    if (radialGradient == null || this.L != rectF.width()) {
-                        this.L = rectF.width();
-                        RadialGradient radialGradient2 = new RadialGradient(rectF.width() / 2.0f, gl.L(17.0f) / 2.0f, rectF.width() * 0.65f, bkb.p1(0.8f, this.I), this.I, Shader.TileMode.CLAMP);
-                        this.K = radialGradient2;
-                        paint2.setShader(radialGradient2);
-                    }
-                    float f3 = rectF.left;
-                    float f4 = rectF.top;
-                    Matrix matrix = this.N;
-                    matrix.setTranslate(f3, f4);
-                    this.K.setLocalMatrix(matrix);
-                    paint2.setAlpha((int) (255.0f * l));
-                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
-                }
-            }
-            Path path = this.y;
-            path.rewind();
-            path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            canvas.translate(rectF.left + gl.L(8.0f), 0.0f);
-            b(canvas, l);
-            canvas.restore();
-            canvas.restore();
-        }
+    public final int c() {
+        return this.h.O2;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(37.0f), 1073741824));
+    public final int d() {
+        return this.a;
     }
 
-    @Override
-    public void setAlpha(float f) {
-        super.setAlpha(f);
-        jr8 jr8Var = this.e;
-        if (jr8Var != null) {
-            jr8Var.setAlpha(f);
-        }
-    }
-
-    public void setColor(da7 da7Var) {
-        boolean z;
-        if (da7Var != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.G = z;
-        jr8 jr8Var = this.e;
-        if (jr8Var != null) {
-            jr8Var.setColor(da7Var);
-        }
-        invalidate();
-    }
-
-    public void setGlassFactory(kl0 kl0Var) {
-        il0 il0Var;
-        jr8 jr8Var = this.e;
-        if (jr8Var != null) {
-            jr8Var.setGlassFactory(kl0Var);
-        }
-        if (kl0Var != null) {
-            il0Var = kl0Var.c(this, ep8.o, false);
-        } else {
-            il0Var = null;
-        }
-        this.O = il0Var;
-        this.P = 0.0f;
-        invalidate();
-    }
-
-    public void setMusicDocument(org.telegram.tgnet.TLRPC.Document r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jr8.setMusicDocument(org.telegram.tgnet.TLRPC$Document):void");
-    }
-
-    public void setParentExpanded(float f) {
-        jr8 jr8Var = this.e;
-        if (jr8Var != null) {
-            jr8Var.setParentExpanded(f);
-        }
-        if (this.H != f) {
-            this.H = f;
-            a();
-            invalidate();
-        }
-    }
-
-    public void setTrailingView(jr8 jr8Var) {
-        this.e = jr8Var;
-        jr8Var.f = this;
-        invalidate();
-        jr8Var.invalidate();
+    public final void e(SparseIntArray sparseIntArray) {
+        int i;
+        int i2;
+        int i3;
+        sparseIntArray.clear();
+        ProfileActivity profileActivity = this.h;
+        f(1, profileActivity.P2, sparseIntArray);
+        f(2, profileActivity.Q2, sparseIntArray);
+        f(3, profileActivity.T2, sparseIntArray);
+        f(4, profileActivity.U2, sparseIntArray);
+        f(5, profileActivity.W2, sparseIntArray);
+        f(6, profileActivity.X2, sparseIntArray);
+        f(7, profileActivity.b3, sparseIntArray);
+        f(8, profileActivity.Y2, sparseIntArray);
+        f(9, profileActivity.d3, sparseIntArray);
+        f(10, profileActivity.c3, sparseIntArray);
+        f(11, profileActivity.Z2, sparseIntArray);
+        f(12, profileActivity.a3, sparseIntArray);
+        f(13, profileActivity.e3, sparseIntArray);
+        f(14, profileActivity.f3, sparseIntArray);
+        f(15, profileActivity.g3, sparseIntArray);
+        f(16, profileActivity.h3, sparseIntArray);
+        f(17, profileActivity.f4, sparseIntArray);
+        f(18, profileActivity.g4, sparseIntArray);
+        f(19, profileActivity.i4, sparseIntArray);
+        f(20, profileActivity.k4, sparseIntArray);
+        f(21, profileActivity.j4, sparseIntArray);
+        f(22, profileActivity.i3, sparseIntArray);
+        f(23, profileActivity.j3, sparseIntArray);
+        f(24, profileActivity.m3, sparseIntArray);
+        f(25, profileActivity.k3, sparseIntArray);
+        f(26, profileActivity.l3, sparseIntArray);
+        f(27, profileActivity.n3, sparseIntArray);
+        f(28, profileActivity.o3, sparseIntArray);
+        f(29, profileActivity.p3, sparseIntArray);
+        f(30, profileActivity.q3, sparseIntArray);
+        f(31, profileActivity.r3, sparseIntArray);
+        f(32, profileActivity.s3, sparseIntArray);
+        f(33, profileActivity.t3, sparseIntArray);
+        f(34, profileActivity.u3, sparseIntArray);
+        f(35, profileActivity.v3, sparseIntArray);
+        f(36, profileActivity.w3, sparseIntArray);
+        f(37, profileActivity.x3, sparseIntArray);
+        f(38, profileActivity.y3, sparseIntArray);
+        f(39, profileActivity.z3, sparseIntArray);
+        f(40, profileActivity.A3, sparseIntArray);
+        f(41, profileActivity.B3, sparseIntArray);
+        f(42, profileActivity.C3, sparseIntArray);
+        f(43, profileActivity.D3, sparseIntArray);
+        f(44, profileActivity.E3, sparseIntArray);
+        f(45, profileActivity.F3, sparseIntArray);
+        f(46, profileActivity.G3, sparseIntArray);
+        f(47, profileActivity.H3, sparseIntArray);
+        f(48, profileActivity.I3, sparseIntArray);
+        f(49, profileActivity.J3, sparseIntArray);
+        f(50, profileActivity.K3, sparseIntArray);
+        f(51, profileActivity.L3, sparseIntArray);
+        f(52, profileActivity.M3, sparseIntArray);
+        f(53, profileActivity.N3, sparseIntArray);
+        f(54, profileActivity.Z3, sparseIntArray);
+        f(55, profileActivity.O3, sparseIntArray);
+        f(56, profileActivity.S3, sparseIntArray);
+        f(57, profileActivity.T3, sparseIntArray);
+        f(58, profileActivity.U3, sparseIntArray);
+        f(59, profileActivity.m4, sparseIntArray);
+        f(60, profileActivity.V3, sparseIntArray);
+        f(61, profileActivity.W3, sparseIntArray);
+        f(62, profileActivity.X3, sparseIntArray);
+        f(63, profileActivity.Y3, sparseIntArray);
+        f(64, profileActivity.a4, sparseIntArray);
+        f(65, profileActivity.t4, sparseIntArray);
+        f(66, profileActivity.u4, sparseIntArray);
+        f(67, profileActivity.v4, sparseIntArray);
+        f(68, profileActivity.w4, sparseIntArray);
+        f(69, profileActivity.z4, sparseIntArray);
+        f(70, profileActivity.A4, sparseIntArray);
+        f(71, profileActivity.B4, sparseIntArray);
+        f(72, profileActivity.C4, sparseIntArray);
+        f(73, profileActivity.D4, sparseIntArray);
+        f(74, profileActivity.J4, sparseIntArray);
+        f(75, profileActivity.K4, sparseIntArray);
+        f(76, profileActivity.H4, sparseIntArray);
+        f(77, profileActivity.N4, sparseIntArray);
+        f(78, profileActivity.O4, sparseIntArray);
+        f(79, profileActivity.b4, sparseIntArray);
+        f(80, profileActivity.c4, sparseIntArray);
+        f(81, profileActivity.d4, sparseIntArray);
+        f(82, profileActivity.e4, sparseIntArray);
+        f(83, profileActivity.P4, sparseIntArray);
+        f(84, profileActivity.Q4, sparseIntArray);
+        f(85, profileActivity.R3, sparseIntArray);
+        f(86, profileActivity.P3, sparseIntArray);
+        f(87, profileActivity.Q3, sparseIntArray);
+        f(88, profileActivity.V2, sparseIntArray);
+        f(89, profileActivity.R2, sparseIntArray);
+        f(90, profileActivity.E4, sparseIntArray);
+        f(91, profileActivity.F4, sparseIntArray);
+        f(92, profileActivity.G4, sparseIntArray);
+        f(93, profileActivity.I4, sparseIntArray);
+        f(94, profileActivity.l4, sparseIntArray);
+        f(95, profileActivity.q4, sparseIntArray);
+        i = profileActivity.botPermissionLocation;
+        f(96, i, sparseIntArray);
+        i2 = profileActivity.botPermissionEmojiStatus;
+        f(97, i2, sparseIntArray);
+        i3 = profileActivity.botPermissionBiometry;
+        f(98, i3, sparseIntArray);
+        f(99, profileActivity.s4, sparseIntArray);
+        f(100, profileActivity.S2, sparseIntArray);
+        f(101, profileActivity.n4, sparseIntArray);
+        f(102, profileActivity.o4, sparseIntArray);
+        f(103, profileActivity.p4, sparseIntArray);
     }
 }

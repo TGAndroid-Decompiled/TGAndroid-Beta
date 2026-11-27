@@ -1,17 +1,19 @@
 package defpackage;
-public final class awd implements zn7 {
-    public static final awd a = new Object();
-
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+public abstract class awd {
+    public static void a(Object obj, Object obj2) {
+        if (obj != null) {
+            if (obj2 != null) {
+                return;
+            }
+            throw new NullPointerException("null value in entry: " + obj + "=null");
+        }
+        throw new NullPointerException("null key in entry: null=" + obj2);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static void b(int i, String str) {
+        if (i >= 0) {
+            return;
         }
-        throw new ClassCastException();
+        throw new IllegalArgumentException(str + " cannot be negative but was: " + i);
     }
 }

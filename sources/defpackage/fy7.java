@@ -1,9 +1,5 @@
 package defpackage;
-public final class fy7 {
-    public float a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
+
+import java.util.ArrayList;
+public final class fy7 extends ArrayList {
 }

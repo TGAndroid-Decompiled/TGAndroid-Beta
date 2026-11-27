@@ -1,10 +1,6 @@
 package defpackage;
-public abstract class efc implements dfc {
-    @Override
-    public void a() {
-    }
+public interface efc {
+    boolean k();
 
-    @Override
-    public void b() {
-    }
+    void t(boolean z, float[] fArr);
 }

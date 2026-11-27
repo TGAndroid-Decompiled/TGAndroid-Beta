@@ -2,22 +2,18 @@ package defpackage;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import j$.util.Objects;
 import java.util.Arrays;
-public final class fh0 extends b4 {
-    public static final Parcelable.Creator<fh0> CREATOR = new b1d((byte) 21);
+public final class fh0 extends c4 {
+    public static final Parcelable.Creator<fh0> CREATOR = new s5d((byte) 20);
     public final boolean a;
-    public final byte[] b;
-    public final String c;
+    public final String b;
 
-    public fh0(boolean z, byte[] bArr, String str) {
+    public fh0(String str, boolean z) {
         if (z) {
-            fre.h(bArr);
-            fre.h(str);
+            xve.h(str);
         }
         this.a = z;
-        this.b = bArr;
-        this.c = str;
+        this.b = str;
     }
 
     public final boolean equals(Object obj) {
@@ -28,23 +24,22 @@ public final class fh0 extends b4 {
             return false;
         }
         fh0 fh0Var = (fh0) obj;
-        if (this.a == fh0Var.a && Arrays.equals(this.b, fh0Var.b) && Objects.equals(this.c, fh0Var.c)) {
+        if (this.a == fh0Var.a && vue.a(this.b, fh0Var.b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.b) + (Objects.hash(Boolean.valueOf(this.a), this.c) * 31);
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.a), this.b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
         parcel.writeInt(this.a ? 1 : 0);
-        jte.c(parcel, 2, this.b);
-        jte.l(parcel, 3, this.c);
-        jte.s(parcel, r);
+        bye.l(parcel, 2, this.b);
+        bye.s(parcel, r);
     }
 }

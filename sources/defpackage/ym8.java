@@ -1,20 +1,36 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ProfileActivity;
-public final class ym8 extends sp8 {
-    public final ProfileActivity t1;
+import java.util.Arrays;
+public final class ym8 extends wl5 {
+    public final String b;
+    public final byte[] c;
 
-    public ym8(ProfileActivity profileActivity, Context context, long j, a aVar, om8 om8Var, xm8 xm8Var, op8 op8Var, kp8 kp8Var) {
-        super(context, j, aVar, om8Var, xm8Var, op8Var, kp8Var);
-        this.t1 = profileActivity;
+    public ym8(String str, byte[] bArr) {
+        super("PRIV");
+        this.b = str;
+        this.c = bArr;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && ym8.class == obj.getClass()) {
+                ym8 ym8Var = (ym8) obj;
+                if (this.b.equals(ym8Var.b) && Arrays.equals(this.c, ym8Var.c)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(this.c) + bs2.j(527, 31, this.b);
     }
 
     @Override
-    public final void setCustomAvatarProgress(float f) {
-        ProfileActivity profileActivity = this.t1;
-        profileActivity.t5 = f;
-        profileActivity.H1();
+    public final String toString() {
+        return this.a + ": owner=" + this.b;
     }
 }

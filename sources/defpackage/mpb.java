@@ -1,170 +1,186 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.Region;
-import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.concurrent.atomic.AtomicBoolean;
-public class mpb extends View implements li4 {
-    public final Path a;
-    public final Paint b;
-    public final Paint c;
-    public boolean d;
-    public final lm e;
-    public Drawable f;
-    public Bitmap h;
-    public int n;
-    public ValueAnimator r;
+import org.telegram.messenger.ImageReceiver;
+public final class mpb extends d79 {
+    public boolean f3;
+    public float g3;
+    public final pqb h3;
 
-    public mpb(Context context) {
-        super(context);
-        this.a = new Path();
-        Paint paint = new Paint(1);
-        this.b = paint;
-        Paint paint2 = new Paint(3);
-        this.c = paint2;
-        this.e = new lm(this, 0L, 380L, s33.h);
-        paint.setColor(-1);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-    }
-
-    public final void a(gk2 gk2Var, boolean z) {
-        if (this.f == gk2Var) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.r;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.r = null;
-        }
-        if (z) {
-            this.r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            this.r.addUpdateListener(new nk(this, new AtomicBoolean(), gk2Var, (byte) 7));
-            this.r.start();
-            return;
-        }
-        setDrawable(gk2Var);
-    }
-
-    public final void b(boolean z, boolean z2) {
-        float f;
-        this.d = z;
-        if (!z2) {
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            this.e.e(true, f);
-        }
-        invalidate();
+    public mpb(pqb pqbVar, Context context) {
+        super(context, null);
+        this.h3 = pqbVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.f != null) {
-            float d = this.e.d(this.d);
-            int intrinsicWidth = this.f.getIntrinsicWidth();
-            int intrinsicHeight = this.f.getIntrinsicHeight();
-            Rect rect = gl.Q;
-            rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
-            if (d <= 0.0f) {
-                this.f.setBounds(rect);
-                this.f.draw(canvas);
-            } else if (d < 1.0f) {
-                canvas.save();
-                Path path = this.a;
-                path.rewind();
-                path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, gl.L(16.0f) * d, Path.Direction.CW);
-                canvas.clipPath(path, Region.Op.DIFFERENCE);
-                this.f.setBounds(rect);
-                this.f.draw(canvas);
-                canvas.restore();
-            }
-            if (d > 0.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, gl.L(16.0f) * d, this.b);
-                canvas.save();
-                Bitmap bitmap = this.h;
-                if (bitmap != null) {
-                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.c);
+    public final boolean H0(View view) {
+        f89 U;
+        mpb mpbVar = this.h3.w0;
+        View G = mpbVar.G(view);
+        if (G == null) {
+            U = null;
+        } else {
+            U = mpbVar.U(G);
+        }
+        if (U != null && U.f == 2) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        f89 U;
+        boolean drawChild = super.drawChild(canvas, view, j);
+        if (view instanceof wb2) {
+            wb2 wb2Var = (wb2) view;
+            wb2Var.getMessageObject();
+            ImageReceiver avatarImage = wb2Var.getAvatarImage();
+            if (avatarImage != null) {
+                int top = view.getTop();
+                boolean K2 = wb2Var.K2();
+                pqb pqbVar = this.h3;
+                if (K2 && (U = pqbVar.w0.U(view)) != null) {
+                    if (pqbVar.w0.L(U.b() - 1) != null) {
+                        avatarImage.M0 = -hl.L(1000.0f);
+                        avatarImage.h(canvas, null);
+                        return drawChild;
+                    }
                 }
-                canvas.restore();
-                canvas.restore();
+                float translationX = wb2Var.getTranslationX();
+                int layoutHeight = wb2Var.getLayoutHeight() + view.getTop();
+                int measuredHeight = pqbVar.w0.getMeasuredHeight() - pqbVar.w0.getPaddingBottom();
+                if (layoutHeight > measuredHeight) {
+                    layoutHeight = measuredHeight;
+                }
+                if (wb2Var.L2() && (r11 = pqbVar.w0.U(view)) != null) {
+                    int i = 0;
+                    while (i < 20) {
+                        i++;
+                        f89 U2 = pqbVar.w0.L(U2.b() + 1);
+                        if (U2 == null) {
+                            break;
+                        }
+                        View view2 = U2.a;
+                        int top2 = view2.getTop();
+                        if (layoutHeight - hl.L(48.0f) < view2.getBottom()) {
+                            translationX = Math.min(view2.getTranslationX(), translationX);
+                        }
+                        if ((view2 instanceof wb2) && ((wb2) view2).L2()) {
+                            top = top2;
+                        } else {
+                            top = top2;
+                            break;
+                        }
+                    }
+                }
+                if (layoutHeight - hl.L(48.0f) < top) {
+                    layoutHeight = hl.L(48.0f) + top;
+                }
+                int i2 = (translationX > 0.0f ? 1 : (translationX == 0.0f ? 0 : -1));
+                if (i2 != 0) {
+                    canvas.save();
+                    canvas.translate(translationX, 0.0f);
+                }
+                avatarImage.M0 = layoutHeight - hl.L(44.0f);
+                avatarImage.h(canvas, null);
+                if (i2 != 0) {
+                    canvas.restore();
+                }
             }
         }
+        return drawChild;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.h == null && this.n != 0) {
-            this.h = BitmapFactory.decodeResource(getResources(), this.n);
+    public final void l1(View view, float f, float f2, boolean z) {
+        if (z && (view instanceof wb2) && !((wb2) view).E2(f)) {
+            return;
         }
+        super.l1(view, f, f2, z);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        Bitmap bitmap = this.h;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.h = null;
-        }
-    }
-
-    public void setDrawable(Drawable drawable) {
-        this.f = drawable;
-        Bitmap bitmap = this.h;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.h = null;
-        }
-        if (this.h == null && drawable != null && drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
-            Bitmap createBitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-            this.h = createBitmap;
-            drawable.setBounds(0, 0, createBitmap.getWidth(), this.h.getHeight());
-            drawable.draw(new Canvas(this.h));
-        }
-        invalidate();
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.h3.X0();
     }
 
     @Override
-    public void setInvert(float f) {
-        Drawable drawable = this.f;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(bm2.f(f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int action = motionEvent.getAction();
+        pqb pqbVar = this.h3;
+        if (action == 1) {
+            if (!pqbVar.t0 && (pqbVar.D1 instanceof yvc) && pqbVar.N0[0].getVisibility() == 0) {
+                pqbVar.k1(0, false, true);
+            }
+            pqbVar.t0 = false;
         }
-        this.b.setColor(bm2.f(f, -1, -16777216));
-        invalidate();
+        if (pqbVar.c2) {
+            if (motionEvent.getAction() == 0) {
+                this.g3 = motionEvent.getX();
+                motionEvent.getY();
+                if (getParent() != null) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                this.f3 = true;
+            } else if (motionEvent.getAction() == 2) {
+                if (!this.f3 && Math.abs(this.g3 - motionEvent.getX()) > hl.e) {
+                    if (getParent() != null) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+                    this.f3 = true;
+                }
+            } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+                this.f3 = false;
+                if (getParent() != null) {
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                }
+            }
+            pqbVar.U1.a(motionEvent);
+        }
+        if (!this.f3 && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public void setSelected(boolean z) {
-        this.d = z;
-        invalidate();
-    }
-
-    public void setDrawable(int i) {
-        this.f = getContext().getResources().getDrawable(i).mutate();
-        Bitmap bitmap = this.h;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.h = null;
+    public final void setTranslationY(float f) {
+        super.setTranslationY(f);
+        pqb pqbVar = this.h3;
+        int i = 0;
+        if (pqbVar.L0 != null) {
+            int i2 = 0;
+            while (true) {
+                fvc[] fvcVarArr = pqbVar.L0;
+                if (i2 >= fvcVarArr.length) {
+                    break;
+                }
+                fvcVarArr[i2].invalidate();
+                i2++;
+            }
         }
-        if (this.h == null && i != 0) {
-            this.h = BitmapFactory.decodeResource(getResources(), i);
+        if (pqbVar.M0 != null) {
+            while (true) {
+                fvc[] fvcVarArr2 = pqbVar.M0;
+                if (i >= fvcVarArr2.length) {
+                    break;
+                }
+                fvcVarArr2[i].invalidate();
+                i++;
+            }
         }
-        invalidate();
+        ppb ppbVar = pqbVar.F0;
+        if (ppbVar != null) {
+            ppbVar.invalidate();
+        }
+        ppb ppbVar2 = pqbVar.G0;
+        if (ppbVar2 != null) {
+            ppbVar2.invalidate();
+        }
     }
 }

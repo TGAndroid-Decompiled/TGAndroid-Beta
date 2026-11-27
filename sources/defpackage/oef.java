@@ -1,3 +1,3 @@
 package defpackage;
-public final class oef {
+public abstract class oef {
 }

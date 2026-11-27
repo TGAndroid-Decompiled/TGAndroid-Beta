@@ -1,37 +1,28 @@
 package defpackage;
-
-import android.content.DialogInterface;
-import android.view.KeyEvent;
-import android.view.View;
-import org.telegram.messenger.voip.VoIPService;
-public final class z31 implements DialogInterface.OnShowListener {
+public final class z31 implements Runnable {
     public final byte a;
-    public final KeyEvent.Callback b;
-    public final Object c;
+    public final g41 b;
 
-    public z31(KeyEvent.Callback callback, Object obj, byte b) {
+    public z31(g41 g41Var, byte b) {
         this.a = b;
-        this.b = callback;
-        this.c = obj;
+        this.b = g41Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
+    public final void run() {
         byte b = this.a;
-        Object obj = this.c;
-        KeyEvent.Callback callback = this.b;
+        g41 g41Var = this.b;
         switch (b) {
             case 0:
-                View view = (View) callback;
-                c41 c41Var = (c41) obj;
-                if (view != null) {
-                    view.clearFocus();
-                }
-                c41Var.requestFocus();
-                gl.E3(c41Var);
+                g41Var.i0();
+                return;
+            case 1:
+                g41Var.m0();
                 return;
             default:
-                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$90((fx0) callback, (Integer) obj, dialogInterface);
+                z31 z31Var = g41Var.e;
+                hl.r(z31Var);
+                hl.d3(z31Var, 5000L);
                 return;
         }
     }

@@ -1,8 +1,10 @@
 package defpackage;
-public interface cv5 {
-    void b(c30 c30Var, Object obj);
 
-    Object c(igf igfVar);
+import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
+public final class cv5 {
+    public final JsReplyProxyBoundaryInterface a;
 
-    w4a d();
+    public cv5(JsReplyProxyBoundaryInterface jsReplyProxyBoundaryInterface) {
+        this.a = jsReplyProxyBoundaryInterface;
+    }
 }

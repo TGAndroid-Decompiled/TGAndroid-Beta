@@ -1,28 +1,23 @@
 package defpackage;
 
-import android.view.View;
-public final class qe8 implements View.OnClickListener {
-    public final byte a;
-    public final cs5 b;
-
-    public qe8(cs5 cs5Var, byte b) {
-        this.a = b;
-        this.b = cs5Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        cs5 cs5Var = this.b;
-        switch (b) {
-            case 0:
-                m21.e();
-                cs5Var.r();
-                return;
-            default:
-                m21.e();
-                cs5Var.r();
-                return;
-        }
-    }
+import android.graphics.Bitmap;
+public final class qe8 {
+    public int a;
+    public int b;
+    public int c;
+    public int d;
+    public String e;
+    public pe8[] f;
+    public pe8[] g;
+    public pe8[] h;
+    public pe8[] i;
+    public Bitmap j;
+    public Bitmap k;
+    public Bitmap l;
+    public Bitmap m;
+    public Bitmap n;
+    public Bitmap o;
+    public int p;
+    public Bitmap q;
+    public String r;
 }

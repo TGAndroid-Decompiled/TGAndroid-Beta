@@ -1,54 +1,67 @@
 package defpackage;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import java.io.File;
+import java.util.List;
 public abstract class p1f {
-    public static void a(int i, int i2) {
-        String a;
-        if (i >= 0 && i < i2) {
-            return;
-        }
-        if (i >= 0) {
-            if (i2 < 0) {
-                w26.j(de9.k(i2, "negative size: "));
-                return;
-            }
-            a = s1f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
+    public static go4 e(go4[] go4VarArr, int i) {
+        int i2;
+        boolean z;
+        int i3;
+        if ((i & 1) == 0) {
+            i2 = 400;
         } else {
-            a = s1f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
+            i2 = 700;
         }
-        throw new IndexOutOfBoundsException(a);
-    }
-
-    public static void b(int i, int i2) {
-        if (i >= 0 && i <= i2) {
-            return;
+        if ((i & 2) != 0) {
+            z = true;
+        } else {
+            z = false;
         }
-        k93.i(d(i, i2, "index"));
-    }
-
-    public static void c(int i, int i2, int i3) {
-        String d;
-        if (i >= 0 && i2 >= i && i2 <= i3) {
-            return;
-        }
-        if (i >= 0 && i <= i3) {
-            if (i2 >= 0 && i2 <= i3) {
-                d = s1f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
+        go4 go4Var = null;
+        int i4 = Integer.MAX_VALUE;
+        for (go4 go4Var2 : go4VarArr) {
+            int abs = Math.abs(go4Var2.c - i2) << 1;
+            if (go4Var2.d == z) {
+                i3 = 0;
             } else {
-                d = d(i2, i3, "end index");
+                i3 = 1;
             }
-        } else {
-            d = d(i, i3, "start index");
+            int i5 = abs + i3;
+            if (go4Var == null || i4 > i5) {
+                go4Var = go4Var2;
+                i4 = i5;
+            }
         }
-        throw new IndexOutOfBoundsException(d);
+        return go4Var;
     }
 
-    public static String d(int i, int i2, String str) {
-        if (i < 0) {
-            return s1f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
+    public abstract Typeface a(Context context, co4 co4Var, Resources resources, int i);
+
+    public abstract Typeface b(Context context, go4[] go4VarArr, int i);
+
+    public Typeface c(Context context, List list, int i) {
+        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
+    }
+
+    public Typeface d(Context context, Resources resources, int i, String str, int i2) {
+        File c = r1f.c(context);
+        Typeface typeface = null;
+        if (c == null) {
+            return null;
         }
-        if (i2 >= 0) {
-            return s1f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
+        try {
+            if (r1f.a(c, resources, i)) {
+                typeface = Typeface.createFromFile(c.getPath());
+            }
+        } catch (RuntimeException unused) {
+        } catch (Throwable th) {
+            c.delete();
+            throw th;
         }
-        w26.j(de9.k(i2, "negative size: "));
-        return null;
+        c.delete();
+        return typeface;
     }
 }

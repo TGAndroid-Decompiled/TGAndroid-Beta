@@ -1,7 +1,4 @@
 package defpackage;
-
-import android.graphics.Bitmap;
-public final class mcc {
-    public Bitmap a;
-    public float b;
+public interface mcc {
+    void a(Object obj, Object obj2, Object obj3, Object obj4);
 }

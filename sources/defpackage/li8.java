@@ -1,62 +1,66 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class li8 extends FrameLayout implements tjb {
-    public static final int f = 0;
-    public final be0 a;
-    public final ki8 b;
-    public final Paint c;
-    public boolean d;
-    public final pb0 e;
+import android.app.Activity;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+public final class li8 extends ny0 {
+    public l9c S1;
+    public final i1b T1;
+    public boolean U1;
+    public int V1;
 
-    public li8(Context context, float f2) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        this.d = true;
-        this.e = new pb0((wjb) null);
-        be0 be0Var = new be0(getContext());
-        this.a = be0Var;
-        be0Var.setRoundRadius(gl.L(f2));
-        ?? view = new View(context);
-        TextPaint textPaint = new TextPaint(1);
-        view.a = textPaint;
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        int i = bkb.Z6;
-        textPaint.setColor(bkb.w0(null, i, false));
-        de9.p(textPaint, gl.L(11.5f));
-        this.b = view;
-        view.setAlpha(0.0f);
-        addView(be0Var, nme.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
-        addView((View) view, nme.d(26, 26.0f, 85, 0.0f, 0.0f, 1.0f, 3.0f));
-        paint.setColor(bkb.w0(null, i, false));
+    public li8(Activity activity, vnb vnbVar, TL_stats.TL_statsPollStats tL_statsPollStats) {
+        super(activity, null, true, false, 2, vnbVar);
+        s0(aob.v0(aob.a7, vnbVar));
+        this.x = true;
+        this.n = false;
+        this.F1 = false;
+        this.E1 = hl.L(12.0f);
+        this.T1 = w1b.f0(tL_statsPollStats.votes_graph, ob6.M0(2131746846, null), 2, false);
+        d79 d79Var = this.n1;
+        int i = this.u0;
+        d79Var.setPadding(i, 0, i, hl.n);
+        this.n1.setClipToPadding(false);
+        this.n1.setSections(true);
+        s6 u = this.o1.u();
+        u.a(-1, 2131231272);
+        u.setTranslationX(-hl.L(5.0f));
+        this.S1.O(false);
+    }
+
+    public static int Z0(int i, long j, int i2, y0 y0Var) {
+        TL_stats.TL_statsGetPollStats tL_statsGetPollStats = new TL_stats.TL_statsGetPollStats();
+        tL_statsGetPollStats.peer = uc7.s1(i).j1(j);
+        tL_statsGetPollStats.msg_id = i2;
+        return ConnectionsManager.getInstance(i).sendRequestTyped(tL_statsGetPollStats, new ic((byte) 0), new yt4(y0Var, (byte) 29));
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - gl.L(2.0f), this.c);
-        }
-        super.dispatchDraw(canvas);
+    public final c79 H0(d79 d79Var) {
+        l9c l9cVar = new l9c(d79Var, getContext(), this.a, 0, true, new yt4(this, (byte) 28), this.J0);
+        this.S1 = l9cVar;
+        l9cVar.r = false;
+        return l9cVar;
     }
 
     @Override
-    public final void updateColors() {
+    public final CharSequence K0() {
+        return ob6.M0(2131746847, null);
+    }
+
+    @Override
+    public final void p0() {
+        super.p0();
         try {
-            this.c.setColor(bkb.w0(null, bkb.Z6, false));
-            invalidate();
+            int v0 = aob.v0(aob.a7, this.J0);
+            if (this.U1 && v0 == this.V1) {
+                return;
+            }
+            this.U1 = true;
+            this.V1 = v0;
+            s0(v0);
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

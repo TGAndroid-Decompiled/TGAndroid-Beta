@@ -1,4 +1,6 @@
 package defpackage;
+
+import android.view.KeyEvent;
 public interface l8 {
-    void b();
+    void o(KeyEvent keyEvent);
 }

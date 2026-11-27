@@ -1,7 +1,11 @@
 package defpackage;
 public final class ssb {
-    public int a;
-    public int b;
-    public byte[] c;
-    public int[] d;
+    public float a;
+    public float b;
+    public float c;
+    public float d;
+    public float e;
+    public float f;
+    public float g;
+    public float h;
 }

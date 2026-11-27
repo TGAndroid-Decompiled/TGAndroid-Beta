@@ -1,23 +1,19 @@
 package defpackage;
+public final class nq5 extends ax2 {
+    public Object a;
+    public Object b;
+    public final sjf c;
+    public int d;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class nq5 extends i49 {
-    public final t26 a;
-    public final zq5 b;
-
-    public nq5(zq5 zq5Var, t26 t26Var) {
-        this.b = zq5Var;
-        this.a = t26Var;
+    public nq5(sjf sjfVar, ax2 ax2Var) {
+        super(ax2Var);
+        this.c = sjfVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        zq5 zq5Var = this.b;
-        zq5Var.I0();
-        if (zq5Var.L1 && !zq5Var.K1) {
-            if (zq5Var.M1 - this.a.M0() < 10) {
-                zq5Var.E0();
-            }
-        }
+    public final Object invokeSuspend(Object obj) {
+        this.b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.c.B(null, this);
     }
 }

@@ -1,17 +1,20 @@
 package defpackage;
-public final class kge implements zn7 {
-    public static final kge a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class kge extends c4 {
+    public static final Parcelable.Creator<kge> CREATOR = new g3e((byte) 18);
+    public final int a;
+
+    public kge(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.s(parcel, r);
     }
 }

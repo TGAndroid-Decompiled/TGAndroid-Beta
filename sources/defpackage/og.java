@@ -1,47 +1,83 @@
 package defpackage;
 
-import android.view.View;
+import android.content.Context;
+import android.content.DialogInterface;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class og implements View.OnClickListener {
+import org.telegram.ui.p;
+public final class og implements DialogInterface.OnClickListener {
     public final byte a;
     public final Object b;
     public final Object c;
     public final Object d;
     public final Object e;
-    public final Object f;
 
-    public og(m8 m8Var, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, d dVar, wjb wjbVar) {
-        this.a = (byte) 14;
-        this.c = m8Var;
-        this.d = arrayList;
-        this.e = tL_messages_stickerSet;
-        this.b = dVar;
-        this.f = wjbVar;
-    }
-
-    @Override
-    public final void onClick(android.view.View r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.og.onClick(android.view.View):void");
-    }
-
-    public og(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, byte b) {
+    public og(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
         this.a = b;
         this.b = obj;
         this.c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f = obj5;
     }
 
-    public og(AtomicReference atomicReference, cd0 cd0Var, ui5 ui5Var, TLRPC.TL_forumTopic tL_forumTopic, d dVar) {
-        this.a = (byte) 1;
-        this.c = atomicReference;
-        this.d = cd0Var;
-        this.e = ui5Var;
-        this.f = tL_forumTopic;
-        this.b = dVar;
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i) {
+        int i2;
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 0:
+                Context context = (Context) obj3;
+                x53 x53Var = (x53) obj2;
+                ng ngVar = (ng) obj;
+                int i3 = ((int[]) obj4)[i];
+                if (i3 == 100) {
+                    new xi(context, i3, x53Var, ngVar).show();
+                    return;
+                } else {
+                    ngVar.a(Integer.valueOf(i3), "");
+                    return;
+                }
+            default:
+                p pVar = (p) obj4;
+                ArrayList arrayList = (ArrayList) obj2;
+                ArrayList arrayList2 = (ArrayList) obj;
+                p28 p28Var = new p28(pVar, (Runnable) obj3);
+                TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard = pVar.z0;
+                if (tL_paymentSavedCredentialsCard == null && pVar.y0 == null) {
+                    i2 = 0;
+                } else {
+                    i2 = 1;
+                }
+                if ((tL_paymentSavedCredentialsCard == null && pVar.y0 == null) || i != 0) {
+                    if (i >= i2 && i < arrayList.size() + i2) {
+                        TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 = (TLRPC.TL_paymentSavedCredentialsCard) arrayList.get(i - i2);
+                        pVar.z0 = tL_paymentSavedCredentialsCard2;
+                        p28Var.c(null, tL_paymentSavedCredentialsCard2.title, true, null, tL_paymentSavedCredentialsCard2);
+                        return;
+                    } else if (i < arrayList2.size() - 1) {
+                        p pVar2 = new p(pVar.c1, pVar.D0, pVar.O0, pVar.P0, 2, pVar.F0, pVar.H0, pVar.I0, null, pVar.y0, pVar.J0, pVar.V0, null, pVar.s0, pVar.X0);
+                        pVar2.d1 = pVar.d1;
+                        pVar2.e1 = pVar.e1;
+                        pVar2.G0 = pVar.D0.additional_methods.get((i - arrayList.size()) - i2);
+                        pVar2.U = p28Var;
+                        pVar.presentFragment(pVar2);
+                        return;
+                    } else if (i == arrayList2.size() - 1) {
+                        p pVar3 = new p(pVar.c1, pVar.D0, pVar.O0, pVar.P0, 2, pVar.F0, pVar.H0, pVar.I0, null, pVar.y0, pVar.J0, pVar.V0, null, pVar.s0, pVar.X0);
+                        pVar3.d1 = pVar.d1;
+                        pVar3.e1 = pVar.e1;
+                        pVar3.U = p28Var;
+                        pVar.presentFragment(pVar3);
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

@@ -1,35 +1,50 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class ik5 {
-    public static final ik5 b;
-    public final float a;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.support.v4.media.session.PlaybackStateCompat;
+public final class ik5 implements kk5 {
+    public IBinder a;
 
-    static {
-        ?? obj = new Object();
-        obj.a = 0.5f;
-        b = new ik5(obj);
+    @Override
+    public final void N(PlaybackStateCompat playbackStateCompat) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(1);
+            playbackStateCompat.writeToParcel(obtain, 0);
+            this.a.transact(3, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
     }
 
-    public ik5(ti4 ti4Var) {
-        this.a = ti4Var.a;
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    @Override
+    public final void g(int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(i);
+            this.a.transact(9, obtain, null, 1);
+        } finally {
+            obtain.recycle();
         }
-        if (!(obj instanceof ik5)) {
-            return false;
-        }
-        ik5 ik5Var = (ik5) obj;
-        if (ik5.class.equals(ik5.class) && Float.compare(this.a, ik5Var.a) == 0 && cqe.a(null, null)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{ik5.class, Float.valueOf(this.a), null});
+    @Override
+    public final void i(int i) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
+            obtain.writeInt(i);
+            this.a.transact(12, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
     }
 }

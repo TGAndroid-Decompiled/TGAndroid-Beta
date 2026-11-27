@@ -1,26 +1,32 @@
 package defpackage;
 
-import java.util.concurrent.atomic.AtomicReferenceArray;
-public final class t0a extends nv9 {
-    public final AtomicReferenceArray g;
+import android.animation.ValueAnimator;
+public final class t0a implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final w0a b;
 
-    public t0a(long j, t0a t0aVar, int i) {
-        super(j, t0aVar, i);
-        this.g = new AtomicReferenceArray(s0a.f);
+    public t0a(w0a w0aVar, byte b) {
+        this.a = b;
+        this.b = w0aVar;
     }
 
     @Override
-    public final int g() {
-        return s0a.f;
-    }
-
-    @Override
-    public final void h(int i, sw2 sw2Var) {
-        this.g.set(i, s0a.e);
-        i();
-    }
-
-    public final String toString() {
-        return "SemaphoreSegment[id=" + this.d + ", hashCode=" + hashCode() + ']';
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        w0a w0aVar = this.b;
+        switch (b) {
+            case 0:
+                w0aVar.O = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w0aVar.W.i0.invalidate();
+                return;
+            case 1:
+                w0aVar.O = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w0aVar.W.i0.invalidate();
+                return;
+            default:
+                w0aVar.O = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w0aVar.W.i0.invalidate();
+                return;
+        }
     }
 }

@@ -1,109 +1,64 @@
 package defpackage;
+public final class gzb extends zb3 {
+    public Runnable F;
+    public int G;
+    public final tzb H;
 
-import android.net.Uri;
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import org.json.JSONArray;
-import org.json.JSONTokener;
-public final class gzb extends Thread {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final i8c d;
-
-    public gzb(String str, String str2, String str3, i8c i8cVar) {
-        this.a = str;
-        this.b = str2;
-        this.c = str3;
-        this.d = i8cVar;
+    public gzb(tzb tzbVar) {
+        this.H = tzbVar;
     }
 
     @Override
-    public final void run() {
-        HttpURLConnection httpURLConnection;
-        Integer num;
-        String str;
-        i8c i8cVar = this.d;
-        String str2 = this.c;
-        boolean z = false;
-        String str3 = null;
-        try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.a) + "&tl=" + Uri.encode(this.b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-        } catch (Exception e) {
-            e = e;
-            httpURLConnection = null;
+    public final void F() {
+        if (this.G == -1) {
+            this.G = this.H.getNotificationCenter().p(null, this.G, false);
+            Runnable runnable = this.F;
+            if (runnable != null) {
+                hl.r(runnable);
+                this.F = null;
+            }
         }
-        try {
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setRequestProperty("User-Agent", rzb.R1[(int) Math.round(Math.random() * 5.0d)]);
-            httpURLConnection.setRequestProperty("Content-Type", "application/json");
-            StringBuilder sb = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), ck1.a));
-            while (true) {
-                int read = bufferedReader.read();
-                if (read == -1) {
-                    break;
-                }
-                sb.append((char) read);
+    }
+
+    @Override
+    public final void N() {
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            hl.r(runnable);
+            this.F = null;
+        }
+        fzb fzbVar = new fzb(this, (byte) 0);
+        this.F = fzbVar;
+        hl.c3(fzbVar);
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            hl.r(runnable);
+        }
+        fzb fzbVar = new fzb(this, (byte) 1);
+        this.F = fzbVar;
+        hl.c3(fzbVar);
+    }
+
+    @Override
+    public final void z(f89 f89Var) {
+        tzb tzbVar = this.H;
+        qzb qzbVar = tzbVar.d1;
+        if (qzbVar == f89Var.a) {
+            qzbVar.setTranslationX(0.0f);
+            wyb wybVar = tzbVar.P;
+            if (wybVar != null) {
+                wybVar.G.clear();
             }
-            bufferedReader.close();
-            JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
-            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-            try {
-                str = jSONArray.getString(2);
-            } catch (Exception unused) {
-                str = null;
+            qzb qzbVar2 = tzbVar.d1;
+            if (ik8.A(qzbVar2)) {
+                qzbVar2.setTopicIcon(qzbVar2.d5);
             }
-            if (str != null && str.contains("-")) {
-                str.substring(0, str.indexOf("-"));
-            }
-            String str4 = "";
-            for (int i = 0; i < jSONArray2.length(); i++) {
-                String string = jSONArray2.getJSONArray(i).getString(0);
-                if (string != null && !string.equals("null")) {
-                    str4 = str4 + string;
-                }
-            }
-            if (str2.length() > 0 && str2.charAt(0) == '\n') {
-                str4 = "\n" + str4;
-            }
-            gl.c3(new fzb(i8cVar, str4, (byte) 0));
-        } catch (Exception e2) {
-            e = e2;
-            try {
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("failed to translate a text ");
-                if (httpURLConnection != null) {
-                    num = Integer.valueOf(httpURLConnection.getResponseCode());
-                } else {
-                    num = null;
-                }
-                sb2.append(num);
-                sb2.append(" ");
-                if (httpURLConnection != null) {
-                    str3 = httpURLConnection.getResponseMessage();
-                }
-                sb2.append(str3);
-                Log.e("translate", sb2.toString());
-            } catch (IOException e3) {
-                e3.printStackTrace();
-            }
-            e.printStackTrace();
-            if (httpURLConnection != null) {
-                try {
-                    if (httpURLConnection.getResponseCode() == 429) {
-                        z = true;
-                    }
-                } catch (Exception unused2) {
-                    gl.c3(new c05(i8cVar, (byte) 7));
-                    return;
-                }
-            }
-            gl.c3(new k08((byte) 23, i8cVar, z));
+            tzbVar.d1 = null;
         }
     }
 }

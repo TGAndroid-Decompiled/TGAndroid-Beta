@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class mq0 extends FrameLayout {
-    public final wla a;
+    public final tpa a;
     public final ImageView b;
     public final TL_keyboard.KeyboardButton c;
     public boolean d;
@@ -20,33 +20,33 @@ public final class mq0 extends FrameLayout {
         super(context);
         this.n = oq0Var;
         this.c = keyboardButton;
-        wla wlaVar = new wla(context);
-        this.a = wlaVar;
-        wlaVar.r = false;
-        wlaVar.setTextSize(1, 14.0f);
-        wlaVar.setTypeface(gl.o());
-        kk7.i(wlaVar);
-        addView(wlaVar, nme.e(-2, -2, 17));
-        kk7.i(wlaVar);
+        tpa tpaVar = new tpa(context);
+        this.a = tpaVar;
+        tpaVar.r = false;
+        tpaVar.setTextSize(1, 14.0f);
+        tpaVar.setTypeface(hl.o());
+        jn7.i(tpaVar);
+        addView(tpaVar, tre.e(-2, -2, 17));
+        jn7.i(tpaVar);
         setTag(keyboardButton);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = keyboardButton.style;
         if (keyboardButtonStyle != null && keyboardButtonStyle.icon != 0) {
             spannableStringBuilder.append((CharSequence) "* ");
-            spannableStringBuilder.setSpan(new gm(keyboardButton.style.icon, wlaVar.getPaint().getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new hm(keyboardButton.style.icon, tpaVar.getPaint().getFontMetricsInt()), 0, 1, 33);
         }
-        spannableStringBuilder.append(vu3.m(keyboardButton.text, wlaVar.getPaint().getFontMetricsInt(), false, null, 0));
+        spannableStringBuilder.append(pv3.m(keyboardButton.text, tpaVar.getPaint().getFontMetricsInt(), false, null, 0));
         ImageView imageView = new ImageView(getContext());
         this.b = imageView;
-        zkb.s(imageView, bkb.Of, oq0Var.a, PorterDuff.Mode.SRC_ATOP);
-        if (jdb.b(keyboardButton)) {
+        yob.s(imageView, aob.Pf, oq0Var.a, PorterDuff.Mode.SRC_ATOP);
+        if (ehb.b(keyboardButton)) {
             imageView.setImageResource(2131230899);
             imageView.setVisibility(0);
         } else {
             imageView.setVisibility(8);
         }
-        addView(imageView, nme.d(12, 12.0f, 53, 0.0f, 8.0f, 8.0f, 0.0f));
-        wlaVar.setText(spannableStringBuilder);
+        addView(imageView, tre.d(12, 12.0f, 53, 0.0f, 8.0f, 8.0f, 0.0f));
+        tpaVar.setText(spannableStringBuilder);
     }
 
     public final void a() {
@@ -60,24 +60,24 @@ public final class mq0 extends FrameLayout {
         int i6;
         int p1;
         int k;
-        int L = gl.L(21.0f);
-        int L2 = gl.L(11.0f);
-        int i7 = bkb.Pf;
-        wjb wjbVar = this.n.a;
-        int v0 = bkb.v0(i7, wjbVar);
-        int v02 = bkb.v0(bkb.Qf, wjbVar);
-        int v03 = bkb.v0(bkb.Of, wjbVar);
+        int L = hl.L(21.0f);
+        int L2 = hl.L(11.0f);
+        int i7 = aob.Qf;
+        vnb vnbVar = this.n.a;
+        int v0 = aob.v0(i7, vnbVar);
+        int v02 = aob.v0(aob.Rf, vnbVar);
+        int v03 = aob.v0(aob.Pf, vnbVar);
         TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.c.style;
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
-                p1 = bkb.p1(0.8f, bkb.v0(bkb.Tl, wjbVar));
-                k = bm2.k(bkb.v0(bkb.h6, wjbVar), p1);
+                p1 = aob.p1(0.8f, aob.v0(aob.Ul, vnbVar));
+                k = vm2.k(aob.v0(aob.i6, vnbVar), p1);
             } else if (keyboardButtonStyle.bg_danger) {
-                p1 = bkb.p1(0.8f, bkb.v0(bkb.Ul, wjbVar));
-                k = bm2.k(bkb.v0(bkb.h6, wjbVar), p1);
+                p1 = aob.p1(0.8f, aob.v0(aob.Vl, vnbVar));
+                k = vm2.k(aob.v0(aob.i6, vnbVar), p1);
             } else if (keyboardButtonStyle.bg_success) {
-                p1 = bkb.p1(0.8f, bkb.v0(bkb.Vl, wjbVar));
-                k = bm2.k(bkb.v0(bkb.h6, wjbVar), p1);
+                p1 = aob.p1(0.8f, aob.v0(aob.Wl, vnbVar));
+                k = vm2.k(aob.v0(aob.i6, vnbVar), p1);
             }
             i = p1;
             i2 = k;
@@ -106,7 +106,7 @@ public final class mq0 extends FrameLayout {
             } else {
                 i6 = L2;
             }
-            setBackground(bkb.i0(i3, i4, i5, i6, i, i2, i2));
+            setBackground(aob.i0(i3, i4, i5, i6, i, i2, i2));
         }
         i = v0;
         i2 = v02;
@@ -126,6 +126,6 @@ public final class mq0 extends FrameLayout {
         if (!z) {
         }
         i6 = L2;
-        setBackground(bkb.i0(i3, i4, i5, i6, i, i2, i2));
+        setBackground(aob.i0(i3, i4, i5, i6, i, i2, i2));
     }
 }

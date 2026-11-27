@@ -1,29 +1,41 @@
 package defpackage;
-
-import android.os.CancellationSignal;
-public final class n13 implements qp4 {
+public final class n13 implements Runnable {
     public final byte a;
-    public final Object b;
+    public final r13 b;
+    public final w03 c;
 
-    public n13(Object obj, byte b) {
+    public n13(r13 r13Var, w03 w03Var, byte b) {
         this.a = b;
-        this.b = obj;
+        this.b = r13Var;
+        this.c = w03Var;
     }
 
     @Override
-    public final Object invoke(Object obj) {
+    public final void run() {
         byte b = this.a;
-        g5c g5cVar = g5c.a;
-        Object obj2 = this.b;
+        Object obj = this.c;
+        r13 r13Var = this.b;
         switch (b) {
             case 0:
-                Throwable th = (Throwable) obj;
-                ((CancellationSignal) obj2).cancel();
-                return g5cVar;
+                h23 h23Var = r13Var.f;
+                if (h23Var != null) {
+                    h23Var.B(obj);
+                    return;
+                } else {
+                    ur5.e("callback");
+                    throw null;
+                }
             default:
-                Throwable th2 = (Throwable) obj;
-                ((na1) obj2).resumeWith(g5cVar);
-                return g5cVar;
+                h23 h23Var2 = r13Var.f;
+                if (h23Var2 != null) {
+                    if (obj == null) {
+                        obj = new v03("No provider data returned", (byte) 2);
+                    }
+                    h23Var2.B(obj);
+                    return;
+                }
+                ur5.e("callback");
+                throw null;
         }
     }
 }

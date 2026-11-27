@@ -2,188 +2,216 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.util.SparseArray;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class dw3 extends View {
-    public final RectF E;
-    public final RectF F;
-    public float G;
-    public av3 H;
-    public int I;
-    public final TextPaint a;
-    public final Paint b;
-    public StaticLayout c;
-    public float d;
-    public float e;
-    public StaticLayout f;
-    public float h;
-    public float n;
-    public StaticLayout r;
-    public float s;
-    public float w;
-    public final RectF x;
-    public final RectF y;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class dw3 extends d79 {
+    public static final int q3 = 0;
+    public hw6 f3;
+    public boolean g3;
+    public float h3;
+    public float i3;
+    public boolean j3;
+    public final SparseArray k3;
+    public final ArrayList l3;
+    public final ArrayList m3;
+    public final ArrayList n3;
+    public final ArrayList o3;
+    public final PorterDuffColorFilter p3;
 
     public dw3(Context context) {
-        super(context);
-        this.a = new TextPaint(1);
-        this.b = new Paint(1);
-        this.x = new RectF();
-        this.y = new RectF();
-        this.E = new RectF();
-        this.F = new RectF();
+        super(context, null);
+        this.j3 = false;
+        this.k3 = new SparseArray();
+        this.l3 = new ArrayList();
+        this.m3 = new ArrayList();
+        this.n3 = new ArrayList();
+        this.o3 = new ArrayList();
+        this.p3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+    }
+
+    public final void A1(int i, int i2) {
+        int i3;
+        if (this.f3 != null && (getLayoutManager() instanceof u55)) {
+            u55 u55Var = (u55) getLayoutManager();
+            View m = u55Var.m(i);
+            int K0 = u55Var.K0();
+            if ((m == null && Math.abs(i - K0) > u55Var.J * 9.0f) || !xea.c()) {
+                hw6 hw6Var = this.f3;
+                if (u55Var.K0() < i) {
+                    i3 = 0;
+                } else {
+                    i3 = 1;
+                }
+                hw6Var.b = i3;
+                this.f3.k(i, i2, false, false);
+                return;
+            }
+            aw3 aw3Var = new aw3((byte) 0, getContext(), this);
+            aw3Var.a = i;
+            aw3Var.p = i2;
+            u55Var.v0(aw3Var);
+        }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        RectF rectF;
-        RectF rectF2;
-        canvas.drawColor(-14737633);
-        Paint paint = this.b;
-        paint.setColor(-13224394);
-        float f = this.G;
-        int i = (int) f;
-        RectF rectF3 = this.E;
-        RectF rectF4 = this.y;
-        RectF rectF5 = this.x;
-        if (i <= 0) {
-            rectF = rectF5;
-        } else if (i == 1) {
-            rectF = rectF4;
-        } else {
-            rectF = rectF3;
+        SparseArray sparseArray;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        bw3 bw3Var;
+        int top;
+        if (getVisibility() != 0) {
+            return;
         }
-        int ceil = (int) Math.ceil(f);
-        if (ceil <= 0) {
-            rectF2 = rectF5;
-        } else if (ceil == 1) {
-            rectF2 = rectF4;
-        } else {
-            rectF2 = rectF3;
+        int saveCount = canvas.getSaveCount();
+        canvas.save();
+        canvas.clipRect(0.0f, this.h3, getWidth(), this.i3);
+        if (!this.g3) {
+            super.dispatchDraw(canvas);
+            canvas.restore();
+            return;
         }
-        float f2 = this.G;
-        RectF rectF6 = this.F;
-        gl.X1(rectF, rectF2, f2 - ((int) f2), rectF6);
-        canvas.drawRoundRect(rectF6, gl.L(20.0f), gl.L(20.0f), paint);
-        StaticLayout staticLayout = this.c;
-        TextPaint textPaint = this.a;
-        if (staticLayout != null) {
+        Rect rect = this.F1;
+        if (!rect.isEmpty()) {
+            this.C1.setBounds(rect);
             canvas.save();
-            canvas.translate((rectF5.left + gl.L(12.0f)) - this.e, oo1.z(rectF5.height(), this.c.getHeight(), 2.0f, rectF5.top));
-            textPaint.setColor(bm2.f(Utilities.i(1.0f - Math.abs(this.G - 0.0f), 1.0f, 0.0f), -8158333, -1));
-            this.c.draw(canvas);
+            pt2 pt2Var = this.n2;
+            if (pt2Var != null) {
+                pt2Var.accept(canvas);
+            }
+            this.C1.draw(canvas);
             canvas.restore();
         }
-        if (this.f != null) {
-            canvas.save();
-            canvas.translate((rectF4.left + gl.L(12.0f)) - this.n, oo1.z(rectF4.height(), this.f.getHeight(), 2.0f, rectF4.top));
-            textPaint.setColor(bm2.f(Utilities.i(1.0f - Math.abs(this.G - 1.0f), 1.0f, 0.0f), -8158333, -1));
-            this.f.draw(canvas);
-            canvas.restore();
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            sparseArray = this.k3;
+            int size = sparseArray.size();
+            arrayList = this.l3;
+            if (i2 >= size) {
+                break;
+            }
+            ArrayList arrayList3 = (ArrayList) sparseArray.valueAt(i2);
+            arrayList3.clear();
+            arrayList.add(arrayList3);
+            i2++;
         }
-        if (this.r != null) {
-            canvas.save();
-            canvas.translate((rectF3.left + gl.L(12.0f)) - this.w, oo1.z(rectF3.height(), this.r.getHeight(), 2.0f, rectF3.top));
-            textPaint.setColor(bm2.f(Utilities.i(1.0f - Math.abs(this.G - 2.0f), 1.0f, 0.0f), -8158333, -1));
-            this.r.draw(canvas);
-            canvas.restore();
+        sparseArray.clear();
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            View childAt = getChildAt(i3);
+            if (childAt instanceof cw3) {
+                cw3 cw3Var = (cw3) childAt;
+                if (cw3Var.getY() < this.i3 && cw3Var.getY() + cw3Var.getHeight() > this.h3) {
+                    if (this.j3) {
+                        top = (int) cw3Var.getY();
+                    } else {
+                        top = cw3Var.getTop();
+                    }
+                    ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
+                    if (arrayList4 == null) {
+                        if (!arrayList.isEmpty()) {
+                            arrayList4 = (ArrayList) qd4.l(1, arrayList);
+                        } else {
+                            arrayList4 = new ArrayList();
+                        }
+                        sparseArray.put(top, arrayList4);
+                    }
+                    arrayList4.add(cw3Var);
+                }
+            }
         }
+        ArrayList arrayList5 = this.o3;
+        arrayList5.clear();
+        ArrayList arrayList6 = this.n3;
+        arrayList5.addAll(arrayList6);
+        arrayList6.clear();
+        canvas.save();
+        canvas.clipRect(0, getPaddingTop(), getWidth(), getHeight() - getPaddingBottom());
+        long currentTimeMillis = System.currentTimeMillis();
+        int i4 = 0;
+        while (true) {
+            int size2 = sparseArray.size();
+            arrayList2 = this.m3;
+            if (i4 >= size2) {
+                break;
+            }
+            ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i4);
+            cw3 cw3Var2 = (cw3) arrayList7.get(i);
+            int S = RecyclerView.S(cw3Var2);
+            while (true) {
+                if (i < arrayList5.size()) {
+                    if (((bw3) arrayList5.get(i)).N == S) {
+                        bw3Var = (bw3) arrayList5.get(i);
+                        arrayList5.remove(i);
+                        break;
+                    }
+                    i++;
+                } else {
+                    bw3Var = null;
+                    break;
+                }
+            }
+            if (bw3Var == null) {
+                if (!arrayList2.isEmpty()) {
+                    bw3Var = (bw3) qd4.l(1, arrayList2);
+                } else {
+                    bw3Var = new bw3(this);
+                    bw3Var.l(7);
+                }
+                bw3Var.N = S;
+                bw3Var.e();
+            }
+            arrayList6.add(bw3Var);
+            bw3Var.P = arrayList7;
+            canvas.save();
+            canvas.translate(cw3Var2.getLeft(), cw3Var2.getY());
+            bw3Var.O = cw3Var2.getLeft();
+            int measuredWidth = getMeasuredWidth() - (cw3Var2.getLeft() << 1);
+            int measuredHeight = cw3Var2.getMeasuredHeight();
+            if (measuredWidth > 0 && measuredHeight > 0) {
+                bw3Var.a(canvas, currentTimeMillis, measuredWidth, measuredHeight, getAlpha());
+            }
+            canvas.restore();
+            i4++;
+            i = 0;
+        }
+        for (int i5 = 0; i5 < arrayList5.size(); i5++) {
+            if (arrayList2.size() < 3) {
+                arrayList2.add((bw3) arrayList5.get(i5));
+                ((bw3) arrayList5.get(i5)).P = null;
+                ((bw3) arrayList5.get(i5)).k();
+            } else {
+                ((bw3) arrayList5.get(i5)).f();
+            }
+        }
+        arrayList5.clear();
+        for (int i6 = 0; i6 < getChildCount(); i6++) {
+            View childAt2 = getChildAt(i6);
+            if (childAt2 != null && !(childAt2 instanceof cw3) && childAt2.getY() <= getHeight() - getPaddingBottom() && childAt2.getY() + childAt2.getHeight() >= getPaddingTop()) {
+                canvas.save();
+                canvas.translate((int) childAt2.getX(), (int) childAt2.getY());
+                childAt2.draw(canvas);
+                canvas.restore();
+            }
+        }
+        canvas.restore();
+        canvas.restoreToCount(saveCount);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(40.0f) + gl.n);
-        if (getMeasuredWidth() != this.I || this.c == null) {
-            TextPaint textPaint = this.a;
-            textPaint.setTextSize(gl.L(14.0f));
-            textPaint.setTypeface(gl.o());
-            String N0 = k96.N0("Emoji");
-            int measuredWidth = getMeasuredWidth();
-            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            StaticLayout staticLayout = new StaticLayout(N0, textPaint, measuredWidth, alignment, 1.0f, 0.0f, false);
-            this.c = staticLayout;
-            float f6 = 0.0f;
-            if (staticLayout.getLineCount() >= 1) {
-                f = this.c.getLineWidth(0);
-            } else {
-                f = 0.0f;
-            }
-            this.d = f;
-            if (this.c.getLineCount() >= 1) {
-                f2 = this.c.getLineLeft(0);
-            } else {
-                f2 = 0.0f;
-            }
-            this.e = f2;
-            StaticLayout staticLayout2 = new StaticLayout(k96.N0("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.f = staticLayout2;
-            if (staticLayout2.getLineCount() >= 1) {
-                f3 = this.f.getLineWidth(0);
-            } else {
-                f3 = 0.0f;
-            }
-            this.h = f3;
-            if (this.f.getLineCount() >= 1) {
-                f4 = this.f.getLineLeft(0);
-            } else {
-                f4 = 0.0f;
-            }
-            this.n = f4;
-            StaticLayout staticLayout3 = new StaticLayout(k96.M0(2131754879, null), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.r = staticLayout3;
-            if (staticLayout3.getLineCount() >= 1) {
-                f5 = this.r.getLineWidth(0);
-            } else {
-                f5 = 0.0f;
-            }
-            this.s = f5;
-            if (this.r.getLineCount() >= 1) {
-                f6 = this.r.getLineLeft(0);
-            }
-            this.w = f6;
-            float L = gl.L(14.0f) / 2.0f;
-            float L2 = gl.L(66.0f) / 2.0f;
-            float measuredWidth2 = (getMeasuredWidth() - ((((((gl.L(12.0f) + this.d) + gl.L(36.0f)) + this.h) + gl.L(36.0f)) + this.s) + gl.L(12.0f))) / 2.0f;
-            this.x.set(measuredWidth2, L, this.d + measuredWidth2 + gl.L(24.0f), L2);
-            float L3 = this.d + gl.L(36.0f) + measuredWidth2;
-            this.y.set(L3, L, this.h + L3 + gl.L(24.0f), L2);
-            float L4 = this.h + gl.L(36.0f) + L3;
-            this.E.set(L4, L, this.s + L4 + gl.L(24.0f), L2);
-            gl.L(36.0f);
+    public final void setLayoutManager(q79 q79Var) {
+        super.setLayoutManager(q79Var);
+        this.f3 = null;
+        if (q79Var instanceof x46) {
+            hw6 hw6Var = new hw6(this, (x46) q79Var);
+            this.f3 = hw6Var;
+            hw6Var.r = new zv3(this, (byte) 0);
+            hw6Var.n = new lu3(this, (byte) 1);
         }
-        this.I = getMeasuredWidth();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            if (motionEvent.getAction() == 1 && this.H != null) {
-                if (this.x.contains(motionEvent.getX(), motionEvent.getY())) {
-                    this.H.a(0);
-                    return true;
-                }
-                if (this.y.contains(motionEvent.getX(), motionEvent.getY())) {
-                    this.H.a(1);
-                    return true;
-                }
-                if (this.E.contains(motionEvent.getX(), motionEvent.getY())) {
-                    this.H.a(2);
-                }
-            } else {
-                return super.onTouchEvent(motionEvent);
-            }
-        }
-        return true;
     }
 }

@@ -1,44 +1,41 @@
 package defpackage;
 
-import android.view.DisplayCutout;
-import android.view.WindowInsets;
-import j$.util.Objects;
-public class oxc extends nxc {
-    public oxc(vxc vxcVar, WindowInsets windowInsets) {
-        super(vxcVar, windowInsets);
+import org.telegram.tgnet.TLRPC;
+public final class oxc implements pcc {
+    public final byte a;
+    public final pxc b;
+
+    public oxc(pxc pxcVar, byte b) {
+        this.a = b;
+        this.b = pxcVar;
     }
 
     @Override
-    public vxc a() {
-        return vxc.h(null, this.c.consumeDisplayCutout());
-    }
-
-    @Override
-    public lo3 e() {
-        DisplayCutout displayCutout = this.c.getDisplayCutout();
-        if (displayCutout == null) {
-            return null;
+    public final void a(Object obj) {
+        byte b = this.a;
+        pxc pxcVar = this.b;
+        rxc rxcVar = (rxc) obj;
+        switch (b) {
+            case 0:
+                pxcVar.l = null;
+                pxcVar.i = true;
+                TLRPC.TL_webPage tL_webPage = pxcVar.j;
+                if (tL_webPage != null) {
+                    rxc.o(tL_webPage);
+                }
+                pxcVar.j = rxcVar.c;
+                pxcVar.c();
+                return;
+            default:
+                pxcVar.l = null;
+                pxcVar.i = true;
+                TLRPC.TL_webPage tL_webPage2 = pxcVar.j;
+                if (tL_webPage2 != null) {
+                    rxc.o(tL_webPage2);
+                }
+                pxcVar.j = rxcVar.c;
+                pxcVar.c();
+                return;
         }
-        return new lo3(displayCutout);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof oxc)) {
-            return false;
-        }
-        oxc oxcVar = (oxc) obj;
-        if (Objects.equals(this.c, oxcVar.c) && Objects.equals(this.g, oxcVar.g) && mxc.B(this.h, oxcVar.h)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.c.hashCode();
     }
 }

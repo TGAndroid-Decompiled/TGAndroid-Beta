@@ -1,19 +1,17 @@
 package defpackage;
-public abstract class bze {
-    public static String a(int i) {
-        if (i != 100) {
-            if (i != 102) {
-                if (i != 104) {
-                    if (i == 105) {
-                        return "PASSIVE";
-                    }
-                    sc8.e();
-                    return null;
-                }
-                return "LOW_POWER";
-            }
-            return "BALANCED_POWER_ACCURACY";
+public final class bze implements zq7 {
+    public static final bze a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return "HIGH_ACCURACY";
+        throw new ClassCastException();
     }
 }

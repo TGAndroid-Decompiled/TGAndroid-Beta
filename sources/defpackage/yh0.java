@@ -1,23 +1,32 @@
 package defpackage;
 
-import java.util.List;
-public final class yh0 implements bi0, wu8 {
+import java.util.Collections;
+public final class yh0 implements Runnable {
     public final byte a;
-    public final ci0 b;
+    public final di0 b;
 
-    public yh0(ci0 ci0Var, byte b) {
+    public yh0(di0 di0Var, byte b) {
         this.a = b;
-        this.b = ci0Var;
+        this.b = di0Var;
     }
 
     @Override
-    public final void a(fi0 fi0Var, List list) {
-        this.b.m(fi0Var, list, null);
-    }
-
-    @Override
-    public final void b(fi0 fi0Var, List list) {
+    public final void run() {
         byte b = this.a;
-        this.b.n(fi0Var, list);
+        di0 di0Var = this.b;
+        switch (b) {
+            case 0:
+                di0Var.getClass();
+                try {
+                    di0Var.o(Collections.singletonList(di0.k), new zh0(di0Var, (byte) 0));
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            default:
+                di0Var.q();
+                return;
+        }
     }
 }

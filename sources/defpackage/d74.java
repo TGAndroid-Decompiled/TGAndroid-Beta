@@ -1,15 +1,13 @@
 package defpackage;
-public abstract class d74 {
-    public static final c74 a = new Object();
-    public static final c74 b;
+public final class d74 {
+    public final t1c a;
+    public final int[] b;
 
-    static {
-        ft8 ft8Var = ft8.c;
-        c74 c74Var = null;
-        try {
-            c74Var = (c74) Class.forName("androidx.datastore.preferences.protobuf.ExtensionSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
+    public d74(t1c t1cVar, int... iArr) {
+        if (iArr.length == 0) {
+            efd.d("ETSDefinition", "Empty tracks are not allowed", new IllegalArgumentException());
         }
-        b = c74Var;
+        this.a = t1cVar;
+        this.b = iArr;
     }
 }

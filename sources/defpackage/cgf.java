@@ -1,11 +1,12 @@
 package defpackage;
-public abstract class cgf {
-    public static final int a = 0;
+public final class cgf {
+    public final daf a;
+    public final Long b;
+    public final ehf c;
 
-    static {
-        try {
-            bgf bgfVar = (bgf) Class.forName("com.google.protobuf.MapFieldSchemaFull").getDeclaredConstructor(null).newInstance(null);
-        } catch (Exception unused) {
-        }
+    public cgf(htd htdVar) {
+        this.a = (daf) htdVar.b;
+        this.b = (Long) htdVar.c;
+        this.c = (ehf) htdVar.d;
     }
 }

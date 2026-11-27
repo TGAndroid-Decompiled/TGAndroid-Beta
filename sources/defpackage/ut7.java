@@ -1,118 +1,61 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class ut7 extends LinearLayout {
-    public final TextView a;
-    public final st b;
-    public ImageView c;
-    public ImageView d;
-    public float e;
-    public boolean f;
-    public ValueAnimator h;
-    public final ImageView n;
-    public final wt7 r;
+import java.util.Calendar;
+import java.util.Locale;
+public final class ut7 {
+    public int a;
+    public int b;
 
-    public ut7(wt7 wt7Var, Context context) {
-        super(context);
-        this.r = wt7Var;
-        setOrientation(0);
-        int i = bkb.h6;
-        si5 si5Var = wt7Var.w1;
-        setBackground(bkb.f0(bkb.v0(i, si5Var), 2, -1));
-        st stVar = new st(this, context);
-        this.b = stVar;
-        addView(stVar, nme.t(-2, -2, 19, 16, 0, 16, 0));
-        ImageView imageView = new ImageView(context);
-        this.c = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.c;
-        int i2 = bkb.D8;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
-        zkb.s(imageView2, i2, si5Var, mode);
-        stVar.addView(this.c, nme.e(-2, -2, 17));
-        ImageView imageView3 = new ImageView(context);
-        this.d = imageView3;
-        imageView3.setScaleType(scaleType);
-        zkb.s(this.d, i2, si5Var, mode);
-        this.d.setVisibility(8);
-        stVar.addView(this.d, nme.e(-2, -2, 17));
-        TextView textView = new TextView(context);
-        this.a = textView;
-        zkb.X(textView, i2, si5Var);
-        textView.setTextSize(1, 16.0f);
-        addView(textView, nme.t(-2, -2, 19, 0, 0, 16, 0));
-        ImageView imageView4 = new ImageView(context);
-        this.n = imageView4;
-        imageView4.setImageResource(2131232403);
-        imageView4.setScaleType(scaleType);
-        zkb.s(imageView4, bkb.g7, si5Var, PorterDuff.Mode.MULTIPLY);
-        imageView4.setVisibility(8);
-        addView(imageView4, nme.o(50, -1));
+    public ut7(int i, int i2) {
+        this.a = i;
+        this.b = i2;
     }
 
-    public final void a(int i, boolean z, boolean z2) {
-        if (z2) {
-            ValueAnimator valueAnimator = this.h;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.h = null;
-                a(i, false, false);
-                return;
+    public static String a(int i) {
+        String str;
+        String str2;
+        int i2 = i % 60;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(0, 0, 0, ((i - i2) / 60) % 24, i2);
+        ob6 D0 = ob6.D0();
+        if (D0.c == null) {
+            synchronized (D0) {
+                if (D0.c == null) {
+                    Locale locale = D0.y;
+                    if (locale == null) {
+                        locale = Locale.getDefault();
+                    }
+                    String language = locale.getLanguage();
+                    if (language == null) {
+                        language = "en";
+                    }
+                    String lowerCase = language.toLowerCase();
+                    if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
+                        locale = Locale.US;
+                    }
+                    boolean z = ob6.c0;
+                    if (z) {
+                        str = "HH:mm";
+                    } else {
+                        str = "h:mm a";
+                    }
+                    if (z) {
+                        str2 = "HH:mm";
+                    } else {
+                        str2 = "h:mm a";
+                    }
+                    D0.c = ob6.k(str, str2, locale);
+                }
             }
-            this.f = z;
-            this.d.setImageResource(i);
-            this.d.setVisibility(0);
-            this.d.setAlpha(1.0f);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.h = ofFloat;
-            ofFloat.addUpdateListener(new d20((byte) 7, this, z));
-            this.h.addListener(new v85(this, (byte) 23));
-            this.h.setInterpolator(s33.h);
-            this.h.setDuration(420L);
-            this.h.start();
-            return;
         }
-        this.c.setImageResource(i);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public final boolean performClick() {
-        wt7 wt7Var = this.r;
-        m8 m8Var = wt7Var.x1;
-        if (m8Var != null && m8Var.isShowing()) {
-            wt7Var.x1.d(true);
+        String format = D0.c.format(calendar.getTime());
+        if (i > 1440) {
+            return ob6.a0(null, null, 2131752729, format);
         }
-        return super.performClick();
+        return format;
     }
 
-    public void setIcon(int i) {
-        a(i, true, false);
-    }
-
-    @Override
-    public void setSelected(boolean z) {
-        int i;
-        if (z) {
-            i = 0;
-        } else {
-            i = 8;
-        }
-        this.n.setVisibility(i);
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.a.setText(charSequence);
+    public final String toString() {
+        return a(this.a) + " - " + a(this.b);
     }
 }

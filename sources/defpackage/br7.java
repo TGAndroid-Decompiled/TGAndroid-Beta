@@ -1,78 +1,58 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
-import java.io.File;
-public final class br7 extends g00 {
-    public final MediaMetadataRetriever r;
-    public final boolean s;
+import android.os.IBinder;
+import android.os.IInterface;
+import java.lang.reflect.Field;
+public final class br7 extends u3d implements al5 {
+    public final Object b;
 
-    public br7(File file) {
-        long j;
-        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        this.r = mediaMetadataRetriever;
-        try {
-            mediaMetadataRetriever.setDataSource(file.getAbsolutePath());
-            this.a = "OTHER";
-            try {
-                j = Long.parseLong(mediaMetadataRetriever.extractMetadata(9));
-            } catch (Exception unused) {
-                j = 0;
-            }
-            this.b = j;
-            this.c = c(7);
-            this.d = c(2);
-            this.e = c(13);
-            this.f = c(1);
-            this.g = b(8);
-            this.h = c(6);
-            this.j = b(0);
-            b(10);
-            this.k = b(14);
-            this.m = c(4);
-            byte[] embeddedPicture = this.r.getEmbeddedPicture();
-            if (embeddedPicture != null) {
-                this.o = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
-            }
-            Bitmap bitmap = this.o;
-            if (bitmap != null) {
-                float max = Math.max(bitmap.getWidth(), this.o.getHeight()) / 120.0f;
-                int i = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
-                Bitmap bitmap2 = this.o;
-                if (i > 0) {
-                    this.p = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() / max), (int) (this.o.getHeight() / max), true);
-                } else {
-                    this.p = bitmap2;
-                }
-            }
-        } catch (Exception e) {
-            this.s = true;
-            fa4.g(e, true);
-        }
-        try {
-            MediaMetadataRetriever mediaMetadataRetriever2 = this.r;
-            if (mediaMetadataRetriever2 != null) {
-                ls6.r(mediaMetadataRetriever2);
-            }
-        } catch (Exception e2) {
-            fa4.g(e2, true);
-        }
+    public br7(Object obj) {
+        super("com.google.android.gms.dynamic.IObjectWrapper", (byte) 6);
+        this.b = obj;
     }
 
-    public final short b(int i) {
-        try {
-            return Short.parseShort(this.r.extractMetadata(i));
-        } catch (Exception unused) {
-            return (short) 0;
-        }
-    }
-
-    public final String c(int i) {
-        try {
-            return this.r.extractMetadata(i);
-        } catch (Exception unused) {
+    public static al5 T(IBinder iBinder) {
+        if (iBinder == null) {
             return null;
         }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamic.IObjectWrapper");
+        if (queryLocalInterface instanceof al5) {
+            return (al5) queryLocalInterface;
+        }
+        return new v3d(iBinder, "com.google.android.gms.dynamic.IObjectWrapper", (byte) 4);
+    }
+
+    public static Object U(al5 al5Var) {
+        if (al5Var instanceof br7) {
+            return ((br7) al5Var).b;
+        }
+        IBinder asBinder = al5Var.asBinder();
+        Field[] declaredFields = asBinder.getClass().getDeclaredFields();
+        Field field = null;
+        int i = 0;
+        for (Field field2 : declaredFields) {
+            if (!field2.isSynthetic()) {
+                i++;
+                field = field2;
+            }
+        }
+        if (i == 1) {
+            xve.h(field);
+            if (!field.isAccessible()) {
+                field.setAccessible(true);
+                try {
+                    return field.get(asBinder);
+                } catch (IllegalAccessException e) {
+                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e);
+                } catch (NullPointerException e2) {
+                    throw new IllegalArgumentException("Binder object is null.", e2);
+                }
+            }
+            lq5.j("IObjectWrapper declared field not private!");
+            return null;
+        }
+        int length = declaredFields.length;
+        p3d.c(String.valueOf(length).length() + 53, length, "Unexpected number of IObjectWrapper declared fields: ");
+        return null;
     }
 }

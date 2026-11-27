@@ -1,37 +1,28 @@
 package defpackage;
+
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 public final class a87 implements Runnable {
     public final byte a;
-    public final na7 b;
-    public final long c;
-    public final Runnable d;
+    public final uc7 b;
+    public final TLRPC.Updates c;
+    public final boolean d;
 
-    public a87(na7 na7Var, long j, Runnable runnable, byte b) {
+    public a87(uc7 uc7Var, TLRPC.Updates updates, boolean z, byte b) {
         this.a = b;
-        this.b = na7Var;
-        this.c = j;
-        this.d = runnable;
+        this.b = uc7Var;
+        this.c = updates;
+        this.d = z;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        Runnable runnable = this.d;
-        long j = this.c;
-        na7 na7Var = this.b;
-        switch (b) {
+        switch (this.a) {
             case 0:
-                na7Var.Y2(0, j, true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.b.Y3(this.c, this.d);
                 return;
             default:
-                na7Var.Y2(0, j, true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                Utilities.d.c(new a87(this.b, this.c, this.d, (byte) 0));
                 return;
         }
     }

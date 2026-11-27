@@ -10,6 +10,6 @@ public class ArticleViewer$BlockEmbedCell$TelegramWebviewProxy {
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        gl.c3(new h(this, str, str2, (byte) 0));
+        hl.c3(new h(this, str, str2, (byte) 0));
     }
 }

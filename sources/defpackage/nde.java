@@ -1,18 +1,17 @@
 package defpackage;
+public final class nde implements zq7 {
+    public static final nde a = new Object();
 
-import android.os.Build;
-public abstract class nde {
-    public static boolean a(int i) {
-        if (i == 8 || i == 7) {
-            return true;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 31 && (i == 26 || i == 27)) {
-            return true;
-        }
-        if (i2 >= 33 && i == 30) {
-            return true;
-        }
-        return false;
+        throw new ClassCastException();
     }
 }

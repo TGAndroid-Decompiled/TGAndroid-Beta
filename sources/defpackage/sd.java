@@ -1,79 +1,47 @@
 package defpackage;
 
-import android.app.ApplicationExitInfo;
-import android.system.OsConstants;
-import j$.util.Objects;
-import j$.util.function.Predicate$CC;
-import java.io.File;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stars;
-public final class sd implements Predicate {
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ProfileActivity;
+public final class sd implements View.OnClickListener {
     public final byte a;
+    public final TLRPC.User b;
+    public final e c;
+    public final AlertDialog$Builder d;
 
-    public sd(byte b) {
+    public sd(TLRPC.User user, e eVar, AlertDialog$Builder alertDialog$Builder, byte b) {
         this.a = b;
-    }
-
-    public final Predicate and(Predicate predicate) {
-        byte b = this.a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public final Predicate negate() {
-        byte b = this.a;
-        return Predicate$CC.$default$negate(this);
-    }
-
-    public final Predicate or(Predicate predicate) {
-        byte b = this.a;
-        return Predicate$CC.$default$or(this, predicate);
+        this.b = user;
+        this.c = eVar;
+        this.d = alertDialog$Builder;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        boolean z;
-        boolean z2;
-        switch (this.a) {
+    public final void onClick(View view) {
+        byte b = this.a;
+        AlertDialog$Builder alertDialog$Builder = this.d;
+        e eVar = this.c;
+        TLRPC.User user = this.b;
+        switch (b) {
             case 0:
-                return !k27.c3(((k27) obj).k);
-            case 1:
-                return Objects.nonNull((TLObject) obj);
-            case 2:
-                if (((String) obj) == null) {
-                    return false;
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", user.id);
+                if (eVar.getMessagesController().C(bundle, eVar, null, null)) {
+                    eVar.presentFragment(new ProfileActivity(bundle, null));
                 }
-                return true;
-            case 3:
-                if (((Integer) obj).intValue() == 0) {
-                    return false;
-                }
-                return true;
-            case 4:
-                return ((File) obj).exists();
-            case 5:
-                return !((TL_stars.StarGift) obj).auction;
-            case 6:
-                if (((ApplicationExitInfo) obj).getReason() != 6) {
-                    return false;
-                }
-                return true;
+                alertDialog$Builder.a.M0.run();
+                return;
             default:
-                ApplicationExitInfo applicationExitInfo = (ApplicationExitInfo) obj;
-                if (applicationExitInfo.getReason() == 3 && applicationExitInfo.getDescription() != null && applicationExitInfo.getDescription().contains("OOM")) {
-                    z = true;
-                } else {
-                    z = false;
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", user.id);
+                if (eVar.getMessagesController().C(bundle2, eVar, null, null)) {
+                    eVar.presentFragment(new ProfileActivity(bundle2, null));
                 }
-                if (applicationExitInfo.getReason() == 2 && applicationExitInfo.getStatus() == OsConstants.SIGKILL) {
-                    z2 = true;
-                } else {
-                    z2 = false;
-                }
-                if (!z && !z2) {
-                    return false;
-                }
-                return true;
+                alertDialog$Builder.a.M0.run();
+                return;
         }
     }
 }

@@ -1,20 +1,39 @@
 package defpackage;
-public final class mia extends gw2 {
-    public Object a;
-    public nh7 b;
-    public Object c;
-    public final pia d;
-    public int e;
 
-    public mia(pia piaVar, fw2 fw2Var) {
-        super(fw2Var);
-        this.d = piaVar;
+import android.content.Context;
+public final class mia extends wb2 {
+    public final byte Ld = 1;
+
+    public mia(Context context, int i) {
+        super(context, i);
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.c(null, this);
+    public final int getParentWidth() {
+        int i;
+        int L;
+        switch (this.Ld) {
+            case 1:
+                if (getMeasuredWidth() != 0) {
+                    i = getMeasuredWidth();
+                    L = hl.L(24.0f);
+                } else {
+                    i = hl.q.x;
+                    L = hl.L(24.0f);
+                }
+                return i - L;
+            default:
+                return super.getParentWidth();
+        }
+    }
+
+    @Override
+    public final boolean isPressed() {
+        byte b = this.Ld;
+        return false;
+    }
+
+    public mia(Context context, int i, boolean z, rx6 rx6Var, vnb vnbVar) {
+        super(context, i, z, rx6Var, vnbVar);
     }
 }

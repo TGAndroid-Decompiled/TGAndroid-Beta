@@ -35,15 +35,15 @@ public class TeXFormulaSettingsParser {
                             strArr2[attribute.charAt(0)] = attribute3;
                         }
                     } else {
-                        k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
+                        da3.b("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
                         return;
                     }
                 } else {
-                    k93.g("TeXFormulaSettings.xml", element.getTagName(), "formula", null);
+                    da3.b("TeXFormulaSettings.xml", element.getTagName(), "formula", null);
                     return;
                 }
             } else {
-                k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", null);
+                da3.b("TeXFormulaSettings.xml", element.getTagName(), "char", null);
                 return;
             }
         }
@@ -63,15 +63,15 @@ public class TeXFormulaSettingsParser {
                             strArr2[attribute.charAt(0)] = attribute3;
                         }
                     } else {
-                        k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
+                        da3.b("TeXFormulaSettings.xml", element.getTagName(), "char", "must have a value that contains exactly 1 character!");
                         return;
                     }
                 } else {
-                    k93.g("TeXFormulaSettings.xml", element.getTagName(), "symbol", null);
+                    da3.b("TeXFormulaSettings.xml", element.getTagName(), "symbol", null);
                     return;
                 }
             } else {
-                k93.g("TeXFormulaSettings.xml", element.getTagName(), "char", null);
+                da3.b("TeXFormulaSettings.xml", element.getTagName(), "char", null);
                 return;
             }
         }

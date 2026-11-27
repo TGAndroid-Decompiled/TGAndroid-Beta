@@ -1,21 +1,18 @@
 package defpackage;
 
-import java.io.Serializable;
-public enum gld {
-    VOID(Void.class, null),
-    INT(Integer.class, 0),
-    LONG(Long.class, 0L),
-    FLOAT(Float.class, Float.valueOf(0.0f)),
-    DOUBLE(Double.class, Double.valueOf(0.0d)),
-    BOOLEAN(Boolean.class, Boolean.FALSE),
-    STRING(String.class, ""),
-    BYTE_STRING(cdd.class, cdd.c),
-    ENUM(Integer.class, null),
-    MESSAGE(Object.class, null);
-    
-    public final Class a;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class gld {
+    public static final int a = 0;
 
-    gld(Class cls, Serializable serializable) {
-        this.a = cls;
+    static {
+        gld.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

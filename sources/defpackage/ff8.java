@@ -1,36 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class ff8 {
-    public int a;
-    public ArrayList b;
-    public String c;
-    public final byte[] d;
-    public boolean e;
-    public int f = 10;
+import java.lang.reflect.Method;
+public abstract class ff8 {
+    public static final Method a;
 
-    public ff8(TLRPC.TL_messages_votesList tL_messages_votesList, byte[] bArr) {
-        this.a = tL_messages_votesList.count;
-        this.b = tL_messages_votesList.votes;
-        this.c = tL_messages_votesList.next_offset;
-        this.d = bArr;
-    }
-
-    public final int a() {
-        if (this.b.size() <= 15) {
-            return 0;
+    static {
+        Method method;
+        Method[] methods = Throwable.class.getMethods();
+        methods.getClass();
+        int length = methods.length;
+        int i = 0;
+        while (true) {
+            method = null;
+            if (i >= length) {
+                break;
+            }
+            Method method2 = methods[i];
+            if (ur5.a(method2.getName(), "addSuppressed")) {
+                Class<?>[] parameterTypes = method2.getParameterTypes();
+                parameterTypes.getClass();
+                if (parameterTypes.length == 1) {
+                    method = parameterTypes[0];
+                }
+                if (ur5.a(method, Throwable.class)) {
+                    method = method2;
+                    break;
+                }
+            }
+            i++;
         }
-        if (this.e) {
-            return 1;
+        a = method;
+        int length2 = methods.length;
+        for (int i2 = 0; i2 < length2 && !ur5.a(methods[i2].getName(), "getSuppressed"); i2++) {
         }
-        return 2;
-    }
-
-    public final int b() {
-        if (this.e) {
-            return Math.min(this.f, this.b.size());
-        }
-        return this.b.size();
     }
 }

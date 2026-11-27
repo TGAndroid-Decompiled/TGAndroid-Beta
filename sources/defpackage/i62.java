@@ -1,148 +1,200 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
+import android.text.SpannableString;
+import android.view.KeyEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Arrays;
-public final class i62 extends le8 {
-    public final s20 G;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class i62 implements p14 {
+    public final a72 a;
 
-    public i62(s20 s20Var, Context context, int i, e62 e62Var, wjb wjbVar) {
-        super(context, i, e62Var, wjbVar);
-        this.G = s20Var;
-        ((k62) s20Var.e).s.getChildCount();
+    public i62(a72 a72Var) {
+        this.a = a72Var;
     }
 
     @Override
-    public final boolean f() {
-        s49 T;
-        k62 k62Var = (k62) this.G.e;
-        rkb rkbVar = k62Var.s;
-        View F = rkbVar.F(this);
-        if (F == null) {
-            T = null;
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final void j(int i) {
+        boolean z;
+        if (i != 0) {
+            z = true;
         } else {
-            T = rkbVar.T(F);
+            z = false;
         }
-        if (T != null) {
-            int b = T.b();
-            int i = k62Var.N;
-            if (i == k62Var.K && b == (k62Var.u0 + i) - 1) {
-                return false;
-            }
+        a72 a72Var = this.a;
+        a72Var.i1 = z;
+        a72Var.b.o3.requestLayout();
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        EditTextBoldCursor editField;
+        zh8 zh8Var = this.a.h1;
+        if (zh8Var == null || (editField = zh8Var.getEditField()) == null) {
+            return false;
         }
+        editField.dispatchKeyEvent(new KeyEvent(0, 67));
         return true;
     }
 
     @Override
-    public final boolean g(le8 le8Var) {
-        s49 T;
-        int b;
-        k62 k62Var = (k62) this.G.e;
-        rkb rkbVar = k62Var.s;
-        View F = rkbVar.F(le8Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = rkbVar.T(F);
+    public final void m(String str) {
+        EditTextBoldCursor editField;
+        zh8 zh8Var = this.a.h1;
+        if (zh8Var == null || (editField = zh8Var.getEditField()) == null) {
+            return;
         }
-        if (T != null && (b = T.b()) != -1) {
-            return k62Var.M[b - k62Var.u0];
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
         }
-        return false;
+        try {
+            CharSequence m = pv3.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
+            editField.setText(editField.getText().insert(selectionEnd, m));
+            int length = selectionEnd + m.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
     }
 
     @Override
-    public final void h(py pyVar, ActionMode actionMode) {
-        k62 k62Var = (k62) this.G.e;
-        if (k62Var.n && pyVar.isFocused() && pyVar.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                mu1.x6(menu, ((mu1) k62Var.b.Z1).h, false, true, true, true);
+    public final void n() {
+        a72 a72Var = this.a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, a72Var.a, a72Var.getContext());
+        String M0 = ob6.M0(2131752033, null);
+        id idVar = alertDialog$Builder.a;
+        idVar.S = M0;
+        idVar.U = ob6.M0(2131752034, null);
+        alertDialog$Builder.j(ob6.M0(2131752064, null), new rd1(this, (byte) 20));
+        alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+        alertDialog$Builder.o();
+    }
+
+    @Override
+    public final float o() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        EditTextBoldCursor editField;
+        hm hmVar;
+        zh8 zh8Var = this.a.h1;
+        if (zh8Var == null || (editField = zh8Var.getEditField()) == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                hmVar = new hm(document, editField.getPaint().getFontMetricsInt());
+            } else {
+                hmVar = new hm(j, editField.getPaint().getFontMetricsInt());
             }
+            hmVar.cacheType = 3;
+            spannableString.setSpan(hmVar, 0, spannableString.length(), 33);
+            editField.setText(editField.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
     }
 
     @Override
-    public final void i(le8 le8Var, boolean z) {
-        s49 T;
-        int b;
-        k62 k62Var = (k62) this.G.e;
-        if (z && k62Var.d0 && !k62Var.c0) {
-            Arrays.fill(k62Var.M, false);
-            for (int i = k62Var.u0; i < k62Var.u0 + k62Var.N; i++) {
-                s49 K = k62Var.s.K(i);
-                if (K != null) {
-                    View view = K.a;
-                    if (view instanceof le8) {
-                        ((le8) view).r.a(false, true);
-                    }
-                }
-            }
-        }
-        super.i(le8Var, z);
-        rkb rkbVar = k62Var.s;
-        View F = rkbVar.F(le8Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = rkbVar.T(F);
-        }
-        if (T != null && (b = T.b()) != -1) {
-            k62Var.M[b - k62Var.u0] = z;
-        }
-        k62Var.T();
+    public final boolean z() {
+        return this.a.i1;
     }
 
     @Override
-    public final void j(boolean z) {
-        ((k62) this.G.e).b0(this, z);
+    public final void p() {
     }
 
     @Override
-    public final void k(le8 le8Var) {
-        ((k62) this.G.e).c0(le8Var);
+    public final void t() {
     }
 
     @Override
-    public final void l(py pyVar) {
-        ((k62) this.G.e).b.c1(pyVar, true);
+    public final void v() {
     }
 
     @Override
-    public final boolean m(ArrayList arrayList) {
-        k62 k62Var = (k62) this.G.e;
-        if (!arrayList.isEmpty()) {
-            k62Var.s.getClass();
-            int R = RecyclerView.R(this) - k62Var.u0;
-            if (R >= 0) {
-                py pyVar = this.d;
-                pyVar.getText().replace(pyVar.getSelectionStart(), pyVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                int i = R + 1;
-                while (!arrayList.isEmpty() && i < k62Var.K) {
-                    for (int length = k62Var.L.length - 1; length > i; length--) {
-                        CharSequence[] charSequenceArr = k62Var.L;
-                        charSequenceArr[length] = charSequenceArr[length - 1];
-                    }
-                    k62Var.L[i] = (CharSequence) arrayList.remove(0);
-                    k62Var.N++;
-                    i++;
-                }
-                k62Var.n0();
-                k62Var.l0 = (k62Var.u0 + i) - 1;
-                k62Var.s.setItemAnimator(k62Var.w);
-                k62Var.r.f();
-                return true;
-            }
-        }
-        return false;
+    public final void g(d6c d6cVar) {
     }
 
     @Override
-    public final boolean q() {
-        return ((k62) this.G.e).d0;
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, n47 n47Var, boolean z, int i) {
     }
 }

@@ -1,6 +1,18 @@
 package defpackage;
+public final class ma6 {
+    public final byte a;
+    public final long b;
 
-import org.telegram.tgnet.TLRPC;
-public interface ma6 {
-    void b(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j);
+    public ma6(int i, long j) {
+        this.a = i;
+        this.b = j;
+    }
+
+    public final boolean a() {
+        byte b = this.a;
+        if (b == 0 || b == 1) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,45 +1,170 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-public final class z37 extends zu3 {
-    public final int[] O;
-    public final j47 P;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+public final class z37 extends v55 {
+    public final byte S;
+    public final KeyEvent.Callback T;
 
-    public z37(j47 j47Var, y37 y37Var, int i) {
-        super(i, y37Var);
-        this.P = j47Var;
-        this.O = new int[2];
+    public z37(KeyEvent.Callback callback, byte b) {
+        super(true);
+        this.S = b;
+        this.T = callback;
     }
 
     @Override
-    public final void g(yu3 yu3Var) {
-        j47 j47Var = this.P;
-        f47 f47Var = j47Var.K;
-        if (yu3Var != null) {
-            if (j47Var.l0 != null) {
-                yu3Var.c = true;
-                float f = (zu3.f() * gl.p) / 1.3f;
-                float f2 = f / 3.0f;
-                yu3Var.d = f2;
-                yu3Var.e = f2;
-                yu3Var.a = Utilities.i(j47Var.l0.right - (0.75f * f), gl.q.x - f, 0.0f);
-                yu3Var.b = j47Var.l0.bottom - (f / 2.0f);
+    public final boolean A1(View view) {
+        switch (this.S) {
+            case 0:
+                if (!(view instanceof wb2)) {
+                    return false;
+                }
+                return !((wb2) view).getMessageObject().O3();
+            case 1:
+                return false;
+            default:
+                if (!(view instanceof wb2)) {
+                    return false;
+                }
+                return !((wb2) view).getMessageObject().O3();
+        }
+    }
+
+    @Override
+    public final void a0(oh2 oh2Var, c89 c89Var) {
+        switch (this.S) {
+            case 1:
+                boolean z = f11.a;
+                try {
+                    super.a0(oh2Var, c89Var);
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    hl.c3(new z96(this, (byte) 25));
+                    return;
+                }
+            default:
+                super.a0(oh2Var, c89Var);
                 return;
-            }
-            gb2 gb2Var = j47Var.Q;
-            if (gb2Var != null && gb2Var.isAttachedToWindow() && j47Var.Q.getMessageObject() != null && j47Var.Q.getMessageObject().e1() == j47Var.R) {
-                gb2 gb2Var2 = j47Var.Q;
-                int[] iArr = this.O;
-                gb2Var2.getLocationOnScreen(iArr);
-                yu3Var.c = true;
-                float f3 = (zu3.f() * gl.p) / 1.3f;
-                float f4 = f3 / 3.0f;
-                yu3Var.d = f4;
-                yu3Var.e = f4;
-                float f5 = f3 / 2.0f;
-                yu3Var.a = Utilities.i(((f47Var.getScaleX() * j47Var.Q.getTimeX()) + iArr[0]) - f5, gl.q.x - f3, 0.0f);
-                yu3Var.b = ((f47Var.getScaleY() * j47Var.Q.getTimeY()) + iArr[1]) - f5;
-            }
+        }
+    }
+
+    @Override
+    public final int j(c89 c89Var) {
+        switch (this.S) {
+            case 2:
+                return A0(c89Var);
+            default:
+                return super.j(c89Var);
+        }
+    }
+
+    @Override
+    public final int k(c89 c89Var) {
+        switch (this.S) {
+            case 2:
+                return B0(c89Var);
+            default:
+                return super.k(c89Var);
+        }
+    }
+
+    @Override
+    public final int l(c89 c89Var) {
+        switch (this.S) {
+            case 2:
+                return C0(c89Var);
+            default:
+                return super.l(c89Var);
+        }
+    }
+
+    @Override
+    public final boolean x0() {
+        switch (this.S) {
+            case 0:
+                return false;
+            case 1:
+            default:
+                return super.x0();
+            case 2:
+                return true;
+        }
+    }
+
+    @Override
+    public final boolean z1(int i) {
+        j47 d;
+        byte b;
+        byte b2;
+        byte b3;
+        byte b4 = this.S;
+        KeyEvent.Callback callback = this.T;
+        switch (b4) {
+            case 0:
+                vw7 vw7Var = (vw7) callback;
+                ArrayList arrayList = vw7Var.u0;
+                int size = (arrayList.size() - 1) - i;
+                m47 m47Var = vw7Var.v0;
+                if (m47Var != null && size >= 0 && size < arrayList.size() && (d = m47Var.d((r47) arrayList.get(size))) != null && d.a != d.b && (b = d.c) == d.d && b != 0) {
+                    int size2 = m47Var.e.size();
+                    for (int i2 = 0; i2 < size2; i2++) {
+                        j47 j47Var = (j47) m47Var.e.get(i2);
+                        if (j47Var != d) {
+                            byte b5 = j47Var.c;
+                            byte b6 = d.c;
+                            if (b5 <= b6 && j47Var.d >= b6) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            case 1:
+                m57 m57Var = (m57) callback;
+                r47 r47Var = (r47) m57Var.r.f.get(i);
+                m47 c = m57Var.c(r47Var);
+                if (c != null) {
+                    ArrayList arrayList2 = c.e;
+                    j47 d2 = c.d(r47Var);
+                    if (d2.a != d2.b && (b2 = d2.c) == d2.d && b2 != 0) {
+                        int size3 = arrayList2.size();
+                        for (int i3 = 0; i3 < size3; i3++) {
+                            j47 j47Var2 = (j47) arrayList2.get(i3);
+                            if (j47Var2 != d2) {
+                                byte b7 = j47Var2.c;
+                                byte b8 = d2.c;
+                                if (b7 <= b8 && j47Var2.d >= b8) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
+            default:
+                q67 q67Var = (q67) callback;
+                r47 r47Var2 = (r47) q67Var.N.get((A() - 1) - i);
+                m47 j = q67Var.j(r47Var2);
+                if (j != null) {
+                    ArrayList arrayList3 = j.e;
+                    j47 d3 = j.d(r47Var2);
+                    if (d3.a != d3.b && (b3 = d3.c) == d3.d && b3 != 0) {
+                        int size4 = arrayList3.size();
+                        for (int i4 = 0; i4 < size4; i4++) {
+                            j47 j47Var3 = (j47) arrayList3.get(i4);
+                            if (j47Var3 != d3) {
+                                byte b9 = j47Var3.c;
+                                byte b10 = d3.c;
+                                if (b9 <= b10 && j47Var3.d >= b10) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return false;
         }
     }
 }

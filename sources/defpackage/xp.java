@@ -1,12 +1,20 @@
 package defpackage;
 
-import android.content.res.Resources;
-import android.widget.ThemedSpinnerAdapter;
-import j$.util.Objects;
+import android.view.View;
 public abstract class xp {
-    public static void a(ThemedSpinnerAdapter themedSpinnerAdapter, Resources.Theme theme) {
-        if (!Objects.equals(themedSpinnerAdapter.getDropDownViewTheme(), theme)) {
-            themedSpinnerAdapter.setDropDownViewTheme(theme);
-        }
+    public static int a(View view) {
+        return view.getTextAlignment();
+    }
+
+    public static int b(View view) {
+        return view.getTextDirection();
+    }
+
+    public static void c(View view, int i) {
+        view.setTextAlignment(i);
+    }
+
+    public static void d(View view, int i) {
+        view.setTextDirection(i);
     }
 }

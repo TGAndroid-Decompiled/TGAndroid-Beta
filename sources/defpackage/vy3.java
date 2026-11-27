@@ -1,28 +1,18 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class vy3 extends FrameLayout {
-    public final t14 a;
+import android.view.MotionEvent;
+public final class vy3 extends uy3 {
+    public final wy3 P;
 
-    public vy3(t14 t14Var, Context context) {
-        super(context);
-        this.a = t14Var;
+    public vy3(wy3 wy3Var, Context context, int i) {
+        super(wy3Var.s, context, i);
+        this.P = wy3Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        t14 t14Var = this.a;
-        yy3 yy3Var = t14Var.p0;
-        if (view == t14Var.i0) {
-            canvas.save();
-            canvas.clipRect(0.0f, yy3Var.getY() + yy3Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.P.d(motionEvent);
+        return super.onTouchEvent(motionEvent);
     }
 }

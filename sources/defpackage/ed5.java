@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class ed5 {
+public final class ed5 {
+    public int[] a;
+    public float[] b;
 }

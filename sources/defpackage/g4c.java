@@ -1,56 +1,24 @@
 package defpackage;
+public final class g4c implements ez5, dz5 {
+    public final a5c a;
+    public final r47 b;
+    public final v11 c;
+    public final zo2 d;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class g4c extends URLSpan {
-    public final boolean a;
-    public final vib b;
-    public TLObject c;
-    public String d;
-
-    public g4c(String str, vib vibVar) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.a = false;
-        this.b = vibVar;
+    public g4c(a5c a5cVar, r47 r47Var, v11 v11Var, zo2 zo2Var) {
+        this.a = a5cVar;
+        this.b = r47Var;
+        this.c = v11Var;
+        this.d = zo2Var;
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            d01.q(view.getContext(), Uri.parse("https://t.me/".concat(url.substring(1))), true, true);
-            return;
-        }
-        d01.t(view.getContext(), url);
+    public final void a(String str) {
+        hl.c3(new uwa(this.a, this.b, str, this.c, this.d, (byte) 8));
     }
 
     @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z;
-        int i = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        vib vibVar = this.b;
-        if (vibVar != null) {
-            vibVar.a(textPaint);
-        }
-        if (i == color && !this.a) {
-            z = true;
-        } else {
-            z = false;
-        }
-        textPaint.setUnderlineText(z);
-    }
-
-    public g4c(String str, int i) {
-        this(str, (vib) null);
-        this.a = true;
-    }
-
-    public g4c(String str) {
-        this(str, (vib) null);
+    public final void l(Exception exc) {
+        hl.c3(new kta(this.a, this.b, this.c, this.d, (byte) 16));
     }
 }

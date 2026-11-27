@@ -1,17 +1,22 @@
 package defpackage;
-public final class npd implements zn7 {
-    public static final npd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class npd extends rre {
+    public final TaskCompletionSource b;
+    public final uqd c;
+
+    public npd(TaskCompletionSource taskCompletionSource, uqd uqdVar) {
+        this.b = taskCompletionSource;
+        this.c = uqdVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void t(mae maeVar) {
+        vze.a(maeVar.a, null, this.b);
+    }
+
+    @Override
+    public final void zze() {
+        this.c.T();
     }
 }

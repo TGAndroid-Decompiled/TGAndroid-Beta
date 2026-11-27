@@ -1,17 +1,14 @@
 package defpackage;
-public final class cue implements zn7 {
-    public static final cue a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.math.RoundingMode;
+public abstract class cue {
+    public static int a(long j, long j2) {
+        if (j > 0 && j2 > 0) {
+            long b0 = gcc.b0(j, 8000000L, j2, RoundingMode.HALF_UP);
+            if (b0 > 0 && b0 <= 2147483647L) {
+                return (int) b0;
+            }
         }
-        throw new ClassCastException();
+        return -2147483647;
     }
 }

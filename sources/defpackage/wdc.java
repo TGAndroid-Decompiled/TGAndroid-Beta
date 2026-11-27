@@ -1,8 +1,15 @@
 package defpackage;
-
-import java.util.ArrayList;
 public final class wdc {
-    public udc b;
-    public final ArrayList a = new ArrayList();
-    public final vdc c = new Object();
+    public final byte a;
+    public final byte b;
+
+    public wdc(int i) {
+        this.a = (byte) (i & 224);
+        this.b = (byte) (i & 31);
+    }
+
+    public wdc(int i, int i2) {
+        this.a = i;
+        this.b = i2;
+    }
 }

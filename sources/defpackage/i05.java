@@ -1,92 +1,194 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Wallet.b;
-import org.telegram.ui.Wallet.c;
-public final class i05 implements k8c {
-    public final c a;
-    public final hn1 b;
-    public final z3a c;
-    public final k27 d;
-    public final TL_wallet.walletTransaction e;
-    public final String f;
-    public final b g;
-    public final long h;
-    public final TLRPC.User i;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.util.Log;
+import android.util.TypedValue;
+import com.google.android.gms.common.api.GoogleApiActivity;
+public final class i05 extends j05 {
+    public static final Object d = new Object();
+    public static final i05 e = new Object();
+    public qa4 c;
 
-    public i05(c cVar, hn1 hn1Var, z3a z3aVar, k27 k27Var, TL_wallet.walletTransaction wallettransaction, String str, b bVar, long j, TLRPC.User user) {
-        this.a = cVar;
-        this.b = hn1Var;
-        this.c = z3aVar;
-        this.d = k27Var;
-        this.e = wallettransaction;
-        this.f = str;
-        this.g = bVar;
-        this.h = j;
-        this.i = user;
+    public static AlertDialog e(Activity activity, int i, k7d k7dVar, DialogInterface.OnCancelListener onCancelListener) {
+        AlertDialog.Builder builder = null;
+        if (i == 0) {
+            return null;
+        }
+        TypedValue typedValue = new TypedValue();
+        activity.getTheme().resolveAttribute(16843529, typedValue, true);
+        if ("Theme.Dialog.Alert".equals(activity.getResources().getResourceEntryName(typedValue.resourceId))) {
+            builder = new AlertDialog.Builder(activity, 5);
+        }
+        if (builder == null) {
+            builder = new AlertDialog.Builder(activity);
+        }
+        builder.setMessage(g7d.b(activity, i));
+        builder.setOnCancelListener(onCancelListener);
+        String c = g7d.c(activity, i);
+        if (c != null) {
+            builder.setPositiveButton(c, k7dVar);
+        }
+        String a = g7d.a(activity, i);
+        if (a != null) {
+            builder.setTitle(a);
+        }
+        Log.w("GoogleApiAvailability", uh9.k(i, "Creating dialog for Google Play services availability issue. ConnectionResult="), new IllegalArgumentException());
+        return builder.create();
+    }
+
+    public static void h(Activity activity, AlertDialog alertDialog, String str, DialogInterface.OnCancelListener onCancelListener) {
+        try {
+            if (activity instanceof jp4) {
+                lq4 u = ((jp4) activity).u();
+                qfb qfbVar = new qfb();
+                xve.i(alertDialog, "Cannot display null dialog");
+                alertDialog.setOnCancelListener(null);
+                alertDialog.setOnDismissListener(null);
+                qfbVar.B0 = alertDialog;
+                qfbVar.C0 = onCancelListener;
+                qfbVar.y0 = false;
+                qfbVar.z0 = true;
+                u.getClass();
+                kd0 kd0Var = new kd0(u);
+                kd0Var.o = true;
+                kd0Var.f(0, qfbVar, str);
+                kd0Var.e(false, true);
+                return;
+            }
+        } catch (NoClassDefFoundError unused) {
+        }
+        FragmentManager fragmentManager = activity.getFragmentManager();
+        ?? dialogFragment = new DialogFragment();
+        xve.i(alertDialog, "Cannot display null dialog");
+        alertDialog.setOnCancelListener(null);
+        alertDialog.setOnDismissListener(null);
+        dialogFragment.a = alertDialog;
+        dialogFragment.b = onCancelListener;
+        dialogFragment.show(fragmentManager, str);
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3) {
-        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
-        String str = (String) obj2;
-        String str2 = (String) obj3;
-        c cVar = this.a;
-        int i = cVar.a;
-        hn1 hn1Var = this.b;
-        z3a z3aVar = this.c;
-        k27 k27Var = this.d;
-        if (sendtransfer == null) {
-            hn1Var.run();
-            z3aVar.k(k27Var, null, false);
-            if (str2 == null) {
-                str2 = "NULL_ERROR";
-            }
-            c.m("failed sending: ".concat(str2));
+    public final Intent a(int i, Context context, String str) {
+        return super.a(i, context, str);
+    }
+
+    @Override
+    public final int b(Context context) {
+        return super.c(context, j05.a);
+    }
+
+    public final void d(GoogleApiActivity googleApiActivity, int i, GoogleApiActivity googleApiActivity2) {
+        AlertDialog e2 = e(googleApiActivity, i, new k7d(super.a(i, googleApiActivity, "d"), googleApiActivity, (byte) 0), googleApiActivity2);
+        if (e2 == null) {
             return;
         }
-        TL_wallet.walletTransaction wallettransaction = this.e;
-        boolean z = true;
-        if (str != null) {
-            wallettransaction.comment = str;
-            wallettransaction.comment_encrypted = true;
+        h(googleApiActivity, e2, "GooglePlayServicesErrorDialog", googleApiActivity2);
+    }
+
+    public final void f(Activity activity, g36 g36Var, int i, DialogInterface.OnCancelListener onCancelListener) {
+        AlertDialog e2 = e(activity, i, new k7d(super.a(i, activity, "d"), g36Var, (byte) 1), onCancelListener);
+        if (e2 == null) {
+            return;
         }
-        if (c.b(cVar.x(), this.f)) {
-            sendtransfer.data_gasless = null;
-        }
-        wallettransaction.comment_encrypted_preparing = false;
-        String str3 = wallettransaction.comment;
-        boolean z2 = wallettransaction.comment_encrypted;
-        if (k27Var != null) {
-            TLRPC.MessageAction messageAction = k27Var.k.action;
-            if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
-                TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
-                tL_messageActionGramTransfer.comment = str3;
-                tL_messageActionGramTransfer.comment_encrypted = z2;
-                tL_messageActionGramTransfer.comment_encrypted_preparing = false;
-                k27Var.M1 = true;
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(k27Var.k);
-                z3aVar.getMessagesStorage().g1(arrayList, false, true, false, 0, false, 0, 0L);
-                z3aVar.getNotificationCenter().k(kk7.l0, Long.valueOf(k27.B0(k27Var.k)), tb4.t(k27Var));
+        h(activity, e2, "GooglePlayServicesErrorDialog", onCancelListener);
+    }
+
+    public final void g(Context context, int i, PendingIntent pendingIntent) {
+        String a;
+        String e2;
+        int i2;
+        Log.w("GoogleApiAvailability", qd4.n(i, "GMS core API Availability. ConnectionResult=", ", tag=null"), new IllegalArgumentException());
+        if (i == 18) {
+            new c7d(this, context).sendEmptyMessageDelayed(1, 120000L);
+        } else if (pendingIntent == null) {
+            if (i == 6) {
+                Log.w("GoogleApiAvailability", "Missing resolution for ConnectionResult.RESOLUTION_REQUIRED. Call GoogleApiAvailability#showErrorNotification(Context, ConnectionResult) instead.");
             }
+        } else {
+            if (i == 6) {
+                a = g7d.f(context, "common_google_play_services_resolution_required_title");
+            } else {
+                a = g7d.a(context, i);
+            }
+            if (a == null) {
+                a = context.getResources().getString(2131689566);
+            }
+            if (i != 6 && i != 19) {
+                e2 = g7d.b(context, i);
+            } else {
+                e2 = g7d.e(context, "common_google_play_services_resolution_required_text", g7d.d(context));
+            }
+            Resources resources = context.getResources();
+            Object systemService = context.getSystemService("notification");
+            xve.h(systemService);
+            NotificationManager notificationManager = (NotificationManager) systemService;
+            wn7 wn7Var = new wn7(context, null);
+            wn7Var.t = true;
+            wn7Var.f(16, true);
+            wn7Var.e = wn7.c(a);
+            rn7 rn7Var = new rn7((byte) 0);
+            rn7Var.f = wn7.c(e2);
+            wn7Var.i(rn7Var);
+            PackageManager packageManager = context.getPackageManager();
+            Boolean bool = die.a;
+            if (bool == null) {
+                bool = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+                die.a = bool;
+            }
+            int i3 = 17301642;
+            if (bool.booleanValue()) {
+                int i4 = context.getApplicationInfo().icon;
+                if (i4 != 0) {
+                    i3 = i4;
+                }
+                wn7Var.F.icon = i3;
+                wn7Var.j = 2;
+                if (die.a(context)) {
+                    wn7Var.a(2131231011, pendingIntent, resources.getString(2131689574));
+                } else {
+                    wn7Var.g = pendingIntent;
+                }
+            } else {
+                wn7Var.F.icon = 17301642;
+                wn7Var.k(resources.getString(2131689566));
+                wn7Var.F.when = System.currentTimeMillis();
+                wn7Var.g = pendingIntent;
+                wn7Var.d(e2);
+            }
+            if (rve.a()) {
+                xve.k(rve.a());
+                synchronized (d) {
+                }
+                NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
+                String string = context.getResources().getString(2131689565);
+                if (notificationChannel == null) {
+                    notificationManager.createNotificationChannel(new NotificationChannel("com.google.android.gms.availability", string, 4));
+                } else if (!string.contentEquals(notificationChannel.getName())) {
+                    notificationChannel.setName(string);
+                    notificationManager.createNotificationChannel(notificationChannel);
+                }
+                wn7Var.y = "com.google.android.gms.availability";
+            }
+            Notification b = wn7Var.b();
+            if (i != 1 && i != 2 && i != 3) {
+                i2 = 39789;
+            } else {
+                c15.a.set(false);
+                i2 = 10436;
+            }
+            notificationManager.notify(i2, b);
         }
-        if (sendtransfer.data_gasless == null) {
-            z = false;
-        }
-        wallettransaction.gasless = z;
-        wallettransaction.gaslessMessageBodyHash = sendtransfer.gaslessMessageBodyHash;
-        wallettransaction.normalMessageBodyHash = sendtransfer.normalMessageBodyHash;
-        b bVar = this.g;
-        bVar.k();
-        bVar.i();
-        sendtransfer.random_id = this.h;
-        sendtransfer.user_id = na7.q1(i).o1(this.i);
-        cVar.Z();
-        c.O("prepared sendTransfer, sending");
-        ConnectionsManager.getInstance(i).sendRequestTyped(sendtransfer, new hc((byte) 0), new jl1(cVar, wallettransaction, z3aVar, k27Var, hn1Var, (byte) 4));
     }
 }

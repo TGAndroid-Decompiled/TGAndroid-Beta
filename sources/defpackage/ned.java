@@ -1,140 +1,116 @@
 package defpackage;
 
-import j$.lang.Iterable$CC;
-import j$.util.Collection;
-import j$.util.Spliterator;
-import j$.util.Spliterators;
-import j$.util.stream.Stream;
-import java.io.Serializable;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Spliterator;
-import java.util.function.Consumer;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-public abstract class ned extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] a = new Object[0];
+import android.os.Looper;
+import java.util.Locale;
+public final class ned {
+    public static final Object i = new Object();
+    public final he6 a;
+    public final int b;
+    public final String c;
+    public ydd g;
+    public bva h;
+    public long e = -1;
+    public long f = 0;
+    public final b99 d = new b99(Looper.getMainLooper(), (byte) 3);
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
+    public ned(long j, String str) {
+        this.b = (int) j;
+        this.c = str;
+        this.a = new he6("RequestTracker", str);
     }
 
-    @Override
-    public final boolean addAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void forEach(Consumer consumer) {
-        Iterable$CC.$default$forEach(this, consumer);
-    }
-
-    public abstract int h(Object[] objArr);
-
-    public int i() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int j() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract efd k();
-
-    public abstract boolean l();
-
-    public Object[] m() {
-        return null;
-    }
-
-    @Override
-    public final Stream parallelStream() {
-        return Stream.Wrapper.convert(parallelStream());
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean removeIf(Predicate predicate) {
-        return Collection.CC.$default$removeIf(this, predicate);
-    }
-
-    @Override
-    public final boolean retainAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Spliterator spliterator() {
-        return Spliterator.Wrapper.convert(spliterator());
-    }
-
-    @Override
-    public final java.util.stream.Stream stream() {
-        return Stream.Wrapper.convert(stream());
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] m = m();
-            if (m == null) {
-                if (length != 0) {
-                    objArr = Arrays.copyOf(objArr, 0);
-                }
-                objArr = Arrays.copyOf(objArr, size);
-            } else {
-                return Arrays.copyOfRange(m, j(), i(), objArr.getClass());
-            }
-        } else if (length > size) {
-            objArr[size] = null;
+    public final void a(long j, ydd yddVar) {
+        ydd yddVar2;
+        long j2;
+        long j3;
+        long currentTimeMillis = System.currentTimeMillis();
+        Object obj = i;
+        synchronized (obj) {
+            yddVar2 = this.g;
+            j2 = this.e;
+            j3 = this.f;
+            this.e = j;
+            this.g = yddVar;
+            this.f = currentTimeMillis;
         }
-        h(objArr);
-        return objArr;
+        if (yddVar2 != null) {
+            yddVar2.t0(this.c, j2, j3, currentTimeMillis);
+        }
+        synchronized (obj) {
+            bva bvaVar = this.h;
+            if (bvaVar != null) {
+                this.d.removeCallbacks(bvaVar);
+            }
+            bva bvaVar2 = new bva(this, (byte) 26);
+            this.h = bvaVar2;
+            this.d.postDelayed(bvaVar2, this.b);
+        }
     }
 
-    @Override
-    public final j$.util.stream.Stream parallelStream() {
-        return Collection.CC.$default$parallelStream(this);
+    public final void b(long j, int i2, kdd kddVar) {
+        synchronized (i) {
+            if (c(j)) {
+                Locale locale = Locale.ROOT;
+                e(i2, kddVar, "request " + j + " completed");
+            }
+        }
     }
 
-    @Override
-    public final j$.util.Spliterator spliterator() {
-        return Spliterators.spliterator(this, 1296);
+    public final boolean c(long j) {
+        boolean z;
+        synchronized (i) {
+            long j2 = this.e;
+            z = false;
+            if (j2 != -1 && j2 == j) {
+                z = true;
+            }
+        }
+        return z;
     }
 
-    @Override
-    public final j$.util.stream.Stream stream() {
-        return Collection.CC.$default$stream(this);
+    public final boolean d() {
+        boolean z;
+        synchronized (i) {
+            if (this.e != -1) {
+                z = true;
+            } else {
+                z = false;
+            }
+        }
+        return z;
     }
 
-    @Override
-    public final Object[] toArray() {
-        return toArray(a);
+    public final void e(int i2, kdd kddVar, String str) {
+        this.a.b(str, new Object[0]);
+        Object obj = i;
+        synchronized (obj) {
+            if (this.g != null) {
+                long currentTimeMillis = System.currentTimeMillis();
+                ydd yddVar = this.g;
+                xve.h(yddVar);
+                yddVar.b0(this.c, this.e, i2, kddVar, this.f, currentTimeMillis);
+            }
+            this.e = -1L;
+            this.g = null;
+            synchronized (obj) {
+                bva bvaVar = this.h;
+                if (bvaVar != null) {
+                    this.d.removeCallbacks(bvaVar);
+                    this.h = null;
+                }
+            }
+        }
     }
 
-    @Override
-    public final Object[] toArray(IntFunction intFunction) {
-        Object[] array;
-        array = toArray((Object[]) intFunction.apply(0));
-        return array;
+    public final boolean f(int i2) {
+        synchronized (i) {
+            if (d()) {
+                Locale locale = Locale.ROOT;
+                long j = this.e;
+                e(i2, null, "clearing request " + j);
+                return true;
+            }
+            return false;
+        }
     }
 }

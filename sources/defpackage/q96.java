@@ -1,31 +1,48 @@
 package defpackage;
+public final class q96 extends r96 implements f36 {
+    public final i36 e;
+    public final qj7 f;
 
-import android.util.SparseArray;
-import j$.util.Comparator$CC;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-public final class q96 {
-    public SparseArray a;
+    public q96(qj7 qj7Var, i36 i36Var, cr7 cr7Var) {
+        super(qj7Var, cr7Var);
+        this.f = qj7Var;
+        this.e = i36Var;
+    }
 
-    public final void a(HashMap hashMap) {
-        if (this.a == null) {
-            this.a = new SparseArray(hashMap.size());
-            ArrayList arrayList = new ArrayList(hashMap.entrySet());
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new mm((byte) 6)));
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                Map.Entry entry = (Map.Entry) obj;
-                this.a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
-            }
+    @Override
+    public final void b(i36 i36Var, y26 y26Var) {
+        i36 i36Var2 = this.e;
+        z26 z26Var = i36Var2.m().b;
+        if (z26Var == z26.a) {
+            this.f.h(this.a);
             return;
         }
-        for (Map.Entry entry2 : hashMap.entrySet()) {
-            this.a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
+        z26 z26Var2 = null;
+        while (z26Var2 != z26Var) {
+            a(e());
+            z26Var2 = z26Var;
+            z26Var = i36Var2.m().b;
         }
+    }
+
+    @Override
+    public final void c() {
+        this.e.m().b(this);
+    }
+
+    @Override
+    public final boolean d(i36 i36Var) {
+        if (this.e == i36Var) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean e() {
+        if (this.e.m().b.compareTo(z26.d) >= 0) {
+            return true;
+        }
+        return false;
     }
 }

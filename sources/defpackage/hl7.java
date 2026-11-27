@@ -1,18 +1,26 @@
 package defpackage;
 
-import android.app.Notification;
-import android.app.RemoteInput;
-import android.os.Bundle;
-public abstract class hl7 {
-    public static Notification.Action.Builder a(Notification.Action.Builder builder, Bundle bundle) {
-        return builder.addExtras(bundle);
+import android.telephony.TelephonyCallback;
+import android.telephony.TelephonyDisplayInfo;
+public final class hl7 extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
+    public final yv2 a;
+
+    public hl7(yv2 yv2Var) {
+        this.a = yv2Var;
     }
 
-    public static Notification.Action.Builder b(Notification.Action.Builder builder, RemoteInput remoteInput) {
-        return builder.addRemoteInput(remoteInput);
-    }
-
-    public static Notification.Action c(Notification.Action.Builder builder) {
-        return builder.build();
+    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
+        boolean z;
+        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
+        int i = 5;
+        if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
+            z = false;
+        } else {
+            z = true;
+        }
+        if (z) {
+            i = 10;
+        }
+        this.a.i(i);
     }
 }

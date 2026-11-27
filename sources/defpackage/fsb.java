@@ -1,40 +1,63 @@
 package defpackage;
-public enum fsb extends qsb {
-    public fsb() {
-        super("AfterDoctypeSystemKeyword", 60);
+
+import android.graphics.RectF;
+import java.util.ArrayList;
+public final class fsb {
+    public int a;
+    public boolean b;
+    public isb c;
+    public String d;
+    public long e;
+    public long f;
+    public float g;
+    public float h;
+    public float i;
+    public final RectF j = new RectF();
+    public final mm k;
+    public final ksb l;
+
+    public fsb(ksb ksbVar) {
+        this.l = ksbVar;
+        this.k = new mm(360L, ksbVar, k43.h);
     }
 
-    @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
-            if (d != '\"') {
-                if (d != '\'') {
-                    lqb lqbVar = qsb.a;
-                    if (d != '>') {
-                        if (d != 65535) {
-                            aqbVar.m(this);
-                            aqbVar.j();
-                            return;
-                        }
-                        aqbVar.l(this);
-                        aqbVar.j();
-                        aqbVar.c = lqbVar;
-                        return;
-                    }
-                    aqbVar.m(this);
-                    aqbVar.j();
-                    aqbVar.c = lqbVar;
+    public final void a(boolean z) {
+        ksb ksbVar = this.l;
+        if (ksbVar.getMeasuredWidth() > 0) {
+            isb isbVar = this.c;
+            if (isbVar != null) {
+                if (z) {
+                    isbVar.a();
+                    this.c = null;
+                } else {
                     return;
                 }
-                aqbVar.m(this);
-                aqbVar.c = qsb.B0;
+            }
+            Long l = null;
+            boolean z2 = this.b;
+            String str = this.d;
+            int i = ksbVar.w1;
+            int i2 = ksbVar.z1;
+            int i3 = (i - i2) - i2;
+            int L = hl.L(38.0f);
+            long j = this.e;
+            if (j > 2) {
+                l = Long.valueOf(j);
+            }
+            this.c = new isb(ksbVar, z2, str, i3, L, l, ksbVar.getMaxScrollDuration(), ksbVar.a1, ksbVar.b1, new s8b(this, (byte) 25));
+        }
+    }
+
+    public final void b() {
+        ksb ksbVar = this.l;
+        ArrayList arrayList = ksbVar.r;
+        int i = this.a;
+        if (i >= 0 && i < arrayList.size()) {
+            dsb dsbVar = (dsb) arrayList.get(this.a);
+            if (ksbVar.getMeasuredWidth() <= 0 || dsbVar != null) {
                 return;
             }
-            aqbVar.m(this);
-            aqbVar.c = qsb.A0;
-            return;
+            arrayList.set(this.a, new dsb(ksbVar, this.d, (ksbVar.getMeasuredWidth() - ksbVar.getPaddingLeft()) - ksbVar.getPaddingRight()));
         }
-        aqbVar.c = qsb.z0;
     }
 }

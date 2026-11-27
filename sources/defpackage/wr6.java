@@ -1,174 +1,88 @@
 package defpackage;
 
-import android.os.Looper;
-import android.util.SparseIntArray;
-import com.google.android.gms.cast.MediaInfo;
-import com.google.android.gms.common.api.internal.BasePendingResult;
-import j$.util.DesugarCollections;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-public final class wr6 {
-    public long b;
-    public final i69 c;
-    public final dbf f;
-    public BasePendingResult k;
-    public BasePendingResult l;
-    public final Set m = DesugarCollections.synchronizedSet(new HashSet());
-    public final dc6 a = new dc6("MediaQueue", null);
-    public ArrayList d = new ArrayList();
-    public final SparseIntArray e = new SparseIntArray();
-    public final ArrayList g = new ArrayList();
-    public final ArrayDeque h = new ArrayDeque(20);
-    public final o59 i = new o59(Looper.getMainLooper(), (byte) 3);
-    public final aw3 j = new aw3(this, (byte) 4);
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLRPC;
+public final class wr6 implements Runnable {
+    public final byte a;
+    public final boolean b;
+    public final byte c;
+    public final Object d;
 
-    public wr6(i69 i69Var) {
-        this.c = i69Var;
-        i69Var.p(new cbf(this, (byte) 1));
-        this.f = new dbf(this);
-        this.b = d();
-        c();
+    public wr6(dw9 dw9Var, int i, boolean z) {
+        this.a = (byte) 2;
+        this.d = dw9Var;
+        this.c = i;
+        this.b = z;
     }
 
-    public static void a(wr6 wr6Var) {
-        SparseIntArray sparseIntArray = wr6Var.e;
-        sparseIntArray.clear();
-        for (int i = 0; i < wr6Var.d.size(); i++) {
-            sparseIntArray.put(((Integer) wr6Var.d.get(i)).intValue(), i);
-        }
-    }
-
-    public final void b() {
-        h();
-        this.d.clear();
-        this.e.clear();
-        this.f.evictAll();
-        this.g.clear();
-        this.i.removeCallbacks(this.j);
-        this.h.clear();
-        BasePendingResult basePendingResult = this.l;
-        if (basePendingResult != null) {
-            basePendingResult.c();
-            this.l = null;
-        }
-        BasePendingResult basePendingResult2 = this.k;
-        if (basePendingResult2 != null) {
-            basePendingResult2.c();
-            this.k = null;
-        }
-        f();
-        e();
-    }
-
-    public final void c() {
-        BasePendingResult basePendingResult;
-        BasePendingResult basePendingResult2;
-        fre.e("Must be called from the main thread.");
-        if (this.b != 0 && (basePendingResult = this.l) == null) {
-            if (basePendingResult != null) {
-                basePendingResult.c();
-                this.l = null;
-            }
-            BasePendingResult basePendingResult3 = this.k;
-            if (basePendingResult3 != null) {
-                basePendingResult3.c();
-                this.k = null;
-            }
-            i69 i69Var = this.c;
-            i69Var.getClass();
-            fre.e("Must be called from the main thread.");
-            if (!i69Var.w()) {
-                basePendingResult2 = i69.t();
-            } else {
-                x5d x5dVar = new x5d(i69Var);
-                i69.x(x5dVar);
-                basePendingResult2 = x5dVar;
-            }
-            this.l = basePendingResult2;
-            basePendingResult2.i(new k5f(this, (byte) 0));
-        }
-    }
-
-    public final long d() {
+    @Override
+    public final void run() {
         int i;
-        fy6 e = this.c.e();
-        if (e != null) {
-            MediaInfo mediaInfo = e.a;
-            if (mediaInfo == null) {
-                i = -1;
-            } else {
-                i = mediaInfo.b;
-            }
-            int i2 = e.e;
-            int i3 = e.f;
-            int i4 = e.x;
-            if (i2 == 1) {
-                if (i3 != 1) {
-                    if (i3 != 2) {
-                        if (i3 != 3) {
-                            return 0L;
+        NativeByteBuffer byteBufferValue;
+        byte b = this.a;
+        boolean z = this.b;
+        byte b2 = this.c;
+        Object obj = this.d;
+        switch (b) {
+            case 0:
+                ls6 ls6Var = (ls6) obj;
+                if (z) {
+                    i = 2;
+                } else {
+                    i = 3;
+                    if (b2 != 0) {
+                        if (b2 == 1) {
+                            i = 4;
+                        } else if (b2 == 3) {
+                            i = 6;
+                        } else {
+                            i = 7;
+                            if (b2 != 5) {
+                                if (b2 == 7) {
+                                    i = 8;
+                                } else {
+                                    i = 5;
+                                }
+                            }
                         }
-                    } else if (i != 2) {
-                        return 0L;
                     }
                 }
-                if (i4 == 0) {
-                    return 0L;
+                try {
+                    SQLiteCursor queryFinalized = ls6Var.getMessagesStorage().b.queryFinalized("SELECT document FROM web_recent_v3 WHERE type = " + i + " ORDER BY date DESC", new Object[0]);
+                    ArrayList arrayList = new ArrayList();
+                    while (queryFinalized.next()) {
+                        if (!queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
+                            TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                            if (TLdeserialize != null) {
+                                arrayList.add(TLdeserialize);
+                            }
+                            byteBufferValue.reuse();
+                        }
+                    }
+                    queryFinalized.dispose();
+                    hl.c3(new cs6(ls6Var, z, arrayList, b2));
+                    return;
+                } catch (Throwable th) {
+                    ls6Var.getMessagesStorage().n(th, true);
+                    return;
                 }
-            }
-            return e.b;
-        }
-        return 0L;
-    }
-
-    public final void e() {
-        synchronized (this.m) {
-            Iterator it = this.m.iterator();
-            if (it.hasNext()) {
-                if (it.next() == null) {
-                    throw null;
-                }
-                throw new ClassCastException();
-            }
-        }
-    }
-
-    public final void f() {
-        synchronized (this.m) {
-            Iterator it = this.m.iterator();
-            if (it.hasNext()) {
-                if (it.next() == null) {
-                    throw null;
-                }
-                throw new ClassCastException();
-            }
+            case 1:
+                ((pd8) obj).a.b.M2(b2, z);
+                return;
+            default:
+                dw9 dw9Var = (dw9) obj;
+                dw9Var.o = null;
+                dw9Var.c(b2, z, true);
+                return;
         }
     }
 
-    public final void g() {
-        synchronized (this.m) {
-            Iterator it = this.m.iterator();
-            if (it.hasNext()) {
-                if (it.next() == null) {
-                    throw null;
-                }
-                throw new ClassCastException();
-            }
-        }
-    }
-
-    public final void h() {
-        synchronized (this.m) {
-            Iterator it = this.m.iterator();
-            if (it.hasNext()) {
-                if (it.next() == null) {
-                    throw null;
-                }
-                throw new ClassCastException();
-            }
-        }
+    public wr6(Object obj, boolean z, int i, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = z;
+        this.c = i;
     }
 }

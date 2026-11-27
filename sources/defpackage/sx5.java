@@ -1,28 +1,28 @@
 package defpackage;
+public final class sx5 {
+    public static final sx5 a;
+    public static final sx5 b;
+    public static final sx5 c;
+    public static final sx5 d;
+    public static final sx5[] e;
 
-import org.telegram.tgnet.TLObject;
-public final class sx5 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
-
-    public sx5(byte b, Object obj, Object obj2, TLObject tLObject) {
-        this.a = b;
-        this.b = obj;
-        this.d = tLObject;
-        this.c = obj2;
+    static {
+        ?? r0 = new Enum("STATE_FULLY_HIDDEN", 0);
+        a = r0;
+        ?? r1 = new Enum("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
+        b = r1;
+        ?? r3 = new Enum("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
+        c = r3;
+        ?? r5 = new Enum("STATE_FULLY_VISIBLE", 3);
+        d = r5;
+        e = new sx5[]{r0, r1, r3, r5};
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sx5.run():void");
+    public static sx5 valueOf(String str) {
+        return (sx5) Enum.valueOf(sx5.class, str);
     }
 
-    public sx5(Object obj, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
+    public static sx5[] values() {
+        return (sx5[]) e.clone();
     }
 }

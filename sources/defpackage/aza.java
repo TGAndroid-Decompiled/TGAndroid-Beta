@@ -1,51 +1,92 @@
 package defpackage;
 
 import android.content.Context;
-public final class aza extends be0 implements gk7 {
-    public final int H;
-    public int I;
-    public String J;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_stars;
+public final class aza extends a8c {
+    public static final int b = 0;
 
-    public aza(Context context, int i) {
-        super(context);
-        this.J = "tg_placeholders_android";
-        this.H = i;
+    static {
+        a8c.h(new a8c());
+    }
+
+    public static b8c i(int i, int i2, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
+        String e;
+        b8c K = b8c.K(aza.class);
+        K.d = i;
+        K.A = i2;
+        long j = tL_starsTopupOption.stars;
+        K.C = j;
+        K.m = ob6.H(' ', "StarsCount", (int) j);
+        if (tL_starsTopupOption.loadingStorePrice) {
+            e = null;
+        } else {
+            e = di0.h().e(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
+        }
+        K.n = e;
+        K.H = tL_starsTopupOption;
+        return K;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.x0) {
-            if (this.J.equals((String) objArr[0])) {
-                u();
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        float f;
+        bza bzaVar = (bza) view;
+        int i = b8cVar.A;
+        CharSequence charSequence = b8cVar.m;
+        CharSequence charSequence2 = b8cVar.n;
+        in inVar = bzaVar.e;
+        TextView textView = bzaVar.d;
+        boolean equals = TextUtils.equals(textView.getText(), charSequence);
+        bzaVar.n = i;
+        if (!equals) {
+            bzaVar.r.e(true, i);
+        }
+        textView.setText(charSequence);
+        if (charSequence2 == null) {
+            if (bzaVar.f == null) {
+                SpannableString spannableString = new SpannableString("x");
+                bzaVar.f = spannableString;
+                spannableString.setSpan(new ya6(hl.L(55.0f), inVar), 0, bzaVar.f.length(), 33);
             }
+            charSequence2 = bzaVar.f;
         }
+        inVar.setText(charSequence2);
+        if (ob6.a0) {
+            f = -1.0f;
+        } else {
+            f = 1.0f;
+        }
+        if (equals) {
+            textView.animate().translationX(f * (i - 1) * hl.L(2.66f)).setDuration(320L).setInterpolator(k43.h).start();
+        } else {
+            textView.setTranslationX(f * (i - 1) * hl.L(2.66f));
+        }
+        bzaVar.h = z;
+        bzaVar.invalidate();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        u();
-        kk7.f(this.H).b(this, kk7.x0);
+    public final boolean c(b8c b8cVar, b8c b8cVar2) {
+        if (b8cVar.A == b8cVar2.A && b8cVar.d == b8cVar2.d && TextUtils.equals(b8cVar.n, b8cVar2.n)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        kk7.f(this.H).n(this, kk7.x0);
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new bza(context, vnbVar);
     }
 
-    public void setStickerNum(int i) {
-        if (this.I != i) {
-            this.I = i;
-            u();
+    @Override
+    public final boolean e(b8c b8cVar, b8c b8cVar2) {
+        if (b8cVar.d == b8cVar2.d) {
+            return true;
         }
-    }
-
-    public void setStickerPackName(String str) {
-        this.J = str;
-    }
-
-    public final void u() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.aza.u():void");
+        return false;
     }
 }

@@ -1,17 +1,19 @@
 package defpackage;
-public final class hde implements zn7 {
-    public static final hde a = new Object();
+
+import j$.util.Objects;
+import java.util.Comparator;
+public abstract class hde {
+    public static final Comparator a;
 
     static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+        Comparator comparator;
+        try {
+            Object[] enumConstants = Class.forName(hde.class.getName().concat("$UnsafeComparator")).getEnumConstants();
+            Objects.requireNonNull(enumConstants);
+            comparator = (Comparator) enumConstants[0];
+        } catch (Throwable unused) {
+            comparator = cde.a;
         }
-        throw new ClassCastException();
+        a = comparator;
     }
 }

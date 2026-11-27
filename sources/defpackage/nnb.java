@@ -1,6 +1,5 @@
 package defpackage;
-public final class nnb {
-    public final cv5 serializer() {
-        return mnb.a;
-    }
+
+import android.graphics.drawable.StateListDrawable;
+public final class nnb extends StateListDrawable {
 }

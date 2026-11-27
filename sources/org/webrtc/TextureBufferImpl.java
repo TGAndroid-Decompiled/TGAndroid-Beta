@@ -34,7 +34,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.transformMatrix = matrix;
         this.toI420Handler = handler;
         this.yuvConverter = yuvConverter;
-        this.refCountDelegate = new RefCountDelegate(new b(this, refCountMonitor, (byte) 2));
+        this.refCountDelegate = new RefCountDelegate(new f(this, refCountMonitor, (byte) 0));
         this.refCountMonitor = refCountMonitor;
     }
 

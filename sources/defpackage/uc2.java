@@ -1,8 +1,13 @@
 package defpackage;
+public final class uc2 {
+    public int a;
+    public boolean b;
+    public long c;
 
-import android.content.DialogInterface;
-public final class uc2 implements DialogInterface.OnClickListener {
-    @Override
-    public final void onClick(DialogInterface dialogInterface, int i) {
+    public final boolean a() {
+        if (this.b && (System.currentTimeMillis() - this.c) / 1000 <= uc7.s1(yac.t0).a3) {
+            return true;
+        }
+        return false;
     }
 }

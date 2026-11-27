@@ -1,3 +1,16 @@
 package defpackage;
-public final class sxd extends ezc {
+
+import android.os.IBinder;
+import android.os.IInterface;
+public final class sxd implements IInterface {
+    public final IBinder a;
+
+    public sxd(IBinder iBinder) {
+        this.a = iBinder;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
+    }
 }

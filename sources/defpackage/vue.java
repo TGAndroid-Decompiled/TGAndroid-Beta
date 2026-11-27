@@ -1,17 +1,12 @@
 package defpackage;
-
-import java.io.Serializable;
 public abstract class vue {
-    public static qbb a(qbb qbbVar) {
-        if (!(qbbVar instanceof sbb)) {
-            if (qbbVar instanceof rbb) {
-                return qbbVar;
-            }
-            if (qbbVar instanceof Serializable) {
-                return new rbb(qbbVar);
-            }
-            return new sbb(qbbVar);
+    public static boolean a(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
         }
-        return qbbVar;
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
     }
 }

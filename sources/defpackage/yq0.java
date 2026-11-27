@@ -2,7 +2,7 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class yq0 extends dfa {
+public final class yq0 extends uia {
     public final gr0 v3;
 
     public yq0(gr0 gr0Var, Context context) {
@@ -11,7 +11,7 @@ public final class yq0 extends dfa {
     }
 
     @Override
-    public final boolean A1() {
+    public final boolean B1() {
         return this.v3.b;
     }
 
@@ -30,15 +30,15 @@ public final class yq0 extends dfa {
         gr0 gr0Var = this.v3;
         dr0 dr0Var = gr0Var.K;
         if (gr0Var.b) {
-            hea heaVar = gr0Var.r;
+            yha yhaVar = gr0Var.r;
             int i4 = 0;
-            for (int i5 = 0; i5 < heaVar.getChildCount(); i5++) {
-                int bottom2 = heaVar.getChildAt(i5).getBottom() - heaVar.getPaddingTop();
+            for (int i5 = 0; i5 < yhaVar.getChildCount(); i5++) {
+                int bottom2 = yhaVar.getChildAt(i5).getBottom() - yhaVar.getPaddingTop();
                 if (bottom2 > i4) {
                     i4 = bottom2;
                 }
             }
-            f = gl.R1(f, i4, gr0Var.c);
+            f = hl.R1(f, i4, gr0Var.c);
         }
         if (gr0Var.w.b() <= 0) {
             i = 8;
@@ -63,7 +63,7 @@ public final class yq0 extends dfa {
     }
 
     @Override
-    public final w29 getMovingAdapter() {
+    public final l69 getMovingAdapter() {
         gr0 gr0Var = this.v3;
         if (gr0Var.H.E == 0 && !gr0Var.a0.H.F1) {
             return gr0Var.w;
@@ -72,12 +72,12 @@ public final class yq0 extends dfa {
     }
 
     @Override
-    public final w29 getSupportingAdapter() {
+    public final l69 getSupportingAdapter() {
         return this.v3.x;
     }
 
     @Override
-    public final hea getSupportingListView() {
+    public final yha getSupportingListView() {
         return this.v3.r;
     }
 }

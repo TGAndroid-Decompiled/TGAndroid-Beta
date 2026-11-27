@@ -1,432 +1,351 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.Spannable;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.StaticLayout;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.nio.ByteBuffer;
+import android.widget.HorizontalScrollView;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.e;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class bf implements ed, wi3, gj8, jnb, ResultCallback {
+import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PasscodeActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.SessionsActivity;
+import org.telegram.ui.StickersActivity;
+public final class bf implements fd, ot2, ncc, ti7, lcc, is6, sgb, NativeInstance.PayloadCallback {
     public final byte a;
     public final int b;
-    public final long c;
+    public final Object c;
     public final Object d;
-    public final Object e;
 
-    public bf(int i, long j, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable) {
-        this.a = (byte) 2;
+    public bf(int i, Context context, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        this.a = (byte) 18;
         this.b = i;
-        this.c = j;
-        this.d = tL_attachMenuBot;
-        this.e = runnable;
+        this.c = context;
+        this.d = tL_messages_stickerSet;
     }
 
     @Override
-    public final boolean G() {
-        return false;
+    public final void a(Canvas canvas) {
+        gl9 gl9Var = (gl9) this.c;
+        AtomicReference atomicReference = gl9Var.E;
+        StaticLayout staticLayout = gl9Var.b;
+        ArrayList arrayList = gl9Var.x;
+        npa.g((View) this.d, false, this.b, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
+        xpa.a(canvas, gl9Var.b);
+        hm.drawAnimatedEmojis(canvas, gl9Var.b, gl9Var.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     @Override
-    public final void a(wk4 wk4Var) {
-        boolean z;
-        pj2 pj2Var = (pj2) this.d;
-        long j = this.c;
-        mj2 mj2Var = (mj2) this.e;
-        int i = this.b;
-        synchronized (qj2.d) {
-            Spannable spannable = (Spannable) pj2Var.a.get();
-            if (spannable != null && pj2Var.b.get(Long.valueOf(j)) == mj2Var) {
-                if ((spannable instanceof kj2) && !((kj2) spannable).a) {
-                    qj2.a(spannable, i, (f06) wk4Var.b);
-                    z = true;
-                } else {
-                    z = false;
-                }
-                gl.c3(new gj2(pj2Var, j, mj2Var, i, z, wk4Var));
-            }
-        }
+    public final void accept(java.lang.Object r5) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bf.accept(java.lang.Object):void");
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        int i;
-        anb anbVar = (anb) this.d;
-        wd2 wd2Var = (wd2) this.e;
-        Pair pair = (Pair) obj;
-        if (pair != null && ((Long) pair.first).longValue() == this.c) {
-            Drawable drawable = wd2Var.b;
-            if (drawable instanceof ye7) {
-                ye7 ye7Var = (ye7) drawable;
-                if (this.b >= 0) {
-                    i = 100;
-                } else {
-                    i = -100;
-                }
-                ye7Var.r(i, anb.e((Bitmap) pair.second));
-                ye7Var.s(anbVar.M);
-            }
-            anbVar.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean r(cj3 cj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, qvb qvbVar) {
-        boolean z3;
-        Activity activity;
-        String str;
-        String str2;
-        TLRPC.Chat chat;
-        TLRPC.User user;
-        TLRPC.User user2;
-        int i3;
-        cj3 cj3Var2 = (cj3) this.d;
-        final TL_bots.BotVerifierSettings botVerifierSettings = (TL_bots.BotVerifierSettings) this.e;
-        if (arrayList.isEmpty()) {
-            return false;
-        }
-        final long j = ((zc7) arrayList.get(0)).a;
-        Activity parentActivity = cj3Var2.getParentActivity();
-        final int i4 = this.b;
-        final it0 it0Var = new it0(qvbVar, cj3Var2, j, i4);
-        if (parentActivity == null) {
-            return true;
-        }
-        na7 q1 = na7.q1(i4);
-        final long j2 = this.c;
-        q1.V1(Long.valueOf(j2));
-        int i5 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
-        if (i5 >= 0) {
-            TLRPC.User V1 = na7.q1(i4).V1(Long.valueOf(j));
-            str2 = l7c.l(V1);
-            z3 = true;
-            if (V1.bot_verification_icon == botVerifierSettings.icon) {
-                nt0.a(parentActivity, i4, j2, j, botVerifierSettings, it0Var);
-                return true;
-            }
-            activity = parentActivity;
-            user = V1;
-            chat = null;
-            user2 = V1;
-        } else {
-            z3 = true;
-            activity = parentActivity;
-            TLRPC.Chat K0 = na7.q1(i4).K0(Long.valueOf(-j));
-            if (K0 == null) {
-                str = "";
-            } else {
-                str = K0.title;
-            }
-            str2 = str;
-            if (K0.bot_verification_icon == botVerifierSettings.icon) {
-                nt0.a(activity, i4, j2, j, botVerifierSettings, it0Var);
-                return true;
-            }
-            i4 = i4;
-            chat = K0;
-            user = null;
-            user2 = K0;
-        }
-        boolean z4 = z3;
-        final fx0 i6 = ug8.i(activity, z4, z4 ? 1 : 0, null);
-        LinearLayout m = ir2.m(activity, z4 ? 1 : 0);
-        TLRPC.User user3 = user;
-        TLRPC.Chat chat2 = chat;
-        m.setPadding(gl.L(16.0f), gl.L(20.0f), gl.L(16.0f), gl.L(8.0f));
-        m.setClipChildren(false);
-        m.setClipToPadding(false);
-        FrameLayout frameLayout = new FrameLayout(activity);
-        int L = gl.L(28.0f);
-        int L2 = gl.L(28.0f);
-        int i7 = bkb.Si;
-        ShapeDrawable c0 = bkb.c0(L, L2, bkb.w0(null, i7, false));
-        vkb M = zkb.M(i7);
-        frameLayout.setBackground(c0);
-        zkb.j(frameLayout, c0, M, null, null);
-        be0 be0Var = new be0(activity);
-        be0Var.setRoundRadius(gl.L(28.0f));
-        pb0 pb0Var = new pb0((wjb) null);
-        pb0Var.k(user2);
-        be0Var.f(user2, pb0Var);
-        frameLayout.addView(be0Var, nme.e(28, 28, 51));
-        be0 be0Var2 = new be0(activity);
-        be0Var2.setEmojiColorFilter(new PorterDuffColorFilter(bkb.w0(null, bkb.y9, false), PorterDuff.Mode.SRC_IN));
-        int i8 = 3;
-        be0Var2.setAnimatedEmojiDrawable(vl.m(i4, botVerifierSettings.icon, null, 3));
-        frameLayout.addView(be0Var2, nme.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
-        jia jiaVar = new jia(activity);
-        zkb.W(jiaVar, bkb.i5, null);
-        jiaVar.setTextSize(13);
-        jiaVar.setEllipsizeByGradient(true);
-        jiaVar.l(str2, false);
-        jiaVar.setWidthWrapContent(true);
-        frameLayout.addView(jiaVar, nme.d(-2, -2.0f, 19, 57.0f, 0.0f, 10.0f, 0.0f));
-        m.addView(frameLayout, nme.t(-2, -2, 1, 16, 0, 16, 0));
-        TextView textView = new TextView(activity);
-        int i9 = bkb.F6;
-        zkb.X(textView, i9, null);
-        textView.setTextSize(1, 20.0f);
-        textView.setGravity(17);
-        if (l7c.v(user3)) {
-            textView.setText(k96.M0(2131752916, null));
-        } else if (user3 != null) {
-            textView.setText(k96.M0(2131752909, null));
-        } else if (hc2.V(chat2)) {
-            textView.setText(k96.M0(2131752915, null));
-        } else {
-            textView.setText(k96.M0(2131752911, null));
-        }
-        textView.setTypeface(gl.o());
-        m.addView(textView, nme.k(24.0f, 21.0f, 24.0f, 8.33f, -1, -2));
-        TextView textView2 = new TextView(activity);
-        zkb.X(textView2, i9, null);
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        kk7.i(textView2);
-        textView2.setText(vu3.m(gl.S2(k96.a0(null, null, 2131752910, str2)), textView2.getPaint().getFontMetricsInt(), false, null, 0));
-        m.addView(textView2, nme.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
-        final int f = na7.q1(i4).k4.F2.f();
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(activity);
-        final er7 er7Var = new er7(activity, null);
-        er7Var.setForceForceUseCenter(true);
-        er7Var.setText(k96.M0(2131752914, null));
-        er7Var.setLeftPadding(gl.L(2.0f));
-        zkb.X(editTextBoldCursor, i9, null);
-        editTextBoldCursor.setCursorSize(gl.L(20.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setMaxLines(15);
-        editTextBoldCursor.setInputType(180225);
-        editTextBoldCursor.setTypeface(Typeface.DEFAULT);
-        editTextBoldCursor.setSelectAllOnFocus(true);
-        zkb.C(editTextBoldCursor, bkb.kg, null);
-        zkb.l(editTextBoldCursor, 36, bkb.lg, null);
-        if (k96.a0) {
-            i8 = 5;
-        }
-        editTextBoldCursor.setGravity(i8);
-        editTextBoldCursor.setOnFocusChangeListener(new jt0(er7Var, editTextBoldCursor, (byte) 0));
-        er7Var.e(editTextBoldCursor);
-        er7Var.addView(editTextBoldCursor, nme.d(-1, -2.0f, 48, 12.0f, 4.0f, 12.0f, 4.0f));
-        m.addView(er7Var, nme.o(-1, -2));
-        editTextBoldCursor.addTextChangedListener(new fi());
-        editTextBoldCursor.addTextChangedListener(new mt0(editTextBoldCursor, f, er7Var));
-        TLRPC.TL_textWithEntities tL_textWithEntities = botVerifierSettings.custom_description;
-        if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
-            editTextBoldCursor.setText(botVerifierSettings.custom_description.text);
-            if (!botVerifierSettings.can_modify_custom_description) {
-                editTextBoldCursor.setEnabled(false);
-                editTextBoldCursor.setFocusable(false);
-                editTextBoldCursor.setFocusableInTouchMode(false);
-            }
-        } else if (!botVerifierSettings.can_modify_custom_description) {
-            er7Var.setVisibility(8);
-        }
-        if (botVerifierSettings.can_modify_custom_description) {
-            TextView textView3 = new TextView(activity);
-            zkb.X(textView3, bkb.A6, null);
-            textView3.setTextSize(1, 12.0f);
-            if (i5 >= 0) {
-                i3 = 2131752913;
-            } else {
-                i3 = 2131752912;
-            }
-            textView3.setText(k96.M0(i3, null));
-            textView3.setPadding(gl.L(14.0f), gl.L(7.0f), gl.L(14.0f), gl.L(27.0f));
-            m.addView(textView3, nme.c(-2.0f, -1));
-        } else {
-            m.addView(new View(activity), nme.c(12.0f, -1));
-        }
-        final u41 u41Var = new u41(null, activity, true);
-        u41Var.i(textView.getText(), false, true);
-        m.addView(u41Var, nme.o(-1, 48));
-        i6.O = m;
-        u41Var.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                u41 u41Var2 = u41.this;
-                if (u41Var2.R) {
-                    return;
-                }
-                TL_bots.BotVerifierSettings botVerifierSettings2 = botVerifierSettings;
-                boolean z5 = botVerifierSettings2.can_modify_custom_description;
-                EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
-                if (z5 && editTextBoldCursor2.getText().length() > f) {
-                    er7 er7Var2 = er7Var;
-                    er7Var2.a(1.0f);
-                    gl.A3(-6.0f, er7Var2, null);
-                    return;
-                }
-                u41Var2.setLoading(true);
-                TL_bots.setCustomVerification setcustomverification = new TL_bots.setCustomVerification();
-                setcustomverification.enabled = true;
-                setcustomverification.flags |= 1;
-                int i10 = i4;
-                setcustomverification.bot = na7.q1(i10).m1(j2);
-                setcustomverification.peer = na7.q1(i10).h1(j);
-                if (botVerifierSettings2.can_modify_custom_description) {
-                    String obj = editTextBoldCursor2.getText().toString();
-                    if (!TextUtils.isEmpty(obj)) {
-                        TLRPC.TL_textWithEntities tL_textWithEntities2 = new TLRPC.TL_textWithEntities();
-                        setcustomverification.custom_description = tL_textWithEntities2;
-                        tL_textWithEntities2.text = obj;
+    public final void b(String str, ArrayList arrayList) {
+        y4b y4bVar = (y4b) this.c;
+        HashMap hashMap = (HashMap) this.d;
+        z4b z4bVar = y4bVar.a;
+        int i = z4bVar.Q;
+        HashMap hashMap2 = z4bVar.J;
+        if (this.b == i) {
+            int size = arrayList.size();
+            boolean z = false;
+            for (int i2 = 0; i2 < size; i2++) {
+                String str2 = ((hs6) arrayList.get(i2)).a;
+                ArrayList arrayList2 = (ArrayList) hashMap.get(str2);
+                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                    y4bVar.a();
+                    if (!hashMap2.containsKey(arrayList2)) {
+                        hashMap2.put(arrayList2, str2);
+                        z4bVar.K.add(arrayList2);
+                        z = true;
                     }
-                } else {
-                    setcustomverification.custom_description = botVerifierSettings2.custom_description;
                 }
-                ConnectionsManager.getInstance(i10).sendRequest(setcustomverification, new en0(u41Var2, i6, it0Var, (byte) 6));
             }
-        });
-        i6.Q0 = true;
-        i6.R0 = true;
-        i6.show();
-        return true;
+            if (z) {
+                z4bVar.f();
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        fk6 fk6Var = (fk6) this.d;
-        fk6Var.e1.set(((q93) fk6Var.c1).m(this.c, this.b, (ByteBuffer) this.e));
+    public final Object g() {
+        ((pm3) ((ba0) this.c).d).E((ta0) this.d, this.b + 1, false);
+        return null;
     }
 
     @Override
-    public final boolean t(cj3 cj3Var) {
-        return false;
+    public final void h(Object obj, TLRPC.Document document, Boolean bool) {
+        Context context = (Context) this.c;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
+        int i = this.b;
+        String str = "😀";
+        String V = r47.V(document, "😀", Integer.valueOf(i));
+        if (!TextUtils.isEmpty(V)) {
+            str = V;
+        }
+        id idVar = new id(3, null, context);
+        TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
+        tL_stickers_addStickerToSet.stickerset = ls6.b0(tL_messages_stickerSet.set);
+        tL_stickers_addStickerToSet.sticker = ls6.c0(document, str);
+        ConnectionsManager.getInstance(yac.t0).sendRequest(tL_stickers_addStickerToSet, new eu0(idVar, i, document, obj, tL_stickers_addStickerToSet, (byte) 13));
+        try {
+            idVar.q(350L);
+        } catch (Exception unused) {
+        }
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        Object obj = this.e;
-        Object obj2 = this.d;
-        long j = this.c;
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        v94 v94Var;
+        String str;
+        ha4 ha4Var;
+        int i;
+        lm7 lm7Var = (lm7) this.c;
+        jm7 jm7Var = (jm7) this.d;
+        b8c b8cVar = (b8c) obj;
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        Object obj3 = b8cVar.H;
+        boolean z = obj3 instanceof r47;
         int i2 = this.b;
+        int i3 = -1;
+        if (z) {
+            r47 r47Var = (r47) obj3;
+            if (view instanceof v94) {
+                v94Var = (v94) view;
+            } else {
+                v94Var = null;
+            }
+            if (v94Var != null) {
+                float floatValue = f.floatValue();
+                float floatValue2 = f2.floatValue();
+                HorizontalScrollView horizontalScrollView = v94Var.y;
+                if (v94Var.R >= 1.0f && horizontalScrollView.getVisibility() == 0 && floatValue2 >= horizontalScrollView.getTop() && floatValue2 <= horizontalScrollView.getBottom()) {
+                    float scrollX = (floatValue + horizontalScrollView.getScrollX()) - v94.g();
+                    int i4 = 0;
+                    while (true) {
+                        int[] iArr = v94Var.d0;
+                        if (i4 >= iArr.length) {
+                            break;
+                        }
+                        if (scrollX >= iArr[i4] && scrollX <= i + v94Var.e0[i4]) {
+                            i3 = i4;
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+            }
+            int i5 = i3;
+            if (i5 >= 0) {
+                ArrayList arrayList = new ArrayList(v94Var.getMedia());
+                if (i5 < arrayList.size() && lm7Var.getParentActivity() != null) {
+                    String f3 = ea4.f((r47) arrayList.get(i5));
+                    r47 message = v94Var.getMessage();
+                    if (f3 != null) {
+                        ha4Var = lm7Var.n0(i2, message, "open_media", f3);
+                    } else {
+                        ha4Var = null;
+                    }
+                    PhotoViewer.q0().T1(null, lm7Var, null);
+                    if (PhotoViewer.q0().n1(arrayList, i5, r47.B0(((r47) arrayList.get(0)).k), 0L, 0L, new bm7(i2, message, lm7Var)) && ha4Var != null) {
+                        lm7Var.h0(ha4Var, true, null);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            } else if (v94Var != null && v94Var.R > 0.5f && v94Var.L && v94Var.a0 > v94Var.b0 && v94Var.S < 1.0f) {
+                String B0 = lm7.B0(i2, r47Var);
+                HashMap hashMap = lm7Var.W;
+                km7 km7Var = (km7) hashMap.get(B0);
+                if (km7Var == null || km7Var.b < 1.0f) {
+                    lm7Var.F0(lm7Var.n0(i2, r47Var, "expand", null));
+                }
+                if (km7Var == null) {
+                    km7Var = new km7(lm7Var, 0.0f, 0.0f);
+                    hashMap.put(B0, km7Var);
+                }
+                km7Var.a(1.0f);
+                return;
+            } else {
+                Bundle bundle = new Bundle();
+                long B02 = r47.B0(r47Var.k);
+                if (B02 < 0) {
+                    str = "chat_id";
+                } else {
+                    str = "user_id";
+                }
+                bundle.putLong(str, Math.abs(B02));
+                bundle.putInt("message_id", r47Var.e1());
+                bundle.putBoolean("from_news", true);
+                bundle.putBoolean("for_news", true);
+                if (lm7Var.getMessagesController().C(bundle, lm7Var, null, null)) {
+                    zu1 zu1Var = new zu1(bundle);
+                    zu1Var.tb = r47Var;
+                    lm7Var.a0.b();
+                    lm7Var.D0(zu1Var, i2, r47Var);
+                    lm7Var.presentFragment(zu1Var);
+                    return;
+                }
+                return;
+            }
+        }
+        int i6 = b8cVar.d;
+        if (i6 == -1) {
+            lm7Var.y0(i2, jm7Var.q);
+        } else if (i6 == -2) {
+            lm7Var.x0();
+        }
+    }
+
+    @Override
+    public final void run(int i, String str) {
+        ((VoIPService) this.c).lambda$createGroupInstance$70(this.b, (boolean[]) this.d, i, str);
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        int i2;
+        byte b = this.a;
+        int i3 = this.b;
+        Object obj = this.d;
+        Object obj2 = this.c;
         switch (b) {
             case 0:
-                EditText editText = (EditText) obj2;
-                EditText editText2 = (EditText) obj;
-                if (editText.getText() != null) {
-                    if (j > 0) {
-                        TLRPC.User V1 = na7.q1(i2).V1(Long.valueOf(j));
-                        String obj3 = editText.getText().toString();
-                        String obj4 = editText2.getText().toString();
-                        String str = V1.first_name;
-                        String str2 = V1.last_name;
-                        if (str == null) {
-                            str = "";
-                        }
-                        if (str2 == null) {
-                            str2 = "";
-                        }
-                        if (str.equals(obj3) && str2.equals(obj4)) {
-                            hdVar.dismiss();
-                            return;
-                        }
-                        TL_account.updateProfile updateprofile = new TL_account.updateProfile();
-                        updateprofile.flags = 3;
-                        updateprofile.first_name = obj3;
-                        V1.first_name = obj3;
-                        updateprofile.last_name = obj4;
-                        V1.last_name = obj4;
-                        TLRPC.User V12 = na7.q1(i2).V1(Long.valueOf(y6c.h(i2).e()));
-                        if (V12 != null) {
-                            V12.first_name = updateprofile.first_name;
-                            V12.last_name = updateprofile.last_name;
-                        }
-                        y6c.h(i2).u(true);
-                        kk7.f(i2).k(46, new Object[0]);
-                        kk7.f(i2).k(2, 1);
-                        ConnectionsManager.getInstance(i2).sendRequest(updateprofile, new ce2((byte) 0));
-                        kk7.e().k(295, 3, Long.valueOf(j));
-                    } else {
-                        long j2 = -j;
-                        TLRPC.Chat K0 = na7.q1(i2).K0(Long.valueOf(j2));
-                        String obj5 = editText.getText().toString();
-                        String str3 = K0.title;
-                        if (str3 != null && str3.equals(obj5)) {
-                            hdVar.dismiss();
-                            return;
-                        }
-                        K0.title = obj5;
-                        kk7.f(i2).k(2, 16);
-                        na7.q1(i2).y(j2, obj5, null);
-                        kk7.e().k(295, 3, Long.valueOf(j));
-                    }
-                    hdVar.dismiss();
+                ij ijVar = (ij) obj2;
+                hf7 hf7Var = (hf7) obj;
+                String trim = ijVar.getText().toString().trim();
+                if (trim.length() <= i3 && !trim.isEmpty()) {
+                    hf7Var.a(trim);
+                    idVar.dismiss();
+                    return;
+                }
+                hl.z3(ijVar);
+                return;
+            case 1:
+                k41 k41Var = (k41) obj2;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) obj;
+                String obj3 = k41Var.getText().toString();
+                if (obj3.length() > 32) {
+                    hl.z3(k41Var);
+                    return;
+                }
+                r41 d = r41.d(i3);
+                TL_account.TL_businessChatLink c = d.c(tL_businessChatLink.link);
+                if (c != null) {
+                    TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                    tL_inputBusinessChatLink.message = c.message;
+                    tL_inputBusinessChatLink.entities = c.entities;
+                    tL_inputBusinessChatLink.title = obj3;
+                    d.b(c, tL_inputBusinessChatLink, null);
+                }
+                idVar.dismiss();
+                return;
+            case 2:
+                zu1 zu1Var = (zu1) obj2;
+                boolean[] zArr = (boolean[]) obj;
+                boolean z = zArr[0];
+                zu1Var.getMessagesController().L3(zu1Var.e, zu1Var.f, this.b, false, !zArr[1], z);
+                v21 B = d31.B(zu1Var, true, null, null, zu1Var.Ba);
+                B.j();
+                z11 z11Var = B.e;
+                z11Var.postDelayed(new j11(z11Var, (byte) 2), 550L);
+                return;
+            case 3:
+                ((zu1) obj2).D9(i3, (r47) obj);
+                return;
+            case 4:
+            case 5:
+            case 9:
+            case 10:
+            case 13:
+            case 14:
+            default:
+                ((StickersActivity) obj2).j0(i3, (ArrayList) obj);
+                return;
+            case 6:
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                j95 j95Var = ((h85) obj2).r1.b;
+                j95Var.T2.C(i3, editTextBoldCursor.getText().toString());
+                hl.t1(editTextBoldCursor);
+                UndoView d1 = j95Var.d1();
+                if (i3 == 0) {
+                    i2 = 39;
+                } else {
+                    i2 = 100;
+                }
+                d1.j(i2, 0L, null);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().playStartRecordSound();
                     return;
                 }
                 return;
-            default:
-                Runnable runnable = (Runnable) obj;
-                TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                tL_messages_toggleBotInAttachMenu.bot = na7.q1(i2).m1(j);
-                tL_messages_toggleBotInAttachMenu.enabled = false;
-                ConnectionsManager.getInstance(i2).sendRequest(tL_messages_toggleBotInAttachMenu, new vv0(i2, (byte) 0), 66);
-                ((TLRPC.TL_attachMenuBot) obj2).show_in_side_menu = false;
-                kk7.f(i2).k(302, new Object[0]);
-                hq6.d0(i2).k2(hq6.f2 ? 1 : 0, j);
-                if (runnable != null) {
-                    runnable.run();
+            case 7:
+                LaunchActivity launchActivity = (LaunchActivity) obj2;
+                HashMap hashMap = (HashMap) obj;
+                String str = LaunchActivity.C1;
+                ArrayList arrayList = launchActivity.e0;
+                if (!arrayList.isEmpty() && hl.H1((e) c00.g(1, arrayList))) {
+                    uc6 uc6Var = new uc6(0);
+                    uc6Var.M0 = new wg(hashMap, i3, (byte) 9);
+                    launchActivity.t0(uc6Var);
                     return;
                 }
+                return;
+            case 8:
+                ((uc6) obj2).I0(900, i3, (TLRPC.User) obj);
+                return;
+            case 11:
+                uqc.L0(i3, (vnb) obj, (Context) obj2);
+                return;
+            case 12:
+                ((PasscodeActivity) obj2).q0((hq7) obj, i3);
+                return;
+            case 15:
+                iw9 iw9Var = (iw9) obj2;
+                TLRPC.Reaction reaction = (TLRPC.Reaction) obj;
+                String obj4 = iw9Var.getText().toString();
+                if (obj4.length() > 12) {
+                    hl.z3(iw9Var);
+                    return;
+                }
+                uc7.s1(i3).w4(w49.d(reaction), obj4);
+                idVar.dismiss();
+                return;
+            case 16:
+                ((SessionsActivity) obj2).j0(i3, (boolean[]) obj);
                 return;
         }
     }
 
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-    }
-
-    public bf(cj3 cj3Var, int i, long j, TL_bots.BotVerifierSettings botVerifierSettings) {
-        this.a = (byte) 1;
-        this.d = cj3Var;
-        this.b = i;
-        this.c = j;
-        this.e = botVerifierSettings;
-    }
-
-    public bf(fk6 fk6Var, ByteBuffer byteBuffer, long j, int i) {
-        this.a = (byte) 4;
-        this.d = fk6Var;
-        this.e = byteBuffer;
-        this.c = j;
-        this.b = i;
-    }
-
-    public bf(EditText editText, long j, int i, EditText editText2) {
-        this.a = (byte) 0;
-        this.d = editText;
-        this.c = j;
-        this.b = i;
-        this.e = editText2;
-    }
-
-    public bf(Object obj, long j, Object obj2, int i, byte b) {
+    public bf(Object obj, int i, Object obj2, byte b) {
         this.a = b;
-        this.d = obj;
-        this.c = j;
-        this.e = obj2;
+        this.c = obj;
         this.b = i;
+        this.d = obj2;
     }
 
-    @Override
-    public final void onError(Throwable th) {
+    public bf(Object obj, Object obj2, int i, byte b) {
+        this.a = b;
+        this.c = obj;
+        this.d = obj2;
+        this.b = i;
     }
 }

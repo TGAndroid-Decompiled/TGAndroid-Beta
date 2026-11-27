@@ -1,299 +1,87 @@
 package defpackage;
-public abstract class cd3 {
-    public static final int[] a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
-    public static final int[] b = {1, 2, 3, 6};
-    public static final int[] c = {48000, 44100, 32000};
-    public static final int[] d = {24000, 22050, 16000};
-    public static final int[] e = {2, 1, 2, 3, 3, 4, 4, 5};
-    public static final int[] f = {32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 448, 512, 576, 640};
-    public static final int[] g = {69, 87, 104, 121, 139, 174, 208, 243, 278, 348, 417, 487, 557, 696, 835, 975, 1114, 1253, 1393};
 
-    public static int a(int i, int i2) {
-        int i3 = i2 / 2;
-        if (i >= 0 && i < 3 && i2 >= 0 && i3 < 19) {
-            int i4 = c[i];
-            if (i4 == 44100) {
-                return ((i2 % 2) + g[i3]) << 1;
-            }
-            int i5 = f[i3];
-            if (i4 == 32000) {
-                return i5 * 6;
-            }
-            return i5 << 2;
-        }
-        return -1;
+import android.text.TextUtils;
+import j$.util.Objects;
+public final class cd3 extends jd3 implements Comparable {
+    public final boolean E;
+    public final boolean F;
+    public final int G;
+    public final int H;
+    public final boolean I;
+    public final int J;
+    public final int K;
+    public final int L;
+    public final int M;
+    public final boolean N;
+    public final boolean O;
+    public final boolean P;
+    public final byte e;
+    public final boolean f;
+    public final String h;
+    public final gd3 n;
+    public final boolean r;
+    public final int s;
+    public final int w;
+    public final int x;
+    public final int y;
+
+    public cd3(int r8, defpackage.t1c r9, int r10, defpackage.gd3 r11, int r12, boolean r13, defpackage.bd3 r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.cd3.<init>(int, t1c, int, gd3, int, boolean, bd3, int):void");
     }
 
-    public static void b(dd ddVar, int[] iArr, int[] iArr2, iq iqVar) {
+    @Override
+    public final int a() {
+        return this.e;
+    }
+
+    @Override
+    public final boolean b(jd3 jd3Var) {
         int i;
-        int m0;
-        int m02;
-        int i2 = 0;
-        while (i2 < iArr2.length) {
-            int m = iqVar.m(ddVar, iArr);
-            if (m >= 0 && m <= 15) {
-                iArr2[i2] = m;
-            } else {
-                switch (m) {
-                    case 16:
-                        i = iArr2[i2 - 1];
-                        m0 = ddVar.m0(iArr, 2) + 3;
-                        break;
-                    case 17:
-                        m02 = ddVar.m0(iArr, 3) + 3;
-                        m0 = m02;
-                        i = 0;
-                        break;
-                    case 18:
-                        m02 = ddVar.m0(iArr, 7) + 11;
-                        m0 = m02;
-                        i = 0;
-                        break;
-                    default:
-                        throw new Exception(String.format("[%s] Bad code length '%d' at the bit index '%d'.", cd3.class.getSimpleName(), Integer.valueOf(m), iArr));
-                }
-                for (int i3 = 0; i3 < m0; i3++) {
-                    iArr2[i2 + i3] = i;
-                }
-                i2 += m0 - 1;
+        String str;
+        cd3 cd3Var = (cd3) jd3Var;
+        ko4 ko4Var = cd3Var.d;
+        this.n.getClass();
+        ko4 ko4Var2 = this.d;
+        int i2 = ko4Var2.N;
+        if (i2 != -1 && i2 == ko4Var.N) {
+            if ((this.E || ((str = ko4Var2.t) != null && TextUtils.equals(str, ko4Var.t))) && (i = ko4Var2.P) != -1 && i == ko4Var.P && this.N == cd3Var.N && this.O == cd3Var.O) {
+                return true;
             }
-            i2++;
+            return false;
         }
+        return false;
     }
 
-    public static int c(dd ddVar, int[] iArr, iq iqVar) {
-        int i;
-        int m = iqVar.m(ddVar, iArr);
-        int i2 = 2;
-        int i3 = 5;
-        switch (m) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-                return m + 1;
-            case 4:
-                i2 = 1;
-                break;
-            case 5:
-                i2 = 1;
-                i3 = 7;
-                break;
-            case 6:
-                i3 = 9;
-                break;
-            case 7:
-                i3 = 13;
-                break;
-            case 8:
-                i3 = 17;
-                i2 = 3;
-                break;
-            case 9:
-                i3 = 25;
-                i2 = 3;
-                break;
-            case 10:
-                i3 = 33;
-                i2 = 4;
-                break;
-            case 11:
-                i3 = 49;
-                i2 = 4;
-                break;
-            case 12:
-                i = 65;
-                i2 = 5;
-                i3 = i;
-                break;
-            case 13:
-                i = 97;
-                i2 = 5;
-                i3 = i;
-                break;
-            case 14:
-                i3 = 129;
-                i2 = 6;
-                break;
-            case 15:
-                i3 = 193;
-                i2 = 6;
-                break;
-            case 16:
-                i3 = 257;
-                i2 = 7;
-                break;
-            case 17:
-                i3 = 385;
-                i2 = 7;
-                break;
-            case 18:
-                i3 = 513;
-                i2 = 8;
-                break;
-            case 19:
-                i3 = 769;
-                i2 = 8;
-                break;
-            case 20:
-                i3 = 1025;
-                i2 = 9;
-                break;
-            case 21:
-                i3 = 1537;
-                i2 = 9;
-                break;
-            case 22:
-                i3 = 2049;
-                i2 = 10;
-                break;
-            case 23:
-                i3 = 3073;
-                i2 = 10;
-                break;
-            case 24:
-                i3 = 4097;
-                i2 = 11;
-                break;
-            case 25:
-                i3 = 6145;
-                i2 = 11;
-                break;
-            case 26:
-                i3 = 8193;
-                i2 = 12;
-                break;
-            case 27:
-                i3 = 12289;
-                i2 = 12;
-                break;
-            case 28:
-                i3 = 16385;
-                i2 = 13;
-                break;
-            case 29:
-                i3 = 24577;
-                i2 = 13;
-                break;
-            default:
-                throw new Exception(String.format("[%s] Bad distance code '%d' at the bit index '%d'.", cd3.class.getSimpleName(), Integer.valueOf(m), Integer.valueOf(iArr[0])));
+    @Override
+    public final int compareTo(cd3 cd3Var) {
+        eu7 eu7Var;
+        eu7 a;
+        boolean z = this.r;
+        boolean z2 = this.f;
+        if (z2 && z) {
+            a = ld3.l;
+            eu7Var = a;
+        } else {
+            eu7 eu7Var2 = ld3.l;
+            eu7Var = eu7Var2;
+            a = eu7Var2.a();
         }
-        return ddVar.m0(iArr, i2) + i3;
-    }
-
-    public static void d(dd ddVar, int[] iArr, iq[] iqVarArr) {
-        int m0 = ddVar.m0(iArr, 5) + 257;
-        int m02 = ddVar.m0(iArr, 5) + 1;
-        int m03 = ddVar.m0(iArr, 4) + 4;
-        int[] iArr2 = new int[19];
-        for (int i = 0; i < m03; i++) {
-            iArr2[a[i]] = (byte) ddVar.m0(iArr, 3);
+        boolean z3 = cd3Var.r;
+        int i = cd3Var.L;
+        pp2 c = pp2.a.c(z, z3);
+        Integer valueOf = Integer.valueOf(this.w);
+        Integer valueOf2 = Integer.valueOf(cd3Var.w);
+        pk7 pk7Var = pk7.c;
+        pp2 b = c.b(valueOf, valueOf2, pk7Var).a(this.s, cd3Var.s).a(this.x, cd3Var.x).b(Integer.valueOf(this.y), Integer.valueOf(cd3Var.y), pk7Var).c(this.I, cd3Var.I).c(this.F, cd3Var.F).b(Integer.valueOf(this.G), Integer.valueOf(cd3Var.G), pk7Var).a(this.H, cd3Var.H).c(z2, cd3Var.f).b(Integer.valueOf(this.M), Integer.valueOf(cd3Var.M), pk7Var);
+        boolean z4 = this.n.F;
+        int i2 = this.L;
+        if (z4) {
+            b = b.b(Integer.valueOf(i2), Integer.valueOf(i), eu7Var.a());
         }
-        iq iqVar = new iq(iArr2);
-        int[] iArr3 = new int[m0];
-        b(ddVar, iArr, iArr3, iqVar);
-        iq iqVar2 = new iq(iArr3);
-        int[] iArr4 = new int[m02];
-        b(ddVar, iArr, iArr4, iqVar);
-        iq iqVar3 = new iq(iArr4);
-        iqVarArr[0] = iqVar2;
-        iqVarArr[1] = iqVar3;
-    }
-
-    public static int e(dd ddVar, int[] iArr, int i) {
-        int i2;
-        int i3 = 1;
-        switch (i) {
-            case 257:
-            case 258:
-            case 259:
-            case 260:
-            case 261:
-            case 262:
-            case 263:
-            case 264:
-                return i - 254;
-            case 265:
-                i2 = 11;
-                break;
-            case 266:
-                i2 = 13;
-                break;
-            case 267:
-                i2 = 15;
-                break;
-            case 268:
-                i2 = 17;
-                break;
-            case 269:
-                i2 = 19;
-                i3 = 2;
-                break;
-            case 270:
-                i2 = 23;
-                i3 = 2;
-                break;
-            case 271:
-                i2 = 27;
-                i3 = 2;
-                break;
-            case 272:
-                i2 = 31;
-                i3 = 2;
-                break;
-            case 273:
-                i2 = 35;
-                i3 = 3;
-                break;
-            case 274:
-                i2 = 43;
-                i3 = 3;
-                break;
-            case 275:
-                i2 = 51;
-                i3 = 3;
-                break;
-            case 276:
-                i2 = 59;
-                i3 = 3;
-                break;
-            case 277:
-                i2 = 67;
-                i3 = 4;
-                break;
-            case 278:
-                i2 = 83;
-                i3 = 4;
-                break;
-            case 279:
-                i2 = 99;
-                i3 = 4;
-                break;
-            case 280:
-                i2 = 115;
-                i3 = 4;
-                break;
-            case 281:
-                i2 = 131;
-                i3 = 5;
-                break;
-            case 282:
-                i2 = 163;
-                i3 = 5;
-                break;
-            case 283:
-                i2 = 195;
-                i3 = 5;
-                break;
-            case 284:
-                i2 = 227;
-                i3 = 5;
-                break;
-            case 285:
-                return 258;
-            default:
-                throw new Exception(String.format("[%s] Bad literal/length code '%d' at the bit index '%d'.", cd3.class.getSimpleName(), Integer.valueOf(i), Integer.valueOf(iArr[0])));
+        pp2 b2 = b.c(this.N, cd3Var.N).c(this.O, cd3Var.O).c(this.P, cd3Var.P).b(Integer.valueOf(this.J), Integer.valueOf(cd3Var.J), a).b(Integer.valueOf(this.K), Integer.valueOf(cd3Var.K), a);
+        if (Objects.equals(this.h, cd3Var.h)) {
+            b2 = b2.b(Integer.valueOf(i2), Integer.valueOf(i), a);
         }
-        return ddVar.m0(iArr, i3) + i2;
+        return b2.e();
     }
 }

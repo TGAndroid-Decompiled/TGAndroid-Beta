@@ -1,34 +1,46 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.SessionsActivity;
-public final class n5a extends fx0 {
-    public TLRPC.TL_authorization l1;
-    public SessionsActivity m1;
-    public ry8 n1;
+import java.util.HashMap;
+import org.telegram.tgnet.TLObject;
+public final class n5a implements Runnable {
+    public final byte a;
+    public final r7a b;
+    public final TLObject c;
+    public final r47 d;
+    public final String e;
+    public final d7a f;
+    public final boolean h;
+    public final d7a n;
+    public final Object r;
+    public final HashMap s;
+    public final boolean w;
 
-    public final void D0(String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-        alertDialog$Builder.e(new CharSequence[]{k96.M0(2131751755, null)}, new fe(this, str, (byte) 11));
-        alertDialog$Builder.o();
-    }
-
-    public final void E0() {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = this.l1;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(this.a).sendRequest(changeauthorizationsettings, new ce2((byte) 0));
+    public n5a(r7a r7aVar, TLObject tLObject, r47 r47Var, String str, d7a d7aVar, boolean z, d7a d7aVar2, Object obj, HashMap hashMap, boolean z2, byte b) {
+        this.a = b;
+        this.b = r7aVar;
+        this.c = tLObject;
+        this.d = r47Var;
+        this.e = str;
+        this.f = d7aVar;
+        this.h = z;
+        this.n = d7aVar2;
+        this.r = obj;
+        this.s = hashMap;
+        this.w = z2;
     }
 
     @Override
-    public final void show() {
-        super.show();
-        this.n1.d();
+    public final void run() {
+        switch (this.a) {
+            case 0:
+                this.b.N(this.c, this.d, this.e, this.f, this.h, this.n, this.r, this.s, this.w);
+                return;
+            case 1:
+                this.b.N(this.c, this.d, this.e, this.f, this.h, this.n, this.r, this.s, this.w);
+                return;
+            default:
+                this.b.N(this.c, this.d, this.e, this.f, this.h, this.n, this.r, this.s, this.w);
+                return;
+        }
     }
 }

@@ -1,67 +1,110 @@
 package defpackage;
-public final class fje extends c2e {
-    private static final fje zzb;
-    private int zzd;
-    private int zze;
-    private int zzg;
-    private int zzi;
-    private String zzf = "";
-    private String zzh = "";
 
-    static {
-        fje fjeVar = new fje();
-        zzb = fjeVar;
-        c2e.k(fje.class, fjeVar);
-    }
+import java.util.AbstractList;
+import java.util.Collection;
+import java.util.List;
+import java.util.RandomAccess;
+public abstract class fje extends AbstractList implements bue {
+    public boolean a = true;
 
-    public static void n(fje fjeVar, String str) {
-        fjeVar.zzd |= 8;
-        fjeVar.zzh = str;
-    }
-
-    public static void o(fje fjeVar, String str) {
-        str.getClass();
-        fjeVar.zzd |= 2;
-        fjeVar.zzf = str;
-    }
-
-    public static void p(fje fjeVar, int i) {
-        fjeVar.zzd |= 16;
-        fjeVar.zzi = i;
-    }
-
-    public static void q(fje fjeVar, int i) {
-        fjeVar.zzg = yjb.e(i);
-        fjeVar.zzd |= 4;
-    }
-
-    public static void r(fje fjeVar, int i) {
-        fjeVar.zzd |= 1;
-        fjeVar.zze = i;
-    }
-
-    public static mie s() {
-        return (mie) zzb.f();
+    @Override
+    public boolean add(Object obj) {
+        h();
+        return super.add(obj);
     }
 
     @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
-                    }
-                    return new e0e(zzb);
-                }
-                return new fje();
-            }
-            return new vae(zzb, "\u0004\u0005\u0000\u0001\u0001\u0007\u0005\u0000\u0000\u0000\u0001င\u0000\u0002ဈ\u0001\u0004᠌\u0002\u0005ဈ\u0003\u0007င\u0004", new Object[]{"zzd", "zze", "zzf", "zzg", yqd.d, "zzh", "zzi"});
+    public boolean addAll(Collection collection) {
+        h();
+        return super.addAll(collection);
+    }
+
+    @Override
+    public void clear() {
+        h();
+        super.clear();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return (byte) 1;
+        if (!(obj instanceof List)) {
+            return false;
+        }
+        if (!(obj instanceof RandomAccess)) {
+            return super.equals(obj);
+        }
+        List list = (List) obj;
+        int size = size();
+        if (size != list.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (!get(i).equals(list.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final void h() {
+        if (this.a) {
+            return;
+        }
+        p3d.a();
+    }
+
+    @Override
+    public int hashCode() {
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
+        }
+        return i;
+    }
+
+    @Override
+    public abstract Object remove(int i);
+
+    @Override
+    public final boolean remove(Object obj) {
+        h();
+        int indexOf = indexOf(obj);
+        if (indexOf == -1) {
+            return false;
+        }
+        remove(indexOf);
+        return true;
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        h();
+        return super.removeAll(collection);
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        h();
+        return super.retainAll(collection);
+    }
+
+    @Override
+    public final boolean zza() {
+        return this.a;
+    }
+
+    @Override
+    public final void zzb() {
+        this.a = false;
+    }
+
+    @Override
+    public boolean addAll(int i, Collection collection) {
+        h();
+        return super.addAll(i, collection);
     }
 }

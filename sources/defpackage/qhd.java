@@ -1,46 +1,8 @@
 package defpackage;
-public final class qhd extends xhd {
-    public final transient int r;
-    public final transient int s;
-    public final xhd w;
+public abstract class qhd {
+    public static final int[] a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
 
-    public qhd(xhd xhdVar, int i, int i2) {
-        super((byte) 4);
-        this.w = xhdVar;
-        this.r = i;
-        this.s = i2;
-    }
-
-    @Override
-    public final Object get(int i) {
-        k0f.a(i, this.s);
-        return this.w.get(i + this.r);
-    }
-
-    @Override
-    public final int q() {
-        return this.w.s() + this.r + this.s;
-    }
-
-    @Override
-    public final int s() {
-        return this.w.s() + this.r;
-    }
-
-    @Override
-    public final int size() {
-        return this.s;
-    }
-
-    @Override
-    public final Object[] v() {
-        return this.w.v();
-    }
-
-    @Override
-    public final xhd subList(int i, int i2) {
-        k0f.b(i, i2, this.s);
-        int i3 = this.r;
-        return this.w.subList(i + i3, i2 + i3);
+    public static defpackage.una a(defpackage.f84 r23, boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.qhd.a(f84, boolean):una");
     }
 }

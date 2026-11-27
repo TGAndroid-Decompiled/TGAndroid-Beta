@@ -1,16 +1,15 @@
 package defpackage;
-public final class go1 implements h8c {
-    public go1(mu1 mu1Var) {
+public final class go1 implements Runnable {
+    public final byte a;
+    public final Object b;
+
+    public go1(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final Object run() {
-        boolean z;
-        if (ijb.c() && e66.e(65536)) {
-            z = true;
-        } else {
-            z = false;
-        }
-        return Boolean.valueOf(z);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.go1.run():void");
     }
 }

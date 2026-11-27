@@ -1,24 +1,12 @@
 package defpackage;
-public final class vf8 implements Runnable {
-    public final byte a;
-    public final yf8 b;
+public final class vf8 {
+    public final uf8 a = new Object();
 
-    public vf8(yf8 yf8Var, byte b) {
-        this.a = b;
-        this.b = yf8Var;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        yf8 yf8Var = this.b;
-        switch (b) {
-            case 0:
-                yf8Var.a(true);
-                return;
-            default:
-                yf8Var.d();
-                return;
+    public final void a() {
+        try {
+            ((vf8) Class.forName("androidx.media3.effect.SingleInputVideoGraph$Factory").getConstructor(uf8.class).newInstance(this.a)).a();
+        } catch (Exception e) {
+            vr9.l(e);
         }
     }
 }

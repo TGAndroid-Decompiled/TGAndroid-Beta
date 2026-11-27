@@ -1,29 +1,35 @@
 package defpackage;
-public final class vra implements Runnable {
+public final class vra implements pcc {
     public final byte a;
-    public final et4 b;
+    public final wua b;
+    public final hw4 c;
 
-    public vra(et4 et4Var, byte b) {
+    public vra(wua wuaVar, hw4 hw4Var, byte b) {
         this.a = b;
-        this.b = et4Var;
+        this.b = wuaVar;
+        this.c = hw4Var;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj) {
         byte b = this.a;
-        et4 et4Var = this.b;
+        hw4 hw4Var = this.c;
+        wua wuaVar = this.b;
+        Boolean bool = (Boolean) obj;
         switch (b) {
             case 0:
-                et4Var.a(Boolean.FALSE, "PRODUCT_NOT_FOUND");
-                return;
-            case 1:
-                et4Var.a(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
-                return;
-            case 2:
-                gl.c3(new vra(et4Var, (byte) 3));
+                wuaVar.f2.setLoading(bool.booleanValue());
+                if (hw4Var != null) {
+                    hw4Var.G0(bool.booleanValue());
+                    return;
+                }
                 return;
             default:
-                et4Var.a(Boolean.FALSE, null);
+                wuaVar.f2.setLoading(bool.booleanValue());
+                if (hw4Var != null) {
+                    hw4Var.G0(bool.booleanValue());
+                    return;
+                }
                 return;
         }
     }

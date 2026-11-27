@@ -1,22 +1,37 @@
 package defpackage;
 
-import android.os.FileObserver;
-import java.util.LinkedHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-public final class ug7 extends FileObserver {
-    public static final Object b = new Object();
-    public static final LinkedHashMap c = new LinkedHashMap();
-    public final CopyOnWriteArrayList a;
+import android.util.Log;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class ug7 extends FutureTask {
+    public final ox a;
 
-    public ug7(String str) {
-        super(str, 128);
-        this.a = new CopyOnWriteArrayList();
+    public ug7(ox oxVar, tg7 tg7Var) {
+        super(tg7Var);
+        this.a = oxVar;
     }
 
     @Override
-    public final void onEvent(int i, String str) {
-        for (qp4 qp4Var : this.a) {
-            qp4Var.invoke(str);
+    public final void done() {
+        ox oxVar = this.a;
+        AtomicBoolean atomicBoolean = oxVar.d;
+        try {
+            Object obj = get();
+            if (!atomicBoolean.get()) {
+                oxVar.b(obj);
+            }
+        } catch (InterruptedException e) {
+            Log.w("AsyncTask", e);
+        } catch (CancellationException unused) {
+            if (!atomicBoolean.get()) {
+                oxVar.b(null);
+            }
+        } catch (ExecutionException e2) {
+            grb.j("An error occurred while executing doInBackground()", e2.getCause());
+        } catch (Throwable th) {
+            grb.j("An error occurred while executing doInBackground()", th);
         }
     }
 }

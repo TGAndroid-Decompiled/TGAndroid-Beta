@@ -1,44 +1,39 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ScrollView;
-public final class f0c extends ScrollView {
-    public Drawable a;
-    public lm b;
-    public boolean c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class f0c extends AnimatorListenerAdapter {
+    public final byte a;
+    public final n0c b;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f;
-        super.dispatchDraw(canvas);
-        lm lmVar = this.b;
-        if (canScrollVertically(-1)) {
-            f = 1.0f;
-        } else {
-            f = 0.0f;
-        }
-        float e = lmVar.e(false, f) * 0.5f;
-        if (e > 0.0f) {
-            Drawable drawable = this.a;
-            if (drawable == null) {
-                drawable = getContext().getResources().getDrawable(2131231240);
-                this.a = drawable;
-            }
-            drawable.setBounds(0, getScrollY(), getWidth(), this.a.getIntrinsicHeight() + getScrollY());
-            this.a.setAlpha((int) (e * 255.0f));
-            this.a.draw(canvas);
-        }
+    public f0c(n0c n0cVar, byte b) {
+        this.a = b;
+        this.b = n0cVar;
     }
 
     @Override
-    public final void onNestedScroll(View view, int i, int i2, int i3, int i4) {
-        super.onNestedScroll(view, i, i2, i3, i4);
-        boolean canScrollVertically = canScrollVertically(-1);
-        if (this.c != canScrollVertically) {
-            invalidate();
-            this.c = canScrollVertically;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        n0c n0cVar = this.b;
+        switch (b) {
+            case 0:
+                if (n0cVar.b0 == animator) {
+                    n0cVar.b0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                if (n0cVar.k0 == animator) {
+                    n0cVar.k0 = null;
+                }
+                n0cVar.b(1.0f);
+                return;
+            default:
+                if (n0cVar.K == animator) {
+                    n0cVar.K = null;
+                    return;
+                }
+                return;
         }
     }
 }

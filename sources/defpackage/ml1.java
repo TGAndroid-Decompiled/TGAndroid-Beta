@@ -1,50 +1,35 @@
 package defpackage;
-public final class ml1 implements Runnable {
-    public final byte a;
-    public final mu1 b;
-    public final int c;
 
-    public ml1(mu1 mu1Var, int i, byte b) {
+import android.animation.ValueAnimator;
+public final class ml1 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final zu1 b;
+    public final dl1 c;
+
+    public ml1(zu1 zu1Var, dl1 dl1Var, byte b) {
         this.a = b;
-        this.b = mu1Var;
-        this.c = i;
+        this.b = zu1Var;
+        this.c = dl1Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         byte b = this.a;
-        int i = this.c;
-        mu1 mu1Var = this.b;
+        dl1 dl1Var = this.c;
+        zu1 zu1Var = this.b;
         switch (b) {
             case 0:
-                mu1Var.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 1:
-                this.b.J(this.c, 0, 0, 0, false, true);
-                return;
-            case 2:
-                mu1Var.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 3:
-                mu1Var.w9(i);
-                return;
-            case 4:
-                mu1Var.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 5:
-                mu1Var.s8(i);
-                return;
-            case 6:
-                mu1Var.r8(i);
-                return;
-            case 7:
-                mu1Var.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 8:
-                mu1Var.Q8(i);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zu1Var.X9 = hl.L(30.0f) * floatValue;
+                zu1Var.O7();
+                dl1Var.setAlpha(floatValue);
                 return;
             default:
-                mu1Var.R8(i);
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zu1Var.X9 = hl.L(30.0f) * floatValue2;
+                zu1Var.O7();
+                zu1Var.Q7();
+                dl1Var.setAlpha(floatValue2);
                 return;
         }
     }

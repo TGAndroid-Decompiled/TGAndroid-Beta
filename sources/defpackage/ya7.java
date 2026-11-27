@@ -1,63 +1,55 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.TLRPC;
 public final class ya7 implements Runnable {
     public final byte a;
-    public final ad7 b;
-    public final ArrayList c;
-    public final ArrayList d;
+    public final uc7 b;
+    public final TLRPC.Dialog c;
 
-    public ya7(ad7 ad7Var, ArrayList arrayList, ArrayList arrayList2, byte b) {
+    public ya7(uc7 uc7Var, TLRPC.Dialog dialog, byte b) {
         this.a = b;
-        this.b = ad7Var;
-        this.c = arrayList;
-        this.d = arrayList2;
+        this.b = uc7Var;
+        this.c = dialog;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        ArrayList arrayList = this.d;
-        ArrayList arrayList2 = this.c;
-        ad7 ad7Var = this.b;
+        TLRPC.Dialog dialog = this.c;
+        uc7 uc7Var = this.b;
         switch (b) {
             case 0:
-                SQLitePreparedStatement sQLitePreparedStatement = null;
-                try {
-                    try {
-                        sQLitePreparedStatement = ad7Var.b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
-                        int size = arrayList2.size();
-                        for (int i = 0; i < size; i++) {
-                            sQLitePreparedStatement.requery();
-                            sQLitePreparedStatement.bindInteger(1, ((Integer) arrayList.get(i)).intValue());
-                            sQLitePreparedStatement.bindLong(2, ((Long) arrayList2.get(i)).longValue());
-                            sQLitePreparedStatement.step();
+                if (f11.a) {
+                    cc4.b("checkLastDialogMessage for " + dialog.id + " has not message");
+                }
+                if (uc7Var.getMediaDataController().T(dialog.id, 0L) == null) {
+                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) uc7Var.R.f(dialog.id);
+                    if (dialog2 == null) {
+                        if (f11.a) {
+                            cc4.b("checkLastDialogMessage for " + dialog.id + " current dialog not found");
                         }
-                        sQLitePreparedStatement.dispose();
-                        return;
-                    } catch (Exception e) {
-                        ad7Var.n(e, true);
-                        if (sQLitePreparedStatement != null) {
-                            sQLitePreparedStatement.dispose();
-                            return;
-                        }
+                        jf7 messagesStorage = uc7Var.getMessagesStorage();
+                        messagesStorage.a.c(new cq6(messagesStorage, dialog.id, new ya7(uc7Var, dialog, (byte) 2), (byte) 18));
                         return;
                     }
-                } catch (Throwable th) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
+                    if (f11.a) {
+                        StringBuilder sb = new StringBuilder("checkLastDialogMessage for ");
+                        sb.append(dialog.id);
+                        sb.append(" current dialog top message ");
+                        c00.q(dialog2.top_message, sb);
                     }
-                    throw th;
-                }
-            default:
-                if (!arrayList2.isEmpty()) {
-                    ad7Var.getMessagesController().b4(arrayList2, true);
-                }
-                if (!arrayList.isEmpty()) {
-                    ad7Var.getMessagesController().V3(arrayList, true);
+                    if (dialog2.top_message == 0) {
+                        uc7Var.V(3, dialog.id, false);
+                        return;
+                    }
                     return;
                 }
+                return;
+            case 1:
+                uc7Var.U0.e(dialog.id);
+                return;
+            default:
+                uc7Var.V(3, dialog.id, false);
                 return;
         }
     }

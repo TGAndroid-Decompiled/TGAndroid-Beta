@@ -1,3 +1,3 @@
 package defpackage;
-public interface yef extends dff {
+public abstract class yef {
 }

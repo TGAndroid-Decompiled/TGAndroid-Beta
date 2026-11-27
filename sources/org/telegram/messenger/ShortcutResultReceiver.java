@@ -8,10 +8,10 @@ public class ShortcutResultReceiver extends BroadcastReceiver {
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        int intExtra = intent.getIntExtra("account", y6c.t0);
-        p8c p8cVar = (p8c) hq6.d0(intExtra).p1.remove(intent.getStringExtra("req_id"));
-        if (p8cVar != null) {
-            gl.c3(new mn0(p8cVar, (byte) 12));
+        int intExtra = intent.getIntExtra("account", yac.t0);
+        pcc pccVar = (pcc) ls6.d0(intExtra).p1.remove(intent.getStringExtra("req_id"));
+        if (pccVar != null) {
+            hl.c3(new jn0(pccVar, (byte) 13));
         }
     }
 }

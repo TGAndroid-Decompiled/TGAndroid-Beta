@@ -1,112 +1,127 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.ViewGroup;
-import java.util.HashSet;
-public class cj7 extends fy0 implements tjb {
-    public l5c S1;
-    public final ViewGroup T1;
-    public final Paint U1;
-    public float V1;
+import java.io.File;
+import java.io.Serializable;
+import java.util.concurrent.CancellationException;
+import sun.misc.Unsafe;
+public final class cj7 extends az5 implements ur4 {
+    public final byte b;
+    public final Serializable c;
+    public final Object d;
 
-    public cj7(Context context, ViewGroup viewGroup, wjb wjbVar) {
-        super(context, null, true, false, wjbVar);
-        this.U1 = new Paint();
-        this.u1 = 0.1f;
-        this.T1 = viewGroup;
-        o39 o39Var = this.n1;
-        int i = this.u0;
-        o39Var.setPadding(i, 0, i, 0);
-        updateColors();
-        this.S1.O(false);
+    public cj7(Serializable serializable, Object obj, byte b) {
+        super(1);
+        this.b = b;
+        this.c = serializable;
+        this.d = obj;
     }
 
     @Override
-    public final n39 G0(o39 o39Var) {
-        l5c l5cVar = new l5c(o39Var, getContext(), this.a, 0, true, new ur4(this, (byte) 21), this.J0);
-        this.S1 = l5cVar;
-        return l5cVar;
-    }
-
-    @Override
-    public final CharSequence J0() {
-        return null;
-    }
-
-    @Override
-    public void O0(float f) {
-        this.V1 = f;
-        if (this.F != null) {
-            this.F.setTranslationY(Math.max((this.b.getY() + f) + this.t0, this.F.getHeight() + (gl.L(56.0f) + gl.m)) - this.F.getBottom());
+    public final Object invoke(Object obj) {
+        Object nj1Var;
+        qj1 qj1Var;
+        noc nocVar;
+        f9c f9cVar;
+        Throwable th;
+        byte b = this.b;
+        Object obj2 = this.d;
+        Serializable serializable = this.c;
+        f9c f9cVar2 = f9c.a;
+        switch (b) {
+            case 0:
+                if (ur5.a((String) obj, ((File) serializable).getName())) {
+                    so8 so8Var = (so8) obj2;
+                    Object d = so8Var.d(f9cVar2);
+                    if (!(d instanceof oj1)) {
+                        f9c f9cVar3 = (f9c) d;
+                    } else {
+                        Object obj3 = ((pj1) ytd.a(new ii1(so8Var, null, (byte) 2))).a;
+                    }
+                }
+                return f9cVar2;
+            default:
+                Throwable th2 = (Throwable) obj;
+                ((l83) serializable).invoke(th2);
+                z01 z01Var = (z01) ((lyc) obj2).d;
+                z01Var.c(th2, false);
+                do {
+                    z01Var.getClass();
+                    Unsafe unsafe = fx.a;
+                    long longVolatile = unsafe.getLongVolatile(z01Var, z01.y);
+                    long longVolatile2 = unsafe.getLongVolatile(z01Var, z01.F);
+                    if (z01Var.r(longVolatile2, true)) {
+                        nj1Var = new nj1(z01Var.k());
+                    } else {
+                        int i = (longVolatile > (longVolatile2 & 1152921504606846975L) ? 1 : (longVolatile == (longVolatile2 & 1152921504606846975L) ? 0 : -1));
+                        oj1 oj1Var = pj1.b;
+                        if (i < 0) {
+                            ow5 ow5Var = b11.k;
+                            qj1 qj1Var2 = (qj1) unsafe.getObjectVolatile(z01Var, z01.x);
+                            while (true) {
+                                if (z01Var.s()) {
+                                    nj1Var = new nj1(z01Var.k());
+                                } else {
+                                    long andIncrement = z01.c.getAndIncrement(z01Var);
+                                    long j = b11.b;
+                                    long j2 = andIncrement / j;
+                                    int i2 = (int) (andIncrement % j);
+                                    if (qj1Var2.d != j2) {
+                                        qj1 h = z01Var.h(j2, qj1Var2);
+                                        if (h != null) {
+                                            qj1Var = h;
+                                        } else {
+                                            continue;
+                                        }
+                                    } else {
+                                        qj1Var = qj1Var2;
+                                    }
+                                    nj1Var = z01Var.C(qj1Var, i2, andIncrement, ow5Var);
+                                    qj1Var2 = qj1Var;
+                                    if (nj1Var == b11.m) {
+                                        if (ow5Var instanceof noc) {
+                                            nocVar = (noc) ow5Var;
+                                        } else {
+                                            nocVar = null;
+                                        }
+                                        if (nocVar != null) {
+                                            nocVar.a(qj1Var2, i2);
+                                        }
+                                        z01Var.F(andIncrement);
+                                        qj1Var2.i();
+                                    } else if (nj1Var == b11.o) {
+                                        if (andIncrement < z01Var.o()) {
+                                            qj1Var2.b();
+                                        }
+                                    } else if (nj1Var != b11.n) {
+                                        qj1Var2.b();
+                                    } else {
+                                        grb.i("unexpected");
+                                        nj1Var = null;
+                                    }
+                                }
+                            }
+                        }
+                        nj1Var = oj1Var;
+                    }
+                    if (nj1Var instanceof oj1) {
+                        nj1Var = null;
+                    }
+                    if (nj1Var != null) {
+                        vp2 vp2Var = ((k37) nj1Var).b;
+                        if (th2 == null) {
+                            th = new CancellationException("DataStore scope was cancelled before updateData could complete");
+                        } else {
+                            th = th2;
+                        }
+                        vp2Var.P(th);
+                        f9cVar = f9cVar2;
+                        continue;
+                    } else {
+                        f9cVar = null;
+                        continue;
+                    }
+                } while (f9cVar != null);
+                return f9cVar2;
         }
-    }
-
-    @Override
-    public final void W(Canvas canvas) {
-        float width;
-        float f;
-        ww0 ww0Var = this.c;
-        float height = ww0Var.getHeight();
-        float max = Math.max(height - gl.n, this.b.getY() + this.V1 + this.t0);
-        if (max >= height) {
-            return;
-        }
-        if (this.b.getWidth() < ww0Var.getWidth()) {
-            f = this.b.getX() + this.u0;
-            width = (this.b.getX() + this.b.getWidth()) - this.u0;
-        } else {
-            width = ww0Var.getWidth();
-            f = 0.0f;
-        }
-        canvas.drawRect(f, max, width, height, this.U1);
-    }
-
-    public int Y0() {
-        return bkb.v0(bkb.Z6, this.J0);
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.Z6));
-    }
-
-    @Override
-    public void show() {
-        boolean z;
-        if (getWindow() != null) {
-            gl.S(getWindow());
-        }
-        super.show();
-        int Y0 = Y0();
-        x0(Y0);
-        if (gl.B(Y0) > 0.721f) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gl.i3(this, z);
-        if (getWindow() != null) {
-            getWindow().getDecorView().requestApplyInsets();
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        int Y0 = Y0();
-        this.U1.setColor(Y0);
-        s0(Y0);
-        L(Y0);
-        ViewGroup viewGroup = this.T1;
-        if (viewGroup != null) {
-            viewGroup.invalidate();
-        }
-    }
-
-    @Override
-    public final void x0(int i) {
-        super.x0(i);
-        gl.o3(this, 0, false, null);
     }
 }

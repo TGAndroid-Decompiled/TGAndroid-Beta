@@ -1,204 +1,749 @@
 package defpackage;
 
-import android.util.Pair;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.ContextThemeWrapper;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Scroller;
+import java.util.ArrayList;
 import java.util.List;
-public final class wd5 implements j74 {
-    public final byte a;
-    public final qia b;
-    public l74 c;
-    public j74 d;
-    public Pair e;
-    public final j74 f;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.PhotoViewer;
+public final class wd5 extends View implements GestureDetector.OnGestureListener {
+    public float E;
+    public float F;
+    public int G;
+    public long H;
+    public boolean I;
+    public boolean J;
+    public int K;
+    public int L;
+    public int M;
+    public boolean N;
+    public final Scroller O;
+    public final GestureDetector P;
+    public boolean Q;
+    public boolean R;
+    public boolean S;
+    public boolean T;
+    public int U;
+    public boolean V;
+    public boolean W;
+    public final Paint a;
+    public vd5 a0;
+    public final ArrayList b;
+    public ValueAnimator b0;
+    public final ArrayList c;
+    public ValueAnimator c0;
+    public final ArrayList d;
+    public float d0;
+    public final ArrayList e;
+    public int f;
+    public long h;
+    public final int n;
+    public final int r;
+    public final int s;
+    public final int w;
+    public int x;
+    public float y;
 
-    public wd5(int i, byte b) {
-        ku5 ku5Var;
-        vd5 vd5Var;
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.b = new qia(65496, 2, "image/jpeg");
-                if ((i & 1) == 0) {
-                    ku5Var = new ku5();
+    public wd5(ContextThemeWrapper contextThemeWrapper, int i) {
+        super(contextThemeWrapper);
+        Paint paint = new Paint();
+        this.a = paint;
+        this.b = new ArrayList();
+        this.c = new ArrayList();
+        this.d = new ArrayList();
+        this.e = new ArrayList();
+        this.E = 1.0f;
+        this.F = 0.0f;
+        this.M = -1;
+        this.T = true;
+        this.U = -1;
+        this.W = true;
+        this.P = new GestureDetector(contextThemeWrapper, this);
+        this.O = new Scroller(contextThemeWrapper);
+        this.n = hl.L(42.0f);
+        this.r = hl.L(56.0f);
+        this.w = hl.L(1.0f);
+        this.s = i;
+        paint.setColor(2130706432);
+    }
+
+    private ImageReceiver getFreeReceiver() {
+        ImageReceiver imageReceiver;
+        ArrayList arrayList = this.b;
+        if (arrayList.isEmpty()) {
+            imageReceiver = new ImageReceiver(this);
+            imageReceiver.A1 = false;
+        } else {
+            arrayList.remove(0);
+            imageReceiver = (ImageReceiver) arrayList.get(0);
+        }
+        this.c.add(imageReceiver);
+        imageReceiver.d = ((jb8) this.a0).a.U;
+        return imageReceiver;
+    }
+
+    private int getMaxScrollX() {
+        return (this.n + (this.w << 1)) * this.f;
+    }
+
+    private int getMinScrollX() {
+        return (this.n + (this.w << 1)) * (-((this.d.size() - this.f) - 1));
+    }
+
+    public final void a(int i, boolean z) {
+        int i2;
+        int i3;
+        Object obj;
+        Object obj2;
+        ArrayList arrayList = this.b;
+        ArrayList arrayList2 = this.c;
+        if (!z && !arrayList2.isEmpty()) {
+            arrayList.addAll(arrayList2);
+            arrayList2.clear();
+            this.I = false;
+            this.y = 1.0f;
+            this.E = 1.0f;
+            this.F = 0.0f;
+        }
+        invalidate();
+        if (getMeasuredWidth() != 0) {
+            ArrayList arrayList3 = this.d;
+            if (!arrayList3.isEmpty()) {
+                int measuredWidth = getMeasuredWidth();
+                int i4 = this.n;
+                int measuredWidth2 = (getMeasuredWidth() / 2) - (i4 / 2);
+                int i5 = this.w;
+                if (z) {
+                    int size = arrayList2.size();
+                    int i6 = 0;
+                    i2 = Integer.MIN_VALUE;
+                    i3 = Integer.MAX_VALUE;
+                    while (i6 < size) {
+                        ImageReceiver imageReceiver = (ImageReceiver) arrayList2.get(i6);
+                        int i7 = imageReceiver.f;
+                        int i8 = ((i4 + i5) * (i7 - this.f)) + measuredWidth2 + i;
+                        if (i8 > measuredWidth || i8 + i4 < 0) {
+                            arrayList.add(imageReceiver);
+                            arrayList2.remove(i6);
+                            size--;
+                            i6--;
+                        }
+                        i3 = Math.min(i3, i7 - 1);
+                        i2 = Math.max(i2, i7 + 1);
+                        i6++;
+                    }
                 } else {
-                    ku5Var = null;
+                    i2 = this.f;
+                    i3 = i2 - 1;
                 }
-                this.f = ku5Var;
-                return;
-            default:
-                this.b = new qia(-1, -1, "image/heif");
-                if ((i & 1) != 0) {
-                    vd5Var = null;
-                } else {
-                    vd5Var = new vd5();
+                int i9 = this.r;
+                int i10 = this.s;
+                ArrayList arrayList4 = this.e;
+                if (i2 != Integer.MIN_VALUE) {
+                    int size2 = arrayList3.size();
+                    while (i2 < size2) {
+                        int i11 = ((i4 + i5) * (i2 - this.f)) + measuredWidth2 + i;
+                        if (i11 >= measuredWidth) {
+                            break;
+                        }
+                        jn5 jn5Var = (jn5) arrayList3.get(i2);
+                        ImageReceiver freeReceiver = getFreeReceiver();
+                        int i12 = measuredWidth;
+                        int i13 = measuredWidth2;
+                        freeReceiver.i0(i11, i10, i4, i9);
+                        if (arrayList4.get(0) instanceof r47) {
+                            obj2 = arrayList4.get(i2);
+                        } else {
+                            boolean z2 = arrayList4.get(0) instanceof TL_iv.PageBlock;
+                            vd5 vd5Var = this.a0;
+                            if (z2) {
+                                bd8 bd8Var = ((jb8) vd5Var).a.i7;
+                                if (bd8Var != null) {
+                                    obj2 = bd8Var.g();
+                                } else {
+                                    obj2 = null;
+                                }
+                            } else {
+                                obj2 = "avatar_" + ((jb8) vd5Var).a.y5;
+                            }
+                        }
+                        freeReceiver.Z(null, null, jn5Var, "80_80", null, 0L, null, obj2, 1);
+                        freeReceiver.f = i2;
+                        i2++;
+                        measuredWidth = i12;
+                        measuredWidth2 = i13;
+                    }
                 }
-                this.f = vd5Var;
-                return;
+                int i14 = measuredWidth2;
+                if (i3 != Integer.MAX_VALUE) {
+                    while (i3 >= 0) {
+                        int i15 = ((i4 + i5) * (i3 - this.f)) + i14 + i + i4;
+                        if (i15 <= 0) {
+                            break;
+                        }
+                        jn5 jn5Var2 = (jn5) arrayList3.get(i3);
+                        ImageReceiver freeReceiver2 = getFreeReceiver();
+                        freeReceiver2.i0(i15, i10, i4, i9);
+                        if (arrayList4.get(0) instanceof r47) {
+                            obj = arrayList4.get(i3);
+                        } else {
+                            boolean z3 = arrayList4.get(0) instanceof TL_iv.PageBlock;
+                            vd5 vd5Var2 = this.a0;
+                            if (z3) {
+                                bd8 bd8Var2 = ((jb8) vd5Var2).a.i7;
+                                if (bd8Var2 != null) {
+                                    obj = bd8Var2.g();
+                                } else {
+                                    obj = null;
+                                }
+                            } else {
+                                obj = "avatar_" + ((jb8) vd5Var2).a.y5;
+                            }
+                        }
+                        freeReceiver2.Z(null, null, jn5Var2, "80_80", null, 0L, null, obj, 1);
+                        freeReceiver2.f = i3;
+                        i3--;
+                    }
+                }
+                ValueAnimator valueAnimator = this.b0;
+                if (valueAnimator != null && !valueAnimator.isStarted()) {
+                    this.b0.start();
+                }
+            }
         }
     }
 
-    @Override
-    public final j74 a() {
-        byte b = this.a;
-        return this;
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wd5.b():void");
     }
 
-    @Override
-    public final int b(k74 k74Var, m11 m11Var) {
-        byte b = this.a;
-        j74 j74Var = this.b;
-        boolean z = true;
-        j74 j74Var2 = this.f;
-        switch (b) {
-            case 0:
-                j74 j74Var3 = this.d;
-                if (j74Var3 == null) {
-                    j74 j74Var4 = (vd5) j74Var2;
-                    if (j74Var3 != null) {
-                        z = false;
-                    }
-                    gre.p(z);
-                    j74Var4.getClass();
-                    if (j74Var4.c(k74Var)) {
-                        j74Var = j74Var4;
-                    }
-                    this.d = j74Var;
-                    ((ja3) k74Var).f = 0;
-                    Pair pair = this.e;
-                    if (pair != null) {
-                        j74Var.d(((Long) pair.first).longValue(), ((Long) this.e.second).longValue());
-                        this.e = null;
-                    }
-                    j74 j74Var5 = this.d;
-                    l74 l74Var = this.c;
-                    l74Var.getClass();
-                    j74Var5.f(l74Var);
-                }
-                return this.d.b(k74Var, m11Var);
-            default:
-                j74 j74Var6 = this.d;
-                if (j74Var6 == null) {
-                    j74 j74Var7 = (ku5) j74Var2;
-                    if (j74Var6 != null) {
-                        z = false;
-                    }
-                    gre.p(z);
-                    j74Var7.getClass();
-                    if (j74Var7.c(k74Var)) {
-                        j74Var = j74Var7;
-                    }
-                    this.d = j74Var;
-                    ((ja3) k74Var).f = 0;
-                    Pair pair2 = this.e;
-                    if (pair2 != null) {
-                        j74Var.d(((Long) pair2.first).longValue(), ((Long) this.e.second).longValue());
-                        this.e = null;
-                    }
-                    j74 j74Var8 = this.d;
-                    l74 l74Var2 = this.c;
-                    l74Var2.getClass();
-                    j74Var8.f(l74Var2);
-                }
-                return this.d.b(k74Var, m11Var);
-        }
-    }
-
-    @Override
-    public final boolean c(k74 k74Var) {
-        byte b = this.a;
-        j74 j74Var = this.f;
-        switch (b) {
-            case 0:
-                if (((vd5) j74Var) != null && hje.a((ja3) k74Var, true)) {
+    public final boolean c() {
+        if (this.V && this.c0 == null) {
+            if (this.d0 <= 0.0f && this.W) {
+                ValueAnimator valueAnimator = this.b0;
+                if (valueAnimator != null && valueAnimator.isStarted()) {
                     return true;
                 }
-                ja3 ja3Var = (ja3) k74Var;
-                ja3Var.f = 0;
-                return hje.a(ja3Var, false);
-            default:
-                ku5 ku5Var = (ku5) j74Var;
-                if (ku5Var != null && ku5Var.c(k74Var)) {
-                    return true;
-                }
-                ((ja3) k74Var).f = 0;
-                return this.b.c(k74Var);
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        this.V = false;
+        if (this.T) {
+            this.d0 = 0.0f;
         }
     }
 
+    public final void e() {
+        this.Q = false;
+        Scroller scroller = this.O;
+        if (!scroller.isFinished()) {
+            scroller.abortAnimation();
+        }
+        int i = this.U;
+        if (i >= 0 && i < this.e.size()) {
+            this.R = true;
+            this.N = false;
+            int i2 = this.U;
+            this.M = i2;
+            this.G = i2;
+            this.K = (this.n + this.w) * (this.f - i2);
+            this.L = this.x;
+            this.y = 1.0f;
+            this.U = -1;
+            vd5 vd5Var = this.a0;
+            if (vd5Var != null) {
+                PhotoViewer photoViewer = ((jb8) vd5Var).a;
+                if (PhotoViewer.a2(photoViewer.S4)) {
+                    photoViewer.Y2 = true;
+                    photoViewer.Y0(true);
+                    photoViewer.v(0, true);
+                }
+            }
+        }
+        invalidate();
+    }
+
+    public final void f() {
+        int i;
+        List list;
+        int i2;
+        int i3;
+        int i4 = this.x;
+        int abs = Math.abs(i4);
+        int i5 = this.n;
+        int i6 = this.w;
+        int i7 = (i5 / 2) + i6;
+        int i8 = -1;
+        if (abs > i7) {
+            if (i4 > 0) {
+                i2 = i4 - i7;
+                i3 = 1;
+            } else {
+                i2 = i4 + i7;
+                i3 = -1;
+            }
+            i = (i2 / (i5 + (i6 << 1))) + i3;
+        } else {
+            i = 0;
+        }
+        this.U = this.f - i;
+        PhotoViewer photoViewer = ((jb8) this.a0).a;
+        int i9 = photoViewer.O4;
+        ArrayList arrayList = photoViewer.Z6;
+        ArrayList arrayList2 = photoViewer.X6;
+        bd8 bd8Var = photoViewer.i7;
+        if (bd8Var != null) {
+            list = bd8Var.getAll();
+        } else {
+            list = null;
+        }
+        int i10 = this.U;
+        if (i9 != i10 && i10 >= 0 && i10 < this.d.size()) {
+            Object obj = this.e.get(this.U);
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                i8 = arrayList2.indexOf((r47) obj);
+            } else if (list != null && !list.isEmpty()) {
+                i8 = list.indexOf((TL_iv.PageBlock) obj);
+            } else if (arrayList != null && !arrayList.isEmpty()) {
+                i8 = arrayList.indexOf((jn5) obj);
+            }
+            if (i8 >= 0) {
+                this.S = true;
+                ((jb8) this.a0).a(i8);
+            }
+        }
+        if (!this.Q) {
+            this.Q = true;
+            this.R = false;
+        }
+        a(this.x, true);
+    }
+
+    public int getCount() {
+        return this.d.size();
+    }
+
+    public int getIndex() {
+        return this.f;
+    }
+
     @Override
-    public final void d(long j, long j2) {
-        switch (this.a) {
-            case 0:
-                j74 j74Var = this.d;
-                if (j74Var != null) {
-                    j74Var.d(j, j2);
-                    return;
+    public final boolean onDown(MotionEvent motionEvent) {
+        Scroller scroller = this.O;
+        if (!scroller.isFinished()) {
+            scroller.abortAnimation();
+        }
+        this.M = -1;
+        this.N = false;
+        return true;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i;
+        int i2;
+        int i3;
+        float f;
+        float interpolation;
+        int i4;
+        int i5;
+        int i6;
+        float f2;
+        TLRPC.PhotoSize photoSize;
+        TLRPC.PhotoSize photoSize2;
+        boolean z = this.V;
+        ArrayList arrayList = this.c;
+        if (z || !arrayList.isEmpty()) {
+            float f3 = this.d0;
+            if (!this.W) {
+                if (this.V) {
+                    f3 = 1.0f;
                 } else {
-                    this.e = Pair.create(Long.valueOf(j), Long.valueOf(j2));
-                    return;
+                    f3 = 0.0f;
                 }
-            default:
-                j74 j74Var2 = this.d;
-                if (j74Var2 != null) {
-                    j74Var2.d(j, j2);
-                    return;
+            }
+            Paint paint = this.a;
+            paint.setAlpha((int) (f3 * 127.0f));
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
+            if (!arrayList.isEmpty()) {
+                int size = arrayList.size();
+                int i7 = this.x;
+                int i8 = this.n;
+                float f4 = i8;
+                int i9 = (int) (f4 * 2.0f);
+                int L = hl.L(8.0f);
+                int i10 = this.f;
+                ArrayList arrayList2 = this.d;
+                jn5 jn5Var = (jn5) arrayList2.get(i10);
+                int i11 = this.r;
+                if (jn5Var != null && (photoSize2 = jn5Var.k) != null) {
+                    i = Math.max(i8, (int) ((i11 / photoSize2.h) * photoSize2.w));
                 } else {
-                    this.e = Pair.create(Long.valueOf(j), Long.valueOf(j2));
-                    return;
+                    i = i11;
                 }
+                int min = Math.min(i9, i);
+                float f5 = L << 1;
+                float f6 = this.E;
+                int i12 = ((int) ((min - i8) * f6)) + i8 + ((int) (f5 * f6));
+                int i13 = this.G;
+                if (i13 >= 0 && i13 < arrayList2.size()) {
+                    jn5 jn5Var2 = (jn5) arrayList2.get(this.G);
+                    if (jn5Var2 != null && (photoSize = jn5Var2.k) != null) {
+                        i11 = Math.max(i8, (int) ((i11 / photoSize.h) * photoSize.w));
+                    }
+                } else {
+                    i11 = i8;
+                }
+                int min2 = Math.min(i9, i11);
+                float f7 = this.F;
+                int i14 = (int) (f5 * f7);
+                float f8 = i7;
+                float f9 = (((min2 + i14) - i8) / 2) * f7;
+                if (this.G > this.f) {
+                    i3 = -1;
+                } else {
+                    i3 = 1;
+                }
+                int i15 = (int) ((f9 * i3) + f8);
+                int i16 = ((int) ((min2 - i8) * f7)) + i8 + i14;
+                int measuredWidth = (getMeasuredWidth() - i12) / 2;
+                int i17 = 0;
+                while (i17 < size) {
+                    ImageReceiver imageReceiver = (ImageReceiver) arrayList.get(i17);
+                    int i18 = imageReceiver.f;
+                    int i19 = this.f;
+                    if (i18 == i19) {
+                        imageReceiver.L0 = (i2 / 2) + measuredWidth + i15;
+                        imageReceiver.N0 = i12 - i2;
+                        i6 = size;
+                    } else {
+                        int i20 = this.G;
+                        i6 = size;
+                        int i21 = this.w;
+                        if (i20 < i19) {
+                            if (i18 < i19) {
+                                int i22 = i18 - i19;
+                                if (i18 <= i20) {
+                                    f2 = ((((i8 + i21) * (i22 + 1)) + measuredWidth) - (i21 + i16)) + i15;
+                                    imageReceiver.L0 = f2;
+                                } else {
+                                    f2 = ((i21 + i8) * i22) + measuredWidth + i15;
+                                    imageReceiver.L0 = f2;
+                                }
+                            } else {
+                                f2 = ((i21 + i8) * ((i18 - i19) - 1)) + measuredWidth + i12 + i21 + i15;
+                                imageReceiver.L0 = f2;
+                            }
+                        } else if (i18 < i19) {
+                            f2 = ((i21 + i8) * (i18 - i19)) + measuredWidth + i15;
+                            imageReceiver.L0 = f2;
+                        } else {
+                            int i23 = measuredWidth + i12 + i21;
+                            int i24 = i18 - i19;
+                            if (i18 <= i20) {
+                                f2 = ((i21 + i8) * (i24 - 1)) + i23 + i15;
+                                imageReceiver.L0 = f2;
+                            } else {
+                                f2 = i21 + i16 + ((i8 + i21) * (i24 - 2)) + i23 + i15;
+                                imageReceiver.L0 = f2;
+                            }
+                        }
+                        if (i18 == i20) {
+                            imageReceiver.N0 = i16 - i14;
+                            imageReceiver.L0 = (int) (f2 + (i14 / 2));
+                        } else {
+                            imageReceiver.N0 = f4;
+                        }
+                    }
+                    imageReceiver.setAlpha(this.d0);
+                    imageReceiver.q0(hl.L(2.0f));
+                    imageReceiver.h(canvas, null);
+                    i17++;
+                    size = i6;
+                }
+                long currentTimeMillis = System.currentTimeMillis();
+                long j = currentTimeMillis - this.H;
+                if (j > 17) {
+                    j = 17;
+                }
+                this.H = currentTimeMillis;
+                int i25 = this.M;
+                if (i25 >= 0) {
+                    float f10 = this.y;
+                    if (f10 > 0.0f) {
+                        float f11 = (float) j;
+                        if (this.N) {
+                            f = 100.0f;
+                        } else {
+                            f = 200.0f;
+                        }
+                        float f12 = f10 - (f11 / f);
+                        this.y = f12;
+                        if (i25 == this.f) {
+                            float f13 = this.E;
+                            if (f13 < 1.0f) {
+                                f13 += f11 / 200.0f;
+                                this.E = f13;
+                                if (f13 > 1.0f) {
+                                    this.E = 1.0f;
+                                    f13 = 1.0f;
+                                }
+                            }
+                            this.x = this.L + ((int) Math.ceil(f13 * (this.K - i5)));
+                        } else {
+                            k43 k43Var = k43.g;
+                            this.F = k43Var.getInterpolation(1.0f - f12);
+                            if (this.R) {
+                                float f14 = this.E;
+                                if (f14 > 0.0f) {
+                                    float f15 = f14 - (f11 / 200.0f);
+                                    this.E = f15;
+                                    if (f15 < 0.0f) {
+                                        this.E = 0.0f;
+                                    }
+                                }
+                                this.x = this.L + ((int) Math.ceil(interpolation * (this.K - i4)));
+                            } else {
+                                this.E = k43Var.getInterpolation(this.y);
+                                this.x = (int) Math.ceil(this.F * this.K);
+                            }
+                        }
+                        if (this.y <= 0.0f) {
+                            this.f = this.M;
+                            this.y = 1.0f;
+                            this.E = 1.0f;
+                            this.F = 0.0f;
+                            this.I = false;
+                            this.R = false;
+                            this.x = 0;
+                            this.M = -1;
+                            this.N = false;
+                        }
+                    }
+                    a(this.x, true);
+                    invalidate();
+                }
+                if (this.Q) {
+                    float f16 = this.E;
+                    if (f16 > 0.0f) {
+                        float f17 = f16 - (((float) j) / 200.0f);
+                        this.E = f17;
+                        if (f17 < 0.0f) {
+                            this.E = 0.0f;
+                        }
+                        invalidate();
+                    }
+                }
+                Scroller scroller = this.O;
+                if (!scroller.isFinished()) {
+                    if (scroller.computeScrollOffset()) {
+                        this.x = scroller.getCurrX();
+                        f();
+                        invalidate();
+                    }
+                    if (scroller.isFinished()) {
+                        e();
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public final List e() {
-        byte b = this.a;
-        km5 km5Var = mm5.b;
-        return w59.e;
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        Scroller scroller = this.O;
+        scroller.abortAnimation();
+        if (this.d.size() >= 10) {
+            scroller.fling(this.x, 0, Math.round(f), 0, getMinScrollX(), getMaxScrollX(), 0, 0);
+            return false;
+        }
+        return false;
     }
 
     @Override
-    public final void f(l74 l74Var) {
-        byte b = this.a;
-        qia qiaVar = this.b;
-        j74 j74Var = this.f;
-        switch (b) {
-            case 0:
-                this.c = l74Var;
-                if (((vd5) j74Var) == null) {
-                    this.d = qiaVar;
-                    qiaVar.f(l74Var);
-                    return;
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        a(0, false);
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        this.x = (int) (this.x - f);
+        int minScrollX = getMinScrollX();
+        int maxScrollX = getMaxScrollX();
+        int i = this.x;
+        if (i < minScrollX) {
+            this.x = minScrollX;
+        } else if (i > maxScrollX) {
+            this.x = maxScrollX;
+        }
+        f();
+        return false;
+    }
+
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        List list;
+        PhotoViewer photoViewer = ((jb8) this.a0).a;
+        int i = photoViewer.O4;
+        ArrayList arrayList = photoViewer.Z6;
+        ArrayList arrayList2 = photoViewer.X6;
+        bd8 bd8Var = photoViewer.i7;
+        if (bd8Var != null) {
+            list = bd8Var.getAll();
+        } else {
+            list = null;
+        }
+        e();
+        ArrayList arrayList3 = this.c;
+        int size = arrayList3.size();
+        int i2 = 0;
+        while (true) {
+            if (i2 >= size) {
+                break;
+            }
+            ImageReceiver imageReceiver = (ImageReceiver) arrayList3.get(i2);
+            if (imageReceiver.H(motionEvent.getX(), motionEvent.getY())) {
+                int i3 = imageReceiver.f;
+                if (i3 >= 0) {
+                    ArrayList arrayList4 = this.e;
+                    if (i3 < arrayList4.size()) {
+                        if (arrayList2 != null && !arrayList2.isEmpty()) {
+                            int indexOf = arrayList2.indexOf((r47) arrayList4.get(i3));
+                            if (i != indexOf) {
+                                this.y = 1.0f;
+                                this.J = true;
+                                ((jb8) this.a0).a(indexOf);
+                                return false;
+                            }
+                        } else if (list != null && !list.isEmpty()) {
+                            int indexOf2 = list.indexOf((TL_iv.PageBlock) arrayList4.get(i3));
+                            if (i != indexOf2) {
+                                this.y = 1.0f;
+                                this.J = true;
+                                ((jb8) this.a0).a(indexOf2);
+                                return false;
+                            }
+                        } else if (arrayList != null && !arrayList.isEmpty()) {
+                            int indexOf3 = arrayList.indexOf((jn5) arrayList4.get(i3));
+                            if (i != indexOf3) {
+                                this.y = 1.0f;
+                                this.J = true;
+                                ((jb8) this.a0).a(indexOf3);
+                                return false;
+                            }
+                        }
+                    }
                 }
-                return;
-            default:
-                this.c = l74Var;
-                if (((ku5) j74Var) == null) {
-                    this.d = qiaVar;
-                    qiaVar.f(l74Var);
-                    return;
+                return true;
+            }
+            i2++;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z = false;
+        if (!this.d.isEmpty() && getAlpha() == 1.0f) {
+            if (this.P.onTouchEvent(motionEvent) || super.onTouchEvent(motionEvent)) {
+                z = true;
+            }
+            if (this.Q && motionEvent.getAction() == 1 && this.O.isFinished()) {
+                e();
+            }
+        }
+        return z;
+    }
+
+    public void setAnimateBackground(boolean z) {
+        this.W = z;
+    }
+
+    public void setAnimationsEnabled(boolean z) {
+        if (this.T != z) {
+            this.T = z;
+            if (!z) {
+                ValueAnimator valueAnimator = this.b0;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.b0 = null;
                 }
-                return;
+                ValueAnimator valueAnimator2 = this.c0;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                    this.c0 = null;
+                }
+                this.d0 = 0.0f;
+                invalidate();
+            }
+        }
+    }
+
+    public void setDelegate(vd5 vd5Var) {
+        this.a0 = vd5Var;
+    }
+
+    public void setMoveProgress(float f) {
+        int i;
+        float f2;
+        boolean z;
+        if (!this.Q && this.M < 0) {
+            int i2 = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
+            int i3 = this.f;
+            if (i2 > 0) {
+                i = i3 - 1;
+                this.G = i;
+            } else {
+                i = i3 + 1;
+                this.G = i;
+            }
+            ArrayList arrayList = this.d;
+            if (i >= 0 && i < arrayList.size()) {
+                f2 = 1.0f - Math.abs(f);
+                this.E = f2;
+            } else {
+                this.E = 1.0f;
+                f2 = 1.0f;
+            }
+            this.F = 1.0f - f2;
+            if (i2 != 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            this.I = z;
+            invalidate();
+            if (!arrayList.isEmpty()) {
+                if (f >= 0.0f || this.f != arrayList.size() - 1) {
+                    if (i2 <= 0 || this.f != 0) {
+                        int i4 = (int) (f * (this.n + this.w));
+                        this.x = i4;
+                        a(i4, true);
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public final void release() {
-        byte b = this.a;
-        j74 j74Var = this.f;
-        switch (b) {
-            case 0:
-                vd5 vd5Var = (vd5) j74Var;
-                if (vd5Var != null) {
-                    vd5Var.release();
-                    return;
-                }
-                return;
-            default:
-                ku5 ku5Var = (ku5) j74Var;
-                if (ku5Var != null) {
-                    ku5Var.release();
-                    return;
-                }
-                return;
-        }
+    public final void onLongPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

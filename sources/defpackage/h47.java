@@ -1,45 +1,29 @@
 package defpackage;
-public final class h47 extends la2 {
-    public Runnable W;
 
-    @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            gl.r(runnable);
-            this.W = null;
-        }
-        g47 g47Var = new g47(this, (byte) 0);
-        this.W = g47Var;
-        gl.c3(g47Var);
+import org.telegram.tgnet.TLRPC;
+public final class h47 implements tl {
+    public final byte a;
+    public final Object b;
+
+    public h47(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void V() {
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            gl.r(runnable);
-            this.W = null;
+    public final void a(TLRPC.Document document) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new mn6((r47) obj, document, (byte) 17));
+                return;
+            case 1:
+                hl.c3(new ty8((dz8) obj, document));
+                return;
+            default:
+                hl.c3(new ida((p3b) obj, document, (byte) 29));
+                return;
         }
-        if (w01.a) {
-            fa4.b("chatItemAnimator disable notifications");
-        }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            gl.r(runnable);
-        }
-        g47 g47Var = new g47(this, (byte) 1);
-        this.W = g47Var;
-        gl.c3(g47Var);
-    }
-
-    @Override
-    public final void F() {
     }
 }

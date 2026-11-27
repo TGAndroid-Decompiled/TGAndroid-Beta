@@ -1,51 +1,76 @@
 package defpackage;
 
-import android.app.Activity;
-import android.app.Application;
-import android.os.Bundle;
-public final class i7a implements Application.ActivityLifecycleCallbacks {
-    public final fga a;
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import org.telegram.tgnet.TLRPC;
+public final class i7a {
+    public String a;
+    public TLRPC.InputPeer g;
+    public long h;
+    public long i;
+    public long j;
+    public long k;
+    public int l;
+    public double m;
+    public long n;
+    public long o;
+    public final r7a q;
+    public ArrayList b = new ArrayList();
+    public final HashSet c = new HashSet();
+    public final HashMap d = new HashMap();
+    public final HashMap e = new HashMap();
+    public final ArrayList f = new ArrayList();
+    public int p = Integer.MAX_VALUE;
 
-    public i7a(fga fgaVar) {
-        fgaVar.getClass();
-        this.a = fgaVar;
+    public i7a(r7a r7aVar) {
+        this.q = r7aVar;
     }
 
-    @Override
-    public final void onActivityCreated(Activity activity, Bundle bundle) {
-        activity.getClass();
+    public final void a(String str, long j, float f) {
+        this.d.put(str, Float.valueOf(f));
+        Long valueOf = Long.valueOf(j);
+        HashMap hashMap = this.e;
+        hashMap.put(str, valueOf);
+        this.i = 0L;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            this.i = ((Long) entry.getValue()).longValue() + this.i;
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (!str.equals(this.a)) {
+            long j2 = this.i;
+            long j3 = this.o;
+            if (j2 != j3) {
+                long j4 = this.n;
+                if (elapsedRealtime != j4) {
+                    double d = (j2 - j3) / ((elapsedRealtime - j4) / 1000.0d);
+                    double d2 = this.m;
+                    if (d2 == 0.0d) {
+                        this.m = d;
+                    } else {
+                        d = (d * 0.01d) + (0.99d * d2);
+                        this.m = d;
+                    }
+                    this.p = (int) (((this.h - j2) * 1000) / d);
+                    this.o = j2;
+                    this.n = elapsedRealtime;
+                }
+            }
+        }
+        int i = (int) ((((float) this.i) / ((float) this.h)) * 100.0f);
+        if (this.l != i) {
+            this.l = i;
+            this.q.getNotificationCenter().k(jn7.v1, Long.valueOf(this.j));
+        }
     }
 
-    @Override
-    public final void onActivityDestroyed(Activity activity) {
-        activity.getClass();
-    }
-
-    @Override
-    public final void onActivityPaused(Activity activity) {
-        activity.getClass();
-        this.a.a();
-    }
-
-    @Override
-    public final void onActivityResumed(Activity activity) {
-        activity.getClass();
-        this.a.b();
-    }
-
-    @Override
-    public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-        activity.getClass();
-        bundle.getClass();
-    }
-
-    @Override
-    public final void onActivityStarted(Activity activity) {
-        activity.getClass();
-    }
-
-    @Override
-    public final void onActivityStopped(Activity activity) {
-        activity.getClass();
+    public final void b(int i) {
+        r7a r7aVar = this.q;
+        if (i == 100) {
+            r7aVar.E.l(this.j);
+        }
+        r7aVar.getNotificationCenter().k(jn7.v1, Long.valueOf(this.j));
     }
 }

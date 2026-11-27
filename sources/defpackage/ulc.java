@@ -1,11 +1,28 @@
 package defpackage;
 
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-public final class ulc extends ShapeDrawable.ShaderFactory {
+import org.telegram.messenger.voip.VoIPService;
+public final class ulc implements icc {
+    public final byte a;
+    public final VoIPService b;
+
+    public ulc(VoIPService voIPService, byte b) {
+        this.a = b;
+        this.b = voIPService;
+    }
+
     @Override
-    public final Shader resize(int i, int i2) {
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, -765355, -2148011, Shader.TileMode.CLAMP);
+    public final void a(Object obj, Object obj2) {
+        byte b = this.a;
+        VoIPService voIPService = this.b;
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (b) {
+            case 0:
+                voIPService.lambda$switchToSpeaker$88(bool, bool2);
+                return;
+            default:
+                voIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$92(bool, bool2);
+                return;
+        }
     }
 }

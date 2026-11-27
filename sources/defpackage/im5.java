@@ -1,96 +1,61 @@
 package defpackage;
 
-import java.io.Serializable;
-public final class im5 implements Serializable {
-    public static final im5 c = new im5(new int[0], 0);
-    public final int[] a;
-    public final int b;
+import java.util.Arrays;
+public final class im5 {
+    public final String a;
+    public final float b;
+    public final int c;
+    public final String d;
 
-    public im5(int[] iArr, int i) {
-        this.a = iArr;
-        this.b = i;
-    }
-
-    public static im5 c(int... iArr) {
-        boolean z;
-        if (iArr.length <= 2147483646) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.e("the total number of elements must fit in an int", z);
-        int length = iArr.length + 1;
-        int[] iArr2 = new int[length];
-        iArr2[0] = 0;
-        System.arraycopy(iArr, 0, iArr2, 1, iArr.length);
-        return new im5(iArr2, length);
-    }
-
-    public final boolean a(int i) {
-        int i2 = 0;
-        while (true) {
-            if (i2 < this.b) {
-                if (this.a[i2] == i) {
-                    break;
-                }
-                i2++;
-            } else {
-                i2 = -1;
-                break;
-            }
-        }
-        if (i2 < 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int b(int i) {
-        gre.j(i, this.b);
-        return this.a[i];
+    public im5(float f, int i, String str, String str2) {
+        int i2 = uge.a;
+        this.a = str == null ? "" : str;
+        this.b = f;
+        this.c = i;
+        this.d = str2;
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof im5) {
-                im5 im5Var = (im5) obj;
-                int i = im5Var.b;
-                int i2 = this.b;
-                if (i2 == i) {
-                    for (int i3 = 0; i3 < i2; i3++) {
-                        if (b(i3) == im5Var.b(i3)) {
-                        }
-                    }
-                    return true;
-                }
-            }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof im5)) {
             return false;
         }
-        return true;
+        im5 im5Var = (im5) obj;
+        if (vue.a(this.a, im5Var.a) && Float.compare(this.b, im5Var.b) == 0 && this.c == im5Var.c && vue.a(this.d, im5Var.d)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        int i = 1;
-        for (int i2 = 0; i2 < this.b; i2++) {
-            i = (i * 31) + this.a[i2];
-        }
-        return i;
+        return Arrays.hashCode(new Object[]{this.a, Float.valueOf(this.b), Integer.valueOf(this.c), this.d});
     }
 
     public final String toString() {
-        int i = this.b;
-        if (i == 0) {
-            return "[]";
-        }
-        StringBuilder sb = new StringBuilder(i * 5);
-        sb.append('[');
-        int[] iArr = this.a;
-        sb.append(iArr[0]);
-        for (int i2 = 1; i2 < i; i2++) {
-            sb.append(", ");
-            sb.append(iArr[i2]);
-        }
-        sb.append(']');
-        return sb.toString();
+        ko9 ko9Var = new ko9(im5.class.getSimpleName(), (byte) 29);
+        ko9 ko9Var2 = new ko9((byte) 26, false);
+        ((ko9) ko9Var.d).d = ko9Var2;
+        ko9Var.d = ko9Var2;
+        ko9Var2.c = this.a;
+        ko9Var2.b = "text";
+        String valueOf = String.valueOf(this.b);
+        ko9 ko9Var3 = new ko9((byte) 26, false);
+        ((ko9) ko9Var.d).d = ko9Var3;
+        ko9Var.d = ko9Var3;
+        ko9Var3.c = valueOf;
+        ko9Var3.b = "confidence";
+        String valueOf2 = String.valueOf(this.c);
+        ko9 ko9Var4 = new ko9((byte) 26, false);
+        ((ko9) ko9Var.d).d = ko9Var4;
+        ko9Var4.c = valueOf2;
+        ko9Var4.b = "index";
+        ko9 ko9Var5 = new ko9((byte) 26, false);
+        ko9Var4.d = ko9Var5;
+        ko9Var.d = ko9Var5;
+        ko9Var5.c = this.d;
+        ko9Var5.b = "mid";
+        return ko9Var.toString();
     }
 }

@@ -1,20 +1,37 @@
 package defpackage;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-public final class pdc {
-    public final pd5 a = new pd5((byte) 27);
-    public final LinkedHashMap b = new LinkedHashMap();
-    public final LinkedHashSet c = new LinkedHashSet();
-    public volatile boolean d;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+public final class pdc extends Drawable.ConstantState {
+    public int a;
+    public odc b;
+    public ColorStateList c;
+    public PorterDuff.Mode d;
+    public boolean e;
+    public Bitmap f;
+    public ColorStateList g;
+    public PorterDuff.Mode h;
+    public int i;
+    public boolean j;
+    public boolean k;
+    public Paint l;
 
-    public static void a(AutoCloseable autoCloseable) {
-        if (autoCloseable != null) {
-            try {
-                yjb.w(autoCloseable);
-            } catch (Exception e) {
-                sdb.b(e);
-            }
-        }
+    @Override
+    public int getChangingConfigurations() {
+        return this.a;
+    }
+
+    @Override
+    public final Drawable newDrawable() {
+        return new rdc(this);
+    }
+
+    @Override
+    public final Drawable newDrawable(Resources resources) {
+        return new rdc(this);
     }
 }

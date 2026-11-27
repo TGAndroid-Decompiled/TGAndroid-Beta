@@ -1,109 +1,67 @@
 package defpackage;
 
-import android.net.Uri;
-import android.system.ErrnoException;
-import android.system.OsConstants;
-import android.text.TextUtils;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-public final class a94 extends qf0 {
-    public RandomAccessFile a;
-    public Uri b;
-    public long c;
-    public boolean d;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class a94 extends c4 {
+    public static final Parcelable.Creator<a94> CREATOR = new ced((byte) 18);
+    public final String a;
+    public final int b;
+    public final long c;
+    public final boolean d;
 
-    @Override
-    public final void close() {
-        this.b = null;
-        try {
-            try {
-                RandomAccessFile randomAccessFile = this.a;
-                if (randomAccessFile != null) {
-                    randomAccessFile.close();
-                }
-            } catch (IOException e) {
-                throw new r63(e, 2000);
-            }
-        } finally {
-            this.a = null;
-            if (this.d) {
-                this.d = false;
-                transferEnded();
-            }
-        }
+    public a94(String str, int i, long j, boolean z) {
+        this.a = str;
+        this.b = i;
+        this.c = j;
+        this.d = z;
     }
 
-    @Override
-    public final Uri getUri() {
-        return this.b;
-    }
-
-    @Override
-    public final long open(u63 u63Var) {
-        Uri uri = u63Var.a;
-        long j = u63Var.e;
-        this.b = uri;
-        transferInitializing(u63Var);
-        int i = 2006;
-        try {
-            String path = uri.getPath();
-            path.getClass();
-            RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
-            this.a = randomAccessFile;
-            try {
-                randomAccessFile.seek(j);
-                long j2 = u63Var.f;
-                if (j2 == -1) {
-                    j2 = this.a.length() - j;
-                }
-                this.c = j2;
-                if (j2 >= 0) {
-                    this.d = true;
-                    transferStarted(u63Var);
-                    return this.c;
-                }
-                throw new r63(null, null, 2008);
-            } catch (IOException e) {
-                throw new r63(e, 2000);
-            }
-        } catch (FileNotFoundException e2) {
-            if (TextUtils.isEmpty(uri.getQuery()) && TextUtils.isEmpty(uri.getFragment())) {
-                throw new r63(e2, ((e2.getCause() instanceof ErrnoException) && ((ErrnoException) e2.getCause()).errno == OsConstants.EACCES) ? 2005 : 2005);
-            }
-            String path2 = uri.getPath();
-            String query = uri.getQuery();
-            String fragment = uri.getFragment();
-            StringBuilder l = yjb.l("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=", path2, ",query=", query, ",fragment=");
-            l.append(fragment);
-            throw new r63(l.toString(), e2, 1004);
-        } catch (SecurityException e3) {
-            throw new r63(e3, 2006);
-        } catch (RuntimeException e4) {
-            throw new r63(e4, 2000);
-        }
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        if (i2 == 0) {
-            return 0;
-        }
+    public final long b() {
         long j = this.c;
-        if (j == 0) {
-            return -1;
+        if (j == -1) {
+            return this.b;
         }
-        try {
-            RandomAccessFile randomAccessFile = this.a;
-            String str = g8c.a;
-            int read = randomAccessFile.read(bArr, i, (int) Math.min(j, i2));
-            if (read > 0) {
-                this.c -= read;
-                bytesTransferred(read);
+        return j;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof a94) {
+            a94 a94Var = (a94) obj;
+            if (vue.a(this.a, a94Var.a) && b() == a94Var.b() && this.d == a94Var.d) {
+                return true;
             }
-            return read;
-        } catch (IOException e) {
-            throw new r63(e, 2000);
         }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, Long.valueOf(b()), Boolean.valueOf(this.d)});
+    }
+
+    public final String toString() {
+        um4 um4Var = new um4(this);
+        um4Var.a(this.a, "name");
+        um4Var.a(Long.valueOf(b()), "version");
+        um4Var.a(Boolean.valueOf(this.d), "is_fully_rolled_out");
+        return um4Var.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 1, this.a);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        long b = b();
+        bye.q(parcel, 3, 8);
+        parcel.writeLong(b);
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        bye.s(parcel, r);
+    }
+
+    public a94(String str, long j) {
+        this(str, -1, j, false);
     }
 }

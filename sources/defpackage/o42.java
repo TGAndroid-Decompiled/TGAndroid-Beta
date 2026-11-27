@@ -1,33 +1,24 @@
 package defpackage;
-public final class o42 implements p8c {
-    public final byte a;
-    public final boolean b;
-    public final Object c;
-    public final Object d;
 
-    public o42(Object obj, Object obj2, boolean z, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.b = z;
+import android.content.Context;
+import android.view.View;
+public final class o42 extends y46 {
+    public final q22 r;
+
+    public o42(q22 q22Var, Context context) {
+        super(context);
+        this.r = q22Var;
     }
 
     @Override
-    public final void a(java.lang.Object r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.o42.a(java.lang.Object):void");
+    public final int k(int i, View view) {
+        int k = super.k(i, view);
+        s42 s42Var = (s42) this.r.V;
+        return k - (s42Var.M.getPaddingTop() - (s42Var.r0 - s42Var.q0));
     }
 
-    public o42(Object obj, boolean z, Object obj2, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = z;
-        this.d = obj2;
-    }
-
-    public o42(boolean z, Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = z;
-        this.c = obj;
-        this.d = obj2;
+    @Override
+    public final int m(int i) {
+        return super.m(i) << 2;
     }
 }

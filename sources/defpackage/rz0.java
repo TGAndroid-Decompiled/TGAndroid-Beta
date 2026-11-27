@@ -1,30 +1,16 @@
 package defpackage;
+public final class rz0 {
+    public long a;
+    public long b;
+    public int c;
+    public int d;
+    public Object e;
 
-import android.media.MediaDataSource;
-public final class rz0 extends MediaDataSource {
-    public final byte[] a;
-
-    public rz0(byte[] bArr) {
-        this.a = bArr;
-    }
-
-    @Override
-    public final long getSize() {
-        return this.a.length;
-    }
-
-    @Override
-    public final int readAt(long j, byte[] bArr, int i, int i2) {
-        byte[] bArr2 = this.a;
-        if (j >= bArr2.length) {
-            return -1;
-        }
-        int min = (int) Math.min(i2, bArr2.length - j);
-        System.arraycopy(bArr2, (int) j, bArr, i, min);
-        return min;
-    }
-
-    @Override
-    public final void close() {
+    public rz0(tz0 tz0Var, long j, int i) {
+        this.a = tz0Var.a;
+        this.b = j;
+        this.c = i;
+        this.d = tz0Var.e;
+        this.e = tz0Var;
     }
 }

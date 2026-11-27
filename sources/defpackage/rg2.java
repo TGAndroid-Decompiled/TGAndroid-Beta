@@ -1,308 +1,319 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Looper;
-import android.util.SparseArray;
-import android.view.Choreographer;
+import android.graphics.drawable.InsetDrawable;
 import android.view.View;
-import java.lang.reflect.Field;
-import java.util.Iterator;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class rg2 implements Choreographer.FrameCallback {
-    public static final long[] r;
-    public static rg2 s;
-    public final Choreographer a;
-    public final SparseArray b;
-    public final e59 c;
-    public final e59 d;
-    public final e59 e;
-    public long f;
-    public long h;
-    public int n;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.Components.p;
+import org.telegram.ui.LaunchActivity;
+public final class rg2 extends LinearLayout {
+    public final byte a;
+    public Object b;
+    public Object c;
+    public View d;
 
-    static {
-        int i;
-        boolean z;
-        int i2;
-        int i3 = 60;
-        long[] jArr = new long[60];
-        int i4 = 0;
-        while (i4 < i3) {
-            int i5 = i4 + 1;
-            int i6 = 2;
-            int i7 = 1;
-            for (int i8 = 2; i8 <= i3; i8++) {
-                if (i3 % i8 == 0 && Math.abs(i8 - i5) < Math.abs(i7 - i5)) {
-                    i7 = i8;
-                }
-            }
-            int i9 = i3 / i7;
-            long j = 0;
-            for (int i10 = 0; i10 < i3; i10 += i9) {
-                j |= 1 << i10;
-            }
-            int i11 = i5 - i7;
-            int abs = Math.abs(i11);
-            int i12 = 0;
-            while (i12 < abs) {
-                int i13 = (((i12 << 1) + 1) * 60) / (abs << 1);
-                int i14 = 0;
-                while (true) {
-                    i = i3;
-                    if (i14 < i3) {
-                        int i15 = 0;
-                        while (i15 < i6) {
-                            if (i15 == 0) {
-                                i2 = i14;
-                            } else {
-                                i2 = -i14;
-                            }
-                            int i16 = ((i13 + i2) + 60) % 60;
-                            long j2 = 1 << i16;
-                            long j3 = j & j2;
-                            if (i11 > 0) {
-                                if (j3 == 0 && (i9 % 2 != 0 || i16 % 2 != 0)) {
-                                    j |= j2;
-                                    z = true;
-                                    break;
-                                }
-                                i15++;
-                                i6 = 2;
-                            } else if (j3 == 0) {
-                                i15++;
-                                i6 = 2;
-                            } else {
-                                j &= ~j2;
-                                z = true;
-                                break;
-                            }
-                        }
-                        z = false;
-                        if (!z) {
-                            i14++;
-                            i3 = i;
-                            i6 = 2;
-                        }
-                    }
-                }
-                i12++;
-                i3 = i;
-                i6 = 2;
-            }
-            jArr[i4] = j;
-            i4 = i5;
+    public rg2(Context context, vnb vnbVar, byte b) {
+        super(context);
+        this.a = b;
+        switch (b) {
+            case 8:
+                super(context);
+                setOrientation(1);
+                FrameLayout frameLayout = new FrameLayout(context);
+                frameLayout.setClipChildren(false);
+                frameLayout.setClipToPadding(false);
+                rhb rhbVar = new rhb(context, 70, 0);
+                frameLayout.addView(rhbVar, tre.c(-1.0f, -1));
+                yrc yrcVar = new yrc(170, context, false);
+                this.b = yrcVar;
+                yrcVar.setStarParticlesView(rhbVar);
+                frameLayout.addView(yrcVar, tre.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+                yrcVar.setPaused(false);
+                addView(frameLayout, tre.c(180.0f, -1));
+                TextView textView = new TextView(context);
+                this.c = textView;
+                bs2.t(textView, 1, 20.0f);
+                int i = aob.j5;
+                yob.X(textView, i, vnbVar);
+                textView.setGravity(17);
+                addView(textView, tre.t(-2, -2, 1, 0, 2, 0, 0));
+                TextView textView2 = new TextView(context);
+                this.d = textView2;
+                textView2.setTextSize(1, 14.0f);
+                yob.X(textView2, i, vnbVar);
+                textView2.setGravity(17);
+                addView(textView2, tre.t(-2, -2, 1, 0, 9, 0, 18));
+                return;
+            default:
+                setOrientation(1);
+                FrameLayout frameLayout2 = new FrameLayout(context);
+                frameLayout2.setClipChildren(false);
+                frameLayout2.setClipToPadding(false);
+                frameLayout2.addView(new uya(context, 70, 0), tre.c(-1.0f, -1));
+                de0 de0Var = new de0(context);
+                this.b = de0Var;
+                de0Var.setRoundRadius(hl.L(50.0f));
+                frameLayout2.addView(de0Var, tre.d(100, 100.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+                addView(frameLayout2, tre.c(150.0f, -1));
+                TextView textView3 = new TextView(context);
+                this.c = textView3;
+                bs2.t(textView3, 1, 20.0f);
+                int i2 = aob.j5;
+                yob.X(textView3, i2, vnbVar);
+                textView3.setGravity(17);
+                addView(textView3, tre.t(-2, -2, 1, 0, 2, 0, 0));
+                p66 p66Var = new p66(context, vnbVar);
+                this.d = p66Var;
+                yob.G(p66Var, aob.Xc, vnbVar);
+                p66Var.setTextSize(1, 14.0f);
+                yob.X(p66Var, i2, vnbVar);
+                p66Var.setGravity(17);
+                addView(p66Var, tre.t(-2, -2, 1, 0, 9, 0, 18));
+                return;
         }
-        r = jArr;
-    }
-
-    public rg2() {
-        Choreographer choreographer = Choreographer.getInstance();
-        this.a = choreographer;
-        this.b = new SparseArray();
-        this.c = new e59(0, false);
-        this.d = new e59(0, false);
-        this.e = new e59(0, false);
-        choreographer.postFrameCallback(this);
-    }
-
-    public static void c() {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            return;
-        }
-        sc8.j("Choreographer60FpsContent must be used on the main thread");
-    }
-
-    public static rg2 d() {
-        c();
-        rg2 rg2Var = s;
-        if (rg2Var == null) {
-            rg2 rg2Var2 = new rg2();
-            s = rg2Var2;
-            return rg2Var2;
-        }
-        return rg2Var;
-    }
-
-    public final void a(int i, Runnable runnable) {
-        c();
-        if (runnable == null) {
-            return;
-        }
-        int max = Math.max(1, Math.min(i, 60));
-        g(runnable);
-        e(max).c.add(runnable);
-    }
-
-    public final void b(jm jmVar, int i) {
-        c();
-        int max = Math.max(1, Math.min(i, 60));
-        f(jmVar);
-        e(max).b.add(jmVar);
     }
 
     @Override
-    public final void doFrame(long j) {
-        long j2 = this.h;
-        long j3 = 0;
-        if (j2 == 0) {
-            this.h = j;
-        } else {
-            long j4 = (j - j2) + this.f;
-            this.f = j4;
-            this.h = j;
-            if (j4 >= 16666666) {
-                this.f = j4 % 16666666;
-                e59 e59Var = this.d;
-                e59 e59Var2 = this.c;
-                e59 e59Var3 = this.e;
-                SparseArray sparseArray = this.b;
-                long j5 = 1 << this.n;
-                int i = 0;
-                while (i < sparseArray.size()) {
-                    qg2 qg2Var = (qg2) sparseArray.valueAt(i);
-                    if ((qg2Var.a & j5) != j3) {
-                        e59 e59Var4 = qg2Var.d;
-                        if (e59Var4 != null) {
-                            qg2Var.d = null;
-                            Iterator it = e59Var4.iterator();
-                            while (it.hasNext()) {
-                                ((Runnable) it.next()).run();
-                            }
-                        }
-                        Iterator it2 = qg2Var.b.iterator();
-                        while (it2.hasNext()) {
-                            jm jmVar = (jm) it2.next();
-                            switch (jmVar.a) {
-                                case 0:
-                                    km kmVar = (km) jmVar.b;
-                                    int i2 = kmVar.R0 + 1;
-                                    kmVar.R0 = i2;
-                                    if (i2 > 10) {
-                                        kmVar.S0 = true;
-                                    }
-                                    kmVar.i();
-                                    if (!kmVar.V0) {
-                                        break;
-                                    } else {
-                                        kmVar.U0 = true;
-                                        kmVar.t();
-                                        break;
-                                    }
-                                case 1:
-                                    Field field = EditTextBoldCursor.E1;
-                                    ((EditTextBoldCursor) jmVar.b).invalidate();
-                                    break;
-                                default:
-                                    oy8 oy8Var = (oy8) jmVar.b;
-                                    int i3 = oy8Var.L0 + 1;
-                                    oy8Var.L0 = i3;
-                                    if (i3 > 10) {
-                                        oy8Var.M0 = true;
-                                    }
-                                    oy8Var.h();
-                                    if (!oy8Var.P0) {
-                                        break;
-                                    } else {
-                                        oy8Var.O0 = true;
-                                        oy8Var.s();
-                                        break;
-                                    }
-                            }
-                        }
-                        Iterator it3 = qg2Var.c.iterator();
-                        while (it3.hasNext()) {
-                            ((Runnable) it3.next()).run();
-                        }
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.a) {
+            case 4:
+                Path path = (Path) this.c;
+                if (((h96) this.d).a) {
+                    path.rewind();
+                    RectF rectF = hl.P;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    path.addRoundRect(rectF, hl.L(13.0f), hl.L(13.0f), Path.Direction.CW);
+                    canvas.save();
+                    canvas.clipPath(path);
+                    yza yzaVar = (yza) this.b;
+                    if (yzaVar == null) {
+                        yzaVar = new yza(1, 250);
+                        this.b = yzaVar;
                     }
-                    i++;
-                    j3 = 0;
+                    yzaVar.f(0, 0, getWidth(), getHeight());
+                    yza yzaVar2 = (yza) this.b;
+                    yzaVar2.h = 30.0f;
+                    yzaVar2.d();
+                    ((yza) this.b).b(canvas, -1, 0.85f);
+                    invalidate();
+                    canvas.restore();
                 }
-                Iterator it4 = e59Var3.iterator();
-                while (it4.hasNext()) {
-                    ((View) it4.next()).invalidate();
-                }
-                Iterator it5 = e59Var2.iterator();
-                while (it5.hasNext()) {
-                    ((Drawable) it5.next()).invalidateSelf();
-                }
-                e59Var3.clear();
-                e59Var2.clear();
-                if (this.n % 2 == 0) {
-                    Iterator it6 = e59Var.iterator();
-                    while (it6.hasNext()) {
-                        ((Drawable) it6.next()).invalidateSelf();
-                    }
-                    e59Var.clear();
-                }
-                int i4 = this.n + 1;
-                this.n = i4;
-                if (i4 == 60) {
-                    this.n = 0;
-                }
-            }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        this.a.postFrameCallback(this);
     }
 
-    public final qg2 e(int i) {
-        int max = Math.max(1, Math.min(i, 60));
-        SparseArray sparseArray = this.b;
-        qg2 qg2Var = (qg2) sparseArray.get(max);
-        if (qg2Var == null) {
-            qg2 qg2Var2 = new qg2(r[max - 1]);
-            sparseArray.put(max, qg2Var2);
-            return qg2Var2;
-        }
-        return qg2Var;
-    }
-
-    public final void f(jm jmVar) {
-        c();
-        if (jmVar != null) {
-            int i = 0;
-            while (true) {
-                SparseArray sparseArray = this.b;
-                if (i < sparseArray.size() && !((qg2) sparseArray.valueAt(i)).b.remove(jmVar)) {
-                    i++;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        switch (this.a) {
+            case 1:
+                RectF rectF = (RectF) this.b;
+                Paint paint = (Paint) this.c;
+                p pVar = (p) this.d;
+                paint.setColor(aob.v0(aob.i5, pVar.e0));
+                int left = pVar.F[0].getLeft() - hl.L(13.0f);
+                float L = hl.L(91.0f);
+                d7 d7Var = pVar.G;
+                if (d7Var.getVisibility() == 0) {
+                    f = d7Var.getAlpha() * hl.L(25.0f);
                 } else {
-                    return;
+                    f = 0.0f;
                 }
-            }
+                rectF.set(left, hl.L(5.0f), left + ((int) (L + f)), hl.L(37.0f));
+                canvas.drawRoundRect(rectF, hl.L(16.0f), hl.L(16.0f), paint);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
-    public final void g(Runnable runnable) {
-        c();
-        if (runnable != null) {
-            int i = 0;
-            while (true) {
-                SparseArray sparseArray = this.b;
-                if (i < sparseArray.size() && !((qg2) sparseArray.valueAt(i)).c.remove(runnable)) {
-                    i++;
-                } else {
-                    return;
-                }
-            }
-        }
-    }
-
-    public final void h(Runnable runnable) {
-        c();
-        if (runnable != null) {
-            int i = 0;
-            while (true) {
-                SparseArray sparseArray = this.b;
-                if (i < sparseArray.size()) {
-                    e59 e59Var = ((qg2) sparseArray.valueAt(i)).d;
-                    if (e59Var == null || !e59Var.remove(runnable)) {
-                        i++;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        switch (this.a) {
+            case 0:
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(32.0f), 1073741824));
+                return;
+            case 5:
+                TextView textView = (TextView) this.c;
+                TextView textView2 = (TextView) this.b;
+                e29 e29Var = (e29) this.d;
+                int size = View.MeasureSpec.getSize(i2);
+                if (View.MeasureSpec.getMode(i2) != 0) {
+                    int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, (View.MeasureSpec.getSize(i) - getPaddingLeft()) - getPaddingRight()), Integer.MIN_VALUE);
+                    textView2.measure(makeMeasureSpec, 0);
+                    textView.measure(makeMeasureSpec, 0);
+                    int y = c00.y(24.0f, (((size - getPaddingTop()) - getPaddingBottom()) - textView2.getMeasuredHeight()) - textView.getMeasuredHeight(), hl.L(130.0f));
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) e29Var.getLayoutParams();
+                    if (y < hl.L(56.0f)) {
+                        i3 = 8;
                     } else {
-                        return;
+                        i3 = 0;
                     }
-                } else {
-                    return;
+                    if (e29Var.getVisibility() != i3) {
+                        e29Var.setVisibility(i3);
+                    }
+                    int max = Math.max(0, y);
+                    layoutParams.height = max;
+                    layoutParams.width = max;
                 }
+                super.onMeasure(i, i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final void setOnClickListener(View.OnClickListener onClickListener) {
+        switch (this.a) {
+            case 6:
+                ((ImageView) this.b).setOnClickListener(onClickListener);
+                return;
+            default:
+                super.setOnClickListener(onClickListener);
+                return;
+        }
+    }
+
+    public rg2(p pVar, Context context) {
+        super(context);
+        this.a = (byte) 1;
+        this.d = pVar;
+        this.b = new RectF();
+        this.c = new Paint(1);
+    }
+
+    public rg2(Context context, TextView textView, TextView textView2, e29 e29Var) {
+        super(context);
+        this.a = (byte) 5;
+        this.b = textView;
+        this.c = textView2;
+        this.d = e29Var;
+    }
+
+    public rg2(sg2 sg2Var, Context context, int i) {
+        super(context);
+        this.a = (byte) 0;
+        int i2 = aob.G6;
+        vnb vnbVar = sg2Var.b;
+        aob.v0(i2, vnbVar);
+        if (i != 0) {
+            ImageView imageView = new ImageView(context);
+            this.b = imageView;
+            yob.s(imageView, i2, vnbVar, PorterDuff.Mode.MULTIPLY);
+            imageView.setImageResource(i);
+        }
+        in inVar = new in(context, false, true, false);
+        this.c = inVar;
+        inVar.setTextSize(hl.L(13.0f));
+        yob.U(inVar, i2, vnbVar);
+        inVar.setIncludeFontPadding(false);
+        inVar.setTypeface(hl.o());
+        View view = new View(context);
+        this.d = view;
+        Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
+        yob.x(this, mutate, i2, vnbVar, PorterDuff.Mode.MULTIPLY);
+        view.setBackground(mutate);
+        if (ob6.a0) {
+            addView(view, tre.t(16, 16, 16, 11, 0, 3, 0));
+            addView(inVar, tre.t(-2, 16, 16, 0, 0, ((ImageView) this.b) != null ? 3 : 11, 0));
+            View view2 = (ImageView) this.b;
+            if (view2 != null) {
+                addView(view2, tre.t(16, 16, 16, 0, 0, 11, 0));
             }
+        } else {
+            View view3 = (ImageView) this.b;
+            if (view3 != null) {
+                addView(view3, tre.t(16, 16, 16, 11, 0, 3, 0));
+            }
+            addView(inVar, tre.t(-2, 16, 16, ((ImageView) this.b) == null ? 11 : 0, 0, 3, 0));
+            addView(view, tre.t(16, 16, 16, 0, 0, 11, 0));
+        }
+        int i3 = aob.i6;
+        Drawable Y = aob.Y(aob.v0(i3, vnbVar), 16, 16);
+        uob M = yob.M(i3);
+        setBackground(Y);
+        yob.j(this, Y, null, M, vnbVar);
+        setClickable(true);
+    }
+
+    public rg2(h96 h96Var, Context context) {
+        super(context);
+        this.a = (byte) 4;
+        this.d = h96Var;
+        this.c = new Path();
+    }
+
+    public rg2(LaunchActivity launchActivity, int i, wq9 wq9Var, ol0 ol0Var, String str) {
+        super(launchActivity);
+        this.a = (byte) 6;
+        setOrientation(1);
+        setGravity(1);
+        ImageView imageView = new ImageView(launchActivity);
+        this.b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setPadding(hl.L(17.0f), hl.L(17.0f), hl.L(17.0f), hl.L(17.0f));
+        jl0 c = wq9Var.c(imageView, ol0Var, false);
+        ik8.r(c, hl.L(26.0f), 3.0f);
+        this.c = c;
+        imageView.setBackground(c);
+        imageView.setForeground(new InsetDrawable((Drawable) aob.h0(hl.L(52.0f), 0, vm2.o(-1, 51)), hl.L(3.0f)));
+        imageView.setColorFilter(-1);
+        addView(imageView, tre.t(58, 58, 1, 0, 3, 0, 0));
+        TextView textView = new TextView(launchActivity);
+        this.d = textView;
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 12.0f);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        addView(textView, tre.t(-2, -2, 1, 0, 6, 0, 0));
+        imageView.setImageResource(i);
+        textView.setText(str);
+        setContentDescription(str);
+    }
+
+    public rg2(Context context, byte b) {
+        super(context);
+        this.a = b;
+        switch (b) {
+            case 3:
+                super(context);
+                setOrientation(1);
+                de0 de0Var = new de0(context);
+                this.b = de0Var;
+                de0Var.setRoundRadius(hl.L(35.0f));
+                addView(de0Var, tre.r(70, 70, 1));
+                TextView textView = new TextView(context);
+                this.c = textView;
+                textView.setTypeface(hl.o());
+                textView.setTextSize(1, 20.0f);
+                textView.setGravity(17);
+                addView(textView, tre.s(-1, -2, 0, 0.0f, 11.33f, 0.0f, 7.0f));
+                TextView textView2 = new TextView(context);
+                this.d = textView2;
+                textView2.setTextSize(1, 14.0f);
+                textView2.setLineSpacing(hl.L(2.0f), 1.0f);
+                textView2.setGravity(17);
+                addView(textView2, tre.o(-1, -2));
+                return;
+            default:
+                return;
         }
     }
 }

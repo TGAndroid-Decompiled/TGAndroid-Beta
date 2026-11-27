@@ -1,18 +1,17 @@
 package defpackage;
-public enum j1e implements boe {
-    LANDMARK_UNKNOWN(0),
-    LANDMARK_NONE(1),
-    LANDMARK_ALL(2),
-    LANDMARK_CONTOUR(3);
-    
-    public final byte a;
+public final class j1e implements zq7 {
+    public static final j1e a = new Object();
 
-    j1e(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)));
     }
 
     @Override
-    public final String toString() {
-        return "<" + j1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

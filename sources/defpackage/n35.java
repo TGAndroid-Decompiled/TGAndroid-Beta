@@ -1,17 +1,26 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class n35 implements RequestDelegate {
-    public final byte a;
-    public final Object b;
+import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
+public final class n35 extends BiometricPrompt$AuthenticationCallback {
+    public final p35 a;
 
-    public n35(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public n35(p35 p35Var) {
+        this.a = p35Var;
     }
 
-    @Override
-    public final void run(org.telegram.tgnet.TLObject r19, org.telegram.tgnet.TLRPC.TL_error r20) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.n35.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void onAuthenticationError(int i, CharSequence charSequence) {
+        p35 p35Var = this.a;
+        if (p35Var.f() && !p35Var.f) {
+            if (i != 10 && i != 5) {
+                p35Var.a();
+            } else {
+                p35Var.c("AUTH_CANCELED");
+            }
+        }
+    }
+
+    public final void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult authenticationResult) {
+        this.a.c(null);
     }
 }

@@ -1,286 +1,94 @@
 package defpackage;
-public final class oy implements i11 {
-    public final byte a;
 
-    public oy(byte b) {
-        this.a = b;
+import android.app.Activity;
+import android.content.Context;
+import android.text.InputFilter;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+public final class oy extends b0b {
+    public final uy n0;
+
+    public oy(uy uyVar, Context context, vnb vnbVar) {
+        super(context, vnbVar);
+        this.n0 = uyVar;
     }
 
     @Override
-    public final boolean a() {
-        byte b = this.a;
+    public final boolean d(float f) {
+        if (getProgress() <= 0.99d && f <= getMeasuredWidth() * 0.9f) {
+            return false;
+        }
+        uy uyVar = this.n0;
+        Context context = uyVar.getContext();
+        Activity W = hl.W(context);
+        e Q = LaunchActivity.Q();
+        if (W != null) {
+            W.getCurrentFocus();
+        }
+        View[] viewArr = new View[1];
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, uyVar.J0, context);
+        String M0 = ob6.M0(2131750304, null);
+        id idVar = alertDialog$Builder.a;
+        idVar.S = M0;
+        idVar.U = ob6.a0(null, null, 2131750303, Integer.valueOf(uyVar.g2.d.gifts_per_round));
+        qy qyVar = new qy(context, uyVar.J0, c00.e(context, 2131232775));
+        qyVar.setTextSize(1, 18.0f);
+        yob.X(qyVar, aob.j5, uyVar.J0);
+        yob.l(qyVar, 34, aob.Oi, uyVar.J0);
+        qyVar.setHintText(ob6.M0(2131750302, null));
+        qyVar.setFocusable(true);
+        qyVar.setInputType(2);
+        qyVar.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});
+        yob.F(qyVar, aob.k6, aob.l6, aob.p7, uyVar.J0);
+        qyVar.setImeOptions(268435462);
+        qyVar.setBackgroundDrawable(null);
+        qyVar.l1 = hl.L(24.0f);
+        qyVar.setPadding(hl.L(24.0f), hl.L(6.0f), 0, hl.L(6.0f));
+        qyVar.addTextChangedListener(new ry(uyVar, viewArr, (byte) 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.addView(qyVar, tre.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        alertDialog$Builder.b();
+        alertDialog$Builder.n(linearLayout);
+        idVar.a = hl.L(300.0f);
+        alertDialog$Builder.j(ob6.M0(2131750306, null), new o(uyVar, qyVar, (byte) 15));
+        alertDialog$Builder.g(ob6.M0(2131752570, null), new bg((byte) 29));
+        id[] idVarArr = {idVar};
+        if (Q != null) {
+            hl.U2(W, Q.getClassGuid());
+        }
+        idVarArr[0].setOnDismissListener(new cf(qyVar, Q, W, (byte) 2));
+        idVarArr[0].setOnShowListener(new ig(qyVar, (byte) 1));
+        idVarArr[0].show();
+        View c = idVarArr[0].c(-1);
+        viewArr[0] = c;
+        c.setAlpha(0.6f);
+        idVarArr[0].k0 = false;
+        qyVar.setSelection(qyVar.getText().length());
         return true;
     }
 
     @Override
-    public final void b(float f) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void c(m21 m21Var) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final boolean d() {
-        byte b = this.a;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - hl.L(48.0f)) {
+            return false;
+        }
+        super.dispatchTouchEvent(motionEvent);
         return true;
     }
 
     @Override
-    public final int e(int i) {
-        int i2;
-        int L;
-        switch (this.a) {
-            case 0:
-                return gl.L(64.0f);
-            case 1:
-            case 2:
-            case 3:
-            case 7:
-            case 13:
-            case 14:
-            case 15:
-                return 0;
-            case 4:
-                return gl.L(51.0f);
-            case 5:
-                i2 = gl.n;
-                L = gl.L(64.0f);
-                break;
-            case 6:
-                i2 = gl.n;
-                L = gl.L(60.0f);
-                break;
-            case 8:
-                i2 = gl.n;
-                L = gl.L(16.0f);
-                break;
-            case 9:
-                return gl.L(62.0f);
-            case 10:
-                return gl.L(74.0f);
-            case 11:
-                return gl.L(68.0f);
-            case 12:
-                return gl.L(64.0f);
-            default:
-                return gl.L(80.0f);
-        }
-        return L + i2;
+    public final void e(int i) {
+        this.n0.b1(i);
     }
 
     @Override
-    public final boolean f(int i) {
-        switch (this.a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            default:
-                return false;
-            case 9:
-            case 14:
-            case 15:
-                return true;
-        }
-    }
-
-    @Override
-    public final void g(m21 m21Var) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final int h(int i) {
-        switch (this.a) {
-            case 0:
-            case 4:
-            case 5:
-            case 6:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 14:
-            default:
-                return 0;
-            case 1:
-                return gl.m;
-            case 2:
-                return gl.m;
-            case 3:
-                return gl.m;
-            case 7:
-                return gl.m;
-            case 13:
-                return gl.m;
-            case 15:
-                return gl.L(56.0f);
-        }
-    }
-
-    private final void A(m21 m21Var) {
-    }
-
-    private final void B(m21 m21Var) {
-    }
-
-    private final void C(m21 m21Var) {
-    }
-
-    private final void D(m21 m21Var) {
-    }
-
-    private final void E(m21 m21Var) {
-    }
-
-    private final void F(m21 m21Var) {
-    }
-
-    private final void G(m21 m21Var) {
-    }
-
-    private final void H(m21 m21Var) {
-    }
-
-    private final void I(m21 m21Var) {
-    }
-
-    private final void J(m21 m21Var) {
-    }
-
-    private final void K(m21 m21Var) {
-    }
-
-    private final void L(m21 m21Var) {
-    }
-
-    private final void M(m21 m21Var) {
-    }
-
-    private final void N(m21 m21Var) {
-    }
-
-    private final void O(m21 m21Var) {
-    }
-
-    private final void P(m21 m21Var) {
-    }
-
-    private final void Q(m21 m21Var) {
-    }
-
-    private final void R(m21 m21Var) {
-    }
-
-    private final void S(m21 m21Var) {
-    }
-
-    private final void T(m21 m21Var) {
-    }
-
-    private final void U(m21 m21Var) {
-    }
-
-    private final void V(m21 m21Var) {
-    }
-
-    private final void W(m21 m21Var) {
-    }
-
-    private final void X(m21 m21Var) {
-    }
-
-    private final void Y(m21 m21Var) {
-    }
-
-    private final void Z(m21 m21Var) {
-    }
-
-    private final void a0(m21 m21Var) {
-    }
-
-    private final void b0(m21 m21Var) {
-    }
-
-    private final void c0(m21 m21Var) {
-    }
-
-    private final void d0(m21 m21Var) {
-    }
-
-    private final void e0(m21 m21Var) {
-    }
-
-    private final void f0(m21 m21Var) {
-    }
-
-    private final void g0(m21 m21Var) {
-    }
-
-    private final void i(float f) {
-    }
-
-    private final void j(float f) {
-    }
-
-    private final void k(float f) {
-    }
-
-    private final void l(float f) {
-    }
-
-    private final void m(float f) {
-    }
-
-    private final void n(float f) {
-    }
-
-    private final void o(float f) {
-    }
-
-    private final void p(float f) {
-    }
-
-    private final void q(float f) {
-    }
-
-    private final void r(float f) {
-    }
-
-    private final void s(float f) {
-    }
-
-    private final void t(float f) {
-    }
-
-    private final void u(float f) {
-    }
-
-    private final void v(float f) {
-    }
-
-    private final void w(float f) {
-    }
-
-    private final void x(float f) {
-    }
-
-    private final void y(float f) {
-    }
-
-    private final void z(m21 m21Var) {
+    public final void setValue(int i) {
+        super.setValue(i);
+        this.n0.b1(i);
     }
 }

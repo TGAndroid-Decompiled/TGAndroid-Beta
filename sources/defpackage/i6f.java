@@ -1,24 +1,47 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class i6f extends b4 {
-    public static final Parcelable.Creator<i6f> CREATOR = new c0f((byte) 11);
-    public final float a;
-    public final int b;
-
-    public i6f(float f, int i) {
-        this.a = f;
-        this.b = i;
+public abstract class i6f {
+    public static void a(int i, int i2) {
+        String a;
+        if (i >= 0 && i < i2) {
+            return;
+        }
+        if (i >= 0) {
+            if (i2 < 0) {
+                lq5.j(uh9.k(i2, "negative size: "));
+                return;
+            }
+            a = r6f.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i), Integer.valueOf(i2));
+        } else {
+            a = r6f.a("%s (%s) must not be negative", "index", Integer.valueOf(i));
+        }
+        throw new IndexOutOfBoundsException(a);
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeFloat(this.a);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.b);
-        jte.s(parcel, r);
+    public static void b(int i, int i2, int i3) {
+        String c;
+        if (i >= 0 && i2 >= i && i2 <= i3) {
+            return;
+        }
+        if (i >= 0 && i <= i3) {
+            if (i2 >= 0 && i2 <= i3) {
+                c = r6f.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i2), Integer.valueOf(i));
+            } else {
+                c = c(i2, i3, "end index");
+            }
+        } else {
+            c = c(i, i3, "start index");
+        }
+        throw new IndexOutOfBoundsException(c);
+    }
+
+    public static String c(int i, int i2, String str) {
+        if (i < 0) {
+            return r6f.a("%s (%s) must not be negative", str, Integer.valueOf(i));
+        }
+        if (i2 >= 0) {
+            return r6f.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i), Integer.valueOf(i2));
+        }
+        lq5.j(uh9.k(i2, "negative size: "));
+        return null;
     }
 }

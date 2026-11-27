@@ -1,22 +1,17 @@
 package defpackage;
+public final class eve implements zq7 {
+    public static final eve a = new Object();
 
-import com.google.android.gms.tasks.Task;
-import java.util.concurrent.CancellationException;
-public abstract class eve {
-    public static final Object a(Task task, jo5 jo5Var) {
-        if (task.isComplete()) {
-            Exception exception = task.getException();
-            if (exception == null) {
-                if (!task.isCanceled()) {
-                    return task.getResult();
-                }
-                throw new CancellationException("Task " + task + " was cancelled normally.");
-            }
-            throw exception;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        na1 na1Var = new na1(1, dle.a(jo5Var));
-        na1Var.s();
-        task.addOnCompleteListener(wn3.b, new ln8(na1Var, (byte) 19));
-        return na1Var.q();
+        throw new ClassCastException();
     }
 }

@@ -1,268 +1,127 @@
 package defpackage;
 
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.lang.ref.WeakReference;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.WeakHashMap;
-public abstract class s49 {
-    public static final List u = Collections.EMPTY_LIST;
-    public final View a;
-    public WeakReference b;
-    public int l;
-    public RecyclerView t;
-    public int c = -1;
-    public int d = -1;
-    public long e = -1;
-    public int f = -1;
-    public int g = -1;
-    public int h = -1;
-    public int i = -1;
-    public s49 j = null;
-    public s49 k = null;
-    public ArrayList m = null;
-    public List n = null;
-    public int o = 0;
-    public wg2 p = null;
-    public boolean q = false;
-    public int r = 0;
-    public int s = -1;
+public final class s49 {
+    public static s49 B;
+    public static s49 C;
+    public static int D;
+    public static long E;
+    public boolean A;
+    public final int a;
+    public final q49 b;
+    public final q49 c;
+    public final q49 d;
+    public final FrameLayout e;
+    public final s49 f;
+    public float g;
+    public float h;
+    public final p49 i;
+    public WindowManager k;
+    public boolean l;
+    public float m;
+    public final int n;
+    public final long o;
+    public final w49 p;
+    public float q;
+    public float r;
+    public boolean s;
+    public final g49 t;
+    public boolean u;
+    public final View v;
+    public boolean w;
+    public long y;
+    public boolean z;
+    public final int[] j = new int[2];
+    public final ArrayList x = new ArrayList();
 
-    public s49(View view) {
-        if (view != null) {
-            this.a = view;
-        } else {
-            w26.j("itemView may not be null");
-            throw null;
-        }
+    public s49(android.content.Context r34, org.telegram.ui.ActionBar.e r35, defpackage.i49 r36, android.view.View r37, android.view.View r38, float r39, float r40, defpackage.w49 r41, int r42, int r43, boolean r44) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.s49.<init>(android.content.Context, org.telegram.ui.ActionBar.e, i49, android.view.View, android.view.View, float, float, w49, int, int, boolean):void");
     }
 
-    public final void a(int i) {
-        this.l |= i;
+    public static String a() {
+        return e() + "_" + e() + "_nolimit_pcache";
     }
 
-    public final int b() {
-        RecyclerView recyclerView = this.t;
-        if (recyclerView == null) {
-            return -1;
-        }
-        return recyclerView.N(this);
-    }
-
-    public final int c() {
-        int i = this.g;
-        if (i == -1) {
-            return this.c;
-        }
-        return i;
-    }
-
-    public final List d() {
-        ArrayList arrayList;
-        if ((this.l & 1024) == 0 && (arrayList = this.m) != null && arrayList.size() != 0) {
-            return this.n;
-        }
-        return u;
-    }
-
-    public final boolean e(int i) {
-        if ((this.l & i) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean f() {
-        View view = this.a;
-        if (view.getParent() != null && view.getParent() != this.t) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean g() {
-        if ((this.l & 1) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean h() {
-        if ((this.l & 4) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean i() {
-        if ((this.l & 16) == 0) {
-            WeakHashMap weakHashMap = jdc.a;
-            if (!this.a.hasTransientState()) {
-                return true;
+    public static void b(boolean z) {
+        s49 s49Var;
+        for (int i = 0; i < 2; i++) {
+            if (i == 0) {
+                s49Var = B;
+            } else {
+                s49Var = C;
             }
-            return false;
-        }
-        return false;
-    }
-
-    public final boolean j() {
-        if ((this.l & 8) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean k() {
-        if (this.p != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean l() {
-        if ((this.l & 256) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean m() {
-        if ((this.l & 2) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void n(int i, boolean z) {
-        if (this.d == -1) {
-            this.d = this.c;
-        }
-        int i2 = this.g;
-        if (i2 == -1) {
-            i2 = this.c;
-            this.g = i2;
-        }
-        if (z) {
-            this.g = i2 + i;
-        }
-        this.c += i;
-        View view = this.a;
-        if (view.getLayoutParams() != null) {
-            ((e49) view.getLayoutParams()).c = true;
-        }
-    }
-
-    public final void o() {
-        this.l = 0;
-        int i = this.c;
-        if (i != -1) {
-            this.h = i;
-        }
-        this.c = -1;
-        this.d = -1;
-        this.e = -1L;
-        this.g = -1;
-        this.o = 0;
-        this.j = null;
-        this.k = null;
-        ArrayList arrayList = this.m;
-        if (arrayList != null) {
-            arrayList.clear();
-        }
-        this.l &= -1025;
-        this.r = 0;
-        this.s = -1;
-        RecyclerView.m(this);
-    }
-
-    public final void p(int i, int i2) {
-        this.l = (this.l & (~i2)) | (i & i2);
-    }
-
-    public final void q(boolean z) {
-        int i;
-        int i2 = this.o;
-        if (z) {
-            i = i2 - 1;
-        } else {
-            i = i2 + 1;
-        }
-        this.o = i;
-        if (i >= 0) {
-            if (!z) {
-                if (i == 1) {
-                    this.l |= 16;
-                    return;
+            if (s49Var != null) {
+                if (z) {
+                    s49Var.c();
+                } else {
+                    s49Var.l = true;
                 }
-                return;
-            } else if (i == 0) {
-                this.l &= -17;
-                return;
-            } else {
-                return;
             }
         }
-        this.o = 0;
-        boolean z2 = w01.a;
-        fyb.h(this, "isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for ");
+        C = null;
+        B = null;
     }
 
-    public final boolean r() {
-        if ((this.l & 128) != 0) {
-            return true;
-        }
-        return false;
+    public static void d(org.telegram.ui.ActionBar.e r14, defpackage.i49 r15, defpackage.jf0 r16, android.view.View r17, float r18, float r19, defpackage.w49 r20, int r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.s49.d(org.telegram.ui.ActionBar.e, i49, jf0, android.view.View, float, float, w49, int, int):void");
     }
 
-    public final boolean s() {
-        if ((this.l & 32) != 0) {
-            return true;
-        }
-        return false;
+    public static int e() {
+        return (int) ((hl.L(40.0f) * 2.0f) / hl.p);
     }
 
-    public final String toString() {
-        String str;
-        StringBuilder sb = new StringBuilder("ViewHolder{" + Integer.toHexString(hashCode()) + " position=" + this.c + " id=" + this.e + ", oldPos=" + this.d + ", pLpos:" + this.g);
-        if (k()) {
-            sb.append(" scrap ");
-            if (this.q) {
-                str = "[changeScrap]";
-            } else {
-                str = "[attachedScrap]";
+    public static void f() {
+        s49 s49Var = B;
+        if (s49Var != null) {
+            s49Var.s = true;
+            s49Var.y = System.currentTimeMillis();
+            if (B.a == 0 && System.currentTimeMillis() - E > 200) {
+                E = System.currentTimeMillis();
+                B.v.performHapticFeedback(3);
+                return;
             }
-            sb.append(str);
+            return;
         }
-        if (h()) {
-            sb.append(" invalid");
+        g();
+        s49 s49Var2 = C;
+        if (s49Var2 != null) {
+            View view = s49Var2.v;
+            if (view instanceof wb2) {
+                ((wb2) view).O.b(s49Var2.p);
+            } else if (view instanceof dl1) {
+                ((dl1) view).F0.b(s49Var2.p);
+            }
         }
-        if (!g()) {
-            sb.append(" unbound");
+    }
+
+    public static void g() {
+        s49 s49Var = C;
+        if (s49Var != null && !s49Var.s) {
+            s49Var.s = true;
+            s49Var.y = System.currentTimeMillis();
+            if (C.a == 1 && System.currentTimeMillis() - E > 200) {
+                E = System.currentTimeMillis();
+                View view = C.v;
+                if (view != null) {
+                    view.performHapticFeedback(3);
+                }
+            }
         }
-        if ((this.l & 2) != 0) {
-            sb.append(" update");
+    }
+
+    public final void c() {
+        try {
+            boolean z = this.w;
+            p49 p49Var = this.i;
+            if (z) {
+                this.k.removeView(p49Var);
+            } else {
+                hl.B2(p49Var);
+            }
+        } catch (Exception unused) {
         }
-        if (j()) {
-            sb.append(" removed");
-        }
-        if (r()) {
-            sb.append(" ignored");
-        }
-        if (l()) {
-            sb.append(" tmpDetached");
-        }
-        if (!i()) {
-            sb.append(" not recyclable(" + this.o + ")");
-        }
-        if ((this.l & 512) != 0 || h()) {
-            sb.append(" undefined adapter position");
-        }
-        if (this.a.getParent() == null) {
-            sb.append(" no parent");
-        }
-        sb.append("}");
-        return sb.toString();
     }
 }

@@ -1,22 +1,17 @@
 package defpackage;
-public abstract class c2f {
-    public static byte[] a(byte[]... bArr) {
-        int i = 0;
-        int i2 = 0;
-        while (true) {
-            if (i >= bArr.length) {
-                break;
-            }
-            i2 += bArr[i].length;
-            i++;
+public final class c2f implements zq7 {
+    public static final c2f a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        byte[] bArr2 = new byte[i2];
-        int i3 = 0;
-        for (byte[] bArr3 : bArr) {
-            int length = bArr3.length;
-            System.arraycopy(bArr3, 0, bArr2, i3, length);
-            i3 += length;
-        }
-        return bArr2;
+        throw new ClassCastException();
     }
 }

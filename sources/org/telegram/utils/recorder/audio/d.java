@@ -17,9 +17,9 @@ public final class d {
     public final File b;
     public final long c;
     public final long d;
-    public final e30 e;
-    public final q20 f;
-    public final m20 g;
+    public final f30 e;
+    public final r20 f;
+    public final n20 g;
     public final HandlerThread h;
     public final Handler i;
     public final HandlerThread j;
@@ -40,14 +40,14 @@ public final class d {
     public final AtomicInteger m = new AtomicInteger();
     public final ByteBuffer s = ByteBuffer.allocateDirect(1920).order(ByteOrder.nativeOrder());
 
-    public d(File file, File file2, long j, long j2, e30 e30Var, q20 q20Var, m20 m20Var) {
+    public d(File file, File file2, long j, long j2, f30 f30Var, r20 r20Var, n20 n20Var) {
         this.a = file;
         this.b = file2;
         this.c = j;
         this.d = j2;
-        this.e = e30Var;
-        this.f = q20Var;
-        this.g = m20Var;
+        this.e = f30Var;
+        this.f = r20Var;
+        this.g = n20Var;
         HandlerThread handlerThread = new HandlerThread("AudioRecorderCapture", -16);
         this.h = handlerThread;
         handlerThread.start();
@@ -76,13 +76,13 @@ public final class d {
             this.z++;
             this.A += nanoTime2;
             this.B = Math.max(this.B, nanoTime2);
-            q20 q20Var = this.f;
+            r20 r20Var = this.f;
             if (!b) {
-                q20Var.b("RNNoise processing failed; recording unprocessed PCM");
+                r20Var.b("RNNoise processing failed; recording unprocessed PCM");
                 this.u.c();
                 this.u = null;
             } else if (this.z % 100 == 0) {
-                q20Var.b("RNNoise processing: averageMs=" + ((this.A / this.z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
+                r20Var.b("RNNoise processing: averageMs=" + ((this.A / this.z) / 1000000.0d) + ", maxMs=" + (this.B / 1000000.0d));
             }
             byteBuffer.position(0);
             byteBuffer.limit(i);
@@ -91,7 +91,7 @@ public final class d {
         if (audioRecorderNative != null && audioRecorderNative.g(byteBuffer, i) != 0) {
             return;
         }
-        sc8.j("Native Opus encoding failed");
+        grb.i("Native Opus encoding failed");
     }
 
     public final void c() {
@@ -114,9 +114,9 @@ public final class d {
             int read = this.p.read(byteBuffer, byteBuffer.capacity());
             if (read > 0) {
                 byteBuffer.limit(read);
-                gjc gjcVar = xxe.a;
-                if (gjcVar != null && read > 0) {
-                    gjcVar.n(byteBuffer, read, 48000, 2);
+                snc sncVar = r2f.a;
+                if (sncVar != null && read > 0) {
+                    sncVar.o(byteBuffer, read, 48000, 2);
                 }
                 int i = read / 2;
                 long j = 0;
@@ -136,29 +136,29 @@ public final class d {
                             sqrt = Math.sqrt(j / i);
                         }
                         final double d = sqrt;
-                        final m20 m20Var = this.g;
+                        final n20 n20Var = this.g;
                         final long j3 = this.q;
-                        Handler handler = ((h30) m20Var.c).i;
-                        final long j4 = m20Var.a;
+                        Handler handler = ((i30) n20Var.c).i;
+                        final long j4 = n20Var.a;
                         handler.post(new Runnable() {
                             @Override
                             public final void run() {
-                                h30 h30Var = (h30) m20.this.c;
-                                if (j4 == h30Var.o && h30Var.G == 3) {
-                                    h30Var.q = j3;
-                                    long j5 = h30Var.j();
+                                i30 i30Var = (i30) n20.this.c;
+                                if (j4 == i30Var.o && i30Var.G == 3) {
+                                    i30Var.q = j3;
+                                    long j5 = i30Var.j();
                                     double d2 = d;
                                     if (d2 >= 0.0d) {
-                                        MediaController mediaController = ((ml6) h30Var.f.b).a;
+                                        MediaController mediaController = ((sn6) i30Var.f.b).a;
                                         mediaController.l1 = j5;
-                                        kk7.f(mediaController.i1).k(kk7.j2, Integer.valueOf(mediaController.h1), Double.valueOf(d2 / 2.0d));
+                                        jn7.f(mediaController.i1).k(jn7.k2, Integer.valueOf(mediaController.h1), Double.valueOf(d2 / 2.0d));
                                     }
                                 }
                             }
                         });
                         this.r = elapsedRealtime;
                     }
-                    this.i.post(new vz(this, (byte) 3));
+                    this.i.post(new wz(this, (byte) 3));
                     return;
                 } catch (Throwable th) {
                     th = th;
@@ -188,7 +188,7 @@ public final class d {
     public final void e() {
         this.n = true;
         if (!this.o) {
-            this.i.postAtFrontOfQueue(new vz(this, (byte) 1));
+            this.i.postAtFrontOfQueue(new wz(this, (byte) 1));
         }
     }
 

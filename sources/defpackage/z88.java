@@ -1,111 +1,76 @@
 package defpackage;
 
-import android.media.MediaExtractor;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-import org.telegram.ui.PhotoViewer;
-public final class z88 implements Runnable {
-    public final String a;
-    public final long b;
-    public final int c;
-    public final PhotoViewer d;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class z88 implements TextureView.SurfaceTextureListener {
+    public final boolean a;
+    public final tl0 b;
+    public final c98 c;
 
-    public z88(PhotoViewer photoViewer, String str, long j, int i) {
-        this.d = photoViewer;
-        this.a = str;
-        this.b = j;
-        this.c = i;
+    public z88(c98 c98Var, boolean z, tl0 tl0Var) {
+        this.c = c98Var;
+        this.a = z;
+        this.b = tl0Var;
     }
 
     @Override
-    public final void run() {
-        boolean z;
-        boolean z2;
-        if (this.d.C8 == this) {
-            int z3 = MediaController.z(this.a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.a, iArr, this.b);
-            boolean z4 = false;
-            if (iArr[10] != 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z || iArr[9] != 0)) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            photoViewer.p8 = z2;
-            PhotoViewer photoViewer2 = this.d;
-            if (z3 == -1) {
-                z3 = iArr[3];
-            }
-            photoViewer2.l8 = z3;
-            photoViewer2.m8 = z3;
-            if (this.d.p8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i = iArr[1];
-                photoViewer3.h8 = i;
-                photoViewer3.j8 = i;
-                PhotoViewer photoViewer4 = this.d;
-                int i2 = iArr[2];
-                photoViewer4.i8 = i2;
-                photoViewer4.k8 = i2;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.h8, this.d.i8);
-                if (max > 1280) {
-                    photoViewer5.e8 = 4;
-                } else if (max > 854) {
-                    photoViewer5.e8 = 3;
-                } else if (max > 640) {
-                    photoViewer5.e8 = 2;
-                } else {
-                    photoViewer5.e8 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i3 = this.c;
-                if (i3 == -1) {
-                    i3 = photoViewer6.E1();
-                }
-                photoViewer6.d8 = i3;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.l8 != 0 && photoViewer7.d2 != 1) {
-                    Size i4 = photoViewer7.i();
-                    if (i4.getWidth() == photoViewer7.h8 && i4.getHeight() == photoViewer7.i8) {
-                        MediaController.q(i4.getWidth(), i4.getHeight(), photoViewer7.m8, false);
-                    } else {
-                        MediaController.q(i4.getWidth(), i4.getHeight(), MediaController.P(photoViewer7.i8, photoViewer7.h8, photoViewer7.m8, i4.getHeight(), i4.getWidth()), false);
-                    }
-                }
-                PhotoViewer photoViewer8 = this.d;
-                String str = this.a;
-                MediaExtractor mediaExtractor = new MediaExtractor();
-                try {
-                    try {
-                        mediaExtractor.setDataSource(str);
-                        int r = MediaController.r(mediaExtractor, false);
-                        if (r >= 0) {
-                            if (mediaExtractor.getTrackFormat(r).getString("mime").equals("video/avc")) {
-                                z4 = true;
-                            }
-                        }
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                    }
-                    mediaExtractor.release();
-                    photoViewer8.q8 = z4;
-                } catch (Throwable th) {
-                    mediaExtractor.release();
-                    throw th;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        c98 c98Var = this.c;
+        TextureView textureView = c98Var.j0;
+        if (c98Var.m0 == null && surfaceTexture != null) {
+            rf4 rf4Var = new rf4(surfaceTexture, c98Var.D0, c98Var.I0, c98Var.x0, this.a, this.b, i, i2);
+            c98Var.m0 = rf4Var;
+            if (!this.a) {
+                rf4Var.f(c98Var.K0, c98Var.L0);
+                rf4 rf4Var2 = c98Var.m0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                yl0 yl0Var = rf4Var2.J;
+                if (yl0Var != null) {
+                    Matrix matrix = yl0Var.v;
+                    transform.invert(matrix);
+                    float f = width;
+                    float f2 = height;
+                    matrix.preScale(f, f2);
+                    matrix.postScale(1.0f / f, 1.0f / f2);
+                    yl0Var.c(matrix);
+                    rf4Var2.b(false, false, false);
                 }
             }
-            if (this.d.C8 != this) {
-                return;
-            }
-            gl.c3(new pc7(this, this, iArr, (byte) 23));
+            c98Var.m0.c(c98Var);
+            rf4 rf4Var3 = c98Var.m0;
+            rf4Var3.getClass();
+            rf4Var3.postRunnable(new of4(rf4Var3, i, i2, (byte) 1));
+            c98Var.m0.b(true, true, false);
         }
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        c98 c98Var = this.c;
+        rf4 rf4Var = c98Var.m0;
+        if (rf4Var != null) {
+            rf4Var.postRunnable(new pf4(rf4Var, (byte) 0));
+            c98Var.m0 = null;
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+        c98 c98Var = this.c;
+        rf4 rf4Var = c98Var.m0;
+        if (rf4Var != null) {
+            rf4Var.postRunnable(new of4(rf4Var, i, i2, (byte) 1));
+            c98Var.m0.b(false, true, false);
+            c98Var.m0.postRunnable(new x38(this, (byte) 5));
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

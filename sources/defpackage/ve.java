@@ -1,26 +1,26 @@
 package defpackage;
-
-import android.content.DialogInterface;
-import android.widget.EditText;
-public final class ve implements DialogInterface.OnDismissListener {
+public final class ve implements Runnable {
     public final byte a;
-    public final EditText b;
+    public final pcc b;
+    public final long c;
 
-    public ve(EditText editText, byte b) {
+    public ve(pcc pccVar, long j, byte b) {
         this.a = b;
-        this.b = editText;
+        this.b = pccVar;
+        this.c = j;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void run() {
         byte b = this.a;
-        EditText editText = this.b;
+        long j = this.c;
+        pcc pccVar = this.b;
         switch (b) {
             case 0:
-                gl.t1(editText);
+                pccVar.a(Long.valueOf(j));
                 return;
             default:
-                gl.t1(editText);
+                pccVar.a(Long.valueOf(j));
                 return;
         }
     }

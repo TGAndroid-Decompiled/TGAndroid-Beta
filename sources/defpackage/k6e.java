@@ -1,17 +1,52 @@
 package defpackage;
-public final class k6e implements zn7 {
-    public static final k6e a = new Object();
+public final class k6e extends ese {
+    private static final k6e zzf;
+    private static volatile u0f zzg;
+    private int zzc;
+    private int zzd;
+    private int zze;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
+        ?? eseVar = new ese();
+        zzf = eseVar;
+        ese.g(k6e.class, eseVar);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final Object d(int i) {
+        u0f u0fVar;
+        switch (b7e.a[i - 1]) {
+            case 1:
+                return new ese();
+            case 2:
+                return new ase(zzf);
+            case 3:
+                return new j1f(zzf, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001င\u0000\u0002င\u0001", new Object[]{"zzc", "zzd", "zze"});
+            case 4:
+                return zzf;
+            case 5:
+                u0f u0fVar2 = zzg;
+                if (u0fVar2 == null) {
+                    synchronized (k6e.class) {
+                        u0f u0fVar3 = zzg;
+                        u0fVar = u0fVar3;
+                        if (u0fVar3 == null) {
+                            ?? obj = new Object();
+                            zzg = obj;
+                            u0fVar = obj;
+                        }
+                    }
+                    return u0fVar;
+                }
+                return u0fVar2;
+            case 6:
+                return (byte) 1;
+            case 7:
+                break;
+            default:
+                p3d.a();
+                break;
         }
-        throw new ClassCastException();
+        return null;
     }
 }

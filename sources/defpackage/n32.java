@@ -1,9 +1,11 @@
 package defpackage;
 
-import android.widget.LinearLayout;
-public final class n32 extends LinearLayout {
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, 0);
-    }
+import java.io.File;
+public final class n32 {
+    public int a;
+    public String b;
+    public String c = "";
+    public String d = "";
+    public String e;
+    public File f;
 }

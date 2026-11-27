@@ -1,93 +1,71 @@
 package defpackage;
 
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class fl6 implements RequestDelegate {
-    public final byte a;
-    public final int b;
-    public final int c;
-    public final gk7 d;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+public final class fl6 {
+    public static final Set e = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
+    public static final Set f = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
+    public static final Set g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
+    public final ArrayList a = new ArrayList(0);
+    public hi5 b = new hi5("", 0, Collections.EMPTY_MAP, null);
+    public boolean c;
+    public boolean d;
 
-    public fl6(gk7 gk7Var, int i, int i2, byte b) {
-        this.a = b;
-        this.d = gk7Var;
-        this.b = i;
-        this.c = i2;
+    public fl6(faf fafVar, rj2 rj2Var) {
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        gk7 gk7Var = this.d;
-        switch (b) {
-            case 0:
-                String[] strArr = MediaController.W1;
-                gl.c3(new zy0((MediaController) gk7Var, this.b, tL_error, tLObject, this.c));
-                return;
-            case 1:
-                na7 na7Var = (na7) gk7Var;
-                LongSparseIntArray longSparseIntArray = na7Var.P0;
-                int i = 0;
-                if (tL_error == null) {
-                    TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
-                    if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
-                        gl.c3(new mp1(na7Var, updates_difference, this.b, this.c, (byte) 7));
-                        return;
-                    }
-                    if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
-                        TLRPC.TL_updates_state tL_updates_state = updates_difference.intermediate_state;
-                        na7Var.W0(tL_updates_state.pts, tL_updates_state.date, tL_updates_state.qts, true);
-                    }
-                    vf6 vf6Var = new vf6();
-                    vf6 vf6Var2 = new vf6();
-                    for (int i2 = 0; i2 < updates_difference.users.size(); i2++) {
-                        TLRPC.User user = updates_difference.users.get(i2);
-                        vf6Var.k(user, user.id);
-                    }
-                    for (int i3 = 0; i3 < updates_difference.chats.size(); i3++) {
-                        TLRPC.Chat chat = updates_difference.chats.get(i3);
-                        vf6Var2.k(chat, chat.id);
-                    }
-                    ArrayList arrayList = new ArrayList();
-                    if (!updates_difference.other_updates.isEmpty()) {
-                        while (i < updates_difference.other_updates.size()) {
-                            TLRPC.Update update = updates_difference.other_updates.get(i);
-                            if (update instanceof TL_update.TL_updateMessageID) {
-                                arrayList.add((TL_update.TL_updateMessageID) update);
-                                updates_difference.other_updates.remove(i);
-                            } else {
-                                if (na7.T1(update) == 2) {
-                                    long Q1 = na7.Q1(update);
-                                    int i4 = longSparseIntArray.get(Q1);
-                                    if (i4 == 0 && (i4 = na7Var.getMessagesStorage().M(Q1)) != 0) {
-                                        longSparseIntArray.put(Q1, i4);
-                                    }
-                                    if (i4 != 0 && na7.R1(update) <= i4) {
-                                        updates_difference.other_updates.remove(i);
-                                    }
-                                }
-                                i++;
-                            }
-                            i--;
-                            i++;
-                        }
-                    }
-                    gl.c3(new oh6(na7Var, updates_difference, (byte) 23));
-                    na7Var.getMessagesStorage().a.c(new vz4(na7Var, updates_difference, arrayList, vf6Var, vf6Var2, (byte) 21));
-                    return;
+    public static Map a(vtb vtbVar) {
+        boolean z;
+        gy gyVar = vtbVar.m;
+        int i = gyVar.a;
+        if (i > 0) {
+            HashMap hashMap = new HashMap(i);
+            int i2 = 0;
+            while (true) {
+                if (i2 < gyVar.a) {
+                    z = true;
+                } else {
+                    z = false;
                 }
-                na7Var.Y1 = false;
-                na7Var.getConnectionsManager().setIsUpdating(false);
-                fa4.b("received: isUpdating = false");
-                return;
-            default:
-                gl.c3(new tba((nfa) gk7Var, tL_error, this.b, this.c, tLObject, (byte) 0));
-                return;
+                if (z) {
+                    String str = gyVar.c[i2];
+                    String str2 = gyVar.b[i2];
+                    if (str == null) {
+                        str = "";
+                    }
+                    ?? obj = new Object();
+                    if (str2 != null) {
+                        obj.a = str2.trim();
+                        if (str2.length() != 0) {
+                            obj.b = str;
+                            obj.c = gyVar;
+                            i2++;
+                            hashMap.put(obj.a.toLowerCase(Locale.US), obj.b);
+                        } else {
+                            lq5.j("String must not be empty");
+                            return null;
+                        }
+                    } else {
+                        lq5.j("Object must not be null");
+                        return null;
+                    }
+                } else {
+                    return DesugarCollections.unmodifiableMap(hashMap);
+                }
+            }
+        } else {
+            return Collections.EMPTY_MAP;
         }
+    }
+
+    public final void b(java.lang.Appendable r17, java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fl6.b(java.lang.Appendable, java.lang.String):void");
     }
 }

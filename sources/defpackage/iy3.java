@@ -1,51 +1,32 @@
 package defpackage;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class iy3 implements fj5 {
-    public akb a;
-    public TLRPC.TL_theme b;
-    public TLRPC.TL_chatThemeUniqueGift c;
-    public int d;
-    public int e = -1;
-    public SparseIntArray f;
-    public String g;
-    public int h;
-    public int i;
-    public int j;
-    public int k;
-    public int l;
-    public int m;
-    public int n;
+import org.telegram.ui.ActionBar.e;
+public final class iy3 implements Runnable {
+    public final byte a;
+    public final jy3 b;
 
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.b;
-        if (tL_theme != null) {
-            return tL_theme.id;
-        }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
-        }
-        return 0L;
+    public iy3(jy3 jy3Var, byte b) {
+        this.a = b;
+        this.b = jy3Var;
     }
 
-    public final TLRPC.ThemeSettings b(int i) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
-            }
-            return null;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        jy3 jy3Var = this.b;
+        switch (b) {
+            case 0:
+                jy3Var.f.dismiss();
+                return;
+            default:
+                ly3 ly3Var = jy3Var.f;
+                ly3Var.dismiss();
+                e eVar = ly3Var.m1;
+                if (eVar != null && eVar.getParentActivity() != null) {
+                    xnb.x(null, 2131754428, d31.b0(eVar), null);
+                    return;
+                }
+                return;
         }
-        if (arrayList != null && i >= 0 && arrayList.size() > i) {
-            return arrayList.get(i);
-        }
-        return null;
     }
 }

@@ -1,127 +1,124 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class le1 extends FrameLayout {
-    public static final int f = 0;
-    public final l46 a;
-    public final ke1 b;
-    public Integer c;
-    public ValueAnimator d;
-    public final me1 e;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e;
+public final class le1 implements Runnable {
+    public final byte a = 0;
+    public final boolean b;
+    public final boolean c;
+    public final int d;
+    public final Object e;
+    public final Serializable f;
+    public final TLObject h;
+    public final Object n;
+    public final Object r;
 
-    public le1(me1 me1Var, Activity activity) {
-        super(activity);
-        int i;
+    public le1(me1 me1Var, String str, TLObject tLObject, int i, boolean z, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z2) {
         this.e = me1Var;
-        me1Var.G = this;
-        setPadding(gl.L(18.0f), gl.L(10.0f), gl.L(18.0f), gl.L(17.0f));
-        setClipChildren(false);
-        l46 l46Var = new l46(activity, null);
-        this.a = l46Var;
-        l46Var.setTextSize(1, 15.0f);
-        int i2 = bkb.E6;
-        zkb.X(l46Var, i2, null);
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        l46Var.setGravity(i);
-        int i3 = bkb.I6;
-        zkb.G(l46Var, i3, null);
-        int i4 = bkb.J6;
-        zkb.C(l46Var, i4, null);
-        l46Var.setPadding(gl.L(3.0f), 0, gl.L(3.0f), 0);
-        ke1 ke1Var = new ke1((byte) 0, activity, this);
-        me1Var.H = ke1Var;
-        this.b = ke1Var;
-        ke1Var.setTextSize(1, 15.0f);
-        zkb.X(ke1Var, i2, null);
-        ke1Var.setGravity(k96.a0 ? 5 : 3);
-        zkb.G(ke1Var, i3, null);
-        zkb.C(ke1Var, i4, null);
-        ke1Var.setPadding(gl.L(3.0f), 0, gl.L(3.0f), 0);
-        addView(l46Var, nme.e(-1, -2, 48));
-        addView(ke1Var, nme.e(-1, -2, 48));
-        if (me1Var.y != 0) {
-            String M0 = k96.M0(2131752926, null);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
-            int indexOf = M0.indexOf(42);
-            int lastIndexOf = M0.lastIndexOf(42);
-            if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                spannableStringBuilder.setSpan(new g4c("https://fragment.com", (vib) null), indexOf, lastIndexOf - 1, 33);
-            }
-            l46Var.setText(spannableStringBuilder);
-            return;
-        }
-        l46Var.setText(gl.S2(k96.M0(2131743421, null)));
-    }
-
-    public final void a() {
-        int intValue;
-        int i;
-        float f2;
-        ke1 ke1Var = this.b;
-        if (ke1Var.getVisibility() == 0) {
-            ke1Var.measure(View.MeasureSpec.makeMeasureSpec((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), 1073741824), -2137483649);
-        }
-        ValueAnimator valueAnimator = this.d;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        Integer num = this.c;
-        if (num == null) {
-            intValue = getMeasuredHeight();
-        } else {
-            intValue = num.intValue();
-        }
-        final int i2 = intValue;
-        int L = gl.L(27.0f);
-        l46 l46Var = this.a;
-        int height = l46Var.getHeight() + L;
-        if (ke1Var.getVisibility() == 0 && !TextUtils.isEmpty(ke1Var.getText())) {
-            i = gl.L(8.0f) + ke1Var.getMeasuredHeight();
-        } else {
-            i = 0;
-        }
-        final int i3 = height + i;
-        final float translationY = l46Var.getTranslationY();
-        if (ke1Var.getVisibility() == 0 && !TextUtils.isEmpty(ke1Var.getText())) {
-            f2 = gl.L(8.0f) + ke1Var.getMeasuredHeight();
-        } else {
-            f2 = 0.0f;
-        }
-        final float f3 = f2;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.d = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                le1 le1Var = le1.this;
-                le1Var.a.setTranslationY(gl.R1(translationY, f3, floatValue));
-                le1Var.c = Integer.valueOf(gl.U1(floatValue, i2, i3));
-                le1Var.requestLayout();
-            }
-        });
-        this.d.setDuration(200L);
-        this.d.setInterpolator(s33.h);
-        this.d.start();
+        this.f = str;
+        this.h = tLObject;
+        this.d = i;
+        this.b = z;
+        this.n = tL_error;
+        this.r = tL_username;
+        this.c = z2;
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        Integer num = this.c;
-        if (num != null) {
-            i2 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
+    public final void run() {
+        int i;
+        byte b = this.a;
+        Object obj = this.r;
+        Object obj2 = this.n;
+        TLObject tLObject = this.h;
+        Serializable serializable = this.f;
+        Object obj3 = this.e;
+        switch (b) {
+            case 0:
+                me1 me1Var = (me1) obj3;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) obj;
+                ve1 ve1Var = me1Var.a;
+                ArrayList arrayList = ve1Var.x;
+                ArrayList arrayList2 = ve1Var.w;
+                arrayList.remove((String) serializable);
+                boolean z = tLObject instanceof TLRPC.TL_boolTrue;
+                int i2 = this.d;
+                boolean z2 = this.b;
+                TLRPC.TL_username tL_username2 = null;
+                if (z) {
+                    ve1Var.m0(i2, z2, false);
+                } else {
+                    boolean z3 = this.c;
+                    if (tL_error != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error.text)) {
+                        tL_username.active = z2;
+                        ve1Var.m0(i2, z2, false);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ve1Var.getResourceProvider(), ve1Var.getParentActivity());
+                        String M0 = ob6.M0(2131743327, null);
+                        id idVar = alertDialog$Builder.a;
+                        idVar.S = M0;
+                        idVar.U = ob6.M0(2131743328, null);
+                        alertDialog$Builder.j(ob6.M0(2131747558, null), new bh(me1Var, tL_username, z3, (byte) 4));
+                        alertDialog$Builder.o();
+                    } else {
+                        ve1Var.n0(tL_username, z3, true);
+                    }
+                }
+                i = ((e) ve1Var).currentAccount;
+                TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(ve1Var.e0()));
+                ve1Var.getMessagesController().H5(X1, tL_username.username, tL_username.active);
+                if (ve1Var.y != 0 && arrayList2 != null) {
+                    int size = arrayList2.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj4 = arrayList2.get(i3);
+                        i3++;
+                        if (((TLRPC.TL_username) obj4).active) {
+                            return;
+                        }
+                    }
+                    int size2 = arrayList2.size();
+                    int i4 = 0;
+                    while (true) {
+                        if (i4 < size2) {
+                            Object obj5 = arrayList2.get(i4);
+                            i4++;
+                            TLRPC.TL_username tL_username3 = (TLRPC.TL_username) obj5;
+                            if (tL_username3.editable) {
+                                tL_username2 = tL_username3;
+                            }
+                        }
+                    }
+                    if (tL_username2 != null) {
+                        ve1Var.n0(tL_username2, true, false);
+                        ve1Var.getMessagesController().H5(X1, tL_username2.username, tL_username2.active);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                r7a r7aVar = (r7a) obj3;
+                jf7 messagesStorage = r7aVar.getMessagesStorage();
+                boolean z4 = this.b;
+                messagesStorage.g1((ArrayList) serializable, true, false, false, 0, false, !z4 ? 1 : 0, 0L);
+                hl.c3(new vo9(r7aVar, this.c, (TLRPC.Message) tLObject, (ArrayList) obj2, z4, (ArrayList) obj, this.d));
+                return;
         }
-        super.onMeasure(i, i2);
+    }
+
+    public le1(r7a r7aVar, ArrayList arrayList, boolean z, boolean z2, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i) {
+        this.e = r7aVar;
+        this.f = arrayList;
+        this.b = z;
+        this.c = z2;
+        this.h = message;
+        this.n = arrayList2;
+        this.r = arrayList3;
+        this.d = i;
     }
 }

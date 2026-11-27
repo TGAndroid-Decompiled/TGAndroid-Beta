@@ -1,48 +1,34 @@
 package defpackage;
+public final class gz1 {
+    public static final gz1 a;
+    public static final gz1 b;
+    public static final gz1 c;
+    public static final gz1 d;
+    public static final gz1 e;
+    public static final gz1 f;
+    public static final gz1[] h;
 
-import android.animation.ValueAnimator;
-public final class gz1 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final x02 b;
-
-    public gz1(x02 x02Var, byte b) {
-        this.a = b;
-        this.b = x02Var;
+    static {
+        ?? r0 = new Enum("VOICE", 0);
+        a = r0;
+        ?? r1 = new Enum("VIDEO", 1);
+        b = r1;
+        ?? r3 = new Enum("STICKER", 2);
+        c = r3;
+        ?? r5 = new Enum("KEYBOARD", 3);
+        d = r5;
+        ?? r7 = new Enum("SMILE", 4);
+        e = r7;
+        ?? r9 = new Enum("GIF", 5);
+        f = r9;
+        h = new gz1[]{r0, r1, r3, r5, r7, r9};
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        x02 x02Var = this.b;
-        switch (b) {
-            case 0:
-                x02Var.L1();
-                return;
-            case 1:
-                x02Var.A2.invalidate();
-                return;
-            case 2:
-                x02Var.D0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ww0 ww0Var = x02Var.c;
-                if (ww0Var != null) {
-                    ww0Var.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                x02Var.u1(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 4:
-                p02 p02Var = x02Var.v2;
-                r32 r32Var = x02Var.q2;
-                if (p02Var == r32Var && r32Var != null) {
-                    r32Var.invalidate();
-                    return;
-                }
-                return;
-            default:
-                x02Var.L1();
-                return;
-        }
+    public static gz1 valueOf(String str) {
+        return (gz1) Enum.valueOf(gz1.class, str);
+    }
+
+    public static gz1[] values() {
+        return (gz1[]) h.clone();
     }
 }

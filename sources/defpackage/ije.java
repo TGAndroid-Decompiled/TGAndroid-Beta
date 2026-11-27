@@ -1,38 +1,106 @@
 package defpackage;
-public final class ije implements zn7 {
-    public static final ije a = new Object();
-    public static final w84 b = new w84("appId", b00.m(yjb.q(kkd.class, new cjd(1))));
-    public static final w84 c = new w84("appVersion", b00.m(yjb.q(kkd.class, new cjd(2))));
-    public static final w84 d = new w84("firebaseProjectId", b00.m(yjb.q(kkd.class, new cjd(3))));
-    public static final w84 e = new w84("mlSdkVersion", b00.m(yjb.q(kkd.class, new cjd(4))));
-    public static final w84 f = new w84("tfliteSchemaVersion", b00.m(yjb.q(kkd.class, new cjd(5))));
-    public static final w84 g = new w84("gcmSenderId", b00.m(yjb.q(kkd.class, new cjd(6))));
-    public static final w84 h = new w84("apiKey", b00.m(yjb.q(kkd.class, new cjd(7))));
-    public static final w84 i = new w84("languages", b00.m(yjb.q(kkd.class, new cjd(8))));
-    public static final w84 j = new w84("mlSdkInstanceId", b00.m(yjb.q(kkd.class, new cjd(9))));
-    public static final w84 k = new w84("isClearcutClient", b00.m(yjb.q(kkd.class, new cjd(10))));
-    public static final w84 l = new w84("isStandaloneMlkit", b00.m(yjb.q(kkd.class, new cjd(11))));
-    public static final w84 m = new w84("isJsonLogging", b00.m(yjb.q(kkd.class, new cjd(12))));
-    public static final w84 n = new w84("buildLevel", b00.m(yjb.q(kkd.class, new cjd(13))));
-    public static final w84 o = new w84("optionalModuleVersion", b00.m(yjb.q(kkd.class, new cjd(14))));
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        d1f d1fVar = (d1f) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, d1fVar.a);
-        ao7Var.a(c, d1fVar.b);
-        ao7Var.a(d, null);
-        ao7Var.a(e, d1fVar.c);
-        ao7Var.a(f, d1fVar.d);
-        ao7Var.a(g, null);
-        ao7Var.a(h, null);
-        ao7Var.a(i, d1fVar.e);
-        ao7Var.a(j, d1fVar.f);
-        ao7Var.a(k, d1fVar.g);
-        ao7Var.a(l, d1fVar.h);
-        ao7Var.a(m, d1fVar.i);
-        ao7Var.a(n, d1fVar.j);
-        ao7Var.a(o, d1fVar.k);
+import android.net.Uri;
+import android.os.Build;
+import android.os.SystemClock;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+public abstract class ije {
+    public static ps6 a(h73 h73Var, String str, byte[] bArr, Map map) {
+        Throwable th;
+        Map map2;
+        List list;
+        byte[] b;
+        n73 n73Var;
+        b2b b2bVar = new b2b(h73Var);
+        Map map3 = Collections.EMPTY_MAP;
+        Uri parse = Uri.parse(str);
+        yve.l(parse, "The uri must be set.");
+        n73 n73Var2 = new n73(parse, 2, bArr, map, 0L, -1L, null, 1);
+        int i = 0;
+        n73 n73Var3 = n73Var2;
+        while (true) {
+            try {
+                l73 l73Var = new l73(b2bVar, n73Var3);
+                try {
+                    b = j51.b(l73Var);
+                    n73Var = n73Var2;
+                } catch (ni5 e) {
+                    e = e;
+                }
+                try {
+                    ia6 ia6Var = new ia6(-1L, n73Var, SystemClock.elapsedRealtime());
+                    ia6Var.d = b2bVar.c;
+                    ia6Var.e = b2bVar.d;
+                    ia6Var.g = b.length;
+                    ja6 ja6Var = new ja6(ia6Var);
+                    ym4 ym4Var = new ym4(b);
+                    ym4Var.c = ja6Var;
+                    ps6 ps6Var = new ps6(ym4Var);
+                    String str2 = gcc.a;
+                    try {
+                        l73Var.close();
+                    } catch (IOException unused) {
+                    }
+                    return ps6Var;
+                } catch (ni5 e2) {
+                    e = e2;
+                    n73Var2 = n73Var;
+                    try {
+                        int i2 = e.c;
+                        String str3 = null;
+                        if ((i2 == 307 || i2 == 308) && i < 5 && (map2 = e.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
+                            str3 = (String) list.get(0);
+                        }
+                        if (str3 != null) {
+                            i++;
+                            m73 a = n73Var3.a();
+                            a.a = Uri.parse(str3);
+                            n73Var3 = a.a();
+                            String str4 = gcc.a;
+                            try {
+                                l73Var.close();
+                            } catch (IOException unused2) {
+                            }
+                        } else {
+                            throw e;
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        Throwable th3 = th;
+                        String str5 = gcc.a;
+                        try {
+                            l73Var.close();
+                        } catch (IOException unused3) {
+                        }
+                        throw th3;
+                    }
+                } catch (Throwable th4) {
+                    th = th4;
+                    Throwable th32 = th;
+                    String str52 = gcc.a;
+                    l73Var.close();
+                    throw th32;
+                }
+            } catch (Exception e3) {
+                throw new qs6(n73Var2, b2bVar.c, b2bVar.a.getResponseHeaders(), b2bVar.b, e3);
+            }
+        }
+    }
+
+    public static boolean b(Throwable th) {
+        if (Build.VERSION.SDK_INT == 34 && (th instanceof NoSuchMethodError) && th.getMessage() != null && th.getMessage().contains("Landroid/media/NotProvisionedException;.<init>(")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean c(Throwable th) {
+        if (Build.VERSION.SDK_INT == 34 && (th instanceof NoSuchMethodError) && th.getMessage() != null && th.getMessage().contains("Landroid/media/ResourceBusyException;.<init>(")) {
+            return true;
+        }
+        return false;
     }
 }

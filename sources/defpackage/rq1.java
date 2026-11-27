@@ -1,87 +1,14 @@
 package defpackage;
+public final class rq1 extends v2d {
+    public final zu1 I;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-public final class rq1 extends uk1 {
-    public final mu1 z2;
-
-    public rq1(mu1 mu1Var, wjb wjbVar, Context context) {
-        super(wjbVar, context, false);
-        this.z2 = mu1Var;
+    public rq1(zu1 zu1Var, hm1 hm1Var) {
+        super(hm1Var);
+        this.I = zu1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        a aVar;
-        mu1 mu1Var = this.z2;
-        if (mu1Var.R8 == null) {
-            float y = ((mu1Var.A0.getY() + mu1Var.P9) - getY()) - gl.L(4.0f);
-            aVar = ((d) mu1Var).actionBar;
-            if (aVar.getVisibility() == 0 || mu1Var.Aa != null) {
-                y -= a.getCurrentActionBarHeight() / 2.0f;
-            }
-            if (y > 0.0f) {
-                if (y < getMeasuredHeight()) {
-                    canvas.save();
-                    canvas.clipRect(0.0f, y, getMeasuredWidth(), getMeasuredHeight());
-                    super.onDraw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            }
-            super.onDraw(canvas);
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        a aVar;
-        if (getAlpha() != 0.0f) {
-            mu1 mu1Var = this.z2;
-            aVar = ((d) mu1Var).actionBar;
-            if (!aVar.y() && !mu1Var.T7()) {
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        a aVar;
-        if (getAlpha() != 0.0f) {
-            mu1 mu1Var = this.z2;
-            aVar = ((d) mu1Var).actionBar;
-            if (!aVar.y() && !mu1Var.T7()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void setAlpha(float f) {
-        int i;
-        super.setAlpha(f);
-        if (f > 0.0f) {
-            i = 0;
-        } else {
-            i = 4;
-        }
-        setVisibility(i);
-    }
-
-    @Override
-    public final void setTranslationY(float f) {
-        if (getTranslationY() != f) {
-            invalidate();
-        }
-        super.setTranslationY(f);
+    public final l2d b(l2d l2dVar) {
+        return this.I.Q6(l2dVar);
     }
 }

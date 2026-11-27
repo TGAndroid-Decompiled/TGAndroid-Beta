@@ -1,35 +1,48 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class n1d extends b4 {
-    public static final Parcelable.Creator<n1d> CREATOR = new b1d((byte) 4);
-    public final int a;
-    public final String b;
-    public final long c;
-    public final int d;
-    public final boolean e;
+import android.view.View;
+import androidx.appcompat.widget.ActionBarOverlayLayout;
+import java.util.WeakHashMap;
+public final class n1d extends djc {
+    public final byte a;
+    public final p1d b;
 
-    public n1d(int i, int i2, long j, String str, boolean z) {
-        this.a = i;
-        this.b = str;
-        this.c = j;
-        this.d = i2;
-        this.e = z;
+    public n1d(p1d p1dVar, byte b) {
+        this.a = b;
+        this.b = p1dVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 2, this.b);
-        jte.q(parcel, 3, 8);
-        parcel.writeLong(this.c);
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(this.d);
-        jte.q(parcel, 5, 4);
-        parcel.writeInt(this.e ? 1 : 0);
-        jte.s(parcel, r);
+    public final void c() {
+        View view;
+        byte b = this.a;
+        p1d p1dVar = this.b;
+        switch (b) {
+            case 0:
+                if (p1dVar.o && (view = p1dVar.g) != null) {
+                    view.setTranslationY(0.0f);
+                    p1dVar.d.setTranslationY(0.0f);
+                }
+                p1dVar.d.setVisibility(8);
+                p1dVar.d.setTransitioning(false);
+                p1dVar.s = null;
+                lh2 lh2Var = p1dVar.k;
+                if (lh2Var != null) {
+                    lh2Var.F(p1dVar.j);
+                    p1dVar.j = null;
+                    p1dVar.k = null;
+                }
+                ActionBarOverlayLayout actionBarOverlayLayout = p1dVar.c;
+                if (actionBarOverlayLayout != null) {
+                    WeakHashMap weakHashMap = ihc.a;
+                    ygc.c(actionBarOverlayLayout);
+                    return;
+                }
+                return;
+            default:
+                p1dVar.s = null;
+                p1dVar.d.requestLayout();
+                return;
+        }
     }
 }

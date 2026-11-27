@@ -1,17 +1,17 @@
 package defpackage;
-public final class g3f {
-    public final boolean equals(Object obj) {
-        if (obj == this || (obj instanceof g3f)) {
-            return true;
+public final class g3f implements zq7 {
+    public static final g3f a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return -1705342425;
-    }
-
-    public final String toString() {
-        return "MLKitLoggingOptions{libraryName=play-services-mlkit-image-labeling, enableFirelog=true, firelogEventType=1}";
+        throw new ClassCastException();
     }
 }

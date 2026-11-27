@@ -1,53 +1,93 @@
 package defpackage;
 
 import android.text.TextUtils;
-public final class g66 extends ja {
-    public final String c;
-    public final int d;
-    public final int e;
-    public final boolean f;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class g66 extends TLObject {
+    public static final int j = 0;
+    public int a;
+    public String b;
+    public String c;
+    public TLRPC.WebPage d;
+    public boolean e;
+    public boolean f = true;
+    public int i;
 
-    public g66(int i, int i2, int i3, int i4, String str) {
-        super(i, false);
-        this.c = str;
-        this.d = i2;
-        this.e = i3;
-        this.f = i4;
-    }
-
-    public static g66 b(int i, String str) {
-        return new g66(4, 0, i, 0, str);
-    }
-
-    public static g66 c(int i, int i2, String str) {
-        return new g66(3, i, i2, 0, str);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof g66) {
-                g66 g66Var = (g66) obj;
-                int i = g66Var.a;
-                int i2 = this.a;
-                if (i == i2) {
-                    if (i2 != 3 || g66Var.d == this.d) {
-                        if (i2 != 5 || g66Var.f == this.f) {
-                            if ((i2 != 3 && i2 != 4) || g66Var.e == this.e) {
-                                if ((i2 == 0 || i2 == 2 || i2 == 3 || i2 == 4 || i2 == 5) && !TextUtils.equals(g66Var.c, this.c)) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
+        boolean z2;
+        int readInt32 = inputSerializedData.readInt32(z);
+        this.a = readInt32;
+        boolean z3 = false;
+        if ((readInt32 & 8) != 0) {
+            z2 = true;
+        } else {
+            z2 = false;
         }
-        return true;
+        this.e = z2;
+        if ((readInt32 & 16) != 0) {
+            z3 = true;
+        }
+        this.f = z3;
+        this.c = inputSerializedData.readString(z);
+        if ((this.a & 1) != 0) {
+            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+        if ((this.a & 2) != 0) {
+            this.b = inputSerializedData.readString(z);
+        }
+        if ((this.a & 4) != 0) {
+            this.i = inputSerializedData.readInt32(z);
+        }
+    }
+
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        outputSerializedData.writeInt32(-625858389);
+        TLRPC.WebPage webPage = this.d;
+        int i5 = this.a;
+        if (webPage != null) {
+            i = i5 | 1;
+        } else {
+            i = i5 & (-2);
+        }
+        this.a = i;
+        boolean isEmpty = TextUtils.isEmpty(this.b);
+        int i6 = this.a;
+        if (!isEmpty) {
+            i2 = i6 | 2;
+        } else {
+            i2 = i6 & (-3);
+        }
+        this.a = i2;
+        if (this.e) {
+            i3 = i2 | 8;
+        } else {
+            i3 = i2 & (-9);
+        }
+        this.a = i3;
+        if (this.f) {
+            i4 = i3 | 16;
+        } else {
+            i4 = i3 & (-17);
+        }
+        this.a = i4;
+        outputSerializedData.writeInt32(i4);
+        outputSerializedData.writeString(this.c);
+        if ((this.a & 1) != 0) {
+            this.d.serializeToStream(outputSerializedData);
+        }
+        if ((this.a & 2) != 0) {
+            outputSerializedData.writeString(this.b);
+        }
+        if ((this.a & 4) != 0) {
+            outputSerializedData.writeInt32(this.i);
+        }
     }
 }

@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class nc1 {
+public interface nc1 {
 }

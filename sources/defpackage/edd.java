@@ -1,43 +1,54 @@
 package defpackage;
-public abstract class edd {
-    public static final lo5 a = new lo5("NO_THREAD_ELEMENTS");
-    public static final dm2 b = new dm2((byte) 6);
-    public static final dm2 c = new dm2((byte) 7);
-    public static final dm2 d = new dm2((byte) 8);
 
-    public static final void a(sw2 sw2Var, Object obj) {
-        if (obj != a) {
-            if (obj instanceof fnb) {
-                ow2[] ow2VarArr = ((fnb) obj).b;
-                int length = ow2VarArr.length - 1;
-                if (length < 0) {
-                    return;
-                }
-                ow2 ow2Var = ow2VarArr[length];
-                throw null;
+import java.util.Iterator;
+import java.util.Map;
+public final class edd extends kcd {
+    public final transient ybd r;
+    public final transient Object[] s;
+    public final transient int w;
+
+    public edd(ybd ybdVar, Object[] objArr, int i) {
+        super((byte) 2);
+        this.r = ybdVar;
+        this.s = objArr;
+        this.w = i;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.r.get(key))) {
+                return true;
             }
-            sw2Var.fold(null, c).getClass();
-            fyb.g();
         }
+        return false;
     }
 
-    public static final Object b(sw2 sw2Var) {
-        Object fold = sw2Var.fold(0, b);
-        fold.getClass();
-        return fold;
+    @Override
+    public final Iterator iterator() {
+        kbd kbdVar = this.n;
+        if (kbdVar == null) {
+            kbdVar = new add(this);
+            this.n = kbdVar;
+        }
+        return kbdVar.listIterator(0);
     }
 
-    public static final Object c(sw2 sw2Var, Object obj) {
-        if (obj == null) {
-            obj = b(sw2Var);
+    @Override
+    public final int p(Object[] objArr) {
+        kbd kbdVar = this.n;
+        if (kbdVar == null) {
+            kbdVar = new add(this);
+            this.n = kbdVar;
         }
-        if (obj == 0) {
-            return a;
-        }
-        if (obj instanceof Integer) {
-            return sw2Var.fold(new fnb(((Number) obj).intValue(), sw2Var), d);
-        }
-        fyb.g();
-        return null;
+        return kbdVar.p(objArr);
+    }
+
+    @Override
+    public final int size() {
+        return this.w;
     }
 }

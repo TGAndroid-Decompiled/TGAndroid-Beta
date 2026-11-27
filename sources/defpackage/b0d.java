@@ -1,29 +1,58 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class b0d extends b4 {
-    public static final Parcelable.Creator<b0d> CREATOR = new hv6((byte) 22);
-    public final int a;
-    public final String b;
-    public final int c;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RenderNode;
+public final class b0d extends d0d {
+    public final RenderNode e;
+    public Bitmap f;
+    public Paint g;
+    public Rect h;
 
-    public b0d(int i, int i2, String str) {
-        str.getClass();
-        this.a = i;
-        this.b = str;
-        this.c = i2;
+    public b0d(int i, int i2, int i3, int i4, String str) {
+        super(i, i2, i3, i4);
+        RenderNode renderNode = new RenderNode(str);
+        this.e = renderNode;
+        renderNode.setPosition(i, i2, i3, i4);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.getClass();
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 2, this.b);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.c);
-        jte.s(parcel, r);
+    public final Canvas a() {
+        return this.e.beginRecording(this.c - this.a, this.d - this.b);
+    }
+
+    @Override
+    public final void b() {
+        this.e.discardDisplayList();
+    }
+
+    @Override
+    public final void c(android.graphics.Canvas r28, float r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.b0d.c(android.graphics.Canvas, float):void");
+    }
+
+    @Override
+    public final void d() {
+        this.e.endRecording();
+    }
+
+    @Override
+    public final boolean e() {
+        return this.e.hasDisplayList();
+    }
+
+    @Override
+    public final void f() {
+        boolean z;
+        long j = this.c - this.a;
+        long j2 = this.d - this.b;
+        if (j > 0 && j2 > 0 && j <= 4096 && j2 <= 4096 && j * j2 <= 8388608) {
+            z = true;
+        } else {
+            z = false;
+        }
+        this.e.setUseCompositingLayer(z, null);
     }
 }

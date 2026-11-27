@@ -1,3 +1,3 @@
 package defpackage;
-public final class bi5 extends ci5 {
+public abstract class bi5 {
 }

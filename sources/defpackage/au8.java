@@ -1,331 +1,381 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.util.Base64;
-import j$.util.Objects;
-import java.io.UnsupportedEncodingException;
-import java.net.IDN;
-import java.net.URLEncoder;
-import java.util.Locale;
-import java.util.regex.Pattern;
-public final class au8 {
-    public static final Pattern g = Pattern.compile("[A-Za-z0-9][A-Za-z0-9_-]*(/[A-Za-z0-9][A-Za-z0-9_-]*)*");
-    public static final Pattern h = Pattern.compile("[A-Za-z0-9_-]+");
-    public static final au8 i = a().c();
-    public final int a;
-    public final String b;
-    public final int c;
-    public final String d;
-    public final String e;
-    public final String f;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class au8 extends FrameLayout implements fn7 {
+    public final LinearLayout E;
+    public final TextView F;
+    public final TextView G;
+    public final c51 H;
+    public boolean I;
+    public final cga a;
+    public final int b;
+    public final vnb c;
+    public boolean d;
+    public axa e;
+    public final wa f;
+    public boolean h;
+    public int n;
+    public final FrameLayout r;
+    public final LinearLayout s;
+    public final TextView w;
+    public final TextView x;
+    public final FrameLayout y;
 
-    public au8(i46 i46Var) {
-        int i2 = i46Var.a;
-        this.a = i2;
-        this.b = (String) i46Var.c;
-        if (i2 == 3) {
-            this.f = (String) i46Var.f;
-            this.c = 0;
-            this.d = "";
-            this.e = "";
-        } else if (i2 == 2) {
-            this.f = (String) i46Var.f;
-            this.c = i46Var.b;
-            this.d = "";
-            this.e = "";
-        } else if (i2 == 1) {
-            this.f = "";
-            this.c = i46Var.b;
-            this.d = (String) i46Var.d;
-            this.e = (String) i46Var.e;
-        } else {
-            sc8.e();
-            throw null;
+    public au8(cga cgaVar, int i, vnb vnbVar) {
+        super(cgaVar.getContext());
+        this.n = hl.q.y;
+        Context context = cgaVar.getContext();
+        this.a = cgaVar;
+        this.b = i;
+        this.c = vnbVar;
+        wa waVar = new wa(context, i, new hj8(this, (byte) 4), new vt8(this), new vt8(this), vnbVar, cgaVar);
+        this.f = waVar;
+        waVar.g3.r = false;
+        waVar.setSelectorType(9);
+        waVar.setSelectorDrawableColor(0);
+        waVar.setClipToPadding(false);
+        waVar.setClipChildren(false);
+        addView(waVar, tre.e(-1, -1, 119));
+        g();
+        waVar.j(new bj1(this, cgaVar, (byte) 8));
+        wt8 wt8Var = new wt8(cgaVar);
+        wt8Var.m = false;
+        wt8Var.C = false;
+        wt8Var.o(k43.h);
+        wt8Var.n(350L);
+        waVar.setItemAnimator(wt8Var);
+        new lu5(new xt8(this, cgaVar)).h(waVar);
+        View view = this.r;
+        if (view != null) {
+            removeView(view);
         }
-    }
+        View view2 = this.y;
+        if (view2 != null) {
+            removeView(view2);
+        }
+        if (cgaVar.d == this.e) {
+            this.y = null;
+            this.F = null;
+            this.G = null;
+            this.H = null;
+            this.E = null;
+            this.r = new FrameLayout(getContext());
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.s = linearLayout;
+            linearLayout.setOrientation(1);
+            this.r.addView(this.s, tre.e(-2, -2, 17));
+            de0 de0Var = new de0(getContext());
+            de0Var.setImageDrawable(new b29(2131624315, hl.L(120.0f), hl.L(120.0f)));
+            this.s.addView(de0Var, tre.t(120, 120, 1, 0, 0, 0, 0));
+            TextView textView = new TextView(getContext());
+            this.w = textView;
+            textView.setTextSize(1, 17.0f);
+            this.w.setTypeface(hl.o());
+            yob.X(this.w, aob.G6, vnbVar);
+            this.w.setText(ob6.M0(2131746396, null));
+            this.s.addView(this.w, tre.t(-2, -2, 1, 0, 12, 0, 0));
+            TextView textView2 = new TextView(getContext());
+            this.x = textView2;
+            textView2.setTextSize(1, 14.0f);
+            TextView textView3 = this.x;
+            int i2 = aob.Fi;
+            yob.X(textView3, i2, vnbVar);
+            this.x.setText(ob6.M0(2131746397, null));
+            this.x.setOnClickListener(new View.OnClickListener(this) {
+                public final au8 b;
 
-    public static i46 a() {
-        ?? obj = new Object();
-        obj.a = 1;
-        obj.c = "";
-        obj.d = "";
-        obj.e = "";
-        obj.f = "";
-        return obj;
-    }
+                {
+                    this.b = this;
+                }
 
-    public static String b(String str) {
-        if (!TextUtils.isEmpty(str) && h.matcher(str).matches()) {
-            try {
-                byte[] decode = Base64.decode(str, 11);
-                if (decode.length >= 17 && (decode[0] & 255) == 112) {
-                    char[] cArr = new char[(decode.length - 1) << 1];
-                    char[] cArr2 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-                    for (int i2 = 1; i2 < decode.length; i2++) {
-                        byte b = decode[i2];
-                        int i3 = (i2 - 1) << 1;
-                        cArr[i3] = cArr2[(b & 255) >>> 4];
-                        cArr[i3 + 1] = cArr2[b & 15];
-                    }
-                    String str2 = new String(cArr);
-                    if (!h(str2)) {
-                        return null;
-                    }
-                    if (Base64.encodeToString(decode, 11).equals(str)) {
-                        return str2;
+                @Override
+                public final void onClick(View view3) {
+                    byte b = r2;
+                    au8 au8Var = this.b;
+                    switch (b) {
+                        case 0:
+                            axa axaVar = au8Var.e;
+                            if (axaVar != null) {
+                                if (!axaVar.e || axaVar.g != 783) {
+                                    axaVar.g = 783;
+                                    axaVar.e = true;
+                                    axaVar.k(true);
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        default:
+                            au8Var.a.a();
+                            return;
                     }
                 }
-            } catch (IllegalArgumentException unused) {
-            }
-        }
-        return null;
-    }
-
-    public static au8 c(SharedPreferences sharedPreferences) {
-        int i2;
-        String str = "";
-        String string = sharedPreferences.getString("proxy_ip", "");
-        String string2 = sharedPreferences.getString("proxy_user", "");
-        String string3 = sharedPreferences.getString("proxy_pass", "");
-        String string4 = sharedPreferences.getString("proxy_secret", "");
-        int i3 = sharedPreferences.getInt("proxy_port", 1080);
-        int i4 = 2;
-        if (TextUtils.isEmpty(string4)) {
-            i2 = 1;
-        } else {
-            i2 = 2;
-        }
-        int F = ug8.F(i2);
-        if (F != 1) {
-            if (F != 2) {
-                i4 = 0;
-            }
-        } else {
-            i4 = 1;
-        }
-        int f = f(sharedPreferences.getInt("proxy_type", i4));
-        i46 a = a();
-        if (string == null) {
-            string = "";
-        }
-        a.c = string;
-        if (string2 == null) {
-            string2 = "";
-        }
-        a.d = string2;
-        if (string3 == null) {
-            string3 = "";
-        }
-        a.e = string3;
-        if (string4 != null) {
-            str = string4;
-        }
-        a.f = str;
-        a.b = i3;
-        a.o(f);
-        return a.c();
-    }
-
-    public static defpackage.au8 d(android.net.Uri r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.au8.d(android.net.Uri):au8");
-    }
-
-    public static int f(int i2) {
-        if (i2 != 0) {
-            if (i2 == 1) {
-                return 2;
-            }
-            if (i2 == 2) {
-                return 3;
-            }
-        }
-        return 1;
-    }
-
-    public static boolean h(String str) {
-        if (str != null) {
-            if (str.length() == 32) {
-                for (int i2 = 0; i2 < str.length(); i2++) {
-                    if (Character.digit(str.charAt(i2), 16) < 0) {
-                        return false;
-                    }
-                }
-                return true;
-            } else if (str.length() == 34 && str.regionMatches(true, 0, "dd", 0, 2)) {
-                for (int i3 = 2; i3 < str.length(); i3++) {
-                    if (Character.digit(str.charAt(i3), 16) < 0) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final String e() {
-        StringBuilder sb;
-        boolean z;
-        String str = this.e;
-        String str2 = this.d;
-        String str3 = this.b;
-        String str4 = this.f;
-        int i2 = this.a;
-        int F = ug8.F(i2);
-        if (F != 1) {
-            if (F != 2) {
-                sb = new StringBuilder("https://t.me/socks?");
-            } else {
-                sb = new StringBuilder("https://t.me/webproxy?");
-            }
-        } else {
-            sb = new StringBuilder("https://t.me/proxy?");
-        }
-        try {
-            sb.append("server=");
-            sb.append(URLEncoder.encode(str3, "UTF-8"));
-            if (i2 != 3) {
-                sb.append("&port=");
-                sb.append(this.c);
-            }
-            if (!TextUtils.isEmpty(str2)) {
-                sb.append("&user=");
-                sb.append(URLEncoder.encode(str2, "UTF-8"));
-            }
-            if (!TextUtils.isEmpty(str)) {
-                sb.append("&pass=");
-                sb.append(URLEncoder.encode(str, "UTF-8"));
-            }
-            if (!TextUtils.isEmpty(str4)) {
-                if (i2 == 3) {
-                    if (str3 != null && str3.indexOf(47) >= 0) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    if (z && h(str4)) {
-                        int length = str4.length() / 2;
-                        byte[] bArr = new byte[length];
-                        for (int i3 = 0; i3 < length; i3++) {
-                            int i4 = i3 << 1;
-                            bArr[i3] = (byte) ((Character.digit(str4.charAt(i4), 16) << 4) | Character.digit(str4.charAt(i4 + 1), 16));
-                        }
-                        byte[] bArr2 = new byte[length + 1];
-                        bArr2[0] = 112;
-                        System.arraycopy(bArr, 0, bArr2, 1, length);
-                        str4 = Base64.encodeToString(bArr2, 11);
-                    }
-                }
-                sb.append("&secret=");
-                sb.append(URLEncoder.encode(str4, "UTF-8"));
-            }
-        } catch (UnsupportedEncodingException unused) {
-        }
-        return sb.toString();
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof au8) {
-                au8 au8Var = (au8) obj;
-                if (this.c == au8Var.c && this.a == au8Var.a && Objects.equals(this.b, au8Var.b) && Objects.equals(this.d, au8Var.d) && Objects.equals(this.e, au8Var.e) && Objects.equals(this.f, au8Var.f)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean g() {
-        boolean z;
-        String str;
-        String str2;
-        String str3 = this.b;
-        if (!TextUtils.isEmpty(str3)) {
-            if (this.a == 3) {
-                if (!TextUtils.isEmpty(str3)) {
-                    int indexOf = str3.indexOf(47);
-                    if (indexOf >= 0) {
-                        str = str3.substring(0, indexOf);
-                        str2 = str3.substring(indexOf + 1);
-                    } else {
-                        str = str3;
-                        str2 = null;
-                    }
-                    if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && g.matcher(str2).matches()))) {
-                        try {
-                            z = str.equals(IDN.toASCII(str, 3).toLowerCase(Locale.US));
-                        } catch (IllegalArgumentException unused) {
-                        }
-                        if (!z && h(this.f)) {
-                            return true;
-                        }
-                    }
-                }
-                z = false;
-                return !z ? false : false;
-            } else if (this.c > 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(ug8.b(this.a), this.b, Integer.valueOf(this.c), this.d, this.e, this.f);
-    }
-
-    public final void i(SharedPreferences.Editor editor) {
-        int i2;
-        int i3 = this.a;
-        int F = ug8.F(i3);
-        if (F != 1) {
-            if (F != 2) {
-                i2 = 0;
-            } else {
-                i2 = 2;
-            }
-        } else {
-            i2 = 1;
-        }
-        editor.putInt("proxy_type", i2);
-        editor.putString("proxy_ip", this.b);
-        int F2 = ug8.F(i3);
-        int i4 = this.c;
-        if (F2 != 0) {
-            String str = this.f;
-            if (F2 != 1) {
-                if (F2 != 2) {
-                    return;
-                }
-                editor.putString("proxy_secret", str);
-                editor.remove("proxy_port");
-                editor.remove("proxy_pass");
-                editor.remove("proxy_user");
-                return;
-            }
-            editor.putString("proxy_secret", str);
-            editor.putInt("proxy_port", i4);
-            editor.remove("proxy_pass");
-            editor.remove("proxy_user");
+            });
+            this.x.setPadding(hl.L(10.0f), hl.L(4.0f), hl.L(10.0f), hl.L(4.0f));
+            yob.R(this.x, aob.Y(aob.p1(0.1f, aob.v0(i2, vnbVar)), 4, 4), null, yob.K(0.1f, i2), vnbVar);
+            iye.a(this.x);
+            this.s.addView(this.x, tre.t(-2, -2, 1, 0, 8, 0, 0));
+            addView(this.r, tre.e(-1, -1, 119));
+            waVar.setEmptyView(this.r);
             return;
         }
-        editor.putInt("proxy_port", i4);
-        editor.remove("proxy_secret");
-        String str2 = this.e;
-        if (TextUtils.isEmpty(str2)) {
-            editor.remove("proxy_pass");
-        } else {
-            editor.putString("proxy_pass", str2);
+        this.r = null;
+        this.w = null;
+        this.x = null;
+        this.s = null;
+        this.y = new FrameLayout(getContext());
+        LinearLayout linearLayout2 = new LinearLayout(getContext());
+        this.E = linearLayout2;
+        linearLayout2.setOrientation(1);
+        this.y.addView(this.E, tre.e(-2, -2, 17));
+        TextView textView4 = new TextView(getContext());
+        this.F = textView4;
+        textView4.setTextSize(1, 20.0f);
+        this.F.setTypeface(hl.o());
+        yob.X(this.F, aob.G6, vnbVar);
+        this.F.setText(ob6.M0(2131750204, null));
+        this.E.addView(this.F, tre.t(-2, -2, 1, 0, 0, 0, 0));
+        TextView textView5 = new TextView(getContext());
+        this.G = textView5;
+        textView5.setTextSize(1, 14.0f);
+        yob.X(this.G, aob.y6, vnbVar);
+        this.G.setText(ob6.M0(2131750205, null));
+        this.E.addView(this.G, tre.t(-2, -2, 1, 0, 10, 0, 0));
+        c51 c51Var = new c51(vnbVar, getContext(), true);
+        this.H = c51Var;
+        c51Var.i(ob6.M0(2131750206, null), false, true);
+        this.E.addView(this.H, tre.t(200, 44, 1, 0, 19, 0, 12));
+        this.H.setOnClickListener(new View.OnClickListener(this) {
+            public final au8 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view3) {
+                byte b = r2;
+                au8 au8Var = this.b;
+                switch (b) {
+                    case 0:
+                        axa axaVar = au8Var.e;
+                        if (axaVar != null) {
+                            if (!axaVar.e || axaVar.g != 783) {
+                                axaVar.g = 783;
+                                axaVar.e = true;
+                                axaVar.k(true);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    default:
+                        au8Var.a.a();
+                        return;
+                }
+            }
+        });
+        addView(this.y, tre.d(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
+        waVar.setEmptyView(this.y);
+        LinearLayout linearLayout3 = this.E;
+        if (linearLayout3 != null) {
+            linearLayout3.setVisibility(cgaVar.e.h() ? 0 : 8);
         }
-        String str3 = this.d;
-        if (TextUtils.isEmpty(str3)) {
-            editor.remove("proxy_user");
+    }
+
+    public static void a(au8 au8Var, boolean z) {
+        au8Var.setReordering(z);
+    }
+
+    public void setReordering(boolean z) {
+        wa waVar;
+        if (this.h != z) {
+            this.h = z;
+            cga cgaVar = this.a;
+            cgaVar.q(cgaVar.g());
+            int i = 0;
+            while (true) {
+                waVar = this.f;
+                if (i >= waVar.getChildCount()) {
+                    break;
+                }
+                View childAt = waVar.getChildAt(i);
+                if (childAt instanceof sx4) {
+                    ((sx4) childAt).e(z, true);
+                }
+                i++;
+            }
+            l9c l9cVar = waVar.g3;
+            if (l9cVar != null) {
+                l9cVar.T();
+            }
+            if (z) {
+                e S = LaunchActivity.S();
+                if (S instanceof ProfileActivity) {
+                    ProfileActivity profileActivity = (ProfileActivity) S;
+                    profileActivity.k3(false);
+                    hl.c3(new y56(profileActivity, (byte) 29));
+                }
+            }
+        }
+    }
+
+    public final void b() {
+        setReordering(true);
+    }
+
+    public final void c() {
+        setReordering(true);
+    }
+
+    public final void d() {
+        setReordering(true);
+    }
+
+    @Override
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.I3 && objArr[1] == this.e) {
+            f(true);
+            if (this.e != null && isAttachedToWindow()) {
+                wa waVar = this.f;
+                if (waVar.canScrollVertically(1)) {
+                    for (int i3 = 0; i3 < waVar.getChildCount(); i3++) {
+                        if (!(waVar.getChildAt(i3) instanceof tk4)) {
+                        }
+                    }
+                    return;
+                }
+                this.e.a();
+            }
+        }
+    }
+
+    public final void e() {
+        if (!this.h) {
+            return;
+        }
+        axa axaVar = this.e;
+        if (axaVar != null) {
+            axaVar.p();
+        }
+        setReordering(false);
+    }
+
+    public final void f(boolean z) {
+        l9c l9cVar;
+        wa waVar = this.f;
+        if (waVar != null && (l9cVar = waVar.g3) != null) {
+            boolean canScrollVertically = waVar.canScrollVertically(-1);
+            l9cVar.O(z);
+            if (!canScrollVertically) {
+                waVar.x0(0);
+            }
+        }
+    }
+
+    public final void g() {
+        boolean z;
+        cga cgaVar = this.a;
+        if (cgaVar.M == 0) {
+            z = true;
         } else {
-            editor.putString("proxy_user", str3);
+            z = false;
+        }
+        setClipChildren(z);
+        wa waVar = this.f;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) waVar.getLayoutParams();
+        int i = marginLayoutParams.topMargin;
+        int i2 = -cgaVar.M;
+        if (i != i2 || marginLayoutParams.bottomMargin != (-cgaVar.N)) {
+            marginLayoutParams.topMargin = i2;
+            marginLayoutParams.bottomMargin = -cgaVar.N;
+            waVar.setLayoutParams(marginLayoutParams);
+        }
+        waVar.setPadding(hl.L(9.0f), cgaVar.M + cgaVar.L, hl.L(9.0f), hl.L(86.0f) + cgaVar.N);
+    }
+
+    public float getTabsHeight() {
+        wa waVar = this.f;
+        float y = waVar.getY();
+        for (int i = 0; i < waVar.getChildCount(); i++) {
+            View childAt = waVar.getChildAt(i);
+            int S = RecyclerView.S(childAt);
+            if (childAt instanceof sx4) {
+                if (S == 0) {
+                    return Math.max(0.0f, childAt.getY() + y);
+                }
+            } else if (S == 0) {
+                return Math.max(0.0f, (childAt.getAlpha() * childAt.getHeight()) + childAt.getY() + y);
+            }
+        }
+        return 0.0f;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        jn7.f(this.b).b(this, jn7.I3);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        jn7.f(this.b).n(this, jn7.I3);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        setVisibleHeight(this.n);
+    }
+
+    public void setHasTabs(boolean z) {
+        if (this.I == z) {
+            return;
+        }
+        this.I = z;
+        wa waVar = this.f;
+        boolean canScrollVertically = waVar.canScrollVertically(-1);
+        waVar.g3.O(true);
+        if (!canScrollVertically) {
+            waVar.x0(0);
+        }
+        this.a.p();
+    }
+
+    public void setVisibleHeight(int i) {
+        this.n = i;
+        float l = Utilities.l(hl.x1(i, hl.L(150.0f), hl.L(220.0f)));
+        float R1 = hl.R1(0.6f, 1.0f, l);
+        LinearLayout linearLayout = this.s;
+        if (linearLayout != null) {
+            linearLayout.setAlpha(l);
+            this.s.setScaleX(R1);
+            this.s.setScaleY(R1);
+        }
+        FrameLayout frameLayout = this.r;
+        if (frameLayout != null) {
+            frameLayout.setTranslationY((-(getMeasuredHeight() - this.n)) / 2.0f);
+        }
+        LinearLayout linearLayout2 = this.E;
+        if (linearLayout2 != null) {
+            linearLayout2.setAlpha(l);
+            this.E.setScaleX(R1);
+            this.E.setScaleY(R1);
+        }
+        FrameLayout frameLayout2 = this.y;
+        if (frameLayout2 != null) {
+            frameLayout2.setTranslationY((-(getMeasuredHeight() - this.n)) / 2.0f);
         }
     }
 }

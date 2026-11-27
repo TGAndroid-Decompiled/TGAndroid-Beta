@@ -1,38 +1,47 @@
 package defpackage;
-public final class k11 extends ri4 {
+
+import android.widget.FrameLayout;
+public final class k11 implements Runnable {
     public final byte a;
+    public final v21 b;
 
-    public k11(byte b) {
+    public k11(v21 v21Var, byte b) {
         this.a = b;
+        this.b = v21Var;
     }
 
     @Override
-    public final float a(Object obj) {
-        switch (this.a) {
+    public final void run() {
+        byte b = this.a;
+        v21 v21Var = this.b;
+        switch (b) {
             case 0:
-                return ((q11) obj).inOutOffset;
-            case 1:
-                return ((ch6) obj).O;
-            default:
-                return ((ch6) obj).N;
-        }
-    }
-
-    @Override
-    public final void b(Object obj, float f) {
-        switch (this.a) {
-            case 0:
-                q11.access$2400((q11) obj, f);
+                FrameLayout frameLayout = v21Var.h;
+                z11 z11Var = v21Var.e;
+                r11 r11Var = v21Var.q;
+                if (r11Var != null && !z11Var.top) {
+                    r11Var.b(0.0f);
+                    v21Var.q.c(v21Var);
+                }
+                z11Var.transitionRunningExit = false;
+                z11Var.onExitTransitionEnd();
+                z11Var.onHide();
+                frameLayout.removeView(v21Var.f);
+                frameLayout.removeOnLayoutChangeListener(v21Var.c);
+                z11Var.onDetach();
+                Runnable runnable = v21Var.w;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             case 1:
-                ch6 ch6Var = (ch6) obj;
-                ch6Var.O = f;
-                ch6Var.invalidate();
+                FrameLayout frameLayout2 = v21Var.h;
+                frameLayout2.removeView(v21Var.f);
+                frameLayout2.removeOnLayoutChangeListener(v21Var.c);
                 return;
             default:
-                ch6 ch6Var2 = (ch6) obj;
-                ch6Var2.N = f;
-                ch6Var2.invalidate();
+                v21Var.b();
                 return;
         }
     }

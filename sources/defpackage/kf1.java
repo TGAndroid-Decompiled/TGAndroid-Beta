@@ -1,189 +1,68 @@
 package defpackage;
 
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d;
-public final class kf1 extends w39 {
-    public final Context c;
-    public int d;
-    public int e;
-    public int f;
-    public int h;
-    public final nf1 n;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class kf1 extends yc8 {
+    public final wf1 a;
 
-    public kf1(nf1 nf1Var, Context context) {
-        this.n = nf1Var;
-        this.c = context;
-        C(true);
+    public kf1(wf1 wf1Var) {
+        this.a = wf1Var;
     }
 
-    public final void D(boolean z) {
-        this.d = 0;
-        nf1 nf1Var = this.n;
-        ArrayList arrayList = nf1Var.p0;
-        if (!arrayList.isEmpty()) {
-            if (!nf1Var.r0) {
-                int i = this.d;
-                this.d = i + 1;
-                this.e = i;
-            } else {
-                this.e = -1;
+    @Override
+    public final fd8 M(r47 r47Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+        dl1 dl1Var;
+        r47 messageObject;
+        wb2 wb2Var;
+        r47 messageObject2;
+        wf1 wf1Var = this.a;
+        int childCount = wf1Var.w.getChildCount();
+        int i2 = 0;
+        while (true) {
+            ImageReceiver imageReceiver = null;
+            if (i2 >= childCount) {
+                return null;
             }
-            int i2 = this.d;
-            this.f = i2;
-            int size = arrayList.size() + i2;
-            this.d = size;
-            this.h = size;
-            return;
-        }
-        this.e = -1;
-        this.f = -1;
-        this.h = -1;
-    }
-
-    @Override
-    public final int b() {
-        return this.d;
-    }
-
-    @Override
-    public final long c(int i) {
-        if (i >= this.f && i < this.h) {
-            ArrayList arrayList = this.n.p0;
-            return ((k27) arrayList.get((arrayList.size() - (i - this.f)) - 1)).m1;
-        } else if (i == this.e) {
-            return 2L;
-        } else {
-            return 5L;
-        }
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i >= this.f && i < this.h) {
-            ArrayList arrayList = this.n.p0;
-            return ((k27) arrayList.get((arrayList.size() - (i - this.f)) - 1)).U;
-        }
-        return 4;
-    }
-
-    @Override
-    public final void f() {
-        D(true);
-        try {
-            super.f();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void g(int i) {
-        D(false);
-        try {
-            super.g(i);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void j(int i, int i2) {
-        D(false);
-        try {
-            super.j(i, i2);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void l(int i, int i2) {
-        D(false);
-        try {
-            super.l(i, i2);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void p(int i, int i2) {
-        D(false);
-        try {
-            super.p(i, i2);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void q(int i, int i2) {
-        D(false);
-        try {
-            super.q(i, i2);
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void t(defpackage.s49 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kf1.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        wjb wjbVar;
-        ob2 ob2Var;
-        int i2;
-        View view;
-        nf1 nf1Var = this.n;
-        ArrayList arrayList = nf1Var.h;
-        Context context = this.c;
-        if (i == 0) {
-            if (arrayList.isEmpty()) {
-                i2 = ((d) nf1Var).currentAccount;
-                view = new gb2(context, i2);
-            } else {
-                arrayList.remove(0);
-                view = (View) arrayList.get(0);
+            View childAt = wf1Var.w.getChildAt(i2);
+            if (childAt instanceof wb2) {
+                if (r47Var != null && (messageObject2 = (wb2Var = (wb2) childAt).getMessageObject()) != null && messageObject2.e1() == r47Var.e1()) {
+                    imageReceiver = wb2Var.getPhotoImage();
+                }
+            } else if ((childAt instanceof dl1) && (messageObject = (dl1Var = (dl1) childAt).getMessageObject()) != null) {
+                if (r47Var != null) {
+                    if (messageObject.e1() == r47Var.e1()) {
+                        imageReceiver = dl1Var.getPhotoImage();
+                    }
+                } else if (fileLocation != null && messageObject.p0 != null) {
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= messageObject.p0.size()) {
+                            break;
+                        }
+                        TLRPC.FileLocation fileLocation2 = ((TLRPC.PhotoSize) messageObject.p0.get(i3)).location;
+                        if (fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.local_id == fileLocation.local_id) {
+                            imageReceiver = dl1Var.getPhotoImage();
+                            break;
+                        }
+                        i3++;
+                    }
+                }
             }
-            gb2 gb2Var = (gb2) view;
-            gb2Var.setDelegate(new ff1(this));
-            gb2Var.setAllowAssistant(true);
-            ob2Var = view;
-        } else if (i == 1) {
-            uk1 uk1Var = new uk1(context);
-            uk1Var.setDelegate(new if1(this));
-            ob2Var = uk1Var;
-        } else if (i == 2) {
-            ob2Var = new ke2(context, null);
-        } else if (i == 10) {
-            wjbVar = ((d) nf1Var).resourceProvider;
-            ob2 ob2Var2 = new ob2(context, wjbVar);
-            ob2Var2.setDelegate(new i4d(this));
-            ob2Var = ob2Var2;
-        } else {
-            ob2Var = new ma2(context, null);
-        }
-        return ls6.h(ob2Var, ob2Var, -1, -2);
-    }
-
-    @Override
-    public final void y(s49 s49Var) {
-        View view = s49Var.a;
-        if ((view instanceof gb2) || (view instanceof uk1)) {
-            view.getViewTreeObserver().addOnPreDrawListener(new jf1(this, view, s49Var));
-        }
-        if (view instanceof gb2) {
-            gb2 gb2Var = (gb2) view;
-            gb2Var.getMessageObject();
-            gb2Var.setBackgroundDrawable(null);
-            gb2Var.n3(true, false);
-            gb2Var.setHighlighted(false);
+            if (imageReceiver != null) {
+                int[] iArr = new int[2];
+                childAt.getLocationInWindow(iArr);
+                fd8 fd8Var = new fd8();
+                fd8Var.b = iArr[0];
+                fd8Var.c = iArr[1];
+                fd8Var.d = wf1Var.w;
+                fd8Var.a = imageReceiver;
+                fd8Var.e = imageReceiver.p();
+                fd8Var.h = imageReceiver.z();
+                fd8Var.l = true;
+                return fd8Var;
+            }
+            i2++;
         }
     }
 }

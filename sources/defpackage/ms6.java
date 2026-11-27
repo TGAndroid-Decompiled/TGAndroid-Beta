@@ -1,67 +1,71 @@
 package defpackage;
 
-import android.view.animation.Animation;
-import androidx.mediarouter.app.OverlayListView;
-import java.util.ArrayList;
-public final class ms6 implements Animation.AnimationListener {
-    public final byte a;
-    public final ws6 b;
-
-    public ms6(ws6 ws6Var, byte b) {
-        this.a = b;
-        this.b = ws6Var;
+import android.graphics.Bitmap;
+import android.media.MediaDescription;
+import android.net.Uri;
+import android.os.Bundle;
+public abstract class ms6 {
+    public static MediaDescription a(MediaDescription.Builder builder) {
+        return builder.build();
     }
 
-    @Override
-    public final void onAnimationEnd(Animation animation) {
-        switch (this.a) {
-            case 0:
-                this.b.j(true);
-                return;
-            default:
-                return;
-        }
+    public static MediaDescription.Builder b() {
+        return new MediaDescription.Builder();
     }
 
-    @Override
-    public final void onAnimationRepeat(Animation animation) {
-        byte b = this.a;
+    public static CharSequence c(MediaDescription mediaDescription) {
+        return mediaDescription.getDescription();
     }
 
-    @Override
-    public final void onAnimationStart(Animation animation) {
-        switch (this.a) {
-            case 0:
-                return;
-            default:
-                ws6 ws6Var = this.b;
-                OverlayListView overlayListView = ws6Var.V;
-                ArrayList arrayList = overlayListView.a;
-                int size = arrayList.size();
-                int i = 0;
-                while (i < size) {
-                    Object obj = arrayList.get(i);
-                    i++;
-                    hr7 hr7Var = (hr7) obj;
-                    if (!hr7Var.j) {
-                        hr7Var.i = overlayListView.getDrawingTime();
-                        hr7Var.j = true;
-                    }
-                }
-                ws6Var.V.postDelayed(ws6Var.F0, ws6Var.y0);
-                return;
-        }
+    public static Bundle d(MediaDescription mediaDescription) {
+        return mediaDescription.getExtras();
     }
 
-    private final void a(Animation animation) {
+    public static Bitmap e(MediaDescription mediaDescription) {
+        return mediaDescription.getIconBitmap();
     }
 
-    private final void b(Animation animation) {
+    public static Uri f(MediaDescription mediaDescription) {
+        return mediaDescription.getIconUri();
     }
 
-    private final void c(Animation animation) {
+    public static String g(MediaDescription mediaDescription) {
+        return mediaDescription.getMediaId();
     }
 
-    private final void d(Animation animation) {
+    public static CharSequence h(MediaDescription mediaDescription) {
+        return mediaDescription.getSubtitle();
+    }
+
+    public static CharSequence i(MediaDescription mediaDescription) {
+        return mediaDescription.getTitle();
+    }
+
+    public static void j(MediaDescription.Builder builder, CharSequence charSequence) {
+        builder.setDescription(charSequence);
+    }
+
+    public static void k(MediaDescription.Builder builder, Bundle bundle) {
+        builder.setExtras(bundle);
+    }
+
+    public static void l(MediaDescription.Builder builder, Bitmap bitmap) {
+        builder.setIconBitmap(bitmap);
+    }
+
+    public static void m(MediaDescription.Builder builder, Uri uri) {
+        builder.setIconUri(uri);
+    }
+
+    public static void n(MediaDescription.Builder builder, String str) {
+        builder.setMediaId(str);
+    }
+
+    public static void o(MediaDescription.Builder builder, CharSequence charSequence) {
+        builder.setSubtitle(charSequence);
+    }
+
+    public static void p(MediaDescription.Builder builder, CharSequence charSequence) {
+        builder.setTitle(charSequence);
     }
 }

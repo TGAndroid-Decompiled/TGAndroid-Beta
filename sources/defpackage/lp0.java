@@ -21,7 +21,7 @@ public final class lp0 {
     public long j;
     public boolean k;
     public boolean l;
-    public final Runnable m = new oz(this, (byte) 19);
+    public final Runnable m = new pz(this, (byte) 20);
     public final mp0 n;
 
     public lp0(mp0 mp0Var, String str, String str2) {
@@ -29,13 +29,13 @@ public final class lp0 {
         this.n = mp0Var;
         this.b = str;
         this.c = str2;
-        TLRPC.User V1 = na7.q1(mp0Var.b).V1(Long.valueOf(mp0Var.c));
+        TLRPC.User X1 = uc7.s1(mp0Var.b).X1(Long.valueOf(mp0Var.c));
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
-        request.setTitle(l7c.r(V1));
+        request.setTitle(lbc.r(X1));
         if (TextUtils.isEmpty(str2)) {
             y = "Downloading file...";
         } else {
-            y = tb4.y("Downloading ", str2, "...");
+            y = qd4.y("Downloading ", str2, "...");
         }
         request.setDescription(y);
         request.setNotificationVisibility(0);

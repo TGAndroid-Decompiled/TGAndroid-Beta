@@ -1,13 +1,28 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class ylc extends CharacterStyle implements UpdateAppearance {
-    public int a;
+import android.media.AudioManager;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoipAudioManager;
+public final class ylc implements Runnable {
+    public final byte a;
+    public final AudioManager b;
+
+    public ylc(AudioManager audioManager, byte b) {
+        this.a = b;
+        this.b = audioManager;
+    }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(this.a);
+    public final void run() {
+        byte b = this.a;
+        AudioManager audioManager = this.b;
+        switch (b) {
+            case 0:
+                VoIPService.lambda$onDestroy$95(audioManager);
+                return;
+            default:
+                VoipAudioManager.a(audioManager);
+                return;
+        }
     }
 }

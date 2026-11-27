@@ -1,33 +1,18 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class zl1 implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.function.Supplier;
+public final class zl1 implements Supplier {
     public final byte a;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout b;
-
-    public zl1(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, byte b) {
-        this.a = b;
-        this.b = actionBarPopupWindow$ActionBarPopupWindowLayout;
-    }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.b;
-        switch (b) {
+    public final Object get() {
+        switch (this.a) {
             case 0:
-                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                return;
-            case 1:
-                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                return;
-            case 2:
-                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                return;
+                return new ArrayList();
             default:
-                actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                return;
+                return new HashSet();
         }
     }
 }

@@ -1,22 +1,40 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class z17 extends TLRPC.TL_messageMediaStory {
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
-        this.user_id = inputSerializedData.readInt64(z);
-        this.id = inputSerializedData.readInt32(z);
-        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z17 extends p79 {
+    public final a27 a;
+
+    public z17(a27 a27Var) {
+        this.a = a27Var;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt32(-946147809);
-        outputSerializedData.writeInt64(this.user_id);
-        outputSerializedData.writeInt32(this.id);
-        this.storyItem.serializeToStream(outputSerializedData);
+    public final void d(Rect rect, View view, RecyclerView recyclerView, c89 c89Var) {
+        int S;
+        int i = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        q79 layoutManager = recyclerView.getLayoutManager();
+        b27 b27Var = this.a.j3;
+        if (layoutManager == b27Var.d && (S = RecyclerView.S(view)) != 0 && !b27Var.f.N()) {
+            if (b27Var.f.I() == null && b27Var.f.V == null) {
+                rect.top = hl.L(2.0f);
+            } else {
+                S--;
+                u17 u17Var = b27Var.d;
+                u17Var.z1();
+                if (S > u17Var.U) {
+                    rect.top = hl.L(2.0f);
+                }
+            }
+            if (!b27Var.d.C1(S)) {
+                i = hl.L(2.0f);
+            }
+            rect.right = i;
+        }
     }
 }

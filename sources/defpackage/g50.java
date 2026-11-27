@@ -1,10 +1,42 @@
 package defpackage;
-public final class g50 implements zn7 {
-    public static final g50 a = new Object();
-    public static final w84 b = w84.c("logRequest");
+
+import android.accounts.AbstractAccountAuthenticator;
+import android.accounts.Account;
+import android.accounts.AccountAuthenticatorResponse;
+import android.os.Bundle;
+public final class g50 extends AbstractAccountAuthenticator {
+    @Override
+    public final Bundle addAccount(AccountAuthenticatorResponse accountAuthenticatorResponse, String str, String str2, String[] strArr, Bundle bundle) {
+        return null;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ((ao7) obj2).a(b, ((w70) ((ah0) obj)).a);
+    public final Bundle confirmCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public final Bundle editProperties(AccountAuthenticatorResponse accountAuthenticatorResponse, String str) {
+        return null;
+    }
+
+    @Override
+    public final Bundle getAuthToken(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) {
+        return null;
+    }
+
+    @Override
+    public final String getAuthTokenLabel(String str) {
+        return null;
+    }
+
+    @Override
+    public final Bundle hasFeatures(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String[] strArr) {
+        return null;
+    }
+
+    @Override
+    public final Bundle updateCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) {
+        return null;
     }
 }

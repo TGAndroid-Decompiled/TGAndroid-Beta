@@ -1,36 +1,17 @@
 package defpackage;
-
-import java.util.Comparator;
-public final class m8e implements Comparator {
-    public static final m8e a;
-    public static final m8e[] b;
+public final class m8e implements zq7 {
+    public static final m8e a = new Object();
 
     static {
-        ?? r0 = new Enum("INSTANCE", 0);
-        a = r0;
-        b = new m8e[]{r0};
-    }
-
-    public static m8e[] values() {
-        return (m8e[]) b.clone();
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        byte[] bArr = (byte[]) obj;
-        byte[] bArr2 = (byte[]) obj2;
-        int min = Math.min(bArr.length, bArr2.length);
-        for (int i = 0; i < min; i++) {
-            int i2 = (bArr[i] & 255) - (bArr2[i] & 255);
-            if (i2 != 0) {
-                return i2;
-            }
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return bArr.length - bArr2.length;
-    }
-
-    @Override
-    public final String toString() {
-        return "UnsignedBytes.lexicographicalComparator() (pure Java version)";
+        throw new ClassCastException();
     }
 }

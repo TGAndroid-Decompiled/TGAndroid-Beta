@@ -1,101 +1,18 @@
 package defpackage;
 
-import java.util.Iterator;
-public final class tld extends mid {
-    public static final Object[] F;
-    public static final tld G;
-    public final transient int E;
-    public final transient Object[] s;
-    public final transient int w;
-    public final transient Object[] x;
-    public final transient int y;
-
-    static {
-        Object[] objArr = new Object[0];
-        F = objArr;
-        G = new tld(0, 0, 0, objArr, objArr);
-    }
-
-    public tld(int i, int i2, int i3, Object[] objArr, Object[] objArr2) {
-        super((byte) 4);
-        this.s = objArr;
-        this.w = i;
-        this.x = objArr2;
-        this.y = i2;
-        this.E = i3;
-    }
-
+import android.os.Build;
+import android.util.Log;
+import j$.util.Objects;
+public final class tld extends ClassLoader {
     @Override
-    public final xhd B() {
-        return xhd.A(this.E, this.s);
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj != null) {
-            Object[] objArr = this.x;
-            if (objArr.length != 0) {
-                int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
-                while (true) {
-                    int i = rotateLeft & this.y;
-                    Object obj2 = objArr[i];
-                    if (obj2 != null) {
-                        if (obj2.equals(obj)) {
-                            return true;
-                        }
-                        rotateLeft = i + 1;
-                    } else {
-                        return false;
-                    }
-                }
-            } else {
-                return false;
+    public final Class loadClass(String str, boolean z) {
+        if (Objects.equals(str, "com.google.android.gms.iid.MessengerCompat")) {
+            if (Log.isLoggable("CloudMessengerCompat", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("CloudMessengerCompat", 3))) {
+                Log.d("CloudMessengerCompat", "Using renamed FirebaseIidMessengerCompat class");
+                return yrd.class;
             }
-        } else {
-            return false;
+            return yrd.class;
         }
-    }
-
-    @Override
-    public final int hashCode() {
-        return this.w;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return A().listIterator(0);
-    }
-
-    @Override
-    public final int p(Object[] objArr) {
-        Object[] objArr2 = this.s;
-        int i = this.E;
-        System.arraycopy(objArr2, 0, objArr, 0, i);
-        return i;
-    }
-
-    @Override
-    public final int q() {
-        return this.E;
-    }
-
-    @Override
-    public final int s() {
-        return 0;
-    }
-
-    @Override
-    public final int size() {
-        return this.E;
-    }
-
-    @Override
-    public final v5c u() {
-        return A().listIterator(0);
-    }
-
-    @Override
-    public final Object[] v() {
-        return this.s;
+        return super.loadClass(str, z);
     }
 }

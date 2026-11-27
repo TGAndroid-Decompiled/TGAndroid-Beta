@@ -1,75 +1,76 @@
 package defpackage;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-public final class fk2 {
-    public static ArrayList f;
-    public final String a;
-    public final int b;
-    public final int c;
-    public final int[] d;
-    public final ArrayList e = new ArrayList();
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import java.util.HashMap;
+public final class fk2 extends CharacterStyle {
+    public final int a;
 
-    public fk2(String str) {
-        str = str == null ? "." : str;
-        this.a = str;
-        String[] split = str.split("/");
-        int length = split.length;
-        this.c = length;
-        this.d = new int[length];
-        int i = 0;
-        for (int i2 = 0; i2 < split.length; i2++) {
-            this.d[i2] = split[i2].length();
-            i = Math.max(i, split[i2].length());
-        }
-        this.b = i;
-        for (int i3 = 0; i3 < split.length; i3++) {
-            for (int i4 = 0; i4 < split[i3].length(); i4++) {
-                this.e.add(new ek2(this, i4, i3));
-            }
-        }
+    public fk2(int i) {
+        this.a = i;
     }
 
-    public static ArrayList a() {
-        if (f == null) {
-            ArrayList arrayList = new ArrayList();
-            f = arrayList;
-            arrayList.add(new fk2("./."));
-            f.add(new fk2(".."));
-            f.add(new fk2("../."));
-            f.add(new fk2("./.."));
-            f.add(new fk2("././."));
-            f.add(new fk2("..."));
-            f.add(new fk2("../.."));
-            f.add(new fk2("./../.."));
-            f.add(new fk2("../../."));
-            f.add(new fk2("../../.."));
-            boolean z = w01.a;
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        int i;
+        HashMap hashMap = xm8.b;
+        int i2 = this.a & 255;
+        switch (i2) {
+            case 8:
+            case 18:
+                i2 = 1;
+                break;
+            case 9:
+            case 10:
+            case 14:
+            case 15:
+                i2 = 3;
+                break;
+            case 11:
+            case 13:
+                i2 = 7;
+                break;
+            case 12:
+            case 16:
+            case 17:
+            case 19:
+                i2 = 4;
+                break;
+            case 20:
+                i2 = 6;
+                break;
+            case 21:
+                i2 = 2;
+                break;
         }
-        return f;
-    }
-
-    public static int b() {
-        ArrayList a = a();
-        int size = a.size();
-        int i = 0;
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = a.get(i2);
-            i2++;
-            i = Math.max(i, ((fk2) obj).e.size());
+        switch (i2) {
+            case 1:
+                i = aob.zl;
+                break;
+            case 2:
+                i = aob.Al;
+                break;
+            case 3:
+                i = aob.Bl;
+                break;
+            case 4:
+                i = aob.Cl;
+                break;
+            case 5:
+                i = aob.Dl;
+                break;
+            case 6:
+                i = aob.El;
+                break;
+            case 7:
+                i = aob.Fl;
+                break;
+            default:
+                i = -1;
+                break;
         }
-        return i;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof fk2) {
-            return TextUtils.equals(this.a, ((fk2) obj).a);
+        if (i >= 0) {
+            textPaint.setColor(aob.w0(null, i, false));
         }
-        return false;
-    }
-
-    public final String toString() {
-        return this.a;
     }
 }

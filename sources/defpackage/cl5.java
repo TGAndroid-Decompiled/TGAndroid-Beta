@@ -1,16 +1,6 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class cl5 extends TLRPC.PhotoSize {
-    public final TLRPC.Photo a;
-    public final TLRPC.TL_inputPhoto b;
-
-    public cl5(TLRPC.Photo photo) {
-        this.a = photo;
-        TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-        tL_inputPhoto.id = photo.id;
-        tL_inputPhoto.file_reference = photo.file_reference;
-        tL_inputPhoto.access_hash = photo.access_hash;
-        this.b = tL_inputPhoto;
-    }
+import android.os.IInterface;
+public interface cl5 extends IInterface {
+    public static final String h = "android$support$v4$os$IResultReceiver".replace('$', '.');
 }

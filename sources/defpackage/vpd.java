@@ -1,10 +1,17 @@
 package defpackage;
-public abstract class vpd {
-    public static final cv5 a(cv5 cv5Var) {
-        cv5Var.getClass();
-        if (cv5Var.d().c()) {
-            return cv5Var;
+public final class vpd implements zq7 {
+    public static final vpd a = new Object();
+
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return new bn7(cv5Var);
+        throw new ClassCastException();
     }
 }

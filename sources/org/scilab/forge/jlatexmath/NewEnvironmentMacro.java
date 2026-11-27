@@ -3,7 +3,7 @@ package org.scilab.forge.jlatexmath;
 import java.util.HashMap;
 public class NewEnvironmentMacro extends NewCommandMacro {
     public static void addNewEnvironment(String str, String str2, String str3, int i) {
-        String o = tb4.o(str, "@env");
+        String o = qd4.o(str, "@env");
         StringBuilder sb = new StringBuilder();
         sb.append(str2);
         sb.append(" #");
@@ -17,7 +17,7 @@ public class NewEnvironmentMacro extends NewCommandMacro {
     public static void addReNewEnvironment(String str, String str2, String str3, int i) {
         HashMap<String, String> hashMap = NewCommandMacro.macrocode;
         if (hashMap.get(str + "@env") != null) {
-            String o = tb4.o(str, "@env");
+            String o = qd4.o(str, "@env");
             StringBuilder sb = new StringBuilder();
             sb.append(str2);
             sb.append(" #");
@@ -28,6 +28,6 @@ public class NewEnvironmentMacro extends NewCommandMacro {
             NewCommandMacro.addReNewCommand(o, sb.toString(), i2);
             return;
         }
-        qm0.g(tb4.y("Environment ", str, "is not defined ! Use newenvironment instead ..."));
+        rm0.k(qd4.y("Environment ", str, "is not defined ! Use newenvironment instead ..."));
     }
 }

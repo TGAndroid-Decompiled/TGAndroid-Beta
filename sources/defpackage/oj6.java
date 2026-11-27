@@ -1,90 +1,175 @@
 package defpackage;
 
-import android.util.SparseArray;
-import java.util.Arrays;
-import java.util.List;
-public final class oj6 implements fv9 {
-    public final ah2 a;
-    public final SparseArray b;
-    public final long c;
-    public final int d;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class oj6 implements RequestDelegate {
+    public final byte a;
+    public final ck6 b;
+    public final TLRPC.TL_chatInviteExported c;
 
-    public oj6(SparseArray sparseArray, long j, int i, long j2, long j3) {
-        ah2 ah2Var;
-        int i2;
-        this.b = sparseArray;
-        this.c = j;
-        this.d = i;
-        List list = (List) sparseArray.get(i);
-        if (list != null && !list.isEmpty()) {
-            int size = list.size();
-            int[] iArr = new int[size];
-            long[] jArr = new long[size];
-            long[] jArr2 = new long[size];
-            long[] jArr3 = new long[size];
-            int i3 = 0;
-            for (int i4 = 0; i4 < size; i4++) {
-                nj6 nj6Var = (nj6) list.get(i4);
-                jArr3[i4] = nj6Var.a;
-                jArr[i4] = nj6Var.b;
-            }
-            while (true) {
-                i2 = size - 1;
-                if (i3 >= i2) {
-                    break;
-                }
-                int i5 = i3 + 1;
-                iArr[i3] = (int) (jArr[i5] - jArr[i3]);
-                jArr2[i3] = jArr3[i5] - jArr3[i3];
-                i3 = i5;
-            }
-            int i6 = i2;
-            while (i6 > 0 && jArr3[i6] >= j) {
-                i6--;
-            }
-            iArr[i6] = (int) ((j2 + j3) - jArr[i6]);
-            jArr2[i6] = j - jArr3[i6];
-            if (i6 < i2) {
-                lad.f("MatroskaExtractor", "Discarding trailing cue points with timestamps greater than total duration.");
-                int i7 = i6 + 1;
-                iArr = Arrays.copyOf(iArr, i7);
-                jArr = Arrays.copyOf(jArr, i7);
-                jArr2 = Arrays.copyOf(jArr2, i7);
-                jArr3 = Arrays.copyOf(jArr3, i7);
-            }
-            ah2Var = new ah2(iArr, jArr, jArr2, jArr3);
-        } else {
-            ah2Var = null;
+    public oj6(ck6 ck6Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, byte b) {
+        this.a = b;
+        this.b = ck6Var;
+        this.c = tL_chatInviteExported;
+    }
+
+    @Override
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.a) {
+            case 0:
+                final ck6 ck6Var = this.b;
+                ck6Var.getClass();
+                final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.c;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b = r5;
+                        TLRPC.TL_chatInviteExported tL_chatInviteExported2 = tL_chatInviteExported;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        ck6 ck6Var2 = ck6Var;
+                        switch (b) {
+                            case 0:
+                                ck6Var2.getClass();
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_chatInviteExported tL_chatInviteExported3 = (TLRPC.TL_chatInviteExported) tLObject2;
+                                    ck6Var2.e = tL_chatInviteExported3;
+                                    TLRPC.ChatFull chatFull = ck6Var2.d;
+                                    if (chatFull != null) {
+                                        chatFull.exported_invite = tL_chatInviteExported3;
+                                    }
+                                    if (ck6Var2.getParentActivity() != null) {
+                                        tL_chatInviteExported2.revoked = true;
+                                        uj6 k0 = ck6Var2.k0();
+                                        ck6Var2.k0.add(0, tL_chatInviteExported2);
+                                        ck6Var2.m0(k0);
+                                        bs2.v(null, 2131748871, d31.b0(ck6Var2), 2131624080, 36);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = ck6Var2.j0;
+                                if (tL_error2 == null) {
+                                    if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced) {
+                                        TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
+                                        if (!ck6Var2.p0) {
+                                            ck6Var2.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        tL_chatInviteExported2.revoked = true;
+                                        uj6 k02 = ck6Var2.k0();
+                                        if (ck6Var2.p0 && ck6Var2.f == yac.h(ck6Var2.getAccountInstance().a).e()) {
+                                            arrayList.remove(tL_chatInviteExported2);
+                                            arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
+                                        } else if (ck6Var2.e != null) {
+                                            ck6Var2.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        ck6Var2.k0.add(0, tL_chatInviteExported2);
+                                        ck6Var2.m0(k02);
+                                    } else {
+                                        ck6Var2.t0.b(tL_chatInviteExported2, tLObject2);
+                                        TLRPC.ChatFull chatFull2 = ck6Var2.d;
+                                        if (chatFull2 != null) {
+                                            int i = chatFull2.invitesCount - 1;
+                                            chatFull2.invitesCount = i;
+                                            if (i < 0) {
+                                                chatFull2.invitesCount = 0;
+                                            }
+                                            ck6Var2.getMessagesStorage().t1(ck6Var2.d.invitesCount, ck6Var2.n);
+                                        }
+                                    }
+                                    if (ck6Var2.getParentActivity() != null) {
+                                        bs2.v(null, 2131748871, d31.b0(ck6Var2), 2131624080, 36);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                final ck6 ck6Var2 = this.b;
+                final TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.c;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b = r5;
+                        TLRPC.TL_chatInviteExported tL_chatInviteExported22 = tL_chatInviteExported2;
+                        TLObject tLObject2 = tLObject;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        ck6 ck6Var22 = ck6Var2;
+                        switch (b) {
+                            case 0:
+                                ck6Var22.getClass();
+                                if (tL_error2 == null) {
+                                    TLRPC.TL_chatInviteExported tL_chatInviteExported3 = (TLRPC.TL_chatInviteExported) tLObject2;
+                                    ck6Var22.e = tL_chatInviteExported3;
+                                    TLRPC.ChatFull chatFull = ck6Var22.d;
+                                    if (chatFull != null) {
+                                        chatFull.exported_invite = tL_chatInviteExported3;
+                                    }
+                                    if (ck6Var22.getParentActivity() != null) {
+                                        tL_chatInviteExported22.revoked = true;
+                                        uj6 k0 = ck6Var22.k0();
+                                        ck6Var22.k0.add(0, tL_chatInviteExported22);
+                                        ck6Var22.m0(k0);
+                                        bs2.v(null, 2131748871, d31.b0(ck6Var22), 2131624080, 36);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = ck6Var22.j0;
+                                if (tL_error2 == null) {
+                                    if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced) {
+                                        TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
+                                        if (!ck6Var22.p0) {
+                                            ck6Var22.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        tL_chatInviteExported22.revoked = true;
+                                        uj6 k02 = ck6Var22.k0();
+                                        if (ck6Var22.p0 && ck6Var22.f == yac.h(ck6Var22.getAccountInstance().a).e()) {
+                                            arrayList.remove(tL_chatInviteExported22);
+                                            arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
+                                        } else if (ck6Var22.e != null) {
+                                            ck6Var22.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
+                                        }
+                                        ck6Var22.k0.add(0, tL_chatInviteExported22);
+                                        ck6Var22.m0(k02);
+                                    } else {
+                                        ck6Var22.t0.b(tL_chatInviteExported22, tLObject2);
+                                        TLRPC.ChatFull chatFull2 = ck6Var22.d;
+                                        if (chatFull2 != null) {
+                                            int i = chatFull2.invitesCount - 1;
+                                            chatFull2.invitesCount = i;
+                                            if (i < 0) {
+                                                chatFull2.invitesCount = 0;
+                                            }
+                                            ck6Var22.getMessagesStorage().t1(ck6Var22.d.invitesCount, ck6Var22.n);
+                                        }
+                                    }
+                                    if (ck6Var22.getParentActivity() != null) {
+                                        bs2.v(null, 2131748871, d31.b0(ck6Var22), 2131624080, 36);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                ck6 ck6Var3 = this.b;
+                ck6Var3.getClass();
+                hl.c3(new yg6(ck6Var3, tL_error, this.c, (byte) 2));
+                return;
         }
-        this.a = ah2Var;
-    }
-
-    @Override
-    public final boolean c() {
-        List list = (List) this.b.get(this.d);
-        if (list != null && !list.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean d() {
-        return false;
-    }
-
-    @Override
-    public final ev9 f(long j) {
-        ah2 ah2Var = this.a;
-        if (ah2Var != null) {
-            return ah2Var.f(j);
-        }
-        hv9 hv9Var = hv9.c;
-        return new ev9(hv9Var, hv9Var);
-    }
-
-    @Override
-    public final long h() {
-        return this.c;
     }
 }

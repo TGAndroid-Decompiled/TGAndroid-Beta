@@ -1,16 +1,15 @@
 package defpackage;
 
-import android.content.Context;
-public final class g30 implements bs3 {
-    public int a;
+import java.io.File;
+public final class g30 {
+    public final long a;
+    public final File b;
+    public long c;
+    public boolean d = true;
+    public boolean e;
 
-    @Override
-    public final int a(Context context, String str, boolean z) {
-        return 0;
-    }
-
-    @Override
-    public final int b(Context context, String str) {
-        return this.a;
+    public g30(long j, File file) {
+        this.a = j;
+        this.b = file;
     }
 }

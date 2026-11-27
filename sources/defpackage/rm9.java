@@ -1,69 +1,382 @@
 package defpackage;
 
-import j$.util.Objects;
-import org.telegram.messenger.a;
-public final class rm9 implements Runnable {
-    public final byte a;
-    public final um9 b;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.a;
+import org.telegram.ui.ActionBar.e;
+public abstract class rm9 extends FrameLayout {
+    public static long R;
+    public static final int S = 0;
+    public float E;
+    public si3 F;
+    public int G;
+    public int H;
+    public boolean I;
+    public boolean J;
+    public int K;
+    public int L;
+    public VelocityTracker M;
+    public boolean N;
+    public float O;
+    public float P;
+    public Paint Q;
+    public si3 a;
+    public View b;
+    public h8b c;
+    public a d;
+    public float e;
+    public boolean f;
+    public ValueAnimator h;
+    public pn n;
+    public boolean r;
+    public int s;
+    public boolean w;
+    public wk5 x;
+    public vpa y;
 
-    public rm9(um9 um9Var, byte b) {
-        this.a = b;
-        this.b = um9Var;
+    public static void f(si3 si3Var, si3 si3Var2, float f) {
+        int measuredWidth;
+        if (si3Var == null) {
+            if (si3Var2 != null) {
+                measuredWidth = si3Var2.getFragmentView().getMeasuredWidth();
+            } else {
+                return;
+            }
+        } else {
+            measuredWidth = si3Var.getFragmentView().getMeasuredWidth();
+        }
+        if (si3Var != null) {
+            if (si3Var.getFragmentView() != null) {
+                si3Var.getFragmentView().setAlpha(1.0f - f);
+                si3Var.getFragmentView().setTranslationX(measuredWidth * 0.6f * f);
+            }
+            si3Var.setPreviewOpenedProgress(1.0f - f);
+        }
+        if (si3Var2 != null) {
+            if (si3Var2.getFragmentView() != null) {
+                si3Var2.getFragmentView().setAlpha(1.0f);
+                si3Var2.getFragmentView().setTranslationX((1.0f - f) * measuredWidth);
+            }
+            si3Var2.setPreviewReplaceProgress(f);
+        }
+    }
+
+    public static int getRightPaddingSize() {
+        if (xea.l1) {
+            return 74;
+        }
+        return 76;
+    }
+
+    public final void a() {
+        if (!this.f) {
+            return;
+        }
+        e(false);
+        b();
+    }
+
+    public final void b() {
+        this.f = false;
+        if (!xea.c()) {
+            this.e = 0.0f;
+            g();
+            si3 si3Var = this.a;
+            if (si3Var != null) {
+                si3Var.onPause();
+                this.a.onFragmentDestroy();
+                removeAllViews();
+                this.a = null;
+                jn7.e().k(jn7.u4, new Object[0]);
+            }
+            d(false);
+            return;
+        }
+        this.n.d();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.e, 0.0f);
+        this.h = ofFloat;
+        ofFloat.addUpdateListener(new om9(this, (byte) 0));
+        this.h.addListener(new qm9(this, (byte) 0));
+        this.h.setDuration(250L);
+        this.h.setInterpolator(k43.f);
+        this.h.start();
+    }
+
+    public final boolean c() {
+        if (this.a != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public abstract void d(boolean z);
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2;
+        if (this.w) {
+            f(this.F, this.a, this.E);
+            invalidate();
+        }
+        super.dispatchDraw(canvas);
+        float f3 = this.e;
+        a aVar = this.d;
+        if (aVar != null && aVar.getActionMode() != null) {
+            f = this.d.getActionMode().getAlpha();
+        } else {
+            f = 0.0f;
+        }
+        a aVar2 = this.d;
+        if (aVar2 == null) {
+            f2 = 0.0f;
+        } else {
+            f2 = aVar2.p0;
+        }
+        float max = Math.max(f, f2) * f3;
+        if (this.a != null && this.d != null && max > 0.0f) {
+            Paint paint = this.Q;
+            if (paint == null) {
+                paint = new Paint();
+                this.Q = paint;
+            }
+            paint.setColor(aob.w0(null, aob.w8, false));
+            if (max == 1.0f) {
+                canvas.save();
+            } else {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), this.P, (int) (max * 255.0f), 31);
+            }
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.P, this.Q);
+            canvas.translate(this.d.getX(), this.d.getY());
+            canvas.save();
+            canvas.translate(this.d.getBackButton().getX(), this.d.getBackButton().getY());
+            this.d.getBackButton().draw(canvas);
+            canvas.restore();
+            if (this.d.getActionMode() != null) {
+                int i = (max > (this.d.getActionMode().getAlpha() * this.e) ? 1 : (max == (this.d.getActionMode().getAlpha() * this.e) ? 0 : -1));
+                a aVar3 = this.d;
+                if (i != 0) {
+                    aVar3.draw(canvas);
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), this.P, (int) (this.d.getActionMode().getAlpha() * 255.0f), 31);
+                    this.d.getActionMode().draw(canvas);
+                    canvas.restore();
+                } else {
+                    aVar3.getActionMode().draw(canvas);
+                }
+            } else {
+                this.d.draw(canvas);
+            }
+            canvas.restore();
+            invalidate();
+        }
     }
 
     @Override
-    public final void run() {
-        tm9 tm9Var;
-        byte b = this.a;
-        um9 um9Var = this.b;
-        switch (b) {
-            case 0:
-                boolean z = um9Var.w;
-                if (!z) {
-                    ao9 ao9Var = um9Var.O;
-                    if (ao9Var != null) {
-                        if (um9Var.P) {
-                            um9Var.P = false;
-                            pz0 pz0Var = ao9Var.e;
-                            Objects.requireNonNull(pz0Var);
-                            ao9Var.b.post(new yy0(pz0Var, (byte) 7));
-                            return;
-                        }
-                        return;
-                    }
-                    um9Var.P = false;
-                    if (!z && ao9Var == null) {
-                        if (!um9Var.G) {
-                            um9Var.G = true;
-                            gl.c3(new r76(um9Var, (byte) 8));
-                        }
-                        ao9 ao9Var2 = new ao9(um9Var.e, um9Var.f, um9Var.k(), new sm9(um9Var));
-                        um9Var.O = ao9Var2;
-                        zn9 zn9Var = um9Var.U;
-                        if (zn9Var != null) {
-                            tm9Var = new tm9(um9Var, zn9Var);
-                        } else {
-                            tm9Var = null;
-                        }
-                        um9Var.V = tm9Var;
-                        ao9Var2.l(tm9Var, null);
-                        ao9 ao9Var3 = um9Var.O;
-                        float f = um9Var.H;
-                        ao9Var3.getClass();
-                        ao9Var3.b.post(new kt(ao9Var3, f, (byte) 5));
-                        um9Var.O.k(a.o());
-                        ao9 ao9Var4 = um9Var.O;
-                        ao9Var4.getClass();
-                        ao9Var4.b.post(new qm9(ao9Var4, (byte) 3));
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                um9Var.Q = null;
-                um9Var.J();
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        a aVar = this.d;
+        if (view == aVar && aVar.getActionMode() != null && this.d.getActionMode().getAlpha() == 1.0f) {
+            return true;
         }
+        return super.drawChild(canvas, view, j);
+    }
+
+    public abstract void e(boolean z);
+
+    public final void g() {
+        if (!this.w && c()) {
+            setOpenProgress(this.e);
+            View view = this.b;
+            if (view != null) {
+                view.setTranslationX((1.0f - this.e) * (getMeasuredWidth() - hl.L(getRightPaddingSize())));
+            }
+            a aVar = this.d;
+            if (aVar != null) {
+                aVar.setTranslationX((1.0f - this.e) * hl.L(48.0f));
+            }
+            si3 si3Var = this.a;
+            if (si3Var != null) {
+                si3Var.setPreviewOpenedProgress(this.e);
+            }
+            invalidate();
+        }
+    }
+
+    public long getCurrentFragmetDialogId() {
+        return R;
+    }
+
+    public e getFragment() {
+        return this.a;
+    }
+
+    public View getFragmentView() {
+        return this.b;
+    }
+
+    public abstract boolean getOccupyStatusbar();
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        if (getOccupyStatusbar()) {
+            i3 = hl.m;
+        } else {
+            i3 = 0;
+        }
+        View view = this.b;
+        if (view != null) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+            layoutParams.leftMargin = hl.L(getRightPaddingSize());
+            layoutParams.topMargin = a.getCurrentActionBarHeight() + i3 + this.s;
+        }
+        a aVar = this.d;
+        if (aVar != null) {
+            ((FrameLayout.LayoutParams) aVar.getLayoutParams()).topMargin = i3;
+        }
+        super.onMeasure(i, i2);
+        int measuredWidth = (getMeasuredWidth() + getMeasuredHeight()) << 16;
+        if (this.G != measuredWidth) {
+            this.G = measuredWidth;
+            g();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        wk5 wk5Var = this.x;
+        if ((wk5Var != null && ((ActionBarLayout) wk5Var).w()) || !c() || !this.N) {
+            return false;
+        }
+        if (motionEvent != null) {
+            if (motionEvent.getAction() == 0) {
+                this.H = motionEvent.getPointerId(0);
+                this.I = true;
+                this.K = (int) motionEvent.getX();
+                this.L = (int) motionEvent.getY();
+                VelocityTracker velocityTracker = this.M;
+                if (velocityTracker != null) {
+                    velocityTracker.clear();
+                }
+            } else if (motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.H) {
+                if (this.M == null) {
+                    this.M = VelocityTracker.obtain();
+                }
+                int max = Math.max(0, (int) (motionEvent.getX() - this.K));
+                int abs = Math.abs(((int) motionEvent.getY()) - this.L);
+                this.M.addMovement(motionEvent);
+                if (this.I && !this.J && max >= hl.Z0(true, 0.4f) && Math.abs(max) / 3 > abs) {
+                    if (ActionBarLayout.s(this, motionEvent.getX(), motionEvent.getY()) == null) {
+                        this.I = false;
+                        this.J = true;
+                        this.K = (int) motionEvent.getX();
+                        e(false);
+                    } else {
+                        this.I = false;
+                    }
+                } else if (this.J) {
+                    float f = max;
+                    this.O = f;
+                    this.e = Utilities.i(1.0f - (f / getMeasuredWidth()), 1.0f, 0.0f);
+                    g();
+                }
+            }
+            return this.J;
+        }
+        if (motionEvent != null && motionEvent.getPointerId(0) == this.H && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
+            VelocityTracker velocityTracker2 = this.M;
+            if (velocityTracker2 == null) {
+                velocityTracker2 = VelocityTracker.obtain();
+                this.M = velocityTracker2;
+            }
+            velocityTracker2.computeCurrentVelocity(1000);
+            if (this.J) {
+                float f2 = this.O;
+                float xVelocity = this.M.getXVelocity();
+                float yVelocity = this.M.getYVelocity();
+                if (f2 < getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(this.e, 1.0f);
+                    this.h = ofFloat;
+                    ofFloat.addUpdateListener(new om9(this, (byte) 1));
+                    this.h.addListener(new qm9(this, (byte) 1));
+                    this.h.setDuration(250L);
+                    this.h.setInterpolator(k43.f);
+                    this.h.start();
+                } else {
+                    b();
+                }
+            }
+            this.I = false;
+            this.J = false;
+            VelocityTracker velocityTracker3 = this.M;
+            if (velocityTracker3 != null) {
+                velocityTracker3.recycle();
+                this.M = null;
+            }
+        } else if (motionEvent == null) {
+            this.I = false;
+            this.J = false;
+            VelocityTracker velocityTracker4 = this.M;
+            if (velocityTracker4 != null) {
+                velocityTracker4.recycle();
+                this.M = null;
+            }
+        }
+        return this.J;
+    }
+
+    @Override
+    public final void removeView(View view) {
+        super.removeView(view);
+        if (view == this.b) {
+            a();
+        }
+    }
+
+    @Override
+    public final void removeViewInLayout(View view) {
+        super.removeViewInLayout(view);
+        if (view == this.b) {
+            a();
+        }
+    }
+
+    public void setCurrentTop(int i) {
+        this.P = i;
+        View view = this.b;
+        if (view != null) {
+            view.setTranslationY((i - view.getTop()) + this.s);
+        }
+        h8b h8bVar = this.c;
+        if (h8bVar != null) {
+            h8bVar.setTranslationY(i - h8bVar.getTop());
+        }
+    }
+
+    public void setFragmentViewPadding(int i) {
+        this.s = i;
+    }
+
+    public void setTransitionPaddingBottom(int i) {
+        si3 si3Var = this.a;
+        if (ik8.A(si3Var)) {
+            float f = i;
+            si3Var.Y0 = f;
+            si3Var.h.setTranslationY(((-f) - si3Var.h1) - si3Var.g1);
+        }
+    }
+
+    public void setOpenProgress(float f) {
     }
 }

@@ -1,22 +1,28 @@
 package defpackage;
 
-import android.os.SystemClock;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class mn3 extends CharacterStyle implements UpdateAppearance {
-    public long a;
+import java.util.Locale;
+public final class mn3 {
+    public final String a;
+    public final float b;
+    public final boolean c;
 
-    public final float a(long j) {
-        long j2 = this.a;
-        if (j2 == 0) {
-            return 0.5f;
-        }
-        return (qn3.b(Math.max(0.0f, Math.min(1.0f, ((float) (j - j2)) / 300.0f))) * 0.5f) + 0.5f;
+    public mn3(String str, float f, boolean z) {
+        this.a = str;
+        this.b = f;
+        this.c = z;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setAlpha((int) (a(SystemClock.uptimeMillis()) * textPaint.getAlpha()));
+    public final String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.a);
+        sb.append(String.format(Locale.US, " %.2f", Float.valueOf(this.b)));
+        if (this.c) {
+            str = " sure";
+        } else {
+            str = "";
+        }
+        sb.append(str);
+        return sb.toString();
     }
 }

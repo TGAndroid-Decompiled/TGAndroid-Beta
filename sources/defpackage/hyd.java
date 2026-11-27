@@ -1,17 +1,12 @@
 package defpackage;
-public final class hyd implements zn7 {
-    public static final hyd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.content.res.Configuration;
+import android.os.Build;
+public abstract class hyd {
+    public static qb6 a(Configuration configuration) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return new qb6(new tb6(lh0.i(configuration)));
         }
-        throw new ClassCastException();
+        return qb6.a(configuration.locale);
     }
 }

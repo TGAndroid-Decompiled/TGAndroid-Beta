@@ -1,40 +1,30 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class fua implements View.OnClickListener {
-    public final byte a;
-    public final yua b;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
+import org.telegram.tgnet.tl.TL_stars;
+public final class fua extends dua {
+    public final Paint c;
+    public final Matrix d;
+    public final RadialGradient e;
+    public final int f;
+    public final int g;
+    public final int h;
 
-    public fua(yua yuaVar, byte b) {
-        this.a = b;
-        this.b = yuaVar;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        d Q;
-        d Q2;
-        byte b = this.a;
-        yua yuaVar = this.b;
-        switch (b) {
-            case 0:
-                if (yuaVar.e > 0 && (Q = LaunchActivity.Q()) != 0) {
-                    ?? obj = new Object();
-                    obj.a = true;
-                    Q.showAsSheet(new jva(), obj);
-                    return;
-                }
-                return;
-            default:
-                if (yuaVar.e > 0 && (Q2 = LaunchActivity.Q()) != 0) {
-                    ?? obj2 = new Object();
-                    obj2.a = true;
-                    Q2.showAsSheet(new jva(), obj2);
-                    return;
-                }
-                return;
-        }
+    public fua(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
+        this.a = stargiftattributebackdrop.name;
+        this.b = stargiftattributebackdrop.getRarityPermille();
+        Paint paint = new Paint(1);
+        this.c = paint;
+        this.d = new Matrix();
+        RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, hl.L(200.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.e = radialGradient;
+        paint.setShader(radialGradient);
+        this.g = stargiftattributebackdrop.text_color | (-16777216);
+        int i = stargiftattributebackdrop.pattern_color;
+        this.h = i | (-16777216);
+        this.f = vm2.f(0.25f, stargiftattributebackdrop.edge_color | (-16777216), i | (-16777216));
     }
 }

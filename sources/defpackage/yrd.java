@@ -1,17 +1,39 @@
 package defpackage;
-public final class yrd implements zn7 {
-    public static final yrd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+import android.os.IBinder;
+import android.os.Messenger;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class yrd implements Parcelable {
+    public static final Parcelable.Creator<yrd> CREATOR = new ced((byte) 17);
+    public final Messenger a;
+
+    public yrd(IBinder iBinder) {
+        this.a = new Messenger(iBinder);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != null) {
+            try {
+                return this.a.getBinder().equals(((yrd) obj).a.getBinder());
+            } catch (ClassCastException unused) {
+                return false;
+            }
         }
-        throw new ClassCastException();
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.getBinder().hashCode();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStrongBinder(this.a.getBinder());
     }
 }

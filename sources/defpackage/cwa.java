@@ -1,23 +1,30 @@
 package defpackage;
-public final class cwa extends rm4 {
-    public final fv9 b;
-    public final hg2 c;
+public final class cwa implements Runnable {
+    public final byte a;
+    public final qe2 b;
 
-    public cwa(hg2 hg2Var, fv9 fv9Var, fv9 fv9Var2) {
-        super(fv9Var);
-        this.c = hg2Var;
-        this.b = fv9Var2;
+    public cwa(qe2 qe2Var, byte b) {
+        this.a = b;
+        this.b = qe2Var;
     }
 
     @Override
-    public final ev9 f(long j) {
-        ev9 f = this.b.f(j);
-        hv9 hv9Var = f.a;
-        long j2 = hv9Var.a;
-        long j3 = hv9Var.b;
-        long j4 = this.c.b;
-        hv9 hv9Var2 = new hv9(j2, j3 + j4);
-        hv9 hv9Var3 = f.b;
-        return new ev9(hv9Var2, new hv9(hv9Var3.a, hv9Var3.b + j4));
+    public final void run() {
+        byte b = this.a;
+        qe2 qe2Var = this.b;
+        switch (b) {
+            case 0:
+                qe2Var.a(Boolean.FALSE, "PRODUCT_NOT_FOUND");
+                return;
+            case 1:
+                qe2Var.a(Boolean.FALSE, "PRODUCT_NO_ONETIME_OFFER_DETAILS");
+                return;
+            case 2:
+                qe2Var.a(Boolean.FALSE, null);
+                return;
+            default:
+                hl.c3(new cwa(qe2Var, (byte) 2));
+                return;
+        }
     }
 }

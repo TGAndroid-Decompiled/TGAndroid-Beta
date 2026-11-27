@@ -1,34 +1,41 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class jua extends ClickableSpan {
-    public final fx0[] a;
-    public final Context b;
-    public final boolean c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class jua extends Drawable {
+    public final float a;
+    public final Paint b;
 
-    public jua(fx0[] fx0VarArr, Context context, boolean z) {
-        this.a = fx0VarArr;
-        this.b = context;
-        this.c = z;
+    public jua(float f, int i) {
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.a = f;
+        paint.setColor(i);
     }
 
     @Override
-    public final void onClick(View view) {
-        int i;
-        this.a[0].dismiss();
-        if (this.c) {
-            i = 2131744690;
-        } else {
-            i = 2131744687;
-        }
-        d01.t(this.b, k96.M0(i, null));
+    public final void draw(Canvas canvas) {
+        RectF rectF = hl.P;
+        rectF.set(getBounds());
+        Paint paint = this.b;
+        float f = this.a;
+        canvas.drawRoundRect(rectF, f, f, paint);
+        hl.P(canvas, rectF, f);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

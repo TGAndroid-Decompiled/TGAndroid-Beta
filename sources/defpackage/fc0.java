@@ -1,17 +1,24 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fc0 {
-    public pb0 a;
-    public x95 b;
-    public long c;
-    public long d;
-    public ImageReceiver e;
-    public TLRPC.GroupCallParticipant f;
-    public long g;
-    public TLObject h;
-    public int i;
-    public int j;
+public final class fc0 extends ac0 {
+    @Override
+    public final void a() {
+        uc7.s1(yac.t0).o3(this.d, (TLRPC.User) this.c, false);
+    }
+
+    @Override
+    public final void b(Object... objArr) {
+        if (((Long) objArr[0]).longValue() == ((TLRPC.User) this.c).id) {
+            TLRPC.UserFull userFull = (TLRPC.UserFull) objArr[1];
+            boolean z = this.g;
+            if (z) {
+                if (z) {
+                    this.g = false;
+                    this.b.n(this.a, this.e);
+                }
+                this.f.accept(userFull);
+            }
+        }
+    }
 }

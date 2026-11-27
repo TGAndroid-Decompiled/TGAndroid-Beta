@@ -1,13 +1,12 @@
 package defpackage;
-
-import sun.misc.Unsafe;
 public abstract class g4f {
-    public static boolean a(Unsafe unsafe, vbf vbfVar, long j, Object obj, Object obj2) {
-        while (!unsafe.compareAndSwapObject(vbfVar, j, obj, obj2)) {
-            if (unsafe.getObject(vbfVar, j) != obj && unsafe.getObject(vbfVar, j) != obj) {
-                return false;
-            }
+    public static int a(Object obj) {
+        int hashCode;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
         }
-        return true;
+        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
     }
 }

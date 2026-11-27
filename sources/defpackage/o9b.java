@@ -1,55 +1,27 @@
 package defpackage;
 
-import android.os.AsyncTask;
-import java.util.Locale;
-import org.telegram.ui.p;
-public final class o9b extends AsyncTask {
-    public final String a;
-    public final rc1 b;
-    public final z24 c;
-    public final g29 d;
+import android.animation.ValueAnimator;
+public final class o9b implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final p9b b;
 
-    public o9b(g29 g29Var, String str, rc1 rc1Var, z24 z24Var) {
-        this.d = g29Var;
-        this.a = str;
-        this.b = rc1Var;
-        this.c = z24Var;
+    public o9b(p9b p9bVar, byte b) {
+        this.a = b;
+        this.b = p9bVar;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Void[] voidArr = (Void[]) objArr;
-        g29 g29Var = this.d;
-        try {
-            vk9 c = r9b.c(rue.a(this.b), new g29(this.a, (byte) 3));
-            Object obj = g29Var.b;
-            return new p9b(c, null);
-        } catch (s9b e) {
-            Object obj2 = g29Var.b;
-            return new p9b(null, e);
-        }
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        p9b p9bVar = (p9b) obj;
-        Object obj2 = this.d.b;
-        vk9 vk9Var = p9bVar.a;
-        z24 z24Var = this.c;
-        if (vk9Var != null) {
-            p pVar = (p) z24Var.b;
-            if (pVar.R0) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        p9b p9bVar = this.b;
+        switch (b) {
+            case 0:
+                p9bVar.b(valueAnimator);
                 return;
-            }
-            pVar.x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) vk9Var.c, (String) vk9Var.b);
-            gl.c3(new oq7(z24Var, (byte) 12));
-            return;
-        }
-        s9b s9bVar = p9bVar.b;
-        if (s9bVar != null) {
-            z24Var.V(s9bVar);
-        } else {
-            z24Var.V(new RuntimeException("Somehow got neither a token response or an error response"));
+            default:
+                p9bVar.getClass();
+                p9bVar.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

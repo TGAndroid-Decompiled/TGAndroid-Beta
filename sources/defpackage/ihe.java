@@ -1,17 +1,28 @@
 package defpackage;
-public final class ihe implements zn7 {
-    public static final ihe a = new Object();
+public enum ihe implements sse {
+    UNKNOWN_FORMAT(0),
+    CONTACT_INFO(1),
+    EMAIL(2),
+    ISBN(3),
+    PHONE(4),
+    PRODUCT(5),
+    SMS(6),
+    TEXT(7),
+    URL(8),
+    WIFI(9),
+    GEO(10),
+    CALENDAR_EVENT(11),
+    DRIVER_LICENSE(12),
+    BOARDING_PASS(13);
+    
+    public final byte a;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+    ihe(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        return "<" + ihe.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

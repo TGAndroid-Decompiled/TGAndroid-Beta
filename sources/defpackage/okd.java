@@ -1,17 +1,58 @@
 package defpackage;
-public final class okd implements zn7 {
-    public static final okd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
+import java.util.Set;
+public abstract class okd extends ejd implements Set, j$.util.Set {
+    public transient vjd b;
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final int hashCode() {
+        int i;
+        int i2 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i = obj.hashCode();
+            } else {
+                i = 0;
+            }
+            i2 += i;
         }
-        throw new ClassCastException();
+        return i2;
+    }
+
+    @Override
+    public vjd k() {
+        vjd vjdVar = this.b;
+        if (vjdVar == null) {
+            vjd n = n();
+            this.b = n;
+            return n;
+        }
+        return vjdVar;
+    }
+
+    public vjd n() {
+        Object[] array = toArray(ejd.a);
+        jjd jjdVar = vjd.b;
+        return vjd.o(array.length, array);
     }
 }

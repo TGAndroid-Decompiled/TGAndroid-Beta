@@ -1,56 +1,23 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.util.Log;
-import java.io.File;
-import java.io.IOException;
-import org.telegram.messenger.a;
+import java.io.Serializable;
 public final class qj4 {
-    public static qj4 b;
-    public final SharedPreferences a;
+    public long a;
+    public Object b;
+    public Serializable c;
+    public Object d;
 
-    public qj4(Context context) {
-        boolean isEmpty;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.android.gms.appid", 0);
-        this.a = sharedPreferences;
-        File file = new File(context.getNoBackupFilesDir(), "com.google.android.gms.appid-no-backup");
-        if (!file.exists()) {
-            try {
-                if (file.createNewFile()) {
-                    synchronized (this) {
-                        isEmpty = sharedPreferences.getAll().isEmpty();
-                    }
-                    if (!isEmpty) {
-                        Log.i("FirebaseMessaging", "App restored, clearing state");
-                        a();
-                    }
-                }
-            } catch (IOException e) {
-                if (Log.isLoggable("FirebaseMessaging", 3)) {
-                    Log.d("FirebaseMessaging", "Error creating file in no backup dir: " + e.getMessage());
-                }
+    public final void a(sx5 sx5Var, boolean z) {
+        ea5 ea5Var = (ea5) this.d;
+        if (((sx5) this.c) != sx5Var) {
+            hl.r(ea5Var);
+            this.c = sx5Var;
+            if (z) {
+                ((t2d) this.b).a(sx5Var);
+            }
+            if (sx5Var == sx5.b || sx5Var == sx5.c) {
+                hl.d3(ea5Var, this.a);
             }
         }
-    }
-
-    public static qj4 b() {
-        qj4 qj4Var = b;
-        if (qj4Var == null) {
-            Point point = gl.q;
-            qj4 qj4Var2 = new qj4(point.x, point.y);
-            b = qj4Var2;
-            return qj4Var2;
-        }
-        return qj4Var;
-    }
-
-    public final synchronized void a() {
-        this.a.edit().clear().commit();
-    }
-
-    public qj4(int i, int i2) {
-        this.a = a.b.getSharedPreferences(b00.g(i, i2, "pip_floating_", "_"), 0);
     }
 }

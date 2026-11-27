@@ -1,49 +1,68 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
+import android.text.StaticLayout;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class vb2 implements View.OnClickListener {
-    public final byte a;
-    public final int b;
-    public final Object c;
-    public final Context d;
-    public final Object e;
-    public final Object f;
+public final class vb2 {
+    public StaticLayout A;
+    public dm B;
+    public int C;
+    public int D;
+    public final wb2 E;
+    public int a;
+    public int b;
+    public int c;
+    public int d;
+    public float e;
+    public int f;
+    public float g;
+    public float h;
+    public boolean i;
+    public int j;
+    public boolean k;
+    public boolean l;
+    public float m;
+    public float n;
+    public boolean o;
+    public StaticLayout p;
+    public pkb q;
+    public dm r;
+    public TLRPC.PollAnswer s;
+    public TLRPC.TodoItem t;
+    public boolean u;
+    public int v;
+    public hf0 w;
+    public kh8 x;
+    public rb0 y;
+    public ImageReceiver z;
 
-    public vb2(Object obj, Context context, Object obj2, int i, Object obj3, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = context;
-        this.e = obj2;
-        this.b = i;
-        this.f = obj3;
+    public vb2(wb2 wb2Var) {
+        this.E = wb2Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        Object obj = this.f;
-        Object obj2 = this.e;
-        Context context = this.d;
-        Object obj3 = this.c;
-        switch (b) {
-            case 0:
-                ((yb2) obj3).a();
-                ij.D(context, (wjb) obj2, new jh(this.b, (xb2) obj, (byte) 4));
-                return;
-            default:
-                wf2 wf2Var = (wf2) obj2;
-                TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = (TLRPC.TL_inputGroupCallSlug) obj;
-                ((fx0) obj3).dismiss();
-                Activity W = gl.W((Activity) context);
-                if (W != null) {
-                    na7.c1().edit().putBoolean("callmiconstart", wf2Var.a.q).apply();
-                    rgc.g(W, this.b, tL_inputGroupCallSlug, false, null, null);
-                    return;
-                }
-                return;
+    public final void a() {
+        ImageReceiver imageReceiver = this.z;
+        if (imageReceiver != null) {
+            imageReceiver.I();
+        }
+        kh8 kh8Var = this.x;
+        if (kh8Var != null) {
+            kh8Var.b.a();
+            kh8Var.c.I();
+            kh8Var.F.e();
+        }
+    }
+
+    public final void b() {
+        ImageReceiver imageReceiver = this.z;
+        if (imageReceiver != null) {
+            imageReceiver.K();
+        }
+        kh8 kh8Var = this.x;
+        if (kh8Var != null) {
+            kh8Var.b.b();
+            kh8Var.c.K();
+            kh8Var.F.f();
         }
     }
 }

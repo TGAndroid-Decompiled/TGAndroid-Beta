@@ -1,7 +1,17 @@
 package defpackage;
-public final class koe extends e0e {
-    public final void c(lle lleVar) {
-        b();
-        toe.q((toe) this.b, lleVar);
+public final class koe implements zq7 {
+    public static final koe a = new Object();
+
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

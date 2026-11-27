@@ -1,31 +1,51 @@
 package defpackage;
 
+import android.util.SparseIntArray;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class dz3 extends yo {
-    public final t14 c;
+public final class dz3 implements hl5 {
+    public znb a;
+    public TLRPC.TL_theme b;
+    public TLRPC.TL_chatThemeUniqueGift c;
+    public int d;
+    public int e = -1;
+    public SparseIntArray f;
+    public String g;
+    public int h;
+    public int i;
+    public int j;
+    public int k;
+    public int l;
+    public int m;
+    public int n;
 
-    public dz3(t14 t14Var) {
-        this.c = t14Var;
+    public final long a() {
+        TLRPC.TL_theme tL_theme = this.b;
+        if (tL_theme != null) {
+            return tL_theme.id;
+        }
+        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.c;
+        if (tL_chatThemeUniqueGift != null) {
+            return tL_chatThemeUniqueGift.gift.gift_id;
+        }
+        return 0L;
     }
 
-    @Override
-    public final int i(int i) {
-        t14 t14Var = this.c;
-        o14 o14Var = t14Var.A0;
-        w39 adapter = t14Var.E0.getAdapter();
-        l14 l14Var = t14Var.z0;
-        if (adapter == l14Var) {
-            if (i == 0) {
-                return l14Var.d;
-            }
-            if (i == l14Var.s || (l14Var.h.get(i) != null && !(l14Var.h.get(i) instanceof TLRPC.Document))) {
-                return l14Var.d;
-            }
-            return 1;
-        } else if (i != o14Var.y && (o14Var.r.get(i) == null || (o14Var.r.get(i) instanceof TLRPC.Document))) {
-            return 1;
+    public final TLRPC.ThemeSettings b(int i) {
+        ArrayList<TLRPC.ThemeSettings> arrayList;
+        TLRPC.TL_theme tL_theme = this.b;
+        if (tL_theme != null) {
+            arrayList = tL_theme.settings;
         } else {
-            return l14Var.d;
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.c;
+            if (tL_chatThemeUniqueGift != null) {
+                arrayList = tL_chatThemeUniqueGift.theme_settings;
+            }
+            return null;
         }
+        if (arrayList != null && i >= 0 && arrayList.size() > i) {
+            return arrayList.get(i);
+        }
+        return null;
     }
 }

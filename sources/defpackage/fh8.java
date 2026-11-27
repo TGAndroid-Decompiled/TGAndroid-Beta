@@ -1,23 +1,41 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.Scroller;
-public final class fh8 extends Scroller {
-    public final gh8 a;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class fh8 implements View.OnAttachStateChangeListener {
+    public final byte a;
+    public final ImageReceiver b;
 
-    public fh8(gh8 gh8Var, Context context) {
-        super(context);
-        this.a = gh8Var;
+    public fh8(ImageReceiver imageReceiver, byte b) {
+        this.a = b;
+        this.b = imageReceiver;
     }
 
     @Override
-    public final void startScroll(int i, int i2, int i3, int i4, int i5) {
-        int i6;
-        if (this.a.y0) {
-            i6 = 3;
-        } else {
-            i6 = 1;
+    public final void onViewAttachedToWindow(View view) {
+        byte b = this.a;
+        ImageReceiver imageReceiver = this.b;
+        switch (b) {
+            case 0:
+                imageReceiver.I();
+                return;
+            default:
+                imageReceiver.I();
+                return;
         }
-        super.startScroll(i, i2, i3, i4, i5 * i6);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        byte b = this.a;
+        ImageReceiver imageReceiver = this.b;
+        switch (b) {
+            case 0:
+                imageReceiver.K();
+                return;
+            default:
+                imageReceiver.K();
+                return;
+        }
     }
 }

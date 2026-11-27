@@ -1,34 +1,35 @@
 package defpackage;
-
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
-import android.util.Property;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
 public abstract class ote {
-    public static void a(View view) {
-        b(view, 0.1f, 1.5f);
+    public static zf8 a(zf8 zf8Var, zf8 zf8Var2) {
+        if (zf8Var != null) {
+            lk4 lk4Var = zf8Var.a;
+            if (zf8Var2 != null) {
+                yf8 yf8Var = new yf8();
+                for (int i = 0; i < lk4Var.a.size(); i++) {
+                    if (zf8Var2.a(lk4Var.a(i))) {
+                        yf8Var.a.b(lk4Var.a(i));
+                    }
+                }
+                return yf8Var.b();
+            }
+        }
+        return zf8.b;
     }
 
-    public static void b(View view, float f, float f2) {
-        if (view == null) {
-            return;
+    public static void b(dg8 dg8Var, yw6 yw6Var) {
+        int i = yw6Var.b;
+        long j = yw6Var.c;
+        po5 po5Var = yw6Var.a;
+        if (i == -1) {
+            if (dg8Var.m0(20)) {
+                dg8Var.N0(po5Var);
+            } else if (!po5Var.isEmpty()) {
+                dg8Var.D0((ft6) po5Var.get(0));
+            }
+        } else if (dg8Var.m0(20)) {
+            dg8Var.T(po5Var, yw6Var.b, j);
+        } else if (!po5Var.isEmpty()) {
+            dg8Var.r((ft6) po5Var.get(0), j);
         }
-        AnimatorSet animatorSet = new AnimatorSet();
-        Property property = View.SCALE_X;
-        float f3 = 1.0f - f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, f3);
-        Property property2 = View.SCALE_Y;
-        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property2, f3));
-        animatorSet.setDuration(80L);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, 1.0f), ObjectAnimator.ofFloat(view, property2, 1.0f));
-        animatorSet2.setInterpolator(new OvershootInterpolator(f2));
-        animatorSet2.setDuration(350L);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[]{16842919}, animatorSet);
-        stateListAnimator.addState(new int[0], animatorSet2);
-        view.setStateListAnimator(stateListAnimator);
     }
 }

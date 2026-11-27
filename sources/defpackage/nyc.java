@@ -1,12 +1,21 @@
 package defpackage;
 
-import android.content.Intent;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class nyc {
-    public final Intent a;
-    public final TaskCompletionSource b = new TaskCompletionSource();
+import j$.util.function.IntUnaryOperator$CC;
+import java.util.function.IntUnaryOperator;
+public final class nyc implements IntUnaryOperator {
+    public final IntUnaryOperator andThen(IntUnaryOperator intUnaryOperator) {
+        return IntUnaryOperator$CC.$default$andThen(this, intUnaryOperator);
+    }
 
-    public nyc(Intent intent) {
-        this.a = intent;
+    @Override
+    public final int applyAsInt(int i) {
+        if (i >= 16777215) {
+            return 1;
+        }
+        return i + 1;
+    }
+
+    public final IntUnaryOperator compose(IntUnaryOperator intUnaryOperator) {
+        return IntUnaryOperator$CC.$default$compose(this, intUnaryOperator);
     }
 }

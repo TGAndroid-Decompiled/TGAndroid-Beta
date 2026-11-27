@@ -1,24 +1,34 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ap5 extends b4 {
-    public static final Parcelable.Creator<ap5> CREATOR = new c0f((byte) 8);
-    public String a;
-    public String b;
-    public int c;
-
+import j$.util.Objects;
+public final class ap5 extends ho5 {
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a);
-        jte.l(parcel, 3, this.b);
-        int i2 = this.c;
-        if (i2 != 1 && i2 != 2 && i2 != 3) {
-            i2 = 0;
+    public final io5 a(Object obj) {
+        f(obj);
+        return this;
+    }
+
+    public final void f(Object obj) {
+        obj.getClass();
+        c(obj);
+    }
+
+    public final bp5 g() {
+        int i = this.b;
+        if (i != 0) {
+            Object[] objArr = this.a;
+            if (i != 1) {
+                bp5 p = bp5.p(i, objArr);
+                this.b = p.size();
+                this.c = true;
+                return p;
+            }
+            Object obj = objArr[0];
+            Objects.requireNonNull(obj);
+            int i2 = bp5.c;
+            return new oma(obj);
         }
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(i2);
-        jte.s(parcel, r);
+        int i3 = bp5.c;
+        return q99.s;
     }
 }

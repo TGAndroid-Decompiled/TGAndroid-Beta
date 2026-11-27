@@ -1,18 +1,28 @@
 package defpackage;
-public enum tse implements yjd {
-    TYPE_UNKNOWN(0),
-    TYPE_THIN(1),
-    TYPE_THICK(2),
-    TYPE_GMV(3);
-    
-    public final byte a;
-
-    tse(int i) {
-        this.a = i;
+public abstract class tse {
+    public static long[] a(long[]... jArr) {
+        boolean z;
+        long j = 0;
+        for (long[] jArr2 : jArr) {
+            j += jArr2.length;
+        }
+        int i = (int) j;
+        if (j == i) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.d(j, "the total number of elements (%s) in the arrays must fit in an int", z);
+        long[] jArr3 = new long[i];
+        int i2 = 0;
+        for (long[] jArr4 : jArr) {
+            System.arraycopy(jArr4, 0, jArr3, i2, jArr4.length);
+            i2 += jArr4.length;
+        }
+        return jArr3;
     }
 
-    @Override
-    public final int zza() {
-        return this.a;
+    public static int b(long j) {
+        return (int) (j ^ (j >>> 32));
     }
 }

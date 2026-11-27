@@ -1,32 +1,26 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class yu3 {
-    public float a;
-    public float b;
-    public boolean c;
-    public float d;
-    public float e;
-    public float f;
-    public float g;
-    public boolean h;
-    public boolean i;
-    public xl j;
-    public long k;
-    public boolean l;
-    public boolean m;
-    public boolean n;
-    public float o;
-    public int p;
-    public TLRPC.Document q;
-    public final ImageReceiver r;
-    public String s;
+import org.webrtc.EglThread;
+public final class yu3 implements Runnable {
+    public final byte a;
+    public final EglThread b;
 
-    public yu3() {
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.r = imageReceiver;
-        imageReceiver.A1 = true;
-        imageReceiver.b = true;
+    public yu3(EglThread eglThread, byte b) {
+        this.a = b;
+        this.b = eglThread;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        EglThread eglThread = this.b;
+        switch (b) {
+            case 0:
+                EglThread.c(eglThread);
+                return;
+            default:
+                EglThread.d(eglThread);
+                return;
+        }
     }
 }

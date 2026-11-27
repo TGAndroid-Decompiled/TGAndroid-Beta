@@ -1,17 +1,26 @@
 package defpackage;
-public final class kbe implements zn7 {
-    public static final kbe a = new Object();
+public final class kbe extends k8e {
+    public final transient Object[] r;
+    public final transient boolean s;
+    public final transient int w;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    public kbe(int i, int i2, Object[] objArr) {
+        super((byte) 5);
+        this.r = objArr;
+        this.s = i;
+        this.w = i2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object get(int i) {
+        h6f.a(i, this.w);
+        Object obj = this.r[(i << 1) + (this.s ? 1 : 0)];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.w;
     }
 }

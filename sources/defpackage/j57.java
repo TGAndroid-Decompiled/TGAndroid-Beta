@@ -1,50 +1,32 @@
 package defpackage;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
-public final class j57 implements Runnable {
-    public final byte a;
-    public final na7 b;
-    public final q34 c;
-    public final ConcurrentHashMap d;
-    public final ConcurrentHashMap e;
+import android.view.View;
+public final class j57 implements r69 {
+    public final m57 a;
 
-    public j57(na7 na7Var, q34 q34Var, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, byte b) {
-        this.a = b;
-        this.b = na7Var;
-        this.c = q34Var;
-        this.d = concurrentHashMap;
-        this.e = concurrentHashMap2;
+    public j57(m57 m57Var) {
+        this.a = m57Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        ConcurrentHashMap concurrentHashMap = this.e;
-        ConcurrentHashMap concurrentHashMap2 = this.d;
-        q34 q34Var = this.c;
-        na7 na7Var = this.b;
-        switch (b) {
-            case 0:
-                q34Var.b(na7Var.currentAccount, concurrentHashMap2, concurrentHashMap, 0);
-                gl.c3(new h77(na7Var, q34Var, (byte) 0));
-                return;
-            case 1:
-                q34Var.b(na7Var.currentAccount, concurrentHashMap2, concurrentHashMap, 0);
-                gl.c3(new h77(na7Var, q34Var, (byte) 2));
-                return;
-            default:
-                na7 na7Var2 = this.b;
-                ad7 messagesStorage = na7Var2.getMessagesStorage();
-                q34 q34Var2 = this.c;
-                ArrayList arrayList = q34Var2.a;
-                j57 j57Var = new j57(na7Var2, q34Var2, this.d, this.e, (byte) 1);
-                messagesStorage.getClass();
-                if (!arrayList.isEmpty()) {
-                    messagesStorage.H(new nn6(messagesStorage, arrayList, j57Var, (byte) 3));
-                    return;
+    public final void e(int i, View view) {
+        m57 m57Var = this.a;
+        if (m57Var.a == 1 && m57Var.r.f.size() > 1) {
+            int e1 = ((r47) m57Var.r.f.get(i)).e1();
+            boolean z = m57Var.r.g.get(e1, false);
+            boolean z2 = !z;
+            if (m57Var.r.g.size() != 1 || !z) {
+                t47 t47Var = m57Var.r;
+                if (z) {
+                    t47Var.g.delete(e1);
+                } else {
+                    t47Var.g.put(e1, z2);
                 }
-                return;
+                if (view instanceof wb2) {
+                    ((wb2) view).o3(z2, z2, true);
+                }
+                m57Var.l(true);
+            }
         }
     }
 }

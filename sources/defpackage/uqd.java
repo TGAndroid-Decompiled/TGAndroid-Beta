@@ -1,17 +1,50 @@
 package defpackage;
-public final class uqd implements zn7 {
-    public static final uqd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)), 10)));
+import android.os.Parcel;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationResult;
+public final class uqd extends u3d implements rff {
+    public static final int c = 0;
+    public final rx b;
+
+    public uqd(rx rxVar) {
+        super("com.google.android.gms.location.ILocationCallback", (byte) 8);
+        this.b = rxVar;
+    }
+
+    public final void T() {
+        this.b.j().a(new k09(this, (byte) 28));
+    }
+
+    public final void U(a86 a86Var) {
+        rx rxVar = this.b;
+        synchronized (rxVar) {
+            a86 a86Var2 = (a86) rxVar.c;
+            if (a86Var2 != a86Var) {
+                a86Var2.b = null;
+                rxVar.c = a86Var;
+            }
+        }
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public final boolean e(Parcel parcel, int i) {
+        rx rxVar = this.b;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    return false;
+                }
+                T();
+                return true;
+            }
+            LocationAvailability locationAvailability = (LocationAvailability) ild.a(parcel, LocationAvailability.CREATOR);
+            ild.b(parcel);
+            rxVar.j().a(new yad((byte) 1));
+            return true;
         }
-        throw new ClassCastException();
+        ild.b(parcel);
+        rxVar.j().a(new g9d((LocationResult) ild.a(parcel, LocationResult.CREATOR), (byte) 2));
+        return true;
     }
 }

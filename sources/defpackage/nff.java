@@ -1,30 +1,35 @@
 package defpackage;
+public final class nff extends ljf {
+    private static final nff zzb;
+    private int zzd;
+    private int zze;
+    private long zzf;
+    private long zzg;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class nff extends ezc implements pff {
-    public final lff Z(bo7 bo7Var, vff vffVar) {
-        lff ezcVar;
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.c);
-        int i = wgd.a;
-        obtain.writeStrongBinder(bo7Var);
-        obtain.writeInt(1);
-        vffVar.writeToParcel(obtain, 0);
-        Parcel T = T(obtain, 1);
-        IBinder readStrongBinder = T.readStrongBinder();
-        if (readStrongBinder == null) {
-            ezcVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter");
-            if (queryLocalInterface instanceof lff) {
-                ezcVar = (lff) queryLocalInterface;
-            } else {
-                ezcVar = new ezc(readStrongBinder, "com.google.mlkit.vision.segmentation.subject.aidls.ISubjectSegmenter", (byte) 8);
+    static {
+        ?? ljfVar = new ljf();
+        zzb = ljfVar;
+        ljf.e(nff.class, ljfVar);
+    }
+
+    @Override
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new kjf(zzb);
+                }
+                return new ljf();
             }
+            return new ilf(zzb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001᠌\u0000\u0002ဂ\u0001\u0003ဂ\u0002", new Object[]{"zzd", "zze", sae.x, "zzf", "zzg"});
         }
-        T.recycle();
-        return ezcVar;
+        return (byte) 1;
     }
 }

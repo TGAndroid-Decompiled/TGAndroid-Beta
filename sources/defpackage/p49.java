@@ -1,37 +1,62 @@
 package defpackage;
-public final class p49 {
-    public int a;
-    public int b;
-    public int c;
-    public byte d;
-    public int e;
-    public boolean f;
-    public boolean g;
-    public boolean h;
-    public boolean i;
-    public boolean j;
-    public boolean k;
-    public int l;
-    public long m;
-    public int n;
 
-    public final void a(int i) {
-        if ((this.d & i) != 0) {
-            return;
-        }
-        String binaryString = Integer.toBinaryString(i);
-        String binaryString2 = Integer.toBinaryString(this.d);
-        throw new IllegalStateException("Layout state should be one of " + binaryString + " but it is " + binaryString2);
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.e;
+public final class p49 extends FrameLayout {
+    public final e a;
+    public final View b;
+    public final boolean c;
+    public final r47 d;
+    public final zu1 e;
+    public final int f;
+    public final int h;
+    public final boolean n;
+    public final float r;
+    public final float s;
+    public final float w;
+    public final w49 x;
+    public final s49 y;
+
+    public p49(s49 s49Var, Context context, e eVar, View view, boolean z, r47 r47Var, zu1 zu1Var, int i, int i2, boolean z2, float f, float f2, float f3, w49 w49Var) {
+        super(context);
+        this.y = s49Var;
+        this.a = eVar;
+        this.b = view;
+        this.c = z;
+        this.d = r47Var;
+        this.e = zu1Var;
+        this.f = i;
+        this.h = i2;
+        this.n = z2;
+        this.r = f;
+        this.s = f2;
+        this.w = f3;
+        this.x = w49Var;
     }
 
-    public final int b() {
-        if (this.g) {
-            return this.b - this.c;
-        }
-        return this.e;
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r25) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.p49.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    public final String toString() {
-        return "State{mTargetPosition=" + this.a + ", mData=null, mItemCount=" + this.e + ", mIsMeasuring=" + this.i + ", mPreviousLayoutItemCount=" + this.b + ", mDeletedInvisibleItemCountSincePreviousLayout=" + this.c + ", mStructureChanged=" + this.f + ", mInPreLayout=" + this.g + ", mRunSimpleAnimations=" + this.j + ", mRunPredictiveAnimations=" + this.k + '}';
+    @Override
+    public final void onAttachedToWindow() {
+        ArrayList arrayList = this.y.x;
+        super.onAttachedToWindow();
+        for (int i = 0; i < arrayList.size(); i++) {
+            ((r49) arrayList.get(i)).a.I();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        ArrayList arrayList = this.y.x;
+        super.onDetachedFromWindow();
+        for (int i = 0; i < arrayList.size(); i++) {
+            ((r49) arrayList.get(i)).a.K();
+        }
     }
 }

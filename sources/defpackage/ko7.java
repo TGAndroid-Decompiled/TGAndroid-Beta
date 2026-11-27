@@ -1,72 +1,51 @@
 package defpackage;
 
-import java.io.EOFException;
+import android.app.Notification;
+import android.os.Parcel;
 public final class ko7 {
-    public short a;
-    public long b;
-    public short c;
-    public int d;
-    public int e;
-    public final int[] f = new int[255];
-    public final xu7 g = new xu7(255);
+    public final String a;
+    public final int b;
+    public final String c;
+    public final Notification d;
 
-    public final boolean a(ja3 ja3Var, boolean z) {
-        boolean z2;
-        boolean z3;
-        this.a = (short) 0;
-        this.b = 0L;
-        this.c = (short) 0;
-        this.d = 0;
-        this.e = 0;
-        xu7 xu7Var = this.g;
-        xu7Var.K(27);
-        try {
-            z2 = ja3Var.d(xu7Var.a, 0, 27, z);
-        } catch (EOFException e) {
-            if (z) {
-                z2 = false;
-            } else {
-                throw e;
-            }
-        }
-        if (z2 && xu7Var.C() == 1332176723) {
-            if (xu7Var.A() != 0) {
-                if (!z) {
-                    throw av7.d("unsupported bit stream revision");
-                }
-            } else {
-                this.a = xu7Var.A();
-                this.b = xu7Var.p();
-                xu7Var.r();
-                xu7Var.r();
-                xu7Var.r();
-                ?? A = xu7Var.A();
-                this.c = A;
-                this.d = A + 27;
-                xu7Var.K(A);
-                try {
-                    z3 = ja3Var.d(xu7Var.a, 0, this.c, z);
-                } catch (EOFException e2) {
-                    if (z) {
-                        z3 = false;
-                    } else {
-                        throw e2;
-                    }
-                }
-                if (z3) {
-                    for (int i = 0; i < this.c; i++) {
-                        int A2 = xu7Var.A();
-                        this.f[i] = A2;
-                        this.e += A2;
-                    }
-                    return true;
-                }
-            }
-        }
-        return false;
+    public ko7(String str, int i, String str2, Notification notification) {
+        this.a = str;
+        this.b = i;
+        this.c = str2;
+        this.d = notification;
     }
 
-    public final boolean b(defpackage.ja3 r9, long r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ko7.b(ja3, long):boolean");
+    public final void a(zk5 zk5Var) {
+        String str = this.a;
+        int i = this.b;
+        String str2 = this.c;
+        xk5 xk5Var = (xk5) zk5Var;
+        xk5Var.getClass();
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken(zk5.g);
+            obtain.writeString(str);
+            obtain.writeInt(i);
+            obtain.writeString(str2);
+            Notification notification = this.d;
+            if (notification != null) {
+                obtain.writeInt(1);
+                notification.writeToParcel(obtain, 0);
+            } else {
+                obtain.writeInt(0);
+            }
+            xk5Var.a.transact(1, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("NotifyTask[packageName:");
+        sb.append(this.a);
+        sb.append(", id:");
+        sb.append(this.b);
+        sb.append(", tag:");
+        return c00.k(sb, this.c, "]");
     }
 }

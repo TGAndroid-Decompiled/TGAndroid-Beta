@@ -1,17 +1,41 @@
 package defpackage;
-public final class l3e implements zn7 {
-    public static final l3e a = new Object();
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
+import android.os.Binder;
+import android.os.IBinder;
+import android.os.IInterface;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class l3e extends Binder implements IInterface {
+    public final byte a;
+    public final TaskCompletionSource b;
+
+    public l3e(TaskCompletionSource taskCompletionSource, byte b) {
+        this.a = b;
+        switch (b) {
+            case 2:
+                this.b = taskCompletionSource;
+                attachInterface(this, "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverResultCallback");
+                return;
+            default:
+                this.b = taskCompletionSource;
+                attachInterface(this, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppCallbacks");
+                return;
+        }
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final IBinder asBinder() {
+        byte b = this.a;
+        return this;
+    }
+
+    @Override
+    public final boolean onTransact(int r7, android.os.Parcel r8, android.os.Parcel r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.l3e.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
+    }
+
+    public l3e(qa4 qa4Var, TaskCompletionSource taskCompletionSource) {
+        this.a = (byte) 1;
+        this.b = taskCompletionSource;
+        attachInterface(this, "com.google.android.gms.cloudmessaging.internal.IRegisterCallback");
     }
 }

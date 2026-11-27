@@ -1,20 +1,93 @@
 package defpackage;
-public final class yjc {
-    public final short a;
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final byte[] g;
 
-    public yjc(int i, int i2, int i3, int i4, int i5, int i6, byte[] bArr) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
-        this.d = i4;
-        this.e = i5;
-        this.f = i6;
-        this.g = bArr;
+import android.view.View;
+import org.telegram.messenger.voip.VoIPService;
+public final class yjc implements View.OnClickListener {
+    public final byte a;
+    public final mkc b;
+
+    public yjc(mkc mkcVar, byte b) {
+        this.a = b;
+        this.b = mkcVar;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        VoIPService sharedInstance;
+        byte b = this.a;
+        int i = 1;
+        mkc mkcVar = this.b;
+        switch (b) {
+            case 0:
+                if (VoIPService.getSharedInstance() != null) {
+                    hl.r(mkcVar.S0);
+                    mkcVar.R0 = false;
+                    VoIPService.getSharedInstance().hangUp();
+                    return;
+                }
+                return;
+            case 1:
+                if (mkcVar.n0 && mkcVar.m0 && System.currentTimeMillis() - mkcVar.K0 > 500) {
+                    hl.r(mkcVar.S0);
+                    mkcVar.R0 = false;
+                    mkcVar.K0 = System.currentTimeMillis();
+                    mkcVar.a0.setRelativePosition(mkcVar.Z);
+                    mkcVar.b0 = true;
+                    mkcVar.H0 = true;
+                    mkcVar.q0 = mkcVar.p0;
+                    mkcVar.y();
+                    return;
+                }
+                return;
+            case 2:
+                if (mkcVar.H0 && System.currentTimeMillis() - mkcVar.K0 > 500) {
+                    hl.r(mkcVar.S0);
+                    mkcVar.R0 = false;
+                    mkcVar.K0 = System.currentTimeMillis();
+                    mkcVar.Z.setRelativePosition(mkcVar.a0);
+                    mkcVar.b0 = false;
+                    mkcVar.H0 = false;
+                    mkcVar.q0 = mkcVar.p0;
+                    mkcVar.y();
+                    return;
+                }
+                return;
+            case 3:
+                if (System.currentTimeMillis() - mkcVar.K0 >= 500) {
+                    mkcVar.K0 = System.currentTimeMillis();
+                    boolean z = mkcVar.C0;
+                    if (!z && mkcVar.B0) {
+                        mkcVar.c(!z);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                if (System.currentTimeMillis() - mkcVar.K0 >= 500) {
+                    mkcVar.K0 = System.currentTimeMillis();
+                    if (mkcVar.B0) {
+                        mkcVar.c(!mkcVar.C0);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                if (mkcVar.L.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
+                    mkcVar.s();
+                    if (sharedInstance.isBluetoothOn()) {
+                        i = 2;
+                    } else if (sharedInstance.isSpeakerphoneOn()) {
+                        i = 0;
+                    }
+                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(mkcVar.b, false, Integer.valueOf(i));
+                    return;
+                }
+                return;
+            default:
+                mkcVar.g();
+                return;
+        }
     }
 }

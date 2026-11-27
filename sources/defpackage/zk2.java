@@ -1,21 +1,20 @@
 package defpackage;
+public final class zk2 {
+    public final al2 a;
+    public final int b;
+    public final int c;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-public abstract class zk2 {
-    public static List a(Object obj) {
-        List singletonList = Collections.singletonList(obj);
-        singletonList.getClass();
-        return singletonList;
+    public zk2(al2 al2Var, int i, int i2) {
+        this.a = al2Var;
+        this.b = i;
+        this.c = i2;
     }
 
-    public static List b(Object... objArr) {
-        if (objArr.length > 0) {
-            List asList = Arrays.asList(objArr);
-            asList.getClass();
-            return asList;
-        }
-        return c24.a;
+    public final float a(float f) {
+        return (f / this.a.d[this.c]) * this.b;
+    }
+
+    public final float b(float f) {
+        return (f / this.a.d[this.c]) * (this.b + 1);
     }
 }

@@ -1,19 +1,34 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class p0d extends tzc {
-    @Override
-    public final boolean a(int i, Parcel parcel, Parcel parcel2, int i2) {
-        if (i == 2) {
-            Parcelable.Creator creator = Bundle.CREATOR;
-            yzc.b(parcel);
-            b((Bundle) yzc.a(parcel));
-            return true;
-        }
-        return false;
+import org.telegram.utils.twidget.z;
+public final class p0d implements Runnable {
+    public final byte a;
+    public final q0d b;
+
+    public p0d(q0d q0dVar, byte b) {
+        this.a = b;
+        this.b = q0dVar;
     }
 
-    public abstract void b(Bundle bundle);
+    @Override
+    public final void run() {
+        byte b = this.a;
+        q0d q0dVar = this.b;
+        switch (b) {
+            case 0:
+                z zVar = q0dVar.e;
+                if (zVar != null) {
+                    zVar.f(q0dVar.w);
+                    return;
+                }
+                return;
+            default:
+                z zVar2 = q0dVar.e;
+                if (zVar2 != null) {
+                    zVar2.f(q0dVar.w);
+                    return;
+                }
+                return;
+        }
+    }
 }

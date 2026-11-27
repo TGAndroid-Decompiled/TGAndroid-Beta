@@ -1,275 +1,103 @@
 package defpackage;
 
 import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import java.util.HashSet;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.o;
-public final class av extends ViewGroup implements eib, dw {
-    public final vg5 a;
-    public final dx b;
-    public bw c;
-    public y29 d;
-    public int e;
-    public int f;
-    public int h;
-    public int n;
-    public int r;
-    public int s;
-    public boolean w;
-    public xw x;
-    public CheckBoxBase y;
+public final class av extends HorizontalScrollView implements snb, ew {
+    public final xi5 a;
+    public final FrameLayout b;
+    public final ImageView c;
+    public int d;
 
-    public av(Activity activity, vg5 vg5Var, dx dxVar) {
+    public av(Activity activity, xi5 xi5Var) {
         super(activity);
-        this.a = vg5Var;
-        this.b = dxVar;
-        setWillNotDraw(false);
-    }
-
-    public final int a() {
-        bw bwVar;
-        xw xwVar = this.x;
-        if (xwVar != null) {
-            bwVar = xwVar.i;
-        } else {
-            bwVar = null;
-        }
-        if (bwVar == null) {
-            return 0;
-        }
-        vg5 vg5Var = this.a;
-        dx dxVar = this.b;
-        if (dxVar != null && dxVar.H) {
-            int h = ug8.h(vg5Var, 18.0f, getMeasuredWidth());
-            yw ywVar = this.x.c;
-            return (h - ywVar.b) - (gl.L(20.0f) * ywVar.e);
-        }
-        vg5Var.getClass();
-        return de9.y(20.0f, this.x.c.e, (gl.L(18.0f) + this.x.c.b) - ((int) Math.ceil(bwVar.d.getLineWidth(0))));
+        this.a = xi5Var;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.b = frameLayout;
+        addView(frameLayout, tre.c(-2.0f, -2));
+        ImageView imageView = new ImageView(activity);
+        this.c = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        frameLayout.addView(imageView, tre.c(-2.0f, -2));
+        updateColors();
     }
 
     @Override
     public int getBoundLeft() {
-        int i;
-        int boundLeft;
-        this.a.getClass();
-        int L = gl.L(18.0f);
-        xw xwVar = this.x;
-        if (xwVar != null && xwVar.i != null) {
-            i = Math.min(Integer.MAX_VALUE, (this.x.i.k() + a()) - L);
-        } else {
-            i = Integer.MAX_VALUE;
+        if (this.d > getMeasuredWidth()) {
+            return 0;
         }
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            i = Math.min(i, (bwVar.k() + bwVar.s) - L);
-        }
-        y29 y29Var = this.d;
-        if (y29Var != null) {
-            View view = y29Var.a;
-            if ((view instanceof dw) && (boundLeft = ((dw) view).getBoundLeft()) != -1) {
-                i = Math.min(i, this.n + boundLeft);
-            }
-        }
-        if (i == Integer.MAX_VALUE) {
-            return -1;
-        }
-        return i;
+        return (getMeasuredWidth() - this.d) / 2;
     }
 
     @Override
     public int getBoundRight() {
-        int i;
-        int boundRight;
-        this.a.getClass();
-        int L = gl.L(18.0f);
-        xw xwVar = this.x;
-        if (xwVar != null && xwVar.i != null) {
-            i = Math.max(Integer.MIN_VALUE, this.x.i.l() + a() + L);
-        } else {
-            i = Integer.MIN_VALUE;
+        if (this.d > getMeasuredWidth()) {
+            return getMeasuredWidth();
         }
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            i = Math.max(i, bwVar.l() + bwVar.s + L);
-        }
-        y29 y29Var = this.d;
-        if (y29Var != null) {
-            View view = y29Var.a;
-            if ((view instanceof dw) && (boundRight = ((dw) view).getBoundRight()) != -1) {
-                i = Math.max(i, this.n + boundRight);
-            }
-        }
-        if (i == Integer.MIN_VALUE) {
-            return -1;
-        }
-        return i;
+        return (getMeasuredWidth() + this.d) / 2;
     }
 
     @Override
     public int getLastLineBoundRight() {
-        int lastLineBoundRight;
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            return ug8.C(this.a, 18.0f, bwVar.m() + bwVar.s);
-        }
-        y29 y29Var = this.d;
-        if (y29Var != null) {
-            View view = y29Var.a;
-            if ((view instanceof dw) && (lastLineBoundRight = ((dw) view).getLastLineBoundRight()) != -1) {
-                return this.n + lastLineBoundRight;
-            }
-        }
-        return -1;
+        return getBoundRight();
     }
 
     public int getMinWidth() {
-        return ug8.a(this);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        y29 y29Var = this.d;
-        if (y29Var != null) {
-            y29Var.a.invalidate();
-        }
-    }
-
-    @Override
-    public final void k(ArrayList arrayList) {
-        y29 y29Var = this.d;
-        if (y29Var != null) {
-            View view = y29Var.a;
-            if (view instanceof eib) {
-                ((eib) view).k(arrayList);
-            }
-        }
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            arrayList.add(bwVar);
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.i(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        bw bwVar = this.c;
-        if (bwVar != null) {
-            bwVar.f(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.x != null) {
-            int measuredWidth = getMeasuredWidth();
-            bw bwVar = this.x.i;
-            vg5 vg5Var = this.a;
-            if (bwVar != null) {
-                canvas.save();
-                dx dxVar = this.b;
-                if (dxVar != null && dxVar.H) {
-                    int h = ug8.h(vg5Var, 18.0f, measuredWidth);
-                    yw ywVar = this.x.c;
-                    canvas.translate((h - ywVar.b) - (gl.L(20.0f) * ywVar.e), this.f + this.h);
-                } else {
-                    vg5Var.getClass();
-                    int L = gl.L(18.0f);
-                    xw xwVar = this.x;
-                    canvas.translate(de9.y(20.0f, this.x.c.e, (L + xwVar.c.b) - ((int) Math.ceil(xwVar.i.d.getLineWidth(0)))), this.f + this.h);
-                }
-                this.x.i.d(canvas, this);
-                canvas.restore();
-            }
-            CheckBoxBase checkBoxBase = this.y;
-            if (checkBoxBase != null) {
-                checkBoxBase.e(this.e - gl.L(26.0f), this.f, gl.L(20.0f), gl.L(20.0f));
-                this.y.a(canvas);
-            }
-            if (this.c != null) {
-                canvas.save();
-                canvas.translate(this.e, this.f);
-                o.s(vg5Var, canvas, this, 0);
-                this.c.d(canvas, this);
-                canvas.restore();
-            }
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setEnabled(true);
-        bw bwVar = this.c;
-        if (bwVar == null) {
-            return;
-        }
-        accessibilityNodeInfo.setText(o.g(this.a, this.b, bwVar));
+        return this.d;
     }
 
     @Override
     public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        y29 y29Var = this.d;
-        if (y29Var != null) {
-            View view = y29Var.a;
-            int i5 = this.n;
-            view.layout(i5, this.r, view.getMeasuredWidth() + i5, this.d.a.getMeasuredHeight() + this.r);
+        int i5 = i3 - i;
+        int i6 = this.d;
+        if (i6 > i5) {
+            super.onLayout(z, i, i2, i3, i4);
+            return;
+        }
+        FrameLayout frameLayout = this.b;
+        frameLayout.layout((i5 - i6) / 2, 0, (i5 + i6) / 2, frameLayout.getMeasuredHeight());
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+    }
+
+    public void setBlock(TL_iv.pageBlockMath pageblockmath) {
+        qz5 a;
+        ImageView imageView = this.c;
+        imageView.setImageBitmap(null);
+        xi5 xi5Var = this.a;
+        xi5Var.getClass();
+        int L = hl.L(18.0f);
+        xi5Var.getClass();
+        imageView.setPadding(L, 0, hl.L(18.0f), 0);
+        imageView.setLayoutParams(new FrameLayout.LayoutParams(0, 0));
+        xi5Var.getClass();
+        this.d = hl.L(36.0f);
+        if (pageblockmath != null && (a = qz5.a(pageblockmath.source, hl.L(20.0f), false)) != null) {
+            imageView.setImageBitmap(a.a);
+            int C = ik8.C(xi5Var, 36.0f, a.b);
+            this.d = C;
+            imageView.setLayoutParams(new FrameLayout.LayoutParams(C, a.c));
         }
     }
 
     @Override
-    public final void onMeasure(int r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.av.onMeasure(int, int):void");
+    public final void updateColors() {
+        ((o) this.a).getClass();
+        this.c.setColorFilter(new PorterDuffColorFilter(aob.u0(aob.G6), PorterDuff.Mode.SRC_IN));
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (o.i(this.a, this.b, motionEvent, this, this.c, this.e, this.f)) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setBlock(xw xwVar) {
-        xw xwVar2 = this.x;
-        dx dxVar = this.b;
-        if (xwVar2 != xwVar) {
-            this.x = xwVar;
-            y29 y29Var = this.d;
-            if (y29Var != null) {
-                removeView(y29Var.a);
-                this.d = null;
-            }
-            TL_iv.PageBlock pageBlock = this.x.d;
-            if (pageBlock != null && dxVar != null) {
-                int I = dx.I(pageBlock);
-                this.s = I;
-                s49 x = dxVar.x(this, I);
-                this.d = (y29) x;
-                addView(x.a);
-            }
-        }
-        TL_iv.PageBlock pageBlock2 = this.x.d;
-        if (pageBlock2 != null && dxVar != null) {
-            dxVar.H(this.s, this.d, pageBlock2, 0, 0, false);
-        }
-        requestLayout();
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

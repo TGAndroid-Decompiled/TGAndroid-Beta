@@ -1,25 +1,17 @@
 package defpackage;
-
-import java.util.Collections;
-import java.util.Map;
-public final class rke {
-    public static volatile rke a;
-    public static volatile rke b;
-    public static final rke c;
+public final class rke implements zq7 {
+    public static final rke a = new Object();
 
     static {
-        ?? obj = new Object();
-        Map map = Collections.EMPTY_MAP;
-        c = obj;
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)));
     }
 
-    public static void a() {
-        if (a == null) {
-            synchronized (rke.class) {
-                if (a == null) {
-                    a = c;
-                }
-            }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

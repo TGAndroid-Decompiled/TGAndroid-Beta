@@ -9,8 +9,8 @@ import android.widget.TextView;
 import java.io.File;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
-public final class kp0 extends h11 {
-    public final wjb a;
+public final class kp0 extends q11 {
+    public final vnb a;
     public final ip0 b;
     public final jp0 c;
     public final TextView d;
@@ -18,12 +18,12 @@ public final class kp0 extends h11 {
     public lp0 f;
     public int h;
 
-    public kp0(Context context, wjb wjbVar) {
-        super(context, wjbVar);
+    public kp0(Context context, vnb vnbVar) {
+        super(context, vnbVar);
         this.h = 0;
-        this.a = wjbVar;
-        ip0 ip0Var = new ip0(gl.L(10.0f));
-        ip0Var.a.setColor(bkb.v0(bkb.vj, wjbVar));
+        this.a = vnbVar;
+        ip0 ip0Var = new ip0(hl.L(10.0f));
+        ip0Var.a.setColor(aob.v0(aob.wj, vnbVar));
         this.b = ip0Var;
         setBackground(ip0Var);
         ImageView imageView = new ImageView(context);
@@ -31,35 +31,35 @@ public final class kp0 extends h11 {
         jp0 jp0Var = new jp0(context, imageView);
         this.c = jp0Var;
         imageView.setImageDrawable(jp0Var);
-        addView(imageView, nme.d(40, 40.0f, 23, 7.0f, 0.0f, 0.0f, 0.0f));
+        addView(imageView, tre.d(40, 40.0f, 23, 7.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        addView(linearLayout, nme.d(-1, -2.0f, 23, 54.0f, 0.0f, 0.0f, 0.0f));
+        addView(linearLayout, tre.d(-1, -2.0f, 23, 54.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 14.0f);
-        int i = bkb.xj;
-        zkb.X(textView, i, wjbVar);
-        textView.setTypeface(gl.o());
-        TextView m = ug8.m(linearLayout, textView, nme.t(-1, -2, 55, 0, 0, 0, 2), context);
+        int i = aob.yj;
+        yob.X(textView, i, vnbVar);
+        textView.setTypeface(hl.o());
+        TextView m = ik8.m(linearLayout, textView, tre.t(-1, -2, 55, 0, 0, 0, 2), context);
         this.e = m;
         m.setTextSize(1, 13.0f);
-        zkb.X(m, i, wjbVar);
-        linearLayout.addView(m, nme.t(-1, -2, 55, 0, 0, 0, 0));
+        yob.X(m, i, vnbVar);
+        linearLayout.addView(m, tre.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
     private void setButton(int i) {
         if (this.h != i) {
             this.h = i;
             if (i == 0) {
-                setButton((g11) null);
+                setButton((p11) null);
                 return;
             }
-            wjb wjbVar = this.a;
+            vnb vnbVar = this.a;
             if (i == 1) {
-                k21 k21Var = new k21(wjbVar, getContext(), true);
-                k21Var.e(k96.M0(2131753071, null));
-                k21Var.b = new Runnable(this) {
+                t21 t21Var = new t21(vnbVar, getContext(), true);
+                t21Var.e(ob6.M0(2131753067, null));
+                t21Var.b = new Runnable(this) {
                     public final kp0 b;
 
                     {
@@ -73,7 +73,7 @@ public final class kp0 extends h11 {
                         kp0 kp0Var = this.b;
                         switch (b) {
                             case 0:
-                                m21 bulletin = kp0Var.getBulletin();
+                                v21 bulletin = kp0Var.getBulletin();
                                 if (bulletin != null) {
                                     bulletin.j = 2750;
                                     bulletin.i(true);
@@ -85,14 +85,14 @@ public final class kp0 extends h11 {
                                 }
                                 return;
                             default:
-                                m21 bulletin2 = kp0Var.getBulletin();
+                                v21 bulletin2 = kp0Var.getBulletin();
                                 if (bulletin2 != null) {
                                     bulletin2.b();
                                 }
                                 lp0 lp0Var2 = kp0Var.f;
                                 if (lp0Var2 != null && (file = lp0Var2.d) != null && file.exists()) {
                                     File file2 = lp0Var2.d;
-                                    gl.s2(file2, file2.getName(), null, LaunchActivity.H1, null, true);
+                                    hl.s2(file2, file2.getName(), null, LaunchActivity.H1, null, true);
                                     return;
                                 }
                                 return;
@@ -100,13 +100,13 @@ public final class kp0 extends h11 {
                     }
                 };
                 if (getBulletin() != null) {
-                    k21Var.d = getBulletin();
+                    t21Var.d = getBulletin();
                 }
-                setButton(k21Var);
+                setButton(t21Var);
             } else if (i == 2) {
-                k21 k21Var2 = new k21(wjbVar, getContext(), true);
-                k21Var2.e(k96.M0(2131753070, null));
-                k21Var2.b = new Runnable(this) {
+                t21 t21Var2 = new t21(vnbVar, getContext(), true);
+                t21Var2.e(ob6.M0(2131753066, null));
+                t21Var2.b = new Runnable(this) {
                     public final kp0 b;
 
                     {
@@ -120,7 +120,7 @@ public final class kp0 extends h11 {
                         kp0 kp0Var = this.b;
                         switch (b) {
                             case 0:
-                                m21 bulletin = kp0Var.getBulletin();
+                                v21 bulletin = kp0Var.getBulletin();
                                 if (bulletin != null) {
                                     bulletin.j = 2750;
                                     bulletin.i(true);
@@ -132,14 +132,14 @@ public final class kp0 extends h11 {
                                 }
                                 return;
                             default:
-                                m21 bulletin2 = kp0Var.getBulletin();
+                                v21 bulletin2 = kp0Var.getBulletin();
                                 if (bulletin2 != null) {
                                     bulletin2.b();
                                 }
                                 lp0 lp0Var2 = kp0Var.f;
                                 if (lp0Var2 != null && (file = lp0Var2.d) != null && file.exists()) {
                                     File file2 = lp0Var2.d;
-                                    gl.s2(file2, file2.getName(), null, LaunchActivity.H1, null, true);
+                                    hl.s2(file2, file2.getName(), null, LaunchActivity.H1, null, true);
                                     return;
                                 }
                                 return;
@@ -147,31 +147,31 @@ public final class kp0 extends h11 {
                     }
                 };
                 if (getBulletin() != null) {
-                    k21Var2.d = getBulletin();
+                    t21Var2.d = getBulletin();
                 }
-                setButton(k21Var2);
+                setButton(t21Var2);
             }
         }
     }
 
-    public final boolean c(lp0 lp0Var) {
+    public final boolean g(lp0 lp0Var) {
         boolean z;
         lp0 lp0Var2 = this.f;
         jp0 jp0Var = this.c;
         if (lp0Var2 != lp0Var) {
-            lm lmVar = jp0Var.k;
+            mm mmVar = jp0Var.k;
             jp0Var.h = false;
-            lmVar.getClass();
-            lmVar.e(true, 0.0f);
-            oy8 oy8Var = jp0Var.l;
-            if (oy8Var != null) {
-                oy8Var.x(true);
+            mmVar.getClass();
+            mmVar.e(true, 0.0f);
+            b29 b29Var = jp0Var.l;
+            if (b29Var != null) {
+                b29Var.x(true);
                 jp0Var.l = null;
             }
-            lm lmVar2 = jp0Var.i;
+            mm mmVar2 = jp0Var.i;
             jp0Var.f = false;
-            lmVar2.getClass();
-            lmVar2.e(true, 0.0f);
+            mmVar2.getClass();
+            mmVar2.e(true, 0.0f);
         }
         this.f = lp0Var;
         this.d.setText(lp0Var.c);
@@ -191,38 +191,38 @@ public final class kp0 extends h11 {
             }
             jp0Var.invalidateSelf();
             if (((Long) b.first).longValue() <= 0) {
-                textView.setText(k96.M0(2131753068, null));
+                textView.setText(ob6.M0(2131753064, null));
             } else {
                 int i = (((Long) b.second).longValue() > 0L ? 1 : (((Long) b.second).longValue() == 0L ? 0 : -1));
                 Object obj = b.first;
                 if (i <= 0) {
-                    textView.setText(gl.i0(((Long) obj).longValue(), false, false));
+                    textView.setText(hl.i0(((Long) obj).longValue(), false, false));
                 } else {
-                    textView.setText(gl.i0(((Long) obj).longValue(), false, false) + " / " + gl.i0(((Long) b.second).longValue(), false, false));
+                    textView.setText(hl.i0(((Long) obj).longValue(), false, false) + " / " + hl.i0(((Long) b.second).longValue(), false, false));
                 }
             }
             setButton(1);
             return false;
         } else if (lp0Var.i) {
-            m21 bulletin = getBulletin();
+            v21 bulletin = getBulletin();
             if (bulletin != null) {
                 bulletin.b();
             }
             return true;
         } else {
             if (lp0Var.h) {
-                textView.setText(k96.M0(2131753069, null));
+                textView.setText(ob6.M0(2131753065, null));
                 setButton(2);
                 if (!jp0Var.h) {
                     jp0Var.h = true;
-                    oy8 oy8Var2 = new oy8(2131623990, gl.L(40.0f), gl.L(40.0f));
-                    jp0Var.l = oy8Var2;
-                    oy8Var2.M(jp0Var.a);
+                    b29 b29Var2 = new b29(2131623990, hl.L(40.0f), hl.L(40.0f));
+                    jp0Var.l = b29Var2;
+                    b29Var2.M(jp0Var.a);
                     jp0Var.l.E(true);
                     jp0Var.l.start();
                     jp0Var.g = 1.0f;
                 }
-                m21 bulletin2 = getBulletin();
+                v21 bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
                     bulletin2.j = 5000;
@@ -235,7 +235,7 @@ public final class kp0 extends h11 {
 
     @Override
     public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(68.0f), 1073741824));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(68.0f), 1073741824));
     }
 
     public void setArrow(int i) {
@@ -260,10 +260,10 @@ public final class kp0 extends h11 {
         ip0 ip0Var = this.b;
         if (ip0Var != null) {
             try {
-                ip0Var.a.setColor(bkb.v0(bkb.vj, this.a));
+                ip0Var.a.setColor(aob.v0(aob.wj, this.a));
                 ip0Var.invalidateSelf();
             } catch (Exception e) {
-                fa4.g(e, true);
+                cc4.g(e, true);
             }
         }
     }

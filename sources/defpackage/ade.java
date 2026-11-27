@@ -1,20 +1,17 @@
 package defpackage;
+public final class ade implements zq7 {
+    public static final ade a = new Object();
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.KeyEvent;
-public abstract class ade {
-    public static KeyEvent a(Intent intent) {
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            try {
-                if (extras.containsKey("android.intent.extra.KEY_EVENT")) {
-                    return (KeyEvent) extras.getParcelable("android.intent.extra.KEY_EVENT");
-                }
-            } catch (RuntimeException e) {
-                lad.g("DefaultActionFactory", "Failed to get parcelable key event", e);
-            }
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return null;
+        throw new ClassCastException();
     }
 }

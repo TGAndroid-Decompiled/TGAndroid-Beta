@@ -1,66 +1,53 @@
 package defpackage;
 
-import android.view.View;
-import j$.util.function.Predicate$CC;
-import java.util.Map;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class vd implements Predicate {
+import android.app.Activity;
+import android.content.Context;
+public final class vd implements Runnable {
     public final byte a;
-    public final long b;
+    public final id b;
+    public final Context c;
 
-    public vd(byte b, long j) {
-        this.a = b;
-        this.b = j;
-    }
-
-    public final Predicate and(Predicate predicate) {
-        byte b = this.a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public final Predicate negate() {
-        byte b = this.a;
-        return Predicate$CC.$default$negate(this);
-    }
-
-    public final Predicate or(Predicate predicate) {
-        byte b = this.a;
-        return Predicate$CC.$default$or(this, predicate);
+    public vd(id idVar, Context context) {
+        this.a = (byte) 2;
+        this.c = context;
+        this.b = idVar;
     }
 
     @Override
-    public final boolean test(Object obj) {
+    public final void run() {
         byte b = this.a;
-        long j = this.b;
+        id idVar = this.b;
+        Context context = this.c;
         switch (b) {
             case 0:
-                TLObject tLObject = (TLObject) obj;
-                if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).id != j) {
-                        return true;
-                    }
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    return true ^ hc2.N((TLRPC.Chat) tLObject);
+                if (idVar != null) {
+                    idVar.dismiss();
                 }
-                return false;
+                m01.u(context, ob6.M0(2131752876, null));
+                return;
             case 1:
-                if (((TLRPC.User) obj).id == j) {
-                    return true;
+                if (idVar != null) {
+                    idVar.dismiss();
                 }
-                return false;
-            case 2:
-                if (((TLRPC.User) obj).id == j) {
-                    return true;
-                }
-                return false;
+                m01.u(context, ob6.M0(2131752876, null));
+                return;
             default:
-                Map.Entry entry = (Map.Entry) obj;
-                if (!((View) entry.getKey()).isAttachedToWindow() || !((View) entry.getKey()).isShown() || ((View) entry.getKey()).getWindowVisibility() != 0 || j - ((Long) entry.getValue()).longValue() > 300) {
-                    return true;
+                if (!((Activity) context).isFinishing()) {
+                    try {
+                        idVar.dismiss();
+                        return;
+                    } catch (Exception e) {
+                        cc4.g(e, true);
+                        return;
+                    }
                 }
-                return false;
+                return;
         }
+    }
+
+    public vd(id idVar, Context context, byte b) {
+        this.a = b;
+        this.b = idVar;
+        this.c = context;
     }
 }

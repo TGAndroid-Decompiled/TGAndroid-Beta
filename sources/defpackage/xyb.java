@@ -1,31 +1,22 @@
 package defpackage;
 
-import java.util.Iterator;
-import java.util.Map;
-public abstract class xyb implements Iterator {
-    public final Iterator a;
+import android.view.View;
+public final class xyb implements View.OnClickListener {
+    public final tzb a;
 
-    public xyb(Iterator it) {
-        it.getClass();
-        this.a = it;
-    }
-
-    public Object a(Object obj) {
-        return ((Map.Entry) obj).getValue();
+    public xyb(tzb tzbVar) {
+        this.a = tzbVar;
     }
 
     @Override
-    public final boolean hasNext() {
-        return this.a.hasNext();
-    }
-
-    @Override
-    public final Object next() {
-        return a(this.a.next());
-    }
-
-    @Override
-    public final void remove() {
-        this.a.remove();
+    public final void onClick(View view) {
+        tzb tzbVar = this.a;
+        if (tzbVar.N) {
+            jj.g0(tzbVar, -tzbVar.a, null, tzbVar.e(), null, false, tzbVar.K, new ze1(this, (byte) 7), tzbVar.getResourceProvider());
+            return;
+        }
+        tzbVar.getMessagesController().k(tzbVar.a, tzbVar.getUserConfig().f(), null, tzbVar, false, new po4(tzbVar, (byte) 3), new syb(tzbVar));
+        jn7.e().k(jn7.L4, new Object[0]);
+        tzbVar.S0(false);
     }
 }

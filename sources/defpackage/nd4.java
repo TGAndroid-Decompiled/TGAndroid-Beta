@@ -1,108 +1,165 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
-public class nd4 extends ReplacementSpan {
-    public final TextPaint a;
-    public final Paint b;
-    public StaticLayout c;
-    public float d;
-    public float e;
-    public int f;
-    public final int h;
-    public boolean n;
+import android.content.SharedPreferences;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Set;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+public final class nd4 {
+    public byte[] A;
+    public final boolean B;
+    public int C;
+    public boolean D;
+    public boolean E;
+    public String F;
+    public long G;
+    public int H;
+    public RandomAccessFile I;
+    public boolean J;
+    public int K;
+    public SharedPreferences L;
+    public final int M;
+    public int N;
+    public long O;
+    public boolean P;
+    public long S;
+    public volatile boolean T;
+    public final int a;
+    public boolean b;
+    public boolean c;
+    public int d;
+    public int e;
+    public boolean i;
+    public ArrayList j;
+    public int k;
+    public final String l;
+    public byte m;
+    public byte[] n;
+    public ub4 o;
     public int r;
-    public wjb s;
-    public String w;
+    public long s;
+    public long t;
+    public int u;
+    public long v;
+    public long w;
+    public int x;
+    public byte[] y;
+    public byte[] z;
+    public byte f = 4;
+    public final int[] g = new int[8];
+    public int h = 65536;
+    public final SparseIntArray p = new SparseIntArray();
+    public final ArrayList q = new ArrayList();
+    public final SparseArray Q = new SparseArray();
+    public final boolean[] R = {false, false};
 
-    public nd4(int i) {
-        float f;
-        TextPaint textPaint = new TextPaint(1);
-        this.a = textPaint;
-        Paint paint = new Paint(1);
-        this.b = paint;
-        this.w = "NEW";
-        this.h = i;
-        textPaint.setTypeface(gl.o());
-        paint.setStyle(Paint.Style.FILL);
-        if (i < 0) {
-            f = 12.0f;
+    public nd4(int i, int i2, long j, String str, boolean z) {
+        boolean z2;
+        this.a = i;
+        this.l = str;
+        this.B = z;
+        this.G = j;
+        this.M = i2;
+        if (j != 0 && !z) {
+            z2 = true;
         } else {
-            f = i;
+            z2 = false;
         }
-        textPaint.setTextSize(gl.L(f));
+        this.P = z2;
     }
 
     public final void a() {
-        if (this.c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.w, this.a, gl.q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.c = staticLayout;
-            this.d = staticLayout.getLineWidth(0);
-            this.e = this.c.getHeight();
+        if (this.P) {
+            boolean z = this.D;
+            long j = this.t;
+            int i = this.h;
+            if (z) {
+                long j2 = i;
+                this.u = ((int) ((((j - j2) + j2) - 1) / j2)) + 1;
+                return;
+            }
+            long j3 = i;
+            this.u = ((int) ((((j - 1024) + j3) - 1) / j3)) + 1;
+            return;
         }
+        long j4 = this.t;
+        long j5 = this.h;
+        this.u = (int) (((j4 + j5) - 1) / j5);
     }
 
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        int i6;
-        float f2;
-        a();
-        if (this.n) {
-            this.f = bkb.v0(this.r, this.s);
+    public final void b() {
+        SharedPreferences sharedPreferences = this.L;
+        if (sharedPreferences == null) {
+            sharedPreferences = a.b.getSharedPreferences("uploadinfo", 0);
+            this.L = sharedPreferences;
         }
-        int i7 = this.f;
-        if (i7 == 0) {
-            i7 = paint.getColor();
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        SharedPreferences.Editor remove = edit.remove(this.F + "_time");
+        SharedPreferences.Editor remove2 = remove.remove(this.F + "_size");
+        SharedPreferences.Editor remove3 = remove2.remove(this.F + "_uploaded");
+        SharedPreferences.Editor remove4 = remove3.remove(this.F + "_id");
+        SharedPreferences.Editor remove5 = remove4.remove(this.F + "_iv");
+        SharedPreferences.Editor remove6 = remove5.remove(this.F + "_key");
+        remove6.remove(this.F + "_ivc").commit();
+        try {
+            RandomAccessFile randomAccessFile = this.I;
+            if (randomAccessFile != null) {
+                randomAccessFile.close();
+                this.I = null;
+            }
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
-        Paint paint2 = this.b;
-        paint2.setColor(i7);
-        if (gl.B(i7) > 0.721f) {
-            i6 = -16777216;
+        String str = this.l;
+        if (str == null) {
+            Set set = u60.a;
         } else {
-            i6 = -1;
+            u60.a.remove(str);
         }
-        TextPaint textPaint = this.a;
-        textPaint.setColor(i6);
-        paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
-        textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
-        float L = f + gl.L(2.0f);
-        float L2 = (i4 - this.e) + gl.L(1.0f);
-        RectF rectF = gl.P;
-        rectF.set(L, L2, this.d + L, this.e + L2);
-        float L3 = gl.L(4.4f);
-        float L4 = gl.L(-4.0f);
-        if (this.h == 8) {
-            f2 = -3.66f;
+    }
+
+    public final void c() {
+        if (this.m != 0) {
+            return;
+        }
+        this.m = (byte) 1;
+        String str = this.l;
+        if (str == null) {
+            Set set = u60.a;
         } else {
-            f2 = -2.33f;
+            u60.a.add(str);
         }
-        rectF.inset(L4, gl.L(f2));
-        canvas.drawRoundRect(rectF, L3, L3, paint2);
-        canvas.save();
-        canvas.translate(L, L2);
-        this.c.draw(canvas);
-        canvas.restore();
+        Utilities.d.c(new jd4(this, (byte) 0));
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        a();
-        return (int) (gl.L(10.0f) + this.d);
+    public final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.nd4.d():void");
     }
 
-    public nd4() {
-        TextPaint textPaint = new TextPaint(1);
-        this.a = textPaint;
-        Paint paint = new Paint(1);
-        this.b = paint;
-        this.w = "NEW";
-        textPaint.setTypeface(gl.o());
-        paint.setStyle(Paint.Style.FILL);
-        textPaint.setTextSize(gl.L(10.0f));
+    public final void e() {
+        int i;
+        while (this.m == 1 && (i = this.K) < this.e) {
+            d();
+            if (this.K == i) {
+                return;
+            }
+        }
+    }
+
+    public final void f() {
+        SharedPreferences.Editor edit = this.L.edit();
+        edit.putInt(c00.k(new StringBuilder(), this.F, "_time"), this.H);
+        edit.putLong(c00.k(new StringBuilder(), this.F, "_size"), this.t);
+        edit.putLong(c00.k(new StringBuilder(), this.F, "_id"), this.s);
+        edit.remove(this.F + "_uploaded");
+        if (this.B) {
+            edit.putString(c00.k(new StringBuilder(), this.F, "_iv"), Utilities.f(this.z));
+            edit.putString(c00.k(new StringBuilder(), this.F, "_ivc"), Utilities.f(this.A));
+            edit.putString(c00.k(new StringBuilder(), this.F, "_key"), Utilities.f(this.y));
+        }
+        edit.commit();
     }
 }

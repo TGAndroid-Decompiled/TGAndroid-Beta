@@ -1,25 +1,23 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Region;
-public final class qh extends be0 {
-    public final Path H;
+import android.app.Activity;
+import android.widget.FrameLayout;
+public final class qh extends FrameLayout {
+    public final sg2[] a;
 
-    public qh(Context context) {
-        super(context);
-        this.H = new Path();
+    public qh(Activity activity, sg2[] sg2VarArr) {
+        super(activity);
+        this.a = sg2VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        Path path = this.H;
-        path.rewind();
-        path.addCircle(gl.L(54.0f), gl.L(53.0f), gl.L(14.0f), Path.Direction.CW);
-        canvas.clipPath(path, Region.Op.DIFFERENCE);
-        super.onDraw(canvas);
-        canvas.restore();
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        sg2[] sg2VarArr = this.a;
+        if (sg2VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, hl.L(7.0f) + sg2VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

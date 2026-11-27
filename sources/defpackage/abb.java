@@ -1,43 +1,28 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class abb extends o39 {
-    public boolean f3;
-    public boolean g3;
-    public final dbb h3;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class abb extends ImageSpan {
+    public final Drawable a;
 
-    public abb(dbb dbbVar, Context context) {
-        super(context, null);
-        this.h3 = dbbVar;
+    public abb(Drawable drawable, Drawable drawable2) {
+        super(drawable);
+        this.a = drawable2;
     }
 
     @Override
-    public final void m0(int i) {
-        boolean canScrollHorizontally = canScrollHorizontally(-1);
-        boolean canScrollHorizontally2 = canScrollHorizontally(1);
-        if (this.f3 == canScrollHorizontally && this.g3 == canScrollHorizontally2) {
-            return;
-        }
-        zab zabVar = this.h3.d;
-        if (zabVar != null) {
-            zabVar.invalidate();
-        }
-        this.f3 = canScrollHorizontally;
-        this.g3 = canScrollHorizontally2;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        canvas.save();
+        canvas.translate(0.0f, hl.L(1.0f) + ((i5 - i3) / 2));
+        this.a.setAlpha(paint.getAlpha());
+        super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
+        canvas.restore();
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        vv2 previewDelegate;
-        xv2 e = xv2.e();
-        dbb dbbVar = this.h3;
-        abb abbVar = dbbVar.e;
-        previewDelegate = dbbVar.getPreviewDelegate();
-        boolean g = e.g(motionEvent, abbVar, previewDelegate, this.o2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !g) {
-            return false;
-        }
-        return true;
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return (super.getSize(paint, charSequence, i, i2, fontMetricsInt) / 3) << 1;
     }
 }

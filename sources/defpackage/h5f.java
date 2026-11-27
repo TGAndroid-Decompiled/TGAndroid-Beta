@@ -1,90 +1,93 @@
 package defpackage;
+public abstract class h5f {
+    public static final s5f a;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Build;
-import android.os.IBinder;
-import android.os.StrictMode;
-import java.util.HashMap;
-public final class h5f implements ServiceConnection {
-    public final HashMap a = new HashMap();
-    public byte b = 2;
-    public boolean c;
-    public IBinder d;
-    public final x2f e;
-    public ComponentName f;
-    public final j9f h;
-
-    public h5f(j9f j9fVar, x2f x2fVar) {
-        this.h = j9fVar;
-        this.e = x2fVar;
-    }
-
-    public final ds2 a(String str) {
-        try {
-            Intent a = z6d.a(this.h.b, this.e);
-            this.b = (byte) 3;
-            StrictMode.VmPolicy vmPolicy = StrictMode.getVmPolicy();
-            if (Build.VERSION.SDK_INT >= 31) {
-                StrictMode.setVmPolicy(hhd.a(new StrictMode.VmPolicy.Builder(vmPolicy)).build());
-            }
-            try {
-                j9f j9fVar = this.h;
-                qx4 qx4Var = j9fVar.d;
-                Context context = j9fVar.b;
-                x2f x2fVar = this.e;
-                boolean N = qx4Var.N(context, str, a, this, 4225);
-                this.c = N;
-                if (N) {
-                    j9fVar.c.sendMessageDelayed(j9fVar.c.obtainMessage(1, x2fVar), j9fVar.f);
-                    return ds2.f;
-                }
-                this.b = (byte) 2;
-                try {
-                    j9fVar.d.M(j9fVar.b, this);
-                } catch (IllegalArgumentException unused) {
-                }
-                return new ds2(16, null, null);
-            } finally {
-                StrictMode.setVmPolicy(vmPolicy);
-            }
-        } catch (o6d e) {
-            return e.a;
+    static {
+        s5f s5fVar;
+        if (a5f.e && a5f.d && !aje.a()) {
+            s5fVar = new s5f((byte) 1);
+        } else {
+            s5fVar = new s5f((byte) 0);
         }
+        a = s5fVar;
     }
 
-    @Override
-    public final void onBindingDied(ComponentName componentName) {
-        onServiceDisconnected(componentName);
-    }
-
-    @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        j9f j9fVar = this.h;
-        synchronized (j9fVar.a) {
-            j9fVar.c.removeMessages(1, this.e);
-            this.d = iBinder;
-            this.f = componentName;
-            for (ServiceConnection serviceConnection : this.a.values()) {
-                serviceConnection.onServiceConnected(componentName, iBinder);
-            }
-            this.b = (byte) 1;
+    public static int a(String str) {
+        int length = str.length();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < length && str.charAt(i2) < 128) {
+            i2++;
         }
+        int i3 = length;
+        while (true) {
+            if (i2 >= length) {
+                break;
+            }
+            char charAt = str.charAt(i2);
+            if (charAt < 2048) {
+                i3 += (127 - charAt) >>> 31;
+                i2++;
+            } else {
+                int length2 = str.length();
+                while (i2 < length2) {
+                    char charAt2 = str.charAt(i2);
+                    if (charAt2 < 2048) {
+                        i += (127 - charAt2) >>> 31;
+                    } else {
+                        i += 2;
+                        if (55296 <= charAt2 && charAt2 <= 57343) {
+                            if (Character.codePointAt(str, i2) >= 65536) {
+                                i2++;
+                            } else {
+                                throw new q5f(i2, length2);
+                            }
+                        }
+                    }
+                    i2++;
+                }
+                i3 += i;
+            }
+        }
+        if (i3 >= length) {
+            return i3;
+        }
+        StringBuilder sb = new StringBuilder(54);
+        sb.append("UTF-8 length does not fit in int: ");
+        sb.append(i3 + 4294967296L);
+        throw new IllegalArgumentException(sb.toString());
     }
 
-    @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-        j9f j9fVar = this.h;
-        synchronized (j9fVar.a) {
-            j9fVar.c.removeMessages(1, this.e);
-            this.d = null;
-            this.f = componentName;
-            for (ServiceConnection serviceConnection : this.a.values()) {
-                serviceConnection.onServiceDisconnected(componentName);
+    public static int b(int i, int i2, byte[] bArr) {
+        int i3;
+        int i4 = bArr[i - 1];
+        int i5 = i2 - i;
+        if (i5 != 0) {
+            if (i5 != 1) {
+                if (i5 == 2) {
+                    int i6 = bArr[i];
+                    int i7 = bArr[i + 1];
+                    if (i4 > -12 || i6 > -65 || i7 > -65) {
+                        return -1;
+                    }
+                    i4 ^= i6 << 8;
+                    i3 = i7 << 16;
+                } else {
+                    lq5.f();
+                    return 0;
+                }
+            } else {
+                int i8 = bArr[i];
+                if (i4 > -12 || i8 > -65) {
+                    return -1;
+                }
+                i3 = i8 << 8;
             }
-            this.b = (byte) 2;
+            return i4 ^ i3;
+        } else if (i4 > -12) {
+            return -1;
+        } else {
+            return i4;
         }
     }
 }

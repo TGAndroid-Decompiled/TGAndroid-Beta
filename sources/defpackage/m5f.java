@@ -1,68 +1,104 @@
 package defpackage;
-public enum m5f implements thd {
-    NO_ERROR(0),
-    NATIVE_LIBRARY_LOAD_ERROR(1),
-    INCOMPATIBLE_OUTPUT(2),
-    INCOMPATIBLE_TFLITE_VERSION(3),
-    MISSING_OP(4),
-    DATA_TYPE_ERROR(6),
-    TFLITE_INTERNAL_ERROR(7),
-    TFLITE_UNKNOWN_ERROR(8),
-    REMOTE_MODEL_INVALID(9),
-    TIME_OUT_FETCHING_MODEL_METADATA(5),
-    MODEL_NOT_DOWNLOADED(100),
-    URI_EXPIRED(101),
-    NO_NETWORK_CONNECTION(102),
-    METERED_NETWORK(103),
-    DOWNLOAD_FAILED(104),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(105),
-    NATIVE_LIBRARY_LOAD_ERROR(106),
-    REMOTE_MODEL_INVALID(107),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(108),
-    NATIVE_LIBRARY_LOAD_ERROR(109),
-    REMOTE_MODEL_INVALID(110),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(111),
-    NATIVE_LIBRARY_LOAD_ERROR(112),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(113),
-    NATIVE_LIBRARY_LOAD_ERROR(114),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(115),
-    NATIVE_LIBRARY_LOAD_ERROR(116),
-    OPTIONAL_MODULE_NOT_AVAILABLE(201),
-    OPTIONAL_MODULE_INIT_ERROR(202),
-    OPTIONAL_MODULE_INFERENCE_ERROR(203),
-    NATIVE_LIBRARY_LOAD_ERROR(204),
-    OPTIONAL_TFLITE_MODULE_INIT_ERROR(205),
-    NATIVE_LIBRARY_LOAD_ERROR(206),
-    OPTIONAL_MODULE_CREATE_ERROR(207),
-    CAMERAX_SOURCE_ERROR(301),
-    CAMERA1_SOURCE_CANT_START_ERROR(302),
-    CAMERA1_SOURCE_NO_SUITABLE_SIZE_ERROR(303),
-    CAMERA1_SOURCE_NO_SUITABLE_FPS_ERROR(304),
-    CAMERA1_SOURCE_NO_BYTE_SOURCE_FOUND_ERROR(305),
-    CODE_SCANNER_UNAVAILABLE(400),
-    CODE_SCANNER_CANCELLED(401),
-    CODE_SCANNER_CAMERA_PERMISSION_NOT_GRANTED(402),
-    CODE_SCANNER_APP_NAME_UNAVAILABLE(403),
-    CODE_SCANNER_TASK_IN_PROGRESS(404),
-    CODE_SCANNER_PIPELINE_INITIALIZATION_ERROR(405),
-    CODE_SCANNER_PIPELINE_INFERENCE_ERROR(406),
-    CODE_SCANNER_GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(407),
-    LOW_LIGHT_AUTO_EXPOSURE_COMPUTATION_FAILURE(500),
-    LOW_LIGHT_IMAGE_CAPTURE_PROCESSING_FAILURE(501),
-    PERMISSION_DENIED(600),
-    CANCELLED(601),
-    GOOGLE_PLAY_SERVICES_VERSION_TOO_OLD(602),
-    LOW_MEMORY(603),
-    UNKNOWN_ERROR(9999);
-    
-    public final short a;
 
-    m5f(int i) {
-        this.a = i;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.util.Log;
+public abstract class m5f {
+    public static Context a;
+    public static yxd b;
+
+    public static yxd a(Context context) {
+        Class cls;
+        Class cls2;
+        yxd yxdVar;
+        xve.h(context);
+        Log.d("m5f", "preferredRenderer: null");
+        yxd yxdVar2 = b;
+        if (yxdVar2 == null) {
+            int i = c15.e;
+            int c = c15.c(context, 13400000);
+            if (c == 0) {
+                Log.i("m5f", "Making Creator dynamically");
+                ClassLoader classLoader = b(context).getClassLoader();
+                try {
+                    xve.h(classLoader);
+                    try {
+                        try {
+                            IBinder iBinder = (IBinder) classLoader.loadClass("com.google.android.gms.maps.internal.CreatorImpl").newInstance();
+                            if (iBinder == null) {
+                                yxdVar = 0;
+                            } else {
+                                IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.maps.internal.ICreator");
+                                if (queryLocalInterface instanceof yxd) {
+                                    yxdVar = (yxd) queryLocalInterface;
+                                } else {
+                                    yxdVar = new v3d(iBinder, "com.google.android.gms.maps.internal.ICreator", (byte) 6);
+                                }
+                            }
+                            b = yxdVar;
+                            try {
+                                Context b2 = b(context);
+                                b2.getClass();
+                                br7 br7Var = new br7(b2.getResources());
+                                Parcel R = yxdVar.R();
+                                jld.c(R, br7Var);
+                                R.writeInt(12451000);
+                                yxdVar.V(R, 6);
+                                return b;
+                            } catch (RemoteException e) {
+                                p3d.i(e);
+                                return null;
+                            }
+                        } catch (InstantiationException unused) {
+                            throw new IllegalStateException("Unable to instantiate the dynamic class ".concat(cls2.getName()));
+                        }
+                    } catch (IllegalAccessException unused2) {
+                        throw new IllegalStateException("Unable to call the default constructor of ".concat(cls.getName()));
+                    }
+                } catch (ClassNotFoundException unused3) {
+                    grb.i("Unable to find dynamic class com.google.android.gms.maps.internal.CreatorImpl");
+                    return null;
+                }
+            }
+            throw new b15(c);
+        }
+        return yxdVar2;
     }
 
-    @Override
-    public final int zza() {
-        return this.a;
+    public static Context b(Context context) {
+        Context context2;
+        Context context3 = a;
+        if (context3 == null) {
+            context.getApplicationContext();
+            try {
+                context2 = vs3.c(context, vs3.b, "com.google.android.gms.maps_dynamite").a;
+            } catch (Exception e) {
+                try {
+                    if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
+                        try {
+                            Log.d("m5f", "Attempting to load maps_dynamite again.");
+                            context2 = vs3.c(context, vs3.b, "com.google.android.gms.maps_dynamite").a;
+                        } catch (Exception e2) {
+                            Log.e("m5f", "Failed to load maps module, use pre-Chimera", e2);
+                            int i = c15.e;
+                            context2 = context.createPackageContext("com.google.android.gms", 3);
+                        }
+                    } else {
+                        Log.e("m5f", "Failed to load maps module, use pre-Chimera", e);
+                        int i2 = c15.e;
+                        context2 = context.createPackageContext("com.google.android.gms", 3);
+                    }
+                } catch (PackageManager.NameNotFoundException unused) {
+                    context2 = null;
+                }
+            }
+            a = context2;
+            return context2;
+        }
+        return context3;
     }
 }

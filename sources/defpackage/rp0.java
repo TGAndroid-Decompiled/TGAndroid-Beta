@@ -9,7 +9,7 @@ public final class rp0 {
     public boolean e;
     public Runnable f;
     public TLRPC.TL_textWithEntities g;
-    public k27 h;
+    public r47 h;
 
     public rp0(long j, int i) {
         this.a = j;

@@ -1,23 +1,29 @@
 package defpackage;
+
+import org.telegram.ui.PremiumPreviewFragment;
 public final class ll8 implements Runnable {
     public final byte a;
-    public final Object b;
-    public final Object c;
+    public final PremiumPreviewFragment b;
 
-    public ll8(taa taaVar, vf6 vf6Var, int i, byte b) {
+    public ll8(PremiumPreviewFragment premiumPreviewFragment, byte b) {
         this.a = b;
-        this.b = taaVar;
-        this.c = vf6Var;
+        this.b = premiumPreviewFragment;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ll8.run():void");
-    }
-
-    public ll8(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
+        byte b = this.a;
+        PremiumPreviewFragment premiumPreviewFragment = this.b;
+        switch (b) {
+            case 0:
+                premiumPreviewFragment.a.postOnAnimation(new ll8(premiumPreviewFragment, (byte) 2));
+                return;
+            case 1:
+                premiumPreviewFragment.getMediaDataController().T0(false);
+                return;
+            default:
+                premiumPreviewFragment.m0();
+                return;
+        }
     }
 }

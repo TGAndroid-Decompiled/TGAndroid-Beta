@@ -1,3 +1,5 @@
 package defpackage;
-public final class dbe extends tid {
+
+import java.util.RandomAccess;
+public abstract class dbe extends rwd implements RandomAccess {
 }

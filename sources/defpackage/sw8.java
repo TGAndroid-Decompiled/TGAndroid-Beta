@@ -1,43 +1,99 @@
 package defpackage;
+public final class sw8 implements zcc {
+    public final byte a;
+    public boolean b = false;
+    public boolean c = false;
+    public sa4 d;
+    public final ar7 e;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class sw8 {
-    public TLRPC.Document A;
-    public TL_stars.TL_starGiftUnique B;
-    public long C;
-    public Bitmap D;
-    public long E;
-    public tv8 F;
-    public boolean G;
-    public byte a;
-    public Drawable[] b;
-    public vl c;
-    public vl d;
-    public Bitmap e;
-    public Bitmap f;
-    public long g;
-    public boolean h;
-    public int j;
-    public Bitmap k;
-    public Bitmap l;
-    public Bitmap m;
-    public Bitmap n;
-    public int o;
-    public int p;
-    public int r;
-    public PorterDuffColorFilter u;
-    public long[] w;
-    public boolean[] x;
-    public long[] y;
-    public TLRPC.Document z;
-    public final Paint i = new Paint(2);
-    public int q = -1;
-    public int s = -1;
-    public int t = -1;
-    public final Paint v = new Paint(2);
+    public sw8(ar7 ar7Var, byte b) {
+        this.a = b;
+        this.e = ar7Var;
+    }
+
+    @Override
+    public final zcc b(String str) {
+        byte b = this.a;
+        ar7 ar7Var = this.e;
+        switch (b) {
+            case 0:
+                if (!this.b) {
+                    this.b = true;
+                    ((qw8) ar7Var).i(this.d, str, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 1:
+                if (!this.b) {
+                    this.b = true;
+                    ((rcd) ar7Var).c(this.d, str, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 2:
+                if (!this.b) {
+                    this.b = true;
+                    ((hdd) ar7Var).c(this.d, str, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 3:
+                if (!this.b) {
+                    this.b = true;
+                    ((gnd) ar7Var).c(this.d, str, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            default:
+                if (!this.b) {
+                    this.b = true;
+                    ((kpd) ar7Var).c(this.d, str, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+        }
+    }
+
+    @Override
+    public final zcc c(boolean z) {
+        byte b = this.a;
+        ar7 ar7Var = this.e;
+        switch (b) {
+            case 0:
+                if (!this.b) {
+                    this.b = true;
+                    ((qw8) ar7Var).c(this.d, z ? 1 : 0, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 1:
+                if (!this.b) {
+                    this.b = true;
+                    ((rcd) ar7Var).h(this.d, z ? 1 : 0, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 2:
+                if (!this.b) {
+                    this.b = true;
+                    ((hdd) ar7Var).h(this.d, z ? 1 : 0, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            case 3:
+                if (!this.b) {
+                    this.b = true;
+                    ((gnd) ar7Var).h(this.d, z ? 1 : 0, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+            default:
+                if (!this.b) {
+                    this.b = true;
+                    ((kpd) ar7Var).h(this.d, z ? 1 : 0, this.c);
+                    return this;
+                }
+                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+        }
+    }
 }

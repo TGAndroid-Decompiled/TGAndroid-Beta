@@ -1,66 +1,63 @@
 package defpackage;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.util.SparseIntArray;
-import android.widget.ImageView;
-import org.telegram.ui.ActionBar.a;
-public final class iv0 {
-    public final SparseIntArray a = new SparseIntArray();
-    public final SparseIntArray b = new SparseIntArray();
-    public final int[] c = {bkb.F6, bkb.t8, bkb.F8, bkb.D8, bkb.E8, bkb.H5, bkb.yj};
-    public float d;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.JsPromptResult;
+import android.widget.TextView;
+public final class iv0 implements TextView.OnEditorActionListener {
+    public final byte a;
+    public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
 
-    public final int a(int i) {
-        return bm2.f(this.d, this.a.get(i), this.b.get(i));
+    public iv0(Object obj, Object obj2, Object obj3, Object obj4, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 
-    public final void b(a aVar, float f) {
-        this.d = f;
-        int i = bkb.F6;
-        aVar.setTitleColor(a(i));
-        aVar.setSubtitleColor(bkb.p1(0.45f, a(i)));
-        aVar.H(a(i), false);
-        ImageView imageView = aVar.e;
-        if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(a(i), PorterDuff.Mode.SRC_IN));
-        }
-        aVar.G(a(bkb.t8), false);
-    }
-
-    public final void c(SparseIntArray sparseIntArray, int i, wjb wjbVar) {
-        int i2;
-        int i3;
-        int[] iArr = this.c;
-        int i4 = 0;
-        if (i == 0) {
-            while (i4 < iArr.length) {
-                int i5 = iArr[i4];
-                sparseIntArray.put(i5, bkb.v0(i5, wjbVar));
-                i4++;
-            }
-            return;
-        }
-        if (bm2.h(i) < 0.5d) {
-            i2 = -1;
-        } else {
-            i2 = -16777216;
-        }
-        int o = bm2.o(i2, 60);
-        while (i4 < iArr.length) {
-            int i6 = iArr[i4];
-            if (i6 != bkb.F8 && i6 != bkb.D8 && i6 != bkb.E8 && i6 != (i3 = bkb.H5)) {
-                if (i6 == bkb.yj) {
-                    sparseIntArray.put(i6, bm2.f(0.5f, i, i2));
-                } else if (i6 != bkb.t8 && i6 != i3) {
-                    sparseIntArray.put(i6, i2);
-                } else {
-                    sparseIntArray.put(i6, o);
+    @Override
+    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.c;
+        Object obj4 = this.b;
+        switch (b) {
+            case 0:
+                if (i != 6) {
+                    return false;
                 }
-            } else {
-                sparseIntArray.put(i6, bkb.v0(i6, wjbVar));
-            }
-            i4++;
+                boolean[] zArr = (boolean[]) obj4;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    ((JsPromptResult) obj3).confirm(((xt3) obj2).getText().toString());
+                    ((id) obj).dismiss();
+                }
+                return true;
+            default:
+                pt8 pt8Var = (pt8) obj4;
+                if (i != 6) {
+                    return false;
+                }
+                String obj5 = pt8Var.getText().toString();
+                if (obj5.length() > 0 && obj5.length() <= 12) {
+                    ((pcc) obj3).a(obj5);
+                    id idVar = ((id[]) obj2)[0];
+                    if (idVar != null) {
+                        idVar.dismiss();
+                    }
+                    View view = (View) obj;
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                } else {
+                    hl.z3(pt8Var);
+                }
+                return true;
         }
     }
 }

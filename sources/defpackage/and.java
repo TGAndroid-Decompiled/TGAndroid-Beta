@@ -1,42 +1,17 @@
 package defpackage;
+public final class and implements zq7 {
+    public static final and a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class and extends xx4 {
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
     @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cloudmessaging.internal.ICloudMessagingService");
-        if (queryLocalInterface instanceof ctd) {
-            return (ctd) queryLocalInterface;
-        }
-        return new ctd(iBinder);
-    }
-
-    @Override
-    public final f84[] f() {
-        return ohd.b;
-    }
-
-    @Override
-    public final int i() {
-        return 261200000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.cloudmessaging.internal.ICloudMessagingService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.cloudmessaging.service.START";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
+        throw new ClassCastException();
     }
 }

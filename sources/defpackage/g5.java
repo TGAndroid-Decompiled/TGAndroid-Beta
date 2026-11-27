@@ -1,56 +1,58 @@
 package defpackage;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.MediaController;
-public final class g5 implements DialogInterface.OnDismissListener {
+import android.view.View;
+public final class g5 implements View.OnClickListener {
     public final byte a;
+    public final nx0[] b;
 
-    public g5(boolean[] zArr) {
-        this.a = (byte) 1;
+    public g5(nx0[] nx0VarArr, byte b) {
+        this.a = b;
+        this.b = nx0VarArr;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.a) {
+    public final void onClick(View view) {
+        byte b = this.a;
+        nx0[] nx0VarArr = this.b;
+        switch (b) {
             case 0:
-                h5.a = false;
+                nx0VarArr[0].dismiss();
                 return;
             case 1:
+                nx0VarArr[0].dismiss();
+                return;
             case 2:
+                nx0VarArr[0].dismiss();
                 return;
             case 3:
-                aue.a.edit().putInt("dismissed_count", aue.a.getInt("dismissed_count", 0) + 1).apply();
+                nx0 nx0Var = nx0VarArr[0];
+                if (nx0Var != null) {
+                    nx0Var.dismiss();
+                    return;
+                }
                 return;
             case 4:
+                nx0VarArr[0].dismiss();
                 return;
             case 5:
-                MediaController.h2 = false;
+                nx0 nx0Var2 = nx0VarArr[0];
+                if (nx0Var2 != null) {
+                    nx0Var2.dismiss();
+                    return;
+                }
                 return;
             case 6:
+                nx0VarArr[0].dismiss();
+                return;
+            case 7:
+                nx0VarArr[0].dismiss();
+                return;
+            case 8:
+                nx0VarArr[0].dismiss();
                 return;
             default:
-                vvc.i = false;
+                nx0VarArr[0].dismiss();
                 return;
         }
-    }
-
-    public g5(jc jcVar, boolean[] zArr, byte b) {
-        this.a = b;
-    }
-
-    public g5(byte b) {
-        this.a = b;
-    }
-
-    private final void a(DialogInterface dialogInterface) {
-    }
-
-    private final void b(DialogInterface dialogInterface) {
-    }
-
-    private final void c(DialogInterface dialogInterface) {
-    }
-
-    private final void d(DialogInterface dialogInterface) {
     }
 }

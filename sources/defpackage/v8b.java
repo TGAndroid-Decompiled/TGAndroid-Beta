@@ -1,542 +1,386 @@
 package defpackage;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Handler;
-import android.os.Parcel;
-import android.os.SystemClock;
-import android.util.Log;
-import android.util.SparseArray;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import j$.util.Objects;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.lang.ref.ReferenceQueue;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import org.xml.sax.Attributes;
-public final class v8b implements ru9, kn3, OnCompleteListener, f69, g8d, f9d {
-    public final byte a;
-    public Object b;
-    public Object c;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stories;
+public abstract class v8b extends FrameLayout implements View.OnClickListener {
+    public final mm E;
+    public final Path F;
+    public Bitmap G;
+    public boolean H;
+    public t8b a;
+    public t8b b;
+    public kg5 c;
+    public final FrameLayout d;
+    public final Matrix e;
+    public final float[] f;
+    public final t58 h;
+    public final x53 n;
+    public ArrayList r;
+    public final Rect s;
+    public final RectF w;
+    public final Paint x;
+    public final mm y;
 
-    public v8b(Attributes attributes, HashMap hashMap) {
-        this.a = (byte) 1;
-        this.c = attributes;
-        String k = lcb.k("style", attributes);
-        if (k != null) {
+    public v8b(Context context, t58 t58Var, x53 x53Var) {
+        super(context);
+        this.a = null;
+        this.b = null;
+        this.c = null;
+        this.e = new Matrix();
+        this.f = new float[2];
+        this.s = new Rect();
+        this.w = new RectF();
+        Paint paint = new Paint(1);
+        this.x = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint.setColor(-1);
+        this.F = new Path();
+        this.H = false;
+        this.h = t58Var;
+        this.n = x53Var;
+        this.y = new mm(t58Var, 0L, 120L, new LinearInterpolator());
+        this.E = new mm(t58Var, 0L, 360L, k43.h);
+        setClipChildren(false);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.d = frameLayout;
+        addView(frameLayout);
+        setLayerType(2, null);
+    }
+
+    public static ArrayList a(c8b c8bVar) {
+        if (c8bVar != null && c8bVar.T0 != null) {
             ArrayList arrayList = new ArrayList();
-            this.b = arrayList;
-            arrayList.add(new jcb(k));
-            return;
-        }
-        String k2 = lcb.k("class", attributes);
-        if (k2 != null) {
-            this.b = new ArrayList();
-            for (String str : k2.split(" ")) {
-                jcb jcbVar = (jcb) hashMap.get(str.trim());
-                if (jcbVar != null) {
-                    ((ArrayList) this.b).add(jcbVar);
+            for (int i = 0; i < c8bVar.T0.size(); i++) {
+                if (((mec) c8bVar.T0.get(i)).N instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                    arrayList.add(((mec) c8bVar.T0.get(i)).N);
                 }
             }
-        }
-    }
-
-    public static String r(v8b v8bVar) {
-        List<String> list = (List) v8bVar.c;
-        StringBuilder sb = new StringBuilder("com.google.android.gms.cast.CATEGORY_CAST");
-        String str = (String) v8bVar.b;
-        if (str != null) {
-            String upperCase = str.toUpperCase(Locale.ROOT);
-            if (upperCase.matches("[A-F0-9]+")) {
-                sb.append("/");
-                sb.append(upperCase);
-            } else {
-                w26.j("Invalid application ID: ".concat(str));
-                return null;
-            }
-        }
-        if (list != null) {
-            if (!list.isEmpty()) {
-                if (str == null) {
-                    sb.append("/");
-                }
-                sb.append("/");
-                boolean z = true;
-                for (String str2 : list) {
-                    id1.b(str2);
-                    if (!z) {
-                        sb.append(",");
-                    }
-                    if (!id1.a.matcher(str2).matches()) {
-                        StringBuilder sb2 = new StringBuilder(str2.length());
-                        for (int i = 0; i < str2.length(); i++) {
-                            char charAt = str2.charAt(i);
-                            if ((charAt < 'A' || charAt > 'Z') && ((charAt < 'a' || charAt > 'z') && ((charAt < '0' || charAt > '9') && charAt != '_' && charAt != '-' && charAt != '.' && charAt != ':'))) {
-                                sb2.append(String.format("%%%04x", Integer.valueOf(charAt)));
-                            } else {
-                                sb2.append(charAt);
-                            }
-                        }
-                        str2 = sb2.toString();
-                    }
-                    sb.append(str2);
-                    z = false;
-                }
-            } else {
-                w26.j("Must specify at least one namespace");
-                return null;
-            }
-        }
-        if (str == null && list == null) {
-            sb.append("/");
-        }
-        if (list == null) {
-            sb.append("/");
-        }
-        sb.append("//ALLOW_IPV6");
-        return sb.toString();
-    }
-
-    @Override
-    public final void L(String str, long j, int i, r8d r8dVar, long j2, long j3) {
-        int i2;
-        y8d y8dVar = (y8d) this.c;
-        if (((f9d) this.b) != null) {
-            if (i == 2001) {
-                Object[] objArr = {Integer.valueOf(y8dVar.i)};
-                dc6 dc6Var = y8dVar.a;
-                Log.w(dc6Var.a, dc6Var.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((i69) y8dVar.h.a).i.iterator();
-                while (it.hasNext()) {
-                    ((h69) it.next()).o();
-                }
-                i2 = 2001;
-            } else {
-                i2 = i;
-            }
-            ((f9d) this.b).L(str, j, i2, r8dVar, j2, j3);
-        }
-    }
-
-    @Override
-    public final void a(String str, String str2) {
-        gjc gjcVar = (gjc) this.c;
-        ln3 ln3Var = (ln3) this.b;
-        if (!gjcVar.J) {
-            if (ln3Var == gjcVar.f) {
-                gjcVar.a(str, str2);
-            }
-        } else if (ln3Var == gjcVar.U) {
-            gjcVar.U = null;
-            if (!str.isEmpty()) {
-                gjcVar.v(ln3Var, str);
-            }
-            gjcVar.h();
-            Log.d("VoiceLive", "field: final words in (" + gjcVar.L.size() + " words)");
-            gjcVar.p();
-        } else if (ln3Var != gjcVar.f) {
-        } else {
-            Log.d("VoiceLive", "field: recogniser ended by itself error=" + str2);
-            if (!str.isEmpty()) {
-                gjcVar.v(ln3Var, str);
-            }
-            gjcVar.f = null;
-            if (xxe.a == gjcVar) {
-                xxe.a = null;
-            }
-            gjcVar.d = null;
-            gjcVar.e = null;
-            gjcVar.h();
-            gjcVar.p();
-        }
-    }
-
-    @Override
-    public final void accept(Object obj, Object obj2) {
-        int i;
-        switch (this.a) {
-            case 10:
-                z2d z2dVar = new z2d((u84) this.b, (TaskCompletionSource) obj2, (byte) 1);
-                q2d q2dVar = (q2d) ((n3d) obj).k();
-                Parcel c = q2dVar.c();
-                e2d.c(c, z2dVar);
-                e2d.b(c, (eo) this.c);
-                c.writeStrongBinder(null);
-                q2dVar.d(c, 2);
-                return;
-            default:
-                u84 u84Var = (u84) this.b;
-                and andVar = (and) obj;
-                vyd vydVar = new vyd(u84Var, (TaskCompletionSource) obj2);
-                Context context = u84Var.a;
-                try {
-                    i = ryc.a(context).e(0, context.getPackageName()).versionCode;
-                } catch (PackageManager.NameNotFoundException unused) {
-                    i = 0;
-                }
-                k59 k59Var = (k59) this.c;
-                k59Var.f = i;
-                ctd ctdVar = (ctd) andVar.k();
-                ho hoVar = new ho(new jp2(-1, -1, 0, true), true);
-                hoVar.c = false;
-                Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken("com.google.android.gms.cloudmessaging.internal.ICloudMessagingService");
-                int i2 = lgd.a;
-                obtain.writeStrongBinder(vydVar);
-                obtain.writeInt(1);
-                k59Var.writeToParcel(obtain, 0);
-                obtain.writeInt(1);
-                hoVar.writeToParcel(obtain, 0);
-                Parcel obtain2 = Parcel.obtain();
-                try {
-                    ctdVar.a.transact(1, obtain, obtain2, 0);
-                    obtain2.readException();
-                    return;
-                } finally {
-                    obtain.recycle();
-                    obtain2.recycle();
-                }
-        }
-    }
-
-    @Override
-    public final void b(xu7 xu7Var) {
-        j2c j2cVar = (j2c) this.c;
-        SparseArray sparseArray = j2cVar.h;
-        qd1 qd1Var = (qd1) this.b;
-        if (xu7Var.A() == 0 && (xu7Var.A() & 128) != 0) {
-            xu7Var.O(6);
-            int a = xu7Var.a() / 4;
-            for (int i = 0; i < a; i++) {
-                xu7Var.k(0, 4, qd1Var.b);
-                qd1Var.l(0);
-                int f = qd1Var.f(16);
-                qd1Var.n(3);
-                if (f == 0) {
-                    qd1Var.n(13);
-                } else {
-                    int f2 = qd1Var.f(13);
-                    if (sparseArray.get(f2) == null) {
-                        sparseArray.put(f2, new su9(new cyb(j2cVar, f2)));
-                        j2cVar.n++;
-                    }
-                }
-            }
-            if (j2cVar.a != 2) {
-                sparseArray.remove(0);
-            }
-        }
-    }
-
-    @Override
-    public final void d(float f) {
-        ln3 ln3Var = (ln3) this.b;
-        gjc gjcVar = (gjc) this.c;
-        if (ln3Var == gjcVar.f) {
-            gjcVar.d(f);
-        }
-    }
-
-    @Override
-    public final void e(String str) {
-        ((gjc) this.c).o((ln3) this.b, str, -1);
-    }
-
-    @Override
-    public final void f(int i, String str) {
-        ((gjc) this.c).o((ln3) this.b, str, i);
-    }
-
-    @Override
-    public final void g(String str) {
-        ln3 ln3Var = (ln3) this.b;
-        gjc gjcVar = (gjc) this.c;
-        if (ln3Var == gjcVar.f) {
-            gjcVar.g(str);
-        }
-    }
-
-    @Override
-    public final void g0(String str, long j, long j2, long j3) {
-        f9d f9dVar = (f9d) this.b;
-        if (f9dVar != null) {
-            f9dVar.g0(str, j, j2, j3);
-        }
-    }
-
-    public final void h(s49 s49Var, zw8 zw8Var) {
-        ps psVar = (ps) this.b;
-        ndc ndcVar = (ndc) psVar.get(s49Var);
-        if (ndcVar == null) {
-            ndcVar = ndc.a();
-            psVar.put(s49Var, ndcVar);
-        }
-        ndcVar.c = zw8Var;
-        ndcVar.a |= 8;
-    }
-
-    public final void i(w83 w83Var) {
-        synchronized (w83Var) {
-        }
-        Handler handler = (Handler) this.b;
-        if (handler != null) {
-            handler.post(new vbc(this, w83Var, (byte) 1));
-        }
-    }
-
-    public final String j(String str) {
-        ArrayList arrayList = (ArrayList) this.b;
-        String str2 = null;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                str2 = (String) ((jcb) arrayList.get(i)).a.get(str);
-                if (str2 != null) {
-                    break;
-                }
-            }
-        }
-        if (str2 == null) {
-            return lcb.k(str, (Attributes) this.c);
-        }
-        return str2;
-    }
-
-    public final java.lang.Integer k(java.lang.String r4) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.v8b.k(java.lang.String):java.lang.Integer");
-    }
-
-    public final boolean l() {
-        hmc hmcVar = (hmc) this.c;
-        if (hmcVar.M0 <= 0.0f && !hmcVar.t0()) {
-            return false;
-        }
-        return true;
-    }
-
-    public final zw8 m(s49 s49Var, int i) {
-        ndc ndcVar;
-        zw8 zw8Var;
-        ps psVar = (ps) this.b;
-        int d = psVar.d(s49Var);
-        if (d >= 0 && (ndcVar = (ndc) psVar.i(d)) != null) {
-            int i2 = ndcVar.a;
-            if ((i2 & i) != 0) {
-                int i3 = i2 & (~i);
-                ndcVar.a = i3;
-                if (i == 4) {
-                    zw8Var = ndcVar.b;
-                } else if (i == 8) {
-                    zw8Var = ndcVar.c;
-                } else {
-                    w26.j("Must provide flag PRE or POST");
-                }
-                if ((i3 & 12) == 0) {
-                    psVar.g(d);
-                    ndcVar.a = 0;
-                    ndcVar.b = null;
-                    ndcVar.c = null;
-                    ndc.d.o0(ndcVar);
-                }
-                return zw8Var;
-            }
+            return arrayList;
         }
         return null;
     }
 
-    public final void n(s49 s49Var) {
-        ndc ndcVar = (ndc) ((ps) this.b).get(s49Var);
-        if (ndcVar == null) {
-            return;
+    public abstract void b(boolean z);
+
+    public final void c(TL_stories.StoryItem storyItem, tv3 tv3Var) {
+        ArrayList<TL_stories.MediaArea> arrayList;
+        if (storyItem != null) {
+            arrayList = storyItem.media_areas;
+        } else {
+            arrayList = null;
         }
-        ndcVar.a &= -2;
+        d(storyItem, arrayList, tv3Var);
     }
 
-    public final void o(s49 s49Var) {
-        ps psVar = (ps) this.b;
-        vf6 vf6Var = (vf6) this.c;
-        int m = vf6Var.m() - 1;
-        while (true) {
-            if (m < 0) {
-                break;
-            } else if (s49Var == vf6Var.n(m)) {
-                Object[] objArr = vf6Var.c;
-                Object obj = objArr[m];
-                Object obj2 = pad.a;
-                if (obj != obj2) {
-                    objArr[m] = obj2;
-                    vf6Var.a = true;
+    public final void d(TL_stories.StoryItem storyItem, ArrayList arrayList, tv3 tv3Var) {
+        FrameLayout frameLayout;
+        aab aabVar;
+        ArrayList arrayList2 = this.r;
+        if (arrayList != arrayList2 || (arrayList != null && arrayList2 != null && arrayList.size() != this.r.size())) {
+            kg5 kg5Var = this.c;
+            if (kg5Var != null) {
+                kg5Var.f(true);
+                this.c = null;
+            }
+            int i = 0;
+            while (true) {
+                int childCount = getChildCount();
+                frameLayout = this.d;
+                if (i >= childCount) {
+                    break;
+                }
+                View childAt = getChildAt(i);
+                if (childAt != frameLayout) {
+                    removeView(childAt);
+                    i--;
+                }
+                i++;
+            }
+            this.b = null;
+            this.E.e(true, 0.0f);
+            invalidate();
+            b(false);
+            this.r = arrayList;
+            if (arrayList == null) {
+                return;
+            }
+            this.H = false;
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                TL_stories.MediaArea mediaArea = (TL_stories.MediaArea) arrayList.get(i2);
+                if (mediaArea != null && mediaArea.coordinates != null) {
+                    if (mediaArea instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                        aab aabVar2 = new aab(getContext(), this, (TL_stories.TL_mediaAreaSuggestedReaction) mediaArea, tv3Var);
+                        if (storyItem != null) {
+                            aabVar2.c(storyItem.views, false);
+                        }
+                        iye.a(aabVar2);
+                        aabVar = aabVar2;
+                    } else if (mediaArea instanceof TL_stories.TL_mediaAreaWeather) {
+                        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = (TL_stories.TL_mediaAreaWeather) mediaArea;
+                        ?? tLObject = new TLObject();
+                        tLObject.c = tL_mediaAreaWeather.emoji;
+                        tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
+                        ld6 ld6Var = new ld6(getContext(), hl.p);
+                        ld6Var.setMaxWidth(hl.q.x);
+                        ld6Var.setIsVideo(true);
+                        ld6Var.d(yac.t0, tLObject.c);
+                        ld6Var.setText(tLObject.a());
+                        ld6Var.e(3, tL_mediaAreaWeather.color);
+                        aabVar = new u8b(getContext(), ld6Var, mediaArea);
+                    } else {
+                        aabVar = new t8b(getContext(), this.h, mediaArea);
+                    }
+                    aabVar.setOnClickListener(this);
+                    addView(aabVar);
+                    double d = mediaArea.coordinates.w;
+                }
+            }
+            frameLayout.bringToFront();
+        }
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        boolean z;
+        boolean z2;
+        Canvas canvas2;
+        RectF rectF;
+        float f;
+        float f2;
+        t8b t8bVar;
+        float measuredHeight;
+        boolean z3;
+        if (view == this.d) {
+            t8b t8bVar2 = this.b;
+            if (t8bVar2 != null && t8bVar2.s && !t8bVar2.x) {
+                z = true;
+            } else {
+                z = false;
+            }
+            float d = this.y.d(z);
+            t8b t8bVar3 = this.b;
+            if (t8bVar3 != null && t8bVar3.x) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            float d2 = this.E.d(z2);
+            int i = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
+            RectF rectF2 = this.w;
+            if (i > 0) {
+                rectF = rectF2;
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
+                canvas2.drawColor(aob.p1(d, 402653184));
+                for (int i2 = 0; i2 < getChildCount(); i2++) {
+                    View childAt = getChildAt(i2);
+                    if (childAt instanceof t8b) {
+                        mm mmVar = ((t8b) childAt).a;
+                        t8b t8bVar4 = this.b;
+                        if (childAt == t8bVar4 && t8bVar4.s) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        float d3 = mmVar.d(z3);
+                        if (d3 > 0.0f) {
+                            canvas2.save();
+                            rectF.set(childAt.getX(), childAt.getY(), childAt.getX() + childAt.getMeasuredWidth(), childAt.getY() + childAt.getMeasuredHeight());
+                            canvas2.rotate(childAt.getRotation(), rectF.centerX(), rectF.centerY());
+                            int i3 = (int) (d3 * 255.0f);
+                            Paint paint = this.x;
+                            paint.setAlpha(i3);
+                            canvas2.drawRoundRect(rectF, rectF.height() * 0.2f, rectF.height() * 0.2f, paint);
+                            canvas2.restore();
+                        }
+                    }
+                }
+                f = 0.2f;
+                canvas2.restore();
+            } else {
+                canvas2 = canvas;
+                rectF = rectF2;
+                f = 0.2f;
+            }
+            if ((z2 || d2 > 0.0f) && this.a != null) {
+                Bitmap bitmap = this.G;
+                if (bitmap == null) {
+                    bitmap = ((r58) this).J.getPlayingBitmap();
+                    this.G = bitmap;
+                }
+                if (bitmap != null) {
+                    canvas2.drawColor(aob.p1(d2, 805306368));
+                    canvas2.save();
+                    Path path = this.F;
+                    path.rewind();
+                    rectF.set(this.a.getX(), this.a.getY(), this.a.getX() + this.a.getMeasuredWidth(), this.a.getY() + this.a.getMeasuredHeight());
+                    t8b t8bVar5 = this.a;
+                    if (t8bVar5.y) {
+                        f2 = t8bVar5.r.a(0.05f);
+                    } else {
+                        f2 = 1.0f;
+                    }
+                    float R1 = hl.R1(1.0f, f2 * 1.05f, d2);
+                    canvas2.scale(R1, R1, rectF.centerX(), rectF.centerY());
+                    canvas2.rotate(this.a.getRotation(), rectF.centerX(), rectF.centerY());
+                    TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.a.b.coordinates;
+                    if ((mediaAreaCoordinates.flags & 1) != 0) {
+                        measuredHeight = (float) ((mediaAreaCoordinates.radius / 100.0d) * t8bVar.getMeasuredWidth());
+                    } else {
+                        measuredHeight = t8bVar.getMeasuredHeight() * f;
+                    }
+                    path.addRoundRect(rectF, measuredHeight, measuredHeight, Path.Direction.CW);
+                    canvas2.clipPath(path);
+                    RectF rectF3 = hl.P;
+                    rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
+                    int width = this.G.getWidth();
+                    int height = this.G.getHeight();
+                    Rect rect = this.s;
+                    rect.set(0, 0, width, height);
+                    canvas2.rotate(-this.a.getRotation(), rectF.centerX(), rectF.centerY());
+                    canvas2.drawBitmap(this.G, rect, rectF3, (Paint) null);
+                    canvas2.restore();
+                    canvas2.save();
+                    canvas2.translate(this.a.getX(), this.a.getY());
+                    canvas2.rotate(this.a.getRotation(), this.a.getPivotX(), this.a.getPivotY());
+                    canvas2.scale(this.a.getScaleX() * R1, this.a.getScaleY() * R1, this.a.getPivotX(), this.a.getPivotY());
+                    this.a.b(canvas2);
+                    canvas2.restore();
                 }
             } else {
-                m--;
-            }
-        }
-        ndc ndcVar = (ndc) psVar.get(s49Var);
-        if (ndcVar != null) {
-            psVar.remove(s49Var);
-            ndcVar.a = 0;
-            ndcVar.b = null;
-            ndcVar.c = null;
-            ndc.d.o0(ndcVar);
-        }
-    }
-
-    @Override
-    public final void onComplete(Task task) {
-        switch (this.a) {
-            case 8:
-                hzc hzcVar = (hzc) this.b;
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.c;
-                synchronized (hzcVar.f) {
-                    hzcVar.e.remove(taskCompletionSource);
+                Bitmap bitmap2 = this.G;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                    this.G = null;
                 }
-                return;
-            default:
-                ((Map) ((aec) this.c).c).remove((TaskCompletionSource) this.b);
-                return;
+            }
+            invalidate();
+        } else if (view instanceof t8b) {
+            canvas.save();
+            canvas.translate(view.getLeft(), view.getTop());
+            canvas.concat(view.getMatrix());
+            ((t8b) view).a(canvas);
+            canvas.restore();
         }
+        return super.drawChild(canvas, view, j);
     }
 
-    public final void p(Object obj) {
-        Handler handler = (Handler) this.b;
-        if (handler != null) {
-            handler.post(new d2b(this, obj, SystemClock.elapsedRealtime(), (byte) 13));
-        }
-    }
-
-    public final void q(icc iccVar) {
-        Handler handler = (Handler) this.b;
-        if (handler != null) {
-            handler.post(new l3c(this, iccVar, (byte) 21));
-        }
-    }
-
-    public final String toString() {
-        switch (this.a) {
-            case 7:
-                return "Bounds{lower=" + ((io5) this.b) + " upper=" + ((io5) this.c) + "}";
-            default:
-                return super.toString();
-        }
-    }
-
-    @Override
-    public final Object zzp() {
-        boolean z;
-        Map map;
-        g6d g6dVar = (g6d) this.b;
-        p5d p5dVar = (p5d) this.c;
-        p5dVar.getClass();
-        if (g6d.e()) {
-            z = ((Boolean) g6d.c(new ss2("gms:phenotype:phenotype_flag:debug_disable_caching"))).booleanValue();
-        } else {
-            z = false;
-        }
-        if (z) {
-            map = p5dVar.a();
-        } else {
-            map = p5dVar.e;
-        }
-        if (map == null) {
-            synchronized (p5dVar.d) {
-                Map map2 = p5dVar.e;
-                map = map2;
-                if (map2 == null) {
-                    HashMap a = p5dVar.a();
-                    p5dVar.e = a;
-                    map = a;
+    public final void e() {
+        if (!this.H) {
+            this.H = true;
+            for (int i = 0; i < getChildCount(); i++) {
+                View childAt = getChildAt(i);
+                if (childAt instanceof t8b) {
+                    t8b t8bVar = (t8b) childAt;
+                    s8b s8bVar = t8bVar.I;
+                    if (t8bVar.w) {
+                        hl.r(s8bVar);
+                        hl.d3(s8bVar, 400L);
+                    }
                 }
             }
         }
-        if (map == null) {
-            map = Collections.EMPTY_MAP;
-        }
-        return (String) map.get(g6dVar.b);
+    }
+
+    public Bitmap getPlayingBitmap() {
+        return null;
     }
 
     @Override
-    public final void c(uob uobVar, l74 l74Var, l2c l2cVar) {
+    public final void onClick(android.view.View r26) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.v8b.onClick(android.view.View):void");
     }
 
-    public v8b(Context context) {
-        this.a = (byte) 15;
-        this.b = context;
-    }
-
-    public v8b(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = obj2;
-    }
-
-    public v8b(Object obj, Object obj2, boolean z, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-    }
-
-    public v8b(String str, List list) {
-        this.a = (byte) 21;
-        this.b = str;
-        this.c = list;
-    }
-
-    public v8b(aec aecVar, TaskCompletionSource taskCompletionSource) {
-        this.a = (byte) 11;
-        this.b = taskCompletionSource;
-        Objects.requireNonNull(aecVar);
-        this.c = aecVar;
-    }
-
-    public v8b(vsc vscVar) {
-        this.a = (byte) 19;
-        this.b = vscVar == null ? null : vscVar.b;
-    }
-
-    public v8b(byte b) {
-        this.a = b;
-        switch (b) {
-            case 16:
-                this.b = new ConcurrentHashMap(16, 0.75f, 10);
-                this.c = new ReferenceQueue();
-                return;
-            default:
-                this.b = new aia(0);
-                this.c = new vf6();
-                return;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Bitmap bitmap = this.G;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.G = null;
         }
     }
 
-    public v8b(Handler handler, xbc xbcVar) {
-        this.a = (byte) 3;
-        if (xbcVar != null) {
-            handler.getClass();
-        } else {
-            handler = null;
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        for (int i5 = 0; i5 < getChildCount(); i5++) {
+            View childAt = getChildAt(i5);
+            if (childAt == this.d) {
+                childAt.layout(0, 0, i3 - i, i4 - i2);
+            } else if (childAt instanceof t8b) {
+                t8b t8bVar = (t8b) childAt;
+                TL_stories.MediaArea mediaArea = t8bVar.b;
+                int measuredWidth = t8bVar.getMeasuredWidth();
+                int measuredHeight = t8bVar.getMeasuredHeight();
+                t8bVar.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
+                t8bVar.setTranslationX((float) ((mediaArea.coordinates.x / 100.0d) * getMeasuredWidth()));
+                t8bVar.setTranslationY((float) ((mediaArea.coordinates.y / 100.0d) * getMeasuredHeight()));
+                t8bVar.setRotation((float) mediaArea.coordinates.rotation);
+            } else if (childAt instanceof u8b) {
+                u8b u8bVar = (u8b) childAt;
+                TL_stories.MediaArea mediaArea2 = u8bVar.a;
+                int measuredWidth2 = u8bVar.getMeasuredWidth();
+                int measuredHeight2 = u8bVar.getMeasuredHeight();
+                u8bVar.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
+                u8bVar.setTranslationX((float) ((mediaArea2.coordinates.x / 100.0d) * getMeasuredWidth()));
+                u8bVar.setTranslationY((float) ((mediaArea2.coordinates.y / 100.0d) * getMeasuredHeight()));
+                u8bVar.setRotation((float) mediaArea2.coordinates.rotation);
+            }
         }
-        this.b = handler;
-        this.c = xbcVar;
     }
 
-    public v8b(gjc gjcVar) {
-        this.a = (byte) 5;
-        this.c = gjcVar;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            View childAt = getChildAt(i3);
+            FrameLayout frameLayout = this.d;
+            if (childAt == frameLayout) {
+                frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            } else if (childAt instanceof t8b) {
+                t8b t8bVar = (t8b) getChildAt(i3);
+                t8bVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((t8bVar.b.coordinates.w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((t8bVar.b.coordinates.h / 100.0d) * size2), 1073741824));
+            } else if (childAt instanceof u8b) {
+                u8b u8bVar = (u8b) getChildAt(i3);
+                u8bVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((u8bVar.a.coordinates.w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((u8bVar.a.coordinates.h / 100.0d) * size2), 1073741824));
+            }
+        }
+        setMeasuredDimension(size, size2);
     }
 
-    public v8b(j2c j2cVar) {
-        this.a = (byte) 2;
-        this.c = j2cVar;
-        this.b = new qd1(4, new byte[4]);
-    }
-
-    public v8b(byte b, boolean z) {
-        this.a = b;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        kg5 kg5Var;
+        if (getChildCount() == 0 || (kg5Var = this.c) == null || !kg5Var.W) {
+            return false;
+        }
+        if (motionEvent.getAction() == 1) {
+            kg5 kg5Var2 = this.c;
+            if (kg5Var2 != null) {
+                kg5Var2.f(true);
+                this.c = null;
+            }
+            this.b = null;
+            invalidate();
+            b(false);
+        }
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

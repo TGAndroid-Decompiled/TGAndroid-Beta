@@ -1,47 +1,55 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class sf0 {
-    public final String a;
-    public final char[] b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final byte[] g;
-    public final boolean h;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+public abstract class sf0 implements h73 {
+    private n73 dataSpec;
+    private final boolean isNetwork;
+    private int listenerCount;
+    private final ArrayList<v2c> listeners = new ArrayList<>(1);
 
-    public sf0(java.lang.String r5, char[] r6, byte[] r7, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sf0.<init>(java.lang.String, char[], byte[], boolean):void");
+    public sf0(boolean z) {
+        this.isNetwork = z;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof sf0) {
-            sf0 sf0Var = (sf0) obj;
-            if (this.h == sf0Var.h && Arrays.equals(this.b, sf0Var.b)) {
-                return true;
-            }
-            return false;
+    @Override
+    public final void addTransferListener(v2c v2cVar) {
+        v2cVar.getClass();
+        if (!this.listeners.contains(v2cVar)) {
+            this.listeners.add(v2cVar);
+            this.listenerCount++;
         }
-        return false;
     }
 
-    public final int hashCode() {
-        int i;
-        int hashCode = Arrays.hashCode(this.b);
-        if (this.h) {
-            i = 1231;
-        } else {
-            i = 1237;
+    public final void bytesTransferred(int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sf0.bytesTransferred(int):void");
+    }
+
+    @Override
+    public Map getResponseHeaders() {
+        return Collections.EMPTY_MAP;
+    }
+
+    public final void transferEnded() {
+        n73 n73Var = this.dataSpec;
+        String str = gcc.a;
+        for (int i = 0; i < this.listenerCount; i++) {
+            ((la3) this.listeners.get(i)).g(n73Var, this.isNetwork);
         }
-        return hashCode + i;
+        this.dataSpec = null;
     }
 
-    public final String toString() {
-        return this.a;
+    public final void transferInitializing(n73 n73Var) {
+        for (int i = 0; i < this.listenerCount; i++) {
+            this.listeners.get(i).getClass();
+        }
     }
 
-    public sf0(java.lang.String r10, char[] r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.sf0.<init>(java.lang.String, char[]):void");
+    public final void transferStarted(n73 n73Var) {
+        this.dataSpec = n73Var;
+        for (int i = 0; i < this.listenerCount; i++) {
+            ((la3) this.listeners.get(i)).h(n73Var, this.isNetwork);
+        }
     }
 }

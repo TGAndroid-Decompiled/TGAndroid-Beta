@@ -1,23 +1,30 @@
 package defpackage;
-public final class u5c extends vw2 {
-    public static final u5c c = new vw2();
 
-    @Override
-    public final void c(sw2 sw2Var, Runnable runnable) {
-        xb3.d.c.b(runnable, true);
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class u5c extends zo {
+    public final d6c c;
+
+    public u5c(d6c d6cVar) {
+        this.c = d6cVar;
     }
 
     @Override
-    public final vw2 e(int i) {
-        rne.a(i);
-        if (i >= dgb.d) {
-            return this;
+    public final int i(int i) {
+        d6c d6cVar = this.c;
+        j79 adapter = d6cVar.n.getAdapter();
+        c6c c6cVar = d6cVar.s;
+        if (adapter == c6cVar) {
+            if ((c6cVar.d.get(i) instanceof Integer) || i >= c6cVar.x) {
+                return c6cVar.w;
+            }
+            return 1;
         }
-        return super.e(i);
-    }
-
-    @Override
-    public final String toString() {
-        return "Dispatchers.IO";
+        z4b z4bVar = d6cVar.w;
+        SparseArray sparseArray = z4bVar.s;
+        if (i != z4bVar.E && (sparseArray.get(i) == null || (sparseArray.get(i) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return z4bVar.e.a();
     }
 }

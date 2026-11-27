@@ -1,50 +1,87 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class u29 extends Drawable {
-    public final Paint a = new Paint(1);
-    public final View b;
-    public final Path c;
-    public final RectF d;
-    public final o39 e;
+import android.media.Rating;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class u29 implements Parcelable {
+    public static final Parcelable.Creator<u29> CREATOR = new mx6((byte) 12);
+    public final int a;
+    public final float b;
+    public Rating c;
 
-    public u29(o39 o39Var, View view, Path path, RectF rectF) {
-        this.e = o39Var;
-        this.b = view;
-        this.c = path;
-        this.d = rectF;
+    public u29(int i, float f) {
+        this.a = i;
+        this.b = f;
+    }
+
+    public static u29 c(float f) {
+        if (f >= 0.0f && f <= 100.0f) {
+            return new u29(6, f);
+        }
+        efd.c("Rating", "Invalid percentage-based rating value");
+        return null;
+    }
+
+    public static u29 d(float f, int i) {
+        float f2;
+        if (i != 3) {
+            if (i != 4) {
+                if (i != 5) {
+                    efd.c("Rating", "Invalid rating style (" + i + ") for a star rating");
+                    return null;
+                }
+                f2 = 5.0f;
+            } else {
+                f2 = 4.0f;
+            }
+        } else {
+            f2 = 3.0f;
+        }
+        if (f >= 0.0f && f <= f2) {
+            return new u29(i, f);
+        }
+        efd.c("Rating", "Trying to set out of range star-based rating");
+        return null;
+    }
+
+    public final float a() {
+        int i = this.a;
+        if ((i == 3 || i == 4 || i == 5) && b()) {
+            return this.b;
+        }
+        return -1.0f;
+    }
+
+    public final boolean b() {
+        if (this.b >= 0.0f) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        View view = this.b;
-        canvas.translate(-view.getX(), -view.getY());
-        canvas.clipPath(this.c);
-        int v0 = bkb.v0(bkb.c6, this.e.o2);
-        Paint paint = this.a;
-        paint.setColor(bm2.o(v0, paint.getAlpha()));
-        canvas.drawRect(this.d, paint);
-        canvas.restore();
+    public final int describeContents() {
+        return this.a;
+    }
+
+    public final String toString() {
+        String valueOf;
+        StringBuilder sb = new StringBuilder("Rating:style=");
+        sb.append(this.a);
+        sb.append(" rating=");
+        float f = this.b;
+        if (f < 0.0f) {
+            valueOf = "unrated";
+        } else {
+            valueOf = String.valueOf(f);
+        }
+        sb.append(valueOf);
+        return sb.toString();
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.a.setAlpha(i);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.a);
+        parcel.writeFloat(this.b);
     }
 }

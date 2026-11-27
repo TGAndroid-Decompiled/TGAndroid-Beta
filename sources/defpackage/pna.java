@@ -1,68 +1,97 @@
 package defpackage;
-public final class pna implements Runnable {
-    public final byte a;
-    public final vqa b;
-    public final long c;
 
-    public pna(vqa vqaVar, long j, byte b) {
-        this.a = b;
-        this.b = vqaVar;
-        this.c = j;
+import java.util.Map;
+public final class pna implements Map.Entry, Comparable {
+    public final Comparable a;
+    public Object b;
+    public final ona c;
+
+    public pna(ona onaVar, Comparable comparable, Object obj) {
+        this.c = onaVar;
+        this.a = comparable;
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        long j = this.c;
-        vqa vqaVar = this.b;
-        switch (b) {
-            case 0:
-                vqaVar.Y1(j);
-                return;
-            case 1:
-                vqaVar.Y1(j);
-                return;
-            case 2:
-                nna nnaVar = vqaVar.s3;
-                vqaVar.z2(1, true, null);
-                if (j > 0) {
-                    gl.r(nnaVar);
-                    gl.c3(nnaVar);
-                    return;
+    public final int compareTo(Object obj) {
+        return this.a.compareTo(((pna) obj).a);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        boolean equals;
+        boolean equals2;
+        if (obj != this) {
+            if (obj instanceof Map.Entry) {
+                Map.Entry entry = (Map.Entry) obj;
+                Object key = entry.getKey();
+                Comparable comparable = this.a;
+                if (comparable == null) {
+                    if (key == null) {
+                        equals = true;
+                    } else {
+                        equals = false;
+                    }
+                } else {
+                    equals = comparable.equals(key);
                 }
-                return;
-            case 3:
-                vqaVar.Y1(j);
-                return;
-            case 4:
-                vqaVar.Y1(j);
-                return;
-            case 5:
-                vqaVar.U1(j);
-                return;
-            case 6:
-                zua zuaVar = new zua(vqaVar.getContext(), vqaVar.J0, this.c, 10, null, new t7a(vqaVar, new boolean[]{false}, (byte) 19), 0L);
-                zuaVar.setOnDismissListener(new qoa(vqaVar, (byte) 0));
-                zuaVar.show();
-                return;
-            case 7:
-                vqaVar.Y1(j);
-                return;
-            case 8:
-                vqaVar.U1(j);
-                return;
-            case 9:
-                vqaVar.Y1(j);
-                return;
-            case 10:
-                vqaVar.U1(j);
-                return;
-            case 11:
-                vqaVar.Y1(j);
-                return;
-            default:
-                vqaVar.U1(j);
-                return;
+                if (equals) {
+                    Object obj2 = this.b;
+                    Object value = entry.getValue();
+                    if (obj2 == null) {
+                        if (value == null) {
+                            equals2 = true;
+                        } else {
+                            equals2 = false;
+                        }
+                    } else {
+                        equals2 = obj2.equals(value);
+                    }
+                    if (equals2) {
+                    }
+                }
+            }
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final Object getKey() {
+        return this.a;
+    }
+
+    @Override
+    public final Object getValue() {
+        return this.b;
+    }
+
+    @Override
+    public final int hashCode() {
+        int hashCode;
+        int i = 0;
+        Comparable comparable = this.a;
+        if (comparable == null) {
+            hashCode = 0;
+        } else {
+            hashCode = comparable.hashCode();
+        }
+        Object obj = this.b;
+        if (obj != null) {
+            i = obj.hashCode();
+        }
+        return hashCode ^ i;
+    }
+
+    @Override
+    public final Object setValue(Object obj) {
+        this.c.c();
+        Object obj2 = this.b;
+        this.b = obj;
+        return obj2;
+    }
+
+    public final String toString() {
+        return this.a + "=" + this.b;
     }
 }

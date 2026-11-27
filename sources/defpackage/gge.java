@@ -1,17 +1,37 @@
 package defpackage;
-public final class gge implements zn7 {
-    public static final gge a = new Object();
+public abstract class gge {
+    public static final int[] a;
 
     static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+        int[] iArr = new int[7];
+        a = iArr;
+        try {
+            iArr[3] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        throw new ClassCastException();
+        try {
+            a[4] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            a[2] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            a[5] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            a[6] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            a[0] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            a[1] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
     }
 }

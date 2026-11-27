@@ -1,21 +1,21 @@
 package defpackage;
 
 import org.telegram.ui.Wallet.c;
-public final class p implements i8c {
+public final class p implements icc {
     public final byte a;
     public final Object b;
     public final Object c;
     public final Object d;
 
-    public p(c cVar, eu0 eu0Var, String str, String str2) {
+    public p(c cVar, nu0 nu0Var, String str, String str2) {
         this.a = (byte) 16;
-        this.b = eu0Var;
+        this.b = nu0Var;
         this.c = str;
         this.d = str2;
     }
 
     @Override
-    public final void a(java.lang.Object r37, java.lang.Object r38) {
+    public final void a(java.lang.Object r36, java.lang.Object r37) {
         throw new UnsupportedOperationException("Method not decompiled: defpackage.p.a(java.lang.Object, java.lang.Object):void");
     }
 

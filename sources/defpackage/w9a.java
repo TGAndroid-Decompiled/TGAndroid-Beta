@@ -1,34 +1,33 @@
 package defpackage;
-public final class w9a extends yo {
-    public final byte c;
-    public final taa d;
+public final class w9a extends yfb implements is4 {
+    public oq5 a;
+    public y9a b;
+    public v9a c;
+    public ji4 d;
+    public s9a e;
+    public bba f;
+    public byte h;
+    public final y9a n;
+    public final s9a r;
 
-    public w9a(taa taaVar, byte b) {
-        this.c = b;
-        this.d = taaVar;
+    public w9a(y9a y9aVar, s9a s9aVar, zw2 zw2Var) {
+        super(2, zw2Var);
+        this.n = y9aVar;
+        this.r = s9aVar;
     }
 
     @Override
-    public final int i(int i) {
-        byte b = this.c;
-        taa taaVar = this.d;
-        switch (b) {
-            case 0:
-                if (i != 0) {
-                    return 1;
-                }
-                return taaVar.C1.J;
-            case 1:
-                qaa qaaVar = taaVar.H1;
-                if (i != qaaVar.x && i != qaaVar.y && i != qaaVar.E && i != qaaVar.G && qaaVar.d(i) != 0) {
-                    return 1;
-                }
-                return 4;
-            default:
-                if (i != 0) {
-                    return 1;
-                }
-                return taaVar.D1.J;
-        }
+    public final zw2 create(Object obj, zw2 zw2Var) {
+        return new w9a(this.n, this.r, zw2Var);
+    }
+
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        return ((w9a) create((ux2) obj, (zw2) obj2)).invokeSuspend(f9c.a);
+    }
+
+    @Override
+    public final java.lang.Object invokeSuspend(java.lang.Object r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.w9a.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 }

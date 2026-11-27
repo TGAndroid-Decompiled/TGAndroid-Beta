@@ -1,34 +1,23 @@
 package defpackage;
+
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class k7a {
-    public final k8a a;
-    public final k8a b;
+    public String a;
+    public String b;
+    public boolean c;
+    public String d;
+    public boolean e;
+    public TLRPC.TL_inputStickerSetItem f;
+    public oec g;
 
-    public k7a(k8a k8aVar, k8a k8aVar2) {
-        k8aVar.getClass();
-        k8aVar2.getClass();
-        this.a = k8aVar;
-        this.b = k8aVar2;
-    }
-
-    public final double a() {
-        Double d = this.a.d();
-        if (d != null) {
-            double doubleValue = d.doubleValue();
-            if (0.0d <= doubleValue && doubleValue <= 1.0d) {
-                return doubleValue;
-            }
-        }
-        Double d2 = this.b.d();
-        if (d2 != null) {
-            double doubleValue2 = d2.doubleValue();
-            if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {
-                return doubleValue2;
-            }
-        }
-        return 1.0d;
-    }
-
-    public final java.lang.Object b(defpackage.gw2 r6) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k7a.b(gw2):java.lang.Object");
+    public final void a(int i, TLRPC.InputFile inputFile, Runnable runnable) {
+        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
+        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
+        TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
+        tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
+        tL_inputMediaUploadedDocument.file = inputFile;
+        tL_inputMediaUploadedDocument.mime_type = this.d;
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_uploadMedia, new j7a(this, runnable), 2);
     }
 }

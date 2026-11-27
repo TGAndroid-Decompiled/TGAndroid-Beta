@@ -1,33 +1,43 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class ze implements Runnable {
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.ui.ActionBar.e;
+public final class ze implements fd {
     public final byte a;
-    public final int b;
-    public final TLRPC.Updates c;
+    public final String b;
+    public final e c;
 
-    public ze(int i, TLRPC.Updates updates, byte b) {
+    public ze(byte b, String str, e eVar) {
         this.a = b;
-        this.b = i;
-        this.c = updates;
+        this.b = str;
+        this.c = eVar;
     }
 
     @Override
-    public final void run() {
+    public final void w(id idVar, int i) {
         byte b = this.a;
-        TLRPC.Updates updates = this.c;
-        int i = this.b;
+        e eVar = this.c;
+        String str = this.b;
         switch (b) {
             case 0:
-                na7.q1(i).R3(updates, false);
-                return;
-            case 1:
-                ConnectionsManager.lambda$onUnparsedMessageReceived$12(i, updates);
-                return;
+                try {
+                    Intent intent = new Intent("android.intent.action.VIEW", Uri.fromParts("sms", str, null));
+                    intent.putExtra("sms_body", lv2.r(eVar.getCurrentAccount()).s(1));
+                    eVar.getParentActivity().startActivityForResult(intent, 500);
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
             default:
-                na7.q1(i).R3(updates, false);
-                return;
+                try {
+                    eVar.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
+                }
         }
     }
 }

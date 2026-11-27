@@ -1,169 +1,91 @@
 package defpackage;
 
-import android.util.SparseArray;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public class vb4 extends r35 {
-    public final SparseArray Q;
-    public int R;
-    public int S;
-    public int T;
-    public final int U;
-    public final o39 V;
-    public boolean W;
-    public boolean X;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class vb4 {
+    public final Object a;
+    public final TLRPC.Document b;
+    public final String c;
+    public final byte d;
+    public final xb4 e;
 
-    public vb4(int i, r65 r65Var) {
-        super(i, false);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = r65Var;
-        this.U = 0;
+    public vb4(xb4 xb4Var, Object obj, TLRPC.Document document, String str, int i) {
+        this.e = xb4Var;
+        this.a = obj;
+        this.b = document;
+        this.c = str;
+        this.d = i;
     }
 
-    public boolean A1() {
-        return true;
+    public final void a(defpackage.hb4 r14, long r15, long r17) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vb4.a(hb4, long, long):void");
     }
 
-    @Override
-    public final void P() {
-        this.Q.clear();
-        z1();
-    }
-
-    @Override
-    public final void U(RecyclerView recyclerView, int i, int i2) {
-        super.U(recyclerView, i, i2);
-        z1();
-    }
-
-    @Override
-    public final void V(RecyclerView recyclerView) {
-        this.Q.clear();
-        z1();
-        super.V(recyclerView);
-    }
-
-    @Override
-    public final void W(RecyclerView recyclerView, int i, int i2) {
-        super.W(recyclerView, i, i2);
-        z1();
-    }
-
-    @Override
-    public final void X(RecyclerView recyclerView, int i, int i2) {
-        super.X(recyclerView, i, i2);
-        z1();
-    }
-
-    @Override
-    public final void Y() {
-        z1();
-    }
-
-    @Override
-    public final void Z(RecyclerView recyclerView, int i, int i2, Object obj) {
-        super.Z(recyclerView, i, i2, obj);
-        z1();
-    }
-
-    @Override
-    public final void c0(wg2 wg2Var, p49 p49Var, int i, int i2) {
-        int i3 = this.S;
-        this.T = View.MeasureSpec.getSize(i);
-        int size = View.MeasureSpec.getSize(i2);
-        this.S = size;
-        if (i3 != size) {
-            z1();
+    public final void b(hb4 hb4Var, int i) {
+        int i2;
+        Object obj = this.a;
+        xb4 xb4Var = this.e;
+        ConcurrentHashMap concurrentHashMap = xb4Var.x;
+        String str = this.c;
+        concurrentHashMap.remove(str);
+        xb4.K.d(new cv2(xb4Var, hb4Var.e1, hb4Var, (byte) 28), 0L);
+        sm5 sm5Var = xb4Var.F;
+        if (sm5Var != null) {
+            sm5Var.b.u.remove(str);
+            i2 = i;
+            hl.c3(new aq1(sm5Var, str, i2, sm5Var.a, (byte) 6));
+        } else {
+            i2 = i;
         }
-        super.c0(wg2Var, p49Var, i, i2);
-    }
-
-    @Override
-    public final boolean e() {
-        return this.X;
-    }
-
-    @Override
-    public final void v1(int i, View view, boolean z) {
-        if (this.V.G(view).b() == A() - 1) {
-            ((ViewGroup.MarginLayoutParams) ((e49) view.getLayoutParams())).height = Math.max(this.R, 0);
+        if (this.b != null && (obj instanceof r47) && i2 == 0) {
+            lq3 downloadController = xb4Var.getDownloadController();
+            r47 r47Var = (r47) obj;
+            downloadController.getClass();
+            hl.c3(new ze7(downloadController, r47Var, i2, (byte) 22));
+            downloadController.getMessagesStorage().a.c(new gq3(downloadController, r47Var, (byte) 0));
+        } else if (i2 == -1) {
+            LaunchActivity.F(2);
         }
-        super.v1(i, view, z);
     }
 
-    public final void z1() {
-        o39 o39Var;
-        w39 adapter;
-        int i;
-        o39 o39Var2;
-        if (this.S > 0 && A1() && (adapter = (o39Var = this.V).getAdapter()) != null) {
-            int i2 = this.J;
-            boolean z = true;
-            int b = adapter.b() - 1;
-            yo yoVar = this.O;
-            boolean z2 = true;
-            int i3 = 0;
-            int i4 = 0;
-            int i5 = 0;
-            while (true) {
-                i = this.U;
-                if (i3 < b) {
-                    int i6 = yoVar.i(i3);
-                    i4 += i6;
-                    if (i6 == i2 || i4 > i2) {
-                        z2 = z;
-                        i4 = i6;
-                    }
-                    if (!z2) {
-                        o39Var2 = o39Var;
-                    } else {
-                        int d = adapter.d(i3);
-                        SparseArray sparseArray = this.Q;
-                        s49 s49Var = (s49) sparseArray.get(d, null);
-                        if (s49Var == null) {
-                            s49Var = adapter.a(o39Var, d);
-                            View view = s49Var.a;
-                            sparseArray.put(d, s49Var);
-                            if (view.getLayoutParams() == null) {
-                                view.setLayoutParams(n());
-                            }
-                        }
-                        View view2 = s49Var.a;
-                        if (this.W) {
-                            adapter.t(s49Var, i3);
-                        }
-                        e49 e49Var = (e49) view2.getLayoutParams();
-                        o39Var2 = o39Var;
-                        view2.measure(d49.s(d(), this.T, this.k, D() + C() + ((ViewGroup.MarginLayoutParams) e49Var).leftMargin + ((ViewGroup.MarginLayoutParams) e49Var).rightMargin, ((ViewGroup.MarginLayoutParams) e49Var).width), d49.s(this.X, this.S, this.l, B() + E() + ((ViewGroup.MarginLayoutParams) e49Var).topMargin + ((ViewGroup.MarginLayoutParams) e49Var).bottomMargin, ((ViewGroup.MarginLayoutParams) e49Var).height));
-                        i5 += view2.getMeasuredHeight();
-                        if (i5 >= (this.S - i) - o39Var2.getPaddingBottom()) {
-                            break;
-                        }
-                        z2 = false;
-                    }
-                    i3++;
-                    o39Var = o39Var2;
-                    z = true;
-                } else {
-                    o39Var2 = o39Var;
-                    break;
+    public final void c(hb4 hb4Var, File file) {
+        Object obj = this.a;
+        xb4 xb4Var = this.e;
+        if (!hb4Var.y && hb4Var.z) {
+            xb4.K.d(new cv2(xb4Var, hb4Var.e1, hb4Var, (byte) 28), 0L);
+            return;
+        }
+        hc4 E = xb4.E(obj);
+        if (E != null) {
+            ic4 ic4Var = xb4Var.getFileLoader().d;
+            ic4Var.getClass();
+            if (file != null) {
+                ic4Var.h(new cv2(ic4Var, file, E, (byte) 29));
+            }
+        }
+        if (obj instanceof r47) {
+            r47 r47Var = (r47) obj;
+            if (this.b != null && r47Var.P) {
+                lq3 downloadController = xb4Var.getDownloadController();
+                downloadController.getClass();
+                if (r47Var.F0() != null) {
+                    hl.c3(new iq3(downloadController, r47Var.F0(), r47Var, (byte) 1));
                 }
             }
-            this.R = Math.max(0, ((this.S - i5) - i) - o39Var2.getPaddingBottom());
         }
-    }
-
-    public vb4(int i, int i2, o39 o39Var) {
-        super(i);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = o39Var;
-        this.U = i2;
+        if (!hb4Var.y) {
+            xb4Var.x.remove(this.c);
+            sm5 sm5Var = xb4Var.F;
+            if (sm5Var != null) {
+                String str = this.c;
+                Object obj2 = this.a;
+                byte b = this.d;
+                sm5Var.b.u.remove(str);
+                hl.c3(new a52(sm5Var, file, str, sm5Var.a, obj2, b));
+            }
+        }
+        xb4.K.d(new cv2(xb4Var, hb4Var.e1, hb4Var, (byte) 28), 0L);
     }
 }

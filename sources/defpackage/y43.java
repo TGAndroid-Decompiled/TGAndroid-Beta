@@ -1,29 +1,40 @@
 package defpackage;
+public final class y43 implements Runnable {
+    public final byte a;
+    public final e53 b;
 
-import android.os.StrictMode;
-import java.util.Locale;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicLong;
-public final class y43 implements ThreadFactory {
-    public static final ThreadFactory e = Executors.defaultThreadFactory();
-    public final AtomicLong a = new AtomicLong();
-    public final String b;
-    public final byte c;
-    public final StrictMode.ThreadPolicy d;
-
-    public y43(String str, int i, StrictMode.ThreadPolicy threadPolicy) {
-        this.b = str;
-        this.c = i;
-        this.d = threadPolicy;
+    public y43(e53 e53Var, byte b) {
+        this.a = b;
+        this.b = e53Var;
     }
 
     @Override
-    public final Thread newThread(Runnable runnable) {
-        Thread newThread = e.newThread(new gu2(this, runnable, (byte) 25));
-        Locale locale = Locale.ROOT;
-        long andIncrement = this.a.getAndIncrement();
-        newThread.setName(this.b + " Thread #" + andIncrement);
-        return newThread;
+    public final void run() {
+        byte b = this.a;
+        e53 e53Var = this.b;
+        switch (b) {
+            case 0:
+                e53Var.a.invalidate();
+                return;
+            default:
+                tt ttVar = e53Var.c;
+                if (ttVar.getParent() != null) {
+                    if (e53Var.d) {
+                        hl.B2(ttVar);
+                    } else {
+                        try {
+                            e53Var.b.removeView(ttVar);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    uk8 uk8Var = e53Var.p;
+                    if (uk8Var != null) {
+                        uk8Var.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

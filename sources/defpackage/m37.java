@@ -1,28 +1,64 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-public final class m37 extends jia {
-    public final Paint N0;
-    public final wjb O0;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class m37 extends Drawable {
+    public Paint a;
+    public Paint b;
+    public long c;
+    public float d;
+    public boolean e;
+    public boolean f;
+    public float g;
+    public float h;
+    public float i;
+    public float j;
+    public float k;
+    public long l;
+    public wb2 m;
 
-    public m37(Context context, wjb wjbVar) {
-        super(context);
-        this.O0 = wjbVar;
-        this.N0 = new Paint(1);
+    public final void a() {
+        int i;
+        int i2;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f = bounds.left - centerX;
+        float f2 = bounds.top - centerY;
+        this.g = (float) Math.ceil(Math.sqrt(qd4.A(i2, centerY, f2, f * (i - centerX))));
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int v0 = bkb.v0(bkb.J5, this.O0);
-        Paint paint = this.N0;
-        paint.setColor(v0);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - gl.L(8.0f), height, paint);
-        canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + gl.L(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.m37.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.a.setAlpha(i);
+    }
+
+    @Override
+    public final void setBounds(int i, int i2, int i3, int i4) {
+        super.setBounds(i, i2, i3, i4);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

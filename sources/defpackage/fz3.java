@@ -1,19 +1,37 @@
 package defpackage;
 
-import android.content.Context;
-public final class fz3 extends h14 {
-    public final t14 I;
+import android.graphics.Rect;
+import android.text.method.TransformationMethod;
+import android.view.View;
+public final class fz3 implements TransformationMethod {
+    public final TransformationMethod a;
 
-    public fz3(t14 t14Var, Context context) {
-        super(t14Var, context, 0);
-        this.I = t14Var;
+    public fz3(TransformationMethod transformationMethod) {
+        this.a = transformationMethod;
     }
 
     @Override
-    public final void setTranslationY(float f) {
-        if (f != getTranslationY()) {
-            super.setTranslationY(f);
-            this.I.y0.invalidate();
+    public final CharSequence getTransformation(CharSequence charSequence, View view) {
+        if (view.isInEditMode()) {
+            return charSequence;
+        }
+        TransformationMethod transformationMethod = this.a;
+        if (transformationMethod != null) {
+            charSequence = transformationMethod.getTransformation(charSequence, view);
+        }
+        if (charSequence != null && gx3.a().b() == 1) {
+            gx3 a = gx3.a();
+            a.getClass();
+            return a.e(0, charSequence.length(), charSequence);
+        }
+        return charSequence;
+    }
+
+    @Override
+    public final void onFocusChanged(View view, CharSequence charSequence, boolean z, int i, Rect rect) {
+        TransformationMethod transformationMethod = this.a;
+        if (transformationMethod != null) {
+            transformationMethod.onFocusChanged(view, charSequence, z, i, rect);
         }
     }
 }

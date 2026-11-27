@@ -1,102 +1,144 @@
 package defpackage;
 
-import android.media.session.PlaybackState;
-import android.os.Bundle;
-import java.util.List;
-public abstract class ac8 {
-    public static void a(PlaybackState.Builder builder, PlaybackState.CustomAction customAction) {
-        builder.addCustomAction(customAction);
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.SecretMediaViewer;
+public final class ac8 extends kfc {
+    public final byte n0;
+    public final fn7 o0;
+
+    public ac8(fn7 fn7Var, byte b) {
+        this.n0 = b;
+        this.o0 = fn7Var;
     }
 
-    public static PlaybackState.CustomAction b(PlaybackState.CustomAction.Builder builder) {
-        return builder.build();
+    @Override
+    public final void f0() {
+        byte b = this.n0;
+        fn7 fn7Var = this.o0;
+        switch (b) {
+            case 0:
+                super.f0();
+                PhotoViewer photoViewer = (PhotoViewer) fn7Var;
+                if (photoViewer.t4 == 0) {
+                    photoViewer.q1(false);
+                }
+                if (!photoViewer.T8) {
+                    go.F(S());
+                    go.z(false);
+                    return;
+                }
+                return;
+            default:
+                super.f0();
+                ((SecretMediaViewer) fn7Var).V.a(false, true);
+                return;
+        }
     }
 
-    public static PlaybackState c(PlaybackState.Builder builder) {
-        return builder.build();
+    @Override
+    public final void g0() {
+        byte b = this.n0;
+        fn7 fn7Var = this.o0;
+        switch (b) {
+            case 0:
+                super.g0();
+                PhotoViewer photoViewer = (PhotoViewer) fn7Var;
+                Drawable[] drawableArr = PhotoViewer.d9;
+                photoViewer.q1(true);
+                if (!photoViewer.T8) {
+                    go.F(S());
+                    go.z(true);
+                    return;
+                }
+                return;
+            default:
+                super.g0();
+                ((SecretMediaViewer) fn7Var).V.a(true, true);
+                return;
+        }
     }
 
-    public static PlaybackState.Builder d() {
-        return new PlaybackState.Builder();
+    @Override
+    public final void o0(long j) {
+        switch (this.n0) {
+            case 0:
+                p0(j, false);
+                PhotoViewer photoViewer = (PhotoViewer) this.o0;
+                if (photoViewer.s1) {
+                    photoViewer.B1(j);
+                }
+                if (!photoViewer.T8) {
+                    go.F(j);
+                    return;
+                }
+                return;
+            default:
+                super.o0(j);
+                return;
+        }
     }
 
-    public static PlaybackState.CustomAction.Builder e(String str, CharSequence charSequence, int i) {
-        return new PlaybackState.CustomAction.Builder(str, charSequence, i);
+    @Override
+    public final void onRenderedFirstFrame() {
+        of8 f;
+        switch (this.n0) {
+            case 0:
+                super.onRenderedFirstFrame();
+                PhotoViewer photoViewer = (PhotoViewer) this.o0;
+                boolean z = true;
+                photoViewer.S = true;
+                if (photoViewer.E2) {
+                    photoViewer.f0.invalidate();
+                }
+                photoViewer.N2();
+                if (!go.w() && !photoViewer.r) {
+                    z = false;
+                }
+                s0(z);
+                if (!photoViewer.T8) {
+                    go.F(S());
+                    s64 s64Var = this.d;
+                    float f2 = 1.0f;
+                    if (s64Var != null && (f = s64Var.f()) != null) {
+                        f2 = f.a;
+                    }
+                    go.B(f2);
+                    return;
+                }
+                return;
+            default:
+                super.onRenderedFirstFrame();
+                return;
+        }
     }
 
-    public static String f(PlaybackState.CustomAction customAction) {
-        return customAction.getAction();
+    @Override
+    public final void t0(boolean z) {
+        switch (this.n0) {
+            case 1:
+                super.t0(z);
+                ((SecretMediaViewer) this.o0).V.a(z, true);
+                return;
+            default:
+                super.t0(z);
+                return;
+        }
     }
 
-    public static long g(PlaybackState playbackState) {
-        return playbackState.getActions();
-    }
-
-    public static long h(PlaybackState playbackState) {
-        return playbackState.getActiveQueueItemId();
-    }
-
-    public static long i(PlaybackState playbackState) {
-        return playbackState.getBufferedPosition();
-    }
-
-    public static List<PlaybackState.CustomAction> j(PlaybackState playbackState) {
-        return playbackState.getCustomActions();
-    }
-
-    public static CharSequence k(PlaybackState playbackState) {
-        return playbackState.getErrorMessage();
-    }
-
-    public static Bundle l(PlaybackState.CustomAction customAction) {
-        return customAction.getExtras();
-    }
-
-    public static int m(PlaybackState.CustomAction customAction) {
-        return customAction.getIcon();
-    }
-
-    public static long n(PlaybackState playbackState) {
-        return playbackState.getLastPositionUpdateTime();
-    }
-
-    public static CharSequence o(PlaybackState.CustomAction customAction) {
-        return customAction.getName();
-    }
-
-    public static float p(PlaybackState playbackState) {
-        return playbackState.getPlaybackSpeed();
-    }
-
-    public static long q(PlaybackState playbackState) {
-        return playbackState.getPosition();
-    }
-
-    public static int r(PlaybackState playbackState) {
-        return playbackState.getState();
-    }
-
-    public static void s(PlaybackState.Builder builder, long j) {
-        builder.setActions(j);
-    }
-
-    public static void t(PlaybackState.Builder builder, long j) {
-        builder.setActiveQueueItemId(j);
-    }
-
-    public static void u(PlaybackState.Builder builder, long j) {
-        builder.setBufferedPosition(j);
-    }
-
-    public static void v(PlaybackState.Builder builder, CharSequence charSequence) {
-        builder.setErrorMessage(charSequence);
-    }
-
-    public static void w(PlaybackState.CustomAction.Builder builder, Bundle bundle) {
-        builder.setExtras(bundle);
-    }
-
-    public static void x(PlaybackState.Builder builder, int i, long j, float f, long j2) {
-        builder.setState(i, j, f, j2);
+    @Override
+    public final void u0(float f) {
+        switch (this.n0) {
+            case 0:
+                super.u0(f);
+                if (!((PhotoViewer) this.o0).T8) {
+                    go.B(f);
+                    return;
+                }
+                return;
+            default:
+                super.u0(f);
+                return;
+        }
     }
 }

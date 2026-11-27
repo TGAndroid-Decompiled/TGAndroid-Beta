@@ -1,40 +1,46 @@
 package defpackage;
 
-import android.widget.Toast;
-import java.util.ArrayList;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class ud2 implements ResultCallback {
-    public final je2 a;
-    public final xd2 b;
-
-    public ud2(xd2 xd2Var, je2 je2Var) {
-        this.b = xd2Var;
-        this.a = je2Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class ud2 extends i49 {
+    public float n1;
+    public long o1;
 
     @Override
-    public final void onComplete(Object obj) {
-        int i;
-        Void r6 = (Void) obj;
-        je2 je2Var = this.a;
-        if (je2Var.f.c) {
-            i = 2;
-        } else {
-            i = 0;
+    public final void draw(Canvas canvas) {
+        long min = Math.min(16L, System.currentTimeMillis() - this.o1);
+        this.o1 = System.currentTimeMillis();
+        RectF rectF = hl.P;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.saveLayerAlpha(rectF, (int) (this.n1 * 255.0f), 31);
+        super.draw(canvas);
+        canvas.restore();
+        if (!isEnabled()) {
+            float f = this.n1;
+            if (f != 0.0f) {
+                this.n1 = bp1.x((float) min, 150.0f, f, 0.0f);
+                invalidate();
+                if (this.n1 == 0.0f) {
+                    setVisibility(8);
+                    return;
+                }
+                return;
+            }
         }
-        ArrayList d = je2Var.d(i | 5);
-        xd2 xd2Var = this.b;
-        kk7.f(xd2Var.a).d(new n92(this, d, (byte) 11));
-        xd2Var.U1 = false;
+        if (isEnabled()) {
+            float f2 = this.n1;
+            if (f2 != 1.0f) {
+                this.n1 = qu6.z((float) min, 150.0f, f2, 1.0f);
+                invalidate();
+            }
+        }
     }
 
     @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.b.getContext(), tL_error.text, 0).show();
-    }
-
-    @Override
-    public final void onError(Throwable th) {
+    public final void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 8 && this.n1 != 0.0f) {
+            this.n1 = 0.0f;
+        }
     }
 }

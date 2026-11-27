@@ -1,17 +1,29 @@
 package defpackage;
-public final class dkd implements zn7 {
-    public static final dkd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)), 4)));
+import java.util.AbstractMap;
+public final class dkd extends ghd {
+    public final ikd h;
+
+    public dkd(ikd ikdVar) {
+        super((byte) 1);
+        this.h = ikdVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object get(int i) {
+        ikd ikdVar = this.h;
+        b9f.a(i, ikdVar.r ? 1 : 0);
+        int i2 = i << 1;
+        Object[] objArr = ikdVar.n;
+        Object obj = objArr[i2];
+        obj.getClass();
+        Object obj2 = objArr[i2 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    }
+
+    @Override
+    public final int size() {
+        return this.h.r ? 1 : 0;
     }
 }

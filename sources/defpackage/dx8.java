@@ -1,24 +1,26 @@
 package defpackage;
 
-import java.io.File;
-import java.nio.charset.Charset;
-public final class dx8 implements ga4 {
-    public static final Charset c = Charset.forName("UTF-8");
-    public final File a;
-    public cx8 b;
+import android.view.View;
+import org.telegram.ui.ProxyListActivity;
+public final class dx8 implements t69, fd {
+    public final ProxyListActivity a;
 
-    public dx8(File file) {
-        this.a = file;
+    public dx8(ProxyListActivity proxyListActivity) {
+        this.a = proxyListActivity;
     }
 
     @Override
-    public final void a() {
-        pm2.b(this.b, "There was a problem closing the Crashlytics log file.");
-        this.b = null;
+    public final boolean e(int i, View view) {
+        ProxyListActivity proxyListActivity = this.a;
+        if (i >= proxyListActivity.n && i < proxyListActivity.r) {
+            proxyListActivity.a.P(i);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final java.lang.String b() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dx8.b():java.lang.String");
+    public final void w(id idVar, int i) {
+        this.a.e0();
     }
 }

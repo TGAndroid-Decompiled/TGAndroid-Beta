@@ -1,77 +1,65 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class qna implements p8c {
-    public final byte a;
-    public final vqa b;
+import java.util.Iterator;
+import java.util.Map;
+public final class qna implements Iterator {
+    public int a = -1;
+    public boolean b;
+    public Iterator c;
+    public final ona d;
 
-    public qna(vqa vqaVar, byte b) {
-        this.a = b;
-        this.b = vqaVar;
+    public qna(ona onaVar) {
+        this.d = onaVar;
+    }
+
+    public final Iterator a() {
+        Iterator it = this.c;
+        if (it == null) {
+            Iterator it2 = this.d.b.entrySet().iterator();
+            this.c = it2;
+            return it2;
+        }
+        return it;
     }
 
     @Override
-    public final void a(Object obj) {
-        TLRPC.Message message;
-        byte b = this.a;
-        vqa vqaVar = this.b;
-        switch (b) {
-            case 0:
-                ((Boolean) obj).booleanValue();
-                vqaVar.dismiss();
-                return;
-            case 1:
-                if (((Boolean) obj).booleanValue()) {
-                    vqaVar.O0 = true;
-                }
-                vqaVar.dismiss();
-                return;
-            case 2:
-                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                if (stargiftupgradepreview == null) {
-                    vqaVar.getClass();
-                    return;
-                }
-                vqaVar.m3 = stargiftupgradepreview.sample_attributes;
-                vqaVar.n3 = stargiftupgradepreview.prices;
-                vqaVar.o3 = stargiftupgradepreview.next_prices;
-                vqaVar.e2();
-                return;
-            default:
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                vqaVar.I2 = false;
-                vqaVar.J2 = true;
-                if (savedStarGift != null) {
-                    vqaVar.k3 = Boolean.valueOf(savedStarGift.unsaved);
-                    k27 k27Var = vqaVar.C2;
-                    if (k27Var != null && (message = k27Var.k) != null) {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
-                            boolean z = tL_messageActionStarGiftUnique.saved;
-                            boolean z2 = !savedStarGift.unsaved;
-                            if (z != z2) {
-                                tL_messageActionStarGiftUnique.saved = z2;
-                            } else {
-                                return;
-                            }
-                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
-                            boolean z3 = tL_messageActionStarGift.saved;
-                            boolean z4 = !savedStarGift.unsaved;
-                            if (z3 != z4) {
-                                tL_messageActionStarGift.saved = z4;
-                            } else {
-                                return;
-                            }
-                        }
-                        vqaVar.l2(k27Var, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final boolean hasNext() {
+        int i = this.a + 1;
+        ona onaVar = this.d;
+        if (i < onaVar.a.size() || (!onaVar.b.isEmpty() && a().hasNext())) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        this.b = true;
+        int i = this.a + 1;
+        this.a = i;
+        ona onaVar = this.d;
+        if (i < onaVar.a.size()) {
+            return (Map.Entry) onaVar.a.get(this.a);
+        }
+        return (Map.Entry) a().next();
+    }
+
+    @Override
+    public final void remove() {
+        if (this.b) {
+            this.b = false;
+            int i = ona.f;
+            ona onaVar = this.d;
+            onaVar.c();
+            if (this.a < onaVar.a.size()) {
+                int i2 = this.a;
+                this.a = i2 - 1;
+                onaVar.i(i2);
+                return;
+            }
+            a().remove();
+            return;
+        }
+        grb.i("remove() was called before next()");
     }
 }

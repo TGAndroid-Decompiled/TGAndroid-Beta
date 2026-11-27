@@ -1,40 +1,66 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-public final class nq2 extends g2 {
-    public static final z24 f;
-    public List e;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import java.util.concurrent.Executor;
+public final class nq2 implements ViewTreeObserver.OnDrawListener, Runnable, Executor {
+    public Runnable b;
+    public final pq2 d;
+    public final long a = SystemClock.uptimeMillis() + 10000;
+    public boolean c = false;
 
-    static {
-        z74 z74Var = new z74(nq2.class, "CompositionTimeToSample.java");
-        z74Var.e(z74Var.d("getEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "", "", "java.util.List"));
-        f = z74Var.e(z74Var.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
+    public nq2(pq2 pq2Var) {
+        this.d = pq2Var;
     }
 
-    @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        f(byteBuffer);
-        int a = mqd.a(hle.g(byteBuffer));
-        this.e = new ArrayList(a);
-        for (int i = 0; i < a; i++) {
-            this.e.add(new mq2(mqd.a(hle.g(byteBuffer)), byteBuffer.getInt()));
+    public final void a(View view) {
+        if (!this.c) {
+            this.c = true;
+            view.getViewTreeObserver().addOnDrawListener(this);
         }
     }
 
     @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        i(byteBuffer);
-        byteBuffer.putInt(this.e.size());
-        for (mq2 mq2Var : this.e) {
-            byteBuffer.putInt(mq2Var.a);
-            byteBuffer.putInt(mq2Var.b);
+    public final void execute(Runnable runnable) {
+        this.b = runnable;
+        View decorView = this.d.getWindow().getDecorView();
+        if (this.c) {
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                decorView.invalidate();
+                return;
+            } else {
+                decorView.postInvalidate();
+                return;
+            }
+        }
+        decorView.postOnAnimation(new vd2(this, (byte) 10));
+    }
+
+    @Override
+    public final void onDraw() {
+        boolean z;
+        Runnable runnable = this.b;
+        if (runnable != null) {
+            runnable.run();
+            this.b = null;
+            rx rxVar = this.d.s;
+            synchronized (rxVar.c) {
+                z = rxVar.b;
+            }
+            if (z) {
+                this.c = false;
+                this.d.getWindow().getDecorView().post(this);
+            }
+        } else if (SystemClock.uptimeMillis() > this.a) {
+            this.c = false;
+            this.d.getWindow().getDecorView().post(this);
         }
     }
 
     @Override
-    public final long getContentSize() {
-        return (this.e.size() << 3) + 8;
+    public final void run() {
+        this.d.getWindow().getDecorView().getViewTreeObserver().removeOnDrawListener(this);
     }
 }

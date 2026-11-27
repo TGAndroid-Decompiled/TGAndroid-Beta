@@ -1,105 +1,77 @@
 package defpackage;
 
+import android.util.Pair;
 import java.util.ArrayList;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class lo6 implements Runnable {
-    public final byte a;
-    public final Object b;
-    public final Object c;
-    public final Object d;
+public final class lo6 {
+    public final int a;
+    public TLRPC.TL_inputDocument b;
+    public long c = -9223372036854775807L;
+    public final ArrayList d = new ArrayList();
+    public final z96 e = new z96(this, (byte) 15);
 
-    public lo6(byte b, Object obj, Object obj2, TLObject tLObject) {
-        this.a = b;
-        this.b = obj;
-        this.d = obj2;
-        this.c = tLObject;
+    public lo6(int i) {
+        this.a = i;
     }
 
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lo6.a():void");
-    }
-
-    private final void b() {
-        int currentTime;
-        int i;
-        SQLitePreparedStatement executeFast;
-        ad7 ad7Var = (ad7) this.b;
-        TLObject tLObject = (TLObject) this.c;
-        String str = (String) this.d;
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        try {
-            try {
-                currentTime = ad7Var.getConnectionsManager().getCurrentTime();
-            } catch (Throwable th) {
-                th = th;
-            }
-        } catch (Exception e) {
-            e = e;
+    public final void a() {
+        if (this.b == null) {
+            return;
         }
-        try {
-            if (tLObject instanceof TLRPC.TL_messages_botCallbackAnswer) {
-                i = ((TLRPC.TL_messages_botCallbackAnswer) tLObject).cache_time;
+        d();
+        this.b = null;
+    }
+
+    public final long b() {
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        long j = 0;
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            Pair pair = (Pair) obj;
+            j += ((Long) pair.second).longValue() - ((Long) pair.first).longValue();
+        }
+        return j;
+    }
+
+    public final void c(long j, long j2) {
+        ArrayList arrayList;
+        int i = 0;
+        while (true) {
+            arrayList = this.d;
+            if (i >= arrayList.size() || ((Long) ((Pair) arrayList.get(i)).first).longValue() > j) {
+                break;
+            }
+            i++;
+        }
+        arrayList.add(i, new Pair(Long.valueOf(j), Long.valueOf(j2)));
+        int max = Math.max(0, i - 1);
+        while (max < arrayList.size() - 1) {
+            Pair pair = (Pair) arrayList.get(max);
+            int i2 = max + 1;
+            Pair pair2 = (Pair) arrayList.get(i2);
+            if (((Long) pair.second).longValue() >= ((Long) pair2.first).longValue()) {
+                arrayList.set(max, new Pair((Long) pair.first, Long.valueOf(Math.max(((Long) pair.second).longValue(), ((Long) pair2.second).longValue()))));
+                arrayList.remove(i2);
             } else {
-                if (tLObject instanceof TLRPC.TL_messages_botResults) {
-                    i = ((TLRPC.TL_messages_botResults) tLObject).cache_time;
-                }
-                executeFast = ad7Var.b.executeFast("REPLACE INTO botcache VALUES(?, ?, ?)");
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
-                tLObject.serializeToStream(nativeByteBuffer);
-                executeFast.bindString(1, str);
-                executeFast.bindInteger(2, currentTime);
-                executeFast.bindByteBuffer(3, nativeByteBuffer);
-                executeFast.step();
-                executeFast.dispose();
-                nativeByteBuffer.reuse();
-                return;
+                max = i2;
             }
-            NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tLObject.getObjectSize());
-            tLObject.serializeToStream(nativeByteBuffer2);
-            executeFast.bindString(1, str);
-            executeFast.bindInteger(2, currentTime);
-            executeFast.bindByteBuffer(3, nativeByteBuffer2);
-            executeFast.step();
-            executeFast.dispose();
-            nativeByteBuffer2.reuse();
-            return;
-        } catch (Exception e2) {
-            e = e2;
-            sQLitePreparedStatement = executeFast;
-            ad7Var.n(e, true);
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
-                return;
-            }
-            return;
-        } catch (Throwable th2) {
-            th = th2;
-            sQLitePreparedStatement = executeFast;
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
-            }
-            throw th;
         }
-        currentTime += i;
-        executeFast = ad7Var.b.executeFast("REPLACE INTO botcache VALUES(?, ?, ?)");
     }
 
-    private final void c() {
-        ((ad7) this.b).getNotificationCenter().k(kk7.l0, Long.valueOf(k27.B0(((k27) this.c).k)), (ArrayList) this.d);
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lo6.run():void");
-    }
-
-    public lo6(Object obj, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
-        this.d = obj3;
+    public final void d() {
+        hl.r(this.e);
+        if (this.b == null || b() < 3000) {
+            return;
+        }
+        TLRPC.TL_messages_reportMusicListen tL_messages_reportMusicListen = new TLRPC.TL_messages_reportMusicListen();
+        tL_messages_reportMusicListen.id = this.b;
+        tL_messages_reportMusicListen.listened_duration = (int) Math.round(b() / 1000.0d);
+        ConnectionsManager.getInstance(this.a).sendRequest(tL_messages_reportMusicListen, null);
+        this.c = -9223372036854775807L;
+        this.d.clear();
     }
 }

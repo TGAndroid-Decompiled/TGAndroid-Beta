@@ -1,184 +1,64 @@
 package defpackage;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-public final class qd7 extends ug0 implements Handler.Callback {
-    public final ize K;
-    public final t54 L;
-    public final Handler M;
-    public final nd7 N;
-    public fue O;
-    public boolean P;
-    public boolean Q;
-    public long R;
-    public ld7 S;
-    public long T;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class qd7 implements Runnable {
+    public final byte a = 0;
+    public final long b;
+    public final long c;
+    public final boolean d;
+    public final Object e;
+    public final TLObject f;
 
-    public qd7(t54 t54Var, Looper looper) {
-        super(5);
-        Handler handler;
-        ize izeVar = ize.d;
-        this.L = t54Var;
-        if (looper == null) {
-            handler = null;
-        } else {
-            String str = g8c.a;
-            handler = new Handler(looper, this);
-        }
-        this.M = handler;
-        this.K = izeVar;
-        this.N = new nd7();
-        this.T = -9223372036854775807L;
+    public qd7(jf7 jf7Var, long j, boolean z, TLRPC.InputPeer inputPeer, long j2) {
+        this.e = jf7Var;
+        this.b = j;
+        this.d = z;
+        this.f = inputPeer;
+        this.c = j2;
     }
 
     @Override
-    public final void B(long r12, long r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qd7.B(long, long):void");
-    }
-
-    @Override
-    public final int G(fm4 fm4Var) {
-        int i;
-        if (this.K.j(fm4Var)) {
-            if (fm4Var.X == 0) {
-                i = 4;
-            } else {
-                i = 2;
-            }
-            return ls6.a(i, 0, 0, 0);
-        }
-        return ls6.a(0, 0, 0, 0);
-    }
-
-    public final void K(ld7 ld7Var, ArrayList arrayList) {
-        int i = 0;
-        while (true) {
-            jd7[] jd7VarArr = ld7Var.a;
-            if (i < jd7VarArr.length) {
-                fm4 a = jd7VarArr[i].a();
-                if (a != null) {
-                    ize izeVar = this.K;
-                    if (izeVar.j(a)) {
-                        fue g = izeVar.g(a);
-                        byte[] c = jd7VarArr[i].c();
-                        c.getClass();
-                        nd7 nd7Var = this.N;
-                        nd7Var.clear();
-                        nd7Var.c(c.length);
-                        ByteBuffer byteBuffer = nd7Var.c;
-                        String str = g8c.a;
-                        byteBuffer.put(c);
-                        nd7Var.d();
-                        ld7 a2 = g.a(nd7Var);
-                        if (a2 != null) {
-                            K(a2, arrayList);
-                        }
-                        i++;
-                    }
-                }
-                arrayList.add(jd7VarArr[i]);
-                i++;
-            } else {
+    public final void run() {
+        TLRPC.PeerSettings peerSettings;
+        byte b = this.a;
+        TLObject tLObject = this.f;
+        Object obj = this.e;
+        switch (b) {
+            case 0:
+                ((jf7) obj).getMessagesController().K3(this.b, this.d, (TLRPC.InputPeer) tLObject, this.c);
                 return;
-            }
+            default:
+                jxa jxaVar = (jxa) obj;
+                int i = jxaVar.a;
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    long j = this.b;
+                    int i2 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
+                    long j2 = this.c;
+                    if (i2 != 0) {
+                        jxaVar.a0(-j, j2, this.d);
+                        return;
+                    }
+                    TLRPC.UserFull Y1 = uc7.s1(i).Y1(j2);
+                    if (Y1 != null && (peerSettings = Y1.settings) != null) {
+                        peerSettings.flags &= -16385;
+                        peerSettings.charge_paid_message_stars = 0L;
+                    }
+                    uc7.s1(i).W3.edit().putLong(qu6.n(j2, "dialog_bar_paying_"), 0L).apply();
+                    uc7.s1(i).i3(uc7.s1(i).X1(Long.valueOf(j2)), uc7.s1(i).M0(Long.valueOf(-j2)), true);
+                    lv2.r(i).D(true);
+                    jn7.f(i).k(242, Long.valueOf(j2));
+                    return;
+                }
+                return;
         }
     }
 
-    public final long L(long j) {
-        boolean z;
-        boolean z2 = false;
-        if (j != -9223372036854775807L) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.p(z);
-        if (this.T != -9223372036854775807L) {
-            z2 = true;
-        }
-        gre.p(z2);
-        return j - this.T;
-    }
-
-    public final void M(ld7 ld7Var) {
-        t54 t54Var = this.L;
-        y54 y54Var = t54Var.a;
-        jr6 jr6Var = y54Var.o0;
-        a66 a66Var = y54Var.m;
-        hr6 a = jr6Var.a();
-        int i = 0;
-        while (true) {
-            jd7[] jd7VarArr = ld7Var.a;
-            if (i >= jd7VarArr.length) {
-                break;
-            }
-            jd7VarArr[i].b(a);
-            i++;
-        }
-        y54Var.o0 = new jr6(a);
-        jr6 S0 = y54Var.S0();
-        if (!S0.equals(y54Var.Q)) {
-            y54Var.Q = S0;
-            a66Var.c(14, new kx3(t54Var, (byte) 9));
-        }
-        a66Var.c(28, new kx3(ld7Var, (byte) 10));
-        a66Var.b();
-    }
-
-    @Override
-    public final boolean handleMessage(Message message) {
-        if (message.what == 1) {
-            M((ld7) message.obj);
-            return true;
-        }
-        sdb.a();
-        return false;
-    }
-
-    @Override
-    public final String l() {
-        return "MetadataRenderer";
-    }
-
-    @Override
-    public final boolean n() {
-        return this.Q;
-    }
-
-    @Override
-    public final boolean o() {
-        return true;
-    }
-
-    @Override
-    public final void q() {
-        this.S = null;
-        this.O = null;
-        this.T = -9223372036854775807L;
-    }
-
-    @Override
-    public final void s(long j, boolean z, boolean z2) {
-        this.S = null;
-        this.P = false;
-        this.Q = false;
-    }
-
-    @Override
-    public final void y(fm4[] fm4VarArr, long j, long j2, rx6 rx6Var) {
-        this.O = this.K.g(fm4VarArr[0]);
-        ld7 ld7Var = this.S;
-        if (ld7Var != null) {
-            long j3 = ld7Var.b;
-            long j4 = (this.T + j3) - j2;
-            if (j3 != j4) {
-                ld7Var = new ld7(j4, ld7Var.a);
-            }
-            this.S = ld7Var;
-        }
-        this.T = j2;
+    public qd7(jxa jxaVar, TLObject tLObject, long j, long j2, boolean z) {
+        this.e = jxaVar;
+        this.f = tLObject;
+        this.b = j;
+        this.c = j2;
+        this.d = z;
     }
 }

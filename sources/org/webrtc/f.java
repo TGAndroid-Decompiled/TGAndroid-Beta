@@ -1,21 +1,30 @@
 package org.webrtc;
 
-import org.webrtc.VideoDecoder;
-import org.webrtc.VideoEncoder;
-public final class f implements VideoDecoder.Callback, VideoEncoder.Callback {
-    public final long a;
+import org.webrtc.TextureBufferImpl;
+import org.webrtc.VideoSource;
+public final class f implements Runnable {
+    public final byte a;
+    public final Object b;
+    public final Object c;
 
-    public f(long j) {
-        this.a = j;
+    public f(Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.b = obj;
+        this.c = obj2;
     }
 
     @Override
-    public final void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2) {
-        VideoDecoderWrapper.nativeOnDecodedFrame(this.a, videoFrame, num, num2);
-    }
-
-    @Override
-    public final void onEncodedFrame(EncodedImage encodedImage, VideoEncoder.CodecSpecificInfo codecSpecificInfo) {
-        VideoEncoderWrapper.a(this.a, encodedImage, codecSpecificInfo);
+    public final void run() {
+        byte b = this.a;
+        Object obj = this.c;
+        Object obj2 = this.b;
+        switch (b) {
+            case 0:
+                TextureBufferImpl.b((TextureBufferImpl) obj2, (TextureBufferImpl.RefCountMonitor) obj);
+                return;
+            default:
+                VideoSource.AnonymousClass1.b((VideoSource.AnonymousClass1) obj2, (VideoFrame) obj);
+                return;
+        }
     }
 }

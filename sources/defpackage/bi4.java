@@ -1,53 +1,72 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class bi4 extends w8b {
-    public ci4 n;
-    public ly0 o;
+import android.hardware.fingerprint.FingerprintManager;
+import java.lang.ref.WeakReference;
+import java.security.Signature;
+import javax.crypto.Cipher;
+import javax.crypto.Mac;
+public final class bi4 extends FingerprintManager.AuthenticationCallback {
+    public final z8d a;
+
+    public bi4(z8d z8dVar) {
+        this.a = z8dVar;
+    }
 
     @Override
-    public final boolean c(xu7 xu7Var, long j, v8b v8bVar) {
-        byte[] bArr = xu7Var.a;
-        ci4 ci4Var = this.n;
-        if (ci4Var == null) {
-            ci4 ci4Var2 = new ci4(17, bArr);
-            this.n = ci4Var2;
-            em4 a = ci4Var2.c(Arrays.copyOfRange(bArr, 9, xu7Var.c), null).a();
-            a.r = ud7.n("audio/ogg");
-            v8bVar.b = new fm4(a);
-            return true;
-        }
-        byte b = bArr[0];
-        if ((b & Byte.MAX_VALUE) == 3) {
-            lv6 b2 = qge.b(xu7Var);
-            ci4 ci4Var3 = new ci4(ci4Var.a, ci4Var.b, ci4Var.c, ci4Var.d, ci4Var.e, ci4Var.g, ci4Var.h, ci4Var.j, b2, ci4Var.l);
-            this.n = ci4Var3;
-            ?? obj = new Object();
-            obj.c = ci4Var3;
-            obj.d = b2;
-            obj.a = -1L;
-            obj.b = -1L;
-            this.o = obj;
-            return true;
-        } else if (b != -1) {
-            return true;
-        } else {
-            ly0 ly0Var = this.o;
-            if (ly0Var != null) {
-                ly0Var.a = j;
-                v8bVar.c = ly0Var;
+    public final void onAuthenticationError(int i, CharSequence charSequence) {
+        ((w40) this.a.b).c.a(i, charSequence);
+    }
+
+    @Override
+    public final void onAuthenticationFailed() {
+        WeakReference weakReference = ((w40) this.a.b).c.a;
+        if (weakReference.get() != null && ((mj0) weakReference.get()).l) {
+            mj0 mj0Var = (mj0) weakReference.get();
+            qj7 qj7Var = mj0Var.s;
+            if (qj7Var == null) {
+                qj7Var = new qj7();
+                mj0Var.s = qj7Var;
             }
-            ((fm4) v8bVar.b).getClass();
-            return false;
+            mj0.f(qj7Var, Boolean.TRUE);
         }
     }
 
     @Override
-    public final void d(boolean z) {
-        super.d(z);
-        if (z) {
-            this.n = null;
-            this.o = null;
+    public final void onAuthenticationHelp(int i, CharSequence charSequence) {
+        WeakReference weakReference = ((w40) this.a.b).c.a;
+        if (weakReference.get() != null) {
+            mj0 mj0Var = (mj0) weakReference.get();
+            qj7 qj7Var = mj0Var.r;
+            if (qj7Var == null) {
+                qj7Var = new qj7();
+                mj0Var.r = qj7Var;
+            }
+            mj0.f(qj7Var, charSequence);
         }
+    }
+
+    @Override
+    public final void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
+        z8d z8dVar = this.a;
+        pm3 f = ci4.f(ci4.b(authenticationResult));
+        z8dVar.getClass();
+        hj0 hj0Var = null;
+        if (f != null) {
+            Cipher cipher = (Cipher) f.c;
+            if (cipher != null) {
+                hj0Var = new hj0(cipher);
+            } else {
+                Signature signature = (Signature) f.b;
+                if (signature != null) {
+                    hj0Var = new hj0(signature);
+                } else {
+                    Mac mac = (Mac) f.d;
+                    if (mac != null) {
+                        hj0Var = new hj0(mac);
+                    }
+                }
+            }
+        }
+        ((w40) z8dVar.b).c.b(new gj0(hj0Var, 2));
     }
 }

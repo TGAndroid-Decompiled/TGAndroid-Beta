@@ -1,53 +1,48 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ou4 implements p8c {
-    public final byte a;
-    public final xu4 b;
+import j$.util.Objects;
+import java.util.Arrays;
+public final class ou4 extends wl5 {
+    public final String b;
+    public final String c;
+    public final String d;
+    public final byte[] e;
 
-    public ou4(xu4 xu4Var, byte b) {
-        this.a = b;
-        this.b = xu4Var;
+    public ou4(String str, byte[] bArr, String str2, String str3) {
+        super("GEOB");
+        this.b = str;
+        this.c = str2;
+        this.d = str3;
+        this.e = bArr;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && ou4.class == obj.getClass()) {
+                ou4 ou4Var = (ou4) obj;
+                if (Objects.equals(this.b, ou4Var.b) && this.c.equals(ou4Var.c) && this.d.equals(ou4Var.d) && Arrays.equals(this.e, ou4Var.e)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i;
+        String str = this.b;
+        if (str != null) {
+            i = str.hashCode();
+        } else {
+            i = 0;
+        }
+        return Arrays.hashCode(this.e) + bs2.j(bs2.j((527 + i) * 31, 31, this.c), 31, this.d);
     }
 
     @Override
-    public final void a(Object obj) {
-        TL_account.TL_birthday tL_birthday;
-        byte b = this.a;
-        xu4 xu4Var = this.b;
-        switch (b) {
-            case 0:
-                ((Boolean) obj).getClass();
-                xu4Var.dismiss();
-                return;
-            case 1:
-                ArrayList arrayList = xu4Var.h2;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                return;
-            default:
-                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
-                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
-                updatebirthday.flags |= 1;
-                updatebirthday.birthday = tL_birthday2;
-                TLRPC.UserFull W1 = na7.q1(xu4Var.a).W1(y6c.h(xu4Var.a).e());
-                if (W1 != null) {
-                    tL_birthday = W1.birthday;
-                    W1.flags2 |= 32;
-                    W1.birthday = tL_birthday2;
-                } else {
-                    tL_birthday = null;
-                }
-                ConnectionsManager.getInstance(xu4Var.a).sendRequest(updatebirthday, new en0(xu4Var, W1, tL_birthday, (byte) 27), 1024);
-                na7.q1(xu4Var.a).h2();
-                na7.q1(xu4Var.a).n4(0L, "BIRTHDAY_SETUP");
-                kk7.f(xu4Var.a).k(107, new Object[0]);
-                xu4Var.i2.O(true);
-                return;
-        }
+    public final String toString() {
+        return this.a + ": mimeType=" + this.b + ", filename=" + this.c + ", description=" + this.d;
     }
 }

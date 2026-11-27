@@ -1,49 +1,58 @@
 package defpackage;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class rjb extends Drawable {
-    public final RectF a = new RectF();
-    public final int b;
-    public final int c;
-    public final int d;
-    public final int e;
-    public final float f;
+import android.view.View;
+public final class rjb extends wma {
+    public final pm3 g0;
+    public final vnb h0;
+    public final pjb i0;
 
-    public rjb(int i, int i2, int i3, int i4, float f) {
-        this.b = i;
-        this.c = i2;
-        this.d = i3;
-        this.e = i4;
-        this.f = f;
+    public rjb(Context context, vnb vnbVar, pjb pjbVar) {
+        super(context, null);
+        this.h0 = vnbVar;
+        this.i0 = pjbVar;
+        this.g0 = new pm3((byte) 7);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.a;
-        rectF.set(bounds);
-        rectF.left += this.b;
-        rectF.top += this.c;
-        rectF.right -= this.d;
-        rectF.bottom -= this.e;
-        float f = this.f;
-        canvas.drawRoundRect(rectF, f, f, bkb.z);
+    public final boolean O() {
+        return false;
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public final boolean P() {
+        return false;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        if (view == this.i0) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            boolean drawChild = super.drawChild(canvas, view, j);
+            canvas.save();
+            RectF rectF = hl.P;
+            rectF.set(0.0f, 0.0f, hl.L(45.0f), getHeight());
+            this.g0.r(canvas, rectF, 0, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final vnb getResourceProvider() {
+        return this.h0;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(hl.q.x, 1073741824);
+        pjb pjbVar = this.i0;
+        pjbVar.measure(makeMeasureSpec, i2);
+        setMeasuredDimension(View.MeasureSpec.getSize(i), pjbVar.getMeasuredHeight() + hl.L(24.0f));
     }
 }

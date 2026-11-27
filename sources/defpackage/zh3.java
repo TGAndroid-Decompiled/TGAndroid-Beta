@@ -1,62 +1,48 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ScrollView;
-public final class zh3 extends ScrollView {
-    public final byte a;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class zh3 extends FragmentContextView {
+    public final byte X0;
+    public final uj3 Y0;
 
-    public zh3(Context context, byte b) {
-        super(context);
-        this.a = b;
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 0:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i2), Math.min(gl.q.y * 0.35f, gl.L(400.0f))), View.MeasureSpec.getMode(i2)));
-                return;
+    public zh3(uj3 uj3Var, Context context, uj3 uj3Var2, byte b) {
+        super(context, uj3Var2, true);
+        this.X0 = b;
+        switch (b) {
             case 1:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), gl.L(320.0f)), Integer.MIN_VALUE));
+                this.Y0 = uj3Var;
+                super(context, uj3Var2, false);
                 return;
-            case 2:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), gl.L(360.0f)), Integer.MIN_VALUE));
-                return;
-            case 3:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(gl.L(260.0f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            case 4:
             default:
-                super.onMeasure(i, i2);
-                return;
-            case 5:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(gl.L(260.0f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
+                this.Y0 = uj3Var;
                 return;
         }
     }
 
     @Override
-    public final boolean onRequestFocusInDescendants(int i, Rect rect) {
-        switch (this.a) {
-            case 4:
-                return false;
+    public final void setVisibility(int i) {
+        byte b = this.X0;
+        boolean z = false;
+        uj3 uj3Var = this.Y0;
+        switch (b) {
+            case 0:
+                xj3 xj3Var = uj3Var.L1;
+                FrameLayout frameLayout = uj3Var.I1;
+                if (i == 0) {
+                    z = true;
+                }
+                xj3Var.j(frameLayout, z, true);
+                return;
             default:
-                return super.onRequestFocusInDescendants(i, rect);
-        }
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-        switch (this.a) {
-            case 4:
-                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top = gl.L(20.0f) + rect.top;
-                rect.bottom = gl.L(50.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z);
+                xj3 xj3Var2 = uj3Var.L1;
+                FrameLayout frameLayout2 = uj3Var.K1;
+                if (i == 0) {
+                    z = true;
+                }
+                xj3Var2.j(frameLayout2, z, true);
+                return;
         }
     }
 }

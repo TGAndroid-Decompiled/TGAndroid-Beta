@@ -1,79 +1,161 @@
 package defpackage;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-public final class wq7 extends w8b {
-    public static final byte[] o = {79, 112, 117, 115, 72, 101, 97, 100};
-    public static final byte[] p = {79, 112, 117, 115, 84, 97, 103, 115};
-    public boolean n;
+public final class wq7 {
+    public transient Object[] a;
+    public transient int[] b;
+    public transient int c;
+    public transient int[] d;
+    public transient long[] e;
+    public transient float f;
+    public transient int g;
 
-    public static boolean e(xu7 xu7Var, byte[] bArr) {
-        if (xu7Var.a() < bArr.length) {
-            return false;
+    public final void a(int i) {
+        if (i > this.e.length) {
+            f(i);
         }
-        int i = xu7Var.b;
-        byte[] bArr2 = new byte[bArr.length];
-        xu7Var.k(0, bArr.length, bArr2);
-        xu7Var.N(i);
-        return Arrays.equals(bArr2, bArr);
+        if (i >= this.g) {
+            g(Math.max(2, Integer.highestOneBit(i - 1) << 1));
+        }
     }
 
-    @Override
-    public final long b(xu7 xu7Var) {
-        byte[] bArr = xu7Var.a;
-        byte b = 0;
-        byte b2 = bArr[0];
-        if (bArr.length > 1) {
-            b = bArr[1];
+    public final int b(Object obj) {
+        int c = c(obj);
+        if (c == -1) {
+            return 0;
         }
-        return (this.i * gqe.b(b2, b)) / 1000000;
+        return this.b[c];
     }
 
-    @Override
-    public final boolean c(xu7 xu7Var, long j, v8b v8bVar) {
-        if (e(xu7Var, o)) {
-            byte[] copyOf = Arrays.copyOf(xu7Var.a, xu7Var.c);
-            int i = copyOf[9] & 255;
-            ArrayList a = gqe.a(copyOf);
-            if (((fm4) v8bVar.b) == null) {
-                em4 em4Var = new em4();
-                em4Var.r = ud7.n("audio/ogg");
-                em4Var.s = ud7.n("audio/opus");
-                em4Var.M = i;
-                em4Var.O = 48000;
-                em4Var.v = a;
-                v8bVar.b = new fm4(em4Var);
-                return true;
+    public final int c(Object obj) {
+        int b = yne.b(obj);
+        int[] iArr = this.d;
+        int i = iArr[(iArr.length - 1) & b];
+        while (i != -1) {
+            long j = this.e[i];
+            if (((int) (j >>> 32)) == b && tue.a(obj, this.a[i])) {
+                return i;
             }
+            i = (int) j;
+        }
+        return -1;
+    }
+
+    public final void d(int i) {
+        boolean z;
+        if (i >= 0) {
+            z = true;
         } else {
-            boolean e = e(xu7Var, p);
-            fm4 fm4Var = (fm4) v8bVar.b;
-            if (e) {
-                fm4Var.getClass();
-                if (!this.n) {
-                    this.n = true;
-                    xu7Var.O(8);
-                    ld7 a2 = zjc.a(mm5.r((String[]) aye.b(xu7Var, false, false).b));
-                    if (a2 != null) {
-                        em4 a3 = ((fm4) v8bVar.b).a();
-                        a3.l = a2.b(((fm4) v8bVar.b).m);
-                        v8bVar.b = new fm4(a3);
-                        return true;
+            z = false;
+        }
+        yve.e("Initial capacity must be non-negative", z);
+        int max = Math.max(i, 2);
+        int highestOneBit = Integer.highestOneBit(max);
+        if (max > ((int) (1.0d * highestOneBit)) && (highestOneBit = highestOneBit << 1) <= 0) {
+            highestOneBit = 1073741824;
+        }
+        int[] iArr = new int[highestOneBit];
+        Arrays.fill(iArr, -1);
+        this.d = iArr;
+        this.f = 1.0f;
+        this.a = new Object[i];
+        this.b = new int[i];
+        long[] jArr = new long[i];
+        Arrays.fill(jArr, -1L);
+        this.e = jArr;
+        this.g = Math.max(1, (int) (highestOneBit * 1.0f));
+    }
+
+    public final void e(int i, Object obj) {
+        long j;
+        if (i > 0) {
+            long[] jArr = this.e;
+            Object[] objArr = this.a;
+            int[] iArr = this.b;
+            int b = yne.b(obj);
+            int[] iArr2 = this.d;
+            int length = (iArr2.length - 1) & b;
+            int i2 = this.c;
+            int i3 = iArr2[length];
+            if (i3 == -1) {
+                iArr2[length] = i2;
+                j = 4294967295L;
+            } else {
+                while (true) {
+                    long j2 = jArr[i3];
+                    j = 4294967295L;
+                    if (((int) (j2 >>> 32)) == b && tue.a(obj, objArr[i3])) {
+                        int i4 = iArr[i3];
+                        iArr[i3] = i;
+                        return;
+                    }
+                    int i5 = (int) j2;
+                    if (i5 == -1) {
+                        jArr[i3] = (j2 & (-4294967296L)) | (i2 & 4294967295L);
+                        break;
+                    }
+                    i3 = i5;
+                }
+            }
+            int i6 = Integer.MAX_VALUE;
+            if (i2 != Integer.MAX_VALUE) {
+                int i7 = i2 + 1;
+                int length2 = this.e.length;
+                if (i7 > length2) {
+                    int max = Math.max(1, length2 >>> 1) + length2;
+                    if (max >= 0) {
+                        i6 = max;
+                    }
+                    if (i6 != length2) {
+                        f(i6);
                     }
                 }
-            } else {
-                fm4Var.getClass();
-                return false;
+                this.e[i2] = (b << 32) | j;
+                this.a[i2] = obj;
+                this.b[i2] = i;
+                this.c = i7;
+                if (i2 >= this.g) {
+                    g(this.d.length << 1);
+                    return;
+                }
+                return;
             }
+            grb.i("Cannot contain more than Integer.MAX_VALUE elements!");
+            return;
         }
-        return true;
+        lq5.j(uh9.k(i, "count must be positive but was: "));
     }
 
-    @Override
-    public final void d(boolean z) {
-        super.d(z);
-        if (z) {
-            this.n = false;
+    public final void f(int i) {
+        this.a = Arrays.copyOf(this.a, i);
+        this.b = Arrays.copyOf(this.b, i);
+        long[] jArr = this.e;
+        int length = jArr.length;
+        long[] copyOf = Arrays.copyOf(jArr, i);
+        if (i > length) {
+            Arrays.fill(copyOf, length, i, -1L);
         }
+        this.e = copyOf;
+    }
+
+    public final void g(int i) {
+        if (this.d.length >= 1073741824) {
+            this.g = Integer.MAX_VALUE;
+            return;
+        }
+        int i2 = ((int) (i * this.f)) + 1;
+        int[] iArr = new int[i];
+        Arrays.fill(iArr, -1);
+        long[] jArr = this.e;
+        int i3 = i - 1;
+        for (int i4 = 0; i4 < this.c; i4++) {
+            int i5 = (int) (jArr[i4] >>> 32);
+            int i6 = i5 & i3;
+            int i7 = iArr[i6];
+            iArr[i6] = i4;
+            jArr[i4] = (i5 << 32) | (i7 & 4294967295L);
+        }
+        this.g = i2;
+        this.d = iArr;
     }
 }

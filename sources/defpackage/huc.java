@@ -1,55 +1,63 @@
 package defpackage;
 
-import java.util.ArrayList;
-public abstract class huc extends Thread {
-    public final buc a;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.TextUtils;
+import android.view.View;
+public final class huc implements View.OnClickListener {
+    public final byte a;
+    public final muc b;
 
-    public huc(String str, buc bucVar, int i) {
-        super(str);
-        this.a = bucVar;
+    public huc(muc mucVar, byte b) {
+        this.a = b;
+        this.b = mucVar;
     }
 
-    public abstract void a();
-
     @Override
-    public final void run() {
-        xf4 xf4Var = this.a.d;
-        int i = 0;
-        if (xf4Var != null) {
-            ArrayList arrayList = (ArrayList) xf4Var.u();
-            int size = arrayList.size();
-            int i2 = 0;
-            while (i2 < size) {
-                Object obj = arrayList.get(i2);
-                i2++;
-                o15 o15Var = (o15) obj;
-                try {
-                    try {
-                        o15Var.getClass();
-                    } catch (Throwable unused) {
-                        o15Var.getClass();
-                    }
-                } catch (Throwable unused2) {
+    public final void onClick(View view) {
+        byte b = this.a;
+        muc mucVar = this.b;
+        switch (b) {
+            case 0:
+                if (mucVar.y != null) {
+                    hl.t1(mucVar.O);
+                    mucVar.l0(mucVar.y, null);
+                    return;
                 }
-            }
-        }
-        a();
-        if (xf4Var != null) {
-            ArrayList arrayList2 = (ArrayList) xf4Var.u();
-            int size2 = arrayList2.size();
-            while (i < size2) {
-                Object obj2 = arrayList2.get(i);
-                i++;
-                o15 o15Var2 = (o15) obj2;
-                try {
-                    try {
-                        o15Var2.getClass();
-                    } catch (Throwable unused3) {
-                        o15Var2.getClass();
-                    }
-                } catch (Throwable unused4) {
+                return;
+            case 1:
+                if (mucVar.y != null) {
+                    hl.t1(mucVar.O);
+                    mucVar.l0(mucVar.y, null);
+                    return;
                 }
-            }
+                return;
+            case 2:
+                ClipboardManager clipboardManager = (ClipboardManager) mucVar.getParentActivity().getSystemService("clipboard");
+                if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+                    ClipData primaryClip = clipboardManager.getPrimaryClip();
+                    if (primaryClip != null && primaryClip.getItemCount() != 0) {
+                        CharSequence coerceToText = primaryClip.getItemAt(0).coerceToText(mucVar.getParentActivity());
+                        if (!TextUtils.isEmpty(coerceToText)) {
+                            mucVar.O.setText(coerceToText.toString().trim());
+                            m7 m7Var = mucVar.O;
+                            m7Var.setSelection(m7Var.length());
+                            return;
+                        }
+                        mucVar.T = false;
+                        mucVar.o0(true);
+                        return;
+                    }
+                    mucVar.T = false;
+                    mucVar.o0(true);
+                    return;
+                }
+                mucVar.T = false;
+                mucVar.o0(true);
+                return;
+            default:
+                mucVar.h0();
+                return;
         }
     }
 }

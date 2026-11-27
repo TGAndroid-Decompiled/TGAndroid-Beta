@@ -1,17 +1,18 @@
 package defpackage;
-public final class kue implements zn7 {
-    public static final kue a = new Object();
+public final class kue {
+    public final Long a;
+    public final Long b;
+    public final Long c;
+    public final Long d;
+    public final Long e;
+    public final Long f;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public kue(yte yteVar) {
+        this.a = yteVar.a;
+        this.b = yteVar.b;
+        this.c = yteVar.c;
+        this.d = yteVar.d;
+        this.e = yteVar.e;
+        this.f = yteVar.f;
     }
 }

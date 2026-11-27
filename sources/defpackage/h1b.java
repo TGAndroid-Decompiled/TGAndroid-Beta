@@ -1,97 +1,74 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class h1b extends FrameLayout implements tjb {
-    public uib E;
-    public float F;
-    public float G;
-    public ValueAnimator H;
-    public ValueAnimator I;
-    public xf4 J;
-    public float K;
-    public boolean L;
-    public wd1 M;
-    public Paint a;
-    public Paint b;
-    public Paint c;
-    public Paint d;
-    public boolean e;
-    public si9 f;
-    public TextView h;
-    public TextView n;
-    public TextView r;
-    public TextView s;
-    public TextView w;
-    public View x;
-    public int y;
+import android.content.Context;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.ui.ActionBar.e;
+public abstract class h1b extends g1b {
+    public final int w;
+    public final w1b x;
 
-    @Override
-    public final void invalidate() {
-        TextView textView = this.s;
-        TextView textView2 = this.r;
-        TextView textView3 = this.n;
-        TextView textView4 = this.h;
-        super.invalidate();
-        this.f.invalidate();
-        int i = this.y;
-        int i2 = bkb.Lj;
-        if (i != bkb.w0(null, i2, false)) {
-            this.y = bkb.w0(null, i2, false);
-            textView4.setCompoundDrawablesWithIntrinsicBounds(bkb.K(gl.L(10.0f), this.y), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView4.setCompoundDrawablePadding(gl.L(6.0f));
-            textView3.setCompoundDrawablesWithIntrinsicBounds(bkb.K(gl.L(10.0f), this.y), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView3.setCompoundDrawablePadding(gl.L(6.0f));
-            textView2.setCompoundDrawablesWithIntrinsicBounds(bkb.K(gl.L(10.0f), bm2.o(this.y, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView2.setCompoundDrawablePadding(gl.L(6.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds(bkb.K(gl.L(10.0f), bm2.o(this.y, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-            textView.setCompoundDrawablePadding(gl.L(6.0f));
-        }
-        zkb.X(this.E.getTextView(), bkb.F6, null);
-        zkb.h(bkb.c7, null, this.x);
+    public h1b(w1b w1bVar, Context context, int i, int i2, of0 of0Var) {
+        super(context, i2, of0Var, null);
+        this.x = w1bVar;
+        this.w = i;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        xf4 xf4Var = this.J;
-        if (xf4Var != null) {
-            xf4Var.a = true;
-            AnimatorSet animatorSet = (AnimatorSet) xf4Var.d;
-            if (!animatorSet.isRunning()) {
-                animatorSet.start();
+    public final void b(i1b i1bVar) {
+        int i;
+        w1b w1bVar = this.x;
+        i = ((e) w1bVar).classGuid;
+        i1bVar.a(this.w, i, w1bVar.a.stats_dc, new vo1(w1bVar, this.r, (byte) 1));
+    }
+
+    @Override
+    public final void c() {
+        int i;
+        if (this.r.c <= 0) {
+            performClick();
+            pf0 pf0Var = this.b;
+            if (pf0Var.u0.H) {
+                long selectedDate = pf0Var.getSelectedDate();
+                i1b i1bVar = this.r;
+                if (this.s == 4) {
+                    i1bVar.e = new iqa(i1bVar.d, selectedDate);
+                    g(false);
+                } else if (i1bVar.g == null) {
+                } else {
+                    w1b w1bVar = this.x;
+                    w1bVar.b0();
+                    String str = this.r.g + "_" + selectedDate;
+                    ok1 ok1Var = (ok1) w1bVar.V.f(str);
+                    if (ok1Var != null) {
+                        this.r.e = ok1Var;
+                        g(false);
+                        return;
+                    }
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.r.g;
+                    if (selectedDate != 0) {
+                        tL_loadAsyncGraph.x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
+                    }
+                    ?? obj = new Object();
+                    w1bVar.Z = obj;
+                    w1bVar.T.getClass();
+                    obj.a = RecyclerView.S(this);
+                    pf0Var.u0.d(true, false);
+                    int i2 = this.w;
+                    int sendRequest = ConnectionsManager.getInstance(i2).sendRequest(tL_loadAsyncGraph, new qn8(this, str, (Object) obj, (byte) 20), null, null, 0, w1bVar.a.stats_dc, 1, true);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i2);
+                    i = ((e) w1bVar).classGuid;
+                    connectionsManager.bindRequestToGuid(sendRequest, i);
+                }
             }
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        xf4 xf4Var = this.J;
-        if (xf4Var != null) {
-            xf4Var.a = false;
-            ((AnimatorSet) xf4Var.d).cancel();
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            if (this.f != null && this.h != null && this.y != bkb.w0(null, bkb.Lj, false)) {
-                invalidate();
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void f() {
+        this.x.b0();
     }
 }

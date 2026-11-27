@@ -1,90 +1,103 @@
 package defpackage;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class ava extends fy0 implements gk7 {
-    public final FrameLayout S1;
-    public l5c T1;
-    public boolean U1;
+import android.widget.TextView;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.RadioButton;
+public final class ava extends FrameLayout {
+    public final RadioButton a;
+    public final Drawable b;
+    public final Drawable c;
+    public final in d;
+    public final in e;
+    public final TextView f;
+    public final SpannableString h;
+    public final SpannableString n;
+    public TL_stars.TL_starsGiveawayOption r;
+    public int s;
+    public final mm w;
 
-    public ava(Context context, wjb wjbVar) {
-        super(context, null, false, false, wjbVar);
-        o39 o39Var = this.n1;
-        int i = this.u0;
-        o39Var.setPadding(i, 0, i, 0);
-        this.n1.setOnItemClickListener(new f09(this, (byte) 14));
-        gb3 gb3Var = new gb3();
-        gb3Var.m = false;
-        gb3Var.C = false;
-        gb3Var.o(s33.h);
-        gb3Var.n(350L);
-        this.n1.setItemAnimator(gb3Var);
-        int i2 = bkb.c6;
-        t0(i2);
-        M(i2);
-        this.o1.setTitle(k96.M0(2131744914, null));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.S1 = frameLayout;
-        l46 l46Var = new l46(context, wjbVar);
-        frameLayout.setPadding(0, gl.L(11.0f), 0, gl.L(11.0f));
-        l46Var.setTextSize(1, 12.0f);
-        zkb.X(l46Var, bkb.A6, wjbVar);
-        zkb.G(l46Var, bkb.Wc, wjbVar);
-        l46Var.setText(gl.N2(k96.M0(2131744730, null), -1, 0, new z6a(this, (byte) 27), null));
-        l46Var.setGravity(17);
-        l46Var.setMaxWidth(je5.a(l46Var.getText(), l46Var.getPaint()));
-        frameLayout.addView(l46Var, nme.e(-2, -1, 17));
-        zkb.h(bkb.g5, wjbVar, frameLayout);
-        this.b.addView(new qh4(getContext()), nme.c(-1.0f, -1));
-        l5c l5cVar = this.T1;
-        if (l5cVar != null) {
-            l5cVar.O(false);
+    public ava(Context context, vnb vnbVar) {
+        super(context);
+        this.w = new mm(this, 0L, 500L, k43.h);
+        Drawable e = c00.e(context, 2131232776);
+        this.b = e;
+        yob.x(this, e, aob.h5, vnbVar, PorterDuff.Mode.SRC_IN);
+        this.c = c00.e(context, 2131232775);
+        setWillNotDraw(false);
+        in inVar = new in(context, false, false, false);
+        this.d = inVar;
+        yob.U(inVar, aob.G6, vnbVar);
+        inVar.setTypeface(hl.o());
+        inVar.setTextSize(hl.L(16.0f));
+        addView(inVar, tre.d(-1, 20.0f, 51, 64.0f, 8.0f, 80.0f, 0.0f));
+        SpannableString spannableString = new SpannableString("x");
+        this.h = spannableString;
+        spannableString.setSpan(new ya6(hl.L(90.0f), inVar), 0, 1, 33);
+        in inVar2 = new in(context, false, true, true);
+        this.e = inVar2;
+        int i = aob.z6;
+        yob.U(inVar2, i, vnbVar);
+        inVar2.setTextSize(hl.L(13.0f));
+        addView(inVar2, tre.d(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
+        SpannableString spannableString2 = new SpannableString("x");
+        this.n = spannableString2;
+        spannableString2.setSpan(new ya6(hl.L(70.0f), inVar2), 0, 1, 33);
+        TextView textView = new TextView(context);
+        this.f = textView;
+        yob.X(textView, i, vnbVar);
+        textView.setTextSize(1, 16.0f);
+        textView.setGravity(5);
+        addView(textView, tre.d(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
+        RadioButton radioButton = new RadioButton(context);
+        this.a = radioButton;
+        radioButton.setSize(hl.L(20.0f));
+        yob.O(radioButton, aob.j7, aob.E5, vnbVar);
+        addView(radioButton, tre.d(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
+    }
+
+    public TL_stars.TL_starsGiveawayOption getOption() {
+        return this.r;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float e = this.w.e(false, this.s);
+        float L = hl.L(24.0f);
+        float L2 = hl.L(24.0f);
+        float L3 = hl.L(2.5f);
+        float L4 = hl.L(64.0f);
+        float L5 = hl.L(8.0f);
+        for (int ceil = ((int) Math.ceil(e)) - 1; ceil >= 0; ceil--) {
+            float i = Utilities.i(e - ceil, 1.0f, 0.0f);
+            float f = (((ceil - 1) - (1.0f - i)) * L3 * 1.0f) + L4;
+            int i2 = (int) f;
+            int i3 = (int) L5;
+            int i4 = (int) (f + L);
+            int i5 = (int) (L5 + L2);
+            Drawable drawable = this.b;
+            drawable.setBounds(i2, i3, i4, i5);
+            int i6 = (int) (i * 255.0f);
+            drawable.setAlpha(i6);
+            drawable.draw(canvas);
+            Drawable drawable2 = this.c;
+            drawable2.setBounds(i2, i3, i4, i5);
+            drawable2.setAlpha(i6);
+            drawable2.draw(canvas);
         }
+        this.d.setTranslationX((L3 * e) + hl.L(22.0f));
     }
 
     @Override
-    public final n39 G0(o39 o39Var) {
-        l5c l5cVar = new l5c(this.n1, getContext(), this.a, 0, true, new tf8(this, (byte) 27), this.J0);
-        this.T1 = l5cVar;
-        l5cVar.r = false;
-        return l5cVar;
-    }
-
-    @Override
-    public final void I() {
-        super.I();
-        kk7.f(this.a).n(this, kk7.w3);
-        kk7.f(this.a).n(this, kk7.z3);
-    }
-
-    @Override
-    public final CharSequence J0() {
-        return k96.M0(2131744914, null);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        l5c l5cVar;
-        if ((i == kk7.w3 || i == kk7.z3) && (l5cVar = this.T1) != null) {
-            l5cVar.O(true);
-        }
-    }
-
-    @Override
-    public final void show() {
-        ar1 ar1Var;
-        long j = gta.v(this.a, false).m().amount;
-        d Q = LaunchActivity.Q();
-        if (Q instanceof mu1) {
-            mu1 mu1Var = (mu1) Q;
-            if (mu1Var.Q7() && (ar1Var = mu1Var.a0) != null) {
-                ar1Var.S();
-            }
-        }
-        super.show();
-        kk7.f(this.a).b(this, kk7.w3);
-        kk7.f(this.a).b(this, kk7.z3);
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(56.0f), 1073741824));
     }
 }

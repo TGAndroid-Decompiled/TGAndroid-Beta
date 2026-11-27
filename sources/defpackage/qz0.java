@@ -1,23 +1,30 @@
 package defpackage;
+public final class qz0 {
+    public final byte a = 1;
+    public int b;
+    public long c;
+    public int d;
 
-import j$.util.function.BiFunction$CC;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-public final class qz0 implements BiFunction {
-    public final byte a;
-
-    public final BiFunction andThen(Function function) {
-        byte b = this.a;
-        return BiFunction$CC.$default$andThen(this, function);
+    public qz0(long j, int i, int i2) {
+        this.c = j;
+        this.b = i;
+        this.d = i2;
     }
 
-    @Override
-    public final Object apply(Object obj, Object obj2) {
+    public final String toString() {
         switch (this.a) {
             case 0:
-                return Long.valueOf(Math.max(((Long) obj).longValue(), ((Long) obj2).longValue()));
+                StringBuilder sb = new StringBuilder("part{");
+                sb.append(this.c);
+                sb.append(", ch=");
+                sb.append(this.b);
+                sb.append(", q=");
+                return uh9.l(sb, this.d, "}");
             default:
-                return Integer.valueOf(((Integer) obj2).intValue() + ((Integer) obj).intValue());
+                return super.toString();
         }
+    }
+
+    public qz0() {
     }
 }

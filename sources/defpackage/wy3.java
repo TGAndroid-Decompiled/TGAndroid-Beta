@@ -2,56 +2,71 @@ package defpackage;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class wy3 extends o39 {
-    public boolean f3;
-    public boolean g3;
-    public final t14 h3;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class wy3 extends cv9 {
+    public int h;
+    public boolean n;
+    public float r;
+    public final xy3 s;
 
-    public wy3(t14 t14Var, Context context) {
-        super(context, null);
-        this.h3 = t14Var;
+    public wy3(xy3 xy3Var, Context context) {
+        super(context);
+        float f;
+        this.s = xy3Var;
+        boolean z = xy3Var.h;
+        this.n = z;
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        this.r = f;
+        setSmoothScrollingEnabled(true);
+        setHorizontalScrollBarEnabled(false);
+        setVerticalScrollBarEnabled(false);
+        setNestedScrollingEnabled(true);
+        oob oobVar = new oob((byte) 5, context, this);
+        this.b = oobVar;
+        oobVar.setOrientation(0);
+        addView(this.b, new FrameLayout.LayoutParams(-2, -1));
+        for (int i = 0; i < 8; i++) {
+            int i2 = xy3.e0[i];
+            vy3 vy3Var = new vy3(this, context, xy3.f0[i]);
+            vy3Var.setContentDescription(xy3.f(i));
+            this.b.addView(vy3Var);
+        }
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        xv2 e = xv2.e();
-        t14 t14Var = this.h3;
-        boolean g = e.g(motionEvent, t14Var.i0, t14Var.h2, this.o2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !g) {
-            return false;
+    public final void d(MotionEvent motionEvent) {
+        if (this.n && !this.d) {
+            int action = motionEvent.getAction();
+            if (action != 0) {
+                if (action != 1) {
+                    if (action != 2) {
+                        return;
+                    }
+                } else {
+                    this.a = false;
+                    return;
+                }
+            }
+            this.a = true;
+            if (!this.d) {
+                this.e = -1;
+            }
+            this.s.requestDisallowInterceptTouchEvent(true);
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        t14 t14Var = this.h3;
-        if (t14Var.r0 && t14Var.o0.H > 1) {
-            this.f3 = true;
-            t14Var.j0.g1(0, 0);
-            t14Var.p0.setVisibility(0);
-            t14Var.q0.k(0, 0);
-            t14Var.r0 = false;
-            this.f3 = false;
-        }
-        super.onLayout(z, i, i2, i3, i4);
-        t14Var.k(true);
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        if (!this.g3) {
-            this.h3.o0.f();
-            this.g3 = true;
-        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(hl.U1(this.r, hl.L(30.0f), hl.L(Math.min(5.7f, this.b.getChildCount()) * 32.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(30.0f), 1073741824));
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f3) {
-            return;
-        }
-        super.requestLayout();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        d(motionEvent);
+        return super.onTouchEvent(motionEvent);
     }
 }

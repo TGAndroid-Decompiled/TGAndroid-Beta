@@ -1,92 +1,66 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.ColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
+import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class k33 extends Drawable {
-    public final Drawable a;
-    public final RectF b = new RectF();
-    public final Paint c;
-    public final Paint d;
-    public int e;
-    public final int f;
-    public float g;
-    public boolean h;
-    public float i;
-    public float j;
-    public float k;
+import android.view.View;
+import org.telegram.ui.BubbleActivity;
+public final class k33 extends View {
+    public final Paint a;
+    public final Path b;
+    public final RectF c;
+    public final Matrix d;
+    public final Matrix e;
+    public final Matrix f;
+    public final Matrix h;
+    public final Matrix n;
+    public final Matrix r;
+    public final l33 s;
 
-    public k33(Context context, int i, int i2) {
-        Paint paint = new Paint(1);
-        this.c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.a = context.getDrawable(i);
-        this.f = i2;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(gl.N(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(gl.N(2.5f));
+    public k33(l33 l33Var, Context context) {
+        super(context);
+        this.s = l33Var;
+        this.a = new Paint(1);
+        this.b = new Path();
+        this.c = new RectF();
+        this.d = new Matrix();
+        this.e = new Matrix();
+        this.f = new Matrix();
+        this.h = new Matrix();
+        this.n = new Matrix();
+        this.r = new Matrix();
     }
 
-    public final void a(boolean z, boolean z2) {
-        if (this.h != z) {
-            this.h = z;
-            float f = 0.0f;
-            if (!z2) {
-                if (z) {
-                    f = 1.0f;
-                }
-                this.g = f;
-            } else {
-                if (!z) {
-                    f = 1.0f;
-                }
-                this.g = f;
-            }
-            invalidateSelf();
+    private float getContainerHeight() {
+        float f;
+        if (!(getContext() instanceof BubbleActivity)) {
+            f = hl.m;
+        } else {
+            f = 0.0f;
         }
+        return ((getHeight() - f) - this.s.f.E) - hl.L(32.0f);
+    }
+
+    private float getContainerWidth() {
+        return getWidth() - hl.L(32.0f);
+    }
+
+    public final void a(android.graphics.Matrix r14, boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k33.a(android.graphics.Matrix, boolean):void");
+    }
+
+    public final void b(android.graphics.Canvas r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k33.b(android.graphics.Canvas, boolean):void");
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k33.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
-        super.setBounds(i, i2, i3, i4);
-        this.a.setBounds(i, i2, i3, i4);
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.s.y == null) {
+            return;
+        }
+        b(canvas, false);
     }
 }

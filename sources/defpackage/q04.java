@@ -1,35 +1,26 @@
 package defpackage;
+public final class q04 extends zo {
+    public final o24 c;
 
-import android.view.View;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class q04 implements View.OnClickListener {
-    public final boolean[] a;
-    public final i4d b;
-    public final g6 c;
-
-    public q04(g6 g6Var, boolean[] zArr, i4d i4dVar) {
-        this.c = g6Var;
-        this.a = zArr;
-        this.b = i4dVar;
+    public q04(o24 o24Var) {
+        this.c = o24Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        t04 t04Var = (t04) this.c.b;
-        boolean[] zArr = this.a;
-        if (zArr[0]) {
-            return;
+    public final int i(int i) {
+        o24 o24Var = this.c;
+        y04 y04Var = o24Var.S;
+        p04 p04Var = o24Var.R;
+        j79 adapter = o24Var.Q.getAdapter();
+        o14 o14Var = o24Var.T;
+        if (adapter == o14Var) {
+            int d = o14Var.d(i);
+            if (d == 1 || d == 3 || d == 2 || d == 4 || d == 5) {
+                return p04Var.J;
+            }
+        } else if ((o24Var.e0 && i == 0) || i == y04Var.d || i == y04Var.c || i == y04Var.f || y04Var.r.indexOfKey(i) >= 0 || y04Var.w.indexOfKey(i) >= 0) {
+            return p04Var.J;
         }
-        zArr[0] = true;
-        hd[] hdVarArr = {new hd(3, null, t04Var.G.getContext())};
-        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
-        t14 t14Var = t04Var.G;
-        String str = t04Var.x;
-        if (str == null) {
-            str = t14Var.X0[0];
-        }
-        tL_messages_getEmojiURL.lang_code = str;
-        gl.d3(new va7(this, hdVarArr, ConnectionsManager.getInstance(t14Var.d1).sendRequest(tL_messages_getEmojiURL, new en0(this, hdVarArr, this.b, (byte) 23)), (byte) 24), 1000L);
+        return 1;
     }
 }

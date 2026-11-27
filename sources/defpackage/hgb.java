@@ -1,155 +1,367 @@
 package defpackage;
 
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Bundle;
-import android.os.SystemClock;
-import android.service.media.MediaBrowserService;
-import android.support.v4.media.session.PlaybackStateCompat;
+import android.graphics.Path;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FilterInputStream;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MusicBrowserService;
-import org.telegram.ui.LaunchActivity;
-public final class hgb {
-    public static volatile hgb p;
-    public final Context a;
-    public final mv6 b;
-    public int c;
-    public long d;
-    public boolean e;
-    public boolean f;
-    public Paint m;
-    public RectF n;
-    public final ArrayList g = new ArrayList();
-    public final vf6 h = new vf6();
-    public final vf6 i = new vf6();
-    public final vf6 j = new vf6();
-    public final vf6 k = new vf6();
-    public final vf6 l = new vf6();
-    public final ArrayList o = new ArrayList();
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Pattern;
+import javax.xml.parsers.SAXParserFactory;
+import org.telegram.messenger.a;
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+public abstract class hgb {
+    public static final double[] a = new double[128];
+    public static final Pattern b;
 
-    public hgb(Context context) {
-        this.a = context;
-        int i = y6c.t0;
-        this.c = i;
-        this.d = gl.a1(na7.q1(i).W3, "auto_lastSelectedDialog", 0L);
-        mv6 mv6Var = new mv6(context, "TelegramMediaSession", (ComponentName) null, (PendingIntent) null);
-        this.b = mv6Var;
-        zu6 zu6Var = (zu6) mv6Var.b;
-        zu6Var.a.setFlags(3);
-        mv6Var.k0(new ggb(this), null);
-        zu6Var.a.setSessionActivity(PendingIntent.getActivity(context, 99, new Intent(context, LaunchActivity.class), 167772160));
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_QUEUE", true);
-        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
-        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
-        zu6Var.a.setExtras(bundle);
-        mv6Var.i0(true);
-        ArrayList arrayList = new ArrayList();
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        k27 k27Var = MediaController.w().v0;
-        if (k27Var != null) {
-            r3 = MediaController.w().C() ? 2477828L : 2477830L;
-            if (k27Var.I3()) {
-                r3 |= 48;
-            }
-        }
-        mv6Var.n0(new PlaybackStateCompat(0, 0L, 0L, 1.0f, r3, 0, null, elapsedRealtime, arrayList, -1L, null));
-        f();
-        mv6Var.q0(gba.J0 ? 1 : 0);
-        kk7.e().a(new su2(this, (byte) 4), kk7.e4);
-    }
-
-    public static hgb a(MusicBrowserService musicBrowserService) {
-        if (p == null) {
-            synchronized (hgb.class) {
-                if (p == null) {
-                    p = new hgb(musicBrowserService.getApplicationContext());
-                }
-            }
-        }
-        return p;
-    }
-
-    public static boolean b() {
-        int i;
-        int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
-        if (gba.r.length() > 0) {
-            if (!gba.w) {
-                if ((gba.x != 0 && (i = gba.A) != 0 && i + gba.x <= elapsedRealtime) || elapsedRealtime + 5 < gba.A) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final void c(String str, im6 im6Var) {
-        long j;
-        if (!this.e) {
-            this.o.add(new fgb(str, im6Var));
-            if (this.f) {
-                return;
-            }
-            this.f = true;
-            int i = this.c;
-            ad7 Y = ad7.Y(i);
-            Y.a.c(new t79(this, Y, i, (byte) 22));
-            return;
-        }
-        if (str != null && str.startsWith("__CHAT_")) {
-            try {
-                j = Long.parseLong(str.substring(7));
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
-            if (j == 0 && this.j.f(j) == null) {
-                e(new r1b(this, im6Var, str, (byte) 9), j);
-                return;
-            }
-            ((MediaBrowserService.Result) im6Var.b).sendResult(d(str));
-        }
-        j = 0;
-        if (j == 0) {
-        }
-        ((MediaBrowserService.Result) im6Var.b).sendResult(d(str));
-    }
-
-    public final java.util.ArrayList d(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.hgb.d(java.lang.String):java.util.ArrayList");
-    }
-
-    public final void e(Runnable runnable, long j) {
-        vf6 vf6Var = this.l;
-        ArrayList arrayList = (ArrayList) vf6Var.f(j);
-        if (arrayList != null) {
-            arrayList.add(runnable);
-            return;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        arrayList2.add(runnable);
-        vf6Var.k(arrayList2, j);
-        int i = this.c;
-        ad7 Y = ad7.Y(i);
-        Y.a.c(new o57(this, Y, j, i, (byte) 19));
-    }
-
-    public final void f() {
-        int i = gba.O0;
-        int i2 = 2;
-        if (i != 1) {
-            if (i != 2) {
-                i2 = 0;
+    static {
+        int i = 0;
+        while (true) {
+            double[] dArr = a;
+            if (i < 128) {
+                dArr[i] = Math.pow(10.0d, i);
+                i++;
             } else {
-                i2 = 1;
+                b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+                return;
             }
         }
-        this.b.p0(i2);
+    }
+
+    public static String a(byte[] bArr) {
+        try {
+            StringBuilder sb = new StringBuilder(bArr.length << 1);
+            sb.append('M');
+            for (byte b2 : bArr) {
+                int i = b2 & 255;
+                if (i >= 192) {
+                    sb.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i - 192));
+                } else {
+                    if (i >= 128) {
+                        sb.append(',');
+                    } else if (i >= 64) {
+                        sb.append('-');
+                    }
+                    sb.append(b2 & 63);
+                }
+            }
+            sb.append('z');
+            return sb.toString();
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return "";
+        }
+    }
+
+    public static android.graphics.Path b(java.lang.String r50) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hgb.b(java.lang.String):android.graphics.Path");
+    }
+
+    public static Bitmap c(float f, int i, int i2, int i3, int i4, int i5) {
+        try {
+            InputStream openRawResource = a.b.getResources().openRawResource(i);
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            egb egbVar = new egb(i2, i3, Integer.valueOf(i4), false, f, i5);
+            xMLReader.setContentHandler(egbVar);
+            xMLReader.parse(new InputSource(openRawResource));
+            Bitmap bitmap = egbVar.b;
+            if (openRawResource != null) {
+                openRawResource.close();
+            }
+            return bitmap;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static Bitmap d(int i, int i2, int i3, int i4) {
+        return c(1.0f, i, i2, i3, i4, 1);
+    }
+
+    public static Bitmap e(int i, int i2, String str) {
+        try {
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            egb egbVar = new egb(i, i2, null, false);
+            xMLReader.setContentHandler(egbVar);
+            xMLReader.parse(new InputSource(new StringReader(str)));
+            return egbVar.b;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static Bitmap f(FilterInputStream filterInputStream, int i, int i2) {
+        try {
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            egb egbVar = new egb(i, i2, null, false);
+            xMLReader.setContentHandler(egbVar);
+            xMLReader.parse(new InputSource(filterInputStream));
+            return egbVar.b;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static ggb g(int i, Integer num) {
+        try {
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            egb egbVar = new egb(0, 0, num, true);
+            xMLReader.setContentHandler(egbVar);
+            xMLReader.parse(new InputSource(a.b.getResources().openRawResource(i)));
+            return egbVar.c;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static ggb h(String str) {
+        try {
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            egb egbVar = new egb(0, 0, null, true);
+            xMLReader.setContentHandler(egbVar);
+            xMLReader.parse(new InputSource(new StringReader(str)));
+            return egbVar.c;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static ggb i(int i, int i2, Path path) {
+        try {
+            ggb ggbVar = new ggb();
+            ggbVar.a.add(path);
+            ggbVar.b.put(path, new Paint(1));
+            ggbVar.e = i;
+            ggbVar.f = i2;
+            return ggbVar;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static Float j(String str, Attributes attributes) {
+        String k = k(str, attributes);
+        if (k == null) {
+            return null;
+        }
+        if (k.endsWith("px")) {
+            k = bs2.n(2, 0, k);
+        } else if (k.endsWith("mm")) {
+            return null;
+        }
+        return Float.valueOf(Float.parseFloat(k));
+    }
+
+    public static String k(String str, Attributes attributes) {
+        int length = attributes.getLength();
+        for (int i = 0; i < length; i++) {
+            if (attributes.getLocalName(i).equals(str)) {
+                return attributes.getValue(i);
+            }
+        }
+        return null;
+    }
+
+    public static egb l(File file, int i, int i2, boolean z) {
+        Integer num;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            if (z) {
+                num = -1;
+            } else {
+                num = null;
+            }
+            egb egbVar = new egb(i, i2, num, false);
+            if (!z) {
+                egbVar.F = true;
+            }
+            xMLReader.setContentHandler(egbVar);
+            xMLReader.parse(new InputSource(fileInputStream));
+            fileInputStream.close();
+            return egbVar;
+        } catch (Exception e) {
+            cc4.g(e, true);
+            return null;
+        }
+    }
+
+    public static cw6 m(String str) {
+        int length = str.length();
+        ArrayList arrayList = new ArrayList();
+        int i = 0;
+        boolean z = false;
+        for (int i2 = 1; i2 < length; i2++) {
+            if (z) {
+                z = false;
+            } else {
+                char charAt = str.charAt(i2);
+                switch (charAt) {
+                    case '\t':
+                    case '\n':
+                    case ' ':
+                    case ',':
+                    case '-':
+                        if (charAt == '-' && str.charAt(i2 - 1) == 'e') {
+                            break;
+                        } else {
+                            String substring = str.substring(i, i2);
+                            if (substring.trim().length() > 0) {
+                                arrayList.add(Float.valueOf(Float.parseFloat(substring)));
+                                if (charAt == '-') {
+                                    i = i2;
+                                    break;
+                                } else {
+                                    i = i2 + 1;
+                                    z = true;
+                                    break;
+                                }
+                            } else {
+                                i++;
+                                continue;
+                            }
+                        }
+                    case ')':
+                    case 'A':
+                    case 'C':
+                    case 'H':
+                    case 'L':
+                    case 'M':
+                    case 'Q':
+                    case 'S':
+                    case 'T':
+                    case 'V':
+                    case 'Z':
+                    case 'a':
+                    case 'c':
+                    case 'h':
+                    case 'l':
+                    case 'm':
+                    case 'q':
+                    case 's':
+                    case 't':
+                    case 'v':
+                    case 'z':
+                        String substring2 = str.substring(i, i2);
+                        if (substring2.trim().length() > 0) {
+                            arrayList.add(Float.valueOf(Float.parseFloat(substring2)));
+                        }
+                        return new cw6(arrayList);
+                }
+            }
+        }
+        String substring3 = str.substring(i);
+        if (substring3.length() > 0) {
+            try {
+                arrayList.add(Float.valueOf(Float.parseFloat(substring3)));
+            } catch (NumberFormatException unused) {
+            }
+        }
+        return new cw6(arrayList);
+    }
+
+    public static Matrix n(String str) {
+        List<String> list;
+        Matrix matrix;
+        Matrix matrix2;
+        Matrix matrix3 = new Matrix();
+        if (str == null) {
+            list = Collections.EMPTY_LIST;
+        } else {
+            String trim = str.trim();
+            if (trim.isEmpty()) {
+                list = Collections.EMPTY_LIST;
+            } else {
+                String[] split = b.split(trim);
+                ArrayList arrayList = new ArrayList(split.length);
+                for (String str2 : split) {
+                    String trim2 = str2.trim();
+                    if (!trim2.isEmpty()) {
+                        arrayList.add(trim2);
+                    }
+                }
+                list = arrayList;
+            }
+        }
+        for (String str3 : list) {
+            float f = 0.0f;
+            if (str3.startsWith("matrix(")) {
+                ArrayList arrayList2 = m(str3.substring(7)).a;
+                if (arrayList2.size() == 6) {
+                    matrix = new Matrix();
+                    matrix.setValues(new float[]{((Float) arrayList2.get(0)).floatValue(), ((Float) arrayList2.get(2)).floatValue(), ((Float) arrayList2.get(4)).floatValue(), ((Float) arrayList2.get(1)).floatValue(), ((Float) arrayList2.get(3)).floatValue(), ((Float) arrayList2.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
+                }
+                matrix = null;
+            } else if (str3.startsWith("translate(")) {
+                ArrayList arrayList3 = m(str3.substring(10)).a;
+                if (arrayList3.size() > 0) {
+                    float floatValue = ((Float) arrayList3.get(0)).floatValue();
+                    if (arrayList3.size() > 1) {
+                        f = ((Float) arrayList3.get(1)).floatValue();
+                    }
+                    matrix2 = new Matrix();
+                    matrix2.postTranslate(floatValue, f);
+                    matrix = matrix2;
+                }
+                matrix = null;
+            } else {
+                if (str3.startsWith("scale(")) {
+                    ArrayList arrayList4 = m(str3.substring(6)).a;
+                    if (arrayList4.size() > 0) {
+                        float floatValue2 = ((Float) arrayList4.get(0)).floatValue();
+                        if (arrayList4.size() > 1) {
+                            f = ((Float) arrayList4.get(1)).floatValue();
+                        }
+                        matrix2 = new Matrix();
+                        matrix2.postScale(floatValue2, f);
+                        matrix = matrix2;
+                    }
+                } else if (str3.startsWith("skewX(")) {
+                    ArrayList arrayList5 = m(str3.substring(6)).a;
+                    if (arrayList5.size() > 0) {
+                        float floatValue3 = ((Float) arrayList5.get(0)).floatValue();
+                        matrix = new Matrix();
+                        matrix.postSkew((float) Math.tan(floatValue3), 0.0f);
+                    }
+                } else if (str3.startsWith("skewY(")) {
+                    ArrayList arrayList6 = m(str3.substring(6)).a;
+                    if (arrayList6.size() > 0) {
+                        float floatValue4 = ((Float) arrayList6.get(0)).floatValue();
+                        matrix = new Matrix();
+                        matrix.postSkew(0.0f, (float) Math.tan(floatValue4));
+                    }
+                } else if (str3.startsWith("rotate(")) {
+                    ArrayList arrayList7 = m(str3.substring(7)).a;
+                    if (arrayList7.size() > 0) {
+                        matrix = new Matrix();
+                        float floatValue5 = ((Float) arrayList7.get(0)).floatValue();
+                        if (arrayList7.size() > 2) {
+                            matrix.postRotate(floatValue5, ((Float) arrayList7.get(1)).floatValue(), ((Float) arrayList7.get(2)).floatValue());
+                        } else {
+                            matrix.postRotate(floatValue5);
+                        }
+                    }
+                }
+                matrix = null;
+            }
+            if (matrix != null) {
+                matrix3.preConcat(matrix);
+            }
+        }
+        return matrix3;
     }
 }

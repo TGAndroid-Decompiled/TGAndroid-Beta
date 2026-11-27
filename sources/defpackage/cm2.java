@@ -1,121 +1,177 @@
 package defpackage;
 
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.a;
-public class cm2 extends ReplacementSpan {
-    public int E;
-    public int F;
-    public final byte G;
-    public float H;
-    public float I;
-    public float J;
-    public boolean K;
-    public Paint.FontMetricsInt L;
-    public boolean a;
-    public int b;
-    public Drawable c;
-    public boolean d;
-    public boolean e;
-    public boolean f;
-    public int h;
-    public int n;
-    public float r;
-    public float s;
-    public float w;
-    public float x;
-    public int y;
+import android.graphics.Color;
+import android.text.TextUtils;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public abstract class cm2 {
+    public static final Pattern a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
+    public static final HashMap d;
 
-    public cm2(int i, Drawable drawable) {
-        this.a = true;
-        this.d = true;
-        this.e = true;
-        this.f = false;
-        this.n = 0;
-        this.x = 1.0f;
-        this.H = 1.0f;
-        this.I = 1.0f;
-        this.J = 1.0f;
-        this.c = drawable;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        }
-        this.G = i;
+    static {
+        HashMap hashMap = new HashMap();
+        d = hashMap;
+        bp1.q(-984833, hashMap, "aliceblue", -332841, "antiquewhite");
+        hashMap.put("aqua", -16711681);
+        hashMap.put("aquamarine", -8388652);
+        bp1.q(-983041, hashMap, "azure", -657956, "beige");
+        bp1.q(-6972, hashMap, "bisque", -16777216, "black");
+        bp1.q(-5171, hashMap, "blanchedalmond", -16776961, "blue");
+        bp1.q(-7722014, hashMap, "blueviolet", -5952982, "brown");
+        bp1.q(-2180985, hashMap, "burlywood", -10510688, "cadetblue");
+        bp1.q(-8388864, hashMap, "chartreuse", -2987746, "chocolate");
+        bp1.q(-32944, hashMap, "coral", -10185235, "cornflowerblue");
+        bp1.q(-1828, hashMap, "cornsilk", -2354116, "crimson");
+        hashMap.put("cyan", -16711681);
+        hashMap.put("darkblue", -16777077);
+        bp1.q(-16741493, hashMap, "darkcyan", -4684277, "darkgoldenrod");
+        hashMap.put("darkgray", -5658199);
+        hashMap.put("darkgreen", -16751616);
+        hashMap.put("darkgrey", -5658199);
+        hashMap.put("darkkhaki", -4343957);
+        bp1.q(-7667573, hashMap, "darkmagenta", -11179217, "darkolivegreen");
+        bp1.q(-29696, hashMap, "darkorange", -6737204, "darkorchid");
+        bp1.q(-7667712, hashMap, "darkred", -1468806, "darksalmon");
+        bp1.q(-7357297, hashMap, "darkseagreen", -12042869, "darkslateblue");
+        hashMap.put("darkslategray", -13676721);
+        hashMap.put("darkslategrey", -13676721);
+        hashMap.put("darkturquoise", -16724271);
+        hashMap.put("darkviolet", -7077677);
+        bp1.q(-60269, hashMap, "deeppink", -16728065, "deepskyblue");
+        hashMap.put("dimgray", -9868951);
+        hashMap.put("dimgrey", -9868951);
+        hashMap.put("dodgerblue", -14774017);
+        hashMap.put("firebrick", -5103070);
+        bp1.q(-1296, hashMap, "floralwhite", -14513374, "forestgreen");
+        hashMap.put("fuchsia", -65281);
+        hashMap.put("gainsboro", -2302756);
+        bp1.q(-460545, hashMap, "ghostwhite", -10496, "gold");
+        hashMap.put("goldenrod", -2448096);
+        hashMap.put("gray", -8355712);
+        bp1.q(-16744448, hashMap, "green", -5374161, "greenyellow");
+        hashMap.put("grey", -8355712);
+        hashMap.put("honeydew", -983056);
+        bp1.q(-38476, hashMap, "hotpink", -3318692, "indianred");
+        bp1.q(-11861886, hashMap, "indigo", -16, "ivory");
+        bp1.q(-989556, hashMap, "khaki", -1644806, "lavender");
+        bp1.q(-3851, hashMap, "lavenderblush", -8586240, "lawngreen");
+        bp1.q(-1331, hashMap, "lemonchiffon", -5383962, "lightblue");
+        bp1.q(-1015680, hashMap, "lightcoral", -2031617, "lightcyan");
+        hashMap.put("lightgoldenrodyellow", -329006);
+        hashMap.put("lightgray", -2894893);
+        hashMap.put("lightgreen", -7278960);
+        hashMap.put("lightgrey", -2894893);
+        bp1.q(-18751, hashMap, "lightpink", -24454, "lightsalmon");
+        bp1.q(-14634326, hashMap, "lightseagreen", -7876870, "lightskyblue");
+        hashMap.put("lightslategray", -8943463);
+        hashMap.put("lightslategrey", -8943463);
+        hashMap.put("lightsteelblue", -5192482);
+        hashMap.put("lightyellow", -32);
+        bp1.q(-16711936, hashMap, "lime", -13447886, "limegreen");
+        hashMap.put("linen", -331546);
+        hashMap.put("magenta", -65281);
+        bp1.q(-8388608, hashMap, "maroon", -10039894, "mediumaquamarine");
+        bp1.q(-16777011, hashMap, "mediumblue", -4565549, "mediumorchid");
+        bp1.q(-7114533, hashMap, "mediumpurple", -12799119, "mediumseagreen");
+        bp1.q(-8689426, hashMap, "mediumslateblue", -16713062, "mediumspringgreen");
+        bp1.q(-12004916, hashMap, "mediumturquoise", -3730043, "mediumvioletred");
+        bp1.q(-15132304, hashMap, "midnightblue", -655366, "mintcream");
+        bp1.q(-6943, hashMap, "mistyrose", -6987, "moccasin");
+        bp1.q(-8531, hashMap, "navajowhite", -16777088, "navy");
+        bp1.q(-133658, hashMap, "oldlace", -8355840, "olive");
+        bp1.q(-9728477, hashMap, "olivedrab", -23296, "orange");
+        bp1.q(-47872, hashMap, "orangered", -2461482, "orchid");
+        bp1.q(-1120086, hashMap, "palegoldenrod", -6751336, "palegreen");
+        bp1.q(-5247250, hashMap, "paleturquoise", -2396013, "palevioletred");
+        bp1.q(-4139, hashMap, "papayawhip", -9543, "peachpuff");
+        bp1.q(-3308225, hashMap, "peru", -16181, "pink");
+        bp1.q(-2252579, hashMap, "plum", -5185306, "powderblue");
+        bp1.q(-8388480, hashMap, "purple", -10079335, "rebeccapurple");
+        bp1.q(-65536, hashMap, "red", -4419697, "rosybrown");
+        bp1.q(-12490271, hashMap, "royalblue", -7650029, "saddlebrown");
+        bp1.q(-360334, hashMap, "salmon", -744352, "sandybrown");
+        bp1.q(-13726889, hashMap, "seagreen", -2578, "seashell");
+        bp1.q(-6270419, hashMap, "sienna", -4144960, "silver");
+        bp1.q(-7876885, hashMap, "skyblue", -9807155, "slateblue");
+        hashMap.put("slategray", -9404272);
+        hashMap.put("slategrey", -9404272);
+        hashMap.put("snow", -1286);
+        hashMap.put("springgreen", -16711809);
+        bp1.q(-12156236, hashMap, "steelblue", -2968436, "tan");
+        bp1.q(-16744320, hashMap, "teal", -2572328, "thistle");
+        bp1.q(-40121, hashMap, "tomato", 0, "transparent");
+        bp1.q(-12525360, hashMap, "turquoise", -1146130, "violet");
+        bp1.q(-663885, hashMap, "wheat", -1, "white");
+        bp1.q(-657931, hashMap, "whitesmoke", -256, "yellow");
+        hashMap.put("yellowgreen", -6632142);
     }
 
-    public final void a(int i) {
-        boolean z;
-        this.h = i;
-        if (i < 0) {
-            z = true;
+    public static int a(String str, boolean z) {
+        Pattern pattern;
+        int parseInt;
+        yve.f(!TextUtils.isEmpty(str));
+        String replace = str.replace(" ", "");
+        if (replace.charAt(0) == '#') {
+            int parseLong = (int) Long.parseLong(replace.substring(1), 16);
+            if (replace.length() == 7) {
+                return parseLong | (-16777216);
+            }
+            if (replace.length() == 9) {
+                return ((parseLong & 255) << 24) | (parseLong >>> 8);
+            }
+            iy8.d();
+            return 0;
+        }
+        if (replace.startsWith("rgba")) {
+            if (z) {
+                pattern = c;
+            } else {
+                pattern = b;
+            }
+            Matcher matcher = pattern.matcher(replace);
+            if (matcher.matches()) {
+                if (z) {
+                    String group = matcher.group(4);
+                    group.getClass();
+                    parseInt = (int) (Float.parseFloat(group) * 255.0f);
+                } else {
+                    String group2 = matcher.group(4);
+                    group2.getClass();
+                    parseInt = Integer.parseInt(group2, 10);
+                }
+                String group3 = matcher.group(1);
+                group3.getClass();
+                int parseInt2 = Integer.parseInt(group3, 10);
+                String group4 = matcher.group(2);
+                group4.getClass();
+                int parseInt3 = Integer.parseInt(group4, 10);
+                String group5 = matcher.group(3);
+                group5.getClass();
+                return Color.argb(parseInt, parseInt2, parseInt3, Integer.parseInt(group5, 10));
+            }
+        } else if (replace.startsWith("rgb")) {
+            Matcher matcher2 = a.matcher(replace);
+            if (matcher2.matches()) {
+                String group6 = matcher2.group(1);
+                group6.getClass();
+                int parseInt4 = Integer.parseInt(group6, 10);
+                String group7 = matcher2.group(2);
+                group7.getClass();
+                int parseInt5 = Integer.parseInt(group7, 10);
+                String group8 = matcher2.group(3);
+                group8.getClass();
+                return Color.rgb(parseInt4, parseInt5, Integer.parseInt(group8, 10));
+            }
         } else {
-            z = false;
-        }
-        this.e = z;
-    }
-
-    public final void b(Paint.FontMetricsInt fontMetricsInt) {
-        this.K = true;
-        this.L = fontMetricsInt;
-        if (fontMetricsInt != null) {
-            c(Math.abs(this.L.ascent) + Math.abs(fontMetricsInt.descent));
-            if (this.E == 0) {
-                c(gl.L(20.0f));
+            Integer num = (Integer) d.get(jrd.c(replace));
+            if (num != null) {
+                return num.intValue();
             }
         }
-    }
-
-    public final void c(int i) {
-        this.E = i;
-        this.c.setBounds(0, 0, i, i);
-    }
-
-    public final void d(float f) {
-        this.r = 0.0f;
-        this.s = f;
-    }
-
-    @Override
-    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.cm2.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        if (this.K && this.L != null) {
-            if (fontMetricsInt == null) {
-                fontMetricsInt = new Paint.FontMetricsInt();
-            }
-            Paint.FontMetricsInt fontMetricsInt2 = this.L;
-            fontMetricsInt.ascent = fontMetricsInt2.ascent;
-            fontMetricsInt.descent = fontMetricsInt2.descent;
-            fontMetricsInt.top = fontMetricsInt2.top;
-            fontMetricsInt.bottom = fontMetricsInt2.bottom;
-            return (int) (Math.abs(this.H) * Math.abs(this.I) * this.E);
-        }
-        int i3 = this.F;
-        float f = this.I;
-        if (i3 != 0) {
-            return (int) (Math.abs(f) * this.F);
-        }
-        float abs = Math.abs(this.H) * Math.abs(f);
-        int i4 = this.E;
-        if (i4 == 0) {
-            i4 = this.c.getIntrinsicWidth();
-        }
-        return (int) (abs * i4);
-    }
-
-    public cm2(Drawable drawable) {
-        this(0, drawable);
-    }
-
-    public cm2(int i, int i2) {
-        this(i2, a.b.getDrawable(i).mutate());
-    }
-
-    public cm2(int i) {
-        this(i, 0);
+        iy8.d();
+        return 0;
     }
 }

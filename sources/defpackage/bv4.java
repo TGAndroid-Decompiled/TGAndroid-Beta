@@ -1,9 +1,8 @@
 package defpackage;
+public final class bv4 {
+    public final e23 a;
 
-import android.view.ViewTreeObserver;
-public final class bv4 implements ViewTreeObserver.OnPreDrawListener {
-    @Override
-    public final boolean onPreDraw() {
-        return false;
+    public bv4(e23 e23Var) {
+        this.a = e23Var;
     }
 }

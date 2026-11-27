@@ -1,119 +1,35 @@
 package defpackage;
+public abstract class xl5 {
+    public static final j99 a;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class xl5 {
-    public float a;
-    public float b;
-    public float c;
-    public boolean e;
-    public final pjc f;
-    public final pjc g;
-    public ValueAnimator j;
-    public int k;
-    public float d = 0.0f;
-    public boolean h = false;
-    public float i = 1.0f;
-
-    public xl5(int i, int i2, int i3, int i4) {
-        ?? fk0Var = new fk0(i4 - 1);
-        this.f = fk0Var;
-        ?? fk0Var2 = new fk0(i4);
-        this.g = fk0Var2;
-        fk0Var.a = i;
-        fk0Var.b = i2;
-        fk0Var2.a = i - i3;
-        fk0Var2.b = i2 - i3;
-        fk0Var.b();
-        fk0Var2.b();
-        fk0Var.d.setColor(-1);
-        fk0Var.d.setAlpha(20);
-        fk0Var2.d.setColor(-1);
-        fk0Var2.d.setAlpha(36);
+    static {
+        no5 no5Var = po5.b;
+        Object[] objArr = new Object[192];
+        objArr[0] = "Blues";
+        objArr[1] = "Classic Rock";
+        objArr[2] = "Country";
+        objArr[3] = "Dance";
+        objArr[4] = "Disco";
+        objArr[5] = "Funk";
+        objArr[6] = "Grunge";
+        objArr[7] = "Hip-Hop";
+        objArr[8] = "Jazz";
+        objArr[9] = "Metal";
+        objArr[10] = "New Age";
+        objArr[11] = "Oldies";
+        System.arraycopy(new String[]{"Other", "Pop", "R&B", "Rap", "Reggae", "Rock", "Techno", "Industrial", "Alternative", "Ska", "Death Metal", "Pranks", "Soundtrack", "Euro-Techno", "Ambient", "Trip-Hop", "Vocal", "Jazz+Funk", "Fusion", "Trance", "Classical", "Instrumental", "Acid", "House", "Game", "Sound Clip", "Gospel", "Noise", "AlternRock", "Bass", "Soul", "Punk", "Space", "Meditative", "Instrumental Pop", "Instrumental Rock", "Ethnic", "Gothic", "Darkwave", "Techno-Industrial", "Electronic", "Pop-Folk", "Eurodance", "Dream", "Southern Rock", "Comedy", "Cult", "Gangsta", "Top 40", "Christian Rap", "Pop/Funk", "Jungle", "Native American", "Cabaret", "New Wave", "Psychadelic", "Rave", "Showtunes", "Trailer", "Lo-Fi", "Tribal", "Acid Punk", "Acid Jazz", "Polka", "Retro", "Musical", "Rock & Roll", "Hard Rock", "Folk", "Folk-Rock", "National Folk", "Swing", "Fast Fusion", "Bebob", "Latin", "Revival", "Celtic", "Bluegrass", "Avantgarde", "Gothic Rock", "Progressive Rock", "Psychedelic Rock", "Symphonic Rock", "Slow Rock", "Big Band", "Chorus", "Easy Listening", "Acoustic", "Humour", "Speech", "Chanson", "Opera", "Chamber Music", "Sonata", "Symphony", "Booty Bass", "Primus", "Porn Groove", "Satire", "Slow Jam", "Club", "Tango", "Samba", "Folklore", "Ballad", "Power Ballad", "Rhythmic Soul", "Freestyle", "Duet", "Punk Rock", "Drum Solo", "A capella", "Euro-House", "Dance Hall", "Goa", "Drum & Bass", "Club-House", "Hardcore", "Terror", "Indie", "BritPop", "Afro-Punk", "Polsk Punk", "Beat", "Christian Gangsta Rap", "Heavy Metal", "Black Metal", "Crossover", "Contemporary Christian", "Christian Rock", "Merengue", "Salsa", "Thrash Metal", "Anime", "Jpop", "Synthpop", "Abstract", "Art Rock", "Baroque", "Bhangra", "Big beat", "Breakbeat", "Chillout", "Downtempo", "Dub", "EBM", "Eclectic", "Electro", "Electroclash", "Emo", "Experimental", "Garage", "Global", "IDM", "Illbient", "Industro-Goth", "Jam Band", "Krautrock", "Leftfield", "Lounge", "Math Rock", "New Romantic", "Nu-Breakz", "Post-Punk", "Post-Rock", "Psytrance", "Shoegaze", "Space Rock", "Trop Rock", "World Music", "Neoclassical", "Audiobook", "Audio theatre", "Neue Deutsche Welle", "Podcast", "Indie-Rock", "G-Funk", "Dubstep", "Garage Rock", "Psybient"}, 0, objArr, 12, 180);
+        rue.a(192, objArr);
+        a = po5.o(192, objArr);
     }
 
-    public final void a(Canvas canvas, float f, float f2, View view) {
-        pjc pjcVar = this.f;
-        Paint paint = pjcVar.d;
-        float f3 = (this.a * 0.4f) + 0.8f;
-        if (this.e || this.d != 0.0f) {
-            canvas.save();
-            float interpolation = s33.f.getInterpolation(this.d) * f3;
-            canvas.scale(interpolation, interpolation, f, f2);
-            pjcVar.g(this.a, this.i);
-            pjcVar.a(f, f2, canvas, paint);
-            float f4 = this.a;
-            float f5 = this.i;
-            pjc pjcVar2 = this.g;
-            pjcVar2.g(f4, f5);
-            pjcVar2.a(f, f2, canvas, paint);
-            canvas.restore();
-        }
-        if (!this.h || this.k != 0) {
-            int i = this.k;
-            if (i != 0) {
-                this.k = i - 1;
+    public static String a(int i) {
+        if (i >= 0) {
+            j99 j99Var = a;
+            if (i < j99Var.d) {
+                return (String) j99Var.get(i);
             }
-            if (this.d != 0.0f) {
-                view.invalidate();
-            }
+            return null;
         }
-    }
-
-    public final void b(double d) {
-        float f = ((float) d) / 80.0f;
-        float f2 = 0.0f;
-        if (!this.e) {
-            f = 0.0f;
-        }
-        if (f > 1.0f) {
-            f2 = 1.0f;
-        } else if (f >= 0.0f) {
-            f2 = f;
-        }
-        this.b = f2;
-        this.c = (f2 - this.a) / 200.0f;
-    }
-
-    public final void c() {
-        float f = this.b;
-        float f2 = this.a;
-        if (f != f2) {
-            float f3 = this.c;
-            float f4 = (16.0f * f3) + f2;
-            this.a = f4;
-            if (f3 > 0.0f) {
-                if (f4 > f) {
-                    this.a = f;
-                }
-            } else if (f4 < f) {
-                this.a = f;
-            }
-        }
-        boolean z = this.e;
-        if (z) {
-            float f5 = this.d;
-            if (f5 != 1.0f) {
-                float f6 = f5 + 0.045714285f;
-                this.d = f6;
-                if (f6 > 1.0f) {
-                    this.d = 1.0f;
-                    return;
-                }
-                return;
-            }
-        }
-        if (!z) {
-            float f7 = this.d;
-            if (f7 != 0.0f) {
-                float f8 = f7 - 0.045714285f;
-                this.d = f8;
-                if (f8 < 0.0f) {
-                    this.d = 0.0f;
-                }
-            }
-        }
+        return null;
     }
 }

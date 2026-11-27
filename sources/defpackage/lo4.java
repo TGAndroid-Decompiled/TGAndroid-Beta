@@ -1,10 +1,17 @@
 package defpackage;
-public final class lo4 extends RuntimeException {
-    public final bn4 a;
+public final class lo4 extends b59 {
+    public static final lo4 c;
 
-    public lo4(bn4 bn4Var, String str) {
-        super(str);
-        bn4Var.getClass();
-        this.a = bn4Var;
+    static {
+        ?? exc = new Exception();
+        c = exc;
+        exc.setStackTrace(b59.b);
+    }
+
+    public static lo4 a() {
+        if (b59.a) {
+            return new Exception();
+        }
+        return c;
     }
 }

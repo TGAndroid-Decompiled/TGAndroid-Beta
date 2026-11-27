@@ -2,7 +2,7 @@ package org.webrtc;
 public class MediaStreamTrack {
     public static final String AUDIO_TRACK_KIND = "audio";
     public static final String VIDEO_TRACK_KIND = "video";
-    private long nativeTrack;
+    final NativeLifecycleLock lifecycleLock;
 
     public enum MediaType {
         MEDIA_TYPE_AUDIO(0),
@@ -21,13 +21,25 @@ public class MediaStreamTrack {
                     return mediaType;
                 }
             }
-            w26.j(de9.k(i, "Unknown native media type: "));
+            lq5.j(uh9.k(i, "Unknown native media type: "));
             return null;
         }
 
         public int getNative() {
             return this.nativeIndex;
         }
+    }
+
+    public interface Natives {
+        boolean getEnabled(long j);
+
+        String getId(long j);
+
+        String getKind(long j);
+
+        State getState(long j);
+
+        boolean setEnabled(long j, boolean z);
     }
 
     public enum State {
@@ -41,77 +53,88 @@ public class MediaStreamTrack {
 
     public MediaStreamTrack(long j) {
         if (j != 0) {
-            this.nativeTrack = j;
+            this.lifecycleLock = new NativeLifecycleLock("MediaStreamTrack", j);
         } else {
-            w26.j("nativeTrack may not be null");
+            lq5.j("nativeTrack may not be null");
             throw null;
         }
     }
 
-    private void checkMediaStreamTrackExists() {
-        if (this.nativeTrack != 0) {
-            return;
-        }
-        sc8.j("MediaStreamTrack has been disposed.");
+    public static String a(long j) {
+        return lambda$id$0(j);
+    }
+
+    public static String b(long j) {
+        return lambda$kind$1(j);
+    }
+
+    public static Boolean c(long j) {
+        return lambda$enabled$2(j);
     }
 
     public static MediaStreamTrack createMediaStreamTrack(long j) {
         if (j == 0) {
             return null;
         }
-        String nativeGetKind = nativeGetKind(j);
-        if (nativeGetKind.equals("audio")) {
+        String kind = MediaStreamTrackJni.get().getKind(j);
+        if (kind.equals("audio")) {
             return new AudioTrack(j);
         }
-        if (!nativeGetKind.equals("video")) {
+        if (!kind.equals("video")) {
             return null;
         }
         return new VideoTrack(j);
     }
 
-    private static native boolean nativeGetEnabled(long j);
+    public static State d(long j) {
+        return lambda$state$4(j);
+    }
 
-    private static native String nativeGetId(long j);
+    public static Boolean lambda$enabled$2(long j) {
+        return Boolean.valueOf(MediaStreamTrackJni.get().getEnabled(j));
+    }
 
-    private static native String nativeGetKind(long j);
+    public static String lambda$id$0(long j) {
+        return MediaStreamTrackJni.get().getId(j);
+    }
 
-    private static native State nativeGetState(long j);
+    public static String lambda$kind$1(long j) {
+        return MediaStreamTrackJni.get().getKind(j);
+    }
 
-    private static native boolean nativeSetEnabled(long j, boolean z);
+    public static Boolean lambda$setEnabled$3(boolean z, long j) {
+        return Boolean.valueOf(MediaStreamTrackJni.get().setEnabled(j, z));
+    }
+
+    public static State lambda$state$4(long j) {
+        return MediaStreamTrackJni.get().getState(j);
+    }
 
     public void dispose() {
-        checkMediaStreamTrackExists();
-        JniCommon.nativeReleaseRef(this.nativeTrack);
-        this.nativeTrack = 0L;
+        this.lifecycleLock.dispose(new da3((byte) 28));
     }
 
     public boolean enabled() {
-        checkMediaStreamTrackExists();
-        return nativeGetEnabled(this.nativeTrack);
+        return ((Boolean) this.lifecycleLock.call(new hz6((byte) 7))).booleanValue();
     }
 
     public long getNativeMediaStreamTrack() {
-        checkMediaStreamTrackExists();
-        return this.nativeTrack;
+        return this.lifecycleLock.getNativePointer();
     }
 
     public String id() {
-        checkMediaStreamTrackExists();
-        return nativeGetId(this.nativeTrack);
+        return (String) this.lifecycleLock.call(new hz6((byte) 10));
     }
 
     public String kind() {
-        checkMediaStreamTrackExists();
-        return nativeGetKind(this.nativeTrack);
+        return (String) this.lifecycleLock.call(new hz6((byte) 9));
     }
 
     public boolean setEnabled(boolean z) {
-        checkMediaStreamTrackExists();
-        return nativeSetEnabled(this.nativeTrack, z);
+        return ((Boolean) this.lifecycleLock.call(new k64((byte) 6, z))).booleanValue();
     }
 
     public State state() {
-        checkMediaStreamTrackExists();
-        return nativeGetState(this.nativeTrack);
+        return (State) this.lifecycleLock.call(new hz6((byte) 8));
     }
 }

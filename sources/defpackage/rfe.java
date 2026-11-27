@@ -1,17 +1,20 @@
 package defpackage;
-public final class rfe implements zn7 {
-    public static final rfe a = new Object();
+public interface rfe {
+    void a(Object obj, byte[] bArr, int i, int i2, pl6 pl6Var);
 
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
+    boolean b(s6e s6eVar, s6e s6eVar2);
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    int c(s6e s6eVar);
+
+    boolean d(Object obj);
+
+    int e(s6e s6eVar);
+
+    void f(Object obj, oqd oqdVar);
+
+    s6e zze();
+
+    void zzf(Object obj);
+
+    void zzg(Object obj, Object obj2);
 }

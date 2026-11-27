@@ -1,19 +1,32 @@
 package defpackage;
-public final class xad extends qdd {
+
+import android.os.Bundle;
+import android.util.Log;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.util.Arrays;
+public final class xad implements SuccessContinuation, fme, OnFailureListener {
     public static final xad a = new Object();
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    @Override
+    public final byte[] a(int i, int i2, byte[] bArr) {
+        return Arrays.copyOfRange(bArr, i, i2 + i);
+    }
+
+    @Override
+    public final void onFailure(Exception exc) {
+        Log.e("OptionalModuleUtils", "Failed to check feature availability", exc);
+    }
+
+    @Override
+    public final Task then(Object obj) {
+        Bundle bundle = (Bundle) obj;
+        int i = up9.h;
+        if (bundle != null && bundle.containsKey("google.messenger")) {
+            return Tasks.forResult(null);
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 2040732332;
-    }
-
-    public final String toString() {
-        return "Optional.absent()";
+        return Tasks.forResult(bundle);
     }
 }

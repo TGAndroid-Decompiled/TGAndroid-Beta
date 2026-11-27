@@ -1,45 +1,138 @@
 package defpackage;
+public final class zd3 implements Runnable {
+    public final byte a;
+    public final be3 b;
+    public final Runnable c;
+    public final z8d d;
 
-import j$.util.Objects;
-public final class zd3 {
-    public final String a;
-    public final String b;
-    public final String c;
-
-    public zd3(String str, String str2, String str3) {
-        this.a = str;
-        this.b = str2;
-        this.c = str3;
+    public zd3(be3 be3Var, Runnable runnable, z8d z8dVar, byte b) {
+        this.a = b;
+        this.b = be3Var;
+        this.c = runnable;
+        this.d = z8dVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        final z8d z8dVar = this.d;
+        final Runnable runnable = this.c;
+        be3 be3Var = this.b;
+        switch (b) {
+            case 0:
+                be3Var.a.execute(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        z8d z8dVar2 = z8dVar;
+                        Runnable runnable2 = runnable;
+                        switch (b2) {
+                            case 0:
+                                try {
+                                    runnable2.run();
+                                    return;
+                                } catch (Exception e) {
+                                    ((de3) z8dVar2.b).l(e);
+                                    throw e;
+                                }
+                            case 1:
+                                try {
+                                    runnable2.run();
+                                    return;
+                                } catch (Exception e2) {
+                                    ((de3) z8dVar2.b).l(e2);
+                                    return;
+                                }
+                            default:
+                                de3 de3Var = (de3) z8dVar2.b;
+                                try {
+                                    runnable2.run();
+                                    de3Var.k(null);
+                                    return;
+                                } catch (Exception e3) {
+                                    de3Var.l(e3);
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            case 1:
+                be3Var.a.execute(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        z8d z8dVar2 = z8dVar;
+                        Runnable runnable2 = runnable;
+                        switch (b2) {
+                            case 0:
+                                try {
+                                    runnable2.run();
+                                    return;
+                                } catch (Exception e) {
+                                    ((de3) z8dVar2.b).l(e);
+                                    throw e;
+                                }
+                            case 1:
+                                try {
+                                    runnable2.run();
+                                    return;
+                                } catch (Exception e2) {
+                                    ((de3) z8dVar2.b).l(e2);
+                                    return;
+                                }
+                            default:
+                                de3 de3Var = (de3) z8dVar2.b;
+                                try {
+                                    runnable2.run();
+                                    de3Var.k(null);
+                                    return;
+                                } catch (Exception e3) {
+                                    de3Var.l(e3);
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            default:
+                be3Var.a.execute(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r3;
+                        z8d z8dVar2 = z8dVar;
+                        Runnable runnable2 = runnable;
+                        switch (b2) {
+                            case 0:
+                                try {
+                                    runnable2.run();
+                                    return;
+                                } catch (Exception e) {
+                                    ((de3) z8dVar2.b).l(e);
+                                    throw e;
+                                }
+                            case 1:
+                                try {
+                                    runnable2.run();
+                                    return;
+                                } catch (Exception e2) {
+                                    ((de3) z8dVar2.b).l(e2);
+                                    return;
+                                }
+                            default:
+                                de3 de3Var = (de3) z8dVar2.b;
+                                try {
+                                    runnable2.run();
+                                    de3Var.k(null);
+                                    return;
+                                } catch (Exception e3) {
+                                    de3Var.l(e3);
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
         }
-        if (obj != null && zd3.class == obj.getClass()) {
-            zd3 zd3Var = (zd3) obj;
-            if (Objects.equals(this.a, zd3Var.a) && Objects.equals(this.b, zd3Var.b) && Objects.equals(this.c, zd3Var.c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i;
-        int hashCode = this.a.hashCode() * 31;
-        int i2 = 0;
-        String str = this.b;
-        if (str != null) {
-            i = str.hashCode();
-        } else {
-            i = 0;
-        }
-        int i3 = (hashCode + i) * 31;
-        String str2 = this.c;
-        if (str2 != null) {
-            i2 = str2.hashCode();
-        }
-        return i3 + i2;
     }
 }

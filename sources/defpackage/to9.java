@@ -1,53 +1,44 @@
 package defpackage;
+public final class to9 implements Runnable {
+    public final byte a;
+    public final jp9 b;
+    public final fp9 c;
 
-import java.util.Map;
-public final class to9 implements Map.Entry {
-    public final Object a;
-    public final Object b;
-    public to9 c;
-    public to9 d;
-
-    public to9(Object obj, Object obj2) {
-        this.a = obj;
-        this.b = obj2;
+    public to9(jp9 jp9Var, fp9 fp9Var, Exception exc) {
+        this.a = (byte) 2;
+        this.b = jp9Var;
+        this.c = fp9Var;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof to9) {
-                to9 to9Var = (to9) obj;
-                if (this.a.equals(to9Var.a) && this.b.equals(to9Var.b)) {
-                    return true;
+    public final void run() {
+        switch (this.a) {
+            case 0:
+                jp9 jp9Var = this.b;
+                fp9 fp9Var = this.c;
+                ((hkb) jp9Var.e).c(fp9Var.a);
+                return;
+            case 1:
+                jp9 jp9Var2 = this.b;
+                fp9 fp9Var2 = this.c;
+                ((hkb) jp9Var2.e).c(fp9Var2.a);
+                return;
+            default:
+                jp9 jp9Var3 = this.b;
+                fp9 fp9Var3 = this.c;
+                gp9 gp9Var = jp9Var3.e;
+                long j = fp9Var3.a;
+                hkb hkbVar = (hkb) gp9Var;
+                synchronized (hkbVar) {
+                    hkbVar.c(j);
                 }
-                return false;
-            }
-            return false;
+                return;
         }
-        return true;
     }
 
-    @Override
-    public final Object getKey() {
-        return this.a;
-    }
-
-    @Override
-    public final Object getValue() {
-        return this.b;
-    }
-
-    @Override
-    public final int hashCode() {
-        return this.a.hashCode() ^ this.b.hashCode();
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException("An entry modification is not supported");
-    }
-
-    public final String toString() {
-        return this.a + "=" + this.b;
+    public to9(jp9 jp9Var, fp9 fp9Var, int i, byte b) {
+        this.a = b;
+        this.b = jp9Var;
+        this.c = fp9Var;
     }
 }

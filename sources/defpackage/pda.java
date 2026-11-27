@@ -1,159 +1,112 @@
 package defpackage;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.util.SparseBooleanArray;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-public final class pda implements ViewTreeObserver.OnPreDrawListener {
-    public final sca a;
-    public final SparseBooleanArray b;
-    public final pi4 c;
-    public final int d;
-    public final nfa e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
+public final class pda extends FrameLayout {
+    public final byte a;
+    public final kea b;
 
-    public pda(nfa nfaVar, sca scaVar, SparseBooleanArray sparseBooleanArray, pi4 pi4Var, int i) {
-        this.e = nfaVar;
-        this.a = scaVar;
-        this.b = sparseBooleanArray;
-        this.c = pi4Var;
-        this.d = i;
+    public pda(kea keaVar, Context context, byte b) {
+        super(context);
+        this.a = b;
+        this.b = keaVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        View childAt;
-        nfa nfaVar = this.e;
-        nfaVar.getViewTreeObserver().removeOnPreDrawListener(this);
-        final sca scaVar = this.a;
-        w39 adapter = scaVar.getAdapter();
-        if (adapter != nfaVar.K && adapter != nfaVar.N && adapter != nfaVar.P && adapter != nfaVar.O) {
-            int childCount = scaVar.getChildCount();
-            AnimatorSet animatorSet = new AnimatorSet();
-            for (int i = 0; i < childCount; i++) {
-                View childAt2 = scaVar.getChildAt(i);
-                pi4 pi4Var = this.c;
-                if (childAt2 != pi4Var && RecyclerView.R(childAt2) >= this.d - 1) {
-                    childAt2.setAlpha(0.0f);
-                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
-                    ofFloat.setStartDelay((int) ((Math.min(scaVar.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / scaVar.getMeasuredHeight()) * 100.0f));
-                    ofFloat.setDuration(200L);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            byte b = r2;
-                            sca scaVar2 = scaVar;
-                            switch (b) {
-                                case 0:
-                                    if (scaVar2.c1()) {
-                                        scaVar2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                case 1:
-                                    if (scaVar2.c1()) {
-                                        scaVar2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    if (scaVar2.c1()) {
-                                        scaVar2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    animatorSet.playTogether(ofFloat);
-                }
-                if (pi4Var != null && pi4Var.getParent() == null) {
-                    scaVar.addView(pi4Var);
-                    d49 layoutManager = scaVar.getLayoutManager();
-                    if (layoutManager != null) {
-                        layoutManager.L(pi4Var);
-                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(pi4Var, View.ALPHA, pi4Var.getAlpha(), 0.0f);
-                        ofFloat2.addListener(new ng9(this, layoutManager));
-                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                byte b = r2;
-                                sca scaVar2 = scaVar;
-                                switch (b) {
-                                    case 0:
-                                        if (scaVar2.c1()) {
-                                            scaVar2.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                    case 1:
-                                        if (scaVar2.c1()) {
-                                            scaVar2.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                    default:
-                                        if (scaVar2.c1()) {
-                                            scaVar2.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        ofFloat2.start();
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.a) {
+            case 0:
+                kea keaVar = this.b;
+                jl0 jl0Var = keaVar.R2;
+                jl0Var.setBounds(0, (int) keaVar.p2, getMeasuredWidth(), getMeasuredHeight());
+                jl0Var.draw(canvas);
+                canvas.save();
+                canvas.clipRect(0.0f, keaVar.p2, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.a) {
+            case 0:
+                kea keaVar = this.b;
+                pda pdaVar = keaVar.m1;
+                float f = keaVar.q2;
+                if (f != 0.0f && f != pdaVar.getTop() + keaVar.q2) {
+                    ValueAnimator valueAnimator = keaVar.r2;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
                     }
+                    float top = keaVar.q2 - (pdaVar.getTop() + keaVar.p2);
+                    keaVar.p2 = top;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                    keaVar.r2 = ofFloat;
+                    ofFloat.addUpdateListener(new b49(this, (byte) 26));
+                    keaVar.r2.setInterpolator(k43.f);
+                    keaVar.r2.setDuration(200L);
+                    keaVar.r2.start();
+                    keaVar.q2 = 0.0f;
                 }
-            }
-            animatorSet.start();
-            return true;
+                keaVar.N1[1].setTranslationY((-(pdaVar.getMeasuredHeight() - hl.L(48.0f))) + keaVar.p2 + keaVar.o2 + ((1.0f - getAlpha()) * (pdaVar.getMeasuredHeight() - hl.L(48.0f))));
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        SparseBooleanArray sparseBooleanArray = this.b;
-        if (sparseBooleanArray != null) {
-            int childCount2 = scaVar.getChildCount();
-            for (int i2 = 0; i2 < childCount2; i2++) {
-                int Q = nfa.Q(scaVar.getChildAt(i2));
-                if (Q != 0 && sparseBooleanArray.get(Q, false)) {
-                    nfaVar.S1.put(Q, Float.valueOf(0.0f));
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat3.addUpdateListener(new j24(this, Q, scaVar));
-                    ofFloat3.addListener(new cn(this, Q, (byte) 12));
-                    ofFloat3.setStartDelay((int) ((Math.min(scaVar.getMeasuredHeight(), Math.max(0, childAt.getTop())) / scaVar.getMeasuredHeight()) * 100.0f));
-                    ofFloat3.setDuration(250L);
-                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            byte b = r2;
-                            sca scaVar2 = scaVar;
-                            switch (b) {
-                                case 0:
-                                    if (scaVar2.c1()) {
-                                        scaVar2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                case 1:
-                                    if (scaVar2.c1()) {
-                                        scaVar2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    if (scaVar2.c1()) {
-                                        scaVar2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    ofFloat3.start();
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.a) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(ob6.G(this.b.P1.m(), "AccDescrShareInChats", new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f) {
+        switch (this.a) {
+            case 0:
+                super.setAlpha(f);
+                invalidate();
+                return;
+            default:
+                super.setAlpha(f);
+                return;
+        }
+    }
+
+    @Override
+    public final void setVisibility(int i) {
+        switch (this.a) {
+            case 0:
+                super.setVisibility(i);
+                if (i != 0) {
+                    this.b.N1[1].setTranslationY(0.0f);
+                    return;
                 }
-                scaVar.invalidate();
-            }
+                return;
+            default:
+                super.setVisibility(i);
+                return;
         }
-        return true;
     }
 }

@@ -1,83 +1,45 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-public abstract class o75 extends FrameLayout {
-    public int a;
-    public r95 b;
-    public h85 c;
-    public gc2 d;
-    public boolean e;
-    public final boolean f;
+import android.os.Bundle;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class o75 implements s95 {
+    public final j95 a;
 
-    public o75(Context context, boolean z) {
-        super(context);
-        this.f = z;
+    public o75(j95 j95Var) {
+        this.a = j95Var;
     }
 
-    public float getItemHeight() {
-        int measuredHeight;
-        r95 r95Var = this.b;
-        if (r95Var != null) {
-            measuredHeight = r95Var.F();
-        } else {
-            measuredHeight = getMeasuredHeight();
-        }
-        return measuredHeight;
-    }
-
-    public gc2 getParticipant() {
-        return this.d;
-    }
-
-    public h85 getRenderer() {
-        return this.c;
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e = true;
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.e = false;
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        int i3;
-        float f2;
-        if (this.f) {
-            ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.b.F(), 1073741824));
+    public final void a(GroupCallMessage groupCallMessage) {
+        e Q = LaunchActivity.Q();
+        if (Q == null) {
             return;
         }
-        if (h75.u5) {
-            f = 3.0f;
-        } else {
-            f = 2.0f;
+        boolean z = Q instanceof ProfileActivity;
+        j95 j95Var = this.a;
+        if (z && ((ProfileActivity) Q).a() == groupCallMessage.fromId) {
+            j95Var.dismiss();
+            return;
         }
-        int L = gl.q.x - (gl.L(14.0f) << 1);
-        if (h75.u5) {
-            i3 = -gl.L(90.0f);
+        int G0 = j95Var.G0();
+        Bundle bundle = new Bundle();
+        long j = groupCallMessage.fromId;
+        if (j > 0) {
+            bundle.putLong("user_id", j);
         } else {
-            i3 = 0;
+            bundle.putLong("chat_id", -j);
         }
-        float f3 = L + i3;
-        if (h75.v5) {
-            f2 = f3 / 2.0f;
-        } else {
-            f2 = f3 / f;
+        boolean z2 = true;
+        if (groupCallMessage.fromId == yac.h(j95Var.n1.a).e()) {
+            bundle.putBoolean("my_profile", true);
         }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (f2 + gl.L(4.0f)), 1073741824));
-    }
-
-    public void setRenderer(h85 h85Var) {
-        this.c = h85Var;
+        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
+        if (G0 > 0 && G0 != Integer.MAX_VALUE) {
+            z2 = false;
+        }
+        Q.presentFragment(profileActivity, false, z2);
+        j95Var.dismiss();
     }
 }

@@ -1,19 +1,16 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.RemoteException;
-public abstract class wte {
-    public static void a(ei5 ei5Var) {
-        if (ei5Var != null) {
-            try {
-                di5 di5Var = (di5) ei5Var;
-                Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
-                obtain.writeInt(0);
-                di5Var.a.transact(3006, obtain, null, 1);
-                obtain.recycle();
-            } catch (RemoteException unused) {
-            }
-        }
+import java.io.IOException;
+public class wte extends IOException {
+    public static wte a() {
+        return new IOException("While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.");
+    }
+
+    public static wte b() {
+        return new IOException("CodedInputStream encountered an embedded string or message which claimed to have negative size.");
+    }
+
+    public static wte c() {
+        return new IOException("Protocol message had invalid UTF-8.");
     }
 }

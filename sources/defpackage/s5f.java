@@ -1,34 +1,46 @@
 package defpackage;
-public final class s5f extends vef {
-    private static final s5f zzb;
-    private int zzd;
-    private int zze;
-    private int zzf;
+public final class s5f {
+    public final byte a;
 
-    static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(s5f.class, vefVar);
+    public static int a(long j, byte[] bArr, int i, int i2) {
+        int i3;
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 == 2) {
+                    byte a = a5f.a(j, bArr);
+                    byte a2 = a5f.a(j + 1, bArr);
+                    s5f s5fVar = h5f.a;
+                    if (i > -12 || a > -65 || a2 > -65) {
+                        return -1;
+                    }
+                    i ^= a << 8;
+                    i3 = a2 << 16;
+                } else {
+                    lq5.f();
+                    return 0;
+                }
+            } else {
+                byte a3 = a5f.a(j, bArr);
+                s5f s5fVar2 = h5f.a;
+                if (i > -12 || a3 > -65) {
+                    return -1;
+                }
+                i3 = a3 << 8;
+            }
+            return i ^ i3;
+        }
+        s5f s5fVar3 = h5f.a;
+        if (i > -12) {
+            return -1;
+        }
+        return i;
     }
 
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new vef();
-            }
-            return new sgf(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001᠌\u0000\u0002᠌\u0001", new Object[]{"zzd", "zze", i2f.r, "zzf", c6e.h});
-        }
-        return (byte) 1;
+    public final int b(java.lang.String r26, byte[] r27, int r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.s5f.b(java.lang.String, byte[], int, int):int");
+    }
+
+    public final boolean c(int r23, int r24, byte[] r25) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.s5f.c(int, int, byte[]):boolean");
     }
 }

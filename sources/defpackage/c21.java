@@ -1,65 +1,82 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class c21 extends FrameLayout {
-    public final lm a;
-    public final lm b;
-    public final Paint c;
-    public final RectF d;
-    public final long e;
-    public final d21 f;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public class c21 extends q11 {
+    public final e29 a;
+    public TextView b;
+    public int c;
 
-    public c21(d21 d21Var, Activity activity) {
-        super(activity);
-        this.f = d21Var;
-        s33 s33Var = s33.h;
-        this.a = new lm(320L, this, s33Var);
-        this.b = new lm(320L, this, s33Var);
-        Paint paint = new Paint(1);
-        this.c = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(268435455);
-        paint.setStrokeWidth(gl.L(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.d = new RectF();
-        this.e = System.currentTimeMillis();
+    public c21(Context context, vnb vnbVar) {
+        super(context, vnbVar);
+        ?? imageView = new ImageView(context);
+        this.a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, tre.h(56.0f, 48.0f, 8388627));
+        b21 b21Var = new b21(context, null, (byte) 0);
+        b21Var.setDisablePaddingsOffset(true);
+        this.b = b21Var;
+        jn7.i(b21Var);
+        this.b.setSingleLine();
+        this.b.setTypeface(Typeface.SANS_SERIF);
+        this.b.setTextSize(1, 15.0f);
+        this.b.setEllipsize(TextUtils.TruncateAt.END);
+        this.b.setPadding(0, hl.L(8.0f), 0, hl.L(8.0f));
+        addView(this.b, tre.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        yob.G(this.b, aob.xj, vnbVar);
+        setTextColor(getThemedColor(aob.yj));
+        setBackground(getThemedColor(aob.wj));
+    }
+
+    public final void g(int i, int i2, int i3, String... strArr) {
+        e29 e29Var = this.a;
+        e29Var.f(i, i2, i3, null);
+        for (String str : strArr) {
+            e29Var.h(this.c, str);
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z;
-        int i;
-        d21 d21Var = this.f;
-        float e = this.a.e(false, d21Var.a);
-        if (d21Var.a >= 1.0f) {
-            z = true;
-        } else {
-            z = false;
+    public CharSequence getAccessibilityText() {
+        return this.b.getText();
+    }
+
+    public final void h(int i, String... strArr) {
+        g(i, 32, 32, strArr);
+    }
+
+    public final void i(TLRPC.Document document, String... strArr) {
+        e29 e29Var = this.a;
+        e29Var.setAutoRepeat(true);
+        e29Var.g(36, 36, document);
+        for (String str : strArr) {
+            e29Var.h(this.c, str);
         }
-        float d = this.b.d(z);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        RectF rectF = this.d;
-        rectF.set(width - gl.N(13.0f), height - gl.N(13.0f), gl.N(13.0f) + width, gl.N(13.0f) + height);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.e)) * 0.45f) % 5400.0f;
-        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
-        for (int i2 = 0; i2 < 4; i2++) {
-            c84 c84Var = ih2.h;
-            c84Var.getInterpolation((currentTimeMillis - (i2 * 1350)) / 667.0f);
-            max += c84Var.getInterpolation((currentTimeMillis - (i + 667)) / 667.0f) * 250.0f;
-        }
-        int p1 = bkb.p1((1.0f - d) * 1.0f, -1);
-        Paint paint = this.c;
-        paint.setColor(p1);
-        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, e) * (-360.0f), false, paint);
-        if (e < 1.0f && d < 1.0f) {
-            invalidate();
-        }
-        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onShow() {
+        super.onShow();
+        this.a.d();
+    }
+
+    public void setIconPaddingBottom(int i) {
+        this.a.setLayoutParams(tre.i(56.0f, 48 - i, 8388627, 0.0f, 0.0f, 0.0f, i));
+    }
+
+    public void setTextColor(int i) {
+        this.c = i;
+        this.b.setTextColor(i);
+    }
+
+    public c21(int i, int i2, vnb vnbVar, Context context) {
+        this(context, vnbVar);
+        setBackground(i);
+        setTextColor(i2);
     }
 }

@@ -1,3 +1,6 @@
 package defpackage;
-public class v40 extends s9b {
+public abstract class v40 {
+    public abstract void a(int i, CharSequence charSequence);
+
+    public abstract void b(gj0 gj0Var);
 }

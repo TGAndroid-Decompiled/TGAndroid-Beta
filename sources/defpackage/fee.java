@@ -1,12 +1,17 @@
 package defpackage;
-public abstract class fee {
-    public static Exception a(h1 h1Var, String str, Exception exc) {
-        if (exc instanceof z03) {
-            return new z03(h1Var, str);
+public final class fee implements zq7 {
+    public static final fee a = new Object();
+
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        if (exc instanceof at4) {
-            return new at4(h1Var, str);
-        }
-        throw new Exception();
+        throw new ClassCastException();
     }
 }

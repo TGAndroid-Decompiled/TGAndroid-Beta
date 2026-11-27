@@ -1,223 +1,195 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class vd1 extends Drawable {
-    public final byte a;
-    public float b;
-    public Object c;
-    public Object d;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
+import java.util.ArrayList;
+public final class vd1 {
+    public final ArrayList a;
+    public final ArrayList b;
+    public final StringBuilder c;
+    public int d;
+    public int e;
+    public int f;
+    public byte g;
+    public byte h;
 
-    public vd1(Context context, int i) {
-        this.a = (byte) 2;
-        this.b = 0.75f;
-        this.c = b00.d(context, 2131231176);
-        tgb tgbVar = new tgb(String.valueOf(i), 8.0f, gl.n1("fonts/num.otf"));
-        this.d = tgbVar;
-        tgbVar.a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    public vd1(int i, int i2) {
+        ArrayList arrayList = new ArrayList();
+        this.a = arrayList;
+        ArrayList arrayList2 = new ArrayList();
+        this.b = arrayList2;
+        StringBuilder sb = new StringBuilder();
+        this.c = sb;
+        this.g = i;
+        arrayList.clear();
+        arrayList2.clear();
+        sb.setLength(0);
+        this.d = 15;
+        this.e = 0;
+        this.f = 0;
+        this.h = i2;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        float min;
-        switch (this.a) {
-            case 0:
-                wd1 wd1Var = (wd1) this.d;
-                int i = wd1Var.e;
-                Matrix matrix = wd1Var.i;
-                wd1Var.f = getBounds().width();
-                RectF rectF = gl.P;
-                rectF.set(getBounds());
-                wd1Var.a(this.b, canvas, rectF, null);
-                kcb kcbVar = (kcb) this.c;
-                if (kcbVar != null) {
-                    kcbVar.c = wd1Var.a;
-                    int i2 = wd1Var.f;
-                    float f = (((i << 1) + i2) * wd1Var.g) - i;
-                    int i3 = (int) (i2 * 0.5f);
-                    int width = getBounds().width();
-                    int height = getBounds().height();
-                    float f2 = width / kcbVar.e;
-                    float f3 = height / kcbVar.f;
-                    if (kcbVar.s) {
-                        min = Math.max(f2, f3);
+    public final void a(char c) {
+        StringBuilder sb = this.c;
+        if (sb.length() < 32) {
+            sb.append(c);
+        }
+    }
+
+    public final void b() {
+        StringBuilder sb = this.c;
+        int length = sb.length();
+        if (length > 0) {
+            sb.delete(length - 1, length);
+            ArrayList arrayList = this.a;
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                ud1 ud1Var = (ud1) arrayList.get(size);
+                int i = ud1Var.c;
+                if (i == length) {
+                    ud1Var.c = i - 1;
+                } else {
+                    return;
+                }
+            }
+        }
+    }
+
+    public final m43 c(int i) {
+        float f;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        int i2 = 0;
+        while (true) {
+            ArrayList arrayList = this.b;
+            if (i2 >= arrayList.size()) {
+                break;
+            }
+            spannableStringBuilder.append((CharSequence) arrayList.get(i2));
+            spannableStringBuilder.append('\n');
+            i2++;
+        }
+        spannableStringBuilder.append((CharSequence) d());
+        if (spannableStringBuilder.length() == 0) {
+            return null;
+        }
+        int i3 = this.e + this.f;
+        int length = (32 - i3) - spannableStringBuilder.length();
+        int i4 = i3 - length;
+        int i5 = i;
+        if (i5 == Integer.MIN_VALUE) {
+            if (this.g == 2 && (Math.abs(i4) < 3 || length < 0)) {
+                i5 = 1;
+            } else if (this.g == 2 && i4 > 0) {
+                i5 = 2;
+            } else {
+                i5 = 0;
+            }
+        }
+        if (i5 != 1) {
+            if (i5 != 2) {
+                f = c00.B(i3, 32.0f, 0.8f, 0.1f);
+            } else {
+                f = c00.B(32 - length, 32.0f, 0.8f, 0.1f);
+            }
+        } else {
+            f = 0.5f;
+        }
+        int i6 = this.d;
+        if (i6 > 7) {
+            i6 -= 17;
+        } else if (this.g == 1) {
+            i6 -= this.h - 1;
+        }
+        return new m43(spannableStringBuilder, Layout.Alignment.ALIGN_NORMAL, null, null, i6, 1, Integer.MIN_VALUE, f, i5, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
+    }
+
+    public final SpannableString d() {
+        int i;
+        int i2;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.c);
+        int length = spannableStringBuilder.length();
+        int i3 = -1;
+        int i4 = -1;
+        int i5 = -1;
+        int i6 = -1;
+        int i7 = 0;
+        int i8 = 0;
+        boolean z = false;
+        while (true) {
+            ArrayList arrayList = this.a;
+            if (i7 >= arrayList.size()) {
+                break;
+            }
+            ud1 ud1Var = (ud1) arrayList.get(i7);
+            boolean z2 = ud1Var.b;
+            int i9 = ud1Var.a;
+            if (i9 != 8) {
+                if (i9 == 7) {
+                    z = true;
+                } else {
+                    i6 = wd1.B[i9];
+                    z = false;
+                }
+            }
+            int i10 = ud1Var.c;
+            i7++;
+            if (i7 < arrayList.size()) {
+                i = ((ud1) arrayList.get(i7)).c;
+            } else {
+                i = length;
+            }
+            if (i10 != i) {
+                if (i3 != -1) {
+                    if (!z2) {
+                        i2 = 33;
+                        spannableStringBuilder.setSpan(new UnderlineSpan(), i3, i10, 33);
+                        i3 = -1;
                     } else {
-                        min = Math.min(f2, f3);
+                        i2 = 33;
                     }
-                    matrix.reset();
-                    matrix.setScale(1.0f / min, 0.0f, i / 2.0f, 0.0f);
-                    matrix.setTranslate((f - kcbVar.getBounds().left) - (i / min), 0.0f);
-                    wd1Var.b.setLocalMatrix(matrix);
-                    int i4 = i3 / 2;
-                    kcbVar.setBounds(getBounds().centerX() - i4, getBounds().centerY() - i4, getBounds().centerX() + i4, getBounds().centerY() + i4);
-                    kcbVar.draw(canvas);
+                } else {
+                    i2 = 33;
+                    if (z2) {
+                        i3 = i10;
+                    }
                 }
-                wd1Var.o.invalidate();
-                return;
-            case 1:
-                float f4 = this.b;
-                canvas.drawRoundRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, f4, f4, (Paint) this.d);
-                kq3.e((Drawable) this.c, getBounds().exactCenterX(), getBounds().exactCenterY(), gl.L(36.0f), gl.L(36.0f), 17);
-                ((Drawable) this.c).draw(canvas);
-                return;
-            case 2:
-                Rect bounds = getBounds();
-                canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-                Drawable drawable = (Drawable) this.c;
-                drawable.setBounds(bounds);
-                drawable.draw(canvas);
-                ((tgb) this.d).c(bounds.centerX() - (((tgb) this.d).c / 2.0f), gl.L(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
-                canvas.restore();
-                return;
-            default:
-                Paint paint = (Paint) this.d;
-                if (this.b != gl.p) {
-                    f();
+                if (i4 != -1) {
+                    if (!z) {
+                        spannableStringBuilder.setSpan(new StyleSpan(2), i4, i10, i2);
+                        i4 = -1;
+                    }
+                } else if (z) {
+                    i4 = i10;
                 }
-                canvas.save();
-                canvas.translate(getBounds().left, getBounds().top);
-                canvas.drawPath((Path) this.c, paint);
-                canvas.drawRect(gl.N(7.56f), gl.N(8.0f), gl.L(18.0f) - gl.N(7.56f), gl.N(11.1f), paint);
-                canvas.restore();
-                return;
+                if (i6 != i5) {
+                    if (i5 != -1) {
+                        spannableStringBuilder.setSpan(new ForegroundColorSpan(i5), i8, i10, 33);
+                    }
+                    i5 = i6;
+                    i8 = i10;
+                }
+            }
         }
-    }
-
-    public final void f() {
-        int L = gl.L(18.0f);
-        Path path = (Path) this.c;
-        path.reset();
-        float f = L >> 1;
-        path.moveTo(f, gl.N(4.98f));
-        path.lineTo(gl.N(4.95f), gl.N(9.0f));
-        path.lineTo(L - gl.N(4.95f), gl.N(9.0f));
-        path.lineTo(f, gl.N(4.98f));
-        Paint paint = (Paint) this.d;
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(gl.N(1.0f));
-        this.b = gl.p;
-    }
-
-    @Override
-    public final int getAlpha() {
-        switch (this.a) {
-            case 2:
-                return ((Drawable) this.c).getAlpha();
-            default:
-                return super.getAlpha();
+        if (i3 != -1 && i3 != length) {
+            spannableStringBuilder.setSpan(new UnderlineSpan(), i3, length, 33);
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        switch (this.a) {
-            case 2:
-                return (int) (((Drawable) this.c).getIntrinsicHeight() * this.b);
-            case 3:
-                return gl.L(18.0f);
-            default:
-                return super.getIntrinsicHeight();
+        if (i4 != -1 && i4 != length) {
+            spannableStringBuilder.setSpan(new StyleSpan(2), i4, length, 33);
         }
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        switch (this.a) {
-            case 2:
-                return (int) (((Drawable) this.c).getIntrinsicWidth() * this.b);
-            case 3:
-                return gl.L(18.0f);
-            default:
-                return super.getIntrinsicWidth();
+        if (i8 != length && i5 != -1) {
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(i5), i8, length, 33);
         }
+        return new SpannableString(spannableStringBuilder);
     }
 
-    @Override
-    public final int getOpacity() {
-        switch (this.a) {
-            case 0:
-            case 1:
-                return -3;
-            case 2:
-                return -2;
-            default:
-                return 0;
+    public final boolean e() {
+        if (this.a.isEmpty() && this.b.isEmpty() && this.c.length() == 0) {
+            return true;
         }
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        switch (this.a) {
-            case 0:
-                wd1 wd1Var = (wd1) this.d;
-                wd1Var.a.setAlpha(i);
-                wd1Var.c.setAlpha(i);
-                return;
-            case 1:
-                return;
-            case 2:
-                ((Drawable) this.c).setAlpha(i);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.a) {
-            case 0:
-            case 1:
-                return;
-            case 2:
-                ((Drawable) this.c).setColorFilter(colorFilter);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void a(int i) {
-    }
-
-    private final void b(int i) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
-    }
-
-    private final void e(ColorFilter colorFilter) {
-    }
-
-    public vd1(Context context, float f) {
-        this.a = (byte) 1;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.c = context.getResources().getDrawable(2131232153);
-        paint.setColor(bkb.p1(0.1552f, -16777216));
-        this.b = f;
-    }
-
-    public vd1(wd1 wd1Var, kcb kcbVar) {
-        this.a = (byte) 0;
-        this.d = wd1Var;
-        this.c = kcbVar;
-    }
-
-    public vd1() {
-        this.a = (byte) 3;
+        return false;
     }
 }

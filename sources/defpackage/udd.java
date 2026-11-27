@@ -1,14 +1,20 @@
 package defpackage;
+
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class udd {
-    public static final f84 a;
-    public static final f84 b;
-    public static final f84[] c;
+    public static final int a = 0;
 
     static {
-        f84 f84Var = new f84("CLIENT_TELEMETRY", 1L);
-        a = f84Var;
-        f84 f84Var2 = new f84("CLIENT_NOTIFICATION_TELEMETRY", 1L);
-        b = f84Var2;
-        c = new f84[]{f84Var, f84Var2};
+        udd.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel) {
+        Parcelable.Creator creator = Bundle.CREATOR;
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

@@ -1,17 +1,31 @@
 package defpackage;
-public final class aie implements zn7 {
-    public static final aie a = new Object();
-
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)));
+public abstract class aie {
+    public static final Object a(long j, zw2 zw2Var) {
+        if (j > 0) {
+            va1 va1Var = new va1(1, xpe.a(zw2Var));
+            va1Var.s();
+            if (j < Long.MAX_VALUE) {
+                b(va1Var.e).b(j, va1Var);
+            }
+            Object q = va1Var.q();
+            if (q == vx2.a) {
+                return q;
+            }
+        }
+        return f9c.a;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static final vd3 b(mx2 mx2Var) {
+        vd3 vd3Var;
+        kx2 kx2Var = mx2Var.get(rj2.b);
+        if (kx2Var instanceof vd3) {
+            vd3Var = (vd3) kx2Var;
+        } else {
+            vd3Var = null;
         }
-        throw new ClassCastException();
+        if (vd3Var == null) {
+            return bb3.a;
+        }
+        return vd3Var;
     }
 }

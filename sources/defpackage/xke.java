@@ -1,20 +1,17 @@
 package defpackage;
-public final class xke {
-    public final Long a;
-    public final oke b;
-    public final nje c;
-    public final Integer d;
-    public final Integer e;
-    public final Integer f;
-    public final Integer g;
+public final class xke implements zq7 {
+    public static final xke a = new Object();
 
-    public xke(jb4 jb4Var) {
-        this.a = (Long) jb4Var.a;
-        this.b = (oke) jb4Var.b;
-        this.c = (nje) jb4Var.c;
-        this.d = (Integer) jb4Var.d;
-        this.e = (Integer) jb4Var.e;
-        this.f = (Integer) jb4Var.f;
-        this.g = (Integer) jb4Var.g;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

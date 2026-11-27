@@ -1,10 +1,10 @@
 package defpackage;
-public final class q60 implements zn7 {
+public final class q60 implements zq7 {
     public static final q60 a = new Object();
-    public static final w84 b = w84.c("identifier");
+    public static final sa4 b = sa4.c("assignments");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ao7) obj2).a(b, ((l90) ((fz2) obj)).a);
+        ((ar7) obj2).a(b, ((k90) ((xz2) obj)).a);
     }
 }

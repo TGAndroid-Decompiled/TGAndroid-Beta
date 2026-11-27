@@ -1,15 +1,13 @@
 package defpackage;
 
-import java.util.Iterator;
-public final class yc0 extends gw2 {
-    public Iterator a;
-    public Object b;
-    public int c;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+public final class yc0 {
+    public static final AtomicIntegerFieldUpdater b = AtomicIntegerFieldUpdater.newUpdater(yc0.class, "notCompletedCount$volatile");
+    public final rd3[] a;
+    private volatile int notCompletedCount$volatile;
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.b = obj;
-        this.c |= Integer.MIN_VALUE;
-        return xmd.b(null, this);
+    public yc0(rd3[] rd3VarArr) {
+        this.a = rd3VarArr;
+        this.notCompletedCount$volatile = rd3VarArr.length;
     }
 }

@@ -1,3 +1,3 @@
 package defpackage;
-public final class jwe extends e1f {
+public abstract class jwe {
 }

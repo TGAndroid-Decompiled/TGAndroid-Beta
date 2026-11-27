@@ -1,52 +1,24 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class sw5 {
-    public static final String c;
-    public static final String d;
-    public final String a;
-    public final String b;
+import java.util.Map;
+public final class sw5 implements zq7 {
+    public final byte a;
 
-    static {
-        String str = g8c.a;
-        c = "0";
-        d = "1";
-    }
-
-    public sw5(String str, String str2) {
-        this.a = g8c.U(str);
-        this.b = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        switch (this.a) {
+            case 0:
+                ar7 ar7Var = (ar7) obj2;
+                throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
+            case 1:
+                Map.Entry entry = (Map.Entry) obj;
+                ar7 ar7Var2 = (ar7) obj2;
+                ar7Var2.a(qw8.f, entry.getKey());
+                ar7Var2.a(qw8.g, entry.getValue());
+                return;
+            default:
+                ar7 ar7Var3 = (ar7) obj2;
+                throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
         }
-        if (obj != null && sw5.class == obj.getClass()) {
-            sw5 sw5Var = (sw5) obj;
-            if (Objects.equals(this.a, sw5Var.a) && Objects.equals(this.b, sw5Var.b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i;
-        int hashCode = this.b.hashCode() * 31;
-        String str = this.a;
-        if (str != null) {
-            i = str.hashCode();
-        } else {
-            i = 0;
-        }
-        return hashCode + i;
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("{ lang=");
-        sb.append(this.a);
-        sb.append(", '");
-        return b00.j(sb, this.b, "' }");
     }
 }

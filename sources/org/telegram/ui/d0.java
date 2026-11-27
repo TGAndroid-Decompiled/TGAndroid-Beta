@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ThemeActivity;
-public final class d0 extends n39 {
+public final class d0 extends c79 {
     public final Context c;
     public boolean d = true;
     public final ThemeActivity e;
@@ -23,8 +23,8 @@ public final class d0 extends n39 {
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        int i = s49Var.f;
+    public final boolean D(f89 f89Var) {
+        int i = f89Var.f;
         if (i == 0 || i == 1 || i == 4 || i == 7 || i == 10 || i == 11 || i == 12 || i == 14 || i == 18 || i == 20 || i == 21) {
             return true;
         }
@@ -155,7 +155,7 @@ public final class d0 extends n39 {
     }
 
     @Override
-    public final void t(s49 s49Var, int i) {
+    public final void t(f89 f89Var, int i) {
         int i2;
         int i3;
         String M0;
@@ -174,8 +174,8 @@ public final class d0 extends n39 {
         int i14;
         String M03;
         String M04;
-        int i15 = s49Var.f;
-        View view = s49Var.a;
+        int i15 = f89Var.f;
+        View view = f89Var.a;
         ThemeActivity themeActivity = this.e;
         boolean z2 = false;
         boolean z3 = true;
@@ -191,54 +191,54 @@ public final class d0 extends n39 {
                                             if (i15 != 21) {
                                                 switch (i15) {
                                                     case 10:
-                                                        vl7 vl7Var = (vl7) view;
+                                                        uo7 uo7Var = (uo7) view;
                                                         i13 = themeActivity.nightThemeRow;
                                                         if (i != i13) {
                                                             i14 = themeActivity.browserRow;
                                                             if (i == i14) {
-                                                                vl7Var.b(k96.M0(2131749017, null), k96.M0(2131749016, null), 2131232034, themeActivity.getMessagesController().M2(), 0, false, true, false);
+                                                                uo7Var.b(ob6.M0(2131748963, null), ob6.M0(2131748962, null), 2131232034, themeActivity.getMessagesController().S2(), 0, false, true, false);
                                                                 return;
                                                             }
                                                             return;
                                                         }
-                                                        if (bkb.o != 0) {
+                                                        if (aob.o != 0) {
                                                             z2 = true;
                                                         }
                                                         if (z2) {
-                                                            M03 = bkb.A0();
+                                                            M03 = aob.A0();
                                                         } else {
-                                                            M03 = k96.M0(2131753780, "AutoNightThemeOff");
+                                                            M03 = ob6.M0(2131753776, "AutoNightThemeOff");
                                                         }
                                                         if (z2) {
-                                                            int i16 = bkb.o;
+                                                            int i16 = aob.o;
                                                             if (i16 == 1) {
-                                                                M04 = k96.M0(2131753784, "AutoNightScheduled");
+                                                                M04 = ob6.M0(2131753780, "AutoNightScheduled");
                                                             } else if (i16 == 3) {
-                                                                M04 = k96.M0(2131753783, "AutoNightSystemDefault");
+                                                                M04 = ob6.M0(2131753779, "AutoNightSystemDefault");
                                                             } else {
-                                                                M04 = k96.M0(2131753793, "AutoNightAdaptive");
+                                                                M04 = ob6.M0(2131753789, "AutoNightAdaptive");
                                                             }
-                                                            M03 = tb4.y(M04, " ", M03);
+                                                            M03 = qd4.y(M04, " ", M03);
                                                         }
-                                                        vl7Var.b(k96.M0(2131753781, "AutoNightTheme"), M03, 2131231847, z2, 0, false, true, false);
+                                                        uo7Var.b(ob6.M0(2131753777, "AutoNightTheme"), M03, 2131231847, z2, 0, false, true, false);
                                                         return;
                                                     case 11:
                                                         if (this.d) {
-                                                            themeActivity.c.A1(themeActivity.b.getMeasuredWidth());
+                                                            themeActivity.c.B1(themeActivity.b.getMeasuredWidth());
                                                             this.d = false;
                                                             return;
                                                         }
                                                         return;
                                                     case 12:
-                                                        o39 o39Var = (o39) view;
-                                                        e0 e0Var = (e0) o39Var.getAdapter();
+                                                        d79 d79Var = (d79) view;
+                                                        e0 e0Var = (e0) d79Var.getAdapter();
                                                         e0Var.f();
                                                         int indexOf = e0Var.e.indexOf(e0Var.d.i(false));
                                                         if (indexOf == -1) {
                                                             indexOf = e0Var.b() - 1;
                                                         }
                                                         if (indexOf != -1) {
-                                                            ((t26) o39Var.getLayoutManager()).g1(indexOf, (themeActivity.b.getMeasuredWidth() / 2) - gl.L(42.0f));
+                                                            ((x46) d79Var.getLayoutManager()).g1(indexOf, (themeActivity.b.getMeasuredWidth() / 2) - hl.L(42.0f));
                                                             return;
                                                         }
                                                         return;
@@ -246,34 +246,34 @@ public final class d0 extends n39 {
                                                         return;
                                                 }
                                             }
-                                            ((d08) view).set(themeActivity.getUserConfig().f());
+                                            ((j38) view).set(themeActivity.getUserConfig().f());
                                             return;
                                         }
-                                        uy8 uy8Var = (uy8) view;
+                                        h29 h29Var = (h29) view;
                                         if (i == themeActivity.I) {
-                                            uy8Var.b("save media only from peer chats", "", true, false);
+                                            h29Var.b("save media only from peer chats", "", true, false);
                                             return;
                                         } else {
-                                            uy8Var.b("save media from all chats", "", true, false);
+                                            h29Var.b("save media from all chats", "", true, false);
                                             return;
                                         }
                                     }
-                                    ((hc3) view).a();
+                                    ((ad3) view).a();
                                     return;
                                 }
-                                wgb wgbVar = (wgb) view;
-                                wgbVar.w = (byte) 48;
+                                skb skbVar = (skb) view;
+                                skbVar.w = (byte) 48;
                                 i8 = themeActivity.backgroundRow;
                                 if (i == i8) {
-                                    wgbVar.setSubtitle(null);
-                                    int i17 = bkb.p6;
-                                    wgbVar.g(i17, i17);
-                                    String M05 = k96.M0(2131752538, null);
+                                    skbVar.setSubtitle(null);
+                                    int i17 = aob.q6;
+                                    skbVar.g(i17, i17);
+                                    String M05 = ob6.M0(2131752531, null);
                                     i12 = themeActivity.changeUserColor;
                                     if (i12 >= 0) {
                                         z2 = true;
                                     }
-                                    wgbVar.o(2131232071, M05, z2);
+                                    skbVar.o(2131232071, M05, z2);
                                     return;
                                 } else if (i != themeActivity.z0) {
                                     i9 = themeActivity.createNewThemeRow;
@@ -282,165 +282,165 @@ public final class d0 extends n39 {
                                         if (i != i10) {
                                             i11 = themeActivity.stickersRow;
                                             if (i == i11) {
-                                                wgbVar.g(bkb.I5, bkb.F6);
-                                                wgbVar.o(2131232043, k96.M0(2131744620, null), true);
-                                                wgbVar.setSubtitle(k96.M0(2131744619, null));
-                                                wgbVar.s = 64;
-                                                wgbVar.w = (byte) 60;
-                                                wgbVar.x = 20;
+                                                skbVar.g(aob.J5, aob.G6);
+                                                skbVar.o(2131232043, ob6.M0(2131744514, null), true);
+                                                skbVar.setSubtitle(ob6.M0(2131744513, null));
+                                                skbVar.s = 64;
+                                                skbVar.w = (byte) 60;
+                                                skbVar.x = 20;
                                                 return;
                                             } else if (i == themeActivity.B0) {
-                                                wgbVar.g(bkb.I5, bkb.F6);
-                                                wgbVar.o(2131232042, k96.M0(2131745039, null), false);
-                                                wgbVar.setSubtitle(k96.M0(2131745040, null));
-                                                wgbVar.s = 64;
-                                                wgbVar.w = (byte) 60;
-                                                wgbVar.x = 20;
+                                                skbVar.g(aob.J5, aob.G6);
+                                                skbVar.o(2131232042, ob6.M0(2131744958, null), false);
+                                                skbVar.setSubtitle(ob6.M0(2131744984, null));
+                                                skbVar.s = 64;
+                                                skbVar.w = (byte) 60;
+                                                skbVar.x = 20;
                                                 return;
                                             } else {
                                                 return;
                                             }
                                         }
-                                        wgbVar.g(bkb.I5, bkb.F6);
-                                        wgbVar.o(2131232019, k96.M0(2131748674, null), true);
-                                        wgbVar.setSubtitle(k96.M0(2131748673, null));
-                                        wgbVar.w = (byte) 60;
-                                        wgbVar.s = 64;
-                                        wgbVar.x = 20;
+                                        skbVar.g(aob.J5, aob.G6);
+                                        skbVar.o(2131232019, ob6.M0(2131748620, null), true);
+                                        skbVar.setSubtitle(ob6.M0(2131748619, null));
+                                        skbVar.w = (byte) 60;
+                                        skbVar.s = 64;
+                                        skbVar.x = 20;
                                         return;
                                     }
-                                    wgbVar.setSubtitle(null);
-                                    int i18 = bkb.p6;
-                                    wgbVar.g(i18, i18);
-                                    wgbVar.o(2131232102, k96.M0(2131751700, null), false);
+                                    skbVar.setSubtitle(null);
+                                    int i18 = aob.q6;
+                                    skbVar.g(i18, i18);
+                                    skbVar.o(2131232102, ob6.M0(2131751677, null), false);
                                     return;
                                 } else {
-                                    wgbVar.setSubtitle(null);
-                                    int i19 = bkb.p6;
-                                    wgbVar.g(i19, i19);
-                                    wgbVar.o(2131232405, k96.M0(2131751269, null), true);
+                                    skbVar.setSubtitle(null);
+                                    int i19 = aob.q6;
+                                    skbVar.g(i19, i19);
+                                    skbVar.o(2131232405, ob6.M0(2131751246, null), true);
                                     return;
                                 }
                             }
-                            ahb ahbVar = (ahb) view;
+                            wkb wkbVar = (wkb) view;
                             if (i == themeActivity.Y) {
-                                ahbVar.f(k96.M0(2131753788, "AutoNightLocation"), bkb.p, true);
+                                wkbVar.f(ob6.M0(2131753784, "AutoNightLocation"), aob.p, true);
                                 return;
                             } else if (i == themeActivity.O) {
-                                ahbVar.f(k96.M0(2131751145, "EnableAnimations"), na7.c1().getBoolean("view_animations", true), true);
+                                wkbVar.f(ob6.M0(2131751122, "EnableAnimations"), uc7.e1().getBoolean("view_animations", true), true);
                                 return;
                             } else if (i == themeActivity.H) {
-                                ahbVar.f(k96.M0(2131745440, "SendByEnter"), na7.c1().getBoolean("send_by_enter", false), true);
+                                wkbVar.f(ob6.M0(2131745360, "SendByEnter"), uc7.e1().getBoolean("send_by_enter", false), true);
                                 return;
                             } else if (i != themeActivity.F) {
                                 i4 = themeActivity.raiseToListenRow;
                                 if (i == i4) {
-                                    ahbVar.g(k96.M0(2131746234, "RaiseToListen"), k96.M0(2131746233, "RaiseToListenInfo"), gba.p0, true, true);
+                                    wkbVar.g(ob6.M0(2131746154, "RaiseToListen"), ob6.M0(2131746153, "RaiseToListenInfo"), xea.p0, true, true);
                                     return;
                                 } else if (i != themeActivity.G) {
                                     i5 = themeActivity.pauseOnRecordRow;
                                     if (i != i5) {
                                         i6 = themeActivity.pauseOnMediaRow;
                                         if (i == i6) {
-                                            ahbVar.f(k96.M0(2131747239, null), gba.C0, true);
+                                            wkbVar.f(ob6.M0(2131747159, null), xea.C0, true);
                                             return;
                                         } else if (i != themeActivity.E) {
                                             i7 = themeActivity.sensitiveContentRow;
                                             if (i == i7) {
-                                                ahbVar.g(k96.M0(2131745138, null), k96.M0(2131745137, null), themeActivity.getMessagesController().Y4(), true, true);
+                                                wkbVar.g(ob6.M0(2131745058, null), ob6.M0(2131745057, null), themeActivity.getMessagesController().g5(), true, true);
                                                 return;
                                             } else if (i == themeActivity.t0) {
-                                                ahbVar.f(k96.M0(2131753672, "BlurInChat"), gba.f(), true);
+                                                wkbVar.f(ob6.M0(2131753668, "BlurInChat"), xea.f(), true);
                                                 return;
                                             } else {
                                                 return;
                                             }
                                         } else {
-                                            ahbVar.g(k96.M0(2131751426, "DirectShare"), k96.M0(2131751425, "DirectShareInfo"), gba.u0, false, true);
+                                            wkbVar.g(ob6.M0(2131751403, "DirectShare"), ob6.M0(2131751402, "DirectShareInfo"), xea.u0, false, true);
                                             return;
                                         }
                                     }
-                                    ahbVar.g(k96.M0(2131747238, null), k96.M0(2131747237, "PauseMusicOnRecordInfo"), gba.B0, true, true);
+                                    wkbVar.g(ob6.M0(2131747158, null), ob6.M0(2131747157, "PauseMusicOnRecordInfo"), xea.B0, true, true);
                                     return;
                                 } else {
-                                    ahbVar.g(k96.M0(2131748057, "NextMediaTap"), k96.M0(2131748056, "NextMediaTapInfo"), gba.q0, true, true);
+                                    wkbVar.g(ob6.M0(2131747980, "NextMediaTap"), ob6.M0(2131747979, "NextMediaTapInfo"), xea.q0, true, true);
                                     return;
                                 }
                             } else {
-                                ahbVar.g(k96.M0(2131746232, "RaiseToSpeak"), k96.M0(2131746231, "RaiseToSpeakInfo"), gba.o0, true, true);
+                                wkbVar.g(ob6.M0(2131746152, "RaiseToSpeak"), ob6.M0(2131746151, "RaiseToSpeakInfo"), xea.o0, true, true);
                                 return;
                             }
                         }
-                        ((uy0) view).setProgress(bkb.q);
+                        ((cz0) view).setProgress(aob.q);
                         return;
                     }
-                    ld5 ld5Var = (ld5) view;
+                    mf5 mf5Var = (mf5) view;
                     if (i == themeActivity.X) {
-                        ld5Var.setText(k96.M0(2131753785, "AutoNightSchedule"));
+                        mf5Var.setText(ob6.M0(2131753781, "AutoNightSchedule"));
                         return;
                     } else if (i == themeActivity.e0) {
-                        ld5Var.setText(k96.M0(2131753792, "AutoNightBrightness"));
+                        mf5Var.setText(ob6.M0(2131753788, "AutoNightBrightness"));
                         return;
                     } else if (i == themeActivity.h0) {
-                        ld5Var.setText(k96.M0(2131753786, "AutoNightPreferred"));
+                        mf5Var.setText(ob6.M0(2131753782, "AutoNightPreferred"));
                         return;
                     } else if (i == themeActivity.y) {
-                        ld5Var.setText(k96.M0(2131745791, "SETTINGS"));
+                        mf5Var.setText(ob6.M0(2131745711, "SETTINGS"));
                         return;
                     } else if (i == themeActivity.j0) {
                         if (themeActivity.f == 3) {
-                            ld5Var.setText(k96.M0(2131752827, "BuildMyOwnTheme"));
+                            mf5Var.setText(ob6.M0(2131752820, "BuildMyOwnTheme"));
                             return;
                         } else {
-                            ld5Var.setText(k96.M0(2131751999, "ColorTheme"));
+                            mf5Var.setText(ob6.M0(2131751976, "ColorTheme"));
                             return;
                         }
                     } else if (i == themeActivity.x) {
-                        ld5Var.setText(k96.M0(2131743950, "TextSizeHeader"));
+                        mf5Var.setText(ob6.M0(2131743844, "TextSizeHeader"));
                         return;
                     } else if (i == themeActivity.m0) {
-                        ld5Var.setText(k96.M0(2131752213, "ChatList"));
+                        mf5Var.setText(ob6.M0(2131752190, "ChatList"));
                         return;
                     } else if (i == themeActivity.k0) {
-                        ld5Var.setText(k96.M0(2131752828, "BubbleRadius"));
+                        mf5Var.setText(ob6.M0(2131752821, "BubbleRadius"));
                         return;
                     } else if (i == themeActivity.u0) {
-                        ld5Var.setText(k96.M0(2131752210, "ChatListSwipeGesture"));
+                        mf5Var.setText(ob6.M0(2131752187, "ChatListSwipeGesture"));
                         return;
                     } else if (i == themeActivity.x0) {
-                        ld5Var.setText(k96.M0(2131745459, "SelectTheme"));
+                        mf5Var.setText(ob6.M0(2131745379, "SelectTheme"));
                         return;
                     } else if (i == themeActivity.J0) {
-                        ld5Var.setText(k96.M0(2131754237, null));
+                        mf5Var.setText(ob6.M0(2131754233, null));
                         return;
                     } else if (i == themeActivity.H0) {
-                        ld5Var.setText(k96.M0(2131747572, "OtherSettings"));
+                        mf5Var.setText(ob6.M0(2131747492, "OtherSettings"));
                         return;
                     } else if (i == themeActivity.G0) {
-                        ld5Var.setText(k96.M0(2131748468, "MediaAndSoundSettings"));
+                        mf5Var.setText(ob6.M0(2131748414, "MediaAndSoundSettings"));
                         return;
                     } else {
                         return;
                     }
                 }
-                bnb bnbVar = (bnb) view;
+                arb arbVar = (arb) view;
                 if (i == themeActivity.S) {
-                    String M06 = k96.M0(2131753790, "AutoNightDisabled");
-                    if (bkb.o == 0) {
+                    String M06 = ob6.M0(2131753786, "AutoNightDisabled");
+                    if (aob.o == 0) {
                         z2 = true;
                     }
-                    bnbVar.a(M06, z2, true);
+                    arbVar.a(M06, z2, true);
                     return;
                 } else if (i == themeActivity.T) {
-                    String M07 = k96.M0(2131753784, "AutoNightScheduled");
-                    if (bkb.o == 1) {
+                    String M07 = ob6.M0(2131753780, "AutoNightScheduled");
+                    if (aob.o == 1) {
                         z2 = true;
                     }
-                    bnbVar.a(M07, z2, true);
+                    arbVar.a(M07, z2, true);
                     return;
                 } else if (i == themeActivity.U) {
-                    String M08 = k96.M0(2131753793, "AutoNightAdaptive");
-                    if (bkb.o == 2) {
+                    String M08 = ob6.M0(2131753789, "AutoNightAdaptive");
+                    if (aob.o == 2) {
                         z = true;
                     } else {
                         z = false;
@@ -448,112 +448,112 @@ public final class d0 extends n39 {
                     if (themeActivity.V != -1) {
                         z2 = true;
                     }
-                    bnbVar.a(M08, z, z2);
+                    arbVar.a(M08, z, z2);
                     return;
                 } else if (i == themeActivity.V) {
-                    String M09 = k96.M0(2131753783, "AutoNightSystemDefault");
-                    if (bkb.o != 3) {
+                    String M09 = ob6.M0(2131753779, "AutoNightSystemDefault");
+                    if (aob.o != 3) {
                         z3 = false;
                     }
-                    bnbVar.a(M09, z3, false);
+                    arbVar.a(M09, z3, false);
                     return;
                 } else {
                     return;
                 }
             }
-            mhb mhbVar = (mhb) view;
-            mhbVar.setFixedSize(0);
+            ilb ilbVar = (ilb) view;
+            ilbVar.setFixedSize(0);
             if (i == themeActivity.g0) {
-                mhbVar.setText(k96.a0("AutoNightBrightnessInfo", null, 2131753791, Integer.valueOf((int) (bkb.q * 100.0f))));
+                ilbVar.setText(ob6.a0("AutoNightBrightnessInfo", null, 2131753787, Integer.valueOf((int) (aob.q * 100.0f))));
                 return;
             } else if (i == themeActivity.a0) {
-                mhbVar.setText(ThemeActivity.w0());
+                ilbVar.setText(ThemeActivity.x0());
                 return;
             } else if (i == themeActivity.w0) {
-                mhbVar.setText(k96.M0(2131752209, "ChatListSwipeGestureInfo"));
+                ilbVar.setText(ob6.M0(2131752186, "ChatListSwipeGestureInfo"));
                 return;
             } else if (i == themeActivity.I0) {
-                mhbVar.setText(k96.M0(2131748673, "LiteModeInfo"));
+                ilbVar.setText(ob6.M0(2131748619, "LiteModeInfo"));
                 return;
             } else {
-                mhbVar.setFixedSize(12);
-                mhbVar.setText("");
+                ilbVar.setFixedSize(12);
+                ilbVar.setText("");
                 return;
             }
         }
-        uib uibVar = (uib) view;
+        qmb qmbVar = (qmb) view;
         i2 = themeActivity.nightThemeRow;
         if (i == i2) {
-            if (bkb.o != 0 && bkb.J != null) {
-                uibVar.c(k96.M0(2131753781, null), bkb.A0(), false, false);
+            if (aob.o != 0 && aob.J != null) {
+                qmbVar.c(ob6.M0(2131753777, null), aob.A0(), false, false);
             } else {
-                uibVar.c(k96.M0(2131753781, null), k96.M0(2131753780, null), false, false);
+                qmbVar.c(ob6.M0(2131753777, null), ob6.M0(2131753776, null), false, false);
             }
         } else if (i == themeActivity.b0) {
-            int i20 = bkb.r;
+            int i20 = aob.r;
             int i21 = i20 / 60;
-            uibVar.c(k96.M0(2131753789, "AutoNightFrom"), String.format("%02d:%02d", Integer.valueOf(i21), Integer.valueOf(i20 - (i21 * 60))), false, true);
+            qmbVar.c(ob6.M0(2131753785, "AutoNightFrom"), String.format("%02d:%02d", Integer.valueOf(i21), Integer.valueOf(i20 - (i21 * 60))), false, true);
         } else if (i == themeActivity.c0) {
-            int i22 = bkb.s;
+            int i22 = aob.s;
             int i23 = i22 / 60;
-            uibVar.c(k96.M0(2131753779, "AutoNightTo"), String.format("%02d:%02d", Integer.valueOf(i23), Integer.valueOf(i22 - (i23 * 60))), false, false);
+            qmbVar.c(ob6.M0(2131753775, "AutoNightTo"), String.format("%02d:%02d", Integer.valueOf(i23), Integer.valueOf(i22 - (i23 * 60))), false, false);
         } else if (i == themeActivity.Z) {
-            uibVar.c(k96.M0(2131753778, "AutoNightUpdateLocation"), bkb.w, false, false);
+            qmbVar.c(ob6.M0(2131753774, "AutoNightUpdateLocation"), aob.w, false, false);
         } else if (i == themeActivity.R) {
-            int i24 = na7.c1().getInt("sortContactsBy", 0);
+            int i24 = uc7.e1().getInt("sortContactsBy", 0);
             if (i24 == 0) {
-                M02 = k96.M0(2131751588, "Default");
+                M02 = ob6.M0(2131751565, "Default");
             } else if (i24 == 1) {
-                M02 = k96.M0(2131745095, "FirstName");
+                M02 = ob6.M0(2131745015, "FirstName");
             } else {
-                M02 = k96.M0(2131745094, "LastName");
+                M02 = ob6.M0(2131745014, "LastName");
             }
-            uibVar.c(k96.M0(2131745099, "SortBy"), M02, false, true);
+            qmbVar.c(ob6.M0(2131745019, "SortBy"), M02, false, true);
         } else if (i == themeActivity.Q) {
-            uibVar.b(k96.M0(2131749072, "ImportContacts"), true);
+            qmbVar.b(ob6.M0(2131749018, "ImportContacts"), true);
         } else if (i == themeActivity.L) {
-            int i25 = gba.o1;
+            int i25 = xea.o1;
             if (i25 == 0) {
-                M0 = k96.M0(2131751354, "DistanceUnitsAutomatic");
+                M0 = ob6.M0(2131751331, "DistanceUnitsAutomatic");
             } else if (i25 == 1) {
-                M0 = k96.M0(2131751353, "DistanceUnitsKilometers");
+                M0 = ob6.M0(2131751330, "DistanceUnitsKilometers");
             } else {
-                M0 = k96.M0(2131751352, "DistanceUnitsMiles");
+                M0 = ob6.M0(2131751329, "DistanceUnitsMiles");
             }
-            String M010 = k96.M0(2131751355, "DistanceUnits");
+            String M010 = ob6.M0(2131751332, "DistanceUnits");
             boolean z4 = themeActivity.Q0;
             if (themeActivity.F0 < 0) {
                 z3 = false;
             }
-            uibVar.c(M010, M0, z4, z3);
+            qmbVar.c(M010, M0, z4, z3);
             themeActivity.Q0 = false;
         } else if (i == themeActivity.M) {
-            uibVar.c(k96.M0(2131745607, null), is9.a().a, themeActivity.R0, false);
+            qmbVar.c(ob6.M0(2131745527, null), bw9.a().a, themeActivity.R0, false);
         } else if (i == themeActivity.N) {
-            String M011 = k96.M0(2131748247, null);
-            if (gba.r0) {
-                i3 = 2131748245;
+            String M011 = ob6.M0(2131748193, null);
+            if (xea.r0) {
+                i3 = 2131748191;
             } else {
-                i3 = 2131748246;
+                i3 = 2131748192;
             }
-            uibVar.c(M011, k96.M0(i3, null), themeActivity.P0, false);
+            qmbVar.c(M011, ob6.M0(i3, null), themeActivity.P0, false);
             themeActivity.P0 = false;
         }
     }
 
     @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
+    public final f89 x(ViewGroup viewGroup, int i) {
         ?? frameLayout;
         int i2;
         int i3;
         float f;
-        rkb rkbVar;
+        qob qobVar;
         boolean z;
         int i4;
         boolean z2;
         int i5;
         int i6;
-        ui5 ui5Var;
+        wk5 wk5Var;
         int i7;
         int i8;
         int i9 = 3;
@@ -562,30 +562,30 @@ public final class d0 extends n39 {
         Context context = this.c;
         switch (i) {
             case 1:
-                rkbVar = new uib(context);
+                qobVar = new qmb(context);
                 break;
             case 2:
-                rkbVar = new mhb(context);
+                qobVar = new ilb(context);
                 break;
             case 3:
-                rkbVar = new b9a(context, (de9) null);
+                qobVar = new rca(context, (uh9) null);
                 break;
             case 4:
                 frameLayout = new FrameLayout(context);
                 frameLayout.setWillNotDraw(false);
                 TextView textView = new TextView(context);
                 frameLayout.a = textView;
-                zkb.X(textView, bkb.F6, null);
-                ug8.w(textView, 1, 16.0f, 1, 1);
+                yob.X(textView, aob.G6, null);
+                ik8.w(textView, 1, 16.0f, 1, 1);
                 textView.setSingleLine(true);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (k96.a0) {
+                if (ob6.a0) {
                     i2 = 5;
                 } else {
                     i2 = 3;
                 }
                 textView.setGravity(i2 | 16);
-                boolean z3 = k96.a0;
+                boolean z3 = ob6.a0;
                 if (z3) {
                     i3 = 5;
                 } else {
@@ -600,111 +600,111 @@ public final class d0 extends n39 {
                 if (!z3) {
                     f2 = 23.0f;
                 }
-                frameLayout.addView(textView, nme.d(-1, -1.0f, i10, f, 0.0f, f2, 0.0f));
+                frameLayout.addView(textView, tre.d(-1, -1.0f, i10, f, 0.0f, f2, 0.0f));
                 ImageView imageView = new ImageView(context);
                 frameLayout.b = imageView;
-                zkb.s(imageView, bkb.Ci, null, PorterDuff.Mode.MULTIPLY);
-                imageView.setImageResource(2131232760);
-                if (!k96.a0) {
+                yob.s(imageView, aob.Di, null, PorterDuff.Mode.MULTIPLY);
+                imageView.setImageResource(2131232778);
+                if (!ob6.a0) {
                     i9 = 5;
                 }
-                frameLayout.addView(imageView, nme.d(19, 14.0f, i9 | 16, 23.0f, 0.0f, 23.0f, 0.0f));
-                rkbVar = frameLayout;
+                frameLayout.addView(imageView, tre.d(19, 14.0f, i9 | 16, 23.0f, 0.0f, 23.0f, 0.0f));
+                qobVar = frameLayout;
                 break;
             case 5:
-                rkbVar = new ld5(context);
+                qobVar = new mf5(context);
                 break;
             case 6:
-                rkbVar = new okb(this, context);
+                qobVar = new nob(this, context);
                 break;
             case 7:
-                rkbVar = new ahb(context);
+                qobVar = new wkb(context);
                 break;
             case 8:
-                rkbVar = new skb(themeActivity, context);
+                qobVar = new rob(themeActivity, context);
                 break;
             case 9:
-                frameLayout = new pkb(context, (byte) 0);
-                frameLayout.b = new z92[2];
+                frameLayout = new oob(context, (byte) 0);
+                frameLayout.b = new pa2[2];
                 frameLayout.setOrientation(0);
-                frameLayout.setPadding(gl.L(21.0f), gl.L(10.0f), gl.L(21.0f), 0);
+                frameLayout.setPadding(hl.L(21.0f), hl.L(10.0f), hl.L(21.0f), 0);
                 int i11 = 0;
                 while (true) {
-                    z92[] z92VarArr = (z92[]) frameLayout.b;
-                    if (i11 < z92VarArr.length) {
+                    pa2[] pa2VarArr = (pa2[]) frameLayout.b;
+                    if (i11 < pa2VarArr.length) {
                         if (i11 == 1) {
                             z = true;
                         } else {
                             z = false;
                         }
-                        z92 z92Var = new z92(context, (byte) 0);
-                        z92Var.b = new RectF();
+                        pa2 pa2Var = new pa2(context, (byte) 0);
+                        pa2Var.b = new RectF();
                         TextPaint textPaint = new TextPaint(1);
-                        z92Var.e = textPaint;
-                        z92Var.setWillNotDraw(false);
-                        z92Var.c = z;
+                        pa2Var.e = textPaint;
+                        pa2Var.setWillNotDraw(false);
+                        pa2Var.c = z;
                         if (z) {
-                            i4 = 2131752211;
+                            i4 = 2131752188;
                         } else {
-                            i4 = 2131752212;
+                            i4 = 2131752189;
                         }
-                        z92Var.setContentDescription(k96.M0(i4, null));
-                        textPaint.setTextSize(gl.L(13.0f));
-                        y92 y92Var = new y92(z92Var, context);
-                        z92Var.d = y92Var;
-                        y92Var.setSize(gl.L(20.0f));
-                        z92Var.addView(y92Var, nme.d(22, 22.0f, 53, 0.0f, 26.0f, 10.0f, 0.0f));
-                        boolean z4 = gba.l1;
+                        pa2Var.setContentDescription(ob6.M0(i4, null));
+                        textPaint.setTextSize(hl.L(13.0f));
+                        oa2 oa2Var = new oa2(pa2Var, context);
+                        pa2Var.d = oa2Var;
+                        oa2Var.setSize(hl.L(20.0f));
+                        pa2Var.addView(oa2Var, tre.d(22, 22.0f, 53, 0.0f, 26.0f, 10.0f, 0.0f));
+                        boolean z4 = xea.l1;
                         if (!z ? !z4 : z4) {
                             z2 = true;
                         } else {
                             z2 = false;
                         }
-                        y92Var.a(z2, false);
-                        z92VarArr[i11] = z92Var;
-                        z92 z92Var2 = ((z92[]) frameLayout.b)[i11];
+                        oa2Var.a(z2, false);
+                        pa2VarArr[i11] = pa2Var;
+                        pa2 pa2Var2 = ((pa2[]) frameLayout.b)[i11];
                         if (i11 == 1) {
                             i5 = 10;
                         } else {
                             i5 = 0;
                         }
-                        frameLayout.addView(z92Var2, nme.m(0.5f, -1, -1, i5, 0, 0));
-                        ((z92[]) frameLayout.b)[i11].setOnClickListener(new v6((byte) 3, frameLayout, z));
+                        frameLayout.addView(pa2Var2, tre.m(0.5f, -1, -1, i5, 0, 0));
+                        ((pa2[]) frameLayout.b)[i11].setOnClickListener(new w6((byte) 3, frameLayout, z));
                         i11++;
                     } else {
-                        rkbVar = frameLayout;
+                        qobVar = frameLayout;
                         break;
                     }
                 }
             case 10:
-                rkbVar = new vl7(this.c, 21, 60, true, null);
+                qobVar = new uo7(this.c, 21, 60, true, null);
                 break;
             case 11:
                 this.d = true;
-                qkb qkbVar = new qkb(this, this.c, themeActivity, themeActivity.f, themeActivity.e, themeActivity.d);
-                themeActivity.c = qkbVar;
-                qkbVar.setDrawDivider(themeActivity.w);
+                pob pobVar = new pob(this, this.c, themeActivity, themeActivity.f, themeActivity.e, themeActivity.d);
+                themeActivity.c = pobVar;
+                pobVar.setDrawDivider(themeActivity.w);
                 themeActivity.c.setFocusable(false);
                 View view = themeActivity.c;
-                view.setLayoutParams(new e49(-1, gl.L(148.0f)));
-                rkbVar = view;
+                view.setLayoutParams(new r79(-1, hl.L(148.0f)));
+                qobVar = view;
                 break;
             case 12:
-                final rkb rkbVar2 = new rkb(context, null, (byte) 0);
-                rkbVar2.setFocusable(false);
-                rkbVar2.setItemAnimator(null);
-                rkbVar2.setLayoutAnimation(null);
-                rkbVar2.setPadding(gl.L(11.0f), 0, gl.L(11.0f), 0);
-                rkbVar2.setClipToPadding(false);
-                t26 t26Var = new t26();
-                t26Var.i1(0);
-                rkbVar2.setLayoutManager(t26Var);
+                final qob qobVar2 = new qob(context, null, (byte) 0);
+                qobVar2.setFocusable(false);
+                qobVar2.setItemAnimator(null);
+                qobVar2.setLayoutAnimation(null);
+                qobVar2.setPadding(hl.L(11.0f), 0, hl.L(11.0f), 0);
+                qobVar2.setClipToPadding(false);
+                x46 x46Var = new x46();
+                x46Var.i1(0);
+                qobVar2.setLayoutManager(x46Var);
                 final e0 e0Var = new e0(themeActivity, context);
-                rkbVar2.setAdapter(e0Var);
-                rkbVar2.setOnItemClickListener(new c39() {
+                qobVar2.setAdapter(e0Var);
+                qobVar2.setOnItemClickListener(new r69() {
                     @Override
-                    public final void d(int i12, View view2) {
-                        akb B0;
+                    public final void e(int i12, View view2) {
+                        znb B0;
                         boolean z5;
                         boolean z6;
                         boolean z7;
@@ -712,11 +712,11 @@ public final class d0 extends n39 {
                         ThemeActivity themeActivity2 = d0.this.e;
                         byte b = themeActivity2.f;
                         if (b == 1) {
-                            B0 = bkb.J;
+                            B0 = aob.J;
                         } else {
-                            B0 = bkb.B0();
+                            B0 = aob.B0();
                         }
-                        akb akbVar = B0;
+                        znb znbVar = B0;
                         e0 e0Var2 = e0Var;
                         if (i12 == e0Var2.b() - 1) {
                             if (b == 1) {
@@ -724,20 +724,20 @@ public final class d0 extends n39 {
                             } else {
                                 z8 = false;
                             }
-                            themeActivity2.presentFragment(new qmb(akbVar, false, 1, false, z8));
+                            themeActivity2.presentFragment(new pqb(znbVar, false, 1, false, z8));
                         } else {
-                            zjb zjbVar = (zjb) e0Var2.e.get(i12);
-                            int i13 = akbVar.Z;
-                            int i14 = zjbVar.a;
+                            ynb ynbVar = (ynb) e0Var2.e.get(i12);
+                            int i13 = znbVar.Z;
+                            int i14 = ynbVar.a;
                             if (i13 != i14) {
                                 if (b == 1) {
                                     z7 = true;
                                 } else {
                                     z7 = false;
                                 }
-                                bkb.I1(akbVar, z7, i14, view2);
-                                jy3.q(akbVar, zjbVar.a);
-                                bkb.K1(themeActivity2);
+                                aob.I1(znbVar, z7, i14, view2);
+                                ez3.q(znbVar, ynbVar.a);
+                                aob.K1(themeActivity2);
                             } else {
                                 if (i14 >= 100) {
                                     z5 = true;
@@ -749,99 +749,99 @@ public final class d0 extends n39 {
                                 } else {
                                     z6 = false;
                                 }
-                                themeActivity2.presentFragment(new qmb(akbVar, false, 1, z5, z6));
+                                themeActivity2.presentFragment(new pqb(znbVar, false, 1, z5, z6));
                             }
                         }
                         int left = view2.getLeft();
                         int right = view2.getRight();
-                        int L = gl.L(52.0f);
+                        int L = hl.L(52.0f);
                         int i15 = left - L;
-                        rkb rkbVar3 = rkbVar2;
+                        qob qobVar3 = qobVar2;
                         if (i15 < 0) {
-                            rkbVar3.x0(i15, 0, null);
+                            qobVar3.y0(i15, 0, null);
                         } else {
                             int i16 = right + L;
-                            if (i16 > rkbVar3.getMeasuredWidth()) {
-                                rkbVar3.x0(i16 - rkbVar3.getMeasuredWidth(), 0, null);
+                            if (i16 > qobVar3.getMeasuredWidth()) {
+                                qobVar3.y0(i16 - qobVar3.getMeasuredWidth(), 0, null);
                             }
                         }
-                        int childCount = rkbVar3.getChildCount();
+                        int childCount = qobVar3.getChildCount();
                         for (int i17 = 0; i17 < childCount; i17++) {
-                            View childAt = rkbVar3.getChildAt(i17);
+                            View childAt = qobVar3.getChildAt(i17);
                             if (childAt instanceof ThemeActivity.InnerAccentView) {
                                 ((ThemeActivity.InnerAccentView) childAt).a(true);
                             }
                         }
                     }
                 });
-                rkbVar2.setOnItemLongClickListener(new kq8(this, e0Var, (byte) 25));
-                rkbVar2.setLayoutParams(new e49(-1, gl.L(62.0f)));
-                rkbVar = rkbVar2;
+                qobVar2.setOnItemLongClickListener((t69) new yw9(this, e0Var, (byte) 11));
+                qobVar2.setLayoutParams(new r79(-1, hl.L(62.0f)));
+                qobVar = qobVar2;
                 break;
             case 13:
-                rkbVar = new mkb(themeActivity, context);
+                qobVar = new lob(themeActivity, context);
                 break;
             case 14:
             case 18:
             default:
-                rkbVar = new wgb(context);
+                qobVar = new skb(context);
                 break;
             case 15:
-                i6 = ((org.telegram.ui.ActionBar.d) themeActivity).currentAccount;
-                rkbVar = new pcb(context, i6);
+                i6 = ((org.telegram.ui.ActionBar.e) themeActivity).currentAccount;
+                qobVar = new lgb(context, i6);
                 break;
             case 16:
-                ui5Var = ((org.telegram.ui.ActionBar.d) themeActivity).parentLayout;
-                View o08Var = new o08(context, ui5Var, 0);
-                o08Var.setImportantForAccessibility(4);
-                rkbVar = o08Var;
+                wk5Var = ((org.telegram.ui.ActionBar.e) themeActivity).parentLayout;
+                View u38Var = new u38(context, wk5Var, 0);
+                u38Var.setImportantForAccessibility(4);
+                qobVar = u38Var;
                 break;
             case 17:
-                View hc3Var = new hc3(context, themeActivity, themeActivity.f);
-                hc3Var.setFocusable(false);
-                hc3Var.setLayoutParams(new e49(-1, -2));
-                rkbVar = hc3Var;
+                View ad3Var = new ad3(context, themeActivity, themeActivity.f);
+                ad3Var.setFocusable(false);
+                ad3Var.setLayoutParams(new r79(-1, -2));
+                qobVar = ad3Var;
                 break;
             case 19:
-                rkbVar = new uy8(context, false);
+                qobVar = new h29(context, false);
                 break;
             case 20:
-                i7 = ((org.telegram.ui.ActionBar.d) themeActivity).currentAccount;
-                ?? o39Var = new o39(context, null);
-                o39Var.f3 = new ArrayList();
-                o39Var.h3 = i7;
-                o39Var.setPadding(0, gl.L(12.0f), 0, gl.L(12.0f));
-                o39Var.setFocusable(false);
-                o39Var.setItemAnimator(null);
-                o39Var.setLayoutAnimation(null);
-                t26 t26Var2 = new t26(0, false);
-                o39Var.g3 = t26Var2;
-                o39Var.setLayoutManager(t26Var2);
-                o39Var.setAdapter(new jr(o39Var, (byte) 0));
-                o39Var.i(new kr(o39Var, (byte) 0));
-                o39Var.setOnItemClickListener(new ir((Object) o39Var, themeActivity, context, (byte) 0));
-                o39Var.z1();
-                rkbVar = o39Var;
+                i7 = ((org.telegram.ui.ActionBar.e) themeActivity).currentAccount;
+                ?? d79Var = new d79(context, null);
+                d79Var.f3 = new ArrayList();
+                d79Var.h3 = i7;
+                d79Var.setPadding(0, hl.L(12.0f), 0, hl.L(12.0f));
+                d79Var.setFocusable(false);
+                d79Var.setItemAnimator(null);
+                d79Var.setLayoutAnimation(null);
+                x46 x46Var2 = new x46(0, false);
+                d79Var.g3 = x46Var2;
+                d79Var.setLayoutManager(x46Var2);
+                d79Var.setAdapter(new kr(d79Var, (byte) 0));
+                d79Var.i(new lr(d79Var, (byte) 0));
+                d79Var.setOnItemClickListener(new jr((Object) d79Var, themeActivity, context, (byte) 0));
+                d79Var.A1();
+                qobVar = d79Var;
                 break;
             case 21:
-                i8 = ((org.telegram.ui.ActionBar.d) themeActivity).currentAccount;
-                rkbVar = new d08(i8, 0L, themeActivity.getResourceProvider(), this.c);
+                i8 = ((org.telegram.ui.ActionBar.e) themeActivity).currentAccount;
+                qobVar = new j38(i8, 0L, themeActivity.getResourceProvider(), this.c);
                 break;
         }
-        return new s49(rkbVar);
+        return new f89(qobVar);
     }
 
     @Override
-    public final void y(s49 s49Var) {
+    public final void y(f89 f89Var) {
         boolean z;
-        if (s49Var.f == 4) {
-            bnb bnbVar = (bnb) s49Var.a;
-            if (s49Var.b() == bkb.o) {
+        if (f89Var.f == 4) {
+            arb arbVar = (arb) f89Var.a;
+            if (f89Var.b() == aob.o) {
                 z = true;
             } else {
                 z = false;
             }
-            bnbVar.setTypeChecked(z);
+            arbVar.setTypeChecked(z);
         }
     }
 }

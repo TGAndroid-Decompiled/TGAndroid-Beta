@@ -1,47 +1,75 @@
 package defpackage;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.FragmentContextView;
-public final class p81 extends FragmentContextView {
-    public final byte X0 = 1;
-    public final d Y0;
+import android.widget.ImageView;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class p81 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final AtomicBoolean b;
+    public final View c;
+    public final Object d;
+    public final Object e;
 
-    public p81(qvb qvbVar, Context context, qvb qvbVar2) {
-        super(context, qvbVar2, null, false, null);
-        this.Y0 = qvbVar;
+    public p81(View view, AtomicBoolean atomicBoolean, Object obj, Object obj2, byte b) {
+        this.a = b;
+        this.c = view;
+        this.b = atomicBoolean;
+        this.d = obj;
+        this.e = obj2;
     }
 
     @Override
-    public final void setVisibility(int i) {
-        byte b = this.X0;
-        boolean z = false;
-        d dVar = this.Y0;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i;
+        int i2;
+        byte b = this.a;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        AtomicBoolean atomicBoolean = this.b;
+        View view = this.c;
         switch (b) {
             case 0:
-                z81 z81Var = (z81) dVar;
-                fj3 fj3Var = z81Var.I;
-                FrameLayout frameLayout = z81Var.J;
-                if (i == 0) {
-                    z = true;
+                FrameLayout frameLayout = (FrameLayout) view;
+                p66 p66Var = (p66) obj2;
+                String str = (String) obj;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float abs = (Math.abs(floatValue - 0.5f) / 5.0f) + 0.9f;
+                frameLayout.setScaleX(abs);
+                frameLayout.setScaleY(abs);
+                if (floatValue >= 0.5f && !atomicBoolean.get()) {
+                    atomicBoolean.set(true);
+                    p66Var.setText(str);
+                    return;
                 }
-                fj3Var.j(frameLayout, z, true);
                 return;
             default:
-                qvb qvbVar = (qvb) dVar;
-                fj3 fj3Var2 = qvbVar.V0;
-                FrameLayout frameLayout2 = qvbVar.G0;
-                if (i == 0) {
-                    z = true;
+                ImageView imageView = (ImageView) view;
+                boolean[] zArr = (boolean[]) obj2;
+                vnb vnbVar = (vnb) obj;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float abs2 = ((Math.abs(floatValue2 - 0.5f) / 0.5f) * 0.25f) + 0.75f;
+                imageView.setScaleX(abs2);
+                imageView.setScaleY(abs2);
+                if (floatValue2 >= 0.5f && !atomicBoolean.get()) {
+                    atomicBoolean.set(true);
+                    if (zArr[0]) {
+                        i = aob.Fi;
+                    } else {
+                        i = aob.z6;
+                    }
+                    yob.s(imageView, i, vnbVar, PorterDuff.Mode.SRC_IN);
+                    if (zArr[0]) {
+                        i2 = 2131232836;
+                    } else {
+                        i2 = 2131232837;
+                    }
+                    imageView.setImageResource(i2);
+                    return;
                 }
-                fj3Var2.j(frameLayout2, z, true);
                 return;
         }
-    }
-
-    public p81(z81 z81Var, Context context, z81 z81Var2, n81 n81Var, wjb wjbVar) {
-        super(context, z81Var2, n81Var, false, wjbVar);
-        this.Y0 = z81Var;
     }
 }

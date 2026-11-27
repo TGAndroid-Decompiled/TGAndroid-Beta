@@ -1,511 +1,60 @@
 package defpackage;
+public final class gg9 implements Runnable {
+    public final byte a;
+    public final yg9 b;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.RadialProgress2;
-public final class gg9 implements sp3 {
-    public static ColorMatrixColorFilter V;
-    public final boolean E;
-    public final float F;
-    public int G;
-    public int H;
-    public int I;
-    public int J;
-    public boolean K;
-    public int L;
-    public int M;
-    public int N;
-    public final int O;
-    public final int P;
-    public boolean Q;
-    public boolean R;
-    public boolean S;
-    public View T;
-    public final nh9 U;
-    public final rh9 a;
-    public final TL_iv.PageBlock b;
-    public final ImageReceiver c;
-    public final ImageReceiver d;
-    public Bitmap e;
-    public RadialProgress2 f;
-    public final TLRPC.Photo h;
-    public final TLRPC.PhotoSize n;
-    public final TLRPC.TL_photoStrippedSize r;
-    public final TLRPC.Document s;
-    public final TLRPC.PhotoSize w;
-    public final TLRPC.TL_photoStrippedSize x;
-    public final boolean y;
-
-    public gg9(rh9 rh9Var, TL_iv.pageBlockVideo pageblockvideo) {
-        boolean z;
-        float f;
-        int i;
-        this.c = new ImageReceiver(null);
-        this.d = new ImageReceiver(null);
-        this.L = -1;
-        this.O = gl.L(48.0f);
-        this.U = new nh9();
-        this.a = rh9Var;
-        this.b = pageblockvideo;
-        this.h = null;
-        this.n = null;
-        this.r = null;
-        TLRPC.Document s = rh9Var.s(pageblockvideo.video_id);
-        this.s = s;
-        boolean J4 = k27.J4(s);
-        this.E = J4;
-        if (!J4 && !k27.s3(s, false)) {
-            z = false;
-        } else {
-            z = true;
-        }
-        this.y = z;
-        if (s != null) {
-            this.w = ba4.w(s.thumbs, 320, false, null, true);
-            this.x = ba4.Q(s.thumbs);
-        } else {
-            this.w = null;
-            this.x = null;
-        }
-        if (s != null) {
-            for (int i2 = 0; i2 < this.s.attributes.size(); i2++) {
-                TLRPC.DocumentAttribute documentAttribute = this.s.attributes.get(i2);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && (i = documentAttribute.h) > 0) {
-                    f = documentAttribute.w / i;
-                    break;
-                }
-            }
-        }
-        f = 1.0f;
-        this.F = f;
-        this.P = up3.q(rh9Var.a).k();
-        ImageReceiver imageReceiver = this.c;
-        imageReceiver.A1 = true;
-        this.d.A1 = true;
-        imageReceiver.h1 = new fg9(this);
+    public gg9(yg9 yg9Var, byte b) {
+        this.a = b;
+        this.b = yg9Var;
     }
 
     @Override
-    public final void B(boolean z) {
-        n(this.T, false);
-    }
-
-    @Override
-    public final void N(String str) {
-        RadialProgress2 radialProgress2 = this.f;
-        if (radialProgress2 != null) {
-            radialProgress2.o(true, 1.0f);
-        }
-        if (this.y && (a() || this.S)) {
-            b(true);
-        }
-        n(this.T, true);
-    }
-
-    public final boolean a() {
-        if (this.E) {
-            boolean z = gba.a;
-            return e66.e(1024);
-        }
-        boolean z2 = gba.a;
-        return e66.e(2048);
-    }
-
-    public final void b(boolean z) {
-        gl5 gl5Var;
-        TLRPC.PhotoSize photoSize;
-        ImageReceiver imageReceiver = this.c;
-        gl5 gl5Var2 = null;
-        rh9 rh9Var = this.a;
-        TLRPC.Photo photo = this.h;
-        if (photo != null && (photoSize = this.n) != null) {
-            TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.r;
-            if (tL_photoStrippedSize != null) {
-                gl5Var2 = gl5.i(tL_photoStrippedSize, photo);
-            }
-            gl5 gl5Var3 = gl5Var2;
-            imageReceiver.O = gl5.i(photoSize, photo);
-            if (z) {
-                imageReceiver.Y(null, null, gl5.i(photoSize, photo), null, gl5Var3, "b1", null, photoSize.size, null, rh9Var.b, 1);
+    public final void run() {
+        byte b = this.a;
+        yg9 yg9Var = this.b;
+        switch (b) {
+            case 0:
+                yg9Var.G0();
                 return;
-            } else {
-                imageReceiver.Y(null, null, null, null, gl5Var3, "b1", null, photoSize.size, null, rh9Var.b, 1);
-                return;
-            }
-        }
-        TLRPC.Document document = this.s;
-        if (document != null) {
-            TLRPC.TL_photoStrippedSize tL_photoStrippedSize2 = this.x;
-            if (tL_photoStrippedSize2 != null) {
-                gl5Var = gl5.c(tL_photoStrippedSize2, document);
-            } else {
-                gl5Var = null;
-            }
-            TLRPC.PhotoSize photoSize2 = this.w;
-            if (photoSize2 != null) {
-                gl5Var2 = gl5.c(photoSize2, document);
-            }
-            imageReceiver.O = gl5.b(document);
-            if (z && this.y && (a() || this.S)) {
-                imageReceiver.u0 = true;
-                imageReceiver.M(1);
-                imageReceiver.Y(gl5.b(document), "g", gl5Var2, null, gl5Var, "b1", null, document.size, "mp4", rh9Var.b, 1);
-                return;
-            }
-            imageReceiver.Y(null, null, gl5Var2, null, gl5Var, "b1", null, document.size, "mp4", rh9Var.b, 1);
-        }
-    }
-
-    public final void c(Canvas canvas) {
-        Bitmap n;
-        ImageReceiver imageReceiver = this.c;
-        pla plaVar = null;
-        imageReceiver.h(canvas, null);
-        if (h()) {
-            nh9 nh9Var = this.U;
-            if (!nh9Var.b()) {
-                ImageReceiver imageReceiver2 = this.d;
-                if ((imageReceiver2.n() == null || imageReceiver.m() == null) && (n = imageReceiver.n()) != null && !n.isRecycled() && (n != this.e || imageReceiver2.n() == null)) {
-                    this.e = n;
-                    imageReceiver2.f0(Utilities.D(n, false));
-                    ColorMatrixColorFilter colorMatrixColorFilter = V;
-                    if (colorMatrixColorFilter == null) {
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        gl.l2(colorMatrix, 0.9f);
-                        gl.i(colorMatrix, 0.6f);
-                        ColorMatrixColorFilter colorMatrixColorFilter2 = new ColorMatrixColorFilter(colorMatrix);
-                        V = colorMatrixColorFilter2;
-                        colorMatrixColorFilter = colorMatrixColorFilter2;
-                    }
-                    imageReceiver2.p1 = colorMatrixColorFilter;
-                }
-                float f = imageReceiver.L0;
-                float f2 = imageReceiver.M0;
-                float f3 = imageReceiver.N0;
-                float f4 = imageReceiver.O0;
-                if (f3 > 0.0f && f4 > 0.0f) {
-                    canvas.save();
-                    canvas.clipRect(f, f2, f + f3, f2 + f4);
-                    nh9Var.a(canvas);
-                    if (imageReceiver2.n() != null) {
-                        imageReceiver2.i0(f, f2, f3, f4);
-                        imageReceiver2.setAlpha(imageReceiver.i1);
-                        imageReceiver2.h(canvas, null);
-                    }
-                    rh9 rh9Var = this.a;
-                    View view = rh9Var.Q;
-                    if (view != null) {
-                        pla plaVar2 = rh9Var.R;
-                        if (plaVar2 != null && plaVar2.i) {
-                            rh9Var.R = null;
-                        } else {
-                            plaVar = plaVar2;
-                        }
-                        if (plaVar == null) {
-                            plaVar = pla.e(view);
-                            rh9Var.R = plaVar;
-                        }
-                    }
-                    if (plaVar != null) {
-                        canvas.translate(f, f2);
-                        plaVar.c(canvas, this.T, Math.round(f3), Math.round(f4), imageReceiver.i1, false);
-                    }
-                    canvas.restore();
-                    View view2 = this.T;
-                    if (view2 != null) {
-                        view2.invalidate();
-                        return;
-                    }
+            case 1:
+                if (yg9Var.L0 != 0) {
+                    yg9Var.b0.setVisibility(8);
                     return;
                 }
                 return;
-            }
-        }
-        RadialProgress2 radialProgress2 = this.f;
-        if (radialProgress2 != null && this.L != -1) {
-            radialProgress2.draw(canvas);
-        }
-    }
-
-    public final void d(View view) {
-        RadialProgress2 radialProgress2 = this.f;
-        int i = this.O;
-        if (radialProgress2 == null && view != null) {
-            RadialProgress2 radialProgress22 = new RadialProgress2(view, null);
-            this.f = radialProgress22;
-            radialProgress22.d = -1;
-            radialProgress22.setColors(1711276032, 2130706432, -1, -2500135);
-            RadialProgress2 radialProgress23 = this.f;
-            int i2 = this.M;
-            int i3 = this.N;
-            radialProgress23.p(i2, i3, i2 + i, i + i3);
-        } else if (radialProgress2 != null && view != null) {
-            radialProgress2.m(view);
-            RadialProgress2 radialProgress24 = this.f;
-            int i4 = this.M;
-            int i5 = this.N;
-            radialProgress24.p(i4, i5, i4 + i, i + i5);
-        }
-    }
-
-    public final boolean e() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gg9.e():boolean");
-    }
-
-    public final CharSequence f() {
-        int i;
-        if (this.y) {
-            i = 2131753930;
-        } else {
-            i = 2131753945;
-        }
-        String M0 = k96.M0(i, null);
-        if (h() && !this.U.b()) {
-            return TextUtils.concat(M0, ", ", k96.M0(2131745025, null));
-        }
-        return M0;
-    }
-
-    public final boolean g(float f, float f2) {
-        int i = this.G;
-        if (f >= i && f <= i + this.I) {
-            int i2 = this.H;
-            if (f2 >= i2 && f2 <= i2 + this.J) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.P;
-    }
-
-    public final boolean h() {
-        TL_iv.PageBlock pageBlock = this.b;
-        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-            return ((TL_iv.pageBlockPhoto) pageBlock).spoiler;
-        }
-        if (pageBlock instanceof TL_iv.pageBlockVideo) {
-            return ((TL_iv.pageBlockVideo) pageBlock).spoiler;
-        }
-        return false;
-    }
-
-    @Override
-    public final void i(long j, long j2) {
-        float f;
-        RadialProgress2 radialProgress2 = this.f;
-        if (radialProgress2 != null) {
-            if (j2 <= 0) {
-                f = 0.0f;
-            } else {
-                f = ((float) j) / ((float) j2);
-            }
-            radialProgress2.o(true, Math.min(1.0f, f));
-        }
-        if (this.L != 1) {
-            n(this.T, true);
-        }
-    }
-
-    public final boolean j(View view) {
-        if (h()) {
-            nh9 nh9Var = this.U;
-            if (!nh9Var.b && nh9Var.f == null) {
-                ImageReceiver imageReceiver = this.c;
-                float f = imageReceiver.N0;
-                float f2 = imageReceiver.O0;
-                nh9Var.c(view, (f / 2.0f) + imageReceiver.L0, (f2 / 2.0f) + imageReceiver.M0, f, f2);
-                return true;
-            }
-        }
-        rh9 rh9Var = this.a;
-        bb2 bb2Var = rh9Var.F;
-        if (bb2Var != null) {
-            bb2Var.h1(rh9Var.E, this.b);
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean k(android.view.View r13, android.view.MotionEvent r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gg9.k(android.view.View, android.view.MotionEvent):boolean");
-    }
-
-    public final void m(int i, int i2, int i3, int i4) {
-        boolean z;
-        this.G = i;
-        this.H = i2;
-        this.I = i3;
-        this.J = i4;
-        this.c.i0(i, i2, i3, i4);
-        int i5 = this.O;
-        int g = ug8.g(i3, i5, 2, i);
-        this.M = g;
-        int g2 = ug8.g(i4, i5, 2, i2);
-        this.N = g2;
-        RadialProgress2 radialProgress2 = this.f;
-        if (radialProgress2 != null) {
-            radialProgress2.p(g, g2, g + i5, i5 + g2);
-        }
-        int i6 = this.a.a;
-        boolean z2 = true;
-        TLRPC.Document document = this.s;
-        if (document == null ? (up3.q(i6).m() & 1) != 0 : !(this.y && (!a() || !up3.q(i6).c(4, document.size)))) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.K = z;
-        if (!z && !e()) {
-            z2 = false;
-        }
-        b(z2);
-    }
-
-    public final void n(View view, boolean z) {
-        String str;
-        boolean z2;
-        int i = this.a.a;
-        if (view == null) {
-            view = this.T;
-        }
-        d(view);
-        TLRPC.PhotoSize photoSize = this.n;
-        if (photoSize != null) {
-            str = ba4.r(null, photoSize);
-        } else {
-            TLRPC.Document document = this.s;
-            if (document != null) {
-                str = ba4.r(null, document);
-            } else {
-                str = null;
-            }
-        }
-        if (TextUtils.isEmpty(str)) {
-            this.L = -1;
-            RadialProgress2 radialProgress2 = this.f;
-            if (radialProgress2 != null) {
-                radialProgress2.setIcon(4, false, false);
+            case 2:
+                if (yg9Var.L0 != 1) {
+                    yg9Var.i0.setVisibility(8);
+                    return;
+                }
                 return;
-            }
-            return;
+            case 3:
+                if (yg9Var.L0 != 2) {
+                    yg9Var.w0.setVisibility(8);
+                    return;
+                }
+                return;
+            case 4:
+                yg9Var.m0();
+                return;
+            case 5:
+                yg9Var.w0(2147483646, 0, true);
+                q67 q67Var = yg9Var.P0;
+                if (q67Var != null) {
+                    q67Var.f(false);
+                    yg9Var.P0 = null;
+                    return;
+                }
+                return;
+            default:
+                yg9Var.w0(0, 0, false);
+                q67 q67Var2 = yg9Var.P0;
+                if (q67Var2 != null) {
+                    q67Var2.f(true);
+                    yg9Var.P0 = null;
+                    return;
+                }
+                return;
         }
-        ImageReceiver imageReceiver = this.c;
-        km m = imageReceiver.m();
-        if (m != null && (m.s() || imageReceiver.F())) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        boolean e = e();
-        boolean z3 = this.E;
-        boolean z4 = this.y;
-        if (!e && (!z4 || !z2)) {
-            up3.q(i).a(str, null, this);
-            float f = 0.0f;
-            if (!this.K && !this.S && !ba4.G(i).S(str)) {
-                if (z3) {
-                    this.L = 3;
-                    RadialProgress2 radialProgress22 = this.f;
-                    if (radialProgress22 != null) {
-                        radialProgress22.setIcon(0, true, z);
-                    }
-                } else {
-                    this.L = 0;
-                    RadialProgress2 radialProgress23 = this.f;
-                    if (radialProgress23 != null) {
-                        radialProgress23.setIcon(2, true, z);
-                    }
-                }
-            } else {
-                this.L = 1;
-                Float s = fl5.z().s(str);
-                if (s != null) {
-                    f = s.floatValue();
-                }
-                RadialProgress2 radialProgress24 = this.f;
-                if (radialProgress24 != null) {
-                    radialProgress24.setIcon(3, true, z);
-                }
-            }
-            RadialProgress2 radialProgress25 = this.f;
-            if (radialProgress25 != null) {
-                radialProgress25.o(false, f);
-            }
-        } else {
-            up3.q(i).v(this);
-            if (z3 && !z2) {
-                this.L = 3;
-                RadialProgress2 radialProgress26 = this.f;
-                if (radialProgress26 != null) {
-                    radialProgress26.setIcon(0, false, z);
-                }
-            } else if (z4 && !z2 && !a() && !this.S) {
-                this.L = 2;
-                RadialProgress2 radialProgress27 = this.f;
-                if (radialProgress27 != null) {
-                    radialProgress27.setIcon(8, false, z);
-                }
-            } else {
-                this.L = -1;
-                RadialProgress2 radialProgress28 = this.f;
-                if (radialProgress28 != null) {
-                    radialProgress28.setIcon(4, false, z);
-                }
-            }
-        }
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    @Override
-    public final void l(long j, long j2) {
-    }
-
-    public gg9(rh9 rh9Var, TL_iv.pageBlockPhoto pageblockphoto) {
-        TLRPC.PhotoSize photoSize;
-        int i;
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.c = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver(null);
-        this.d = imageReceiver2;
-        this.L = -1;
-        this.O = gl.L(48.0f);
-        this.U = new nh9();
-        this.a = rh9Var;
-        this.b = pageblockphoto;
-        TLRPC.Photo u = rh9Var.u(pageblockphoto.photo_id);
-        this.h = u;
-        if (u != null) {
-            photoSize = ba4.w(u.sizes, gl.Y0(false), false, null, false);
-            this.n = photoSize;
-            this.r = ba4.Q(u.sizes);
-        } else {
-            this.n = null;
-            this.r = null;
-            photoSize = null;
-        }
-        this.s = null;
-        this.w = null;
-        this.x = null;
-        this.y = false;
-        this.E = false;
-        this.F = (photoSize == null || (i = photoSize.h) <= 0) ? 1.0f : photoSize.w / i;
-        this.P = up3.q(rh9Var.a).k();
-        imageReceiver.A1 = true;
-        imageReceiver2.A1 = true;
     }
 }

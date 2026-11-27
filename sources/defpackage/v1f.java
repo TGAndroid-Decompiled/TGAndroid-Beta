@@ -1,13 +1,17 @@
 package defpackage;
-public abstract class v1f {
-    public final byte a = 1;
+public final class v1f implements zq7 {
+    public static final v1f a = new Object();
 
-    public final String toString() {
-        switch (this.a) {
-            case 1:
-                return ((pcf) this).b.toString();
-            default:
-                return super.toString();
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

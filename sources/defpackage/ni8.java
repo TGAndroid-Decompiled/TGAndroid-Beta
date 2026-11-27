@@ -1,42 +1,36 @@
 package defpackage;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public final class ni8 extends n39 {
-    public final dh8 c;
+public final class ni8 implements Comparator {
+    public final ui8 a;
 
-    public ni8(dh8 dh8Var) {
-        this.c = dh8Var;
+    public ni8(ui8 ui8Var) {
+        this.a = ui8Var;
     }
 
-    @Override
-    public final boolean D(s49 s49Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return Integer.MAX_VALUE;
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        dh8 dh8Var = this.c;
-        ArrayList arrayList = dh8Var.f3;
-        if (arrayList.isEmpty()) {
-            return;
+    public final int a(ti8 ti8Var) {
+        TLRPC.Poll poll = this.a.s1;
+        int size = poll.answers.size();
+        for (int i = 0; i < size; i++) {
+            if (Arrays.equals(poll.answers.get(i).option, ti8Var.d)) {
+                return i;
+            }
         }
-        pi8 pi8Var = (pi8) s49Var.a;
-        pi8Var.r = (TLRPC.Document) arrayList.get(i % arrayList.size());
-        pi8Var.s = true;
-        pi8Var.a(!dh8Var.k3, false, false);
+        return 0;
     }
 
     @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        pi8 pi8Var = new pi8(this.c, viewGroup.getContext());
-        pi8Var.setLayoutParams(new e49(-1, -2));
-        return new s49(pi8Var);
+    public final int compare(Object obj, Object obj2) {
+        int a = a((ti8) obj);
+        int a2 = a((ti8) obj2);
+        if (a > a2) {
+            return 1;
+        }
+        if (a < a2) {
+            return -1;
+        }
+        return 0;
     }
 }

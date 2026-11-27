@@ -1,26 +1,26 @@
 package defpackage;
 
-import android.text.Editable;
-public interface lc9 {
-    boolean A(mc9 mc9Var);
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.tgnet.tl.TL_stars;
+public final class lc9 implements ita, ncc {
+    public final nd9 a;
 
-    boolean H(mc9 mc9Var);
+    public lc9(nd9 nd9Var) {
+        this.a = nd9Var;
+    }
 
-    void I();
+    @Override
+    public final void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z) {
+        this.a.j0(tL_starGiftUnique, j, z);
+    }
 
-    void O(CharSequence charSequence);
-
-    void U(Editable editable);
-
-    void Y(mc9 mc9Var);
-
-    boolean c0(boolean z);
-
-    void d(mc9 mc9Var);
-
-    boolean i();
-
-    void l(int i, int i2);
-
-    void t(mc9 mc9Var, int i, int i2);
+    @Override
+    public final void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f = (Float) serializable;
+        Float f2 = (Float) serializable2;
+        this.a.l0((b8c) obj);
+    }
 }

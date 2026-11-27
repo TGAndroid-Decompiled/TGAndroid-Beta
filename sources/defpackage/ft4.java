@@ -1,42 +1,45 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ft4 implements i8c {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ft4 extends AnimatorListenerAdapter {
     public final byte a;
-    public final p8c b;
+    public final it4 b;
 
-    public ft4(p8c p8cVar, byte b) {
+    public ft4(it4 it4Var, byte b) {
         this.a = b;
-        this.b = p8cVar;
+        this.b = it4Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
+    public final void onAnimationEnd(Animator animator) {
         byte b = this.a;
-        p8c p8cVar = this.b;
+        it4 it4Var = this.b;
         switch (b) {
             case 0:
-                TL_stars.starGiftUpgradeAttributes stargiftupgradeattributes = (TL_stars.starGiftUpgradeAttributes) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (stargiftupgradeattributes != null) {
-                    p8cVar.a(stargiftupgradeattributes.attributes);
-                    return;
-                } else {
-                    p8cVar.a(null);
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                it4Var.b.d = 0.0f;
+                it4Var.e0 = null;
+                it4Var.j(it4Var.M);
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                it4Var.b.d = 0.0f;
+                it4Var.e0 = null;
+                it4Var.j(it4Var.M);
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                it4Var.b.d = 0.0f;
+                it4Var.e0 = null;
+                it4Var.j(it4Var.M);
+                return;
             default:
-                TLRPC.messages_FoundStickerSets messages_foundstickersets = (TLRPC.messages_FoundStickerSets) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (messages_foundstickersets instanceof TLRPC.TL_messages_foundStickerSets) {
-                    p8cVar.a(((TLRPC.TL_messages_foundStickerSets) messages_foundstickersets).sets);
-                    return;
-                } else {
-                    p8cVar.a(new ArrayList());
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                it4Var.b.d = 0.0f;
+                it4Var.e0 = null;
+                it4Var.j(it4Var.M);
+                return;
         }
     }
 }

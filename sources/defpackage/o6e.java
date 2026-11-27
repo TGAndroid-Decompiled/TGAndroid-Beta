@@ -1,36 +1,17 @@
 package defpackage;
+public final class o6e implements zq7 {
+    public static final o6e a = new Object();
 
-import java.util.Iterator;
-public final class o6e extends q4e {
-    public final transient a7e s;
-    public final transient u6e w;
-
-    public o6e(a7e a7eVar, u6e u6eVar) {
-        super((byte) 5);
-        this.s = a7eVar;
-        this.w = u6eVar;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)), 5)));
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.s.get(obj) != null) {
-            return true;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.w.listIterator(0);
-    }
-
-    @Override
-    public final int p(Object[] objArr) {
-        return this.w.p(objArr);
-    }
-
-    @Override
-    public final int size() {
-        return this.s.h;
+        throw new ClassCastException();
     }
 }

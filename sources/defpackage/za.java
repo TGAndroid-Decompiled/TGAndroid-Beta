@@ -1,69 +1,40 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public final class za extends Drawable {
-    public final byte a;
-    public final tgb b;
-    public final bb c;
+import android.content.Context;
+import android.view.ViewGroup;
+public final class za extends og2 {
+    public final byte d;
+    public final ViewGroup e;
 
-    public za(bb bbVar, String str, byte b) {
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.c = bbVar;
-                this.b = new tgb(str, 14.0f, gl.o());
-                return;
-            default:
-                this.c = bbVar;
-                this.b = new tgb(str, 14.0f, gl.o());
-                return;
-        }
+    public za(st4 st4Var, Context context, x53 x53Var) {
+        super(24, x53Var, context);
+        this.d = (byte) 2;
+        this.e = st4Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        byte b = this.a;
-        bb bbVar = this.c;
-        tgb tgbVar = this.b;
+    public final void invalidate() {
+        byte b = this.d;
+        ViewGroup viewGroup = this.e;
         switch (b) {
             case 0:
-                int i = bbVar.s;
-                this.b.c(getBounds().centerX() - (tgbVar.c / 2.0f), getBounds().centerY(), 1.0f, i, canvas);
+                super.invalidate();
+                ((cb) viewGroup).invalidate();
+                return;
+            case 1:
+                super.invalidate();
+                ((of3) viewGroup).invalidate();
                 return;
             default:
-                int i2 = bbVar.s;
-                this.b.c(getBounds().centerX() - (tgbVar.c / 2.0f), getBounds().centerY(), 1.0f, i2, canvas);
+                super.invalidate();
+                ((st4) viewGroup).invalidate();
                 return;
         }
     }
 
-    @Override
-    public final int getOpacity() {
-        byte b = this.a;
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        byte b = this.a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        byte b = this.a;
-    }
-
-    private final void a(int i) {
-    }
-
-    private final void b(int i) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+    public za(ViewGroup viewGroup, Context context, vnb vnbVar, byte b) {
+        super(21, vnbVar, context);
+        this.d = b;
+        this.e = viewGroup;
     }
 }

@@ -1,52 +1,54 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class w53 {
-    public final SharedPreferences a;
-    public final jg4 b;
-    public final Object c;
-    public TaskCompletionSource d;
-    public boolean e;
-    public boolean f;
-    public Boolean g;
-    public final TaskCompletionSource h;
+import android.util.SparseIntArray;
+public final class w53 extends x53 {
+    public final byte g;
 
-    public w53(defpackage.jg4 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.w53.<init>(jg4):void");
+    public w53() {
+        this.g = (byte) 0;
+        this.b.put(aob.d6, -14537933);
+        this.b.put(aob.h5, -14537933);
+        this.b.put(aob.a7, -13616313);
+        this.b.put(aob.e7, -14142917);
+        this.b.put(aob.f7, -8090220);
+        this.b.put(aob.Ti, -14142917);
+        this.b.put(aob.G8, -13616313);
+        this.b.put(aob.H8, -14733761);
+        this.b.put(aob.F8, -1);
+        this.b.put(aob.E8, -1);
+        this.b.put(aob.wj, -231982259);
+        this.b.put(aob.v6, -11683585);
+        this.b.put(aob.u6, -10637330);
+        this.b.put(aob.W6, -12692893);
+        this.b.put(aob.i7, -15033089);
     }
 
-    public final synchronized boolean a() {
-        boolean z;
-        String str;
-        String str2;
-        Boolean bool = this.g;
-        if (bool != null) {
-            z = bool.booleanValue();
-        } else {
-            try {
-                z = this.b.h();
-            } catch (IllegalStateException unused) {
-                z = false;
-            }
+    @Override
+    public final void k() {
+        byte b = this.g;
+        SparseIntArray sparseIntArray = this.b;
+        switch (b) {
+            case 1:
+                sparseIntArray.put(aob.d7, 352321535);
+                return;
+            case 2:
+                sparseIntArray.append(aob.h5, -14671840);
+                return;
+            case 3:
+                int i = aob.a7;
+                int i2 = aob.h5;
+                sparseIntArray.put(i, h(i2));
+                sparseIntArray.put(aob.d7, -15264235);
+                sparseIntArray.put(aob.Oe, aob.p1(0.45f, -1));
+                sparseIntArray.put(aob.i5, 352321535);
+                sparseIntArray.put(aob.zf, h(i2));
+                return;
+            default:
+                return;
         }
-        if (z) {
-            str = "ENABLED";
-        } else {
-            str = "DISABLED";
-        }
-        if (this.g == null) {
-            str2 = "global Firebase setting";
-        } else if (this.f) {
-            str2 = "firebase_crashlytics_collection_enabled manifest flag";
-        } else {
-            str2 = "API";
-        }
-        String i = b00.i("Crashlytics automatic data collection ", str, " by ", str2, ".");
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", i, null);
-        }
-        return z;
+    }
+
+    public w53(byte b) {
+        this.g = b;
     }
 }

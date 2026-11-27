@@ -1,17 +1,33 @@
 package defpackage;
+public final class db0 extends d6 {
+    public final byte a;
+    public final ob0 b;
 
-import android.app.Activity;
-public final class db0 extends lb0 {
-    public final cb0 H;
-
-    public db0(mb0 mb0Var, Activity activity, cb0 cb0Var) {
-        super(mb0Var, activity);
-        this.H = cb0Var;
+    public db0(ob0 ob0Var, byte b) {
+        this.a = b;
+        this.b = ob0Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.H.invalidate();
+    public final void b(int i) {
+        byte b = this.a;
+        ob0 ob0Var = this.b;
+        switch (b) {
+            case 0:
+                if (i == -1) {
+                    ob0Var.h0();
+                    return;
+                }
+                return;
+            default:
+                if (i == -1) {
+                    ob0Var.h0();
+                }
+                if (i == 1) {
+                    ob0Var.j0();
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,35 +1,22 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.util.Log;
-public final class zgf {
-    public final Context a;
-    public int b;
-    public byte c = 0;
+import java.util.concurrent.locks.AbstractOwnableSynchronizer;
+public final class zgf extends AbstractOwnableSynchronizer implements Runnable {
+    public final h6c a;
 
-    public zgf(Context context) {
-        this.a = context;
+    public zgf(h6c h6cVar) {
+        this.a = h6cVar;
     }
 
-    public final synchronized int a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.zgf.a():int");
+    public static void a(zgf zgfVar, Thread thread) {
+        zgfVar.setExclusiveOwnerThread(thread);
     }
 
-    public final synchronized int b() {
-        PackageInfo packageInfo;
-        if (this.b == 0) {
-            try {
-                packageInfo = ryc.a(this.a).e(0, "com.google.android.gms");
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.w("Metadata", "Failed to find package ".concat(e.toString()));
-                packageInfo = null;
-            }
-            if (packageInfo != null) {
-                this.b = packageInfo.versionCode;
-            }
-        }
-        return this.b;
+    public final String toString() {
+        return this.a.toString();
+    }
+
+    @Override
+    public final void run() {
     }
 }

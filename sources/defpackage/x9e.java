@@ -1,44 +1,46 @@
 package defpackage;
-public final class x9e extends vef {
-    private static final x9e zzb;
-    private int zzd;
-    private int zze;
-    private int zzf;
-    private int zzg;
-    private int zzh;
-    private int zzi;
-    private int zzj;
-    private int zzk;
-    private int zzl;
-    private int zzm;
-    private int zzn;
-    private int zzo;
-    private boolean zzp;
 
-    static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(x9e.class, vefVar);
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class x9e extends c4 {
+    public static final Parcelable.Creator<x9e> CREATOR = new g3e((byte) 5);
+    public final int a;
+    public final String b;
+    public final byte[] c;
+    public final String d;
+
+    public x9e(int i, String str, String str2, byte[] bArr) {
+        this.a = i;
+        this.b = str;
+        this.c = bArr;
+        this.d = str2;
+    }
+
+    public final String toString() {
+        Object valueOf;
+        byte[] bArr = this.c;
+        if (bArr == null) {
+            valueOf = "null";
+        } else {
+            valueOf = Integer.valueOf(bArr.length);
+        }
+        String obj = valueOf.toString();
+        StringBuilder sb = new StringBuilder("MessageEventParcelable[");
+        sb.append(this.a);
+        sb.append(",");
+        sb.append(this.b);
+        sb.append(", size=");
+        return c00.k(sb, obj, "]");
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new vef();
-            }
-            return new sgf(zzb, "\u0001\f\u0000\u0001\u0001\f\f\u0000\u0000\u0000\u0001င\u0000\u0002င\u0001\u0003᠌\u0002\u0004᠌\u0003\u0005᠌\u0004\u0006᠌\u0005\u0007᠌\u0006\b᠌\u0007\tင\b\nင\t\u000bင\n\fဇ\u000b", new Object[]{"zzd", "zze", "zzf", "zzg", i2f.h, "zzh", o5f.h, "zzi", c6e.e, "zzj", eef.f, "zzk", cff.n, "zzl", ie7.f, "zzm", "zzn", "zzo", "zzp"});
-        }
-        return (byte) 1;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.l(parcel, 3, this.b);
+        bye.c(parcel, 4, this.c);
+        bye.l(parcel, 5, this.d);
+        bye.s(parcel, r);
     }
 }

@@ -1,19 +1,32 @@
 package defpackage;
-public final class b53 implements ih4 {
-    public mo5 a;
-    public mo5 b;
-    public kt8 c;
-    public kt8 d;
-    public mo5 e;
-    public kt8 f;
-    public mo5 g;
-    public kt8 h;
-    public mo5 i;
-    public kt8 j;
-    public kt8 k;
-    public kt8 l;
-    public kt8 m;
-    public kt8 n;
-    public kt8 o;
-    public kt8 p;
+
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class b53 extends ViewOutlineProvider {
+    public final Rect a = new Rect();
+    public final RectF b = new RectF();
+    public final RectF c = new RectF();
+    public final e53 d;
+
+    public b53(e53 e53Var) {
+        this.d = e53Var;
+    }
+
+    @Override
+    public final void getOutline(View view, Outline outline) {
+        e53 e53Var = this.d;
+        float R1 = hl.R1(e53Var.e, hl.L(8.0f), e53Var.j);
+        RectF rectF = this.b;
+        rectF.set(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight());
+        RectF rectF2 = e53Var.f;
+        float f = e53Var.j;
+        RectF rectF3 = this.c;
+        hl.X1(rectF2, rectF, f, rectF3);
+        Rect rect = this.a;
+        rectF3.round(rect);
+        outline.setRoundRect(rect, R1);
+    }
 }

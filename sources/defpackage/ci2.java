@@ -1,47 +1,54 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class ci2 extends FrameLayout {
-    public final View a;
-    public final TextView b;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class ci2 {
+    public final RectF a = new RectF();
+    public final Paint b;
+    public final Paint c;
+    public final Paint d;
+    public float e;
+    public float f;
+    public float g;
+    public float h;
+    public int[] i;
+    public int j;
+    public float k;
+    public float l;
+    public float m;
+    public boolean n;
+    public Path o;
+    public float p;
+    public float q;
+    public int r;
+    public int s;
+    public int t;
+    public int u;
 
-    public ci2(Activity activity) {
-        super(activity);
-        View view = new View(activity);
-        this.a = view;
-        int L = gl.L(4.0f);
-        int i = bkb.Ei;
-        int w0 = bkb.w0(null, i, false);
-        int i2 = bkb.Gi;
-        int w02 = bkb.w0(null, i2, false);
-        Drawable i0 = bkb.i0(L, L, L, L, w0, w02, w02);
-        vkb M = zkb.M(i);
-        vkb M2 = zkb.M(i2);
-        view.setBackground(i0);
-        zkb.j(view, i0, M, M2, null);
-        addView(view, nme.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-        TextView textView = new TextView(activity);
-        this.b = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(17);
-        tb4.w(textView, bkb.Ii, null, 1, 14.0f);
-        addView(textView, nme.e(-2, -2, 17));
+    public ci2() {
+        Paint paint = new Paint();
+        this.b = paint;
+        Paint paint2 = new Paint();
+        this.c = paint2;
+        Paint paint3 = new Paint();
+        this.d = paint3;
+        this.e = 0.0f;
+        this.f = 0.0f;
+        this.g = 0.0f;
+        this.h = 5.0f;
+        this.p = 1.0f;
+        this.t = 255;
+        paint.setStrokeCap(Paint.Cap.SQUARE);
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint2.setStyle(Paint.Style.FILL);
+        paint2.setAntiAlias(true);
+        paint3.setColor(0);
     }
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(80.0f), 1073741824));
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.b.setText(charSequence);
+    public final void a(int i) {
+        this.j = i;
+        this.u = this.i[i];
     }
 }

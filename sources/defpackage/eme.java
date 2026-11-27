@@ -1,4 +1,3 @@
 package defpackage;
-public final class eme {
-    public final String a;
+public final class eme extends u4e {
 }

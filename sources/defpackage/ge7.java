@@ -1,34 +1,19 @@
 package defpackage;
-public enum ge7 {
-    TERMINATOR(new int[]{0, 0, 0}, 0),
-    NUMERIC(new int[]{10, 12, 14}, 1),
-    ALPHANUMERIC(new int[]{9, 11, 13}, 2),
-    STRUCTURED_APPEND(new int[]{0, 0, 0}, 3),
-    BYTE(new int[]{8, 16, 16}, 4),
-    ECI(new int[]{0, 0, 0}, 7),
-    KANJI(new int[]{8, 10, 12}, 8),
-    FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 5),
-    FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
-    HANZI(new int[]{8, 10, 12}, 13);
-    
-    public final int[] a;
-    public final byte b;
+public final class ge7 implements Runnable {
+    public final byte a;
+    public final jf7 b;
+    public final long c;
+    public final boolean d;
 
-    ge7(int[] iArr, int i) {
-        this.a = iArr;
-        this.b = i;
+    public ge7(jf7 jf7Var, long j, boolean z, byte b) {
+        this.a = b;
+        this.b = jf7Var;
+        this.c = j;
+        this.d = z;
     }
 
-    public final int a(x9c x9cVar) {
-        char c;
-        byte b = x9cVar.a;
-        if (b <= 9) {
-            c = 0;
-        } else if (b <= 26) {
-            c = 1;
-        } else {
-            c = 2;
-        }
-        return this.a[c];
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ge7.run():void");
     }
 }

@@ -1,58 +1,49 @@
 package defpackage;
 
-import android.view.View;
-public final class wr3 extends ri4 {
-    public final byte a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.ActionBar.e;
+import org.webrtc.DtmfSender;
+import org.webrtc.NativeLifecycleLock;
+import org.webrtc.PeerConnection;
+public final class wr3 implements NativeLifecycleLock.NativePointerCallable, fd, NativeLifecycleLock.NativeCallable {
+    public final int a;
+    public final int b;
+    public final Object c;
 
-    @Override
-    public final float a(Object obj) {
-        switch (this.a) {
-            case 0:
-                return ((View) obj).getAlpha();
-            case 1:
-                return ((View) obj).getTranslationX();
-            case 2:
-                return ((View) obj).getTranslationY();
-            case 3:
-                return ((View) obj).getScaleX();
-            case 4:
-                return ((View) obj).getScaleY();
-            case 5:
-                return ((View) obj).getRotation();
-            case 6:
-                return ((View) obj).getRotationX();
-            default:
-                return ((View) obj).getRotationY();
-        }
+    public wr3(int i, int i2, Object obj) {
+        this.c = obj;
+        this.a = i;
+        this.b = i2;
     }
 
     @Override
-    public final void b(Object obj, float f) {
-        switch (this.a) {
-            case 0:
-                ((View) obj).setAlpha(f);
-                return;
-            case 1:
-                ((View) obj).setTranslationX(f);
-                return;
-            case 2:
-                ((View) obj).setTranslationY(f);
-                return;
-            case 3:
-                ((View) obj).setScaleX(f);
-                return;
-            case 4:
-                ((View) obj).setScaleY(f);
-                return;
-            case 5:
-                ((View) obj).setRotation(f);
-                return;
-            case 6:
-                ((View) obj).setRotationX(f);
-                return;
-            default:
-                ((View) obj).setRotationY(f);
-                return;
-        }
+    public final Object call() {
+        Boolean lambda$startRtcEventLog$39;
+        lambda$startRtcEventLog$39 = ((PeerConnection) this.c).lambda$startRtcEventLog$39(this.a, this.b);
+        return lambda$startRtcEventLog$39;
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        l01 g = idVar.g(-1, true, true);
+        g.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.a;
+        int i2 = this.b;
+        ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new f(i2, (e) this.c, g, idVar));
+    }
+
+    public wr3(int i, int i2, e eVar) {
+        this.a = i;
+        this.b = i2;
+        this.c = eVar;
+    }
+
+    @Override
+    public final Object call(long j) {
+        Boolean lambda$insertDtmf$1;
+        lambda$insertDtmf$1 = DtmfSender.lambda$insertDtmf$1((String) this.c, this.a, this.b, j);
+        return lambda$insertDtmf$1;
     }
 }

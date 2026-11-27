@@ -1,25 +1,15 @@
 package defpackage;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
+import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class y17 extends TLRPC.TL_messageMediaStory {
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z) {
-        this.user_id = inputSerializedData.readInt64(z);
-        this.id = inputSerializedData.readInt32(z);
-        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        this.via_mention = inputSerializedData.readBool(z);
-        this.peer = na7.q1(y6c.t0).w1(this.user_id);
-    }
+public interface y17 {
+    void H0(int i, int i2, CharSequence charSequence, boolean z);
 
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt32(-946147811);
-        outputSerializedData.writeInt64(this.user_id);
-        outputSerializedData.writeInt32(this.id);
-        this.storyItem.serializeToStream(outputSerializedData);
-        outputSerializedData.writeBool(this.via_mention);
-    }
+    void T0(String str);
+
+    void m0(TLRPC.TL_document tL_document, String str, Object obj);
+
+    void s(TLRPC.BotInlineResult botInlineResult, boolean z, int i);
+
+    Paint.FontMetricsInt w();
 }

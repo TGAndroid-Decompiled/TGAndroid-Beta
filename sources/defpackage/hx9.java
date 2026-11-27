@@ -1,24 +1,13 @@
 package defpackage;
-public final class hx9 implements Runnable {
-    public final byte a;
-    public final py b;
+public final class hx9 extends zb3 {
+    public final bj3 F;
 
-    public hx9(py pyVar, byte b) {
-        this.a = b;
-        this.b = pyVar;
+    public hx9(bj3 bj3Var) {
+        this.F = bj3Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        py pyVar = this.b;
-        switch (b) {
-            case 0:
-                gl.E3(((lw9) pyVar.f2).h);
-                return;
-            default:
-                pyVar.requestFocus();
-                return;
-        }
+    public final void P(f89 f89Var) {
+        this.F.invalidate();
     }
 }

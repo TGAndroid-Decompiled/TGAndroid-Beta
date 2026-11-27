@@ -1,22 +1,38 @@
 package defpackage;
 
-import java.io.FileOutputStream;
-public final class mg7 extends gw2 {
-    public FileOutputStream a;
-    public long b;
-    public Object c;
-    public final c6e d;
-    public int e;
+import java.util.Arrays;
+public final class mg7 extends wl5 {
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int[] e;
+    public final int[] f;
 
-    public mg7(c6e c6eVar, fw2 fw2Var) {
-        super(fw2Var);
-        this.d = c6eVar;
+    public mg7(int i, int i2, int i3, int[] iArr, int[] iArr2) {
+        super("MLLT");
+        this.b = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = iArr;
+        this.f = iArr2;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.h(null, this);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && mg7.class == obj.getClass()) {
+                mg7 mg7Var = (mg7) obj;
+                if (this.b == mg7Var.b && this.c == mg7Var.c && this.d == mg7Var.d && Arrays.equals(this.e, mg7Var.e) && Arrays.equals(this.f, mg7Var.f)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int hashCode = Arrays.hashCode(this.e);
+        return Arrays.hashCode(this.f) + ((hashCode + ((((((527 + this.b) * 31) + this.c) * 31) + this.d) * 31)) * 31);
     }
 }

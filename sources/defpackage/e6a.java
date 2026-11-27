@@ -1,33 +1,46 @@
 package defpackage;
-public final class e6a extends ccb implements eq4 {
-    public ko5 a;
-    public g6a b;
-    public d6a c;
-    public jg4 d;
-    public a6a e;
-    public k7a f;
-    public byte h;
-    public final g6a n;
-    public final a6a r;
 
-    public e6a(g6a g6aVar, a6a a6aVar, fw2 fw2Var) {
-        super(2, fw2Var);
-        this.n = g6aVar;
-        this.r = a6aVar;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class e6a implements RequestDelegate {
+    public final byte a;
+    public final r7a b;
+    public final TLRPC.InputMedia c;
+    public final d7a d;
+
+    public e6a(r7a r7aVar, TLRPC.InputMedia inputMedia, d7a d7aVar, byte b) {
+        this.a = b;
+        this.b = r7aVar;
+        this.c = inputMedia;
+        this.d = d7aVar;
     }
 
     @Override
-    public final fw2 create(Object obj, fw2 fw2Var) {
-        return new e6a(this.n, this.r, fw2Var);
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        return ((e6a) create((ax2) obj, (fw2) obj2)).invokeSuspend(g5c.a);
-    }
-
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.e6a.invokeSuspend(java.lang.Object):java.lang.Object");
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.a) {
+            case 0:
+                final r7a r7aVar = this.b;
+                final TLRPC.InputMedia inputMedia = this.c;
+                final d7a d7aVar = this.d;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        throw new UnsupportedOperationException("Method not decompiled: defpackage.s6a.run():void");
+                    }
+                });
+                return;
+            default:
+                final r7a r7aVar2 = this.b;
+                final TLRPC.InputMedia inputMedia2 = this.c;
+                final d7a d7aVar2 = this.d;
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        throw new UnsupportedOperationException("Method not decompiled: defpackage.s6a.run():void");
+                    }
+                });
+                return;
+        }
     }
 }

@@ -1,11 +1,9 @@
 package defpackage;
 
-import java.util.List;
-import java.util.RandomAccess;
-public interface kpe extends List, RandomAccess {
-    kpe zza(int i);
-
-    boolean zza();
-
-    void zzb();
+import android.content.Context;
+public abstract class kpe {
+    public static h8d a(Context context) {
+        xve.h(context);
+        return new h8d(context, new Object());
+    }
 }

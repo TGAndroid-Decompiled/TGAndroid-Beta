@@ -1,42 +1,32 @@
 package defpackage;
-
-import org.telegram.ui.ActionBar.d;
 public final class wv8 implements Runnable {
-    public final byte a = 1;
-    public final String b;
-    public final p8c c;
-    public final d d;
+    public final byte a;
+    public final cw8 b;
 
-    public wv8(String str, p8c p8cVar, d dVar) {
-        this.b = str;
-        this.c = p8cVar;
-        this.d = dVar;
+    public wv8(cw8 cw8Var, byte b) {
+        this.a = b;
+        this.b = cw8Var;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        d dVar = this.d;
-        p8c p8cVar = this.c;
-        String str = this.b;
+        cw8 cw8Var = this.b;
         switch (b) {
             case 0:
-                yv8.p(dVar, 0, new wv8(str, p8cVar, dVar));
+                cw8Var.e0 = true;
+                return;
+            case 1:
+                cw8Var.v();
                 return;
             default:
-                if (str != null) {
-                    p8cVar.a(str);
-                    return;
-                } else {
-                    u21.b0(dVar).N(k96.M0(2131745669, null), k96.M0(2131751093, null)).j();
+                if (!cw8Var.k0) {
+                    wt6 wt6Var = cw8Var.J;
+                    wt6Var.getClass();
+                    wt6Var.f(cw8Var);
                     return;
                 }
+                return;
         }
-    }
-
-    public wv8(d dVar, String str, p8c p8cVar) {
-        this.d = dVar;
-        this.b = str;
-        this.c = p8cVar;
     }
 }

@@ -1,20 +1,38 @@
 package defpackage;
-public final class qe5 {
-    public final bf5 a;
-    public final long b;
-    public final int c;
-    public final boolean d;
 
-    public qe5(bf5 bf5Var, long j, int i) {
-        boolean z;
-        this.a = bf5Var;
-        this.b = j;
-        this.c = i;
-        if ((bf5Var instanceof ye5) && ((ye5) bf5Var).y) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.d = z;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class qe5 implements tha {
+    @Override
+    public final boolean X() {
+        return false;
+    }
+
+    @Override
+    public final d79 d() {
+        return null;
+    }
+
+    @Override
+    public final TLRPC.Chat e() {
+        return null;
+    }
+
+    @Override
+    public final boolean g(TLRPC.ChatParticipant chatParticipant, boolean z, boolean z2, View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean u() {
+        return true;
+    }
+
+    @Override
+    public final void I() {
+    }
+
+    @Override
+    public final void V() {
     }
 }

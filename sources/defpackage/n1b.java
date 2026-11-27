@@ -1,43 +1,25 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class n1b implements RequestDelegate {
-    public final byte a = 0;
-    public final boolean b;
-    public final boolean c;
-    public final Object d;
-    public final Object e;
+public final class n1b extends pd2 {
+    public final boolean[] d1;
+    public final w1b e1;
+    public final p1b f1;
 
-    public n1b(g2b g2bVar, boolean z, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, boolean z2) {
-        this.d = g2bVar;
-        this.b = z;
-        this.e = tL_stories_getAllStories;
-        this.c = z2;
+    public n1b(p1b p1bVar, long j, long j2, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, boolean[] zArr, w1b w1bVar) {
+        super(j, j2, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z, null);
+        this.f1 = p1bVar;
+        this.d1 = zArr;
+        this.e1 = w1bVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        byte b = this.a;
-        Object obj = this.e;
-        Object obj2 = this.d;
-        switch (b) {
-            case 0:
-                gl.c3(new hw6((g2b) obj2, this.b, (TL_stories.TL_stories_getAllStories) obj, tLObject, this.c));
-                return;
-            default:
-                gl.c3(new d87((TwoStepVerificationActivity) obj2, tL_error, tLObject, this.b, this.c, (Runnable) obj, (byte) 3));
-                return;
+    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+        if (!z && z2 && this.d1[0]) {
+            w1b w1bVar = this.e1;
+            if (d31.a(w1bVar)) {
+                d31.C(this.f1.a.first_name, w1bVar).j();
+            }
         }
-    }
-
-    public n1b(TwoStepVerificationActivity twoStepVerificationActivity, boolean z, boolean z2, Runnable runnable) {
-        this.d = twoStepVerificationActivity;
-        this.b = z;
-        this.c = z2;
-        this.e = runnable;
     }
 }

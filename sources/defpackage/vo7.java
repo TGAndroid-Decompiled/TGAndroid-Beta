@@ -1,203 +1,291 @@
 package defpackage;
 
-import android.os.Build;
-import android.util.Log;
-import android.window.OnBackInvokedCallback;
-import android.window.OnBackInvokedDispatcher;
+import android.media.SoundPool;
+import android.os.PowerManager;
+import android.os.SystemClock;
+import android.util.Pair;
+import android.util.SparseArray;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Calendar;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.ListIterator;
-public final class vo7 {
-    public final Runnable a;
-    public final ks b = new ks();
-    public yn4 c;
-    public final OnBackInvokedCallback d;
-    public OnBackInvokedDispatcher e;
-    public boolean f;
-    public boolean g;
+import java.util.Map;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.TLRPC;
+public final class vo7 implements Runnable {
+    public final byte a;
+    public final ip7 b;
 
-    public vo7(Runnable runnable) {
-        OnBackInvokedCallback a;
-        this.a = runnable;
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 33) {
-            if (i >= 34) {
-                a = so7.a.a(new oo7(this, (byte) 0), new oo7(this, (byte) 1), new po7(this, (byte) 0), new po7(this, (byte) 1));
-            } else {
-                a = qo7.a.a(new po7(this, (byte) 2));
-            }
-            this.d = a;
-        }
+    public vo7(ip7 ip7Var, byte b) {
+        this.a = b;
+        this.b = ip7Var;
     }
 
-    public final void a() {
-        ?? r2;
-        yn4 yn4Var = this.c;
-        if (yn4Var == null) {
-            ks ksVar = this.b;
-            ListIterator listIterator = ksVar.listIterator(ksVar.c);
-            while (true) {
-                if (listIterator.hasPrevious()) {
-                    r2 = listIterator.previous();
-                    if (((yn4) r2).a) {
-                        break;
-                    }
-                } else {
-                    r2 = 0;
-                    break;
-                }
-            }
-            yn4Var = r2;
-        }
-        this.c = null;
-        if (yn4Var != null) {
-            go4 go4Var = yn4Var.d;
-            if (go4.K(3)) {
-                Log.d("FragmentManager", "handleOnBackPressed. PREDICTIVE_BACK = true fragment manager " + go4Var);
-            }
-            yn4 yn4Var2 = go4Var.j;
-            ArrayList arrayList = go4Var.n;
-            go4Var.i = true;
-            go4Var.A(true);
-            int i = 0;
-            go4Var.i = false;
-            if (go4Var.h != null) {
-                if (!arrayList.isEmpty()) {
-                    LinkedHashSet linkedHashSet = new LinkedHashSet(go4.F(go4Var.h));
-                    int size = arrayList.size();
-                    int i2 = 0;
-                    while (i2 < size) {
-                        Object obj = arrayList.get(i2);
-                        i2++;
-                        if (obj == null) {
-                            Iterator it = linkedHashSet.iterator();
-                            if (it.hasNext()) {
-                                bn4 bn4Var = (bn4) it.next();
-                                throw null;
-                            }
-                        } else {
-                            fyb.g();
-                            return;
-                        }
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ip7 ip7Var = this.b;
+        switch (b) {
+            case 0:
+                ArrayList arrayList = ip7Var.a;
+                ArrayList arrayList2 = new ArrayList();
+                for (int i = 0; i < arrayList.size(); i++) {
+                    r47 r47Var = (r47) arrayList.get(i);
+                    long B0 = r47.B0(r47Var.k);
+                    TLRPC.Message message = r47Var.k;
+                    if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !wf3.B(B0) && (r47Var.k.peer_id.channel_id == 0 || r47Var.z4())) {
+                        arrayList2.add(0, r47Var);
                     }
                 }
-                ArrayList arrayList2 = go4Var.h.a;
-                int size2 = arrayList2.size();
-                int i3 = 0;
-                while (i3 < size2) {
-                    Object obj2 = arrayList2.get(i3);
-                    i3++;
-                    bn4 bn4Var2 = ((wo4) obj2).b;
-                    if (bn4Var2 != null) {
-                        bn4Var2.y = false;
-                    }
-                }
-                Iterator it2 = go4Var.f(0, 1, new ArrayList(Collections.singletonList(go4Var.h))).iterator();
-                while (it2.hasNext()) {
-                    ac3 ac3Var = (ac3) it2.next();
-                    ArrayList arrayList3 = ac3Var.c;
-                    if (go4.K(3)) {
-                        Log.d("FragmentManager", "SpecialEffectsController: Completing Back ");
-                    }
-                    ac3Var.d(arrayList3);
-                    ArrayList arrayList4 = new ArrayList();
-                    int size3 = arrayList3.size();
-                    int i4 = 0;
-                    while (i4 < size3) {
-                        Object obj3 = arrayList3.get(i4);
-                        i4++;
-                        ((vka) obj3).getClass();
-                        el2.d(null, arrayList4);
-                    }
-                    List k = yk2.k(yk2.m(arrayList4));
-                    int size4 = k.size();
-                    for (int i5 = 0; i5 < size4; i5++) {
-                        ((uka) k.get(i5)).a(ac3Var.a);
-                    }
-                    int size5 = arrayList3.size();
-                    for (int i6 = 0; i6 < size5; i6++) {
-                        ((vka) arrayList3.get(i6)).getClass();
-                    }
-                    List k2 = yk2.k(arrayList3);
-                    if (k2.size() > 0) {
-                        ((vka) k2.get(0)).getClass();
-                        throw null;
-                    }
-                }
-                ArrayList arrayList5 = go4Var.h.a;
-                int size6 = arrayList5.size();
-                while (i < size6) {
-                    Object obj4 = arrayList5.get(i);
-                    i++;
-                    bn4 bn4Var3 = ((wo4) obj4).b;
-                    if (bn4Var3 != null && bn4Var3.W == null) {
-                        go4Var.g(bn4Var3).j();
-                    }
-                }
-                go4Var.h = null;
-                go4Var.h0();
-                if (go4.K(3)) {
-                    Log.d("FragmentManager", "Op is being set to null");
-                    Log.d("FragmentManager", "OnBackPressedCallback enabled=" + yn4Var2.a + " for  FragmentManager " + go4Var);
+                if (!arrayList2.isEmpty() && !hl.n2(false) && !xea.B) {
+                    hl.c3(new xo7(ip7Var, arrayList2, (byte) 0));
                     return;
                 }
                 return;
-            } else if (yn4Var2.a) {
-                if (go4.K(3)) {
-                    Log.d("FragmentManager", "Calling popBackStackImmediate via onBackPressed callback");
+            case 1:
+                int i2 = Calendar.getInstance().get(11);
+                if (i2 >= 11 && i2 <= 22) {
+                    ip7.m0.b(ip7Var.e0, null);
+                    ip7Var.Z(true);
+                    return;
                 }
-                go4Var.S();
+                ip7Var.R();
                 return;
-            } else {
-                if (go4.K(3)) {
-                    Log.d("FragmentManager", "Calling onBackPressed via onBackPressed callback");
-                }
-                go4Var.g.a();
+            case 2:
+                ip7Var.z();
                 return;
-            }
-        }
-        this.a.run();
-    }
-
-    public final void b(boolean z) {
-        OnBackInvokedCallback onBackInvokedCallback;
-        OnBackInvokedDispatcher onBackInvokedDispatcher = this.e;
-        if (onBackInvokedDispatcher != null && (onBackInvokedCallback = this.d) != null) {
-            boolean z2 = this.f;
-            qo7 qo7Var = qo7.a;
-            if (z) {
-                if (!z2) {
-                    qo7Var.b(onBackInvokedDispatcher, 0, onBackInvokedCallback);
-                    this.f = true;
+            case 3:
+                try {
+                    if (Math.abs(SystemClock.elapsedRealtime() - ip7Var.X) > 100) {
+                        ip7Var.X = SystemClock.elapsedRealtime();
+                        if (ip7Var.Y == null) {
+                            SoundPool soundPool = new SoundPool(3, 1, 0);
+                            ip7Var.Y = soundPool;
+                            soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                                @Override
+                                public final void onLoadComplete(SoundPool soundPool2, int i3, int i4) {
+                                    switch (r1) {
+                                        case 0:
+                                            if (i4 == 0) {
+                                                try {
+                                                    soundPool2.play(i3, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e) {
+                                                    cc4.g(e, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                        default:
+                                            if (i4 == 0) {
+                                                try {
+                                                    soundPool2.play(i3, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e2) {
+                                                    cc4.g(e2, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                    }
+                                }
+                            });
+                        }
+                        int i3 = ip7Var.a0;
+                        if (i3 == 0 && !ip7Var.c0) {
+                            ip7Var.c0 = true;
+                            i3 = ip7Var.Y.load(a.b, 2131624198, 1);
+                            ip7Var.a0 = i3;
+                        }
+                        int i4 = i3;
+                        if (i4 != 0) {
+                            try {
+                                ip7Var.Y.play(i4, 1.0f, 1.0f, 1, 0, 1.0f);
+                                return;
+                            } catch (Exception e) {
+                                cc4.g(e, true);
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
                 }
-            } else if (z2) {
-                qo7Var.c(onBackInvokedDispatcher, onBackInvokedCallback);
-                this.f = false;
-            }
-        }
-    }
-
-    public final void c() {
-        boolean z = this.g;
-        boolean z2 = false;
-        ks ksVar = this.b;
-        if (ksVar == null || !ksVar.isEmpty()) {
-            Iterator it = ksVar.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                } else if (((yn4) it.next()).a) {
-                    z2 = true;
-                    break;
+            case 4:
+                ip7Var.Z(false);
+                return;
+            case 5:
+                ip7Var.getClass();
+                if (Math.abs(SystemClock.elapsedRealtime()) > 500) {
+                    try {
+                        if (ip7Var.Y == null) {
+                            SoundPool soundPool2 = new SoundPool(3, 1, 0);
+                            ip7Var.Y = soundPool2;
+                            soundPool2.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                                @Override
+                                public final void onLoadComplete(SoundPool soundPool22, int i32, int i42) {
+                                    switch (r1) {
+                                        case 0:
+                                            if (i42 == 0) {
+                                                try {
+                                                    soundPool22.play(i32, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e3) {
+                                                    cc4.g(e3, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                        default:
+                                            if (i42 == 0) {
+                                                try {
+                                                    soundPool22.play(i32, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e22) {
+                                                    cc4.g(e22, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                    }
+                                }
+                            });
+                        }
+                        int i5 = ip7Var.Z;
+                        if (i5 == 0 && !ip7Var.b0) {
+                            ip7Var.b0 = true;
+                            i5 = ip7Var.Y.load(a.b, 2131624195, 1);
+                            ip7Var.Z = i5;
+                        }
+                        int i6 = i5;
+                        if (i6 != 0) {
+                            try {
+                                ip7Var.Y.play(i6, 1.0f, 1.0f, 1, 0, 1.0f);
+                                return;
+                            } catch (Exception e3) {
+                                cc4.g(e3, true);
+                                return;
+                            }
+                        }
+                        return;
+                    } catch (Exception e4) {
+                        cc4.g(e4, true);
+                        return;
+                    }
                 }
-            }
-        }
-        this.g = z2;
-        if (z2 != z && Build.VERSION.SDK_INT >= 33) {
-            b(z2);
+                return;
+            case 6:
+                zh6 zh6Var = ip7Var.c;
+                ArrayList arrayList3 = ip7Var.a;
+                int i7 = 0;
+                boolean z = false;
+                while (i7 < arrayList3.size()) {
+                    r47 r47Var2 = (r47) arrayList3.get(i7);
+                    if (r47Var2 != null && r47Var2.J) {
+                        arrayList3.remove(i7);
+                        i7--;
+                        SparseArray sparseArray = (SparseArray) zh6Var.f(r47.B0(r47Var2.k));
+                        if (sparseArray != null) {
+                            sparseArray.remove(r47Var2.e1());
+                            if (sparseArray.size() <= 0) {
+                                zh6Var.l(r47.B0(r47Var2.k));
+                            }
+                        }
+                        z = true;
+                    }
+                    i7++;
+                }
+                jf7 messagesStorage = ip7Var.getMessagesStorage();
+                messagesStorage.a.c(new be7(messagesStorage, (byte) 14));
+                if (z) {
+                    ip7Var.Z(false);
+                    return;
+                }
+                return;
+            case 7:
+                ip7Var.A();
+                return;
+            case 8:
+                ArrayList arrayList4 = ip7Var.E;
+                boolean isEmpty = arrayList4.isEmpty();
+                arrayList4.clear();
+                ip7Var.F.b();
+                jf7 messagesStorage2 = ip7Var.getMessagesStorage();
+                messagesStorage2.a.c(new be7(messagesStorage2, (byte) 13));
+                if (!isEmpty) {
+                    ip7Var.Z(false);
+                    return;
+                }
+                return;
+            case 9:
+                zh6 zh6Var2 = ip7Var.h;
+                ip7.m0.b(ip7Var.e0, null);
+                ip7Var.n.b();
+                for (int i8 = 0; i8 < zh6Var2.m(); i8++) {
+                    ip7.m0.b(((Integer) zh6Var2.n(i8)).intValue(), null);
+                }
+                zh6Var2.b();
+                return;
+            case 10:
+                ip7Var.S(ip7Var.t());
+                return;
+            case 11:
+                ArrayList arrayList5 = ip7Var.E;
+                long currentTimeMillis = System.currentTimeMillis();
+                int i9 = 0;
+                boolean z2 = false;
+                while (i9 < arrayList5.size()) {
+                    hp7 hp7Var = (hp7) arrayList5.get(i9);
+                    Iterator it = hp7Var.c.entrySet().iterator();
+                    while (it.hasNext()) {
+                        if (currentTimeMillis >= ((Long) ((Pair) ((Map.Entry) it.next()).getValue()).second).longValue()) {
+                            it.remove();
+                            z2 = true;
+                        }
+                    }
+                    if (z2) {
+                        if (hp7Var.c.isEmpty()) {
+                            jf7 messagesStorage3 = ip7Var.getMessagesStorage();
+                            messagesStorage3.a.c(new le7(messagesStorage3, hp7Var.a, (byte) 2));
+                            arrayList5.remove(i9);
+                            i9--;
+                        } else {
+                            jf7 messagesStorage4 = ip7Var.getMessagesStorage();
+                            messagesStorage4.a.c(new t87(messagesStorage4, hp7Var, (byte) 24));
+                        }
+                    }
+                    i9++;
+                }
+                if (z2) {
+                    ip7Var.Z(false);
+                }
+                ip7Var.d0();
+                return;
+            case 12:
+                PowerManager.WakeLock wakeLock = ip7Var.W;
+                ArrayList arrayList6 = ip7Var.b;
+                if (f11.a) {
+                    cc4.b("delay reached");
+                }
+                if (!arrayList6.isEmpty()) {
+                    ip7Var.Z(true);
+                    arrayList6.clear();
+                }
+                try {
+                    if (wakeLock.isHeld()) {
+                        wakeLock.release();
+                        return;
+                    }
+                    return;
+                } catch (Exception e5) {
+                    cc4.g(e5, true);
+                    return;
+                }
+            default:
+                ip7Var.getNotificationCenter().a(ip7Var, 143);
+                return;
         }
     }
 }

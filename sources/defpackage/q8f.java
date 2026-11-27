@@ -1,40 +1,69 @@
 package defpackage;
-public final class q8f extends vef {
-    private static final q8f zzb;
-    private int zzd;
-    private boolean zze;
-    private boolean zzf;
-    private boolean zzg;
-    private boolean zzh;
-    private int zzi;
-    private int zzj;
-    private boolean zzk;
+
+import android.content.Context;
+import com.google.android.gms.tasks.Task;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class q8f {
+    public static yjd k;
+    public static final xkd l;
+    public final String a;
+    public final String b;
+    public final e8f c;
+    public final lja d;
+    public final Task e;
+    public final Task f;
+    public final String g;
+    public final int h;
+    public final HashMap i = new HashMap();
+    public final HashMap j = new HashMap();
 
     static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(q8f.class, vefVar);
+        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
+        objArr[0].getClass();
+        objArr[1].getClass();
+        l = new xkd(objArr);
     }
 
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new vef();
-            }
-            ize izeVar = ize.w;
-            return new sgf(zzb, "\u0001\u0007\u0000\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001ဇ\u0000\u0002ဇ\u0001\u0003ဇ\u0002\u0004ဇ\u0003\u0005᠌\u0004\u0006᠌\u0005\u0007ဇ\u0006", new Object[]{"zzd", "zze", "zzf", "zzg", "zzh", "zzi", izeVar, "zzj", izeVar, "zzk"});
+    public q8f(Context context, lja ljaVar, e8f e8fVar) {
+        int i;
+        this.a = context.getPackageName();
+        this.b = in2.a(context);
+        this.d = ljaVar;
+        this.c = e8fVar;
+        faf.D0();
+        this.g = "play-services-mlkit-image-labeling";
+        ri6.v();
+        this.e = ri6.G(new tg7(this, (byte) 7));
+        ri6.v();
+        ljaVar.getClass();
+        this.f = ri6.G(new z1f(ljaVar, (byte) 2));
+        xkd xkdVar = l;
+        if (xkdVar.containsKey("play-services-mlkit-image-labeling")) {
+            i = vs3.d(context, (String) xkdVar.get("play-services-mlkit-image-labeling"), false);
+        } else {
+            i = -1;
         }
-        return (byte) 1;
+        this.h = i;
+    }
+
+    public static long a(ArrayList arrayList, double d) {
+        return ((Long) arrayList.get(Math.max(((int) Math.ceil((d / 100.0d) * arrayList.size())) - 1, 0))).longValue();
+    }
+
+    public final String b() {
+        Task task = this.e;
+        if (task.isSuccessful()) {
+            return (String) task.getResult();
+        }
+        return v26.c.a(this.g);
+    }
+
+    public final boolean c(vxe vxeVar, long j) {
+        HashMap hashMap = this.i;
+        if (hashMap.get(vxeVar) == null || j - ((Long) hashMap.get(vxeVar)).longValue() > 30000) {
+            return true;
+        }
+        return false;
     }
 }

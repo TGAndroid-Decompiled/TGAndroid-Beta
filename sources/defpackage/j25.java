@@ -1,25 +1,23 @@
 package defpackage;
-
-import android.view.View;
-public final class j25 implements View.OnClickListener {
+public final class j25 implements icc {
     public final byte a;
-    public final cj7 b;
+    public final icc b;
 
-    public j25(cj7 cj7Var, byte b) {
+    public j25(icc iccVar, byte b) {
         this.a = b;
-        this.b = cj7Var;
+        this.b = iccVar;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void a(Object obj, Object obj2) {
         byte b = this.a;
-        cj7 cj7Var = this.b;
+        icc iccVar = this.b;
         switch (b) {
             case 0:
-                cj7Var.dismiss();
+                iccVar.a((c35) obj, (String) obj2);
                 return;
             default:
-                cj7Var.dismiss();
+                iccVar.a((Long) obj, (Boolean) obj2);
                 return;
         }
     }

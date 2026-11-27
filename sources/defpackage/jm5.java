@@ -1,13 +1,8 @@
 package defpackage;
-public final class jm5 extends em5 {
-    @Override
-    public final fm5 a(Object obj) {
-        c(obj);
-        return this;
-    }
 
-    public final w59 f() {
-        this.c = true;
-        return mm5.o(this.b, this.a);
-    }
+import java.io.Closeable;
+public interface jm5 extends Closeable, h36, yt7 {
+    @Override
+    @es7(y26.ON_DESTROY)
+    void close();
 }

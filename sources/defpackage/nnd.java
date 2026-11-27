@@ -1,16 +1,17 @@
 package defpackage;
-public final class nnd extends dzc {
-    public gg0 b;
-    public final int c;
+public final class nnd implements zq7 {
+    public static final nnd a = new Object();
 
-    public nnd(gg0 gg0Var, int i) {
-        super("com.google.android.gms.common.internal.IGmsCallbacks", (byte) 6);
-        this.b = gg0Var;
-        this.c = i;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
     }
 
     @Override
-    public final boolean d(int r8, android.os.Parcel r9, android.os.Parcel r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nnd.d(int, android.os.Parcel, android.os.Parcel):boolean");
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

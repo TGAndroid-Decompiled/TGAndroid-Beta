@@ -1,3 +1,4 @@
 package defpackage;
-public final class qcd extends vk9 {
+public interface qcd {
+    int zza();
 }

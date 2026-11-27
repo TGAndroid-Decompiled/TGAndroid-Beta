@@ -1,46 +1,32 @@
 package defpackage;
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class nc6 implements Runnable {
-    public final byte a;
-    public final ae6 b;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_stories;
+public final class nc6 extends eja {
+    public final uc6 x2;
 
-    public nc6(ae6 ae6Var, byte b) {
-        this.a = b;
-        this.b = ae6Var;
+    public nc6(uc6 uc6Var, Context context, wia wiaVar, uc6 uc6Var2, mc6 mc6Var, vnb vnbVar) {
+        super(context, 0L, wiaVar, 0, null, null, null, 8, 0, uc6Var2, mc6Var, 0, vnbVar, null);
+        this.x2 = uc6Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        ae6 ae6Var = this.b;
-        switch (b) {
-            case 0:
-                ae6Var.N.m();
-                return;
-            case 1:
-                ae6Var.O = null;
-                ae6Var.P = null;
-                ae6Var.o(true);
-                ae6Var.e.m(null, null, ae6Var.f, null);
-                vh1 vh1Var = ae6Var.n;
-                oy8 oy8Var = ae6Var.K;
-                vh1Var.setAnimation(oy8Var);
-                oy8Var.H(0);
-                ae6Var.M = true;
-                return;
-            case 2:
-                ae6Var.M = true;
-                return;
-            default:
-                EditTextBoldCursor editTextBoldCursor = ae6Var.c;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    gl.E3(editTextBoldCursor);
-                    return;
-                }
-                return;
-        }
+    public final boolean H() {
+        return true;
+    }
+
+    @Override
+    public final int I0() {
+        return 32;
+    }
+
+    @Override
+    public final int Z0() {
+        return 3;
+    }
+
+    @Override
+    public final TL_stories.MediaArea getStoriesArea() {
+        return this.x2.T0;
     }
 }

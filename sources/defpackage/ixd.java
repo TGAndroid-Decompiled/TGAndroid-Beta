@@ -1,17 +1,12 @@
 package defpackage;
-public final class ixd implements zn7 {
-    public static final ixd a = new Object();
+public final class ixd {
+    public final ywd a;
+    public final Integer b;
+    public final u7f c;
 
-    static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public ixd(htd htdVar) {
+        this.a = (ywd) htdVar.b;
+        this.b = (Integer) htdVar.c;
+        this.c = (u7f) htdVar.d;
     }
 }

@@ -1,66 +1,92 @@
 package defpackage;
+public final class kj2 implements at9 {
+    public final at9 a;
+    public final boolean b;
+    public boolean c;
+    public final lj2 d;
 
-import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import java.lang.reflect.Array;
-public class kj2 extends SpannableString {
-    public static final int b = 0;
-    public volatile boolean a;
-
-    public kj2(CharSequence charSequence) {
-        super(charSequence);
-        this.a = false;
-    }
-
-    public final int a(CharacterStyle characterStyle) {
-        return super.getSpanEnd(characterStyle);
-    }
-
-    public final int b(CharacterStyle characterStyle) {
-        return super.getSpanStart(characterStyle);
-    }
-
-    public final Object[] c(Class cls, int i) {
-        return super.getSpans(0, i, cls);
+    public kj2(lj2 lj2Var, at9 at9Var, boolean z) {
+        this.d = lj2Var;
+        this.a = at9Var;
+        this.b = z;
     }
 
     @Override
-    public int getSpanEnd(Object obj) {
-        if (!this.a) {
-            return -1;
+    public final int a() {
+        int a = this.a.a();
+        if (this.d.r != Long.MIN_VALUE) {
+            a |= 1;
         }
-        return super.getSpanEnd(obj);
+        if (this.b) {
+            return (a & (-3)) | 4;
+        }
+        return a;
     }
 
     @Override
-    public int getSpanFlags(Object obj) {
-        if (!this.a) {
-            return 0;
-        }
-        return super.getSpanFlags(obj);
+    public final void g() {
+        this.a.g();
     }
 
     @Override
-    public int getSpanStart(Object obj) {
-        if (!this.a) {
-            return -1;
+    public final int i(ym4 ym4Var, s93 s93Var, int i) {
+        lj2 lj2Var = this.d;
+        if (lj2Var.b()) {
+            return -3;
         }
-        return super.getSpanStart(obj);
+        if (this.c) {
+            s93Var.setFlags(4);
+            return -4;
+        }
+        long t = lj2Var.t();
+        int i2 = this.a.i(ym4Var, s93Var, i);
+        if (lj2Var.h != -9223372036854775807L && i2 != -3) {
+            lj2Var.h = -9223372036854775807L;
+        }
+        if (i2 == -5) {
+            long j = lj2Var.n;
+            long j2 = lj2Var.r;
+            ko4 ko4Var = (ko4) ym4Var.c;
+            ko4Var.getClass();
+            int i3 = ko4Var.S;
+            int i4 = ko4Var.R;
+            if (i4 != 0 || i3 != 0) {
+                if (j != 0) {
+                    i4 = 0;
+                }
+                if (j2 != Long.MIN_VALUE) {
+                    i3 = 0;
+                }
+                jo4 a = ko4Var.a();
+                a.Q = i4;
+                a.R = i3;
+                ym4Var.c = new ko4(a);
+            }
+            return -5;
+        }
+        long j3 = lj2Var.r;
+        if (j3 != Long.MIN_VALUE && ((i2 == -4 && s93Var.e >= j3) || (i2 == -3 && t == Long.MIN_VALUE && !s93Var.d))) {
+            s93Var.clear();
+            s93Var.setFlags(4);
+            this.c = true;
+            return -4;
+        }
+        return i2;
     }
 
     @Override
-    public Object[] getSpans(int i, int i2, Class cls) {
-        if (!this.a) {
-            return (Object[]) Array.newInstance(cls, 0);
+    public final boolean k() {
+        if (!this.d.b() && this.a.k()) {
+            return true;
         }
-        return super.getSpans(i, i2, cls);
+        return false;
     }
 
     @Override
-    public int nextSpanTransition(int i, int i2, Class cls) {
-        if (!this.a) {
-            return i2;
+    public final int o(long j) {
+        if (this.d.b()) {
+            return -3;
         }
-        return super.nextSpanTransition(i, i2, cls);
+        return this.a.o(j);
     }
 }

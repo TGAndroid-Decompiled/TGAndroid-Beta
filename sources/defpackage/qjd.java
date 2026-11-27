@@ -1,184 +1,50 @@
 package defpackage;
-public abstract class qjd {
-    public static final fi0 a;
-    public static final fi0 b;
-    public static final fi0 c;
-    public static final fi0 d;
-    public static final fi0 e;
-    public static final fi0 f;
-    public static final fi0 g;
-    public static final fi0 h;
-    public static final fi0 i;
-    public static final fi0 j;
-    public static final fi0 k;
-    public static final fi0 l;
-    public static final fi0 m;
-    public static final fi0 n;
-    public static final fi0 o;
-    public static final fi0 p;
+public final class qjd extends vjd {
+    public final transient int c;
+    public final transient int d;
+    public final vjd e;
 
-    static {
-        g1 a2 = fi0.a();
-        a2.a = 3;
-        a2.c = "Google Play In-app Billing API version is less than 3";
-        a2.a();
-        g1 a3 = fi0.a();
-        a3.a = 3;
-        a3.c = "Google Play In-app Billing API version is less than 9";
-        a3.a();
-        g1 a4 = fi0.a();
-        a4.a = 3;
-        a4.c = "Billing service unavailable on device.";
-        a = a4.a();
-        g1 a5 = fi0.a();
-        a5.a = 2;
-        a5.c = "Billing service unavailable on device.";
-        b = a5.a();
-        g1 a6 = fi0.a();
-        a6.a = 5;
-        a6.c = "Client is already in the process of connecting to billing service.";
-        c = a6.a();
-        g1 a7 = fi0.a();
-        a7.a = 5;
-        a7.c = "The list of SKUs can't be empty.";
-        a7.a();
-        g1 a8 = fi0.a();
-        a8.a = 5;
-        a8.c = "SKU type can't be empty.";
-        a8.a();
-        g1 a9 = fi0.a();
-        a9.a = 5;
-        a9.c = "Product type can't be empty.";
-        d = a9.a();
-        g1 a10 = fi0.a();
-        a10.a = -2;
-        a10.c = "Client does not support extra params.";
-        e = a10.a();
-        g1 a11 = fi0.a();
-        a11.a = 5;
-        a11.c = "Invalid purchase token.";
-        a11.a();
-        g1 a12 = fi0.a();
-        a12.a = 6;
-        a12.c = "An internal error occurred.";
-        f = a12.a();
-        g1 a13 = fi0.a();
-        a13.a = 5;
-        a13.c = "SKU can't be null.";
-        a13.a();
-        g1 a14 = fi0.a();
-        a14.a = 0;
-        g = a14.a();
-        g1 a15 = fi0.a();
-        a15.a = -1;
-        a15.c = "Service connection is disconnected.";
-        h = a15.a();
-        g1 a16 = fi0.a();
-        a16.a = 2;
-        a16.c = "Timeout communicating with service.";
-        i = a16.a();
-        g1 a17 = fi0.a();
-        a17.a = -2;
-        a17.c = "Client does not support subscriptions.";
-        j = a17.a();
-        g1 a18 = fi0.a();
-        a18.a = -2;
-        a18.c = "Client does not support subscriptions update.";
-        a18.a();
-        g1 a19 = fi0.a();
-        a19.a = -2;
-        a19.c = "Client does not support get purchase history.";
-        a19.a();
-        g1 a20 = fi0.a();
-        a20.a = -2;
-        a20.c = "Client does not support price change confirmation.";
-        a20.a();
-        g1 a21 = fi0.a();
-        a21.a = -2;
-        a21.c = "Play Store version installed does not support cross selling products.";
-        a21.a();
-        g1 a22 = fi0.a();
-        a22.a = -2;
-        a22.c = "Client does not support multi-item purchases.";
-        k = a22.a();
-        g1 a23 = fi0.a();
-        a23.a = -2;
-        a23.c = "Client does not support offer_id_token.";
-        l = a23.a();
-        g1 a24 = fi0.a();
-        a24.a = -2;
-        a24.c = "Client does not support ProductDetails.";
-        m = a24.a();
-        g1 a25 = fi0.a();
-        a25.a = -2;
-        a25.c = "Client does not support in-app messages.";
-        a25.a();
-        g1 a26 = fi0.a();
-        a26.a = -2;
-        a26.c = "Client does not support user choice billing.";
-        a26.a();
-        g1 a27 = fi0.a();
-        a27.a = -2;
-        a27.c = "Play Store version installed does not support external offer.";
-        a27.a();
-        g1 a28 = fi0.a();
-        a28.a = -2;
-        a28.c = "Play Store version installed does not support multi-item purchases with season pass in one cart.";
-        a28.a();
-        g1 a29 = fi0.a();
-        a29.a = -2;
-        a29.c = "Play Store version installed does not support querying AutoPay plan purchase.";
-        a29.a();
-        g1 a30 = fi0.a();
-        a30.a = -2;
-        a30.c = "Play Store version installed does not support including suspended subscriptions.";
-        a30.a();
-        g1 a31 = fi0.a();
-        a31.a = 5;
-        a31.c = "Unknown feature";
-        a31.a();
-        g1 a32 = fi0.a();
-        a32.a = -2;
-        a32.c = "Play Store version installed does not support get billing config.";
-        a32.a();
-        g1 a33 = fi0.a();
-        a33.a = -2;
-        a33.c = "Query product details with serialized docid is not supported.";
-        a33.a();
-        g1 a34 = fi0.a();
-        a34.a = -2;
-        a34.c = "Play Store version installed does not support launching external offer flow.";
-        a34.a();
-        g1 a35 = fi0.a();
-        a35.a = 4;
-        a35.c = "Item is unavailable for purchase.";
-        n = a35.a();
-        g1 a36 = fi0.a();
-        a36.a = -2;
-        a36.c = "Query product details with developer specified account is not supported.";
-        a36.a();
-        g1 a37 = fi0.a();
-        a37.a = -2;
-        a37.c = "Play Store version installed does not support alternative billing only.";
-        a37.a();
-        g1 a38 = fi0.a();
-        a38.a = 5;
-        a38.c = "To use this API you must specify a PurchasesUpdateListener when initializing a BillingClient.";
-        o = a38.a();
-        g1 a39 = fi0.a();
-        a39.a = 6;
-        a39.c = "An error occurred while retrieving billing override.";
-        p = a39.a();
-        g1 a40 = fi0.a();
-        a40.a = -2;
-        a40.c = "Play Store version installed does not support the provided billing program.";
-        a40.a();
+    public qjd(vjd vjdVar, int i, int i2) {
+        this.e = vjdVar;
+        this.c = i;
+        this.d = i2;
     }
 
-    public static fi0 a(int i2, String str) {
-        g1 a2 = fi0.a();
-        a2.a = i2;
-        a2.c = str;
-        return a2.a();
+    @Override
+    public final Object get(int i) {
+        k4f.a(i, this.d);
+        return this.e.get(i + this.c);
+    }
+
+    @Override
+    public final int i() {
+        return this.e.j() + this.c + this.d;
+    }
+
+    @Override
+    public final int j() {
+        return this.e.j() + this.c;
+    }
+
+    @Override
+    public final boolean l() {
+        return true;
+    }
+
+    @Override
+    public final Object[] m() {
+        return this.e.m();
+    }
+
+    @Override
+    public final vjd subList(int i, int i2) {
+        k4f.c(i, i2, this.d);
+        int i3 = this.c;
+        return this.e.subList(i + i3, i2 + i3);
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

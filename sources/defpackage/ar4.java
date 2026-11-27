@@ -1,34 +1,28 @@
 package defpackage;
+public final class ar4 {
+    public int a;
+    public gp4 b;
+    public boolean c = false;
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public z26 h;
+    public z26 i;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-public final class ar4 implements Runnable {
-    public final byte a;
-    public final er4 b;
-
-    public ar4(er4 er4Var, byte b) {
-        this.a = b;
-        this.b = er4Var;
+    public ar4(int i, gp4 gp4Var) {
+        this.a = i;
+        this.b = gp4Var;
+        z26 z26Var = z26.e;
+        this.h = z26Var;
+        this.i = z26Var;
     }
 
-    @Override
-    public final void run() {
-        ValueAnimator valueAnimator;
-        byte b = this.a;
-        er4 er4Var = this.b;
-        switch (b) {
-            case 0:
-                AnimatorSet animatorSet = er4Var.e0;
-                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = er4Var.d0) != null && valueAnimator.isRunning())) {
-                    er4Var.j(er4Var.M);
-                    return;
-                } else {
-                    er4Var.n();
-                    return;
-                }
-            default:
-                er4Var.l();
-                return;
-        }
+    public ar4(int i, gp4 gp4Var, int i2) {
+        this.a = i;
+        this.b = gp4Var;
+        z26 z26Var = z26.e;
+        this.h = z26Var;
+        this.i = z26Var;
     }
 }

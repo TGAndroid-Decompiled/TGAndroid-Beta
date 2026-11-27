@@ -1,20 +1,25 @@
 package defpackage;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class owe extends b4 {
-    public static final Parcelable.Creator<owe> CREATOR = new c0f((byte) 3);
-    public final int a;
-
-    public owe(int i) {
-        this.a = i;
+public final class owe extends qve {
+    @Override
+    public final void a(ese eseVar, ese eseVar2, long j) {
+        bue bueVar = (bue) a5f.l(eseVar, j);
+        bue bueVar2 = (bue) a5f.l(eseVar2, j);
+        int size = bueVar.size();
+        int size2 = bueVar2.size();
+        if (size > 0 && size2 > 0) {
+            if (!bueVar.zza()) {
+                bueVar = bueVar.zza(size2 + size);
+            }
+            bueVar.addAll(bueVar2);
+        }
+        if (size > 0) {
+            bueVar2 = bueVar;
+        }
+        a5f.d(j, eseVar, bueVar2);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.s(parcel, r);
+    public final void b(long j, Object obj) {
+        ((bue) a5f.l(obj, j)).zzb();
     }
 }

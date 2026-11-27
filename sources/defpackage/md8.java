@@ -1,20 +1,24 @@
 package defpackage;
+public final class md8 implements Runnable {
+    public final byte a;
+    public final qd8 b;
 
-import android.view.View;
-public final class md8 implements View.OnAttachStateChangeListener {
-    public final nd8 a;
-
-    public md8(nd8 nd8Var) {
-        this.a = nd8Var;
+    public md8(qd8 qd8Var, byte b) {
+        this.a = b;
+        this.b = qd8Var;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.a.c.e();
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.a.c.f();
+    public final void run() {
+        byte b = this.a;
+        qd8 qd8Var = this.b;
+        switch (b) {
+            case 0:
+                qd8Var.d();
+                return;
+            default:
+                qd8Var.f();
+                return;
+        }
     }
 }

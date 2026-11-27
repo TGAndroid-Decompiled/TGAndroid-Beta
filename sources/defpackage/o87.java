@@ -1,32 +1,39 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class o87 implements uc7 {
-    public final na7 a;
-    public final long b;
-    public final int c;
-    public final boolean d;
-    public final TLRPC.InputPeer e;
-    public final long f;
+import org.telegram.tgnet.tl.TL_account;
+public final class o87 implements Runnable {
+    public final byte a;
+    public final uc7 b;
+    public final TL_account.TL_webBrowserSettings c;
 
-    public o87(na7 na7Var, long j, int i, boolean z, TLRPC.InputPeer inputPeer, long j2) {
-        this.a = na7Var;
-        this.b = j;
-        this.c = i;
-        this.d = z;
-        this.e = inputPeer;
-        this.f = j2;
+    public o87(uc7 uc7Var, TL_account.TL_webBrowserSettings tL_webBrowserSettings, byte b) {
+        this.a = b;
+        this.b = uc7Var;
+        this.c = tL_webBrowserSettings;
     }
 
     @Override
-    public final void a(int i) {
-        na7 na7Var = this.a;
-        long e = na7Var.getUserConfig().e();
-        long j = this.b;
-        if (j == e) {
-            na7Var.D1().b();
+    public final void run() {
+        byte b = this.a;
+        TL_account.TL_webBrowserSettings tL_webBrowserSettings = this.c;
+        uc7 uc7Var = this.b;
+        switch (b) {
+            case 0:
+                l87 l87Var = uc7Var.m5;
+                if (tL_webBrowserSettings != null) {
+                    uc7Var.n5 = tL_webBrowserSettings;
+                    uc7Var.getNotificationCenter().k(350, new Object[0]);
+                }
+                hl.r(l87Var);
+                hl.d3(l87Var, 3600010L);
+                return;
+            default:
+                if (tL_webBrowserSettings != null) {
+                    uc7Var.n5 = tL_webBrowserSettings;
+                    uc7Var.getNotificationCenter().k(350, new Object[0]);
+                    return;
+                }
+                return;
         }
-        na7Var.U(j, 2, this.c, Math.max(0, i), this.d, this.e, this.f);
-        na7Var.F(1);
     }
 }

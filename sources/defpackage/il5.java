@@ -1,67 +1,220 @@
 package defpackage;
 
-import android.graphics.BitmapShader;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class il5 {
-    public Paint A;
-    public Path B;
-    public boolean a;
-    public float b;
-    public long c;
-    public int d;
-    public BitmapShader e;
-    public km f;
-    public oy8 g;
-    public int[] h;
-    public BitmapShader i;
-    public Drawable j;
-    public BitmapShader k;
-    public Drawable l;
-    public Drawable m;
-    public BitmapShader n;
-    public Drawable o;
-    public float p;
-    public float q;
-    public BitmapShader r;
-    public float s;
-    public float t;
-    public float u;
-    public float v;
-    public boolean w;
-    public Drawable x;
-    public RectF y;
-    public ColorFilter z;
+import android.os.IBinder;
+import android.os.Parcel;
+public final class il5 implements jl5 {
+    public IBinder a;
 
-    public final void a() {
-        this.f = null;
-        this.g = null;
-        for (int i = 0; i < 4; i++) {
-            int[] iArr = this.h;
-            iArr[i] = iArr[i];
+    @Override
+    public final void A(long j, boolean z) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeInt(z ? 1 : 0);
+            this.a.transact(3, obtain, null, 1);
+        } finally {
+            obtain.recycle();
         }
-        this.j = null;
-        this.i = null;
-        this.l = null;
-        this.k = null;
-        this.m = null;
-        this.n = null;
-        this.e = null;
-        this.o = null;
-        this.x = null;
-        this.z = null;
     }
 
-    public final void b(Rect rect) {
-        if (rect != null) {
-            this.u = rect.left;
-            this.v = rect.top;
-            this.t = rect.width();
-            this.s = rect.height();
+    @Override
+    public final void D(long j, float f) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeFloat(f);
+            this.a.transact(5, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, ll5 ll5Var) {
+        Parcel obtain = Parcel.obtain();
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeByteArray(bArr);
+            obtain.writeByteArray(bArr2);
+            obtain.writeFloat(f);
+            obtain.writeFloat(f2);
+            obtain.writeInt(i);
+            obtain.writeByteArray(bArr3);
+            obtain.writeByteArray(bArr4);
+            obtain.writeByteArray(bArr5);
+            obtain.writeByteArray(bArr6);
+            obtain.writeInt(z ? 1 : 0);
+            obtain.writeStrongInterface(ll5Var);
+            this.a.transact(1, obtain, obtain2, 0);
+            obtain2.readException();
+            return obtain2.readLong();
+        } finally {
+            obtain2.recycle();
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void H(long j) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            this.a.transact(9, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void K(long j, int i, float f, float f2, int i2) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeInt(i);
+            obtain.writeFloat(f);
+            obtain.writeFloat(f2);
+            obtain.writeInt(i2);
+            this.a.transact(12, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void L() {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            this.a.transact(13, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void M(long j, byte[] bArr) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeByteArray(bArr);
+            this.a.transact(7, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
+    }
+
+    @Override
+    public final void k(long j, float f, boolean z, boolean z2, boolean z3) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeFloat(f);
+            obtain.writeInt(z ? 1 : 0);
+            obtain.writeInt(z2 ? 1 : 0);
+            obtain.writeInt(z3 ? 1 : 0);
+            this.a.transact(10, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void l(long j, long j2, int i, byte[] bArr) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeLong(j2);
+            obtain.writeInt(i);
+            obtain.writeByteArray(bArr);
+            this.a.transact(8, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void r(long j) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            this.a.transact(2, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void s(long j, byte[] bArr) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeByteArray(bArr);
+            this.a.transact(6, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void u(long j, byte[] bArr) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeByteArray(bArr);
+            this.a.transact(4, obtain, null, 1);
+        } finally {
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void v(IBinder iBinder) {
+        Parcel obtain = Parcel.obtain();
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeStrongBinder(iBinder);
+            this.a.transact(14, obtain, obtain2, 0);
+            obtain2.readException();
+        } finally {
+            obtain2.recycle();
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final void x(long j, int i, float f, float f2, int i2, boolean z, boolean z2, int i3, int i4) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            obtain.writeInterfaceToken("org.telegram.utils.twidget.IWidgetEngine");
+            obtain.writeLong(j);
+            obtain.writeInt(i);
+            obtain.writeFloat(f);
+            obtain.writeFloat(f2);
+            obtain.writeInt(i2);
+            obtain.writeInt(z ? 1 : 0);
+            obtain.writeInt(z2 ? 1 : 0);
+            obtain.writeInt(i3);
+            obtain.writeInt(i4);
+            this.a.transact(11, obtain, null, 1);
+        } finally {
+            obtain.recycle();
         }
     }
 }

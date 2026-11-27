@@ -1,17 +1,16 @@
 package defpackage;
-public final class cwe implements zn7 {
-    public static final cwe a = new Object();
+public final class cwe {
+    public final Long a;
+    public final pxe b;
+    public final Boolean c;
+    public final Boolean d;
+    public final Boolean e;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public cwe(am2 am2Var) {
+        this.a = (Long) am2Var.b;
+        this.b = (pxe) am2Var.c;
+        this.c = (Boolean) am2Var.d;
+        this.d = (Boolean) am2Var.e;
+        this.e = (Boolean) am2Var.f;
     }
 }

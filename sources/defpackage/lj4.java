@@ -1,60 +1,41 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class lj4 extends FrameLayout {
-    public final byte a;
-    public final sj4 b;
+import java.util.concurrent.CountDownLatch;
+public final class lj4 {
+    public final CountDownLatch a;
+    public ty2 b = null;
 
-    public lj4(sj4 sj4Var, Activity activity, byte b) {
-        super(activity);
-        this.a = b;
-        this.b = sj4Var;
+    public lj4(CountDownLatch countDownLatch) {
+        this.a = countDownLatch;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                super.dispatchDraw(canvas);
-                sj4 sj4Var = this.b;
-                iv9 iv9Var = sj4Var.G;
-                if (iv9Var != null && iv9Var.a()) {
-                    sj4Var.G.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    sj4Var.G.draw(canvas);
-                    return;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof lj4) {
+                lj4 lj4Var = (lj4) obj;
+                if (!this.a.equals(lj4Var.a) || !ur5.a(this.b, lj4Var.b)) {
+                    return false;
                 }
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+                return true;
+            }
+            return false;
         }
+        return true;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lj4.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2 = this.a.hashCode() * 31;
+        ty2 ty2Var = this.b;
+        if (ty2Var == null) {
+            hashCode = 0;
+        } else {
+            hashCode = ty2Var.hashCode();
+        }
+        return hashCode2 + hashCode;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.a) {
-            case 0:
-                sj4 sj4Var = this.b;
-                rac racVar = sj4Var.F;
-                if (racVar.j) {
-                    racVar.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    racVar.draw(canvas);
-                }
-                canvas.save();
-                canvas.translate(getLeft(), getTop());
-                sj4Var.b.r2(canvas, getRight() - getLeft(), getBottom() - getTop());
-                canvas.restore();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public final String toString() {
+        return "Dependency(latch=" + this.a + ", subscriber=" + this.b + ')';
     }
 }

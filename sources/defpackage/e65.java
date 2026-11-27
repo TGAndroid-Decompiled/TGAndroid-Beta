@@ -1,32 +1,37 @@
 package defpackage;
 
 import android.content.DialogInterface;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class e65 implements DialogInterface.OnShowListener {
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.LaunchActivity;
+public final class e65 implements DialogInterface.OnDismissListener {
     public final byte a;
-    public final hd b;
-    public final EditTextBoldCursor c;
-    public final Object d;
+    public final j95 b;
 
-    public e65(Object obj, hd hdVar, EditTextBoldCursor editTextBoldCursor, byte b) {
+    public e65(j95 j95Var, byte b) {
         this.a = b;
-        this.d = obj;
-        this.b = hdVar;
-        this.c = editTextBoldCursor;
+        this.b = j95Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
+    public final void onDismiss(DialogInterface dialogInterface) {
         byte b = this.a;
-        EditTextBoldCursor editTextBoldCursor = this.c;
-        hd hdVar = this.b;
-        Object obj = this.d;
+        j95 j95Var = this.b;
         switch (b) {
             case 0:
-                ((k65) obj).b.k1(null, hdVar, editTextBoldCursor, true);
+                e S = LaunchActivity.S();
+                if (j95Var.r2 && (S instanceof zu1)) {
+                    ((zu1) S).ja(true, true);
+                    return;
+                }
+                return;
+            case 1:
+                j95Var.dismiss();
+                return;
+            case 2:
+                j95Var.k2 = null;
                 return;
             default:
-                ((f65) obj).r1.b.k1(null, hdVar, editTextBoldCursor, true);
+                j95Var.y3 = null;
                 return;
         }
     }

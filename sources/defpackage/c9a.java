@@ -1,33 +1,24 @@
 package defpackage;
 
-import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class c9a {
-    public final uc a;
-    public final long b;
-    public final float c;
-    public final float d;
-    public final float e;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.Switch;
+public final class c9a implements View.OnClickListener {
+    public final cz1 a;
+    public final TLRPC.TL_authorization b;
+    public final f9a c;
 
-    public c9a(View view) {
-        uc ucVar = new uc(view, (byte) 5);
-        this.b = System.currentTimeMillis();
-        this.a = ucVar;
-        yyc yycVar = Utilities.c;
-        this.c = gl.R1(5.0f, 9.0f, Utilities.l(yycVar.nextFloat()));
-        this.d = gl.R1(2.5f, 5.0f, Utilities.l(yycVar.nextFloat()));
-        this.e = gl.R1(2.5f, 5.2f, Utilities.l(yycVar.nextFloat()));
+    public c9a(f9a f9aVar, cz1 cz1Var, TLRPC.TL_authorization tL_authorization) {
+        this.c = f9aVar;
+        this.a = cz1Var;
+        this.b = tL_authorization;
     }
 
-    public final void a(Canvas canvas, float f) {
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * gl.L(0.5f) * f, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * gl.L(0.5f) * f);
-        canvas.translate(-0.0f, -0.0f);
-        if (f > 0.0f) {
-            this.a.run();
-        }
+    @Override
+    public final void onClick(View view) {
+        Switch r3 = (Switch) this.a.f;
+        r3.c(!r3.h, true);
+        this.b.encrypted_requests_disabled = !r3.h;
+        this.c.F0();
     }
 }

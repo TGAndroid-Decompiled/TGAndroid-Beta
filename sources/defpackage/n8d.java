@@ -1,36 +1,36 @@
 package defpackage;
 
-import java.util.Iterator;
-public final class n8d extends r7d {
-    public final transient v8d r;
-    public final transient s8d s;
+import android.os.BadParcelableException;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class n8d {
+    public static final int a = 0;
 
-    public n8d(v8d v8dVar, s8d s8dVar) {
-        super((byte) 2);
-        this.r = v8dVar;
-        this.s = s8dVar;
+    static {
+        n8d.class.getClassLoader();
     }
 
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.r.get(obj) != null) {
-            return true;
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        return false;
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public final Iterator iterator() {
-        return this.s.listIterator(0);
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        throw new BadParcelableException(uh9.k(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    @Override
-    public final int p(Object[] objArr) {
-        return this.s.p(objArr);
-    }
-
-    @Override
-    public final int size() {
-        return this.r.h;
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

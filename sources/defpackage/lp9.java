@@ -1,52 +1,64 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-public final class lp9 extends g2 {
-    public static final z24 f;
-    public static final z24 h;
-    public static final z24 n;
-    public List e;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class lp9 extends Drawable {
+    public static Paint c;
+    public final byte a;
+    public Paint b;
 
-    static {
-        z74 z74Var = new z74(lp9.class, "SampleToChunkBox.java");
-        f = z74Var.e(z74Var.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
-        h = z74Var.e(z74Var.d("setEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "java.util.List", "entries", "void"));
-        n = z74Var.e(z74Var.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
-        z74Var.e(z74Var.d("blowup", "com.coremedia.iso.boxes.SampleToChunkBox", "int", "chunkCount", "[J"));
+    public lp9(byte b) {
+        this.a = b;
     }
 
     @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        f(byteBuffer);
-        int a = mqd.a(hle.g(byteBuffer));
-        this.e = new ArrayList(a);
-        for (int i = 0; i < a; i++) {
-            this.e.add(new kp9(hle.g(byteBuffer), hle.g(byteBuffer), hle.g(byteBuffer)));
+    public final void draw(Canvas canvas) {
+        switch (this.a) {
+            case 0:
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - hl.L(1.0f), (getBounds().width() - hl.L(8.0f)) / 2.0f, this.b);
+                return;
+            default:
+                Rect bounds = getBounds();
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), Math.max(bounds.width(), bounds.height()) / 2, this.b);
+                return;
         }
     }
 
     @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        i(byteBuffer);
-        byteBuffer.putInt(this.e.size());
-        for (kp9 kp9Var : this.e) {
-            byteBuffer.putInt((int) kp9Var.a);
-            byteBuffer.putInt((int) kp9Var.b);
-            byteBuffer.putInt((int) kp9Var.c);
+    public final int getOpacity() {
+        switch (this.a) {
+            case 0:
+                return 0;
+            default:
+                return -2;
         }
     }
 
     @Override
-    public final long getContentSize() {
-        return (this.e.size() * 12) + 8;
+    public final void setAlpha(int i) {
+        switch (this.a) {
+            case 0:
+                this.b.setAlpha(i);
+                return;
+            default:
+                return;
+        }
     }
 
-    public final String toString() {
-        c5a b = z74.b(n, this, this);
-        n89.a().getClass();
-        n89.b(b);
-        return "SampleToChunkBox[entryCount=" + this.e.size() + "]";
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        byte b = this.a;
+    }
+
+    private final void a(int i) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

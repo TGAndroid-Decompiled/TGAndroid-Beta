@@ -1,57 +1,47 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class b06 extends b4 {
-    public static final Parcelable.Creator<b06> CREATOR = new j9d((byte) 26);
-    public final boolean a;
-    public final String b;
-    public final boolean c;
-    public final n23 d;
+import org.telegram.ui.LaunchActivity;
+public final class b06 implements Runnable {
+    public final byte a;
+    public final tg5 b;
 
-    public b06() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.b06.<init>():void");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof b06)) {
-            return false;
-        }
-        b06 b06Var = (b06) obj;
-        if (this.a == b06Var.a && id1.d(this.b, b06Var.b) && this.c == b06Var.c && id1.d(this.d, b06Var.d)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.a), this.b, Boolean.valueOf(this.c), this.d});
-    }
-
-    public final String toString() {
-        return "LaunchOptions(relaunchIfRunning=" + this.a + ", language=" + this.b + ", androidReceiverCompatible: " + this.c + ")";
+    public b06(tg5 tg5Var, byte b) {
+        this.a = b;
+        this.b = tg5Var;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a ? 1 : 0);
-        jte.l(parcel, 3, this.b);
-        jte.q(parcel, 4, 4);
-        parcel.writeInt(this.c ? 1 : 0);
-        jte.k(parcel, 5, this.d, i);
-        jte.s(parcel, r);
-    }
-
-    public b06(boolean z, String str, boolean z2, n23 n23Var) {
-        this.a = z;
-        this.b = str;
-        this.c = z2;
-        this.d = n23Var;
+    public final void run() {
+        byte b = this.a;
+        tg5 tg5Var = this.b;
+        switch (b) {
+            case 0:
+                String str = LaunchActivity.C1;
+                try {
+                    tg5Var.run();
+                    return;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            case 1:
+                String str2 = LaunchActivity.C1;
+                try {
+                    tg5Var.run();
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
+                }
+            default:
+                String str3 = LaunchActivity.C1;
+                try {
+                    tg5Var.run();
+                    return;
+                } catch (Exception e3) {
+                    cc4.g(e3, true);
+                    return;
+                }
+        }
     }
 }

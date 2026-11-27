@@ -1,17 +1,11 @@
 package defpackage;
+public enum mub extends rwb {
+    public mub() {
+        super("Data", 0);
+    }
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class mub {
-    public int a = -1;
-    public long b;
-    public long c;
-    public int d;
-    public int e;
-    public int f;
-    public TLRPC.Message g;
-    public ArrayList h;
-    public boolean i;
-    public boolean j;
-    public boolean k;
+    @Override
+    public final void c(defpackage.bub r7, defpackage.ik1 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mub.c(bub, ik1):void");
+    }
 }

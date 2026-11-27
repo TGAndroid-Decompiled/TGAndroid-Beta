@@ -1,70 +1,84 @@
 package defpackage;
 
-import android.util.Log;
+import android.os.Bundle;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-public final class fo4 implements do4 {
-    public final go4 a;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+public final class fo4 {
+    public final byte a;
+    public final List b;
+    public final boolean c;
 
-    public fo4(go4 go4Var) {
-        this.a = go4Var;
+    public fo4(ArrayList arrayList, boolean z) {
+        this.a = (byte) 1;
+        if (arrayList.isEmpty()) {
+            this.b = Collections.EMPTY_LIST;
+        } else {
+            this.b = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
+        }
+        this.c = z;
     }
 
-    @Override
-    public final boolean a(ArrayList arrayList, ArrayList arrayList2) {
-        boolean U;
-        go4 go4Var = this.a;
-        ArrayList arrayList3 = go4Var.n;
-        if (go4.K(2)) {
-            Log.v("FragmentManager", "FragmentManager has the following pending actions inside of prepareBackStackState: " + go4Var.a);
+    public static fo4 a(Bundle bundle) {
+        ev6 ev6Var;
+        if (bundle == null) {
+            return null;
         }
-        if (go4Var.d.isEmpty()) {
-            Log.i("FragmentManager", "Ignoring call to start back stack pop because the back stack is empty.");
-            U = false;
-        } else {
-            id0 id0Var = (id0) b00.f(1, go4Var.d);
-            go4Var.h = id0Var;
-            ArrayList arrayList4 = id0Var.a;
-            int size = arrayList4.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList4.get(i);
-                i++;
-                bn4 bn4Var = ((wo4) obj).b;
-                if (bn4Var != null) {
-                    bn4Var.y = true;
-                }
-            }
-            U = go4Var.U(arrayList, arrayList2, -1, 0);
-        }
-        if (!arrayList3.isEmpty() && arrayList.size() > 0) {
-            ((Boolean) arrayList2.get(arrayList.size() - 1)).getClass();
-            LinkedHashSet linkedHashSet = new LinkedHashSet();
-            int size2 = arrayList.size();
-            int i2 = 0;
-            while (i2 < size2) {
-                Object obj2 = arrayList.get(i2);
-                i2++;
-                linkedHashSet.addAll(go4.F((id0) obj2));
-            }
-            int size3 = arrayList3.size();
-            int i3 = 0;
-            while (i3 < size3) {
-                Object obj3 = arrayList3.get(i3);
-                i3++;
-                if (obj3 == null) {
-                    Iterator it = linkedHashSet.iterator();
-                    if (it.hasNext()) {
-                        bn4 bn4Var2 = (bn4) it.next();
-                        throw null;
-                    }
+        ArrayList arrayList = new ArrayList();
+        ArrayList parcelableArrayList = bundle.getParcelableArrayList("routes");
+        if (parcelableArrayList != null) {
+            for (int i = 0; i < parcelableArrayList.size(); i++) {
+                Bundle bundle2 = (Bundle) parcelableArrayList.get(i);
+                if (bundle2 != null) {
+                    ev6Var = new ev6(bundle2);
                 } else {
-                    fyb.g();
-                    return false;
+                    ev6Var = null;
                 }
+                arrayList.add(ev6Var);
             }
         }
-        return U;
+        return new fo4(arrayList, bundle.getBoolean("supportsDynamicGroupRoute", false));
+    }
+
+    public final String toString() {
+        switch (this.a) {
+            case 1:
+                StringBuilder sb = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
+                List list = this.b;
+                sb.append(Arrays.toString(list.toArray()));
+                sb.append(", isValid=");
+                int size = list.size();
+                boolean z = false;
+                int i = 0;
+                while (true) {
+                    if (i < size) {
+                        ev6 ev6Var = (ev6) list.get(i);
+                        if (ev6Var != null && ev6Var.e()) {
+                            i++;
+                        }
+                    } else {
+                        z = true;
+                    }
+                }
+                sb.append(z);
+                sb.append(" }");
+                return sb.toString();
+            default:
+                return super.toString();
+        }
+    }
+
+    public fo4() {
+        this.a = (byte) 0;
+        this.c = true;
+        this.b = Collections.singletonList(null);
+    }
+
+    public fo4(ArrayList arrayList) {
+        this.a = (byte) 0;
+        this.c = false;
+        this.b = arrayList;
     }
 }

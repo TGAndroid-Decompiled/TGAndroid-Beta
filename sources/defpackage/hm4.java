@@ -1,59 +1,103 @@
 package defpackage;
-public final class hm4 {
-    public static final int[][] c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
-    public final w34 a;
-    public final byte b;
 
-    public hm4(int i) {
-        int i2 = (i >> 3) & 3;
-        if (i2 >= 0 && i2 < 4) {
-            this.a = w34.e[i2];
-            this.b = (byte) (i & 7);
-            return;
-        }
-        sc8.e();
-        throw null;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.PathInterpolator;
+import android.widget.ListView;
+public final class hm4 extends ListView {
+    public final jm4 a;
+    public final LinearGradient b;
+    public final Paint c;
+    public final Paint d;
+    public final Matrix e;
+
+    public hm4(jm4 jm4Var) {
+        super(jm4Var.a);
+        int[] iArr = new int[8];
+        PathInterpolator pathInterpolator = n15.i;
+        n15.a(pathInterpolator, -16777216, iArr);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        LinearGradient linearGradient = new LinearGradient(0.0f, hl.L(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);
+        int[] iArr2 = new int[8];
+        n15.a(pathInterpolator, -16777216, iArr2);
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, hl.L(16.0f), iArr2, (float[]) null, tileMode);
+        this.b = linearGradient2;
+        Paint paint = new Paint(1);
+        this.c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.e = new Matrix();
+        paint.setShader(linearGradient);
+        PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
+        paint.setXfermode(new PorterDuffXfermode(mode));
+        paint2.setShader(linearGradient2);
+        paint2.setXfermode(new PorterDuffXfermode(mode));
+        this.a = jm4Var;
+        setVerticalScrollBarEnabled(false);
     }
 
-    public static hm4 a(int i, int i2) {
-        int bitCount;
-        int i3 = Integer.MAX_VALUE;
-        int i4 = 0;
-        for (int i5 = 0; i5 < 32; i5++) {
-            int[] iArr = c[i5];
-            int i6 = iArr[0];
-            if (i6 != i && i6 != i2) {
-                int bitCount2 = Integer.bitCount(i ^ i6);
-                if (bitCount2 < i3) {
-                    i4 = iArr[1];
-                    i3 = bitCount2;
-                }
-                if (i != i2 && (bitCount = Integer.bitCount(i6 ^ i2)) < i3) {
-                    i4 = iArr[1];
-                    i3 = bitCount;
-                }
-            } else {
-                return new hm4(iArr[1]);
-            }
-        }
-        if (i3 <= 3) {
-            return new hm4(i4);
-        }
-        return null;
+    @Override
+    public final boolean awakenScrollBars() {
+        return super.awakenScrollBars();
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof hm4)) {
-            return false;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.a.d()) {
+            return true;
         }
-        hm4 hm4Var = (hm4) obj;
-        if (this.a != hm4Var.a || this.b != hm4Var.b) {
-            return false;
-        }
-        return true;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public final int hashCode() {
-        return (this.a.ordinal() << 3) | this.b;
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        boolean z;
+        boolean z2;
+        float y = view.getY();
+        float height = y + view.getHeight();
+        if (y < hl.L(16.0f)) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (height > getHeight() - hl.L(16.0f)) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        if (!z && !z2) {
+            return super.drawChild(canvas, view, j);
+        }
+        canvas.saveLayer(0.0f, y, getWidth(), height, null);
+        boolean drawChild = super.drawChild(canvas, view, j);
+        if (z) {
+            canvas.drawRect(0.0f, 0.0f, getWidth(), hl.L(16.0f), this.c);
+        }
+        if (z2) {
+            canvas.drawRect(0.0f, getHeight() - hl.L(16.0f), getWidth(), getHeight(), this.d);
+        }
+        canvas.restore();
+        return drawChild;
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        jm4 jm4Var = this.a;
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(jm4Var.I.getHeight() - jm4Var.H.getHeight(), 1073741824));
+    }
+
+    @Override
+    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+        Matrix matrix = this.e;
+        matrix.reset();
+        matrix.postTranslate(0.0f, i2 - hl.L(16.0f));
+        this.b.setLocalMatrix(matrix);
     }
 }

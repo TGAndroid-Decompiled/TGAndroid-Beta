@@ -1,28 +1,84 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-public final class n85 extends AnimatorListenerAdapter {
-    public final m85 a;
-    public final yc b;
-    public final WindowManager c;
-    public final FrameLayout d;
-    public final r71 e;
-    public final o85 f;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class n85 extends LinearLayout {
+    public final byte a = 1;
+    public final LinearLayout b;
+    public final LinearLayout c;
 
-    public n85(o85 o85Var, m85 m85Var, yc ycVar, WindowManager windowManager, FrameLayout frameLayout, r71 r71Var) {
-        this.f = o85Var;
-        this.a = m85Var;
-        this.b = ycVar;
-        this.c = windowManager;
-        this.d = frameLayout;
-        this.e = r71Var;
+    public n85(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(hl.L(3.0f), hl.L(3.0f), hl.L(3.0f), hl.L(3.0f));
+        LinearLayout a = a(2131232336, ob6.M0(2131745998, null));
+        this.c = a;
+        addView(a, tre.o(-2, -1));
+        LinearLayout a2 = a(2131231732, ob6.M0(2131751300, null));
+        this.b = a2;
+        addView(a2, tre.o(-2, -1));
+    }
+
+    public final LinearLayout a(int i, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(hl.L(25.0f), hl.L(7.0f), hl.L(25.0f), hl.L(7.0f));
+        linearLayout.addView(qd4.k(context, i), tre.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, tre.o(-2, -2));
+        iye.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        kk7.f(this.f.h).d(new vz4(this.a, this.b, this.c, this.d, this.e, (byte) 6));
+    public final void onMeasure(int i, int i2) {
+        byte b = this.a;
+        LinearLayout linearLayout = this.c;
+        LinearLayout linearLayout2 = this.b;
+        switch (b) {
+            case 0:
+                linearLayout2.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), Integer.MIN_VALUE), 0);
+                if (linearLayout != null) {
+                    linearLayout.measure(View.MeasureSpec.makeMeasureSpec(linearLayout2.getMeasuredWidth(), 1073741824), 0);
+                    setMeasuredDimension(linearLayout2.getMeasuredWidth(), linearLayout.getMeasuredHeight() + linearLayout2.getMeasuredHeight());
+                    return;
+                }
+                setMeasuredDimension(linearLayout2.getMeasuredWidth(), linearLayout2.getMeasuredHeight());
+                return;
+            default:
+                ViewGroup.LayoutParams layoutParams = linearLayout2.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams2 = linearLayout2.getLayoutParams();
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                int paddingRight = getPaddingRight() + getPaddingLeft();
+                int paddingTop = getPaddingTop();
+                int max = Math.max(0, size - paddingRight);
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+                linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+                linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+                int min = Math.min(Math.max(linearLayout2.getMeasuredWidth(), linearLayout.getMeasuredWidth()), max / 2);
+                layoutParams2.width = min;
+                layoutParams.width = min;
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    public n85(Context context, LinearLayout linearLayout, LinearLayout linearLayout2) {
+        super(context);
+        this.b = linearLayout;
+        this.c = linearLayout2;
     }
 }

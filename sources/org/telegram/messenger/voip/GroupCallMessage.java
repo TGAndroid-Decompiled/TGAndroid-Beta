@@ -14,26 +14,26 @@ public class GroupCallMessage {
     public final TLRPC.TL_textWithEntities message;
     public final long randomId;
     public final long reactionAnimatedEmojiId;
-    public final h19 visibleReaction;
+    public final w49 visibleReaction;
 
     public GroupCallMessage(int r3, long r4, long r6, org.telegram.tgnet.TLRPC.TL_textWithEntities r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessage.<init>(int, long, long, org.telegram.tgnet.TLRPC$TL_textWithEntities):void");
     }
 
     public boolean isOut() {
-        return fod.a(this.flags, 1);
+        return vsd.a(this.flags, 1);
     }
 
     public boolean isSendConfirmed() {
-        return fod.a(this.flags, 8);
+        return vsd.a(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
-        return fod.a(this.flags, 2);
+        return vsd.a(this.flags, 2);
     }
 
     public boolean isSendError() {
-        return fod.a(this.flags, 4);
+        return vsd.a(this.flags, 4);
     }
 
     public void notifyStateUpdate() {
@@ -48,19 +48,19 @@ public class GroupCallMessage {
     }
 
     public void setIsOut(boolean z) {
-        this.flags = fod.b(this.flags, 1, z);
+        this.flags = vsd.b(this.flags, 1, z);
     }
 
     public void setIsSendConfirmed(boolean z) {
-        this.flags = fod.b(this.flags, 8, z);
+        this.flags = vsd.b(this.flags, 8, z);
     }
 
     public void setIsSendDelayed(boolean z) {
-        this.flags = fod.b(this.flags, 2, z);
+        this.flags = vsd.b(this.flags, 2, z);
     }
 
     public void setIsSendError(boolean z) {
-        this.flags = fod.b(this.flags, 4, z);
+        this.flags = vsd.b(this.flags, 4, z);
     }
 
     public void subscribeToStateUpdates(Runnable runnable) {

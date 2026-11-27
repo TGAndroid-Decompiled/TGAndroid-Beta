@@ -1,37 +1,17 @@
 package defpackage;
-public abstract class l2e {
-    public static final int[] a;
+public final class l2e implements zq7 {
+    public static final l2e a = new Object();
 
     static {
-        int[] iArr = new int[7];
-        a = iArr;
-        try {
-            iArr[3] = 1;
-        } catch (NoSuchFieldError unused) {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        try {
-            a[4] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            a[2] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            a[5] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            a[6] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            a[0] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            a[1] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
+        throw new ClassCastException();
     }
 }

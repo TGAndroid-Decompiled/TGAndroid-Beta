@@ -1,88 +1,82 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class q22 extends zya {
-    public final byte L = 1;
-    public final Object M;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class q22 extends td4 {
+    public final byte U;
+    public final f12 V;
 
-    public q22(qvb qvbVar, Context context, pi4 pi4Var) {
-        super(context, pi4Var, 0, null);
-        this.M = qvbVar;
+    public q22(s42 s42Var, gu guVar) {
+        super(0, 0, guVar);
+        this.U = (byte) 2;
+        this.V = s42Var;
     }
 
     @Override
-    public final void e(boolean z, boolean z2) {
-        switch (this.L) {
-            case 2:
-                super.e(z, z2);
-                qvb qvbVar = (qvb) this.M;
-                ttb ttbVar = qvbVar.n;
-                float f = 1.0f;
-                if (z2) {
-                    ViewPropertyAnimator animate = ((TextView) ttbVar.d).animate();
-                    if (z) {
-                        f = 0.0f;
-                    }
-                    animate.alpha(f).start();
-                    return;
+    public final int[] t(View view, Rect rect) {
+        switch (this.U) {
+            case 3:
+                int B = this.n - B();
+                int top = (view.getTop() + rect.top) - view.getScrollY();
+                int min = Math.min(0, top);
+                int max = Math.max(0, (rect.height() + top) - B);
+                if (min == 0) {
+                    min = Math.min(top, max);
                 }
-                ((TextView) ttbVar.d).animate().cancel();
-                TextView textView = (TextView) qvbVar.n.d;
-                if (z) {
-                    f = 0.0f;
-                }
-                textView.setAlpha(f);
-                return;
+                return new int[]{0, min};
             default:
-                super.e(z, z2);
-                return;
+                return super.t(view, rect);
         }
     }
 
     @Override
-    public final float getTranslationY() {
-        switch (this.L) {
+    public final void u0(RecyclerView recyclerView, c89 c89Var, int i) {
+        switch (this.U) {
             case 0:
-                return super.getTranslationY() - ((d32) this.M).N;
-            default:
-                return super.getTranslationY();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.L) {
+                p22 p22Var = new p22(this, recyclerView.getContext());
+                p22Var.a = i;
+                v0(p22Var);
+                return;
             case 1:
-                g0a g0aVar = ((c0a) this.M).d;
-                super.onMeasure(i, ug8.f(g0aVar.e, g0aVar.n - g0aVar.r.getPaddingTop(), 1073741824));
+                j32 j32Var = new j32(this, recyclerView.getContext());
+                j32Var.a = i;
+                v0(j32Var);
+                return;
+            case 2:
+                o42 o42Var = new o42(this, recyclerView.getContext());
+                o42Var.a = i;
+                v0(o42Var);
+                return;
+            case 3:
+                r62 r62Var = new r62(this, recyclerView.getContext());
+                r62Var.a = i;
+                v0(r62Var);
                 return;
             default:
-                super.onMeasure(i, i2);
+                b72 b72Var = new b72(this, recyclerView.getContext());
+                b72Var.a = i;
+                v0(b72Var);
                 return;
         }
     }
 
     @Override
-    public final void setTranslationY(float f) {
-        switch (this.L) {
-            case 0:
-                super.setTranslationY(f + ((d32) this.M).N);
+    public final void y0(c89 c89Var, int[] iArr) {
+        switch (this.U) {
+            case 2:
+                super.y0(c89Var, iArr);
+                iArr[1] = Math.max(iArr[1], ((s42) this.V).M.getHeight());
                 return;
             default:
-                super.setTranslationY(f);
+                super.y0(c89Var, iArr);
                 return;
         }
     }
 
-    public q22(int i, f53 f53Var, c0a c0aVar, Context context) {
-        super(context, null, i, f53Var);
-        this.M = c0aVar;
-    }
-
-    public q22(d32 d32Var, Context context, pi4 pi4Var, wjb wjbVar) {
-        super(context, pi4Var, 1, wjbVar);
-        this.M = d32Var;
+    public q22(f12 f12Var, int i, d79 d79Var, byte b) {
+        super(i, 0, d79Var);
+        this.U = b;
+        this.V = f12Var;
     }
 }

@@ -1,19 +1,81 @@
 package defpackage;
 
-import java.util.regex.Pattern;
-public final class jhb {
-    public static final Pattern d = Pattern.compile("\\s+");
-    public static final ym5 e = ym5.p(2, "auto", "none");
-    public static final ym5 f = ym5.p(3, "dot", "sesame", "circle");
-    public static final ym5 g = ym5.p(2, "filled", "open");
-    public static final ym5 h = ym5.p(3, "after", "before", "outside");
-    public final int a;
-    public final byte b;
-    public final int c;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class jhb implements Vector.TLDeserializer {
+    public final byte a;
 
-    public jhb(int i, int i2, int i3) {
-        this.a = i;
-        this.b = i2;
-        this.c = i3;
+    public jhb(byte b) {
+        this.a = b;
+    }
+
+    @Override
+    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        switch (this.a) {
+            case 0:
+                return TLRPC.TL_quickReply.TLdeserialize(inputSerializedData, i, z);
+            case 1:
+                return TLRPC.savedDialog.TLdeserialize(inputSerializedData, i, z);
+            case 2:
+                return TLRPC.TL_savedReactionTag.TLdeserialize(inputSerializedData, i, z);
+            case 3:
+                return TLRPC.TL_searchResultsCalendarPeriod.TLdeserialize(inputSerializedData, i, z);
+            case 4:
+                return TLRPC.TL_searchResultPosition.TLdeserialize(inputSerializedData, i, z);
+            case 5:
+                return TLRPC.TL_sponsoredMessage.TLdeserialize(inputSerializedData, i, z);
+            case 6:
+                return TLRPC.TL_stickerKeyword.TLdeserialize(inputSerializedData, i, z);
+            case 7:
+                return TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, i, z);
+            case 8:
+                return TL_iv.RichMessage.TLdeserialize(inputSerializedData, i, z);
+            case 9:
+                return TLRPC.MessagePeerVote.TLdeserialize(inputSerializedData, i, z);
+            case 10:
+                return TLRPC.TL_bankCardOpenUrl.TLdeserialize(inputSerializedData, i, z);
+            case 11:
+                return TLRPC.TL_premiumGiftCodeOption.TLdeserialize(inputSerializedData, i, z);
+            case 12:
+                return TLRPC.TL_paymentFormMethod.TLdeserialize(inputSerializedData, i, z);
+            case 13:
+                return TLRPC.TL_paymentSavedCredentialsCard.TLdeserialize(inputSerializedData, i, z);
+            case 14:
+                return TLRPC.TL_shippingOption.TLdeserialize(inputSerializedData, i, z);
+            case 15:
+                return TLRPC.Photo.TLdeserialize(inputSerializedData, i, z);
+            case 16:
+                return TLRPC.PollAnswerVoters.TLdeserialize(inputSerializedData, i, z);
+            case 17:
+                return TL_keyboard.KeyboardInlineButtonRow.TLdeserialize(inputSerializedData, i, z);
+            case 18:
+                return TL_keyboard.KeyboardButtonRow.TLdeserialize(inputSerializedData, i, z);
+            case 19:
+                return TLRPC.TL_messageReportOption.TLdeserialize(inputSerializedData, i, z);
+            case 20:
+                return TLRPC.SecureRequiredType.TLdeserialize(inputSerializedData, i, z);
+            case 21:
+                return TLRPC.SecureFile.TLdeserialize(inputSerializedData, i, z);
+            case 22:
+                return TLRPC.TL_shareThemeBackdropOption.TLdeserialize(inputSerializedData, i, z);
+            case 23:
+                return TLRPC.TL_themeSettings.TLdeserialize(inputSerializedData, i, z);
+            case 24:
+                return TLRPC.TL_topPeer.TLdeserialize(inputSerializedData, i, z);
+            case 25:
+                return TLRPC.Update.TLdeserialize(inputSerializedData, i, z);
+            case 26:
+                return TLRPC.EncryptedMessage.TLdeserialize(inputSerializedData, i, z);
+            case 27:
+                return TLRPC.TL_fileHash.TLdeserialize(inputSerializedData, i, z);
+            case 28:
+                return TLRPC.TL_premiumGiftOption.TLdeserialize(inputSerializedData, i, z);
+            default:
+                return TLRPC.WebPageAttribute.TLdeserialize(inputSerializedData, i, z);
+        }
     }
 }

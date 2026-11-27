@@ -1,202 +1,187 @@
 package defpackage;
 
-import java.util.AbstractMap;
-import java.util.Iterator;
-public abstract class qo2 implements Iterator {
-    public final byte a = 0;
-    public int b;
-    public int c;
-    public int d;
-    public final AbstractMap e;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.ui.ActionBar.a;
+public final class qo2 extends vo2 {
+    public final byte h;
+    public final xo2 n;
 
-    public qo2(so2 so2Var, byte b) {
+    public qo2(xo2 xo2Var, Context context, byte b) {
+        super(xo2Var, context);
         int i;
-        this.e = so2Var;
-        this.b = so2Var.f;
-        if (so2Var.isEmpty()) {
-            i = -1;
-        } else {
-            i = 0;
-        }
-        this.c = i;
-        this.d = -1;
-    }
-
-    public abstract Object a(int i);
-
-    public abstract Object b(int i);
-
-    @Override
-    public final boolean hasNext() {
-        switch (this.a) {
-            case 0:
-                if (this.c >= 0) {
-                    return true;
-                }
-                return false;
-            case 1:
-                if (this.c >= 0) {
-                    return true;
-                }
-                return false;
-            default:
-                if (this.c >= 0) {
-                    return true;
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final Object next() {
-        byte b = this.a;
-        int i = -1;
-        AbstractMap abstractMap = this.e;
-        Object obj = null;
+        this.h = b;
         switch (b) {
-            case 0:
-                so2 so2Var = (so2) abstractMap;
-                if (so2Var.f == this.b) {
-                    if (hasNext()) {
-                        int i2 = this.c;
-                        this.d = i2;
-                        obj = a(i2);
-                        int i3 = this.c + 1;
-                        if (i3 < so2Var.h) {
-                            i = i3;
-                        }
-                        this.c = i;
-                    } else {
-                        w26.g();
-                    }
-                } else {
-                    zf.b();
-                }
-                return obj;
             case 1:
-                so2 so2Var2 = (so2) abstractMap;
-                if (so2Var2.f == this.b) {
-                    if (hasNext()) {
-                        int i4 = this.c;
-                        this.d = i4;
-                        obj = b(i4);
-                        int i5 = this.c + 1;
-                        if (i5 < so2Var2.h) {
-                            i = i5;
-                        }
-                        this.c = i;
-                    } else {
-                        w26.g();
+                this.n = xo2Var;
+                super(xo2Var, context);
+                q9c q9cVar = new q9c(context, xo2Var.a, 0, false, new lo2(xo2Var, (byte) 5), new mo2(xo2Var, (byte) 5), null, xo2Var.J0);
+                this.d = q9cVar;
+                q9cVar.s1();
+                q9c q9cVar2 = this.d;
+                q9cVar2.g3.r = false;
+                q9cVar2.setClipToPadding(false);
+                this.d.setPadding(0, 0, 0, hl.L(60.0f) + hl.n);
+                this.d.j(new to2(this, (byte) 1));
+                this.c.addView(this.d, 0, tre.c(-1.0f, -1));
+                a aVar = new a(context, xo2Var.J0);
+                this.a = aVar;
+                aVar.setOccupyStatusBar(false);
+                a aVar2 = this.a;
+                int i2 = aob.G6;
+                yob.l(aVar2, 5, i2, xo2Var.J0);
+                yob.l(this.a, 3, aob.z8, xo2Var.J0);
+                this.a.setBackButtonImage(2131231243);
+                yob.l(this.a, 1, aob.y8, xo2Var.J0);
+                this.a.setTitle(ob6.M0(2131751851, null));
+                this.a.getTitleTextView().setTranslationX(-hl.L(18.0f));
+                this.a.setActionBarMenuOnItemClick(new kg2(this, (byte) 6));
+                this.c.addView(this.a, tre.e(-1, 56, 48));
+                LinearLayout j = uh9.j(context, 0);
+                j.setPadding(hl.L(7.0f), 0, hl.L(7.0f), hl.L(12.0f));
+                c51 c51Var = new c51(xo2Var.J0, context, true);
+                c51Var.e();
+                int i3 = aob.d6;
+                c51Var.setColor(vm2.f(0.125f, aob.v0(i3, xo2Var.J0), aob.v0(i2, xo2Var.J0)));
+                c51Var.setText(ob6.M0(2131751865, null));
+                c51Var.f();
+                if (c51Var.getBackground() != null) {
+                    Drawable background = c51Var.getBackground();
+                    vnb vnbVar = xo2Var.J0;
+                    c51Var.setBackground(background);
+                    tob o = yob.o(c51Var, true);
+                    o.d = background;
+                    o.e = null;
+                    o.f = null;
+                    if (background != null) {
+                        sob sobVar = new sob();
+                        o.e = sobVar;
+                        sobVar.c(i3, i2, 3, 0.125f, vnbVar);
+                        sobVar.g = yob.t(background);
                     }
-                } else {
-                    zf.b();
                 }
-                return obj;
+                c51Var.setOnClickListener(new View.OnClickListener(this) {
+                    public final qo2 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        byte b2 = r2;
+                        qo2 qo2Var = this.b;
+                        switch (b2) {
+                            case 0:
+                                qo2Var.n.G1.f(false, true);
+                                return;
+                            default:
+                                qo2Var.n.G1.f(true, true);
+                                return;
+                        }
+                    }
+                });
+                j.addView(c51Var, tre.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
+                c51 c51Var2 = new c51(xo2Var.J0, context, true);
+                c51Var2.setText(ob6.M0(2131751867, null));
+                c51Var2.f();
+                c51Var2.setOnClickListener(new View.OnClickListener(this) {
+                    public final qo2 b;
+
+                    {
+                        this.b = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
+                        byte b2 = r2;
+                        qo2 qo2Var = this.b;
+                        switch (b2) {
+                            case 0:
+                                qo2Var.n.G1.f(false, true);
+                                return;
+                            default:
+                                qo2Var.n.G1.f(true, true);
+                                return;
+                        }
+                    }
+                });
+                j.addView(c51Var2, tre.q(0, 48, 1.0f, 0, 4, 0, 4, 0));
+                this.c.addView(j, tre.f(-2.0f, -1, 80, 0, 0, 0, hl.n));
+                a();
+                return;
             default:
-                so2 so2Var3 = (so2) abstractMap;
-                if (so2Var3.f == this.b) {
-                    if (hasNext()) {
-                        int i6 = this.c;
-                        this.d = i6;
-                        obj = b(i6);
-                        int i7 = this.c + 1;
-                        if (i7 < so2Var3.h) {
-                            i = i7;
-                        }
-                        this.c = i;
-                    } else {
-                        w26.g();
-                    }
+                this.n = xo2Var;
+                hl.B2(this.b);
+                q9c q9cVar3 = new q9c(context, xo2Var.a, 0, false, new lo2(xo2Var, (byte) 3), new mo2(xo2Var, (byte) 2), null, xo2Var.J0);
+                this.d = q9cVar3;
+                q9cVar3.s1();
+                q9c q9cVar4 = this.d;
+                q9cVar4.g3.r = false;
+                q9cVar4.setClipToPadding(false);
+                this.d.setPadding(0, 0, 0, hl.L(60.0f) + hl.n);
+                this.c.addView(xo2Var.A1, tre.g());
+                this.c.addView(this.d, 0, tre.c(-1.0f, -1));
+                this.c.addView(xo2Var.C1, tre.g());
+                a aVar3 = new a(context, xo2Var.J0);
+                this.a = aVar3;
+                aVar3.setOccupyStatusBar(false);
+                yob.l(this.a, 5, aob.G6, xo2Var.J0);
+                yob.l(this.a, 3, aob.z8, xo2Var.J0);
+                a aVar4 = this.a;
+                boolean z = xo2Var.H1;
+                if (z) {
+                    i = 2131231244;
                 } else {
-                    zf.b();
+                    i = 2131231243;
                 }
-                return obj;
+                aVar4.setBackButtonImage(i);
+                yob.l(this.a, 1, aob.y8, xo2Var.J0);
+                this.a.setTitle(ob6.M0(2131751953, null));
+                this.a.getTitleTextView().setTranslationX(-hl.L(18.0f));
+                this.a.setActionBarMenuOnItemClick(new kg2(this, (byte) 4));
+                this.c.addView(this.a, tre.e(-1, 56, 48));
+                this.c.addView(xo2Var.y1, tre.d(-1, 40.0f, 48, 11.0f, 0.0f, 11.0f, 0.0f));
+                s6 u = this.a.u();
+                u.setGlassMode(true);
+                u.setTranslationX(-hl.L(7.0f));
+                u.a(3, 2131232502);
+                c51 c51Var3 = new c51(xo2Var.J0, getContext(), true);
+                xo2Var.s1 = c51Var3;
+                c51Var3.f();
+                xo2Var.s1.setText(ob6.M0(2131747558, null));
+                xo2Var.s1.setOnClickListener(new r81(this, (byte) 19));
+                if (z) {
+                    xo2Var.s1.setVisibility(8);
+                }
+                this.c.addView(xo2Var.s1, tre.f(48.0f, -1, 80, hl.L(12.0f), 0, hl.L(12.0f), hl.L(12.0f) + hl.n));
+                a();
+                return;
         }
     }
 
     @Override
-    public final void remove() {
-        byte b = this.a;
-        boolean z = false;
-        AbstractMap abstractMap = this.e;
-        switch (b) {
+    public final float b() {
+        switch (this.h) {
             case 0:
-                so2 so2Var = (so2) abstractMap;
-                if (so2Var.f == this.b) {
-                    if (this.d >= 0) {
-                        z = true;
-                    }
-                    gre.o("no calls to next() since the last call to remove()", z);
-                    this.b += 32;
-                    int i = this.d;
-                    Object obj = so2.w;
-                    so2Var.remove(so2Var.g(i));
-                    this.c--;
-                    this.d = -1;
-                    return;
-                }
-                zf.b();
-                return;
-            case 1:
-                so2 so2Var2 = (so2) abstractMap;
-                int i2 = so2Var2.f;
-                int i3 = this.b;
-                if (i2 == i3) {
-                    int i4 = this.d;
-                    if (i4 >= 0) {
-                        z = true;
-                    }
-                    if (z) {
-                        this.b = i3 + 32;
-                        Object[] objArr = so2Var2.d;
-                        objArr.getClass();
-                        so2Var2.remove(objArr[i4]);
-                        this.c--;
-                        this.d = -1;
-                        return;
-                    }
-                    sc8.j("no calls to next() since the last call to remove()");
-                    return;
-                }
-                zf.b();
-                return;
+                return qke.a(this.n.m1.e) * super.b();
             default:
-                so2 so2Var3 = (so2) abstractMap;
-                int i5 = so2Var3.f;
-                int i6 = this.b;
-                if (i5 == i6) {
-                    int i7 = this.d;
-                    if (i7 >= 0) {
-                        z = true;
-                    }
-                    if (z) {
-                        this.b = i6 + 32;
-                        Object[] objArr2 = so2Var3.d;
-                        objArr2.getClass();
-                        so2Var3.remove(objArr2[i7]);
-                        this.c--;
-                        this.d = -1;
-                        return;
-                    }
-                    sc8.j("no calls to next() since the last call to remove()");
-                    return;
-                }
-                zf.b();
-                return;
+                return super.b();
         }
     }
 
-    public qo2(so2 so2Var, char c) {
-        this.e = so2Var;
-        this.b = so2Var.f;
-        this.c = so2Var.isEmpty() ? -1 : 0;
-        this.d = -1;
-    }
-
-    public qo2(so2 so2Var) {
-        this.e = so2Var;
-        this.b = so2Var.f;
-        this.c = so2Var.isEmpty() ? -1 : 0;
-        this.d = -1;
+    @Override
+    public final void c() {
+        switch (this.h) {
+            case 0:
+                super.c();
+                this.n.y1.setTranslationY(Math.max(hl.L(8.0f) + hl.m, b() + hl.L(4.0f)));
+                return;
+            default:
+                super.c();
+                return;
+        }
     }
 }

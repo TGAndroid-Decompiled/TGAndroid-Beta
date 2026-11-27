@@ -1,32 +1,33 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class au5 implements Runnable {
+import android.graphics.Path;
+import android.view.View;
+public final class au5 implements pcc {
     public final byte a;
-    public final fu5 b;
-    public final TLRPC.TL_chatInviteJoinResultWebView c;
-    public final long d;
+    public final float b;
+    public final float c;
+    public final View d;
 
-    public au5(fu5 fu5Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j, byte b) {
+    public au5(View view, float f, float f2, byte b) {
         this.a = b;
-        this.b = fu5Var;
-        this.c = tL_chatInviteJoinResultWebView;
-        this.d = j;
+        this.d = view;
+        this.b = f;
+        this.c = f2;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj) {
         byte b = this.a;
-        TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = this.c;
-        fu5 fu5Var = this.b;
+        float f = this.c;
+        float f2 = this.b;
+        View view = this.d;
         switch (b) {
             case 0:
-                na7.q1(fu5Var.a).b4(tL_chatInviteJoinResultWebView.users, false);
-                bq0.b(fu5Var.a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                ((bu5) view).y.addPath((Path) obj, f2, f);
                 return;
             default:
-                na7.q1(fu5Var.a).b4(tL_chatInviteJoinResultWebView.users, false);
-                bq0.b(fu5Var.a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
+                Boolean bool = (Boolean) obj;
+                ((jja) view).n(f2, f);
                 return;
         }
     }

@@ -1,78 +1,85 @@
 package defpackage;
 
-import java.util.List;
-public final class wv5 implements Runnable {
-    public final byte a;
-    public final rw5 b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class wv5 extends FrameLayout {
+    public final bw5 a;
 
-    public wv5(rw5 rw5Var, byte b) {
-        this.a = b;
-        this.b = rw5Var;
+    public wv5(bw5 bw5Var, Context context) {
+        super(context);
+        this.a = bw5Var;
     }
 
     @Override
-    public final void run() {
-        int d;
-        byte b = this.a;
-        rw5 rw5Var = this.b;
-        switch (b) {
-            case 0:
-                ijb ijbVar = rw5Var.Q0;
-                if (ijbVar != null) {
-                    rw5Var.Q0 = null;
-                    rw5Var.removeView(ijbVar);
-                    return;
-                }
-                return;
-            case 1:
-                if (rw5Var.u0 != null) {
-                    rw5Var.w0.postRunnable(new wv5(rw5Var, (byte) 4), 200L);
-                    return;
-                }
-                return;
-            case 2:
-                zt7 zt7Var = rw5Var.b1;
-                if (zt7Var != null) {
-                    zt7Var.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                zt7 zt7Var2 = rw5Var.b1;
-                if (zt7Var2 != null) {
-                    zt7Var2.invalidate();
-                    return;
-                }
-                return;
-            case 4:
-                rw5Var.k0();
-                return;
-            default:
-                boolean z = k38.e(rw5Var.F1).k;
-                int i = 0;
-                while (true) {
-                    List list = l01.c;
-                    if (i < list.size()) {
-                        l01 l01Var = (l01) list.get(i);
-                        if (z) {
-                            d = l01Var.l();
-                        } else {
-                            d = l01Var.d();
-                        }
-                        String m = l01Var.m();
-                        j45 j45Var = new j45(rw5Var, l01Var, d, (byte) 3);
-                        pw5 pw5Var = new pw5(rw5Var, rw5Var.getContext());
-                        pw5Var.setIcon(d);
-                        pw5Var.setText(m);
-                        pw5Var.setSelected(false);
-                        pw5Var.setOnClickListener(new b95(j45Var, (byte) 14));
-                        pw5Var.setOnLongClickListener(new zs(rw5Var, (byte) 5));
-                        rw5Var.I1.a(pw5Var, nme.o(-1, 48));
-                        i++;
-                    } else {
-                        return;
-                    }
-                }
+    public final void onDraw(Canvas canvas) {
+        bw5 bw5Var = this.a;
+        Drawable drawable = bw5Var.l1;
+        drawable.setBounds(0, bw5Var.u1 - bw5Var.t0, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            bw5 bw5Var = this.a;
+            if (bw5Var.u1 != 0 && motionEvent.getY() < bw5Var.u1) {
+                bw5Var.dismiss();
+                return true;
+            }
         }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        this.a.I0();
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        int i3;
+        int size = View.MeasureSpec.getSize(i2) - hl.m;
+        bw5 bw5Var = this.a;
+        TextView textView = bw5Var.r1;
+        measureChildWithMargins(textView, i, 0, i2, 0);
+        int measuredHeight = textView.getMeasuredHeight();
+        xv5 xv5Var = bw5Var.p1;
+        ((FrameLayout.LayoutParams) xv5Var.getLayoutParams()).topMargin = hl.L(65.0f) + measuredHeight;
+        getMeasuredWidth();
+        int w = uh9.w(55.0f, uh9.y(58.0f, bw5Var.s1.size(), hl.L(80.0f)) + bw5Var.t0, measuredHeight);
+        int i4 = size / 5;
+        if (w < i4 * 3) {
+            i3 = size - w;
+        } else {
+            i3 = i4 << 1;
+        }
+        if (xv5Var.getPaddingTop() != i3) {
+            bw5Var.t1 = true;
+            xv5Var.setPadding(0, i3, 0, 0);
+            bw5Var.t1 = false;
+        }
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.a.J && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.a.t1) {
+            return;
+        }
+        super.requestLayout();
     }
 }

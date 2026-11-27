@@ -1,36 +1,32 @@
 package defpackage;
 
-import android.content.DialogInterface;
-public final class eg3 implements DialogInterface.OnDismissListener {
+import org.telegram.ui.PremiumPreviewFragment;
+public final class eg3 implements Runnable {
     public final byte a;
-    public final cj3 b;
+    public final pg3 b;
 
-    public eg3(cj3 cj3Var, byte b) {
+    public eg3(pg3 pg3Var, byte b) {
         this.a = b;
-        this.b = cj3Var;
+        this.b = pg3Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void run() {
         byte b = this.a;
-        cj3 cj3Var = this.b;
+        pg3 pg3Var = this.b;
         switch (b) {
             case 0:
-                if (cj3Var.W3 != null) {
-                    cj3Var.getMessagesController().n4(0L, cj3Var.W3);
-                    cj3Var.W3 = null;
-                    cj3Var.c5();
-                    return;
-                }
+                pg3Var.p(true, false);
                 return;
             case 1:
-                cj3Var.y3(true);
-                return;
-            case 2:
-                cj3Var.y3(true);
+                kg5 kg5Var = pg3Var.K;
+                if (kg5Var != null) {
+                    kg5Var.f(true);
+                }
+                pg3Var.f0.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             default:
-                cj3Var.U3();
+                pg3Var.c();
                 return;
         }
     }

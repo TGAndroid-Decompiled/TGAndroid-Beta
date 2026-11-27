@@ -1,37 +1,36 @@
 package defpackage;
-public final class v3f extends vef {
-    private static final v3f zzb;
-    private int zzd;
-    private int zze;
-    private int zzf;
-    private int zzg;
-    private boolean zzh;
-    private int zzi;
 
-    static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(v3f.class, vefVar);
+import android.os.Bundle;
+import j$.util.DesugarCollections;
+import java.util.HashMap;
+import java.util.Map;
+public abstract class v3f {
+    public static o3f a;
+
+    public static Map a(String str, Bundle bundle) {
+        Map map = (Map) bundle.getSerializable(str);
+        if (map == null) {
+            return qbe.n;
+        }
+        HashMap hashMap = new HashMap();
+        for (Map.Entry entry : map.entrySet()) {
+            if (entry != null && entry.getKey() != null && entry.getValue() != null) {
+                hashMap.put((Integer) entry.getKey(), (Integer) entry.getValue());
+            }
+        }
+        return DesugarCollections.unmodifiableMap(hashMap);
     }
 
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new vef();
+    public static synchronized j2f b(y0f y0fVar) {
+        j2f j2fVar;
+        synchronized (v3f.class) {
+            o3f o3fVar = a;
+            if (o3fVar == null) {
+                o3fVar = new o3f((byte) 0);
+                a = o3fVar;
             }
-            return new sgf(zzb, "\u0001\u0005\u0000\u0001\u0001\u0005\u0005\u0000\u0000\u0000\u0001᠌\u0000\u0002᠌\u0001\u0003᠌\u0002\u0004ဇ\u0003\u0005င\u0004", new Object[]{"zzd", "zze", pd5.w, "zzf", cff.x, "zzg", vi2.w, "zzh", "zzi"});
+            j2fVar = (j2f) o3fVar.c(y0fVar);
         }
-        return (byte) 1;
+        return j2fVar;
     }
 }

@@ -1,24 +1,7 @@
 package defpackage;
-public enum iqb extends qsb {
-    public iqb() {
-        super("ScriptDataLessthanSign", 16);
-    }
-
+public final class iqb extends r47 {
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char d = zj1Var.d();
-        if (d != '!') {
-            if (d != '/') {
-                aqbVar.h("<");
-                zj1Var.q();
-                aqbVar.c = qsb.f;
-                return;
-            }
-            aqbVar.e();
-            aqbVar.c = qsb.H;
-            return;
-        }
-        aqbVar.h("<!");
-        aqbVar.c = qsb.J;
+    public final boolean j5() {
+        return false;
     }
 }

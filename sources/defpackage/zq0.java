@@ -3,7 +3,7 @@ package defpackage;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class zq0 extends c49 {
+public final class zq0 extends p79 {
     public final byte a;
     public final gr0 b;
 
@@ -13,7 +13,7 @@ public final class zq0 extends c49 {
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, p49 p49Var) {
+    public final void d(Rect rect, View view, RecyclerView recyclerView, c89 c89Var) {
         boolean z;
         boolean z2;
         boolean z3;
@@ -23,28 +23,28 @@ public final class zq0 extends c49 {
         gr0 gr0Var = this.b;
         switch (b) {
             case 0:
-                if (view instanceof qfa) {
-                    qfa qfaVar = (qfa) view;
+                if (view instanceof jja) {
+                    jja jjaVar = (jja) view;
                     gr0Var.f.getClass();
-                    int R = RecyclerView.R(qfaVar);
+                    int S = RecyclerView.S(jjaVar);
                     int i = gr0Var.h.J;
-                    if (R < i) {
+                    if (S < i) {
                         z = true;
                     } else {
                         z = false;
                     }
-                    qfaVar.b0 = z;
-                    int i2 = R % i;
+                    jjaVar.b0 = z;
+                    int i2 = S % i;
                     if (i2 == 0) {
                         z2 = true;
                     } else {
                         z2 = false;
                     }
-                    qfaVar.W = z2;
+                    jjaVar.W = z2;
                     if (i2 != i - 1) {
                         z5 = false;
                     }
-                    qfaVar.a0 = z5;
+                    jjaVar.a0 = z5;
                     rect.left = 0;
                     rect.top = 0;
                     rect.bottom = 0;
@@ -57,28 +57,28 @@ public final class zq0 extends c49 {
                 rect.right = 0;
                 return;
             default:
-                if (view instanceof qfa) {
-                    qfa qfaVar2 = (qfa) view;
+                if (view instanceof jja) {
+                    jja jjaVar2 = (jja) view;
                     gr0Var.r.getClass();
-                    int R2 = RecyclerView.R(qfaVar2);
+                    int S2 = RecyclerView.S(jjaVar2);
                     int i3 = gr0Var.s.J;
-                    if (R2 < i3) {
+                    if (S2 < i3) {
                         z3 = true;
                     } else {
                         z3 = false;
                     }
-                    qfaVar2.b0 = z3;
-                    int i4 = R2 % i3;
+                    jjaVar2.b0 = z3;
+                    int i4 = S2 % i3;
                     if (i4 == 0) {
                         z4 = true;
                     } else {
                         z4 = false;
                     }
-                    qfaVar2.W = z4;
+                    jjaVar2.W = z4;
                     if (i4 != i3 - 1) {
                         z5 = false;
                     }
-                    qfaVar2.a0 = z5;
+                    jjaVar2.a0 = z5;
                     rect.left = 0;
                     rect.top = 0;
                     rect.bottom = 0;

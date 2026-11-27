@@ -1,211 +1,168 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class q29 implements View.OnLayoutChangeListener {
-    public final w39 a;
-    public final ArrayList b;
-    public final boolean c;
-    public final r29 d;
-    public final cu6 e;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class q29 extends FrameLayout {
+    public final e29 a;
+    public final e29 b;
+    public final hf0 c;
+    public m88 d;
+    public p29 e;
+    public int f;
 
-    public q29(cu6 cu6Var, w39 w39Var, ArrayList arrayList, boolean z, r29 r29Var) {
-        this.e = cu6Var;
-        this.a = w39Var;
-        this.b = arrayList;
-        this.c = z;
-        this.d = r29Var;
+    public q29(Activity activity) {
+        super(activity);
+        this.f = 0;
+        setWillNotDraw(false);
+        ?? imageView = new ImageView(activity);
+        this.a = imageView;
+        ?? imageView2 = new ImageView(activity);
+        this.b = imageView2;
+        imageView.f(2131624219, 37, 37, null);
+        imageView2.f(2131624209, 37, 37, null);
+        imageView2.setAlpha(0.0f);
+        addView((View) imageView, tre.c(37.0f, 37));
+        addView((View) imageView2, tre.c(37.0f, 37));
+        hf0 h0 = aob.h0(hl.L(37.0f), 0, vm2.o(-1, 76));
+        this.c = h0;
+        h0.setCallback(this);
+        setClickable(true);
     }
 
     @Override
-    public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        final ArrayList arrayList;
-        int i9;
-        int height;
-        int i10;
-        long min;
-        View view2;
-        cu6 cu6Var = this.e;
-        HashMap hashMap = (HashMap) cu6Var.w;
-        o39 o39Var = (o39) cu6Var.e;
-        o39Var.removeOnLayoutChangeListener(this);
-        final ArrayList arrayList2 = new ArrayList();
-        o39Var.D0();
-        int childCount = o39Var.getChildCount();
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 0;
-        int i14 = 0;
-        boolean z = false;
-        while (true) {
-            arrayList = this.b;
-            if (i11 >= childCount) {
-                break;
-            }
-            View childAt = o39Var.getChildAt(i11);
-            arrayList2.add(childAt);
-            if (childAt.getTop() < i12) {
-                i12 = childAt.getTop();
-            }
-            if (childAt.getBottom() > i13) {
-                i13 = childAt.getBottom();
-            }
-            if (childAt instanceof ni5) {
-                ((ni5) childAt).b(true, false);
-            }
-            w39 w39Var = this.a;
-            if (w39Var != null && (w39Var.b || cu6Var.c)) {
-                o39Var.getClass();
-                long c = w39Var.c(RecyclerView.R(childAt));
-                if (hashMap.containsKey(Long.valueOf(c)) && (view2 = (View) hashMap.get(Long.valueOf(c))) != null) {
-                    if (view2 instanceof ni5) {
-                        ((ni5) view2).b(false, false);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int i;
+        p29 p29Var;
+        int action = motionEvent.getAction();
+        int i2 = 0;
+        if (action != 0) {
+            if (action != 1) {
+                if (action == 3 && (p29Var = this.e) != null) {
+                    q29[] q29VarArr = (q29[]) ((jo0) ((jz7) p29Var).b).d;
+                    int length = q29VarArr.length;
+                    while (i2 < length) {
+                        q29 q29Var = q29VarArr[i2];
+                        e29 e29Var = q29Var.a;
+                        e29 e29Var2 = q29Var.b;
+                        e29Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        e29Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        i2++;
                     }
-                    arrayList.remove(view2);
-                    kse kseVar = (kse) cu6Var.r;
-                    if (kseVar != null) {
-                        kseVar.d(view2);
+                }
+            } else {
+                p29 p29Var2 = this.e;
+                if (p29Var2 != null) {
+                    q29[] q29VarArr2 = (q29[]) ((jo0) ((jz7) p29Var2).b).d;
+                    for (int i3 = 0; i3 <= this.f; i3++) {
+                        q29 q29Var2 = q29VarArr2[i3];
+                        e29 e29Var3 = q29Var2.a;
+                        e29 e29Var4 = q29Var2.b;
+                        e29Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        e29Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     }
-                    int top = childAt.getTop() - view2.getTop();
-                    if (top != 0) {
-                        i14 = top;
+                }
+                if (this.d != null) {
+                    int[] iArr = new int[2];
+                    getLocationOnScreen(iArr);
+                    int i4 = iArr[0];
+                    int i5 = iArr[1];
+                    m88 m88Var = this.d;
+                    float width = (getWidth() / 2.0f) + i4;
+                    float height = (getHeight() / 2.0f) + i5;
+                    int i6 = this.f + 1;
+                    jo0 jo0Var = (jo0) m88Var.b;
+                    Activity activity = (Activity) m88Var.c;
+                    if (i6 >= 4) {
+                        ?? imageView = new ImageView(activity);
+                        int L = hl.L(133.0f);
+                        imageView.f(2131624174, 133, 133, null);
+                        int[] iArr2 = new int[2];
+                        jo0Var.getLocationOnScreen(iArr2);
+                        int i7 = iArr2[0];
+                        int i8 = iArr2[1];
+                        jo0Var.addView((View) imageView, tre.c(133.0f, 133));
+                        float f = L / 2.0f;
+                        imageView.setTranslationX((width - i7) - f);
+                        imageView.setTranslationY((height - i8) - f);
+                        imageView.setOnAnimationEndListener(new o29(jo0Var, imageView, (byte) 0));
+                        imageView.d();
                     }
-                    z = true;
+                    wjc wjcVar = (wjc) jo0Var.e;
+                    if (wjcVar != null) {
+                        wjcVar.b.M = i6;
+                    }
                 }
             }
-            i11++;
-        }
-        hashMap.clear();
-        int size = arrayList.size();
-        int i15 = 0;
-        int i16 = 0;
-        int i17 = Integer.MAX_VALUE;
-        while (i16 < size) {
-            Object obj = arrayList.get(i16);
-            i16++;
-            View view3 = (View) obj;
-            int bottom = view3.getBottom();
-            int top2 = view3.getTop();
-            if (bottom > i15) {
-                i15 = bottom;
-            }
-            if (top2 < i17) {
-                i17 = top2;
-            }
-            if (view3.getParent() == null) {
-                o39Var.addView(view3);
-                ((t26) cu6Var.f).L(view3);
-            }
-            if (view3 instanceof ni5) {
-                ((ni5) view3).b(true, true);
-            }
-        }
-        if (i17 == Integer.MAX_VALUE) {
-            i9 = 0;
         } else {
-            i9 = i17;
-        }
-        kse kseVar2 = (kse) cu6Var.r;
-        if (kseVar2 != null) {
-            kseVar2.b();
-        }
-        if (arrayList.isEmpty()) {
-            i10 = Math.abs(i14);
-        } else {
-            if (this.c) {
-                height = -i12;
-            } else {
-                i15 = o39Var.getHeight() - i9;
-                height = i13 - o39Var.getHeight();
-            }
-            i10 = height + i15;
-        }
-        final int paddingBottom = o39Var.getPaddingBottom();
-        ValueAnimator valueAnimator = (ValueAnimator) cu6Var.h;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            ((ValueAnimator) cu6Var.h).cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        cu6Var.h = ofFloat;
-        final boolean z2 = this.c;
-        final int i18 = i10;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                boolean z3;
-                int i19;
-                cu6 cu6Var2 = q29.this.e;
-                o39 o39Var2 = (o39) cu6Var2.e;
-                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                ArrayList arrayList3 = arrayList;
-                int size2 = arrayList3.size();
-                int i20 = 0;
+            p29 p29Var3 = this.e;
+            if (p29Var3 != null) {
+                q29[] q29VarArr3 = (q29[]) ((jo0) ((jz7) p29Var3).b).d;
                 while (true) {
-                    z3 = z2;
-                    i19 = i18;
-                    if (i20 >= size2) {
+                    i = this.f;
+                    if (i2 > i) {
                         break;
                     }
-                    View view4 = (View) arrayList3.get(i20);
-                    float y = view4.getY();
-                    if (view4.getY() + view4.getMeasuredHeight() >= 0.0f && y <= o39Var2.getMeasuredHeight()) {
-                        if (z3) {
-                            view4.setTranslationY((-i19) * floatValue);
-                        } else {
-                            view4.setTranslationY(i19 * floatValue);
-                        }
-                    }
-                    i20++;
+                    q29 q29Var3 = q29VarArr3[i2];
+                    e29 e29Var5 = q29Var3.a;
+                    e29 e29Var6 = q29Var3.b;
+                    e29Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    e29Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    i2++;
                 }
-                int paddingBottom2 = paddingBottom - o39Var2.getPaddingBottom();
-                ArrayList arrayList4 = arrayList2;
-                int size3 = arrayList4.size();
-                for (int i21 = 0; i21 < size3; i21++) {
-                    View view5 = (View) arrayList4.get(i21);
-                    if (z3) {
-                        view5.setTranslationY(((1.0f - floatValue) * i19) + paddingBottom2);
-                    } else {
-                        view5.setTranslationY((1.0f - floatValue) * (-i19));
-                    }
-                }
-                o39Var2.invalidate();
-                s29 s29Var = (s29) cu6Var2.n;
-                if (s29Var != null) {
-                    s29Var.f();
+                for (int i9 = i + 1; i9 < q29VarArr3.length; i9++) {
+                    q29 q29Var4 = q29VarArr3[i9];
+                    e29 e29Var7 = q29Var4.a;
+                    e29 e29Var8 = q29Var4.b;
+                    e29Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    e29Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                 }
             }
-        });
-        ((ValueAnimator) cu6Var.h).addListener(new eh8(this, arrayList2, (byte) 5));
-        long j = 300;
-        if (cu6Var.d) {
-            if (z) {
-                ((ValueAnimator) cu6Var.h).setDuration(150L);
-                ((ValueAnimator) cu6Var.h).setInterpolator(s33.g);
-            } else {
-                long measuredHeight = ((i18 / o39Var.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight >= 300) {
-                    j = measuredHeight;
-                }
-                ((ValueAnimator) cu6Var.h).setDuration(Math.min(j, 1300L));
-                ((ValueAnimator) cu6Var.h).setInterpolator(s33.h);
-            }
-        } else {
-            if (z) {
-                min = 600;
-            } else {
-                long measuredHeight2 = ((i18 / o39Var.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight2 >= 300) {
-                    j = measuredHeight2;
-                }
-                min = Math.min(j, 1300L);
-            }
-            ((ValueAnimator) cu6Var.h).setDuration(min);
-            ((ValueAnimator) cu6Var.h).setInterpolator(s33.h);
         }
-        ((ValueAnimator) cu6Var.h).start();
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        hf0 hf0Var = this.c;
+        if (hf0Var != null) {
+            hf0Var.setState(getDrawableState());
+        }
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        hf0 hf0Var = this.c;
+        if (hf0Var != null) {
+            hf0Var.jumpToCurrentState();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int width = getWidth();
+        int height = getHeight();
+        hf0 hf0Var = this.c;
+        hf0Var.setBounds(0, 0, width, height);
+        hf0Var.draw(canvas);
+    }
+
+    public void setAllStarsProvider(p29 p29Var) {
+        this.e = p29Var;
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

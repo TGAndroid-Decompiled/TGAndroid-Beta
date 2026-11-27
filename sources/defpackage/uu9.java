@@ -1,21 +1,15 @@
 package defpackage;
+public final class uu9 implements Runnable {
+    public final byte a;
+    public final xu9 b;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class uu9 extends TLObject {
-    public final vu9 a;
-    public final TLRPC.TL_secureFile b;
-    public final String c;
-    public TLRPC.TL_inputFile d;
-    public final byte[] e;
-    public final byte[] f;
-    public byte i;
+    public uu9(xu9 xu9Var, byte b) {
+        this.a = b;
+        this.b = xu9Var;
+    }
 
-    public uu9(vu9 vu9Var, TLRPC.TL_secureFile tL_secureFile, String str, byte[] bArr, byte[] bArr2) {
-        this.a = vu9Var;
-        this.b = tL_secureFile;
-        this.c = str;
-        this.f = bArr;
-        this.e = bArr2;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.uu9.run():void");
     }
 }

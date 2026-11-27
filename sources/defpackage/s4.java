@@ -1,190 +1,214 @@
 package defpackage;
 
-import android.app.ActivityManager;
-import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.media.AudioDeviceInfo;
-import android.media.AudioManager;
-import android.media.AudioProfile;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Process;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.window.OnBackInvokedDispatcher;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-public abstract class s4 {
-    public static Paint a(Bitmap bitmap) {
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        if (Build.VERSION.SDK_INT >= 33) {
-            bitmapShader.setFilterMode(2);
-        }
-        Paint paint = new Paint(1);
-        paint.setShader(bitmapShader);
-        paint.setFilterBitmap(true);
-        return paint;
-    }
+public final class s4 {
+    public static final s4 e;
+    public static final s4 f;
+    public static final s4 g;
+    public static final s4 h;
+    public static final s4 i;
+    public static final s4 j;
+    public final Object a;
+    public final int b;
+    public final Class c;
+    public final u34 d;
 
-    public static void b(Canvas canvas, cyb cybVar, int i, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i << 3, (float[]) cybVar.c, 0, (float[]) cybVar.d, 0, (int[]) cybVar.f, 0, (short[]) cybVar.e, 0, i * 6, paint);
-    }
-
-    public static ArrayList c(Context context) {
-        ActivityManager activityManager;
-        List<ActivityManager.RunningAppProcessInfo> list;
-        context.getClass();
-        int i = context.getApplicationInfo().uid;
-        String str = context.getApplicationInfo().processName;
-        Object systemService = context.getSystemService("activity");
-        if (systemService instanceof ActivityManager) {
-            activityManager = (ActivityManager) systemService;
+    static {
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction3;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction4;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction5;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction6;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction7;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction8;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction9;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction10;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction11;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction12;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction13;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction14;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction15 = null;
+        new s4(1, (String) null);
+        new s4(2, (String) null);
+        new s4(4, (String) null);
+        new s4(8, (String) null);
+        e = new s4(16, (String) null);
+        new s4(32, (String) null);
+        new s4(64, (String) null);
+        new s4(128, (String) null);
+        new s4(y4.class, 256);
+        new s4(y4.class, 512);
+        new s4(z4.class, 1024);
+        new s4(z4.class, 2048);
+        f = new s4(4096, (String) null);
+        g = new s4(8192, (String) null);
+        new s4(16384, (String) null);
+        new s4(32768, (String) null);
+        new s4(65536, (String) null);
+        new s4(d5.class, 131072);
+        new s4(262144, (String) null);
+        new s4(524288, (String) null);
+        new s4(1048576, (String) null);
+        new s4(e5.class, 2097152);
+        new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN, 16908342, null, null, null);
+        new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION, 16908343, null, null, b5.class);
+        h = new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null, null);
+        new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT, 16908345, null, null, null);
+        i = new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null, null);
+        new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT, 16908347, null, null, null);
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 29) {
+            accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP;
         } else {
-            activityManager = null;
+            accessibilityAction = null;
         }
-        if (activityManager == null || (list = activityManager.getRunningAppProcesses()) == null) {
-            list = c24.a;
+        new s4(accessibilityAction, 16908358, null, null, null);
+        if (i2 >= 29) {
+            accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_DOWN;
+        } else {
+            accessibilityAction2 = null;
         }
-        ArrayList arrayList = new ArrayList();
-        for (Object obj : list) {
-            if (obj != null) {
-                arrayList.add(obj);
+        new s4(accessibilityAction2, 16908359, null, null, null);
+        if (i2 >= 29) {
+            accessibilityAction3 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_LEFT;
+        } else {
+            accessibilityAction3 = null;
+        }
+        new s4(accessibilityAction3, 16908360, null, null, null);
+        if (i2 >= 29) {
+            accessibilityAction4 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_RIGHT;
+        } else {
+            accessibilityAction4 = null;
+        }
+        new s4(accessibilityAction4, 16908361, null, null, null);
+        new s4(AccessibilityNodeInfo.AccessibilityAction.ACTION_CONTEXT_CLICK, 16908348, null, null, null);
+        if (i2 >= 24) {
+            accessibilityAction5 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS;
+        } else {
+            accessibilityAction5 = null;
+        }
+        j = new s4(accessibilityAction5, 16908349, null, null, c5.class);
+        if (i2 >= 26) {
+            accessibilityAction6 = AccessibilityNodeInfo.AccessibilityAction.ACTION_MOVE_WINDOW;
+        } else {
+            accessibilityAction6 = null;
+        }
+        new s4(accessibilityAction6, 16908354, null, null, a5.class);
+        if (i2 >= 28) {
+            accessibilityAction7 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TOOLTIP;
+        } else {
+            accessibilityAction7 = null;
+        }
+        new s4(accessibilityAction7, 16908356, null, null, null);
+        if (i2 >= 28) {
+            accessibilityAction8 = AccessibilityNodeInfo.AccessibilityAction.ACTION_HIDE_TOOLTIP;
+        } else {
+            accessibilityAction8 = null;
+        }
+        new s4(accessibilityAction8, 16908357, null, null, null);
+        if (i2 >= 30) {
+            accessibilityAction9 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PRESS_AND_HOLD;
+        } else {
+            accessibilityAction9 = null;
+        }
+        new s4(accessibilityAction9, 16908362, null, null, null);
+        if (i2 >= 30) {
+            accessibilityAction10 = AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER;
+        } else {
+            accessibilityAction10 = null;
+        }
+        new s4(accessibilityAction10, 16908372, null, null, null);
+        if (i2 >= 32) {
+            accessibilityAction11 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_START;
+        } else {
+            accessibilityAction11 = null;
+        }
+        new s4(accessibilityAction11, 16908373, null, null, null);
+        if (i2 >= 32) {
+            accessibilityAction12 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_DROP;
+        } else {
+            accessibilityAction12 = null;
+        }
+        new s4(accessibilityAction12, 16908374, null, null, null);
+        if (i2 >= 32) {
+            accessibilityAction13 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_CANCEL;
+        } else {
+            accessibilityAction13 = null;
+        }
+        new s4(accessibilityAction13, 16908375, null, null, null);
+        if (i2 >= 33) {
+            accessibilityAction14 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TEXT_SUGGESTIONS;
+        } else {
+            accessibilityAction14 = null;
+        }
+        new s4(accessibilityAction14, 16908376, null, null, null);
+        if (i2 >= 34) {
+            accessibilityAction15 = u4.e();
+        }
+        new s4(accessibilityAction15, 16908382, null, null, null);
+    }
+
+    public s4(Object obj, int i2, String str, u34 u34Var, Class cls) {
+        this.b = i2;
+        this.d = u34Var;
+        if (obj == null) {
+            this.a = new AccessibilityNodeInfo.AccessibilityAction(i2, str);
+        } else {
+            this.a = obj;
+        }
+        this.c = cls;
+    }
+
+    public final int a() {
+        return ((AccessibilityNodeInfo.AccessibilityAction) this.a).getId();
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof s4)) {
+            return false;
+        }
+        Object obj2 = ((s4) obj).a;
+        Object obj3 = this.a;
+        if (obj3 == null) {
+            if (obj2 != null) {
+                return false;
+            }
+            return true;
+        } else if (!obj3.equals(obj2)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public final int hashCode() {
+        Object obj = this.a;
+        if (obj != null) {
+            return obj.hashCode();
+        }
+        return 0;
+    }
+
+    public final String toString() {
+        StringBuilder sb = new StringBuilder("AccessibilityActionCompat: ");
+        String e2 = v4.e(this.b);
+        if (e2.equals("ACTION_UNKNOWN")) {
+            Object obj = this.a;
+            if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
+                e2 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
             }
         }
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i2 = 0;
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj2 = arrayList.get(i3);
-            i3++;
-            if (((ActivityManager.RunningAppProcessInfo) obj2).uid == i) {
-                arrayList2.add(obj2);
-            }
-        }
-        ArrayList arrayList3 = new ArrayList(al2.c(arrayList2, 10));
-        int size2 = arrayList2.size();
-        while (i2 < size2) {
-            Object obj3 = arrayList2.get(i2);
-            i2++;
-            ActivityManager.RunningAppProcessInfo runningAppProcessInfo = (ActivityManager.RunningAppProcessInfo) obj3;
-            String str2 = runningAppProcessInfo.processName;
-            str2.getClass();
-            arrayList3.add(new zk8(runningAppProcessInfo.pid, runningAppProcessInfo.importance, str2, rp5.a(runningAppProcessInfo.processName, str)));
-        }
-        return arrayList3;
+        sb.append(e2);
+        return sb.toString();
     }
 
-    public static rz d(AudioManager audioManager, nz nzVar, mm5 mm5Var, List list) {
-        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes(nzVar.b());
-        HashMap hashMap = new HashMap();
-        hashMap.put(2, new HashSet(gle.a(12)));
-        for (int i = 0; i < directProfilesForAttributes.size(); i++) {
-            AudioProfile audioProfile = (AudioProfile) directProfilesForAttributes.get(i);
-            if (audioProfile.getEncapsulationType() != 1) {
-                int format = audioProfile.getFormat();
-                if (g8c.N(format) || rz.h.containsKey(Integer.valueOf(format))) {
-                    if (hashMap.containsKey(Integer.valueOf(format))) {
-                        Set set = (Set) hashMap.get(Integer.valueOf(format));
-                        set.getClass();
-                        set.addAll(gle.a(audioProfile.getChannelMasks()));
-                    } else {
-                        hashMap.put(Integer.valueOf(format), new HashSet(gle.a(audioProfile.getChannelMasks())));
-                    }
-                }
-            }
-        }
-        jm5 p = mm5.p();
-        for (Map.Entry entry : hashMap.entrySet()) {
-            p.c(new qz(((Integer) entry.getKey()).intValue(), (Set) entry.getValue()));
-        }
-        return new rz(p.f(), mm5Var, list);
+    public s4(Class cls, int i2) {
+        this(null, i2, null, null, cls);
     }
 
-    public static AudioDeviceInfo e(AudioManager audioManager, nz nzVar) {
-        audioManager.getClass();
-        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes(nzVar.b());
-        if (audioDevicesForAttributes.isEmpty()) {
-            return null;
-        }
-        return (AudioDeviceInfo) audioDevicesForAttributes.get(0);
-    }
-
-    public static zk8 f(Context context) {
-        Object obj;
-        String j;
-        context.getClass();
-        int myPid = Process.myPid();
-        ArrayList c = c(context);
-        int size = c.size();
-        int i = 0;
-        while (true) {
-            if (i < size) {
-                obj = c.get(i);
-                i++;
-                if (((zk8) obj).b == myPid) {
-                    break;
-                }
-            } else {
-                obj = null;
-                break;
-            }
-        }
-        zk8 zk8Var = (zk8) obj;
-        if (zk8Var == null) {
-            int i2 = Build.VERSION.SDK_INT;
-            if (i2 > 33) {
-                j = Process.myProcessName();
-                j.getClass();
-            } else if ((i2 < 28 || (j = Application.getProcessName()) == null) && (j = fo.j()) == null) {
-                j = "";
-            }
-            return new zk8(myPid, 0, j, false);
-        }
-        return zk8Var;
-    }
-
-    public static Object g(Bundle bundle) {
-        return bundle.getParcelable("RESULT_DATA", Intent.class);
-    }
-
-    public static String h(AccessibilityNodeInfo accessibilityNodeInfo) {
-        return accessibilityNodeInfo.getUniqueId();
-    }
-
-    public static boolean i(AccessibilityNodeInfo accessibilityNodeInfo) {
-        return accessibilityNodeInfo.isTextSelectable();
-    }
-
-    public static uo j(agc agcVar, sfc sfcVar) {
-        OnBackInvokedDispatcher findOnBackInvokedDispatcher = agcVar.findOnBackInvokedDispatcher();
-        if (findOnBackInvokedDispatcher == null) {
-            return null;
-        }
-        uo uoVar = new uo(sfcVar, (byte) 6);
-        findOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, uoVar);
-        return uoVar;
-    }
-
-    public static void k(ShortcutInfo.Builder builder) {
-        builder.setExcludedFromSurfaces(0);
-    }
-
-    public static void l(agc agcVar, uo uoVar) {
-        OnBackInvokedDispatcher findOnBackInvokedDispatcher = agcVar.findOnBackInvokedDispatcher();
-        if (findOnBackInvokedDispatcher != null) {
-            findOnBackInvokedDispatcher.unregisterOnBackInvokedCallback(uoVar);
-        }
+    public s4(int i2, String str) {
+        this(null, i2, str, null, null);
     }
 }

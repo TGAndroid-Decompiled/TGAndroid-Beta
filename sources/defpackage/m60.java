@@ -1,19 +1,23 @@
 package defpackage;
-public final class m60 implements zn7 {
+public final class m60 implements zq7 {
     public static final m60 a = new Object();
-    public static final w84 b = w84.c("rolloutVariant");
-    public static final w84 c = w84.c("parameterKey");
-    public static final w84 d = w84.c("parameterValue");
-    public static final w84 e = w84.c("templateVersion");
+    public static final sa4 b = sa4.c("timestamp");
+    public static final sa4 c = sa4.c("type");
+    public static final sa4 d = sa4.c("app");
+    public static final sa4 e = sa4.c("device");
+    public static final sa4 f = sa4.c("log");
+    public static final sa4 g = sa4.c("rollouts");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        bz2 bz2Var = (bz2) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, ((g90) bz2Var).a);
-        g90 g90Var = (g90) bz2Var;
-        ao7Var.a(c, g90Var.b);
-        ao7Var.a(d, g90Var.c);
-        ao7Var.g(e, g90Var.d);
+        yz2 yz2Var = (yz2) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.g(b, ((t80) yz2Var).a);
+        t80 t80Var = (t80) yz2Var;
+        ar7Var.a(c, t80Var.b);
+        ar7Var.a(d, t80Var.c);
+        ar7Var.a(e, t80Var.d);
+        ar7Var.a(f, t80Var.e);
+        ar7Var.a(g, t80Var.f);
     }
 }

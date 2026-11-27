@@ -1,33 +1,17 @@
 package defpackage;
-public final class r3f extends vef {
-    private static final r3f zzb;
-    private int zzd;
-    private int zze;
+public final class r3f implements zq7 {
+    public static final r3f a = new Object();
 
     static {
-        ?? vefVar = new vef();
-        zzb = vefVar;
-        vef.e(r3f.class, vefVar);
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
     }
 
     @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new vef();
-            }
-            return new sgf(zzb, "\u0001\u0001\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0001᠌\u0000", new Object[]{"zzd", "zze", cff.r});
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return (byte) 1;
+        throw new ClassCastException();
     }
 }

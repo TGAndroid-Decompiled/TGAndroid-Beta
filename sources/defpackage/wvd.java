@@ -1,17 +1,45 @@
 package defpackage;
-public final class wvd implements zn7 {
-    public static final wvd a = new Object();
+public final class wvd extends dwd {
+    public final transient int c;
+    public final transient int d;
+    public final dwd e;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+    public wvd(dwd dwdVar, int i, int i2) {
+        this.e = dwdVar;
+        this.c = i;
+        this.d = i2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final Object get(int i) {
+        a6f.a(i, this.d);
+        return this.e.get(i + this.c);
+    }
+
+    @Override
+    public final int i() {
+        return this.e.j() + this.c + this.d;
+    }
+
+    @Override
+    public final int j() {
+        return this.e.j() + this.c;
+    }
+
+    @Override
+    public final Object[] l() {
+        return this.e.l();
+    }
+
+    @Override
+    public final dwd subList(int i, int i2) {
+        a6f.b(i, i2, this.d);
+        int i3 = this.c;
+        return this.e.subList(i + i3, i2 + i3);
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

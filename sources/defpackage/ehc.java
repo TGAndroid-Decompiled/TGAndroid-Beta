@@ -1,33 +1,15 @@
 package defpackage;
 
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-public final class ehc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-    public final TLRPC.TL_error c;
-
-    public ehc(VoIPService voIPService, TLRPC.TL_error tL_error, byte b) {
-        this.a = b;
-        this.b = voIPService;
-        this.c = tL_error;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.view.View;
+public abstract class ehc {
+    public static View.AccessibilityDelegate a(View view) {
+        return view.getAccessibilityDelegate();
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        TLRPC.TL_error tL_error = this.c;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$startGroupCall$31(tL_error);
-                return;
-            case 1:
-                voIPService.lambda$startScreenCapture$62(tL_error);
-                return;
-            default:
-                voIPService.lambda$startGroupCall$25(tL_error);
-                return;
-        }
+    public static void b(View view, Context context, int[] iArr, AttributeSet attributeSet, TypedArray typedArray, int i, int i2) {
+        view.saveAttributeDataForStyleable(context, iArr, attributeSet, typedArray, i, i2);
     }
 }

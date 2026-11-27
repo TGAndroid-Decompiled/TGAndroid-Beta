@@ -1,111 +1,301 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.opengl.EGL14;
-import android.opengl.EGLConfig;
-import android.opengl.EGLContext;
-import android.opengl.EGLDisplay;
-import android.opengl.EGLSurface;
-import android.os.Handler;
-import android.os.HandlerThread;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-public final class cnc {
-    public final Context a;
-    public final Handler b;
-    public final int c;
-    public final byte d;
-    public final ArrayList e = new ArrayList();
-    public volatile enc[] f = new enc[0];
-    public final AtomicBoolean g = new AtomicBoolean();
-    public final int[] h = new int[2];
-    public EGLDisplay i = EGL14.EGL_NO_DISPLAY;
-    public EGLContext j = EGL14.EGL_NO_CONTEXT;
-    public EGLSurface k = EGL14.EGL_NO_SURFACE;
-    public EGLConfig l;
-    public cl3 m;
-    public cl3 n;
-    public cl3 o;
-    public long p;
-    public long q;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.view.MotionEvent;
+import android.view.View;
+public final class cnc extends View {
+    public ValueAnimator E;
+    public final kjc F;
+    public ValueAnimator G;
+    public float H;
+    public float I;
+    public float J;
+    public b29 a;
+    public b29 b;
+    public b29 c;
+    public final Paint d;
+    public final Paint e;
+    public final Paint f;
+    public final Path h;
+    public final int n;
     public int r;
+    public int s;
+    public boolean w;
+    public int x;
+    public bnc y;
 
-    public cnc(Context context, int i) {
-        this.a = context;
-        this.d = i;
-        this.c = Math.max(1, Math.min(192, Math.round(context.getResources().getDisplayMetrics().density * 42.0f)));
-        HandlerThread handlerThread = new HandlerThread("WalletDiamondTextures");
-        handlerThread.start();
-        this.b = new Handler(handlerThread.getLooper());
+    public cnc(Context context, kjc kjcVar) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        Paint paint2 = new Paint(1);
+        this.e = paint2;
+        Paint paint3 = new Paint(1);
+        this.f = paint3;
+        this.h = new Path();
+        int L = hl.L(26.0f);
+        this.n = L;
+        this.r = L;
+        this.s = 0;
+        this.w = false;
+        this.x = 0;
+        this.H = 1.0f;
+        this.F = kjcVar;
+        kjcVar.a(this);
+        setLayerType(1, null);
+        paint2.setColor(-1);
+        paint.setColor(-16777216);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint3.setColor(-16777216);
+        paint3.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_ATOP));
+        paint3.setAlpha(35);
     }
 
-    public final void a() {
-        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        this.i = eglGetDisplay;
-        int[] iArr = new int[2];
-        if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            int[] iArr2 = new int[1];
-            if (EGL14.eglChooseConfig(this.i, new int[]{12352, 64, 12339, 5, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
-                EGLConfig eGLConfig = eGLConfigArr[0];
-                this.l = eGLConfig;
-                this.j = EGL14.eglCreateContext(this.i, eGLConfig, EGL14.EGL_NO_CONTEXT, new int[]{12440, 3, 12344}, 0);
-                EGLSurface eglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(this.i, this.l, new int[]{12375, 1, 12374, 1, 12344}, 0);
-                this.k = eglCreatePbufferSurface;
-                if (EGL14.eglMakeCurrent(this.i, eglCreatePbufferSurface, eglCreatePbufferSurface, this.j)) {
-                    Context context = this.a;
-                    cl3 cl3Var = new cl3(context, 2);
-                    byte b = this.d;
-                    cl3Var.C = b;
-                    this.m = cl3Var;
-                    cl3 cl3Var2 = new cl3(context, 2);
-                    cl3Var2.C = b;
-                    this.n = cl3Var2;
-                    this.q = 0L;
-                    this.p = 0L;
-                    this.r = 0;
-                    return;
+    private void setPressedBtn(boolean z) {
+        float f;
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f2 = this.H;
+        if (z) {
+            f = 0.8f;
+        } else {
+            f = 1.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+        this.G = ofFloat;
+        ofFloat.addUpdateListener(new zmc(this, (byte) 0));
+        this.G.setDuration(150L);
+        this.G.start();
+    }
+
+    public final void a(int i, boolean z, boolean z2) {
+        ValueAnimator ofInt;
+        ValueAnimator valueAnimator = this.E;
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            this.E.removeAllUpdateListeners();
+            this.E.cancel();
+            z2 = false;
+        }
+        int i2 = this.n;
+        if (z2) {
+            b29 b29Var = this.c;
+            ValueAnimator valueAnimator2 = this.E;
+            if (b29Var != null) {
+                if (valueAnimator2 != null) {
+                    valueAnimator2.removeAllUpdateListeners();
+                    this.E.cancel();
                 }
-                sc8.j("Wallet EGL context failed");
+                if (z) {
+                    ofInt = ValueAnimator.ofInt(20, 100);
+                } else {
+                    ofInt = ValueAnimator.ofInt(100, 20);
+                }
+                this.E = ofInt;
+                ofInt.addUpdateListener(new zmc(this, (byte) 1));
+                this.E.setDuration(200L);
+                this.E.start();
+                if (i == 2) {
+                    this.c.I(0, false, false);
+                    this.c.start();
+                }
+            } else {
+                if (valueAnimator2 != null) {
+                    valueAnimator2.removeAllUpdateListeners();
+                    this.E.cancel();
+                }
+                ValueAnimator ofInt2 = ValueAnimator.ofInt(0, i2);
+                this.E = ofInt2;
+                if (z) {
+                    this.r = i2;
+                    ofInt2.addUpdateListener(new zmc(this, (byte) 2));
+                    this.E.addListener(new anc(this, (byte) 0));
+                    this.E.setDuration(200L);
+                    this.E.start();
+                    this.b.I(0, false, false);
+                    this.b.start();
+                } else {
+                    this.s = i2;
+                    ofInt2.addUpdateListener(new zmc(this, (byte) 3));
+                    this.E.setDuration(200L);
+                    this.E.addListener(new anc(this, (byte) 1));
+                    this.E.start();
+                }
+            }
+        } else if (z) {
+            this.s = i2;
+            this.r = 0;
+            this.x = 100;
+            if (i == 3 || i == 1) {
+                b29 b29Var2 = this.b;
+                b29Var2.I(b29Var2.e[0] - 1, false, false);
+            }
+        } else {
+            this.s = 0;
+            this.r = i2;
+            this.x = 20;
+        }
+        this.w = z;
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        boolean z;
+        boolean z2;
+        int i;
+        Path path;
+        int i2;
+        canvas.save();
+        float f = this.H;
+        canvas.scale(f, f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float x = ((View) getParent()).getX() + getX();
+        float y = ((View) ((View) getParent()).getParent()).getY() + getY();
+        kjc kjcVar = this.F;
+        int i3 = kjcVar.g;
+        Paint paint = kjcVar.j;
+        fp fpVar = kjcVar.a;
+        float f2 = kjcVar.g;
+        float f3 = 1.12f * f2;
+        float f4 = -x;
+        float f5 = -y;
+        fpVar.k(f4 - ((f3 - kjcVar.f) / 2.0f), f5 - ((f3 - f2) / 2.0f), (i3 * 1.12f) / ((Bitmap) fpVar.c).getHeight(), kjcVar.h);
+        kjcVar.c.i(f4, f5, kjcVar.f - x, kjcVar.g - y);
+        b29 b29Var = this.c;
+        Paint paint2 = this.e;
+        Paint paint3 = this.d;
+        int i4 = this.n;
+        if (b29Var != null) {
+            if (this.x > 20) {
+                Paint paint4 = this.f;
+                paint4.setAlpha((int) ((i2 * 35) / 100.0f));
+                paint2.setAlpha((int) ((this.x * 255) / 100.0f));
+                canvas.drawCircle(width, height, i4, paint2);
+                this.c.l(canvas, paint3, false, 0L, 0);
+                this.c.l(canvas, paint4, false, 0L, 0);
                 return;
             }
-            sc8.j("Wallet EGL config failed");
-            return;
+            float f6 = i4;
+            if (!kjcVar.i) {
+                paint = (Paint) fpVar.a;
+            }
+            canvas.drawCircle(width, height, f6, paint);
+            if (kjcVar.e) {
+                canvas.drawCircle(width, height, f6, (Paint) kjcVar.c.a);
+            }
+            this.c.draw(canvas);
+        } else if (this.b != null && this.a != null) {
+            int i5 = this.r;
+            if (i5 == i4 && this.s == 0) {
+                z = true;
+            } else {
+                z = false;
+            }
+            int i6 = this.s;
+            if (i6 == i4 && i5 == 0) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            Path path2 = this.h;
+            if (i6 == i4 && i5 > 0 && i5 != i4) {
+                canvas.drawCircle(width, height, i6, paint2);
+                canvas.drawCircle(width, height, this.r, paint3);
+                this.b.setAlpha(255);
+                i = i4;
+                this.b.l(canvas, paint3, false, 0L, 0);
+                this.b.setAlpha(35);
+                this.b.draw(canvas);
+                path2.reset();
+                path = path2;
+                path.addCircle(width, height, this.r, Path.Direction.CW);
+                canvas.clipPath(path);
+                canvas.drawCircle(width, height, this.r, paint3);
+            } else {
+                i = i4;
+                path = path2;
+            }
+            if (z || this.r > 0) {
+                float f7 = this.r;
+                if (!kjcVar.i) {
+                    paint = (Paint) fpVar.a;
+                }
+                canvas.drawCircle(width, height, f7, paint);
+                if (kjcVar.e) {
+                    canvas.drawCircle(width, height, this.r, (Paint) kjcVar.c.a);
+                }
+                this.a.draw(canvas);
+            }
+            if (z2 || (this.s > 0 && this.r == i)) {
+                path.reset();
+                path.addCircle(width, height, this.s, Path.Direction.CW);
+                canvas.clipPath(path);
+                canvas.drawCircle(width, height, this.s, paint2);
+                this.b.setAlpha(255);
+                this.b.l(canvas, paint3, false, 0L, 0);
+                this.b.setAlpha(35);
+                this.b.draw(canvas);
+            }
+            canvas.restore();
         }
-        sc8.j("Wallet EGL initialize failed");
     }
 
-    public final void b() {
-        cl3 cl3Var = this.m;
-        if (cl3Var != null) {
-            cl3Var.b();
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z;
+        bnc bncVar;
+        int action = motionEvent.getAction();
+        if (action != 0) {
+            boolean z2 = false;
+            if (action != 1) {
+                if (action == 3) {
+                    setPressedBtn(false);
+                    return true;
+                }
+            } else {
+                setPressedBtn(false);
+                float x = motionEvent.getX();
+                float y = motionEvent.getY();
+                float f = this.I;
+                float f2 = this.J;
+                float abs = Math.abs(f - x);
+                float abs2 = Math.abs(f2 - y);
+                if (abs <= hl.L(48.0f) && abs2 <= hl.L(48.0f)) {
+                    int i = this.r;
+                    int i2 = this.n;
+                    if (i == i2 && this.s == 0) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    if (this.s == i2 && i == 0) {
+                        z2 = true;
+                    }
+                    if ((z || z2) && (bncVar = this.y) != null) {
+                        bncVar.c(this);
+                    }
+                }
+            }
+            return true;
         }
-        cl3 cl3Var2 = this.n;
-        if (cl3Var2 != null) {
-            cl3Var2.b();
-        }
-        cl3 cl3Var3 = this.o;
-        if (cl3Var3 != null) {
-            cl3Var3.b();
-        }
-        this.o = null;
-        this.n = null;
-        this.m = null;
-        EGLDisplay eGLDisplay = this.i;
-        EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
-        EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-        EGL14.eglDestroySurface(this.i, this.k);
-        EGL14.eglDestroyContext(this.i, this.j);
-        EGL14.eglTerminate(this.i);
-        EGL14.eglReleaseThread();
-        this.i = EGL14.EGL_NO_DISPLAY;
-        this.j = EGL14.EGL_NO_CONTEXT;
-        this.k = EGL14.EGL_NO_SURFACE;
+        setPressedBtn(true);
+        this.I = motionEvent.getX();
+        this.J = motionEvent.getY();
+        return true;
     }
 
-    public final void c() {
-        if (this.g.compareAndSet(false, true)) {
-            this.b.post(new kbc(this, (byte) 22));
-        }
+    public void setOnBtnClickedListener(bnc bncVar) {
+        this.y = bncVar;
     }
 }

@@ -1,46 +1,34 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-public final class n6d extends xx4 {
-    public final Context F;
+import j$.util.Objects;
+import java.util.Set;
+public final class n6d implements fg0 {
+    public final d05 a;
+    public final ho b;
+    public wi5 c;
+    public Set d;
+    public boolean e;
+    public final n05 f;
 
-    public n6d(ey4 ey4Var, fy4 fy4Var, ntb ntbVar, Context context, Looper looper) {
-        super(45, ey4Var, fy4Var, ntbVar, context, looper);
-        this.F = context;
+    public n6d(n05 n05Var, d05 d05Var, ho hoVar) {
+        Objects.requireNonNull(n05Var);
+        this.f = n05Var;
+        this.c = null;
+        this.d = null;
+        this.e = false;
+        this.a = d05Var;
+        this.b = hoVar;
     }
 
     @Override
-    public final IInterface b(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+    public final void a(ws2 ws2Var) {
+        this.f.y.post(new iqd((Object) this, (Object) ws2Var, false, (byte) 12));
+    }
+
+    public final void b(ws2 ws2Var) {
+        l6d l6dVar = (l6d) this.f.s.get(this.b);
+        if (l6dVar != null) {
+            l6dVar.k(ws2Var);
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.safetynet.internal.ISafetyNetService");
-        if (queryLocalInterface instanceof hce) {
-            return (hce) queryLocalInterface;
-        }
-        return new hce(iBinder);
-    }
-
-    @Override
-    public final int i() {
-        return 12200000;
-    }
-
-    @Override
-    public final String l() {
-        return "com.google.android.gms.safetynet.internal.ISafetyNetService";
-    }
-
-    @Override
-    public final String n() {
-        return "com.google.android.gms.safetynet.service.START";
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
     }
 }

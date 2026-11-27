@@ -1,13 +1,36 @@
 package defpackage;
 
-import android.graphics.RectF;
-import android.text.StaticLayout;
-public final class db2 {
-    public byte a;
-    public float b;
-    public float c;
-    public StaticLayout d;
-    public final RectF e = new RectF();
-    public n41 f;
-    public ff0 g;
+import android.text.Spanned;
+import java.util.Comparator;
+public final class db2 implements Comparator {
+    public final byte a;
+    public final Spanned b;
+
+    public db2(Spanned spanned, byte b) {
+        this.a = b;
+        this.b = spanned;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        int spanStart;
+        int spanStart2;
+        byte b = this.a;
+        Spanned spanned = this.b;
+        switch (b) {
+            case 0:
+                spanStart = spanned.getSpanStart((jk2) obj2);
+                spanStart2 = spanned.getSpanStart((jk2) obj);
+                break;
+            case 1:
+                spanStart = spanned.getSpanStart((fmb) obj2);
+                spanStart2 = spanned.getSpanStart((fmb) obj);
+                break;
+            default:
+                spanStart = spanned.getSpanStart((gk9) obj2);
+                spanStart2 = spanned.getSpanStart((gk9) obj);
+                break;
+        }
+        return spanStart - spanStart2;
+    }
 }

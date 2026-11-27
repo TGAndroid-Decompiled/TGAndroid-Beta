@@ -1,58 +1,53 @@
 package defpackage;
 
-import android.app.AppOpsManager;
-import android.content.Context;
-import android.os.Binder;
-import android.os.Build;
-import android.os.Process;
-import j$.util.Objects;
-public abstract class qqe {
-    public static int a(Context context, String str, int i, int i2, String str2) {
-        int noteProxyOpNoThrow;
-        if (context.checkPermission(str, i, i2) != -1) {
-            String permissionToOp = AppOpsManager.permissionToOp(str);
-            if (permissionToOp != null) {
-                if (str2 == null) {
-                    String[] packagesForUid = context.getPackageManager().getPackagesForUid(i2);
-                    if (packagesForUid != null && packagesForUid.length > 0) {
-                        str2 = packagesForUid[0];
-                    }
-                }
-                int myUid = Process.myUid();
-                String packageName = context.getPackageName();
-                if (myUid == i2 && Objects.equals(packageName, str2)) {
-                    if (Build.VERSION.SDK_INT >= 29) {
-                        AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService(AppOpsManager.class);
-                        int callingUid = Binder.getCallingUid();
-                        int i3 = 1;
-                        if (appOpsManager == null) {
-                            noteProxyOpNoThrow = 1;
-                        } else {
-                            noteProxyOpNoThrow = appOpsManager.checkOpNoThrow(permissionToOp, callingUid, str2);
-                        }
-                        if (noteProxyOpNoThrow == 0) {
-                            String i4 = rr.i(context);
-                            if (appOpsManager != null) {
-                                i3 = appOpsManager.checkOpNoThrow(permissionToOp, i2, i4);
-                            }
-                            noteProxyOpNoThrow = i3;
-                        }
-                    } else {
-                        noteProxyOpNoThrow = ((AppOpsManager) context.getSystemService(AppOpsManager.class)).noteProxyOpNoThrow(permissionToOp, str2);
-                    }
-                } else {
-                    noteProxyOpNoThrow = ((AppOpsManager) context.getSystemService(AppOpsManager.class)).noteProxyOpNoThrow(permissionToOp, str2);
-                }
-                if (noteProxyOpNoThrow != 0) {
-                    return -2;
-                }
-            }
-            return 0;
-        }
-        return -1;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+import java.util.Locale;
+public final class qqe extends c4 {
+    public static final Parcelable.Creator<qqe> CREATOR = new g3e((byte) 4);
+    public final String a;
+    public final int b;
+    public final int c;
+
+    public qqe(String str, int i, int i2) {
+        this.a = str;
+        this.b = i;
+        this.c = i2;
     }
 
-    public static int b(Context context, String str) {
-        return a(context, str, Process.myPid(), Process.myUid(), context.getPackageName());
+    public final boolean equals(Object obj) {
+        String str;
+        String str2;
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && qqe.class == obj.getClass()) {
+            qqe qqeVar = (qqe) obj;
+            if (this.b == qqeVar.b && this.c == qqeVar.c && ((str2 = this.a) == (str = qqeVar.a) || (str2 != null && str2.equals(str)))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.a, Integer.valueOf(this.b), Integer.valueOf(this.c)});
+    }
+
+    public final String toString() {
+        Locale locale = Locale.US;
+        return c00.k(bs2.p("WebIconParcelable{", this.b, "x", this.c, " - "), this.a, "}");
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.l(parcel, 1, this.a);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        bye.q(parcel, 3, 4);
+        parcel.writeInt(this.c);
+        bye.s(parcel, r);
     }
 }

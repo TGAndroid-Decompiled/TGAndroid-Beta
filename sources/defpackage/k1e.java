@@ -1,18 +1,17 @@
 package defpackage;
-public enum k1e implements boe {
-    MODE_UNKNOWN(0),
-    MODE_ACCURATE(1),
-    MODE_FAST(2),
-    MODE_SELFIE(3);
-    
-    public final byte a;
+public final class k1e implements zq7 {
+    public static final k1e a = new Object();
 
-    k1e(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)));
     }
 
     @Override
-    public final String toString() {
-        return "<" + k1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,61 +1,75 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class tea extends i98 {
-    public final uea a;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class tea extends FrameLayout {
+    public final de0 a;
+    public final lea b;
+    public final TextView c;
+    public long d;
+    public long e;
+    public final int f;
+    public final vnb h;
 
-    public tea(uea ueaVar) {
-        this.a = ueaVar;
+    public tea(Context context, vnb vnbVar) {
+        super(context);
+        this.f = yac.t0;
+        this.h = vnbVar;
+        setWillNotDraw(false);
+        de0 de0Var = new de0(context);
+        this.a = de0Var;
+        de0Var.setRoundRadius(hl.L(28.0f));
+        addView(de0Var, tre.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.c = textView;
+        yob.X(textView, aob.j5, vnbVar);
+        textView.setTextSize(1, 12.0f);
+        textView.setMaxLines(2);
+        textView.setGravity(49);
+        textView.setLines(2);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, tre.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
+        this.b = new lea(this, vnbVar, (byte) 1);
+        int i = aob.i6;
+        Drawable Y = aob.Y(aob.w0(null, i, false), hl.L(2.0f), hl.L(2.0f));
+        uob M = yob.M(i);
+        setBackground(Y);
+        yob.j(this, Y, null, M, null);
+    }
+
+    public long getCurrentDialog() {
+        return this.d;
+    }
+
+    public long getCurrentTopic() {
+        return this.e;
     }
 
     @Override
-    public final boolean K() {
-        return true;
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(103.0f), 1073741824));
     }
 
-    @Override
-    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        ImageReceiver imageReceiver;
-        gb2 gb2Var;
-        k27 messageObject;
-        wea weaVar = this.a.c;
-        sca scaVar = weaVar.r;
-        if (scaVar != null) {
-            int childCount = scaVar.getChildCount();
-            for (int i2 = 0; i2 < childCount; i2++) {
-                View childAt = weaVar.r.getChildAt(i2);
-                if ((childAt instanceof gb2) && k27Var != null && (messageObject = (gb2Var = (gb2) childAt).getMessageObject()) != null && messageObject.e1() == k27Var.e1()) {
-                    ArrayList arrayList = messageObject.s0;
-                    if (arrayList != null && i >= 0 && i < arrayList.size()) {
-                        imageReceiver = gb2Var.V1(((Integer) messageObject.s0.get(i)).intValue());
-                    } else {
-                        imageReceiver = gb2Var.V1(i);
-                    }
-                } else {
-                    imageReceiver = null;
-                }
-                if (imageReceiver != null) {
-                    int[] iArr = new int[2];
-                    childAt.getLocationInWindow(iArr);
-                    p98 p98Var = new p98();
-                    p98Var.b = iArr[0];
-                    p98Var.c = childAt.getPaddingTop() + iArr[1];
-                    p98Var.d = weaVar.r;
-                    p98Var.m = null;
-                    p98Var.a = imageReceiver;
-                    if (z) {
-                        p98Var.e = imageReceiver.p();
-                    }
-                    p98Var.h = imageReceiver.z();
-                    p98Var.j = 0;
-                    p98Var.i = 0;
-                    return p98Var;
-                }
-            }
+    public void setAsNewBotForumTopic(boolean z) {
+        int i;
+        if (z) {
+            i = 2131745163;
+        } else {
+            i = 2131745162;
         }
-        return null;
+        this.c.setText(ob6.M0(i, null));
+        de0 de0Var = this.a;
+        de0Var.setAnimatedEmojiDrawable(null);
+        oo4 oo4Var = new oo4(oo4.k[0]);
+        s26 s26Var = new s26(1, null);
+        s26Var.a("");
+        s26Var.i = 1.8f;
+        zm2 zm2Var = new zm2(oo4Var, s26Var, 0, 0);
+        zm2Var.x = true;
+        de0Var.setImageDrawable(zm2Var);
     }
 }

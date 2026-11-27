@@ -1,63 +1,108 @@
 package defpackage;
 
 import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class lf4 extends FrameLayout implements tjb {
-    public TextView a;
-    public TextView b;
-    public ls8 c;
-    public boolean d;
-    public TLRPC.TL_dialogFilterSuggested e;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+public class lf4 extends ReplacementSpan {
+    public final TextPaint a;
+    public final Paint b;
+    public StaticLayout c;
+    public float d;
+    public float e;
+    public int f;
+    public final int h;
+    public boolean n;
+    public int r;
+    public vnb s;
+    public String w;
 
-    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
-        return this.e;
+    public lf4(int i) {
+        float f;
+        TextPaint textPaint = new TextPaint(1);
+        this.a = textPaint;
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.w = "NEW";
+        this.h = i;
+        textPaint.setTypeface(hl.o());
+        paint.setStyle(Paint.Style.FILL);
+        if (i < 0) {
+            f = 12.0f;
+        } else {
+            f = i;
+        }
+        textPaint.setTextSize(hl.L(f));
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, bkb.j0);
+    public final void a() {
+        if (this.c == null) {
+            StaticLayout staticLayout = new StaticLayout(this.w, this.a, hl.q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.c = staticLayout;
+            this.d = staticLayout.getLineWidth(0);
+            this.e = this.c.getHeight();
         }
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.c.getText());
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), gl.L(64.0f));
-        measureChildWithMargins(this.c, i, 0, i2, 0);
-        TextView textView = this.a;
-        ls8 ls8Var = this.c;
-        measureChildWithMargins(textView, i, ls8Var.getMeasuredWidth(), i2, 0);
-        measureChildWithMargins(this.b, i, ls8Var.getMeasuredWidth(), i2, 0);
-    }
-
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.c.setOnClickListener(onClickListener);
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.c.setProgressColor(bkb.w0(null, bkb.Di, false));
-            invalidate();
-        } catch (Exception e) {
-            fa4.g(e, true);
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        int i6;
+        float f2;
+        a();
+        if (this.n) {
+            this.f = aob.v0(this.r, this.s);
         }
+        int i7 = this.f;
+        if (i7 == 0) {
+            i7 = paint.getColor();
+        }
+        Paint paint2 = this.b;
+        paint2.setColor(i7);
+        if (hl.B(i7) > 0.721f) {
+            i6 = -16777216;
+        } else {
+            i6 = -1;
+        }
+        TextPaint textPaint = this.a;
+        textPaint.setColor(i6);
+        paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
+        textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
+        float L = f + hl.L(2.0f);
+        float L2 = (i4 - this.e) + hl.L(1.0f);
+        RectF rectF = hl.P;
+        rectF.set(L, L2, this.d + L, this.e + L2);
+        float L3 = hl.L(4.4f);
+        float L4 = hl.L(-4.0f);
+        if (this.h == 8) {
+            f2 = -3.66f;
+        } else {
+            f2 = -2.33f;
+        }
+        rectF.inset(L4, hl.L(f2));
+        canvas.drawRoundRect(rectF, L3, L3, paint2);
+        canvas.save();
+        canvas.translate(L, L2);
+        this.c.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        a();
+        return (int) (hl.L(10.0f) + this.d);
+    }
+
+    public lf4() {
+        TextPaint textPaint = new TextPaint(1);
+        this.a = textPaint;
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.w = "NEW";
+        textPaint.setTypeface(hl.o());
+        paint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(hl.L(10.0f));
     }
 }

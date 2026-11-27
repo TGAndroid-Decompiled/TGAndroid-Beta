@@ -112,7 +112,7 @@ public final class RLottieNative {
                 Trace.endSection();
             }
         }
-        sc8.j("Called method on a recycled RLottie instance");
+        grb.i("Called method on a recycled RLottie instance");
         return 0;
     }
 

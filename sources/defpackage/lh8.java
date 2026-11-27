@@ -1,15 +1,43 @@
 package defpackage;
 
 import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-public final class lh8 extends BitmapDrawable {
-    public int[] a;
-    public Drawable b;
+public abstract class lh8 extends Drawable {
+    public final hf0 a;
+    public int b;
+    public int c = 255;
+
+    public lh8(vnb vnbVar) {
+        int v0 = aob.v0(aob.i6, vnbVar);
+        this.b = v0;
+        this.a = aob.Y(v0, 0, 0);
+    }
+
+    public abstract void a(int i);
 
     @Override
-    public final void setColorFilter(int i, PorterDuff.Mode mode) {
+    public final int getAlpha() {
+        return this.c;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.a.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        if (this.c != i) {
+            this.c = i;
+            a(i);
+        }
     }
 
     @Override

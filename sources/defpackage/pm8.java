@@ -1,45 +1,25 @@
 package defpackage;
+public final class pm8 {
+    public static final pm8 a;
+    public static final pm8 b;
+    public static final pm8 c;
+    public static final pm8[] d;
 
-import android.animation.ValueAnimator;
-import android.graphics.RectF;
-import org.telegram.ui.ProfileActivity;
-public final class pm8 extends gb3 {
-    public int F = -1;
-    public final ProfileActivity G;
-
-    public pm8(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+    static {
+        ?? r0 = new Enum("DEFAULT", 0);
+        a = r0;
+        ?? r1 = new Enum("VERY_LOW", 1);
+        b = r1;
+        ?? r3 = new Enum("HIGHEST", 2);
+        c = r3;
+        d = new pm8[]{r0, r1, r3};
     }
 
-    @Override
-    public final long K(long j, long j2, long j3) {
-        return 0L;
+    public static pm8 valueOf(String str) {
+        return (pm8) Enum.valueOf(pm8.class, str);
     }
 
-    @Override
-    public final void N() {
-        gl.c3(new w88(this, (byte) 20));
-    }
-
-    @Override
-    public final void P(s49 s49Var) {
-        RectF rectF = ProfileActivity.Z6;
-        this.G.I3();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.p.isEmpty();
-        boolean isEmpty2 = this.r.isEmpty();
-        boolean isEmpty3 = this.s.isEmpty();
-        boolean isEmpty4 = this.q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new u28(this, (byte) 13));
-            ofFloat.setDuration(this.e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().q(null, this.F, true);
-        }
-        super.m();
+    public static pm8[] values() {
+        return (pm8[]) d.clone();
     }
 }

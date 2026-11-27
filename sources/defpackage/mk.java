@@ -26,51 +26,51 @@ public final class mk implements Callable {
         switch (b) {
             case 0:
                 try {
-                    return (Boolean) ((qk) obj).run();
+                    return (Boolean) ((rk) obj).run();
                 } catch (Exception e) {
-                    fa4.g(e, true);
+                    cc4.g(e, true);
                     return Boolean.FALSE;
                 }
             case 1:
-                dy2 dy2Var = (dy2) ((rc1) obj).f;
-                dy2Var.getClass();
-                mv6.s();
-                tg2 tg2Var = dy2Var.c;
-                String str = (String) tg2Var.b;
-                if (!new File((File) ((jb4) tg2Var.c).c, str).exists()) {
-                    if (dy2Var.e() == null || !dy2Var.j.c()) {
+                yy2 yy2Var = (yy2) ((zc1) obj).f;
+                yy2Var.getClass();
+                rx6.v();
+                lh2 lh2Var = yy2Var.c;
+                String str = (String) lh2Var.b;
+                if (!new File((File) ((gd4) lh2Var.c).c, str).exists()) {
+                    if (yy2Var.e() == null || !yy2Var.j.c()) {
                         z = false;
                     }
                 } else {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Found previous crash marker.", null);
                     }
-                    new File((File) ((jb4) tg2Var.c).c, str).delete();
+                    new File((File) ((gd4) lh2Var.c).c, str).delete();
                 }
                 return Boolean.valueOf(z);
             case 2:
-                return new zs5((JsReplyProxyBoundaryInterface) obj);
+                return new cv5((JsReplyProxyBoundaryInterface) obj);
             case 3:
-                dv8 dv8Var = (dv8) ((wk4) obj).c;
-                zb3 zb3Var = (zb3) dv8Var.f;
-                l8a l8aVar = (l8a) dv8Var.c;
-                String str2 = zb3Var.a;
-                mv6.t();
+                oy8 oy8Var = (oy8) ((um4) obj).c;
+                sc3 sc3Var = (sc3) oy8Var.f;
+                bca bcaVar = (bca) oy8Var.c;
+                String str2 = sc3Var.a;
+                rx6.w();
                 try {
-                    HashMap c = zb3.c(l8aVar);
-                    xl3 xl3Var = new xl3(str2, c);
-                    xl3Var.B("User-Agent", "Crashlytics Android SDK/20.1.1");
-                    xl3Var.B("X-CRASHLYTICS-DEVELOPER-TOKEN", "470fa2b4ae81cd56ecbcda9735803434cec591fa");
-                    zb3.b(xl3Var, l8aVar);
+                    HashMap b2 = sc3.b(bcaVar);
+                    pm3 pm3Var = new pm3(str2, b2);
+                    pm3Var.A("User-Agent", "Crashlytics Android SDK/20.1.1");
+                    pm3Var.A("X-CRASHLYTICS-DEVELOPER-TOKEN", "470fa2b4ae81cd56ecbcda9735803434cec591fa");
+                    sc3.a(pm3Var, bcaVar);
                     String concat = "Requesting settings from ".concat(str2);
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", concat, null);
                     }
-                    String str3 = "Settings query params were: " + c;
+                    String str3 = "Settings query params were: " + b2;
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", str3, null);
                     }
-                    return zb3Var.d(xl3Var.t());
+                    return sc3Var.c(pm3Var.s());
                 } catch (IOException e2) {
                     Log.e("FirebaseCrashlytics", "Settings request failed.", e2);
                     return null;

@@ -1,13 +1,39 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-public final class on8 extends nd4 {
+import org.telegram.ui.PrivacySettingsActivity;
+public final class on8 implements Runnable {
+    public final byte a;
+    public final PrivacySettingsActivity b;
+
+    public on8(PrivacySettingsActivity privacySettingsActivity, byte b) {
+        this.a = b;
+        this.b = privacySettingsActivity;
+    }
+
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        canvas.save();
-        canvas.translate(gl.L(2.0f), 0.0f);
-        super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-        canvas.restore();
+    public final void run() {
+        byte b = this.a;
+        PrivacySettingsActivity privacySettingsActivity = this.b;
+        switch (b) {
+            case 0:
+                privacySettingsActivity.a.f();
+                privacySettingsActivity.S = true;
+                return;
+            case 1:
+                privacySettingsActivity.c.dismiss();
+                return;
+            default:
+                privacySettingsActivity.getClass();
+                c21 c21Var = new c21(privacySettingsActivity.getParentActivity(), null);
+                c21Var.h(2131624009, new String[0]);
+                c21Var.b.setText(ob6.M0(2131742442, null));
+                v21.g(privacySettingsActivity, c21Var, 1500).j();
+                try {
+                    privacySettingsActivity.fragmentView.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                privacySettingsActivity.E0();
+                return;
+        }
     }
 }

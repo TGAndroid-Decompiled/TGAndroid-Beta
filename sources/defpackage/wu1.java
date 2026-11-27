@@ -1,24 +1,17 @@
 package defpackage;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-public final class wu1 extends LinearLayout {
-    public final xu1[] a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wu1 extends AnimatorListenerAdapter {
+    public final hh7 a;
 
-    public wu1(Context context) {
-        super(context);
-        this.a = new xu1[2];
+    public wu1(hh7 hh7Var) {
+        this.a = hh7Var;
     }
 
-    public final void a(cr1 cr1Var, LinearLayout.LayoutParams layoutParams) {
-        int childCount = getChildCount();
-        if (childCount < 2) {
-            this.a[childCount] = cr1Var;
-            addView(cr1Var, layoutParams);
-        }
-    }
-
-    public xu1[] getButtons() {
-        return this.a;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        super.onAnimationEnd(animator);
+        this.a.q(1.0f);
     }
 }

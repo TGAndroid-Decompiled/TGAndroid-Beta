@@ -1,16 +1,29 @@
 package defpackage;
-public final class d8c {
-    public final byte a;
 
-    public d8c(byte b) {
-        this.a = b;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class d8c extends URLSpan {
+    public final rmb a;
+
+    public d8c(String str, rmb rmbVar) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.a = rmbVar;
     }
 
-    public final java.lang.String a(int r10, int r11, byte[] r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d8c.a(int, int, byte[]):java.lang.String");
+    @Override
+    public final void onClick(View view) {
+        m01.r(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
-    public final int b(java.lang.String r25, byte[] r26, int r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.d8c.b(java.lang.String, byte[], int, int):int");
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        rmb rmbVar = this.a;
+        if (rmbVar != null) {
+            rmbVar.a(textPaint);
+        }
+        textPaint.setUnderlineText(true);
     }
 }

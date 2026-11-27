@@ -1,34 +1,34 @@
 package defpackage;
-public final class qg3 implements uc7 {
+public final class qg3 implements df7 {
     public final byte a;
-    public final cj3 b;
+    public final uj3 b;
 
-    public qg3(cj3 cj3Var, byte b) {
+    public qg3(uj3 uj3Var, byte b) {
         this.a = b;
-        this.b = cj3Var;
+        this.b = uj3Var;
     }
 
     @Override
     public final void a(int i) {
         byte b = this.a;
         boolean z = true;
-        cj3 cj3Var = this.b;
+        uj3 uj3Var = this.b;
         switch (b) {
             case 0:
                 if (i == 0) {
                     z = false;
                 }
-                cj3Var.W1 = z;
-                na7.d1().edit().putBoolean("askAboutContacts", cj3Var.W1).commit();
-                cj3Var.A2(false);
+                uj3Var.W1 = z;
+                uc7.f1().edit().putBoolean("askAboutContacts", uj3Var.W1).apply();
+                uj3Var.C2(false);
                 return;
             default:
                 if (i == 0) {
                     z = false;
                 }
-                cj3Var.W1 = z;
-                na7.d1().edit().putBoolean("askAboutContacts", cj3Var.W1).apply();
-                cj3Var.A2(false);
+                uj3Var.W1 = z;
+                uc7.f1().edit().putBoolean("askAboutContacts", uj3Var.W1).commit();
+                uj3Var.C2(false);
                 return;
         }
     }

@@ -1,8 +1,16 @@
 package defpackage;
-public final class fn5 {
-    public final en5 a;
 
-    public fn5(en5 en5Var) {
-        this.a = en5Var;
+import org.telegram.tgnet.TLRPC;
+public final class fn5 extends TLRPC.PhotoSize {
+    public final TLRPC.Photo a;
+    public final TLRPC.TL_inputPhoto b;
+
+    public fn5(TLRPC.Photo photo) {
+        this.a = photo;
+        TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+        tL_inputPhoto.id = photo.id;
+        tL_inputPhoto.file_reference = photo.file_reference;
+        tL_inputPhoto.access_hash = photo.access_hash;
+        this.b = tL_inputPhoto;
     }
 }

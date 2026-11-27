@@ -1,63 +1,101 @@
 package defpackage;
-public final class ol0 implements ml0 {
-    public final byte a;
-    public final wjb b;
+public class ol0 implements bl0 {
+    public final vnb a;
+    public nl0 b;
+    public nl0 c;
+    public nl0 d;
+    public nl0 e;
+    public float f;
+    public float h;
+    public float n;
+    public float r;
 
-    public ol0(wjb wjbVar, byte b) {
-        this.a = b;
-        this.b = wjbVar;
+    public ol0(vnb vnbVar) {
+        this.a = vnbVar;
+        float N = hl.N(1.0f);
+        float N2 = hl.N(0.33333334f);
+        this.n = N;
+        this.r = N2;
+        float N3 = hl.N(1.0f);
+        float N4 = hl.N(0.6666667f);
+        this.f = N3;
+        this.h = N4;
     }
 
     @Override
-    public final int k(wjb wjbVar, boolean z) {
-        float f;
-        float f2;
-        int i;
-        float f3;
-        int i2;
-        byte b = this.a;
-        wjb wjbVar2 = this.b;
-        switch (b) {
-            case 0:
-                if (!nod.d(y6c.t0, wjbVar2)) {
-                    return bm2.o(bkb.v0(bkb.Ie, wjbVar), 255);
-                }
-                if (e66.e(262144)) {
-                    f = 0.85f;
-                } else {
-                    f = 0.76f;
-                }
-                return bkb.p1(f, bkb.v0(bkb.Ie, wjbVar));
-            case 1:
-                if (!nod.d(y6c.t0, wjbVar2)) {
-                    if (z) {
-                        i = bkb.r8;
-                    } else {
-                        i = bkb.Se;
-                    }
-                    return bm2.o(bkb.v0(i, wjbVar), 255);
-                }
-                if (e66.e(262144)) {
-                    f2 = 0.85f;
-                } else {
-                    f2 = 0.76f;
-                }
-                return bkb.p1(f2, bkb.v0(bkb.Se, wjbVar));
-            default:
-                if (!nod.d(y6c.t0, wjbVar2)) {
-                    if (z) {
-                        i2 = bkb.r8;
-                    } else {
-                        i2 = bkb.Se;
-                    }
-                    return bm2.o(bkb.v0(i2, wjbVar), 255);
-                }
-                if (e66.e(262144)) {
-                    f3 = 0.85f;
-                } else {
-                    f3 = 0.76f;
-                }
-                return bkb.p1(f3, bkb.v0(bkb.Se, wjbVar));
+    public final float B0() {
+        return -1.0f;
+    }
+
+    @Override
+    public final float D0() {
+        return -1.0f;
+    }
+
+    @Override
+    public final int Q1() {
+        return a(this.e);
+    }
+
+    @Override
+    public int X() {
+        return a(this.c);
+    }
+
+    public final int a(nl0 nl0Var) {
+        boolean z = false;
+        if (nl0Var == null) {
+            return 0;
         }
+        vnb vnbVar = this.a;
+        if ((vnbVar instanceof x53) || (vnbVar == null ? aob.I.o() : vnbVar.a())) {
+            z = true;
+        }
+        return nl0Var.l(vnbVar, z);
+    }
+
+    public float b() {
+        return this.r;
+    }
+
+    public float c() {
+        return this.n;
+    }
+
+    public final void d(int i, int i2) {
+        this.b = new ml0(i2, i, (byte) 0);
+    }
+
+    public final void e(int i, int i2) {
+        this.d = new ml0(i2, i, (byte) 0);
+    }
+
+    public final void f(int i, int i2) {
+        this.c = new ml0(i2, i, (byte) 0);
+    }
+
+    @Override
+    public int m0() {
+        return 0;
+    }
+
+    @Override
+    public float m1() {
+        return 0.0f;
+    }
+
+    @Override
+    public int o1() {
+        return 0;
+    }
+
+    @Override
+    public int x0() {
+        return a(this.d);
+    }
+
+    @Override
+    public int x1() {
+        return a(this.b);
     }
 }

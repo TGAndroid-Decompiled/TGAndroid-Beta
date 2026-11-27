@@ -2,73 +2,42 @@ package defpackage;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.view.View;
-public final class gz extends rqa {
-    public final Path H0;
-    public final float[] I0;
-    public final short J0;
-    public final lz K0;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class gz extends FrameLayout {
+    public final RectF a;
+    public final RectF b;
+    public final mz c;
 
-    public gz(lz lzVar, Context context, wjb wjbVar, b1 b1Var, x00 x00Var, x00 x00Var2, x00 x00Var3, x00 x00Var4, x00 x00Var5, x00 x00Var6, int i) {
-        super(context, wjbVar, b1Var, x00Var, null, x00Var2, x00Var3, x00Var4, x00Var5, x00Var6);
-        this.K0 = lzVar;
-        this.J0 = i;
-        this.H0 = new Path();
-        this.I0 = new float[8];
+    public gz(mz mzVar, Context context) {
+        super(context);
+        this.c = mzVar;
+        this.a = new RectF();
+        this.b = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.H0);
         super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
-        if (view == this.b) {
-            return true;
+        mz mzVar = this.c;
+        hz hzVar = mzVar.V1;
+        FrameLayout frameLayout = hzVar.b;
+        RectF rectF = this.a;
+        if (yic.c(frameLayout, this, rectF)) {
+            TextView textView = mzVar.W1;
+            RectF rectF2 = this.b;
+            if (yic.c(textView, this, rectF2)) {
+                float L = rectF2.right - hl.L(32.0f);
+                float centerY = rectF2.centerY() - hl.L(16.0f);
+                if (!rectF.isEmpty()) {
+                    canvas.save();
+                    canvas.translate(L, centerY);
+                    canvas.scale(hl.L(32.0f) / rectF.width(), hl.L(32.0f) / rectF.height());
+                    hzVar.b.draw(canvas);
+                    canvas.restore();
+                }
+            }
         }
-        return super.drawChild(canvas, view, j);
-    }
-
-    @Override
-    public final int getFinalHeight() {
-        return gl.L(this.J0);
-    }
-
-    @Override
-    public final float getRealHeight() {
-        return gl.L(this.J0);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        iz izVar = this.K0.X1;
-        if (izVar != null) {
-            izVar.invalidate();
-        }
-    }
-
-    @Override
-    public final void k(int i) {
-        this.K0.X1.setRibbonColor(i);
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        float L = gl.L(12.0f);
-        float[] fArr = this.I0;
-        fArr[3] = L;
-        fArr[2] = L;
-        fArr[1] = L;
-        fArr[0] = L;
-        Path path = this.H0;
-        path.rewind();
-        path.addRoundRect(0.0f, 0.0f, i, i2, this.I0, Path.Direction.CW);
     }
 }

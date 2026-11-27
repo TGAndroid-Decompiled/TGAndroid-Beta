@@ -1,17 +1,21 @@
 package defpackage;
-public final class ra implements p8c {
-    public final byte a;
-    public final boolean b;
-    public final Object c;
+public final class ra {
+    public final String a;
+    public final int b;
+    public transient String c;
 
-    public ra(byte b, Object obj, boolean z) {
-        this.a = b;
-        this.c = obj;
-        this.b = z;
+    public ra(String str, int i) {
+        this.a = str;
+        this.b = i;
     }
 
-    @Override
-    public final void a(java.lang.Object r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ra.a(java.lang.Object):void");
+    public final String toString() {
+        String str = this.c;
+        if (str == null) {
+            String format = String.format("%s:%d", this.a, Integer.valueOf(this.b));
+            this.c = format;
+            return format;
+        }
+        return str;
     }
 }

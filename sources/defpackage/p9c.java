@@ -1,37 +1,42 @@
 package defpackage;
+public final class p9c extends zb3 {
+    public final q9c F;
 
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-public final class p9c extends Drawable.ConstantState {
-    public int a;
-    public o9c b;
-    public ColorStateList c;
-    public PorterDuff.Mode d;
-    public boolean e;
-    public Bitmap f;
-    public ColorStateList g;
-    public PorterDuff.Mode h;
-    public int i;
-    public boolean j;
-    public boolean k;
-    public Paint l;
-
-    @Override
-    public int getChangingConfigurations() {
-        return this.a;
+    public p9c(q9c q9cVar) {
+        this.F = q9cVar;
     }
 
     @Override
-    public final Drawable newDrawable() {
-        return new r9c(this);
+    public final void M() {
+        q9c q9cVar = this.F;
+        if (q9cVar.d1()) {
+            q9cVar.invalidate();
+        }
+        q9cVar.G1();
     }
 
     @Override
-    public final Drawable newDrawable(Resources resources) {
-        return new r9c(this);
+    public final void O() {
+        q9c q9cVar = this.F;
+        if (q9cVar.d1()) {
+            q9cVar.invalidate();
+        }
+        q9cVar.G1();
+    }
+
+    @Override
+    public final void P(f89 f89Var) {
+        q9c q9cVar = this.F;
+        q9cVar.invalidate();
+        q9cVar.G1();
+    }
+
+    @Override
+    public final void Q() {
+        q9c q9cVar = this.F;
+        if (q9cVar.d1()) {
+            q9cVar.invalidate();
+        }
+        q9cVar.G1();
     }
 }

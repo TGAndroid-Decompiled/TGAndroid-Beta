@@ -1,15 +1,15 @@
 package defpackage;
-public final class kde implements zn7 {
+public final class kde implements zq7 {
     public static final kde a = new Object();
 
     static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)));
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
+            ar7 ar7Var = (ar7) obj2;
             throw null;
         }
         throw new ClassCastException();

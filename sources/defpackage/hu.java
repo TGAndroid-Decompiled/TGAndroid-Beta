@@ -1,40 +1,59 @@
 package defpackage;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
-public final class hu extends s35 {
-    public final mu S;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class hu extends p79 {
+    public final nu a;
 
-    public hu(mu muVar) {
-        super(true);
-        this.S = muVar;
+    public hu(nu nuVar) {
+        this.a = nuVar;
     }
 
     @Override
-    public final boolean x0() {
-        return false;
-    }
-
-    @Override
-    public final boolean z1(int i) {
-        byte b;
-        mu muVar = this.S;
-        ArrayList<TL_iv.PageBlock> arrayList = muVar.s.items;
-        lu luVar = muVar.w;
-        c27 c27Var = (c27) luVar.b.get(arrayList.get((arrayList.size() - i) - 1));
-        if (c27Var.a != c27Var.b && (b = c27Var.c) == c27Var.d && b != 0) {
-            int size = luVar.a.size();
-            for (int i2 = 0; i2 < size; i2++) {
-                c27 c27Var2 = (c27) luVar.a.get(i2);
-                if (c27Var2 != c27Var) {
-                    byte b2 = c27Var2.c;
-                    byte b3 = c27Var.c;
-                    if (b2 <= b3 && c27Var2.d >= b3) {
-                        return true;
+    public final void d(Rect rect, View view, RecyclerView recyclerView, c89 c89Var) {
+        j47 j47Var;
+        float[] fArr;
+        mu muVar = this.a.w;
+        int i = 0;
+        rect.bottom = 0;
+        if (view instanceof dv) {
+            j47Var = (j47) muVar.b.get(((dv) view).O);
+        } else if (view instanceof yv) {
+            j47Var = (j47) muVar.b.get(((yv) view).M);
+        } else {
+            j47Var = null;
+        }
+        if (j47Var != null && j47Var.m != null) {
+            Point point = hl.q;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int i2 = 0;
+            int i3 = 0;
+            while (true) {
+                if (i2 >= j47Var.m.length) {
+                    break;
+                }
+                i3 += (int) Math.ceil(fArr[i2] * max);
+                i2++;
+            }
+            int M = (hl.M(11.0f) * (j47Var.d - j47Var.c)) + i3;
+            int size = muVar.a.size();
+            while (true) {
+                if (i < size) {
+                    j47 j47Var2 = (j47) muVar.a.get(i);
+                    byte b = j47Var2.c;
+                    byte b2 = j47Var.c;
+                    if (b == b2 && ((j47Var2.a != j47Var.a || j47Var2.b != j47Var.b || b != b2 || j47Var2.d != j47Var.d) && b == b2)) {
+                        M = uh9.f(4.0f, (int) Math.ceil(max * j47Var2.f), M);
+                        break;
                     }
+                    i++;
+                } else {
+                    break;
                 }
             }
+            rect.bottom = -M;
         }
-        return false;
     }
 }

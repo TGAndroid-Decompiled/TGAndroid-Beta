@@ -1,15 +1,24 @@
 package defpackage;
-public final class um5 extends fm5 {
-    public wn7 a;
-    public boolean b;
+public final class um5 implements Runnable {
+    public final byte a;
+    public final vm5 b;
 
-    @Override
-    public final fm5 a(Object obj) {
-        c(1, obj);
-        return this;
+    public um5(vm5 vm5Var, byte b) {
+        this.a = b;
+        this.b = vm5Var;
     }
 
-    public final void c(int r8, java.lang.Object r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.um5.c(int, java.lang.Object):void");
+    @Override
+    public final void run() {
+        byte b = this.a;
+        vm5 vm5Var = this.b;
+        switch (b) {
+            case 0:
+                vm5Var.e.P(true);
+                return;
+            default:
+                vm5Var.e.P(true);
+                return;
+        }
     }
 }

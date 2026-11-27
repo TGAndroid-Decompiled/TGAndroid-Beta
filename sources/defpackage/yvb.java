@@ -1,23 +1,29 @@
 package defpackage;
-
-import android.view.View;
-import java.util.ArrayList;
-public final class yvb implements p8c {
-    public final byte a;
+public enum yvb extends rwb {
+    public yvb() {
+        super("AfterDoctypeName", 53);
+    }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.a) {
-            case 0:
-                View view = (View) obj;
-                if (view instanceof jwb) {
-                    ((jwb) view).a(true);
-                    return;
-                }
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) obj;
-                return;
+    public final void c(bub bubVar, ik1 ik1Var) {
+        boolean j = ik1Var.j();
+        mub mubVar = rwb.a;
+        if (j) {
+            bubVar.l(this);
+            bubVar.j();
+            bubVar.c = mubVar;
+        } else if (ik1Var.n('\t', '\n', '\r', '\f', ' ')) {
+            ik1Var.a();
+        } else if (ik1Var.m('>')) {
+            bubVar.j();
+            bubVar.a(mubVar);
+        } else if (ik1Var.l("PUBLIC")) {
+            bubVar.c = rwb.s0;
+        } else if (ik1Var.l("SYSTEM")) {
+            bubVar.c = rwb.y0;
+        } else {
+            bubVar.m(this);
+            bubVar.a(rwb.D0);
         }
     }
 }

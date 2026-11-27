@@ -1,44 +1,43 @@
 package defpackage;
+public final class lib {
+    public final byte a;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-import java.util.ArrayList;
-public final class lib extends Path {
-    public static ArrayList d;
-    public float a;
-    public ArrayList b;
-    public int c;
+    public lib(byte b) {
+        this.a = b;
+    }
 
-    @Override
-    public final void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        RectF rectF;
-        ArrayList arrayList = d;
-        if (arrayList != null && arrayList.size() > 0) {
-            rectF = (RectF) d.remove(0);
-        } else {
-            rectF = new RectF();
-        }
-        rectF.set(f, f2, f3, f4);
-        this.b.add(rectF);
-        this.c++;
-        super.addRect(f, f2, f3, f4, direction);
-        if (f4 > this.a) {
-            this.a = f4;
+    public final int a(sib sibVar, int i) {
+        switch (this.a) {
+            case 0:
+            case 3:
+            default:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i;
         }
     }
 
-    @Override
-    public final void reset() {
-        ArrayList arrayList = this.b;
-        super.reset();
-        ArrayList arrayList2 = d;
-        if (arrayList2 == null) {
-            arrayList2 = new ArrayList(arrayList.size());
-            d = arrayList2;
+    public final int b(sib sibVar, int i) {
+        switch (this.a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+            case 3:
+            default:
+                return 0;
+            case 2:
+                return i;
         }
-        arrayList2.addAll(arrayList);
-        arrayList.clear();
-        this.c = 0;
-        this.a = 0.0f;
+    }
+
+    public final int c(int i, int i2) {
+        switch (this.a) {
+            case 4:
+                return i2;
+            default:
+                return i;
+        }
     }
 }

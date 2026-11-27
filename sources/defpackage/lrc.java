@@ -1,16 +1,16 @@
 package defpackage;
 
-import java.io.File;
-public final class lrc {
-    public String a;
-    public int b;
-    public int c;
-    public File d;
-    public final File e;
+import android.content.Context;
+public final class lrc extends src {
+    public final nrc E;
 
-    public lrc(File file, File file2, String str) {
-        this.a = str;
-        this.d = file;
-        this.e = file2;
+    public lrc(nrc nrcVar, Context context, jrc jrcVar) {
+        super(context, jrcVar, 2);
+        this.E = nrcVar;
+    }
+
+    @Override
+    public final void a() {
+        this.E.s = true;
     }
 }

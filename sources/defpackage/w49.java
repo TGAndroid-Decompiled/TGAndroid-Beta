@@ -1,134 +1,147 @@
 package defpackage;
 
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class w49 implements h49 {
-    public RecyclerView a;
-    public boolean c;
-    public int d;
-    public int e;
-    public int f;
-    public boolean g;
-    public boolean h;
-    public int i;
-    public final v49 k;
-    public int b = -1;
-    public final int j = gl.L(80.0f);
-    public final bg7 l = new bg7(this, (byte) 14);
+import android.text.TextUtils;
+import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
+public final class w49 {
+    public boolean a;
+    public boolean b;
+    public long c;
+    public boolean d;
+    public boolean e;
+    public String f;
+    public long g;
+    public long h;
 
-    public w49(v49 v49Var) {
-        this.k = v49Var;
-    }
-
-    @Override
-    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        int i;
-        int i2;
-        View E = recyclerView.E(motionEvent.getX(), motionEvent.getY());
-        if (E != null) {
-            i = RecyclerView.R(E);
-        } else {
-            i = -1;
+    public static w49 b(String str) {
+        if (str == null) {
+            str = "";
         }
-        float y = motionEvent.getY();
-        int action = motionEvent.getAction();
-        v49 v49Var = this.k;
-        bg7 bg7Var = this.l;
-        if (action != 1) {
-            if (action == 2) {
-                if (this.j > -1) {
-                    if (y >= 0.0f && y <= this.d) {
-                        this.h = false;
-                        if (!this.g) {
-                            this.g = true;
-                            gl.r(bg7Var);
-                            gl.c3(bg7Var);
-                        }
-                        this.i = ((int) (this.d - (y - 0.0f))) / 2;
-                    } else if (y >= this.e && y <= this.f) {
-                        this.g = false;
-                        if (!this.h) {
-                            this.h = true;
-                            gl.r(bg7Var);
-                            gl.c3(bg7Var);
-                        }
-                        this.i = ((int) ((y + this.f) - (this.e + i2))) / 2;
-                    } else if (this.g || this.h) {
-                        gl.r(bg7Var);
-                        this.g = false;
-                        this.h = false;
-                    }
-                }
-                if (i != -1 && this.b != i) {
-                    this.b = i;
-                    v49Var.H1(E, !v49Var.n2(i));
-                    return;
-                }
-                return;
+        ?? obj = new Object();
+        if (str.startsWith("animated_")) {
+            try {
+                long parseLong = Long.parseLong(str.substring(9));
+                obj.g = parseLong;
+                obj.h = parseLong;
+                return obj;
+            } catch (Exception unused) {
+                obj.f = str;
+                obj.h = str.hashCode();
+                return obj;
             }
-            return;
         }
-        this.c = false;
-        this.g = false;
-        this.h = false;
-        gl.r(bg7Var);
-        v49Var.v(false);
+        obj.f = str;
+        obj.h = str.hashCode();
+        return obj;
     }
 
-    @Override
-    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
-        boolean z;
-        boolean z2;
-        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().b() != 0) {
+    public static w49 c(TLRPC.TL_availableReaction tL_availableReaction) {
+        ?? obj = new Object();
+        String str = tL_availableReaction.reaction;
+        obj.f = str;
+        obj.h = str.hashCode();
+        return obj;
+    }
+
+    public static w49 d(TLRPC.Reaction reaction) {
+        ?? obj = new Object();
+        if (reaction instanceof TLRPC.TL_reactionPaid) {
+            obj.a = true;
+            return obj;
+        } else if (reaction instanceof TLRPC.TL_reactionEmoji) {
+            String str = ((TLRPC.TL_reactionEmoji) reaction).emoticon;
+            obj.f = str;
+            obj.h = str.hashCode();
+            return obj;
+        } else {
+            if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
+                long j = ((TLRPC.TL_reactionCustomEmoji) reaction).document_id;
+                obj.g = j;
+                obj.h = j;
+            }
+            return obj;
+        }
+    }
+
+    public static w49 e(TLRPC.TL_availableEffect tL_availableEffect) {
+        ?? obj = new Object();
+        boolean z = true;
+        obj.b = true;
+        long j = tL_availableEffect.id;
+        obj.c = j;
+        if (tL_availableEffect.effect_animation_id != 0) {
             z = false;
-        } else {
-            z = true;
         }
-        if (this.c && !z) {
-            z2 = true;
-        } else {
-            z2 = false;
+        obj.e = z;
+        obj.g = tL_availableEffect.effect_sticker_id;
+        obj.h = j;
+        obj.d = tL_availableEffect.premium_required;
+        obj.f = tL_availableEffect.emoticon;
+        return obj;
+    }
+
+    public final w49 a() {
+        String V;
+        long j = this.g;
+        if (j != 0 && (V = r47.V(wl.e(yac.t0, j), null, null)) != null) {
+            return b(V);
         }
-        if (z2) {
-            this.a = recyclerView;
-            int i = this.j;
-            if (i > -1) {
-                this.d = i;
-                this.e = recyclerView.getMeasuredHeight() - i;
-                this.f = recyclerView.getMeasuredHeight();
+        return this;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && w49.class == obj.getClass()) {
+            w49 w49Var = (w49) obj;
+            if (this.g == w49Var.g && Objects.equals(this.f, w49Var.f)) {
+                return true;
             }
         }
-        if (z2 && motionEvent.getAction() == 1) {
-            this.c = false;
-            this.g = false;
-            this.h = false;
-            gl.r(this.l);
-            this.k.v(false);
-        }
-        return z2;
+        return false;
     }
 
-    public final void d(int i, View view, boolean z) {
-        if (this.c) {
-            return;
+    public final boolean f(TLRPC.Reaction reaction) {
+        if (reaction instanceof TLRPC.TL_reactionEmoji) {
+            return TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, this.f);
         }
-        this.b = -1;
-        gl.r(this.l);
-        this.g = false;
-        this.h = false;
-        v49 v49Var = this.k;
-        if (!v49Var.K(i)) {
-            this.c = false;
-            return;
+        if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji) || ((TLRPC.TL_reactionCustomEmoji) reaction).document_id != this.g) {
+            return false;
         }
-        v49Var.v(true);
-        v49Var.H1(view, z);
-        this.c = true;
-        this.b = i;
+        return true;
     }
 
-    @Override
-    public final void c(boolean z) {
+    public final TLRPC.Reaction g() {
+        if (this.a) {
+            return new TLRPC.TL_reactionPaid();
+        }
+        if (this.f != null) {
+            TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
+            tL_reactionEmoji.emoticon = this.f;
+            return tL_reactionEmoji;
+        }
+        TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
+        tL_reactionCustomEmoji.document_id = this.g;
+        return tL_reactionCustomEmoji;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f, Long.valueOf(this.g));
+    }
+
+    public final String toString() {
+        TLRPC.Document e;
+        if (!TextUtils.isEmpty(this.f)) {
+            return this.f;
+        }
+        long j = this.g;
+        if (j != 0 && (e = wl.e(yac.t0, j)) != null) {
+            return r47.V(e, null, null);
+        }
+        StringBuilder sb = new StringBuilder("VisibleReaction{");
+        sb.append(this.g);
+        sb.append(", ");
+        return c00.k(sb, this.f, "}");
     }
 }

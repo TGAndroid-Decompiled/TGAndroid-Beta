@@ -1,227 +1,335 @@
 package defpackage;
 
-import java.math.RoundingMode;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class mka implements p20 {
-    public float b;
-    public float c;
-    public l20 d;
-    public l20 e;
-    public l20 f;
-    public l20 g;
-    public boolean h;
-    public lka i;
-    public ByteBuffer j;
-    public ByteBuffer k;
-    public long l;
-    public long m;
-    public boolean n;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Icon;
+import android.media.MediaRoute2Info;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.ext.SdkExtensions;
+import android.view.Surface;
+import android.view.View;
+import android.view.Window;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.inputmethod.EditorInfo;
+import androidx.core.graphics.drawable.IconCompat;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+public abstract class mka {
+    public static volatile jka a;
+    public static volatile ArrayList b;
 
-    @Override
-    public final boolean a() {
-        boolean z;
-        if (this.n) {
-            lka lkaVar = this.i;
-            if (lkaVar != null) {
-                if (lkaVar.k >= 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                gre.p(z);
-                if (lkaVar.i.o() * lkaVar.k * lkaVar.b == 0) {
-                }
+    public static void a(Context context, ArrayList arrayList) {
+        List p = p(arrayList);
+        int i = Build.VERSION.SDK_INT;
+        if (i <= 29) {
+            c(context, p);
+        }
+        if (i >= 25) {
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = (ArrayList) p;
+            int size = arrayList3.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList3.get(i2);
+                i2++;
+                arrayList2.add(((hka) obj).c());
             }
+            if (!((ShortcutManager) context.getSystemService(ShortcutManager.class)).addDynamicShortcuts(arrayList2)) {
+                return;
+            }
+        }
+        j(context).a(p);
+        Iterator it = ((ArrayList) i(context)).iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw qu6.l(it);
+    }
+
+    public static boolean b(Context context, hka hkaVar) {
+        Bitmap decodeStream;
+        IconCompat c;
+        IconCompat iconCompat = hkaVar.h;
+        if (iconCompat != null) {
+            int i = iconCompat.a;
+            if (i != 6 && i != 4) {
+                return true;
+            }
+            InputStream k = iconCompat.k(context);
+            if (k == null || (decodeStream = BitmapFactory.decodeStream(k)) == null) {
+                return false;
+            }
+            if (i == 6) {
+                c = new IconCompat(5);
+                c.b = decodeStream;
+            } else {
+                c = IconCompat.c(decodeStream);
+            }
+            hkaVar.h = c;
             return true;
         }
         return false;
     }
 
-    @Override
-    public final ByteBuffer b() {
-        boolean z;
-        lka lkaVar = this.i;
-        if (lkaVar != null) {
-            jka jkaVar = lkaVar.i;
-            int i = lkaVar.b;
-            boolean z2 = true;
-            if (lkaVar.k >= 0) {
-                z = true;
-            } else {
-                z = false;
-            }
-            gre.p(z);
-            int o = jkaVar.o() * lkaVar.k * i;
-            if (o > 0) {
-                if (this.j.capacity() < o) {
-                    this.j = ByteBuffer.allocateDirect(o).order(ByteOrder.nativeOrder());
-                } else {
-                    this.j.clear();
-                }
-                ByteBuffer byteBuffer = this.j;
-                if (lkaVar.k < 0) {
-                    z2 = false;
-                }
-                gre.p(z2);
-                int min = Math.min(byteBuffer.remaining() / (jkaVar.o() * i), lkaVar.k);
-                jkaVar.b(min, byteBuffer);
-                lkaVar.k -= min;
-                System.arraycopy(jkaVar.h(), min * i, jkaVar.h(), 0, lkaVar.k * i);
-                this.j.flip();
-                this.m += o;
-                this.k = this.j;
+    public static void c(Context context, List list) {
+        ArrayList arrayList = new ArrayList(list);
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            hka hkaVar = (hka) obj;
+            if (!b(context, hkaVar)) {
+                list.remove(hkaVar);
             }
         }
-        ByteBuffer byteBuffer2 = this.k;
-        this.k = p20.a;
-        return byteBuffer2;
     }
 
-    @Override
-    public final void c(n20 n20Var) {
-        boolean z;
-        if (isActive()) {
-            l20 l20Var = this.d;
-            this.f = l20Var;
-            l20 l20Var2 = this.e;
-            this.g = l20Var2;
-            if (this.h) {
-                int i = l20Var.a;
-                int i2 = l20Var.b;
-                float f = this.b;
-                float f2 = this.c;
-                int i3 = l20Var2.a;
-                if (l20Var.c == 4) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                this.i = new lka(i, i2, f, f2, i3, z);
-            } else {
-                lka lkaVar = this.i;
-                if (lkaVar != null) {
-                    lkaVar.j = 0;
-                    lkaVar.k = 0;
-                    lkaVar.l = 0;
-                    lkaVar.m = 0;
-                    lkaVar.n = 0;
-                    lkaVar.o = 0;
-                    lkaVar.p = 0;
-                    lkaVar.q = 0.0d;
-                    lkaVar.i.flush();
-                }
+    public static Icon d(Uri uri) {
+        return Icon.createWithAdaptiveBitmapContentUri(uri);
+    }
+
+    public static List e(Context context) {
+        if (Build.VERSION.SDK_INT >= 25) {
+            List<ShortcutInfo> dynamicShortcuts = vr9.b(context.getSystemService(vr9.i())).getDynamicShortcuts();
+            ArrayList arrayList = new ArrayList(dynamicShortcuts.size());
+            for (ShortcutInfo shortcutInfo : dynamicShortcuts) {
+                arrayList.add(new gka(context, shortcutInfo).a());
+            }
+            return arrayList;
+        }
+        try {
+            return j(context).b();
+        } catch (Exception unused) {
+            return new ArrayList();
+        }
+    }
+
+    public static void f(int i) {
+        SdkExtensions.getExtensionVersion(i);
+    }
+
+    public static int g(Context context) {
+        context.getClass();
+        if (Build.VERSION.SDK_INT >= 25) {
+            return vr9.b(context.getSystemService(vr9.i())).getMaxShortcutCountPerActivity();
+        }
+        return 5;
+    }
+
+    public static ArrayList h(List list) {
+        if (list == null) {
+            return new ArrayList();
+        }
+        ArrayList arrayList = new ArrayList();
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            MediaRoute2Info mediaRoute2Info = (MediaRoute2Info) it.next();
+            if (mediaRoute2Info != null) {
+                arrayList.add(mediaRoute2Info.getId());
             }
         }
-        this.k = p20.a;
-        this.l = 0L;
-        this.m = 0L;
-        this.n = false;
+        return arrayList;
     }
 
-    @Override
-    public final void d(ByteBuffer byteBuffer) {
-        if (!byteBuffer.hasRemaining()) {
+    public static List i(Context context) {
+        Bundle bundle;
+        String string;
+        if (b == null) {
+            ArrayList arrayList = new ArrayList();
+            PackageManager packageManager = context.getPackageManager();
+            Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
+            intent.setPackage(context.getPackageName());
+            for (ResolveInfo resolveInfo : packageManager.queryIntentActivities(intent, 128)) {
+                ActivityInfo activityInfo = resolveInfo.activityInfo;
+                if (activityInfo != null && (bundle = activityInfo.metaData) != null && (string = bundle.getString("androidx.core.content.pm.shortcut_listener_impl")) != null) {
+                    try {
+                        if (Class.forName(string, false, mka.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context) == null) {
+                            arrayList.add(null);
+                        } else {
+                            throw new ClassCastException();
+                            break;
+                        }
+                    } catch (Exception unused) {
+                        continue;
+                    }
+                }
+            }
+            if (b == null) {
+                b = arrayList;
+            }
+        }
+        return b;
+    }
+
+    public static jka j(Context context) {
+        if (a == null) {
+            try {
+                a = (jka) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, mka.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+            } catch (Exception unused) {
+            }
+            if (a == null) {
+                a = new Object();
+            }
+        }
+        return a;
+    }
+
+    public static List k(Context context) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 30) {
+            return hka.a(context, ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getShortcuts(4));
+        }
+        if (i >= 25) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.addAll(((ShortcutManager) context.getSystemService(ShortcutManager.class)).getPinnedShortcuts());
+            return hka.a(context, arrayList);
+        }
+        return Collections.EMPTY_LIST;
+    }
+
+    public static CharSequence l(AccessibilityNodeInfo accessibilityNodeInfo) {
+        return accessibilityNodeInfo.getStateDescription();
+    }
+
+    public static void m(android.content.Context r11, defpackage.hka r12) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mka.m(android.content.Context, hka):void");
+    }
+
+    public static void n(Context context) {
+        if (Build.VERSION.SDK_INT >= 25) {
+            vr9.b(context.getSystemService(vr9.i())).removeAllDynamicShortcuts();
+        }
+        j(context).c();
+        Iterator it = ((ArrayList) i(context)).iterator();
+        if (!it.hasNext()) {
             return;
         }
-        lka lkaVar = this.i;
-        lkaVar.getClass();
-        this.l += byteBuffer.remaining();
-        int remaining = byteBuffer.remaining();
-        int i = lkaVar.b;
-        jka jkaVar = lkaVar.i;
-        int o = remaining / (jkaVar.o() * i);
-        jkaVar.p(o);
-        jkaVar.a(remaining, byteBuffer);
-        lkaVar.j += o;
-        lkaVar.b();
+        throw qu6.l(it);
     }
 
-    @Override
-    public final l20 e(l20 l20Var) {
-        int i = l20Var.c;
-        if (i != 2 && i != 4) {
-            throw new o20(l20Var);
+    public static void o(Context context, ArrayList arrayList) {
+        if (Build.VERSION.SDK_INT >= 25) {
+            ((ShortcutManager) context.getSystemService(ShortcutManager.class)).removeDynamicShortcuts(arrayList);
         }
-        int i2 = l20Var.a;
-        this.d = l20Var;
-        l20 l20Var2 = new l20(i2, l20Var.b, i);
-        this.e = l20Var2;
-        this.h = true;
-        return l20Var2;
+        j(context).d(arrayList);
+        Iterator it = ((ArrayList) i(context)).iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw qu6.l(it);
     }
 
-    @Override
-    public final void f() {
+    public static List p(ArrayList arrayList) {
+        if (Build.VERSION.SDK_INT > 32) {
+            return arrayList;
+        }
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((hka) obj).getClass();
+        }
+        return arrayList2;
+    }
+
+    public static void q(Context context, String str) {
+        context.getClass();
+        str.getClass();
+        if (Build.VERSION.SDK_INT >= 25) {
+            vr9.b(context.getSystemService(vr9.i())).reportShortcutUsed(str);
+        }
+        Iterator it = ((ArrayList) i(context)).iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        if (it.next() != null) {
+            grb.o();
+        } else {
+            Collections.singletonList(str);
+            throw null;
+        }
+    }
+
+    public static void r(android.content.Context r17, defpackage.hka r18, android.content.IntentSender r19) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mka.r(android.content.Context, hka, android.content.IntentSender):void");
+    }
+
+    public static void s(Window window) {
+        View decorView = window.getDecorView();
+        decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | 256);
+        window.setDecorFitsSystemWindows(false);
+    }
+
+    public static void t(Window window) {
+        window.setDecorFitsSystemWindows(false);
+    }
+
+    public static void u(EditorInfo editorInfo, CharSequence charSequence) {
+        editorInfo.setInitialSurroundingSubText(charSequence, 0);
+    }
+
+    public static void v(AccessibilityNodeInfo accessibilityNodeInfo, CharSequence charSequence) {
+        accessibilityNodeInfo.setStateDescription(charSequence);
+    }
+
+    public static void w(Surface surface, float f) {
         int i;
-        lka lkaVar = this.i;
-        if (lkaVar != null) {
-            int i2 = lkaVar.j;
-            float f = lkaVar.c;
-            float f2 = lkaVar.d;
-            int i3 = lkaVar.k + ((int) (((((((i2 - i) / (f / f2)) + lkaVar.o) + lkaVar.q) + lkaVar.l) / (lkaVar.e * f2)) + 0.5d));
-            lkaVar.q = 0.0d;
-            jka jkaVar = lkaVar.i;
-            int i4 = lkaVar.h << 1;
-            jkaVar.p(i2 + i4);
-            jkaVar.c(i2 * lkaVar.b, i4);
-            lkaVar.j += i4;
-            lkaVar.b();
-            if (lkaVar.k > i3) {
-                lkaVar.k = Math.max(i3, 0);
-            }
-            lkaVar.j = 0;
-            lkaVar.o = 0;
-            lkaVar.l = 0;
+        if (f == 0.0f) {
+            i = 0;
+        } else {
+            i = 1;
         }
-        this.n = true;
+        try {
+            surface.setFrameRate(f, i);
+        } catch (IllegalStateException e) {
+            efd.d("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e);
+        }
     }
 
-    @Override
-    public final long g(long j) {
-        if (this.m >= 1024) {
-            long j2 = this.l;
-            lka lkaVar = this.i;
-            lkaVar.getClass();
-            long o = j2 - (lkaVar.i.o() * (lkaVar.j * lkaVar.b));
-            int i = this.g.a;
-            int i2 = this.f.a;
-            long j3 = this.m;
-            if (i == i2) {
-                return g8c.b0(j, j3, o, RoundingMode.DOWN);
-            }
-            return g8c.b0(j, j3 * i2, o * i, RoundingMode.DOWN);
-        }
-        return (long) (j / this.b);
+    public static defpackage.ev6 x(android.media.MediaRoute2Info r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mka.x(android.media.MediaRoute2Info):ev6");
     }
 
-    @Override
-    public final boolean isActive() {
-        if (this.e.a != -1) {
-            if (Math.abs(this.b - 1.0f) >= 1.0E-4f || Math.abs(this.c - 1.0f) >= 1.0E-4f || this.e.a != this.d.a) {
-                return true;
-            }
-            return false;
+    public static void y(Context context, ArrayList arrayList) {
+        List p = p(arrayList);
+        int i = Build.VERSION.SDK_INT;
+        if (i <= 29) {
+            c(context, p);
         }
-        return false;
-    }
-
-    @Override
-    public final void reset() {
-        this.b = 1.0f;
-        this.c = 1.0f;
-        l20 l20Var = l20.e;
-        this.d = l20Var;
-        this.e = l20Var;
-        this.f = l20Var;
-        this.g = l20Var;
-        ByteBuffer byteBuffer = p20.a;
-        this.j = byteBuffer;
-        this.k = byteBuffer;
-        this.h = false;
-        this.i = null;
-        this.l = 0L;
-        this.m = 0L;
-        this.n = false;
+        if (i >= 25) {
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = (ArrayList) p;
+            int size = arrayList3.size();
+            int i2 = 0;
+            while (i2 < size) {
+                Object obj = arrayList3.get(i2);
+                i2++;
+                arrayList2.add(((hka) obj).c());
+            }
+            if (!((ShortcutManager) context.getSystemService(ShortcutManager.class)).updateShortcuts(arrayList2)) {
+                return;
+            }
+        }
+        j(context).a(p);
+        Iterator it = ((ArrayList) i(context)).iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw qu6.l(it);
     }
 }

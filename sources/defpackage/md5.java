@@ -1,137 +1,207 @@
 package defpackage;
 
 import android.content.Context;
-import android.view.View;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class md5 extends n5c {
-    public boolean e;
+import java.util.Locale;
+import org.telegram.tgnet.TLRPC;
+public final class md5 extends c79 {
+    public final Context c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public se4 f;
+    public String h;
+    public int n;
+    public final nd5 r;
+
+    public md5(nd5 nd5Var, Context context) {
+        this.r = nd5Var;
+        this.c = context;
+        C(true);
+    }
 
     @Override
-    public final void Y(ArrayList arrayList, l5c l5cVar) {
+    public final boolean D(f89 f89Var) {
+        if (d(f89Var.b()) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void E(String str) {
+        nd5 nd5Var = this.r;
+        if (nd5Var.O) {
+            boolean isEmpty = TextUtils.isEmpty(str);
+            d79 d79Var = nd5Var.d;
+            if (!isEmpty) {
+                yob.h(aob.d6, nd5Var.getResourceProvider(), d79Var);
+            } else {
+                d79Var.setBackground(null);
+            }
+        }
+        if (this.n != 0) {
+            nd5Var.getConnectionsManager().cancelRequest(this.n, true);
+            this.n = 0;
+        }
+        se4 se4Var = this.f;
+        if (se4Var != null) {
+            hl.r(se4Var);
+            this.f = null;
+        }
+        this.h = null;
+        int b = b();
+        if (b > 0) {
+            this.d.clear();
+            this.e.clear();
+            q(0, b);
+        }
+        boolean isEmpty2 = TextUtils.isEmpty(str);
+        z2b z2bVar = nd5Var.b;
+        if (isEmpty2) {
+            z2bVar.setVisibility(8);
+            nd5Var.b.e(false, true);
+            return;
+        }
+        int visibility = z2bVar.getVisibility();
+        z2b z2bVar2 = nd5Var.b;
+        if (visibility != 0) {
+            z2bVar2.setVisibility(0);
+            nd5Var.b.e(true, false);
+        } else {
+            z2bVar2.e(true, true);
+        }
+        se4 se4Var2 = new se4(this, str, (byte) 28);
+        this.f = se4Var2;
+        hl.d3(se4Var2, 300L);
+    }
+
+    @Override
+    public final int b() {
+        return this.e.size() + this.d.size() + (!this.e.isEmpty());
+    }
+
+    @Override
+    public final long c(int i) {
+        ArrayList arrayList;
+        if (d(i) == 0) {
+            if (i > this.d.size()) {
+                arrayList = this.e;
+            } else {
+                arrayList = this.d;
+            }
+            if (i > this.d.size()) {
+                i = (i - this.d.size()) - 1;
+            }
+            return ((TLRPC.TL_messages_stickerSet) arrayList.get(i)).set.id;
+        }
+        return -1L;
+    }
+
+    @Override
+    public final int d(int i) {
+        if (this.d.size() == i) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
         boolean z;
+        ArrayList arrayList;
         boolean z2;
-        boolean z3;
-        rha rhaVar = (rha) wcd.j.a();
-        qha qhaVar = (qha) wcd.k.a();
-        arrayList.add(c4c.u(k96.M0(2131749148, null)));
-        c4c x = c4c.x(11, k96.M0(2131749147, null));
-        boolean z4 = false;
-        if (rhaVar == rha.b) {
+        String str;
+        long j;
+        String str2;
+        if (d(i) != 0) {
+            return;
+        }
+        boolean z3 = true;
+        if (i > this.d.size()) {
             z = true;
         } else {
             z = false;
         }
-        x.L(z);
-        arrayList.add(x);
-        c4c x2 = c4c.x(10, k96.M0(2131749146, null));
-        if (rhaVar == rha.a) {
+        if (z) {
+            arrayList = this.e;
+            i = (i - this.d.size()) - 1;
+        } else {
+            arrayList = this.d;
+        }
+        p3b p3bVar = (p3b) f89Var.a;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList.get(i);
+        if (i != arrayList.size() - 1) {
             z2 = true;
         } else {
             z2 = false;
         }
-        x2.L(z2);
-        arrayList.add(x2);
-        arrayList.add(c4c.C(k96.M0(2131749145, null)));
-        arrayList.add(c4c.u(k96.M0(2131749141, null)));
-        c4c x3 = c4c.x(20, k96.M0(2131749140, null));
-        if (qhaVar == qha.a) {
-            z3 = true;
+        p3bVar.d(tL_messages_stickerSet, z2, !z);
+        String str3 = this.h;
+        if (str3 != null) {
+            str = str3.toLowerCase(Locale.ROOT);
         } else {
+            str = "";
+        }
+        nd5 nd5Var = this.r;
+        vnb resourceProvider = nd5Var.getResourceProvider();
+        TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+        String str4 = stickerSet.title;
+        Locale locale = Locale.ROOT;
+        int indexOf = str4.toLowerCase(locale).indexOf(str);
+        if (indexOf != -1) {
+            SpannableString spannableString = new SpannableString(stickerSet.title);
+            spannableString.setSpan(new ho4(aob.q6, resourceProvider), indexOf, str.length() + indexOf, 0);
+            p3bVar.b.setText(spannableString);
+        }
+        int indexOf2 = stickerSet.short_name.toLowerCase(locale).indexOf(str);
+        if (indexOf2 != -1) {
+            if (stickerSet.emojis) {
+                str2 = "t.me/addemoji/";
+            } else {
+                str2 = "t.me/addstickers/";
+            }
+            int length = str2.length() + indexOf2;
+            SpannableString spannableString2 = new SpannableString(str2 + stickerSet.short_name);
+            spannableString2.setSpan(new ho4(aob.q6, resourceProvider), length, str.length() + length, 0);
+            p3bVar.c.setText(spannableString2);
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = nd5Var.r;
+        if (tL_messages_stickerSet2 != null) {
+            j = tL_messages_stickerSet2.set.id;
+        } else if (nd5Var.c0(nd5Var.w) != null) {
+            j = nd5Var.c0(nd5Var.w).id;
+        } else {
+            j = 0;
+        }
+        if (tL_messages_stickerSet.set.id != j) {
             z3 = false;
         }
-        x3.L(z3);
-        arrayList.add(x3);
-        c4c x4 = c4c.x(21, k96.M0(2131749139, null));
-        if (qhaVar == qha.b) {
-            z4 = true;
-        }
-        x4.L(z4);
-        arrayList.add(x4);
-        arrayList.add(c4c.C(null));
-        arrayList.add(c4c.u(k96.M0(2131749144, null)));
-        c4c i = c4c.i(30, k96.M0(2131749143, null));
-        i.L(this.e);
-        arrayList.add(i);
-        arrayList.add(c4c.C(k96.M0(2131749142, null)));
+        p3bVar.b(z3, false);
     }
 
     @Override
-    public final CharSequence Z() {
-        return k96.M0(2131749138, null);
-    }
-
-    @Override
-    public final void a0(c4c c4cVar, View view) {
-        rha rhaVar;
-        qha qhaVar;
-        int i = c4cVar.d;
-        if (i != 10 && i != 11) {
-            if (i != 20 && i != 21) {
-                if (i != 30) {
-                    return;
-                }
-                this.e = !this.e;
-                this.simpleActionBar.getDoneButton().a(this.e, true);
+    public final f89 x(ViewGroup viewGroup, int i) {
+        p3b p3bVar;
+        int i2;
+        if (i != 0) {
+            int i3 = aob.B6;
+            nd5 nd5Var = this.r;
+            mf5 mf5Var = new mf5(this.c, i3, 21, 0, 0, false, false, nd5Var.getResourceProvider());
+            if (nd5Var.O) {
+                i2 = 2131752084;
             } else {
-                if (i == 21) {
-                    qhaVar = qha.b;
-                } else {
-                    qhaVar = qha.a;
-                }
-                wcd.k.b(qhaVar);
-                c0();
+                i2 = 2131752083;
             }
+            mf5Var.setText(ob6.M0(i2, null));
+            p3bVar = mf5Var;
         } else {
-            if (i == 10) {
-                rhaVar = rha.a;
-            } else {
-                rhaVar = rha.b;
-            }
-            wcd.j.b(rhaVar);
-            c0();
+            p3b p3bVar2 = new p3b(this.c, 3);
+            yob.h(aob.d6, null, p3bVar2);
+            p3bVar = p3bVar2;
         }
-        this.a.g3.O(true);
-    }
-
-    @Override
-    public final boolean b0(c4c c4cVar, View view) {
-        return false;
-    }
-
-    public final void c0() {
-        pha phaVar = this.simpleActionBar;
-        sha shaVar = phaVar.n;
-        if (shaVar != null) {
-            phaVar.removeView(shaVar);
-            phaVar.n = null;
-            phaVar.k();
-            phaVar.requestLayout();
-        }
-        this.simpleActionBar.s(k96.M0(2131745754, null)).a(this.e, false);
-    }
-
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.fragmentView = super.createView(context);
-        this.a.r1();
-        this.a.setSectionsDrawBackground(true);
-        c0();
-        return this.fragmentView;
-    }
-
-    @Override
-    public final o39 getListViewForSimpleGlass() {
-        return this.a;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+        p3bVar.setLayoutParams(new r79(-1, -2));
+        return new f89(p3bVar);
     }
 }

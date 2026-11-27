@@ -1,45 +1,686 @@
 package defpackage;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-public final class o47 extends o72 {
-    public final s47 B0;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextUtils;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.a;
+public final class o47 implements si7 {
+    public float E;
+    public r47 F;
+    public int G;
+    public v41 H;
+    public boolean I;
+    public boolean J;
+    public boolean K;
+    public String L;
+    public pkb M;
+    public int N;
+    public boolean O;
+    public int P;
+    public Drawable Q;
+    public pkb R;
+    public int S;
+    public hf0 T;
+    public Paint U;
+    public boolean V;
+    public Paint W;
+    public boolean a;
+    public boolean b;
+    public int c;
+    public StaticLayout e;
+    public int f;
+    public int h;
+    public int n;
+    public int r;
+    public int s;
+    public int w;
+    public byte x;
+    public final AtomicReference d = new AtomicReference();
+    public final ArrayList y = new ArrayList();
 
-    public o47(s47 s47Var, Context context) {
-        super(context, null, false, null);
-        this.B0 = s47Var;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        s47 s47Var = this.B0;
-        s47Var.X.i0(s47Var.c0.getAvatarImageView().getX(), s47Var.c0.getAvatarImageView().getY(), s47Var.c0.getAvatarImageView().getWidth(), s47Var.c0.getAvatarImageView().getHeight());
-        if (s47Var.Z) {
-            canvas.save();
-            canvas.scale(0.9f, 0.9f, s47Var.X.r(), s47Var.X.s());
-            s47Var.X.h(canvas, null);
-            canvas.restore();
+    public static String b(String str) {
+        if (str == null) {
+            return null;
         }
-        if (s47Var.Y) {
-            int r = (int) (s47Var.X.r() - (bkb.T0.getIntrinsicWidth() / 2));
-            int s = (int) (s47Var.X.s() - (bkb.T0.getIntrinsicHeight() / 2));
-            Drawable drawable = bkb.T0;
-            drawable.setBounds(r, s, drawable.getIntrinsicWidth() + r, bkb.T0.getIntrinsicHeight() + s);
-            bkb.T0.draw(canvas);
+        String replaceAll = str.toLowerCase().replaceAll("\\W|lang$", "");
+        replaceAll.getClass();
+        char c = 65535;
+        switch (replaceAll.hashCode()) {
+            case -1886433663:
+                if (replaceAll.equals("actionscript")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case -1408289185:
+                if (replaceAll.equals("aspnet")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case -1395746259:
+                if (replaceAll.equals("bbcode")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case -1351281305:
+                if (replaceAll.equals("csharp")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case -1265393852:
+                if (replaceAll.equals("fsharp")) {
+                    c = 4;
+                    break;
+                }
+                break;
+            case -1081245651:
+                if (replaceAll.equals("matlab")) {
+                    c = 5;
+                    break;
+                }
+                break;
+            case -973197092:
+                if (replaceAll.equals("python")) {
+                    c = 6;
+                    break;
+                }
+                break;
+            case -522285947:
+                if (replaceAll.equals("typescript")) {
+                    c = 7;
+                    break;
+                }
+                break;
+            case 114:
+                if (replaceAll.equals("r")) {
+                    c = '\b';
+                    break;
+                }
+                break;
+            case 3184:
+                if (replaceAll.equals("cs")) {
+                    c = '\t';
+                    break;
+                }
+                break;
+            case 3401:
+                if (replaceAll.equals("js")) {
+                    c = '\n';
+                    break;
+                }
+                break;
+            case 3479:
+                if (replaceAll.equals("md")) {
+                    c = 11;
+                    break;
+                }
+                break;
+            case 3593:
+                if (replaceAll.equals("py")) {
+                    c = '\f';
+                    break;
+                }
+                break;
+            case 3632:
+                if (replaceAll.equals("rb")) {
+                    c = '\r';
+                    break;
+                }
+                break;
+            case 3704:
+                if (replaceAll.equals("tl")) {
+                    c = 14;
+                    break;
+                }
+                break;
+            case 3711:
+                if (replaceAll.equals("ts")) {
+                    c = 15;
+                    break;
+                }
+                break;
+            case 96891:
+                if (replaceAll.equals("asm")) {
+                    c = 16;
+                    break;
+                }
+                break;
+            case 98723:
+                if (replaceAll.equals("cpp")) {
+                    c = 17;
+                    break;
+                }
+                break;
+            case 98819:
+                if (replaceAll.equals("css")) {
+                    c = 18;
+                    break;
+                }
+                break;
+            case 98822:
+                if (replaceAll.equals("csv")) {
+                    c = 19;
+                    break;
+                }
+                break;
+            case 104420:
+                if (replaceAll.equals("ini")) {
+                    c = 20;
+                    break;
+                }
+                break;
+            case 105551:
+                if (replaceAll.equals("jsx")) {
+                    c = 21;
+                    break;
+                }
+                break;
+            case 110968:
+                if (replaceAll.equals("php")) {
+                    c = 22;
+                    break;
+                }
+                break;
+            case 112080:
+                if (replaceAll.equals("qml")) {
+                    c = 23;
+                    break;
+                }
+                break;
+            case 114126:
+                if (replaceAll.equals("sql")) {
+                    c = 24;
+                    break;
+                }
+                break;
+            case 114922:
+                if (replaceAll.equals("tlb")) {
+                    c = 25;
+                    break;
+                }
+                break;
+            case 115161:
+                if (replaceAll.equals("tsx")) {
+                    c = 26;
+                    break;
+                }
+                break;
+            case 118807:
+                if (replaceAll.equals("xml")) {
+                    c = 27;
+                    break;
+                }
+                break;
+            case 119768:
+                if (replaceAll.equals("yml")) {
+                    c = 28;
+                    break;
+                }
+                break;
+            case 3154628:
+                if (replaceAll.equals("func")) {
+                    c = 29;
+                    break;
+                }
+                break;
+            case 3175934:
+                if (replaceAll.equals("glsl")) {
+                    c = 30;
+                    break;
+                }
+                break;
+            case 3205725:
+                if (replaceAll.equals("hlsl")) {
+                    c = 31;
+                    break;
+                }
+                break;
+            case 3213227:
+                if (replaceAll.equals("html")) {
+                    c = ' ';
+                    break;
+                }
+                break;
+            case 3213448:
+                if (replaceAll.equals("http")) {
+                    c = '!';
+                    break;
+                }
+                break;
+            case 3271912:
+                if (replaceAll.equals("json")) {
+                    c = '\"';
+                    break;
+                }
+                break;
+            case 3318169:
+                if (replaceAll.equals("less")) {
+                    c = '#';
+                    break;
+                }
+                break;
+            case 3373901:
+                if (replaceAll.equals("nasm")) {
+                    c = '$';
+                    break;
+                }
+                break;
+            case 3404364:
+                if (replaceAll.equals("objc")) {
+                    c = '%';
+                    break;
+                }
+                break;
+            case 3511770:
+                if (replaceAll.equals("ruby")) {
+                    c = '&';
+                    break;
+                }
+                break;
+            case 3522862:
+                if (replaceAll.equals("sass")) {
+                    c = '\'';
+                    break;
+                }
+                break;
+            case 3524784:
+                if (replaceAll.equals("scss")) {
+                    c = '(';
+                    break;
+                }
+                break;
+            case 3561037:
+                if (replaceAll.equals("tl-b")) {
+                    c = ')';
+                    break;
+                }
+                break;
+            case 3642020:
+                if (replaceAll.equals("wasm")) {
+                    c = '*';
+                    break;
+                }
+                break;
+            case 3701415:
+                if (replaceAll.equals("yaml")) {
+                    c = '+';
+                    break;
+                }
+                break;
+            case 94833107:
+                if (replaceAll.equals("cobol")) {
+                    c = ',';
+                    break;
+                }
+                break;
+            case 101429325:
+                if (replaceAll.equals("json5")) {
+                    c = '-';
+                    break;
+                }
+                break;
+            case 101429384:
+                if (replaceAll.equals("jsonp")) {
+                    c = '.';
+                    break;
+                }
+                break;
+            case 112003953:
+                if (replaceAll.equals("vbnet")) {
+                    c = '/';
+                    break;
+                }
+                break;
+            case 188995949:
+                if (replaceAll.equals("javascript")) {
+                    c = '0';
+                    break;
+                }
+                break;
+            case 213985633:
+                if (replaceAll.equals("autohotkey")) {
+                    c = '1';
+                    break;
+                }
+                break;
+            case 246938863:
+                if (replaceAll.equals("markdown")) {
+                    c = '2';
+                    break;
+                }
+                break;
+            case 499384161:
+                if (replaceAll.equals("visual-basic")) {
+                    c = '3';
+                    break;
+                }
+                break;
+            case 1064174568:
+                if (replaceAll.equals("gdscript")) {
+                    c = '4';
+                    break;
+                }
+                break;
+            case 1067478602:
+                if (replaceAll.equals("objectivec")) {
+                    c = '5';
+                    break;
+                }
+                break;
+        }
+        switch (c) {
+            case 0:
+                return "ActionScript";
+            case 1:
+                return "ASP.NET";
+            case 2:
+                return "BBCode";
+            case 3:
+            case '\t':
+                return "C#";
+            case 4:
+                return "F#";
+            case 5:
+            case '\b':
+            case 14:
+            case 16:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 26:
+            case 27:
+            case 28:
+            case 30:
+            case 31:
+            case ' ':
+            case '!':
+            case '\"':
+            case '#':
+            case '$':
+            case '\'':
+            case '(':
+            case '*':
+            case '+':
+            case ',':
+            case '-':
+            case '.':
+                return str.toUpperCase();
+            case 6:
+            case '\f':
+                return "Python";
+            case 7:
+            case 15:
+                return "TypeScript";
+            case '\n':
+            case '0':
+                return "JavaScript";
+            case 11:
+            case '2':
+                return "Markdown";
+            case '\r':
+            case '&':
+                return "Ruby";
+            case 17:
+                return "C++";
+            case 25:
+            case ')':
+                return "TL-B";
+            case 29:
+                return "FunC";
+            case '%':
+            case '5':
+                return "Objective-C";
+            case '/':
+                return "VB.NET";
+            case '1':
+                return "AutoHotKey";
+            case '3':
+                return "Visual Basic";
+            case '4':
+                return "GDScript";
+            default:
+                return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.B0.X.I();
+    public final Layout a() {
+        return this.e;
+    }
+
+    public final int c() {
+        float f;
+        if (this.V) {
+            f = 28.0f;
+        } else {
+            f = 15.0f;
+        }
+        return hl.L(f);
+    }
+
+    public final float d(dc2 dc2Var) {
+        boolean f;
+        float f2;
+        if (dc2Var.f3) {
+            HashSet hashSet = dc2Var.e3;
+            f = true;
+            if (hashSet != null && hashSet.contains(Integer.valueOf(this.c))) {
+                f = false;
+            }
+        } else {
+            f = f();
+        }
+        float f3 = 0.0f;
+        if (f) {
+            f2 = 1.0f;
+        } else {
+            f2 = 0.0f;
+        }
+        if (f()) {
+            f3 = 1.0f;
+        }
+        return hl.R1(f2, f3, dc2Var.L1);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.B0.X.K();
+    public final View e() {
+        return null;
+    }
+
+    public final boolean f() {
+        HashSet hashSet;
+        r47 r47Var = this.F;
+        if (r47Var != null && (hashSet = r47Var.K0) != null && hashSet.contains(Integer.valueOf(this.c))) {
+            return false;
+        }
+        return true;
+    }
+
+    public final int g() {
+        float f;
+        if (this.M != null) {
+            f = 32.0f;
+        } else {
+            f = 12.0f;
+        }
+        return hl.L(f);
+    }
+
+    public final int h() {
+        StaticLayout staticLayout;
+        if (this.M == null && (staticLayout = this.e) != null && staticLayout.getLineCount() != 0) {
+            return Math.round(((this.e.getLineBottom(0) + this.e.getLineTop(0)) / 2.0f) - (hl.L(18.0f) / 2.0f));
+        }
+        return hl.L(8.0f) + (-g());
+    }
+
+    public final void i(Canvas canvas, RectF rectF, int i, int i2, float f) {
+        if (!this.O) {
+            return;
+        }
+        int p1 = aob.p1(0.1f, i);
+        if (this.S != p1) {
+            hf0 hf0Var = this.T;
+            this.S = p1;
+            aob.F1(hf0Var, p1, true);
+        }
+        this.T.setBounds(hl.L(3.0f) + ((int) rectF.left), (int) (rectF.bottom - hl.L(38.0f)), (int) rectF.right, (int) rectF.bottom);
+        int i3 = (int) (255.0f * f);
+        this.T.setAlpha(i3);
+        if (this.T.getCallback() != null) {
+            this.T.draw(canvas);
+        }
+        this.U.setColor(vm2.o(i2, 38));
+        canvas.drawRect(rectF.left + hl.L(10.0f), (rectF.bottom - hl.L(38.0f)) - hl.e1(), rectF.right - hl.L(6.66f), rectF.bottom - hl.L(38.0f), this.U);
+        float min = Math.min(rectF.width() - hl.L(12.0f), (this.Q.getIntrinsicWidth() * 0.8f) + hl.L(5.0f) + this.R.c);
+        float centerX = rectF.centerX() - (min / 2.0f);
+        float L = rectF.bottom - (hl.L(38.0f) / 2.0f);
+        if (this.P != i) {
+            Drawable drawable = this.Q;
+            this.P = i;
+            drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+        }
+        this.Q.setAlpha(i3);
+        Drawable drawable2 = this.Q;
+        drawable2.setBounds((int) centerX, (int) (L - ((drawable2.getIntrinsicHeight() * 0.8f) / 2.0f)), (int) ((this.Q.getIntrinsicWidth() * 0.8f) + centerX), (int) qu6.d(this.Q.getIntrinsicHeight(), 0.8f, 2.0f, L));
+        this.Q.draw(canvas);
+        float intrinsicWidth = (this.Q.getIntrinsicWidth() * 0.8f) + hl.L(5.0f) + centerX;
+        pkb pkbVar = this.R;
+        pkbVar.p = hl.L(12.0f) + ((int) (min - ((this.Q.getIntrinsicWidth() * 0.8f) + hl.L(5.0f))));
+        pkbVar.c(intrinsicWidth, L, f, i, canvas);
+    }
+
+    public final int j(dc2 dc2Var) {
+        boolean z = this.K;
+        int i = this.w;
+        if (!z) {
+            return i;
+        }
+        return hl.U1(d(dc2Var), i, this.G);
+    }
+
+    public final boolean k(float f, float f2, float f3) {
+        if (this.O && f >= f3 - hl.L(38.0f) && f <= f3 && f2 >= (-g())) {
+            if (f2 <= hl.L(26.0f) + h()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean l() {
+        byte b = this.x;
+        if ((b & 1) != 0 && (b & 2) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void m(int i, String str, boolean z) {
+        boolean z2;
+        if (i >= 75 && !z) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        this.O = z2;
+        int i2 = 5;
+        if (z2) {
+            this.R = new pkb(ob6.M0(2131751730, null).toUpperCase(), xea.S0 - 3, hl.o());
+            Drawable e = c00.e(a.b, 2131232108);
+            this.Q = e;
+            e.setColorFilter(new PorterDuffColorFilter(this.P, PorterDuff.Mode.SRC_IN));
+            this.T = aob.a0(this.S, 0, 0, Math.min(5, xea.U0), 0);
+            this.U = new Paint(1);
+        }
+        if (TextUtils.isEmpty(str)) {
+            this.L = null;
+            this.M = null;
+            return;
+        }
+        this.L = str;
+        String b = b(str);
+        int i3 = xea.S0 - 1;
+        wm8 wm8Var = mk2.a;
+        if (i <= 120) {
+            if (i > 50) {
+                i2 = 3;
+            } else {
+                i2 = 2;
+            }
+        }
+        pkb pkbVar = new pkb(b, i3 - (i2 / 2), hl.o());
+        this.M = pkbVar;
+        this.N = hl.L(4.0f) + ((int) (pkbVar.a.getTextSize() * 1.714f));
+    }
+
+    public final void n(String str, boolean z) {
+        this.V = true;
+        this.O = !z;
+        if (!z) {
+            Drawable e = c00.e(a.b, 2131232108);
+            this.Q = e;
+            e.setColorFilter(new PorterDuffColorFilter(this.P, PorterDuff.Mode.SRC_IN));
+            this.T = aob.a0(this.S, 0, 0, Math.min(5, xea.U0), 0);
+        }
+        pkb pkbVar = null;
+        if (TextUtils.isEmpty(str)) {
+            str = null;
+        }
+        this.L = str;
+        if (str != null) {
+            pkbVar = new pkb(str, Math.max(8, xea.S0 - 4), null);
+        }
+        this.M = pkbVar;
+        this.N = 0;
+    }
+
+    public final float o(ArrayList arrayList) {
+        o47 o47Var;
+        int i;
+        if (arrayList == null) {
+            return 0.0f;
+        }
+        int i2 = 0;
+        for (int i3 = 0; i3 < arrayList.size() && (o47Var = (o47) arrayList.get(i3)) != this; i3++) {
+            int i4 = o47Var.f;
+            if (o47Var.K && o47Var.f()) {
+                i = o47Var.G;
+            } else {
+                i = o47Var.w;
+            }
+            i2 += i + i4 + o47Var.h;
+        }
+        return i2;
+    }
+
+    public final float p(ArrayList arrayList, dc2 dc2Var) {
+        o47 o47Var;
+        if (arrayList == null) {
+            return 0.0f;
+        }
+        int i = 0;
+        for (int i2 = 0; i2 < arrayList.size() && (o47Var = (o47) arrayList.get(i2)) != this; i2++) {
+            i += o47Var.j(dc2Var) + o47Var.f + o47Var.h;
+        }
+        return i;
     }
 }

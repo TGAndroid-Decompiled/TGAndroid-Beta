@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
+    private boolean isCapturing;
     private final VideoReader videoReader;
     private final Timer timer = new Timer();
     private final TimerTask tickTask = new TimerTask() {
@@ -68,7 +69,7 @@ public class FileVideoCapturer implements VideoCapturer {
                         }
                         Logging.d("VideoReaderY4M", "Color space: " + str2);
                         if (!str2.equals("420") && !str2.equals("420mpeg2")) {
-                            w26.j("Does not support any other color space than I420 or I420mpeg2");
+                            lq5.j("Does not support any other color space than I420 or I420mpeg2");
                             throw null;
                         } else if (i % 2 != 1 && i2 % 2 != 1) {
                             this.frameWidth = i;
@@ -76,13 +77,13 @@ public class FileVideoCapturer implements VideoCapturer {
                             Logging.d("VideoReaderY4M", "frame dim: (" + i + ", " + i2 + ")");
                             return;
                         } else {
-                            w26.j("Does not support odd width or height");
+                            lq5.j("Does not support odd width or height");
                             throw null;
                         }
                     }
                     sb.append((char) read);
                 } else {
-                    wn4.j(b00.h("Found end of file before end of header for file: ", str));
+                    xi4.l(c00.i("Found end of file before end of header for file: ", str));
                     throw null;
                 }
             }
@@ -104,9 +105,6 @@ public class FileVideoCapturer implements VideoCapturer {
             ByteBuffer dataY = allocate.getDataY();
             ByteBuffer dataU = allocate.getDataU();
             ByteBuffer dataV = allocate.getDataV();
-            allocate.getStrideY();
-            allocate.getStrideU();
-            allocate.getStrideV();
             try {
                 int i = FRAME_DELIMETER_LENGTH;
                 ByteBuffer allocate2 = ByteBuffer.allocate(i);
@@ -125,7 +123,7 @@ public class FileVideoCapturer implements VideoCapturer {
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
             } catch (IOException e) {
-                sdb.b(e);
+                grb.m(e);
                 return null;
             }
         }
@@ -151,6 +149,11 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
+    public boolean isCapturing() {
+        return this.isCapturing;
+    }
+
+    @Override
     public boolean isScreencast() {
         return false;
     }
@@ -158,11 +161,13 @@ public class FileVideoCapturer implements VideoCapturer {
     @Override
     public void startCapture(int i, int i2, int i3) {
         this.timer.schedule(this.tickTask, 0L, 1000 / i3);
+        this.isCapturing = true;
     }
 
     @Override
     public void stopCapture() {
         this.timer.cancel();
+        this.isCapturing = false;
     }
 
     public void tick() {

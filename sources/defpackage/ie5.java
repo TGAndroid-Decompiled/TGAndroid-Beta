@@ -1,3 +1,3 @@
 package defpackage;
-public interface ie5 {
+public abstract class ie5 {
 }

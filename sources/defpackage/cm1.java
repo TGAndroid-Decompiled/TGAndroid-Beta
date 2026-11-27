@@ -1,71 +1,88 @@
 package defpackage;
 
-import android.view.View;
-import java.io.Serializable;
+import android.content.Context;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class cm1 implements View.OnClickListener {
+public final class cm1 implements Runnable {
     public final byte a;
-    public final mu1 b;
-    public final int c;
-    public final ArrayList d;
-    public final String e;
-    public final String f;
-    public final Serializable h;
-    public final TLRPC.InputPeer n;
-    public final int[] r;
-    public final boolean s;
-    public final bm1 w;
-    public final Object x;
+    public final boolean b;
+    public final boolean c;
+    public final long d;
+    public final fn7 e;
 
-    public cm1(mu1 mu1Var, int i, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z, bm1 bm1Var) {
-        this.a = (byte) 2;
-        this.b = mu1Var;
-        this.c = i;
-        this.d = arrayList;
-        this.h = strArr;
-        this.e = str;
-        this.f = str2;
-        this.n = inputPeer;
-        this.r = iArr;
-        this.x = charSequence;
-        this.s = z;
-        this.w = bm1Var;
+    public cm1(zu1 zu1Var, long j, boolean z, boolean z2) {
+        this.a = (byte) 0;
+        this.e = zu1Var;
+        this.d = j;
+        this.b = z;
+        this.c = z2;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
+        ArrayList arrayList;
         byte b = this.a;
-        Object obj = this.x;
-        Serializable serializable = this.h;
+        int i = 2131751879;
+        long j = this.d;
+        boolean z = this.c;
+        boolean z2 = this.b;
+        fn7 fn7Var = this.e;
         switch (b) {
             case 0:
-                this.b.k8(this.c, this.d, this.e, this.f, (String) serializable, this.n, this.r, (TL_iv.RichMessage) obj, this.s, this.w);
+                ((zu1) fn7Var).d9(j, z2, z);
                 return;
             case 1:
-                this.b.l8(this.c, this.d, this.e, this.f, (String) serializable, this.n, this.r, (CharSequence) obj, this.s, this.w);
+                xn2 xn2Var = (xn2) fn7Var;
+                String M0 = ob6.M0(2131751880, null);
+                if (z2) {
+                    i = 2131751882;
+                } else if (z) {
+                    i = 2131751881;
+                }
+                jj.s0(xn2Var, M0, ob6.M0(i, null), ob6.M0(2131746048, null), true, new rn2(xn2Var, j, (byte) 0));
+                return;
+            case 2:
+                xo2 xo2Var = (xo2) fn7Var;
+                Context context = xo2Var.getContext();
+                vnb vnbVar = xo2Var.J0;
+                String M02 = ob6.M0(2131751880, null);
+                if (z2) {
+                    i = 2131751882;
+                } else if (z) {
+                    i = 2131751881;
+                }
+                id M = jj.M(context, vnbVar, M02, ob6.M0(i, null), ob6.M0(2131746048, null), new kt(xo2Var, j, (byte) 10));
+                M.show();
+                TextView textView = (TextView) M.c(-1);
+                if (textView != null) {
+                    yob.X(textView, aob.q7, null);
+                    return;
+                }
                 return;
             default:
-                boolean z = this.s;
-                bm1 bm1Var = this.w;
-                this.b.m8(this.c, this.d, (String[]) serializable, this.e, this.f, this.n, this.r, (CharSequence) obj, z, bm1Var);
+                uc7 uc7Var = (uc7) fn7Var;
+                if (z2) {
+                    arrayList = uc7Var.m0;
+                } else {
+                    arrayList = uc7Var.l0;
+                }
+                if (z) {
+                    if (!arrayList.contains(Long.valueOf(j))) {
+                        arrayList.add(Long.valueOf(j));
+                        return;
+                    }
+                    return;
+                }
+                arrayList.remove(Long.valueOf(j));
                 return;
         }
     }
 
-    public cm1(mu1 mu1Var, int i, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z, bm1 bm1Var, byte b) {
+    public cm1(fn7 fn7Var, boolean z, boolean z2, long j, byte b) {
         this.a = b;
-        this.b = mu1Var;
-        this.c = i;
-        this.d = arrayList;
-        this.e = str;
-        this.f = str2;
-        this.h = str3;
-        this.n = inputPeer;
-        this.r = iArr;
-        this.x = obj;
-        this.s = z;
-        this.w = bm1Var;
+        this.e = fn7Var;
+        this.b = z;
+        this.c = z2;
+        this.d = j;
     }
 }

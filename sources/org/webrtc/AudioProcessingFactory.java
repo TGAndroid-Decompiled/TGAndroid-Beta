@@ -1,4 +1,4 @@
 package org.webrtc;
 public interface AudioProcessingFactory {
-    long createNative();
+    long createNative(long j);
 }

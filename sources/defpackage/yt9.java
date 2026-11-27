@@ -1,57 +1,106 @@
 package defpackage;
 
-import android.app.Activity;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class yt9 implements Runnable {
-    public final byte a;
-    public final bu9 b;
-    public final Activity c;
-    public final hd d;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+public final class yt9 extends Drawable {
+    public final RectF a = new RectF();
+    public final Paint b;
+    public final TextPaint c;
+    public int d;
+    public String e;
+    public final int f;
+    public int g;
+    public final short h;
 
-    public yt9(bu9 bu9Var, Activity activity, hd hdVar, byte b) {
-        this.a = b;
-        this.b = bu9Var;
-        this.c = activity;
-        this.d = hdVar;
+    public yt9(int i) {
+        String M0;
+        Paint paint = new Paint(1);
+        this.b = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.c = textPaint;
+        this.g = 255;
+        this.h = (short) 255;
+        this.f = i;
+        uh9.p(textPaint, hl.L(11.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(hl.L(1.0f));
+        if (i != 0) {
+            if (i != 2) {
+                M0 = ob6.M0(2131750808, null);
+            } else {
+                M0 = ob6.M0(2131745000, null);
+            }
+        } else {
+            M0 = ob6.M0(2131745590, null);
+        }
+        this.e = M0;
+        this.d = (int) Math.ceil(textPaint.measureText(M0));
+    }
+
+    public final void a() {
+        String M0;
+        int i = this.f;
+        if (i != 0) {
+            if (i != 2) {
+                M0 = ob6.M0(2131750808, null);
+            } else {
+                M0 = ob6.M0(2131745000, null);
+            }
+        } else {
+            M0 = ob6.M0(2131745590, null);
+        }
+        if (!M0.equals(this.e)) {
+            this.e = M0;
+            this.d = (int) Math.ceil(this.c.measureText(M0));
+        }
+    }
+
+    public final void b(int i) {
+        this.c.setColor(i);
+        this.b.setColor(i);
+        this.g = Color.alpha(i);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        hd hdVar = this.d;
-        Activity activity = this.c;
-        bu9 bu9Var = this.b;
-        switch (b) {
-            case 0:
-                bu9Var.n = false;
-                if (!activity.isFinishing()) {
-                    try {
-                        hdVar.dismiss();
-                        return;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                        return;
-                    }
-                }
-                return;
-            default:
-                if (!activity.isFinishing()) {
-                    bu9Var.n = false;
-                    try {
-                        hdVar.dismiss();
-                    } catch (Exception e2) {
-                        fa4.g(e2, true);
-                    }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-                    String M0 = k96.M0(2131689472, null);
-                    hd hdVar2 = alertDialog$Builder.a;
-                    hdVar2.S = M0;
-                    hdVar2.U = k96.M0(2131751738, null);
-                    alertDialog$Builder.j(k96.M0(2131747638, null), null);
-                    alertDialog$Builder.o().setCanceledOnTouchOutside(true);
-                    return;
-                }
-                return;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.a;
+        rectF.set(bounds);
+        canvas.drawRoundRect(rectF, hl.L(2.0f), hl.L(2.0f), this.b);
+        canvas.drawText(this.e, rectF.left + hl.L(5.0f), rectF.top + hl.L(12.0f), this.c);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return hl.L(16.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return hl.L(10.0f) + this.d;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        if (this.h != i) {
+            int i2 = (int) ((i / 255.0f) * this.g);
+            this.b.setAlpha(i2);
+            this.c.setAlpha(i2);
         }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

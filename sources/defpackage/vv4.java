@@ -1,18 +1,29 @@
 package defpackage;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class vv4 extends FrameLayout {
-    public View a;
-    public TextView b;
+public final class vv4 implements View.OnClickListener {
+    public final byte a;
+    public final zv4 b;
+    public final Runnable c;
 
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(80.0f), 1073741824));
+    public vv4(zv4 zv4Var, Runnable runnable, byte b) {
+        this.a = b;
+        this.b = zv4Var;
+        this.c = runnable;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.b.setText(charSequence);
+    @Override
+    public final void onClick(View view) {
+        byte b = this.a;
+        Runnable runnable = this.c;
+        zv4 zv4Var = this.b;
+        switch (b) {
+            case 0:
+                zv4Var.c(runnable);
+                return;
+            default:
+                zv4Var.c(runnable);
+                return;
+        }
     }
 }

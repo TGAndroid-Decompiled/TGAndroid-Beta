@@ -1,73 +1,46 @@
 package defpackage;
 
-import android.os.SystemClock;
-public final class d29 implements Runnable {
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class d29 extends Drawable {
     public final byte a;
-    public final f29 b;
+    public final byte b;
+    public final e29 c;
 
-    public d29(f29 f29Var, byte b) {
-        this.a = b;
-        this.b = f29Var;
+    public d29(e29 e29Var, int i, int i2) {
+        this.c = e29Var;
+        this.a = i;
+        this.b = i2;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        f29 f29Var = this.b;
-        switch (b) {
-            case 0:
-                f29Var.s0 = false;
-                f29Var.A0 = false;
-                f29Var.w0 = SystemClock.elapsedRealtime();
-                f29Var.v0 = true;
-                f29Var.x0 = false;
-                f29Var.K.c(false);
-                f29Var.L.c(false);
-                f29Var.M.c(false);
-                ((t6b) f29Var.a).e(true);
-                return;
-            case 1:
-                f29Var.R = System.currentTimeMillis();
-                f29Var.S = 0L;
-                f29Var.s0 = true;
-                ((t6b) f29Var.a).a.K0.a(0L, true);
-                return;
-            case 2:
-                if (!f29Var.s0 && !f29Var.b()) {
-                    if (!((t6b) f29Var.a).a.Y()) {
-                        f29Var.x0 = false;
-                        f29Var.K.c(false);
-                        f29Var.L.c(false);
-                        f29Var.M.c(false);
-                        return;
-                    }
-                    f29Var.A0 = true;
-                    f29Var.B0 = true;
-                    ((t6b) f29Var.a).f(new d29(f29Var, (byte) 4), true);
-                    return;
-                }
-                return;
-            case 3:
-                if (!f29Var.s0 && !f29Var.b()) {
-                    y6b y6bVar = ((t6b) f29Var.a).a.C0;
-                    if (y6bVar != null) {
-                        y6bVar.toggleDual();
-                    }
-                    f29Var.d(360.0f);
-                    f29Var.x0 = false;
-                    f29Var.K.c(false);
-                    f29Var.L.c(false);
-                    f29Var.M.c(false);
-                    return;
-                }
-                return;
-            default:
-                f29Var.R = System.currentTimeMillis();
-                f29Var.s0 = true;
-                e29 e29Var = f29Var.a;
-                f29Var.S = 0L;
-                ((t6b) e29Var).a.K0.a(0L, true);
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        Rect rect = hl.Q;
+        int centerX = getBounds().centerX();
+        float f = this.a;
+        int L = centerX - (hl.L(f) / 2);
+        int centerY = getBounds().centerY();
+        float f2 = this.b;
+        rect.set(L, centerY - (hl.L(f2) / 2), (hl.L(f) / 2) + getBounds().centerX(), (hl.L(f2) / 2) + getBounds().centerY());
+        e29 e29Var = this.c;
+        e29Var.c.j0(rect);
+        e29Var.c.h(canvas, null);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.c.c.setAlpha(i / 255.0f);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.c.c.p1 = colorFilter;
     }
 }

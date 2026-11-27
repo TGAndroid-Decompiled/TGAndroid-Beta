@@ -1,10 +1,21 @@
 package defpackage;
+public abstract class b59 extends Exception {
+    public static final boolean a;
+    public static final StackTraceElement[] b;
 
-import java.io.Serializable;
-public final class b59 implements Serializable {
-    public long a;
+    static {
+        boolean z;
+        if (System.getProperty("surefire.test.class.path") != null) {
+            z = true;
+        } else {
+            z = false;
+        }
+        a = z;
+        b = new StackTraceElement[0];
+    }
 
-    public final String toString() {
-        return String.valueOf(this.a);
+    @Override
+    public final synchronized Throwable fillInStackTrace() {
+        return null;
     }
 }

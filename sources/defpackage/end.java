@@ -1,16 +1,17 @@
 package defpackage;
-
-import android.os.Build;
-public abstract class end {
-    public static final int a;
+public final class end implements zq7 {
+    public static final end a = new Object();
 
     static {
-        int i;
-        if (Build.VERSION.SDK_INT >= 31) {
-            i = 33554432;
-        } else {
-            i = 0;
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        a = i;
+        throw new ClassCastException();
     }
 }

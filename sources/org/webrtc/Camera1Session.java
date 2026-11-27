@@ -23,7 +23,6 @@ public class Camera1Session implements CameraSession {
     private final CameraSession.Events events;
     private boolean firstFrameReported;
     private final Camera.CameraInfo info;
-    private OrientationHelper orientationHelper;
     private SessionState state;
     private final SurfaceTextureHelper surfaceTextureHelper;
     private static final Histogram camera1StartTimeMsHistogram = Histogram.createCounts("WebRTC.Android.Camera1.StartTimeMs", 1, 10000, 50);
@@ -82,7 +81,6 @@ public class Camera1Session implements CameraSession {
         this.info = cameraInfo;
         this.captureFormat = captureFormat;
         this.constructionTimeNs = j;
-        this.orientationHelper = new OrientationHelper();
         surfaceTextureHelper.setTextureSize(captureFormat.width, captureFormat.height);
         startCapturing();
     }
@@ -91,7 +89,7 @@ public class Camera1Session implements CameraSession {
         if (Thread.currentThread() == this.cameraThreadHandler.getLooper().getThread()) {
             return;
         }
-        sc8.j("Wrong thread");
+        grb.i("Wrong thread");
     }
 
     public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
@@ -157,18 +155,12 @@ public class Camera1Session implements CameraSession {
     }
 
     public int getFrameOrientation() {
-        int orientation;
-        if (t76.N != null) {
-            orientation = 0;
-        } else {
-            orientation = this.orientationHelper.getOrientation();
+        int b = c00.b(this.applicationContext);
+        Camera.CameraInfo cameraInfo = this.info;
+        if (cameraInfo.facing == 0) {
+            b = 360 - b;
         }
-        OrientationHelper.cameraOrientation = orientation;
-        if (this.info.facing == 1) {
-            orientation = 360 - orientation;
-        }
-        OrientationHelper.cameraRotation = orientation;
-        return (this.info.orientation + orientation) % 360;
+        return (cameraInfo.orientation + b) % 360;
     }
 
     public void lambda$listenForTextureFrames$0(VideoFrame videoFrame) {
@@ -186,7 +178,7 @@ public class Camera1Session implements CameraSession {
         if (this.info.facing != 1) {
             z = false;
         }
-        VideoFrame videoFrame2 = new VideoFrame(b00.a(textureBufferImpl, z, 0), getFrameOrientation(), videoFrame.getTimestampNs());
+        VideoFrame videoFrame2 = new VideoFrame(c00.a(textureBufferImpl, z, 0), getFrameOrientation(), videoFrame.getTimestampNs());
         this.events.onFrameCaptured(this, videoFrame2);
         videoFrame2.release();
     }
@@ -214,7 +206,7 @@ public class Camera1Session implements CameraSession {
                 if (i == 100) {
                     k = "Camera server died!";
                 } else {
-                    k = de9.k(i, "Camera error: ");
+                    k = uh9.k(i, "Camera error: ");
                 }
                 Logging.e("Camera1Session", k);
                 Camera1Session.this.stopInternal();
@@ -253,10 +245,6 @@ public class Camera1Session implements CameraSession {
         this.camera.stopPreview();
         this.camera.release();
         this.events.onCameraClosed(this);
-        OrientationHelper orientationHelper = this.orientationHelper;
-        if (orientationHelper != null) {
-            orientationHelper.stop();
-        }
         Logging.d("Camera1Session", "Stop done");
     }
 

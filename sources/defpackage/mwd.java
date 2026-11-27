@@ -1,17 +1,24 @@
 package defpackage;
-public final class mwd implements zn7 {
-    public static final mwd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)));
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+public final class mwd extends c4 {
+    public static final Parcelable.Creator<mwd> CREATOR = new hud((byte) 8);
+    public final int a;
+    public final ParcelFileDescriptor b;
+
+    public mwd(int i, ParcelFileDescriptor parcelFileDescriptor) {
+        this.a = i;
+        this.b = parcelFileDescriptor;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.k(parcel, 3, this.b, i);
+        bye.s(parcel, r);
     }
 }

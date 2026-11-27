@@ -1,20 +1,17 @@
 package defpackage;
-public interface bbe {
-    void a(Object obj, byte[] bArr, int i, int i2, kj6 kj6Var);
+public final class bbe implements zq7 {
+    public static final bbe a = new Object();
 
-    boolean b(c2e c2eVar, c2e c2eVar2);
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)));
+    }
 
-    int c(c2e c2eVar);
-
-    boolean d(Object obj);
-
-    int e(c2e c2eVar);
-
-    void f(Object obj, xdd xddVar);
-
-    c2e zze();
-
-    void zzf(Object obj);
-
-    void zzg(Object obj, Object obj2);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

@@ -1,54 +1,122 @@
 package defpackage;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fe0 implements Runnable {
-    public final byte a;
-    public final wjb b;
-    public final Context c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class fe0 extends Drawable implements Drawable.Callback {
+    public static int[] s;
+    public final Context a;
+    public final hn b;
+    public Drawable c;
+    public Drawable d;
+    public int e;
+    public int f;
+    public int h;
+    public int n;
+    public int r;
 
-    public fe0(vj3 vj3Var, wjb wjbVar, Context context) {
-        this.a = (byte) 1;
-        this.b = wjbVar;
-        this.c = context;
+    public fe0(Context context) {
+        this.a = context;
+        hn hnVar = new hn(false, false, false);
+        this.b = hnVar;
+        hnVar.x(hl.n1("fonts/rcondensedbold.ttf"));
+        hnVar.n(0.2f, 160L, k43.h);
+        hnVar.w(hl.L(10.0f));
+        hnVar.b = 17;
+        hnVar.setCallback(this);
+        hnVar.U = true;
+        if (s != null) {
+            return;
+        }
+        s = new int[]{2131232601, 2131232602, 2131232605, 2131232606, 2131232609, 2131232610, 2131232613, 2131232614, 2131232617, 2131232618, 2131232621, 2131232622, 2131232625, 2131232626, 2131232629, 2131232630, 2131232633, 2131232634, 2131232599, 2131232600, 2131232603, 2131232604, 2131232607, 2131232608, 2131232611, 2131232612, 2131232615, 2131232616, 2131232619, 2131232620, 2131232623, 2131232624, 2131232627, 2131232628, 2131232631, 2131232632, 2131232635, 2131232636};
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        wjb wjbVar = this.b;
-        Context context = this.c;
-        switch (b) {
-            case 0:
-                new ava(context, wjbVar).show();
-                return;
-            case 1:
-                hd[] hdVarArr = new hd[1];
-                SpannableStringBuilder Q2 = gl.Q2(gl.H2(k96.M0(2131754172, null), wjbVar, new wh0(hdVarArr, (byte) 8)));
-                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(Q2);
-                while (matcher.find()) {
-                    Q2.setSpan(new tk(hdVarArr, context, matcher.group(1)), matcher.start(), matcher.end(), 33);
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wjbVar, context);
-                String M0 = k96.M0(2131754171, null);
-                hd hdVar = alertDialog$Builder.a;
-                hdVar.S = M0;
-                hdVar.U = Q2;
-                alertDialog$Builder.j(k96.M0(2131754173, null), null);
-                hdVarArr[0] = alertDialog$Builder.o();
-                return;
-            default:
-                hmc.K0(context, wjbVar);
-                return;
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.d;
+        if (drawable != null && this.c != null) {
+            drawable.draw(canvas);
+            this.c.draw(canvas);
+            canvas.save();
+            canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
+            this.b.draw(canvas);
+            canvas.restore();
         }
     }
 
-    public fe0(Context context, wjb wjbVar, byte b) {
-        this.a = b;
-        this.c = context;
-        this.b = wjbVar;
+    @Override
+    public final int getIntrinsicHeight() {
+        return hl.L(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return hl.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        Drawable drawable = this.c;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+        }
+        Drawable drawable2 = this.d;
+        if (drawable2 != null) {
+            drawable2.setBounds(getBounds());
+        }
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+        scheduleSelf(runnable, j);
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        int o = vm2.o(this.e, i);
+        if (this.e != o) {
+            this.e = o;
+            Drawable drawable = this.c;
+            if (drawable != null) {
+                drawable.setColorFilter(o, PorterDuff.Mode.MULTIPLY);
+                invalidateSelf();
+            }
+        }
+        int o2 = vm2.o(this.f, i);
+        if (this.f != o2) {
+            this.f = o2;
+            if (this.c != null) {
+                this.d.setColorFilter(o2, PorterDuff.Mode.MULTIPLY);
+                invalidateSelf();
+            }
+        }
+        int o3 = vm2.o(this.h, i);
+        if (this.h != o3) {
+            this.h = o3;
+            this.b.v(o3, false);
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

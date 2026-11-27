@@ -1,32 +1,29 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class n5d extends b4 {
-    public static final Parcelable.Creator<n5d> CREATOR = new t4d((byte) 11);
-    public final long a;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class n5d extends j5d {
+    public final TaskCompletionSource h;
+    public final j5d n;
+    public final y3d r;
 
-    public n5d(long j) {
-        this.a = j;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof n5d) || this.a != ((n5d) obj).a) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.a)});
+    public n5d(y3d y3dVar, TaskCompletionSource taskCompletionSource, TaskCompletionSource taskCompletionSource2, j5d j5dVar) {
+        super(taskCompletionSource);
+        this.h = taskCompletionSource2;
+        this.n = j5dVar;
+        this.r = y3dVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 8);
-        parcel.writeLong(this.a);
-        jte.s(parcel, r);
+    public final void b() {
+        synchronized (this.r.f) {
+            y3d y3dVar = this.r;
+            TaskCompletionSource taskCompletionSource = this.h;
+            y3dVar.e.add(taskCompletionSource);
+            taskCompletionSource.getTask().addOnCompleteListener(new k7b(y3dVar, taskCompletionSource, (byte) 9));
+            if (this.r.l.getAndIncrement() > 0) {
+                this.r.b.b("Already connected to the service.", new Object[0]);
+            }
+            y3d.b(this.r, this.n);
+        }
     }
 }

@@ -1,31 +1,153 @@
 package defpackage;
-public final class ws2 implements Runnable {
-    public final byte a;
-    public final it2 b;
 
-    public ws2(it2 it2Var, byte b) {
-        this.a = b;
-        this.b = it2Var;
+import android.app.PendingIntent;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class ws2 extends c4 {
+    public final int a;
+    public final int b;
+    public final PendingIntent c;
+    public final String d;
+    public final Integer e;
+    public static final ws2 f = new ws2(0, null, null);
+    public static final Parcelable.Creator<ws2> CREATOR = new m9d((byte) 2);
+
+    public ws2(int i, int i2, PendingIntent pendingIntent, String str, Integer num) {
+        this.a = i;
+        this.b = i2;
+        this.c = pendingIntent;
+        this.d = str;
+        this.e = num;
+    }
+
+    public static String d(int i) {
+        if (i != 99) {
+            if (i != 1500) {
+                switch (i) {
+                    case -1:
+                        return "UNKNOWN";
+                    case 0:
+                        return "SUCCESS";
+                    case 1:
+                        return "SERVICE_MISSING";
+                    case 2:
+                        return "SERVICE_VERSION_UPDATE_REQUIRED";
+                    case 3:
+                        return "SERVICE_DISABLED";
+                    case 4:
+                        return "SIGN_IN_REQUIRED";
+                    case 5:
+                        return "INVALID_ACCOUNT";
+                    case 6:
+                        return "RESOLUTION_REQUIRED";
+                    case 7:
+                        return "NETWORK_ERROR";
+                    case 8:
+                        return "INTERNAL_ERROR";
+                    case 9:
+                        return "SERVICE_INVALID";
+                    case 10:
+                        return "DEVELOPER_ERROR";
+                    case 11:
+                        return "LICENSE_CHECK_FAILED";
+                    default:
+                        switch (i) {
+                            case 13:
+                                return "CANCELED";
+                            case 14:
+                                return "TIMEOUT";
+                            case 15:
+                                return "INTERRUPTED";
+                            case 16:
+                                return "API_UNAVAILABLE";
+                            case 17:
+                                return "SIGN_IN_FAILED";
+                            case 18:
+                                return "SERVICE_UPDATING";
+                            case 19:
+                                return "SERVICE_MISSING_PERMISSION";
+                            case 20:
+                                return "RESTRICTED_PROFILE";
+                            case 21:
+                                return "API_VERSION_UPDATE_REQUIRED";
+                            case 22:
+                                return "RESOLUTION_ACTIVITY_NOT_FOUND";
+                            case 23:
+                                return "API_DISABLED";
+                            case 24:
+                                return "API_DISABLED_FOR_CONNECTION";
+                            case 25:
+                                return "API_INSTALL_REQUIRED";
+                            default:
+                                StringBuilder sb = new StringBuilder(String.valueOf(i).length() + 20);
+                                sb.append("UNKNOWN_ERROR_CODE(");
+                                sb.append(i);
+                                sb.append(")");
+                                return sb.toString();
+                        }
+                }
+            }
+            return "DRIVE_EXTERNAL_STORAGE_REQUIRED";
+        }
+        return "UNFINISHED";
+    }
+
+    public final boolean b() {
+        if (this.b != 0 && this.c != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        if (this.b == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ws2)) {
+            return false;
+        }
+        ws2 ws2Var = (ws2) obj;
+        if (this.b == ws2Var.b && vue.a(this.c, ws2Var.c) && vue.a(this.d, ws2Var.d) && vue.a(this.e, ws2Var.e)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.b), this.c, this.d, this.e});
+    }
+
+    public final String toString() {
+        um4 um4Var = new um4(this);
+        um4Var.a(d(this.b), "statusCode");
+        um4Var.a(this.c, "resolution");
+        um4Var.a(this.d, "message");
+        um4Var.a(this.e, "clientMethodKey");
+        return um4Var.toString();
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        it2 it2Var = this.b;
-        switch (b) {
-            case 0:
-                it2Var.d0();
-                return;
-            case 1:
-                if (it2Var.K) {
-                    it2Var.d.d.requestFocus();
-                    gl.E3(it2Var.d.d);
-                    return;
-                }
-                return;
-            default:
-                it2Var.presentFragment(mu1.W9(it2Var.I), true);
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.b);
+        bye.k(parcel, 3, this.c, i);
+        bye.l(parcel, 4, this.d);
+        bye.i(parcel, 5, this.e);
+        bye.s(parcel, r);
+    }
+
+    public ws2(int i, PendingIntent pendingIntent, String str) {
+        this(1, i, pendingIntent, str, null);
     }
 }

@@ -1,10 +1,34 @@
 package defpackage;
-public abstract class icd {
-    public static final byte[] a = {48, 49, 53, 0};
-    public static final byte[] b = {48, 49, 48, 0};
-    public static final byte[] c = {48, 48, 57, 0};
-    public static final byte[] d = {48, 48, 53, 0};
-    public static final byte[] e = {48, 48, 49, 0};
-    public static final byte[] f = {48, 48, 49, 0};
-    public static final byte[] g = {48, 48, 50, 0};
+
+import android.util.Log;
+public final class icd extends zad {
+    public final byte i;
+
+    public icd(ko9 ko9Var, String str, Object obj, byte b) {
+        super(ko9Var, str, obj);
+        this.i = b;
+    }
+
+    @Override
+    public final Object d(String str) {
+        switch (this.i) {
+            case 0:
+                if (gmf.c.matcher(str).matches()) {
+                    return Boolean.TRUE;
+                }
+                if (gmf.d.matcher(str).matches()) {
+                    return Boolean.FALSE;
+                }
+                String str2 = this.b;
+                StringBuilder sb = new StringBuilder(str.length() + str2.length() + 28);
+                sb.append("Invalid boolean value for ");
+                sb.append(str2);
+                sb.append(": ");
+                sb.append(str);
+                Log.e("PhenotypeFlag", sb.toString());
+                return null;
+            default:
+                return str;
+        }
+    }
 }

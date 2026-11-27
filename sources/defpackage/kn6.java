@@ -1,36 +1,32 @@
 package defpackage;
 
-import java.util.ArrayList;
+import android.net.Uri;
+import org.telegram.messenger.MediaController;
 public final class kn6 implements Runnable {
-    public final byte a = 0;
-    public final Object b;
-    public final boolean c;
-    public final ArrayList d;
-    public final byte e;
+    public final byte a;
+    public final pcc b;
+    public final Uri c;
 
-    public kn6(hq6 hq6Var, boolean z, int i, ArrayList arrayList) {
-        this.b = hq6Var;
-        this.c = z;
-        this.e = i;
-        this.d = arrayList;
+    public kn6(pcc pccVar, Uri uri, byte b) {
+        this.a = b;
+        this.b = pccVar;
+        this.c = uri;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kn6.run():void");
-    }
-
-    public kn6(hq6 hq6Var, boolean z, ArrayList arrayList, int i) {
-        this.b = hq6Var;
-        this.c = z;
-        this.d = arrayList;
-        this.e = i;
-    }
-
-    public kn6(vx7 vx7Var, ArrayList arrayList, int i, boolean z) {
-        this.b = vx7Var;
-        this.d = arrayList;
-        this.e = i;
-        this.c = z;
+        byte b = this.a;
+        Uri uri = this.c;
+        pcc pccVar = this.b;
+        switch (b) {
+            case 0:
+                String[] strArr = MediaController.W1;
+                pccVar.a(uri);
+                return;
+            default:
+                String[] strArr2 = MediaController.W1;
+                pccVar.a(uri);
+                return;
+        }
     }
 }

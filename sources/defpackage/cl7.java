@@ -1,13 +1,12 @@
 package defpackage;
 
-import android.app.Notification;
-import android.net.Uri;
-public abstract class cl7 {
-    public static Notification.MessagingStyle.Message a(CharSequence charSequence, long j, CharSequence charSequence2) {
-        return new Notification.MessagingStyle.Message(charSequence, j, charSequence2);
-    }
+import android.view.View;
+public interface cl7 {
+    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 
-    public static Notification.MessagingStyle.Message b(Notification.MessagingStyle.Message message, String str, Uri uri) {
-        return message.setData(str, uri);
-    }
+    int getMeasuredHeight();
+
+    int getTop();
+
+    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 }

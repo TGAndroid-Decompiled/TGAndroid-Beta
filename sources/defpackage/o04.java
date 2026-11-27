@@ -1,31 +1,34 @@
 package defpackage;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-public final class o04 extends q5c {
-    public o04(Context context, int i, i8c i8cVar, n8c n8cVar, wjb wjbVar) {
-        super(context, i, -1, false, i8cVar, n8cVar, null, wjbVar, -1, 0);
-        this.z2 = true;
-        setOverScrollMode(2);
+import android.widget.FrameLayout;
+public final class o04 extends FrameLayout {
+    public final o24 a;
+
+    public o04(o24 o24Var, Context context) {
+        super(context);
+        this.a = o24Var;
     }
 
-    public final void L1(View view) {
-        int i;
-        if (view != null) {
-            float L = gl.L(92.0f);
-            float width = getWidth() - L;
-            float x = view.getX();
-            float width2 = view.getWidth() + x;
-            if (x < L) {
-                i = (int) (x - L);
-            } else if (width2 > width) {
-                i = (int) (width2 - width);
-            } else {
-                i = 0;
-            }
-            if (i != 0) {
-                gl.J(this, new va7(this, view, i, (byte) 28));
-            }
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        o24 o24Var = this.a;
+        t04 t04Var = o24Var.J;
+        oz3 oz3Var = o24Var.W;
+        b14 b14Var = o24Var.Q;
+        if (view != b14Var && view != oz3Var) {
+            return super.drawChild(canvas, view, j);
         }
+        canvas.save();
+        float y = t04Var.getY() + t04Var.getMeasuredHeight() + 1.0f;
+        if (view == b14Var && oz3Var != null) {
+            y = Math.max(y, oz3Var.getY() + oz3Var.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y - (hl.L(16.0f) * o24Var.b.e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j);
+        canvas.restore();
+        return drawChild;
     }
 }

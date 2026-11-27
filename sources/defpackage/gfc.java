@@ -1,39 +1,46 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Log;
-import android.view.View;
-import java.lang.reflect.Method;
-import java.util.WeakHashMap;
-public abstract class gfc {
-    public static final Method a;
-    public static final boolean b;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class gfc implements h73 {
+    public final ExtendedDefaultDataSource a;
+    public final long b;
 
-    static {
-        boolean z;
-        if (Build.VERSION.SDK_INT >= 27) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
-        try {
-            Method declaredMethod = View.class.getDeclaredMethod("computeFitSystemWindows", Rect.class, Rect.class);
-            a = declaredMethod;
-            if (!declaredMethod.isAccessible()) {
-                declaredMethod.setAccessible(true);
-            }
-        } catch (NoSuchMethodException unused) {
-            Log.d("ViewUtils", "Could not find method computeFitSystemWindows. Oh well.");
-        }
+    public gfc(ExtendedDefaultDataSource extendedDefaultDataSource, long j) {
+        this.a = extendedDefaultDataSource;
+        this.b = j;
     }
 
-    public static boolean a(View view) {
-        WeakHashMap weakHashMap = jdc.a;
-        if (view.getLayoutDirection() == 1) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void addTransferListener(v2c v2cVar) {
+        this.a.addTransferListener(v2cVar);
+    }
+
+    @Override
+    public final void close() {
+        this.a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.a.getUri();
+    }
+
+    @Override
+    public final long open(n73 n73Var) {
+        m73 a = n73Var.a();
+        a.e = n73Var.e + this.b;
+        return this.a.open(a.a());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i, int i2) {
+        return this.a.read(bArr, i, i2);
     }
 }

@@ -1,113 +1,161 @@
 package defpackage;
 
-import java.io.File;
-import org.telegram.messenger.ShortcutResultReceiver;
-import org.telegram.ui.LaunchActivity;
-public final class mn0 implements Runnable {
+import android.app.Activity;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.UserInfoActivity;
+public final class mn0 implements RequestDelegate {
     public final byte a;
-    public final p8c b;
+    public final Object b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
+    public final Object g;
 
-    public mn0(p8c p8cVar, byte b) {
+    public mn0(wo8 wo8Var, gi0 gi0Var, icc iccVar, Activity activity, TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, List list, byte b) {
         this.a = b;
-        this.b = p8cVar;
+        this.e = wo8Var;
+        this.c = gi0Var;
+        this.f = iccVar;
+        this.d = activity;
+        this.g = inputStorePaymentPurpose;
+        this.b = list;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        p8c p8cVar = this.b;
+        Object obj = this.g;
+        Object obj2 = this.d;
+        Object obj3 = this.f;
+        Object obj4 = this.c;
+        Object obj5 = this.b;
+        Object obj6 = this.e;
         switch (b) {
             case 0:
-                gl.c3(new mn0(p8cVar, (byte) 2));
+                hl.c3(new nn0(tL_error, (tn0) obj6, tLObject, (List) obj5, (gi0) obj4, (tn0) obj3, (e) obj2, (TLRPC.TL_inputStorePaymentPremiumGiveaway) obj, (byte) 0));
                 return;
             case 1:
-                p8cVar.a(null);
+                hl.c3(new nn0(tL_error, (pcc) obj6, tLObject, (List) obj5, (gi0) obj4, (pcc) obj3, (e) obj2, (TLRPC.TL_inputStorePaymentPremiumGiftCode) obj, (byte) 1));
                 return;
             case 2:
-                p8cVar.a(null);
+                uc7 uc7Var = (uc7) obj6;
+                Activity activity = (Activity) obj5;
+                id idVar = (id) obj4;
+                bf7 bf7Var = (bf7) obj3;
+                e eVar = (e) obj2;
+                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) obj;
+                uc7Var.getClass();
+                if (tL_error == null) {
+                    if (activity != null) {
+                        hl.c3(new gb7(activity, idVar, (byte) 0));
+                    }
+                    uc7Var.Y3((TLRPC.Updates) tLObject, false);
+                    hl.c3(new ue(bf7Var, (byte) 2));
+                    return;
+                }
+                hl.c3(new ra7(uc7Var, bf7Var, activity, idVar, tL_error, eVar, tL_channels_convertToGigagroup, (byte) 1));
                 return;
             case 3:
-                r61.i0 = false;
-                long m0 = r61.m0(ba4.j(4), 5);
-                long m02 = r61.m0(ba4.j(4), 4);
-                long m03 = r61.m0(ba4.j(100), 0) + r61.m0(ba4.j(0), 0);
-                long m04 = r61.m0(ba4.j(101), 0) + r61.m0(ba4.j(2), 0);
-                long m05 = r61.m0(ba4.j(5), 1) + r61.m0(ba4.j(3), 1);
-                long m06 = r61.m0(ba4.j(5), 2) + r61.m0(ba4.j(3), 2);
-                long m07 = r61.m0(ba4.j(4), 3) + r61.m0(new File(ba4.j(4), "acache"), 0);
-                long m08 = r61.m0(ba4.j(1), 0);
-                long m09 = r61.m0(ba4.j(6), 0);
-                long m010 = r61.m0(gl.O0(), 1);
-                boolean z = w01.a;
-                long j = m0 + m02 + m04 + m08 + m03 + m05 + m06 + m07 + m09 + m010;
-                r61.k0 = Long.valueOf(j);
-                r61.j0 = System.currentTimeMillis();
-                if (!r61.i0) {
-                    gl.c3(new lf(p8cVar, j, (byte) 1));
-                    return;
-                }
+                hl.c3(new nn0(tLObject, (wo8) obj6, (gi0) obj4, (icc) ((iv4) obj3), (Activity) obj2, (TLRPC.InputStorePaymentPurpose) ((TLRPC.TL_inputStorePaymentStarsGift) obj), (List) obj5, tL_error, (byte) 8));
                 return;
             case 4:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
-                }
+                hl.c3(new nn0(tLObject, (wo8) obj6, (gi0) obj4, (icc) ((qe2) obj3), (Activity) obj2, (TLRPC.InputStorePaymentPurpose) ((TLRPC.TL_inputStorePaymentStarsGiveaway) obj), (List) obj5, tL_error, (byte) 9));
                 return;
             case 5:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
+                final a5c a5cVar = (a5c) obj6;
+                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj5;
+                final String str = (String) obj4;
+                final y4c y4cVar = (y4c) obj3;
+                final kt ktVar = (kt) obj2;
+                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
+                a5cVar.getClass();
+                if (tLObject instanceof TLRPC.TL_messages_translateResult) {
+                    ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
+                    if (arrayList.size() <= 0) {
+                        hl.c3(new Runnable() {
+                            @Override
+                            public final void run() {
+                                byte b2 = r6;
+                                kt ktVar2 = ktVar;
+                                y4c y4cVar2 = y4cVar;
+                                String str2 = str;
+                                TL_stories.StoryItem storyItem2 = storyItem;
+                                a5c a5cVar2 = a5cVar;
+                                a5cVar2.getClass();
+                                switch (b2) {
+                                    case 0:
+                                        storyItem2.translatedLng = str2;
+                                        storyItem2.translatedText = null;
+                                        a5cVar2.getMessagesController().O1().k.h(storyItem2.dialogId, storyItem2);
+                                        a5cVar2.K.remove(y4cVar2);
+                                        ktVar2.run();
+                                        return;
+                                    default:
+                                        storyItem2.translatedLng = str2;
+                                        storyItem2.translatedText = null;
+                                        a5cVar2.getMessagesController().O1().k.h(storyItem2.dialogId, storyItem2);
+                                        a5cVar2.K.remove(y4cVar2);
+                                        ktVar2.run();
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    } else {
+                        hl.c3(new ra7(a5cVar, storyItem, str, tL_textWithEntities, arrayList.get(0), y4cVar, ktVar, (byte) 22));
+                        return;
+                    }
                 }
-                return;
-            case 6:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
-                }
-                return;
-            case 7:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
-                }
-                return;
-            case 8:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
-                }
-                return;
-            case 9:
-                p8cVar.a(null);
-                return;
-            case 10:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
-                }
-                return;
-            case 11:
-                if (p8cVar != null) {
-                    p8cVar.a(null);
-                    return;
-                }
-                return;
-            case 12:
-                int i = ShortcutResultReceiver.a;
-                p8cVar.a(Boolean.TRUE);
-                return;
-            case 13:
-                p8cVar.a(LaunchActivity.S());
-                return;
-            case 14:
-                p8cVar.a("Wallet engine is closed");
-                return;
-            case 15:
-                p8cVar.a(null);
+                hl.c3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b2 = r6;
+                        kt ktVar2 = ktVar;
+                        y4c y4cVar2 = y4cVar;
+                        String str2 = str;
+                        TL_stories.StoryItem storyItem2 = storyItem;
+                        a5c a5cVar2 = a5cVar;
+                        a5cVar2.getClass();
+                        switch (b2) {
+                            case 0:
+                                storyItem2.translatedLng = str2;
+                                storyItem2.translatedText = null;
+                                a5cVar2.getMessagesController().O1().k.h(storyItem2.dialogId, storyItem2);
+                                a5cVar2.K.remove(y4cVar2);
+                                ktVar2.run();
+                                return;
+                            default:
+                                storyItem2.translatedLng = str2;
+                                storyItem2.translatedText = null;
+                                a5cVar2.getMessagesController().O1().k.h(storyItem2.dialogId, storyItem2);
+                                a5cVar2.K.remove(y4cVar2);
+                                ktVar2.run();
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                p8cVar.a(null);
+                hl.c3(new nn0((UserInfoActivity) obj6, tL_error, (TLObject) obj5, (TL_account.TL_birthday) obj4, (TLRPC.UserFull) obj3, tLObject, (int[]) obj2, (ArrayList) obj));
                 return;
         }
+    }
+
+    public mn0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, byte b) {
+        this.a = b;
+        this.e = obj;
+        this.b = obj2;
+        this.c = obj3;
+        this.f = obj4;
+        this.d = obj5;
+        this.g = obj6;
     }
 }

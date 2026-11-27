@@ -1,24 +1,23 @@
 package defpackage;
-public final class n1c implements bja {
-    public int a;
-    public boolean b;
-    public final o1c c;
 
-    public n1c(o1c o1cVar) {
-        this.c = o1cVar;
-    }
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+public abstract class n1c {
+    public static final int a = 0;
 
-    @Override
-    public final void L(int i, boolean z) {
-        if (this.a != i || this.b != z) {
-            this.a = i;
-            this.b = z;
-            if (i > gl.L(20.0f)) {
-                o1c o1cVar = this.c;
-                if (!o1cVar.n0) {
-                    o1cVar.u0.r0 = false;
-                    o1cVar.n0 = true;
-                }
+    static {
+        if (Build.VERSION.SDK_INT < 29) {
+            try {
+                Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                Class cls = Long.TYPE;
+                Trace.class.getMethod("isTagEnabled", cls);
+                Class cls2 = Integer.TYPE;
+                Trace.class.getMethod("asyncTraceBegin", cls, String.class, cls2);
+                Trace.class.getMethod("asyncTraceEnd", cls, String.class, cls2);
+                Trace.class.getMethod("traceCounter", cls, String.class, cls2);
+            } catch (Exception e) {
+                Log.i("TraceCompat", "Unable to initialize via reflection.", e);
             }
         }
     }

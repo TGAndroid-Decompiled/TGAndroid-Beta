@@ -1,106 +1,67 @@
 package defpackage;
 
-import org.telegram.SQLite.SQLiteDatabase;
+import java.util.Locale;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 public final class gq3 implements Runnable {
     public final byte a;
-    public final ad7 b;
-    public final iq3 c;
+    public final lq3 b;
+    public final r47 c;
 
-    public gq3(ad7 ad7Var, iq3 iq3Var, byte b) {
+    public gq3(lq3 lq3Var, r47 r47Var, byte b) {
         this.a = b;
-        this.b = ad7Var;
-        this.c = iq3Var;
+        this.b = lq3Var;
+        this.c = r47Var;
     }
 
     @Override
     public final void run() {
-        SQLiteDatabase sQLiteDatabase;
-        SQLiteDatabase sQLiteDatabase2;
         byte b = this.a;
-        int i = 0;
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        iq3 iq3Var = this.c;
-        ad7 ad7Var = this.b;
+        r47 r47Var = this.c;
+        lq3 lq3Var = this.b;
         switch (b) {
             case 0:
                 try {
-                    try {
-                        sQLiteDatabase2 = ad7Var.b;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                        if (sQLitePreparedStatement == null) {
-                            return;
-                        }
-                    }
-                    if (sQLiteDatabase2 != null) {
-                        sQLitePreparedStatement = sQLiteDatabase2.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
-                        sQLitePreparedStatement.requery();
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(true);
-                        iq3Var.b(nativeByteBuffer);
-                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(nativeByteBuffer.length());
-                        iq3Var.b(nativeByteBuffer2);
-                        sQLitePreparedStatement.bindLong(1, iq3Var.a);
-                        sQLitePreparedStatement.bindLong(2, iq3Var.b);
-                        sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer2);
-                        if (iq3Var.G) {
-                            i = 1;
-                        } else if (iq3Var.M) {
-                            i = 2;
-                        }
-                        sQLitePreparedStatement.bindInteger(4, i);
-                        sQLitePreparedStatement.step();
-                        nativeByteBuffer2.reuse();
-                        sQLitePreparedStatement.dispose();
-                        sQLitePreparedStatement.dispose();
-                        return;
-                    }
+                    SQLitePreparedStatement executeFast = lq3Var.getMessagesStorage().b.executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
+                    executeFast.bindInteger(1, r47Var.F0().dc_id);
+                    executeFast.bindLong(2, r47Var.F0().id);
+                    executeFast.step();
+                    executeFast.dispose();
                     return;
-                } catch (Throwable th) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th;
+                } catch (Exception e) {
+                    cc4.g(e, true);
+                    return;
+                }
+            case 1:
+                try {
+                    Locale locale = Locale.ENGLISH;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    int i = r47Var.F0().dc_id;
+                    long j = r47Var.F0().id;
+                    lq3Var.getMessagesStorage().b.executeFast("UPDATE downloading_documents SET state = 1, date = " + currentTimeMillis + " WHERE hash = " + i + " AND id = " + j).stepThis().dispose();
+                    lq3Var.getMessagesStorage().b.executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
+                    return;
+                } catch (Exception e2) {
+                    cc4.g(e2, true);
+                    return;
                 }
             default:
                 try {
-                    try {
-                        sQLiteDatabase = ad7Var.b;
-                    } catch (Exception e2) {
-                        fa4.g(e2, true);
-                        if (sQLitePreparedStatement == null) {
-                            return;
-                        }
-                    }
-                    if (sQLiteDatabase != null) {
-                        sQLitePreparedStatement = sQLiteDatabase.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
-                        sQLitePreparedStatement.requery();
-                        NativeByteBuffer nativeByteBuffer3 = new NativeByteBuffer(true);
-                        iq3Var.b(nativeByteBuffer3);
-                        NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(nativeByteBuffer3.length());
-                        iq3Var.b(nativeByteBuffer4);
-                        sQLitePreparedStatement.bindLong(1, iq3Var.a);
-                        sQLitePreparedStatement.bindLong(2, iq3Var.b);
-                        sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer4);
-                        if (iq3Var.G) {
-                            i = 1;
-                        } else if (iq3Var.M) {
-                            i = 2;
-                        }
-                        sQLitePreparedStatement.bindInteger(4, i);
-                        sQLitePreparedStatement.step();
-                        nativeByteBuffer4.reuse();
-                        sQLitePreparedStatement.dispose();
-                        sQLitePreparedStatement.dispose();
-                        return;
-                    }
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(r47Var.k.getObjectSize());
+                    r47Var.k.serializeToStream(nativeByteBuffer);
+                    SQLitePreparedStatement executeFast2 = lq3Var.getMessagesStorage().b.executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
+                    executeFast2.bindByteBuffer(1, nativeByteBuffer);
+                    executeFast2.bindInteger(2, r47Var.F0().dc_id);
+                    executeFast2.bindLong(3, r47Var.F0().id);
+                    executeFast2.bindInteger(4, 0);
+                    executeFast2.bindLong(5, System.currentTimeMillis());
+                    executeFast2.step();
+                    executeFast2.dispose();
+                    nativeByteBuffer.reuse();
                     return;
-                } catch (Throwable th2) {
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th2;
+                } catch (Exception e3) {
+                    cc4.g(e3, true);
+                    return;
                 }
         }
     }

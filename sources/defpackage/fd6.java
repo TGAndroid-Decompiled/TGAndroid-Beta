@@ -1,120 +1,46 @@
 package defpackage;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.Utilities;
-public final class fd6 implements TextWatcher {
+import android.location.Location;
+import java.io.Serializable;
+import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
+public final class fd6 implements Runnable {
     public final byte a;
-    public boolean b;
-    public final View c;
+    public final byte b;
+    public final Object c;
+    public final Serializable d;
+    public final Object e;
+    public final Object f;
 
-    public fd6(gd6 gd6Var, boolean z) {
-        this.a = (byte) 0;
-        this.c = gd6Var;
-        this.b = z;
+    public fd6(jf7 jf7Var, String str, int i, Object[] objArr, CountDownLatch countDownLatch) {
+        this.a = (byte) 2;
+        this.c = jf7Var;
+        this.d = str;
+        this.b = i;
+        this.e = objArr;
+        this.f = countDownLatch;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int j;
-        byte b = this.a;
-        View view = this.c;
-        switch (b) {
-            case 0:
-                gd6 gd6Var = (gd6) view;
-                ImageView imageView = gd6Var.f;
-                if (this.b) {
-                    if (imageView.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        if (gd6Var.E) {
-                            imageView.callOnClick();
-                        }
-                        gl.T3(imageView, true, 0.1f, true, true);
-                        return;
-                    } else if (imageView.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        gl.T3(imageView, false, 0.1f, true, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                dq8 dq8Var = (dq8) view;
-                if (!this.b && editable.length() > 12) {
-                    this.b = true;
-                    editable.delete(12, editable.length());
-                    gl.z3(dq8Var);
-                    try {
-                        dq8Var.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    this.b = false;
-                    return;
-                }
-                return;
-            default:
-                vhb vhbVar = (vhb) view;
-                uhb uhbVar = vhbVar.s0;
-                if (this.b && vhbVar.y0 > 0 && vhbVar.z0 > 0 && !vhbVar.B0 && uhbVar.getLayout() != null) {
-                    int height = uhbVar.getLayout().getHeight();
-                    float f = gl.q.y / 3.0f;
-                    float f2 = height;
-                    if (f2 > f && (j = Utilities.j((int) ((f / f2) * vhbVar.getBaseFontSize()), vhbVar.z0, vhbVar.y0)) != vhbVar.getBaseFontSize()) {
-                        vhbVar.setBaseFontSize(j);
-                        Runnable runnable = vhbVar.A0;
-                        if (runnable != null) {
-                            runnable.run();
-                        }
-                    }
-                }
-                vhbVar.t();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fd6.run():void");
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        boolean z;
-        switch (this.a) {
-            case 0:
-            case 1:
-                return;
-            default:
-                if (i3 > 3) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                this.b = z;
-                return;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        byte b = this.a;
-    }
-
-    public fd6(View view, byte b) {
+    public fd6(rf0 rf0Var, Serializable serializable, Object obj, int i, Serializable serializable2, byte b) {
         this.a = b;
-        this.c = view;
+        this.c = rf0Var;
+        this.d = serializable;
+        this.e = obj;
+        this.b = i;
+        this.f = serializable2;
     }
 
-    private final void a(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void b(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void c(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void d(int i, int i2, int i3, CharSequence charSequence) {
-    }
-
-    private final void e(int i, int i2, int i3, CharSequence charSequence) {
+    public fd6(Locale locale, Location location, int i, Locale locale2, vc6 vc6Var) {
+        this.a = (byte) 0;
+        this.c = locale;
+        this.e = location;
+        this.b = i;
+        this.d = locale2;
+        this.f = vc6Var;
     }
 }

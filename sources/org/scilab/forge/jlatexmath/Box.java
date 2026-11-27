@@ -41,7 +41,7 @@ public abstract class Box {
         if (i <= 100000) {
             return;
         }
-        qm0.g("Formula is too large to lay out!");
+        rm0.k("Formula is too large to lay out!");
     }
 
     public static void resetBoxBudget() {

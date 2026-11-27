@@ -1,12 +1,36 @@
 package defpackage;
 
-import java.io.IOException;
-public interface h86 {
-    void C0(k86 k86Var, long j, long j2, int i);
+import java.io.Serializable;
+import java.util.AbstractSequentialList;
+import java.util.List;
+import java.util.ListIterator;
+public final class h86 extends AbstractSequentialList implements Serializable {
+    public final List a;
+    public final es4 b;
 
-    void U(k86 k86Var, long j, long j2);
+    public h86(List list, es4 es4Var) {
+        list.getClass();
+        this.a = list;
+        this.b = es4Var;
+    }
 
-    void v(k86 k86Var, long j, long j2, boolean z);
+    @Override
+    public final boolean isEmpty() {
+        return this.a.isEmpty();
+    }
 
-    i86 w1(k86 k86Var, long j, long j2, IOException iOException, int i);
+    @Override
+    public final ListIterator listIterator(int i) {
+        return new f86(this, this.a.listIterator(i), (byte) 1);
+    }
+
+    @Override
+    public final void removeRange(int i, int i2) {
+        this.a.subList(i, i2).clear();
+    }
+
+    @Override
+    public final int size() {
+        return this.a.size();
+    }
 }

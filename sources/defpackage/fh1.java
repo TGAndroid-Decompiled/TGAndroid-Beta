@@ -1,22 +1,15 @@
 package defpackage;
+public final class fh1 extends d1a {
+    public final wh1 e;
 
-import android.content.Context;
-import android.widget.TextView;
-public final class fh1 extends y08 {
-    public final gh1 H;
-
-    public fh1(gh1 gh1Var, Context context, int i, long j, wjb wjbVar) {
-        super(i, j, wjbVar, context);
-        this.H = gh1Var;
+    public fh1(wh1 wh1Var, eh1 eh1Var) {
+        super(eh1Var);
+        this.e = wh1Var;
     }
 
     @Override
-    public final void b(int i, boolean z) {
-        super.b(i, z);
-        gh1 gh1Var = this.H;
-        TextView textView = gh1Var.d;
-        if (textView != null) {
-            textView.setTextColor(gh1Var.b.h.getTextColor());
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.e.R = null;
     }
 }

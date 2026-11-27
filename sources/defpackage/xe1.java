@@ -1,8 +1,8 @@
 package defpackage;
-public final class xe1 {
-    public final nf1 a;
 
-    public xe1(nf1 nf1Var) {
-        this.a = nf1Var;
-    }
+import java.util.concurrent.CancellationException;
+public interface xe1 extends o4a {
+    public static final we1 p = we1.a;
+
+    void cancel(CancellationException cancellationException);
 }

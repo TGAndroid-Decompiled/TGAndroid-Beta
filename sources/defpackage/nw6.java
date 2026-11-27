@@ -1,40 +1,25 @@
 package defpackage;
 
-import android.os.Build;
-import android.text.TextUtils;
+import android.os.Bundle;
 public final class nw6 {
-    public rw6 a;
+    public final byte a;
+    public final boolean b;
+    public final boolean c;
+    public final boolean d;
+    public final Bundle e;
 
-    public nw6(String str, int i, int i2) {
-        if (str != null) {
-            if (!TextUtils.isEmpty(str)) {
-                if (Build.VERSION.SDK_INT >= 28) {
-                    rw6 rw6Var = new rw6(str, i, i2);
-                    h15.b(i, i2, str);
-                    this.a = rw6Var;
-                    return;
-                }
-                this.a = new rw6(str, i, i2);
-                return;
-            }
-            w26.j("packageName should be nonempty");
-            throw null;
+    public nw6(mw6 mw6Var) {
+        Bundle bundle;
+        this.a = mw6Var.a;
+        this.b = mw6Var.b;
+        this.c = mw6Var.c;
+        this.d = mw6Var.d;
+        Bundle bundle2 = mw6Var.e;
+        if (bundle2 == null) {
+            bundle = Bundle.EMPTY;
+        } else {
+            bundle = new Bundle(bundle2);
         }
-        fvc.f("package shouldn't be null");
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof nw6)) {
-            return false;
-        }
-        return this.a.equals(((nw6) obj).a);
-    }
-
-    public final int hashCode() {
-        return this.a.hashCode();
+        this.e = bundle;
     }
 }

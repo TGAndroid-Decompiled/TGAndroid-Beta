@@ -1,13 +1,9 @@
 package defpackage;
-public final class iia extends rab {
-    public final ld3 c;
 
-    public iia(ld3 ld3Var) {
-        this.c = ld3Var;
-    }
-
+import org.telegram.tgnet.TLRPC;
+public final class iia extends r47 {
     @Override
-    public final void release() {
-        this.c.o(this);
+    public final boolean s(TLRPC.Chat chat, boolean z) {
+        return false;
     }
 }

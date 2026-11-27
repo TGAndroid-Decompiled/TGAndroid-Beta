@@ -14,7 +14,7 @@ public final class xp0 extends Drawable {
     public final Paint c;
     public final Path d;
     public boolean e;
-    public final lm f;
+    public final mm f;
 
     public xp0(Context context) {
         Paint paint = new Paint(1);
@@ -22,18 +22,18 @@ public final class xp0 extends Drawable {
         Path path = new Path();
         this.d = path;
         this.e = false;
-        this.f = new lm(new oz(this, (byte) 21), 420L, s33.h, 0);
+        this.f = new mm(new pz(this, (byte) 22), 420L, k43.h, 0);
         this.a = System.currentTimeMillis();
-        this.b = b00.d(context, 2131231247);
-        paint.setPathEffect(new CornerPathEffect(gl.L(1.0f)));
+        this.b = c00.e(context, 2131231247);
+        paint.setPathEffect(new CornerPathEffect(hl.L(1.0f)));
         path.rewind();
-        path.moveTo(-gl.N(1.33f), gl.N(0.16f));
-        path.lineTo(-gl.N(1.33f), -gl.N(3.5f));
-        path.lineTo(gl.N(1.33f), -gl.N(3.5f));
-        path.lineTo(gl.N(1.33f), gl.N(0.16f));
-        path.lineTo(gl.N(3.5f), gl.N(0.16f));
-        path.lineTo(0.0f, gl.N(3.5f));
-        path.lineTo(-gl.N(3.5f), gl.N(0.16f));
+        path.moveTo(-hl.N(1.33f), hl.N(0.16f));
+        path.lineTo(-hl.N(1.33f), -hl.N(3.5f));
+        path.lineTo(hl.N(1.33f), -hl.N(3.5f));
+        path.lineTo(hl.N(1.33f), hl.N(0.16f));
+        path.lineTo(hl.N(3.5f), hl.N(0.16f));
+        path.lineTo(0.0f, hl.N(3.5f));
+        path.lineTo(-hl.N(3.5f), hl.N(0.16f));
         path.close();
     }
 
@@ -47,10 +47,10 @@ public final class xp0 extends Drawable {
         if (d > 0.0f) {
             canvas.save();
             canvas.translate(getBounds().centerX(), getBounds().centerY());
-            canvas.translate(-gl.N(8.166f), gl.N(5.0f));
+            canvas.translate(-hl.N(8.166f), hl.N(5.0f));
             float f = (d * 0.5f) + 0.5f;
             canvas.scale(f, f);
-            int p1 = bkb.p1(0.4f, -1);
+            int p1 = aob.p1(0.4f, -1);
             Paint paint = this.c;
             paint.setColor(p1);
             Path path = this.d;
@@ -58,14 +58,14 @@ public final class xp0 extends Drawable {
             float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.a) % 450)) / 450.0f;
             float f2 = 0.5f + currentTimeMillis;
             canvas.save();
-            canvas.clipRect(-gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), currentTimeMillis), gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), f2));
-            paint.setColor(bkb.p1(1.0f, -1));
+            canvas.clipRect(-hl.L(5.0f), hl.R1(-hl.N(3.5f), hl.N(3.5f), currentTimeMillis), hl.L(5.0f), hl.R1(-hl.N(3.5f), hl.N(3.5f), f2));
+            paint.setColor(aob.p1(1.0f, -1));
             canvas.drawPath(path, paint);
             canvas.restore();
             if (f2 > 1.0f) {
                 canvas.save();
-                canvas.clipRect(-gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), 0.0f), gl.L(5.0f), gl.R1(-gl.N(3.5f), gl.N(3.5f), f2 - 1.0f));
-                paint.setColor(bkb.p1(1.0f, -1));
+                canvas.clipRect(-hl.L(5.0f), hl.R1(-hl.N(3.5f), hl.N(3.5f), 0.0f), hl.L(5.0f), hl.R1(-hl.N(3.5f), hl.N(3.5f), f2 - 1.0f));
+                paint.setColor(aob.p1(1.0f, -1));
                 canvas.drawPath(path, paint);
                 canvas.restore();
             }

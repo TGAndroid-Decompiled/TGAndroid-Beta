@@ -1,36 +1,17 @@
 package defpackage;
+public final class cpe implements zq7 {
+    public static final cpe a = new Object();
 
-import j$.util.Objects;
-import java.util.ArrayList;
-public abstract class cpe {
-    public static String a(ArrayList arrayList) {
-        int size = arrayList.size();
-        boolean z = false;
-        String str = null;
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            String str2 = ((xxb) obj).a.g.t;
-            if (ud7.m(str2)) {
-                return "video/mp4";
-            }
-            if (ud7.i(str2)) {
-                z = true;
-            } else if (ud7.k(str2)) {
-                if (Objects.equals(str2, "image/heic")) {
-                    str = "image/heif";
-                } else if (Objects.equals(str2, "image/avif")) {
-                    str = "image/avif";
-                }
-            }
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        if (z) {
-            return "audio/mp4";
-        }
-        if (str != null) {
-            return str;
-        }
-        return "application/mp4";
+        throw new ClassCastException();
     }
 }

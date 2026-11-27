@@ -1,29 +1,17 @@
 package defpackage;
+public final class gtd implements zq7 {
+    public static final gtd a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class gtd extends ezc implements y5e {
-    public final cnd Z(bo7 bo7Var, qme qmeVar) {
-        cnd ezcVar;
-        Parcel R = R();
-        int i = vgd.a;
-        R.writeStrongBinder(bo7Var);
-        R.writeInt(1);
-        qmeVar.writeToParcel(R, 0);
-        Parcel T = T(R, 1);
-        IBinder readStrongBinder = T.readStrongBinder();
-        if (readStrongBinder == null) {
-            ezcVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.vision.label.internal.client.INativeImageLabeler");
-            if (queryLocalInterface instanceof cnd) {
-                ezcVar = (cnd) queryLocalInterface;
-            } else {
-                ezcVar = new ezc(readStrongBinder, "com.google.android.gms.vision.label.internal.client.INativeImageLabeler", (byte) 7);
-            }
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        T.recycle();
-        return ezcVar;
+        throw new ClassCastException();
     }
 }

@@ -1,29 +1,40 @@
 package defpackage;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class nj9 extends ViewOutlineProvider {
-    public final byte a = 1;
-    public float b;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public abstract class nj9 {
+    public static final HashMap a = new HashMap();
+    public static final HashMap b = new HashMap();
 
-    public nj9(int i) {
-        this.b = i;
-    }
-
-    @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.a) {
-            case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), gl.N(this.b));
-                return;
-            default:
-                outline.setRoundRect(view.getPaddingLeft(), view.getPaddingTop(), view.getMeasuredWidth() - view.getPaddingRight(), view.getMeasuredHeight() - view.getPaddingBottom(), this.b);
-                return;
+    public static synchronized void a(ArrayList arrayList, ArrayList arrayList2) {
+        synchronized (nj9.class) {
+            a.clear();
+            b.clear();
+            int i = 0;
+            if (arrayList != null) {
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    TLRPC.Photo photo = (TLRPC.Photo) obj;
+                    if (photo != null) {
+                        a.put(Long.valueOf(photo.id), photo);
+                    }
+                }
+            }
+            if (arrayList2 != null) {
+                int size2 = arrayList2.size();
+                while (i < size2) {
+                    Object obj2 = arrayList2.get(i);
+                    i++;
+                    TLRPC.Document document = (TLRPC.Document) obj2;
+                    if (document != null) {
+                        b.put(Long.valueOf(document.id), document);
+                    }
+                }
+            }
         }
-    }
-
-    public nj9(float f) {
-        this.b = f;
     }
 }

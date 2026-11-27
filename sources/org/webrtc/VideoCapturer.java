@@ -8,6 +8,8 @@ public interface VideoCapturer {
 
     void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver);
 
+    boolean isCapturing();
+
     boolean isScreencast();
 
     void startCapture(int i, int i2, int i3);

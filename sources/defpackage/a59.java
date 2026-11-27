@@ -1,10 +1,10 @@
 package defpackage;
+public final class a59 extends i0b {
+    public final Throwable b;
 
-import java.io.Serializable;
-public final class a59 implements Serializable {
-    public int a;
-
-    public final String toString() {
-        return String.valueOf(this.a);
+    public a59(int i, Throwable th) {
+        super(i);
+        th.getClass();
+        this.b = th;
     }
 }

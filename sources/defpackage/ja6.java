@@ -1,32 +1,37 @@
 package defpackage;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class ja6 extends nfa {
-    public final qa6 x2;
+import android.net.Uri;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+public final class ja6 {
+    public static final AtomicLong h = new AtomicLong();
+    public final long a;
+    public final n73 b;
+    public final Uri c;
+    public final Map d;
+    public final long e;
+    public final long f;
+    public final long g;
 
-    public ja6(qa6 qa6Var, Context context, ffa ffaVar, qa6 qa6Var2, ia6 ia6Var, wjb wjbVar) {
-        super(context, 0L, ffaVar, 0, null, null, null, 8, 0, qa6Var2, ia6Var, 0, wjbVar, null);
-        this.x2 = qa6Var;
+    public ja6(ia6 ia6Var) {
+        this.a = ia6Var.a;
+        this.b = ia6Var.b;
+        this.c = ia6Var.d;
+        this.d = ia6Var.e;
+        this.e = ia6Var.c;
+        this.f = ia6Var.f;
+        this.g = ia6Var.g;
     }
 
-    @Override
-    public final boolean H() {
-        return true;
-    }
-
-    @Override
-    public final int I0() {
-        return 32;
-    }
-
-    @Override
-    public final int Z0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.x2.T0;
+    public final ia6 a() {
+        ?? obj = new Object();
+        obj.a = this.a;
+        obj.b = this.b;
+        obj.d = this.c;
+        obj.e = this.d;
+        obj.c = this.e;
+        obj.f = this.f;
+        obj.g = this.g;
+        return obj;
     }
 }

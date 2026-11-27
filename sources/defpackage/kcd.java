@@ -1,46 +1,41 @@
 package defpackage;
-public final class kcd extends ncd {
-    public final transient int h;
-    public final transient int n;
-    public final ncd r;
 
-    public kcd(ncd ncdVar, int i, int i2) {
-        super((byte) 1);
-        this.r = ncdVar;
-        this.h = i;
-        this.n = i2;
+import java.util.Set;
+public abstract class kcd extends b4d implements Set, j$.util.Set {
+    public transient kbd n;
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
     }
 
     @Override
-    public final Object get(int i) {
-        i4f.a(i, this.n);
-        return this.r.get(i + this.h);
-    }
-
-    @Override
-    public final int i() {
-        return this.r.j() + this.h + this.n;
-    }
-
-    @Override
-    public final int j() {
-        return this.r.j() + this.h;
-    }
-
-    @Override
-    public final Object[] k() {
-        return this.r.k();
-    }
-
-    @Override
-    public final ncd subList(int i, int i2) {
-        i4f.b(i, i2, this.n);
-        int i3 = this.h;
-        return this.r.subList(i + i3, i2 + i3);
-    }
-
-    @Override
-    public final int size() {
-        return this.n;
+    public final int hashCode() {
+        int i;
+        int i2 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i = obj.hashCode();
+            } else {
+                i = 0;
+            }
+            i2 += i;
+        }
+        return i2;
     }
 }

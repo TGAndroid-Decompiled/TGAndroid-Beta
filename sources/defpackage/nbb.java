@@ -1,13 +1,6 @@
 package defpackage;
-public final class nbb {
-    public final float a;
-    public final float b;
-    public final float c;
-    public float d;
 
-    public nbb(float f, float f2, float f3) {
-        this.a = f;
-        this.b = f2;
-        this.c = f3;
-    }
+import android.view.MotionEvent;
+public interface nbb {
+    boolean h(MotionEvent motionEvent);
 }

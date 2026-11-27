@@ -1,20 +1,17 @@
 package defpackage;
+public final class wee implements zq7 {
+    public static final wee a = new Object();
 
-import android.os.Build;
-import android.widget.EdgeEffect;
-public abstract class wee {
-    public static float a(EdgeEffect edgeEffect) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return ns3.b(edgeEffect);
-        }
-        return 0.0f;
+    static {
+        xnb.y(xnb.n(zbd.class, new wad(1)));
     }
 
-    public static float b(EdgeEffect edgeEffect, float f, float f2) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return ns3.c(edgeEffect, f, f2);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        ms3.a(edgeEffect, f, f2);
-        return f;
+        throw new ClassCastException();
     }
 }

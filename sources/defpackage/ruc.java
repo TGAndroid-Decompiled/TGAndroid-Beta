@@ -1,24 +1,18 @@
 package defpackage;
-public final class ruc extends c6 {
-    public final tuc a;
+public abstract class ruc {
+    public static uo3 a;
+    public static final int[] b = new int[129];
 
-    public ruc(tuc tucVar) {
-        this.a = tucVar;
-    }
-
-    @Override
-    public final void b(int i) {
-        tuc tucVar = this.a;
-        k27 k27Var = tucVar.n;
-        if (i == -1) {
-            tucVar.finishFragment();
-        } else if (i == 1) {
-            if (k27Var != null) {
-                k27Var.k.with_my_score = false;
-                tucVar.showDialog(taa.G0(tucVar.getParentActivity(), k27Var, null, false, tucVar.h));
+    static {
+        int i = 0;
+        while (true) {
+            int[] iArr = b;
+            if (i < 129) {
+                iArr[i] = (int) (Math.max(0.0d, Math.min(1.0d, 7.5d - Math.sqrt(i))) * 255.0d);
+                i++;
+            } else {
+                return;
             }
-        } else if (i == 2) {
-            tuc.Z(tucVar.d, k27Var, tucVar.getParentActivity(), tucVar.r, tucVar.e);
         }
     }
 }

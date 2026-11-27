@@ -1,73 +1,43 @@
 package defpackage;
-public class ps2 implements fv9 {
-    public final long a;
-    public final long b;
-    public final int c;
-    public final long d;
-    public final int e;
-    public final long f;
-    public final boolean g;
-    public final boolean h;
+public final class ps2 extends z01 {
+    public final x01 G;
 
-    public ps2(long j, long j2, int i, int i2, boolean z, boolean z2) {
-        this.a = j;
-        this.b = j2;
-        this.c = i2 == -1 ? 1 : i2;
-        this.e = i;
-        this.g = z;
-        this.h = z2;
-        if (j == -1) {
-            this.d = -1L;
-            this.f = -9223372036854775807L;
-            return;
-        }
-        long j3 = j - j2;
-        this.d = j3;
-        this.f = ((Math.max(0L, j3) << 3) * 1000000) / i;
-    }
-
-    @Override
-    public final boolean c() {
-        if (this.d == -1 && !this.g) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean d() {
-        return this.h;
-    }
-
-    @Override
-    public ev9 f(long j) {
-        long j2 = this.d;
-        int i = (j2 > (-1L) ? 1 : (j2 == (-1L) ? 0 : -1));
-        long j3 = this.b;
-        if (i == 0 && !this.g) {
-            hv9 hv9Var = new hv9(0L, j3);
-            return new ev9(hv9Var, hv9Var);
-        }
-        int i2 = this.e;
-        long j4 = this.c;
-        long j5 = (((i2 * j) / 8000000) / j4) * j4;
-        if (i != 0) {
-            j5 = Math.min(j5, j2 - j4);
-        }
-        long max = Math.max(j5, 0L) + j3;
-        long max2 = ((Math.max(0L, max - j3) << 3) * 1000000) / i2;
-        hv9 hv9Var2 = new hv9(max2, max);
-        if (i != 0 && max2 < j) {
-            long j6 = max + j4;
-            if (j6 < this.a) {
-                return new ev9(hv9Var2, new hv9(((Math.max(0L, j6 - j3) << 3) * 1000000) / i2, j6));
+    public ps2(int i, x01 x01Var) {
+        super(i);
+        this.G = x01Var;
+        if (x01Var != x01.a) {
+            if (i >= 1) {
+                return;
             }
+            bya.a(qd4.n(i, "Buffered channel capacity must be at least 1, but ", " was specified"));
+            throw null;
         }
-        return new ev9(hv9Var2, hv9Var2);
+        String b = s89.a(z01.class).b();
+        throw new IllegalArgumentException(("This implementation does not support suspension for senders, use " + b + " instead").toString());
+    }
+
+    public final java.lang.Object G(java.lang.Object r16, boolean r17) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ps2.G(java.lang.Object, boolean):java.lang.Object");
     }
 
     @Override
-    public long h() {
-        return this.f;
+    public final Object a(zw2 zw2Var, Object obj) {
+        if (!(G(obj, true) instanceof nj1)) {
+            return f9c.a;
+        }
+        throw n();
+    }
+
+    @Override
+    public final Object d(Object obj) {
+        return G(obj, false);
+    }
+
+    @Override
+    public final boolean u() {
+        if (this.G == x01.b) {
+            return true;
+        }
+        return false;
     }
 }

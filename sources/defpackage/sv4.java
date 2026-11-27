@@ -1,113 +1,45 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-public final class sv4 extends Drawable {
-    public final int a;
-    public final RectF b;
-    public final Path c;
-    public final Paint d;
-    public final vva e;
-    public boolean f;
-    public iu4 g;
-    public hj3 h;
-    public boolean i;
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class sv4 extends rv4 {
+    public final tv4 r;
 
-    public sv4(int i, int i2) {
-        this.b = new RectF();
-        this.c = new Path();
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.a = i;
-        paint.setColor(i2);
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.e = new vva(1, 25);
+    public sv4(tv4 tv4Var, vnb vnbVar) {
+        super(vnbVar);
+        this.r = tv4Var;
+    }
+
+    @Override
+    public final void E() {
+        String M0;
+        tv4 tv4Var = this.r;
+        String str = tv4Var.V1;
+        if ((str == null || str.isEmpty()) && tv4Var.S1.to_id == -1) {
+            M0 = ob6.M0(2131753327, null);
         } else {
-            this.e = null;
+            M0 = ob6.M0(2131753326, null);
         }
+        new d31(tv4Var.c, tv4Var.J0).Q(2131623982, 36, M0).k(true);
     }
 
-    public final void a() {
-        boolean z;
-        if (this.e != null && this.i && e66.e(131072)) {
-            z = true;
+    @Override
+    public final void F(TLObject tLObject) {
+        tv4 tv4Var = this.r;
+        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = tv4Var.S1;
+        e eVar = tv4Var.r1;
+        tv4Var.dismiss();
+        if (tLObject instanceof TLRPC.Chat) {
+            eVar.presentFragment(zu1.ha(-((TLRPC.Chat) tLObject).id));
+        } else if (tLObject instanceof TLRPC.User) {
+            eVar.presentFragment(zu1.ha(((TLRPC.User) tLObject).id));
         } else {
-            z = false;
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -wf3.n(tL_payments_checkedGiftCode.from_id));
+            bundle.putInt("message_id", tL_payments_checkedGiftCode.giveaway_msg_id);
+            eVar.presentFragment(new zu1(bundle));
         }
-        if (this.f == z) {
-            return;
-        }
-        this.f = z;
-        if (z) {
-            rg2 d = rg2.d();
-            iu4 iu4Var = new iu4(this, (byte) 4);
-            this.g = iu4Var;
-            d.a(15, iu4Var);
-        } else {
-            rg2.d().g(this.g);
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.d;
-        Path path = this.c;
-        canvas.drawPath(path, paint);
-        vva vvaVar = this.e;
-        if (vvaVar != null) {
-            if (this.f || !this.i) {
-                canvas.save();
-                canvas.clipPath(path);
-                if (this.g == null) {
-                    vvaVar.d();
-                }
-                vvaVar.a(canvas, this.a);
-                canvas.restore();
-                if (this.g == null) {
-                    invalidateSelf();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        float min = Math.min(rect.width(), rect.height()) / 2.0f;
-        RectF rectF = this.b;
-        rectF.set(rect);
-        Path path = this.c;
-        path.rewind();
-        path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        vva vvaVar = this.e;
-        if (vvaVar != null) {
-            vvaVar.g(rectF);
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.d.setAlpha(i);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.d.setColorFilter(colorFilter);
-    }
-
-    public sv4(int i) {
-        this(bm2.o(i, 128), i);
     }
 }

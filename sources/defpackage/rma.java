@@ -1,86 +1,48 @@
 package defpackage;
+public final class rma {
+    public static final rma c = new rma(-1, -1);
+    public final int a;
+    public final int b;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
-public final class rma implements vd3 {
-    public final char a;
-    public int b = 0;
-    public final LinkedList c = new LinkedList();
-
-    public rma(char c) {
-        this.a = c;
+    static {
+        new rma(0, 0);
+        String str = gcc.a;
     }
 
-    @Override
-    public final void a(ugb ugbVar, ugb ugbVar2, int i) {
-        vd3 vd3Var;
-        LinkedList linkedList = this.c;
-        Iterator it = linkedList.iterator();
-        while (true) {
-            if (it.hasNext()) {
-                vd3Var = (vd3) it.next();
-                if (vd3Var.c() <= i) {
-                    break;
-                }
-            } else {
-                vd3Var = (vd3) linkedList.getFirst();
-                break;
+    public rma(int i, int i2) {
+        boolean z;
+        if ((i != -1 && i < 0) || (i2 != -1 && i2 < 0)) {
+            z = false;
+        } else {
+            z = true;
+        }
+        yve.f(z);
+        this.a = i;
+        this.b = i2;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof rma) {
+            rma rmaVar = (rma) obj;
+            if (this.a == rmaVar.a && this.b == rmaVar.b) {
+                return true;
             }
         }
-        vd3Var.a(ugbVar, ugbVar2, i);
+        return false;
     }
 
-    @Override
-    public final char b() {
-        return this.a;
+    public final int hashCode() {
+        int i = this.a;
+        return this.b ^ ((i << 16) | (i >>> 16));
     }
 
-    @Override
-    public final int c() {
-        return this.b;
-    }
-
-    @Override
-    public final int d(ud3 ud3Var, ud3 ud3Var2) {
-        vd3 vd3Var;
-        int i = ud3Var.g;
-        LinkedList linkedList = this.c;
-        Iterator it = linkedList.iterator();
-        while (true) {
-            if (it.hasNext()) {
-                vd3Var = (vd3) it.next();
-                if (vd3Var.c() <= i) {
-                    break;
-                }
-            } else {
-                vd3Var = (vd3) linkedList.getFirst();
-                break;
-            }
-        }
-        return vd3Var.d(ud3Var, ud3Var2);
-    }
-
-    @Override
-    public final char e() {
-        return this.a;
-    }
-
-    public final void f(vd3 vd3Var) {
-        int c = vd3Var.c();
-        LinkedList linkedList = this.c;
-        ListIterator listIterator = linkedList.listIterator();
-        while (listIterator.hasNext()) {
-            int c2 = ((vd3) listIterator.next()).c();
-            if (c > c2) {
-                listIterator.previous();
-                listIterator.add(vd3Var);
-                return;
-            } else if (c == c2) {
-                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.a + "' and minimum length " + c);
-            }
-        }
-        linkedList.add(vd3Var);
-        this.b = c;
+    public final String toString() {
+        return this.a + "x" + this.b;
     }
 }

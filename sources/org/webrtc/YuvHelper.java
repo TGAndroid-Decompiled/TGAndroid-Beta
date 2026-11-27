@@ -2,8 +2,21 @@ package org.webrtc;
 
 import java.nio.ByteBuffer;
 public class YuvHelper {
+
+    public interface Natives {
+        void abgrToI420(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6);
+
+        void copyPlane(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, int i3, int i4);
+
+        void i420Copy(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, ByteBuffer byteBuffer5, int i5, ByteBuffer byteBuffer6, int i6, int i7, int i8);
+
+        void i420Rotate(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, ByteBuffer byteBuffer5, int i5, ByteBuffer byteBuffer6, int i6, int i7, int i8, int i9);
+
+        void i420ToNV12(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, ByteBuffer byteBuffer5, int i5, int i6, int i7);
+    }
+
     public static void ABGRToI420(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6) {
-        nativeABGRToI420((ByteBuffer) checkNotNull(byteBuffer, "src"), i, (ByteBuffer) checkNotNull(byteBuffer2, "dstY"), i2, (ByteBuffer) checkNotNull(byteBuffer3, "dstU"), i3, (ByteBuffer) checkNotNull(byteBuffer4, "dstV"), i4, i5, i6);
+        YuvHelperJni.get().abgrToI420((ByteBuffer) checkNotNull(byteBuffer, "src"), i, (ByteBuffer) checkNotNull(byteBuffer2, "dstY"), i2, (ByteBuffer) checkNotNull(byteBuffer3, "dstU"), i3, (ByteBuffer) checkNotNull(byteBuffer4, "dstV"), i4, i5, i6);
     }
 
     public static void I420Copy(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6, int i7, int i8, int i9) {
@@ -25,7 +38,7 @@ public class YuvHelper {
             I420Copy(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i6, slice2, i8, byteBuffer4.slice(), i8, i4, i5);
             return;
         }
-        fvc.e(byteBuffer4.capacity(), de9.m(i15, "Expected destination buffer capacity to be at least ", " was "));
+        p3d.f(byteBuffer4.capacity(), uh9.m(i15, "Expected destination buffer capacity to be at least ", " was "));
     }
 
     public static void I420Rotate(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6) {
@@ -56,10 +69,10 @@ public class YuvHelper {
             byteBuffer4.position(i11);
             ByteBuffer slice2 = byteBuffer4.slice();
             byteBuffer4.position(i12 + i11);
-            nativeI420Rotate(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i7, slice2, i10, byteBuffer4.slice(), i10, i4, i5, i6);
+            YuvHelperJni.get().i420Rotate(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i7, slice2, i10, byteBuffer4.slice(), i10, i4, i5, i6);
             return;
         }
-        fvc.e(byteBuffer4.capacity(), de9.m(i13, "Expected destination buffer capacity to be at least ", " was "));
+        p3d.f(byteBuffer4.capacity(), uh9.m(i13, "Expected destination buffer capacity to be at least ", " was "));
     }
 
     public static void I420ToNV12(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6, int i7) {
@@ -76,30 +89,20 @@ public class YuvHelper {
             I420ToNV12(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, slice, i6, byteBuffer4.slice(), i8 << 1, i4, i5);
             return;
         }
-        fvc.e(byteBuffer4.capacity(), de9.m(i11, "Expected destination buffer capacity to be at least ", " was "));
+        p3d.f(byteBuffer4.capacity(), uh9.m(i11, "Expected destination buffer capacity to be at least ", " was "));
     }
 
     private static <T> T checkNotNull(T t, String str) {
         if (t != null) {
             return t;
         }
-        fvc.f(tb4.o(str, " should not be null"));
+        p3d.h(qd4.o(str, " should not be null"));
         return null;
     }
 
     public static void copyPlane(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, int i3, int i4) {
-        nativeCopyPlane((ByteBuffer) checkNotNull(byteBuffer, "src"), i, (ByteBuffer) checkNotNull(byteBuffer2, "dst"), i2, i3, i4);
+        YuvHelperJni.get().copyPlane((ByteBuffer) checkNotNull(byteBuffer, "src"), i, (ByteBuffer) checkNotNull(byteBuffer2, "dst"), i2, i3, i4);
     }
-
-    private static native void nativeABGRToI420(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6);
-
-    private static native void nativeCopyPlane(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, int i3, int i4);
-
-    private static native void nativeI420Copy(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, ByteBuffer byteBuffer5, int i5, ByteBuffer byteBuffer6, int i6, int i7, int i8);
-
-    private static native void nativeI420Rotate(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, ByteBuffer byteBuffer5, int i5, ByteBuffer byteBuffer6, int i6, int i7, int i8, int i9);
-
-    private static native void nativeI420ToNV12(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, ByteBuffer byteBuffer5, int i5, int i6, int i7);
 
     public static void I420Copy(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5) {
         I420Copy(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, i5, i4, i5, (i4 + 1) / 2, (i5 + 1) / 2);
@@ -117,9 +120,9 @@ public class YuvHelper {
         checkNotNull(byteBuffer5, "dstU");
         checkNotNull(byteBuffer6, "dstV");
         if (i7 > 0 && i8 > 0) {
-            nativeI420Copy(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, byteBuffer5, i5, byteBuffer6, i6, i7, i8);
+            YuvHelperJni.get().i420Copy(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, byteBuffer5, i5, byteBuffer6, i6, i7, i8);
         } else {
-            w26.j("I420Copy: width and height should not be negative");
+            lq5.j("I420Copy: width and height should not be negative");
         }
     }
 
@@ -134,9 +137,9 @@ public class YuvHelper {
         checkNotNull(byteBuffer4, "dstY");
         checkNotNull(byteBuffer5, "dstUV");
         if (i6 > 0 && i7 > 0) {
-            nativeI420ToNV12(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, byteBuffer5, i5, i6, i7);
+            YuvHelperJni.get().i420ToNV12(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, byteBuffer5, i5, i6, i7);
         } else {
-            w26.j("I420ToNV12: width and height should not be negative");
+            lq5.j("I420ToNV12: width and height should not be negative");
         }
     }
 
@@ -147,6 +150,6 @@ public class YuvHelper {
         checkNotNull(byteBuffer4, "dstY");
         checkNotNull(byteBuffer5, "dstU");
         checkNotNull(byteBuffer6, "dstV");
-        nativeI420Rotate(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, byteBuffer5, i5, byteBuffer6, i6, i7, i8, i9);
+        YuvHelperJni.get().i420Rotate(byteBuffer, i, byteBuffer2, i2, byteBuffer3, i3, byteBuffer4, i4, byteBuffer5, i5, byteBuffer6, i6, i7, i8, i9);
     }
 }

@@ -1,112 +1,87 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-public final class yt3 extends FrameLayout {
-    public vd0 a;
-    public vd0 b;
-    public Drawable c;
-    public Drawable d;
-    public final Drawable e;
-    public Paint f;
-    public RectF h;
-    public final ViewGroup[] n;
-    public final zt3 r;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class yt3 extends xt3 {
+    public final int f2;
+    public final vnb g2;
+    public final boolean h2;
+    public final zt3 i2;
 
-    public yt3(zt3 zt3Var, Context context) {
-        super(context);
-        this.r = zt3Var;
-        this.f = new Paint(1);
-        this.h = new RectF();
-        this.n = new ViewGroup[2];
-        int i = 0;
-        setWillNotDraw(false);
-        setPadding(0, gl.L(24.0f), 0, gl.L(24.0f));
-        LinearLayout j = de9.j(context, 1);
-        addView(j, nme.e(-2, -2, 17));
-        uk1 uk1Var = new uk1(context);
-        uk1Var.setCustomText(k96.M0(2131742606, null));
-        j.addView(uk1Var, nme.t(-2, -2, 17, 0, 0, 0, 4));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setBackgroundResource(2131232865);
-        j.addView(linearLayout, nme.t(-2, -2, 17, 10, 0, 10, 0));
-        zt3Var.d = new ImageView(context);
-        int i2 = zt3Var.x;
-        if (i2 == 0) {
-            while (i < 2) {
-                this.n[i] = (ViewGroup) zt3Var.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
-                linearLayout.addView(this.n[i], nme.o(-1, -2));
-                i++;
-            }
-            linearLayout.addView(zt3Var.d, nme.r(218, 160, 17));
-            zt3Var.d.setImageResource(2131231005);
-        } else if (i2 == 1) {
-            while (i < 2) {
-                this.n[i] = (ViewGroup) zt3Var.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
-                linearLayout.addView(this.n[i], nme.o(160, -2));
-                i++;
-            }
-            linearLayout.addView(zt3Var.d, nme.r(160, 160, 17));
-            zt3Var.d.setImageResource(2131231033);
-        }
-        a();
-        this.e = bkb.W0(context, 2131231233, bkb.a7);
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yt3.a():void");
+    public yt3(zt3 zt3Var, Context context, vnb vnbVar, int i, vnb vnbVar2, boolean z) {
+        super(context, vnbVar);
+        this.i2 = zt3Var;
+        this.f2 = i;
+        this.g2 = vnbVar2;
+        this.h2 = z;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final void dispatchDraw(Canvas canvas) {
+        int i;
+        super.dispatchDraw(canvas);
+        zt3 zt3Var = this.i2;
+        hn hnVar = zt3Var.y;
+        ll llVar = zt3Var.w;
+        if (zt3Var.x <= 0) {
+            i = aob.p7;
+        } else {
+            i = aob.P5;
+        }
+        hnVar.u(llVar.a(aob.v0(i, this.g2), false));
+        int min = Math.min(hl.L(52.0f), getHeight());
+        hnVar.setBounds(getScrollX(), getHeight() - min, hl.L(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
+        hnVar.draw(canvas);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        vd0 vd0Var = this.a;
-        if (vd0Var != null) {
-            vd0Var.dispose();
-            this.a = null;
+    public final void o(ActionMode actionMode, Menu menu) {
+        if (!this.h2 || menu.findItem(2131296493) != null) {
+            return;
         }
-        vd0 vd0Var2 = this.b;
-        if (vd0Var2 != null) {
-            vd0Var2.dispose();
-            this.b = null;
+        menu.removeItem(16908341);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ob6.M0(2131753664, null));
+        spannableStringBuilder.setSpan(new y7c(hl.o()), 0, spannableStringBuilder.length(), 33);
+        menu.add(2131296498, 2131296493, 6, spannableStringBuilder);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(ob6.M0(2131748841, null));
+        spannableStringBuilder2.setSpan(new y7c(hl.n1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        menu.add(2131296498, 2131296499, 7, spannableStringBuilder2);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(ob6.M0(2131744090, null));
+        ?? obj = new Object();
+        obj.a |= 8;
+        spannableStringBuilder3.setSpan(new smb(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        menu.add(2131296498, 2131296511, 8, spannableStringBuilder3);
+        menu.add(2131296498, 2131296505, 9, ob6.M0(2131746064, null));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(getPaddingLeft() + getScrollX(), getScrollY(), (getWidth() + getScrollX()) - getPaddingRight(), getHeight() + getScrollY());
+        super.onDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        super.onTextChanged(charSequence, i, i2, i3);
+        zt3 zt3Var = this.i2;
+        hn hnVar = zt3Var.y;
+        if (hnVar != null && this.f2 > 0) {
+            hnVar.a();
+            zt3Var.c();
         }
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.yt3.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(264.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void dispatchSetPressed(boolean z) {
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.i2.y && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

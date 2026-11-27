@@ -1,66 +1,73 @@
 package defpackage;
 
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-public final class ax8 extends InputStream {
-    public int a;
-    public int b;
-    public final cx8 c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class ax8 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final bx8 b;
 
-    public ax8(cx8 cx8Var, zw8 zw8Var) {
-        this.c = cx8Var;
-        this.a = cx8Var.d(zw8Var.b + 4);
-        this.b = zw8Var.c;
+    public ax8(bx8 bx8Var, byte b) {
+        this.a = b;
+        this.b = bx8Var;
     }
 
     @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        if (bArr != null) {
-            if ((i | i2) >= 0 && i2 <= bArr.length - i) {
-                int i3 = this.b;
-                if (i3 > 0) {
-                    if (i2 > i3) {
-                        i2 = i3;
-                    }
-                    int i4 = this.a;
-                    cx8 cx8Var = this.c;
-                    int d = cx8Var.d(i4);
-                    int i5 = d + i2;
-                    int i6 = cx8Var.b;
-                    RandomAccessFile randomAccessFile = cx8Var.a;
-                    if (i5 <= i6) {
-                        randomAccessFile.seek(d);
-                        randomAccessFile.readFully(bArr, i, i2);
-                    } else {
-                        int i7 = i6 - d;
-                        randomAccessFile.seek(d);
-                        randomAccessFile.readFully(bArr, i, i7);
-                        randomAccessFile.seek(16L);
-                        randomAccessFile.readFully(bArr, i + i7, i2 - i7);
-                    }
-                    this.a = cx8Var.d(this.a + i2);
-                    this.b -= i2;
-                    return i2;
+    public final void onAnimationCancel(Animator animator) {
+        byte b = this.a;
+        bx8 bx8Var = this.b;
+        switch (b) {
+            case 1:
+                AnimatorSet animatorSet = bx8Var.s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    bx8Var.s = null;
+                    bx8Var.getClass();
+                    return;
                 }
-                return -1;
-            }
-            throw new ArrayIndexOutOfBoundsException();
+                return;
+            case 2:
+                AnimatorSet animatorSet2 = bx8Var.s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    bx8Var.s = null;
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        fvc.f("buffer");
-        return 0;
     }
 
     @Override
-    public final int read() {
-        cx8 cx8Var = this.c;
-        RandomAccessFile randomAccessFile = cx8Var.a;
-        if (this.b == 0) {
-            return -1;
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        bx8 bx8Var = this.b;
+        switch (b) {
+            case 0:
+                AnimatorSet animatorSet = bx8Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    bx8Var.h = null;
+                }
+                jn7.e().k(100, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = bx8Var.s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    bx8Var.s = null;
+                    if (bx8Var.x) {
+                        bx8Var.setLayerType(0, null);
+                    }
+                }
+                jn7.e().k(100, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = bx8Var.s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    bx8Var.s = null;
+                    hl.c3(new uk8(this, (byte) 18));
+                }
+                jn7.e().k(100, 512);
+                return;
         }
-        randomAccessFile.seek(this.a);
-        int read = randomAccessFile.read();
-        this.a = cx8Var.d(this.a + 1);
-        this.b--;
-        return read;
     }
 }

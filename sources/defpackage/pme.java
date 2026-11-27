@@ -1,10 +1,5 @@
 package defpackage;
-
-import java.util.logging.Logger;
-public abstract class pme {
-    public static final int a = 0;
-
-    static {
-        Logger.getLogger(pme.class.getName());
-    }
+public final class pme {
+    public static final pme b = new pme();
+    public final mjd a = new mjd(new Object());
 }

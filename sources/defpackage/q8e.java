@@ -1,17 +1,12 @@
 package defpackage;
-public final class q8e implements zn7 {
-    public static final q8e a = new Object();
+public final class q8e {
+    public final Object a;
+    public final Object b;
+    public final Object c;
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public q8e(Object obj, Object obj2, Object obj3) {
+        this.a = obj;
+        this.b = obj2;
+        this.c = obj3;
     }
 }

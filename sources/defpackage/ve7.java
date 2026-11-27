@@ -1,35 +1,25 @@
 package defpackage;
-public final class ve7 {
-    public final float[] a;
-    public final float[] b;
-    public final float c;
-    public final float d;
-    public final float e;
-    public final boolean f;
-    public final float[] g;
-    public final float[] h;
-    public final float[] i;
-    public final float[] j = new float[3];
 
-    public ve7(float[] fArr, float[] fArr2, float f, float f2, float f3) {
-        boolean z;
-        this.a = fArr;
-        this.b = fArr2;
-        this.c = f;
-        this.d = f2;
-        this.e = f3;
-        if (f2 > f) {
-            z = true;
-        } else {
-            z = false;
-        }
-        this.f = z;
-        this.g = new float[fArr.length];
-        this.h = new float[fArr.length];
-        this.i = new float[fArr.length];
+import java.util.ArrayList;
+public final class ve7 implements Runnable {
+    public final jf7 a;
+    public final int b;
+    public final ArrayList c;
+    public final boolean d;
+    public final int e;
+    public final int f;
+
+    public ve7(jf7 jf7Var, int i, ArrayList arrayList, int i2, int i3, int i4) {
+        this.a = jf7Var;
+        this.b = i;
+        this.c = arrayList;
+        this.d = i2;
+        this.e = i3;
+        this.f = i4;
     }
 
-    public final void a(int[] r43, int[] r44, float r45, defpackage.we7 r46, boolean r47) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ve7.a(int[], int[], float, we7, boolean):void");
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ve7.run():void");
     }
 }

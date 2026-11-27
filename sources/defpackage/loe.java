@@ -1,14 +1,17 @@
 package defpackage;
-public abstract class loe {
-    public static float a(float f, float f2, float f3, float f4) {
-        double d = f - f3;
-        double d2 = f2 - f4;
-        return (float) Math.sqrt((d2 * d2) + (d * d));
+public final class loe implements zq7 {
+    public static final loe a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
-    public static float b(int i, int i2, int i3, int i4) {
-        double d = i - i3;
-        double d2 = i2 - i4;
-        return (float) Math.sqrt((d2 * d2) + (d * d));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

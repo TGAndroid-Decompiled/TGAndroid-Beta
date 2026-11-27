@@ -36,24 +36,25 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Stack;
-public class EditTextBoldCursor extends lt3 {
-    public static Field E1;
+public class EditTextBoldCursor extends cu3 {
     public static Field F1;
     public static Field G1;
-    public static boolean H1;
-    public static Method I1;
-    public static Class J1;
-    public static Field K1;
-    public static Method L1;
+    public static Field H1;
+    public static boolean I1;
+    public static Method J1;
+    public static Class K1;
+    public static Field L1;
+    public static Method M1;
     public boolean A0;
-    public Paint A1;
+    public boolean A1;
     public float B0;
-    public LinearGradient B1;
+    public Paint B1;
     public long C0;
-    public Matrix C1;
+    public LinearGradient C1;
     public boolean D0;
-    public int D1;
+    public Matrix D1;
     public boolean E0;
+    public int E1;
     public float F0;
     public boolean G0;
     public boolean H0;
@@ -73,19 +74,19 @@ public class EditTextBoldCursor extends lt3 {
     public boolean V0;
     public AnimatorSet W0;
     public float X0;
-    public gk4 Y0;
-    public yi4 Z0;
-    public qr1 a1;
+    public lm4 Y0;
+    public cl4 Z0;
+    public es1 a1;
     public Object b0;
     public View b1;
     public final GradientDrawable c0;
     public View c1;
-    public jab d0;
+    public geb d0;
     public int d1;
     public float e0;
     public boolean e1;
-    public final jm f0;
-    public final ys3 f1;
+    public final km f0;
+    public final qt3 f1;
     public final Paint g0;
     public final ArrayList g1;
     public final Paint h0;
@@ -101,31 +102,31 @@ public class EditTextBoldCursor extends lt3 {
     public int m0;
     public LinearGradient m1;
     public float n0;
-    public boolean n1;
+    public rx n1;
     public final Rect o0;
-    public float o1;
+    public boolean o1;
     public StaticLayout p0;
     public float p1;
     public float q0;
-    public long q1;
+    public float q1;
     public boolean r0;
-    public Rect r1;
+    public long r1;
     public boolean s0;
-    public kl0 s1;
-    public defpackage.f t0;
-    public Drawable t1;
-    public xs3 u0;
+    public Rect s1;
+    public defpackage.c t0;
+    public ll0 t1;
+    public pt3 u0;
     public Drawable u1;
-    public xs3 v0;
+    public pt3 v0;
     public Drawable v1;
     public CharSequence w0;
-    public PorterDuffColorFilter w1;
+    public Drawable w1;
     public CharSequence x0;
-    public int x1;
+    public PorterDuffColorFilter x1;
     public int y0;
-    public Runnable y1;
+    public int y1;
     public int z0;
-    public boolean z1;
+    public Runnable z1;
 
     public EditTextBoldCursor(Context context) {
         super(context, null, 0, 2131755179);
@@ -141,7 +142,7 @@ public class EditTextBoldCursor extends lt3 {
         this.I = null;
         this.K = new defpackage.l(this, (byte) 1);
         this.L = new Rect();
-        Boolean bool = lt3.a0;
+        Boolean bool = cu3.a0;
         if (bool == null) {
             String str2 = Build.MANUFACTURER;
             if ((str2 != null && (str2.toLowerCase().contains("honor") || str2.toLowerCase().contains("huawei") || str2.toLowerCase().contains("alps") || str2.toLowerCase().contains("vivo") || str2.toLowerCase().contains("oppo") || str2.toLowerCase().contains("oneplus") || str2.toLowerCase().contains("realme"))) || ((str = Build.MODEL) != null && str.toLowerCase().contains("mediapad"))) {
@@ -150,13 +151,13 @@ public class EditTextBoldCursor extends lt3 {
                 z = true;
             }
             bool = Boolean.valueOf(z);
-            lt3.a0 = bool;
+            cu3.a0 = bool;
         }
         this.Q = bool.booleanValue();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            this.f = new mk0(this, arrayList, new kt3(this, (byte) 0));
+            this.f = new nk0(this, arrayList, new bu3(this, (byte) 0));
         }
-        this.f0 = new jm(this, (byte) 1);
+        this.f0 = new km(this, (byte) 1);
         this.o0 = new Rect();
         this.A0 = true;
         this.B0 = 1.0f;
@@ -173,7 +174,7 @@ public class EditTextBoldCursor extends lt3 {
         this.h1 = false;
         this.j1 = new Rect();
         this.k1 = -1;
-        this.o1 = Float.NaN;
+        this.p1 = Float.NaN;
         int i = Build.VERSION.SDK_INT;
         if (i >= 26) {
             setImportantForAutofill(2);
@@ -182,51 +183,51 @@ public class EditTextBoldCursor extends lt3 {
         this.h0 = new Paint();
         TextPaint textPaint = new TextPaint(1);
         this.i0 = textPaint;
-        textPaint.setTextSize(gl.L(11.0f));
+        textPaint.setTextSize(hl.L(11.0f));
         if (i >= 26) {
             setImportantForAutofill(2);
         }
         if (i >= 29) {
-            ys3 ys3Var = new ys3(this);
-            this.f1 = ys3Var;
-            ys3Var.setShape(new RectShape());
+            qt3 qt3Var = new qt3(this);
+            this.f1 = qt3Var;
+            qt3Var.setShape(new RectShape());
             this.c0 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-11230757, -11230757});
             setTextCursorDrawable(this.f1);
         }
         try {
-            if (!H1 && G1 == null) {
-                H1 = true;
+            if (!I1 && H1 == null) {
+                I1 = true;
                 Field declaredField = View.class.getDeclaredField("mScrollY");
-                G1 = declaredField;
+                H1 = declaredField;
                 declaredField.setAccessible(true);
             }
         } catch (Throwable unused) {
         }
         try {
-            if (J1 == null) {
+            if (K1 == null) {
                 Field declaredField2 = TextView.class.getDeclaredField("mEditor");
-                E1 = declaredField2;
+                F1 = declaredField2;
                 declaredField2.setAccessible(true);
                 Class<?> cls = Class.forName("android.widget.Editor");
-                J1 = cls;
+                K1 = cls;
                 try {
                     Field declaredField3 = cls.getDeclaredField("mShowCursor");
-                    F1 = declaredField3;
+                    G1 = declaredField3;
                     declaredField3.setAccessible(true);
                 } catch (Exception unused2) {
                 }
                 try {
-                    Method declaredMethod = J1.getDeclaredMethod("invalidateTextDisplayList", null);
-                    L1 = declaredMethod;
+                    Method declaredMethod = K1.getDeclaredMethod("invalidateTextDisplayList", null);
+                    M1 = declaredMethod;
                     declaredMethod.setAccessible(true);
                 } catch (Exception unused3) {
                 }
                 Method declaredMethod2 = TextView.class.getDeclaredMethod("getVerticalOffset", Boolean.TYPE);
-                I1 = declaredMethod2;
+                J1 = declaredMethod2;
                 declaredMethod2.setAccessible(true);
             }
         } catch (Throwable th) {
-            fa4.g(th, true);
+            cc4.g(th, true);
         }
         if (this.f1 == null) {
             try {
@@ -235,23 +236,23 @@ public class EditTextBoldCursor extends lt3 {
                 if (Build.VERSION.SDK_INT >= 29) {
                     setTextCursorDrawable(gradientDrawable);
                 }
-                this.b0 = E1.get(this);
+                this.b0 = F1.get(this);
             } catch (Throwable unused4) {
             }
             try {
-                if (K1 == null) {
+                if (L1 == null) {
                     Field declaredField4 = TextView.class.getDeclaredField("mCursorDrawableRes");
-                    K1 = declaredField4;
+                    L1 = declaredField4;
                     declaredField4.setAccessible(true);
                 }
-                Field field = K1;
+                Field field = L1;
                 if (field != null) {
                     field.set(this, 2131231071);
                 }
             } catch (Throwable unused5) {
             }
         }
-        this.j0 = gl.L(24.0f);
+        this.j0 = hl.L(24.0f);
     }
 
     @Override
@@ -309,7 +310,7 @@ public class EditTextBoldCursor extends lt3 {
     }
 
     public int getHandlesColor() {
-        return this.x1;
+        return this.y1;
     }
 
     public float getHeaderAnimationProgress() {
@@ -342,10 +343,10 @@ public class EditTextBoldCursor extends lt3 {
     }
 
     public Runnable getOnPremiumMenuLockClickListener() {
-        return this.y1;
+        return this.z1;
     }
 
-    public wjb getResourcesProvider() {
+    public vnb getResourcesProvider() {
         return null;
     }
 
@@ -354,17 +355,17 @@ public class EditTextBoldCursor extends lt3 {
         if (this.f1 != null) {
             return super.getTextCursorDrawable();
         }
-        ys3 ys3Var = new ys3(this, new RectShape());
-        ys3Var.getPaint().setColor(0);
-        return ys3Var;
+        qt3 qt3Var = new qt3(this, new RectShape());
+        qt3Var.getPaint().setColor(0);
+        return qt3Var;
     }
 
     @Override
     public Drawable getTextSelectHandle() {
-        Drawable drawable = this.v1;
+        Drawable drawable = this.w1;
         if (drawable == null) {
             Drawable z = z(super.getTextSelectHandle(), true);
-            this.v1 = z;
+            this.w1 = z;
             return z;
         }
         return drawable;
@@ -372,10 +373,10 @@ public class EditTextBoldCursor extends lt3 {
 
     @Override
     public Drawable getTextSelectHandleLeft() {
-        Drawable drawable = this.t1;
+        Drawable drawable = this.u1;
         if (drawable == null) {
             Drawable z = z(super.getTextSelectHandleLeft(), true);
-            this.t1 = z;
+            this.u1 = z;
             return z;
         }
         return drawable;
@@ -383,10 +384,10 @@ public class EditTextBoldCursor extends lt3 {
 
     @Override
     public Drawable getTextSelectHandleRight() {
-        Drawable drawable = this.u1;
+        Drawable drawable = this.v1;
         if (drawable == null) {
             Drawable z = z(super.getTextSelectHandleRight(), true);
-            this.u1 = z;
+            this.v1 = z;
             return z;
         }
         return drawable;
@@ -415,7 +416,7 @@ public class EditTextBoldCursor extends lt3 {
                 }
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "headerAnimationProgress", f));
                 this.W0.setDuration(200L);
-                this.W0.setInterpolator(s33.h);
+                this.W0.setInterpolator(k43.h);
                 this.W0.start();
             } else {
                 if (z2) {
@@ -428,16 +429,16 @@ public class EditTextBoldCursor extends lt3 {
     }
 
     public final void m() {
-        gk4 gk4Var = this.Y0;
-        if (gk4Var != null) {
-            gk4Var.a.removeOnLayoutChangeListener(gk4Var.l);
-            ek4 ek4Var = gk4Var.b;
-            if (!ek4Var.F) {
-                ek4Var.G = false;
-                ek4Var.F = true;
-                ek4Var.x.cancel();
-                ek4Var.w.start();
-                ek4Var.D.setEmpty();
+        lm4 lm4Var = this.Y0;
+        if (lm4Var != null) {
+            lm4Var.a.removeOnLayoutChangeListener(lm4Var.l);
+            jm4 jm4Var = lm4Var.b;
+            if (!jm4Var.F) {
+                jm4Var.G = false;
+                jm4Var.F = true;
+                jm4Var.x.cancel();
+                jm4Var.w.start();
+                jm4Var.D.setEmpty();
             }
             this.Y0 = null;
         }
@@ -456,11 +457,11 @@ public class EditTextBoldCursor extends lt3 {
         try {
             super.onAttachedToWindow();
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
         this.c1 = getRootView();
         if (Build.VERSION.SDK_INT < 29) {
-            rg2.d().b(this.f0, 2);
+            jh2.d().b(this.f0, 2);
         }
     }
 
@@ -469,7 +470,7 @@ public class EditTextBoldCursor extends lt3 {
         super.onDetachedFromWindow();
         this.c1 = null;
         if (Build.VERSION.SDK_INT < 29) {
-            rg2.d().f(this.f0);
+            jh2.d().f(this.f0);
         }
     }
 
@@ -483,7 +484,7 @@ public class EditTextBoldCursor extends lt3 {
         try {
             super.onFocusChanged(z, i, rect);
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
         l(true);
     }
@@ -496,7 +497,7 @@ public class EditTextBoldCursor extends lt3 {
             if (getText().length() <= 0) {
                 accessibilityNodeInfo.setText(this.p0.getText());
             } else {
-                new u4(accessibilityNodeInfo).l(this.p0.getText());
+                new v4(accessibilityNodeInfo).l(this.p0.getText());
             }
         }
     }
@@ -505,13 +506,13 @@ public class EditTextBoldCursor extends lt3 {
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        xs3 xs3Var = this.u0;
-        if (xs3Var != null) {
-            xs3Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        pt3 pt3Var = this.u0;
+        if (pt3Var != null) {
+            pt3Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         }
-        xs3 xs3Var2 = this.v0;
-        if (xs3Var2 != null) {
-            xs3Var2.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        pt3 pt3Var2 = this.v0;
+        if (pt3Var2 != null) {
+            pt3Var2.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         }
         StaticLayout staticLayout = this.p0;
         if (staticLayout != null && this.u0 == null) {
@@ -519,12 +520,12 @@ public class EditTextBoldCursor extends lt3 {
                 s(this.w0, false, staticLayout.getPaint());
             }
             if (this.r0) {
-                this.M0 = ((((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.p0.getHeight()) / 2.0f) + (getPaddingTop() + getExtendedPaddingTop())) + this.p0.getHeight()) - gl.L(1.0f);
+                this.M0 = ((((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.p0.getHeight()) / 2.0f) + (getPaddingTop() + getExtendedPaddingTop())) + this.p0.getHeight()) - hl.L(1.0f);
             } else {
-                this.M0 = ((getMeasuredHeight() - this.p0.getHeight()) / 2.0f) + this.p0.getHeight() + gl.L(6.0f);
+                this.M0 = ((getMeasuredHeight() - this.p0.getHeight()) / 2.0f) + this.p0.getHeight() + hl.L(6.0f);
             }
         } else {
-            this.M0 = getMeasuredHeight() - gl.L(2.0f);
+            this.M0 = getMeasuredHeight() - hl.L(2.0f);
         }
         this.d1 = measuredHeight;
     }
@@ -563,16 +564,16 @@ public class EditTextBoldCursor extends lt3 {
     @Override
     public final boolean postDelayed(Runnable runnable, long j) {
         if (Build.VERSION.SDK_INT >= 29 && runnable != null && j == 500 && "android.widget.Editor$Blink".equals(runnable.getClass().getName()) && Looper.myLooper() == Looper.getMainLooper()) {
-            rg2 d = rg2.d();
-            rg2.c();
+            jh2 d = jh2.d();
+            jh2.c();
             d.h(runnable);
-            qg2 e = d.e(2);
-            e59 e59Var = e.d;
-            if (e59Var == null) {
-                e59Var = new e59(0, false);
-                e.d = e59Var;
+            ih2 e = d.e(2);
+            r89 r89Var = e.d;
+            if (r89Var == null) {
+                r89Var = new r89(0, false);
+                e.d = r89Var;
             }
-            e59Var.add(runnable);
+            r89Var.add(runnable);
             return true;
         }
         return super.postDelayed(runnable, j);
@@ -582,14 +583,14 @@ public class EditTextBoldCursor extends lt3 {
         invalidate();
         if (isHardwareAccelerated()) {
             try {
-                if (L1 != null) {
+                if (M1 != null) {
                     Object obj = this.b0;
                     if (obj == null) {
-                        obj = E1.get(this);
+                        obj = F1.get(this);
                         this.b0 = obj;
                     }
                     if (obj != null) {
-                        L1.invoke(obj, null);
+                        M1.invoke(obj, null);
                     }
                 }
             } catch (Exception unused) {
@@ -604,7 +605,7 @@ public class EditTextBoldCursor extends lt3 {
     @Override
     public final boolean removeCallbacks(Runnable runnable) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            rg2.d().h(runnable);
+            jh2.d().h(runnable);
         }
         return super.removeCallbacks(runnable);
     }
@@ -626,9 +627,9 @@ public class EditTextBoldCursor extends lt3 {
         boolean z3;
         float f;
         CharSequence charSequence4 = charSequence;
-        xs3 xs3Var = this.u0;
-        if (xs3Var != null) {
-            xs3Var.t(charSequence4, !k96.a0, true);
+        pt3 pt3Var = this.u0;
+        if (pt3Var != null) {
+            pt3Var.t(charSequence4, !ob6.a0, true);
             return;
         }
         if (charSequence4 == null) {
@@ -640,17 +641,17 @@ public class EditTextBoldCursor extends lt3 {
         } else {
             z2 = z;
         }
-        jab jabVar = this.d0;
+        geb gebVar = this.d0;
         if (z2) {
-            if (jabVar == null) {
-                jabVar = new jab(this);
-                this.d0 = jabVar;
+            if (gebVar == null) {
+                gebVar = new geb(this);
+                this.d0 = gebVar;
             }
-            jab jabVar2 = jabVar;
+            geb gebVar2 = gebVar;
             StaticLayout staticLayout = this.p0;
             CharSequence charSequence6 = this.w0;
             if (staticLayout != null && !charSequence6.equals(charSequence5)) {
-                ValueAnimator valueAnimator = jabVar2.j;
+                ValueAnimator valueAnimator = gebVar2.j;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -668,52 +669,52 @@ public class EditTextBoldCursor extends lt3 {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence2);
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence2);
                     if (indexOf != 0) {
-                        spannableStringBuilder2.setSpan(new lx2((byte) 1), 0, indexOf, 0);
+                        spannableStringBuilder2.setSpan(new fy2((byte) 1), 0, indexOf, 0);
                     }
                     if (charSequence3.length() + indexOf != charSequence2.length()) {
-                        spannableStringBuilder2.setSpan(new lx2((byte) 1), charSequence3.length() + indexOf, charSequence2.length(), 0);
+                        spannableStringBuilder2.setSpan(new fy2((byte) 1), charSequence3.length() + indexOf, charSequence2.length(), 0);
                     }
-                    spannableStringBuilder.setSpan(new lx2((byte) 1), indexOf, charSequence3.length() + indexOf, 0);
-                    int L = gl.L(400.0f);
+                    spannableStringBuilder.setSpan(new fy2((byte) 1), indexOf, charSequence3.length() + indexOf, 0);
+                    int L = hl.L(400.0f);
                     Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                    jabVar2.b = new StaticLayout(spannableStringBuilder, textPaint, L, alignment, 1.0f, 0.0f, false);
-                    StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, gl.L(400.0f), alignment, 1.0f, 0.0f, false);
-                    jabVar2.d = staticLayout2;
-                    jabVar2.e = true;
-                    jabVar2.f = z3;
+                    gebVar2.b = new StaticLayout(spannableStringBuilder, textPaint, L, alignment, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, hl.L(400.0f), alignment, 1.0f, 0.0f, false);
+                    gebVar2.d = staticLayout2;
+                    gebVar2.e = true;
+                    gebVar2.f = z3;
                     if (indexOf == 0) {
                         f = 0.0f;
                     } else {
                         f = -staticLayout2.getPrimaryHorizontal(indexOf);
                     }
-                    jabVar2.h = f;
-                    jabVar2.c = null;
-                    jabVar2.g = false;
+                    gebVar2.h = f;
+                    gebVar2.c = null;
+                    gebVar2.g = false;
                 } else {
-                    int L2 = gl.L(400.0f);
+                    int L2 = hl.L(400.0f);
                     Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
-                    jabVar2.b = new StaticLayout(charSequence5, textPaint, L2, alignment2, 1.0f, 0.0f, false);
-                    jabVar2.c = new StaticLayout(charSequence6, textPaint, gl.L(400.0f), alignment2, 1.0f, 0.0f, false);
-                    jabVar2.d = null;
-                    jabVar2.e = true;
-                    jabVar2.g = true;
-                    jabVar2.h = 0.0f;
+                    gebVar2.b = new StaticLayout(charSequence5, textPaint, L2, alignment2, 1.0f, 0.0f, false);
+                    gebVar2.c = new StaticLayout(charSequence6, textPaint, hl.L(400.0f), alignment2, 1.0f, 0.0f, false);
+                    gebVar2.d = null;
+                    gebVar2.e = true;
+                    gebVar2.g = true;
+                    gebVar2.h = 0.0f;
                 }
-                jabVar2.i = 0.0f;
+                gebVar2.i = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                jabVar2.j = ofFloat;
-                ofFloat.addUpdateListener(new gja(jabVar2, (byte) 19));
-                jabVar2.j.addListener(new iab(jabVar2, (byte) 0));
-                jabVar2.j.setDuration(150L);
-                jabVar2.j.setInterpolator(s33.f);
-                jabVar2.j.start();
+                gebVar2.j = ofFloat;
+                ofFloat.addUpdateListener(new ija(gebVar2, (byte) 21));
+                gebVar2.j.addListener(new po9(gebVar2, (byte) 29));
+                gebVar2.j.setDuration(150L);
+                gebVar2.j.setInterpolator(k43.f);
+                gebVar2.j.start();
             }
-        } else if (jabVar != null) {
-            ValueAnimator valueAnimator2 = jabVar.j;
+        } else if (gebVar != null) {
+            ValueAnimator valueAnimator2 = gebVar.j;
             if (valueAnimator2 != null) {
                 valueAnimator2.cancel();
             }
-            jabVar.e = false;
+            gebVar.e = false;
         }
         this.w0 = charSequence5;
         if (getMeasuredWidth() != 0) {
@@ -726,7 +727,7 @@ public class EditTextBoldCursor extends lt3 {
         } else {
             textPaint2 = textPaint;
         }
-        this.p0 = new StaticLayout(charSequence5, textPaint2, gl.L(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.p0 = new StaticLayout(charSequence5, textPaint2, hl.L(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         invalidate();
     }
 
@@ -741,15 +742,15 @@ public class EditTextBoldCursor extends lt3 {
         invalidate();
     }
 
-    public void setBlurredBackgroundDrawableViewFactory(kl0 kl0Var) {
-        this.s1 = kl0Var;
+    public void setBlurredBackgroundDrawableViewFactory(ll0 ll0Var) {
+        this.t1 = ll0Var;
     }
 
     public void setCursorColor(int i) {
         this.i1 = i;
-        ys3 ys3Var = this.f1;
-        if (ys3Var != null) {
-            ys3Var.getPaint().setColor(i);
+        qt3 qt3Var = this.f1;
+        if (qt3Var != null) {
+            qt3Var.getPaint().setColor(i);
         }
         GradientDrawable gradientDrawable = this.c0;
         if (gradientDrawable != null) {
@@ -767,14 +768,14 @@ public class EditTextBoldCursor extends lt3 {
     }
 
     public void setEllipsizeByGradient(boolean z) {
-        this.z1 = z;
+        this.A1 = z;
         if (z) {
-            this.D1 = gl.L(12.0f);
-            this.A1 = new Paint(1);
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.D1, 0.0f, new int[]{-1, 16777215}, new float[]{0.4f, 1.0f}, Shader.TileMode.CLAMP);
-            this.B1 = linearGradient;
-            this.A1.setShader(linearGradient);
-            this.C1 = new Matrix();
+            this.E1 = hl.L(12.0f);
+            this.B1 = new Paint(1);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, this.E1, 0.0f, new int[]{-1, 16777215}, new float[]{0.4f, 1.0f}, Shader.TileMode.CLAMP);
+            this.C1 = linearGradient;
+            this.B1.setShader(linearGradient);
+            this.D1 = new Matrix();
         }
     }
 
@@ -798,12 +799,12 @@ public class EditTextBoldCursor extends lt3 {
     }
 
     public void setHandlesColor(int i) {
-        if (Build.VERSION.SDK_INT >= 29 && !nye.b() && this.x1 != i) {
-            this.x1 = i;
-            this.w1 = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
-            z(this.t1, false);
+        if (Build.VERSION.SDK_INT >= 29 && !f3f.b() && this.y1 != i) {
+            this.y1 = i;
+            this.x1 = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
             z(this.u1, false);
             z(this.v1, false);
+            z(this.w1, false);
         }
     }
 
@@ -819,13 +820,13 @@ public class EditTextBoldCursor extends lt3 {
 
     public void setHintColor(int i) {
         this.y0 = i;
-        xs3 xs3Var = this.u0;
-        if (xs3Var != null) {
-            xs3Var.u(i);
+        pt3 pt3Var = this.u0;
+        if (pt3Var != null) {
+            pt3Var.u(i);
         }
-        xs3 xs3Var2 = this.v0;
-        if (xs3Var2 != null) {
-            xs3Var2.u(this.y0);
+        pt3 pt3Var2 = this.v0;
+        if (pt3Var2 != null) {
+            pt3Var2.u(this.y0);
         }
         invalidate();
     }
@@ -859,7 +860,7 @@ public class EditTextBoldCursor extends lt3 {
     }
 
     public void setOnPremiumMenuLockClickListener(Runnable runnable) {
-        this.y1 = runnable;
+        this.z1 = runnable;
     }
 
     @Override
@@ -867,7 +868,7 @@ public class EditTextBoldCursor extends lt3 {
         try {
             super.setSelection(i, i2);
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
     }
 
@@ -885,33 +886,33 @@ public class EditTextBoldCursor extends lt3 {
     @Override
     public void setTextSelectHandle(Drawable drawable) {
         Drawable z = z(drawable, true);
-        this.v1 = z;
+        this.w1 = z;
         super.setTextSelectHandle(z);
     }
 
     @Override
     public void setTextSelectHandleLeft(Drawable drawable) {
         Drawable z = z(drawable, true);
-        this.t1 = z;
+        this.u1 = z;
         super.setTextSelectHandleLeft(z);
     }
 
     @Override
     public void setTextSelectHandleRight(Drawable drawable) {
         Drawable z = z(drawable, true);
-        this.u1 = z;
+        this.v1 = z;
         super.setTextSelectHandleRight(z);
     }
 
     @Override
     public void setTextSize(int i, float f) {
-        xs3 xs3Var = this.u0;
-        if (xs3Var != null) {
-            xs3Var.w(gl.L(f));
+        pt3 pt3Var = this.u0;
+        if (pt3Var != null) {
+            pt3Var.w(hl.L(f));
         }
-        xs3 xs3Var2 = this.v0;
-        if (xs3Var2 != null) {
-            xs3Var2.w(gl.L(f));
+        pt3 pt3Var2 = this.v0;
+        if (pt3Var2 != null) {
+            pt3Var2.w(hl.L(f));
         }
         super.setTextSize(i, f);
     }
@@ -944,9 +945,9 @@ public class EditTextBoldCursor extends lt3 {
         if (this.b1 == null && this.c1 == null) {
             return super.startActionMode(callback);
         }
-        yi4 yi4Var = this.Z0;
-        if (yi4Var != null) {
-            yi4Var.finish();
+        cl4 cl4Var = this.Z0;
+        if (cl4Var != null) {
+            cl4Var.finish();
         }
         m();
         Context context = getContext();
@@ -954,16 +955,16 @@ public class EditTextBoldCursor extends lt3 {
         if (view == null) {
             view = this.c1;
         }
-        gk4 gk4Var = new gk4(context, view, getActionModeStyle(), getResourcesProvider(), this.s1);
-        this.Y0 = gk4Var;
-        gk4Var.j = this.y1;
-        gk4Var.k = new wf0(this, (byte) 1);
-        yi4 yi4Var2 = new yi4(getContext(), new zs3(this, callback), this, this.Y0);
-        this.Z0 = yi4Var2;
-        this.a1 = new qr1(this, (byte) 2);
-        callback.onCreateActionMode(yi4Var2, yi4Var2.c);
-        yi4 yi4Var3 = this.Z0;
-        o(yi4Var3, yi4Var3.c);
+        lm4 lm4Var = new lm4(context, view, getActionModeStyle(), getResourcesProvider(), this.t1);
+        this.Y0 = lm4Var;
+        lm4Var.j = this.z1;
+        lm4Var.k = new yf0(this, (byte) 1);
+        cl4 cl4Var2 = new cl4(getContext(), new rt3(this, callback), this, this.Y0);
+        this.Z0 = cl4Var2;
+        this.a1 = new es1(this, (byte) 2);
+        callback.onCreateActionMode(cl4Var2, cl4Var2.c);
+        cl4 cl4Var3 = this.Z0;
+        o(cl4Var3, cl4Var3.c);
         this.Z0.invalidate();
         getViewTreeObserver().addOnPreDrawListener(this.a1);
         invalidate();
@@ -990,7 +991,7 @@ public class EditTextBoldCursor extends lt3 {
 
     public final void u(int i, int i2, int i3) {
         this.I0 = true;
-        Drawable drawable = getContext().getResources().getDrawable(2131232688);
+        Drawable drawable = getContext().getResources().getDrawable(2131232699);
         Rect rect = this.j1;
         drawable.getPadding(rect);
         setPadding(rect.left, rect.top, rect.right, rect.bottom);
@@ -1037,39 +1038,39 @@ public class EditTextBoldCursor extends lt3 {
         if (!hasSelection() || getSelectionStart() < 0 || getSelectionEnd() < 0 || getSelectionStart() == getSelectionEnd() || (text = getText()) == null) {
             return false;
         }
-        dy8[] dy8VarArr = (dy8[]) text.getSpans(getSelectionStart(), getSelectionEnd(), dy8.class);
-        if (dy8VarArr != null && dy8VarArr.length != 0) {
+        q19[] q19VarArr = (q19[]) text.getSpans(getSelectionStart(), getSelectionEnd(), q19.class);
+        if (q19VarArr != null && q19VarArr.length != 0) {
             return false;
         }
         return true;
     }
 
     public final void x(Canvas canvas, Rect rect) {
-        if (!this.n1) {
-            this.o1 = Float.NaN;
+        if (!this.o1) {
+            this.p1 = Float.NaN;
             return;
         }
         long uptimeMillis = SystemClock.uptimeMillis();
-        if (Float.isNaN(this.o1)) {
-            this.o1 = rect.left;
-            this.p1 = rect.top;
+        if (Float.isNaN(this.p1)) {
+            this.p1 = rect.left;
+            this.q1 = rect.top;
         } else {
-            float exp = 1.0f - ((float) Math.exp(((float) (-Math.min(64L, uptimeMillis - this.q1))) / 60.0f));
-            float f = this.o1;
+            float exp = 1.0f - ((float) Math.exp(((float) (-Math.min(64L, uptimeMillis - this.r1))) / 60.0f));
+            float f = this.p1;
             float f2 = rect.left;
-            float A = tb4.A(f2, f, exp, f);
-            this.o1 = A;
-            float f3 = this.p1;
-            this.p1 = tb4.A(rect.top, f3, exp, f3);
-            if (Math.abs(f2 - A) < 0.5f && Math.abs(rect.top - this.p1) < 0.5f) {
-                this.o1 = rect.left;
-                this.p1 = rect.top;
+            float A = qd4.A(f2, f, exp, f);
+            this.p1 = A;
+            float f3 = this.q1;
+            this.q1 = qd4.A(rect.top, f3, exp, f3);
+            if (Math.abs(f2 - A) < 0.5f && Math.abs(rect.top - this.q1) < 0.5f) {
+                this.p1 = rect.left;
+                this.q1 = rect.top;
             } else {
                 postInvalidateOnAnimation();
             }
         }
-        this.q1 = uptimeMillis;
-        canvas.translate(this.o1 - rect.left, this.p1 - rect.top);
+        this.r1 = uptimeMillis;
+        canvas.translate(this.p1 - rect.left, this.q1 - rect.top);
     }
 
     public final void y() {
@@ -1086,10 +1087,10 @@ public class EditTextBoldCursor extends lt3 {
         int lineTop = layout.getLineTop(lineForOffset);
         int lineTop2 = layout.getLineTop(lineForOffset + 1);
         float max = Math.max(0.5f, layout.getPrimaryHorizontal(selectionStart) - 0.5f);
-        Rect rect = this.r1;
+        Rect rect = this.s1;
         if (rect == null) {
             rect = new Rect();
-            this.r1 = rect;
+            this.s1 = rect;
         }
         GradientDrawable gradientDrawable = this.c0;
         if (gradientDrawable != null) {
@@ -1104,14 +1105,14 @@ public class EditTextBoldCursor extends lt3 {
         int width = (getWidth() - getCompoundPaddingLeft()) - getCompoundPaddingRight();
         float f2 = width;
         if (f >= f2 - 1.0f) {
-            i2 = (width + scrollX) - (i - this.r1.right);
+            i2 = (width + scrollX) - (i - this.s1.right);
         } else if (Math.abs(f) > 1.0f && (!TextUtils.isEmpty(getText()) || 1048576 - scrollX > f2 + 1.0f || max > 1.0f)) {
-            i2 = ((int) max) - this.r1.left;
+            i2 = ((int) max) - this.s1.left;
         } else {
-            i2 = scrollX - this.r1.left;
+            i2 = scrollX - this.s1.left;
         }
-        int L = gl.L(this.F0);
-        Rect rect2 = this.r1;
+        int L = hl.L(this.F0);
+        Rect rect2 = this.s1;
         gradientDrawable.setBounds(i2, lineTop - rect2.top, L + i2, lineTop2 + rect2.bottom);
         layout.getText();
     }
@@ -1121,7 +1122,7 @@ public class EditTextBoldCursor extends lt3 {
             if (z) {
                 drawable = drawable.mutate();
             }
-            PorterDuffColorFilter porterDuffColorFilter = this.w1;
+            PorterDuffColorFilter porterDuffColorFilter = this.x1;
             if (porterDuffColorFilter != null) {
                 drawable.setColorFilter(porterDuffColorFilter);
             }
@@ -1134,7 +1135,7 @@ public class EditTextBoldCursor extends lt3 {
         try {
             super.setSelection(i);
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
     }
 

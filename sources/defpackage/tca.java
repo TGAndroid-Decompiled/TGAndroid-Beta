@@ -1,22 +1,44 @@
 package defpackage;
-public final class tca extends r35 {
-    public final nfa Q;
 
-    public tca(nfa nfaVar) {
-        super(3);
-        this.Q = nfaVar;
+import android.graphics.RectF;
+public final class tca {
+    public final u01 a;
+    public float b;
+    public float c;
+    public float d;
+    public float e;
+    public float f;
+    public float g;
+    public float h;
+    public float i;
+    public float j;
+    public float k;
+    public boolean l;
+
+    public tca(u01 u01Var) {
+        this.a = u01Var;
     }
 
-    @Override
-    public final int n0(int i, wg2 wg2Var, p49 p49Var) {
-        if (this.Q.r1) {
-            i = 0;
+    public final void a(RectF rectF) {
+        u01 u01Var = this.a;
+        if (u01Var.n() == 4) {
+            float f = this.b;
+            float f2 = this.k;
+            float f3 = this.c;
+            rectF.set(f - f2, f3 - f2, f + f2, f3 + f2);
+            rectF.union(this.d, this.e);
+            rectF.union(this.i, this.j);
+        } else {
+            float max = Math.max(Math.abs(this.d), Math.abs(this.e));
+            float f4 = this.b;
+            float f5 = max * 1.42f;
+            float f6 = this.c;
+            rectF.set(f4 - f5, f6 - f5, f4 + f5, f6 + f5);
+            if (u01Var.n() == 3) {
+                rectF.union(this.i, this.j);
+            }
         }
-        return super.n0(i, wg2Var, p49Var);
-    }
-
-    @Override
-    public final boolean x0() {
-        return false;
+        float f7 = (-this.f) - 3.0f;
+        rectF.inset(f7, f7);
     }
 }

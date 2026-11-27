@@ -1,4 +1,3 @@
 package defpackage;
-public interface vn {
-    public static final un g = new Object();
+public final class vn implements wn {
 }

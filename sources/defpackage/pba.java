@@ -1,87 +1,82 @@
 package defpackage;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.d;
-public final class pba implements View.OnClickListener {
-    public final byte a;
-    public final nfa b;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class pba extends a8c {
+    static {
+        a8c.h(new a8c());
+    }
 
-    public pba(nfa nfaVar, byte b) {
-        this.a = b;
-        this.b = nfaVar;
+    public static b8c i(int i, int i2, int i3, int i4, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        b8c K = b8c.K(pba.class);
+        K.d = i;
+        K.k = i4;
+        K.m = charSequence;
+        K.n = charSequence2;
+        K.o = charSequence3;
+        K.C = (i3 << 32) | (i2 & 4294967295L);
+        return K;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        nfa nfaVar = this.b;
-        switch (b) {
-            case 0:
-                int closestTab = nfaVar.getClosestTab();
-                cs5 I = cs5.I(nfaVar.y1, view);
-                I.J = false;
-                if (nfaVar.K(closestTab, new u39(I, (byte) 12))) {
-                    if (closestTab != 13 && closestTab != 11) {
-                        I.b0 = true;
-                    } else {
-                        I.b0(0.0f, -gl.L(52.0f));
-                    }
-                    I.s = (short) 0;
-                    I.a0();
-                    return;
-                }
-                return;
-            case 1:
-                xha xhaVar = nfaVar.J;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = xhaVar.b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.d();
-                }
-                if (nfaVar.K(nfaVar.getClosestTab(), new g29(nfaVar, (byte) 10))) {
-                    xhaVar.U(null, null);
-                    return;
-                }
-                return;
-            case 2:
-                nfaVar.E(true);
-                return;
-            case 3:
-                oca ocaVar = nfaVar.c0;
-                lca lcaVar = nfaVar.b0;
-                if (nfaVar.t0.getAlpha() >= 0.1f) {
-                    if (lcaVar != null && lcaVar.g()) {
-                        lcaVar.i();
-                    }
-                    if (ocaVar != null && ocaVar.f) {
-                        mfa t1 = nfaVar.t1(nfaVar.s1(nfaVar.getClosestTab()));
-                        iea P = nfaVar.P(t1.a);
-                        if (P != null) {
-                            ocaVar.setReorderingAlbums(false);
-                            sca scaVar = P.h;
-                            for (int i = 0; i < scaVar.getChildCount(); i++) {
-                                View childAt = scaVar.getChildAt(i);
-                                if (childAt instanceof qfa) {
-                                    ((qfa) childAt).l(false, true);
-                                }
-                            }
-                            lfa lfaVar = t1.c;
-                            if (lfaVar != null && lfaVar.y) {
-                                lfaVar.y = false;
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                d dVar = nfaVar.y1;
-                dVar.getMessagesController().X3.edit().putBoolean("story_keep", true).apply();
-                t7b.C(dVar.getParentActivity(), dVar.getCurrentAccount()).Q(null);
-                return;
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        boolean z2;
+        int i;
+        float f;
+        long j = b8cVar.C;
+        int i2 = (int) j;
+        int i3 = (int) (j >>> 32);
+        qba qbaVar = (qba) view;
+        int i4 = b8cVar.k;
+        CharSequence charSequence = b8cVar.m;
+        CharSequence charSequence2 = b8cVar.n;
+        CharSequence charSequence3 = b8cVar.o;
+        TextView textView = qbaVar.e;
+        TextView textView2 = qbaVar.f;
+        int i5 = 0;
+        if (i2 == 0 && i3 == 0) {
+            z2 = false;
+        } else {
+            z2 = true;
         }
+        qbaVar.n = z2;
+        FrameLayout frameLayout = qbaVar.c;
+        if (i4 != 0) {
+            i = 0;
+        } else {
+            i = 8;
+        }
+        frameLayout.setVisibility(i);
+        float f2 = 0.0f;
+        if (i4 == 0) {
+            f = hl.L(2.0f);
+        } else {
+            f = 0.0f;
+        }
+        textView.setTranslationX(f);
+        if (i4 == 0) {
+            f2 = hl.L(2.0f);
+        }
+        textView2.setTranslationX(f2);
+        qbaVar.b.b(i2, i3);
+        qbaVar.d.setImageResource(i4);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        qbaVar.r = !isEmpty;
+        if (isEmpty) {
+            i5 = 8;
+        }
+        textView2.setVisibility(i5);
+        textView2.setText(charSequence2);
+        qbaVar.setValue(charSequence3);
+        qbaVar.updateColors();
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new qba(context, vnbVar);
     }
 }

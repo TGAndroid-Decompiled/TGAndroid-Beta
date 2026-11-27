@@ -1,52 +1,27 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.ClipData;
-import android.os.Build;
-import android.text.Selection;
-import android.text.Spannable;
-import android.view.DragEvent;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
-public abstract class qp {
-    public static boolean a(DragEvent dragEvent, TextView textView, Activity activity) {
-        dv2 dv2Var;
-        activity.requestDragAndDropPermissions(dragEvent);
-        int offsetForPosition = textView.getOffsetForPosition(dragEvent.getX(), dragEvent.getY());
-        textView.beginBatchEdit();
-        try {
-            Selection.setSelection((Spannable) textView.getText(), offsetForPosition);
-            ClipData clipData = dragEvent.getClipData();
-            if (Build.VERSION.SDK_INT >= 31) {
-                dv2Var = new cv2(clipData, 3);
-            } else {
-                ev2 ev2Var = new ev2();
-                ev2Var.b = clipData;
-                ev2Var.c = (byte) 3;
-                dv2Var = ev2Var;
-            }
-            jdc.i(textView, dv2Var.build());
-            textView.endBatchEdit();
-            return true;
-        } catch (Throwable th) {
-            textView.endBatchEdit();
-            throw th;
-        }
+import android.widget.RatingBar;
+public final class qp extends RatingBar {
+    public final lh2 a;
+
+    public qp(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968908);
+        brb.a(getContext(), this);
+        lh2 lh2Var = new lh2(this, (byte) 1);
+        this.a = lh2Var;
+        lh2Var.z(attributeSet, 2130968908);
     }
 
-    public static boolean b(DragEvent dragEvent, View view, Activity activity) {
-        dv2 dv2Var;
-        activity.requestDragAndDropPermissions(dragEvent);
-        ClipData clipData = dragEvent.getClipData();
-        if (Build.VERSION.SDK_INT >= 31) {
-            dv2Var = new cv2(clipData, 3);
-        } else {
-            ev2 ev2Var = new ev2();
-            ev2Var.b = clipData;
-            ev2Var.c = (byte) 3;
-            dv2Var = ev2Var;
+    @Override
+    public final synchronized void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        Bitmap bitmap = (Bitmap) this.a.c;
+        if (bitmap != null) {
+            setMeasuredDimension(View.resolveSizeAndState(bitmap.getWidth() * getNumStars(), i, 0), getMeasuredHeight());
         }
-        jdc.i(view, dv2Var.build());
-        return true;
     }
 }

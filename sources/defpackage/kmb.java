@@ -1,7 +1,19 @@
 package defpackage;
-public final class kmb extends k27 {
-    @Override
-    public final boolean j5() {
-        return false;
-    }
+
+import android.graphics.Rect;
+import android.text.Layout;
+public interface kmb {
+    Layout a();
+
+    Rect c();
+
+    CharSequence getPrefix();
+
+    int getRow();
+
+    CharSequence getText();
+
+    int getX();
+
+    int getY();
 }

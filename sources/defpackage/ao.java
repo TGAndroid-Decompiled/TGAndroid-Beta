@@ -1,7 +1,24 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-public abstract class ao {
-    public static final HashSet a = new HashSet(Arrays.asList(nuc.a.z0()));
+import com.google.android.gms.common.api.Status;
+public class ao extends Exception {
+    @Deprecated
+    protected final Status mStatus;
+
+    public ao(com.google.android.gms.common.api.Status r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ao.<init>(com.google.android.gms.common.api.Status):void");
+    }
+
+    public Status getStatus() {
+        return this.mStatus;
+    }
+
+    public int getStatusCode() {
+        return this.mStatus.a;
+    }
+
+    @Deprecated
+    public String getStatusMessage() {
+        return this.mStatus.b;
+    }
 }

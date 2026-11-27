@@ -1,86 +1,49 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public final class tt8 extends Drawable {
-    public final Drawable a;
-    public final Drawable b;
-    public final Paint c;
-    public final RectF d;
-    public int e;
-    public long f;
-    public float g;
-    public boolean h;
-    public boolean i;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ProfileActivity;
+public final class tt8 implements pcc {
+    public final byte a;
+    public final au8 b;
+    public final TL_stars.SavedStarGift c;
 
-    public tt8(Context context) {
-        Paint paint = new Paint(1);
-        this.c = paint;
-        this.d = new RectF();
-        this.e = 0;
-        this.a = b00.d(context, 2131232512);
-        this.b = b00.d(context, 2131232511);
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gl.L(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f = SystemClock.elapsedRealtime();
+    public tt8(au8 au8Var, TL_stars.SavedStarGift savedStarGift, byte b) {
+        this.a = b;
+        this.b = au8Var;
+        this.c = savedStarGift;
     }
 
-    public final void a(Drawable drawable) {
-        Rect bounds = getBounds();
-        drawable.setBounds(oo1.A(2, bounds.centerX(), drawable), oo1.y(2, bounds.centerY(), drawable), oo1.w(2, bounds.centerX(), drawable), oo1.i(2, bounds.centerY(), drawable));
-    }
-
-    public final void b(boolean z, boolean z2, boolean z3) {
-        float f;
-        this.i = z;
-        this.h = z2;
-        this.f = SystemClock.elapsedRealtime();
-        if (!z3) {
-            if (this.h) {
-                f = 1.0f;
-            } else {
-                f = 0.0f;
-            }
-            this.g = f;
+    @Override
+    public final void a(Object obj) {
+        byte b = this.a;
+        TL_stars.SavedStarGift savedStarGift = this.c;
+        au8 au8Var = this.b;
+        switch (b) {
+            case 0:
+                au8Var.a.e.b(new tt8(au8Var, savedStarGift, (byte) 1), (String) obj);
+                return;
+            default:
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
+                cga cgaVar = au8Var.a;
+                zwa zwaVar = cgaVar.e;
+                int i = tL_starGiftCollection.collection_id;
+                zwaVar.getClass();
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(savedStarGift);
+                zwaVar.a(i, arrayList);
+                cgaVar.f(true);
+                uic uicVar = cgaVar.n;
+                int i2 = tL_starGiftCollection.collection_id;
+                uicVar.e(i2, cgaVar.e.f(i2) + 1);
+                e eVar = cgaVar.a;
+                if (eVar instanceof ProfileActivity) {
+                    ((ProfileActivity) eVar).k3(true);
+                }
+                cgaVar.o();
+                d31.b0(eVar).R(savedStarGift.gift.getDocument(), hl.S2(ob6.a0(null, null, 2131750354, wua.u1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                return;
         }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tt8.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return gl.L(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return gl.L(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.a.setColorFilter(colorFilter);
-        this.b.setColorFilter(colorFilter);
-        this.c.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i) {
     }
 }

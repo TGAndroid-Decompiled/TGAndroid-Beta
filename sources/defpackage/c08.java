@@ -1,39 +1,54 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
-public final class c08 extends e08 {
-    public int H;
-    public final a18 I;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class c08 implements TextWatcher {
+    public boolean a;
+    public final EditTextBoldCursor b;
+    public final String c;
+    public final b18 d;
 
-    public c08(a18 a18Var, Context context, wjb wjbVar) {
-        super(context, wjbVar);
-        this.I = a18Var;
-        this.H = 0;
+    public c08(b18 b18Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = b18Var;
+        this.b = editTextBoldCursor;
+        this.c = str;
     }
 
     @Override
-    public final void a() {
-        a18 a18Var = this.I;
-        if (a18Var.getParentActivity() != null) {
-            gl.k3(a18Var.getParentActivity(), a18Var.isLightStatusBar());
+    public final void afterTextChanged(Editable editable) {
+        if (this.a) {
+            return;
         }
-        int actionBarButtonColor = getActionBarButtonColor();
-        if (this.H != actionBarButtonColor) {
-            ImageView imageView = a18Var.K;
-            if (imageView != null) {
-                this.H = actionBarButtonColor;
-                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
-            ImageView imageView2 = a18Var.L;
-            if (imageView2 != null) {
-                this.H = actionBarButtonColor;
-                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+        boolean z = true;
+        this.a = true;
+        int i = 0;
+        while (true) {
+            if (i < editable.length()) {
+                char charAt = editable.charAt(i);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
+                }
+                i++;
+            } else {
+                z = false;
+                break;
             }
         }
-        a18Var.J0();
-        a18Var.C0();
+        this.a = false;
+        EditTextBoldCursor editTextBoldCursor = this.b;
+        if (z) {
+            editTextBoldCursor.setErrorText(ob6.M0(2131747176, null));
+        } else {
+            this.d.P0(editTextBoldCursor, this.c, editable, false);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
     }
 }

@@ -1,107 +1,52 @@
 package defpackage;
 
-import android.os.Build;
-import android.text.PrecomputedText;
-import android.text.TextDirectionHeuristic;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import j$.util.Objects;
+import android.os.Bundle;
+import java.util.ArrayList;
 public final class zf8 {
-    public final TextPaint a;
-    public final TextDirectionHeuristic b;
-    public final int c;
-    public final int d;
+    public static final zf8 b = new yf8().b();
+    public static final String c;
+    public final lk4 a;
 
-    public zf8(TextPaint textPaint, TextDirectionHeuristic textDirectionHeuristic, int i, int i2) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            new PrecomputedText.Params.Builder(textPaint).setBreakStrategy(i).setHyphenationFrequency(i2).setTextDirection(textDirectionHeuristic).build();
+    static {
+        String str = gcc.a;
+        c = "0";
+    }
+
+    public zf8(lk4 lk4Var) {
+        this.a = lk4Var;
+    }
+
+    public final boolean a(int i) {
+        return this.a.a.get(i);
+    }
+
+    public final Bundle b() {
+        Bundle bundle = new Bundle();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int i = 0;
+        while (true) {
+            lk4 lk4Var = this.a;
+            if (i < lk4Var.a.size()) {
+                arrayList.add(Integer.valueOf(lk4Var.a(i)));
+                i++;
+            } else {
+                bundle.putIntegerArrayList(c, arrayList);
+                return bundle;
+            }
         }
-        this.a = textPaint;
-        this.b = textDirectionHeuristic;
-        this.c = i;
-        this.d = i2;
     }
 
     public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof zf8) {
-                zf8 zf8Var = (zf8) obj;
-                int i = zf8Var.c;
-                TextPaint textPaint = zf8Var.a;
-                if (this.c == i && this.d == zf8Var.d) {
-                    TextPaint textPaint2 = this.a;
-                    if (textPaint2.getTextSize() == textPaint.getTextSize() && textPaint2.getTextScaleX() == textPaint.getTextScaleX() && textPaint2.getTextSkewX() == textPaint.getTextSkewX() && textPaint2.getLetterSpacing() == textPaint.getLetterSpacing() && TextUtils.equals(textPaint2.getFontFeatureSettings(), textPaint.getFontFeatureSettings()) && textPaint2.getFlags() == textPaint.getFlags()) {
-                        if (Build.VERSION.SDK_INT >= 24) {
-                            if (!textPaint2.getTextLocales().equals(textPaint.getTextLocales())) {
-                                return false;
-                            }
-                        } else if (!textPaint2.getTextLocale().equals(textPaint.getTextLocale())) {
-                            return false;
-                        }
-                        if (textPaint2.getTypeface() == null) {
-                            if (textPaint.getTypeface() != null) {
-                                return false;
-                            }
-                        } else if (!textPaint2.getTypeface().equals(textPaint.getTypeface())) {
-                            return false;
-                        }
-                        if (this.b == zf8Var.b) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof zf8)) {
             return false;
         }
-        return true;
+        return this.a.equals(((zf8) obj).a);
     }
 
     public final int hashCode() {
-        int i = Build.VERSION.SDK_INT;
-        TextDirectionHeuristic textDirectionHeuristic = this.b;
-        int i2 = this.d;
-        int i3 = this.c;
-        TextPaint textPaint = this.a;
-        if (i >= 24) {
-            return Objects.hash(Float.valueOf(textPaint.getTextSize()), Float.valueOf(textPaint.getTextScaleX()), Float.valueOf(textPaint.getTextSkewX()), Float.valueOf(textPaint.getLetterSpacing()), Integer.valueOf(textPaint.getFlags()), textPaint.getTextLocales(), textPaint.getTypeface(), Boolean.valueOf(textPaint.isElegantTextHeight()), textDirectionHeuristic, Integer.valueOf(i3), Integer.valueOf(i2));
-        }
-        return Objects.hash(Float.valueOf(textPaint.getTextSize()), Float.valueOf(textPaint.getTextScaleX()), Float.valueOf(textPaint.getTextSkewX()), Float.valueOf(textPaint.getLetterSpacing()), Integer.valueOf(textPaint.getFlags()), textPaint.getTextLocale(), textPaint.getTypeface(), Boolean.valueOf(textPaint.isElegantTextHeight()), textDirectionHeuristic, Integer.valueOf(i3), Integer.valueOf(i2));
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("{");
-        StringBuilder sb2 = new StringBuilder("textSize=");
-        TextPaint textPaint = this.a;
-        sb2.append(textPaint.getTextSize());
-        sb.append(sb2.toString());
-        sb.append(", textScaleX=" + textPaint.getTextScaleX());
-        sb.append(", textSkewX=" + textPaint.getTextSkewX());
-        sb.append(", letterSpacing=" + textPaint.getLetterSpacing());
-        sb.append(", elegantTextHeight=" + textPaint.isElegantTextHeight());
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 24) {
-            sb.append(", textLocale=" + textPaint.getTextLocales());
-        } else {
-            sb.append(", textLocale=" + textPaint.getTextLocale());
-        }
-        sb.append(", typeface=" + textPaint.getTypeface());
-        if (i >= 26) {
-            sb.append(", variationSettings=" + textPaint.getFontVariationSettings());
-        }
-        sb.append(", textDir=" + this.b);
-        sb.append(", breakStrategy=" + this.c);
-        sb.append(", hyphenationFrequency=" + this.d);
-        sb.append("}");
-        return sb.toString();
-    }
-
-    public zf8(PrecomputedText.Params params) {
-        this.a = params.getTextPaint();
-        this.b = params.getTextDirection();
-        this.c = params.getBreakStrategy();
-        this.d = params.getHyphenationFrequency();
+        return this.a.hashCode();
     }
 }

@@ -1,18 +1,25 @@
 package defpackage;
-public final class jg8 implements v63 {
-    public final v63 a;
+public final class jg8 {
+    public static final String a;
+    public static final String b;
 
-    public jg8(v63 v63Var) {
-        this.a = v63Var;
+    static {
+        String str = gcc.a;
+        a = "0";
+        b = "1";
     }
 
-    @Override
-    public final Object a(eq4 eq4Var, gw2 gw2Var) {
-        return this.a.a(new ig8(eq4Var, null, (byte) 0), gw2Var);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof jg8)) {
+            return false;
+        }
+        throw null;
     }
 
-    @Override
-    public final hk4 getData() {
-        return this.a.getData();
+    public final int hashCode() {
+        throw null;
     }
 }

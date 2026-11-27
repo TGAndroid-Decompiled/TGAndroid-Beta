@@ -1,101 +1,182 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-import java.util.UUID;
+import android.view.Gravity;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 public abstract class tre {
-    public static byte[] a(UUID uuid, UUID[] uuidArr, byte[] bArr) {
-        int i;
-        int i2;
-        if (bArr != null) {
-            i = bArr.length;
-        } else {
-            i = 0;
-        }
-        int i3 = i + 32;
-        if (uuidArr != null) {
-            i3 += (uuidArr.length << 4) + 4;
-        }
-        ByteBuffer allocate = ByteBuffer.allocate(i3);
-        allocate.putInt(i3);
-        allocate.putInt(1886614376);
-        if (uuidArr != null) {
-            i2 = 16777216;
-        } else {
-            i2 = 0;
-        }
-        allocate.putInt(i2);
-        allocate.putLong(uuid.getMostSignificantBits());
-        allocate.putLong(uuid.getLeastSignificantBits());
-        if (uuidArr != null) {
-            allocate.putInt(uuidArr.length);
-            for (UUID uuid2 : uuidArr) {
-                allocate.putLong(uuid2.getMostSignificantBits());
-                allocate.putLong(uuid2.getLeastSignificantBits());
-            }
-        }
-        if (bArr != null && bArr.length != 0) {
-            allocate.putInt(bArr.length);
-            allocate.put(bArr);
-        } else {
-            allocate.putInt(0);
-        }
-        return allocate.array();
+    public static FrameLayout.LayoutParams a(float f, float f2, int i) {
+        return new FrameLayout.LayoutParams(z(f), z(f2), i);
     }
 
-    public static ju8 b(byte[] bArr) {
-        UUID[] uuidArr;
-        xu7 xu7Var = new xu7(bArr);
-        if (xu7Var.c < 32) {
-            return null;
-        }
-        xu7Var.N(0);
-        int a = xu7Var.a();
-        int m = xu7Var.m();
-        if (m != a) {
-            lad.f("PsshAtomUtil", "Advertised atom size (" + m + ") does not match buffer size: " + a);
-            return null;
-        }
-        int m2 = xu7Var.m();
-        if (m2 != 1886614376) {
-            b00.o(m2, "Atom type is not pssh: ", "PsshAtomUtil");
-            return null;
-        }
-        int e = ry0.e(xu7Var.m());
-        if (e > 1) {
-            b00.o(e, "Unsupported pssh version: ", "PsshAtomUtil");
-            return null;
-        }
-        UUID uuid = new UUID(xu7Var.u(), xu7Var.u());
-        if (e == 1) {
-            int E = xu7Var.E();
-            uuidArr = new UUID[E];
-            for (int i = 0; i < E; i++) {
-                uuidArr[i] = new UUID(xu7Var.u(), xu7Var.u());
-            }
-        } else {
-            uuidArr = null;
-        }
-        int E2 = xu7Var.E();
-        int a2 = xu7Var.a();
-        if (E2 != a2) {
-            lad.f("PsshAtomUtil", "Atom data size (" + E2 + ") does not match the bytes left: " + a2);
-            return null;
-        }
-        byte[] bArr2 = new byte[E2];
-        xu7Var.k(0, E2, bArr2);
-        return new ju8(uuid, e, bArr2, uuidArr);
+    public static FrameLayout.LayoutParams b(float f, float f2, int i, float f3, float f4, float f5, float f6) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(z(f), z(f2), i);
+        layoutParams.setMargins(hl.L(f3), hl.L(f4), hl.L(f5), hl.L(f6));
+        return layoutParams;
     }
 
-    public static byte[] c(UUID uuid, byte[] bArr) {
-        ju8 b = b(bArr);
-        if (b == null) {
-            return null;
+    public static FrameLayout.LayoutParams c(float f, int i) {
+        return new FrameLayout.LayoutParams(z(i), z(f));
+    }
+
+    public static FrameLayout.LayoutParams d(int i, float f, int i2, float f2, float f3, float f4, float f5) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(z(i), z(f), i2);
+        layoutParams.setMargins(hl.L(f2), hl.L(f3), hl.L(f4), hl.L(f5));
+        return layoutParams;
+    }
+
+    public static FrameLayout.LayoutParams e(int i, int i2, int i3) {
+        return new FrameLayout.LayoutParams(z(i), z(i2), i3);
+    }
+
+    public static FrameLayout.LayoutParams f(float f, int i, int i2, int i3, int i4, int i5, int i6) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(z(i), z(f), i2);
+        layoutParams.setMargins(i3, i4, i5, i6);
+        return layoutParams;
+    }
+
+    public static FrameLayout.LayoutParams g() {
+        return c(-1.0f, -1);
+    }
+
+    public static FrameLayout.LayoutParams h(float f, float f2, int i) {
+        return new FrameLayout.LayoutParams(z(f), z(f2), Gravity.getAbsoluteGravity(i, ob6.a0 ? 1 : 0));
+    }
+
+    public static FrameLayout.LayoutParams i(float f, float f2, int i, float f3, float f4, float f5, float f6) {
+        float f7;
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(z(f), z(f2), Gravity.getAbsoluteGravity(i, ob6.a0 ? 1 : 0));
+        if (ob6.a0) {
+            f7 = f5;
+        } else {
+            f7 = f3;
         }
-        UUID uuid2 = (UUID) b.c;
-        if (!uuid.equals(uuid2)) {
-            lad.f("PsshAtomUtil", "UUID mismatch. Expected: " + uuid + ", got: " + uuid2 + ".");
-            return null;
+        layoutParams.leftMargin = hl.L(f7);
+        layoutParams.topMargin = hl.L(f4);
+        if (!ob6.a0) {
+            f3 = f5;
         }
-        return b.b;
+        layoutParams.rightMargin = hl.L(f3);
+        layoutParams.bottomMargin = hl.L(f6);
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams j(float f, float f2) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(-2.0f), z(20.66f));
+        layoutParams.setMargins(hl.L(f), hl.L(0.0f), hl.L(f2), hl.L(0.0f));
+        layoutParams.gravity = 16;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams k(float f, float f2, float f3, float f4, int i, int i2) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2));
+        layoutParams.setMargins(hl.L(f), hl.L(f2), hl.L(f3), hl.L(f4));
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams l(float f, int i, int i2) {
+        return new LinearLayout.LayoutParams(z(i), z(i2), f);
+    }
+
+    public static LinearLayout.LayoutParams m(float f, int i, int i2, int i3, int i4, int i5) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2), f);
+        layoutParams.setMargins(hl.L(i3), hl.L(0.0f), hl.L(i4), hl.L(i5));
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams n(float f, int i, int i2, int i3, int i4, int i5, int i6) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(f));
+        layoutParams.setMargins(hl.L(i3), hl.L(i4), hl.L(i5), hl.L(i6));
+        layoutParams.gravity = i2;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams o(int i, int i2) {
+        return new LinearLayout.LayoutParams(z(i), z(i2));
+    }
+
+    public static LinearLayout.LayoutParams p(int i, int i2, float f, int i3) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2), f);
+        layoutParams.gravity = i3;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams q(int i, int i2, float f, int i3, int i4, int i5, int i6, int i7) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2), f);
+        layoutParams.setMargins(hl.L(i4), hl.L(i5), hl.L(i6), hl.L(i7));
+        layoutParams.gravity = i3;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams r(int i, int i2, int i3) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2));
+        layoutParams.gravity = i3;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams s(int i, int i2, int i3, float f, float f2, float f3, float f4) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2));
+        layoutParams.setMargins(hl.L(f), hl.L(f2), hl.L(f3), hl.L(f4));
+        layoutParams.gravity = i3;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams t(int i, int i2, int i3, int i4, int i5, int i6, int i7) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(i), z(i2));
+        layoutParams.setMargins(hl.L(i4), hl.L(i5), hl.L(i6), hl.L(i7));
+        layoutParams.gravity = i3;
+        return layoutParams;
+    }
+
+    public static LinearLayout.LayoutParams u(float f, float f2, int i, float f3, float f4, float f5, float f6) {
+        float f7;
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(f), z(f2), Gravity.getAbsoluteGravity(i, ob6.a0 ? 1 : 0));
+        if (ob6.a0) {
+            f7 = f5;
+        } else {
+            f7 = f3;
+        }
+        layoutParams.leftMargin = hl.L(f7);
+        layoutParams.topMargin = hl.L(f4);
+        if (!ob6.a0) {
+            f3 = f5;
+        }
+        layoutParams.rightMargin = hl.L(f3);
+        layoutParams.bottomMargin = hl.L(f6);
+        return layoutParams;
+    }
+
+    public static RelativeLayout.LayoutParams v(int i, float f, int i2, float f2, int i3) {
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(z(f), z(f2));
+        if (i3 >= 0) {
+            layoutParams.addRule(i3);
+        }
+        layoutParams.leftMargin = hl.L(i);
+        layoutParams.topMargin = hl.L(0.0f);
+        layoutParams.rightMargin = hl.L(i2);
+        layoutParams.bottomMargin = hl.L(0.0f);
+        return layoutParams;
+    }
+
+    public static RelativeLayout.LayoutParams w(int i, int i2) {
+        return v(0, i, 0, i2, -1);
+    }
+
+    public static FrameLayout.LayoutParams x(int i, int i2, int i3) {
+        return new FrameLayout.LayoutParams(z(i), z(i2), i3);
+    }
+
+    public static int y() {
+        if (ob6.a0) {
+            return 5;
+        }
+        return 3;
+    }
+
+    public static int z(float f) {
+        if (f >= 0.0f) {
+            f = hl.L(f);
+        }
+        return (int) f;
     }
 }

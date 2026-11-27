@@ -1,71 +1,63 @@
 package defpackage;
 
-import android.graphics.Rect;
-import java.util.Arrays;
-public final class sic {
-    public boolean d;
-    public boolean e;
-    public int[] f;
-    public int g;
-    public int h;
-    public Rect i;
-    public long b = -9223372036854775807L;
-    public long c = -9223372036854775807L;
-    public final int[] a = new int[4];
-    public int j = -1;
-    public int k = -1;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class sic extends View {
+    public ric a;
+    public int b;
+    public final RectF c;
+    public CharSequence d;
+    public pkb e;
+    public boolean f;
+    public sca h;
+    public final mm n;
+    public final uic r;
 
-    public static int a(int[] iArr, int i) {
-        if (i >= 0 && i < iArr.length) {
-            return iArr[i];
-        }
-        return iArr[0];
+    public sic(uic uicVar, Context context) {
+        super(context);
+        this.r = uicVar;
+        this.c = new RectF();
+        this.n = new mm(360L, this, k43.h);
     }
 
-    public static int c(int i, int i2) {
-        return (i & 16777215) | ((i2 * 17) << 24);
+    @Override
+    public int getId() {
+        return this.a.a;
     }
 
-    public final void b(qd1 qd1Var, boolean z, Rect rect, int[] iArr) {
+    @Override
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sic.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z;
         int i;
-        int i2;
-        int width = rect.width();
-        int height = rect.height();
-        int i3 = !z ? 1 : 0;
-        int i4 = i3 * width;
-        while (true) {
-            int i5 = 0;
-            do {
-                int i6 = 0;
-                for (int i7 = 1; i6 < i7 && i7 <= 64; i7 <<= 2) {
-                    if (qd1Var.b() < 4) {
-                        i = -1;
-                        i2 = 0;
-                        break;
-                    }
-                    i6 = (i6 << 4) | qd1Var.f(4);
-                }
-                i = i6 & 3;
-                if (i6 < 4) {
-                    i2 = width;
-                } else {
-                    i2 = i6 >> 2;
-                }
-                int min = Math.min(i2, width - i5);
-                if (min > 0) {
-                    int i8 = i4 + min;
-                    Arrays.fill(iArr, i4, i8, this.a[i]);
-                    i5 += min;
-                    i4 = i8;
-                    continue;
-                }
-            } while (i5 < width);
-            i3 += 2;
-            if (i3 >= height) {
-                return;
-            }
-            i4 = i3 * width;
-            qd1Var.c();
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        ric ricVar = this.a;
+        if (ricVar != null && (i = this.r.H) != -1 && ricVar.a == i) {
+            z = true;
+        } else {
+            z = false;
         }
+        accessibilityNodeInfo.setSelected(z);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        ric ricVar = this.a;
+        uic uicVar = this.r;
+        setMeasuredDimension(hl.L(uicVar.r << 1) + ricVar.a(uicVar.c) + uicVar.J, View.MeasureSpec.getSize(i2));
+    }
+
+    public void setReordering(boolean z) {
+        if (this.f == z) {
+            return;
+        }
+        this.f = z;
+        invalidate();
     }
 }

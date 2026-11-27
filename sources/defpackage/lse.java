@@ -1,15 +1,17 @@
 package defpackage;
+public final class lse implements zq7 {
+    public static final lse a = new Object();
 
-import java.lang.ref.Reference;
-import java.util.ArrayList;
-public abstract class lse {
-    public static void a(ArrayList arrayList, Object obj) {
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            Object obj2 = ((Reference) arrayList.get(size)).get();
-            if (obj2 == null || obj2 == obj) {
-                arrayList.remove(size);
-                return;
-            }
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

@@ -1,10 +1,6 @@
 package defpackage;
-
-import android.graphics.Bitmap;
-public interface bk0 {
-    int a(Bitmap bitmap);
-
-    void b();
-
-    void c();
+public final class bk0 {
+    public byte a = 100;
+    public boolean b = false;
+    public boolean c;
 }

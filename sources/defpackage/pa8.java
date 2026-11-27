@@ -1,43 +1,16 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pa8 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final qa8 b;
-
-    public pa8(qa8 qa8Var, byte b) {
-        this.a = b;
-        this.b = qa8Var;
-    }
-
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.PhotoViewer;
+public final class pa8 implements ValueAnimator.AnimatorUpdateListener {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        qa8 qa8Var = this.b;
-        switch (b) {
-            case 0:
-                qa8Var.h = false;
-                qa8Var.a = qa8Var.c;
-                qa8Var.invalidate();
-                int i = qa8Var.K;
-                if (i >= 0) {
-                    qa8Var.b(i);
-                    qa8Var.K = -1;
-                    return;
-                }
-                return;
-            default:
-                qa8Var.n = false;
-                qa8Var.h = false;
-                qa8Var.invalidate();
-                int i2 = qa8Var.K;
-                if (i2 >= 0) {
-                    qa8Var.b(i2);
-                    qa8Var.K = -1;
-                }
-                qa8Var.a();
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        z11 z11Var;
+        Drawable[] drawableArr = PhotoViewer.d9;
+        v21 v21Var = v21.x;
+        if (v21Var != null && (z11Var = v21Var.e) != null) {
+            z11Var.updatePosition();
         }
     }
 }

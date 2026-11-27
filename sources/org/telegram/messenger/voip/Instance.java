@@ -48,7 +48,7 @@ public final class Instance {
     public static final int VIDEO_STATE_INACTIVE = 0;
     public static final int VIDEO_STATE_PAUSED = 1;
     private static int bufferSize;
-    private static ServerConfig globalServerConfig = new ServerConfig(new JSONObject());
+    private static ServerConfig globalServerConfig = new ServerConfig(new JSONObject(), 0);
     private static NativeInstance instance;
 
     public static final class Candidate {
@@ -167,7 +167,7 @@ public final class Instance {
                 this.password = str4;
             } else if (bArr != null) {
                 this.username = "reflector";
-                this.password = g8c.g0(bArr);
+                this.password = gcc.g0(bArr);
             } else {
                 this.username = null;
                 this.password = null;
@@ -251,7 +251,7 @@ public final class Instance {
             sb.append(", login='");
             sb.append(this.login);
             sb.append("', password='");
-            return b00.j(sb, this.password, "'}");
+            return c00.k(sb, this.password, "'}");
         }
     }
 
@@ -280,7 +280,7 @@ public final class Instance {
         if (instance != null) {
             return;
         }
-        sc8.j("tgvoip version is not set");
+        grb.i("tgvoip version is not set");
     }
 
     public static void destroyInstance() {
@@ -295,11 +295,11 @@ public final class Instance {
         return globalServerConfig;
     }
 
-    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i, EncryptionKey encryptionKey, VideoSink videoSink, long j, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
+    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i, EncryptionKey encryptionKey, VideoSink videoSink, long j, NativeInstance.AudioLevelsCallback audioLevelsCallback, int i2, String str3) {
         if (!"2.4.4".equals(str)) {
             ContextUtils.initialize(org.telegram.messenger.a.b);
         }
-        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, audioLevelsCallback);
+        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, audioLevelsCallback, i2, str3);
         setGlobalServerConfig(globalServerConfig.jsonObject.toString());
         setBufferSize(bufferSize);
         return instance;
@@ -315,14 +315,14 @@ public final class Instance {
 
     public static void setGlobalServerConfig(String str) {
         try {
-            globalServerConfig = new ServerConfig(new JSONObject(str));
+            globalServerConfig = new ServerConfig(new JSONObject(str), 0);
             NativeInstance nativeInstance = instance;
             if (nativeInstance != null) {
                 nativeInstance.setGlobalServerConfig(str);
             }
         } catch (JSONException e) {
-            if (w01.a) {
-                fa4.e("failed to parse tgvoip server config", e);
+            if (f11.a) {
+                cc4.e("failed to parse tgvoip server config", e);
             }
         }
     }
@@ -364,6 +364,10 @@ public final class Instance {
 
         public String getString(String str, String str2) {
             return this.jsonObject.optString(str, str2);
+        }
+
+        public ServerConfig(JSONObject jSONObject, int i) {
+            this(jSONObject);
         }
     }
 }

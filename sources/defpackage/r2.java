@@ -1,132 +1,120 @@
 package defpackage;
 
-import java.security.AccessController;
-import java.security.PrivilegedActionException;
+import java.lang.reflect.Field;
+import java.security.PrivilegedExceptionAction;
 import sun.misc.Unsafe;
-public final class r2 extends qkd {
-    public static final Unsafe a;
-    public static final long b;
-    public static final long c;
-    public static final long d;
-    public static final long e;
-    public static final long f;
+public final class r2 implements PrivilegedExceptionAction {
+    public final byte a;
 
-    static {
-        Unsafe unsafe;
-        try {
-            try {
-                unsafe = Unsafe.getUnsafe();
-            } catch (SecurityException unused) {
-                unsafe = (Unsafe) AccessController.doPrivileged(new q2((byte) 0));
-            }
-            try {
-                c = unsafe.objectFieldOffset(t2.class.getDeclaredField("c"));
-                b = unsafe.objectFieldOffset(t2.class.getDeclaredField("b"));
-                d = unsafe.objectFieldOffset(t2.class.getDeclaredField("a"));
-                e = unsafe.objectFieldOffset(s2.class.getDeclaredField("a"));
-                f = unsafe.objectFieldOffset(s2.class.getDeclaredField("b"));
-                a = unsafe;
-            } catch (NoSuchFieldException e2) {
-                sdb.b(e2);
-            }
-        } catch (PrivilegedActionException e3) {
-            fyb.j("Could not initialize intrinsics", e3.getCause());
+    @Override
+    public final Object run() {
+        int i = 0;
+        switch (this.a) {
+            case 0:
+                Field[] declaredFields = Unsafe.class.getDeclaredFields();
+                int length = declaredFields.length;
+                while (i < length) {
+                    Field field = declaredFields[i];
+                    field.setAccessible(true);
+                    Object obj = field.get(null);
+                    if (Unsafe.class.isInstance(obj)) {
+                        return (Unsafe) Unsafe.class.cast(obj);
+                    }
+                    i++;
+                }
+                throw new NoSuchFieldError("the Unsafe");
+            case 1:
+                Field[] declaredFields2 = Unsafe.class.getDeclaredFields();
+                int length2 = declaredFields2.length;
+                while (i < length2) {
+                    Field field2 = declaredFields2[i];
+                    field2.setAccessible(true);
+                    Object obj2 = field2.get(null);
+                    if (Unsafe.class.isInstance(obj2)) {
+                        return (Unsafe) Unsafe.class.cast(obj2);
+                    }
+                    i++;
+                }
+                return null;
+            case 2:
+                Unsafe unsafe = kod.a;
+                Field[] declaredFields3 = Unsafe.class.getDeclaredFields();
+                int length3 = declaredFields3.length;
+                while (i < length3) {
+                    Field field3 = declaredFields3[i];
+                    field3.setAccessible(true);
+                    Object obj3 = field3.get(null);
+                    if (Unsafe.class.isInstance(obj3)) {
+                        return (Unsafe) Unsafe.class.cast(obj3);
+                    }
+                    i++;
+                }
+                throw new NoSuchFieldError("the Unsafe");
+            case 3:
+                Field[] declaredFields4 = Unsafe.class.getDeclaredFields();
+                int length4 = declaredFields4.length;
+                while (i < length4) {
+                    Field field4 = declaredFields4[i];
+                    field4.setAccessible(true);
+                    Object obj4 = field4.get(null);
+                    if (Unsafe.class.isInstance(obj4)) {
+                        return (Unsafe) Unsafe.class.cast(obj4);
+                    }
+                    i++;
+                }
+                return null;
+            case 4:
+                Field[] declaredFields5 = Unsafe.class.getDeclaredFields();
+                int length5 = declaredFields5.length;
+                while (i < length5) {
+                    Field field5 = declaredFields5[i];
+                    field5.setAccessible(true);
+                    Object obj5 = field5.get(null);
+                    if (Unsafe.class.isInstance(obj5)) {
+                        return (Unsafe) Unsafe.class.cast(obj5);
+                    }
+                    i++;
+                }
+                return null;
+            case 5:
+                Field[] declaredFields6 = Unsafe.class.getDeclaredFields();
+                int length6 = declaredFields6.length;
+                while (i < length6) {
+                    Field field6 = declaredFields6[i];
+                    field6.setAccessible(true);
+                    Object obj6 = field6.get(null);
+                    if (Unsafe.class.isInstance(obj6)) {
+                        return (Unsafe) Unsafe.class.cast(obj6);
+                    }
+                    i++;
+                }
+                return null;
+            case 6:
+                Field[] declaredFields7 = Unsafe.class.getDeclaredFields();
+                int length7 = declaredFields7.length;
+                while (i < length7) {
+                    Field field7 = declaredFields7[i];
+                    field7.setAccessible(true);
+                    Object obj7 = field7.get(null);
+                    if (Unsafe.class.isInstance(obj7)) {
+                        return (Unsafe) Unsafe.class.cast(obj7);
+                    }
+                    i++;
+                }
+                throw new NoSuchFieldError("the Unsafe");
+            default:
+                Field[] declaredFields8 = Unsafe.class.getDeclaredFields();
+                int length8 = declaredFields8.length;
+                while (i < length8) {
+                    Field field8 = declaredFields8[i];
+                    field8.setAccessible(true);
+                    Object obj8 = field8.get(null);
+                    if (Unsafe.class.isInstance(obj8)) {
+                        return (Unsafe) Unsafe.class.cast(obj8);
+                    }
+                    i++;
+                }
+                return null;
         }
-    }
-
-    @Override
-    public final boolean a(t2 t2Var, k2 k2Var, k2 k2Var2) {
-        while (true) {
-            Unsafe unsafe = a;
-            long j = b;
-            t2 t2Var2 = t2Var;
-            k2 k2Var3 = k2Var;
-            k2 k2Var4 = k2Var2;
-            if (unsafe.compareAndSwapObject(t2Var2, j, k2Var3, k2Var4)) {
-                return true;
-            }
-            if (unsafe.getObject(t2Var2, j) != k2Var3) {
-                return false;
-            }
-            t2Var = t2Var2;
-            k2Var = k2Var3;
-            k2Var2 = k2Var4;
-        }
-    }
-
-    @Override
-    public final boolean b(t2 t2Var, Object obj, Object obj2) {
-        while (true) {
-            Unsafe unsafe = a;
-            long j = d;
-            t2 t2Var2 = t2Var;
-            Object obj3 = obj;
-            Object obj4 = obj2;
-            if (unsafe.compareAndSwapObject(t2Var2, j, obj3, obj4)) {
-                return true;
-            }
-            if (unsafe.getObject(t2Var2, j) != obj3) {
-                return false;
-            }
-            t2Var = t2Var2;
-            obj = obj3;
-            obj2 = obj4;
-        }
-    }
-
-    @Override
-    public final boolean c(t2 t2Var, s2 s2Var, s2 s2Var2) {
-        while (true) {
-            Unsafe unsafe = a;
-            long j = c;
-            t2 t2Var2 = t2Var;
-            s2 s2Var3 = s2Var;
-            s2 s2Var4 = s2Var2;
-            if (unsafe.compareAndSwapObject(t2Var2, j, s2Var3, s2Var4)) {
-                return true;
-            }
-            if (unsafe.getObject(t2Var2, j) != s2Var3) {
-                return false;
-            }
-            t2Var = t2Var2;
-            s2Var = s2Var3;
-            s2Var2 = s2Var4;
-        }
-    }
-
-    @Override
-    public final k2 d(t2 t2Var) {
-        k2 k2Var;
-        k2 k2Var2 = k2.d;
-        do {
-            k2Var = t2Var.b;
-            if (k2Var2 == k2Var) {
-                break;
-            }
-        } while (!a(t2Var, k2Var, k2Var2));
-        return k2Var;
-    }
-
-    @Override
-    public final s2 e(t2 t2Var) {
-        s2 s2Var;
-        s2 s2Var2 = s2.c;
-        do {
-            s2Var = t2Var.c;
-            if (s2Var2 == s2Var) {
-                break;
-            }
-        } while (!c(t2Var, s2Var, s2Var2));
-        return s2Var;
-    }
-
-    @Override
-    public final void f(s2 s2Var, s2 s2Var2) {
-        a.putObject(s2Var, f, s2Var2);
-    }
-
-    @Override
-    public final void g(s2 s2Var, Thread thread) {
-        a.putObject(s2Var, e, thread);
     }
 }

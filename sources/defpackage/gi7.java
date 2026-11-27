@@ -1,124 +1,93 @@
 package defpackage;
 
-import android.os.Build;
-public abstract class gi7 {
-    public static volatile boolean a = false;
-    public static final StringBuilder b = new StringBuilder();
-    public static final int[] c = {2002, 2000, 1920, 1601, 1600, 1001, 1000, 960, 800, 800, 480, 400, 400, 2048};
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class gi7 extends Drawable {
+    public fi7 a;
+    public final Paint b;
+    public int c;
+    public int d;
+    public final long e;
+    public int f;
 
-    public static String a() {
-        String str = "mips";
-        String str2 = "armeabi";
-        try {
-            String str3 = Build.CPU_ABI;
-            if (str3.equalsIgnoreCase("x86_64")) {
-                str = "x86_64";
-            } else if (str3.equalsIgnoreCase("arm64-v8a")) {
-                str = "arm64-v8a";
-            } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
-                str = "armeabi-v7a";
-            } else {
-                if (!str3.equalsIgnoreCase("armeabi")) {
-                    if (str3.equalsIgnoreCase("x86")) {
-                        str = "x86";
-                    } else if (!str3.equalsIgnoreCase("mips")) {
-                        if (w01.a) {
-                            fa4.d("Unsupported arch: ".concat(str3));
-                        }
-                    }
-                }
-                str = "armeabi";
-            }
-            str2 = str;
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        String property = System.getProperty("os.arch");
-        if (property != null && property.contains("686")) {
-            return "x86";
-        }
-        return str2;
+    public gi7() {
+        Paint paint = new Paint(1);
+        this.b = paint;
+        this.c = 255;
+        this.d = 255;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(hl.L(1.0f));
+        this.e = System.currentTimeMillis();
     }
 
-    public static void b(int i, xu7 xu7Var) {
-        xu7Var.K(7);
-        byte[] bArr = xu7Var.a;
-        bArr[0] = -84;
-        bArr[1] = 64;
-        bArr[2] = -1;
-        bArr[3] = -1;
-        bArr[4] = (byte) ((i >> 16) & 255);
-        bArr[5] = (byte) ((i >> 8) & 255);
-        bArr[6] = (byte) (i & 255);
-    }
-
-    public static synchronized void c(android.content.Context r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gi7.c(android.content.Context):void");
-    }
-
-    public static boolean d(android.content.Context r6, java.io.File r7, java.io.File r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gi7.d(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
-    }
-
-    public static defpackage.i4 e(defpackage.qd1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.gi7.e(qd1):i4");
-    }
-
-    public static void f(qd1 qd1Var, h4 h4Var) {
-        int f = qd1Var.f(5);
-        qd1Var.n(2);
-        if (qd1Var.e()) {
-            qd1Var.n(5);
+    public final void a(int i) {
+        if (i != this.f) {
+            int alpha = Color.alpha(i);
+            this.d = alpha;
+            this.b.setColor(vm2.o(i, (int) ((alpha / 255.0f) * this.c)));
         }
-        if (f >= 7 && f <= 10) {
-            qd1Var.m();
-        }
-        if (qd1Var.e()) {
-            int f2 = qd1Var.f(3);
-            if (h4Var.b == -1 && f >= 0 && f <= 15 && (f2 == 0 || f2 == 1)) {
-                h4Var.b = f;
-            }
-            if (qd1Var.e()) {
-                h(qd1Var);
-            }
-        }
+        this.f = i;
     }
 
-    public static void g(qd1 qd1Var, h4 h4Var) {
-        qd1Var.n(2);
-        boolean e = qd1Var.e();
-        int f = qd1Var.f(8);
-        for (int i = 0; i < f; i++) {
-            qd1Var.n(2);
-            if (qd1Var.e()) {
-                qd1Var.n(5);
-            }
-            if (e) {
-                qd1Var.n(24);
-            } else {
-                if (qd1Var.e()) {
-                    if (!qd1Var.e()) {
-                        qd1Var.n(4);
-                    }
-                    h4Var.c = qd1Var.f(6) + 1;
-                }
-                qd1Var.n(4);
-            }
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int min = Math.min(bounds.width(), bounds.height());
+        Paint paint = this.b;
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), (min >> 1) - hl.L(0.5f), paint);
+        long currentTimeMillis = System.currentTimeMillis();
+        canvas.save();
+        long j = this.e;
+        canvas.rotate(((((float) (currentTimeMillis - j)) % 1500.0f) * 360.0f) / 1500.0f, bounds.centerX(), bounds.centerY());
+        canvas.drawLine(bounds.centerX(), bounds.centerY(), bounds.centerX(), bounds.centerY() - hl.L(3.0f), paint);
+        canvas.restore();
+        canvas.save();
+        canvas.rotate(((((float) (currentTimeMillis - j)) % 4500.0f) * 360.0f) / 4500.0f, bounds.centerX(), bounds.centerY());
+        canvas.drawLine(bounds.centerX(), bounds.centerY(), hl.L(2.3f) + bounds.centerX(), bounds.centerY(), paint);
+        canvas.restore();
+    }
+
+    @Override
+    public final Drawable.ConstantState getConstantState() {
+        fi7 fi7Var = this.a;
+        if (fi7Var == null) {
+            ?? constantState = new Drawable.ConstantState();
+            this.a = constantState;
+            return constantState;
         }
-        if (qd1Var.e()) {
-            qd1Var.n(3);
-            if (qd1Var.e()) {
-                h(qd1Var);
-            }
+        return fi7Var;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return hl.L(12.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return hl.L(12.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        if (this.c != i) {
+            this.c = i;
+            float f = this.d / 255.0f;
+            this.b.setAlpha((int) (f * i));
         }
     }
 
-    public static void h(qd1 qd1Var) {
-        int f = qd1Var.f(6);
-        if (f >= 2 && f <= 42) {
-            qd1Var.n(f << 3);
-            return;
-        }
-        throw av7.d(String.format("Invalid language tag bytes number: %d. Must be between 2 and 42.", Integer.valueOf(f)));
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

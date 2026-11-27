@@ -1,35 +1,27 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class q1a implements Runnable {
-    public final byte a;
-    public final z3a b;
-    public final long c;
-    public final ArrayList d;
+import android.os.Build;
+public final class q1a implements sy4, ry4 {
+    public final r1a a;
 
-    public q1a(z3a z3aVar, long j, ArrayList arrayList, byte b) {
-        this.a = b;
-        this.b = z3aVar;
-        this.c = j;
-        this.d = arrayList;
+    public q1a(r1a r1aVar) {
+        this.a = r1aVar;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        ArrayList arrayList = this.d;
-        long j = this.c;
-        z3a z3aVar = this.b;
-        switch (b) {
-            case 0:
-                z3aVar.getMessagesController().n3(arrayList, j);
-                return;
-            case 1:
-                z3aVar.getMessagesController().n3(arrayList, j);
-                return;
-            default:
-                z3aVar.getMessagesController().n3(arrayList, j);
-                return;
+    public final int h() {
+        return aob.v0(aob.d6, this.a.J0);
+    }
+
+    @Override
+    public final void k(int i) {
+        r1a r1aVar = this.a;
+        tq3 tq3Var = r1aVar.g2;
+        if (Build.VERSION.SDK_INT >= 31 && tq3Var != null) {
+            if (vsd.a(i, 4)) {
+                tq3Var.h(r1aVar.X0.e());
+            }
+            tq3Var.e(r1aVar.i2, r1aVar.b.getWidth(), r1aVar.b.getHeight());
         }
     }
 }

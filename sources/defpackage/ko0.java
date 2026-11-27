@@ -2,7 +2,7 @@ package defpackage;
 
 import j$.util.Objects;
 import org.telegram.tgnet.tl.TL_stories;
-public final class ko0 extends ja {
+public final class ko0 extends ka {
     public final String c;
     public final TL_stories.Boost d;
     public TL_stories.PrepaidGiveaway e;

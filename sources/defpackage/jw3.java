@@ -1,32 +1,13 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.List;
-public final class jw3 implements Runnable {
-    public final ArrayList a;
-    public final byte b;
-
-    public jw3(List list, int i, Throwable th) {
-        kre.a(list, "initCallbacks cannot be null");
-        this.a = new ArrayList(list);
-        this.b = i;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+public final class jw3 extends FrameLayout {
+    public de0 a;
+    public int b;
 
     @Override
-    public final void run() {
-        ArrayList arrayList = this.a;
-        int size = arrayList.size();
-        int i = 0;
-        if (this.b != 1) {
-            while (i < size) {
-                ((iw3) arrayList.get(i)).getClass();
-                i++;
-            }
-            return;
-        }
-        while (i < size) {
-            ((iw3) arrayList.get(i)).a();
-            i++;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.max(hl.L(170.0f), (hl.q.y * 0.34999996f) - hl.L(142.0f)), 1073741824));
     }
 }

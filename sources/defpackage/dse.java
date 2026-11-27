@@ -1,16 +1,17 @@
 package defpackage;
+public final class dse implements zq7 {
+    public static final dse a = new Object();
 
-import java.util.Arrays;
-public final class dse extends wme {
-    public final byte[] c;
-
-    public dse(byte[] bArr) {
-        super(Arrays.copyOfRange(bArr, 0, 25));
-        this.c = bArr;
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
     }
 
     @Override
-    public final byte[] T() {
-        return this.c;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

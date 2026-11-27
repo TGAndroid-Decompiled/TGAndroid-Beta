@@ -1,17 +1,40 @@
 package defpackage;
-public final class vld implements zn7 {
-    public static final vld a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, new d6d(1)));
+import android.os.Handler;
+import android.os.Looper;
+import android.util.SparseArray;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.atomic.AtomicInteger;
+public final class vld implements OnCompleteListener, Runnable {
+    public static final b99 d = new Handler(Looper.getMainLooper());
+    public static final SparseArray e = new SparseArray(2);
+    public static final AtomicInteger f = new AtomicInteger();
+    public int a;
+    public xrd b;
+    public Task c;
+
+    public final void a() {
+        if (this.c != null && this.b != null) {
+            e.delete(this.a);
+            d.removeCallbacks(this);
+            xrd xrdVar = this.b;
+            if (xrdVar != null) {
+                Task task = this.c;
+                int i = xrd.d;
+                xrdVar.a(task);
+            }
+        }
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void onComplete(Task task) {
+        this.c = task;
+        a();
+    }
+
+    @Override
+    public final void run() {
+        e.delete(this.a);
     }
 }

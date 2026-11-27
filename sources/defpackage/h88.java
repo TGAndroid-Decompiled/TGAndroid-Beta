@@ -1,29 +1,49 @@
 package defpackage;
+public final class h88 extends rn {
+    public final byte b;
+    public final k88 c;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.PhotoViewer;
-public final class h88 extends ecc {
-    public final PhotoViewer i0;
-
-    public h88(PhotoViewer photoViewer, Context context, s68 s68Var) {
-        super(context, s68Var);
-        this.i0 = photoViewer;
+    public h88(k88 k88Var, byte b) {
+        super("thumbAnimationProgress", (byte) 0);
+        this.b = b;
+        switch (b) {
+            case 1:
+                this.c = k88Var;
+                super("thumbImageVisibleProgress", (byte) 0);
+                return;
+            default:
+                this.c = k88Var;
+                return;
+        }
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        Drawable[] drawableArr = PhotoViewer.d9;
-        this.i0.R2();
+    public final void c(Object obj, float f) {
+        byte b = this.b;
+        k88 k88Var = this.c;
+        switch (b) {
+            case 0:
+                k88Var.r = f;
+                ((k88) obj).invalidate();
+                return;
+            default:
+                k88Var.n = f;
+                ((k88) obj).invalidate();
+                return;
+        }
     }
 
     @Override
-    public final void setVisibility(int i) {
-        super.setVisibility(i);
-        if (i == 0) {
-            Drawable[] drawableArr = PhotoViewer.d9;
-            this.i0.R2();
+    public final Object get(Object obj) {
+        byte b = this.b;
+        k88 k88Var = this.c;
+        switch (b) {
+            case 0:
+                k88 k88Var2 = (k88) obj;
+                return Float.valueOf(k88Var.r);
+            default:
+                k88 k88Var3 = (k88) obj;
+                return Float.valueOf(k88Var.n);
         }
     }
 }

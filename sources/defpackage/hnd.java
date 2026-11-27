@@ -1,39 +1,28 @@
 package defpackage;
+public final class hnd extends ybd {
+    public static final hnd n = new hnd(null, new Object[0], 0);
+    public final transient Object e;
+    public final transient Object[] f;
+    public final transient int h;
 
-import android.os.IBinder;
-import android.os.Messenger;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class hnd implements Parcelable {
-    public static final Parcelable.Creator<hnd> CREATOR = new j9d((byte) 17);
-    public final Messenger a;
+    public hnd(Object obj, Object[] objArr, int i) {
+        super((byte) 3);
+        this.e = obj;
+        this.f = objArr;
+        this.h = i;
+    }
 
-    public hnd(IBinder iBinder) {
-        this.a = new Messenger(iBinder);
+    public static defpackage.hnd c(int r19, java.lang.Object[] r20, defpackage.lp r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hnd.c(int, java.lang.Object[], lp):hnd");
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != null) {
-            try {
-                return this.a.getBinder().equals(((hnd) obj).a.getBinder());
-            } catch (ClassCastException unused) {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.a.getBinder().hashCode();
+    public final java.lang.Object get(java.lang.Object r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.hnd.get(java.lang.Object):java.lang.Object");
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStrongBinder(this.a.getBinder());
+    public final int size() {
+        return this.h;
     }
 }

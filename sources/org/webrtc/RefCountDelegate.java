@@ -20,7 +20,7 @@ public class RefCountDelegate implements RefCounted {
             }
             return;
         }
-        sc8.j("release() called on an object with refcount < 1");
+        grb.i("release() called on an object with refcount < 1");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RefCountDelegate implements RefCounted {
         if (this.refCount.incrementAndGet() >= 2) {
             return;
         }
-        sc8.j("retain() called on an object with refcount < 1");
+        grb.i("retain() called on an object with refcount < 1");
     }
 
     public boolean safeRetain() {

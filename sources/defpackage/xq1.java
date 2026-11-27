@@ -1,30 +1,42 @@
 package defpackage;
+public final class xq1 implements Runnable {
+    public final byte a;
+    public final yq1 b;
 
-import android.content.Context;
-public final class xq1 extends cd2 {
-    public final mu1 f;
-
-    public xq1(mu1 mu1Var, Context context) {
-        super(context);
-        this.f = mu1Var;
+    public xq1(yq1 yq1Var, byte b) {
+        this.a = b;
+        this.b = yq1Var;
     }
 
     @Override
-    public final void a(boolean z) {
-        mu1 mu1Var = this.f;
-        mu1Var.z5();
-        mu1Var.x5();
-        mu1Var.A5();
-        mu1Var.B5();
-        sr1 sr1Var = mu1Var.Bb;
-        if (sr1Var != null) {
-            sr1Var.setTranslationY(mu1Var.T9 + getCurrentHeight());
+    public final void run() {
+        byte b = this.a;
+        yq1 yq1Var = this.b;
+        switch (b) {
+            case 0:
+                yq1Var.W = null;
+                zu1 zu1Var = yq1Var.X;
+                if (zu1Var.ea != -1) {
+                    zu1Var.getNotificationCenter().j(zu1Var.ea);
+                    zu1Var.ea = -1;
+                }
+                if (f11.a) {
+                    cc4.b("chatItemAnimator enable notifications");
+                    return;
+                }
+                return;
+            default:
+                yq1Var.W = null;
+                zu1 zu1Var2 = yq1Var.X;
+                if (zu1Var2.ea != -1) {
+                    zu1Var2.getNotificationCenter().j(zu1Var2.ea);
+                    zu1Var2.ea = -1;
+                }
+                if (f11.a) {
+                    cc4.b("chatItemAnimator enable notifications");
+                    return;
+                }
+                return;
         }
-        if (z) {
-            mu1Var.aa = true;
-            mu1Var.Fc();
-            return;
-        }
-        mu1Var.G7();
     }
 }

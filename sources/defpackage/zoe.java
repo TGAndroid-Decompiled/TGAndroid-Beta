@@ -1,3 +1,17 @@
 package defpackage;
-public interface zoe extends kpe {
+public final class zoe implements zq7 {
+    public static final zoe a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

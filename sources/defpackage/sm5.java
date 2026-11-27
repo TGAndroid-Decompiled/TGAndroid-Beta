@@ -1,37 +1,29 @@
 package defpackage;
 
-import java.util.Collection;
-import java.util.Map;
-public final class sm5 extends gm5 {
-    public final nm5 b;
+import android.os.SystemClock;
+public final class sm5 {
+    public final int a;
+    public final in5 b;
 
-    public sm5(nm5 nm5Var) {
-        this.b = nm5Var;
+    public sm5(in5 in5Var, int i) {
+        this.b = in5Var;
+        this.a = i;
     }
 
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            Collection collection = (Collection) this.b.a().get(key);
-            if (collection != null && collection.contains(value)) {
-                return true;
-            }
+    public final void a(nd4 nd4Var, final String str, final long j, final long j2, final boolean z) {
+        this.b.u.put(str, new long[]{j, j2});
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = nd4Var.S;
+        if (j3 != 0 && j3 >= elapsedRealtime - 100 && j != j2) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final v5c iterator() {
-        nm5 nm5Var = this.b;
-        nm5Var.getClass();
-        return new rm5(nm5Var);
-    }
-
-    @Override
-    public final int size() {
-        return this.b.f;
+        nd4Var.S = elapsedRealtime;
+        final int i = this.a;
+        hl.c3(new Runnable() {
+            @Override
+            public final void run() {
+                jn7.f(i).k(jn7.W1, str, Long.valueOf(j), Long.valueOf(j2), Boolean.valueOf(z));
+            }
+        });
     }
 }

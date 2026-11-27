@@ -1,39 +1,17 @@
 package defpackage;
+public final class imd implements zq7 {
+    public static final imd a = new Object();
 
-import java.io.Serializable;
-public final class imd extends kld implements Serializable {
-    public final kld a;
-
-    public imd(kld kldVar) {
-        this.a = kldVar;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
     }
 
     @Override
-    public final kld a() {
-        return this.a;
-    }
-
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        return this.a.compare(obj2, obj);
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        if (obj instanceof imd) {
-            return this.a.equals(((imd) obj).a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return -this.a.hashCode();
-    }
-
-    public final String toString() {
-        return this.a.toString().concat(".reverse()");
+        throw new ClassCastException();
     }
 }

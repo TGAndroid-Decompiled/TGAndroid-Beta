@@ -1,10 +1,17 @@
 package defpackage;
+public final class efe implements zq7 {
+    public static final efe a = new Object();
 
-import android.text.InputFilter;
-public abstract class efe {
-    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
+    }
 
-    public abstract void b(boolean z);
-
-    public abstract void c(boolean z);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

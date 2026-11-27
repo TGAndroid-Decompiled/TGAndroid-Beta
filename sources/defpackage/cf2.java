@@ -1,17 +1,24 @@
 package defpackage;
+public final class cf2 implements Runnable {
+    public final byte a;
+    public final bg2 b;
 
-import android.app.Activity;
-public final class cf2 extends wv4 {
-    public final kf2 m1;
-
-    public cf2(kf2 kf2Var, Activity activity, kf2 kf2Var2) {
-        super(activity, kf2Var2);
-        this.m1 = kf2Var;
+    public cf2(bg2 bg2Var, byte b) {
+        this.a = b;
+        this.b = bg2Var;
     }
 
     @Override
-    public final void E0() {
-        kf2 kf2Var = this.m1;
-        kf2Var.getMessagesController().O(kf2Var.getParentActivity(), kf2Var.n, kf2Var, new rh1(this, (byte) 25));
+    public final void run() {
+        byte b = this.a;
+        bg2 bg2Var = this.b;
+        switch (b) {
+            case 0:
+                bg2Var.t0();
+                return;
+            default:
+                bg2Var.getMessagesController().e3(0, bg2Var.N, true);
+                return;
+        }
     }
 }

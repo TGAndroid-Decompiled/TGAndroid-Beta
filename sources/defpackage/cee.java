@@ -1,55 +1,23 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class cee extends sfe {
-    public final boolean a;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class cee extends c4 {
+    public static final Parcelable.Creator<cee> CREATOR = new g3e((byte) 14);
+    public final int a;
+    public final fjd b;
 
-    public cee(boolean z) {
-        this.a = z;
+    public cee(int i, fjd fjdVar) {
+        this.a = i;
+        this.b = fjdVar;
     }
 
     @Override
-    public final int compareTo(Object obj) {
-        int i;
-        sfe sfeVar = (sfe) obj;
-        int zza = sfeVar.zza();
-        int c = sfe.c((byte) -32);
-        if (c != zza) {
-            return c - sfeVar.zza();
-        }
-        cee ceeVar = (cee) sfeVar;
-        int i2 = 21;
-        if (true != this.a) {
-            i = 20;
-        } else {
-            i = 21;
-        }
-        if (true != ceeVar.a) {
-            i2 = 20;
-        }
-        return i - i2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && cee.class == obj.getClass() && this.a == ((cee) obj).a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(sfe.c((byte) -32)), Boolean.valueOf(this.a)});
-    }
-
-    public final String toString() {
-        return Boolean.toString(this.a);
-    }
-
-    @Override
-    public final int zza() {
-        return sfe.c((byte) -32);
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.k(parcel, 3, this.b, i);
+        bye.s(parcel, r);
     }
 }

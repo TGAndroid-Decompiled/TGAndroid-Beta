@@ -1,48 +1,91 @@
 package defpackage;
-public final class ne8 implements Runnable {
-    public final byte a;
-    public final ve8 b;
 
-    public ne8(ve8 ve8Var, boolean z) {
-        this.a = (byte) 0;
-        this.b = ve8Var;
+import android.app.Activity;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class ne8 extends TextureView implements TextureView.SurfaceTextureListener {
+    public SurfaceTexture a;
+    public TextureView.SurfaceTextureListener b;
+    public Runnable c;
+    public long d;
+
+    public ne8(Activity activity) {
+        super(activity);
+        setOpaque(false);
+        super.setSurfaceTextureListener(this);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        ve8 ve8Var = this.b;
-        switch (b) {
-            case 0:
-                gl.c3(new ne8(ve8Var, (byte) 3));
-                gb2 gb2Var = ve8Var.M;
-                if (gb2Var != null) {
-                    gb2Var.setVisibility(0);
-                    gb2 gb2Var2 = ve8Var.M;
-                    gb2Var2.d6 = null;
-                    gb2Var2.invalidate();
-                }
-                ft1 ft1Var = ve8Var.f0;
-                if (ft1Var != null) {
-                    gl.c3(ft1Var);
-                    ve8Var.f0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                ve8Var.b(false);
-                return;
-            case 2:
-                ve8Var.b(false);
-                return;
-            default:
-                ve8Var.c();
-                return;
+    public final void onAttachedToWindow() {
+        if (this.a != null) {
+            SurfaceTexture surfaceTexture = getSurfaceTexture();
+            SurfaceTexture surfaceTexture2 = this.a;
+            if (surfaceTexture != surfaceTexture2) {
+                setSurfaceTexture(surfaceTexture2);
+            }
+        }
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        this.a = surfaceTexture;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.b;
+        if (surfaceTextureListener != null) {
+            surfaceTextureListener.onSurfaceTextureAvailable(surfaceTexture, i, i2);
         }
     }
 
-    public ne8(ve8 ve8Var, byte b) {
-        this.a = b;
-        this.b = ve8Var;
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        if (surfaceTexture == this.a) {
+            post(new h68(this, surfaceTexture, (byte) 12));
+            return false;
+        }
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.b;
+        if (surfaceTextureListener != null && !surfaceTextureListener.onSurfaceTextureDestroyed(surfaceTexture)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.b;
+        if (surfaceTextureListener != null) {
+            surfaceTextureListener.onSurfaceTextureSizeChanged(surfaceTexture, i, i2);
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.b;
+        if (surfaceTextureListener != null) {
+            surfaceTextureListener.onSurfaceTextureUpdated(surfaceTexture);
+        }
+        if (this.c != null) {
+            if (this.d == 0 || surfaceTexture.getTimestamp() != this.d) {
+                Runnable runnable = this.c;
+                this.c = null;
+                runnable.run();
+            }
+        }
+    }
+
+    public void setFirstFrameCallback(Runnable runnable) {
+        long j;
+        this.c = runnable;
+        SurfaceTexture surfaceTexture = this.a;
+        if (surfaceTexture != null) {
+            j = surfaceTexture.getTimestamp();
+        } else {
+            j = 0;
+        }
+        this.d = j;
+    }
+
+    @Override
+    public void setSurfaceTextureListener(TextureView.SurfaceTextureListener surfaceTextureListener) {
+        this.b = surfaceTextureListener;
     }
 }

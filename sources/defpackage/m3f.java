@@ -1,24 +1,17 @@
 package defpackage;
-public enum m3f implements thd {
-    UNKNOWN_FORMAT(0),
-    NV16(1),
-    NV21(2),
-    YV12(3),
-    YUV_420_888(7),
-    JPEG(8),
-    BITMAP(4),
-    CM_SAMPLE_BUFFER_REF(5),
-    UI_IMAGE(6),
-    CV_PIXEL_BUFFER_REF(9);
-    
-    public final byte a;
+public final class m3f implements zq7 {
+    public static final m3f a = new Object();
 
-    m3f(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
     @Override
-    public final int zza() {
-        return this.a;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,3 +1,4 @@
 package defpackage;
-public abstract class o8f {
+public interface o8f {
+    void a(rx rxVar);
 }

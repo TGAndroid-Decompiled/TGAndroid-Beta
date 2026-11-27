@@ -1,17 +1,21 @@
 package defpackage;
-public final class gue implements zn7 {
-    public static final gue a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, new bgd(1)));
-    }
+import java.io.Serializable;
+public enum gue {
+    VOID(Void.class, null),
+    INT(Integer.class, 0),
+    LONG(Long.class, 0L),
+    FLOAT(Float.class, Float.valueOf(0.0f)),
+    DOUBLE(Double.class, Double.valueOf(0.0d)),
+    BOOLEAN(Boolean.class, Boolean.FALSE),
+    STRING(String.class, ""),
+    BYTE_STRING(jne.class, jne.c),
+    ENUM(Integer.class, null),
+    MESSAGE(Object.class, null);
+    
+    public final Class a;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    gue(Class cls, Serializable serializable) {
+        this.a = cls;
     }
 }

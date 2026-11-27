@@ -1,24 +1,48 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-public final class svb implements or8 {
-    public final TLRPC.TL_forumTopic a;
-    public final tvb b;
-
-    public svb(tvb tvbVar, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.b = tvbVar;
-        this.a = tL_forumTopic;
+public enum svb extends rwb {
+    public svb() {
+        super("CommentEnd", 48);
     }
 
     @Override
-    public final void n() {
-        wvb wvbVar = this.b.a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.a;
-        wvbVar.Y(tL_forumTopic.id);
-        gl.d3(new a5b(this, tL_forumTopic, (byte) 19), 300L);
-    }
-
-    @Override
-    public final void h(vm7 vm7Var) {
+    public final void c(bub bubVar, ik1 ik1Var) {
+        rtb rtbVar = bubVar.n;
+        char d = ik1Var.d();
+        qvb qvbVar = rwb.k0;
+        if (d != 0) {
+            if (d != '!') {
+                if (d != '-') {
+                    mub mubVar = rwb.a;
+                    if (d != '>') {
+                        if (d != 65535) {
+                            bubVar.m(this);
+                            StringBuilder sb = rtbVar.e;
+                            sb.append("--");
+                            sb.append(d);
+                            bubVar.c = qvbVar;
+                            return;
+                        }
+                        bubVar.l(this);
+                        bubVar.i();
+                        bubVar.c = mubVar;
+                        return;
+                    }
+                    bubVar.i();
+                    bubVar.c = mubVar;
+                    return;
+                }
+                bubVar.m(this);
+                rtbVar.e.append('-');
+                return;
+            }
+            bubVar.m(this);
+            bubVar.c = rwb.n0;
+            return;
+        }
+        bubVar.m(this);
+        StringBuilder sb2 = rtbVar.e;
+        sb2.append("--");
+        sb2.append((char) 65533);
+        bubVar.c = qvbVar;
     }
 }

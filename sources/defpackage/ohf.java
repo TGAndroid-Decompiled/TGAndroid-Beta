@@ -1,48 +1,39 @@
 package defpackage;
 
-import java.util.Map;
-import java.util.Set;
-public abstract class ohf implements fdd {
-    public transient xze a;
-    public transient d3 b;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+public final class ohf extends c4 {
+    public static final Parcelable.Creator<ohf> CREATOR = new t4f((byte) 25);
+    public final ArrayList a;
 
-    public final Map a() {
-        d3 d3Var = this.b;
-        if (d3Var == null) {
-            vhf vhfVar = (vhf) this;
-            d3 d3Var2 = new d3(vhfVar, vhfVar.c, (byte) 1);
-            this.b = d3Var2;
-            return d3Var2;
-        }
-        return d3Var;
-    }
-
-    public final Set b() {
-        xze xzeVar = this.a;
-        if (xzeVar == null) {
-            vhf vhfVar = (vhf) this;
-            xze xzeVar2 = new xze(vhfVar, vhfVar.c);
-            this.a = xzeVar2;
-            return xzeVar2;
-        }
-        return xzeVar;
+    public ohf(ArrayList arrayList) {
+        xve.h(arrayList);
+        this.a = arrayList;
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof fdd)) {
+        if (obj instanceof ohf) {
+            ArrayList arrayList = ((ohf) obj).a;
+            ArrayList arrayList2 = this.a;
+            if (arrayList2.containsAll(arrayList) && arrayList.containsAll(arrayList2)) {
+                return true;
+            }
             return false;
         }
-        return a().equals(((ohf) ((fdd) obj)).a());
+        return false;
     }
 
     public final int hashCode() {
-        return ((so2) ((d3) a()).d).hashCode();
+        return Arrays.hashCode(new Object[]{new HashSet(this.a)});
     }
 
-    public final String toString() {
-        return ((so2) ((d3) a()).d).toString();
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.p(parcel, 1, this.a);
+        bye.s(parcel, r);
     }
 }

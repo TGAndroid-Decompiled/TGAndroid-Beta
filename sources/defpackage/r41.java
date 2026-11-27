@@ -1,73 +1,120 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.SpannableString;
-import android.text.style.ReplacementSpan;
-public final class r41 extends ReplacementSpan {
-    public final wjb a;
-    public final Paint b = new Paint(1);
-    public final tgb c;
-    public final Runnable d;
-    public n41 e;
-    public Integer f;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class r41 {
+    public static volatile r41[] e = new r41[4];
+    public static final Object[] f = new Object[4];
+    public final int a;
+    public final ArrayList b = new ArrayList();
+    public boolean c = false;
+    public boolean d = false;
 
-    public r41(String str, Runnable runnable, wjb wjbVar) {
-        this.a = wjbVar;
-        this.d = runnable;
-        this.c = new tgb(str, 12.0f, null);
-    }
-
-    public static SpannableString b(String str, Runnable runnable, wjb wjbVar, Integer num) {
-        SpannableString spannableString = new SpannableString("btn");
-        r41 r41Var = new r41(str, runnable, wjbVar);
-        spannableString.setSpan(r41Var, 0, spannableString.length(), 33);
-        r41Var.f = num;
-        return spannableString;
-    }
-
-    public final int a() {
-        return (int) (this.c.c + gl.L(14.0f));
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        float a;
-        int v0;
-        float N = gl.N(17.0f);
-        float f2 = (i3 + i5) / 2.0f;
-        RectF rectF = gl.P;
-        float f3 = N / 2.0f;
-        rectF.set(f, f2 - f3, a() + f, f2 + f3);
-        n41 n41Var = this.e;
-        if (n41Var == null) {
-            a = 1.0f;
-        } else {
-            a = n41Var.a(0.025f);
+    static {
+        for (int i = 0; i < 4; i++) {
+            f[i] = new Object();
         }
-        canvas.save();
-        canvas.scale(a, a, rectF.centerX(), rectF.centerY());
-        Integer num = this.f;
-        if (num != null) {
-            v0 = num.intValue();
-        } else {
-            v0 = bkb.v0(bkb.Ei, this.a);
-        }
-        int i6 = v0;
-        int p1 = bkb.p1(0.15f, i6);
-        Paint paint2 = this.b;
-        paint2.setColor(p1);
-        canvas.drawRoundRect(rectF, f3, f3, paint2);
-        this.c.c(f + gl.L(7.0f), f2, 1.0f, i6, canvas);
-        canvas.restore();
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
+    public r41(int i) {
+        this.a = i;
+    }
+
+    public static r41 d(int i) {
+        r41 r41Var;
+        r41 r41Var2 = e[i];
+        if (r41Var2 == null) {
+            synchronized (f[i]) {
+                r41Var = e[i];
+                if (r41Var == null) {
+                    r41[] r41VarArr = e;
+                    r41 r41Var3 = new r41(i);
+                    r41VarArr[i] = r41Var3;
+                    r41Var = r41Var3;
+                }
+            }
+            return r41Var;
         }
-        return a();
+        return r41Var2;
+    }
+
+    public final void a(n41 n41Var, String str) {
+        TL_account.TL_businessChatLink c = c(str);
+        if (c != null) {
+            ArrayList arrayList = this.b;
+            int indexOf = arrayList.indexOf(c);
+            arrayList.remove(c);
+            jn7.f(this.a).k(jn7.J1, new Object[0]);
+            d31.b0(n41Var).U(ob6.M0(2131752696, null), true, new ze7(this, indexOf, c, (byte) 8), new tu0(this, str, c, (byte) 8)).j();
+        }
+    }
+
+    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, fw1 fw1Var) {
+        TL_account.editBusinessChatLink editbusinesschatlink = new TL_account.editBusinessChatLink();
+        editbusinesschatlink.slug = tL_businessChatLink.link;
+        if (!tL_inputBusinessChatLink.entities.isEmpty()) {
+            tL_inputBusinessChatLink.flags |= 1;
+        }
+        if (!TextUtils.isEmpty(tL_inputBusinessChatLink.title)) {
+            tL_inputBusinessChatLink.flags |= 2;
+        }
+        editbusinesschatlink.link = tL_inputBusinessChatLink;
+        ConnectionsManager.getInstance(this.a).sendRequest(editbusinesschatlink, new fn0(this, tL_businessChatLink, fw1Var, (byte) 9));
+    }
+
+    public final TL_account.TL_businessChatLink c(String str) {
+        TL_account.TL_businessChatLink tL_businessChatLink;
+        int i = 0;
+        while (true) {
+            ArrayList arrayList = this.b;
+            if (i < arrayList.size()) {
+                tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i);
+                if (!TextUtils.equals(tL_businessChatLink.link, str)) {
+                    String str2 = tL_businessChatLink.link;
+                    if (!TextUtils.equals(str2, "https://" + str)) {
+                        String str3 = tL_businessChatLink.link;
+                        if (!TextUtils.equals(str3, "https://t.me/m/" + str)) {
+                            String str4 = tL_businessChatLink.link;
+                            if (TextUtils.equals(str4, "tg://message?slug=" + str)) {
+                                break;
+                            }
+                            i++;
+                        } else {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            } else {
+                return null;
+            }
+        }
+        return tL_businessChatLink;
+    }
+
+    public final void e(boolean z, boolean z2) {
+        if (!this.c) {
+            if (!this.d || (z2 && !z)) {
+                this.c = true;
+                int i = this.a;
+                if (z) {
+                    jf7 Y = jf7.Y(i);
+                    Y.a.c(new ds6(this, Y, z2, (byte) 7));
+                    return;
+                }
+                ConnectionsManager.getInstance(i).sendRequest(new TL_account.getBusinessChatLinks(), new p41(this, (byte) 0));
+            }
+        }
+    }
+
+    public final void f() {
+        ArrayList arrayList = new ArrayList(this.b);
+        jf7 Y = jf7.Y(this.a);
+        Y.a.c(new q41(Y, arrayList, (byte) 0));
     }
 }

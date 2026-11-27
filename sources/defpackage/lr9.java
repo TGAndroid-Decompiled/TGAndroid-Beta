@@ -1,6 +1,8 @@
 package defpackage;
 
-import android.widget.AdapterView;
-import android.widget.HorizontalScrollView;
-public abstract class lr9 extends HorizontalScrollView implements AdapterView.OnItemSelectedListener {
+import java.util.ArrayList;
+public interface lr9 {
+    void onRejoinRequested();
+
+    void onStreamChannels(ArrayList arrayList);
 }

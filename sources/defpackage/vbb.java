@@ -1,41 +1,30 @@
 package defpackage;
 
-import android.view.MenuItem;
-import java.lang.reflect.Method;
-public final class vbb implements MenuItem.OnMenuItemClickListener {
-    public static final Class[] d = {MenuItem.class};
-    public final byte a = 0;
-    public Object b;
-    public Object c;
+import android.animation.ValueAnimator;
+public final class vbb implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final ybb b;
 
-    public vbb(g07 g07Var, MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
-        this.c = g07Var;
-        this.b = onMenuItemClickListener;
+    public vbb(ybb ybbVar, byte b) {
+        this.a = b;
+        this.b = ybbVar;
     }
 
     @Override
-    public final boolean onMenuItemClick(MenuItem menuItem) {
-        switch (this.a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        ybb ybbVar = this.b;
+        switch (b) {
             case 0:
-                Object obj = this.b;
-                Method method = (Method) this.c;
-                boolean z = false;
-                try {
-                    if (method.getReturnType() == Boolean.TYPE) {
-                        z = ((Boolean) method.invoke(obj, menuItem)).booleanValue();
-                    } else {
-                        method.invoke(obj, menuItem);
-                        z = true;
-                    }
-                } catch (Exception e) {
-                    sdb.b(e);
-                }
-                return z;
+                lcb lcbVar = ybbVar.s0;
+                lcbVar.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                lcbVar.V();
+                return;
             default:
-                return ((MenuItem.OnMenuItemClickListener) this.b).onMenuItemClick(((g07) this.c).f(menuItem));
+                lcb lcbVar2 = ybbVar.s0;
+                lcbVar2.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                lcbVar2.V();
+                return;
         }
-    }
-
-    public vbb() {
     }
 }

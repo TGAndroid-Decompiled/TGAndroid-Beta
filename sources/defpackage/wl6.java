@@ -1,131 +1,153 @@
 package defpackage;
 
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.PhotoViewer;
-public final class wl6 implements ibc {
-    public final int a;
-    public final k27 b;
-    public final int[] c;
-    public final boolean d;
-    public final MediaController e;
+import android.animation.ObjectAnimator;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+public abstract class wl6 extends FrameLayout {
+    public TextView a;
+    public TextView b;
+    public bz0 c;
+    public long d;
 
-    public wl6(MediaController mediaController, int i, k27 k27Var, int[] iArr, boolean z) {
-        this.e = mediaController;
-        this.a = i;
-        this.b = k27Var;
-        this.c = iArr;
-        this.d = z;
-    }
-
-    @Override
-    public final void onError(lbc lbcVar, Exception exc) {
-        fa4.g(exc, true);
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        MediaController mediaController = this.e;
-        ix ixVar = mediaController.M0;
-        if (ixVar != null && !ixVar.d) {
-            mediaController.N0 = true;
-            ixVar.setDrawingReady(true);
-            mediaController.O0.setTag(1);
-        }
-        if (mediaController.F0 != null && fo.w()) {
-            mediaController.F0.s0(true);
-        }
-    }
-
-    @Override
-    public final void onStateChanged(boolean z, int i) {
-        MediaController mediaController = this.e;
-        if (this.a != mediaController.n0) {
+    public final void a(ArrayList arrayList, boolean z) {
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        TextView textView = this.b;
+        bz0 bz0Var = this.c;
+        super.setEnabled(z);
+        TextView textView2 = this.a;
+        float f5 = 0.5f;
+        if (arrayList != null) {
+            if (z) {
+                f3 = 1.0f;
+            } else {
+                f3 = 0.5f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", f3));
+            if (z) {
+                f4 = 1.0f;
+            } else {
+                f4 = 0.5f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(bz0Var, "alpha", f4));
+            if (z) {
+                f5 = 1.0f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", f5));
             return;
         }
-        mediaController.G0(this.b, this.c, this.d, z, i);
-    }
-
-    @Override
-    public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        MediaController mediaController = this.e;
-        if (mediaController.F0 != null) {
-            byte b = mediaController.J0;
-            if (b == 2) {
-                ix ixVar = mediaController.M0;
-                if (ixVar != null) {
-                    if (mediaController.N0) {
-                        ixVar.setDrawingReady(true);
-                    }
-                    if (mediaController.M0.getParent() == null) {
-                        mediaController.O0.addView(mediaController.M0);
-                    }
-                    if (mediaController.H0.getSurfaceTexture() != surfaceTexture) {
-                        mediaController.H0.setSurfaceTexture(surfaceTexture);
-                    }
-                    mediaController.F0.z0(mediaController.H0);
-                }
-                mediaController.J0 = (byte) 0;
-                return true;
-            } else if (b == 1) {
-                if (mediaController.K0 != null) {
-                    if (mediaController.I0 == null) {
-                        try {
-                            PipRoundVideoView pipRoundVideoView = new PipRoundVideoView();
-                            mediaController.I0 = pipRoundVideoView;
-                            pipRoundVideoView.d(mediaController.K0, new vl6(this, (byte) 0));
-                        } catch (Exception unused) {
-                            mediaController.I0 = null;
-                        }
-                    }
-                    PipRoundVideoView pipRoundVideoView2 = mediaController.I0;
-                    if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.I0.c.setSurfaceTexture(surfaceTexture);
-                        }
-                        mediaController.F0.z0(mediaController.I0.c);
-                    }
-                }
-                mediaController.J0 = (byte) 0;
-                return true;
-            } else if (PhotoViewer.C0() && PhotoViewer.r0().S2 != null) {
-                PhotoViewer.r0().T2 = surfaceTexture;
-                return true;
-            }
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.5f;
         }
-        return false;
-    }
-
-    @Override
-    public final void onVideoSizeChanged(int i, int i2, int i3, float f) {
-        float f2;
-        if (i2 == 0) {
+        textView2.setAlpha(f);
+        if (z) {
             f2 = 1.0f;
         } else {
-            f2 = (i * f) / i2;
+            f2 = 0.5f;
         }
-        MediaController mediaController = this.e;
-        mediaController.P0 = f2;
-        ix ixVar = mediaController.M0;
-        if (ixVar != null) {
-            ixVar.a(f2, 0);
+        bz0Var.setAlpha(f2);
+        if (z) {
+            f5 = 1.0f;
         }
+        textView.setAlpha(f5);
     }
 
     @Override
-    public final void onSeekFinished(tj tjVar) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public long getSize() {
+        return this.d;
     }
 
     @Override
-    public final void onSeekStarted(tj tjVar) {
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i;
+        if (ob6.a0) {
+            L = 0.0f;
+        } else {
+            L = hl.L(20.0f);
+        }
+        float f = L;
+        float measuredHeight = getMeasuredHeight() - 1;
+        int measuredWidth = getMeasuredWidth();
+        if (ob6.a0) {
+            i = hl.L(20.0f);
+        } else {
+            i = 0;
+        }
+        canvas.drawLine(f, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, aob.j0);
     }
 
     @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onRenderedFirstFrame(tj tjVar) {
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(80.0f), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i), hl.L(80.0f));
+        int measuredWidth = getMeasuredWidth() - hl.L(42.0f);
+        TextView textView = this.b;
+        textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(hl.L(30.0f), 1073741824));
+        this.a.measure(View.MeasureSpec.makeMeasureSpec(c00.d(8.0f, measuredWidth - textView.getMeasuredWidth(), hl.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(30.0f), 1073741824));
+        this.c.measure(ik8.f(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(30.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public void setSize(long j) {
+        float max;
+        float f;
+        float f2;
+        this.d = j;
+        this.b.setText(ob6.a0("AutodownloadSizeLimitUpTo", null, 2131753765, hl.i0(j, false, false)));
+        long j2 = j - 512000;
+        if (j2 < 536576) {
+            f2 = Math.max(0.0f, ((float) j2) / 536576.0f) * 0.25f;
+        } else {
+            long j3 = j - 1048576;
+            if (j3 < 9437184) {
+                f2 = (Math.max(0.0f, ((float) j3) / 9437184.0f) * 0.25f) + 0.25f;
+            } else {
+                long j4 = j - 10485760;
+                if (j4 < 94371840) {
+                    max = Math.max(0.0f, ((float) j4) / 9.437184E7f) * 0.25f;
+                    f = 0.5f;
+                } else {
+                    max = Math.max(0.0f, ((float) (j - 104857600)) / 1.9922944E9f) * 0.25f;
+                    f = 0.75f;
+                }
+                f2 = max + f;
+            }
+        }
+        this.c.setProgress(Math.min(1.0f, f2));
+    }
+
+    public void setText(String str) {
+        this.a.setText(str);
     }
 }

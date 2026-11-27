@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.ui.UsersSelectActivity;
-public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements gk7, View.OnClickListener {
+public class UsersSelectActivity extends org.telegram.ui.ActionBar.e implements fn7, View.OnClickListener {
     public int E;
-    public il F;
+    public jl F;
     public boolean G;
     public boolean H;
     public boolean I;
@@ -21,20 +21,20 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
     public final ArrayList M;
     public boolean N;
     public boolean O;
-    public vf6 P;
+    public zh6 P;
     public ArrayList Q;
-    public ya5 R;
+    public zc5 R;
     public int S;
     public int T;
-    public xc a;
-    public c8c b;
-    public l7 c;
-    public o39 d;
-    public pi4 e;
-    public na5 f;
-    public b8c h;
-    public z7c n;
-    public un4 r;
+    public yc a;
+    public ccc b;
+    public m7 c;
+    public d79 d;
+    public tk4 e;
+    public oc5 f;
+    public bcc h;
+    public zbc n;
+    public zp4 r;
     public FrameLayout.LayoutParams s;
     public boolean w;
     public int x;
@@ -42,17 +42,13 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
 
     public UsersSelectActivity(int i, ArrayList arrayList, boolean z) {
         super(null);
-        this.P = new vf6();
+        this.P = new zh6();
         this.Q = new ArrayList();
         this.K = z;
         this.L = i;
         this.M = arrayList;
         this.y = (byte) 0;
         this.H = true;
-    }
-
-    public static ui5 Y(UsersSelectActivity usersSelectActivity) {
-        return usersSelectActivity.parentLayout;
     }
 
     public final void Z() {
@@ -66,86 +62,86 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.S7));
-        hashSet.add(Integer.valueOf(bkb.Ri));
-        hashSet.add(Integer.valueOf(bkb.T7));
-        hashSet.add(Integer.valueOf(bkb.R7));
-        hashSet.add(Integer.valueOf(bkb.Q7));
-        hashSet.add(Integer.valueOf(bkb.P7));
-        hashSet.add(Integer.valueOf(bkb.O7));
-        hashSet.add(Integer.valueOf(bkb.N7));
-        hashSet.add(Integer.valueOf(bkb.I7));
-        hashSet.add(Integer.valueOf(bkb.x6));
-        hashSet.add(Integer.valueOf(bkb.m6));
-        hashSet.add(Integer.valueOf(bkb.d7));
-        hashSet.add(Integer.valueOf(bkb.e7));
-        hashSet.add(Integer.valueOf(bkb.c7));
-        hashSet.add(Integer.valueOf(bkb.h6));
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.u8));
-        hashSet.add(Integer.valueOf(bkb.r8));
-        hashSet.add(Integer.valueOf(bkb.c6));
+        hashSet.add(Integer.valueOf(aob.T7));
+        hashSet.add(Integer.valueOf(aob.Si));
+        hashSet.add(Integer.valueOf(aob.U7));
+        hashSet.add(Integer.valueOf(aob.S7));
+        hashSet.add(Integer.valueOf(aob.R7));
+        hashSet.add(Integer.valueOf(aob.Q7));
+        hashSet.add(Integer.valueOf(aob.P7));
+        hashSet.add(Integer.valueOf(aob.O7));
+        hashSet.add(Integer.valueOf(aob.J7));
+        hashSet.add(Integer.valueOf(aob.y6));
+        hashSet.add(Integer.valueOf(aob.n6));
+        hashSet.add(Integer.valueOf(aob.e7));
+        hashSet.add(Integer.valueOf(aob.f7));
+        hashSet.add(Integer.valueOf(aob.d7));
+        hashSet.add(Integer.valueOf(aob.i6));
+        hashSet.add(Integer.valueOf(aob.t8));
+        hashSet.add(Integer.valueOf(aob.A8));
+        hashSet.add(Integer.valueOf(aob.v8));
+        hashSet.add(Integer.valueOf(aob.s8));
+        hashSet.add(Integer.valueOf(aob.d6));
     }
 
     public final void b0() {
-        vf6 vf6Var = this.P;
+        zh6 zh6Var = this.P;
         ArrayList arrayList = new ArrayList();
-        for (int i = 0; i < vf6Var.m(); i++) {
-            if (vf6Var.j(i) > -9223372036854775799L) {
-                arrayList.add(Long.valueOf(vf6Var.j(i)));
+        for (int i = 0; i < zh6Var.m(); i++) {
+            if (zh6Var.j(i) > -9223372036854775799L) {
+                arrayList.add(Long.valueOf(zh6Var.j(i)));
             }
         }
-        z7c z7cVar = this.n;
-        if (z7cVar != null) {
-            z7cVar.a(this.L, arrayList);
+        zbc zbcVar = this.n;
+        if (zbcVar != null) {
+            zbcVar.a(this.L, arrayList);
         }
         finishFragment();
     }
 
     public final void c0() {
-        kr2 kr2Var;
+        ds2 ds2Var;
         byte b = this.y;
         if (b == 0) {
             if (getUserConfig().p()) {
-                kr2Var = getMessagesController().k4.c1;
+                ds2Var = getMessagesController().k4.k1;
             } else {
-                kr2Var = getMessagesController().k4.b1;
+                ds2Var = getMessagesController().k4.j1;
             }
-            int f = kr2Var.f();
+            int f = ds2Var.f();
             int i = this.x;
             org.telegram.ui.ActionBar.a aVar = this.actionBar;
             if (i == 0) {
-                aVar.setSubtitle(k96.a0("MembersCountZero", null, 2131748427, k96.G(f, "Chats", new Object[0])));
+                aVar.setSubtitle(ob6.a0("MembersCountZero", null, 2131748373, ob6.G(f, "Chats", new Object[0])));
             } else {
-                aVar.setSubtitle(String.format(k96.J0(i, "MembersCountSelected"), Integer.valueOf(this.x), Integer.valueOf(f)));
+                aVar.setSubtitle(String.format(ob6.J0(i, "MembersCountSelected"), Integer.valueOf(this.x), Integer.valueOf(f)));
             }
         } else if (b == 1) {
             this.actionBar.setTitle("");
             this.actionBar.setSubtitle("");
             int i2 = this.x;
-            il ilVar = this.F;
+            jl jlVar = this.F;
             if (i2 == 0) {
-                ilVar.getTitle().c(k96.M0(2131745476, null), true, true);
+                jlVar.getTitle().c(ob6.M0(2131745396, null), true, true);
                 int i3 = this.T;
-                il ilVar2 = this.F;
+                jl jlVar2 = this.F;
                 if (i3 > 0) {
-                    ilVar2.getSubtitleTextView().c(k96.M0(2131745475, null), true, true);
+                    jlVar2.getSubtitleTextView().c(ob6.M0(2131745395, null), true, true);
                     return;
                 } else {
-                    ilVar2.getSubtitleTextView().c(k96.M0(2131745473, null), true, true);
+                    jlVar2.getSubtitleTextView().c(ob6.M0(2131745393, null), true, true);
                     return;
                 }
             }
-            hn title = ilVar.getTitle();
+            in title = jlVar.getTitle();
             int i4 = this.x;
-            title.setText(k96.G(i4, "Chats", Integer.valueOf(i4)));
+            title.setText(ob6.G(i4, "Chats", Integer.valueOf(i4)));
             int i5 = this.T;
-            il ilVar3 = this.F;
+            jl jlVar3 = this.F;
             if (i5 > 0) {
-                ilVar3.getSubtitleTextView().setText(k96.M0(2131745474, null));
+                jlVar3.getSubtitleTextView().setText(ob6.M0(2131745394, null));
             } else {
-                ilVar3.getSubtitleTextView().setText(k96.M0(2131745472, null));
+                jlVar3.getSubtitleTextView().setText(ob6.M0(2131745392, null));
             }
         }
     }
@@ -154,7 +150,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
     public final View createView(Context context) {
         int i;
         int i2;
-        Object K0;
+        Object M0;
         int i3;
         float f;
         float f2;
@@ -167,33 +163,33 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
             Activity parentActivity = getParentActivity();
             ?? frameLayout = new FrameLayout(parentActivity);
             frameLayout.a = true;
-            frameLayout.b = gl.L(8.0f);
-            hn hnVar = new hn(parentActivity, true, true, true);
-            frameLayout.c = hnVar;
-            int i4 = bkb.z8;
-            zkb.U(hnVar, i4, null);
-            hnVar.setTextSize(gl.L(18.0f));
-            hnVar.setGravity(3);
-            hnVar.setTypeface(gl.o());
-            hnVar.setPadding(0, gl.L(6.0f), 0, gl.L(12.0f));
-            frameLayout.addView(hnVar);
-            hn hnVar2 = new hn(parentActivity, true, true, true);
-            frameLayout.d = hnVar2;
-            hnVar2.setTag(Integer.valueOf(bkb.A8));
-            zkb.U(hnVar2, i4, null);
-            hnVar2.setTextSize(gl.L(14.0f));
-            hnVar2.setGravity(3);
-            hnVar2.setPadding(0, 0, gl.L(10.0f), 0);
-            frameLayout.addView(hnVar2);
-            hnVar.getDrawable().K = true;
-            hnVar2.getDrawable().K = true;
-            s33 s33Var = s33.f;
-            hnVar.b(1.0f, 150L, s33Var);
-            hnVar2.b(1.0f, 150L, s33Var);
+            frameLayout.b = hl.L(8.0f);
+            in inVar = new in(parentActivity, true, true, true);
+            frameLayout.c = inVar;
+            int i4 = aob.A8;
+            yob.U(inVar, i4, null);
+            inVar.setTextSize(hl.L(18.0f));
+            inVar.setGravity(3);
+            inVar.setTypeface(hl.o());
+            inVar.setPadding(0, hl.L(6.0f), 0, hl.L(12.0f));
+            frameLayout.addView(inVar);
+            in inVar2 = new in(parentActivity, true, true, true);
+            frameLayout.d = inVar2;
+            inVar2.setTag(Integer.valueOf(aob.B8));
+            yob.U(inVar2, i4, null);
+            inVar2.setTextSize(hl.L(14.0f));
+            inVar2.setGravity(3);
+            inVar2.setPadding(0, 0, hl.L(10.0f), 0);
+            frameLayout.addView(inVar2);
+            inVar.getDrawable().K = true;
+            inVar2.getDrawable().K = true;
+            k43 k43Var = k43.f;
+            inVar.b(1.0f, 150L, k43Var);
+            inVar2.b(1.0f, 150L, k43Var);
             frameLayout.setClipChildren(false);
             this.F = frameLayout;
             org.telegram.ui.ActionBar.a aVar = this.actionBar;
-            boolean z = k96.a0;
+            boolean z = ob6.a0;
             if (z) {
                 f = 0.0f;
             } else {
@@ -204,7 +200,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
             } else {
                 f2 = 0.0f;
             }
-            aVar.addView((View) frameLayout, nme.d(-1, -1.0f, 0, f, 0.0f, f2, 0.0f));
+            aVar.addView((View) frameLayout, tre.d(-1, -1.0f, 0, f, 0.0f, f2, 0.0f));
             this.actionBar.setAllowOverlayTitle(false);
         }
         this.actionBar.setBackButtonImage(2131231243);
@@ -218,23 +214,22 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
         } else {
             org.telegram.ui.ActionBar.a aVar2 = this.actionBar;
             if (z2) {
-                aVar2.setTitle(k96.M0(2131750793, null));
+                aVar2.setTitle(ob6.M0(2131750770, null));
             } else {
-                aVar2.setTitle(k96.M0(2131750717, null));
+                aVar2.setTitle(ob6.M0(2131750694, null));
             }
         }
-        this.actionBar.setActionBarMenuOnItemClick(new kk8(this, (byte) 25));
-        s8 s8Var = new s8((byte) 3, context, this);
-        this.fragmentView = s8Var;
-        int i5 = 5;
-        xc xcVar = new xc(this, context, (byte) 5);
-        this.a = xcVar;
-        xcVar.setVerticalScrollBarEnabled(false);
-        gl.u3(this.a, bkb.w0(null, bkb.c6, false));
-        s8Var.addView(this.a);
-        c8c c8cVar = new c8c(this, context);
-        this.b = c8cVar;
-        this.a.addView(c8cVar, nme.c(-2.0f, -1));
+        this.actionBar.setActionBarMenuOnItemClick(new rn8(this, (byte) 27));
+        t8 t8Var = new t8(this, context, (byte) 2);
+        this.fragmentView = t8Var;
+        yc ycVar = new yc(this, context, (byte) 6);
+        this.a = ycVar;
+        ycVar.setVerticalScrollBarEnabled(false);
+        hl.u3(this.a, aob.w0(null, aob.d6, false));
+        t8Var.addView(this.a);
+        ccc cccVar = new ccc(this, context);
+        this.b = cccVar;
+        this.a.addView(cccVar, tre.c(-2.0f, -1));
         this.b.setOnClickListener(new View.OnClickListener(this) {
             public final UsersSelectActivity b;
 
@@ -250,7 +245,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
                     case 0:
                         usersSelectActivity.c.clearFocus();
                         usersSelectActivity.c.requestFocus();
-                        gl.E3(usersSelectActivity.c);
+                        hl.E3(usersSelectActivity.c);
                         return;
                     default:
                         usersSelectActivity.b0();
@@ -258,15 +253,15 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
                 }
             }
         });
-        l7 l7Var = new l7((byte) 9, context, this);
-        this.c = l7Var;
-        l7Var.setTextSize(1, 16.0f);
-        zkb.A(this.c, bkb.Ni, null);
-        zkb.X(this.c, bkb.F6, null);
-        zkb.v(this.c, bkb.Oi, null);
+        m7 m7Var = new m7((byte) 9, context, this);
+        this.c = m7Var;
+        m7Var.setTextSize(1, 16.0f);
+        yob.A(this.c, aob.Oi, null);
+        yob.X(this.c, aob.G6, null);
+        yob.v(this.c, aob.Pi, null);
         this.c.setCursorWidth(1.5f);
-        l7 l7Var2 = this.c;
-        l7Var2.setInputType(l7Var2.getInputType() | 176);
+        m7 m7Var2 = this.c;
+        m7Var2.setInputType(m7Var2.getInputType() | 176);
         this.c.setSingleLine(true);
         this.c.setBackgroundDrawable(null);
         this.c.setVerticalScrollBarEnabled(false);
@@ -274,61 +269,62 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
         this.c.setTextIsSelectable(false);
         this.c.setPadding(0, 0, 0, 0);
         this.c.setImeOptions(268435462);
-        l7 l7Var3 = this.c;
-        if (k96.a0) {
+        m7 m7Var3 = this.c;
+        int i5 = 5;
+        if (ob6.a0) {
             i = 5;
         } else {
             i = 3;
         }
-        l7Var3.setGravity(i | 16);
+        m7Var3.setGravity(i | 16);
         this.b.addView(this.c);
-        this.c.setHintText(k96.M0(2131745576, null));
-        this.c.setCustomSelectionActionModeCallback(new kv7((byte) 4));
-        this.c.setOnKeyListener(new ia5(this, (byte) 1));
-        this.c.addTextChangedListener(new jf6(this, (byte) 22));
-        pi4 pi4Var = new pi4(context, null);
-        this.e = pi4Var;
-        pi4Var.setViewType(10);
-        pi4 pi4Var2 = this.e;
-        pi4Var2.x = false;
-        pi4Var2.setItemsCount(3);
-        pi4 pi4Var3 = this.e;
-        int i6 = bkb.F8;
-        int i7 = bkb.h6;
-        pi4Var3.e(i6, i7, i7);
-        s8Var.addView(this.e);
-        na5 na5Var = new na5(context, this.e, 1, null, (byte) 2);
-        this.f = na5Var;
-        na5Var.e(qu2.r(this.currentAccount).y(), true);
-        this.f.d.setText(k96.M0(2131748031, null));
-        s8Var.addView(this.f);
-        t26 t26Var = new t26(1, false);
-        o39 o39Var = new o39(context, null);
-        this.d = o39Var;
-        o39Var.setFastScrollEnabled(0);
+        this.c.setHintText(ob6.M0(2131745496, null));
+        this.c.setCustomSelectionActionModeCallback(new ry7((byte) 4));
+        this.c.setOnKeyListener(new jc5(this, (byte) 1));
+        this.c.addTextChangedListener(new nh6(this, (byte) 23));
+        tk4 tk4Var = new tk4(context, null);
+        this.e = tk4Var;
+        tk4Var.setViewType(10);
+        tk4 tk4Var2 = this.e;
+        tk4Var2.x = false;
+        tk4Var2.setItemsCount(3);
+        tk4 tk4Var3 = this.e;
+        int i6 = aob.G8;
+        int i7 = aob.i6;
+        tk4Var3.e(i6, i7, i7);
+        t8Var.addView(this.e);
+        oc5 oc5Var = new oc5(context, this.e, 1, null, (byte) 2);
+        this.f = oc5Var;
+        oc5Var.e(lv2.r(this.currentAccount).y(), true);
+        this.f.d.setText(ob6.M0(2131747954, null));
+        t8Var.addView(this.f);
+        x46 x46Var = new x46(1, false);
+        d79 d79Var = new d79(context, null);
+        this.d = d79Var;
+        d79Var.setFastScrollEnabled(0);
         this.d.setEmptyView(this.f);
-        o39 o39Var2 = this.d;
-        b8c b8cVar = new b8c(this, context);
-        this.h = b8cVar;
-        o39Var2.setAdapter(b8cVar);
-        this.d.setLayoutManager(t26Var);
+        d79 d79Var2 = this.d;
+        bcc bccVar = new bcc(this, context);
+        this.h = bccVar;
+        d79Var2.setAdapter(bccVar);
+        this.d.setLayoutManager(x46Var);
         this.d.setVerticalScrollBarEnabled(false);
-        o39 o39Var3 = this.d;
-        if (k96.a0) {
+        d79 d79Var3 = this.d;
+        if (ob6.a0) {
             i2 = 1;
         } else {
             i2 = 2;
         }
-        o39Var3.setVerticalScrollbarPosition(i2);
-        this.d.i(new oq1((byte) 16));
-        s8Var.addView(this.d);
-        this.d.setOnItemClickListener(new k0(this, context, (byte) 24));
-        this.d.setOnScrollListener(new vdb(this, (byte) 7));
-        this.s = un4.b();
-        un4 un4Var = new un4(this.resourceProvider, context, false);
-        this.r = un4Var;
-        un4Var.setImageResource(2131231198);
-        s8Var.addView(this.r, this.s);
+        d79Var3.setVerticalScrollbarPosition(i2);
+        this.d.i(new br1((byte) 16));
+        t8Var.addView(this.d);
+        this.d.setOnItemClickListener(new l0(this, context, (byte) 24));
+        this.d.setOnScrollListener(new qhb(this, (byte) 7));
+        this.s = zp4.b();
+        zp4 zp4Var = new zp4(this.resourceProvider, context, false);
+        this.r = zp4Var;
+        zp4Var.setImageResource(2131231198);
+        t8Var.addView(this.r, this.s);
         this.r.setOnClickListener(new View.OnClickListener(this) {
             public final UsersSelectActivity b;
 
@@ -344,7 +340,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
                     case 0:
                         usersSelectActivity.c.clearFocus();
                         usersSelectActivity.c.requestFocus();
-                        gl.E3(usersSelectActivity.c);
+                        hl.E3(usersSelectActivity.c);
                         return;
                     default:
                         usersSelectActivity.b0();
@@ -352,7 +348,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
                 }
             }
         });
-        this.r.setContentDescription(k96.M0(2131748058, null));
+        this.r.setContentDescription(ob6.M0(2131747981, null));
         if (!z2) {
             i5 = 3;
         }
@@ -374,42 +370,42 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
                 }
             } else if (z2) {
                 if (i8 == 1) {
-                    int i9 = na7.q5;
+                    int i9 = uc7.r5;
                     i3 = 1;
                     str = "contacts";
                 } else if (i8 == 2) {
-                    int i10 = na7.q5;
+                    int i10 = uc7.r5;
                     i3 = 2;
                 } else if (i8 == 3) {
-                    int i11 = na7.q5;
+                    int i11 = uc7.r5;
                     str = "groups";
                     i3 = 4;
                 } else if (i8 == 4) {
-                    int i12 = na7.q5;
+                    int i12 = uc7.r5;
                     str = "channels";
                     i3 = 8;
                 } else {
-                    int i13 = na7.q5;
+                    int i13 = uc7.r5;
                     str = "bots";
                     i3 = 16;
                 }
             } else if (i8 == 1) {
-                int i14 = na7.q5;
+                int i14 = uc7.r5;
                 str = "muted";
                 i3 = 32;
             } else if (i8 == 2) {
-                int i15 = na7.q5;
+                int i15 = uc7.r5;
                 str = "read";
                 i3 = 64;
             } else {
-                int i16 = na7.q5;
+                int i16 = uc7.r5;
                 str = "archived";
                 i3 = 128;
             }
             if ((this.L & i3) != 0) {
-                ya5 ya5Var = new ya5(this.c.getContext(), str);
-                this.b.a(ya5Var, false);
-                ya5Var.setOnClickListener(this);
+                zc5 zc5Var = new zc5(this.c.getContext(), str);
+                this.b.a(zc5Var, false);
+                zc5Var.setOnClickListener(this);
             }
         }
         ArrayList arrayList = this.M;
@@ -418,14 +414,14 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
             for (int i17 = 0; i17 < size; i17++) {
                 Long l = (Long) arrayList.get(i17);
                 if (l.longValue() > 0) {
-                    K0 = getMessagesController().V1(l);
+                    M0 = getMessagesController().X1(l);
                 } else {
-                    K0 = getMessagesController().K0(Long.valueOf(-l.longValue()));
+                    M0 = getMessagesController().M0(Long.valueOf(-l.longValue()));
                 }
-                if (K0 != null) {
-                    ya5 ya5Var2 = new ya5(this.c.getContext(), K0);
-                    this.b.a(ya5Var2, false);
-                    ya5Var2.setOnClickListener(this);
+                if (M0 != null) {
+                    zc5 zc5Var2 = new zc5(this.c.getContext(), M0);
+                    this.b.a(zc5Var2, false);
+                    zc5Var2.setOnClickListener(this);
                 }
             }
         }
@@ -435,30 +431,30 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.N) {
-            na5 na5Var = this.f;
-            if (na5Var != null) {
-                na5Var.e(false, true);
+        if (i == jn7.N) {
+            oc5 oc5Var = this.f;
+            if (oc5Var != null) {
+                oc5Var.e(false, true);
             }
-            b8c b8cVar = this.h;
-            if (b8cVar != null) {
-                b8cVar.f();
+            bcc bccVar = this.h;
+            if (bccVar != null) {
+                bccVar.f();
             }
         } else if (i == 2) {
             if (this.d != null) {
                 int intValue = ((Integer) objArr[0]).intValue();
                 int childCount = this.d.getChildCount();
-                int i3 = na7.q5;
+                int i3 = uc7.r5;
                 if ((intValue & 2) != 0 || (intValue & 1) != 0 || (intValue & 4) != 0) {
                     for (int i4 = 0; i4 < childCount; i4++) {
                         View childAt = this.d.getChildAt(i4);
-                        if (childAt instanceof za5) {
-                            ((za5) childAt).f(intValue);
+                        if (childAt instanceof bd5) {
+                            ((bd5) childAt).f(intValue);
                         }
                     }
                 }
             }
-        } else if (i == kk7.Q) {
+        } else if (i == jn7.R) {
             removeSelfFromStack();
         }
     }
@@ -470,144 +466,144 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.d implements 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new blb(this.a, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.c6));
-        arrayList.add(new blb(this.d, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.k7));
-        arrayList.add(new blb(this.d, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.l7));
-        arrayList.add(new blb(this.d, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.m7));
-        arrayList.add(new blb(this.f, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.b7));
-        arrayList.add(new blb(this.f, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.g6));
-        arrayList.add(new blb(this.c, 8388608, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, bkb.Ni));
-        arrayList.add(new blb(this.d, 4, new Class[]{za5.class}, new String[]{"textView"}, (Drawable[]) null, (alb) null, bkb.Qi));
-        arrayList.add(new blb(this.d, 4, new Class[]{za5.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.h7));
-        arrayList.add(new blb(this.d, 4, new Class[]{za5.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.i7));
-        arrayList.add(new blb(this.d, 4, new Class[]{za5.class}, new String[]{"checkBox"}, (Drawable[]) null, (alb) null, bkb.j7));
-        arrayList.add(new blb(this.b, 0, new Class[]{ya5.class}, (Paint) null, (Drawable[]) null, (alb) null, bkb.Si));
-        arrayList.add(new blb(this.b, 0, new Class[]{ya5.class}, (Paint) null, (Drawable[]) null, (alb) null, bkb.Ti));
+        arrayList.add(new apb(this.a, 32768, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.d6));
+        arrayList.add(new apb(this.d, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.l7));
+        arrayList.add(new apb(this.d, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.m7));
+        arrayList.add(new apb(this.d, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.n7));
+        arrayList.add(new apb(this.f, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.c7));
+        arrayList.add(new apb(this.f, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.h6));
+        arrayList.add(new apb(this.c, 8388608, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, aob.Oi));
+        arrayList.add(new apb(this.d, 4, new Class[]{bd5.class}, new String[]{"textView"}, (Drawable[]) null, (zob) null, aob.Ri));
+        arrayList.add(new apb(this.d, 4, new Class[]{bd5.class}, new String[]{"checkBox"}, (Drawable[]) null, (zob) null, aob.i7));
+        arrayList.add(new apb(this.d, 4, new Class[]{bd5.class}, new String[]{"checkBox"}, (Drawable[]) null, (zob) null, aob.j7));
+        arrayList.add(new apb(this.d, 4, new Class[]{bd5.class}, new String[]{"checkBox"}, (Drawable[]) null, (zob) null, aob.k7));
+        arrayList.add(new apb(this.b, 0, new Class[]{zc5.class}, (Paint) null, (Drawable[]) null, (zob) null, aob.Ti));
+        arrayList.add(new apb(this.b, 0, new Class[]{zc5.class}, (Paint) null, (Drawable[]) null, (zob) null, aob.Ui));
         return arrayList;
     }
 
     @Override
     public final void onClick(View view) {
-        ya5 ya5Var = (ya5) view;
-        if (ya5Var.E) {
+        zc5 zc5Var = (zc5) view;
+        if (zc5Var.E) {
             this.R = null;
-            this.b.b(ya5Var);
+            this.b.b(zc5Var);
             if (this.y == 2) {
-                if (ya5Var.getUid() == -9223372036854775800L) {
+                if (zc5Var.getUid() == -9223372036854775800L) {
                     this.L &= -2;
-                } else if (ya5Var.getUid() == -9223372036854775799L) {
+                } else if (zc5Var.getUid() == -9223372036854775799L) {
                     this.L &= -3;
-                } else if (ya5Var.getUid() == Long.MIN_VALUE) {
+                } else if (zc5Var.getUid() == Long.MIN_VALUE) {
                     this.L &= -5;
-                } else if (ya5Var.getUid() == -9223372036854775807L) {
+                } else if (zc5Var.getUid() == -9223372036854775807L) {
                     this.L &= -9;
                 }
-            } else if (ya5Var.getUid() == Long.MIN_VALUE) {
+            } else if (zc5Var.getUid() == Long.MIN_VALUE) {
                 int i = this.L;
-                int i2 = na7.q5;
+                int i2 = uc7.r5;
                 this.L = i & (-2);
-            } else if (ya5Var.getUid() == -9223372036854775807L) {
+            } else if (zc5Var.getUid() == -9223372036854775807L) {
                 int i3 = this.L;
-                int i4 = na7.q5;
+                int i4 = uc7.r5;
                 this.L = i3 & (-3);
-            } else if (ya5Var.getUid() == -9223372036854775806L) {
+            } else if (zc5Var.getUid() == -9223372036854775806L) {
                 int i5 = this.L;
-                int i6 = na7.q5;
+                int i6 = uc7.r5;
                 this.L = i5 & (-5);
-            } else if (ya5Var.getUid() == -9223372036854775805L) {
+            } else if (zc5Var.getUid() == -9223372036854775805L) {
                 int i7 = this.L;
-                int i8 = na7.q5;
+                int i8 = uc7.r5;
                 this.L = i7 & (-9);
-            } else if (ya5Var.getUid() == -9223372036854775804L) {
+            } else if (zc5Var.getUid() == -9223372036854775804L) {
                 int i9 = this.L;
-                int i10 = na7.q5;
+                int i10 = uc7.r5;
                 this.L = i9 & (-17);
-            } else if (ya5Var.getUid() == -9223372036854775803L) {
+            } else if (zc5Var.getUid() == -9223372036854775803L) {
                 int i11 = this.L;
-                int i12 = na7.q5;
+                int i12 = uc7.r5;
                 this.L = i11 & (-33);
-            } else if (ya5Var.getUid() == -9223372036854775802L) {
+            } else if (zc5Var.getUid() == -9223372036854775802L) {
                 int i13 = this.L;
-                int i14 = na7.q5;
+                int i14 = uc7.r5;
                 this.L = i13 & (-65);
-            } else if (ya5Var.getUid() == -9223372036854775801L) {
+            } else if (zc5Var.getUid() == -9223372036854775801L) {
                 int i15 = this.L;
-                int i16 = na7.q5;
+                int i16 = uc7.r5;
                 this.L = i15 & (-129);
             }
             c0();
             Z();
             return;
         }
-        ya5 ya5Var2 = this.R;
-        if (ya5Var2 != null) {
-            ya5Var2.a();
+        zc5 zc5Var2 = this.R;
+        if (zc5Var2 != null) {
+            zc5Var2.a();
         }
-        this.R = ya5Var;
-        ya5Var.b();
+        this.R = zc5Var;
+        zc5Var.b();
     }
 
     @Override
     public final boolean onFragmentCreate() {
-        kk7.f(this.currentAccount).b(this, kk7.N);
-        kk7.f(this.currentAccount).b(this, 2);
-        kk7.f(this.currentAccount).b(this, kk7.Q);
+        jn7.f(this.currentAccount).b(this, jn7.N);
+        jn7.f(this.currentAccount).b(this, 2);
+        jn7.f(this.currentAccount).b(this, jn7.R);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        kk7.f(this.currentAccount).n(this, kk7.N);
-        kk7.f(this.currentAccount).n(this, 2);
-        kk7.f(this.currentAccount).n(this, kk7.Q);
+        jn7.f(this.currentAccount).n(this, jn7.N);
+        jn7.f(this.currentAccount).n(this, 2);
+        jn7.f(this.currentAccount).n(this, jn7.R);
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        l7 l7Var = this.c;
-        if (l7Var != null) {
-            l7Var.requestFocus();
+        m7 m7Var = this.c;
+        if (m7Var != null) {
+            m7Var.requestFocus();
         }
-        gl.V2(getParentActivity(), this.classGuid);
+        hl.V2(getParentActivity(), this.classGuid);
     }
 
     @Override
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            l7 l7Var = this.c;
-            if (l7Var != null) {
-                zkb.l(l7Var, 34, bkb.Ni, null);
-                zkb.v(this.c, bkb.Oi, null);
+            m7 m7Var = this.c;
+            if (m7Var != null) {
+                yob.l(m7Var, 34, aob.Oi, null);
+                yob.v(this.c, aob.Pi, null);
             }
-            o39 o39Var = this.d;
-            if (o39Var != null) {
-                o39Var.x1();
+            d79 d79Var = this.d;
+            if (d79Var != null) {
+                d79Var.y1();
             }
-            xc xcVar = this.a;
-            if (xcVar != null) {
-                gl.u3(xcVar, bkb.w0(null, bkb.c6, false));
+            yc ycVar = this.a;
+            if (ycVar != null) {
+                hl.u3(ycVar, aob.w0(null, aob.d6, false));
             }
             if (this.b != null) {
                 for (int i = 0; i < this.b.getChildCount(); i++) {
                     View childAt = this.b.getChildAt(i);
-                    if (childAt instanceof ya5) {
+                    if (childAt instanceof zc5) {
                         childAt.invalidate();
                     }
                 }
             }
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
     }
 
     public void setContainerHeight(int i) {
         this.E = i;
-        c8c c8cVar = this.b;
-        if (c8cVar != null) {
-            c8cVar.requestLayout();
+        ccc cccVar = this.b;
+        if (cccVar != null) {
+            cccVar.requestLayout();
         }
     }
 }

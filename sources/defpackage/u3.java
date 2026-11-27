@@ -1,11 +1,24 @@
 package defpackage;
-public final class u3 {
-    public static final u3 b = new u3(new i2("Failure occurred while trying to finish a future.", (byte) 1));
-    public final Throwable a;
 
-    public u3(Throwable th) {
-        boolean z = a4.d;
-        th.getClass();
-        this.a = th;
+import java.util.concurrent.CancellationException;
+public final class u3 {
+    public static final u3 c;
+    public static final u3 d;
+    public final boolean a;
+    public final CancellationException b;
+
+    static {
+        if (b4.d) {
+            d = null;
+            c = null;
+            return;
+        }
+        d = new u3(false, null);
+        c = new u3(true, null);
+    }
+
+    public u3(boolean z, CancellationException cancellationException) {
+        this.a = z;
+        this.b = cancellationException;
     }
 }

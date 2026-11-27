@@ -1,35 +1,51 @@
 package defpackage;
-public final class kwc {
-    public final ovc a;
-    public final lwc[] b;
-    public final double c;
-    public final int d;
-    public final int e;
-    public final int f;
-    public final rwc g;
-    public final boolean h;
-    public final boolean i;
 
-    public kwc(ovc ovcVar, lwc[] lwcVarArr, double d, int i, int i2, float f, float f2, int i3, int i4, int i5, rwc rwcVar, boolean z, boolean z2) {
-        this.g = rwcVar;
-        this.h = z;
-        this.i = z2;
-        this.a = ovcVar;
-        this.b = lwcVarArr;
-        this.c = d;
-        this.d = i;
-        this.e = i2;
-        this.f = i5;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kwc implements Runnable {
+    public final byte a = 1;
+    public final int b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
+
+    public kwc(int i, String str, VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.c = voIPService;
+        this.d = tLObject;
+        this.b = i;
+        this.e = str;
+        this.f = tL_error;
     }
 
-    public final boolean a() {
-        if (this.a.e()) {
-            for (lwc lwcVar : this.b) {
-                if (lwcVar.a.e()) {
-                }
-            }
-            return true;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        Object obj = this.f;
+        Object obj2 = this.e;
+        int i = this.b;
+        Object obj3 = this.d;
+        Object obj4 = this.c;
+        switch (b) {
+            case 0:
+                rb0 rb0Var = (rb0) obj3;
+                TLRPC.User user = (TLRPC.User) obj2;
+                ((int[]) obj4)[0] = i;
+                rb0Var.q(user);
+                ((de0) obj).f(user, rb0Var);
+                return;
+            default:
+                ((VoIPService) obj4).lambda$startConferenceGroupCall$36((TLObject) obj3, i, (String) obj2, (TLRPC.TL_error) obj);
+                return;
         }
-        return false;
+    }
+
+    public kwc(int[] iArr, int i, rb0 rb0Var, TLRPC.User user, de0 de0Var) {
+        this.c = iArr;
+        this.b = i;
+        this.d = rb0Var;
+        this.e = user;
+        this.f = de0Var;
     }
 }

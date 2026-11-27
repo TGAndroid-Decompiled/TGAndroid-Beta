@@ -1,10 +1,8 @@
 package defpackage;
+public final class gf1 {
+    public final wf1 a;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class gf1 extends uk1 {
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
+    public gf1(wf1 wf1Var) {
+        this.a = wf1Var;
     }
 }

@@ -1,19 +1,31 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class n3a implements RequestDelegate {
-    public final String a;
-    public final p3a b;
+import android.text.TextUtils;
+import j$.util.Objects;
+public final class n3a {
+    public boolean a = true;
+    public boolean b;
+    public String c;
 
-    public n3a(p3a p3aVar, String str) {
-        this.b = p3aVar;
-        this.a = str;
+    public final boolean equals(Object obj) {
+        boolean z;
+        if (this != obj) {
+            if (obj != null && n3a.class == obj.getClass()) {
+                n3a n3aVar = (n3a) obj;
+                if ((TextUtils.isEmpty(this.c) && TextUtils.isEmpty(n3aVar.c)) || Objects.equals(this.c, n3aVar.c)) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                if (this.a != n3aVar.a || this.b != n3aVar.b || !z) {
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        gl.c3(new tj9(this, this.a, (byte) 25));
+    public final int hashCode() {
+        return Objects.hash(Boolean.valueOf(this.a), Boolean.valueOf(this.b), this.c);
     }
 }

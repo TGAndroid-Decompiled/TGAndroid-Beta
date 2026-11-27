@@ -1,18 +1,34 @@
 package defpackage;
-public final class mr5 extends ft5 {
-    public final qp4 e;
 
-    public mr5(qp4 qp4Var) {
-        this.e = qp4Var;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class mr5 implements Parcelable {
+    public static final Parcelable.Creator<mr5> CREATOR = new g31((byte) 23);
+    public final IntentSender a;
+    public final Intent b;
+    public final int c;
+    public final int d;
+
+    public mr5(IntentSender intentSender, Intent intent, int i, int i2) {
+        this.a = intentSender;
+        this.b = intent;
+        this.c = i;
+        this.d = i2;
     }
 
     @Override
-    public final boolean k() {
-        return false;
+    public final int describeContents() {
+        return 0;
     }
 
     @Override
-    public final void l(Throwable th) {
-        this.e.invoke(th);
+    public final void writeToParcel(Parcel parcel, int i) {
+        parcel.getClass();
+        parcel.writeParcelable(this.a, i);
+        parcel.writeParcelable(this.b, i);
+        parcel.writeInt(this.c);
+        parcel.writeInt(this.d);
     }
 }

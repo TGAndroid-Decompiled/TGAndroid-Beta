@@ -1,33 +1,24 @@
 package defpackage;
-public final class ob1 implements p8c {
-    public final byte a;
-    public final j7b b;
+public final class ob1 extends hn {
+    public final byte e0;
+    public final pb1 f0;
 
-    public ob1(j7b j7bVar, byte b) {
-        this.a = b;
-        this.b = j7bVar;
+    public ob1(pb1 pb1Var, byte b) {
+        super(true, false, false);
+        this.e0 = b;
+        this.f0 = pb1Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        j7b j7bVar = this.b;
-        Integer num = (Integer) obj;
+    public final void invalidateSelf() {
+        byte b = this.e0;
+        pb1 pb1Var = this.f0;
         switch (b) {
             case 0:
-                j7bVar.setPeriod(num.intValue());
-                p8c p8cVar = j7bVar.B1;
-                if (p8cVar != null) {
-                    p8cVar.a(num);
-                    return;
-                }
+                pb1Var.invalidateSelf();
                 return;
             default:
-                p8c p8cVar2 = j7bVar.C1;
-                if (p8cVar2 != null) {
-                    p8cVar2.a(num);
-                    return;
-                }
+                pb1Var.invalidateSelf();
                 return;
         }
     }

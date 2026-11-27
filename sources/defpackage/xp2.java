@@ -1,16 +1,42 @@
 package defpackage;
+public final class xp2 implements zw2 {
+    public static final xp2 b = new xp2((byte) 0);
+    public static final xp2 c = new xp2((byte) 1);
+    public final byte a;
 
-import java.util.Set;
-public interface xp2 {
-    Object a(Class cls);
+    public xp2(byte b2) {
+        this.a = b2;
+    }
 
-    Set c(xw8 xw8Var);
+    @Override
+    public final mx2 getContext() {
+        switch (this.a) {
+            case 0:
+                throw new IllegalStateException("This continuation is already complete");
+            default:
+                return u24.a;
+        }
+    }
 
-    mt8 d(Class cls);
+    @Override
+    public final void resumeWith(Object obj) {
+        switch (this.a) {
+            case 0:
+                throw new IllegalStateException("This continuation is already complete");
+            default:
+                return;
+        }
+    }
 
-    vq7 e(xw8 xw8Var);
+    public final String toString() {
+        switch (this.a) {
+            case 0:
+                return "This continuation is already complete";
+            default:
+                return super.toString();
+        }
+    }
 
-    mt8 g(xw8 xw8Var);
-
-    Object i(xw8 xw8Var);
+    private final void a(Object obj) {
+    }
 }

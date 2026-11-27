@@ -1,19 +1,16 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class qhe extends b4 {
-    public static final Parcelable.Creator<qhe> CREATOR = new rhe((byte) 6);
-    public final byte[] a;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+public abstract class qhe {
+    public static final byte[] a;
 
-    public qhe(byte[] bArr) {
-        this.a = bArr;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.c(parcel, 2, this.a);
-        jte.s(parcel, r);
+    static {
+        Charset.forName("US-ASCII");
+        Charset.forName("UTF-8");
+        Charset.forName("ISO-8859-1");
+        byte[] bArr = new byte[0];
+        a = bArr;
+        ByteBuffer.wrap(bArr);
     }
 }

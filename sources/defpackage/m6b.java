@@ -1,41 +1,49 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class m6b implements ValueAnimator.AnimatorUpdateListener {
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteDatabase;
+public final class m6b implements Runnable {
     public final byte a;
-    public final t7b b;
+    public final o6b b;
+    public final long c;
+    public final int d;
 
-    public m6b(t7b t7bVar, byte b) {
+    public m6b(o6b o6bVar, long j, int i, byte b) {
         this.a = b;
-        this.b = t7bVar;
+        this.b = o6bVar;
+        this.c = j;
+        this.d = i;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void run() {
         byte b = this.a;
-        t7b t7bVar = this.b;
+        int i = this.d;
+        long j = this.c;
+        o6b o6bVar = this.b;
         switch (b) {
             case 0:
-                t7bVar.N0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                t7bVar.s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 2:
-                t7bVar.s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 3:
-                t7bVar.t1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 4:
-                t7bVar.t1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+                jf7 jf7Var = o6bVar.b;
+                SQLiteDatabase sQLiteDatabase = jf7Var.b;
+                try {
+                    Locale locale = Locale.US;
+                    sQLiteDatabase.executeFast("DELETE FROM stories WHERE dialog_id = " + j + " AND story_id = " + i).stepThis().dispose();
+                    return;
+                } catch (Throwable th) {
+                    jf7Var.n(th, true);
+                    return;
+                }
             default:
-                t7bVar.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t7bVar.l();
-                t7bVar.r.invalidate();
-                t7bVar.n.invalidate();
-                return;
+                jf7 jf7Var2 = o6bVar.b;
+                SQLiteDatabase sQLiteDatabase2 = jf7Var2.b;
+                try {
+                    Locale locale2 = Locale.US;
+                    sQLiteDatabase2.executeFast("REPLACE INTO stories_counter VALUES(" + j + ", 0, " + i + ")").stepThis().dispose();
+                    return;
+                } catch (Throwable th2) {
+                    jf7Var2.n(th2, true);
+                    return;
+                }
         }
     }
 }

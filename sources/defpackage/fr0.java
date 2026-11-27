@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public class fr0 extends w29 {
+public class fr0 extends l69 {
     public final Context c;
-    public s1b e;
+    public o5b e;
     public fr0 f;
-    public jb4 h;
+    public gd4 h;
     public boolean r;
     public final gr0 s;
     public final ArrayList d = new ArrayList();
@@ -24,25 +24,25 @@ public class fr0 extends w29 {
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
+    public final boolean D(f89 f89Var) {
         return false;
     }
 
     @Override
     public final String F(int i) {
-        k27 k27Var;
+        r47 r47Var;
         TL_stories.StoryItem storyItem;
-        s1b s1bVar = this.e;
-        if (s1bVar != null && i >= 0 && i < s1bVar.i.size() && (k27Var = (k27) this.e.i.get(i)) != null && (storyItem = k27Var.l) != null) {
-            return k96.e0(storyItem.date, true);
+        o5b o5bVar = this.e;
+        if (o5bVar != null && i >= 0 && i < o5bVar.i.size() && (r47Var = (r47) this.e.i.get(i)) != null && (storyItem = r47Var.l) != null) {
+            return ob6.e0(storyItem.date, true);
         }
         return null;
     }
 
     @Override
-    public final void G(o39 o39Var, float f, int[] iArr) {
+    public final void G(d79 d79Var, float f, int[] iArr) {
         int i;
-        int measuredHeight = o39Var.getChildAt(0).getMeasuredHeight();
+        int measuredHeight = d79Var.getChildAt(0).getMeasuredHeight();
         fr0 fr0Var = this.f;
         gr0 gr0Var = this.s;
         if (this == fr0Var) {
@@ -51,7 +51,7 @@ public class fr0 extends w29 {
             i = gr0Var.d;
         }
         int ceil = (int) (Math.ceil(b() / i) * measuredHeight);
-        int measuredHeight2 = o39Var.getMeasuredHeight() - o39Var.getPaddingTop();
+        int measuredHeight2 = d79Var.getMeasuredHeight() - d79Var.getPaddingTop();
         if (measuredHeight == 0) {
             iArr[1] = 0;
             iArr[0] = 0;
@@ -63,9 +63,9 @@ public class fr0 extends w29 {
     }
 
     public final boolean L(int i) {
-        TLRPC.User V1;
-        kca kcaVar = this.s.a0;
-        if (this.e != null && (V1 = na7.q1(kcaVar.b).V1(Long.valueOf(kcaVar.d))) != null && V1.bot && V1.bot_has_main_app && V1.bot_can_edit) {
+        TLRPC.User X1;
+        bga bgaVar = this.s.a0;
+        if (this.e != null && (X1 = uc7.s1(bgaVar.b).X1(Long.valueOf(bgaVar.d))) != null && X1.bot && X1.bot_has_main_app && X1.bot_can_edit) {
             return true;
         }
         return false;
@@ -86,7 +86,7 @@ public class fr0 extends w29 {
                     gr0Var.I = z;
                 } else if (gr0Var.I || (max = gr0Var.d) == 1) {
                     gr0Var.I = false;
-                    max = Math.max(2, gba.q1);
+                    max = Math.max(2, xea.q1);
                     gr0Var.d = max;
                 }
                 gr0Var.h.x1(max);
@@ -115,19 +115,19 @@ public class fr0 extends w29 {
 
     @Override
     public void f() {
-        s1b s1bVar = this.e;
-        boolean A = ug8.A(s1bVar);
+        o5b o5bVar = this.e;
+        boolean A = ik8.A(o5bVar);
         gr0 gr0Var = this.s;
         if (A) {
             ArrayList arrayList = this.d;
             arrayList.clear();
-            ArrayList E = na7.q1(this.e.c).M1().E(gr0Var.a0.d);
+            ArrayList E = uc7.s1(this.e.c).O1().E(gr0Var.a0.d);
             if (E != null) {
                 for (int i = 0; i < E.size(); i++) {
-                    f2b f2bVar = (f2b) E.get(i);
-                    f4b f4bVar = f2bVar.c;
-                    if (f4bVar != null && !f4bVar.g && TextUtils.equals(f4bVar.K0, s1bVar.E)) {
-                        arrayList.add(f2bVar);
+                    b6b b6bVar = (b6b) E.get(i);
+                    c8b c8bVar = b6bVar.c;
+                    if (c8bVar != null && !c8bVar.g && TextUtils.equals(c8bVar.K0, o5bVar.E)) {
+                        arrayList.add(b6bVar);
                     }
                 }
             }
@@ -144,94 +144,94 @@ public class fr0 extends w29 {
     }
 
     @Override
-    public final void t(s49 s49Var, int i) {
+    public final void t(f89 f89Var, int i) {
         int i2;
         boolean z;
         int i3;
         int i4;
         if (this.e != null) {
-            View view = s49Var.a;
-            if (!(view instanceof qfa)) {
+            View view = f89Var.a;
+            if (!(view instanceof jja)) {
                 return;
             }
-            qfa qfaVar = (qfa) view;
-            qfaVar.e0 = true;
+            jja jjaVar = (jja) view;
+            jjaVar.e0 = true;
             gr0 gr0Var = this.s;
             ArrayList arrayList = this.d;
             if (i >= 0 && i < arrayList.size()) {
-                f2b f2bVar = (f2b) arrayList.get(i);
-                qfaVar.g0 = false;
-                k27 k27Var = f2bVar.L;
-                if (k27Var == null) {
+                b6b b6bVar = (b6b) arrayList.get(i);
+                jjaVar.g0 = false;
+                r47 r47Var = b6bVar.L;
+                if (r47Var == null) {
                     TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                    long j = f2bVar.a;
+                    long j = b6bVar.a;
                     int i5 = (int) (j ^ (j >>> 32));
                     tL_storyItem.messageId = i5;
                     tL_storyItem.id = i5;
-                    tL_storyItem.attachPath = f2bVar.f;
-                    k27 k27Var2 = new k27(this.e.c, tL_storyItem);
-                    f2bVar.L = k27Var2;
-                    k27Var2.m = f2bVar;
-                    k27Var = k27Var2;
+                    tL_storyItem.attachPath = b6bVar.f;
+                    r47 r47Var2 = new r47(this.e.c, tL_storyItem);
+                    b6bVar.L = r47Var2;
+                    r47Var2.m = b6bVar;
+                    r47Var = r47Var2;
                 }
                 if (this == this.f) {
                     i4 = gr0Var.e;
                 } else {
                     i4 = gr0Var.d;
                 }
-                qfaVar.k(k27Var, i4, false);
-                qfaVar.e0 = true;
-                qfaVar.setReorder(false);
-                qfaVar.i(false, false);
+                jjaVar.k(i4, r47Var, false);
+                jjaVar.e0 = true;
+                jjaVar.setReorder(false);
+                jjaVar.i(false, false);
                 return;
             }
             int size = i - arrayList.size();
             if (size >= 0 && size < this.e.i.size()) {
-                k27 k27Var3 = (k27) this.e.i.get(size);
-                if (k27Var3 != null && this.e.m(k27Var3.e1())) {
+                r47 r47Var3 = (r47) this.e.i.get(size);
+                if (r47Var3 != null && this.e.m(r47Var3.e1())) {
                     z = true;
                 } else {
                     z = false;
                 }
-                qfaVar.g0 = z;
-                qfaVar.setReorder(true);
+                jjaVar.g0 = z;
+                jjaVar.setReorder(true);
                 if (this == this.f) {
                     i3 = gr0Var.e;
                 } else {
                     i3 = gr0Var.d;
                 }
-                qfaVar.k(k27Var3, i3, false);
-                kca kcaVar = gr0Var.a0;
-                if (kcaVar.H.F1 && k27Var3 != null) {
-                    qfaVar.i(kcaVar.c(k27Var3), true);
+                jjaVar.k(i3, r47Var3, false);
+                bga bgaVar = gr0Var.a0;
+                if (bgaVar.H.F1 && r47Var3 != null) {
+                    jjaVar.i(bgaVar.c(r47Var3), true);
                     return;
                 } else {
-                    qfaVar.i(false, false);
+                    jjaVar.i(false, false);
                     return;
                 }
             }
-            qfaVar.g0 = false;
+            jjaVar.g0 = false;
             if (this == this.f) {
                 i2 = gr0Var.e;
             } else {
                 i2 = gr0Var.d;
             }
-            qfaVar.k(null, i2, false);
-            qfaVar.e0 = true;
+            jjaVar.k(i2, null, false);
+            jjaVar.e0 = true;
         }
     }
 
     @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        kca kcaVar = this.s.a0;
+    public final f89 x(ViewGroup viewGroup, int i) {
+        bga bgaVar = this.s.a0;
         if (this.h == null) {
-            this.h = new jb4(viewGroup.getContext(), kcaVar.c);
+            this.h = new gd4(viewGroup.getContext(), bgaVar.c);
         }
-        qfa qfaVar = new qfa(this.c, this.h, kcaVar.b);
-        qfaVar.x0 = true;
-        qfaVar.setGradientView(null);
-        qfaVar.e0 = true;
-        return new s49(qfaVar);
+        jja jjaVar = new jja(this.c, this.h, bgaVar.b);
+        jjaVar.x0 = true;
+        jjaVar.setGradientView(null);
+        jjaVar.e0 = true;
+        return new f89(jjaVar);
     }
 
     @Override

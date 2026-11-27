@@ -1,250 +1,336 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class i1a extends FrameLayout implements tjb {
-    public final bg7 E;
-    public final lm F;
-    public final lm G;
-    public final lm H;
-    public final gn I;
-    public final ff0 a;
-    public final int b;
-    public int c;
-    public final int d;
-    public final jia e;
-    public final jia f;
-    public final ImageView h;
-    public long n;
-    public final RectF r;
-    public final boolean s;
-    public final boolean w;
-    public final wjb x;
-    public boolean y;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class i1a extends AnimatorListenerAdapter {
+    public final byte a;
+    public final boolean b;
+    public final Object c;
 
-    public i1a(defpackage.wjb r22, android.content.Context r23, boolean r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.i1a.<init>(wjb, android.content.Context, boolean, boolean):void");
+    public i1a(byte b, Object obj, boolean z) {
+        this.a = b;
+        this.c = obj;
+        this.b = z;
     }
 
-    private ImageView getImageView() {
-        return this.h;
-    }
-
-    public final void a() {
-        long j;
-        db6 h = eb6.f(this.d).h(this.n);
-        if (h != null) {
-            if (this.w) {
-                String M0 = k96.M0(2131744601, null);
-                TLRPC.Message message = h.h.k;
-                int i = message.edit_date;
-                if (i != 0) {
-                    j = i;
-                } else {
-                    j = message.date;
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        byte b = this.a;
+        Object obj = this.c;
+        switch (b) {
+            case 1:
+                ((tba) obj).n = null;
+                return;
+            case 2:
+                ((eja) obj).R1 = null;
+                return;
+            case 12:
+                o7c o7cVar = (o7c) obj;
+                AnimatorSet animatorSet = o7cVar.J;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    o7cVar.J = null;
+                    return;
                 }
-                b(M0, k96.D(j));
                 return;
-            }
-            b(k96.M0(2131745202, null), k96.M0(2131745201, null));
-            return;
+            case 13:
+                jac jacVar = (jac) obj;
+                AnimatorSet animatorSet2 = jacVar.n1;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    jacVar.n1 = null;
+                    return;
+                }
+                return;
+            case 14:
+                xbc xbcVar = (xbc) obj;
+                AnimatorSet animatorSet3 = xbcVar.s1;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    xbcVar.s1 = null;
+                    return;
+                }
+                return;
+            case 16:
+                dvc dvcVar = (dvc) obj;
+                AnimatorSet animatorSet4 = dvcVar.f;
+                if (animatorSet4 != null && animatorSet4.equals(animator)) {
+                    dvcVar.f = null;
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        b(k96.M0(2131745426, null), k96.M0(2131745421, null));
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        int i = this.b;
-        if (i >= 0) {
-            hashSet.add(Integer.valueOf(i));
-        }
-    }
-
-    public final void b(String str, String str2) {
-        this.f.l(str, false);
-        this.e.l(str2, false);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.r != null) {
-            bg7 bg7Var = this.E;
-            gl.r(bg7Var);
-            gl.d3(bg7Var, 1000L);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        gl.r(this.E);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e;
-        float f;
+    public final void onAnimationEnd(Animator animator) {
+        vb5 vb5Var;
         int i;
-        Paint U0;
-        float L;
-        int i2;
-        boolean z = this.y;
-        wjb wjbVar = this.x;
-        if (z && (U0 = bkb.U0("paintDivider", wjbVar)) != null) {
-            if (k96.a0) {
-                L = 0.0f;
-            } else {
-                L = gl.L(73.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (k96.a0) {
-                i2 = gl.L(73.0f);
-            } else {
-                i2 = 0;
-            }
-            float f2 = L;
-            canvas2 = canvas;
-            canvas2.drawRect(f2, measuredHeight, measuredWidth - i2, getMeasuredHeight(), U0);
-        } else {
-            canvas2 = canvas;
-        }
-        if (!this.w) {
-            int i3 = this.d;
-            db6 h = eb6.f(i3).h(this.n);
-            lm lmVar = this.F;
-            float f3 = lmVar.c;
-            int currentTime = ConnectionsManager.getInstance(i3).getCurrentTime();
-            lm lmVar2 = this.G;
-            if (h != null && (i = h.c) >= currentTime && h.d != Integer.MAX_VALUE) {
-                f3 = Math.abs(i - currentTime) / h.d;
-                e = lmVar2.d(true);
-            } else {
-                lmVar2.getClass();
-                e = lmVar2.e(false, 0.0f);
-            }
-            float f4 = e;
-            float f5 = f3;
-            if (f4 <= 0.0f) {
+        Drawable[] drawableArr;
+        Drawable drawable;
+        byte b = this.a;
+        float f = 1.0f;
+        float f2 = 0.0f;
+        boolean z = this.b;
+        Object obj = this.c;
+        switch (b) {
+            case 0:
+                j1a j1aVar = (j1a) obj;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = j1aVar.w;
+                if (z) {
+                    f2 = 1.0f;
+                }
+                j1aVar.M = f2;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(f2);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(k43.g.getInterpolation(j1aVar.M));
+                int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
+                for (int i2 = 0; i2 < itemsCount; i2++) {
+                    float s = hl.s(j1aVar.M, i2, itemsCount, 4.0f);
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.M.getChildAt(i2).setTranslationY((1.0f - s) * hl.L(-12.0f));
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.M.getChildAt(i2).setAlpha(s);
+                }
+                j1aVar.O = null;
                 return;
-            }
-            boolean z2 = k96.a0;
-            RectF rectF = this.r;
-            if (z2) {
-                rectF.set(gl.L(13.0f), (getMeasuredHeight() / 2.0f) - gl.L(15.0f), gl.L(43.0f), (getMeasuredHeight() / 2.0f) + gl.L(15.0f));
-            } else {
-                rectF.set(getMeasuredWidth() - gl.L(43.0f), (getMeasuredHeight() / 2.0f) - gl.L(15.0f), getMeasuredWidth() - gl.L(13.0f), (getMeasuredHeight() / 2.0f) + gl.L(15.0f));
-            }
-            canvas2.save();
-            float R1 = gl.R1(0.6f, 1.0f, f4);
-            canvas2.scale(R1, R1, rectF.centerX(), rectF.centerY());
-            int v0 = bkb.v0(bkb.ij, wjbVar);
-            bkb.k2.setColor(v0);
-            int alpha = bkb.k2.getAlpha();
-            float f6 = alpha;
-            bkb.k2.setAlpha((int) (0.2f * f6 * f4));
-            canvas2.drawArc(this.r, -90.0f, 360.0f, false, bkb.k2);
-            bkb.k2.setAlpha((int) (f6 * f4));
-            canvas.drawArc(this.r, -90.0f, lmVar.e(false, f5) * (-360.0f), false, bkb.k2);
-            bkb.k2.setAlpha(alpha);
-            gn gnVar = this.I;
-            if (h != null) {
-                gnVar.t(k96.C(Math.abs(h.c - currentTime)), true, true);
-            }
-            int length = gnVar.i.length();
-            if (length > 4) {
-                f = 0.75f;
-            } else if (length > 3) {
-                f = 0.85f;
-            } else {
-                f = 1.0f;
-            }
-            float e2 = this.H.e(false, f);
-            canvas.scale(e2, e2, rectF.centerX(), rectF.centerY());
-            gnVar.u(v0);
-            gnVar.C = (int) (f4 * 255.0f);
-            gnVar.setBounds((int) rectF.left, (int) (rectF.centerY() - gl.L(13.0f)), (int) rectF.right, (int) (rectF.centerY() + gl.L(12.0f)));
-            gnVar.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(60.0f), 1073741824));
-    }
-
-    public void setDialogId(long j) {
-        this.n = j;
-        if (this.s) {
-            a();
-        }
-    }
-
-    public void setHasLocation(boolean z) {
-        float f;
-        float f2;
-        if (eb6.f(this.d).h(this.n) == null) {
-            float f3 = 0.5f;
-            if (z) {
-                f = 1.0f;
-            } else {
-                f = 0.5f;
-            }
-            this.f.setAlpha(f);
-            if (z) {
-                f2 = 1.0f;
-            } else {
-                f2 = 0.5f;
-            }
-            this.e.setAlpha(f2);
-            if (z) {
-                f3 = 1.0f;
-            }
-            this.h.setAlpha(f3);
-        }
-        if (this.s) {
-            a();
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        int v0;
-        ff0 ff0Var = this.a;
-        if (ff0Var != null) {
-            try {
-                int i = this.b;
-                if (i >= 0 && (v0 = bkb.v0(i, this.x)) != this.c) {
-                    this.c = v0;
-                    bkb.F1(ff0Var, v0, false);
-                    bkb.F1(ff0Var, v0, true);
-                    ImageView imageView = this.h;
-                    if (imageView != null) {
-                        imageView.invalidate();
+            case 1:
+                tba tbaVar = (tba) obj;
+                if (tbaVar.n != null && (vb5Var = tbaVar.r) != null) {
+                    if (!z) {
+                        vb5Var.setVisibility(4);
+                    }
+                    tbaVar.n = null;
+                    return;
+                }
+                return;
+            case 2:
+                eja ejaVar = (eja) obj;
+                if (ejaVar.R1 != null) {
+                    ejaVar.R1 = null;
+                    if (!z) {
+                        ejaVar.E0.setVisibility(4);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                jja jjaVar = (jja) obj;
+                ValueAnimator valueAnimator = jjaVar.B0;
+                if (valueAnimator != null && valueAnimator.equals(animator)) {
+                    if (!z) {
+                        f = 0.0f;
+                    }
+                    jjaVar.C0 = f;
+                    jjaVar.B0 = null;
+                    return;
+                }
+                return;
+            case 4:
+                p9b p9bVar = (p9b) obj;
+                if (z) {
+                    p9bVar.setVisibility(8);
+                }
+                p9bVar.c = null;
+                return;
+            case 5:
+                rbb rbbVar = (rbb) obj;
+                if (!z) {
+                    rbbVar.W0.setVisibility(8);
+                }
+                rbbVar.g2 = null;
+                return;
+            case 6:
+                lcb lcbVar = (lcb) obj;
+                lcbVar.J0.e();
+                if (z) {
+                    f2 = lcbVar.x.c;
+                }
+                lcbVar.f0 = f2;
+                o68 currentPeerView = lcbVar.o0.getCurrentPeerView();
+                if (currentPeerView != null) {
+                    currentPeerView.invalidate();
+                }
+                lcbVar.w.invalidate();
+                lcbVar.v1 = null;
+                return;
+            case 7:
+                super.onAnimationEnd(animator);
+                zqb zqbVar = (zqb) obj;
+                if (!z) {
+                    f = 0.0f;
+                }
+                zqbVar.N = f;
+                zqbVar.invalidate();
+                return;
+            case 8:
+                ktb ktbVar = (ktb) obj;
+                if (!z) {
+                    f = 0.0f;
+                }
+                ktbVar.E = f;
+                return;
+            case 9:
+                l1c l1cVar = (l1c) obj;
+                long j = l1cVar.f;
+                if (l1cVar.e0 == animator) {
+                    if (!z) {
+                        f = 0.0f;
+                    }
+                    l1cVar.V = f;
+                    l1cVar.m();
+                    l1cVar.W = false;
+                    ImageView imageView = l1cVar.I;
+                    int i3 = 2131231890;
+                    if (l1cVar.T) {
+                        i = 2131231890;
+                    } else {
+                        i = 2131231887;
+                    }
+                    imageView.setImageResource(i);
+                    ImageView imageView2 = l1cVar.H;
+                    if (!l1cVar.T) {
+                        i3 = 2131231888;
+                    }
+                    imageView2.setImageResource(i3);
+                    l1cVar.e0 = null;
+                    uc7.s1(l1cVar.e).X3.edit().putBoolean(qu6.n(j, "topicssidetabs"), l1cVar.U).putBoolean(qu6.n(j, "topicssidetabsb"), l1cVar.T).apply();
+                    Boolean bool = l1cVar.d0;
+                    if (bool != null && z != bool.booleanValue()) {
+                        boolean booleanValue = l1cVar.d0.booleanValue();
+                        l1cVar.d0 = null;
+                        l1cVar.a(booleanValue);
+                    }
+                    hl.c3(new azb(this, (byte) 1));
+                    return;
+                }
+                return;
+            case 10:
+                g1c g1cVar = (g1c) obj;
+                if (!z) {
+                    f = 0.0f;
+                }
+                g1cVar.G = f;
+                g1cVar.h();
+                return;
+            case 11:
+                k1c k1cVar = (k1c) obj;
+                if (!z) {
+                    f = 0.0f;
+                }
+                k1cVar.V = f;
+                k1cVar.h();
+                k1cVar.g();
+                return;
+            case 12:
+                o7c o7cVar = (o7c) obj;
+                AnimatorSet animatorSet = o7cVar.J;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (z) {
+                        o7cVar.e.setVisibility(4);
+                        return;
+                    } else {
+                        o7cVar.b.setVisibility(4);
+                        return;
                     }
                 }
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
+                return;
+            case 13:
+                jac jacVar = (jac) obj;
+                AnimatorSet animatorSet2 = jacVar.n1;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!z) {
+                        jacVar.o1.setVisibility(4);
+                    }
+                    jacVar.n1 = null;
+                    return;
+                }
+                return;
+            case 14:
+                xbc xbcVar = (xbc) obj;
+                AnimatorSet animatorSet3 = xbcVar.s1;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    if (!z) {
+                        xbcVar.r1.setVisibility(4);
+                    }
+                    xbcVar.s1 = null;
+                    return;
+                }
+                return;
+            case 15:
+                kmc kmcVar = (kmc) obj;
+                kmcVar.w = null;
+                if (z) {
+                    TextView[] textViewArr = kmcVar.h;
+                    TextView textView = textViewArr[0];
+                    textViewArr[0] = textViewArr[1];
+                    textViewArr[1] = textView;
+                    textView.setVisibility(8);
+                }
+                if (!kmcVar.H && (drawable = (drawableArr = kmcVar.e)[1]) != null) {
+                    drawableArr[0] = drawable;
+                    drawableArr[1] = null;
+                }
+                kmcVar.H = false;
+                if (!kmcVar.P) {
+                    kmcVar.n = kmcVar.r;
+                }
+                kmcVar.s = 0.0f;
+                kmcVar.invalidate();
+                return;
+            case 16:
+                dvc dvcVar = (dvc) obj;
+                AnimatorSet animatorSet4 = dvcVar.f;
+                if (animatorSet4 != null && animatorSet4.equals(animator)) {
+                    dvcVar.f = null;
+                    if (!z) {
+                        dvcVar.setBackgroundColor(0);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 17:
+                dxc dxcVar = (dxc) obj;
+                xs0 xs0Var = dxcVar.W;
+                if (!dxcVar.U) {
+                    xs0Var.setVisibility(8);
+                    xs0Var.setText("");
+                }
+                if (!z) {
+                    f = 0.0f;
+                }
+                dxcVar.V = f;
+                xs0Var.setAlpha(f);
+                dxcVar.invalidate();
+                if (dxcVar.U) {
+                    xs0Var.requestFocus();
+                    hl.E3(xs0Var);
+                    return;
+                }
+                xs0Var.clearFocus();
+                hl.t1(xs0Var);
+                return;
+            default:
+                xt xtVar = (xt) obj;
+                xs0 xs0Var2 = xtVar.c0;
+                if (!xtVar.a0) {
+                    xs0Var2.setVisibility(8);
+                }
+                if (!z) {
+                    f = 0.0f;
+                }
+                xtVar.b0 = f;
+                xs0Var2.setAlpha(f);
+                xtVar.j(xtVar.b0);
+                xtVar.S.setTranslationX(hl.L(56.0f) * xtVar.b0);
+                xtVar.P.setTranslationX(hl.L(112.0f) * xtVar.b0);
+                xtVar.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.I && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

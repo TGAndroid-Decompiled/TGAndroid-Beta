@@ -1,30 +1,121 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Intent;
-public final class ogc implements ed {
-    public final byte a;
-    public final Activity b;
-    public final Intent c;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+public final class ogc extends View {
+    public ShapeDrawable a;
+    public Drawable b;
+    public StaticLayout c;
+    public TextPaint d;
+    public long e;
+    public float f;
+    public float h;
+    public boolean n;
+    public int r;
 
-    public ogc(Activity activity, Intent intent, byte b) {
-        this.a = b;
-        this.b = activity;
-        this.c = intent;
+    public final void a(boolean z) {
+        this.n = z;
+        invalidate();
+    }
+
+    public final void b() {
+        int i;
+        Drawable drawable = this.b;
+        this.d.setColor(aob.w0(null, aob.gg, false));
+        ShapeDrawable shapeDrawable = this.a;
+        if (shapeDrawable != null) {
+            i = aob.hg;
+            aob.A1(aob.w0(null, i, false), shapeDrawable);
+        } else {
+            int L = hl.L(5.0f);
+            i = aob.hg;
+            this.a = aob.b0(L, aob.w0(null, i, false));
+        }
+        int w0 = aob.w0(null, i, false);
+        if (w0 == this.r && drawable.getColorFilter() != null) {
+            return;
+        }
+        this.r = w0;
+        drawable.setColorFilter(new PorterDuffColorFilter(w0, PorterDuff.Mode.MULTIPLY));
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        byte b = this.a;
-        Intent intent = this.c;
-        Activity activity = this.b;
-        switch (b) {
-            case 0:
-                activity.startActivity(intent);
-                return;
-            default:
-                activity.startActivity(intent);
-                return;
+    public final void onDraw(Canvas canvas) {
+        float f;
+        Drawable drawable = this.b;
+        if (this.c != null) {
+            boolean z = this.n;
+            float f2 = this.h;
+            if (z) {
+                if (f2 != 1.0f) {
+                    float f3 = f2 + 0.12f;
+                    this.h = f3;
+                    if (f3 > 1.0f) {
+                        this.h = 1.0f;
+                    }
+                    invalidate();
+                }
+            } else {
+                if (f2 != 0.0f) {
+                    float f4 = f2 - 0.12f;
+                    this.h = f4;
+                    if (f4 < 0.0f) {
+                        this.h = 0.0f;
+                    }
+                    invalidate();
+                }
+                if (this.h == 0.0f) {
+                    return;
+                }
+            }
+            float f5 = this.h;
+            if (f5 > 0.5f) {
+                f = 1.0f;
+            } else {
+                f = f5 / 0.5f;
+            }
+            int i = (int) (f * 255.0f);
+            canvas.save();
+            float f6 = this.h;
+            canvas.scale(f6, f6, this.f, getMeasuredHeight());
+            canvas.translate(this.f - (this.c.getWidth() / 2.0f), 0.0f);
+            this.a.setBounds(-hl.L(8.0f), 0, hl.L(8.0f) + this.c.getWidth(), (int) (hl.N(4.0f) + this.c.getHeight()));
+            drawable.setBounds(bp1.A(2, this.c.getWidth() / 2, drawable), (int) (hl.N(4.0f) + this.c.getHeight()), bp1.w(2, this.c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (hl.N(4.0f) + this.c.getHeight())));
+            drawable.setAlpha(i);
+            this.a.setAlpha(i);
+            this.d.setAlpha(i);
+            drawable.draw(canvas);
+            this.a.draw(canvas);
+            canvas.translate(0.0f, hl.N(1.0f));
+            this.c.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.b.getIntrinsicHeight() + hl.L(4.0f) + this.c.getHeight(), 1073741824));
+    }
+
+    public void setCx(float f) {
+        this.f = f;
+        invalidate();
+    }
+
+    public void setTime(int i) {
+        long j = i;
+        if (j != this.e) {
+            this.e = j;
+            String g0 = hl.g0(i, false, false);
+            TextPaint textPaint = this.d;
+            this.c = new StaticLayout(g0, textPaint, (int) textPaint.measureText(g0), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         }
     }
 }

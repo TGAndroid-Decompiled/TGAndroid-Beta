@@ -1,22 +1,26 @@
 package defpackage;
 
-import android.content.res.ColorStateList;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-public final class ia9 {
-    public final ColorStateList a;
-    public final Configuration b;
-    public final int c;
+import org.webrtc.RenderSynchronizer;
+public final class ia9 implements Runnable {
+    public final byte a;
+    public final RenderSynchronizer b;
 
-    public ia9(ColorStateList colorStateList, Configuration configuration, Resources.Theme theme) {
-        int hashCode;
-        this.a = colorStateList;
-        this.b = configuration;
-        if (theme == null) {
-            hashCode = 0;
-        } else {
-            hashCode = theme.hashCode();
+    public ia9(RenderSynchronizer renderSynchronizer, byte b) {
+        this.a = b;
+        this.b = renderSynchronizer;
+    }
+
+    @Override
+    public final void run() {
+        byte b = this.a;
+        RenderSynchronizer renderSynchronizer = this.b;
+        switch (b) {
+            case 0:
+                RenderSynchronizer.a(renderSynchronizer);
+                return;
+            default:
+                RenderSynchronizer.c(renderSynchronizer);
+                return;
         }
-        this.c = hashCode;
     }
 }

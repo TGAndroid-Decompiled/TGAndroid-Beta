@@ -1,3 +1,3 @@
 package defpackage;
-public interface gx {
+public abstract class gx {
 }

@@ -1,19 +1,16 @@
 package defpackage;
 
-import android.content.Context;
-public final class w16 extends ah8 {
-    public final h26 S;
-
-    public w16(h26 h26Var, Context context, wjb wjbVar) {
-        super(wjbVar, context, true);
-        this.S = h26Var;
+import j$.util.function.Consumer$CC;
+import java.util.function.Consumer;
+import org.telegram.ui.LaunchActivity;
+public final class w16 implements Consumer {
+    @Override
+    public final void accept(Object obj) {
+        ((Boolean) obj).getClass();
+        String str = LaunchActivity.C1;
     }
 
-    @Override
-    public final void invalidate() {
-        if (this.S.a2) {
-            return;
-        }
-        super.invalidate();
+    public final Consumer andThen(Consumer consumer) {
+        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

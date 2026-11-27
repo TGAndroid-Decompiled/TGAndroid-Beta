@@ -1,51 +1,54 @@
 package defpackage;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import java.util.HashMap;
+import android.view.View;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-public final class syb implements ul3 {
-    public final Integer a;
-    public final k27 b;
-    public final int c;
-    public final long d;
-    public final long e;
+public final class syb implements oz1, gc7, nr7, u69 {
+    public final tzb a;
 
-    public syb(Integer num, k27 k27Var, int i, long j, long j2) {
-        this.a = num;
-        this.b = k27Var;
-        this.c = i;
-        this.d = j;
-        this.e = j2;
+    public syb(tzb tzbVar) {
+        this.a = tzbVar;
     }
 
     @Override
-    public final void a(String str, int[] iArr, boolean z) {
-        if (z) {
-            HashMap hashMap = uyb.S;
-            Integer num = this.a;
-            hashMap.remove(num);
-            uyb.R.remove(num);
+    public final l2d S(View view, l2d l2dVar) {
+        int i = l2dVar.a.f(519).d;
+        tzb tzbVar = this.a;
+        tzbVar.h1 = i;
+        ozb ozbVar = tzbVar.s0;
+        if (ozbVar != null) {
+            ozbVar.setPadding(0, 0, 0, i);
         }
-        k27 k27Var = this.b;
-        if (str == null) {
-            uyb.n(k27Var);
-            return;
+        uxb uxbVar = tzbVar.n;
+        if (uxbVar != null) {
+            ((TextView) uxbVar.d).setTranslationY((-tzbVar.h1) - tzbVar.g1);
         }
-        TLRPC.Message message = k27Var.k;
-        if (!z) {
-            if (TextUtils.isEmpty(str)) {
-                return;
-            }
-            message.voiceTranscription = str;
-            message.voiceTranscriptionWords = iArr;
-            message.voiceTranscriptionLocal = true;
-            message.voiceTranscriptionFinal = false;
-            message.voiceTranscriptionOpen = true;
-            uyb.q(k27Var);
-            kk7.f(this.c).k(kk7.z1, k27Var, null, null, Boolean.TRUE, Boolean.FALSE);
-            return;
-        }
-        gl.d3(new ue(k27Var, message, str, iArr, this.c, this.d, (byte) 6), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.e)));
+        tzbVar.h.setTranslationY(((-tzbVar.Y0) - tzbVar.h1) - tzbVar.g1);
+        tzbVar.C0();
+        return l2d.b;
+    }
+
+    @Override
+    public final boolean b(TLRPC.TL_error tL_error) {
+        return this.a.K0(tL_error);
+    }
+
+    @Override
+    public final boolean mo8d(float f, float f2, int i, View view) {
+        return this.a.J0(view, f);
+    }
+
+    @Override
+    public final void g(boolean z, boolean z2) {
+        tzb tzbVar = this.a;
+        tzbVar.V0.j(tzbVar.S0.b(), z, z2);
+    }
+
+    @Override
+    public final void f() {
+    }
+
+    @Override
+    public final void h(float f) {
     }
 }

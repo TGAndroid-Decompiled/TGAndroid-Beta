@@ -1,3 +1,3 @@
 package defpackage;
-public abstract class ci5 {
+public final class ci5 extends syc {
 }

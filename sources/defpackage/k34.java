@@ -1,64 +1,45 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.DashPathEffect;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-public abstract class k34 extends FrameLayout {
-    public final Paint a;
-    public final Paint b;
-    public final Paint c;
-    public int d;
-    public final lm e;
-    public boolean f;
-    public final l34 h;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+public abstract class k34 {
+    public static final int[] a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, -1, -1, 37, 38, -1, -1, -1, -1, 39, 40, -1, 41, 42, 43, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 44, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1};
+    public static final Charset b = StandardCharsets.ISO_8859_1;
 
-    public k34(l34 l34Var, Context context) {
-        super(context);
-        this.h = l34Var;
-        Paint paint = new Paint(1);
-        this.a = paint;
-        Paint paint2 = new Paint(1);
-        this.b = paint2;
-        Paint paint3 = new Paint(1);
-        this.c = paint3;
-        this.e = new lm(this, 0L, 250L, s33.h);
-        this.f = true;
-        setWillNotDraw(false);
-        paint.setColor(-1);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(gl.L(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setPathEffect(new DashPathEffect(new float[]{gl.L(10.0f), gl.L(10.0f)}, 0.5f));
-        paint.setShadowLayer(gl.N(0.75f), 0.0f, 0.0f, 1342177280);
-        paint2.setColor(-15033089);
-        paint3.setColor(-1);
-        paint3.setStyle(style);
-        paint3.setStrokeWidth(gl.N(2.66f));
-        paint3.setShadowLayer(gl.N(0.75f), 0.0f, 0.0f, 1342177280);
+    public static void a(java.lang.String r8, defpackage.pg7 r9, defpackage.qj0 r10, java.nio.charset.Charset r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k34.a(java.lang.String, pg7, qj0, java.nio.charset.Charset):void");
     }
 
-    public abstract int a(float f, float f2);
-
-    public final void b() {
-        l34 l34Var = this.h;
-        l29 selectionBounds = l34Var.getSelectionBounds();
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-        layoutParams.leftMargin = (int) selectionBounds.a;
-        layoutParams.topMargin = (int) selectionBounds.b;
-        layoutParams.width = (int) selectionBounds.c;
-        layoutParams.height = (int) selectionBounds.d;
-        setLayoutParams(layoutParams);
-        setRotation(l34Var.getRotation());
+    public static defpackage.d2c b(java.lang.String r27, defpackage.r44 r28, java.util.AbstractMap r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.k34.b(java.lang.String, r44, java.util.AbstractMap):d2c");
     }
 
-    public float getShowAlpha() {
-        return this.e.d(this.f);
+    public static boolean c(String str) {
+        byte[] bytes = str.getBytes(bdb.b);
+        int length = bytes.length;
+        if (length % 2 != 0) {
+            return false;
+        }
+        for (int i = 0; i < length; i += 2) {
+            int i2 = bytes[i] & 255;
+            if ((i2 < 129 || i2 > 159) && (i2 < 224 || i2 > 235)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.k34.onTouchEvent(android.view.MotionEvent):boolean");
+    public static boolean d(int i, xdc xdcVar, r44 r44Var) {
+        int i2 = xdcVar.d;
+        ekd ekdVar = xdcVar.c[r44Var.ordinal()];
+        byte b2 = ekdVar.a;
+        int i3 = 0;
+        for (wdc wdcVar : (wdc[]) ekdVar.b) {
+            i3 += wdcVar.a;
+        }
+        if (i2 - (i3 * b2) < (i + 7) / 8) {
+            return false;
+        }
+        return true;
     }
 }

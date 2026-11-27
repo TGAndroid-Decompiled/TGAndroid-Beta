@@ -1,122 +1,85 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-public final class mg5 extends AsyncTask {
-    public final byte a = 0;
-    public final HashMap b = new HashMap();
-    public Exception c;
-    public final p8c d;
+import android.content.SharedPreferences;
+import org.telegram.messenger.Utilities;
+public final class mg5 {
+    public static final mg5 d;
+    public static final mg5 e;
+    public static final mg5 f;
+    public static final mg5 h;
+    public static final mg5 n;
+    public static final mg5 r;
+    public static final mg5 s;
+    public static final mg5 w;
+    public static final mg5 x;
+    public static final mg5[] y;
+    public final String a;
+    public final byte b;
+    public final float c;
 
-    public mg5(p8c p8cVar) {
-        this.d = p8cVar;
+    static {
+        mg5 mg5Var = new mg5("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
+        d = mg5Var;
+        mg5 mg5Var2 = new mg5("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
+        e = mg5Var2;
+        mg5 mg5Var3 = new mg5("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
+        f = mg5Var3;
+        mg5 mg5Var4 = new mg5("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
+        h = mg5Var4;
+        mg5 mg5Var5 = new mg5("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
+        n = mg5Var5;
+        mg5 mg5Var6 = new mg5("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
+        r = mg5Var6;
+        mg5 mg5Var7 = new mg5("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
+        s = mg5Var7;
+        mg5 mg5Var8 = new mg5("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
+        w = mg5Var8;
+        mg5 mg5Var9 = new mg5();
+        x = mg5Var9;
+        y = new mg5[]{mg5Var, mg5Var2, mg5Var3, mg5Var4, mg5Var5, mg5Var6, mg5Var7, mg5Var8, mg5Var9};
     }
 
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        BufferedReader bufferedReader;
-        byte b = this.a;
-        HashMap hashMap = this.b;
-        switch (b) {
-            case 0:
-                try {
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry : hashMap.entrySet()) {
-                        if (entry.getKey() != null && entry.getValue() != null) {
-                            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-                        }
-                    }
-                    httpURLConnection.setRequestMethod("GET");
-                    httpURLConnection.setDoInput(true);
-                    int responseCode = httpURLConnection.getResponseCode();
-                    if (responseCode >= 200 && responseCode < 300) {
-                        if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                            return lcb.f(new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64);
-                        }
-                        return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
-                    }
-                    httpURLConnection.disconnect();
-                    return null;
-                } catch (Exception e) {
-                    this.c = e;
-                    return null;
+    public mg5() {
+        this.a = "hints_controller_" + this;
+        this.b = (byte) 3;
+        this.c = 1.0f;
+    }
+
+    public static mg5 valueOf(String str) {
+        return (mg5) Enum.valueOf(mg5.class, str);
+    }
+
+    public static mg5[] values() {
+        return (mg5[]) y.clone();
+    }
+
+    public final void a() {
+        uc7.e1().edit().putInt(this.a, this.b).apply();
+    }
+
+    public final void b() {
+        SharedPreferences e1 = uc7.e1();
+        String str = this.a;
+        uc7.e1().edit().putInt(str, e1.getInt(str, 0) + 1).apply();
+    }
+
+    public final boolean c() {
+        if (uc7.e1().getInt(this.a, 0) < this.b) {
+            float f2 = this.c;
+            if (f2 < 1.0f) {
+                if (f2 > 0.0f && Utilities.c.nextFloat() < f2) {
+                    return true;
                 }
-            default:
-                try {
-                    HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry2 : hashMap.entrySet()) {
-                        if (entry2.getKey() != null && entry2.getValue() != null) {
-                            httpURLConnection2.setRequestProperty((String) entry2.getKey(), (String) entry2.getValue());
-                        }
-                    }
-                    httpURLConnection2.setRequestMethod("GET");
-                    httpURLConnection2.setDoInput(true);
-                    int responseCode2 = httpURLConnection2.getResponseCode();
-                    if (responseCode2 >= 200 && responseCode2 < 300) {
-                        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getInputStream()));
-                    } else {
-                        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getErrorStream()));
-                    }
-                    StringBuilder sb = new StringBuilder();
-                    while (true) {
-                        String readLine = bufferedReader.readLine();
-                        if (readLine != null) {
-                            sb.append(readLine);
-                        } else {
-                            bufferedReader.close();
-                            return sb.toString();
-                        }
-                    }
-                } catch (Exception e2) {
-                    this.c = e2;
-                    return null;
-                }
-                break;
+            } else {
+                return true;
+            }
         }
+        return false;
     }
 
-    @Override
-    public final void onPostExecute(Object obj) {
-        byte b = this.a;
-        p8c p8cVar = this.d;
-        switch (b) {
-            case 0:
-                Bitmap bitmap = (Bitmap) obj;
-                nu9 nu9Var = (nu9) p8cVar;
-                if (nu9Var != null) {
-                    if (this.c == null) {
-                        nu9Var.a(bitmap);
-                        return;
-                    } else {
-                        nu9Var.a(null);
-                        return;
-                    }
-                }
-                return;
-            default:
-                String str = (String) obj;
-                if (p8cVar != null) {
-                    if (this.c == null) {
-                        p8cVar.a(str);
-                        return;
-                    } else {
-                        p8cVar.a(null);
-                        return;
-                    }
-                }
-                return;
-        }
-    }
-
-    public mg5(nu9 nu9Var) {
-        this.d = nu9Var;
+    public mg5(String str, int i, String str2, int i2, float f2) {
+        this.a = str2;
+        this.b = i2;
+        this.c = f2;
     }
 }

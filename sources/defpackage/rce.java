@@ -1,28 +1,17 @@
 package defpackage;
-public enum rce implements boe {
-    UNKNOWN_FORMAT(0),
-    CONTACT_INFO(1),
-    EMAIL(2),
-    ISBN(3),
-    PHONE(4),
-    PRODUCT(5),
-    SMS(6),
-    TEXT(7),
-    URL(8),
-    WIFI(9),
-    GEO(10),
-    CALENDAR_EVENT(11),
-    DRIVER_LICENSE(12),
-    BOARDING_PASS(13);
-    
-    public final byte a;
+public final class rce implements zq7 {
+    public static final rce a = new Object();
 
-    rce(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
     @Override
-    public final String toString() {
-        return "<" + rce.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

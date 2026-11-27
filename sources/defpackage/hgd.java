@@ -1,3 +1,5 @@
 package defpackage;
-public final class hgd extends ezc {
+
+import android.os.Parcelable;
+public abstract class hgd implements Parcelable.Creator {
 }

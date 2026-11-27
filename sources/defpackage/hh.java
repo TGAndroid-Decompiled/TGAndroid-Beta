@@ -1,55 +1,66 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.PhotoViewer;
-public final class hh implements Runnable {
+import android.view.View;
+import j$.util.function.Predicate$CC;
+import java.util.Map;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hh implements Predicate {
     public final byte a;
-    public final je5 b;
+    public final long b;
 
-    public hh(je5 je5Var, byte b) {
+    public hh(byte b, long j) {
         this.a = b;
-        this.b = je5Var;
+        this.b = j;
+    }
+
+    public final Predicate and(Predicate predicate) {
+        byte b = this.a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public final Predicate negate() {
+        byte b = this.a;
+        return Predicate$CC.$default$negate(this);
+    }
+
+    public final Predicate or(Predicate predicate) {
+        byte b = this.a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void run() {
+    public final boolean test(Object obj) {
         byte b = this.a;
-        je5 je5Var = this.b;
+        long j = this.b;
         switch (b) {
             case 0:
-                gl.B2(je5Var);
-                return;
+                TLObject tLObject = (TLObject) obj;
+                if (tLObject instanceof TLRPC.User) {
+                    if (((TLRPC.User) tLObject).id != j) {
+                        return true;
+                    }
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    return true ^ xc2.N((TLRPC.Chat) tLObject);
+                }
+                return false;
             case 1:
-                gl.B2(je5Var);
-                return;
+                if (((TLRPC.User) obj).id == j) {
+                    return true;
+                }
+                return false;
             case 2:
-                gl.B2(je5Var);
-                return;
-            case 3:
-                float[] fArr = FragmentContextView.W0;
-                gl.B2(je5Var);
-                return;
-            case 4:
-            case 7:
-                je5Var.f(true);
-                return;
-            case 5:
-                je5Var.y();
-                return;
-            case 6:
-                Drawable[] drawableArr = PhotoViewer.d9;
-                gl.B2(je5Var);
-                return;
-            case 8:
-                gl.B2(je5Var);
-                return;
-            case 9:
-                gl.B2(je5Var);
-                return;
+                if (((TLRPC.User) obj).id == j) {
+                    return true;
+                }
+                return false;
             default:
-                gl.B2(je5Var);
-                return;
+                Map.Entry entry = (Map.Entry) obj;
+                if (!((View) entry.getKey()).isAttachedToWindow() || !((View) entry.getKey()).isShown() || ((View) entry.getKey()).getWindowVisibility() != 0 || j - ((Long) entry.getValue()).longValue() > 300) {
+                    return true;
+                }
+                return false;
         }
     }
 }

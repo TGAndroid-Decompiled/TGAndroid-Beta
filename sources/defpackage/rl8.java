@@ -1,125 +1,90 @@
 package defpackage;
 
-import android.graphics.RectF;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class rl8 implements p8c {
-    public final byte a = 0;
-    public final boolean b;
-    public final Object c;
-    public final gk7 d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
+import android.content.Context;
+import android.graphics.Path;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class rl8 extends LinearLayout {
+    public final TextView a;
+    public final TextView b;
+    public final FrameLayout c;
+    public final i94 d;
+    public final jd8 e;
+    public boolean f;
+    public boolean h;
+    public final PremiumPreviewFragment n;
 
-    public rl8(tx9 tx9Var, boolean z, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
-        this.d = tx9Var;
-        this.b = z;
-        this.e = linkedHashSet;
-        this.c = str;
-        this.f = hashMap;
-        this.g = arrayList;
+    public rl8(PremiumPreviewFragment premiumPreviewFragment, Context context) {
+        super(context);
+        int i;
+        int i2;
+        int i3;
+        this.n = premiumPreviewFragment;
+        setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.c = frameLayout;
+        boolean z = premiumPreviewFragment.h0;
+        if (z) {
+            i = 175;
+        } else {
+            i = 190;
+        }
+        addView(frameLayout, tre.r(i, i, 1));
+        boolean z2 = premiumPreviewFragment.i0;
+        if (z) {
+            i2 = 1;
+        } else {
+            i2 = 0;
+        }
+        i94 i94Var = new i94(this, context, z2 ? 1 : 0, i2, context);
+        this.d = i94Var;
+        frameLayout.addView(i94Var, tre.c(-1.0f, -1));
+        frameLayout.setClipChildren(false);
+        setClipChildren(false);
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setTextSize(1, 22.0f);
+        textView.setTypeface(hl.o());
+        textView.setGravity(1);
+        if (z) {
+            i3 = 8;
+        } else {
+            i3 = 20;
+        }
+        addView(textView, tre.q(-2, -2, 0.0f, 1, 16, i3, 16, 0));
+        TextView textView2 = new TextView(context);
+        this.b = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setLineSpacing(hl.L(2.0f), 1.0f);
+        textView2.setGravity(1);
+        addView(textView2, tre.q(-1, -2, 0.0f, 1, 16, 7, 16, 0));
+        jd8 jd8Var = new jd8(this, context);
+        this.e = jd8Var;
+        jd8Var.setOverScrollMode(2);
+        jd8Var.setLayoutManager(new x46());
+        jd8Var.setAdapter(new ql8(this, context));
+        jd8Var.setOnItemClickListener(new zg4(this, (byte) 22));
+        jd8Var.setSelectorTransformer(new cv0(this, new Path(), new float[8], (byte) 2));
+        setClipChildren(false);
+        setClipToPadding(false);
+        addView(jd8Var, tre.k(12.0f, 16.0f, 12.0f, 4.0f, -1, -2));
+        a();
+        b();
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rl8.a():void");
+    }
+
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rl8.b():void");
     }
 
     @Override
-    public final void a(Object obj) {
-        boolean z;
-        ArrayList<TLRPC.Document> arrayList;
-        ArrayList<TLRPC.Document> arrayList2;
-        byte b = this.a;
-        Object obj2 = this.c;
-        Object obj3 = this.g;
-        Object obj4 = this.f;
-        Object obj5 = this.e;
-        gk7 gk7Var = this.d;
-        switch (b) {
-            case 0:
-                ProfileActivity profileActivity = (ProfileActivity) gk7Var;
-                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj5;
-                TLRPC.User user = (TLRPC.User) obj4;
-                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) obj3;
-                String str = (String) obj2;
-                Integer num = (Integer) obj;
-                RectF rectF = ProfileActivity.Z6;
-                boolean z2 = this.b;
-                if (channelParticipant != null) {
-                    profileActivity.d3(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z2);
-                    return;
-                } else {
-                    profileActivity.d3(num.intValue(), user, chatParticipant, null, null, str, z2);
-                    return;
-                }
-            case 1:
-                tx9 tx9Var = (tx9) gk7Var;
-                LinkedHashSet linkedHashSet = (LinkedHashSet) obj5;
-                String str2 = (String) obj2;
-                HashMap hashMap = (HashMap) obj4;
-                ArrayList arrayList3 = (ArrayList) obj3;
-                Runnable runnable = (Runnable) obj;
-                int i = tx9Var.W;
-                if (this.b) {
-                    ArrayList t0 = hq6.d0(i).t0(5);
-                    for (int i2 = 0; i2 < t0.size(); i2++) {
-                        if (((TLRPC.TL_messages_stickerSet) t0.get(i2)).documents != null && (arrayList2 = ((TLRPC.TL_messages_stickerSet) t0.get(i2)).documents) != null) {
-                            for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-                                String V = k27.V(arrayList2.get(i3), null, null);
-                                long j = arrayList2.get(i3).id;
-                                if (V != null && !linkedHashSet.contains(Long.valueOf(j)) && str2.contains(V.toLowerCase())) {
-                                    linkedHashSet.add(Long.valueOf(j));
-                                }
-                            }
-                        }
-                    }
-                    ArrayList arrayList4 = hq6.d0(i).t0[1];
-                    for (int i4 = 0; i4 < arrayList4.size(); i4++) {
-                        if ((arrayList4.get(i4) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i4)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) arrayList4.get(i4)).documents) != null) {
-                            for (int i5 = 0; i5 < arrayList.size(); i5++) {
-                                String V2 = k27.V(arrayList.get(i5), null, null);
-                                long j2 = arrayList.get(i5).id;
-                                if (V2 != null && !linkedHashSet.contains(Long.valueOf(j2)) && str2.contains(V2)) {
-                                    linkedHashSet.add(Long.valueOf(j2));
-                                }
-                            }
-                        }
-                    }
-                    runnable.run();
-                    return;
-                }
-                hq6 d0 = hq6.d0(i);
-                String[] strArr = tx9.c2;
-                kh khVar = new kh(tx9Var, linkedHashSet, hashMap, arrayList3, runnable);
-                if (tx9Var.a0 == 3) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                d0.X(strArr, str2, false, khVar, true, z, false, false, 30);
-                return;
-            default:
-                ((z3a) gk7Var).O((TLObject) obj, (ArrayList) obj5, (ArrayList) obj4, (ArrayList) obj3, (k3a) obj2, this.b);
-                return;
-        }
-    }
-
-    public rl8(z3a z3aVar, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, k3a k3aVar, boolean z) {
-        this.d = z3aVar;
-        this.e = arrayList;
-        this.f = arrayList2;
-        this.g = arrayList3;
-        this.c = k3aVar;
-        this.b = z;
-    }
-
-    public rl8(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z, String str) {
-        this.d = profileActivity;
-        this.e = channelParticipant;
-        this.f = user;
-        this.g = chatParticipant;
-        this.b = z;
-        this.c = str;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
     }
 }

@@ -1,42 +1,51 @@
 package defpackage;
 
-import j$.util.Objects;
-import java.util.Map;
-public final class rm5 extends v5c {
-    public final v5c b;
-    public Object c;
-    public v5c d;
+import java.util.ArrayList;
+public final class rm5 implements Runnable {
+    public final byte a = 0;
+    public final String b;
+    public final int c;
+    public final boolean d;
 
-    public rm5(nm5 nm5Var) {
-        super((byte) 0);
-        b69 b69Var = nm5Var.e;
-        ym5 ym5Var = b69Var.a;
-        if (ym5Var == null) {
-            ym5Var = b69Var.c();
-            b69Var.a = ym5Var;
-        }
-        this.b = ym5Var.n();
-        this.c = null;
-        this.d = ls5.e;
+    public rm5(int i, String str, boolean z) {
+        this.c = i;
+        this.b = str;
+        this.d = z;
     }
 
     @Override
-    public final boolean hasNext() {
-        if (!this.d.hasNext() && !this.b.hasNext()) {
-            return false;
+    public final void run() {
+        byte b = this.a;
+        boolean z = this.d;
+        int i = this.c;
+        String str = this.b;
+        switch (b) {
+            case 0:
+                jn7.f(i).k(140, str, Boolean.valueOf(z));
+                return;
+            default:
+                h0d h0dVar = (h0d) k0d.a.get(str);
+                if (h0dVar != null && h0dVar.v != null) {
+                    if (k0d.g.contains(h0dVar)) {
+                        h0dVar.M = i;
+                        h0dVar.v.m(i);
+                        return;
+                    }
+                    h0dVar.M = i;
+                    h0dVar.N = z;
+                    ArrayList arrayList = k0d.f;
+                    arrayList.remove(h0dVar);
+                    arrayList.add(h0dVar);
+                    k0d.o();
+                    return;
+                }
+                return;
         }
-        return true;
     }
 
-    @Override
-    public final Object next() {
-        if (!this.d.hasNext()) {
-            Map.Entry entry = (Map.Entry) this.b.next();
-            this.c = entry.getKey();
-            this.d = ((gm5) entry.getValue()).n();
-        }
-        Object obj = this.c;
-        Objects.requireNonNull(obj);
-        return new hm5(obj, this.d.next());
+    public rm5(String str, int i, boolean z) {
+        this.b = str;
+        this.c = i;
+        this.d = z;
     }
 }

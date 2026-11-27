@@ -1,12 +1,17 @@
 package defpackage;
+public final class nce implements zq7 {
+    public static final nce a = new Object();
 
-import java.util.Date;
-public abstract class nce {
-    public static long a(Date date) {
-        return (date.getTime() / 1000) + 2082844800;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
-    public static Date b(long j) {
-        return new Date((j - 2082844800) * 1000);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

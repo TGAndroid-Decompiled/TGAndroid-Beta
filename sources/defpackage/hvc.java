@@ -1,11 +1,23 @@
 package defpackage;
 
 import android.graphics.Bitmap;
-import android.graphics.Paint;
-public interface hvc {
-    Bitmap canvasBitmap(int i);
+import android.graphics.drawable.BitmapDrawable;
+import java.util.List;
+public final class hvc extends BitmapDrawable {
+    public final List a;
 
-    Paint font(int i);
+    public hvc(Bitmap bitmap, List list) {
+        super(bitmap);
+        this.a = list;
+    }
 
-    Bitmap image(int i);
+    public static BitmapDrawable a(Bitmap bitmap, List list) {
+        if (bitmap == null) {
+            return null;
+        }
+        if (list != null && !list.isEmpty()) {
+            return new hvc(bitmap, list);
+        }
+        return new BitmapDrawable(bitmap);
+    }
 }

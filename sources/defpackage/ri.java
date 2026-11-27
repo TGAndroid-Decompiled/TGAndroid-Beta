@@ -1,103 +1,67 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.Button;
-public final class ri extends hn {
-    public final byte s;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+public final class ri extends LinearLayout {
+    public final byte a;
+    public boolean b;
+    public final hq7 c;
 
-    public ri(Context context, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
-        super(context, z, z2, z3, z4, z5);
-        this.s = (byte) 5;
-    }
-
-    @Override
-    public final CharSequence getAccessibilityClassName() {
-        switch (this.s) {
-            case 0:
-                return Button.class.getName();
-            case 1:
-            default:
-                return super.getAccessibilityClassName();
-            case 2:
-                return Button.class.getName();
-        }
-    }
-
-    @Override
-    public final int getBaseline() {
-        switch (this.s) {
-            case 5:
-                return Math.round((getHeight() - getDrawable().e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
-            default:
-                return super.getBaseline();
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        switch (this.s) {
-            case 3:
-                if (!pg5.b(this)) {
-                    super.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.s) {
-            case 4:
-                canvas.save();
-                canvas.translate(gl.L(17.0f), 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public ri(Context context, hq7 hq7Var, byte b) {
+        super(context);
+        this.a = b;
+        this.c = hq7Var;
+        this.b = false;
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        switch (this.s) {
-            case 1:
+        byte b = this.a;
+        int i3 = 5;
+        hq7 hq7Var = this.c;
+        switch (b) {
+            case 0:
+                qi qiVar = (qi) hq7Var;
+                this.b = true;
+                Point point = hl.q;
+                if (point.x > point.y) {
+                    i3 = 3;
+                }
+                qiVar.setItemCount(i3);
+                qiVar.getLayoutParams().height = hl.L(42.0f) * i3;
+                this.b = false;
                 super.onMeasure(i, i2);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(gl.q.x, Integer.MIN_VALUE), i2);
-                setMeasuredDimension(View.resolveSize((int) Math.ceil(getDrawable().c()), i), getMeasuredHeight());
                 return;
             default:
+                wi wiVar = (wi) hq7Var;
+                this.b = true;
+                Point point2 = hl.q;
+                if (point2.x > point2.y) {
+                    i3 = 3;
+                }
+                wiVar.setItemCount(i3);
+                wiVar.getLayoutParams().height = hl.L(42.0f) * i3;
+                this.b = false;
                 super.onMeasure(i, i2);
                 return;
         }
     }
 
-    public ri(Context context, boolean z, boolean z2, boolean z3, byte b) {
-        super(context, z, z2, z3);
-        this.s = b;
-    }
-
     @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        switch (this.s) {
-            case 3:
-                if (pg5.b(this)) {
+    public final void requestLayout() {
+        switch (this.a) {
+            case 0:
+                if (!this.b) {
+                    super.requestLayout();
                     return;
                 }
-                super.invalidate(i, i2, i3, i4);
                 return;
             default:
-                super.invalidate(i, i2, i3, i4);
+                if (!this.b) {
+                    super.requestLayout();
+                    return;
+                }
                 return;
         }
     }

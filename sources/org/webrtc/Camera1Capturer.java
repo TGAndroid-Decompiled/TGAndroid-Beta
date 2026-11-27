@@ -32,6 +32,11 @@ public class Camera1Capturer extends CameraCapturer {
     }
 
     @Override
+    public boolean isCapturing() {
+        return super.isCapturing();
+    }
+
+    @Override
     public boolean isScreencast() {
         return super.isScreencast();
     }

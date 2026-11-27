@@ -1,82 +1,119 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ow1 extends ky1 {
-    public final byte y0 = 0;
-    public final ChatActivityEnterView z0;
+public final class ow1 extends AnimatorListenerAdapter {
+    public final byte a;
+    public boolean b;
+    public final ChatActivityEnterView c;
 
-    public ow1(ChatActivityEnterView chatActivityEnterView, Context context, wjb wjbVar) {
-        super(2131231505, wjbVar, context, true);
-        this.z0 = chatActivityEnterView;
+    public ow1(ChatActivityEnterView chatActivityEnterView, boolean z, byte b) {
+        this.a = b;
+        this.c = chatActivityEnterView;
+        this.b = z;
     }
 
     @Override
-    public final boolean b() {
-        switch (this.y0) {
-            case 0:
-                return this.z0.c();
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.a) {
+            case 2:
+                this.b = true;
+                return;
+            case 3:
+                ChatActivityEnterView chatActivityEnterView = this.c;
+                if (animator.equals(chatActivityEnterView.h3)) {
+                    chatActivityEnterView.h3 = null;
+                    return;
+                }
+                return;
             default:
-                return super.b();
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final boolean c() {
-        byte b = this.y0;
-        ChatActivityEnterView chatActivityEnterView = this.z0;
+    public final void onAnimationEnd(Animator animator) {
+        cx1 cx1Var;
+        byte b = this.a;
+        int i = 0;
+        float f = 0.0f;
+        ChatActivityEnterView chatActivityEnterView = this.c;
         switch (b) {
             case 0:
-                if (!chatActivityEnterView.c() && chatActivityEnterView.H0 == Integer.MAX_VALUE) {
-                    return true;
+                if (this.b) {
+                    f = 1.0f;
                 }
-                return false;
-            default:
-                return !chatActivityEnterView.g4;
-        }
-    }
-
-    @Override
-    public final boolean d() {
-        switch (this.y0) {
-            case 0:
-                j47 j47Var = this.z0.M0;
-                if ((j47Var != null && !j47Var.u0) || this.w > 0) {
-                    return true;
+                chatActivityEnterView.x0 = f;
+                my1 my1Var = chatActivityEnterView.V0;
+                if (my1Var != null) {
+                    my1Var.Y();
+                    return;
                 }
-                return false;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public final boolean j() {
-        switch (this.y0) {
-            case 0:
-                return this.z0.X5;
-            default:
-                return super.j();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f) {
-        switch (this.y0) {
-            case 0:
-                super.setAlpha(f);
-                int i = ChatActivityEnterView.r7;
-                this.z0.f2();
+                return;
+            case 1:
+                if (chatActivityEnterView.T7) {
+                    ImageView imageView = chatActivityEnterView.l2;
+                    if (!this.b) {
+                        i = 8;
+                    }
+                    imageView.setVisibility(i);
+                    return;
+                }
+                return;
+            case 2:
+                if (!this.b) {
+                    int i2 = ChatActivityEnterView.X7;
+                    chatActivityEnterView.s(1.0f);
+                }
+                chatActivityEnterView.R0.setRotation(0.0f);
+                chatActivityEnterView.X5 = false;
+                ez1 ez1Var = chatActivityEnterView.Z0;
+                if (ez1Var != null) {
+                    ez1Var.setScaleX(1.0f);
+                    chatActivityEnterView.Z0.setScaleY(1.0f);
+                }
+                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.C2;
+                if (recordCircle != null) {
+                    recordCircle.P = false;
+                    recordCircle.invalidate();
+                }
+                mva mvaVar = chatActivityEnterView.L5;
+                if (mvaVar != null) {
+                    mvaVar.a();
+                }
+                Bitmap bitmap = chatActivityEnterView.O5;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    chatActivityEnterView.O5 = null;
+                    return;
+                }
+                return;
+            case 3:
+                if (animator.equals(chatActivityEnterView.h3)) {
+                    chatActivityEnterView.e2.setVisibility(8);
+                    if (this.b && (cx1Var = chatActivityEnterView.y2) != null) {
+                        cx1Var.setVisibility(8);
+                    }
+                    chatActivityEnterView.h3 = null;
+                    return;
+                }
                 return;
             default:
-                super.setAlpha(f);
+                chatActivityEnterView.B2 = null;
+                if (!this.b) {
+                    chatActivityEnterView.y2.setVisibility(8);
+                    return;
+                }
                 return;
         }
     }
 
-    public ow1(ChatActivityEnterView chatActivityEnterView, Activity activity, int i, wjb wjbVar) {
-        super(i, wjbVar, activity, true);
-        this.z0 = chatActivityEnterView;
+    public ow1(ChatActivityEnterView chatActivityEnterView) {
+        this.a = (byte) 2;
+        this.c = chatActivityEnterView;
     }
 }

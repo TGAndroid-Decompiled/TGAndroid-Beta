@@ -1,25 +1,33 @@
 package defpackage;
-public class b26 {
-    public final int a;
-    public final int b;
-    public final String c;
-    public final String d;
-    public final int e;
-    public boolean f;
 
-    public b26(int i, int i2, int i3, String str, String str2) {
-        this.a = i;
-        this.b = i2;
-        this.c = str;
-        this.d = str2;
-        this.e = i3;
+import android.window.OnBackInvokedCallback;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+public final class b26 implements OnBackInvokedCallback {
+    public final LaunchActivity a;
+
+    public b26(LaunchActivity launchActivity) {
+        this.a = launchActivity;
     }
 
-    public static b26 a(int i, int i2) {
-        return new b26(i, i2, -1, null, null);
-    }
-
-    public static b26 b(int i, int i2, String str) {
-        return new b26(i, -1, i2, null, str);
+    public final void onBackInvoked() {
+        boolean O1 = hl.O1();
+        LaunchActivity launchActivity = this.a;
+        if (O1) {
+            launchActivity.onBackPressed();
+        } else if (!launchActivity.d0(true)) {
+        } else {
+            ActionBarLayout actionBarLayout = launchActivity.p0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.j1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.j1 = false;
+                actionBarLayout.d(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
     }
 }

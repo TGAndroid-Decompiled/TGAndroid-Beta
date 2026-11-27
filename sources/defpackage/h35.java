@@ -1,52 +1,36 @@
 package defpackage;
 
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class h35 implements i35 {
-    public final boolean[] a;
-    public final rvc b;
+public final class h35 implements Runnable {
+    public final byte a = 0;
+    public final pcc b;
+    public final long c;
+    public final long d;
+    public final Object e;
+    public final Object f;
+    public final Object h;
 
-    public h35(boolean[] zArr, rvc rvcVar) {
-        this.a = zArr;
-        this.b = rvcVar;
+    public h35(k35 k35Var, String str, c35 c35Var, long j, long j2, pcc pccVar) {
+        this.e = k35Var;
+        this.f = str;
+        this.h = c35Var;
+        this.c = j;
+        this.d = j2;
+        this.b = pccVar;
     }
 
     @Override
-    public final void a() {
-        boolean[] zArr = this.a;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        this.b.a();
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.h35.run():void");
     }
 
-    @Override
-    public final void b() {
-        boolean[] zArr = this.a;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        this.b.b();
-    }
-
-    public final void c() {
-        boolean[] zArr = this.a;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        rvc rvcVar = this.b;
-        rvcVar.b.b(4, null, rvcVar.c);
-    }
-
-    public final void d(TLRPC.WidgetQueryType widgetQueryType) {
-        boolean[] zArr = this.a;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        rvc rvcVar = this.b;
-        vvc.w(rvcVar.a, rvcVar.b, rvcVar.c, widgetQueryType, rvcVar.d);
+    public h35(wua wuaVar, pcc pccVar, TLRPC.TL_error tL_error, TLObject tLObject, long j, long j2) {
+        this.e = wuaVar;
+        this.b = pccVar;
+        this.f = tL_error;
+        this.h = tLObject;
+        this.c = j;
+        this.d = j2;
     }
 }

@@ -1,7 +1,11 @@
 package defpackage;
-public final class t55 extends hn7 {
-    @Override
-    public final CharSequence d(int i) {
-        return k96.G(i, "Hours", new Object[0]);
+public final class t55 extends r79 {
+    public int e;
+    public int f;
+
+    public t55(int i, int i2) {
+        super(i, i2);
+        this.e = -1;
+        this.f = 0;
     }
 }

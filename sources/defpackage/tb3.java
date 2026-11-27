@@ -1,77 +1,55 @@
 package defpackage;
-public final class tb3 {
-    public final String a;
-    public int b;
-    public long c;
-    public final rx6 d;
-    public boolean e;
-    public boolean f;
-    public final ub3 g;
 
-    public tb3(ub3 ub3Var, String str, int i, rx6 rx6Var) {
-        long j;
-        this.g = ub3Var;
-        this.a = str;
-        this.b = i;
-        if (rx6Var == null) {
-            j = -1;
-        } else {
-            j = rx6Var.d;
-        }
-        this.c = j;
-        if (rx6Var != null && rx6Var.c()) {
-            this.d = rx6Var;
-        }
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import java.util.ArrayList;
+public final class tb3 implements Runnable {
+    public final byte a;
+    public final ArrayList b;
+    public final zb3 c;
+
+    public tb3(zb3 zb3Var, ArrayList arrayList, byte b) {
+        this.a = b;
+        this.c = zb3Var;
+        this.b = arrayList;
     }
 
-    public final boolean a(tj tjVar) {
-        rx6 rx6Var = tjVar.d;
-        aob aobVar = tjVar.b;
-        if (rx6Var == null) {
-            if (this.b != tjVar.c) {
-                return true;
-            }
-            return false;
-        }
-        long j = this.c;
-        if (j != -1) {
-            if (rx6Var.d <= j) {
-                rx6 rx6Var2 = this.d;
-                if (rx6Var2 != null) {
-                    int i = rx6Var2.b;
-                    int b = aobVar.b(rx6Var.a);
-                    int b2 = aobVar.b(rx6Var2.a);
-                    if (rx6Var.d >= rx6Var2.d && b >= b2) {
-                        if (b <= b2) {
-                            if (rx6Var.c()) {
-                                int i2 = rx6Var.b;
-                                int i3 = rx6Var.c;
-                                if (i2 <= i) {
-                                    if (i2 == i && i3 > rx6Var2.c) {
-                                        return true;
-                                    }
-                                    return false;
-                                }
-                                return true;
-                            }
-                            int i4 = rx6Var.e;
-                            if (i4 == -1 || i4 > i) {
-                                return true;
-                            }
-                            return false;
-                        }
-                        return true;
-                    }
-                    return false;
+    @Override
+    public final void run() {
+        byte b = this.a;
+        ArrayList arrayList = this.b;
+        zb3 zb3Var = this.c;
+        switch (b) {
+            case 0:
+                int size = arrayList.size();
+                int i = 0;
+                while (i < size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    yb3 yb3Var = (yb3) obj;
+                    zb3Var.C(yb3Var.a, yb3Var);
+                    zb3Var.w.add(yb3Var);
                 }
-                return false;
-            }
-            return true;
+                arrayList.clear();
+                zb3Var.u.remove(arrayList);
+                return;
+            default:
+                int i2 = Integer.MAX_VALUE;
+                for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
+                    i2 = Math.min(i2, ((f89) arrayList.get(size2)).b());
+                }
+                for (int size3 = arrayList.size() - 1; size3 >= 0; size3--) {
+                    f89 f89Var = (f89) arrayList.get(size3);
+                    View view = f89Var.a;
+                    ViewPropertyAnimator animate = view.animate();
+                    zb3Var.y.add(f89Var);
+                    animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(zb3Var.h()).setStartDelay((f89Var.b() - i2) * zb3Var.D).setInterpolator(zb3Var.h);
+                    animate.setUpdateListener(new rb3(zb3Var, f89Var, (byte) 1));
+                    animate.setListener(new ub3(zb3Var, f89Var, view, animate)).start();
+                }
+                arrayList.clear();
+                zb3Var.t.remove(arrayList);
+                return;
         }
-        return false;
-    }
-
-    public final boolean b(defpackage.aob r7, defpackage.aob r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.tb3.b(aob, aob):boolean");
     }
 }

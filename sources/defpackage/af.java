@@ -1,59 +1,87 @@
 package defpackage;
 
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-public final class af implements View.OnClickListener {
-    public final byte a = 1;
-    public final LinearLayout b;
-    public final int[] c;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class af implements TextView.OnEditorActionListener {
+    public final byte a;
+    public final int b;
+    public final id[] c;
+    public final View d;
+    public final EditTextBoldCursor e;
+    public final Object f;
 
-    public af(LinearLayout linearLayout, int[] iArr) {
-        this.b = linearLayout;
-        this.c = iArr;
+    public af(EditTextBoldCursor editTextBoldCursor, int i, Object obj, id[] idVarArr, View view, byte b) {
+        this.a = b;
+        this.e = editTextBoldCursor;
+        this.b = i;
+        this.f = obj;
+        this.c = idVarArr;
+        this.d = view;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z;
-        boolean z2;
+    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         byte b = this.a;
-        int[] iArr = this.c;
-        LinearLayout linearLayout = this.b;
+        View view = this.d;
+        id[] idVarArr = this.c;
+        Object obj = this.f;
+        int i2 = this.b;
+        EditTextBoldCursor editTextBoldCursor = this.e;
         switch (b) {
             case 0:
-                iArr[0] = ((Integer) view.getTag()).intValue();
-                int childCount = linearLayout.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View childAt = linearLayout.getChildAt(i);
-                    if (childAt instanceof wy8) {
-                        wy8 wy8Var = (wy8) childAt;
-                        if (childAt == view) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        wy8Var.c.a(z, true);
+                ij ijVar = (ij) editTextBoldCursor;
+                hf7 hf7Var = (hf7) obj;
+                if (i != 6) {
+                    return false;
+                }
+                String obj2 = ijVar.getText().toString();
+                if (obj2.length() > i2) {
+                    hl.z3(ijVar);
+                } else {
+                    hf7Var.a(obj2);
+                    id idVar = idVarArr[0];
+                    if (idVar != null) {
+                        idVar.dismiss();
+                    }
+                    if (view != null) {
+                        view.requestFocus();
                     }
                 }
-                return;
+                return true;
             default:
-                int childCount2 = linearLayout.getChildCount();
-                for (int i2 = 0; i2 < childCount2; i2++) {
-                    wy8 wy8Var2 = (wy8) linearLayout.getChildAt(i2);
-                    if (wy8Var2 == view) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                    wy8Var2.c.a(z2, true);
+                k41 k41Var = (k41) editTextBoldCursor;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) obj;
+                if (i != 6) {
+                    return false;
                 }
-                iArr[0] = chb.f[((Integer) view.getTag()).intValue()];
-                return;
+                String obj3 = k41Var.getText().toString();
+                if (obj3.length() > 32) {
+                    hl.z3(k41Var);
+                } else {
+                    r41 d = r41.d(i2);
+                    TL_account.TL_businessChatLink c = d.c(tL_businessChatLink.link);
+                    if (c != null) {
+                        TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                        tL_inputBusinessChatLink.message = c.message;
+                        tL_inputBusinessChatLink.entities = c.entities;
+                        tL_inputBusinessChatLink.title = obj3;
+                        d.b(c, tL_inputBusinessChatLink, null);
+                    }
+                    id idVar2 = idVarArr[0];
+                    if (idVar2 != null) {
+                        idVar2.dismiss();
+                    }
+                    if (idVarArr[0] == n41.e) {
+                        n41.e = null;
+                    }
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                }
+                return true;
         }
-    }
-
-    public af(int[] iArr, LinearLayout linearLayout) {
-        this.c = iArr;
-        this.b = linearLayout;
     }
 }

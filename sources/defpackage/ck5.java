@@ -1,3 +1,3 @@
 package defpackage;
-public final class ck5 extends x83 {
+public final class ck5 extends ek5 {
 }

@@ -1,9 +1,8 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class kz extends FrameLayout {
+import android.view.View;
+public final class kz extends View {
     public final float a;
 
     public kz(Context context, float f) {
@@ -12,10 +11,7 @@ public final class kz extends FrameLayout {
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth() * this.a, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i) * this.a), 1073741824), i2);
     }
 }

@@ -1,30 +1,22 @@
 package defpackage;
-public final class xb3 extends s44 {
-    public static final xb3 d;
-    public zw2 c;
+public final class xb3 {
+    public f89 a;
+    public f89 b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
 
-    static {
-        int i = dgb.c;
-        int i2 = dgb.d;
-        long j = dgb.e;
-        String str = dgb.a;
-        ?? vw2Var = new vw2();
-        vw2Var.c = new zw2(i, j, str, i2);
-        d = vw2Var;
+    public xb3(f89 f89Var, f89 f89Var2, int i, int i2, int i3, int i4) {
+        this.a = f89Var;
+        this.b = f89Var2;
+        this.c = i;
+        this.d = i2;
+        this.e = i3;
+        this.f = i4;
     }
 
-    @Override
-    public final void c(sw2 sw2Var, Runnable runnable) {
-        this.c.b(runnable, false);
-    }
-
-    @Override
-    public final void close() {
-        throw new UnsupportedOperationException("Dispatchers.Default cannot be closed");
-    }
-
-    @Override
     public final String toString() {
-        return "Dispatchers.Default";
+        return "ChangeInfo{oldHolder=" + this.a + ", newHolder=" + this.b + ", fromX=" + this.c + ", fromY=" + this.d + ", toX=" + this.e + ", toY=" + this.f + '}';
     }
 }

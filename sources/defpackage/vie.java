@@ -1,17 +1,41 @@
 package defpackage;
-public final class vie implements zn7 {
-    public static final vie a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class vie {
+    public static final void a(va1 va1Var, zw2 zw2Var, boolean z) {
+        Object g;
+        x8c x8cVar;
+        Object r = va1Var.r();
+        Throwable f = va1Var.f(r);
+        if (f != null) {
+            g = new ge9(f);
+        } else {
+            g = va1Var.g(r);
         }
-        throw new ClassCastException();
+        if (z) {
+            zw2Var.getClass();
+            yo3 yo3Var = (yo3) zw2Var;
+            ax2 ax2Var = yo3Var.e;
+            Object obj = yo3Var.h;
+            mx2 context = ax2Var.getContext();
+            Object c = xhd.c(context, obj);
+            if (c != xhd.a) {
+                x8cVar = g4e.c(ax2Var, context, c);
+            } else {
+                x8cVar = null;
+            }
+            try {
+                ax2Var.resumeWith(g);
+                if (x8cVar != null && !x8cVar.S()) {
+                    return;
+                }
+                xhd.a(context, c);
+                return;
+            } catch (Throwable th) {
+                if (x8cVar == null || x8cVar.S()) {
+                    xhd.a(context, c);
+                }
+                throw th;
+            }
+        }
+        zw2Var.resumeWith(g);
     }
 }

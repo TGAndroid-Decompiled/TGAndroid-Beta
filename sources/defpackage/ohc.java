@@ -1,33 +1,20 @@
 package defpackage;
 
-import java.util.HashSet;
-import org.telegram.messenger.voip.VoIPService;
-public final class ohc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-    public final HashSet c;
-    public final String d;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+public final class ohc {
+    public final qf5 a = new qf5((byte) 27);
+    public final LinkedHashMap b = new LinkedHashMap();
+    public final LinkedHashSet c = new LinkedHashSet();
+    public volatile boolean d;
 
-    public ohc(VoIPService voIPService, HashSet hashSet, String str, byte b) {
-        this.a = b;
-        this.b = voIPService;
-        this.c = hashSet;
-        this.d = str;
-    }
-
-    @Override
-    public final void run() {
-        byte b = this.a;
-        String str = this.d;
-        HashSet hashSet = this.c;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$startConferenceGroupCall$53(hashSet, str);
-                return;
-            default:
-                voIPService.lambda$startConferenceGroupCall$45(hashSet, str);
-                return;
+    public static void a(AutoCloseable autoCloseable) {
+        if (autoCloseable != null) {
+            try {
+                xnb.w(autoCloseable);
+            } catch (Exception e) {
+                grb.m(e);
+            }
         }
     }
 }

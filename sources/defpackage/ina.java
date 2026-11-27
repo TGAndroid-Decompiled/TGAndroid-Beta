@@ -1,141 +1,196 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class ina extends FrameLayout implements x74, tjb {
-    public final wjb a;
-    public final FrameLayout b;
-    public final kv4 c;
-    public final be0 d;
-    public final TextView e;
-    public final TextView f;
-    public Integer h;
-    public TLRPC.Document n;
-    public final fm0 r;
-    public boolean s;
-    public gna w;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+public final class ina extends fe9 implements is4 {
+    public Object b;
+    public Iterator c;
+    public int d;
+    public int e;
+    public byte f;
+    public Object h;
+    public final Iterator n;
 
-    public ina(Context context, wjb wjbVar) {
-        super(context);
-        this.r = new fm0(0, this, s33.h, 320L, false);
-        this.a = wjbVar;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.b = frameLayout;
-        kv4 kv4Var = new kv4(frameLayout, wjbVar, true);
-        this.c = kv4Var;
-        frameLayout.setBackground(kv4Var);
-        kv4Var.w = true;
-        addView(frameLayout, nme.e(-1, -1, 119));
-        be0 be0Var = new be0(context);
-        this.d = be0Var;
-        be0Var.getImageReceiver().M(0);
-        addView(be0Var, nme.d(80, 80.0f, 49, 0.0f, 17.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setTypeface(gl.o());
-        textView.setTextSize(1, 13.0f);
-        textView.setGravity(17);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextColor(-1);
-        addView(textView, nme.d(-1, -2.0f, 0, 12.0f, 106.0f, 12.0f, 14.0f));
-        TextView textView2 = new TextView(context);
-        this.f = textView2;
-        textView2.setClickable(false);
-        textView2.setTypeface(gl.o());
-        textView2.setTextSize(1, 11.0f);
-        textView2.setPadding(gl.L(5.0f), gl.L(1.0f), gl.L(5.0f), gl.L(1.0f));
-        textView2.setBackground(bkb.b0(gl.L(10.0f), 285212671));
-        addView(textView2, nme.d(-2, -2.0f, 53, 0.0f, 10.0f, 10.0f, 0.0f));
+    public ina(Iterator it, zw2 zw2Var) {
+        super(2, zw2Var);
+        this.n = it;
     }
 
-    public final void a() {
-        int f;
-        kv4 kv4Var = this.c;
-        kv4Var.z = null;
-        Integer num = this.h;
-        fm0 fm0Var = this.r;
-        TextView textView = this.f;
-        if (num != null) {
-            f = bkb.v(bkb.w0(null, bkb.c6, false), bkb.p1(gl.R1(0.15f, 1.0f, fm0Var.e), this.h.intValue()));
-            kv4Var.z = this.h;
-            this.b.invalidate();
-            textView.setTextColor(bm2.f(fm0Var.e, this.h.intValue(), -1));
-        } else if (this.s) {
-            int i = bkb.c6;
-            int w0 = bkb.w0(null, i, false);
-            int i2 = bkb.F6;
-            int f2 = bm2.f(fm0Var.e, bm2.f(0.05f, w0, bkb.w0(null, i2, false)), bkb.w0(null, bkb.Ei, false));
-            textView.setTextColor(bm2.f(fm0Var.e, bm2.f(0.5f, bkb.w0(null, i, false), bkb.w0(null, i2, false)), -1));
-            f = f2;
-        } else {
-            f = bm2.f(0.5f, bm2.o(this.w.a.center_color, 255), bm2.o(this.w.a.pattern_color, 255));
-            textView.setTextColor(-1);
-        }
-        if (textView.getBackground() instanceof ShapeDrawable) {
-            ((ShapeDrawable) textView.getBackground()).getPaint().setColor(f);
-            textView.invalidate();
-        } else if (bkb.F1(textView.getBackground(), f, false)) {
-            textView.invalidate();
-        }
+    @Override
+    public final zw2 create(Object obj, zw2 zw2Var) {
+        ina inaVar = new ina(this.n, zw2Var);
+        inaVar.h = obj;
+        return inaVar;
     }
 
-    public final void b(int i, Object obj, TLRPC.Document document, boolean z) {
-        String str;
-        be0 be0Var = this.d;
-        if (document == null) {
-            be0Var.b();
-            this.n = null;
-        } else if (this.n == document) {
-        } else {
-            this.n = document;
-            TLRPC.PhotoSize w = ba4.w(document.thumbs, gl.L(100.0f), false, null, false);
-            kcb f = uo3.f(document, bkb.Z6, 0.3f, null);
-            StringBuilder sb = new StringBuilder();
-            sb.append(i);
-            sb.append("_");
-            sb.append(i);
-            if (z) {
-                str = "_nolimit_pcache";
-            } else {
-                str = "";
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        return ((ina) create((g8a) obj, (zw2) obj2)).invokeSuspend(f9c.a);
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        byte b;
+        int i;
+        int i2;
+        ArrayList arrayList;
+        Iterator it;
+        int i3;
+        int i4;
+        int i5;
+        tm9 tm9Var;
+        Object[] array;
+        g8a g8aVar = (g8a) this.h;
+        byte b2 = this.f;
+        boolean z = true;
+        vx2 vx2Var = vx2.a;
+        if (b2 != 0) {
+            if (b2 != 1) {
+                if (b2 != 2) {
+                    if (b2 != 3) {
+                        if (b2 != 4) {
+                            if (b2 == 5) {
+                                tm9 tm9Var2 = (tm9) this.b;
+                            } else {
+                                grb.i("call to 'resume' before 'invoke' with coroutine");
+                                return null;
+                            }
+                        } else {
+                            i4 = this.e;
+                            i5 = this.d;
+                            tm9Var = (tm9) this.b;
+                            ixe.b(obj);
+                            tm9Var.i();
+                        }
+                    } else {
+                        i4 = this.e;
+                        int i6 = this.d;
+                        Iterator it2 = this.c;
+                        tm9 tm9Var3 = (tm9) this.b;
+                        ixe.b(obj);
+                        tm9Var3.i();
+                        while (true) {
+                            int i7 = tm9Var3.b;
+                            Object[] objArr = tm9Var3.a;
+                            if (it2.hasNext()) {
+                                Object next = it2.next();
+                                boolean z2 = z;
+                                if (tm9Var3.h() != i7) {
+                                    int i8 = tm9Var3.c;
+                                    int i9 = tm9Var3.d;
+                                    objArr[(i8 + i9) % i7] = next;
+                                    tm9Var3.d = i9 + 1;
+                                    if (tm9Var3.h() == i7) {
+                                        if (tm9Var3.d < 20) {
+                                            int i10 = i7 + (i7 >> 1) + 1;
+                                            if (i10 > 20) {
+                                                i10 = 20;
+                                            }
+                                            if (tm9Var3.c == 0) {
+                                                array = Arrays.copyOf(objArr, i10);
+                                            } else {
+                                                array = tm9Var3.toArray(new Object[i10]);
+                                            }
+                                            tm9Var3 = new tm9(tm9Var3.d, array);
+                                        } else {
+                                            ArrayList arrayList2 = new ArrayList(tm9Var3);
+                                            this.h = g8aVar;
+                                            this.b = tm9Var3;
+                                            this.c = it2;
+                                            this.d = i6;
+                                            this.e = i4;
+                                            this.f = (byte) 3;
+                                            g8aVar.c(arrayList2, this);
+                                            return vx2Var;
+                                        }
+                                    }
+                                    z = z2;
+                                } else {
+                                    grb.i("ring buffer is full");
+                                    return null;
+                                }
+                            } else {
+                                i5 = i6;
+                                tm9Var = tm9Var3;
+                                break;
+                            }
+                        }
+                    }
+                    if (tm9Var.d > 20) {
+                        ArrayList arrayList3 = new ArrayList(tm9Var);
+                        this.h = g8aVar;
+                        this.b = tm9Var;
+                        this.c = null;
+                        this.d = i5;
+                        this.e = i4;
+                        this.f = (byte) 4;
+                        g8aVar.c(arrayList3, this);
+                        return vx2Var;
+                    }
+                    if (!tm9Var.isEmpty()) {
+                        this.h = null;
+                        this.b = null;
+                        this.c = null;
+                        this.d = i5;
+                        this.e = i4;
+                        this.f = (byte) 5;
+                        g8aVar.c(tm9Var, this);
+                        return vx2Var;
+                    }
+                    return f9c.a;
+                }
+                ArrayList arrayList4 = (ArrayList) this.b;
+                ixe.b(obj);
+                return f9c.a;
             }
-            sb.append(str);
-            String sb2 = sb.toString();
-            int i2 = (80 - i) / 2;
-            be0Var.setLayoutParams(nme.d(i, i, 49, 0.0f, i2 + 17, 0.0f, i2));
-            be0Var.j(gl5.b(document), sb2, gl5.c(w, document), sb2, f, obj);
+            b = 1;
+            i = this.e;
+            int i11 = this.d;
+            Iterator it3 = this.c;
+            ArrayList arrayList5 = (ArrayList) this.b;
+            ixe.b(obj);
+            arrayList = new ArrayList(20);
+            it = it3;
+            i3 = i11;
+            i2 = i;
+        } else {
+            b = 1;
+            ixe.b(obj);
+            i = 0;
+            i2 = 0;
+            arrayList = new ArrayList(20);
+            it = this.n;
+            i3 = 20;
         }
-    }
-
-    @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
-        a();
-    }
-
-    @Override
-    public final void updateColors() {
-        gna gnaVar;
-        try {
-            if (this.f != null && this.b != null && this.c != null) {
-                if (this.h != null || this.s || ((gnaVar = this.w) != null && gnaVar.a != null)) {
-                    a();
+        while (it.hasNext()) {
+            Object next2 = it.next();
+            if (i > 0) {
+                i--;
+            } else {
+                arrayList.add(next2);
+                if (arrayList.size() == 20) {
+                    this.h = g8aVar;
+                    this.b = arrayList;
+                    this.c = it;
+                    this.d = i3;
+                    this.e = i2;
+                    this.f = b;
+                    g8aVar.c(arrayList, this);
+                    return vx2Var;
                 }
             }
-        } catch (Exception e) {
-            fa4.g(e, true);
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    @Override
-    public final void F(float f, int i) {
+        if (!arrayList.isEmpty()) {
+            this.h = null;
+            this.b = null;
+            this.c = null;
+            this.d = i3;
+            this.e = i2;
+            this.f = (byte) 2;
+            g8aVar.c(arrayList, this);
+            return vx2Var;
+        }
+        return f9c.a;
     }
 }

@@ -1,100 +1,98 @@
 package defpackage;
 
-import android.media.session.PlaybackState;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.List;
-public final class dc8 implements Parcelable {
-    public static final Parcelable.Creator<dc8> CREATOR = new hv6((byte) 9);
-    public final int a;
-    public final long b;
-    public final long c;
-    public final float d;
-    public final long e;
-    public final int f;
-    public final CharSequence h;
-    public final long n;
-    public final List r;
-    public final long s;
-    public final Bundle w;
-    public PlaybackState x;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.SurfaceView;
+import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import org.telegram.ui.PhotoViewer;
+public final class dc8 extends jx {
+    public final byte h;
+    public final Object n;
 
-    public dc8(Parcel parcel) {
-        this.a = parcel.readInt();
-        this.b = parcel.readLong();
-        this.d = parcel.readFloat();
-        this.n = parcel.readLong();
-        this.c = parcel.readLong();
-        this.e = parcel.readLong();
-        this.h = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
-        List createTypedArrayList = parcel.createTypedArrayList(cc8.CREATOR);
-        if (createTypedArrayList == null) {
-            km5 km5Var = mm5.b;
-            createTypedArrayList = w59.e;
+    public dc8(byte b, Context context, Object obj) {
+        super(context);
+        this.h = b;
+        this.n = obj;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        switch (this.h) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.d9;
+                super.draw(canvas);
+                return;
+            default:
+                super.draw(canvas);
+                return;
         }
-        this.r = createTypedArrayList;
-        this.s = parcel.readLong();
-        this.w = parcel.readBundle(lv6.class.getClassLoader());
-        this.f = parcel.readInt();
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("PlaybackState {state=");
-        sb.append(this.a);
-        sb.append(", position=");
-        sb.append(this.b);
-        sb.append(", buffered position=");
-        sb.append(this.c);
-        sb.append(", speed=");
-        sb.append(this.d);
-        sb.append(", updated=");
-        sb.append(this.n);
-        sb.append(", actions=");
-        sb.append(this.e);
-        sb.append(", error code=");
-        sb.append(this.f);
-        sb.append(", error message=");
-        sb.append(this.h);
-        sb.append(", custom actions=");
-        sb.append(this.r);
-        sb.append(", active item id=");
-        return ls6.p(sb, this.s, "}");
+    public final boolean drawChild(Canvas canvas, View view, long j) {
+        switch (this.h) {
+            case 0:
+                PhotoViewer photoViewer = (PhotoViewer) this.n;
+                if (view == photoViewer.E3 && photoViewer.g4) {
+                    return true;
+                }
+                return super.drawChild(canvas, view, j);
+            default:
+                return super.drawChild(canvas, view, j);
+        }
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(this.a);
-        parcel.writeLong(this.b);
-        parcel.writeFloat(this.d);
-        parcel.writeLong(this.n);
-        parcel.writeLong(this.c);
-        parcel.writeLong(this.e);
-        TextUtils.writeToParcel(this.h, parcel, i);
-        parcel.writeTypedList(this.r);
-        parcel.writeLong(this.s);
-        parcel.writeBundle(this.w);
-        parcel.writeInt(this.f);
-    }
-
-    public dc8(int i, long j, long j2, float f, long j3, int i2, CharSequence charSequence, long j4, ArrayList arrayList, long j5, Bundle bundle) {
-        this.a = i;
-        this.b = j;
-        this.c = j2;
-        this.d = f;
-        this.e = j3;
-        this.f = i2;
-        this.h = charSequence;
-        this.n = j4;
-        this.r = new ArrayList(arrayList);
-        this.s = j5;
-        this.w = bundle;
+    public final void onMeasure(int i, int i2) {
+        byte b = this.h;
+        Object obj = this.n;
+        switch (b) {
+            case 0:
+                super.onMeasure(i, i2);
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                ImageView imageView = photoViewer.x3;
+                if (imageView != null) {
+                    ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+                    layoutParams.width = getMeasuredWidth();
+                    layoutParams.height = getMeasuredHeight();
+                }
+                TextureView textureView = photoViewer.C2;
+                if (textureView instanceof kec) {
+                    textureView.setPivotX(textureView.getMeasuredWidth() / 2);
+                    photoViewer.F2.setPivotX(photoViewer.C2.getMeasuredWidth() / 2);
+                } else {
+                    if (textureView != null) {
+                        textureView.setPivotX(0.0f);
+                    }
+                    SurfaceView surfaceView = photoViewer.D2;
+                    if (surfaceView != null) {
+                        surfaceView.setPivotX(0.0f);
+                    }
+                    photoViewer.F2.setPivotX(0.0f);
+                }
+                photoViewer.s();
+                return;
+            default:
+                super.onMeasure(i, i2);
+                hyc hycVar = (hyc) obj;
+                if (hycVar.f != null) {
+                    ViewGroup.LayoutParams layoutParams2 = hycVar.d.getLayoutParams();
+                    layoutParams2.width = getMeasuredWidth();
+                    layoutParams2.height = getMeasuredHeight();
+                    ImageView imageView2 = hycVar.e;
+                    if (imageView2 != null) {
+                        ViewGroup.LayoutParams layoutParams3 = imageView2.getLayoutParams();
+                        layoutParams3.width = getMeasuredWidth();
+                        layoutParams3.height = getMeasuredHeight();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

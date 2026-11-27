@@ -1,18 +1,18 @@
 package defpackage;
+public final class gye {
+    public final u5f a;
+    public final vxe b;
+    public final kxe c;
+    public final s1f d;
+    public final h1f e;
+    public final eud f;
 
-import android.os.Build;
-import android.view.View;
-import android.view.Window;
-public abstract class gye {
-    public static void a(Window window) {
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 35) {
-            tga.t(window);
-        } else if (i >= 30) {
-            tga.s(window);
-        } else {
-            View decorView = window.getDecorView();
-            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | 1792);
-        }
+    public gye(fp fpVar) {
+        this.a = (u5f) fpVar.a;
+        this.b = (vxe) fpVar.b;
+        this.c = (kxe) fpVar.c;
+        this.d = (s1f) fpVar.d;
+        this.e = (h1f) fpVar.e;
+        this.f = (eud) fpVar.f;
     }
 }

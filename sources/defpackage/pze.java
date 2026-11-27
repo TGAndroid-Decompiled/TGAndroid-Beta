@@ -1,208 +1,87 @@
 package defpackage;
+public final class pze implements o1f {
+    public final hie a;
+    public final d4f b;
+    public final npe c;
 
-import java.io.IOException;
-public abstract class pze {
-    public static int a(int i, byte[] bArr, int i2, int i3, sad sadVar) {
-        if ((i >>> 3) != 0) {
-            int i4 = i & 7;
-            if (i4 != 0) {
-                if (i4 != 1) {
-                    if (i4 != 2) {
-                        if (i4 != 3) {
-                            if (i4 == 5) {
-                                return i2 + 4;
-                            }
-                            throw new IOException("Protocol message contained an invalid tag (zero).");
-                        }
-                        int i5 = (i & (-8)) | 4;
-                        int i6 = 0;
-                        while (i2 < i3) {
-                            i2 = d(bArr, i2, sadVar);
-                            i6 = sadVar.a;
-                            if (i6 == i5) {
-                                break;
-                            }
-                            i2 = a(i6, bArr, i2, i3, sadVar);
-                        }
-                        if (i2 <= i3 && i6 == i5) {
-                            return i2;
-                        }
-                        throw vkd.b();
-                    }
-                    return d(bArr, i2, sadVar) + sadVar.a;
-                }
-                return i2 + 8;
-            }
-            return e(bArr, i2, sadVar);
-        }
-        throw new IOException("Protocol message contained an invalid tag (zero).");
+    public pze(d4f d4fVar, npe npeVar, hie hieVar) {
+        this.b = d4fVar;
+        npeVar.getClass();
+        this.c = npeVar;
+        this.a = hieVar;
     }
 
-    public static int b(int i, byte[] bArr, int i2, int i3, dyd dydVar, sad sadVar) {
-        Object i4;
-        if ((i >>> 3) != 0) {
-            int i5 = i & 7;
-            if (i5 != 0) {
-                if (i5 != 1) {
-                    if (i5 != 2) {
-                        if (i5 != 3) {
-                            if (i5 == 5) {
-                                dydVar.a(i, Integer.valueOf(f(i2, bArr)));
-                                return i2 + 4;
-                            }
-                            throw new IOException("Protocol message contained an invalid tag (zero).");
-                        }
-                        dyd b = dyd.b();
-                        int i6 = (i & (-8)) | 4;
-                        int i7 = 0;
-                        while (true) {
-                            if (i2 >= i3) {
-                                break;
-                            }
-                            int d = d(bArr, i2, sadVar);
-                            int i8 = sadVar.a;
-                            if (i8 != i6) {
-                                i2 = b(i8, bArr, d, i3, b, sadVar);
-                                i7 = i8;
-                            } else {
-                                i7 = i8;
-                                i2 = d;
-                                break;
-                            }
-                        }
-                        if (i2 <= i3 && i7 == i6) {
-                            dydVar.a(i, b);
-                            return i2;
-                        }
-                        throw vkd.b();
-                    }
-                    int d2 = d(bArr, i2, sadVar);
-                    int i9 = sadVar.a;
-                    if (i9 == 0) {
-                        i4 = cdd.c;
-                    } else {
-                        i4 = cdd.i(d2, i9, bArr);
-                    }
-                    dydVar.a(i, i4);
-                    return d2 + i9;
-                }
-                dydVar.a(i, Long.valueOf(h(i2, bArr)));
-                return i2 + 8;
-            }
-            int e = e(bArr, i2, sadVar);
-            dydVar.a(i, Long.valueOf(sadVar.b));
-            return e;
-        }
-        throw new IOException("Protocol message contained an invalid tag (zero).");
+    @Override
+    public final boolean a(Object obj) {
+        this.c.getClass();
+        bs2.u(obj);
+        throw null;
     }
 
-    public static int c(int i, byte[] bArr, int i2, sad sadVar) {
-        int i3;
-        int i4 = i & 127;
-        int i5 = i2 + 1;
-        byte b = bArr[i2];
-        if (b >= 0) {
-            i3 = b << 7;
-        } else {
-            int i6 = i4 | ((b & Byte.MAX_VALUE) << 7);
-            int i7 = i2 + 2;
-            byte b2 = bArr[i5];
-            if (b2 >= 0) {
-                sadVar.a = i6 | (b2 << 14);
-                return i7;
-            }
-            i4 = i6 | ((b2 & Byte.MAX_VALUE) << 14);
-            i5 = i2 + 3;
-            byte b3 = bArr[i7];
-            if (b3 >= 0) {
-                i3 = b3 << 21;
-            } else {
-                int i8 = i4 | ((b3 & Byte.MAX_VALUE) << 21);
-                int i9 = i2 + 4;
-                byte b4 = bArr[i5];
-                if (b4 >= 0) {
-                    sadVar.a = i8 | (b4 << 28);
-                    return i9;
-                }
-                int i10 = i8 | ((b4 & Byte.MAX_VALUE) << 28);
-                while (true) {
-                    int i11 = i9 + 1;
-                    if (bArr[i9] >= 0) {
-                        sadVar.a = i10;
-                        return i11;
-                    }
-                    i9 = i11;
-                }
-            }
-        }
-        sadVar.a = i4 | i3;
-        return i5;
+    @Override
+    public final void b(Object obj) {
+        this.b.getClass();
+        ((ese) obj).zzb.e = false;
+        this.c.getClass();
+        bs2.u(obj);
+        throw null;
     }
 
-    public static int d(byte[] bArr, int i, sad sadVar) {
-        int i2 = i + 1;
-        byte b = bArr[i];
-        if (b >= 0) {
-            sadVar.a = b;
-            return i2;
+    @Override
+    public final void c(Object obj, byte[] bArr, int i, int i2, lfd lfdVar) {
+        ese eseVar = (ese) obj;
+        if (eseVar.zzb == h4f.f) {
+            eseVar.zzb = h4f.b();
         }
-        return c(b, bArr, i2, sadVar);
+        obj.getClass();
+        throw new ClassCastException();
     }
 
-    public static int e(byte[] bArr, int i, sad sadVar) {
-        byte b;
-        int i2 = i + 1;
-        long j = bArr[i];
-        if (j >= 0) {
-            sadVar.b = j;
-            return i2;
-        }
-        int i3 = i + 2;
-        byte b2 = bArr[i2];
-        long j2 = (j & 127) | ((b2 & Byte.MAX_VALUE) << 7);
-        int i4 = 7;
-        while (b2 < 0) {
-            int i5 = i3 + 1;
-            i4 += 7;
-            j2 |= (b & Byte.MAX_VALUE) << i4;
-            b2 = bArr[i3];
-            i3 = i5;
-        }
-        sadVar.b = j2;
-        return i3;
+    @Override
+    public final void d(ese eseVar, ese eseVar2) {
+        w1f.h(this.b, eseVar, eseVar2);
     }
 
-    public static int f(int i, byte[] bArr) {
-        return (bArr[i] & 255) | ((bArr[i + 1] & 255) << 8) | ((bArr[i + 2] & 255) << 16) | ((bArr[i + 3] & 255) << 24);
+    @Override
+    public final void e(Object obj, g9d g9dVar) {
+        this.c.getClass();
+        bs2.u(obj);
+        throw null;
     }
 
-    public static int g(byte[] bArr, int i, sad sadVar) {
-        int d = d(bArr, i, sadVar);
-        int i2 = sadVar.a;
-        if (i2 == 0) {
-            sadVar.c = "";
-            return d;
+    @Override
+    public final boolean f(ese eseVar, ese eseVar2) {
+        this.b.getClass();
+        if (!eseVar.zzb.equals(eseVar2.zzb)) {
+            return false;
         }
-        int i3 = d + i2;
-        if (l0e.a.b(bArr, d, i3)) {
-            sadVar.c = new String(bArr, d, i2, ejd.a);
-            return i3;
-        }
-        throw new IOException("Protocol message had invalid UTF-8.");
+        return true;
     }
 
-    public static long h(int i, byte[] bArr) {
-        return (bArr[i] & 255) | ((bArr[i + 1] & 255) << 8) | ((bArr[i + 2] & 255) << 16) | ((bArr[i + 3] & 255) << 24) | ((bArr[i + 4] & 255) << 32) | ((bArr[i + 5] & 255) << 40) | ((bArr[i + 6] & 255) << 48) | ((bArr[i + 7] & 255) << 56);
+    @Override
+    public final int g(ese eseVar) {
+        this.b.getClass();
+        return eseVar.zzb.hashCode();
     }
 
-    public static int i(byte[] bArr, int i, sad sadVar) {
-        int d = d(bArr, i, sadVar);
-        int i2 = sadVar.a;
-        if (i2 == 0) {
-            sadVar.c = cdd.c;
-            return d;
+    @Override
+    public final Object zza() {
+        return ((ase) ((ese) this.a).d(5)).e();
+    }
+
+    @Override
+    public final int zzb(Object obj) {
+        this.b.getClass();
+        h4f h4fVar = ((ese) obj).zzb;
+        int i = h4fVar.d;
+        if (i != -1) {
+            return i;
         }
-        sadVar.c = cdd.i(d, i2, bArr);
-        return d + i2;
+        int i2 = 0;
+        for (int i3 = 0; i3 < h4fVar.a; i3++) {
+            i2 += coe.i(3, (jne) h4fVar.c[i3]) + coe.s(2, h4fVar.b[i3] >>> 3) + (coe.t(8) << 1);
+        }
+        h4fVar.d = i2;
+        return i2;
     }
 }

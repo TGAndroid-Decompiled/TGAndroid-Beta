@@ -2,7 +2,7 @@ package defpackage;
 
 import android.view.View;
 import org.telegram.ui.Components.ChatActivityEnterView;
-public final class iw1 implements gj, e39 {
+public final class iw1 implements View.OnLongClickListener {
     public final byte a;
     public final ChatActivityEnterView b;
 
@@ -12,32 +12,20 @@ public final class iw1 implements gj, e39 {
     }
 
     @Override
-    public final boolean d(int i, View view) {
-        if (view instanceof cp0) {
-            ChatActivityEnterView chatActivityEnterView = this.b;
-            chatActivityEnterView.setFieldText(((cp0) view).getCommand() + " ");
-            chatActivityEnterView.n0.c();
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void s(int i, int i2, boolean z) {
-        switch (this.a) {
+    public final boolean onLongClick(View view) {
+        byte b = this.a;
+        ChatActivityEnterView chatActivityEnterView = this.b;
+        switch (b) {
             case 0:
-                this.b.v1(z, i, i2, 0L, true);
-                return;
+                int i = ChatActivityEnterView.X7;
+                return chatActivityEnterView.k1(view);
             default:
-                ChatActivityEnterView chatActivityEnterView = this.b;
-                boolean v1 = chatActivityEnterView.v1(z, i, i2, 0L, true);
-                j47 j47Var = chatActivityEnterView.M0;
-                if (j47Var != null) {
-                    j47Var.f(!v1);
-                    chatActivityEnterView.M0 = null;
-                    return;
+                int i2 = ChatActivityEnterView.X7;
+                tx1 tx1Var = chatActivityEnterView.F0;
+                if (tx1Var != null && tx1Var.length() > 0) {
+                    return chatActivityEnterView.k1(view);
                 }
-                return;
+                return false;
         }
     }
 }

@@ -1,14 +1,36 @@
 package defpackage;
-public final class r01 extends qq4 implements eq4 {
-    public static final r01 a = new qq4(2, s01.class, "createSegment", "createSegment(JLkotlinx/coroutines/channels/ChannelSegment;)Lkotlinx/coroutines/channels/ChannelSegment;", 1);
+public final class r01 extends v01 {
+    @Override
+    public final float a() {
+        return 1.0f;
+    }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        long longValue = ((Number) obj).longValue();
-        hj1 hj1Var = (hj1) obj2;
-        hj1 hj1Var2 = s01.a;
-        q01 q01Var = hj1Var.g;
-        q01Var.getClass();
-        return new hj1(longValue, hj1Var, q01Var, 0);
+    public final float c() {
+        return 1.0f;
+    }
+
+    @Override
+    public final int d() {
+        return 2131624128;
+    }
+
+    @Override
+    public final float f() {
+        return 0.35f;
+    }
+
+    @Override
+    public final String h(int i) {
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 2) {
+                    return null;
+                }
+                return "brush";
+            }
+            return "compositeWithMaskEraser";
+        }
+        return "blitWithMaskEraser";
     }
 }

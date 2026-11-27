@@ -1,20 +1,24 @@
 package defpackage;
 
-import java.util.regex.Pattern;
-public final class f34 extends tn5 {
-    public static final Pattern e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+import android.content.Context;
+import android.view.View;
+public final class f34 extends a8c {
+    public static final int b = 0;
 
-    @Override
-    public final tg6 b() {
-        String a = a(e);
-        if (a != null) {
-            return e(bg5.a(a));
-        }
-        return null;
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final char c() {
-        return '&';
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        g34 g34Var = (g34) view;
+        g34Var.n = (pcc) b8cVar.H;
+        g34Var.r = b8cVar;
+        g34Var.b(b8cVar.A, false);
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new g34(context, vnbVar);
     }
 }

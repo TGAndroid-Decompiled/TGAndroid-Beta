@@ -1,126 +1,78 @@
 package defpackage;
 
-import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.tgnet.tl.TL_toncenter;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class sdb implements Vector.TLDeserializer, ll5, ed, wkb {
-    public final byte a;
+import java.util.Arrays;
+public final class sdb extends Drawable {
+    public cl0 a;
+    public int b;
+    public int c;
+    public int f;
+    public hz4 j;
+    public boolean l;
+    public float m;
+    public float d = 1.0f;
+    public final RectF e = new RectF();
+    public final Paint g = new Paint(1);
+    public final kz4 h = new kz4();
+    public final float[] i = new float[8];
+    public int k = yob.b;
 
-    public sdb(byte b) {
-        this.a = b;
-    }
-
-    public static void a() {
-        throw new IllegalStateException();
-    }
-
-    public static void b(Throwable th) {
-        throw new RuntimeException(th);
-    }
-
-    @Override
-    public final void C(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        boolean z4;
-        if (!(imageReceiver.k0 instanceof v64) && !(imageReceiver.T instanceof v64) && !(imageReceiver.b0 instanceof v64) && !(imageReceiver.n0 instanceof v64)) {
-            z4 = false;
-        } else {
-            z4 = true;
-        }
-        if (!z4) {
+    public final void a() {
+        this.k = yob.b;
+        cl0 cl0Var = this.a;
+        if (cl0Var == null) {
             return;
         }
-        imageReceiver.p1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
+        this.b = aob.p1(this.d, cl0Var.X());
+        this.c = aob.p1(this.d, this.a.x0());
+        this.j = new hz4(hl.N(1.0f), this.b, hl.N(0.6666667f), this.c, 0.0f, 0, 1.0f, 1.0f, 1.0f, 0.0f);
     }
 
     @Override
-    public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-        switch (this.a) {
-            case 0:
-                return TL_stories.TL_foundStory.TLdeserialize(inputSerializedData, i, z);
-            case 1:
-                return TL_stories.StoryItem.TLdeserialize(inputSerializedData, i, z);
-            case 2:
-                return TL_stories.Boost.TLdeserialize(inputSerializedData, i, z);
-            case 3:
-                return TL_stories.PrepaidGiveaway.TLdeserialize(inputSerializedData, i, z);
-            case 4:
-                return TL_stories.TL_myBoost.TLdeserialize(inputSerializedData, i, z);
-            case 5:
-                return TL_stories.PeerStories.TLdeserialize(inputSerializedData, i, z);
-            case 6:
-                return TLRPC.TL_recentStory.TLdeserialize(inputSerializedData, i, z);
-            case 7:
-                return TL_stories.StoryViews.TLdeserialize(inputSerializedData, i, z);
-            case 8:
-                return TL_stories.MediaArea.TLdeserialize(inputSerializedData, i, z);
-            case 9:
-                return TL_stories.StoryReaction.TLdeserialize(inputSerializedData, i, z);
-            case 10:
-                return TL_stories.StoryView.TLdeserialize(inputSerializedData, i, z);
-            case 11:
-                return TL_toncenter.onrampProviderInfo.TLdeserialize(inputSerializedData, i, z);
-            case 12:
-                return TL_toncenter.onrampMethodAvailability.TLdeserialize(inputSerializedData, i, z);
-            case 13:
-                return TLRPC.TL_folderPeer.TLdeserialize(inputSerializedData, i, z);
-            case 14:
-                return TLRPC.PeerLocated.TLdeserialize(inputSerializedData, i, z);
-            case 15:
-                return TL_wallet.cardSticker.TLdeserialize(inputSerializedData, i, z);
-            case 16:
-                return TL_wallet.currencyRate.TLdeserialize(inputSerializedData, i, z);
-            case 17:
-                return TL_wallet.holderDc.TLdeserialize(inputSerializedData, i, z);
-            case 18:
-                return TL_wallet.nftAttribute.TLdeserialize(inputSerializedData, i, z);
-            case 19:
-                return TL_wallet.nftItem.TLdeserialize(inputSerializedData, i, z);
-            case 20:
-                return TL_wallet.tonConnectRequest.TLdeserialize(inputSerializedData, i, z);
-            case 21:
-                return TL_wallet.tonConnectSession.TLdeserialize(inputSerializedData, i, z);
-            case 22:
-                return TL_wallet.walletUserAddress.TLdeserialize(inputSerializedData, i, z);
-            default:
-                return TL_wallet.walletTransaction.TLdeserialize(inputSerializedData, i, z);
+    public final void draw(Canvas canvas) {
+        if (this.k != yob.b) {
+            try {
+                a();
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+        }
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f;
+        RectF rectF = this.e;
+        rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
+        if (this.l) {
+            rectF.set(getBounds());
+            min = this.m;
+        }
+        Paint paint = this.g;
+        if (Color.alpha(paint.getColor()) > 0) {
+            canvas.drawCircle(centerX, centerY, min, paint);
+        }
+        if (this.j != null) {
+            Arrays.fill(this.i, min);
+            this.h.a(canvas, rectF.left, rectF.top, rectF.right, rectF.bottom, this.i, this.j, 1.0f);
         }
     }
 
     @Override
-    public final int e(View view) {
-        ShapeDrawable shapeDrawable = ((lyb) view).f0;
-        if (shapeDrawable != null) {
-            return shapeDrawable.getPaint().getColor();
-        }
-        return 0;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        switch (this.a) {
-            case 26:
-                hdVar.dismiss();
-                return;
-            default:
-                hdVar.dismiss();
-                return;
-        }
+    public final void setAlpha(int i) {
+        this.d = i / 255.0f;
+        a();
     }
 
     @Override
-    public final void v(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public final void E(int i, Drawable drawable) {
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

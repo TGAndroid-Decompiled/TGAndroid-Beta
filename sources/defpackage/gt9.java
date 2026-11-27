@@ -1,53 +1,46 @@
 package defpackage;
 
-import android.app.Activity;
-public final class gt9 extends zya {
-    public final byte L;
-    public final hi3 M;
+import j$.util.Objects;
+public final class gt9 extends ka {
+    public final it9 c;
+    public final String d;
 
-    public gt9(hi3 hi3Var, Activity activity, pi4 pi4Var, byte b) {
-        super(activity, pi4Var, 1, null);
-        this.L = b;
-        this.M = hi3Var;
+    public gt9(int i, String str) {
+        super(i, false);
+        this.d = str;
+        this.c = null;
     }
 
-    @Override
-    public final void setVisibility(int i) {
-        byte b = this.L;
-        hi3 hi3Var = this.M;
-        switch (b) {
-            case 0:
-                if (hi3Var.P0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i);
-                    return;
-                }
-            case 1:
-                if (hi3Var.P0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i);
-                    return;
-                }
-            case 2:
-                if (hi3Var.P0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i);
-                    return;
-                }
-            default:
-                if (hi3Var.P0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i);
-                    return;
-                }
+    public final boolean equals(Object obj) {
+        it9 it9Var;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || gt9.class != obj.getClass()) {
+            return false;
+        }
+        gt9 gt9Var = (gt9) obj;
+        if (this.a != gt9Var.a) {
+            return false;
+        }
+        String str = this.d;
+        if (str != null) {
+            return Objects.equals(str, gt9Var.d);
+        }
+        it9 it9Var2 = this.c;
+        if (it9Var2 == null || (it9Var = gt9Var.c) == null || it9Var2.d == it9Var.d) {
+            return true;
+        }
+        return false;
+    }
+
+    public gt9(it9 it9Var) {
+        super(2, false);
+        this.c = it9Var;
+    }
+
+    public gt9(int i) {
+        super(i, false);
+        this.c = null;
     }
 }

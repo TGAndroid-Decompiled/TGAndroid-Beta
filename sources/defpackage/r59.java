@@ -1,120 +1,67 @@
 package defpackage;
 
-import android.os.Bundle;
-public final class r59 extends vt6 implements n59 {
-    public final String a;
-    public final String b;
-    public boolean c;
-    public int d = -1;
-    public int e;
-    public m59 f;
-    public int g;
-    public final s59 h;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.e;
+public final class r59 extends FrameLayout {
+    public final lc0 a;
+    public final TextView b;
+    public m59 c;
 
-    public r59(s59 s59Var, String str, String str2) {
-        this.h = s59Var;
-        this.a = str;
-        this.b = str2;
+    public r59(int i, vnb vnbVar, Context context) {
+        super(context);
+        this.a = new lc0(i, this, hl.L(24.0f), hl.L(10.0f), hl.N(1.0f));
+        TextView textView = new TextView(context);
+        this.b = textView;
+        yob.X(textView, aob.E8, vnbVar);
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(19);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setTextSize(1, 16.0f);
+        setPadding(hl.L(16.0f), 0, hl.L(68.0f), 0);
+        addView(textView, tre.g());
     }
 
-    @Override
-    public final int a() {
-        return this.g;
-    }
-
-    @Override
-    public final void b(m59 m59Var) {
-        this.f = m59Var;
-        int i = m59Var.e;
-        m59Var.e = i + 1;
-        Bundle bundle = new Bundle();
-        bundle.putString("routeId", this.a);
-        bundle.putString("routeGroupId", this.b);
-        int i2 = m59Var.d;
-        m59Var.d = i2 + 1;
-        m59Var.b(3, i2, i, null, bundle);
-        this.g = i;
-        if (this.c) {
-            m59Var.a(i);
-            int i3 = this.d;
-            if (i3 >= 0) {
-                m59Var.c(this.g, i3);
-                this.d = -1;
-            }
-            int i4 = this.e;
-            if (i4 != 0) {
-                m59Var.d(this.g, i4);
-                this.e = 0;
-            }
-        }
-    }
-
-    @Override
-    public final void c() {
-        m59 m59Var = this.f;
+    public final q9c a(e eVar, long j, int i, byte[] bArr, int i2, pcc pccVar) {
+        m59 m59Var = this.c;
         if (m59Var != null) {
-            int i = this.g;
-            int i2 = m59Var.d;
-            m59Var.d = i2 + 1;
-            m59Var.b(4, i2, i, null, null);
-            this.f = null;
-            this.g = 0;
+            return m59Var;
         }
+        q59 q59Var = new q59(eVar.getCurrentAccount(), eVar.getMessagesController().j1(j), i, bArr, new uk8(this, (byte) 26), pccVar);
+        hl.d3(new uk8(q59Var, (byte) 27), 1000L);
+        m59 m59Var2 = new m59(eVar, new l59(q59Var, (byte) 0), i2);
+        this.c = m59Var2;
+        m59Var2.g3.r = false;
+        m59Var2.j(new bj1(this, q59Var, (byte) 10));
+        return this.c;
     }
 
     @Override
-    public final void d() {
-        s59 s59Var = this.h;
-        s59Var.w.remove(this);
-        c();
-        s59Var.r();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        int width = getWidth() - hl.L(11.0f);
+        lc0 lc0Var = this.a;
+        lc0Var.setBounds(width - ((int) lc0Var.c.d.f.a), hl.L(12.0f), getWidth() - hl.L(11.0f), hl.L(24.0f) + hl.L(12.0f));
+        lc0Var.c(canvas);
     }
 
     @Override
-    public final void e() {
-        this.c = true;
-        m59 m59Var = this.f;
-        if (m59Var != null) {
-            m59Var.a(this.g);
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.a.a();
     }
 
     @Override
-    public final void f(int i) {
-        m59 m59Var = this.f;
-        if (m59Var != null) {
-            m59Var.c(this.g, i);
-            return;
-        }
-        this.d = i;
-        this.e = 0;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.a.b();
     }
 
-    @Override
-    public final void g() {
-        h(0);
-    }
-
-    @Override
-    public final void h(int i) {
-        this.c = false;
-        m59 m59Var = this.f;
-        if (m59Var != null) {
-            int i2 = this.g;
-            Bundle j = ls6.j(i, "unselectReason");
-            int i3 = m59Var.d;
-            m59Var.d = i3 + 1;
-            m59Var.b(6, i3, i2, null, j);
-        }
-    }
-
-    @Override
-    public final void i(int i) {
-        m59 m59Var = this.f;
-        if (m59Var != null) {
-            m59Var.d(this.g, i);
-        } else {
-            this.e += i;
-        }
+    public void setText(String str) {
+        this.b.setText(str);
     }
 }

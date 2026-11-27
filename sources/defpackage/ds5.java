@@ -1,111 +1,84 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ds5 implements h49 {
-    public final byte a = 0;
-    public final Object b;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class ds5 implements Runnable {
+    public final byte a;
+    public final iy2 b;
+    public final String c;
 
-    public ds5(o39 o39Var, Context context) {
-        this.b = o39Var;
-        z24 z24Var = new z24(context, new h39(this));
-        o39Var.L1 = z24Var;
-        ((os4) z24Var.b).t = false;
+    public ds5(iy2 iy2Var, String str, byte b) {
+        this.a = b;
+        this.b = iy2Var;
+        this.c = str;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
+    public final void run() {
+        int i;
         switch (this.a) {
             case 0:
-                is5 is5Var = (is5) this.b;
-                ez3 ez3Var = is5Var.J;
-                ((GestureDetector) is5Var.O.a).onTouchEvent(motionEvent);
-                VelocityTracker velocityTracker = is5Var.K;
-                if (velocityTracker != null) {
-                    velocityTracker.addMovement(motionEvent);
+                Utilities.g.c(new ds5(this.b, this.c, (byte) 1));
+                return;
+            default:
+                iy2 iy2Var = this.b;
+                String str = this.c;
+                es5 es5Var = (es5) iy2Var.c;
+                String lowerCase = str.trim().toLowerCase();
+                if (lowerCase.isEmpty()) {
+                    ArrayList arrayList = new ArrayList();
+                    ArrayList arrayList2 = new ArrayList();
+                    es5Var.getClass();
+                    hl.c3(new re4(es5Var, arrayList, arrayList2, (byte) 29));
+                    return;
                 }
-                if (is5Var.x != -1) {
-                    int actionMasked = motionEvent.getActionMasked();
-                    int findPointerIndex = motionEvent.findPointerIndex(is5Var.x);
-                    if (findPointerIndex >= 0) {
-                        is5Var.j(actionMasked, findPointerIndex, motionEvent);
+                ?? r5 = 0;
+                String S0 = ob6.D0().S0(lowerCase, true, false);
+                if (lowerCase.equals(S0) || S0.isEmpty()) {
+                    S0 = null;
+                }
+                if (S0 != null) {
+                    i = 1;
+                } else {
+                    i = 0;
+                }
+                int i2 = i + 1;
+                String[] strArr = new String[i2];
+                strArr[0] = lowerCase;
+                if (S0 != null) {
+                    strArr[1] = S0;
+                }
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                int i3 = 0;
+                while (i3 < es5Var.n.w.size()) {
+                    iv2 iv2Var = (iv2) es5Var.n.w.get(i3);
+                    String lowerCase2 = lv2.m(r5, iv2Var.i, iv2Var.j).toLowerCase();
+                    String S02 = ob6.D0().S0(lowerCase2, true, r5);
+                    if (lowerCase2.equals(S02)) {
+                        S02 = null;
                     }
-                    s49 s49Var = is5Var.c;
-                    if (s49Var != null) {
-                        int i = 0;
-                        if (actionMasked != 1) {
-                            if (actionMasked != 2) {
-                                if (actionMasked != 3) {
-                                    if (actionMasked == 6) {
-                                        int actionIndex = motionEvent.getActionIndex();
-                                        if (motionEvent.getPointerId(actionIndex) == is5Var.x) {
-                                            if (actionIndex == 0) {
-                                                i = 1;
-                                            }
-                                            is5Var.x = motionEvent.getPointerId(i);
-                                            is5Var.t(is5Var.F, actionIndex, motionEvent);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                VelocityTracker velocityTracker2 = is5Var.K;
-                                if (velocityTracker2 != null) {
-                                    velocityTracker2.clear();
-                                }
-                            } else if (findPointerIndex >= 0) {
-                                is5Var.t(is5Var.F, findPointerIndex, motionEvent);
-                                is5Var.p(s49Var);
-                                is5Var.I.removeCallbacks(ez3Var);
-                                ez3Var.run();
-                                is5Var.I.invalidate();
-                                return;
+                    int i4 = r5;
+                    int i5 = i4;
+                    while (true) {
+                        if (i4 < i2) {
+                            String str2 = strArr[i4];
+                            if (lowerCase2.startsWith(str2) || uh9.t(" ", str2, lowerCase2) || (S02 != null && (S02.startsWith(str2) || uh9.t(" ", str2, S02)))) {
+                                i5 = 1;
+                            }
+                            if (i5 != 0) {
+                                arrayList4.add(hl.r0(iv2Var.i, iv2Var.j, str2));
+                                arrayList3.add(iv2Var);
                             } else {
-                                return;
+                                i4++;
                             }
                         }
-                        is5Var.q(null, 0);
-                        is5Var.x = -1;
-                        return;
                     }
-                    return;
+                    i3++;
+                    r5 = 0;
                 }
-                return;
-            default:
+                hl.c3(new re4(es5Var, arrayList3, arrayList4, (byte) 29));
                 return;
         }
-    }
-
-    @Override
-    public final boolean b(androidx.recyclerview.widget.RecyclerView r22, android.view.MotionEvent r23) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ds5.b(androidx.recyclerview.widget.RecyclerView, android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void c(boolean z) {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                if (z) {
-                    ((is5) obj).q(null, 0);
-                    return;
-                }
-                return;
-            default:
-                ((o39) obj).J0(true);
-                return;
-        }
-    }
-
-    public ds5(is5 is5Var) {
-        this.b = is5Var;
-    }
-
-    private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {
     }
 }

@@ -1,370 +1,289 @@
 package defpackage;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Trace;
-import android.view.ContextThemeWrapper;
-import android.view.View;
-import android.view.ViewTreeObserver;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+import java.nio.MappedByteBuffer;
 import java.util.Iterator;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-public final class rj4 extends View {
-    public final byte a = 4;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class rj4 implements Runnable {
+    public final byte a;
     public final Object b;
-    public Object c;
-    public Object d;
 
-    public rj4(sj4 sj4Var, Activity activity) {
-        super(activity);
-        this.d = sj4Var;
-        Paint paint = new Paint(1);
-        this.b = paint;
-        Paint paint2 = new Paint(1);
-        this.c = paint2;
-        paint.setColor(-1);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint.setStrokeWidth(gl.L(2.0f));
-        paint2.setColor(paint.getColor());
-        paint2.setAlpha((int) (paint.getAlpha() * 0.3f));
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeWidth(gl.L(2.0f));
+    public rj4(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 1:
-                int[] iArr = (int[]) obj;
-                sb sbVar = (sb) this.c;
-                v65 v65Var = (v65) this.d;
-                Matrix matrix = v65Var.f;
-                if (v65Var.h > 0.0f && v65Var.d != null) {
-                    matrix.reset();
-                    float width = getWidth() / v65Var.c.getWidth();
-                    matrix.postScale(width, width);
-                    v65Var.e.setLocalMatrix(matrix);
-                    v65Var.d.setAlpha((int) (v65Var.h * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), v65Var.d);
-                } else {
-                    canvas2 = canvas;
-                }
-                if (sbVar.isAttachedToWindow() && sbVar.getAlpha() > 0.5f) {
-                    sbVar.getLocationInWindow(iArr);
-                } else {
-                    v65Var.dismiss();
-                }
-                canvas2.save();
-                canvas2.translate(iArr[0] - ((1.0f - sbVar.getScaleX()) * sbVar.getMeasuredWidth()), iArr[1] - ((1.0f - sbVar.getScaleY()) * sbVar.getMeasuredHeight()));
-                if (((pc) sbVar.b).a(canvas2, sbVar.getMeasuredWidth(), v65Var.h)) {
-                    invalidate();
-                }
-                canvas2.restore();
+    private final void a() {
+        s25 s25Var = (s25) this.b;
+        synchronized (s25Var) {
+            if (s25Var.a) {
                 return;
-            case 2:
-                super.dispatchDraw(canvas);
-                int L = gl.L(48.0f);
-                qa5 qa5Var = (qa5) this.d;
-                int i = L + ((int) qa5Var.b.f);
-                Paint paint = (Paint) obj;
-                paint.setColor(qa5Var.getThemedColor(bkb.r8));
-                RectF rectF = (RectF) this.c;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), qa5.c0(qa5Var).getMeasuredHeight() + i);
-                qa5Var.m0(canvas, rectF, paint);
+            }
+            s25Var.a = true;
+            Runnable runnable = s25Var.b;
+            if (runnable != null) {
+                runnable.run();
+                s25Var.b = null;
+            }
+        }
+    }
+
+    private final void b() {
+        u25 u25Var = (u25) this.b;
+        synchronized (u25Var) {
+            if (u25Var.a) {
                 return;
-            case 3:
-            case 4:
-            default:
-                super.dispatchDraw(canvas);
-                return;
-            case 5:
-                fxb fxbVar = (fxb) this.d;
-                gn gnVar = fxbVar.e;
-                float i2 = gnVar.i();
-                if (i2 > 0.0f) {
-                    float R1 = gl.R1(0.6f, 1.0f, i2);
-                    float max = Math.max(gl.L(16.66f), gnVar.c() + gl.L(10.0f));
-                    RectF rectF2 = gl.P;
-                    rectF2.set(0.0f, 0.0f, max, getHeight());
-                    canvas.save();
-                    canvas.scale(R1, R1, rectF2.centerX(), rectF2.centerY());
-                    rm rmVar = (rm) obj;
-                    rmVar.setColor(rmVar.b.a(bkb.v0(fxbVar.J, rmVar.a), false));
-                    rmVar.setColor(bm2.f(fxbVar.G, rmVar.getColor(), fxb.a(fxbVar)));
-                    rmVar.setAlpha((int) (rmVar.getAlpha() * i2));
-                    canvas.drawRoundRect(rectF2, gl.L(8.33f), gl.L(8.33f), rmVar);
-                    gnVar.p(rectF2);
-                    gnVar.C = (int) (i2 * 255.0f);
-                    gnVar.u(bkb.v0(bkb.V8, (wjb) this.c));
-                    gnVar.draw(canvas);
-                    canvas.restore();
-                }
-                super.dispatchDraw(canvas);
-                return;
+            }
+            u25Var.a = true;
+            Runnable runnable = u25Var.b;
+            if (runnable != null) {
+                runnable.run();
+                u25Var.b = null;
+            }
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
+    public final void run() {
         switch (this.a) {
-            case 6:
-                super.onAttachedToWindow();
-                ViewTreeObserver viewTreeObserver = getViewTreeObserver();
-                this.d = viewTreeObserver;
-                viewTreeObserver.addOnDrawListener((gp4) this.c);
-                return;
-            case 7:
-                super.onAttachedToWindow();
-                if (((gv8) this.c) != null) {
-                    postDelayed((kbc) this.d, 200L);
-                    return;
-                }
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.a) {
-            case 6:
-                super.onDetachedFromWindow();
-                ViewTreeObserver viewTreeObserver = (ViewTreeObserver) this.d;
-                if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
-                    ((ViewTreeObserver) this.d).removeOnDrawListener((gp4) this.c);
-                }
-                this.d = null;
-                return;
-            case 7:
-                super.onDetachedFromWindow();
-                kbc kbcVar = (kbc) this.d;
-                removeCallbacks(kbcVar);
-                kbcVar.run();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
             case 0:
-                int width = getWidth();
-                float L = gl.L(10.0f);
-                float L2 = (width - L) - gl.L(10.0f);
-                float height = getHeight() - gl.L(8.0f);
-                sj4 sj4Var = (sj4) this.d;
-                float f2 = sj4Var.J;
-                if (f2 != 0.0f) {
-                    f = L;
-                    canvas.drawLine(f, height, (f2 * L2) + L, height, (Paint) this.c);
-                } else {
-                    f = L;
+                tj4 tj4Var = (tj4) this.b;
+                if (!tj4Var.c) {
+                    tj4Var.setLayerType(0, null);
+                    return;
                 }
-                canvas.drawLine(f, height, (L2 * sj4Var.I) + f, height, (Paint) obj);
                 return;
             case 1:
+                ((pl4) this.b).invalidate();
+                return;
             case 2:
-            case 5:
-            default:
-                super.onDraw(canvas);
+                xl4 xl4Var = (xl4) ((m33) this.b).b;
+                xl4Var.j.invalidate();
+                xl4Var.k.requestLayout();
                 return;
             case 3:
-                float L3 = gl.L(10.0f);
-                float f3 = L3 * 2.0f;
-                float measuredWidth = getMeasuredWidth() - f3;
-                float measuredHeight = getMeasuredHeight() - f3;
-                canvas.save();
-                RectF rectF = gl.P;
-                float f4 = L3 + measuredWidth;
-                rectF.set(L3, L3, f4, f4);
-                rectF.offset(0.0f, (measuredHeight - rectF.height()) / 2.0f);
-                float f5 = measuredWidth / 7.0f;
-                Path path = (Path) this.c;
-                path.rewind();
-                path.addRoundRect(rectF, f5, f5, Path.Direction.CW);
-                canvas.clipPath(path);
-                int L4 = gl.L(10.0f);
-                canvas.save();
-                canvas.translate(rectF.left, rectF.top);
-                float f6 = L4;
-                int width2 = ((int) (rectF.width() / f6)) + 1;
-                int height2 = ((int) (rectF.height() / f6)) + 1;
-                for (int i = 0; i < height2; i++) {
-                    canvas.save();
-                    for (int i2 = 0; i2 < width2; i2++) {
-                        int i3 = i2 % 2;
-                        if ((i3 == 0 && i % 2 == 0) || (i3 != 0 && i % 2 != 0)) {
-                            canvas.drawRect(0.0f, 0.0f, f6, f6, (Paint) obj);
-                        }
-                        canvas.translate(f6, 0.0f);
-                    }
-                    canvas.restore();
-                    canvas.translate(0.0f, f6);
-                }
-                canvas.restore();
-                canvas.restore();
+                ((ul4) this.b).invalidate();
                 return;
             case 4:
-                super.onDraw(canvas);
-                float f7 = ((fm0) obj).e;
-                kq3.b(canvas, (Drawable) this.c, 1.0f - f7);
-                kq3.b(canvas, (Drawable) this.d, f7);
+                jm4 jm4Var = (jm4) ((md) this.b).b;
+                jm4Var.k();
+                jm4Var.j();
+                return;
+            case 5:
+                jm4 jm4Var2 = ((fm4) this.b).b;
+                jm4Var2.c.dismiss();
+                jm4Var2.f.removeAllViews();
                 return;
             case 6:
-                Trace.beginSection("OnPostDraw");
-                try {
-                    Iterator it = ((e59) obj).iterator();
-                    while (it.hasNext()) {
-                        ((hw4) it.next()).b();
+                ((fm4) this.b).b.c.dismiss();
+                return;
+            case 7:
+                vn4 vn4Var = (vn4) this.b;
+                synchronized (vn4Var.c) {
+                    if (vn4Var.h != null) {
+                        try {
+                            go4 d = vn4Var.d();
+                            int i = d.e;
+                            if (i == 2) {
+                                synchronized (vn4Var.c) {
+                                }
+                            }
+                            if (i == 0) {
+                                int i2 = n1c.a;
+                                Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
+                                Context context = vn4Var.a;
+                                go4[] go4VarArr = {d};
+                                p1f p1fVar = r7c.a;
+                                q0f.a("TypefaceCompat.createFromFontInfo");
+                                try {
+                                    Typeface b = r7c.a.b(context, go4VarArr, 0);
+                                    Trace.endSection();
+                                    MappedByteBuffer d2 = r1f.d(vn4Var.a, d.a);
+                                    if (d2 != null && b != null) {
+                                        try {
+                                            Trace.beginSection("EmojiCompat.MetadataRepo.create");
+                                            u8a u8aVar = new u8a(b, ste.a(d2));
+                                            Trace.endSection();
+                                            synchronized (vn4Var.c) {
+                                                rje rjeVar = vn4Var.h;
+                                                if (rjeVar != null) {
+                                                    rjeVar.b(u8aVar);
+                                                }
+                                            }
+                                            vn4Var.a();
+                                            return;
+                                        } catch (Throwable th) {
+                                            int i3 = n1c.a;
+                                            throw th;
+                                        }
+                                    }
+                                    throw new RuntimeException("Unable to open file.");
+                                } finally {
+                                    Trace.endSection();
+                                }
+                            }
+                            throw new RuntimeException("fetchFonts result is not OK. (" + i + ")");
+                        } catch (Throwable th2) {
+                            synchronized (vn4Var.c) {
+                                rje rjeVar2 = vn4Var.h;
+                                if (rjeVar2 != null) {
+                                    rjeVar2.a(th2);
+                                }
+                                vn4Var.a();
+                                return;
+                            }
+                        }
                     }
                     return;
-                } finally {
-                    Trace.endSection();
                 }
-            case 7:
-                hv8 hv8Var = (hv8) obj;
-                hv8Var.e(canvas, 0.0f, 0.0f, getWidth());
-                if (hv8Var.o < 1.0f || hv8Var.l > 0) {
-                    invalidate();
+            case 8:
+                Iterator it = ((kq4) this.b).n.iterator();
+                if (!it.hasNext()) {
+                    return;
+                }
+                throw qu6.l(it);
+            case 9:
+                ((st4) this.b).b(null);
+                return;
+            case 10:
+                ((vt4) this.b).E();
+                return;
+            case 11:
+                RecyclerView recyclerView = (RecyclerView) this.b;
+                if (recyclerView.getAdapter() != null) {
+                    recyclerView.getAdapter().f();
+                    return;
+                }
+                return;
+            case 12:
+                tv4 tv4Var = ((sv4) this.b).r;
+                kl8 kl8Var = new kl8(tv4Var.r1, tv4Var.a, null, null, null, tv4Var.J0);
+                kl8Var.E2 = true;
+                kl8Var.X1 = true;
+                tv4Var.r1.showDialog(kl8Var);
+                return;
+            case 13:
+                zv4 zv4Var = (zv4) this.b;
+                Drawable drawable = zv4Var.Q;
+                if (drawable != null && !zv4Var.b0) {
+                    drawable.setAlpha(255);
+                }
+                zv4Var.a.setAlpha(1.0f);
+                if (zv4Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) zv4Var.getParent()).removeView(zv4Var);
+                }
+                Runnable runnable = zv4Var.R;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 14:
+                EditTextBoldCursor editTextBoldCursor = ((ow4) this.b).r1;
+                editTextBoldCursor.requestFocus();
+                hl.E3(editTextBoldCursor);
+                return;
+            case 15:
+                l9c l9cVar = ((yx4) this.b).T1;
+                if (l9cVar != null) {
+                    l9cVar.O(false);
+                    return;
+                }
+                return;
+            case 16:
+                ((px4) this.b).c();
+                return;
+            case 17:
+                ((vx4) this.b).invalidateSelf();
+                return;
+            case 18:
+                xx4 xx4Var = (xx4) this.b;
+                yza yzaVar = xx4Var.e;
+                if (yzaVar != null) {
+                    yzaVar.d();
+                    xx4Var.invalidateSelf();
+                    return;
+                }
+                return;
+            case 19:
+                ((a05) this.b).k();
+                return;
+            case 20:
+                a();
+                return;
+            case 21:
+                ((c35) this.b).close();
+                return;
+            case 22:
+                b();
+                return;
+            case 23:
+                p35 p35Var = (p35) this.b;
+                p35Var.c("AUTH_CANCELED");
+                p35Var.e();
+                if (tne.b == p35Var) {
+                    tne.b = null;
+                    return;
+                }
+                return;
+            case 24:
+                ((sk7) this.b).dismiss();
+                return;
+            case 25:
+                r55 r55Var = (r55) this.b;
+                r55Var.b.g3.O(true);
+                r55Var.Y(true);
+                return;
+            case 26:
+                v85 v85Var = (v85) this.b;
+                j95 j95Var = v85Var.f;
+                i75 i75Var = j95Var.l1;
+                jn5 jn5Var = v85Var.d;
+                if (jn5Var != null) {
+                    i75Var.L0 = jn5Var;
+                    i75Var.r1 = null;
+                    i75Var.s1 = null;
+                    v85Var.d = null;
+                }
+                TLRPC.Chat M0 = uc7.s1(j95Var.n1.a).M0(Long.valueOf(-v85Var.e));
+                jn5 a = jn5.a(0, M0);
+                jn5 a2 = jn5.a(1, M0);
+                if (jn5.e(v85Var.b) == null) {
+                    a2 = jn5.e(v85Var.c);
+                }
+                i75Var.setCreateThumbFromParent(false);
+                i75Var.H(null, a, a2, true);
+                v85Var.c = null;
+                v85Var.b = null;
+                hl.V3(j95Var.J1);
+                v85Var.a(1.0f);
+                return;
+            case 27:
+                tb tbVar = (tb) ((qc) this.b).i;
+                if (tbVar != null) {
+                    tbVar.invalidate();
+                    return;
+                }
+                return;
+            case 28:
+                ((l95) this.b).invalidate();
+                return;
+            default:
+                v95 v95Var = (v95) this.b;
+                GroupCallMessage groupCallMessage = v95Var.I;
+                if (groupCallMessage != null) {
+                    v95Var.a.a(groupCallMessage.isSendDelayed(), true);
+                    v95Var.b.a(v95Var.I.isSendError(), true);
                     return;
                 }
                 return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.a) {
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(gl.L(16.66f), ((fxb) this.d).e.d + gl.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(gl.L(16.66f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        switch (this.a) {
-            case 4:
-                super.onSizeChanged(i, i2, i3, i4);
-                float f = i / 2.0f;
-                float f2 = i2 / 2.0f;
-                kq3.d((Drawable) this.c, f, f2, 17);
-                kq3.d((Drawable) this.d, f, f2, 17);
-                return;
-            default:
-                super.onSizeChanged(i, i2, i3, i4);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f) {
-        switch (this.a) {
-            case 3:
-                super.setAlpha(f);
-                ((PhotoViewer) this.d).h0.invalidate();
-                return;
-            default:
-                super.setAlpha(f);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        switch (this.a) {
-            case 5:
-                if (((fxb) this.d).e != drawable && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
-    }
-
-    public rj4(Activity activity) {
-        super(activity);
-        this.b = new fm0(320L, this, s33.h);
-        this.c = activity.getResources().getDrawable(2131232495).mutate();
-        this.d = activity.getResources().getDrawable(2131231508).mutate();
-    }
-
-    public rj4(qa5 qa5Var, Context context) {
-        super(context);
-        this.d = qa5Var;
-        this.c = new RectF();
-        this.b = new Paint(1);
-    }
-
-    public rj4(Context context) {
-        super(context);
-        this.b = new e59(0, false);
-        this.c = new gp4(this, (byte) 1);
-    }
-
-    public rj4(fxb fxbVar, Context context, wjb wjbVar) {
-        super(context);
-        this.d = fxbVar;
-        this.c = wjbVar;
-        this.b = new rm(this, wjbVar);
-        fxbVar.e.setCallback(this);
-    }
-
-    public rj4(Context context, gv8 gv8Var) {
-        super(context);
-        hv8 hv8Var = new hv8();
-        this.b = hv8Var;
-        this.d = new kbc(this, (byte) 21);
-        if (hv8Var.y != -16777216 || hv8Var.z == null) {
-            hv8Var.y = -16777216;
-            hv8Var.z = new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_IN);
-        }
-        this.c = gv8Var;
-    }
-
-    public rj4(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper) {
-        super(contextThemeWrapper);
-        this.d = photoViewer;
-        Paint paint = new Paint();
-        this.b = paint;
-        this.c = new Path();
-        paint.setColor(-1);
-        paint.setAlpha(40);
-        setLayerType(2, null);
-    }
-
-    public rj4(v65 v65Var, LaunchActivity launchActivity, sb sbVar) {
-        super(launchActivity);
-        this.d = v65Var;
-        this.c = sbVar;
-        this.b = new int[2];
     }
 }

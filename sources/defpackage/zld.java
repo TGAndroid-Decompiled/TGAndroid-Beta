@@ -1,17 +1,16 @@
 package defpackage;
-public final class zld implements zn7 {
-    public static final zld a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)), 6)));
+import android.os.IBinder;
+import android.os.IInterface;
+public final class zld implements rxd, IInterface {
+    public final IBinder a;
+
+    public zld(IBinder iBinder) {
+        this.a = iBinder;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

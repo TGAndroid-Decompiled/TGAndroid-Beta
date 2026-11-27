@@ -1,16 +1,24 @@
 package defpackage;
-public final class q70 implements zn7 {
+
+import android.os.Build;
+public final class q70 implements zq7 {
     public static final q70 a = new Object();
-    public static final w84 b = w84.c("performance");
-    public static final w84 c = w84.c("crashlytics");
-    public static final w84 d = w84.c("sessionSamplingRate");
+    public static final sa4 b = sa4.c("packageName");
+    public static final sa4 c = sa4.c("versionName");
+    public static final sa4 d = sa4.c("appBuildVersion");
+    public static final sa4 e = sa4.c("deviceManufacturer");
+    public static final sa4 f = sa4.c("currentProcessDetails");
+    public static final sa4 g = sa4.c("appProcessDetails");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        a63 a63Var = (a63) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, a63Var.a);
-        ao7Var.a(c, a63Var.b);
-        ao7Var.f(d, a63Var.c);
+        yj yjVar = (yj) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.a(b, yjVar.a);
+        ar7Var.a(c, yjVar.b);
+        ar7Var.a(d, yjVar.c);
+        ar7Var.a(e, Build.MANUFACTURER);
+        ar7Var.a(f, yjVar.d);
+        ar7Var.a(g, yjVar.e);
     }
 }

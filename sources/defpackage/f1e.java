@@ -1,18 +1,17 @@
 package defpackage;
-public enum f1e implements boe {
-    RESULT_UNKNOWN(0),
-    RESULT_SUCCESS(1),
-    RESULT_FAIL(2),
-    RESULT_SKIPPED(3);
-    
-    public final byte a;
+public final class f1e implements zq7 {
+    public static final f1e a = new Object();
 
-    f1e(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
     @Override
-    public final String toString() {
-        return "<" + f1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

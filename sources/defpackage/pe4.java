@@ -1,33 +1,29 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pe4 extends AnimatorListenerAdapter {
-    public final byte a = 0;
-    public final a32 b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pe4 implements RequestDelegate {
+    public final byte a;
+    public final nf4 b;
 
-    public pe4(a32 a32Var) {
-        this.b = a32Var;
+    public pe4(nf4 nf4Var, byte b) {
+        this.a = b;
+        this.b = nf4Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        a32 a32Var = this.b;
+        nf4 nf4Var = this.b;
         switch (b) {
             case 0:
-                ((af4) a32Var.d).m0.e();
+                hl.c3(new vx3(nf4Var, tLObject, (byte) 28));
                 return;
             default:
-                pi4 pi4Var = a32Var.b;
-                pi4Var.setAlpha(1.0f);
-                d49.w0(pi4Var);
-                ((af4) a32Var.d).b.removeView(pi4Var);
+                nf4Var.getClass();
+                hl.c3(new re4((Object) nf4Var, (Object) tL_error, (Object) tLObject, (byte) 0));
                 return;
         }
-    }
-
-    public pe4(a32 a32Var, d49 d49Var) {
-        this.b = a32Var;
     }
 }

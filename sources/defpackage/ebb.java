@@ -1,72 +1,108 @@
 package defpackage;
 
+import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.PhotoViewer;
-public final class ebb extends View {
-    public ImageReceiver a;
-    public ImageReceiver b;
-    public View c;
-    public v48 d;
-    public Path e;
-    public Drawable f;
+import android.graphics.RecordingCanvas;
+import android.graphics.Rect;
+import android.graphics.RenderNode;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import java.util.Arrays;
+public final class ebb extends FrameLayout {
+    public final Rect a;
+    public final Rect b;
+    public RenderNode c;
+    public final rbb d;
+
+    public ebb(rbb rbbVar, Activity activity) {
+        super(activity);
+        this.d = rbbVar;
+        this.a = new Rect();
+        this.b = new Rect();
+    }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int measuredWidth = getMeasuredWidth() >> 1;
-        int measuredHeight = getMeasuredHeight() - gl.L(30.0f);
-        int L = gl.L(46.0f) + measuredWidth;
-        ImageReceiver imageReceiver = this.a;
-        imageReceiver.i0((measuredWidth - gl.L(46.0f)) - gl.L(30.0f), measuredHeight - gl.L(30.0f), gl.L(60.0f), gl.L(60.0f));
-        this.b.i0(L - gl.L(30.0f), measuredHeight - gl.L(30.0f), gl.L(60.0f), gl.L(60.0f));
-        Drawable drawable = this.f;
-        drawable.setBounds(oo1.A(2, measuredWidth, drawable), oo1.y(2, measuredHeight, drawable), oo1.w(2, measuredWidth, drawable), oo1.i(2, measuredHeight, drawable));
-        drawable.draw(canvas);
-        Path path = this.e;
-        path.reset();
-        path.addCircle(L, measuredHeight, gl.L(30.0f), Path.Direction.CW);
-        imageReceiver.h(canvas, null);
-        if (this.c != null) {
-            CropAreaView cropAreaView = this.d.b.a;
-            float L2 = gl.L(60.0f) / cropAreaView.a;
-            float left = (0.0f - this.d.getLeft()) - cropAreaView.b;
-            canvas.save();
-            canvas.clipPath(path);
-            canvas.scale(L2, L2, 0.0f, 0.0f);
-            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.c);
-            canvas.translate((L - gl.L(30.0f)) / L2, (measuredHeight - gl.L(30.0f)) / L2);
-            PhotoViewer.r0().g4 = true;
-            this.c.draw(canvas);
-            PhotoViewer.r0().g4 = false;
-            canvas.restore();
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z;
+        RecordingCanvas recordingCanvas;
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 31 && canvas.isHardwareAccelerated() && !hl.m0) {
+            RenderNode renderNode = this.c;
+            if (renderNode == null) {
+                renderNode = new RenderNode("StoryRecorder.PreviewView");
+                this.c = renderNode;
+            }
+            renderNode.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = this.c.beginRecording();
+            z = true;
+        } else {
+            z = false;
+            recordingCanvas = canvas;
         }
-        super.draw(canvas);
-        this.c.invalidate();
-        invalidate();
+        super.dispatchDraw(recordingCanvas);
+        if (z && i >= 31) {
+            this.c.endRecording();
+            tl0 tl0Var = this.d.s0;
+            if (tl0Var != null) {
+                tl0Var.g(this, this.c);
+            }
+            canvas.drawRenderNode(this.c);
+        }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.a.I();
-        this.b.I();
+    public final void invalidate() {
+        ValueAnimator valueAnimator = this.d.F;
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            return;
+        }
+        super.invalidate();
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.a.K();
-        this.b.K();
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (Build.VERSION.SDK_INT >= 29) {
+            int i5 = i3 - i;
+            int i6 = i4 - i2;
+            int L = hl.L(40.0f);
+            Rect rect = this.a;
+            rect.set(0, i6 - hl.L(120.0f), L, i6);
+            Rect rect2 = this.b;
+            rect2.set(i5 - hl.L(40.0f), i6 - hl.L(120.0f), i5, i6);
+            setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
+        }
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        this.a.q0(gl.L(30.0f));
-        this.b.q0(gl.L(30.0f));
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(86.0f), 1073741824));
+        super.onMeasure(i, i2);
+        rbb rbbVar = this.d;
+        v88 v88Var = rbbVar.G1;
+        if (v88Var != null) {
+            a69 a69Var = v88Var.e;
+            a69Var.a = 0.0f;
+            a69Var.b = 0.0f;
+            a69Var.c = v88Var.getMeasuredWidth();
+            a69Var.d = rbbVar.G1.getMeasuredHeight();
+        }
+        t88 t88Var = rbbVar.F1;
+        if (t88Var != null) {
+            qma qmaVar = t88Var.d;
+            qmaVar.a = t88Var.getMeasuredWidth();
+            qmaVar.b = rbbVar.F1.getMeasuredHeight();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        nbb nbbVar = this.d.w2;
+        if (nbbVar != null) {
+            nbbVar.h(motionEvent);
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

@@ -1,37 +1,27 @@
 package defpackage;
-
-import org.telegram.messenger.video.VideoPlayerHolderBase;
-public final class nbc implements Runnable {
+public final class nbc implements pcc {
     public final byte a;
-    public final VideoPlayerHolderBase b;
+    public final sbc b;
 
-    public nbc(VideoPlayerHolderBase videoPlayerHolderBase, byte b) {
+    public nbc(sbc sbcVar, byte b) {
         this.a = b;
-        this.b = videoPlayerHolderBase;
+        this.b = sbcVar;
     }
 
     @Override
-    public final void run() {
+    public final void a(Object obj) {
         byte b = this.a;
-        VideoPlayerHolderBase videoPlayerHolderBase = this.b;
+        sbc sbcVar = this.b;
         switch (b) {
             case 0:
-                VideoPlayerHolderBase.i(videoPlayerHolderBase);
-                return;
-            case 1:
-                VideoPlayerHolderBase.n(videoPlayerHolderBase);
-                return;
-            case 2:
-                VideoPlayerHolderBase.f(videoPlayerHolderBase);
-                return;
-            case 3:
-                VideoPlayerHolderBase.a(videoPlayerHolderBase);
-                return;
-            case 4:
-                VideoPlayerHolderBase.c(videoPlayerHolderBase);
+                ((Boolean) obj).getClass();
+                sbcVar.dismiss();
                 return;
             default:
-                VideoPlayerHolderBase.o(videoPlayerHolderBase);
+                sbcVar.i2 = (String) obj;
+                bva bvaVar = sbcVar.p2;
+                hl.r(bvaVar);
+                hl.d3(bvaVar, 350L);
                 return;
         }
     }

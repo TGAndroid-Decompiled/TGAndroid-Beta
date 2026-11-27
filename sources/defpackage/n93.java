@@ -1,4 +1,16 @@
 package defpackage;
-public final class n93 {
-    public final q93 a;
+public interface n93 {
+    void a(long j);
+
+    Object c();
+
+    Object d();
+
+    void e(Object obj);
+
+    void flush();
+
+    String getName();
+
+    void release();
 }

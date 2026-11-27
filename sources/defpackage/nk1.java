@@ -1,15 +1,12 @@
 package defpackage;
-public final class nk1 implements Runnable {
-    public final byte a;
-    public final uk1 b;
-
-    public nk1(uk1 uk1Var, byte b) {
-        this.a = b;
-        this.b = uk1Var;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.nk1.run():void");
-    }
+public final class nk1 {
+    public long[] a;
+    public ym4 b;
+    public String c;
+    public String d;
+    public int g;
+    public long e = 0;
+    public long f = Long.MAX_VALUE;
+    public int h = -16777216;
+    public int i = -1;
 }

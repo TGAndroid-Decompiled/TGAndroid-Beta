@@ -1,34 +1,15 @@
 package defpackage;
-public final class mv0 implements q12, js4, ed {
-    public final ow0 a;
 
-    public mv0(ow0 ow0Var) {
-        this.a = ow0Var;
+import android.webkit.DownloadListener;
+public final class mv0 implements DownloadListener {
+    public final nv0 a;
+
+    public mv0(nv0 nv0Var) {
+        this.a = nv0Var;
     }
 
     @Override
-    public final void d(boolean z) {
-        ow0 ow0Var = this.a;
-        if (ow0Var.f0 && z) {
-            return;
-        }
-        ow0Var.m(true);
-    }
-
-    @Override
-    public final Object m(Object obj) {
-        boolean z;
-        Void r1 = (Void) obj;
-        if (this.a.f.getKeyboardHeight() >= gl.L(20.0f)) {
-            z = true;
-        } else {
-            z = false;
-        }
-        return Boolean.valueOf(z);
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
-        this.a.m(false);
+    public final void onDownloadStart(java.lang.String r12, java.lang.String r13, java.lang.String r14, java.lang.String r15, long r16) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.mv0.onDownloadStart(java.lang.String, java.lang.String, java.lang.String, java.lang.String, long):void");
     }
 }

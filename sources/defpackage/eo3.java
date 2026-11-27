@@ -1,38 +1,32 @@
 package defpackage;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.messenger.a;
-public final class eo3 {
-    public static ArrayList j;
-    public static eo3 k;
-    public static final ArrayList l = new ArrayList();
-    public static final sv m = new sv((byte) 6);
-    public ArrayList a;
-    public SparseIntArray b;
-    public ArrayList c;
-    public int d;
-    public int e;
-    public int f;
-    public int g;
-    public boolean h;
-    public o1 i;
+import android.graphics.Color;
+import android.os.SystemClock;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class eo3 extends CharacterStyle implements UpdateAppearance {
+    public final long a;
+    public long b;
+    public final int c;
+    public final int d;
+    public boolean e;
 
-    public static void a(Runnable runnable) {
-        if (Thread.currentThread() != a.d.getLooper().getThread()) {
-            boolean z = w01.a;
-            fa4.g(new RuntimeException("wrong thread"), true);
-            return;
+    public eo3(long j, int i, int i2) {
+        this.a = j;
+        this.c = i;
+        this.d = i2;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        int f = vm2.f(ho3.b(Math.max(0.0f, Math.min(1.0f, ((float) (uptimeMillis - this.a)) / 750.0f))), this.c, this.d);
+        textPaint.setColor(f);
+        long j = this.b;
+        if (j > 0) {
+            float max = 1.0f - Math.max(0.0f, Math.min(1.0f, ((float) (uptimeMillis - j)) / 220.0f));
+            textPaint.setAlpha((int) (Color.alpha(f) * bp1.v(max, max, max, 1.0f)));
         }
-        if (j == null) {
-            ArrayList arrayList = l;
-            if (!arrayList.isEmpty()) {
-                j = (ArrayList) tb4.l(1, arrayList);
-            } else {
-                j = new ArrayList(100);
-            }
-            gl.c3(m);
-        }
-        j.add(runnable);
     }
 }

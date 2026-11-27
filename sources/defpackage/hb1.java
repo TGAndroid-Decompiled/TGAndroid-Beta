@@ -1,193 +1,148 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-public final class hb1 extends Drawable {
-    public final Paint a;
-    public final Paint b;
-    public final gb1 c;
-    public final gb1 d;
-    public boolean e;
-    public final lm f;
-    public final Path g;
-    public final byte h;
-    public float i;
-    public float j;
-    public float k;
-    public int l;
-    public boolean m;
-    public float n;
-    public float o;
+import android.graphics.Shader;
+import android.widget.FrameLayout;
+public final class hb1 implements Runnable {
+    public final byte a;
+    public final qb1 b;
 
-    public hb1(int i) {
-        Paint paint = new Paint(1);
-        this.a = paint;
-        this.b = new Paint(1);
-        gb1 gb1Var = new gb1(this, (byte) 0);
-        this.c = gb1Var;
-        gb1 gb1Var2 = new gb1(this, (byte) 1);
-        this.d = gb1Var2;
-        this.e = false;
-        nv0 nv0Var = new nv0(this, (byte) 16);
-        s33 s33Var = s33.h;
-        this.f = new lm(nv0Var, 350L, s33Var, 0);
-        this.g = new Path();
-        this.i = 21.0f;
-        this.h = i;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(gl.N(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        gb1Var.n(0.3f, 250L, s33Var);
-        gb1Var.x(gl.n1("fonts/num.otf"));
-        gb1Var.w(gl.N(12.0f));
-        gb1Var.b = 17;
-        gb1Var2.n(0.3f, 250L, s33Var);
-        gb1Var2.x(gl.n1("fonts/num.otf"));
-        gb1Var2.w(gl.N(12.0f));
-        gb1Var2.b = 17;
-        e(-1, -15033089, -1);
+    public hb1(qb1 qb1Var, byte b) {
+        this.a = b;
+        this.b = qb1Var;
     }
 
-    public final void a(Canvas canvas, float f) {
-        float N = gl.N(this.i) / 2.0f;
-        float d = this.f.d(this.e);
-        int i = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
-        if (i > 0) {
-            Paint paint = this.b;
-            paint.setAlpha((int) (f * 255.0f * d));
-            canvas.drawCircle(this.n, this.o, gl.N(11.33f) * d, paint);
+    @Override
+    public final void run() {
+        float f;
+        int i;
+        int i2;
+        byte b = this.a;
+        qb1 qb1Var = this.b;
+        switch (b) {
+            case 0:
+                qb1Var.t();
+                return;
+            default:
+                boolean z = qb1Var.m0;
+                FrameLayout frameLayout = qb1Var.K;
+                nb1 nb1Var = qb1Var.r;
+                kb1 kb1Var = qb1Var.f;
+                if (qb1Var.p0 != z) {
+                    qb1Var.p0 = z;
+                    ValueAnimator valueAnimator = qb1Var.q0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                        qb1Var.q0 = null;
+                    }
+                    pcc pccVar = qb1Var.k0;
+                    if (pccVar != null) {
+                        pccVar.a(Boolean.valueOf(z));
+                    }
+                    qb1Var.d(z);
+                    if (z) {
+                        mb1 mb1Var = qb1Var.N;
+                        if (mb1Var != null) {
+                            mb1Var.setVisibility(0);
+                        }
+                        nb1Var.setVisibility(0);
+                    } else {
+                        kb1Var.getEditText().scrollBy(0, -kb1Var.getEditText().getScrollY());
+                    }
+                    float f2 = qb1Var.o0;
+                    if (z) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.0f;
+                    }
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+                    qb1Var.q0 = ofFloat;
+                    ofFloat.addUpdateListener(new g0(qb1Var, (byte) 25));
+                    if (!z) {
+                        kb1Var.getEditText().setAllowDrawCursor(false);
+                    }
+                    qb1Var.q0.addListener(new z7((byte) 11, qb1Var, z));
+                    ValueAnimator valueAnimator2 = qb1Var.q0;
+                    if (z) {
+                        valueAnimator2.setInterpolator(hb.w);
+                        qb1Var.q0.setDuration(250L);
+                    } else {
+                        valueAnimator2.setInterpolator(new x84());
+                        qb1Var.q0.setDuration(420L);
+                    }
+                    qb1Var.q0.start();
+                    xt3 editText = kb1Var.getEditText();
+                    if (editText != null && editText.getLayout() != null) {
+                        ObjectAnimator objectAnimator = qb1Var.g0;
+                        if (objectAnimator != null) {
+                            objectAnimator.cancel();
+                        }
+                        int scrollY = editText.getScrollY();
+                        if (z) {
+                            i = kb1Var.a.length();
+                        } else {
+                            i = 0;
+                        }
+                        kb1Var.setSelection(i);
+                        kb1Var.getEditText().setForceCursorEnd(false);
+                        int lineTop = editText.getLayout().getLineTop(editText.getLineCount());
+                        int height = (editText.getHeight() - editText.getPaddingTop()) - editText.getPaddingBottom();
+                        if (z) {
+                            i2 = lineTop - height;
+                        } else {
+                            i2 = 0;
+                        }
+                        ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, i2);
+                        qb1Var.g0 = ofInt;
+                        ofInt.setDuration(360L);
+                        qb1Var.g0.setInterpolator(k43.h);
+                        qb1Var.g0.start();
+                    }
+                    kb1Var.setSuggestionsEnabled(z);
+                    if (!z) {
+                        kb1Var.getEditText().j(false, true);
+                        return;
+                    } else if (xea.o() >= 1 && !i86.f()) {
+                        Bitmap bitmap = qb1Var.r0;
+                        if (bitmap == null) {
+                            bitmap = Bitmap.createBitmap((int) (frameLayout.getWidth() / 12.0f), (int) (frameLayout.getHeight() / 12.0f), Bitmap.Config.ARGB_8888);
+                            qb1Var.r0 = bitmap;
+                        }
+                        qb1Var.y0 = true;
+                        qb1Var.i(bitmap);
+                        qb1Var.y0 = false;
+                        Bitmap bitmap2 = qb1Var.r0;
+                        if (bitmap2 != null && !bitmap2.isRecycled()) {
+                            Bitmap bitmap3 = qb1Var.r0;
+                            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                            qb1Var.s0 = new BitmapShader(bitmap3, tileMode, tileMode);
+                            Matrix matrix = qb1Var.t0;
+                            if (matrix == null) {
+                                qb1Var.t0 = new Matrix();
+                            } else {
+                                matrix.reset();
+                            }
+                            qb1Var.s0.setLocalMatrix(qb1Var.t0);
+                            if (qb1Var.u0 == null) {
+                                Paint paint = new Paint(3);
+                                qb1Var.u0 = paint;
+                                paint.setColor(-1);
+                            }
+                            qb1Var.u0.setShader(qb1Var.s0);
+                            return;
+                        }
+                        qb1Var.r0 = null;
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
         }
-        Paint paint2 = this.a;
-        paint2.setAlpha((int) ((1.0f - d) * Color.alpha(this.l) * f));
-        RectF rectF = gl.P;
-        float f2 = this.n;
-        float f3 = this.o;
-        rectF.set(f2 - N, f3 - N, f2 + N, f3 + N);
-        canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
-        byte b = this.h;
-        float f4 = ((b + 1) * 1.5f) + (b * 1.0f);
-        float f5 = (1.0f / f4) * 180.0f;
-        float f6 = (1.5f / f4) * 180.0f;
-        int i2 = 0;
-        float f7 = f6;
-        while (i2 < b) {
-            float f8 = f5;
-            canvas.drawArc(gl.P, f7 + 270.0f, f8, false, paint2);
-            f7 = f8 + f6 + f7;
-            i2++;
-            f5 = f8;
-        }
-        canvas.save();
-        canvas.translate(this.j + 0.0f, this.k);
-        Rect rect = gl.Q;
-        rect.set((int) (this.n - gl.L(20.0f)), (int) (this.o - gl.L(20.0f)), (int) (this.n + gl.L(20.0f)), (int) (this.o + gl.L(20.0f)));
-        gb1 gb1Var = this.c;
-        gb1Var.setBounds(rect);
-        gb1Var.C = (int) (Color.alpha(this.l) * f);
-        gb1Var.draw(canvas);
-        if (i > 0) {
-            Path path = this.g;
-            path.rewind();
-            path.addCircle(this.n, this.o + gl.L(1.0f), gl.N(11.33f) * d, Path.Direction.CW);
-            canvas.clipPath(path);
-            gb1 gb1Var2 = this.d;
-            gb1Var2.setBounds(rect);
-            gb1Var2.C = (int) (f * 255.0f);
-            gb1Var2.draw(canvas);
-        }
-        canvas.restore();
-    }
-
-    public final void b(boolean z) {
-        PorterDuffXfermode porterDuffXfermode;
-        if (this.m != z) {
-            this.m = z;
-            PorterDuffXfermode porterDuffXfermode2 = null;
-            if (z) {
-                porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
-            } else {
-                porterDuffXfermode = null;
-            }
-            this.a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.c.a;
-            if (z) {
-                porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
-            }
-            textPaint.setXfermode(porterDuffXfermode2);
-        }
-    }
-
-    public final void c(float f) {
-        this.d.w(gl.N(f));
-        this.c.w(gl.N(f));
-    }
-
-    public final void d(int i, boolean z, boolean z2) {
-        this.c.t(String.valueOf(i), z2, true);
-        this.d.t(String.valueOf(i), z2, true);
-        this.e = z;
-        if (!z2) {
-            this.f.f(z, true);
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        a(canvas, 1.0f);
-    }
-
-    public final void e(int i, int i2, int i3) {
-        this.l = i;
-        this.a.setColor(i);
-        this.c.u(i);
-        this.d.u(i3);
-        this.b.setColor(i2);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return gl.L(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return gl.L(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        this.n = getBounds().centerX();
-        this.o = getBounds().centerY();
-    }
-
-    @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
-        super.setBounds(i, i2, i3, i4);
-        this.n = getBounds().centerX();
-        this.o = getBounds().centerY();
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

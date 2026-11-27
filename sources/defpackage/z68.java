@@ -1,60 +1,29 @@
 package defpackage;
+public final class z68 implements fn7 {
+    public final int a;
+    public final pcc b;
+    public final fn7[] c;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class z68 implements Runnable {
-    public final byte a;
-    public final PhotoViewer b;
-
-    public z68(PhotoViewer photoViewer, byte b) {
-        this.a = b;
-        this.b = photoViewer;
+    public z68(int i, pcc pccVar, fn7[] fn7VarArr) {
+        this.a = i;
+        this.b = pccVar;
+        this.c = fn7VarArr;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        PhotoViewer photoViewer = this.b;
-        switch (b) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.d9;
-                this.b.F1(false, 0, 0, true, false, false);
-                return;
-            case 1:
-                Drawable[] drawableArr2 = PhotoViewer.d9;
-                photoViewer.i2();
-                return;
-            case 2:
-                Drawable[] drawableArr3 = PhotoViewer.d9;
-                this.b.F1(false, 0, 0, false, false, false);
-                return;
-            case 3:
-                Drawable[] drawableArr4 = PhotoViewer.d9;
-                photoViewer.B(false, false);
-                x02 x02Var = photoViewer.b2;
-                if (x02Var != null) {
-                    x02Var.a(true);
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3 = jn7.s5;
+        if (i == i3) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.a) {
+                pcc pccVar = this.b;
+                if (pccVar != null) {
+                    pccVar.a(iArr);
                 }
-                d dVar = photoViewer.l4;
-                if (dVar != null) {
-                    dVar.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
-                    return;
-                }
-                return;
-            case 4:
-                Drawable[] drawableArr5 = PhotoViewer.d9;
-                photoViewer.s7 = null;
-                return;
-            case 5:
-                Drawable[] drawableArr6 = PhotoViewer.d9;
-                photoViewer.B(true, false);
-                return;
-            default:
-                Drawable[] drawableArr7 = PhotoViewer.d9;
-                photoViewer.F2();
-                return;
+                jn7.e().n(this.c[0], i3);
+            }
         }
     }
 }

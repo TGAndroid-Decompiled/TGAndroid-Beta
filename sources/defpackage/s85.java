@@ -1,118 +1,47 @@
 package defpackage;
 
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
-import android.graphics.RadialGradient;
 import android.graphics.Shader;
-import java.security.SecureRandom;
-import org.telegram.messenger.Utilities;
-public final class s85 {
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public RadialGradient g;
-    public final int i;
-    public int j;
-    public int k;
-    public int l;
-    public float a = -1.0f;
-    public float b = -1.0f;
-    public final Matrix h = new Matrix();
+import org.telegram.ui.LaunchActivity;
+public final class s85 extends ema {
+    public LinearGradient N0;
+    public int O0;
+    public final Matrix P0;
+    public float Q0;
+    public float R0;
+    public float S0;
+    public float T0;
+    public float U0;
+    public long V0;
+    public final j95 W0;
 
-    public s85(int i) {
-        this.i = i;
+    public s85(j95 j95Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.W0 = j95Var;
+        this.P0 = new Matrix();
+        this.Q0 = -1.0f;
     }
 
-    public final void a(float f) {
-        float f2;
-        int i = this.i;
-        if (i == 0) {
-            int i2 = this.j;
-            int i3 = bkb.Jh;
-            if (i2 != bkb.w0(null, i3, false) || this.k != bkb.w0(null, bkb.Kh, false)) {
-                int w0 = bkb.w0(null, i3, false);
-                this.j = w0;
-                int w02 = bkb.w0(null, bkb.Kh, false);
-                this.k = w02;
-                this.g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w0, w02}, (float[]) null, Shader.TileMode.CLAMP);
-            }
-        } else if (i == 1) {
-            int i4 = this.j;
-            int i5 = bkb.Lh;
-            if (i4 != bkb.w0(null, i5, false) || this.k != bkb.w0(null, bkb.Mh, false)) {
-                int w03 = bkb.w0(null, i5, false);
-                this.j = w03;
-                int w04 = bkb.w0(null, bkb.Mh, false);
-                this.k = w04;
-                this.g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w03, w04}, (float[]) null, Shader.TileMode.CLAMP);
-            }
-        } else if (i == 3) {
-            int i6 = this.j;
-            int i7 = bkb.Yh;
-            if (i6 != bkb.w0(null, i7, false) || this.k != bkb.w0(null, bkb.Zh, false) || this.l != bkb.w0(null, bkb.ai, false)) {
-                int w05 = bkb.w0(null, bkb.Zh, false);
-                this.k = w05;
-                int w06 = bkb.w0(null, bkb.ai, false);
-                this.l = w06;
-                int w07 = bkb.w0(null, i7, false);
-                this.j = w07;
-                this.g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w05, w06, w07}, (float[]) null, Shader.TileMode.CLAMP);
-            }
-        } else {
-            return;
+    @Override
+    public final void d(int i) {
+        super.d(i);
+        int textWidth = getTextWidth();
+        if (textWidth != this.O0) {
+            float f = textWidth;
+            this.U0 = 1.3f * f;
+            float f2 = f * 2.0f;
+            int w0 = aob.w0(null, aob.Zh, false);
+            int w02 = aob.w0(null, aob.bi, false);
+            int i2 = aob.ai;
+            this.N0 = new LinearGradient(0.0f, getTextHeight(), f2, 0.0f, new int[]{w0, w02, aob.w0(null, i2, false), aob.w0(null, i2, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            getPaint().setShader(this.N0);
+            this.O0 = textWidth;
         }
-        int L = gl.L(130.0f);
-        float f3 = this.e;
-        if (f3 == 0.0f || this.f >= f3) {
-            this.e = Utilities.b.nextInt(700) + 500;
-            this.f = 0.0f;
-            if (this.a == -1.0f) {
-                b();
-            }
-            this.c = this.a;
-            this.d = this.b;
-            b();
-        }
-        float i8 = ir2.i(0.32f, f, 16.0f, this.f);
-        this.f = i8;
-        float f4 = this.e;
-        if (i8 > f4) {
-            this.f = f4;
-            i8 = f4;
-        }
-        float interpolation = s33.g.getInterpolation(i8 / f4);
-        float f5 = L;
-        float f6 = this.c;
-        float f7 = ((((this.a - f6) * interpolation) + f6) * f5) - 200.0f;
-        float f8 = this.d;
-        float f9 = ((((this.b - f8) * interpolation) + f8) * f5) - 200.0f;
-        if (i == 3) {
-            f2 = 2.0f;
-        } else {
-            f2 = 1.5f;
-        }
-        float f10 = (f5 / 400.0f) * f2;
-        Matrix matrix = this.h;
-        matrix.reset();
-        matrix.postTranslate(f7, f9);
-        matrix.postScale(f10, f10, f7 + 200.0f, f9 + 200.0f);
-        this.g.setLocalMatrix(matrix);
     }
 
-    public final void b() {
-        int i = this.i;
-        if (i == 0) {
-            SecureRandom secureRandom = Utilities.b;
-            this.a = ls6.d(secureRandom.nextInt(100), 0.1f, 100.0f, 0.2f);
-            this.b = ls6.d(secureRandom.nextInt(100), 0.1f, 100.0f, 0.7f);
-        } else if (i == 3) {
-            SecureRandom secureRandom2 = Utilities.b;
-            this.a = ls6.d(secureRandom2.nextInt(100), 0.1f, 100.0f, 0.6f);
-            this.b = (secureRandom2.nextInt(100) * 0.1f) / 100.0f;
-        } else {
-            SecureRandom secureRandom3 = Utilities.b;
-            this.a = b00.A(secureRandom3.nextInt(100), 100.0f, 0.2f, 0.8f);
-            this.b = secureRandom3.nextInt(100) / 100.0f;
-        }
+    @Override
+    public final void onDraw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.s85.onDraw(android.graphics.Canvas):void");
     }
 }

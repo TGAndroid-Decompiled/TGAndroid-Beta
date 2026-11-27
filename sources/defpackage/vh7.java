@@ -1,10 +1,9 @@
 package defpackage;
-public final class vh7 {
-    public final int a;
-    public final boolean b;
+public final class vh7 extends iu5 {
+    public final ey7 e;
 
-    public vh7(int i, int i2, boolean z) {
-        this.a = i2;
-        this.b = z;
+    public vh7(int i, ey7 ey7Var) {
+        super(i, (byte) 1);
+        this.e = ey7Var;
     }
 }

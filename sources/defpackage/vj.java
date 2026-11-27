@@ -1,15 +1,22 @@
 package defpackage;
+public interface vj {
+    void i(jt6 jt6Var);
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class vj extends MetricAffectingSpan {
-    public String a;
+    void j(p93 p93Var);
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-    }
+    void k(s64 s64Var, qx6 qx6Var);
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-    }
+    void n(uj ujVar, int i, long j);
+
+    void onRenderedFirstFrame(uj ujVar);
+
+    void onSeekStarted(uj ujVar);
+
+    void s(ggc ggcVar);
+
+    void u(e64 e64Var);
+
+    void w(uj ujVar, jt6 jt6Var);
+
+    void y(uj ujVar, int i);
 }

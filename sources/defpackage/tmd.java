@@ -1,23 +1,20 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.List;
-public abstract class tmd {
-    public static final vnd a = new Object();
-    public static final wnd b = new Object();
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class tmd extends c4 {
+    public static final Parcelable.Creator<tmd> CREATOR = new zkd((byte) 10);
+    public final int a;
 
-    public void a(Object obj, long j) {
-        Object unmodifiableList;
-        List list = (List) uzd.l(obj, j);
-        if (list instanceof omd) {
-            unmodifiableList = ((omd) list).g();
-        } else if (vnd.c.isAssignableFrom(list.getClass())) {
-            return;
-        } else {
-            unmodifiableList = DesugarCollections.unmodifiableList(list);
-        }
-        uzd.d(obj, j, unmodifiableList);
+    public tmd(int i) {
+        this.a = i;
     }
 
-    public abstract void b(vid vidVar, vid vidVar2, long j);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.s(parcel, r);
+    }
 }

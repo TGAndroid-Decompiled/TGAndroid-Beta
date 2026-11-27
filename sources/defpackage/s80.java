@@ -1,29 +1,34 @@
 package defpackage;
-
-import java.util.List;
 public final class s80 {
-    public u80 a;
-    public List b;
-    public List c;
-    public Boolean d;
-    public wy2 e;
-    public List f;
-    public int g;
-    public byte h;
+    public long a;
+    public String b;
+    public v80 c;
+    public f90 d;
+    public g90 e;
+    public k90 f;
+    public byte g;
 
     public final t80 a() {
-        u80 u80Var;
-        if (this.h == 1 && (u80Var = this.a) != null) {
-            return new t80(u80Var, this.b, this.c, this.d, this.e, this.f, this.g);
+        String str;
+        v80 v80Var;
+        f90 f90Var;
+        if (this.g == 1 && (str = this.b) != null && (v80Var = this.c) != null && (f90Var = this.d) != null) {
+            return new t80(this.a, str, v80Var, f90Var, this.e, this.f);
         }
         StringBuilder sb = new StringBuilder();
-        if (this.a == null) {
-            sb.append(" execution");
+        if ((this.g & 1) == 0) {
+            sb.append(" timestamp");
         }
-        if ((this.h & 1) == 0) {
-            sb.append(" uiOrientation");
+        if (this.b == null) {
+            sb.append(" type");
         }
-        sc8.j(ir2.o("Missing required properties:", sb));
+        if (this.c == null) {
+            sb.append(" app");
+        }
+        if (this.d == null) {
+            sb.append(" device");
+        }
+        grb.i(bs2.o("Missing required properties:", sb));
         return null;
     }
 }

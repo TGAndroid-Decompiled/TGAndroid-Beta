@@ -1,8 +1,8 @@
 package defpackage;
 
-import android.os.Trace;
+import android.view.View;
 public abstract class lxb {
-    public static boolean a() {
-        return Trace.isEnabled();
+    public static void a(View view, CharSequence charSequence) {
+        view.setTooltipText(charSequence);
     }
 }

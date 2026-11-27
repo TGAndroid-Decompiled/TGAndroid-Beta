@@ -1,12 +1,22 @@
 package defpackage;
-public final class wd9 implements fi9, kc9 {
-    public final ye9 a;
 
-    public wd9(ye9 ye9Var) {
-        this.a = ye9Var;
-    }
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+public final class wd9 {
+    public final ColorStateList a;
+    public final Configuration b;
+    public final int c;
 
-    public final void a(defpackage.mc9 r11, defpackage.mf9 r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.wd9.a(mc9, mf9, boolean):void");
+    public wd9(ColorStateList colorStateList, Configuration configuration, Resources.Theme theme) {
+        int hashCode;
+        this.a = colorStateList;
+        this.b = configuration;
+        if (theme == null) {
+            hashCode = 0;
+        } else {
+            hashCode = theme.hashCode();
+        }
+        this.c = hashCode;
     }
 }

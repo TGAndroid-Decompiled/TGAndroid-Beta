@@ -1,211 +1,283 @@
 package defpackage;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class tp3 {
-    public final int[] a;
-    public final long[] b;
-    public boolean c;
-    public boolean d;
-    public boolean e;
-    public boolean f;
-    public boolean g;
-    public int h;
-
-    public tp3(String str, String str2) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        String[] split;
-        boolean z4;
-        boolean z5;
-        int[] iArr = new int[4];
-        this.a = iArr;
-        long[] jArr = new long[4];
-        this.b = jArr;
-        String[] split2 = str.split("_");
-        if (split2.length >= 11) {
-            iArr[0] = Utilities.z(split2[0]).intValue();
-            iArr[1] = Utilities.z(split2[1]).intValue();
-            iArr[2] = Utilities.z(split2[2]).intValue();
-            iArr[3] = Utilities.z(split2[3]).intValue();
-            jArr[0] = Utilities.z(split2[4]).intValue();
-            jArr[1] = Utilities.z(split2[5]).intValue();
-            jArr[2] = Utilities.z(split2[6]).intValue();
-            jArr[3] = Utilities.z(split2[7]).intValue();
-            if (Utilities.z(split2[8]).intValue() == 1) {
-                z = true;
-            } else {
-                z = false;
-            }
-            this.c = z;
-            if (Utilities.z(split2[9]).intValue() == 1) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-            this.d = z2;
-            if (Utilities.z(split2[10]).intValue() == 1) {
-                z3 = true;
-            } else {
-                z3 = false;
-            }
-            this.g = z3;
-            if (split2.length >= 12) {
-                if (Utilities.z(split2[11]).intValue() == 1) {
-                    z5 = true;
-                } else {
-                    z5 = false;
-                }
-                this.f = z5;
-                split = null;
-            } else {
-                split = str2.split("_");
-                if (Utilities.z(split[11]).intValue() == 1) {
-                    z4 = true;
-                } else {
-                    z4 = false;
-                }
-                this.f = z4;
-            }
-            if (split2.length >= 13) {
-                this.h = Utilities.z(split2[12]).intValue();
-            } else {
-                split = split == null ? str2.split("_") : split;
-                this.h = Utilities.z(split[12]).intValue();
-            }
-            if (split2.length >= 14) {
-                this.e = Utilities.z(split2[13]).intValue() == 1;
-            } else {
-                this.e = Utilities.z((split == null ? str2.split("_") : split)[13]).intValue() == 1;
-            }
-        }
-    }
-
-    public final boolean a(tp3 tp3Var) {
-        int[] iArr = this.a;
-        int i = iArr[0];
-        int[] iArr2 = tp3Var.a;
-        if (i == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
-            long[] jArr = this.b;
-            long j = jArr[0];
-            long[] jArr2 = tp3Var.b;
-            if (j == jArr2[0] && jArr[1] == jArr2[1] && jArr[2] == jArr2[2] && jArr[3] == jArr2[3] && this.c == tp3Var.c && this.d == tp3Var.d && this.h == tp3Var.h && this.e == tp3Var.e) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final boolean b() {
-        int i = 0;
-        while (true) {
-            int[] iArr = this.a;
-            if (i >= iArr.length) {
-                return false;
-            }
-            if (iArr[i] != 0) {
-                return true;
-            }
-            i++;
-        }
-    }
-
-    public final void c(tp3 tp3Var) {
-        int[] iArr = tp3Var.a;
-        int[] iArr2 = this.a;
-        System.arraycopy(iArr, 0, iArr2, 0, iArr2.length);
-        long[] jArr = tp3Var.b;
-        long[] jArr2 = this.b;
-        System.arraycopy(jArr, 0, jArr2, 0, jArr2.length);
-        this.c = tp3Var.c;
-        this.d = tp3Var.d;
-        this.f = tp3Var.f;
-        this.h = tp3Var.h;
-        this.e = tp3Var.e;
-    }
-
-    public final void d(TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings) {
-        this.d = tL_autoDownloadSettings.audio_preload_next;
-        this.c = tL_autoDownloadSettings.video_preload_large;
-        this.f = tL_autoDownloadSettings.phonecalls_less_data;
-        this.h = tL_autoDownloadSettings.video_upload_maxbitrate;
-        long[] jArr = this.b;
-        int i = 0;
-        jArr[0] = Math.max(512000, tL_autoDownloadSettings.photo_size_max);
-        jArr[1] = Math.max(512000L, tL_autoDownloadSettings.video_size_max);
-        jArr[2] = Math.max(512000L, tL_autoDownloadSettings.file_size_max);
-        while (true) {
-            int[] iArr = this.a;
-            if (i < iArr.length) {
-                if (tL_autoDownloadSettings.photo_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                    iArr[i] = iArr[i] | 1;
-                } else {
-                    iArr[i] = iArr[i] & (-2);
-                }
-                if (tL_autoDownloadSettings.video_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                    iArr[i] = iArr[i] | 4;
-                } else {
-                    iArr[i] = iArr[i] & (-5);
-                }
-                if (tL_autoDownloadSettings.file_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                    iArr[i] = iArr[i] | 8;
-                } else {
-                    iArr[i] = iArr[i] & (-9);
-                }
-                i++;
-            } else {
-                this.e = true;
+import android.animation.Animator;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import java.util.ArrayList;
+public final class tp3 extends pf0 {
+    @Override
+    public final void K() {
+        if (pf0.C1) {
+            ArrayList arrayList = this.d;
+            int i = 0;
+            if (((o46) arrayList.get(0)).n) {
+                super.K();
                 return;
             }
+            int size = arrayList.size();
+            long j = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                o46 o46Var = (o46) obj;
+                if (o46Var.n) {
+                    long j2 = o46Var.a.e;
+                    if (j2 > j) {
+                        j = j2;
+                    }
+                }
+            }
+            if (arrayList.size() > 1) {
+                j = ((float) j) * ((sp3) this.i0).l[1];
+            }
+            if (j > 0) {
+                float f = (float) j;
+                if (f != this.m0) {
+                    this.m0 = f;
+                    Animator animator = this.e0;
+                    if (animator != null) {
+                        animator.cancel();
+                    }
+                    ValueAnimator e = pf0.e(this.k0, this.m0, new ce0(this, (byte) 5));
+                    this.e0 = e;
+                    e.start();
+                }
+            }
         }
     }
 
-    public final String toString() {
-        StringBuilder sb = new StringBuilder();
-        int[] iArr = this.a;
-        sb.append(iArr[0]);
-        sb.append("_");
-        sb.append(iArr[1]);
-        sb.append("_");
-        sb.append(iArr[2]);
-        sb.append("_");
-        sb.append(iArr[3]);
-        sb.append("_");
-        long[] jArr = this.b;
-        sb.append(jArr[0]);
-        sb.append("_");
-        sb.append(jArr[1]);
-        sb.append("_");
-        sb.append(jArr[2]);
-        sb.append("_");
-        sb.append(jArr[3]);
-        sb.append("_");
-        sb.append(this.c ? 1 : 0);
-        sb.append("_");
-        sb.append(this.d ? 1 : 0);
-        sb.append("_");
-        sb.append(this.g ? 1 : 0);
-        sb.append("_");
-        sb.append(this.f ? 1 : 0);
-        sb.append("_");
-        sb.append(this.h);
-        sb.append("_");
-        sb.append(this.e ? 1 : 0);
-        return sb.toString();
+    @Override
+    public final rk1 f(long j, int i, long j2) {
+        float[] fArr = ((sp3) this.i0).l;
+        float f = 1.0f;
+        if (fArr.length >= 2) {
+            char c = 0;
+            if (fArr[0] == 1.0f) {
+                c = 1;
+            }
+            f = fArr[c];
+        }
+        return new rk1(j, j2, this.Q0, f, i, this.O, this.P);
     }
 
-    public tp3(int[] iArr, long j, long j2, long j3, boolean z, boolean z2, boolean z3, boolean z4, int i, boolean z5) {
-        int[] iArr2 = new int[4];
-        this.a = iArr2;
-        this.b = r2;
-        System.arraycopy(iArr, 0, iArr2, 0, Math.max(iArr.length, 4));
-        long[] jArr = {j, j2, j3, 524288};
-        this.c = z;
-        this.d = z2;
-        this.f = z4;
-        this.h = i;
-        this.g = z3;
-        this.e = z5;
+    @Override
+    public final o46 h(nk1 nk1Var) {
+        return new o46(nk1Var, false, this.X0);
+    }
+
+    @Override
+    public final void n(Canvas canvas) {
+        boolean z;
+        int i;
+        ArrayList arrayList;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        ArrayList arrayList2;
+        int i6;
+        int i7;
+        float f;
+        int measuredHeight = getMeasuredHeight();
+        int i8 = pf0.r1;
+        int i9 = measuredHeight - i8;
+        int measuredHeight2 = (getMeasuredHeight() - this.C0) - i8;
+        ArrayList arrayList3 = this.d;
+        int size = arrayList3.size();
+        if (this.i0 != null) {
+            int i10 = 0;
+            while (i10 < size) {
+                o46 o46Var = (o46) arrayList3.get(i10);
+                boolean z2 = o46Var.n;
+                float[] fArr = o46Var.l;
+                Paint paint = o46Var.b;
+                Path path = o46Var.e;
+                if (!z2 && o46Var.o == 0.0f) {
+                    i = i9;
+                    arrayList = arrayList3;
+                    i2 = measuredHeight2;
+                    i3 = size;
+                    i4 = i10;
+                } else {
+                    path.reset();
+                    int length = ((sp3) this.i0).b.length;
+                    long[] jArr = o46Var.a.a;
+                    o46Var.f.reset();
+                    int i11 = 0;
+                    int i12 = 0;
+                    while (true) {
+                        z = pf0.B1;
+                        if (i12 >= length) {
+                            break;
+                        }
+                        int i13 = i10;
+                        long j = jArr[i12];
+                        if (j < 0) {
+                            i5 = i9;
+                            arrayList2 = arrayList3;
+                            i6 = measuredHeight2;
+                            i7 = size;
+                        } else {
+                            i5 = i9;
+                            sp3 sp3Var = (sp3) this.i0;
+                            arrayList2 = arrayList3;
+                            float f2 = this.D0 * sp3Var.b[i12];
+                            if (pf0.C1) {
+                                i6 = measuredHeight2;
+                                f = this.k0;
+                                i7 = size;
+                            } else {
+                                i6 = measuredHeight2;
+                                i7 = size;
+                                f = (float) sp3Var.e;
+                            }
+                            float f3 = (1.0f - ((((float) j) * sp3Var.l[i13]) / f)) * (i5 - i6);
+                            if (z) {
+                                int i14 = i11 + 1;
+                                if (i11 == 0) {
+                                    fArr[i11] = f2;
+                                    i11 += 2;
+                                    fArr[i14] = f3;
+                                } else {
+                                    fArr[i11] = f2;
+                                    fArr[i14] = f3;
+                                    int i15 = i11 + 3;
+                                    fArr[i11 + 2] = f2;
+                                    i11 += 4;
+                                    fArr[i15] = f3;
+                                }
+                            } else if (i12 == 0) {
+                                path.moveTo(f2, f3);
+                            } else {
+                                path.lineTo(f2, f3);
+                            }
+                        }
+                        i12++;
+                        i10 = i13;
+                        i9 = i5;
+                        arrayList3 = arrayList2;
+                        measuredHeight2 = i6;
+                        size = i7;
+                    }
+                    i = i9;
+                    arrayList = arrayList3;
+                    i2 = measuredHeight2;
+                    i3 = size;
+                    i4 = i10;
+                    o46Var.j = i11;
+                    if (o46Var.n || o46Var.o != 0.0f) {
+                        paint.setAlpha((int) (o46Var.o * 255.0f));
+                        if (z) {
+                            canvas.drawLines(fArr, 0, o46Var.j, paint);
+                        } else {
+                            canvas.drawPath(path, paint);
+                        }
+                    }
+                }
+                i10 = i4 + 1;
+                i9 = i;
+                arrayList3 = arrayList;
+                measuredHeight2 = i2;
+                size = i3;
+            }
+        }
+    }
+
+    @Override
+    public final void o(Canvas canvas) {
+        int i = this.t0;
+        if (i >= 0 && this.v0) {
+            float f = this.G0;
+            uk1 uk1Var = this.h0;
+            float f2 = uk1Var.l;
+            float f3 = uk1Var.k;
+            float f4 = f / (f2 - f3);
+            float f5 = (((sp3) this.i0).b[i] * f4) - ((f3 * f4) - pf0.l1);
+            Paint paint = this.N;
+            paint.setAlpha((int) (this.r * this.w0));
+            canvas.drawLine(f5, 0.0f, f5, this.I0.bottom, paint);
+            ArrayList arrayList = this.d;
+            this.n0 = arrayList.size();
+            int i2 = 0;
+            while (true) {
+                this.o0 = i2;
+                int i3 = this.o0;
+                if (i3 < this.n0) {
+                    o46 o46Var = (o46) arrayList.get(i3);
+                    boolean z = o46Var.n;
+                    Paint paint2 = o46Var.d;
+                    if (z || o46Var.o != 0.0f) {
+                        float f6 = ((float) o46Var.a.a[this.t0]) * ((sp3) this.i0).l[this.o0];
+                        float f7 = this.x;
+                        float measuredHeight = (getMeasuredHeight() - this.s) - (((f6 - f7) / (this.w - f7)) * ((getMeasuredHeight() - this.s) - pf0.o1));
+                        paint2.setAlpha((int) (o46Var.o * 255.0f * this.w0));
+                        Paint paint3 = this.T;
+                        paint3.setAlpha((int) (o46Var.o * 255.0f * this.w0));
+                        canvas.drawPoint(f5, measuredHeight, paint2);
+                        canvas.drawPoint(f5, measuredHeight, paint3);
+                    }
+                    i2 = this.o0 + 1;
+                } else {
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void p(android.graphics.Canvas r22, defpackage.rk1 r23) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.tp3.p(android.graphics.Canvas, rk1):void");
+    }
+
+    @Override
+    public final long r(int i, int i2) {
+        long j;
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0L;
+        }
+        int size = arrayList.size();
+        long j2 = 0;
+        for (int i3 = 0; i3 < size; i3++) {
+            if (((o46) arrayList.get(i3)).n) {
+                j = ((float) ((nk1) ((sp3) this.i0).d.get(i3)).b.v0(i, i2)) * ((sp3) this.i0).l[i3];
+            } else {
+                j = 0;
+            }
+            if (j > j2) {
+                j2 = j;
+            }
+        }
+        return j2;
+    }
+
+    @Override
+    public final long s(int i, int i2) {
+        long j;
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0L;
+        }
+        int size = arrayList.size();
+        long j2 = Long.MAX_VALUE;
+        for (int i3 = 0; i3 < size; i3++) {
+            if (((o46) arrayList.get(i3)).n) {
+                j = (int) (((float) ((nk1) ((sp3) this.i0).d.get(i3)).b.B0(i, i2)) * ((sp3) this.i0).l[i3]);
+            } else {
+                j = 2147483647L;
+            }
+            if (j < j2) {
+                j2 = j;
+            }
+        }
+        return j2;
+    }
+
+    @Override
+    public final void t() {
+        this.Q0 = true;
+        super.t();
     }
 }

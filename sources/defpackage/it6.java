@@ -1,86 +1,52 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.support.v4.media.MediaDescriptionCompat;
-import android.util.Log;
-import j$.util.Objects;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-public final class it6 extends AsyncTask {
-    public final Bitmap a;
-    public final Uri b;
-    public int c;
-    public final rt6 d;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.Arrays;
+public final class it6 extends c4 {
+    public final long a;
+    public final long b;
+    public final boolean c;
+    public final boolean d;
+    public static final he6 e = new he6("MediaLiveSeekableRange", null);
+    public static final Parcelable.Creator<it6> CREATOR = new zkd((byte) 1);
 
-    public it6(rt6 rt6Var) {
-        Bitmap bitmap;
-        this.d = rt6Var;
-        MediaDescriptionCompat mediaDescriptionCompat = rt6Var.c0;
-        if (mediaDescriptionCompat == null) {
-            bitmap = null;
-        } else {
-            bitmap = mediaDescriptionCompat.e;
-        }
-        if (bitmap != null && bitmap.isRecycled()) {
-            Log.w("MediaRouteCtrlDialog", "Can't fetch the given art bitmap because it's already recycled.");
-            bitmap = null;
-        }
-        this.a = bitmap;
-        MediaDescriptionCompat mediaDescriptionCompat2 = rt6Var.c0;
-        this.b = mediaDescriptionCompat2 != null ? mediaDescriptionCompat2.f : null;
+    public it6(long j, long j2, boolean z, boolean z2) {
+        this.a = Math.max(j, 0L);
+        this.b = Math.max(j2, 0L);
+        this.c = z;
+        this.d = z2;
     }
 
-    public final BufferedInputStream a(Uri uri) {
-        InputStream openInputStream;
-        String lowerCase = uri.getScheme().toLowerCase();
-        if (!"android.resource".equals(lowerCase) && !"content".equals(lowerCase) && !"file".equals(lowerCase)) {
-            URLConnection openConnection = new URL(uri.toString()).openConnection();
-            openConnection.setConnectTimeout(30000);
-            openConnection.setReadTimeout(30000);
-            openInputStream = openConnection.getInputStream();
-        } else {
-            openInputStream = this.d.E.getContentResolver().openInputStream(uri);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        if (openInputStream == null) {
-            return null;
+        if (!(obj instanceof it6)) {
+            return false;
         }
-        return new BufferedInputStream(openInputStream);
+        it6 it6Var = (it6) obj;
+        if (this.a == it6Var.a && this.b == it6Var.b && this.c == it6Var.c && this.d == it6Var.d) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.a), Long.valueOf(this.b), Boolean.valueOf(this.c), Boolean.valueOf(this.d)});
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.it6.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        rt6 rt6Var = this.d;
-        rt6Var.d0 = null;
-        Bitmap bitmap2 = rt6Var.e0;
-        Bitmap bitmap3 = this.a;
-        boolean equals = Objects.equals(bitmap2, bitmap3);
-        Uri uri = this.b;
-        if (equals && Objects.equals(rt6Var.f0, uri)) {
-            return;
-        }
-        rt6Var.e0 = bitmap3;
-        rt6Var.h0 = bitmap;
-        rt6Var.f0 = uri;
-        rt6Var.i0 = this.c;
-        rt6Var.g0 = true;
-        rt6Var.k();
-    }
-
-    @Override
-    public final void onPreExecute() {
-        rt6 rt6Var = this.d;
-        rt6Var.g0 = false;
-        rt6Var.h0 = null;
-        rt6Var.i0 = 0;
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 8);
+        parcel.writeLong(this.a);
+        bye.q(parcel, 3, 8);
+        parcel.writeLong(this.b);
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(this.c ? 1 : 0);
+        bye.q(parcel, 5, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

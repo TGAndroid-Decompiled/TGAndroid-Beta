@@ -1,42 +1,39 @@
 package defpackage;
-public final class caf extends vef {
-    private static final caf zzb;
-    private int zzd;
-    private String zze = "";
-    private dff zzf;
-    private dff zzg;
-    private boolean zzh;
 
-    static {
-        caf cafVar = new caf();
-        zzb = cafVar;
-        vef.e(caf.class, cafVar);
-    }
+import android.util.Log;
+public abstract class caf {
+    public static o3f a;
 
-    public caf() {
-        rgf rgfVar = rgf.d;
-        this.zzf = rgfVar;
-        this.zzg = rgfVar;
-    }
-
-    @Override
-    public final Object h(int i, vef vefVar) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 != 5) {
-                            return null;
-                        }
-                        return zzb;
-                    }
-                    return new uef(zzb);
-                }
-                return new caf();
+    public static synchronized q8f a(y7f y7fVar) {
+        q8f q8fVar;
+        synchronized (caf.class) {
+            o3f o3fVar = a;
+            if (o3fVar == null) {
+                o3fVar = new o3f((byte) 2);
+                a = o3fVar;
             }
-            return new sgf(zzb, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0002\u0000\u0001ဈ\u0000\u0002\u001b\u0003\u001b\u0004ဇ\u0001", new Object[]{"zzd", "zze", "zzf", e7f.class, "zzg", h6f.class, "zzh"});
+            q8fVar = (q8f) o3fVar.c(y7fVar);
         }
-        return (byte) 1;
+        return q8fVar;
+    }
+
+    public static void b(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
+        }
+    }
+
+    public static synchronized q8f c() {
+        q8f a2;
+        synchronized (caf.class) {
+            a2 = a(new Object());
+        }
+        return a2;
     }
 }

@@ -12,7 +12,7 @@ public class SQLitePreparedStatement {
 
     public SQLitePreparedStatement(SQLiteDatabase sQLiteDatabase, String str) {
         this.sqliteStatementHandle = prepare(sQLiteDatabase.getSQLiteHandle(), str);
-        if (w01.a) {
+        if (f11.a) {
             this.query = str;
             this.startTime = SystemClock.elapsedRealtime();
         }
@@ -79,22 +79,22 @@ public class SQLitePreparedStatement {
 
     public void finalizeQuery() {
         if (!this.isFinalized) {
-            if (w01.a) {
+            if (f11.a) {
                 long elapsedRealtime = SystemClock.elapsedRealtime() - this.startTime;
                 if (elapsedRealtime > 500) {
                     StringBuilder sb = new StringBuilder("sqlite query ");
                     sb.append(this.query);
                     sb.append(" took ");
                     sb.append(elapsedRealtime);
-                    de9.s("ms", sb);
+                    uh9.s("ms", sb);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
             } catch (SQLiteException e) {
-                if (w01.a) {
-                    fa4.e(e.getMessage(), e);
+                if (f11.a) {
+                    cc4.e(e.getMessage(), e);
                 }
             }
         }
@@ -130,7 +130,7 @@ public class SQLitePreparedStatement {
                         } else if (obj instanceof Long) {
                             sQLitePreparedStatement.bindLong(sQLitePreparedStatement.sqliteStatementHandle, i2, ((Long) obj).longValue());
                         } else {
-                            sc8.e();
+                            iy8.d();
                             return null;
                         }
                     }
@@ -145,7 +145,7 @@ public class SQLitePreparedStatement {
             }
             return new SQLiteCursor(this);
         }
-        sc8.e();
+        iy8.d();
         return null;
     }
 

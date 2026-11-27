@@ -1,50 +1,25 @@
 package defpackage;
 
-import android.media.LoudnessCodecController;
-import android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener;
-import android.media.MediaCodec;
-import java.util.HashSet;
-import java.util.Iterator;
-public final class bg6 {
-    public final HashSet a = new HashSet();
-    public LoudnessCodecController b;
+import android.view.View;
+public final class bg6 implements View.OnAttachStateChangeListener {
+    public boolean b;
+    public final cg6 d;
+    public long a = System.currentTimeMillis();
+    public final ag6 c = new ag6(this, (byte) 0);
 
-    public final void a(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController = this.b;
-        if (loudnessCodecController != null && !loudnessCodecController.addMediaCodec(mediaCodec)) {
-            return;
-        }
-        gre.p(this.a.add(mediaCodec));
+    public bg6(cg6 cg6Var) {
+        this.d = cg6Var;
     }
 
-    public final void b() {
-        this.a.clear();
-        LoudnessCodecController loudnessCodecController = this.b;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-        }
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        this.b = true;
+        view.post(this.c);
     }
 
-    public final void c(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController;
-        if (this.a.remove(mediaCodec) && (loudnessCodecController = this.b) != null) {
-            loudnessCodecController.removeMediaCodec(mediaCodec);
-        }
-    }
-
-    public final void d(int i) {
-        LoudnessCodecController loudnessCodecController = this.b;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-            this.b = null;
-        }
-        LoudnessCodecController create = LoudnessCodecController.create(i, vn3.a, (LoudnessCodecController$OnLoudnessCodecUpdateListener) new Object());
-        this.b = create;
-        Iterator it = this.a.iterator();
-        while (it.hasNext()) {
-            if (!create.addMediaCodec((MediaCodec) it.next())) {
-                it.remove();
-            }
-        }
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        this.b = false;
+        view.removeCallbacks(this.c);
     }
 }

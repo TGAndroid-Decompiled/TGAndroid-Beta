@@ -1,24 +1,50 @@
 package defpackage;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface v02 {
-    void B1(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class v02 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final int b;
+    public final Object c;
+    public final Object d;
 
-    void I0();
+    public v02(Object obj, int i, Object obj2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = i;
+        this.c = obj2;
+    }
 
-    void P0(Object obj);
-
-    void R0(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2);
-
-    boolean V1();
-
-    boolean g0();
-
-    void g1(TLRPC.User user);
-
-    void z0();
-
-    void z2(vq0 vq0Var);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        Object obj = this.c;
+        int i = this.b;
+        Object obj2 = this.d;
+        switch (b) {
+            case 0:
+                n12 n12Var = (n12) obj2;
+                n12Var.v2.setAlpha(0.0f);
+                n12Var.v2.setTranslationY(hl.L(78.0f) + i);
+                y02 y02Var = n12Var.Y1;
+                f12 f12Var = n12Var.v2;
+                Float valueOf = Float.valueOf(1.0f);
+                y02Var.getClass();
+                y02Var.a(f12Var, valueOf);
+                n12Var.U2.setAlpha(0.0f);
+                vpa vpaVar = new vpa((Object) n12Var.w2, (vk4) vpa.p, 0.0f);
+                vpaVar.m.a(0.75f);
+                vpaVar.m.b(500.0f);
+                vpaVar.b(new i10(this, (byte) 3));
+                vpaVar.a(new x11(this, (vq0) obj, (byte) 2));
+                n12Var.q3 = vpaVar;
+                vpaVar.h();
+                return;
+            default:
+                lp lpVar = (lp) obj2;
+                ((d79) lpVar.d).scrollBy(0, i - ((int[]) obj)[0]);
+                lpVar.c = null;
+                return;
+        }
+    }
 }

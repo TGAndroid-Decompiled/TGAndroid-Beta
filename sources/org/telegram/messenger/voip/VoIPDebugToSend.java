@@ -22,17 +22,6 @@ public class VoIPDebugToSend {
     private final int currentAccount;
     private final HashMap<Long, Data> pending = new HashMap<>();
 
-    public final class Data {
-        long access_hash;
-        long callId;
-        String logPath;
-        Instance.FinalState state;
-
-        private Data() {
-            VoIPDebugToSend.this = r1;
-        }
-    }
-
     public VoIPDebugToSend(int i) {
         this.currentAccount = i;
     }
@@ -48,12 +37,12 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        ba4.G(this.currentAccount).f0(new nu9(this, savecalldebug, (byte) 19), file.getAbsolutePath());
+        xb4.G(this.currentAccount).f0(new ku9(this, savecalldebug, (byte) 19), file.getAbsolutePath());
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
         File file2 = new File(data.logPath);
-        Typeface typeface = gl.a;
+        Typeface typeface = hl.a;
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file2));
             GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
@@ -65,23 +54,23 @@ public class VoIPDebugToSend {
                 } else {
                     gZIPOutputStream.close();
                     bufferedInputStream.close();
-                    gl.c3(new wbc(this, file, savecalldebug, (byte) 4));
+                    hl.c3(new b6c(this, file, savecalldebug, (byte) 13));
                     return;
                 }
             }
         } catch (FileNotFoundException e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         } catch (IOException e2) {
-            fa4.g(e2, true);
+            cc4.g(e2, true);
         }
     }
 
     public void lambda$done$3(final Data data, final TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (w01.a) {
-            fa4.b("Sent debug logs, response = " + tLObject);
+        if (f11.a) {
+            cc4.b("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            final File file = new File(b00.j(new StringBuilder(), data.logPath, ".gzip"));
+            final File file = new File(c00.k(new StringBuilder(), data.logPath, ".gzip"));
             Utilities.g.c(new Runnable() {
                 @Override
                 public final void run() {
@@ -114,16 +103,31 @@ public class VoIPDebugToSend {
     public void push(long j, long j2, Instance.FinalState finalState, String str) {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
-                finalState.debugLog = VoIPService.getStringFromFile(rgc.e(String.valueOf(j)));
+                finalState.debugLog = VoIPService.getStringFromFile(xkc.e(String.valueOf(j)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        Data data = new Data();
+        Data data = new Data(this, 0);
         data.callId = j;
         data.access_hash = j2;
         data.state = finalState;
         data.logPath = str;
         this.pending.put(Long.valueOf(j), data);
+    }
+
+    public final class Data {
+        long access_hash;
+        long callId;
+        String logPath;
+        Instance.FinalState state;
+
+        private Data() {
+            VoIPDebugToSend.this = r1;
+        }
+
+        public Data(VoIPDebugToSend voIPDebugToSend, int i) {
+            this();
+        }
     }
 }

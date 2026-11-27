@@ -1,5 +1,8 @@
 package defpackage;
-public final class neb extends o43 {
-    public boolean g;
-    public leb h;
+public class neb extends s93 {
+    public long r;
+
+    public neb() {
+        super(1, 0);
+    }
 }

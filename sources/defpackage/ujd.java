@@ -1,10 +1,17 @@
 package defpackage;
-public final class ujd {
-    public static final ujd c = new Object();
-    public volatile Thread a;
-    public volatile ujd b;
+public final class ujd implements zq7 {
+    public static final ujd a = new Object();
 
-    public ujd() {
-        akd.h.d(this, Thread.currentThread());
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,33 +1,21 @@
 package defpackage;
 
-import android.app.Notification;
-import android.app.PictureInPictureParams;
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.FilesMigrationService;
-public abstract class fk {
-    public static Notification.Builder a(Context context, String str) {
-        return new Notification.Builder(context, str);
-    }
+import android.util.Log;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+public final class fk extends ge6 {
+    public final byte a;
+    public Object b;
 
-    public static Notification.Builder b(FilesMigrationService filesMigrationService, String str) {
-        return new Notification.Builder(filesMigrationService, str);
-    }
-
-    public static PictureInPictureParams.Builder c() {
-        return new PictureInPictureParams.Builder();
-    }
-
-    public static SurfaceTexture d() {
-        return new SurfaceTexture(false);
-    }
-
-    public static void e() {
-    }
-
-    public static void f() {
-    }
-
-    public static void g() {
+    @Override
+    public final void b(String str) {
+        switch (this.a) {
+            case 0:
+                Log.d("isoparser", ((String) this.b) + ":" + str);
+                return;
+            default:
+                ((Logger) this.b).log(Level.FINE, str);
+                return;
+        }
     }
 }

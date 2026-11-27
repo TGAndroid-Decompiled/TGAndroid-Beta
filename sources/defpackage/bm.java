@@ -1,37 +1,36 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.view.View;
-import java.lang.ref.WeakReference;
-public final class bm implements dm {
-    public final WeakReference a;
-    public final boolean b;
-    public Layout c;
-    public gm d;
-    public Rect e;
-    public vl f;
-    public ru3 h;
-    public boolean n;
-    public float r;
-    public float s;
-    public boolean w;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class bm extends AnimatorListenerAdapter {
+    public final byte a;
+    public final hm b;
 
-    public bm(View view, boolean z) {
-        this.a = new WeakReference(view);
-        this.b = z;
+    public bm(hm hmVar, byte b) {
+        this.a = b;
+        this.b = hmVar;
     }
 
     @Override
-    public final void invalidate() {
-        View view = (View) this.a.get();
-        if (view == null) {
-            return;
-        }
-        if (this.b && view.getParent() != null) {
-            ((View) view.getParent()).invalidate();
-        } else {
-            view.invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        hm hmVar = this.b;
+        switch (b) {
+            case 0:
+                hm.e(hmVar);
+                hm.f();
+                return;
+            case 1:
+                hm.e(hmVar);
+                if (hm.a(hmVar) != null) {
+                    hm.a(hmVar).run();
+                    hm.d(hmVar);
+                    return;
+                }
+                return;
+            default:
+                hm.b(hmVar);
+                return;
         }
     }
 }

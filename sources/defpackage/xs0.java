@@ -1,59 +1,91 @@
 package defpackage;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class xs0 implements DialogInterface.OnCancelListener {
-    public final byte a;
-    public final int b;
-    public final Object c;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class xs0 extends EditTextBoldCursor {
+    public final byte N1;
 
-    public xs0(Object obj, int i, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = i;
+    public xs0(cw9 cw9Var, Context context) {
+        super(context);
+        this.N1 = (byte) 5;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        byte b = this.a;
-        int i = this.b;
-        Object obj = this.c;
-        switch (b) {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.N1) {
+            case 4:
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        switch (this.N1) {
             case 0:
-                ConnectionsManager.getInstance(((ct0) obj).a).cancelRequest(i, true);
+                super.onDetachedFromWindow();
+                hl.t1(this);
                 return;
             case 1:
-                ((me1) obj).g0(i);
-                return;
-            case 2:
-                ((wt1) obj).a.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 3:
-                int i2 = ChatActivityEnterView.r7;
-                ((ChatActivityEnterView) obj).F3.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 4:
-                p82 p82Var = (p82) obj;
-                p82Var.O0 = false;
-                p82Var.b = null;
-                p82Var.getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 5:
-                ConnectionsManager.getInstance(((t04) ((q04) obj).c.b).G.d1).cancelRequest(i, true);
-                return;
-            case 6:
-                ConnectionsManager.getInstance(((h75) obj).n1.a).cancelRequest(i, true);
-                return;
-            case 7:
-                ((qa6) obj).getConnectionsManager().cancelRequest(i, true);
-                return;
-            case 8:
-                ((bu9) obj).getConnectionsManager().cancelRequest(i, true);
+                super.onDetachedFromWindow();
+                hl.t1(this);
                 return;
             default:
-                ((ymb) obj).c0(i);
+                super.onDetachedFromWindow();
                 return;
         }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.N1) {
+            case 3:
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(64.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.N1) {
+            case 2:
+                if (!isEnabled()) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            case 3:
+            case 4:
+            default:
+                return super.onTouchEvent(motionEvent);
+            case 5:
+                if (!isEnabled()) {
+                    return false;
+                }
+                motionEvent.getAction();
+                return super.onTouchEvent(motionEvent);
+            case 6:
+                if (motionEvent.getAction() == 0 && !hl.E3(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 7:
+                if (motionEvent.getAction() == 0 && !hl.E3(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public xs0(Context context, byte b) {
+        super(context);
+        this.N1 = b;
     }
 }

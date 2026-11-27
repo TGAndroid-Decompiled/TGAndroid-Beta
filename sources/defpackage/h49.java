@@ -1,11 +1,18 @@
 package defpackage;
 
-import android.view.MotionEvent;
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
 public interface h49 {
-    void a(RecyclerView recyclerView, MotionEvent motionEvent);
+    void e(View view, w49 w49Var, boolean z, boolean z2);
 
-    boolean b(RecyclerView recyclerView, MotionEvent motionEvent);
+    boolean j();
 
-    void c(boolean z);
+    boolean k();
+
+    void m(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z);
+
+    void n();
+
+    boolean p();
 }

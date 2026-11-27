@@ -1,9 +1,12 @@
 package org.webrtc;
 public class BuiltinAudioDecoderFactoryFactory implements AudioDecoderFactoryFactory {
-    private static native long nativeCreateBuiltinAudioDecoderFactory();
+
+    public interface Natives {
+        long createBuiltinAudioDecoderFactory();
+    }
 
     @Override
     public long createNativeAudioDecoderFactory() {
-        return nativeCreateBuiltinAudioDecoderFactory();
+        return BuiltinAudioDecoderFactoryFactoryJni.get().createBuiltinAudioDecoderFactory();
     }
 }

@@ -1,54 +1,83 @@
 package defpackage;
 
-import android.os.IInterface;
-import android.os.Parcel;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.Status;
-public final class c4d extends dzc implements IInterface {
-    public final byte b;
-    public final f4d c;
+import java.util.ListIterator;
+public final class c4d extends v9c implements ListIterator {
+    public final int b;
+    public int c;
+    public final e4d d;
 
-    public c4d(f4d f4dVar, byte b) {
-        super("com.google.android.gms.auth.api.signin.internal.ISignInCallbacks", (byte) 2);
-        this.b = b;
-        this.c = f4dVar;
+    public c4d(e4d e4dVar, int i) {
+        super((byte) 1);
+        int size = e4dVar.size();
+        if (i >= 0 && i <= size) {
+            this.b = size;
+            this.c = i;
+            this.d = e4dVar;
+            return;
+        }
+        su3.g(i3f.c(i, size, "index"));
+        throw null;
+    }
+
+    public final Object a(int i) {
+        return this.d.get(i);
     }
 
     @Override
-    public final boolean c(int i, Parcel parcel, Parcel parcel2) {
-        f4d f4dVar = this.c;
-        byte b = this.b;
-        switch (i) {
-            case 101:
-                GoogleSignInAccount googleSignInAccount = (GoogleSignInAccount) w3d.a(parcel, GoogleSignInAccount.CREATOR);
-                Status status = (Status) w3d.a(parcel, Status.CREATOR);
-                w3d.b(parcel);
-                fvc.b();
-                return false;
-            case 102:
-                Status status2 = (Status) w3d.a(parcel, Status.CREATOR);
-                w3d.b(parcel);
-                switch (b) {
-                    case 0:
-                        f4dVar.a(status2);
-                        break;
-                    default:
-                        throw new UnsupportedOperationException();
-                }
-            case 103:
-                Status status3 = (Status) w3d.a(parcel, Status.CREATOR);
-                w3d.b(parcel);
-                switch (b) {
-                    case 1:
-                        f4dVar.a(status3);
-                        break;
-                    default:
-                        throw new UnsupportedOperationException();
-                }
-            default:
-                return false;
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.c < this.b) {
+            return true;
         }
-        parcel2.writeNoException();
-        return true;
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.c > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i = this.c;
+            this.c = i + 1;
+            return a(i);
+        }
+        lq5.n();
+        return null;
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i = this.c - 1;
+            this.c = i;
+            return a(i);
+        }
+        lq5.n();
+        return null;
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

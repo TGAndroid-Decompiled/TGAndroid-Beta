@@ -1,21 +1,34 @@
 package defpackage;
-public final class pg7 extends gw2 {
-    public Object a;
-    public Object b;
-    public Object c;
-    public Object d;
-    public final rg7 e;
-    public int f;
+public enum pg7 {
+    TERMINATOR(new int[]{0, 0, 0}, 0),
+    NUMERIC(new int[]{10, 12, 14}, 1),
+    ALPHANUMERIC(new int[]{9, 11, 13}, 2),
+    STRUCTURED_APPEND(new int[]{0, 0, 0}, 3),
+    BYTE(new int[]{8, 16, 16}, 4),
+    ECI(new int[]{0, 0, 0}, 7),
+    KANJI(new int[]{8, 10, 12}, 8),
+    FNC1_FIRST_POSITION(new int[]{0, 0, 0}, 5),
+    FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
+    HANZI(new int[]{8, 10, 12}, 13);
+    
+    public final int[] a;
+    public final byte b;
 
-    public pg7(rg7 rg7Var, fw2 fw2Var) {
-        super(fw2Var);
-        this.e = rg7Var;
+    pg7(int[] iArr, int i) {
+        this.a = iArr;
+        this.b = i;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.d = obj;
-        this.f |= Integer.MIN_VALUE;
-        return this.e.c(null, this);
+    public final int a(xdc xdcVar) {
+        char c;
+        byte b = xdcVar.a;
+        if (b <= 9) {
+            c = 0;
+        } else if (b <= 26) {
+            c = 1;
+        } else {
+            c = 2;
+        }
+        return this.a[c];
     }
 }

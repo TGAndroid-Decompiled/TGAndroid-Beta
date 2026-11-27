@@ -17,28 +17,28 @@ public final class bo0 implements Runnable {
         switch (b) {
             case 0:
                 lo0Var.h0 = false;
-                lo0Var.I0(true);
+                lo0Var.J0(true);
                 return;
             case 1:
                 CountDownLatch countDownLatch = new CountDownLatch(2);
-                lo0Var.E0(countDownLatch, null);
                 lo0Var.F0(countDownLatch, null);
+                lo0Var.G0(countDownLatch, null);
                 try {
                     countDownLatch.await();
                 } catch (InterruptedException unused) {
                 }
-                kk7.f(lo0Var.T).d(new bo0(lo0Var, (byte) 4));
+                jn7.f(lo0Var.T).d(new bo0(lo0Var, (byte) 4));
                 return;
             case 2:
                 lo0Var.h0 = false;
-                lo0Var.I0(true);
+                lo0Var.J0(true);
                 return;
             case 3:
                 lo0Var.h0 = false;
-                lo0Var.I0(true);
+                lo0Var.J0(true);
                 return;
             default:
-                gl.c3(new bo0(lo0Var, (byte) 0));
+                hl.c3(new bo0(lo0Var, (byte) 0));
                 return;
         }
     }

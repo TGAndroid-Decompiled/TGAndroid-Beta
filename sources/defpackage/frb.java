@@ -1,45 +1,73 @@
 package defpackage;
-public enum frb extends qsb {
-    public frb() {
-        super("AttributeValue_doubleQuoted", 37);
+
+import sun.misc.Unsafe;
+public final class frb extends iv5 {
+    public static final long h = fx.a.objectFieldOffset(frb.class.getDeclaredField("_state$volatile"));
+    private volatile int _state$volatile;
+    public final Thread e = Thread.currentThread();
+    public ep3 f;
+
+    public static void n(int i) {
+        throw new IllegalStateException(("Illegal state " + i).toString());
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        String g = zj1Var.g(qsb.G0);
-        int length = g.length();
-        vpb vpbVar = aqbVar.i;
-        if (length > 0) {
-            vpbVar.w(g);
-        } else {
-            vpbVar.j = true;
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final void l(Throwable th) {
+        while (true) {
+            Unsafe unsafe = fx.a;
+            long j = h;
+            int intVolatile = unsafe.getIntVolatile(this, j);
+            if (intVolatile != 0) {
+                if (intVolatile != 1 && intVolatile != 2 && intVolatile != 3) {
+                    n(intVolatile);
+                    throw null;
+                }
+                return;
+            }
+            frb frbVar = this;
+            if (unsafe.compareAndSwapInt(frbVar, h, intVolatile, 2)) {
+                frbVar.e.interrupt();
+                unsafe.putIntVolatile(frbVar, j, 3);
+                return;
+            }
+            this = frbVar;
         }
-        char d = zj1Var.d();
-        if (d != 0) {
-            if (d != '\"') {
-                if (d != '&') {
-                    if (d != 65535) {
-                        aqbVar.i.v(d);
+    }
+
+    public final void m() {
+        frb frbVar;
+        while (true) {
+            Unsafe unsafe = fx.a;
+            long j = h;
+            int intVolatile = unsafe.getIntVolatile(this, j);
+            if (intVolatile != 0) {
+                if (intVolatile != 2) {
+                    if (intVolatile == 3) {
+                        Thread.interrupted();
+                        return;
+                    } else {
+                        n(intVolatile);
+                        throw null;
+                    }
+                }
+                frbVar = this;
+            } else {
+                frbVar = this;
+                if (unsafe.compareAndSwapInt(frbVar, j, intVolatile, 1)) {
+                    ep3 ep3Var = frbVar.f;
+                    if (ep3Var != null) {
+                        ep3Var.dispose();
                         return;
                     }
-                    aqbVar.l(this);
-                    aqbVar.c = qsb.a;
-                    return;
-                }
-                int[] c = aqbVar.c('\"', true);
-                vpb vpbVar2 = aqbVar.i;
-                if (c != null) {
-                    vpbVar2.x(c);
-                    return;
-                } else {
-                    vpbVar2.v('&');
                     return;
                 }
             }
-            aqbVar.c = qsb.e0;
-            return;
+            this = frbVar;
         }
-        aqbVar.m(this);
-        aqbVar.i.v((char) 65533);
     }
 }

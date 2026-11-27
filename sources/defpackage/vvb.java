@@ -1,30 +1,28 @@
 package defpackage;
-
-import org.telegram.tgnet.TLRPC;
-public final class vvb extends ja {
-    public final TLRPC.TL_forumTopic c;
-
-    public vvb(int i, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i, false);
-        this.c = tL_forumTopic;
+public enum vvb extends rwb {
+    public vvb() {
+        super("Doctype", 50);
     }
 
-    public final boolean equals(Object obj) {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        wvb wvbVar = rwb.p0;
+        if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
+            if (d != '>') {
+                if (d != 65535) {
+                    bubVar.m(this);
+                    bubVar.c = wvbVar;
+                    return;
+                }
+                bubVar.l(this);
+            }
+            bubVar.m(this);
+            bubVar.m.s();
+            bubVar.j();
+            bubVar.c = rwb.a;
+            return;
         }
-        if (obj == null || vvb.class != obj.getClass()) {
-            return false;
-        }
-        vvb vvbVar = (vvb) obj;
-        if (this.a != vvbVar.a) {
-            return false;
-        }
-        TLRPC.TL_forumTopic tL_forumTopic2 = this.c;
-        if (tL_forumTopic2 == null || (tL_forumTopic = vvbVar.c) == null || tL_forumTopic2.id == tL_forumTopic.id) {
-            return true;
-        }
-        return false;
+        bubVar.c = wvbVar;
     }
 }

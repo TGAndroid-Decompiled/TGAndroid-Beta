@@ -1,33 +1,38 @@
 package defpackage;
-public final class rs9 extends zde {
-    public final vs9 a;
 
-    public rs9(vs9 vs9Var) {
-        this.a = vs9Var;
-    }
-
-    @Override
-    public final boolean a(int i, int i2) {
-        vs9 vs9Var = this.a;
-        return ((ss9) vs9Var.n.get(i)).equals(vs9Var.r.get(i2));
-    }
+import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public final class rs9 implements h26, Serializable {
+    public static final AtomicReferenceFieldUpdater c = AtomicReferenceFieldUpdater.newUpdater(rs9.class, Object.class, "b");
+    public volatile sr4 a;
+    public volatile Object b;
 
     @Override
-    public final boolean b(int i, int i2) {
-        vs9 vs9Var = this.a;
-        if (((ss9) vs9Var.n.get(i)).a.h == ((ss9) vs9Var.r.get(i2)).a.h) {
-            return true;
+    public final Object getValue() {
+        Object obj = this.b;
+        qf5 qf5Var = qf5.d;
+        if (obj != qf5Var) {
+            return obj;
         }
-        return false;
+        sr4 sr4Var = this.a;
+        if (sr4Var != null) {
+            Object invoke = sr4Var.invoke();
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = c;
+            while (!atomicReferenceFieldUpdater.compareAndSet(this, qf5Var, invoke)) {
+                if (atomicReferenceFieldUpdater.get(this) != qf5Var) {
+                    return this.b;
+                }
+            }
+            this.a = null;
+            return invoke;
+        }
+        return this.b;
     }
 
-    @Override
-    public final int c() {
-        return this.a.r.size();
-    }
-
-    @Override
-    public final int d() {
-        return this.a.n.size();
+    public final String toString() {
+        if (this.b != qf5.d) {
+            return String.valueOf(getValue());
+        }
+        return "Lazy value not initialized yet.";
     }
 }

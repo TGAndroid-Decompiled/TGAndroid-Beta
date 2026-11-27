@@ -1,17 +1,16 @@
 package defpackage;
-public final class s70 implements zn7 {
+public final class s70 implements zq7 {
     public static final s70 a = new Object();
-    public static final w84 b = w84.c("eventType");
-    public static final w84 c = w84.c("sessionData");
-    public static final w84 d = w84.c("applicationInfo");
+    public static final sa4 b = sa4.c("performance");
+    public static final sa4 c = sa4.c("crashlytics");
+    public static final sa4 d = sa4.c("sessionSamplingRate");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        c6a c6aVar = (c6a) obj;
-        ao7 ao7Var = (ao7) obj2;
-        c6aVar.getClass();
-        ao7Var.a(b, n44.SESSION_START);
-        ao7Var.a(c, c6aVar.a);
-        ao7Var.a(d, c6aVar.b);
+        t63 t63Var = (t63) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.a(b, t63Var.a);
+        ar7Var.a(c, t63Var.b);
+        ar7Var.f(d, t63Var.c);
     }
 }

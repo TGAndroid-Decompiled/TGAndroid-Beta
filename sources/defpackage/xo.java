@@ -1,152 +1,247 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.PowerManager;
-import android.util.Log;
-import java.util.Calendar;
-public final class xo extends yo {
-    public final byte c = 0;
-    public final bp d;
-    public final Object e;
+import android.view.ActionMode;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.SearchEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.accessibility.AccessibilityEvent;
+import java.util.ArrayList;
+import java.util.List;
+public final class xo implements Window.Callback {
+    public final Window.Callback a;
+    public boolean b;
+    public boolean c;
+    public boolean d;
+    public final cp e;
 
-    public xo(bp bpVar, Context context) {
-        super(bpVar);
-        this.d = bpVar;
-        this.e = (PowerManager) context.getApplicationContext().getSystemService("power");
+    public xo(cp cpVar, Window.Callback callback) {
+        this.e = cpVar;
+        if (callback != null) {
+            this.a = callback;
+        } else {
+            lq5.j("Window callback may not be null");
+            throw null;
+        }
+    }
+
+    public final void a(Window.Callback callback) {
+        try {
+            this.b = true;
+            callback.onContentChanged();
+        } finally {
+            this.b = false;
+        }
+    }
+
+    public final boolean b(int i, Menu menu) {
+        return this.a.onMenuOpened(i, menu);
+    }
+
+    public final void c(int i, Menu menu) {
+        this.a.onPanelClosed(i, menu);
+    }
+
+    public final void d(List list, Menu menu, int i) {
+        l1d.a(this.a, list, menu, i);
     }
 
     @Override
-    public final IntentFilter d() {
-        switch (this.c) {
-            case 0:
-                IntentFilter intentFilter = new IntentFilter();
-                intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
-                return intentFilter;
-            default:
-                IntentFilter intentFilter2 = new IntentFilter();
-                intentFilter2.addAction("android.intent.action.TIME_SET");
-                intentFilter2.addAction("android.intent.action.TIMEZONE_CHANGED");
-                intentFilter2.addAction("android.intent.action.TIME_TICK");
-                return intentFilter2;
+    public final boolean dispatchGenericMotionEvent(MotionEvent motionEvent) {
+        return this.a.dispatchGenericMotionEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        boolean z = this.c;
+        Window.Callback callback = this.a;
+        if (z) {
+            return callback.dispatchKeyEvent(keyEvent);
+        }
+        if (!this.e.i(keyEvent) && !callback.dispatchKeyEvent(keyEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchKeyShortcutEvent(android.view.KeyEvent r6) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xo.dispatchKeyShortcutEvent(android.view.KeyEvent):boolean");
+    }
+
+    @Override
+    public final boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        return this.a.dispatchPopulateAccessibilityEvent(accessibilityEvent);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return this.a.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean dispatchTrackballEvent(MotionEvent motionEvent) {
+        return this.a.dispatchTrackballEvent(motionEvent);
+    }
+
+    @Override
+    public final void onActionModeFinished(ActionMode actionMode) {
+        this.a.onActionModeFinished(actionMode);
+    }
+
+    @Override
+    public final void onActionModeStarted(ActionMode actionMode) {
+        this.a.onActionModeStarted(actionMode);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        this.a.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onContentChanged() {
+        if (this.b) {
+            this.a.onContentChanged();
         }
     }
 
     @Override
-    public final int e() {
-        Location location;
-        boolean z;
-        long j;
-        Location location2;
-        byte b = this.c;
-        Object obj = this.e;
-        switch (b) {
-            case 0:
-                if (((PowerManager) obj).isPowerSaveMode()) {
-                    return 2;
+    public final boolean onCreatePanelMenu(int i, Menu menu) {
+        if (i == 0 && !(menu instanceof f27)) {
+            return false;
+        }
+        return this.a.onCreatePanelMenu(i, menu);
+    }
+
+    @Override
+    public final View onCreatePanelView(int i) {
+        return this.a.onCreatePanelView(i);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        this.a.onDetachedFromWindow();
+    }
+
+    @Override
+    public final boolean onMenuItemSelected(int i, MenuItem menuItem) {
+        return this.a.onMenuItemSelected(i, menuItem);
+    }
+
+    @Override
+    public final boolean onMenuOpened(int i, Menu menu) {
+        p1d p;
+        b(i, menu);
+        if (i == 108 && (p = this.e.p()) != null) {
+            ArrayList arrayList = p.m;
+            if (true != p.l) {
+                p.l = true;
+                if (arrayList.size() > 0) {
+                    arrayList.get(0).getClass();
+                    grb.o();
+                    return false;
                 }
-                return 1;
-            default:
-                vk9 vk9Var = (vk9) obj;
-                tab tabVar = (tab) vk9Var.d;
-                LocationManager locationManager = (LocationManager) vk9Var.c;
-                if (tabVar.a > System.currentTimeMillis()) {
-                    z = tabVar.b;
-                } else {
-                    Context context = (Context) vk9Var.b;
-                    Location location3 = null;
-                    if (qqe.b(context, "android.permission.ACCESS_COARSE_LOCATION") == 0) {
-                        try {
-                        } catch (Exception e) {
-                            Log.d("TwilightManager", "Failed to get last known location", e);
-                        }
-                        if (locationManager.isProviderEnabled("network")) {
-                            location2 = locationManager.getLastKnownLocation("network");
-                            location = location2;
-                        }
-                        location2 = null;
-                        location = location2;
-                    } else {
-                        location = null;
-                    }
-                    if (qqe.b(context, "android.permission.ACCESS_FINE_LOCATION") == 0) {
-                        try {
-                            if (locationManager.isProviderEnabled("gps")) {
-                                location3 = locationManager.getLastKnownLocation("gps");
-                            }
-                        } catch (Exception e2) {
-                            Log.d("TwilightManager", "Failed to get last known location", e2);
-                        }
-                    }
-                    if (location3 != null && (location == null || location3.getTime() > location.getTime())) {
-                        location = location3;
-                    }
-                    z = false;
-                    if (location != null) {
-                        long currentTimeMillis = System.currentTimeMillis();
-                        s2c s2cVar = s2c.d;
-                        s2c s2cVar2 = s2cVar;
-                        if (s2cVar == null) {
-                            ?? obj2 = new Object();
-                            s2c.d = obj2;
-                            s2cVar2 = obj2;
-                        }
-                        s2c s2cVar3 = s2cVar2;
-                        s2cVar3.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
-                        s2cVar3.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (s2cVar3.c) {
-                            z = true;
-                        }
-                        long j2 = s2cVar3.b;
-                        long j3 = s2cVar3.a;
-                        s2cVar3.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j4 = s2cVar3.b;
-                        if (j2 != -1 && j3 != -1) {
-                            if (currentTimeMillis > j3) {
-                                j2 = j4;
-                            } else if (currentTimeMillis > j2) {
-                                j2 = j3;
-                            }
-                            j = j2 + 60000;
-                        } else {
-                            j = currentTimeMillis + 43200000;
-                        }
-                        tabVar.b = z;
-                        tabVar.a = j;
-                    } else {
-                        Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
-                        int i = Calendar.getInstance().get(11);
-                        if (i < 6 || i >= 22) {
-                            z = true;
-                        }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void onPanelClosed(int i, Menu menu) {
+        if (this.d) {
+            this.a.onPanelClosed(i, menu);
+            return;
+        }
+        c(i, menu);
+        cp cpVar = this.e;
+        if (i == 108) {
+            p1d p = cpVar.p();
+            if (p != null) {
+                ArrayList arrayList = p.m;
+                if (p.l) {
+                    p.l = false;
+                    if (arrayList.size() > 0) {
+                        arrayList.get(0).getClass();
+                        grb.o();
                     }
                 }
-                if (z) {
-                    return 2;
-                }
-                return 1;
+            }
+        } else if (i == 0) {
+            bp o = cpVar.o(i);
+            if (o.m) {
+                cpVar.h(o, false);
+            }
         }
     }
 
     @Override
-    public final void k() {
-        byte b = this.c;
-        bp bpVar = this.d;
-        switch (b) {
-            case 0:
-                bpVar.d(true);
-                return;
-            default:
-                bpVar.d(true);
-                return;
+    public final void onPointerCaptureChanged(boolean z) {
+        m1d.a(this.a, z);
+    }
+
+    @Override
+    public final boolean onPreparePanel(int i, View view, Menu menu) {
+        f27 f27Var;
+        if (menu instanceof f27) {
+            f27Var = (f27) menu;
+        } else {
+            f27Var = null;
+        }
+        if (i == 0 && f27Var == null) {
+            return false;
+        }
+        if (f27Var != null) {
+            f27Var.x = true;
+        }
+        boolean onPreparePanel = this.a.onPreparePanel(i, view, menu);
+        if (f27Var != null) {
+            f27Var.x = false;
+        }
+        return onPreparePanel;
+    }
+
+    @Override
+    public final void onProvideKeyboardShortcuts(List list, Menu menu, int i) {
+        f27 f27Var = this.e.o(0).h;
+        if (f27Var != null) {
+            d(list, f27Var, i);
+        } else {
+            d(list, menu, i);
         }
     }
 
-    public xo(bp bpVar, vk9 vk9Var) {
-        super(bpVar);
-        this.d = bpVar;
-        this.e = vk9Var;
+    @Override
+    public final boolean onSearchRequested(SearchEvent searchEvent) {
+        return k1d.a(this.a, searchEvent);
+    }
+
+    @Override
+    public final void onWindowAttributesChanged(WindowManager.LayoutParams layoutParams) {
+        this.a.onWindowAttributesChanged(layoutParams);
+    }
+
+    @Override
+    public final void onWindowFocusChanged(boolean z) {
+        this.a.onWindowFocusChanged(z);
+    }
+
+    @Override
+    public final android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode.Callback r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xo.onWindowStartingActionMode(android.view.ActionMode$Callback, int):android.view.ActionMode");
+    }
+
+    @Override
+    public final boolean onSearchRequested() {
+        return this.a.onSearchRequested();
+    }
+
+    @Override
+    public final ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
+        return null;
     }
 }

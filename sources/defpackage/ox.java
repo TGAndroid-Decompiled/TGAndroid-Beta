@@ -1,41 +1,52 @@
 package defpackage;
 
-import android.media.MediaCodec;
-import android.os.Build;
 import android.os.Handler;
-import android.os.Message;
-public final class ox implements MediaCodec.OnFrameRenderedListener {
-    public final byte a;
-    public final uk6 b;
+import android.os.Looper;
+import android.util.Log;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class ox implements Runnable {
+    public static Handler f;
+    public final m8d e;
+    public volatile int b = 1;
+    public final AtomicBoolean c = new AtomicBoolean();
+    public final AtomicBoolean d = new AtomicBoolean();
+    public final ug7 a = new ug7(this, new tg7(this, (byte) 0));
 
-    public ox(ek6 ek6Var, uk6 uk6Var, byte b) {
-        this.a = b;
-        this.b = uk6Var;
+    public ox(m8d m8dVar) {
+        this.e = m8dVar;
+    }
+
+    public final void a() {
+        m8d m8dVar = this.e;
+        int i = 0;
+        for (m05 m05Var : m8dVar.j) {
+            if (m05Var.a(m8dVar)) {
+                i++;
+            }
+        }
+        try {
+            m8dVar.i.tryAcquire(i, 5L, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public final void b(Object obj) {
+        Handler handler;
+        synchronized (ox.class) {
+            handler = f;
+            if (handler == null) {
+                handler = new Handler(Looper.getMainLooper());
+                f = handler;
+            }
+        }
+        handler.post(new iqd((Object) this, obj, false, (byte) 7));
     }
 
     @Override
-    public final void onFrameRendered(MediaCodec mediaCodec, long j, long j2) {
-        byte b = this.a;
-        uk6 uk6Var = this.b;
-        switch (b) {
-            case 0:
-                Handler handler = uk6Var.a;
-                if (Build.VERSION.SDK_INT < 30) {
-                    handler.sendMessageAtFrontOfQueue(Message.obtain(handler, 0, (int) (j >> 32), (int) j));
-                    return;
-                } else {
-                    uk6Var.a(j);
-                    return;
-                }
-            default:
-                Handler handler2 = uk6Var.a;
-                if (Build.VERSION.SDK_INT < 30) {
-                    handler2.sendMessageAtFrontOfQueue(Message.obtain(handler2, 0, (int) (j >> 32), (int) j));
-                    return;
-                } else {
-                    uk6Var.a(j);
-                    return;
-                }
-        }
+    public final void run() {
+        this.e.a();
     }
 }

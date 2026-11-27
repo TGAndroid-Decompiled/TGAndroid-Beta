@@ -1,26 +1,25 @@
 package defpackage;
 
-import android.telephony.TelephonyCallback;
-import android.telephony.TelephonyDisplayInfo;
-public final class zi7 extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-    public final ev2 a;
+import java.io.FileInputStream;
+import java.nio.channels.FileLock;
+public final class zi7 extends ax2 {
+    public wj7 a;
+    public FileInputStream b;
+    public FileLock c;
+    public boolean d;
+    public Object e;
+    public final aj7 f;
+    public int h;
 
-    public zi7(ev2 ev2Var) {
-        this.a = ev2Var;
+    public zi7(aj7 aj7Var, zw2 zw2Var) {
+        super(zw2Var);
+        this.f = aj7Var;
     }
 
-    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
-        boolean z;
-        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
-        int i = 5;
-        if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
-            z = false;
-        } else {
-            z = true;
-        }
-        if (z) {
-            i = 10;
-        }
-        this.a.i(i);
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.e = obj;
+        this.h |= Integer.MIN_VALUE;
+        return this.f.e(null, this);
     }
 }

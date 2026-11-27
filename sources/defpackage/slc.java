@@ -1,28 +1,33 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-public final class slc extends fj3 {
-    public final ShapeDrawable H;
-    public final hmc I;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLRPC;
+public final class slc implements Runnable {
+    public final byte a;
+    public final VoIPService b;
+    public final TLRPC.Updates c;
+    public final long d;
 
-    public slc(hmc hmcVar, Context context) {
-        super(context);
-        this.I = hmcVar;
-        this.H = bkb.b0(gl.L(22.0f), hmcVar.getThemedColor(bkb.c6));
+    public slc(VoIPService voIPService, TLRPC.Updates updates, long j, byte b) {
+        this.a = b;
+        this.b = voIPService;
+        this.c = updates;
+        this.d = j;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().g.a);
-        if (ceil > 0) {
-            ShapeDrawable shapeDrawable = this.H;
-            shapeDrawable.getPaint().setColor(this.I.getThemedColor(bkb.c6));
-            shapeDrawable.setBounds(0, 0, getWidth(), ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().c.a * 255.0f));
-            shapeDrawable.draw(canvas);
+    public final void run() {
+        byte b = this.a;
+        long j = this.d;
+        TLRPC.Updates updates = this.c;
+        VoIPService voIPService = this.b;
+        switch (b) {
+            case 0:
+                voIPService.lambda$startConferenceGroupCall$49(updates, j);
+                return;
+            default:
+                voIPService.lambda$startConferenceGroupCall$41(updates, j);
+                return;
         }
-        super.dispatchDraw(canvas);
     }
 }

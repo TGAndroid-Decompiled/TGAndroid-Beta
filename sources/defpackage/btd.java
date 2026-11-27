@@ -1,14 +1,17 @@
 package defpackage;
+public final class btd implements zq7 {
+    public static final btd a = new Object();
 
-import android.os.IInterface;
-public interface btd extends IInterface {
-    boolean getBooleanFlagValue(String str, boolean z, int i);
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)));
+    }
 
-    int getIntFlagValue(String str, int i, int i2);
-
-    long getLongFlagValue(String str, long j, int i);
-
-    String getStringFlagValue(String str, String str2, int i);
-
-    void init(yi5 yi5Var);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

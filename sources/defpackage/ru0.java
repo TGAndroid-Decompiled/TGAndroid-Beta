@@ -1,69 +1,26 @@
 package defpackage;
 
-import android.webkit.PermissionRequest;
-public final class ru0 implements vs2 {
-    public final byte a;
-    public final zu0 b;
-    public final PermissionRequest c;
-    public final String d;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class ru0 extends zu1 {
+    public boolean Jd;
+    public final TLRPC.User Kd;
+    public final long Ld;
+    public final rv0 Md;
 
-    public ru0(zu0 zu0Var, PermissionRequest permissionRequest, String str, byte b) {
-        this.a = b;
-        this.b = zu0Var;
-        this.c = permissionRequest;
-        this.d = str;
+    public ru0(rv0 rv0Var, Bundle bundle, TLRPC.User user, long j) {
+        super(bundle);
+        this.Md = rv0Var;
+        this.Kd = user;
+        this.Ld = j;
     }
 
     @Override
-    public final void accept(Object obj) {
-        byte b = this.a;
-        String str = this.d;
-        PermissionRequest permissionRequest = this.c;
-        zu0 zu0Var = this.b;
-        Boolean bool = (Boolean) obj;
-        switch (b) {
-            case 0:
-                if (zu0Var.a != null) {
-                    zu0Var.a = null;
-                    if (bool.booleanValue()) {
-                        ru0 ru0Var = new ru0(zu0Var, permissionRequest, str, (byte) 2);
-                        boolean z = hv0.R0;
-                        zu0Var.e.R.R(new String[]{"android.permission.RECORD_AUDIO"}, ru0Var);
-                        return;
-                    }
-                    permissionRequest.deny();
-                    return;
-                }
-                return;
-            case 1:
-                if (zu0Var.a != null) {
-                    zu0Var.a = null;
-                    if (bool.booleanValue()) {
-                        ru0 ru0Var2 = new ru0(zu0Var, permissionRequest, str, (byte) 3);
-                        boolean z2 = hv0.R0;
-                        zu0Var.e.R.R(new String[]{"android.permission.CAMERA"}, ru0Var2);
-                        return;
-                    }
-                    permissionRequest.deny();
-                    return;
-                }
-                return;
-            case 2:
-                if (bool.booleanValue()) {
-                    permissionRequest.grant(new String[]{str});
-                    zu0Var.e.R.U = true;
-                    return;
-                }
-                permissionRequest.deny();
-                return;
-            default:
-                if (bool.booleanValue()) {
-                    permissionRequest.grant(new String[]{str});
-                    zu0Var.e.R.U = true;
-                    return;
-                }
-                permissionRequest.deny();
-                return;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Jd) {
+            this.Jd = true;
+            d31.b0(this).I(2131623990, ob6.a0(null, null, 2131751704, lbc.r(this.Kd)), hl.N2(ob6.a0(null, null, 2131751705, lbc.r(this.Md.V)), -1, 0, new kt(this, this.Ld, (byte) 3), null)).j();
         }
     }
 }

@@ -1,24 +1,17 @@
 package defpackage;
+public final class ede implements zq7 {
+    public static final ede a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class ede extends b4 {
-    public static final Parcelable.Creator<ede> CREATOR = new qyd((byte) 27);
-    public final int a;
-    public final int b;
-
-    public ede(int i, int i2) {
-        this.a = i;
-        this.b = i2;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(3)), 4)), 5)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.q(parcel, 3, 4);
-        parcel.writeInt(this.b);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

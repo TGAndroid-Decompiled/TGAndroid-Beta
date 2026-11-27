@@ -1,15 +1,12 @@
 package defpackage;
-public final class w9c {
-    public final byte a;
-    public final byte b;
 
-    public w9c(int i) {
-        this.a = (byte) (i & 224);
-        this.b = (byte) (i & 31);
-    }
-
-    public w9c(int i, int i2) {
-        this.a = i;
-        this.b = i2;
+import android.text.PrecomputedText;
+public final class w9c extends rg7 {
+    @Override
+    public final boolean c(CharSequence charSequence) {
+        if (!(charSequence instanceof PrecomputedText)) {
+            return false;
+        }
+        return true;
     }
 }

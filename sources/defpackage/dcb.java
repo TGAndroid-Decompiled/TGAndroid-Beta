@@ -1,12 +1,20 @@
 package defpackage;
-public final class dcb {
-    public final float a;
-    public final float b;
-    public final float c;
 
-    public dcb(float f, float f2, float f3) {
-        this.a = f;
-        this.b = f2;
-        this.c = f3;
+import android.content.Context;
+public final class dcb extends ui5 {
+    public final lcb a;
+
+    public dcb(lcb lcbVar, Context context) {
+        super(context);
+        this.a = lcbVar;
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        d30 d30Var = this.a.G0;
+        if (d30Var != null) {
+            d30Var.m();
+        }
     }
 }

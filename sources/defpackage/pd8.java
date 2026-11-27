@@ -1,44 +1,79 @@
 package defpackage;
 
-import org.telegram.messenger.ImageReceiver;
-public final class pd8 extends ld8 {
-    public final jm6 b;
-    public final y3a c;
+import android.webkit.JavascriptInterface;
+public final class pd8 {
+    public final nc8 a;
 
-    public pd8(y3a y3aVar) {
-        gl5 gl5Var;
-        this.c = y3aVar;
-        jm6 jm6Var = y3aVar.y;
-        this.b = jm6Var;
-        this.a.q0(gl.L(7.0f));
-        ImageReceiver imageReceiver = this.a;
-        imageReceiver.o0(0, 0, true);
-        String str = jm6Var.g;
-        int i = jm6Var.C;
-        String str2 = jm6Var.I;
+    public pd8(nc8 nc8Var) {
+        this.a = nc8Var;
+    }
+
+    @JavascriptInterface
+    public void onPlayerError(String str) {
+        hl.c3(new me7(this, Integer.parseInt(str), (byte) 7));
+    }
+
+    @JavascriptInterface
+    public void onPlayerLoaded() {
+        hl.c3(new nd8(this, (byte) 0));
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyBufferedPosition(float f) {
+        this.a.K = f;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyCurrentPosition(int i) {
+        this.a.J = i * 1000;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyDuration(int i) {
+        nc8 nc8Var = this.a;
+        nc8Var.I = i * 1000;
+        String str = nc8Var.s;
         if (str != null) {
-            gl5Var = gl5.g(str);
+            nc8Var.g(str);
+            nc8Var.s = null;
+        }
+    }
+
+    @JavascriptInterface
+    public void onPlayerStateChange(String str) {
+        boolean z;
+        int i;
+        int parseInt = Integer.parseInt(str);
+        nc8 nc8Var = this.a;
+        boolean z2 = nc8Var.H;
+        boolean z3 = false;
+        if (parseInt != 1 && parseInt != 3) {
+            z = false;
         } else {
-            String str3 = jm6Var.c;
-            if (str3 != null) {
-                gl5Var = gl5.g(str3);
-            } else if (str2 != null) {
-                if (jm6Var.b && !jm6Var.d()) {
-                    gl5Var = gl5.g("vthumb://" + i + ":" + str2);
+            z = true;
+        }
+        nc8Var.H = z;
+        nc8Var.a(z2);
+        if (parseInt != 0) {
+            if (parseInt != 1) {
+                i = 2;
+                if (parseInt != 2) {
+                    if (parseInt != 3) {
+                        i = 1;
+                    }
                 } else {
-                    gl5Var = gl5.g("thumb://" + i + ":" + str2);
-                    imageReceiver.o0(jm6Var.J, jm6Var.K, true);
+                    i = 3;
                 }
             } else {
-                imageReceiver.f();
-                gl5Var = null;
+                i = 3;
             }
-        }
-        gl5 gl5Var2 = gl5Var;
-        if (gl5Var2 != null) {
-            imageReceiver.d0(gl5Var2, null, null, null, null, 0);
+            z3 = true;
         } else {
-            imageReceiver.f();
+            i = 4;
         }
+        if (i == 3 && nc8Var.h.getVisibility() != 4) {
+            hl.d3(new nd8(this, (byte) 1), 300L);
+        }
+        hl.c3(new wr6(this, z3, i, (byte) 1));
     }
 }

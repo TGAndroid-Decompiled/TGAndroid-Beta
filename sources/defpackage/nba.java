@@ -1,26 +1,37 @@
 package defpackage;
-public final class nba implements p8c {
-    public final byte a;
-    public final nfa b;
 
-    public nba(nfa nfaVar, byte b) {
-        this.a = b;
-        this.b = nfaVar;
+import android.content.Context;
+import android.view.View;
+public final class nba extends a8c {
+    public static final int b = 0;
+
+    static {
+        a8c.h(new a8c());
     }
 
     @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        nfa nfaVar = this.b;
-        z1b z1bVar = (z1b) obj;
-        switch (b) {
-            case 0:
-                gl.d3(new t7a(nfaVar, z1bVar, (byte) 2), 100L);
-                return;
-            default:
-                int[] iArr = nfa.t2;
-                gl.d3(new t7a(nfaVar, z1bVar, (byte) 2), 100L);
-                return;
+    public final void b(View view, b8c b8cVar, boolean z, l9c l9cVar, q9c q9cVar) {
+        ((oba) view).set(b8cVar.A);
+    }
+
+    @Override
+    public final boolean c(b8c b8cVar, b8c b8cVar2) {
+        if (b8cVar.A == b8cVar2.A) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, d79 d79Var, int i, vnb vnbVar) {
+        return new oba(context, vnbVar);
+    }
+
+    @Override
+    public final boolean e(b8c b8cVar, b8c b8cVar2) {
+        if (b8cVar.d == b8cVar2.d) {
+            return true;
+        }
+        return false;
     }
 }

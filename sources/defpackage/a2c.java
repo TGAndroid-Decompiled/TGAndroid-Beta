@@ -1,38 +1,40 @@
 package defpackage;
+public final class a2c {
+    public static final a2c d = new a2c(new uz1());
+    public static final String e;
+    public static final String f;
+    public static final String g;
+    public final int a;
+    public final boolean b;
+    public final boolean c;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class a2c {
-    public String[] a = new String[0];
+    static {
+        String str = gcc.a;
+        e = "1";
+        f = "2";
+        g = "3";
+    }
 
-    public boolean a() {
+    public a2c(uz1 uz1Var) {
+        this.a = uz1Var.a;
+        this.b = uz1Var.b;
+        this.c = uz1Var.c;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && a2c.class == obj.getClass()) {
+            a2c a2cVar = (a2c) obj;
+            if (this.a == a2cVar.a && this.b == a2cVar.b && this.c == a2cVar.c) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public String[] b() {
-        return this.a;
-    }
-
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(t1c t1cVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(t1c t1cVar, f09 f09Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.a = strArr;
-    }
-
-    public void f(int i, Object obj, TLRPC.Document document, boolean z) {
+    public final int hashCode() {
+        return ((((this.a + 31) * 31) + (this.b ? 1 : 0)) * 31) + (this.c ? 1 : 0);
     }
 }

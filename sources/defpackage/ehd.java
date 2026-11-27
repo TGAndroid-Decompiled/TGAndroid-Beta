@@ -1,40 +1,5 @@
 package defpackage;
-
-import android.os.Handler;
-import android.os.Looper;
-import android.util.SparseArray;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import java.util.concurrent.atomic.AtomicInteger;
-public final class ehd implements OnCompleteListener, Runnable {
-    public static final o59 d = new Handler(Looper.getMainLooper());
-    public static final SparseArray e = new SparseArray(2);
-    public static final AtomicInteger f = new AtomicInteger();
-    public int a;
-    public gnd b;
-    public Task c;
-
-    public final void a() {
-        if (this.c != null && this.b != null) {
-            e.delete(this.a);
-            d.removeCallbacks(this);
-            gnd gndVar = this.b;
-            if (gndVar != null) {
-                Task task = this.c;
-                int i = gnd.d;
-                gndVar.a(task);
-            }
-        }
-    }
-
-    @Override
-    public final void onComplete(Task task) {
-        this.c = task;
-        a();
-    }
-
-    @Override
-    public final void run() {
-        e.delete(this.a);
-    }
+public abstract class ehd {
+    public static final float[][] a = {new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 33.0f, 3.8f, 1.0f, -1.0f, 1.0f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 27.0f, 0.79f, 23.0f, 0.86f, 33.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 2.0f, 3.0f}, new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 18.0f, 3.8f, 1.0f, -1.0f, 1.2f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 13.0f, 0.79f, 11.0f, 0.86f, 16.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 1.0f, 1.5f}};
+    public static final float[] b = {20.0f, 10.0f, 17.5f, 6.0f, 85.0f, 55.0f, 26.0f, 50.0f, 40.0f, 5.0f, 7.0f, 9.0f, 33.0f, 46.0f, 24.0f, 0.0f, 30.0f, 45.0f, 67.0f, 15.0f, 70.0f, 139.0f, 100.0f, 61.0f, 193.0f, 4.0f, 2.0f, 100.0f, 55.0f, 0.3f, 100.0f, 30.0f, 1.5f, 2.5f, 0.0f, 1.0f, 1.3f, 200.0f, 0.7f, 207.0f, 0.0f, 0.0f, 3.5f, 0.0f, 1.5f, 2.5f, 34.0f, 27.0f, 360.0f, 780.0f, 1.1f, 920.0f, 1.0f, 10.0f};
 }

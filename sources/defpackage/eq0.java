@@ -15,7 +15,7 @@ public abstract class eq0 extends View {
     public boolean H;
     public final int I;
     public boolean J;
-    public final ff0 K;
+    public final hf0 K;
     public int L;
     public StaticLayout a;
     public String b;
@@ -25,27 +25,27 @@ public abstract class eq0 extends View {
     public int f;
     public int h;
     public int n;
-    public m46 r;
-    public final i46 s;
+    public q66 r;
+    public final m66 s;
     public cq0 w;
     public final int x;
-    public final wjb y;
+    public final vnb y;
 
-    public eq0(int i, wjb wjbVar, Context context) {
+    public eq0(int i, vnb vnbVar, Context context) {
         super(context);
-        this.s = new i46(this);
-        this.I = gl.L(4.0f);
+        this.s = new m66(this);
+        this.I = hl.L(4.0f);
         this.x = i;
-        this.y = wjbVar;
+        this.y = vnbVar;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.F = imageReceiver;
         imageReceiver.K0 = true;
         imageReceiver.B0 = true;
         imageReceiver.t1 = (short) 300;
-        int v0 = bkb.v0(bkb.h6, wjbVar);
-        int i2 = gba.U0;
+        int v0 = aob.v0(aob.i6, vnbVar);
+        int i2 = xea.U0;
         this.L = i2;
-        ff0 Y = bkb.Y(v0, i2, i2);
+        hf0 Y = aob.Y(v0, i2, i2);
         this.K = Y;
         Y.setCallback(this);
     }
@@ -93,13 +93,13 @@ public abstract class eq0 extends View {
         canvas.save();
         canvas.translate(getSideMenuWidth() / 2.0f, 0.0f);
         int width = (getWidth() - this.e) / 2;
-        int L = gl.L(2.0f) + this.E;
-        Drawable k = bkb.p3.k();
+        int L = hl.L(2.0f) + this.E;
+        Drawable k = aob.q3.k();
         if (k != null) {
             k.setBounds(width, L, this.e + width, this.f + L);
             k.draw(canvas);
         }
-        Point point = gl.q;
+        Point point = hl.q;
         int i = point.x;
         int i2 = point.y;
         if (getParent() instanceof View) {
@@ -107,47 +107,47 @@ public abstract class eq0 extends View {
             i = view.getMeasuredWidth();
             i2 = view.getMeasuredHeight();
         }
-        wjb wjbVar = this.y;
-        if (wjbVar != null) {
-            drawable = wjbVar.getDrawable("drawableMsgInMedia");
+        vnb vnbVar = this.y;
+        if (vnbVar != null) {
+            drawable = vnbVar.getDrawable("drawableMsgInMedia");
         } else {
             drawable = null;
         }
         if (drawable == null) {
-            drawable = bkb.P0("drawableMsgInMedia");
+            drawable = aob.P0("drawableMsgInMedia");
         }
-        m17 m17Var = (m17) drawable;
-        m17Var.o((int) getY(), i, i2);
-        m17Var.setBounds(width, 0, this.e + width, this.f);
-        m17Var.draw(canvas);
-        ff0 ff0Var = this.K;
-        if (ff0Var != null) {
+        t37 t37Var = (t37) drawable;
+        t37Var.o((int) getY(), i, i2);
+        t37Var.setBounds(width, 0, this.e + width, this.f);
+        t37Var.draw(canvas);
+        hf0 hf0Var = this.K;
+        if (hf0Var != null) {
             int i3 = this.L;
-            int i4 = gba.U0;
+            int i4 = xea.U0;
             if (i3 != i4) {
                 this.L = i4;
-                bkb.E1(ff0Var, i4, i4);
+                aob.E1(hf0Var, i4, i4);
             }
-            ff0Var.setBounds(gl.L(2.0f) + width, gl.L(2.0f), (this.e + width) - gl.L(2.0f), this.f - gl.L(2.0f));
-            ff0Var.draw(canvas);
+            hf0Var.setBounds(hl.L(2.0f) + width, hl.L(2.0f), (this.e + width) - hl.L(2.0f), this.f - hl.L(2.0f));
+            hf0Var.draw(canvas);
         }
         int i5 = this.I;
         float f2 = this.E - i5;
         ImageReceiver imageReceiver = this.F;
         imageReceiver.i0(width + i5, i5, this.e - (i5 << 1), f2);
         imageReceiver.h(canvas, null);
-        bkb.n2.setColor(bkb.v0(bkb.Uc, wjbVar));
-        bkb.n2.linkColor = bkb.v0(bkb.Wc, wjbVar);
+        aob.o2.setColor(aob.v0(aob.Vc, vnbVar));
+        aob.o2.linkColor = aob.v0(aob.Xc, vnbVar);
         canvas.save();
         if (this.G) {
             f = 14.0f;
         } else {
             f = 11.0f;
         }
-        int L2 = gl.L(f) + width;
+        int L2 = hl.L(f) + width;
         this.h = L2;
         float f3 = L2;
-        int L3 = gl.L(11.0f) + L;
+        int L3 = hl.L(11.0f) + L;
         this.n = L3;
         canvas.translate(f3, L3);
         if (this.s.g(canvas)) {
@@ -172,7 +172,7 @@ public abstract class eq0 extends View {
 
     @Override
     public final void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), gl.L(8.0f) + this.f);
+        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), hl.L(8.0f) + this.f);
     }
 
     @Override

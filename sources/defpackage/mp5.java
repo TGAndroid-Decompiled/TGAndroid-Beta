@@ -1,33 +1,59 @@
 package defpackage;
+public final class mp5 implements ez9 {
+    public final long a;
+    public final long b;
+    public final int c;
+    public final lp5 d;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-public abstract class mp5 {
-    public static final Charset a;
-    public static final byte[] b;
-
-    static {
-        Charset.forName("US-ASCII");
-        a = Charset.forName("UTF-8");
-        Charset.forName("ISO-8859-1");
-        byte[] bArr = new byte[0];
-        b = bArr;
-        ByteBuffer.wrap(bArr);
-        try {
-            new yj2(bArr, 0, 0, false).e(0);
-        } catch (zp5 e) {
-            throw new IllegalArgumentException(e);
-        }
+    public mp5(long j, long j2, long j3) {
+        this.d = new lp5(j, new long[]{j2}, new long[]{0});
+        this.a = j2;
+        this.b = j3;
+        this.c = cue.a(j3 - j2, j);
     }
 
-    public static void a(Object obj, String str) {
-        if (obj != null) {
-            return;
-        }
-        fvc.f(str);
+    @Override
+    public final long a() {
+        return this.b;
     }
 
-    public static int b(long j) {
-        return (int) (j ^ (j >>> 32));
+    @Override
+    public final long b() {
+        return this.a;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.d.c();
+    }
+
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final yy9 e(long j) {
+        return this.d.e(j);
+    }
+
+    @Override
+    public final long f(long j) {
+        lp5 lp5Var = this.d;
+        ed edVar = lp5Var.b;
+        if (edVar.b == 0) {
+            return -9223372036854775807L;
+        }
+        return edVar.h0(gcc.c(lp5Var.a, j));
+    }
+
+    @Override
+    public final int g() {
+        return this.c;
+    }
+
+    @Override
+    public final long h() {
+        return this.d.c;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class jm0 extends ja {
+public final class jm0 extends ka {
     public CharSequence c;
     public TLRPC.InputPeer d;
     public TLRPC.Chat e;
@@ -20,28 +20,28 @@ public final class jm0 extends ja {
     public TLObject m;
 
     public static jm0 b(int i, TLRPC.Chat chat, boolean z) {
-        ?? jaVar = new ja(9, false);
-        jaVar.e = chat;
-        jaVar.d = null;
-        jaVar.g = z;
-        jaVar.i = i;
-        return jaVar;
+        ?? kaVar = new ka(9, false);
+        kaVar.e = chat;
+        kaVar.d = null;
+        kaVar.g = z;
+        kaVar.i = i;
+        return kaVar;
     }
 
     public static jm0 c(CharSequence charSequence, boolean z) {
-        ?? jaVar = new ja(7, false);
-        jaVar.c = charSequence;
-        jaVar.g = z;
-        return jaVar;
+        ?? kaVar = new ka(7, false);
+        kaVar.c = charSequence;
+        kaVar.g = z;
+        return kaVar;
     }
 
     public static jm0 d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
-        ?? jaVar = new ja(17, z);
-        jaVar.i = i;
-        jaVar.h = j;
-        jaVar.m = tL_starsGiveawayOption;
-        jaVar.g = z2;
-        return jaVar;
+        ?? kaVar = new ka(17, z);
+        kaVar.i = i;
+        kaVar.h = j;
+        kaVar.m = tL_starsGiveawayOption;
+        kaVar.g = z2;
+        return kaVar;
     }
 
     public static jm0 e(int i, int i2, ArrayList arrayList, boolean z) {
@@ -51,17 +51,17 @@ public final class jm0 extends ja {
         } else {
             z2 = false;
         }
-        ?? jaVar = new ja(11, z2);
-        jaVar.l = i;
-        jaVar.g = z;
-        jaVar.f = arrayList;
-        return jaVar;
+        ?? kaVar = new ka(11, z2);
+        kaVar.l = i;
+        kaVar.g = z;
+        kaVar.f = arrayList;
+        return kaVar;
     }
 
     public static jm0 f(String str) {
-        ?? jaVar = new ja(6, false);
-        jaVar.c = str;
-        return jaVar;
+        ?? kaVar = new ka(6, false);
+        kaVar.c = str;
+        return kaVar;
     }
 
     public static boolean g(List list, List list2) {
@@ -83,12 +83,12 @@ public final class jm0 extends ja {
     }
 
     @Override
-    public final boolean a(ja jaVar) {
+    public final boolean a(ka kaVar) {
         jm0 jm0Var;
         int i;
         int i2;
-        if (this != jaVar) {
-            if (jm0.class == jaVar.getClass() && (i = (jm0Var = (jm0) jaVar).a) == (i2 = this.a)) {
+        if (this != kaVar) {
+            if (jm0.class == kaVar.getClass() && (i = (jm0Var = (jm0) kaVar).a) == (i2 = this.a)) {
                 if (i2 == 0) {
                     if (this.g == jm0Var.g) {
                         return true;

@@ -1,49 +1,60 @@
 package defpackage;
 
-import android.util.Base64;
-import java.util.List;
-public final class pl4 {
-    public final String a;
-    public final String b;
-    public final String c;
-    public final List d;
-    public final String e;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class pl4 extends FrameLayout {
+    public final byte a;
+    public final xl4 b;
 
-    public pl4(String str, String str2, String str3, List list) {
-        str.getClass();
-        this.a = str;
-        str2.getClass();
-        this.b = str2;
-        this.c = str3;
-        list.getClass();
-        this.d = list;
-        this.e = b00.i(str, "-", str2, "-", str3);
+    public pl4(xl4 xl4Var, Activity activity, byte b) {
+        super(activity);
+        this.a = b;
+        this.b = xl4Var;
     }
 
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("FontRequest {mProviderAuthority: ");
-        sb.append(this.a);
-        sb.append(", mProviderPackage: ");
-        sb.append(this.b);
-        sb.append(", mQuery: ");
-        StringBuilder sb2 = new StringBuilder(b00.j(sb, this.c, ", mCertificates:"));
-        int i = 0;
-        while (true) {
-            List list = this.d;
-            if (i < list.size()) {
-                sb2.append(" [");
-                List list2 = (List) list.get(i);
-                for (int i2 = 0; i2 < list2.size(); i2++) {
-                    sb2.append(" \"");
-                    sb2.append(Base64.encodeToString((byte[]) list2.get(i2), 0));
-                    sb2.append("\"");
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        switch (this.a) {
+            case 0:
+                super.dispatchDraw(canvas);
+                xl4 xl4Var = this.b;
+                cz9 cz9Var = xl4Var.J;
+                if (cz9Var != null && cz9Var.a()) {
+                    xl4Var.J.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                    xl4Var.J.draw(canvas);
+                    return;
                 }
-                sb2.append(" ]");
-                i++;
-            } else {
-                sb2.append("}mCertificatesArray: 0");
-                return sb2.toString();
-            }
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(android.view.MotionEvent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pl4.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.a) {
+            case 0:
+                xl4 xl4Var = this.b;
+                rec recVar = xl4Var.I;
+                if (recVar.j) {
+                    recVar.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                    recVar.draw(canvas);
+                }
+                canvas.save();
+                canvas.translate(getLeft(), getTop());
+                xl4Var.b.v0(canvas, getRight() - getLeft(), getBottom() - getTop());
+                canvas.restore();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 }

@@ -1,17 +1,14 @@
 package defpackage;
-public final class gwd implements zn7 {
-    public static final gwd a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public abstract class gwd {
+    public static List a(List list) {
+        if (list == null) {
+            return Collections.EMPTY_LIST;
         }
-        throw new ClassCastException();
+        return DesugarCollections.unmodifiableList(new ArrayList(list));
     }
 }

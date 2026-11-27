@@ -1,4 +1,10 @@
 package defpackage;
-public interface sv6 {
-    void f(ru6 ru6Var, int i);
+public final class sv6 {
+    public final Object a;
+    public final byte b;
+
+    public sv6(Object obj, int i) {
+        this.a = obj;
+        this.b = i;
+    }
 }

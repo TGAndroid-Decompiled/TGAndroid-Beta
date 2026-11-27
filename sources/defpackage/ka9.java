@@ -1,23 +1,39 @@
 package defpackage;
+public final class ka9 implements Runnable {
+    public final byte a;
+    public final la9 b;
 
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.util.SparseArray;
-import java.util.WeakHashMap;
-public abstract class ka9 {
-    public static final ThreadLocal a = new ThreadLocal();
-    public static final WeakHashMap b = new WeakHashMap(0);
-    public static final Object c = new Object();
+    public ka9(la9 la9Var, byte b) {
+        this.a = b;
+        this.b = la9Var;
+    }
 
-    public static void a(ja9 ja9Var, int i, ColorStateList colorStateList, Resources.Theme theme) {
-        synchronized (c) {
-            WeakHashMap weakHashMap = b;
-            SparseArray sparseArray = (SparseArray) weakHashMap.get(ja9Var);
-            if (sparseArray == null) {
-                sparseArray = new SparseArray();
-                weakHashMap.put(ja9Var, sparseArray);
-            }
-            sparseArray.append(i, new ia9(colorStateList, ja9Var.a.getConfiguration(), theme));
+    @Override
+    public final void run() {
+        byte b = this.a;
+        la9 la9Var = this.b;
+        switch (b) {
+            case 0:
+                na9 na9Var = la9Var.b.d;
+                if (na9Var != null) {
+                    na9Var.postRunnable(na9Var.x);
+                    return;
+                }
+                return;
+            case 1:
+                na9 na9Var2 = la9Var.b.d;
+                if (na9Var2 != null) {
+                    na9Var2.postRunnable(na9Var2.x);
+                    return;
+                }
+                return;
+            default:
+                pa9 pa9Var = la9Var.b;
+                na9 na9Var3 = pa9Var.d;
+                na9Var3.getClass();
+                na9Var3.postRunnable(new ma9(na9Var3, (byte) 1));
+                pa9Var.d = null;
+                return;
         }
     }
 }

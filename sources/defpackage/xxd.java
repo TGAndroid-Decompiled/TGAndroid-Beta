@@ -1,17 +1,22 @@
 package defpackage;
-public final class xxd implements zn7 {
-    public static final xxd a = new Object();
+
+import java.util.concurrent.CancellationException;
+public final class xxd {
+    public static final xxd b;
+    public static final xxd c;
+    public final CancellationException a;
 
     static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+        if (p9f.d) {
+            c = null;
+            b = null;
+            return;
+        }
+        c = new xxd(null);
+        b = new xxd(null);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public xxd(CancellationException cancellationException) {
+        this.a = cancellationException;
     }
 }

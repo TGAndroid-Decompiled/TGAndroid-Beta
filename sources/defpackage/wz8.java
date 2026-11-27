@@ -1,52 +1,74 @@
 package defpackage;
 
-import android.view.View;
-import android.widget.LinearLayout;
-public final class wz8 extends LinearLayout {
-    public boolean a;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import java.nio.ByteBuffer;
+public final class wz8 implements Runnable {
+    public final byte a;
+    public final f09 b;
+    public final int c;
+
+    public wz8(f09 f09Var, int i, byte b) {
+        this.a = b;
+        this.b = f09Var;
+        this.c = i;
+    }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        sz8 sz8Var = null;
-        if (!this.a) {
-            i3 = 0;
-            for (int i4 = 0; i4 < getChildCount(); i4++) {
-                if (getChildAt(i4) instanceof a09) {
-                    sz8Var = ((a09) getChildAt(i4)).e;
-                    if (sz8Var.getAdapter().b() == sz8Var.getChildCount()) {
-                        int childCount = sz8Var.getChildCount();
-                        for (int i5 = 0; i5 < childCount; i5++) {
-                            sz8Var.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(gl.L(1000.0f), 0), i2);
-                            if (sz8Var.getChildAt(i5).getMeasuredWidth() > i3) {
-                                i3 = sz8Var.getChildAt(i5).getMeasuredWidth();
-                            }
+    public final void run() {
+        float L;
+        byte[] bArr;
+        switch (this.a) {
+            case 0:
+                f09 f09Var = this.b;
+                int i = this.c;
+                synchronized (f09.class) {
+                    if (f09.M9 != null) {
+                        bArr = f09.M9;
+                    } else {
+                        float L2 = hl.L(30.0f) / 4.0f;
+                        int ceil = (int) Math.ceil(3.0f * L);
+                        int ceil2 = ((int) Math.ceil(L2)) + ceil + 1;
+                        int i2 = (ceil2 << 1) + 2;
+                        Bitmap createBitmap = Bitmap.createBitmap(i2, i2, Bitmap.Config.ARGB_8888);
+                        Paint paint = new Paint(1);
+                        paint.setMaskFilter(new BlurMaskFilter(bp1.f(((hl.L(24.0f) * 0.57735f) + 0.5f) / 4.0f, 0.5f, 0.57735f, 0.1f), BlurMaskFilter.Blur.NORMAL));
+                        float f = ceil;
+                        float f2 = i2 - ceil;
+                        new Canvas(createBitmap).drawRoundRect(f, f, f2, f2, L2, L2, paint);
+                        Bitmap extractAlpha = createBitmap.extractAlpha();
+                        createBitmap.recycle();
+                        int rowBytes = extractAlpha.getRowBytes();
+                        byte[] bArr2 = new byte[rowBytes * i2];
+                        byte[] bArr3 = new byte[i2 * i2];
+                        extractAlpha.copyPixelsToBuffer(ByteBuffer.wrap(bArr2));
+                        extractAlpha.recycle();
+                        for (int i3 = 0; i3 < i2; i3++) {
+                            System.arraycopy(bArr2, i3 * rowBytes, bArr3, i3 * i2, i2);
                         }
-                        i3 += gl.L(16.0f);
+                        f09.N9 = i2;
+                        f09.O9 = ceil;
+                        f09.P9 = ceil2;
+                        f09.M9 = bArr3;
+                        bArr = bArr3;
                     }
                 }
-            }
-        } else {
-            i3 = 0;
+                int i4 = f09.N9;
+                Bitmap createBitmap2 = Bitmap.createBitmap(i4, i4, Bitmap.Config.ARGB_8888);
+                int[] iArr = new int[i4 * i4];
+                f09.s(iArr, bArr, i);
+                createBitmap2.setPixels(iArr, 0, i4, 0, 0, i4, i4);
+                createBitmap2.prepareToDraw();
+                hl.c3(new y36(f09Var, createBitmap2, iArr, i, (byte) 23));
+                return;
+            case 1:
+                this.b.F0(this.c);
+                return;
+            default:
+                this.b.F0(this.c);
+                return;
         }
-        int size = View.MeasureSpec.getSize(i);
-        if (size < gl.L(240.0f)) {
-            size = gl.L(240.0f);
-        }
-        if (size > gl.L(280.0f)) {
-            size = gl.L(280.0f);
-        }
-        if (size < 0) {
-            size = 0;
-        }
-        if (i3 == 0 || i3 >= size) {
-            i3 = size;
-        }
-        if (sz8Var != null) {
-            for (int i6 = 0; i6 < sz8Var.getChildCount(); i6++) {
-                sz8Var.getChildAt(i6).measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
-            }
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
     }
 }

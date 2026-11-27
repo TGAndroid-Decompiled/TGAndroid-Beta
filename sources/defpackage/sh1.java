@@ -1,52 +1,59 @@
 package defpackage;
 
+import android.content.Context;
 import android.view.View;
-public final class sh1 implements View.OnClickListener {
-    public final byte a;
-    public final yh1 b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class sh1 extends c79 {
+    public final int c;
+    public final vnb d;
+    public final uh1 e;
 
-    public sh1(yh1 yh1Var, byte b) {
-        this.a = b;
-        this.b = yh1Var;
+    public sh1(uh1 uh1Var, int i, vnb vnbVar) {
+        this.e = uh1Var;
+        this.c = i;
+        this.d = vnbVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        boolean z = true;
-        yh1 yh1Var = this.b;
-        switch (b) {
-            case 0:
-                yh1Var.g0(view);
-                return;
-            case 1:
-                wl5 wl5Var = yh1Var.x;
-                if (yh1Var.E == null) {
-                    z = false;
-                }
-                wl5Var.n(z, new oh1(yh1Var, (byte) 2), new n1(yh1Var, (byte) 11), 0);
-                yh1Var.L.H(0);
-                yh1Var.L.K(43);
-                yh1Var.n.d();
-                return;
-            case 2:
-                if (!yh1Var.l0) {
-                    yh1Var.k0();
-                    return;
-                } else if (yh1Var.c0) {
-                    yh1Var.c0 = false;
-                    yh1Var.m0();
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                if (!yh1Var.c0) {
-                    yh1Var.c0 = true;
-                    yh1Var.m0();
-                    return;
-                }
-                return;
+    public final boolean D(f89 f89Var) {
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        return this.e.c.size();
+    }
+
+    @Override
+    public final void t(defpackage.f89 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.sh1.t(f89, int):void");
+    }
+
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        Context context = viewGroup.getContext();
+        return new f89(new zqb(this.c, 3, this.d, context));
+    }
+
+    @Override
+    public final void y(f89 f89Var) {
+        TLRPC.WallPaper wallPaper;
+        uh1 uh1Var = this.e;
+        ArrayList arrayList = uh1Var.c;
+        int b = f89Var.b();
+        View view = f89Var.a;
+        if (b >= 0 && b < arrayList.size()) {
+            ne2 ne2Var = (ne2) arrayList.get(b);
+            zqb zqbVar = (zqb) view;
+            zqbVar.g(ne2Var.d, false);
+            if (ne2Var.a.b) {
+                wallPaper = null;
+            } else {
+                wallPaper = uh1Var.w;
+            }
+            zqbVar.setFallbackWallpaper(wallPaper);
         }
     }
 }

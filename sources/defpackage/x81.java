@@ -1,43 +1,40 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class x81 extends b4c {
-    public static final int b = 0;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class x81 extends v79 {
+    public boolean a;
+    public final i91 b;
 
-    static {
-        b4c.h(new b4c());
+    public x81(i91 i91Var) {
+        this.b = i91Var;
     }
 
     @Override
-    public final void b(View view, c4c c4cVar, boolean z, l5c l5cVar, q5c q5cVar) {
-        String lowerCase;
-        y81 y81Var = (y81) view;
-        TLRPC.Chat chat = (TLRPC.Chat) c4cVar.H;
-        View.OnClickListener onClickListener = c4cVar.E;
-        y81Var.c = chat;
-        ls8 ls8Var = y81Var.b;
-        ls8Var.setTag(Long.valueOf(chat.id));
-        if (hc2.T(chat) && !chat.megagroup) {
-            if (!hc2.t0(chat)) {
-                lowerCase = k96.M0(2131752317, null).toLowerCase();
-            } else {
-                lowerCase = k96.M0(2131752306, null).toLowerCase();
-            }
-        } else if (chat.has_geo) {
-            lowerCase = k96.M0(2131748450, null);
-        } else if (!hc2.t0(chat)) {
-            lowerCase = k96.M0(2131748449, null).toLowerCase();
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        int abs;
+        i91 i91Var = this.b;
+        ArrayList arrayList = i91Var.x;
+        int K0 = i91Var.b.K0();
+        boolean z = false;
+        if (K0 == -1) {
+            abs = 0;
         } else {
-            lowerCase = k96.M0(2131748446, null).toLowerCase();
+            abs = Math.abs(i91Var.b.M0() - K0) + 1;
         }
-        y81Var.a.z(chat, null, null, lowerCase, false, false);
-        ls8Var.setOnClickListener(onClickListener);
-    }
-
-    @Override
-    public final View d(Context context, o39 o39Var, int i, wjb wjbVar) {
-        return new y81(context);
+        if (abs > 0) {
+            int size = i91Var.c.g3.E.size();
+            if (!i91Var.F && !i91Var.y && !arrayList.isEmpty() && K0 + abs >= size - 5) {
+                hl.c3(new z21(this, (f91) c00.g(1, arrayList), (byte) 6));
+            }
+        }
+        if (i2 != 0 && this.a) {
+            zp4 zp4Var = i91Var.f;
+            if (i2 < 0) {
+                z = true;
+            }
+            zp4Var.e(z, true);
+        }
+        this.a = true;
     }
 }

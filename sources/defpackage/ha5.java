@@ -1,36 +1,25 @@
 package defpackage;
 
-import android.content.Context;
-public final class ha5 extends ro4 {
-    public final qa5 r;
+import java.util.ArrayList;
+import org.webrtc.RendererCommon;
+public final class ha5 implements RendererCommon.RendererEvents {
+    public final ka5 a;
 
-    public ha5(qa5 qa5Var, Context context, int i) {
-        super(context, i);
-        this.r = qa5Var;
+    public ha5(ka5 ka5Var) {
+        this.a = ka5Var;
     }
 
     @Override
-    public final void a(ya5 ya5Var) {
-        super.a(ya5Var);
-        this.r.u0();
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        this.r.u0();
-    }
-
-    @Override
-    public final void c(ya5 ya5Var) {
-        qa5 qa5Var = this.r;
-        if (ya5Var == qa5Var.Y) {
-            qa5Var.Y = null;
+    public final void onFirstFrameRendered() {
+        ArrayList arrayList = this.a.m0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            hl.r((Runnable) arrayList.get(i));
+            ((Runnable) arrayList.get(i)).run();
         }
-        if (ya5Var == qa5Var.Z) {
-            qa5Var.Z = null;
-        }
-        super.c(ya5Var);
-        qa5Var.u0();
+        arrayList.clear();
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i, int i2, int i3) {
     }
 }

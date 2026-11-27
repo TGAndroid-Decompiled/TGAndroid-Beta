@@ -1,49 +1,19 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-public final class wp1 extends bl0 {
-    public final byte s;
-    public final mu1 w;
+import android.app.Activity;
+public final class wp1 extends dl1 {
+    public final zu1 z2;
 
-    public wp1(mu1 mu1Var, wjb wjbVar, int i, byte b) {
-        super(i, wjbVar);
-        this.s = b;
-        this.w = mu1Var;
+    public wp1(zu1 zu1Var, vnb vnbVar, Activity activity) {
+        super(vnbVar, activity, false);
+        this.z2 = zu1Var;
     }
 
     @Override
-    public final int t1() {
-        int i;
-        int i2;
-        byte b = this.s;
-        mu1 mu1Var = this.w;
-        switch (b) {
-            case 0:
-                i = ((d) mu1Var).currentAccount;
-                if (!nod.d(i, mu1Var.Ba)) {
-                    return bm2.o(mu1Var.getThemedColor(bkb.Ie), 255);
-                }
-                ku1 ku1Var = mu1Var.Ba;
-                if (ku1Var != null && !ku1Var.a()) {
-                    a();
-                    return bm2.o(this.d, 216);
-                }
-                a();
-                return this.d;
-            case 1:
-                return mu1Var.x.t1();
-            default:
-                i2 = ((d) mu1Var).currentAccount;
-                if (!nod.d(i2, mu1Var.Ba)) {
-                    return bm2.o(mu1Var.getThemedColor(bkb.c6), 255);
-                }
-                ku1 ku1Var2 = mu1Var.Ba;
-                if (ku1Var2 != null && !ku1Var2.a()) {
-                    a();
-                    return bm2.o(this.d, 216);
-                }
-                a();
-                return this.d;
-        }
+    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        float y = getY();
+        zu1 zu1Var = this.z2;
+        j0(zu1Var.g1.getY() + y, zu1Var.m1.getBackgroundSizeY());
     }
 }

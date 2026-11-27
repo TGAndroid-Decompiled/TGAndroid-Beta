@@ -12,19 +12,16 @@ public abstract class c {
 
     public static EglBase a(EglBase.Context context, int[] iArr) {
         if (context == null) {
-            if (EglBase14Impl.isEGL14Supported()) {
-                return new EglBase14Impl(null, iArr);
-            }
-            return new EglBase10Impl(null, iArr);
-        } else if (context instanceof EglBase14.Context) {
-            return new EglBase14Impl(((EglBase14.Context) context).getRawContext(), iArr);
-        } else {
-            if (context instanceof EglBase10.Context) {
-                return new EglBase10Impl(((EglBase10.Context) context).getRawContext(), iArr);
-            }
-            w26.j("Unrecognized Context");
-            return null;
+            return new EglBase14Impl(null, iArr);
         }
+        if (context instanceof EglBase14.Context) {
+            return new EglBase14Impl(((EglBase14.Context) context).getRawContext(), iArr);
+        }
+        if (context instanceof EglBase10.Context) {
+            return new EglBase10Impl(((EglBase10.Context) context).getRawContext(), iArr);
+        }
+        lq5.j("Unrecognized Context");
+        return null;
     }
 
     public static int b(int[] iArr) {

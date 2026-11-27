@@ -1,185 +1,183 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.util.Property;
-import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class f14 extends EditTextBoldCursor {
-    public final byte M1;
-    public final h14 N1;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class f14 implements View.OnClickListener {
+    public final byte a;
+    public final g14 b;
 
-    public f14(h14 h14Var, Context context, int i) {
-        super(context);
-        this.N1 = h14Var;
-        this.M1 = i;
+    public f14(g14 g14Var, byte b) {
+        this.a = b;
+        this.b = g14Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public final void onClick(View view) {
+        TLRPC.StickerSet stickerSet;
+        TLRPC.StickerSet stickerSet2;
+        Integer num;
+        View view2;
+        int S;
         int i;
-        int i2;
-        h14 h14Var;
-        View view;
-        t26 t26Var;
-        ?? r16;
-        o39 o39Var;
-        h14 h14Var2;
-        int i3;
-        boolean z;
-        boolean z2;
-        u04 u04Var;
-        float f;
-        h14 h14Var3 = this.N1;
-        t14 t14Var = h14Var3.H;
-        f14 f14Var = h14Var3.d;
-        if (!f14Var.isEnabled()) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (motionEvent.getAction() == 0) {
-            int i4 = 2;
-            if (!t14Var.u1.z()) {
-                o39 o39Var2 = t14Var.E0;
-                o39 o39Var3 = t14Var.Q;
-                y04 y04Var = t14Var.k0;
-                o39 o39Var4 = t14Var.i0;
-                AnimatorSet animatorSet = t14Var.N0;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    t14Var.N0 = null;
-                }
-                boolean z3 = false;
-                t14Var.J0 = false;
-                t14Var.r0 = false;
-                t14Var.d0 = false;
-                int i5 = 0;
-                while (i5 < 3) {
-                    if (i5 == 0) {
-                        h14Var = t14Var.W;
-                        view = t14Var.J;
-                        t26Var = t14Var.R;
-                        r16 = z3;
-                        o39Var = o39Var3;
-                    } else if (i5 == 1) {
-                        h14Var = t14Var.p0;
-                        view = t14Var.q0;
-                        t26Var = t14Var.j0;
-                        r16 = z3;
-                        o39Var = o39Var4;
-                    } else {
-                        h14Var = t14Var.H0;
-                        view = t14Var.C0;
-                        t26Var = t14Var.F0;
-                        r16 = z3;
-                        o39Var = o39Var2;
+        TLRPC.StickerSet stickerSet3;
+        byte b = this.a;
+        g14 g14Var = this.b;
+        switch (b) {
+            case 0:
+                c14 c14Var = g14Var.x;
+                if (c14Var != null && (stickerSet = c14Var.b) != null) {
+                    o24 o24Var = g14Var.H;
+                    if (!o24Var.w2) {
+                        o24Var.w2 = true;
+                        ArrayList arrayList = new ArrayList(1);
+                        TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                        tL_inputStickerSetID.id = stickerSet.id;
+                        tL_inputStickerSetID.access_hash = stickerSet.access_hash;
+                        arrayList.add(tL_inputStickerSetID);
+                        new i04(o24Var, o24Var.Z1, o24Var.getContext(), o24Var.a2, arrayList, stickerSet).show();
+                        return;
                     }
-                    if (h14Var == null) {
-                        h14Var2 = h14Var3;
-                        i3 = i4;
-                        z = r16;
-                    } else if (h14Var3 == h14Var && (u04Var = t14Var.u1) != null && u04Var.A()) {
-                        AnimatorSet animatorSet2 = new AnimatorSet();
-                        t14Var.N0 = animatorSet2;
-                        Property property = View.TRANSLATION_Y;
-                        if (view != null && i5 != i4) {
-                            int i6 = i4;
-                            h14Var2 = h14Var3;
-                            float[] fArr = new float[1];
-                            fArr[r16] = -gl.L(40.0f);
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, fArr);
-                            float[] fArr2 = new float[1];
-                            fArr2[r16] = -gl.L(36.0f);
-                            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(o39Var, property, fArr2);
-                            float[] fArr3 = new float[1];
-                            fArr3[r16] = gl.L(0.0f);
-                            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(h14Var, property, fArr3);
-                            Animator[] animatorArr = new Animator[3];
-                            animatorArr[r16] = ofFloat;
-                            animatorArr[1] = ofFloat2;
-                            animatorArr[i6] = ofFloat3;
-                            animatorSet2.playTogether(animatorArr);
-                        } else {
-                            h14Var2 = h14Var3;
-                            if (i5 == i4) {
-                                f = 0.0f;
-                            } else {
-                                f = -gl.L(36.0f);
-                            }
-                            float[] fArr4 = new float[1];
-                            fArr4[r16] = f;
-                            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(o39Var, property, fArr4);
-                            float[] fArr5 = new float[1];
-                            fArr5[r16] = gl.L(0.0f);
-                            ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(h14Var, property, fArr5);
-                            Animator[] animatorArr2 = new Animator[2];
-                            animatorArr2[r16] = ofFloat4;
-                            animatorArr2[1] = ofFloat5;
-                            animatorSet2.playTogether(animatorArr2);
-                        }
-                        t14Var.N0.setDuration(220L);
-                        t14Var.N0.setInterpolator(s33.f);
-                        t14Var.N0.addListener(new u5(t14Var, o39Var, (byte) 20));
-                        t14Var.N0.start();
-                        z = r16;
-                        i3 = 2;
-                    } else {
-                        h14Var2 = h14Var3;
-                        h14Var.setTranslationY(gl.L(0.0f));
-                        i3 = 2;
-                        if (view != null && i5 != 2) {
-                            view.setTranslationY(-gl.L(40.0f));
-                        }
-                        if (o39Var == o39Var2) {
-                            int i7 = r16;
-                            o39Var.setPadding(i7, i7, i7, t14Var.q2);
-                        } else {
-                            int i8 = r16;
-                            if (o39Var == o39Var3) {
-                                o39Var.setPadding(gl.L(5.0f), i8, gl.L(5.0f), t14Var.q2);
-                            } else if (o39Var == o39Var4) {
-                                o39Var.setPadding(i8, t14Var.c1, i8, t14Var.q2);
-                            }
-                        }
-                        if (o39Var == o39Var4) {
-                            if (t14Var.o0.y.size() > 0) {
-                                z2 = true;
-                            } else {
-                                z2 = false;
-                            }
-                            y04Var.L = z2;
-                            if (z2) {
-                                y04Var.G("", true);
-                                if (o39Var4.getAdapter() != y04Var) {
-                                    o39Var4.setAdapter(y04Var);
-                                }
-                            }
-                        }
-                        z = false;
-                        t26Var.g1(0, 0);
-                    }
-                    i5++;
-                    i4 = i3;
-                    z3 = z;
-                    h14Var3 = h14Var2;
+                    return;
                 }
-                i = i4;
-                t14Var.M(z3);
-            } else {
-                i = 2;
-            }
-            u04 u04Var2 = t14Var.u1;
-            if (this.M1 == 1) {
-                i2 = i;
-            } else {
-                i2 = 1;
-            }
-            u04Var2.j(i2);
-            f14Var.requestFocus();
-            gl.E3(f14Var);
+                return;
+            case 1:
+                ok8 ok8Var = g14Var.r;
+                TextView textView = g14Var.n;
+                TextView textView2 = g14Var.h;
+                if (textView2 != null && textView2.getVisibility() == 0 && textView2.isEnabled()) {
+                    textView2.performClick();
+                    return;
+                } else if (textView != null && textView.getVisibility() == 0 && textView.isEnabled()) {
+                    textView.performClick();
+                    return;
+                } else if (ok8Var != null && ok8Var.getVisibility() == 0 && ok8Var.w.isEnabled()) {
+                    ok8Var.performClick();
+                    return;
+                } else {
+                    return;
+                }
+            case 2:
+                o24 o24Var2 = g14Var.H;
+                ArrayList arrayList2 = o24Var2.q1;
+                c14 c14Var2 = g14Var.x;
+                if (c14Var2 != null && (stickerSet2 = c14Var2.b) != null) {
+                    c14Var2.f = true;
+                    y04 y04Var = o24Var2.S;
+                    int i2 = o24Var2.d1;
+                    ArrayList arrayList3 = o24Var2.r1;
+                    b14 b14Var = o24Var2.Q;
+                    if (!arrayList2.contains(Long.valueOf(stickerSet2.id))) {
+                        arrayList2.add(Long.valueOf(g14Var.x.b.id));
+                    }
+                    g14Var.a(true);
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 < b14Var.getChildCount()) {
+                            if ((b14Var.getChildAt(i3) instanceof e14) && (S = RecyclerView.S((view2 = b14Var.getChildAt(i3)))) >= 0 && (i = y04Var.x.get(S)) >= 0 && i < arrayList3.size() && arrayList3.get(i) != null && g14Var.x != null && ((c14) arrayList3.get(i)).b.id == g14Var.x.b.id) {
+                                num = Integer.valueOf(S);
+                            } else {
+                                i3++;
+                            }
+                        } else {
+                            num = null;
+                            view2 = null;
+                        }
+                    }
+                    if (num != null) {
+                        y04Var.E(num.intValue(), view2);
+                    }
+                    if (g14Var.s == null) {
+                        TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
+                        TLRPC.StickerSet stickerSet4 = g14Var.x.b;
+                        tL_inputStickerSetID2.id = stickerSet4.id;
+                        tL_inputStickerSetID2.access_hash = stickerSet4.access_hash;
+                        TLRPC.TL_messages_stickerSet n0 = ls6.d0(i2).n0(tL_inputStickerSetID2, true);
+                        if (n0 != null && n0.set != null) {
+                            e eVar = o24Var2.Z1;
+                            if (eVar == null) {
+                                eVar = new qu0(g14Var, (byte) 5);
+                            }
+                            ly3.F0(eVar, n0, true, null, new lw3(g14Var, (byte) 6));
+                            return;
+                        }
+                        jn7.f(i2).b(g14Var, 65);
+                        ls6 d0 = ls6.d0(i2);
+                        g14Var.s = tL_inputStickerSetID2;
+                        d0.n0(tL_inputStickerSetID2, false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                o24 o24Var3 = g14Var.H;
+                c14 c14Var3 = g14Var.x;
+                if (c14Var3 != null && (stickerSet3 = c14Var3.b) != null) {
+                    c14Var3.f = false;
+                    ArrayList arrayList4 = o24Var3.q1;
+                    int i4 = o24Var3.d1;
+                    arrayList4.remove(Long.valueOf(stickerSet3.id));
+                    g14Var.a(true);
+                    t04 t04Var = o24Var3.J;
+                    if (t04Var != null) {
+                        t04Var.p(o24Var3.getEmojipacks());
+                    }
+                    o24Var3.U(o24Var3.R.H0());
+                    if (g14Var.w == null) {
+                        TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
+                        TLRPC.StickerSet stickerSet5 = g14Var.x.b;
+                        tL_inputStickerSetID3.id = stickerSet5.id;
+                        tL_inputStickerSetID3.access_hash = stickerSet5.access_hash;
+                        TLRPC.TL_messages_stickerSet n02 = ls6.d0(i4).n0(tL_inputStickerSetID3, true);
+                        if (n02 != null && n02.set != null) {
+                            e eVar2 = o24Var3.Z1;
+                            if (eVar2 == null) {
+                                eVar2 = new qu0(g14Var, (byte) 5);
+                            }
+                            e eVar3 = eVar2;
+                            vx3 vx3Var = new vx3(g14Var, n02, (byte) 3);
+                            Pattern pattern = ly3.P1;
+                            if (eVar3.getFragmentView() != null) {
+                                ls6.d0(eVar3.getCurrentAccount()).i2(eVar3.getFragmentView().getContext(), n02, null, 0, eVar3, null, true, true, vx3Var, false);
+                                return;
+                            }
+                            return;
+                        }
+                        jn7.f(i4).b(g14Var, 65);
+                        ls6 d02 = ls6.d0(i4);
+                        g14Var.w = tL_inputStickerSetID3;
+                        d02.n0(tL_inputStickerSetID3, false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                p14 p14Var = g14Var.H.u1;
+                if (p14Var != null) {
+                    p14Var.p();
+                    return;
+                }
+                return;
+            case 5:
+                p14 p14Var2 = g14Var.H.u1;
+                if (p14Var2 != null) {
+                    p14Var2.p();
+                    return;
+                }
+                return;
+            default:
+                p14 p14Var3 = g14Var.H.u1;
+                if (p14Var3 != null) {
+                    p14Var3.p();
+                    return;
+                }
+                return;
         }
-        return super.onTouchEvent(motionEvent);
     }
 }

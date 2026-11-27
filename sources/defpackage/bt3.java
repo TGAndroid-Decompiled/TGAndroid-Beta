@@ -1,32 +1,46 @@
 package defpackage;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.d;
-public final class bt3 implements ed {
-    public final int a;
-    public final int b;
-    public final Object c;
+import java.nio.ByteBuffer;
+public final class bt3 extends f2 {
+    public static final xh4 n;
+    public static final xh4 r;
 
-    public bt3(int i, int i2, d dVar) {
-        this.a = i;
-        this.b = i2;
-        this.c = dVar;
+    static {
+        u84 u84Var = new u84(bt3.class, "ESDescriptorBox.java");
+        u84Var.e(u84Var.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
+        u84Var.e(u84Var.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
+        n = u84Var.e(u84Var.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
+        r = u84Var.e(u84Var.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
     }
 
-    @Override
-    public final void u(hd hdVar, int i) {
-        c01 g = hdVar.g(-1, true, true);
-        g.d();
-        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-        tL_resolveStarGiftOffer.offer_msg_id = this.a;
-        int i2 = this.b;
-        ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new e(i2, (d) this.c, g, hdVar));
+    public final boolean equals(Object obj) {
+        bp1.r(u84.c(n, this, this, obj));
+        if (this != obj) {
+            if (obj != null && bt3.class == obj.getClass()) {
+                ByteBuffer byteBuffer = this.e;
+                ByteBuffer byteBuffer2 = ((bt3) obj).e;
+                if (byteBuffer != null) {
+                    if (byteBuffer.equals(byteBuffer2)) {
+                        return true;
+                    }
+                    return false;
+                } else if (byteBuffer2 == null) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
-    public bt3(gt3 gt3Var, int i, int i2) {
-        this.c = gt3Var;
-        this.a = i;
-        this.b = i2;
+    public final int hashCode() {
+        bp1.r(u84.b(r, this, this));
+        ByteBuffer byteBuffer = this.e;
+        if (byteBuffer != null) {
+            return byteBuffer.hashCode();
+        }
+        return 0;
     }
 }

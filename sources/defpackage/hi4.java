@@ -1,28 +1,33 @@
 package defpackage;
-public final class hi4 implements Runnable {
-    public final byte a;
-    public final mi4 b;
-    public final ae9 c;
 
-    public hi4(mi4 mi4Var, ae9 ae9Var, byte b) {
-        this.a = b;
-        this.b = mi4Var;
-        this.c = ae9Var;
-    }
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class hi4 implements pd0 {
+    public static final AtomicReference a = new AtomicReference();
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        ae9 ae9Var = this.c;
-        mi4 mi4Var = this.b;
-        mi4Var.getClass();
-        switch (b) {
-            case 0:
-                gl.d3(new hi4(mi4Var, ae9Var, (byte) 1), 320L);
-                return;
-            default:
-                ae9Var.a(new hj3(mi4Var, (byte) 9));
-                return;
+    public final void a(boolean z) {
+        synchronized (ji4.k) {
+            ArrayList arrayList = new ArrayList(ji4.l.values());
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                ji4 ji4Var = (ji4) obj;
+                if (ji4Var.e.get()) {
+                    Log.d("FirebaseApp", "Notifying background state change listeners.");
+                    Iterator it = ji4Var.i.iterator();
+                    while (it.hasNext()) {
+                        ji4 ji4Var2 = ((gi4) it.next()).a;
+                        if (!z) {
+                            ((hb3) ji4Var2.h.get()).c();
+                        }
+                    }
+                }
+            }
         }
     }
 }

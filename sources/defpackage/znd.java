@@ -1,24 +1,22 @@
 package defpackage;
+public final class znd {
+    public static final znd c;
+    public static final znd d;
+    public final boolean a;
+    public final RuntimeException b;
 
-import java.io.File;
-public abstract class znd {
-    public static boolean a(File file) {
-        if (file.isDirectory()) {
-            File[] listFiles = file.listFiles();
-            if (listFiles == null) {
-                return false;
-            }
-            boolean z = true;
-            for (File file2 : listFiles) {
-                if (a(file2) && z) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-            }
-            return z;
+    static {
+        if (rod.f) {
+            d = null;
+            c = null;
+            return;
         }
-        file.delete();
-        return true;
+        d = new znd(false, null);
+        c = new znd(true, null);
+    }
+
+    public znd(boolean z, RuntimeException runtimeException) {
+        this.a = z;
+        this.b = runtimeException;
     }
 }

@@ -1,92 +1,163 @@
 package defpackage;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class ted extends l6d {
-    public final afd c;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public abstract class ted extends qdd implements List, RandomAccess {
+    public static final ded f = new ded(lid.r, 0);
 
-    public ted(afd afdVar) {
-        super((byte) 1);
-        this.c = afdVar;
+    public static lid m(int i, Object[] objArr) {
+        if (i == 0) {
+            return lid.r;
+        }
+        return new lid(i, objArr);
     }
 
     @Override
-    public final void T(wr wrVar, String str, String str2, boolean z) {
-        afd afdVar = this.c;
-        afdVar.u = wrVar;
-        afdVar.v = str;
-        i9f i9fVar = new i9f(new Status(0, null, null, null), wrVar, str, str2, z);
-        synchronized (afdVar.s) {
-            TaskCompletionSource taskCompletionSource = afdVar.p;
-            if (taskCompletionSource != null) {
-                taskCompletionSource.setResult(i9fVar);
+    public final void add(int i, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(int i, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i = 0; i < size; i++) {
+                            if (e6f.a(get(i), list.get(i))) {
+                            }
+                        }
+                        return true;
+                    }
+                    ded listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (it.hasNext()) {
+                                if (!e6f.a(listIterator.next(), it.next())) {
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
+                }
             }
-            afdVar.p = null;
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final void V(int i) {
-        this.c.i(i);
-    }
-
-    @Override
-    public final void W(int i) {
-        afd afdVar = this.c;
-        afd.g(afdVar, i);
-        if (afdVar.E != null) {
-            afd.k(afdVar).post(new ded(this, i, (byte) 2));
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            objArr[i] = get(i);
         }
+        return size;
     }
 
     @Override
-    public final void X(int i) {
-        afd.g(this.c, i);
+    public final int hashCode() {
+        int size = size();
+        int i = 1;
+        for (int i2 = 0; i2 < size; i2++) {
+            i = (i * 31) + get(i2).hashCode();
+        }
+        return i;
     }
 
     @Override
-    public final void Y(a5d a5dVar) {
-        afd.k(this.c).post(new tq4(this, a5dVar, (byte) 20));
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            if (obj.equals(get(i))) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
-    public final void Z(int i) {
-        afd.g(this.c, i);
+    public final Iterator iterator() {
+        return listIterator(0);
     }
 
     @Override
-    public final void b0(int i) {
-        afd.k(this.c).post(new ded(this, i, (byte) 1));
+    public ted subList(int i, int i2) {
+        d7f.b(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == size()) {
+            return this;
+        }
+        if (i3 == 0) {
+            return lid.r;
+        }
+        return new red(this, i, i3);
     }
 
     @Override
-    public final void c0(m5d m5dVar) {
-        afd.k(this.c).post(new rld(this, m5dVar, (byte) 17));
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
     }
 
     @Override
-    public final void d0(int i) {
-        afd.k(this.c).post(new ded(this, i, (byte) 0));
+    public final ListIterator listIterator() {
+        return listIterator(0);
     }
 
     @Override
-    public final void e0(long j) {
-        afd.f(this.c, j, 0);
+    public final ded listIterator(int i) {
+        int size = size();
+        if (i >= 0 && i <= size) {
+            if (isEmpty()) {
+                return f;
+            }
+            return new ded(this, i);
+        }
+        su3.g(d7f.c(i, size, "index"));
+        return null;
     }
 
     @Override
-    public final void f0(int i, long j) {
-        afd.f(this.c, j, i);
+    public final Object remove(int i) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final void h0(int i) {
-        afd.k(this.c).post(new ded(this, i, (byte) 3));
-    }
-
-    @Override
-    public final void i0(String str, String str2) {
-        afd.H.b("Receive (type=text, ns=%s) %s", str, str2);
-        afd.k(this.c).post(new ey1(this, str, str2, false, (byte) 6));
+    public final Object set(int i, Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,48 +1,51 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class r30 {
-    public final fm4 a;
-    public final im5 b;
-    public final aob c;
-    public final rx6 d;
+import java.nio.ByteBuffer;
+import java.nio.channels.WritableByteChannel;
+public final class r30 extends d4 {
+    public int f;
+    public byte h;
+    public long n;
 
-    public r30(c5a c5aVar) {
-        this.a = (fm4) c5aVar.b;
-        this.b = (im5) c5aVar.c;
-        this.c = (aob) c5aVar.d;
-        this.d = (rx6) c5aVar.e;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof r30) {
-                r30 r30Var = (r30) obj;
-                if (this.a.equals(r30Var.a) && Objects.equals(this.b, r30Var.b) && this.c.equals(r30Var.c) && Objects.equals(this.d, r30Var.d)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2 = this.a.hashCode() * 961;
-        int i = 0;
-        im5 im5Var = this.b;
-        if (im5Var == null) {
-            hashCode = 0;
+    @Override
+    public final void getBox(WritableByteChannel writableByteChannel) {
+        writableByteChannel.write(d());
+        ByteBuffer allocate = ByteBuffer.allocate(28);
+        allocate.position(6);
+        aqe.d(1, allocate);
+        aqe.d(0, allocate);
+        aqe.d(0, allocate);
+        allocate.putInt(0);
+        aqe.d(this.f, allocate);
+        aqe.d(this.h, allocate);
+        aqe.d(0, allocate);
+        aqe.d(0, allocate);
+        boolean equals = this.e.equals("mlpa");
+        long j = this.n;
+        if (equals) {
+            allocate.putInt((int) j);
         } else {
-            hashCode = im5Var.hashCode();
+            allocate.putInt((int) (j << 16));
         }
-        int hashCode3 = (this.c.hashCode() + ((hashCode2 + hashCode) * 31)) * 31;
-        rx6 rx6Var = this.d;
-        if (rx6Var != null) {
-            i = rx6Var.hashCode();
+        writableByteChannel.write((ByteBuffer) allocate.rewind());
+        c(writableByteChannel);
+    }
+
+    @Override
+    public final long getSize() {
+        int i;
+        long b = b();
+        long j = 28 + b;
+        if (b + 36 >= 4294967296L) {
+            i = 16;
+        } else {
+            i = 8;
         }
-        return hashCode3 + i;
+        return j + i;
+    }
+
+    @Override
+    public final String toString() {
+        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.n + ", sampleSize=" + ((int) this.h) + ", channelCount=" + this.f + ", boxes=" + this.b + '}';
     }
 }

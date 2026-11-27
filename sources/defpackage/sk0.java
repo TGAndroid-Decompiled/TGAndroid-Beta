@@ -1,142 +1,149 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import java.util.HashSet;
 import org.telegram.messenger.a;
-public final class sk0 extends Drawable {
-    public final byte a;
-    public final Drawable b;
-    public int c;
-    public int d;
+import org.telegram.tgnet.TLRPC;
+public final class sk0 extends FrameLayout implements fn7, snb {
+    public boolean E;
+    public int F;
+    public int G;
+    public TextView a;
+    public TextView b;
+    public zc c;
+    public zc d;
+    public g29 e;
+    public ScrollView f;
+    public AnimatorSet h;
+    public TLRPC.TL_help_appUpdate n;
+    public String r;
+    public int s;
+    public int w;
+    public GradientDrawable x;
+    public GradientDrawable y;
 
-    public sk0() {
-        this.a = (byte) 1;
-        this.d = 255;
-        this.b = b00.d(a.b, 2131232702);
+    public final void a(boolean z) {
+        zc zcVar = this.d;
+        TextView textView = this.b;
+        zc zcVar2 = this.c;
+        AnimatorSet animatorSet = this.h;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        this.h = new AnimatorSet();
+        Property property = View.ALPHA;
+        Property property2 = View.SCALE_Y;
+        Property property3 = View.SCALE_X;
+        if (z) {
+            zcVar2.setVisibility(0);
+            zcVar.setEnabled(false);
+            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(zcVar2, property3, 1.0f), ObjectAnimator.ofFloat(zcVar2, property2, 1.0f), ObjectAnimator.ofFloat(zcVar2, property, 1.0f));
+        } else {
+            textView.setVisibility(0);
+            zcVar.setEnabled(true);
+            this.h.playTogether(ObjectAnimator.ofFloat(zcVar2, property3, 0.1f), ObjectAnimator.ofFloat(zcVar2, property2, 0.1f), ObjectAnimator.ofFloat(zcVar2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
+        }
+        this.h.addListener(new z7((byte) 5, this, z));
+        this.h.setDuration(150L);
+        this.h.start();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        byte b = this.a;
-        Drawable drawable = this.b;
-        switch (b) {
-            case 0:
-                drawable.draw(canvas);
-                return;
-            default:
-                float exactCenterX = getBounds().exactCenterX();
-                float exactCenterY = getBounds().exactCenterY();
-                int w0 = bkb.w0(null, bkb.F6, false);
-                int w02 = bkb.w0(null, bkb.c6, false);
-                if (this.c != w02) {
-                    this.c = w02;
-                    drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.Y1) {
+            String str = (String) objArr[0];
+            String str2 = this.r;
+            if (str2 != null && str2.equals(str)) {
+                a(false);
+                a.a.u((Activity) getContext(), this.n.document);
+            }
+        } else if (i == jn7.Z1) {
+            String str3 = (String) objArr[0];
+            String str4 = this.r;
+            if (str4 != null && str4.equals(str3)) {
+                a(false);
+            }
+        } else if (i == jn7.X1) {
+            String str5 = (String) objArr[0];
+            String str6 = this.r;
+            if (str6 != null && str6.equals(str5)) {
+                this.e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
+            }
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        GradientDrawable gradientDrawable = this.x;
+        ScrollView scrollView = this.f;
+        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), hl.L(16.0f) + scrollView.getTop());
+        gradientDrawable.draw(canvas);
+        GradientDrawable gradientDrawable2 = this.y;
+        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - hl.L(18.0f), scrollView.getRight(), scrollView.getBottom());
+        gradientDrawable2.draw(canvas);
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 8) {
+            jn7.f(this.s).n(this, jn7.Y1);
+            jn7.f(this.s).n(this, jn7.Z1);
+            jn7.f(this.s).n(this, jn7.X1);
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        boolean z;
+        boolean z2;
+        GradientDrawable gradientDrawable = this.y;
+        GradientDrawable gradientDrawable2 = this.x;
+        try {
+            int w0 = aob.w0(null, aob.d6, false);
+            if (!this.E || w0 != this.F) {
+                this.F = w0;
+                if (gradientDrawable2 != null) {
+                    z = true;
+                } else {
+                    z = false;
                 }
-                canvas.drawCircle(exactCenterX, exactCenterY, gl.L(7.6666665f), bkb.l0(bm2.o(w02, this.d)));
-                canvas.drawCircle(exactCenterX, exactCenterY, gl.L(6.6666665f), bkb.l0(bm2.o(w0, this.d)));
-                kq3.d(drawable, exactCenterX, exactCenterY, 17);
-                canvas.translate(0.0f, gl.L(0.66f));
-                canvas.save();
-                canvas.rotate(90.0f, exactCenterX, exactCenterY);
-                kq3.b(canvas, drawable, 0.8f);
-                canvas.restore();
-                return;
+                if (z) {
+                    gradientDrawable2.setColors(new int[]{w0, 0});
+                }
+                if (gradientDrawable != null) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                if (z2) {
+                    gradientDrawable.setColors(new int[]{w0, 0});
+                }
+            }
+            int w02 = aob.w0(null, aob.s8, false);
+            ScrollView scrollView = this.f;
+            if (scrollView != null && (!this.E || w02 != this.G)) {
+                this.G = w02;
+                hl.u3(scrollView, w02);
+            }
+            this.E = true;
+            invalidate();
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
     }
 
     @Override
-    public final int getAlpha() {
-        switch (this.a) {
-            case 0:
-                return this.b.getAlpha();
-            default:
-                return this.d;
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        switch (this.a) {
-            case 1:
-                return gl.L(13.333333f);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        switch (this.a) {
-            case 1:
-                return gl.L(13.333333f);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.a) {
-            case 0:
-                return this.b.getOpacity();
-            default:
-                return -3;
-        }
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        switch (this.a) {
-            case 0:
-                super.onBoundsChange(rect);
-                int width = rect.width();
-                int i = this.c;
-                int i2 = (width - i) / 2;
-                int height = rect.height();
-                int i3 = this.d;
-                int i4 = (height - i3) / 2;
-                this.b.setBounds(i2, i4, i + i2, i3 + i4);
-                return;
-            default:
-                super.onBoundsChange(rect);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        byte b = this.a;
-        Drawable drawable = this.b;
-        switch (b) {
-            case 0:
-                drawable.setAlpha(i);
-                return;
-            default:
-                this.d = i;
-                drawable.setAlpha(i);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        byte b = this.a;
-    }
-
-    public sk0(int i, int i2, Drawable drawable) {
-        this.a = (byte) 0;
-        this.c = i;
-        this.d = i2;
-        this.b = drawable;
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

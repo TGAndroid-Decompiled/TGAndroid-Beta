@@ -1,38 +1,58 @@
 package defpackage;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.widget.FrameLayout;
-public final class c11 extends FrameLayout {
-    public final m21 E;
-    public final q11 a;
-    public final Rect b;
-    public final GestureDetector c;
-    public boolean d;
-    public boolean e;
-    public float f;
-    public float h;
-    public float n;
-    public boolean r;
-    public boolean s;
-    public boolean w;
-    public boolean x;
-    public final FrameLayout y;
+import android.os.Build;
+import java.util.Locale;
+public abstract class c11 {
+    public static final int a = 0;
 
-    public c11(m21 m21Var, q11 q11Var, FrameLayout frameLayout) {
-        super(q11Var.getContext());
-        this.E = m21Var;
-        this.y = frameLayout;
-        this.b = new Rect();
-        this.a = q11Var;
-        GestureDetector gestureDetector = new GestureDetector(q11Var.getContext(), new b21(this, q11Var));
-        this.c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(q11Var);
+    static {
+        if (Build.VERSION.SDK_INT >= 30) {
+            mka.f(30);
+            mka.f(31);
+            mka.f(33);
+            mka.f(1000000);
+        }
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.c11.onTouchEvent(android.view.MotionEvent):boolean");
+    public static final boolean a() {
+        Integer num;
+        Integer num2 = 0;
+        int i = Build.VERSION.SDK_INT;
+        if (i < 33) {
+            if (i >= 32) {
+                String str = Build.VERSION.CODENAME;
+                str.getClass();
+                if (!"REL".equals(str)) {
+                    Locale locale = Locale.ROOT;
+                    String upperCase = str.toUpperCase(locale);
+                    upperCase.getClass();
+                    if (upperCase.equals("BAKLAVA")) {
+                        num = num2;
+                    } else {
+                        num = null;
+                    }
+                    String upperCase2 = "Tiramisu".toUpperCase(locale);
+                    upperCase2.getClass();
+                    if (!upperCase2.equals("BAKLAVA")) {
+                        num2 = null;
+                    }
+                    if (num != null) {
+                        if (num2 == null || num.intValue() >= num2.intValue()) {
+                            return true;
+                        }
+                    } else if (num2 == null) {
+                        String upperCase3 = str.toUpperCase(locale);
+                        upperCase3.getClass();
+                        String upperCase4 = "Tiramisu".toUpperCase(locale);
+                        upperCase4.getClass();
+                        if (upperCase3.compareTo(upperCase4) >= 0) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
     }
 }

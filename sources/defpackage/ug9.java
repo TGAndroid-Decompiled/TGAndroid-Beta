@@ -1,67 +1,141 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-public final class ug9 extends mg9 {
-    public final Paint X;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import java.util.HashSet;
+public final class ug9 extends ImageView implements snb {
+    public final int a;
+    public int b;
+    public boolean c;
+    public boolean d;
+    public byte e;
+    public int f;
+    public final vnb h;
+    public boolean n;
+    public boolean r;
+    public boolean s;
 
-    public ug9(rh9 rh9Var, Rect rect, int i) {
-        super(rh9Var, rect, i);
-        this.X = new Paint(1);
+    public ug9(int i, vnb vnbVar, Context context) {
+        super(context);
+        this.e = (byte) 20;
+        this.f = aob.d6;
+        this.n = true;
+        this.s = true;
+        this.b = i;
+        this.a = i;
+        this.h = vnbVar;
+        if (i != 0) {
+            setImageResource(i);
+        }
+        setScaleType(ImageView.ScaleType.CENTER);
+        iye.a(this);
+        updateColors();
+    }
+
+    public final void a() {
+        e(this.a);
     }
 
     @Override
-    public final int I() {
-        Rect rect = this.b;
-        return de9.w(6.0f, rect.top, 1) + rect.bottom;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.Fi));
+        hashSet.add(Integer.valueOf(aob.G6));
+        hashSet.add(Integer.valueOf(aob.i6));
+        hashSet.add(Integer.valueOf(this.f));
+    }
+
+    public final void b() {
+        if (!this.s) {
+            return;
+        }
+        this.s = false;
+        updateColors();
+    }
+
+    public final void c(int i) {
+        if (this.f == i) {
+            return;
+        }
+        this.f = i;
+        updateColors();
+    }
+
+    public final void d() {
+        this.c = true;
+        wg9 wg9Var = new wg9(getContext(), this.b);
+        wg9Var.d = this.f;
+        wg9Var.a(this.d);
+        setImageDrawable(wg9Var);
+    }
+
+    public final void e(int i) {
+        if (this.b == i) {
+            return;
+        }
+        this.b = i;
+        if (this.c) {
+            wg9 wg9Var = new wg9(getContext(), i);
+            wg9Var.d = this.f;
+            wg9Var.a(this.d);
+            hl.M3(this, wg9Var);
+            return;
+        }
+        hl.L3(this, i);
     }
 
     @Override
-    public final int K() {
-        Rect rect = this.b;
-        return gl.L(32.0f) + rect.left + rect.right;
-    }
-
-    @Override
-    public final void W(Canvas canvas) {
-        int i;
-        int i2;
+    public void setEnabled(boolean z) {
         float f;
-        rh9 rh9Var = this.a;
-        if (rh9Var.D()) {
-            i = bkb.wl;
-        } else {
-            i = bkb.vl;
+        if (this.n == z) {
+            return;
         }
-        int v0 = bkb.v0(i, rh9Var.D);
-        Paint paint = this.X;
-        paint.setColor(v0);
-        float f2 = -rh9Var.S;
-        int i3 = rh9Var.C + rh9Var.T;
-        Rect rect = this.b;
-        float f3 = (i3 - rect.left) - rect.right;
-        float f4 = 0.0f;
-        if (rh9Var.s) {
-            if (this.S) {
-                f = 1.0f;
+        setClickable(z);
+        ViewPropertyAnimator animate = animate();
+        this.n = z;
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.5f;
+        }
+        animate.alpha(f).setDuration(320L).setInterpolator(k43.h).start();
+    }
+
+    public void setPremiumLocked(boolean z) {
+        this.d = z;
+        if (getDrawable() instanceof wg9) {
+            ((wg9) getDrawable()).a(z);
+        }
+    }
+
+    @Override
+    public void setSelected(boolean z) {
+        if (this.r == z) {
+            return;
+        }
+        this.r = z;
+        updateColors();
+    }
+
+    @Override
+    public final void updateColors() {
+        int i;
+        boolean z = this.r;
+        vnb vnbVar = this.h;
+        if (z) {
+            if (this.s) {
+                i = aob.Fi;
             } else {
-                f = 0.0f;
+                i = aob.G6;
             }
-            if (this.R) {
-                f4 = 1.0f;
-            }
-            f4 = gl.R1(f, f4, rh9Var.t);
-        } else if (this.R) {
-            f4 = 1.0f;
+            int w0 = aob.w0(null, i, false);
+            setBackground(aob.Z(aob.v(aob.v0(this.f, vnbVar), aob.p1(0.1f, w0)), aob.p1(0.1f, w0), hl.L(this.e), hl.L(this.e)));
+            setColorFilter(new PorterDuffColorFilter(w0, PorterDuff.Mode.SRC_IN));
+            return;
         }
-        tg9 tg9Var = this.M;
-        if (tg9Var != null) {
-            i2 = tg9Var.b.bottom;
-        } else {
-            i2 = 0;
-        }
-        float R1 = gl.R1((-1.0f) - i2, gl.L(6.0f), f4);
-        canvas.drawRect(f2, R1, f3, R1 + 1.0f, paint);
+        setBackground(aob.Z(aob.v0(this.f, vnbVar), aob.v0(aob.i6, vnbVar), hl.L(this.e), hl.L(this.e)));
+        setColorFilter(new PorterDuffColorFilter(aob.v0(aob.G6, vnbVar), PorterDuff.Mode.SRC_IN));
     }
 }

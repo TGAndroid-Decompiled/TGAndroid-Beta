@@ -1,29 +1,49 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class hr5 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final ir5 b;
+import java.util.Iterator;
+public final class hr5 implements Iterator {
+    public final int a;
+    public final int b;
+    public boolean c;
+    public int d;
 
-    public hr5(ir5 ir5Var, byte b) {
-        this.a = b;
-        this.b = ir5Var;
+    public hr5(int i, int i2, int i3) {
+        this.a = i3;
+        this.b = i2;
+        boolean z = false;
+        if (i3 <= 0 ? i >= i2 : i <= i2) {
+            z = true;
+        }
+        this.c = z;
+        this.d = z ? i : i2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        byte b = this.a;
-        ir5 ir5Var = this.b;
-        switch (b) {
-            case 0:
-                ir5Var.e.X1 = null;
-                ir5Var.requestLayout();
-                return;
-            default:
-                ir5Var.e.X1 = null;
-                ir5Var.a = false;
-                return;
+    public final boolean hasNext() {
+        return this.c;
+    }
+
+    @Override
+    public final Object next() {
+        return Integer.valueOf(nextInt());
+    }
+
+    public final int nextInt() {
+        int i = this.d;
+        if (i == this.b) {
+            if (this.c) {
+                this.c = false;
+                return i;
+            }
+            lq5.n();
+            return 0;
         }
+        this.d = this.a + i;
+        return i;
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

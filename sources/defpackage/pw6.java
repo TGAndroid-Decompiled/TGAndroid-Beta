@@ -1,45 +1,8 @@
 package defpackage;
 
-import android.text.TextUtils;
-import j$.util.Objects;
-public class pw6 {
-    public final String a;
-    public final int b;
-    public final int c;
+import android.media.MediaRouter;
+public interface pw6 {
+    void a(MediaRouter.RouteInfo routeInfo, int i);
 
-    public pw6(String str, int i, int i2) {
-        this.a = str;
-        this.b = i;
-        this.c = i2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof pw6)) {
-            return false;
-        }
-        pw6 pw6Var = (pw6) obj;
-        int i = pw6Var.c;
-        String str = pw6Var.a;
-        int i2 = pw6Var.b;
-        int i3 = this.c;
-        String str2 = this.a;
-        int i4 = this.b;
-        if (i4 >= 0 && i2 >= 0) {
-            if (TextUtils.equals(str2, str) && i4 == i2 && i3 == i) {
-                return true;
-            }
-            return false;
-        } else if (TextUtils.equals(str2, str) && i3 == i) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.a, Integer.valueOf(this.c));
-    }
+    void b(MediaRouter.RouteInfo routeInfo, int i);
 }

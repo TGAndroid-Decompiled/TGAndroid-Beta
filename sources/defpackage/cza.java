@@ -1,121 +1,139 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.os.Debug;
-import android.util.Log;
-import org.telegram.messenger.voip.VoIPPreNotificationService;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.utils.twidget.WidgetEngineService;
-import org.telegram.utils.twidget.z;
-public final class cza implements Runnable {
-    public final byte a;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.text.SpannableString;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.a;
+public final class cza extends LinearLayout implements fn7 {
+    public long a;
+    public final int b;
+    public final qg2 c;
+    public SpannableString d;
+    public long e;
+    public ValueAnimator f;
+
+    public cza(int i, vnb vnbVar, Context context) {
+        super(context);
+        this.e = -1L;
+        this.b = i;
+        this.a = yac.h(i).e();
+        setOrientation(1);
+        setGravity(21);
+        TextView textView = new TextView(context);
+        int i2 = aob.G6;
+        yob.X(textView, i2, vnbVar);
+        bs2.r(13.0f, 1, 2131744812, textView, null);
+        textView.setGravity(5);
+        textView.setTypeface(hl.o());
+        addView(textView, tre.r(-2, -2, 5));
+        qg2 qg2Var = new qg2(this, context, context.getResources().getDrawable(2131232775).mutate());
+        this.c = qg2Var;
+        qg2Var.n = true;
+        qg2Var.getDrawable().r(false, true);
+        qg2Var.setTypeface(hl.o());
+        yob.U(qg2Var, i2, vnbVar);
+        qg2Var.setTextSize(hl.L(13.0f));
+        qg2Var.setGravity(5);
+        qg2Var.setPadding(hl.L(19.0f), 0, 0, 0);
+        addView(qg2Var, tre.t(-2, 20, 5, 0, -2, 0, 0));
+        a(false);
+        setPadding(hl.L(15.0f), hl.L(4.0f), hl.L(15.0f), hl.L(4.0f));
+    }
+
+    public final void a(boolean z) {
+        boolean z2;
+        long j;
+        boolean z3;
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
+        int i = this.b;
+        jxa v = jxa.v(i, false);
+        qg2 qg2Var = this.c;
+        qg2Var.a();
+        if (this.a == yac.h(i).e()) {
+            z3 = !v.e;
+            j = v.m().amount;
+        } else {
+            TLRPC.TL_payments_starsRevenueStats h = kt0.g(i).h(this.a, false);
+            if (h != null && h.status != null) {
+                z2 = false;
+            } else {
+                z2 = true;
+            }
+            if (h != null && (tL_starsRevenueStatus = h.status) != null) {
+                j = tL_starsRevenueStatus.current_balance.amount;
+            } else {
+                j = 0;
+            }
+            z3 = z2;
+        }
+        long j2 = this.e;
+        if (j > j2 && j2 != -1) {
+            ValueAnimator valueAnimator = this.f;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.9f, 1.0f);
+            this.f = ofFloat;
+            ofFloat.addUpdateListener(new ija(this, (byte) 8));
+            this.f.addListener(new po9(this, (byte) 19));
+            this.f.setDuration(320L);
+            this.f.setInterpolator(new OvershootInterpolator());
+            this.f.start();
+        }
+        if (z3) {
+            if (this.d == null) {
+                SpannableString spannableString = new SpannableString("x");
+                this.d = spannableString;
+                spannableString.setSpan(new ya6(hl.L(48.0f), qg2Var), 0, this.d.length(), 33);
+            }
+            qg2Var.c(this.d, z, true);
+            this.e = -1L;
+            return;
+        }
+        qg2Var.setText(ob6.E(j, ' '));
+        this.e = j;
+    }
 
     @Override
-    public final void run() {
-        switch (this.a) {
-            case 0:
-                kk7.f(y6c.t0).m(217, new Object[0]);
-                return;
-            case 1:
-                na7.c1().edit().putInt("storydualhint", na7.c1().getInt("storydualhint", 0) + 1).apply();
-                return;
-            case 2:
-                kcb.y = null;
-                return;
-            case 3:
-                SharedPreferences.Editor edit = na7.c1().edit();
-                ijb.f = Boolean.TRUE;
-                edit.putBoolean("nothanos", true).apply();
-                return;
-            case 4:
-                SharedPreferences.Editor edit2 = na7.c1().edit();
-                ijb.f = Boolean.TRUE;
-                edit2.putBoolean("nothanos", true).apply();
-                return;
-            case 5:
-                bkb.N = false;
-                bkb.E(false);
-                return;
-            case 6:
-                if (VoIPService.getSharedState() != null) {
-                    VoIPService.getSharedState().acceptIncomingCall();
-                    return;
-                }
-                return;
-            case 7:
-                xgc.b();
-                return;
-            case 8:
-                ygc.b();
-                return;
-            case 9:
-                VoIPPreNotificationService.d();
-                return;
-            case 10:
-                VoIPService.lambda$configureDeviceForCall$106();
-                return;
-            case 11:
-                VoIPService.lambda$startConferenceGroupCall$38();
-                return;
-            case 12:
-                VoIPService.lambda$startOutgoingCall$6();
-                return;
-            case 13:
-                VoIPService.lambda$startGroupCall$27();
-                return;
-            case 14:
-                VoIPService.lambda$onDestroy$93();
-                return;
-            case 15:
-                VoIPService.lambda$acceptIncomingCall$96();
-                return;
-            case 16:
-                PhotoViewer.r0().B(false, false);
-                return;
-            case 17:
-                return;
-            case 18:
-                break;
-            case 19:
-                vvc.i();
-                return;
-            default:
-                if (z.a()) {
-                    vvc.f.clear();
-                    for (svc svcVar : vvc.a.values()) {
-                        bwc bwcVar = svcVar.t;
-                        if (bwcVar != null && bwcVar.e != null) {
-                            bwcVar.m();
-                        }
-                    }
-                    return;
-                }
-                return;
-        }
-        while (true) {
-            try {
-                synchronized (odd.a) {
-                    while (odd.b == 0) {
-                        odd.a.wait();
-                    }
-                }
-                long nativeHeapAllocatedSize = Debug.getNativeHeapAllocatedSize();
-                if (nativeHeapAllocatedSize > 419430400) {
-                    Log.e("WidgetEngine", "native heap " + (nativeHeapAllocatedSize >> 20) + " MB, over 400 MB: the engine stops");
-                    WidgetEngineService.exitNow(1);
-                }
-                Thread.sleep(500L);
-            } catch (InterruptedException unused) {
-                return;
-            }
+    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == jn7.A3) {
+            a(true);
+        } else if (i == jn7.E3 && ((Long) objArr[0]).longValue() == this.a) {
+            a(true);
         }
     }
 
-    public cza(byte b) {
-        this.a = b;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a(false);
+        int i = this.b;
+        jn7.f(i).b(this, jn7.A3);
+        jn7.f(i).b(this, jn7.E3);
     }
 
-    private final void a() {
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i = this.b;
+        jn7.f(i).n(this, jn7.A3);
+        jn7.f(i).n(this, jn7.E3);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(a.getCurrentActionBarHeight(), 1073741824));
+    }
+
+    public void setDialogId(long j) {
+        if (this.a != j) {
+            this.a = j;
+            a(true);
+        }
     }
 }

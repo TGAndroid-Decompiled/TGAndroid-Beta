@@ -1,104 +1,77 @@
 package defpackage;
 
-import java.util.List;
-public final class uv9 {
-    public final byte a;
-    public final List b;
-    public final wxb[] c;
-    public final ko d;
+import java.util.ArrayList;
+public final class uv9 implements Runnable {
+    public final byte a = 1;
+    public final aw9 b;
+    public final String c;
+    public final ArrayList d;
+    public final ArrayList e;
 
-    public uv9(List list, byte b) {
-        this.a = b;
-        switch (b) {
-            case 1:
-                this.b = list;
-                this.c = new wxb[list.size()];
-                ko koVar = new ko(new hza(this, (byte) 23));
-                this.d = koVar;
-                koVar.l(3);
-                return;
-            default:
-                this.b = list;
-                this.c = new wxb[list.size()];
-                this.d = new ko(new wh9(this, (byte) 10));
-                return;
-        }
+    public uv9(aw9 aw9Var, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.b = aw9Var;
+        this.c = str;
+        this.d = arrayList;
+        this.e = arrayList2;
     }
 
-    public final void a(long j, xu7 xu7Var) {
-        if (xu7Var.a() >= 9) {
-            int m = xu7Var.m();
-            int m2 = xu7Var.m();
-            int A = xu7Var.A();
-            if (m == 434 && m2 == 1195456820 && A == 3) {
-                this.d.a(j, xu7Var);
-            }
-        }
-    }
-
-    public final void b(l74 l74Var, l2c l2cVar) {
-        boolean z;
-        boolean z2;
+    @Override
+    public final void run() {
         byte b = this.a;
-        List list = this.b;
-        wxb[] wxbVarArr = this.c;
+        ArrayList arrayList = this.e;
+        ArrayList arrayList2 = this.d;
+        String str = this.c;
+        aw9 aw9Var = this.b;
         switch (b) {
             case 0:
-                for (int i = 0; i < wxbVarArr.length; i++) {
-                    l2cVar.a();
-                    l2cVar.b();
-                    wxb S = l74Var.S(l2cVar.d, 3);
-                    fm4 fm4Var = (fm4) list.get(i);
-                    String str = fm4Var.t;
-                    if (!"application/cea-608".equals(str) && !"application/cea-708".equals(str)) {
-                        z = false;
-                    } else {
-                        z = true;
+                int i = aw9Var.d;
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                    String B = xb4.B(((r47) arrayList2.get(i2)).F0());
+                    if (B != null && B.toLowerCase().contains(str)) {
+                        r47 r47Var = new r47(i, ((r47) arrayList2.get(i2)).k, false, false);
+                        r47Var.z0 = ((r47) arrayList2.get(i2)).z0;
+                        r47Var.J5(aw9Var.L, true);
+                        arrayList3.add(r47Var);
                     }
-                    gre.h(z, "Invalid closed caption MIME type provided: %s", str);
-                    String str2 = fm4Var.a;
-                    if (str2 == null) {
-                        l2cVar.b();
-                        str2 = l2cVar.e;
-                    }
-                    em4 em4Var = new em4();
-                    em4Var.a = str2;
-                    em4Var.r = ud7.n("video/mp2t");
-                    em4Var.s = ud7.n(str);
-                    em4Var.e = fm4Var.e;
-                    em4Var.d = fm4Var.d;
-                    em4Var.S = fm4Var.T;
-                    em4Var.v = fm4Var.w;
-                    yjb.v(em4Var, S);
-                    wxbVarArr[i] = S;
                 }
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    String B2 = xb4.B(((r47) arrayList.get(i3)).F0());
+                    if (B2 != null && B2.toLowerCase().contains(str)) {
+                        r47 r47Var2 = new r47(i, ((r47) arrayList.get(i3)).k, false, false);
+                        r47Var2.z0 = ((r47) arrayList.get(i3)).z0;
+                        r47Var2.J5(aw9Var.L, true);
+                        arrayList4.add(r47Var2);
+                    }
+                }
+                hl.c3(new uv9(aw9Var, str, arrayList3, arrayList4));
                 return;
             default:
-                for (int i2 = 0; i2 < wxbVarArr.length; i2++) {
-                    l2cVar.a();
-                    l2cVar.b();
-                    wxb S2 = l74Var.S(l2cVar.d, 3);
-                    fm4 fm4Var2 = (fm4) list.get(i2);
-                    String str3 = fm4Var2.t;
-                    if (!"application/cea-608".equals(str3) && !"application/cea-708".equals(str3)) {
-                        z2 = false;
-                    } else {
-                        z2 = true;
+                z2b z2bVar = aw9Var.a;
+                if (str.equals(aw9Var.M)) {
+                    if (aw9Var.r == 0) {
+                        aw9Var.O.b(0);
                     }
-                    gre.h(z2, "Invalid closed caption MIME type provided: %s", str3);
-                    em4 em4Var2 = new em4();
-                    l2cVar.b();
-                    em4Var2.a = l2cVar.e;
-                    em4Var2.r = ud7.n("video/mp2t");
-                    em4Var2.s = ud7.n(str3);
-                    em4Var2.e = fm4Var2.e;
-                    em4Var2.d = fm4Var2.d;
-                    em4Var2.S = fm4Var2.T;
-                    em4Var2.v = fm4Var2.w;
-                    yjb.v(em4Var2, S2);
-                    wxbVarArr[i2] = S2;
+                    aw9Var.e(arrayList2, arrayList, true);
+                    if (aw9Var.r == 0) {
+                        z2bVar.e(false, true);
+                        p66 p66Var = z2bVar.e;
+                        z2bVar.d.setText(ob6.M0(2131745528, null));
+                        p66Var.setVisibility(0);
+                        p66Var.setText(ob6.M0(2131745535, null));
+                        return;
+                    }
+                    return;
                 }
                 return;
         }
+    }
+
+    public uv9(aw9 aw9Var, ArrayList arrayList, String str, ArrayList arrayList2) {
+        this.b = aw9Var;
+        this.d = arrayList;
+        this.c = str;
+        this.e = arrayList2;
     }
 }

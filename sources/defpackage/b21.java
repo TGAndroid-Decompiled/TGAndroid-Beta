@@ -1,129 +1,92 @@
 package defpackage;
 
-import android.view.GestureDetector;
+import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.messenger.Utilities;
-public final class b21 extends GestureDetector.SimpleOnGestureListener {
-    public final q11 a;
-    public final c11 b;
+import android.view.View;
+import android.widget.TextView;
+public final class b21 extends p66 {
+    public final byte M;
 
-    public b21(c11 c11Var, q11 q11Var) {
-        this.b = c11Var;
-        this.a = q11Var;
+    public b21(Context context, vnb vnbVar, byte b) {
+        super(context, vnbVar);
+        this.M = b;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        c11 c11Var = this.b;
-        if (c11Var.s) {
-            return false;
+    public final int a() {
+        switch (this.M) {
+            case 6:
+                return 3;
+            default:
+                return super.a();
         }
-        q11 q11Var = this.a;
-        c11Var.w = q11.access$1600(q11Var, true);
-        c11Var.x = q11.access$1600(q11Var, false);
-        return true;
     }
 
     @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        boolean z;
-        if (Math.abs(f) <= 2000.0f) {
-            return false;
-        }
-        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
-        c11 c11Var = this.b;
-        if ((i < 0 && c11Var.w) || (f > 0.0f && c11Var.x)) {
-            z = true;
-        } else {
-            z = false;
-        }
-        float signum = Math.signum(f);
-        q11 q11Var = this.a;
-        yla ylaVar = new yla(q11Var, yla.o, signum * q11Var.getWidth() * 2.0f);
-        if (!z) {
-            ylaVar.a(new xr3(this) {
-                public final b21 b;
-
-                {
-                    this.b = this;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.M) {
+            case 4:
+                if (getAlpha() < 0.95f) {
+                    return false;
                 }
-
-                @Override
-                public final void a(yla ylaVar2, boolean z2, float f3, float f4) {
-                    byte b = r2;
-                    b21 b21Var = this.b;
-                    switch (b) {
-                        case 0:
-                            b21Var.b.E.b();
-                            return;
-                        default:
-                            b21Var.b.E.b();
-                            return;
-                    }
+                return super.dispatchTouchEvent(motionEvent);
+            case 5:
+                if (getAlpha() < 0.95f) {
+                    return false;
                 }
-            });
-            ylaVar.b(new h10(q11Var, (byte) 2));
+                return super.dispatchTouchEvent(motionEvent);
+            case 6:
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+            case 7:
+                if (getAlpha() < 0.9f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
         }
-        ylaVar.m.a(1.0f);
-        ylaVar.m.b(100.0f);
-        ylaVar.a = f;
-        ylaVar.h();
-        if (z) {
-            yla ylaVar2 = new yla((Object) q11Var, (ri4) yla.v, 0.0f);
-            ylaVar2.a(new xr3(this) {
-                public final b21 b;
-
-                {
-                    this.b = this;
-                }
-
-                @Override
-                public final void a(yla ylaVar22, boolean z2, float f3, float f4) {
-                    byte b = r2;
-                    b21 b21Var = this.b;
-                    switch (b) {
-                        case 0:
-                            b21Var.b.E.b();
-                            return;
-                        default:
-                            b21Var.b.E.b();
-                            return;
-                    }
-                }
-            });
-            ylaVar2.b(new Object());
-            ylaVar.m.a(1.0f);
-            ylaVar.m.b(10.0f);
-            ylaVar.a = f;
-            ylaVar2.h();
-        }
-        c11Var.s = true;
-        return true;
     }
 
     @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        c11 c11Var = this.b;
-        float f3 = c11Var.h + f;
-        c11Var.h = f3;
-        float f4 = c11Var.n + f2;
-        c11Var.n = f4;
-        if (Utilities.t(0.0f, 0.0f, f3, f4) > gl.e) {
-            c11Var.r = true;
+    public final void onMeasure(int i, int i2) {
+        switch (this.M) {
+            case 8:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                return;
         }
-        if (!c11Var.d) {
-            return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.M) {
+            case 3:
+                boolean onTouchEvent = super.onTouchEvent(motionEvent);
+                if (onTouchEvent && motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return onTouchEvent;
+            default:
+                return super.onTouchEvent(motionEvent);
         }
-        float f5 = c11Var.f - f;
-        c11Var.f = f5;
-        q11 q11Var = this.a;
-        q11Var.setTranslationX(f5);
-        float f6 = c11Var.f;
-        int i = (f6 > 0.0f ? 1 : (f6 == 0.0f ? 0 : -1));
-        if (i != 0 && ((f6 >= 0.0f || !c11Var.w) && (i <= 0 || !c11Var.x))) {
-            return true;
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.M) {
+            case 0:
+                super.setText(pv3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                return;
+            case 1:
+                super.setText(pv3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                return;
+            case 2:
+                super.setText(pv3.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                return;
+            default:
+                super.setText(charSequence, bufferType);
+                return;
         }
-        q11Var.setAlpha(1.0f - (Math.abs(f6) / q11Var.getWidth()));
-        return true;
     }
 }

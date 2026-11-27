@@ -1,139 +1,236 @@
 package defpackage;
 
-import android.text.TextUtils;
+import android.content.SharedPreferences;
+import android.location.Location;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a;
-public final class ux9 implements i8c {
+import java.util.Iterator;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.SessionsActivity;
+public final class ux9 implements Runnable {
     public final byte a;
-    public final yx9 b;
+    public final Object b;
 
-    public ux9(yx9 yx9Var, byte b) {
+    public ux9(Object obj, byte b) {
         this.a = b;
-        this.b = yx9Var;
+        this.b = obj;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        int i;
-        int i2;
-        boolean z;
-        boolean z2;
-        boolean z3 = false;
-        switch (this.a) {
+    public final void run() {
+        int f;
+        byte b = this.a;
+        int i = 0;
+        Object obj = this.b;
+        switch (b) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                l5c l5cVar = (l5c) obj2;
-                yx9 yx9Var = this.b;
-                ia7 ia7Var = yx9Var.Z1;
-                l5cVar.G = true;
-                int L = gl.L(64.0f);
-                arrayList.add(c4c.D(gl.L(64.0f)));
-                if (yx9Var.U1 || yx9Var.c2) {
-                    L += yx9Var.Y0(true, arrayList, k96.M0(2131753902, null), yx9Var.W1, false, false, -1);
-                }
-                if (!yx9Var.U1) {
-                    if (TextUtils.isEmpty(yx9Var.l2) && !yx9Var.c2) {
-                        l5cVar.V();
-                        c4c c = c4c.c(1, 2131232031, k96.M0(2131744369, null));
-                        c.r = true;
-                        arrayList.add(c);
-                        l5cVar.U();
-                        L += gl.L(50.0f);
-                    }
-                    if (!yx9Var.c2 && ia7Var != null) {
-                        L += yx9Var.Y0(true, arrayList, k96.M0(2131753901, null), ia7Var.c, ia7Var.f, !ia7Var.e, 2);
-                    }
-                    String M0 = k96.M0(2131753904, null);
-                    ArrayList arrayList2 = yx9Var.X1;
-                    if (!yx9Var.p2 && !yx9Var.o2) {
-                        z = false;
-                    } else {
-                        z = true;
-                    }
-                    int Y0 = L + yx9Var.Y0(false, arrayList, M0, arrayList2, z, yx9Var.n2, 3);
-                    String M02 = k96.M0(2131753903, null);
-                    ArrayList arrayList3 = yx9Var.Y1;
-                    if (!yx9Var.w2 && !yx9Var.v2) {
-                        z2 = false;
-                    } else {
-                        z2 = true;
-                    }
-                    L = Y0 + yx9Var.Y0(false, arrayList, M02, arrayList3, z2, yx9Var.u2, 4);
-                }
-                int size = arrayList.size();
-                if (!yx9Var.U1 && TextUtils.isEmpty(yx9Var.l2) && !yx9Var.c2) {
-                    i = 2;
-                } else {
-                    i = 1;
-                }
-                if (size <= i) {
-                    if (TextUtils.isEmpty(yx9Var.l2)) {
-                        arrayList.add(f12.i(k96.M0(2131748052, null), k96.M0(2131748051, null)));
-                    } else {
-                        String M03 = k96.M0(2131748051, null);
-                        if (yx9Var.l2.length() >= 3) {
-                            i2 = 2131748049;
-                        } else {
-                            i2 = 2131748050;
-                        }
-                        arrayList.add(f12.i(gl.S2(k96.a0(null, null, i2, yx9Var.l2)), M03));
-                    }
-                }
-                arrayList.add(c4c.C(null));
-                arrayList.add(c4c.D(Math.max(0, gl.L(24.0f) + (((gl.q.y - (gl.L(12.0f) + L)) - gl.m) - a.getCurrentActionBarHeight()))));
-                return;
-            default:
-                TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                yx9 yx9Var2 = this.b;
-                ArrayList arrayList4 = yx9Var2.Y1;
-                yx9Var2.v2 = false;
-                yx9Var2.w2 = false;
-                if (messages_botresults != null) {
-                    na7.q1(yx9Var2.a).b4(messages_botresults.users, false);
-                    ArrayList<TLRPC.BotInlineResult> arrayList5 = messages_botresults.results;
-                    int size2 = arrayList5.size();
-                    int i3 = 0;
-                    while (i3 < size2) {
-                        TLRPC.BotInlineResult botInlineResult = arrayList5.get(i3);
-                        i3++;
-                        TLRPC.BotInlineResult botInlineResult2 = botInlineResult;
-                        if (botInlineResult2 instanceof TLRPC.TL_botInlineMediaResult) {
-                            TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult2;
-                            if (tL_botInlineMediaResult.document != null) {
-                                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                                tL_message.out = true;
-                                int i4 = yx9Var2.C2;
-                                yx9Var2.C2 = i4 - 1;
-                                tL_message.id = i4;
-                                tL_message.peer_id = new TLRPC.TL_peerUser();
-                                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                                tL_message.from_id = tL_peerUser;
-                                TLRPC.Peer peer = tL_message.peer_id;
-                                long e = y6c.h(yx9Var2.a).e();
-                                tL_peerUser.user_id = e;
-                                peer.user_id = e;
-                                tL_message.date = (int) (System.currentTimeMillis() / 1000);
-                                tL_message.message = "";
-                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                                tL_message.media = tL_messageMediaDocument;
-                                tL_messageMediaDocument.flags |= 3;
-                                tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
-                                tL_message.flags |= 768;
-                                arrayList4.add(new k27(yx9Var2.a, tL_message, false, true));
-                            }
-                        }
-                    }
-                    yx9Var2.t2 = messages_botresults.next_offset;
-                    if (!arrayList4.isEmpty() && !TextUtils.isEmpty(yx9Var2.t2)) {
-                        z3 = true;
-                    }
-                    yx9Var2.u2 = z3;
-                    yx9Var2.j2.O(true);
+                wx9 wx9Var = (wx9) obj;
+                ArrayList arrayList = wx9Var.f;
+                if (!arrayList.isEmpty()) {
+                    wx9Var.getMessagesController().X3(arrayList, null, null, false, 0);
+                    arrayList.clear();
                     return;
                 }
-                yx9Var2.j2.O(true);
+                return;
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((wd8) obj).c;
+                Runnable runnable = secretMediaViewer.n0;
+                if (runnable != null) {
+                    runnable.run();
+                    secretMediaViewer.n0 = null;
+                    return;
+                }
+                return;
+            case 2:
+                ky9 ky9Var = (ky9) ((ve9) obj).b;
+                ky9Var.R = true;
+                ky9Var.O.invalidate();
+                return;
+            case 3:
+                ((ny9) obj).k();
+                return;
+            case 4:
+                wb2 wb2Var = ((xy9) obj).n;
+                if (wb2Var != null) {
+                    wb2Var.invalidate();
+                    return;
+                }
+                return;
+            case 5:
+                cz9 cz9Var = (cz9) obj;
+                cz9Var.q = false;
+                cz9Var.b.run();
+                return;
+            case 6:
+                hl.P3(((e0a) obj).c, true, true);
+                return;
+            case 7:
+                l9c l9cVar = ((b2a) obj).d2;
+                if (l9cVar != null) {
+                    l9cVar.O(true);
+                    return;
+                }
+                return;
+            case 8:
+                ((u1a) obj).a();
+                return;
+            case 9:
+                ((v2a) obj).f();
+                return;
+            case 10:
+                new xk8(((v3a) obj).d.L.f, 14, false).show();
+                return;
+            case 11:
+                int i2 = z3a.c0;
+                new xk8(((z3a) obj).L.f, 14, false).show();
+                return;
+            case 12:
+                hl.E3(((h4a) obj).m1);
+                return;
+            case 13:
+                hl.c3((q5a) obj);
+                return;
+            case 14:
+                ((e4b) obj).a(null);
+                return;
+            case 15:
+                r7a r7aVar = (r7a) obj;
+                r7aVar.getNotificationCenter().a(r7aVar, 139);
+                r7aVar.getNotificationCenter().a(r7aVar, 141);
+                r7aVar.getNotificationCenter().a(r7aVar, 140);
+                r7aVar.getNotificationCenter().a(r7aVar, 145);
+                r7aVar.getNotificationCenter().a(r7aVar, 146);
+                r7aVar.getNotificationCenter().a(r7aVar, 147);
+                r7aVar.getNotificationCenter().a(r7aVar, 137);
+                r7aVar.getNotificationCenter().a(r7aVar, 136);
+                r7aVar.getNotificationCenter().a(r7aVar, 143);
+                r7aVar.getNotificationCenter().a(r7aVar, 144);
+                return;
+            case 16:
+                fp fpVar = (fp) obj;
+                n7a n7aVar = (n7a) fpVar.a;
+                Location location = (Location) fpVar.f;
+                if (location != null) {
+                    n7aVar.T(location);
+                } else {
+                    n7aVar.O();
+                }
+                fpVar.c();
+                return;
+            case 17:
+                ((SessionsActivity) obj).l0();
+                return;
+            case 18:
+                ((rda) obj).b.X0(1);
+                return;
+            case 19:
+                ((yv3) obj).setVisibility(8);
+                return;
+            case 20:
+                sea seaVar = (sea) obj;
+                yv3[] yv3VarArr = seaVar.a;
+                if (seaVar.b != 1) {
+                    for (yv3 yv3Var : yv3VarArr) {
+                        ema emaVar = (ema) yv3Var.e;
+                        emaVar.setAlpha(1.0f);
+                        emaVar.setScaleX(1.0f);
+                        emaVar.setScaleY(1.0f);
+                        ((ema) yv3Var.f).setAlpha(0.0f);
+                    }
+                    seaVar.F = false;
+                    hl.d3(seaVar.H, 4000L);
+                    return;
+                }
+                seaVar.F = !seaVar.F;
+                int length = yv3VarArr.length;
+                while (i < length) {
+                    yv3 yv3Var2 = yv3VarArr[i];
+                    ema emaVar2 = (ema) yv3Var2.f;
+                    ((ema) yv3Var2.e).setPivotX(0.0f);
+                    emaVar2.setPivotX(0.0f);
+                    boolean z = seaVar.F;
+                    ema emaVar3 = (ema) yv3Var2.e;
+                    if (z) {
+                        emaVar3.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                        emaVar2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                    } else {
+                        emaVar3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                        emaVar2.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                    }
+                    i++;
+                }
+                hl.d3(seaVar.H, 4000L);
+                return;
+            case 21:
+                eja ejaVar = ((bga) obj).H;
+                if (ejaVar.F1) {
+                    ejaVar.l1(false);
+                    return;
+                }
+                return;
+            case 22:
+                ((jha) obj).a.z1(false);
+                return;
+            case 23:
+                e eVar = ((qha) obj).f.y1;
+                if (eVar != null) {
+                    eVar.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
+                    return;
+                }
+                return;
+            case 24:
+                ((ux9) obj).run();
+                return;
+            case 25:
+                pia piaVar = (pia) obj;
+                ArrayList arrayList2 = piaVar.f;
+                if (piaVar.h) {
+                    piaVar.h = false;
+                    ArrayList arrayList3 = new ArrayList();
+                    while (i < arrayList2.size()) {
+                        if (((mt9) arrayList2.get(i)).b) {
+                            arrayList3.add(Long.valueOf(((mt9) arrayList2.get(i)).a));
+                        }
+                        i++;
+                    }
+                    nt9 F1 = piaVar.y.y1.getMessagesController().F1();
+                    ArrayList d = nt9.d(F1.j);
+                    int i3 = F1.a;
+                    if (yac.h(i3).p()) {
+                        f = uc7.s1(i3).k4.q2.f();
+                    } else {
+                        f = uc7.s1(i3).k4.p2.f();
+                    }
+                    if (arrayList3.size() <= f && !nt9.j(d, arrayList3)) {
+                        F1.o(arrayList3);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 26:
+                ((qia) obj).F();
+                return;
+            case 27:
+                ((jja) obj).h();
+                return;
+            case 28:
+                ko9 ko9Var = (ko9) obj;
+                synchronized (((ArrayDeque) ko9Var.c)) {
+                    SharedPreferences.Editor edit = ((SharedPreferences) ko9Var.b).edit();
+                    StringBuilder sb = new StringBuilder();
+                    Iterator it = ((ArrayDeque) ko9Var.c).iterator();
+                    while (it.hasNext()) {
+                        sb.append((String) it.next());
+                        sb.append(",");
+                    }
+                    edit.putString("topic_operation_queue", sb.toString()).apply();
+                }
+                return;
+            default:
+                ((wma) obj).V();
                 return;
         }
     }

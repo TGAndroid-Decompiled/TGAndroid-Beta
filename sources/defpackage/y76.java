@@ -1,54 +1,28 @@
 package defpackage;
+public final class y76 {
+    public final Object a;
+    public final String b;
 
-import android.graphics.SurfaceTexture;
-import android.view.Surface;
-public final class y76 implements Runnable {
-    public final byte a;
-    public final Surface b;
-    public final SurfaceTexture c;
-
-    public y76(Surface surface, SurfaceTexture surfaceTexture, byte b) {
-        this.a = b;
-        this.b = surface;
-        this.c = surfaceTexture;
+    public y76(Object obj, String str) {
+        this.a = obj;
+        this.b = str;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        SurfaceTexture surfaceTexture = this.c;
-        Surface surface = this.b;
-        switch (b) {
-            case 0:
-                if (surface != null) {
-                    surface.release();
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof y76) {
+                y76 y76Var = (y76) obj;
+                if (this.a == y76Var.a && this.b.equals(y76Var.b)) {
+                    return true;
                 }
-                surfaceTexture.release();
-                return;
-            case 1:
-                if (surface != null) {
-                    surface.release();
-                }
-                if (surfaceTexture != null) {
-                    surfaceTexture.release();
-                    return;
-                }
-                return;
-            case 2:
-                if (surface != null) {
-                    surface.release();
-                }
-                surfaceTexture.release();
-                return;
-            case 3:
-                gl.c3(new y76(surface, surfaceTexture, (byte) 4));
-                return;
-            default:
-                if (surface != null) {
-                    surface.release();
-                }
-                surfaceTexture.release();
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode() + (System.identityHashCode(this.a) * 31);
     }
 }

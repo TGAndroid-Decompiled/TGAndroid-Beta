@@ -1,135 +1,84 @@
 package defpackage;
+public final class ch0 implements v76 {
+    public final v76 a;
+    public byte b = 0;
+    public int c = -1;
+    public int d = -1;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-public final class ch0 extends Drawable {
-    public TextPaint a;
-    public final Paint b;
-    public final Paint c;
-    public final Paint d;
-    public final float e;
-    public float f;
-    public float g;
-    public final RectF h;
-    public ValueAnimator i;
-
-    public ch0() {
-        Paint paint = new Paint(1);
-        this.b = paint;
-        this.c = new Paint(1);
-        this.d = new Paint(1);
-        this.e = 1.0f;
-        this.f = 0.0f;
-        this.g = 1.0f;
-        this.h = new RectF();
-        paint.setStyle(Paint.Style.STROKE);
+    public ch0(v76 v76Var) {
+        this.a = v76Var;
     }
 
-    public final void a(boolean z, float f) {
-        float max = Math.max(Math.min(f, 1.0f), 0.0f);
-        ValueAnimator valueAnimator = this.i;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.i = null;
+    @Override
+    public final void C(int i, int i2) {
+        int i3;
+        if (this.b == 1 && i >= (i3 = this.c)) {
+            int i4 = this.d;
+            if (i <= i3 + i4) {
+                this.d = i4 + i2;
+                this.c = Math.min(i, i3);
+                return;
+            }
         }
-        if (!z) {
-            this.g = max;
-            invalidateSelf();
+        a();
+        this.c = i;
+        this.d = i2;
+        this.b = (byte) 1;
+    }
+
+    @Override
+    public final void X(int i, int i2) {
+        int i3;
+        if (this.b == 2 && (i3 = this.c) >= i && i3 <= i + i2) {
+            this.d += i2;
+            this.c = i;
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.g, max);
-        this.i = ofFloat;
-        ofFloat.addUpdateListener(new f0(this, (byte) 13));
-        this.i.addListener(new t7(this, max, (byte) 1));
-        this.i.setInterpolator(s33.h);
-        this.i.setDuration(200L);
-        this.i.start();
+        a();
+        this.c = i;
+        this.d = i2;
+        this.b = (byte) 2;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        if (getBounds() != null) {
-            int i = getBounds().left;
-            int i2 = getBounds().top + ((int) this.f);
-            int width = getBounds().width();
-            int height = getBounds().height();
-            int centerX = getBounds().centerX();
-            int centerY = getBounds().centerY() + ((int) this.f);
-            TextPaint textPaint = this.a;
-            Paint paint = this.d;
-            Paint paint2 = this.c;
-            Paint paint3 = this.b;
-            if (textPaint != null) {
-                int color = textPaint.getColor();
-                paint3.setColor(color);
-                paint2.setColor(color);
-                paint.setColor(color);
-            }
-            float f = this.e;
-            if (f != 1.0f) {
-                canvas.save();
-                canvas.scale(f, f, centerX, centerY);
-            }
-            paint3.setStrokeWidth(gl.N(1.1f));
-            float f2 = i;
-            float f3 = width;
-            float f4 = i2;
-            float f5 = height;
-            RectF rectF = this.h;
-            rectF.set((((f3 - gl.N(16.33f)) / 2.0f) + f2) - gl.N(1.33f), ((f5 - gl.N(10.33f)) / 2.0f) + f4, (((gl.N(16.33f) + f3) / 2.0f) + f2) - gl.N(1.33f), ((gl.N(10.33f) + f5) / 2.0f) + f4);
-            canvas.drawRoundRect(rectF, gl.N(2.33f), gl.N(2.33f), paint3);
-            rectF.set((((f3 - gl.N(13.0f)) / 2.0f) + f2) - gl.N(1.66f), ((f5 - gl.N(7.33f)) / 2.0f) + f4, Math.max(gl.N(1.1f), gl.N(13.0f) * this.g) + ((((f3 - gl.N(13.0f)) / 2.0f) + f2) - gl.N(1.66f)), ((gl.N(7.33f) + f5) / 2.0f) + f4);
-            canvas.drawRoundRect(rectF, gl.N(0.83f), gl.N(0.83f), paint);
-            float f6 = centerY;
-            rectF.set((((gl.N(17.5f) + f3) - gl.N(4.66f)) / 2.0f) + f2, f6 - gl.N(2.65f), ((gl.N(4.66f) + (gl.N(17.5f) + f3)) / 2.0f) + f2, gl.N(2.65f) + f6);
-            canvas.drawArc(rectF, -90.0f, 180.0f, false, paint2);
-            if (f != 1.0f) {
-                canvas.restore();
-            }
+    public final void a() {
+        byte b = this.b;
+        if (b == 0) {
+            return;
         }
+        v76 v76Var = this.a;
+        if (b != 1) {
+            if (b != 2) {
+                if (b == 3) {
+                    v76Var.x0(this.c, this.d);
+                }
+            } else {
+                v76Var.X(this.c, this.d);
+            }
+        } else {
+            v76Var.C(this.c, this.d);
+        }
+        this.b = (byte) 0;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return gl.L(this.e * 24.0f);
+    public final void n(int i, int i2) {
+        a();
+        this.a.n(i, i2);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return gl.L(this.e * 24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.b.setAlpha(i);
-        this.c.setAlpha(i);
-        this.d.setAlpha(i);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.b.setColorFilter(colorFilter);
-        this.c.setColorFilter(colorFilter);
-        this.d.setColorFilter(colorFilter);
-    }
-
-    public ch0(float f, int i) {
-        this();
-        a(false, f);
-        this.b.setColor(-1);
-        this.c.setColor(-1);
-        this.d.setColor(i);
-        this.e = 1.3f;
-        invalidateSelf();
+    public final void x0(int i, int i2) {
+        int i3;
+        int i4;
+        int i5;
+        if (this.b == 3 && i <= (i4 = this.d + (i3 = this.c)) && (i5 = i + i2) >= i3) {
+            this.c = Math.min(i, i3);
+            this.d = Math.max(i4, i5) - this.c;
+            return;
+        }
+        a();
+        this.c = i;
+        this.d = i2;
+        this.b = (byte) 3;
     }
 }

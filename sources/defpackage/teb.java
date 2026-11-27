@@ -1,25 +1,25 @@
 package defpackage;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class teb extends ArrayList {
-    public final Class a;
-    public final Class b;
+import android.content.Context;
+public final class teb extends mf5 {
+    public final in r;
 
-    public teb(Class cls, Class cls2) {
-        this.a = cls;
-        this.b = cls2;
-    }
-
-    public final vk9 h() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.b, size);
-        for (int i = 0; i < size; i++) {
-            objArr[i] = ((Pair) get(i)).first;
-            objArr2[i] = ((Pair) get(i)).second;
+    public teb(Context context, vnb vnbVar) {
+        super(context, vnbVar);
+        int i;
+        in inVar = new in(context, true, true, true);
+        this.r = inVar;
+        inVar.b(0.45f, 240L, k43.h);
+        if (ob6.a0) {
+            i = 3;
+        } else {
+            i = 5;
         }
-        return new vk9(objArr, objArr2);
+        inVar.setGravity(i);
+        inVar.setTextSize(hl.L(15.0f));
+        inVar.setTypeface(hl.o());
+        yob.U(inVar, aob.L6, vnbVar);
+        addView(inVar, tre.d(-2, 24.0f, (ob6.a0 ? 3 : 5) | 80, 24.0f, 0.0f, 24.0f, 0.0f));
+        yob.h(aob.h5, vnbVar, this);
     }
 }

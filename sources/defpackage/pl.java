@@ -1,236 +1,42 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.Executor;
-import org.telegram.messenger.Utilities;
+import java.util.HashSet;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class pl implements RequestDelegate {
+public final class pl implements Runnable {
     public final byte a;
-    public final Object b;
-    public final Object c;
+    public final sl b;
+    public final ArrayList c;
+    public final HashSet d;
 
-    public pl(String str, ArrayList arrayList) {
-        this.a = (byte) 4;
+    public pl(sl slVar, ArrayList arrayList, HashSet hashSet, byte b) {
+        this.a = b;
+        this.b = slVar;
         this.c = arrayList;
-        this.b = str;
+        this.d = hashSet;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i;
-        int indexOf;
-        switch (this.a) {
+    public final void run() {
+        byte b = this.a;
+        HashSet hashSet = this.d;
+        ArrayList arrayList = this.c;
+        sl slVar = this.b;
+        switch (b) {
             case 0:
-                rl rlVar = (rl) this.b;
-                kk7.f(rlVar.e).d(new ql(rlVar, (ArrayList) this.c, tLObject, (byte) 0));
-                return;
-            case 1:
-                gl.c3(new nn6((i20) this.b, (hd) this.c, tLObject, (byte) 10));
-                return;
-            case 2:
-                gl.c3(new nn6(tLObject, (na7) this.b, (xy9) this.c));
-                return;
-            case 3:
-                na7 na7Var = (na7) this.b;
-                x15 x15Var = (x15) this.c;
-                if (tLObject instanceof TLRPC.TL_contacts_found) {
-                    TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
-                    na7Var.b4(tL_contacts_found.users, false);
-                    ArrayList arrayList = new ArrayList();
-                    for (int i2 = 0; i2 < tL_contacts_found.users.size(); i2++) {
-                        TLRPC.User user = tL_contacts_found.users.get(i2);
-                        if (!user.self && !l7c.z(user) && !l7c.C(user.id)) {
-                            arrayList.add(user);
-                        }
-                    }
-                    gl.c3(new z20(x15Var, arrayList, (byte) 10));
-                    return;
-                }
-                return;
-            case 4:
-                gl.c3(new s67(tLObject, (ArrayList) this.c, (String) this.b, tL_error, (byte) 12));
-                return;
-            case 5:
-                gl.c3(new nn6((byte) 25, (ss0) this.b, (Context) this.c, tLObject));
-                return;
-            case 6:
-                gl.c3(new s67((rs0) this.b, tLObject, (String) this.c, tL_error, (byte) 13));
-                return;
-            case 7:
-                gl.c3(new nn6((byte) 26, (boolean[]) this.b, (it0) this.c, tLObject));
-                return;
-            case 8:
-                gl.c3(new fv0((j41) this.b, tLObject, (TL_account.TL_businessChatLink) this.c, (byte) 6));
-                return;
-            case 9:
-                gl.c3(new s67((b81) this.b, tL_error, tLObject, (Calendar) this.c, (byte) 19));
-                return;
-            case 10:
-                eg1 eg1Var = (eg1) this.b;
-                eg1Var.getClass();
-                gl.c3(new fv0(eg1Var, tLObject, (hd) this.c, (byte) 17));
-                return;
-            case 11:
-                gl.c3(new fv0((lh1) this.b, tLObject, (akb) this.c, (byte) 18));
-                return;
-            case 12:
-                gl.c3(new fv0((zi1) this.b, tLObject, (Activity) this.c, (byte) 21));
-                return;
-            case 13:
-                mu1 mu1Var = (mu1) this.b;
-                TLObject tLObject2 = (TLObject) this.c;
-                mu1Var.getClass();
-                if (tLObject instanceof TLRPC.messages_Messages) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    if (!messages_messages.messages.isEmpty()) {
-                        i = ((TLRPC.messages_Messages) tLObject2).offset_id_offset - messages_messages.offset_id_offset;
-                    } else {
-                        i = ((TLRPC.messages_Messages) tLObject2).offset_id_offset;
-                    }
-                    gl.c3(new ml1(mu1Var, i, (byte) 5));
-                    return;
-                }
-                return;
-            case 14:
-                gl.c3(new jn1((mu1) this.b, tLObject, (TLRPC.User) this.c, (byte) 1));
-                return;
-            case 15:
-                gl.c3(new hn1((mu1) this.b, tLObject, tL_error, (ad7) this.c, (byte) 1));
-                return;
-            case 16:
-                mu1 mu1Var2 = (mu1) this.b;
-                TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages = (TLRPC.TL_messages_sendScheduledMessages) this.c;
-                mu1Var2.getClass();
-                if (tL_error == null) {
-                    mu1Var2.getMessagesController().R3((TLRPC.Updates) tLObject, false);
-                    gl.c3(new aj1(mu1Var2, tL_messages_sendScheduledMessages, (byte) 14));
-                    return;
-                } else if (tL_error.text != null) {
-                    gl.c3(new aj1(mu1Var2, tL_error, (byte) 15));
-                    return;
-                } else {
-                    return;
-                }
-            case 17:
-                gl.c3(new jn1((ps1) this.b, tLObject, (k27) this.c, (byte) 3));
-                return;
-            case 18:
-                gl.c3(new kx1((x02) this.b, (TLRPC.TL_attachMenuBot) this.c, (byte) 8));
-                return;
-            case 19:
-                gl.c3(new kx1((x02) this.b, (q02) this.c, (byte) 7));
-                return;
-            case 20:
-                p82 p82Var = (p82) this.b;
-                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) this.c;
-                TLRPC.UserFull userFull = p82Var.E0;
-                if (userFull != null) {
-                    userFull.about = setbotinfo.about;
-                    p82Var.getMessagesStorage().g2(p82Var.E0, false);
-                }
-                gl.c3(new k82(p82Var, (byte) 2));
-                return;
-            case 21:
-                gl.c3(new n92((x92) this.b, (hd[]) this.c, (byte) 0));
-                return;
-            case 22:
-                zc2 zc2Var = (zc2) this.b;
-                zc2Var.getClass();
-                gl.c3(new hn1(zc2Var, tL_error, tLObject, (TwoStepVerificationActivity) this.c, (byte) 9));
-                return;
-            case 23:
-                gl.c3(new jn1((vd2) this.b, tLObject, (akb) this.c, (byte) 18));
-                return;
-            case 24:
-                gl.c3(new n92((mf2) this.b, (on7) this.c, (byte) 18));
-                return;
-            case 25:
-                ConnectionsManager.lambda$sendRequestTyped$3((Executor) this.b, (i8c) this.c, tLObject, tL_error);
-                return;
-            case 26:
-                qu2 qu2Var = (qu2) this.b;
-                ak8 ak8Var = (ak8) this.c;
-                if (tL_error == null) {
-                    qu2Var.a0.clear();
-                    qu2Var.Z.clear();
-                    qu2Var.n0 = 0;
-                    qu2Var.s = false;
-                    qu2Var.e = false;
-                    qu2Var.h = false;
-                    qu2Var.b = false;
-                    qu2Var.r = false;
-                    qu2Var.w = "";
-                    gl.c3(new gu2(qu2Var, ak8Var, (byte) 0));
-                    return;
-                }
-                gl.c3(ak8Var);
-                return;
-            case 27:
-                qu2 qu2Var2 = (qu2) this.b;
-                TLRPC.User user2 = (TLRPC.User) this.c;
-                if (tL_error == null) {
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    TLRPC.UserProfilePhoto userProfilePhoto = user2.photo;
-                    if (userProfilePhoto != null && userProfilePhoto.personal) {
-                        for (int i3 = 0; i3 < updates.users.size(); i3++) {
-                            if (updates.users.get(i3).id == user2.id) {
-                                updates.users.get(i3).photo = user2.photo;
-                            }
-                        }
-                    }
-                    qu2Var2.getMessagesController().R3(updates, false);
-                    for (int i4 = 0; i4 < updates.users.size(); i4++) {
-                        TLRPC.User user3 = updates.users.get(i4);
-                        if (user3.id == user2.id) {
-                            Utilities.h.c(new gu2(qu2Var2, user3, (byte) 1));
-                            TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                            tL_contact.user_id = user3.id;
-                            ArrayList arrayList2 = new ArrayList();
-                            arrayList2.add(tL_contact);
-                            qu2Var2.getMessagesStorage().Z0(arrayList2, false);
-                            if (!TextUtils.isEmpty(user3.phone)) {
-                                qu2.m(0, user3.first_name, user3.last_name);
-                                qu2Var2.getMessagesStorage().e(user3.phone, "");
-                                nu2 nu2Var = (nu2) qu2Var2.a0.get(user3.phone);
-                                if (nu2Var != null && (indexOf = nu2Var.g.indexOf(user3.phone)) != -1) {
-                                    nu2Var.h.set(indexOf, 0);
-                                }
-                            }
-                        }
-                    }
-                    gl.c3(new jn1(qu2Var2, updates, user2, (byte) 27));
-                    return;
-                }
-                return;
-            case 28:
-                qu2 qu2Var3 = (qu2) this.b;
-                SharedPreferences.Editor editor = (SharedPreferences.Editor) this.c;
-                if (tLObject instanceof Vector) {
-                    gl.c3(new jn1(qu2Var3, editor, (Vector) tLObject, (byte) 25));
-                    return;
-                }
+                hl.c3(new pl(slVar, arrayList, hashSet, (byte) 1));
                 return;
             default:
-                gl.c3(new mg3((zu3) this.b, tLObject, (k27) this.c, (byte) 15));
+                slVar.d(arrayList);
+                if (!hashSet.isEmpty()) {
+                    ArrayList<Long> arrayList2 = new ArrayList<>(hashSet);
+                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
+                    tL_messages_getCustomEmojiDocuments.document_id = arrayList2;
+                    ConnectionsManager.getInstance(slVar.e).sendRequest(tL_messages_getCustomEmojiDocuments, new ql(slVar, arrayList2, (byte) 0));
+                    return;
+                }
                 return;
         }
-    }
-
-    public pl(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
     }
 }

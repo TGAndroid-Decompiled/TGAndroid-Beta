@@ -14,48 +14,48 @@ import android.widget.FrameLayout;
 public abstract class zo0 extends FrameLayout {
     public final Paint a;
     public final Paint b;
-    public final lm c;
-    public final kl d;
-    public kp e;
+    public final mm c;
+    public final ll d;
+    public lp e;
     public final xo0[] f;
     public xo0 h;
-    public p8c n;
+    public pcc n;
     public Runnable r;
 
-    public zo0(Context context, wjb wjbVar) {
+    public zo0(Context context, vnb vnbVar) {
         super(context);
         Paint paint = new Paint(1);
         this.a = paint;
         Paint paint2 = new Paint(1);
         this.b = paint2;
-        s33 s33Var = s33.h;
-        this.c = new lm(this, 0L, 320L, s33Var);
-        this.d = new kl(this, 320L, s33Var, 0);
-        kp kpVar = new kp((byte) 2, false);
-        kpVar.c = new Object();
-        kpVar.d = new Object();
-        this.e = kpVar;
+        k43 k43Var = k43.h;
+        this.c = new mm(this, 0L, 320L, k43Var);
+        this.d = new ll(this, 320L, k43Var, 0);
+        lp lpVar = new lp((byte) 2, false);
+        lpVar.c = new Object();
+        lpVar.d = new Object();
+        this.e = lpVar;
         this.f = r9;
         setWillNotDraw(false);
-        paint2.setColor(bkb.p1(0.1f, -16777216));
-        kp kpVar2 = this.e;
-        int v0 = bkb.v0(bkb.c6, wjbVar);
-        kpVar2.b = v0;
+        paint2.setColor(aob.p1(0.1f, -16777216));
+        lp lpVar2 = this.e;
+        int v0 = aob.v0(aob.d6, vnbVar);
+        lpVar2.b = v0;
         paint.setColor(v0);
         xo0[] xo0VarArr = {new xo0(this), new xo0(this)};
     }
 
-    public static void b(gn gnVar, yo0 yo0Var, boolean z) {
-        gnVar.a();
+    public static void b(hn hnVar, yo0 yo0Var, boolean z) {
+        hnVar.a();
         if (yo0Var.f != 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) yo0Var.e);
-            spannableStringBuilder.setSpan(new gm(yo0Var.f, 1.4f, gnVar.a.getFontMetricsInt()), 0, 1, 33);
-            gnVar.t(spannableStringBuilder, z, true);
+            spannableStringBuilder.setSpan(new hm(yo0Var.f, 1.4f, hnVar.a.getFontMetricsInt()), 0, 1, 33);
+            hnVar.t(spannableStringBuilder, z, true);
             return;
         }
-        gnVar.t(yo0Var.e, z, true);
+        hnVar.t(yo0Var.e, z, true);
     }
 
     public final xo0 a(float f, float f2) {
@@ -64,11 +64,11 @@ public abstract class zo0 extends FrameLayout {
         while (true) {
             xo0[] xo0VarArr = this.f;
             if (i < xo0VarArr.length) {
-                kp kpVar = this.e;
+                lp lpVar = this.e;
                 if (i == 0) {
-                    obj = kpVar.c;
+                    obj = lpVar.c;
                 } else {
-                    obj = kpVar.d;
+                    obj = lpVar.d;
                 }
                 yo0 yo0Var = (yo0) obj;
                 if (xo0VarArr[i].a.contains(f, f2) && yo0Var.a && yo0Var.b) {
@@ -85,11 +85,11 @@ public abstract class zo0 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         int i;
         Object obj;
-        wd1 wd1Var;
+        fe1 fe1Var;
         float f;
         float e;
         int i2;
-        ih2 ih2Var;
+        di2 di2Var;
         float f2;
         float e2;
         int i3;
@@ -97,7 +97,7 @@ public abstract class zo0 extends FrameLayout {
         float e3;
         float f4;
         zo0 zo0Var;
-        ff0 ff0Var;
+        hf0 hf0Var;
         int i4;
         int i5;
         zo0 zo0Var2 = this;
@@ -126,35 +126,35 @@ public abstract class zo0 extends FrameLayout {
                 return;
             }
             xo0 xo0Var = xo0VarArr[i7];
-            kp kpVar = zo0Var2.e;
+            lp lpVar = zo0Var2.e;
             if (i7 == 0) {
-                obj = kpVar.c;
+                obj = lpVar.c;
             } else {
-                obj = kpVar.d;
+                obj = lpVar.d;
             }
             yo0 yo0Var = (yo0) obj;
-            lm lmVar = xo0Var.b;
-            wd1 wd1Var2 = xo0Var.p;
+            mm mmVar = xo0Var.b;
+            fe1 fe1Var2 = xo0Var.p;
             Paint paint2 = xo0Var.k;
-            ff0 ff0Var2 = xo0Var.n;
-            ih2 ih2Var2 = xo0Var.o;
-            kl klVar = xo0Var.g;
-            gn gnVar = xo0Var.l;
+            hf0 hf0Var2 = xo0Var.n;
+            di2 di2Var2 = xo0Var.o;
+            ll llVar = xo0Var.g;
+            hn hnVar = xo0Var.l;
             xo0[] xo0VarArr2 = xo0VarArr;
             RectF rectF = xo0Var.a;
             float f6 = f5;
-            float d = lmVar.d(yo0Var.a);
+            float d = mmVar.d(yo0Var.a);
             boolean z = yo0Var.a;
             int i8 = i;
-            lm lmVar2 = xo0Var.c;
+            mm mmVar2 = xo0Var.c;
             int i9 = i7;
             if (!z) {
-                e = lmVar2.c;
-                wd1Var = wd1Var2;
+                e = mmVar2.c;
+                fe1Var = fe1Var2;
             } else {
-                kp kpVar2 = zo0Var2.e;
-                wd1Var = wd1Var2;
-                if (((yo0) kpVar2.d).a && ((yo0) kpVar2.c).a) {
+                lp lpVar2 = zo0Var2.e;
+                fe1Var = fe1Var2;
+                if (((yo0) lpVar2.d).a && ((yo0) lpVar2.c).a) {
                     if (!"left".equalsIgnoreCase(str) ? !(!"right".equalsIgnoreCase(str) || i9 == 0) : i9 == 0) {
                         i2 = 1;
                     } else {
@@ -164,17 +164,17 @@ public abstract class zo0 extends FrameLayout {
                 } else {
                     f = 0.0f;
                 }
-                e = lmVar2.e(false, f);
+                e = mmVar2.e(false, f);
             }
             boolean z2 = yo0Var.a;
-            lm lmVar3 = xo0Var.d;
+            mm mmVar3 = xo0Var.d;
             if (!z2) {
-                e2 = lmVar3.c;
-                ih2Var = ih2Var2;
+                e2 = mmVar3.c;
+                di2Var = di2Var2;
             } else {
-                kp kpVar3 = zo0Var2.e;
-                ih2Var = ih2Var2;
-                if (((yo0) kpVar3.d).a && ((yo0) kpVar3.c).a) {
+                lp lpVar3 = zo0Var2.e;
+                di2Var = di2Var2;
+                if (((yo0) lpVar3.d).a && ((yo0) lpVar3.c).a) {
                     if (!"top".equalsIgnoreCase(str) ? !(!"bottom".equalsIgnoreCase(str) || i9 == 0) : i9 == 0) {
                         i3 = 1;
                     } else {
@@ -184,85 +184,85 @@ public abstract class zo0 extends FrameLayout {
                 } else {
                     f2 = 0.0f;
                 }
-                e2 = lmVar3.e(false, f2);
+                e2 = mmVar3.e(false, f2);
             }
             boolean z3 = yo0Var.a;
-            lm lmVar4 = xo0Var.e;
+            mm mmVar4 = xo0Var.e;
             if (!z3) {
-                e3 = lmVar4.c;
+                e3 = mmVar4.c;
             } else {
-                kp kpVar4 = zo0Var2.e;
-                if (((yo0) kpVar4.d).a && ((yo0) kpVar4.c).a && ("left".equalsIgnoreCase(str) || "right".equalsIgnoreCase(str))) {
+                lp lpVar4 = zo0Var2.e;
+                if (((yo0) lpVar4.d).a && ((yo0) lpVar4.c).a && ("left".equalsIgnoreCase(str) || "right".equalsIgnoreCase(str))) {
                     f3 = 0.0f;
                 } else {
                     f3 = 1.0f;
                 }
-                e3 = lmVar4.e(false, f3);
+                e3 = mmVar4.e(false, f3);
             }
-            float R1 = gl.R1((getWidth() - gl.L(26.0f)) / 2.0f, getWidth() - gl.L(16.0f), e3) / 2.0f;
-            float R12 = gl.R1(gl.L(8.0f), ((getWidth() - gl.L(26.0f)) / 2.0f) + gl.L(18.0f), e) + R1;
-            float L = gl.L(44.0f) / 2.0f;
-            float U1 = f6 + gl.U1(e2, gl.L(7.0f), gl.L(58.0f)) + L;
+            float R1 = hl.R1((getWidth() - hl.L(26.0f)) / 2.0f, getWidth() - hl.L(16.0f), e3) / 2.0f;
+            float R12 = hl.R1(hl.L(8.0f), ((getWidth() - hl.L(26.0f)) / 2.0f) + hl.L(18.0f), e) + R1;
+            float L = hl.L(44.0f) / 2.0f;
+            float U1 = f6 + hl.U1(e2, hl.L(7.0f), hl.L(58.0f)) + L;
             rectF.set(R12 - R1, U1 - L, R1 + R12, L + U1);
             float d2 = xo0Var.h.d(yo0Var.c);
             float d3 = xo0Var.i.d(yo0Var.d);
             canvas.save();
-            float R13 = gl.R1(0.7f, 1.0f, d) * xo0Var.j.a(0.02f);
+            float R13 = hl.R1(0.7f, 1.0f, d) * xo0Var.j.a(0.02f);
             canvas.scale(R13, R13, R12, U1);
-            paint2.setColor(bkb.p1(d, xo0Var.f.a(yo0Var.g, false)));
-            canvas.drawRoundRect(rectF, gl.L(9.0f), gl.L(9.0f), paint2);
+            paint2.setColor(aob.p1(d, xo0Var.f.a(yo0Var.g, false)));
+            canvas.drawRoundRect(rectF, hl.L(9.0f), hl.L(9.0f), paint2);
             if (d2 < 1.0f) {
                 canvas.save();
                 float f7 = 1.0f - d2;
-                float R14 = gl.R1(0.75f, 1.0f, f7);
+                float R14 = hl.R1(0.75f, 1.0f, f7);
                 canvas.scale(R14, R14, R12, U1);
-                canvas.translate(0.0f, gl.L(-10.0f) * d2);
+                canvas.translate(0.0f, hl.L(-10.0f) * d2);
                 float f8 = f7 * d;
-                int p1 = bkb.p1(f8, klVar.a(yo0Var.h, false));
-                if (gnVar.a0 != p1) {
-                    gnVar.a0 = p1;
-                    gnVar.b0 = new PorterDuffColorFilter(p1, PorterDuff.Mode.SRC_IN);
+                int p1 = aob.p1(f8, llVar.a(yo0Var.h, false));
+                if (hnVar.a0 != p1) {
+                    hnVar.a0 = p1;
+                    hnVar.b0 = new PorterDuffColorFilter(p1, PorterDuff.Mode.SRC_IN);
                 }
-                gnVar.u(bkb.p1(f8, klVar.a(yo0Var.h, false)));
-                gnVar.p(rectF);
-                gnVar.draw(canvas);
+                hnVar.u(aob.p1(f8, llVar.a(yo0Var.h, false)));
+                hnVar.p(rectF);
+                hnVar.draw(canvas);
                 canvas.restore();
             }
             if (d2 > 0.0f) {
                 canvas.save();
-                float R15 = gl.R1(0.75f, 1.0f, d2);
+                float R15 = hl.R1(0.75f, 1.0f, d2);
                 canvas.scale(R15, R15, R12, U1);
-                canvas.translate(0.0f, (1.0f - d2) * gl.L(10.0f));
-                ih2 ih2Var3 = ih2Var;
-                ih2Var3.b(bkb.p1(d2 * d, klVar.a(yo0Var.h, false)));
-                ih2Var3.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-                ih2Var3.draw(canvas);
+                canvas.translate(0.0f, (1.0f - d2) * hl.L(10.0f));
+                di2 di2Var3 = di2Var;
+                di2Var3.b(aob.p1(d2 * d, llVar.a(yo0Var.h, false)));
+                di2Var3.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                di2Var3.draw(canvas);
                 canvas.restore();
                 f4 = 0.0f;
             } else {
                 f4 = 0.0f;
             }
             if (d3 > f4) {
-                int p12 = bkb.p1(d * d3, klVar.a(yo0Var.h, false));
-                wd1 wd1Var3 = wd1Var;
-                wd1Var3.b(p12, 64);
+                int p12 = aob.p1(d * d3, llVar.a(yo0Var.h, false));
+                fe1 fe1Var3 = fe1Var;
+                fe1Var3.b(p12, 64);
                 zo0Var = this;
-                wd1Var3.a(gl.L(8.0f), canvas, rectF, zo0Var);
+                fe1Var3.a(hl.L(8.0f), canvas, rectF, zo0Var);
             } else {
                 zo0Var = this;
             }
-            if (xo0Var.m != bkb.p1(0.15f, yo0Var.h)) {
-                int p13 = bkb.p1(0.15f, yo0Var.h);
+            if (xo0Var.m != aob.p1(0.15f, yo0Var.h)) {
+                int p13 = aob.p1(0.15f, yo0Var.h);
                 xo0Var.m = p13;
-                ff0Var = ff0Var2;
+                hf0Var = hf0Var2;
                 i4 = 1;
-                bkb.F1(ff0Var, p13, true);
+                aob.F1(hf0Var, p13, true);
             } else {
-                ff0Var = ff0Var2;
+                hf0Var = hf0Var2;
                 i4 = 1;
             }
-            ff0Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            ff0Var.draw(canvas);
+            hf0Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            hf0Var.draw(canvas);
             canvas.restore();
             if (i8 != 0) {
                 i5 = -1;
@@ -284,15 +284,15 @@ public abstract class zo0 extends FrameLayout {
 
     public int getTotalHeight() {
         int i;
-        kp kpVar = this.e;
-        boolean z = ((yo0) kpVar.c).a;
-        if (!z && !((yo0) kpVar.d).a) {
+        lp lpVar = this.e;
+        boolean z = ((yo0) lpVar.c).a;
+        if (!z && !((yo0) lpVar.d).a) {
             i = 0;
         } else {
             i = 1;
         }
         if (z) {
-            yo0 yo0Var = (yo0) kpVar.d;
+            yo0 yo0Var = (yo0) lpVar.d;
             if (yo0Var.a && ("top".equalsIgnoreCase(yo0Var.i) || "bottom".equalsIgnoreCase(((yo0) this.e.d).i))) {
                 i++;
             }
@@ -301,19 +301,19 @@ public abstract class zo0 extends FrameLayout {
             return 0;
         }
         if (i == 1) {
-            return gl.L(58.0f);
+            return hl.L(58.0f);
         }
-        return gl.L(109.0f);
+        return hl.L(109.0f);
     }
 
     @Override
     public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), ug8.E(109.0f, 1, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), ik8.E(109.0f, 1, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        p8c p8cVar;
+        pcc pccVar;
         boolean z;
         if (motionEvent.getAction() == 0) {
             xo0 a = a(motionEvent.getX(), motionEvent.getY());
@@ -327,13 +327,13 @@ public abstract class zo0 extends FrameLayout {
             if (motionEvent.getAction() == 1) {
                 xo0 a2 = a(motionEvent.getX(), motionEvent.getY());
                 xo0 xo0Var = this.h;
-                if (a2 == xo0Var && (p8cVar = this.n) != null) {
+                if (a2 == xo0Var && (pccVar = this.n) != null) {
                     if (xo0Var == this.f[0]) {
                         z = true;
                     } else {
                         z = false;
                     }
-                    p8cVar.a(Boolean.valueOf(z));
+                    pccVar.a(Boolean.valueOf(z));
                 }
             }
             this.h.j.c(false);
@@ -346,8 +346,8 @@ public abstract class zo0 extends FrameLayout {
         return true;
     }
 
-    public void setOnButtonClickListener(p8c p8cVar) {
-        this.n = p8cVar;
+    public void setOnButtonClickListener(pcc pccVar) {
+        this.n = pccVar;
     }
 
     public void setOnResizeListener(Runnable runnable) {

@@ -1,9 +1,4 @@
 package defpackage;
-
-import android.os.Handler;
-import android.os.Looper;
-public abstract class tq2 {
-    public static Handler a(Looper looper) {
-        return Handler.createAsync(looper);
-    }
+public interface tq2 {
+    Object b0(am2 am2Var);
 }

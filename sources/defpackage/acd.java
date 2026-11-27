@@ -1,23 +1,48 @@
 package defpackage;
 
-import android.content.pm.PackageInfo;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-public abstract class acd {
-    public static final cff a = new cff((byte) 23);
+import java.util.Map;
+import java.util.Set;
+public abstract class acd implements ijd {
+    public transient w9d a;
+    public transient e3 b;
 
-    public static void a(PackageInfo packageInfo, File file) {
-        try {
-            DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(new File(file, "profileinstaller_profileWrittenFor_lastUpdateTime.dat")));
-            dataOutputStream.writeLong(packageInfo.lastUpdateTime);
-            dataOutputStream.close();
-        } catch (IOException unused) {
+    public final Map a() {
+        e3 e3Var = this.b;
+        if (e3Var == null) {
+            ccd ccdVar = (ccd) this;
+            e3 e3Var2 = new e3(ccdVar, ccdVar.c, (byte) 2);
+            this.b = e3Var2;
+            return e3Var2;
         }
+        return e3Var;
     }
 
-    public static void b(android.content.Context r18, java.util.concurrent.Executor r19, defpackage.cr8 r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.acd.b(android.content.Context, java.util.concurrent.Executor, cr8, boolean):void");
+    public final Set b() {
+        w9d w9dVar = this.a;
+        if (w9dVar == null) {
+            ccd ccdVar = (ccd) this;
+            w9d w9dVar2 = new w9d(ccdVar, ccdVar.c);
+            this.a = w9dVar2;
+            return w9dVar2;
+        }
+        return w9dVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ijd)) {
+            return false;
+        }
+        return a().equals(((acd) ((ijd) obj)).a());
+    }
+
+    public final int hashCode() {
+        return ((lp2) ((e3) a()).d).hashCode();
+    }
+
+    public final String toString() {
+        return ((lp2) ((e3) a()).d).toString();
     }
 }

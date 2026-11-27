@@ -1,6 +1,8 @@
 package defpackage;
-public abstract class t40 {
-    public abstract void a(int i, CharSequence charSequence);
 
-    public abstract void b(fj0 fj0Var);
+import android.hardware.biometrics.BiometricPrompt$AuthenticationCallback;
+public abstract class t40 {
+    public static BiometricPrompt$AuthenticationCallback a(v40 v40Var) {
+        return new s40(v40Var);
+    }
 }

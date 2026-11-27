@@ -1,91 +1,73 @@
 package defpackage;
 
-import android.util.SparseArray;
+import android.os.Build;
 import j$.util.Objects;
-import java.util.List;
+import java.util.Set;
 public final class rz {
-    public static final w59 e;
-    public static final rz f;
-    public static final w59 g;
-    public static final qm5 h;
-    public final SparseArray a = new SparseArray();
+    public static final rz d;
+    public final int a;
     public final int b;
-    public final mm5 c;
-    public final mm5 d;
+    public final bp5 c;
 
     static {
-        w59 u = mm5.u(12);
-        e = u;
-        f = new rz(mm5.u(qz.d), u, w59.e);
-        Object[] objArr = {2, 5, 6};
-        xpe.a(3, objArr);
-        g = mm5.o(3, objArr);
-        kp kpVar = new kp(4);
-        kpVar.w(5, 6);
-        kpVar.w(17, 6);
-        kpVar.w(7, 6);
-        kpVar.w(30, 10);
-        kpVar.w(18, 6);
-        kpVar.w(6, 8);
-        kpVar.w(8, 8);
-        kpVar.w(14, 8);
-        h = kpVar.c(true);
+        rz rzVar;
+        if (Build.VERSION.SDK_INT >= 33) {
+            ?? ho5Var = new ho5(4);
+            for (int i = 1; i <= 10; i++) {
+                ho5Var.c(Integer.valueOf(gcc.t(i)));
+            }
+            rzVar = new rz(2, ho5Var.g());
+        } else {
+            rzVar = new rz(2, 10);
+        }
+        d = rzVar;
     }
 
-    public rz(w59 w59Var, mm5 mm5Var, List list) {
-        for (int i = 0; i < w59Var.d; i++) {
-            qz qzVar = (qz) w59Var.get(i);
-            this.a.put(qzVar.a, qzVar);
-        }
+    public rz(int i, Set set) {
+        this.a = i;
+        bp5 q = bp5.q(set);
+        this.c = q;
+        v9c n = q.n();
         int i2 = 0;
-        for (int i3 = 0; i3 < this.a.size(); i3++) {
-            i2 = Math.max(i2, ((qz) this.a.valueAt(i3)).b);
+        while (n.hasNext()) {
+            i2 = Math.max(i2, Integer.bitCount(((Integer) n.next()).intValue()));
         }
         this.b = i2;
-        this.c = mm5.q(mm5Var);
-        this.d = mm5.q(list);
-    }
-
-    public static w59 a(int[] iArr, int i) {
-        jm5 p = mm5.p();
-        if (iArr == null) {
-            iArr = new int[0];
-        }
-        for (int i2 : iArr) {
-            p.c(new qz(i2, i));
-        }
-        return p.f();
-    }
-
-    public static defpackage.rz b(android.content.Context r8, android.content.Intent r9, defpackage.nz r10, android.media.AudioDeviceInfo r11, java.util.List r12) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rz.b(android.content.Context, android.content.Intent, nz, android.media.AudioDeviceInfo, java.util.List):rz");
-    }
-
-    public final android.util.Pair c(defpackage.nz r14, defpackage.fm4 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.rz.c(nz, fm4):android.util.Pair");
     }
 
     public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof rz) {
-                rz rzVar = (rz) obj;
-                if (g8c.m(this.a, rzVar.a) && this.b == rzVar.b && Objects.equals(this.c, rzVar.c) && Objects.equals(this.d, rzVar.d)) {
-                    return true;
-                }
-                return false;
-            }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof rz)) {
             return false;
         }
-        return true;
+        rz rzVar = (rz) obj;
+        if (this.a == rzVar.a && this.b == rzVar.b && Objects.equals(this.c, rzVar.c)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        int n = g8c.n(this.a);
-        int hashCode = Objects.hashCode(this.c);
-        return Objects.hashCode(this.d) + ((hashCode + ((n + (this.b * 31)) * 31)) * 31);
+        int hashCode;
+        int i = ((this.a * 31) + this.b) * 31;
+        bp5 bp5Var = this.c;
+        if (bp5Var == null) {
+            hashCode = 0;
+        } else {
+            hashCode = bp5Var.hashCode();
+        }
+        return i + hashCode;
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.b + ", audioProfiles=" + this.a + ", speakerLayoutChannelMasks=" + this.c + ", spatializerChannelMasks=" + this.d + "]";
+        return "AudioProfile[format=" + this.a + ", maxChannelCount=" + this.b + ", channelMasks=" + this.c + "]";
+    }
+
+    public rz(int i, int i2) {
+        this.a = i;
+        this.b = i2;
+        this.c = null;
     }
 }

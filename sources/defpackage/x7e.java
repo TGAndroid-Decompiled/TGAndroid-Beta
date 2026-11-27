@@ -1,17 +1,17 @@
 package defpackage;
-public final class x7e implements zn7 {
-    public static final x7e a = new Object();
+
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+public abstract class x7e {
+    public static final Charset a;
+    public static final byte[] b;
 
     static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        Charset.forName("US-ASCII");
+        a = Charset.forName("UTF-8");
+        Charset.forName("ISO-8859-1");
+        byte[] bArr = new byte[0];
+        b = bArr;
+        ByteBuffer.wrap(bArr);
     }
 }

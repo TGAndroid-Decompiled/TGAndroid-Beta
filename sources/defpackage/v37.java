@@ -1,48 +1,32 @@
 package defpackage;
 
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
-public final class v37 implements Runnable {
-    public final byte a;
-    public final j47 b;
-    public final EditText c;
+import android.content.Context;
+import java.util.ArrayList;
+public final class v37 extends d79 {
+    public final ArrayList f3;
+    public final ArrayList g3;
+    public final ArrayList h3;
+    public final ArrayList i3;
+    public final ArrayList j3;
+    public final vw7 k3;
 
-    public v37(j47 j47Var, EditText editText, byte b) {
-        this.a = b;
-        this.b = j47Var;
-        this.c = editText;
+    public v37(vw7 vw7Var, Context context, a47 a47Var) {
+        super(context, a47Var);
+        this.k3 = vw7Var;
+        this.f3 = new ArrayList();
+        this.g3 = new ArrayList();
+        this.h3 = new ArrayList();
+        this.i3 = new ArrayList();
+        this.j3 = new ArrayList(10);
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        EditText editText = this.c;
-        j47 j47Var = this.b;
-        switch (b) {
-            case 0:
-                if (!j47Var.t0) {
-                    try {
-                        Window window = j47Var.getWindow();
-                        WindowManager.LayoutParams attributes = window.getAttributes();
-                        attributes.flags &= -131073;
-                        window.setAttributes(attributes);
-                        j47Var.t0 = true;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                    }
-                }
-                gl.d3(new v37(j47Var, editText, (byte) 1), 100L);
-                return;
-            default:
-                gl.E3(editText);
-                if (j47Var.W != null) {
-                    j47Var.b(j47Var.r0);
-                    j47Var.X.setScaleX(j47Var.W.getScaleX());
-                    j47Var.X.setScaleY(j47Var.W.getScaleY());
-                    return;
-                }
-                return;
-        }
+    public final void dispatchDraw(android.graphics.Canvas r28) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.v37.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.v37.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 }

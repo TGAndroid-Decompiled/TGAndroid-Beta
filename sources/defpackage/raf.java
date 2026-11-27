@@ -1,3 +1,5 @@
 package defpackage;
-public abstract class raf {
+
+import android.os.IInterface;
+public interface raf extends IInterface {
 }

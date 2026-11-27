@@ -1,29 +1,39 @@
 package defpackage;
 
 import android.view.View;
-public final class uj4 implements View.OnClickListener {
-    public final byte a;
-    public final ek4 b;
+public final class uj4 extends hn {
+    public final byte e0 = 0;
+    public final Object f0;
 
-    public uj4(ek4 ek4Var, byte b) {
-        this.a = b;
-        this.b = ek4Var;
+    public uj4(View view) {
+        super(false, false, false, false, true);
+        this.f0 = view;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        ek4 ek4Var = this.b;
+    public final void invalidateSelf() {
+        byte b = this.e0;
+        Object obj = this.f0;
         switch (b) {
             case 0:
-                ek4Var.f();
+                ((View) obj).invalidate();
                 return;
             case 1:
-                ek4Var.f();
+                ((Runnable) obj).run();
                 return;
             default:
-                ek4Var.f();
+                ((voa) obj).invalidate();
                 return;
         }
+    }
+
+    public uj4(Runnable runnable) {
+        super(false, true, true, true, false);
+        this.f0 = runnable;
+    }
+
+    public uj4(voa voaVar) {
+        super(false, false, false, true, true);
+        this.f0 = voaVar;
     }
 }

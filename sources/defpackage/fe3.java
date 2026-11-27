@@ -1,25 +1,15 @@
 package defpackage;
+public final class fe3 implements icc {
+    public final byte a;
+    public final me3 b;
 
-import java.util.TreeMap;
-public final class fe3 {
-    public final String a;
-    public final String b;
-    public final long c;
-    public long d = 0;
-    public int e;
-    public final int f;
-    public final int g;
-    public int[] h;
-    public final TreeMap i;
+    public fe3(me3 me3Var, byte b) {
+        this.a = b;
+        this.b = me3Var;
+    }
 
-    public fe3(String str, String str2, long j, int i, int i2, int i3, int[] iArr, TreeMap treeMap) {
-        this.a = str;
-        this.b = str2;
-        this.c = j;
-        this.e = i;
-        this.f = i2;
-        this.g = i3;
-        this.h = iArr;
-        this.i = treeMap;
+    @Override
+    public final void a(java.lang.Object r13, java.lang.Object r14) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.fe3.a(java.lang.Object, java.lang.Object):void");
     }
 }

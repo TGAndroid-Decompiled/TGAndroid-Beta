@@ -28,7 +28,7 @@ final class AudioNoiseSuppressor {
         if (!this.b.get()) {
             return nProcess(this.a, byteBuffer, i);
         }
-        sc8.j("Native noise suppressor is already released");
+        grb.i("Native noise suppressor is already released");
         return false;
     }
 

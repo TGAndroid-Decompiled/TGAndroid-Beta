@@ -1,10 +1,12 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class y0b extends EditTextBoldCursor {
+import android.graphics.Canvas;
+public final class y0b extends h1b {
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(gl.L(50.0f), 1073741824));
+    public final void onDraw(Canvas canvas) {
+        if (getTranslationY() != 0.0f) {
+            canvas.drawColor(aob.w0(null, aob.d6, false));
+        }
+        super.onDraw(canvas);
     }
 }

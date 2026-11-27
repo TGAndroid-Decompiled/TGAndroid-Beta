@@ -1,99 +1,36 @@
 package defpackage;
-public final class jt8 implements z8c {
+
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.ProfileActivity;
+public final class jt8 implements pcc {
     public final byte a;
-    public boolean b = false;
-    public boolean c = false;
-    public w84 d;
-    public final ao7 e;
+    public final eu8 b;
 
-    public jt8(ao7 ao7Var, byte b) {
+    public jt8(eu8 eu8Var, byte b) {
         this.a = b;
-        this.e = ao7Var;
+        this.b = eu8Var;
     }
 
     @Override
-    public final z8c b(String str) {
+    public final void a(Object obj) {
         byte b = this.a;
-        ao7 ao7Var = this.e;
+        eu8 eu8Var = this.b;
         switch (b) {
             case 0:
-                if (!this.b) {
-                    this.b = true;
-                    ((ht8) ao7Var).i(this.d, str, this.c);
-                    return this;
+                eu8Var.f(true);
+                uic uicVar = eu8Var.n;
+                int i = ((TL_stars.TL_starGiftCollection) obj).collection_id;
+                uicVar.e(i, eu8Var.e.f(i) + 1);
+                e eVar = eu8Var.a;
+                if (eVar instanceof ProfileActivity) {
+                    ((ProfileActivity) eVar).k3(true);
                 }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 1:
-                if (!this.b) {
-                    this.b = true;
-                    ((y7d) ao7Var).c(this.d, str, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 2:
-                if (!this.b) {
-                    this.b = true;
-                    ((o8d) ao7Var).c(this.d, str, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 3:
-                if (!this.b) {
-                    this.b = true;
-                    ((pid) ao7Var).c(this.d, str, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+                eu8Var.o();
+                return;
             default:
-                if (!this.b) {
-                    this.b = true;
-                    ((tkd) ao7Var).c(this.d, str, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-        }
-    }
-
-    @Override
-    public final z8c c(boolean z) {
-        byte b = this.a;
-        ao7 ao7Var = this.e;
-        switch (b) {
-            case 0:
-                if (!this.b) {
-                    this.b = true;
-                    ((ht8) ao7Var).c(this.d, z ? 1 : 0, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 1:
-                if (!this.b) {
-                    this.b = true;
-                    ((y7d) ao7Var).h(this.d, z ? 1 : 0, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 2:
-                if (!this.b) {
-                    this.b = true;
-                    ((o8d) ao7Var).h(this.d, z ? 1 : 0, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            case 3:
-                if (!this.b) {
-                    this.b = true;
-                    ((pid) ao7Var).h(this.d, z ? 1 : 0, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
-            default:
-                if (!this.b) {
-                    this.b = true;
-                    ((tkd) ao7Var).h(this.d, z ? 1 : 0, this.c);
-                    return this;
-                }
-                throw new RuntimeException("Cannot encode a second value in the ValueEncoderContext");
+                eu8Var.e.b(new jt8(eu8Var, (byte) 0), (String) obj);
+                return;
         }
     }
 }

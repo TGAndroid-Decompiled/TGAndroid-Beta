@@ -1,103 +1,170 @@
 package defpackage;
 
-import android.opengl.Matrix;
-import j$.util.DesugarCollections;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-public final class ntb implements kt8 {
-    public Object a;
-    public Object b;
-    public Object c;
-    public Object d;
-    public Object e;
-    public Object f;
-    public Object h;
+import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Region;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.concurrent.atomic.AtomicBoolean;
+public class ntb extends View implements qk4 {
+    public final Path a;
+    public final Paint b;
+    public final Paint c;
+    public boolean d;
+    public final mm e;
+    public Drawable f;
+    public Bitmap h;
+    public int n;
+    public ValueAnimator r;
 
-    public ntb(Set set, ps psVar, String str, String str2, gha ghaVar) {
-        Set unmodifiableSet;
-        if (set == null) {
-            unmodifiableSet = Collections.EMPTY_SET;
-        } else {
-            unmodifiableSet = DesugarCollections.unmodifiableSet(set);
-        }
-        this.a = unmodifiableSet;
-        ps psVar2 = psVar == null ? Collections.EMPTY_MAP : psVar;
-        this.c = psVar2;
-        this.d = str;
-        this.e = str2;
-        this.f = ghaVar == null ? gha.a : ghaVar;
-        HashSet hashSet = new HashSet(unmodifiableSet);
-        Iterator it = psVar2.values().iterator();
-        if (!it.hasNext()) {
-            this.b = DesugarCollections.unmodifiableSet(hashSet);
+    public ntb(Activity activity) {
+        super(activity);
+        this.a = new Path();
+        Paint paint = new Paint(1);
+        this.b = paint;
+        Paint paint2 = new Paint(3);
+        this.c = paint2;
+        this.e = new mm(this, 0L, 380L, k43.h);
+        paint.setColor(-1);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+    }
+
+    public final void a(bl2 bl2Var, boolean z) {
+        if (this.f == bl2Var) {
             return;
         }
-        throw ls6.l(it);
-    }
-
-    public final void a(int i, int i2, float f, float f2, boolean z, float[] fArr) {
-        float f3;
-        float f4;
-        float[] fArr2 = (float[]) this.d;
-        float[] fArr3 = (float[]) this.c;
-        float[] fArr4 = (float[]) this.b;
-        float[] fArr5 = (float[]) this.a;
-        float f5 = (i - i2) / 0.3902439f;
-        if (f5 <= 0.0f || f5 > i) {
-            f5 = i;
+        ValueAnimator valueAnimator = this.r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.r = null;
         }
-        Matrix.perspectiveM(fArr5, 0, (float) Math.toDegrees(Math.atan(0.09100712590841677d * (i2 / Math.max(1.0f, f5 / 1.64f))) * 2.0d), i / Math.max(1, i2), 0.1f, 20.0f);
-        Matrix.setLookAtM(fArr4, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        Matrix.setIdentityM(fArr3, 0);
-        Matrix.rotateM(fArr3, 0, -f, 1.0f, 0.0f, 0.0f);
-        Matrix.rotateM(fArr3, 0, -f2, 0.0f, 1.0f, 0.0f);
-        Matrix.rotateM(fArr3, 0, 90.0f, 0.0f, 1.0f, 0.0f);
-        Matrix.translateM(fArr3, 0, -0.02f, 0.0f, 0.0f);
-        Matrix.scaleM(fArr3, 0, 0.965f, 0.965f, 0.965f);
-        Matrix.multiplyMM(fArr2, 0, fArr4, 0, fArr3, 0);
-        Matrix.multiplyMM((float[]) this.e, 0, fArr5, 0, fArr2, 0);
         if (z) {
-            f3 = 0.0125f;
-            f4 = 1.0f;
-        } else {
-            f3 = -0.0125f;
-            f4 = -1.0f;
+            this.r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+            this.r.addUpdateListener(new nk(this, new AtomicBoolean(), bl2Var, (byte) 7));
+            this.r.start();
+            return;
         }
-        float f6 = -f4;
-        b(f3, 0.618561f, f4, i, i2, fArr, 0);
-        b(f3, 0.618561f, f6, i, i2, fArr, 2);
-        b(f3, -0.593561f, f6, i, i2, fArr, 4);
-        b(f3, -0.593561f, f4, i, i2, fArr, 6);
+        setDrawable(bl2Var);
     }
 
-    public final float b(float f, float f2, float f3, int i, int i2, float[] fArr, int i3) {
-        float[] fArr2 = (float[]) this.f;
-        fArr2[0] = f;
-        fArr2[1] = f2;
-        fArr2[2] = f3;
-        fArr2[3] = 1.0f;
-        float[] fArr3 = (float[]) this.h;
-        Matrix.multiplyMV(fArr3, 0, (float[]) this.e, 0, fArr2, 0);
-        float f4 = 1.0f / fArr3[3];
-        fArr[i3] = b00.w(fArr3[0], f4, 0.5f, 0.5f) * i;
-        fArr[i3 + 1] = oo1.v(fArr3[1], f4, 0.5f, 0.5f) * i2;
-        return fArr3[2] * f4;
+    public final void b(boolean z, boolean z2) {
+        float f;
+        this.d = z;
+        if (!z2) {
+            if (z) {
+                f = 1.0f;
+            } else {
+                f = 0.0f;
+            }
+            this.e.e(true, f);
+        }
+        invalidate();
     }
 
     @Override
-    public final Object mo9get() {
-        return new fga((k7a) ((kt8) this.a).mo9get(), (h6a) ((kt8) this.b).mo9get(), (g6a) ((kt8) this.c).mo9get(), (snb) ((kt8) this.d).mo9get(), (v63) ((kt8) this.e).mo9get(), (xk8) ((kt8) this.f).mo9get(), (sw2) ((mo5) this.h).a);
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.f != null) {
+            float d = this.e.d(this.d);
+            int intrinsicWidth = this.f.getIntrinsicWidth();
+            int intrinsicHeight = this.f.getIntrinsicHeight();
+            Rect rect = hl.Q;
+            rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
+            if (d <= 0.0f) {
+                this.f.setBounds(rect);
+                this.f.draw(canvas);
+            } else if (d < 1.0f) {
+                canvas.save();
+                Path path = this.a;
+                path.rewind();
+                path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, hl.L(16.0f) * d, Path.Direction.CW);
+                canvas.clipPath(path, Region.Op.DIFFERENCE);
+                this.f.setBounds(rect);
+                this.f.draw(canvas);
+                canvas.restore();
+            }
+            if (d > 0.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, hl.L(16.0f) * d, this.b);
+                canvas.save();
+                Bitmap bitmap = this.h;
+                if (bitmap != null) {
+                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.c);
+                }
+                canvas.restore();
+                canvas.restore();
+            }
+        }
     }
 
-    public ntb() {
-        this.a = new float[16];
-        this.b = new float[16];
-        this.c = new float[16];
-        this.d = new float[16];
-        this.e = new float[16];
-        this.f = new float[4];
-        this.h = new float[4];
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.h == null && this.n != 0) {
+            this.h = BitmapFactory.decodeResource(getResources(), this.n);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Bitmap bitmap = this.h;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.h = null;
+        }
+    }
+
+    public void setDrawable(Drawable drawable) {
+        this.f = drawable;
+        Bitmap bitmap = this.h;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.h = null;
+        }
+        if (this.h == null && drawable != null && drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
+            Bitmap createBitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            this.h = createBitmap;
+            drawable.setBounds(0, 0, createBitmap.getWidth(), this.h.getHeight());
+            drawable.draw(new Canvas(this.h));
+        }
+        invalidate();
+    }
+
+    @Override
+    public void setInvert(float f) {
+        Drawable drawable = this.f;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(vm2.f(f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        }
+        this.b.setColor(vm2.f(f, -1, -16777216));
+        invalidate();
+    }
+
+    @Override
+    public void setSelected(boolean z) {
+        this.d = z;
+        invalidate();
+    }
+
+    public void setDrawable(int i) {
+        this.f = getContext().getResources().getDrawable(i).mutate();
+        Bitmap bitmap = this.h;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.h = null;
+        }
+        if (this.h == null && i != 0) {
+            this.h = BitmapFactory.decodeResource(getResources(), i);
+        }
+        invalidate();
     }
 }

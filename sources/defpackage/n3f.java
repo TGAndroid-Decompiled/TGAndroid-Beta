@@ -1,26 +1,21 @@
 package defpackage;
 
-import android.content.Context;
+import android.os.Bundle;
 import java.util.ArrayList;
-public final class n3f implements x3f {
-    public final ArrayList a;
-
-    public n3f(Context context, g3f g3fVar) {
-        ArrayList arrayList = new ArrayList();
-        this.a = arrayList;
-        g3fVar.getClass();
-        arrayList.add(new q4f(context, g3fVar));
-    }
-
-    @Override
-    public final void a(qx qxVar) {
-        ArrayList arrayList = this.a;
+public abstract class n3f {
+    public static final ArrayList a(ArrayList arrayList) {
+        ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i = 0;
         while (i < size) {
             Object obj = arrayList.get(i);
             i++;
-            ((x3f) obj).a(qxVar);
+            q4d q4dVar = (q4d) obj;
+            Bundle bundle = new Bundle();
+            bundle.putInt("event_type", q4dVar.a);
+            bundle.putLong("event_timestamp", q4dVar.b);
+            arrayList2.add(bundle);
         }
+        return arrayList2;
     }
 }

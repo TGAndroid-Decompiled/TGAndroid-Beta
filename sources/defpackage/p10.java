@@ -1,50 +1,61 @@
 package defpackage;
 
-import android.app.Activity;
-public final class p10 extends o39 {
-    public boolean f3;
-    public final i20 g3;
+import android.view.ContextThemeWrapper;
+import org.telegram.ui.PhotoViewer;
+public final class p10 extends kd1 {
+    public final byte b;
+    public final fn7 c;
 
-    public p10(i20 i20Var, Activity activity) {
-        super(activity, null);
-        this.g3 = i20Var;
+    public p10(fn7 fn7Var, ContextThemeWrapper contextThemeWrapper, byte b) {
+        super(contextThemeWrapper);
+        this.b = b;
+        this.c = fn7Var;
     }
 
     @Override
-    public final boolean F0(float f) {
-        i20 i20Var = this.g3;
-        if (f < i20Var.x1.getY() - i20Var.r1.getTop()) {
-            return true;
+    public final void c(boolean z) {
+        boolean z2;
+        int i;
+        byte b = this.b;
+        fn7 fn7Var = this.c;
+        switch (b) {
+            case 0:
+                j20 j20Var = (j20) fn7Var;
+                j20Var.updateColors();
+                eh2 eh2Var = j20Var.H1;
+                if (eh2Var != null) {
+                    eh2Var.a(go.w());
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) fn7Var;
+                b8 b8Var = photoViewer.G0;
+                if (b8Var != null) {
+                    b8Var.f(z);
+                    b8 b8Var2 = photoViewer.G0;
+                    if (z) {
+                        i = 259241196;
+                    } else {
+                        i = 268435455;
+                    }
+                    b8Var2.setSelectorColor(i);
+                }
+                kfc kfcVar = photoViewer.G2;
+                if (kfcVar != null) {
+                    if (!go.w() && !photoViewer.r) {
+                        z2 = false;
+                    } else {
+                        z2 = true;
+                    }
+                    kfcVar.s0(z2);
+                }
+                eh2 eh2Var2 = photoViewer.x0;
+                if (eh2Var2 != null) {
+                    eh2Var2.a(go.w());
+                    return;
+                }
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        i20 i20Var = this.g3;
-        int i5 = i20Var.l2;
-        if (i5 != -1 && !i20Var.m1.o0) {
-            this.f3 = true;
-            i20Var.s1.g1(i5, i20Var.m2 - i20Var.r1.getPaddingTop());
-            super.onLayout(false, i, i2, i3, i4);
-            this.f3 = false;
-            i20Var.l2 = -1;
-        } else if (i20Var.k2) {
-            i20Var.k2 = false;
-            this.f3 = true;
-            if (i20Var.M0(true)) {
-                super.onLayout(false, i, i2, i3, i4);
-            }
-            this.f3 = false;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f3) {
-            return;
-        }
-        super.requestLayout();
     }
 }

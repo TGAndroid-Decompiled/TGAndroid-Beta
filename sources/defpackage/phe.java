@@ -1,5 +1,4 @@
 package defpackage;
-
-import android.os.IInterface;
-public interface phe extends IInterface {
+public abstract class phe extends b9e implements Cloneable {
+    public static volatile phe[] a;
 }

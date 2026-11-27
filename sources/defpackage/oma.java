@@ -1,31 +1,50 @@
 package defpackage;
-public abstract class oma {
-    public static final int a = 0;
+public final class oma extends bp5 {
+    public final transient Object d;
 
-    static {
-        Object sa9Var;
-        Object sa9Var2;
-        Exception exc = new Exception();
-        String simpleName = bzc.class.getSimpleName();
-        StackTraceElement stackTraceElement = exc.getStackTrace()[0];
-        new StackTraceElement("_COROUTINE.".concat(simpleName), "_", stackTraceElement.getFileName(), stackTraceElement.getLineNumber());
-        try {
-            sa9Var = of0.class.getCanonicalName();
-        } catch (Throwable th) {
-            sa9Var = new sa9(th);
-        }
-        if (ta9.a(sa9Var) != null) {
-            sa9Var = "kotlin.coroutines.jvm.internal.BaseContinuationImpl";
-        }
-        String str = (String) sa9Var;
-        try {
-            sa9Var2 = oma.class.getCanonicalName();
-        } catch (Throwable th2) {
-            sa9Var2 = new sa9(th2);
-        }
-        if (ta9.a(sa9Var2) != null) {
-            sa9Var2 = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
-        }
-        String str2 = (String) sa9Var2;
+    public oma(Object obj) {
+        obj.getClass();
+        this.d = obj;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return this.d.equals(obj);
+    }
+
+    @Override
+    public final po5 h() {
+        return po5.u(this.d);
+    }
+
+    @Override
+    public final int hashCode() {
+        return this.d.hashCode();
+    }
+
+    @Override
+    public final int i(int i, Object[] objArr) {
+        objArr[i] = this.d;
+        return i + 1;
+    }
+
+    @Override
+    public final boolean m() {
+        return false;
+    }
+
+    @Override
+    public final v9c iterator() {
+        return new qu5(this.d);
+    }
+
+    @Override
+    public final int size() {
+        return 1;
+    }
+
+    @Override
+    public final String toString() {
+        return "[" + this.d.toString() + ']';
     }
 }

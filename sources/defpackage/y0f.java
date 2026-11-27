@@ -1,13 +1,26 @@
 package defpackage;
+public final class y0f {
+    public final String a;
 
-import sun.misc.Unsafe;
-public abstract class y0f {
-    public static boolean a(Unsafe unsafe, akd akdVar, long j, Object obj, Object obj2) {
-        while (!unsafe.compareAndSwapObject(akdVar, j, obj, obj2)) {
-            if (unsafe.getObject(akdVar, j) != obj && unsafe.getObject(akdVar, j) != obj) {
-                return false;
-            }
+    public y0f(String str) {
+        this.a = str;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        return true;
+        if ((obj instanceof y0f) && this.a.equals(((y0f) obj).a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((((this.a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
+    }
+
+    public final String toString() {
+        return qd4.y("MLKitLoggingOptions{libraryName=", this.a, ", enableFirelog=true, firelogEventType=1}");
     }
 }

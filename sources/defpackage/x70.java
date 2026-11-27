@@ -1,21 +1,24 @@
 package defpackage;
-public final class x70 extends li2 {
-    public final u70 a;
+public final class x70 {
+    public final int a;
+    public final long b;
 
-    public x70(u70 u70Var) {
-        this.a = u70Var;
+    public x70(int i, long j) {
+        if (i != 0) {
+            this.a = i;
+            this.b = j;
+            return;
+        }
+        p3d.h("Null status");
+        throw null;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
-            if (obj instanceof li2) {
-                li2 li2Var = (li2) obj;
-                Object obj2 = ki2.a;
-                if (obj2.equals(obj2)) {
-                    if (this.a.equals(((x70) li2Var).a)) {
-                        return true;
-                    }
-                    return false;
+            if (obj instanceof x70) {
+                x70 x70Var = (x70) obj;
+                if (ik8.c(this.a, x70Var.a) && this.b == x70Var.b) {
+                    return true;
                 }
                 return false;
             }
@@ -25,10 +28,33 @@ public final class x70 extends li2 {
     }
 
     public final int hashCode() {
-        return ((ki2.a.hashCode() ^ 1000003) * 1000003) ^ this.a.hashCode();
+        long j = this.b;
+        return ((ik8.F(this.a) ^ 1000003) * 1000003) ^ ((int) ((j >>> 32) ^ j));
     }
 
     public final String toString() {
-        return "ClientInfo{clientType=" + ki2.a + ", androidClientInfo=" + this.a + "}";
+        String str;
+        StringBuilder sb = new StringBuilder("BackendResponse{status=");
+        int i = this.a;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    if (i != 4) {
+                        str = "null";
+                    } else {
+                        str = "INVALID_PAYLOAD";
+                    }
+                } else {
+                    str = "FATAL_ERROR";
+                }
+            } else {
+                str = "TRANSIENT_ERROR";
+            }
+        } else {
+            str = "OK";
+        }
+        sb.append(str);
+        sb.append(", nextRequestWaitMillis=");
+        return qu6.p(sb, this.b, "}");
     }
 }

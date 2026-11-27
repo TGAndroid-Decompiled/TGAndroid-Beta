@@ -1,39 +1,46 @@
 package defpackage;
-public final class vke extends c2e {
-    private static final vke zzb;
-    private int zzd;
-    private int zzf;
-    private fje zzi;
-    private boolean zzj;
-    private boolean zzk;
-    private String zze = "";
-    private w2e zzg = h2e.e;
-    private a3e zzh = pae.e;
-
-    static {
-        vke vkeVar = new vke();
-        zzb = vkeVar;
-        c2e.k(vke.class, vkeVar);
+public abstract class vke {
+    public static ga4 a(long j, int i, long j2, float f, float f2, float f3, float f4, fa4 fa4Var) {
+        float f5 = f4 - f3;
+        float max = Math.max(f, f3);
+        float min = Math.min(f2, f4);
+        if (f5 > 0.0f && max < min) {
+            float f6 = f2 - f;
+            if (min - max >= Math.min(f6, f5) / 2.0f) {
+                return new ga4(j, i, j2, max - f, min - f, f6, f5, fa4Var);
+            }
+            return null;
+        }
+        return null;
     }
 
-    @Override
-    public final Object d(int i) {
-        int i2 = i - 1;
-        if (i2 != 0) {
-            if (i2 != 2) {
-                if (i2 != 3) {
-                    if (i2 != 4) {
-                        if (i2 == 5) {
-                            return zzb;
-                        }
-                        throw null;
-                    }
-                    return new e0e(zzb);
-                }
-                return new vke();
+    public static String b(String str, boolean z) {
+        String str2;
+        if (str != null) {
+            if (str.indexOf(58) <= 0) {
+                str2 = "";
+            } else {
+                str2 = str.substring(0, str.indexOf(58)).toLowerCase();
             }
-            return new vae(zzb, "\u0004\u0007\u0000\u0001\u0001\u0007\u0007\u0000\u0002\u0000\u0001ဈ\u0000\u0002᠌\u0001\u0003ࠬ\u0004\u001b\u0005ဉ\u0002\u0006ဇ\u0003\u0007ဇ\u0004", new Object[]{"zzd", "zze", "zzf", yqd.f, "zzg", yqd.e, "zzh", jpe.class, "zzi", "zzj", "zzk"});
+            String lowerCase = str.toLowerCase();
+            if (!str.startsWith("@") && !str2.equals("tg")) {
+                if (!str2.equals("http") && !str2.equals("https") && !str2.equals("tonsite")) {
+                    return null;
+                }
+                String str3 = lowerCase.substring(str2.length() + 1).replaceFirst("^//", "").split("[/?#:]", 2)[0];
+                if (!str3.equals("telegra.ph") && !str3.equals("te.legra.ph") && !str3.equals("graph.org")) {
+                    if (!str3.equals("telegram.org") || !lowerCase.matches(".*telegram\\.org/(faq|privacy|blog).*")) {
+                        if (!z) {
+                            return "external";
+                        }
+                        return "in_app";
+                    }
+                    return "iv";
+                }
+                return "iv";
+            }
+            return "in_app";
         }
-        return (byte) 1;
+        return null;
     }
 }

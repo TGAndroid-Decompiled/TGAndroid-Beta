@@ -1,359 +1,175 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class vf6 implements Cloneable {
-    public boolean a;
-    public long[] b;
-    public Object[] c;
-    public int d;
+import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.widget.TextView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class vf6 extends cna {
+    public final qh6 E;
+    public final bf6 a;
+    public final TextView b;
+    public final TextView c;
+    public final tpa d;
+    public final e29 e;
+    public Bundle f;
+    public String h;
+    public boolean n;
+    public String r;
+    public String s;
+    public String w;
+    public boolean x;
+    public final tf6 y;
 
-    public vf6(int i) {
-        if (i == 0) {
-            this.b = yp3.d;
-            this.c = yp3.e;
+    public vf6(defpackage.qh6 r20, android.content.Context r21) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vf6.<init>(qh6, android.content.Context):void");
+    }
+
+    @Override
+    public final boolean a() {
+        return true;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z) {
+        this.E.y1(true, true);
+        this.f = null;
+        this.n = false;
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.n = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return ob6.M0(2131748480, "LoginPassword");
+    }
+
+    @Override
+    public final void h(String str) {
+        int i;
+        if (this.n) {
             return;
         }
-        int i2 = i << 3;
-        int i3 = 4;
-        while (true) {
-            if (i3 >= 32) {
-                break;
-            }
-            int i4 = (1 << i3) - 12;
-            if (i2 <= i4) {
-                i2 = i4;
-                break;
-            }
-            i3++;
+        bf6 bf6Var = this.a;
+        bf6Var.e = true;
+        for (ok2 ok2Var : bf6Var.f) {
+            ok2Var.B(0.0f);
         }
-        int i5 = i2 / 8;
-        this.b = new long[i5];
-        this.c = new Object[i5];
-    }
-
-    public final void a(long j, Long l) {
-        int i = this.d;
-        if (i != 0 && j <= this.b[i - 1]) {
-            k(l, j);
+        String code = bf6Var.getCode();
+        if (code.length() == 0) {
+            n(false);
             return;
         }
-        if (this.a) {
-            long[] jArr = this.b;
-            if (i >= jArr.length) {
-                Object[] objArr = this.c;
-                int i2 = 0;
-                for (int i3 = 0; i3 < i; i3++) {
-                    Object obj = objArr[i3];
-                    if (obj != pad.a) {
-                        if (i3 != i2) {
-                            jArr[i2] = jArr[i3];
-                            objArr[i2] = obj;
-                            objArr[i3] = null;
-                        }
-                        i2++;
-                    }
-                }
-                this.a = false;
-                this.d = i2;
-                i = i2;
-            }
-        }
-        if (i >= this.b.length) {
-            int i4 = (i + 1) << 3;
-            int i5 = 4;
-            while (true) {
-                if (i5 >= 32) {
-                    break;
-                }
-                int i6 = (1 << i5) - 12;
-                if (i4 <= i6) {
-                    i4 = i6;
-                    break;
-                }
-                i5++;
-            }
-            int i7 = i4 / 8;
-            this.b = Arrays.copyOf(this.b, i7);
-            this.c = Arrays.copyOf(this.c, i7);
-        }
-        this.b[i] = j;
-        this.c[i] = l;
-        this.d = i + 1;
+        this.n = true;
+        qh6 qh6Var = this.E;
+        qh6Var.B1(0, true);
+        TLRPC.TL_auth_checkRecoveryPassword tL_auth_checkRecoveryPassword = new TLRPC.TL_auth_checkRecoveryPassword();
+        tL_auth_checkRecoveryPassword.code = code;
+        i = ((e) qh6Var).currentAccount;
+        ConnectionsManager.getInstance(i).sendRequest(tL_auth_checkRecoveryPassword, new mw3(this, code, (byte) 20), 10);
     }
 
-    public final void b() {
-        int i = this.d;
-        Object[] objArr = this.c;
-        for (int i2 = 0; i2 < i; i2++) {
-            objArr[i2] = null;
+    @Override
+    public final void j() {
+        hl.d3(new tf6(this, (byte) 0), qh6.A0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("recoveryview_params");
+        this.f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
         }
-        this.d = 0;
-        this.a = false;
-    }
-
-    public final vf6 clone() {
-        Object clone = super.clone();
-        clone.getClass();
-        vf6 vf6Var = (vf6) clone;
-        vf6Var.b = (long[]) this.b.clone();
-        vf6Var.c = (Object[]) this.c.clone();
-        return vf6Var;
-    }
-
-    public final boolean d(long j) {
-        if (h(j) >= 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void e(long j) {
-        int b = yp3.b(this.b, this.d, j);
-        if (b >= 0) {
-            Object[] objArr = this.c;
-            Object obj = objArr[b];
-            Object obj2 = pad.a;
-            if (obj != obj2) {
-                objArr[b] = obj2;
-                this.a = true;
-            }
+        String string = bundle.getString("recoveryview_code");
+        if (string != null) {
+            this.a.setText(string);
         }
     }
 
-    public final Object f(long j) {
-        Object obj;
-        int b = yp3.b(this.b, this.d, j);
-        if (b >= 0 && (obj = this.c[b]) != pad.a) {
-            return obj;
+    @Override
+    public final void l(Bundle bundle) {
+        String code = this.a.getCode();
+        if (code != null && code.length() != 0) {
+            bundle.putString("recoveryview_code", code);
         }
-        return null;
+        Bundle bundle2 = this.f;
+        if (bundle2 != null) {
+            bundle.putBundle("recoveryview_params", bundle2);
+        }
     }
 
-    public final Object g(Object obj, long j) {
-        Object obj2;
-        int b = yp3.b(this.b, this.d, j);
-        if (b >= 0 && (obj2 = this.c[b]) != pad.a) {
-            return obj2;
-        }
-        return obj;
-    }
-
-    public final int h(long j) {
-        if (this.a) {
-            int i = this.d;
-            long[] jArr = this.b;
-            Object[] objArr = this.c;
-            int i2 = 0;
-            for (int i3 = 0; i3 < i; i3++) {
-                Object obj = objArr[i3];
-                if (obj != pad.a) {
-                    if (i3 != i2) {
-                        jArr[i2] = jArr[i3];
-                        objArr[i2] = obj;
-                        objArr[i3] = null;
-                    }
-                    i2++;
-                }
-            }
-            this.a = false;
-            this.d = i2;
-        }
-        return yp3.b(this.b, this.d, j);
-    }
-
-    public final boolean i() {
-        if (m() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final long j(int i) {
-        int i2;
-        if (i >= 0 && i < (i2 = this.d)) {
-            if (this.a) {
-                long[] jArr = this.b;
-                Object[] objArr = this.c;
-                int i3 = 0;
-                for (int i4 = 0; i4 < i2; i4++) {
-                    Object obj = objArr[i4];
-                    if (obj != pad.a) {
-                        if (i4 != i3) {
-                            jArr[i3] = jArr[i4];
-                            objArr[i3] = obj;
-                            objArr[i4] = null;
-                        }
-                        i3++;
-                    }
-                }
-                this.a = false;
-                this.d = i3;
-            }
-            return this.b[i];
-        }
-        v0b.a(de9.k(i, "Expected index to be within 0..size()-1, but was "));
-        return 0L;
-    }
-
-    public final void k(Object obj, long j) {
-        int b = yp3.b(this.b, this.d, j);
-        if (b >= 0) {
-            this.c[b] = obj;
+    @Override
+    public final void m(Bundle bundle, boolean z) {
+        if (bundle == null) {
             return;
         }
-        int i = ~b;
-        int i2 = this.d;
-        Object obj2 = pad.a;
-        if (i < i2) {
-            Object[] objArr = this.c;
-            if (objArr[i] == obj2) {
-                this.b[i] = j;
-                objArr[i] = obj;
-                return;
-            }
+        bf6 bf6Var = this.a;
+        bf6Var.setText("");
+        this.f = bundle;
+        this.h = bundle.getString("password");
+        this.r = this.f.getString("requestPhone");
+        this.s = this.f.getString("phoneHash");
+        this.w = this.f.getString("phoneCode");
+        String string = this.f.getString("email_unconfirmed_pattern");
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
+        int indexOf = string.indexOf(42);
+        int lastIndexOf = string.lastIndexOf(42);
+        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+            ?? obj = new Object();
+            obj.a |= 256;
+            obj.b = indexOf;
+            int i = lastIndexOf + 1;
+            obj.c = i;
+            valueOf.setSpan(new smb(obj, 0), indexOf, i, 0);
         }
-        if (this.a) {
-            long[] jArr = this.b;
-            if (i2 >= jArr.length) {
-                Object[] objArr2 = this.c;
-                int i3 = 0;
-                for (int i4 = 0; i4 < i2; i4++) {
-                    Object obj3 = objArr2[i4];
-                    if (obj3 != obj2) {
-                        if (i4 != i3) {
-                            jArr[i3] = jArr[i4];
-                            objArr2[i3] = obj3;
-                            objArr2[i4] = null;
-                        }
-                        i3++;
-                    }
-                }
-                this.a = false;
-                this.d = i3;
-                i = ~yp3.b(this.b, i3, j);
-            }
-        }
-        int i5 = this.d;
-        if (i5 >= this.b.length) {
-            int i6 = (i5 + 1) << 3;
-            int i7 = 4;
-            while (true) {
-                if (i7 >= 32) {
-                    break;
-                }
-                int i8 = (1 << i7) - 12;
-                if (i6 <= i8) {
-                    i6 = i8;
-                    break;
-                }
-                i7++;
-            }
-            int i9 = i6 / 8;
-            this.b = Arrays.copyOf(this.b, i9);
-            this.c = Arrays.copyOf(this.c, i9);
-        }
-        int i10 = this.d - i;
-        if (i10 != 0) {
-            long[] jArr2 = this.b;
-            int i11 = i + 1;
-            jArr2.getClass();
-            System.arraycopy(jArr2, i, jArr2, i11, i10);
-            Object[] objArr3 = this.c;
-            ss.c(i11, i, this.d, objArr3, objArr3);
-        }
-        this.b[i] = j;
-        this.c[i] = obj;
-        this.d++;
+        this.d.setText(hl.m0(ob6.M0(2131745808, null), valueOf));
+        this.E.M1(bf6Var);
+        bf6Var.requestFocus();
     }
 
-    public final void l(long j) {
-        int b = yp3.b(this.b, this.d, j);
-        if (b >= 0) {
-            Object[] objArr = this.c;
-            Object obj = objArr[b];
-            Object obj2 = pad.a;
-            if (obj != obj2) {
-                objArr[b] = obj2;
-                this.a = true;
+    public final void n(boolean z) {
+        bf6 bf6Var = this.a;
+        if (this.E.getParentActivity() == null) {
+            return;
+        }
+        try {
+            bf6Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        if (z) {
+            for (ok2 ok2Var : bf6Var.f) {
+                ok2Var.setText("");
             }
         }
+        for (ok2 ok2Var2 : bf6Var.f) {
+            ok2Var2.A(1.0f);
+        }
+        bf6Var.f[0].requestFocus();
+        hl.A3(10.0f, bf6Var, new tf6(this, (byte) 2));
     }
 
-    public final int m() {
-        if (this.a) {
-            int i = this.d;
-            long[] jArr = this.b;
-            Object[] objArr = this.c;
-            int i2 = 0;
-            for (int i3 = 0; i3 < i; i3++) {
-                Object obj = objArr[i3];
-                if (obj != pad.a) {
-                    if (i3 != i2) {
-                        jArr[i2] = jArr[i3];
-                        objArr[i2] = obj;
-                        objArr[i3] = null;
-                    }
-                    i2++;
-                }
-            }
-            this.a = false;
-            this.d = i2;
-        }
-        return this.d;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeCallbacks(this.y);
     }
 
-    public final Object n(int i) {
-        int i2;
-        if (i >= 0 && i < (i2 = this.d)) {
-            if (this.a) {
-                long[] jArr = this.b;
-                Object[] objArr = this.c;
-                int i3 = 0;
-                for (int i4 = 0; i4 < i2; i4++) {
-                    Object obj = objArr[i4];
-                    if (obj != pad.a) {
-                        if (i4 != i3) {
-                            jArr[i3] = jArr[i4];
-                            objArr[i3] = obj;
-                            objArr[i4] = null;
-                        }
-                        i3++;
-                    }
-                }
-                this.a = false;
-                this.d = i3;
-            }
-            return this.c[i];
-        }
-        v0b.a(de9.k(i, "Expected index to be within 0..size()-1, but was "));
-        return null;
-    }
-
-    public final String toString() {
-        if (m() <= 0) {
-            return "{}";
-        }
-        StringBuilder sb = new StringBuilder(this.d * 28);
-        sb.append('{');
-        int i = this.d;
-        for (int i2 = 0; i2 < i; i2++) {
-            if (i2 > 0) {
-                sb.append(", ");
-            }
-            sb.append(j(i2));
-            sb.append('=');
-            Object n = n(i2);
-            if (n != sb) {
-                sb.append(n);
-            } else {
-                sb.append("(this Map)");
-            }
-        }
-        sb.append('}');
-        return sb.toString();
-    }
-
-    public vf6() {
-        this(10);
+    @Override
+    public final void updateColors() {
+        this.b.setTextColor(aob.w0(null, aob.G6, false));
+        this.c.setTextColor(aob.w0(null, aob.D6, false));
+        this.d.setTextColor(aob.w0(null, aob.q6, false));
+        this.a.invalidate();
     }
 }

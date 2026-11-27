@@ -1,54 +1,94 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-import java.util.ArrayList;
-public final class t0b implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final ep b;
-    public final int c;
+import android.os.Bundle;
+import android.view.View;
+public final class t0b implements t69, s84 {
+    public final w1b a;
 
-    public t0b(ep epVar, int i, byte b) {
-        this.a = b;
-        this.b = epVar;
-        this.c = i;
+    public t0b(w1b w1bVar) {
+        this.a = w1bVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        int i = this.c;
-        ep epVar = this.b;
-        switch (b) {
-            case 0:
-                Float f = (Float) valueAnimator.getAnimatedValue();
-                f.getClass();
-                ((ArrayList) epVar.d).set(i, f);
-                return;
-            case 1:
-                Float f2 = (Float) valueAnimator.getAnimatedValue();
-                f2.getClass();
-                ((ArrayList) epVar.e).set(i, f2);
-                return;
-            case 2:
-                Float f3 = (Float) valueAnimator.getAnimatedValue();
-                f3.getClass();
-                ((ArrayList) epVar.f).set(i, f3);
-                return;
-            case 3:
-                Float f4 = (Float) valueAnimator.getAnimatedValue();
-                f4.getClass();
-                ((ArrayList) epVar.d).set(i, f4);
-                return;
-            case 4:
-                Float f5 = (Float) valueAnimator.getAnimatedValue();
-                f5.getClass();
-                ((ArrayList) epVar.e).set(i, f5);
-                return;
-            default:
-                Float f6 = (Float) valueAnimator.getAnimatedValue();
-                f6.getClass();
-                ((ArrayList) epVar.f).set(i, f6);
-                return;
+    public final boolean e(int i, View view) {
+        final w1b w1bVar = this.a;
+        id[] idVarArr = w1bVar.h0;
+        b1b b1bVar = w1bVar.X;
+        int i2 = b1bVar.J;
+        if (i >= i2 && i <= b1bVar.K) {
+            final r47 r47Var = ((t1b) w1bVar.z0.get(i - i2)).b;
+            if (!r47Var.w4()) {
+                fu5 I = fu5.I(w1bVar, view);
+                I.b(2131232383, ob6.M0(2131743201, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b = r3;
+                        r47 r47Var2 = r47Var;
+                        w1b w1bVar2 = w1bVar;
+                        switch (b) {
+                            case 0:
+                                w1bVar2.presentFragment(new z67(r47Var2));
+                                return;
+                            default:
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", w1bVar2.b);
+                                bundle.putInt("message_id", r47Var2.e1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                w1bVar2.presentFragment(new zu1(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                I.b(2131232260, ob6.M0(2131743202, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        byte b = r3;
+                        r47 r47Var2 = r47Var;
+                        w1b w1bVar2 = w1bVar;
+                        switch (b) {
+                            case 0:
+                                w1bVar2.presentFragment(new z67(r47Var2));
+                                return;
+                            default:
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", w1bVar2.b);
+                                bundle.putInt("message_id", r47Var2.e1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                w1bVar2.presentFragment(new zu1(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                I.X(w1bVar.T.W0(view, false));
+                I.a0();
+                return true;
+            }
+        } else {
+            int i3 = b1bVar.V;
+            if (i >= i3 && i <= b1bVar.W) {
+                ((p1b) w1bVar.R.get(i - i3)).c(w1bVar.a, w1bVar, idVarArr, true);
+                return true;
+            }
+            int i4 = b1bVar.S;
+            if (i >= i4 && i <= b1bVar.T) {
+                ((p1b) w1bVar.P.get(i - i4)).c(w1bVar.a, w1bVar, idVarArr, true);
+                return true;
+            }
+            int i5 = b1bVar.Y;
+            if (i >= i5 && i <= b1bVar.Z) {
+                ((p1b) w1bVar.Q.get(i - i5)).c(w1bVar.a, w1bVar, idVarArr, true);
+                return true;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final void t(int i, float f, float f2, t84 t84Var) {
+        this.a.s0();
+    }
+
+    @Override
+    public final void v0(float f, int i) {
     }
 }

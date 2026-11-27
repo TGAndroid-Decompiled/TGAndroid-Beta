@@ -1,13 +1,17 @@
 package defpackage;
+public final class vbe implements zq7 {
+    public static final vbe a = new Object();
 
-import java.io.IOException;
-public abstract class vbe {
-    public static void a(o63 o63Var) {
-        if (o63Var != null) {
-            try {
-                o63Var.close();
-            } catch (IOException unused) {
-            }
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

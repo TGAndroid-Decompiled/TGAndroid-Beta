@@ -1,53 +1,85 @@
 package defpackage;
 
-import android.view.View;
-import java.io.Serializable;
-public final class di1 implements zga, ed, n8c {
-    public final zi1 a;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class di1 extends e29 {
+    public final byte r;
+    public final Object s;
 
-    public di1(zi1 zi1Var) {
-        this.a = zi1Var;
+    public di1(byte b, Context context, Object obj) {
+        super(context);
+        this.r = b;
+        this.s = obj;
     }
 
     @Override
-    public final int b() {
-        return this.a.R0;
-    }
-
-    @Override
-    public final void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f = (Float) serializable;
-        Float f2 = (Float) serializable2;
-        zi1 zi1Var = this.a;
-        ei1 ei1Var = zi1Var.s1;
-        int i = zi1Var.o0;
-        long j = zi1Var.p0;
-        int i2 = ((c4c) obj).d;
-        if (i2 == 1) {
-            if (zi1Var.r0 < na7.q1(i).k4.T1.f()) {
-                if (zi1Var.q0 != null) {
-                    uxa uxaVar = zi1Var.m0;
-                    h26 h26Var = new h26(30, zi1Var.o0, zi1Var.n0, zi1Var.getContext(), uxaVar);
-                    h26Var.s1(j);
-                    h26Var.q1(zi1Var.q0, true);
-                    na7.q1(i).E0().b(j, zi1Var.q0, new x0(zi1Var, h26Var, (byte) 16));
-                    return;
-                }
+    public final void invalidate() {
+        byte b = this.r;
+        Object obj = this.s;
+        switch (b) {
+            case 0:
+                super.invalidate();
+                ((gi1) obj).h.invalidate();
                 return;
-            }
-            zi1Var.j1 = !zi1Var.j1;
-            gl.r(ei1Var);
-            gl.d3(ei1Var, 1000L);
-            zi1Var.X0.g3.O(true);
-        } else if (i2 == 4) {
-            zi1Var.m0.presentFragment(new eg1(j));
+            case 1:
+            default:
+                super.invalidate();
+                return;
+            case 2:
+                super.invalidate();
+                ((o95) obj).invalidate();
+                return;
+            case 3:
+                super.invalidate();
+                ((xc5) obj).e.invalidate();
+                return;
+            case 4:
+                super.invalidate();
+                ((cg6) obj).h.invalidate();
+                return;
         }
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
-        this.a.m0.presentFragment(new p3c(6, null));
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.r) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                if (((oe2) this.s).G1) {
+                    accessibilityNodeInfo.setText(ob6.M0(2131754746, null));
+                    return;
+                } else {
+                    accessibilityNodeInfo.setText(ob6.M0(2131754745, null));
+                    return;
+                }
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public final void invalidate(int i, int i2, int i3, int i4) {
+        byte b = this.r;
+        Object obj = this.s;
+        switch (b) {
+            case 0:
+                super.invalidate(i, i2, i3, i4);
+                ((gi1) obj).h.invalidate();
+                return;
+            case 1:
+            case 2:
+            default:
+                super.invalidate(i, i2, i3, i4);
+                return;
+            case 3:
+                super.invalidate(i, i2, i3, i4);
+                ((xc5) obj).e.invalidate();
+                return;
+            case 4:
+                super.invalidate(i, i2, i3, i4);
+                ((cg6) obj).h.invalidate();
+                return;
+        }
     }
 }

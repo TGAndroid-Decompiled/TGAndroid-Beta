@@ -1,24 +1,47 @@
 package defpackage;
-public final class cp1 implements qf8 {
-    public boolean a = true;
-    public final t09 b;
 
-    public cp1(t09 t09Var) {
-        this.b = t09Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class cp1 extends AnimatorListenerAdapter {
+    public final boolean a;
+    public final boolean b;
+    public final boolean c;
+    public final zu1 d;
+
+    public cp1(zu1 zu1Var, boolean z, boolean z2, boolean z3) {
+        this.d = zu1Var;
+        this.a = z;
+        this.b = z2;
+        this.c = z3;
     }
 
     @Override
-    public final void a(float f, float f2) {
-        int i = (f > 0.0f ? 1 : (f == 0.0f ? 0 : -1));
-        t09 t09Var = this.b;
-        if (i == 0 && !this.a) {
-            t09Var.p(false);
-            this.a = true;
-        } else if (f == 1.0f && this.a) {
-            t09Var.setAlpha(1.0f - f2);
-            if (f2 == 1.0f) {
-                this.a = false;
-            }
+    public final void onAnimationEnd(Animator animator) {
+        int i;
+        int i2;
+        zu1 zu1Var = this.d;
+        zu1Var.b3 = null;
+        ImageView imageView = zu1Var.Y2;
+        int i3 = 4;
+        if (this.a) {
+            i = 0;
+        } else {
+            i = 4;
         }
+        imageView.setVisibility(i);
+        ImageView imageView2 = zu1Var.a3;
+        if (this.b) {
+            i2 = 0;
+        } else {
+            i2 = 4;
+        }
+        imageView2.setVisibility(i2);
+        RadialProgressView radialProgressView = zu1Var.Z2;
+        if (this.c) {
+            i3 = 0;
+        }
+        radialProgressView.setVisibility(i3);
     }
 }

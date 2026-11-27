@@ -1,19 +1,16 @@
 package defpackage;
+
+import android.os.Build;
 public abstract class vrd {
-    public static int a(int i) {
-        if (i != 0) {
-            if (i != 90) {
-                if (i != 180) {
-                    if (i == 270) {
-                        return 3;
-                    }
-                    w26.j(de9.k(i, "Invalid rotation: "));
-                    return 0;
-                }
-                return 2;
-            }
-            return 1;
+    public static final int a;
+
+    static {
+        int i;
+        if (Build.VERSION.SDK_INT >= 31) {
+            i = 33554432;
+        } else {
+            i = 0;
         }
-        return 0;
+        a = i;
     }
 }

@@ -1,20 +1,38 @@
 package defpackage;
-public interface nq9 {
-    fs4 a();
 
-    void b(Object obj, Object obj2);
+import android.animation.ValueAnimator;
+public final class nq9 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final er9 b;
 
-    void c(Object obj);
+    public nq9(er9 er9Var, byte b) {
+        this.a = b;
+        this.b = er9Var;
+    }
 
-    boolean d(Object obj);
-
-    boolean e(fs4 fs4Var, fs4 fs4Var2);
-
-    int f(fs4 fs4Var);
-
-    int g(fs4 fs4Var);
-
-    void h(Object obj, af0 af0Var, b74 b74Var);
-
-    void i(Object obj, l69 l69Var);
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        er9 er9Var = this.b;
+        switch (b) {
+            case 0:
+                er9Var.n(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                er9Var.a(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 2:
+                er9Var.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                er9Var.f.requestLayout();
+                return;
+            default:
+                er9Var.x0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jla jlaVar = er9Var.F;
+                if (jlaVar.getTitleTextView() != null) {
+                    jlaVar.getTitleTextView().invalidate();
+                    return;
+                }
+                return;
+        }
+    }
 }

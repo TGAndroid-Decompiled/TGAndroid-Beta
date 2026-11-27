@@ -1,251 +1,222 @@
 package defpackage;
 
-import android.app.ActivityManager;
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.Build;
-import android.os.Debug;
-import android.util.Log;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
-public abstract class pm2 {
-    public static final char[] a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-    public static final int[] b = {96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350};
-    public static final int[] c = {0, 1, 2, 3, 4, 5, 6, 8, -1, -1, -1, 7, 8, -1, 8, -1};
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.util.LongSparseArray;
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.HashMap;
+import java.util.Map;
+public final class pm2 extends View {
+    public final Paint a;
+    public final int[] b;
+    public final Paint c;
+    public final LongSparseArray d;
+    public long e;
+    public final Path f;
+    public final float[] h;
+    public final HashMap n;
+    public final sm2 r;
 
-    public static synchronized long a(Context context) {
-        long j;
-        synchronized (pm2.class) {
-            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-            ((ActivityManager) context.getSystemService("activity")).getMemoryInfo(memoryInfo);
-            j = memoryInfo.totalMem;
-        }
-        return j;
-    }
-
-    public static void b(Closeable closeable, String str) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException e) {
-                Log.e("FirebaseCrashlytics", str, e);
-            }
-        }
-    }
-
-    public static boolean c(Context context, String str, boolean z) {
-        Resources resources;
-        if (context != null && (resources = context.getResources()) != null) {
-            int e = e(context, str, "bool");
-            if (e > 0) {
-                return resources.getBoolean(e);
-            }
-            int e2 = e(context, str, "string");
-            if (e2 > 0) {
-                return Boolean.parseBoolean(context.getString(e2));
-            }
-        }
-        return z;
-    }
-
-    public static int d() {
-        boolean h = h();
-        ?? r0 = h;
-        if (i()) {
-            r0 = (h ? 1 : 0) | true;
-        }
-        if (!Debug.isDebuggerConnected() && !Debug.waitingForDebugger()) {
-            return r0;
-        }
-        return r0 | 4;
-    }
-
-    public static int e(Context context, String str, String str2) {
-        String packageName;
-        Resources resources = context.getResources();
-        int i = context.getApplicationContext().getApplicationInfo().icon;
-        if (i > 0) {
-            try {
-                packageName = context.getResources().getResourcePackageName(i);
-                if ("android".equals(packageName)) {
-                    packageName = context.getPackageName();
-                }
-            } catch (Resources.NotFoundException unused) {
-                packageName = context.getPackageName();
-            }
-        } else {
-            packageName = context.getPackageName();
-        }
-        return resources.getIdentifier(str, str2, packageName);
-    }
-
-    public static int f(qd1 qd1Var) {
-        int f = qd1Var.f(4);
-        if (f == 15) {
-            if (qd1Var.b() >= 24) {
-                return qd1Var.f(24);
-            }
-            throw av7.a("AAC header insufficient data", null);
-        } else if (f < 13) {
-            return b[f];
-        } else {
-            throw av7.a("AAC header wrong Sampling Frequency Index", null);
-        }
-    }
-
-    public static String g(byte[] bArr) {
-        char[] cArr = new char[bArr.length << 1];
-        for (int i = 0; i < bArr.length; i++) {
-            byte b2 = bArr[i];
-            int i2 = i << 1;
-            char[] cArr2 = a;
-            cArr[i2] = cArr2[(b2 & 255) >>> 4];
-            cArr[i2 + 1] = cArr2[b2 & 15];
-        }
-        return new String(cArr);
-    }
-
-    public static boolean h() {
-        if (!Build.PRODUCT.contains("sdk")) {
-            String str = Build.HARDWARE;
-            if (!str.contains("goldfish") && !str.contains("ranchu")) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public static boolean i() {
-        boolean h = h();
-        String str = Build.TAGS;
-        if ((!h && str != null && str.contains("test-keys")) || oo1.t("/system/app/Superuser.apk")) {
-            return true;
-        }
-        File file = new File("/system/xbin/su");
-        if (!h && file.exists()) {
-            return true;
-        }
-        return false;
-    }
-
-    public static g1 j(qd1 qd1Var, boolean z) {
-        int f = qd1Var.f(5);
-        if (f == 31) {
-            f = qd1Var.f(6) + 32;
-        }
-        int f2 = f(qd1Var);
-        int f3 = qd1Var.f(4);
-        String k = de9.k(f, "mp4a.40.");
-        if (f == 5 || f == 29) {
-            f2 = f(qd1Var);
-            int f4 = qd1Var.f(5);
-            if (f4 == 31) {
-                f4 = qd1Var.f(6) + 32;
-            }
-            f = f4;
-            if (f == 22) {
-                f3 = qd1Var.f(4);
-            }
-        }
-        if (z) {
-            if (f != 1 && f != 2 && f != 3 && f != 4 && f != 6 && f != 7 && f != 17) {
-                switch (f) {
-                    case 19:
-                    case 20:
-                    case 21:
-                    case 22:
-                    case 23:
-                        break;
-                    default:
-                        throw av7.d("Unsupported audio object type: " + f);
-                }
-            }
-            if (qd1Var.e()) {
-                lad.f("AacUtil", "Unexpected frameLengthFlag = 1");
-            }
-            if (qd1Var.e()) {
-                qd1Var.n(14);
-            }
-            boolean e = qd1Var.e();
-            if (f3 != 0) {
-                if (f == 6 || f == 20) {
-                    qd1Var.n(3);
-                }
-                if (e) {
-                    if (f == 22) {
-                        qd1Var.n(16);
+    public pm2(sm2 sm2Var, Context context) {
+        super(context);
+        int f;
+        this.r = sm2Var;
+        this.a = new Paint(1);
+        this.b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
+        Paint paint = new Paint(1);
+        this.c = paint;
+        this.d = new LongSparseArray();
+        this.e = Long.MIN_VALUE;
+        this.f = new Path();
+        this.h = new float[8];
+        this.n = new HashMap();
+        setPadding(hl.L(14.0f), hl.L(3.0f), hl.L(14.0f), hl.L(3.0f));
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        for (int i = 0; i < 12; i++) {
+            for (int i2 = 0; i2 < 10; i2++) {
+                if (i2 == 0) {
+                    this.n.put(Long.valueOf((i << 16) + i2), Integer.valueOf(vm2.f(i / 11.0f, -1, -16777216)));
+                } else {
+                    int[] iArr = this.b;
+                    if (i2 < 6) {
+                        f = vm2.f(((5 - i2) / 4.0f) * 0.5f, iArr[i], -16777216);
+                    } else {
+                        f = vm2.f(uh9.x(9 - i2, 5.0f, 0.5f, 0.5f), iArr[i], -1);
                     }
-                    if (f == 17 || f == 19 || f == 20 || f == 23) {
-                        qd1Var.n(3);
+                    this.n.put(Long.valueOf((i << 16) + i2), Integer.valueOf(f));
+                }
+            }
+        }
+    }
+
+    public final void a(int i) {
+        for (Map.Entry entry : this.n.entrySet()) {
+            if (((Integer) entry.getValue()).intValue() == i) {
+                long longValue = ((Long) entry.getKey()).longValue();
+                int i2 = (int) (longValue >> 16);
+                b(i2, (int) (longValue - (i2 << 16)));
+                return;
+            }
+        }
+        this.e = Long.MIN_VALUE;
+        invalidate();
+    }
+
+    public final void b(int i, int i2) {
+        long j = (i << 16) + i2;
+        this.e = j;
+        LongSparseArray longSparseArray = this.d;
+        if (longSparseArray.get(j) == null) {
+            longSparseArray.put(this.e, Float.valueOf(0.0f));
+        }
+        invalidate();
+    }
+
+    public final void c(MotionEvent motionEvent) {
+        int x = (int) ((motionEvent.getX() - getPaddingLeft()) / (((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12));
+        int y = (int) (motionEvent.getY() / (((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10));
+        Integer num = (Integer) this.n.get(Long.valueOf((x << 16) + y));
+        if (num != null) {
+            int intValue = num.intValue();
+            int i = sm2.t1;
+            this.r.E0(intValue, 3);
+            b(x, y);
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        HashMap hashMap;
+        float max;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        int i;
+        super.onDraw(canvas);
+        RectF rectF = hl.P;
+        rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+        canvas.save();
+        Path path = this.r.o1;
+        path.rewind();
+        float f5 = 10.0f;
+        path.addRoundRect(rectF, hl.L(10.0f), hl.L(10.0f), Path.Direction.CW);
+        canvas.clipPath(path);
+        float width = ((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12.0f;
+        float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
+        int i2 = 0;
+        while (true) {
+            hashMap = this.n;
+            if (i2 >= 12) {
+                break;
+            }
+            for (int i3 = 0; i3 < 10; i3++) {
+                Integer num = (Integer) hashMap.get(Long.valueOf((i2 << 16) + i3));
+                if (num != null) {
+                    int intValue = num.intValue();
+                    Paint paint = this.a;
+                    paint.setColor(intValue);
+                    RectF rectF2 = hl.P;
+                    rectF2.set((i2 * width) + getPaddingLeft(), (i3 * height) + getPaddingTop(), ((i2 + 1) * width) + getPaddingLeft(), ((i3 + 1) * height) + getPaddingTop());
+                    canvas.drawRect(rectF2, paint);
+                }
+            }
+            i2++;
+        }
+        canvas.restore();
+        int i4 = 0;
+        while (true) {
+            LongSparseArray longSparseArray = this.d;
+            if (i4 < longSparseArray.size()) {
+                long keyAt = longSparseArray.keyAt(i4);
+                float floatValue = ((Float) longSparseArray.valueAt(i4)).floatValue();
+                if (this.e == keyAt) {
+                    max = Math.min(1.0f, floatValue + 0.045714285f);
+                } else {
+                    max = Math.max(0.0f, floatValue - 0.10666667f);
+                }
+                float f6 = f5;
+                int i5 = (int) (keyAt >> 16);
+                int i6 = (int) (keyAt - (i5 << 16));
+                Integer num2 = (Integer) hashMap.get(Long.valueOf(keyAt));
+                Paint paint2 = this.c;
+                if (num2 != null) {
+                    if (hl.B(num2.intValue()) > 0.721f) {
+                        i = -15658735;
+                    } else {
+                        i = -1;
                     }
-                    qd1Var.n(1);
+                    paint2.setColor(i);
                 }
-                switch (f) {
-                    case 17:
-                    case 19:
-                    case 20:
-                    case 21:
-                    case 22:
-                    case 23:
-                        int f5 = qd1Var.f(2);
-                        if (f5 == 2 || f5 == 3) {
-                            throw av7.d("Unsupported epConfig: " + f5);
-                        }
+                paint2.setStrokeWidth(k43.h.getInterpolation(max) * hl.L(3.0f));
+                Path path2 = this.f;
+                path2.rewind();
+                RectF rectF3 = hl.P;
+                float f7 = width;
+                float f8 = height;
+                HashMap hashMap2 = hashMap;
+                rectF3.set((i5 * f7) + getPaddingLeft(), (i6 * f8) + getPaddingTop(), ((i5 + 1) * f7) + getPaddingLeft(), ((i6 + 1) * f8) + getPaddingTop());
+                if (i5 == 0 && i6 == 0) {
+                    f = hl.L(f6);
+                } else {
+                    f = 0.0f;
                 }
+                float[] fArr = this.h;
+                fArr[1] = f;
+                fArr[0] = f;
+                if (i5 == 11 && i6 == 0) {
+                    f2 = hl.L(f6);
+                } else {
+                    f2 = 0.0f;
+                }
+                fArr[3] = f2;
+                fArr[2] = f2;
+                if (i5 == 11 && i6 == 9) {
+                    f3 = hl.L(f6);
+                } else {
+                    f3 = 0.0f;
+                }
+                fArr[5] = f3;
+                fArr[4] = f3;
+                if (i5 == 0 && i6 == 9) {
+                    f4 = hl.L(f6);
+                } else {
+                    f4 = 0.0f;
+                }
+                fArr[7] = f4;
+                fArr[6] = f4;
+                path2.addRoundRect(rectF3, fArr, Path.Direction.CW);
+                canvas.drawPath(path2, paint2);
+                if (max <= 0.0f && this.e != keyAt) {
+                    longSparseArray.removeAt(i4);
+                    i4--;
+                    invalidate();
+                } else {
+                    if (max < 1.0f) {
+                        invalidate();
+                    }
+                    longSparseArray.setValueAt(i4, Float.valueOf(max));
+                }
+                i4++;
+                f5 = f6;
+                width = f7;
+                height = f8;
+                hashMap = hashMap2;
             } else {
-                fvc.b();
-                return null;
+                return;
             }
         }
-        int i = c[f3];
-        if (i != -1) {
-            ?? obj = new Object();
-            obj.a = f2;
-            obj.b = i;
-            obj.c = k;
-            return obj;
-        }
-        throw av7.a(null, null);
     }
 
-    public static String k(String str) {
-        byte[] bytes = str.getBytes();
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-            messageDigest.update(bytes);
-            return g(messageDigest.digest());
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("FirebaseCrashlytics", "Could not create hashing algorithm: SHA-1, returning empty string.", e);
-            return "";
-        }
-    }
-
-    public static String l(FileInputStream fileInputStream) {
-        String str;
-        Scanner useDelimiter = new Scanner(fileInputStream).useDelimiter("\\A");
-        try {
-            if (useDelimiter.hasNext()) {
-                str = useDelimiter.next();
-            } else {
-                str = "";
-            }
-            useDelimiter.close();
-            return str;
-        } catch (Throwable th) {
-            if (useDelimiter != null) {
-                try {
-                    useDelimiter.close();
-                } catch (Throwable th2) {
-                    th.addSuppressed(th2);
-                }
-            }
-            throw th;
-        }
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pm2.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

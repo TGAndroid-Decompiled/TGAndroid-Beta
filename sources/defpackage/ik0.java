@@ -1,7 +1,10 @@
 package defpackage;
-public final class ik0 extends gk0 {
-    @Override
-    public final void a(ild ildVar) {
-        ildVar.a(this);
+public final class ik0 {
+    public final byte[] a;
+    public final byte[] b;
+
+    public ik0(byte[] bArr, byte[] bArr2) {
+        this.a = bArr;
+        this.b = bArr2;
     }
 }

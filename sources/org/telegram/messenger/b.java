@@ -22,7 +22,7 @@ public final class b implements PushListenerController.IPushListenerServiceProvi
         Boolean bool = this.a;
         if (bool == null) {
             try {
-                if (cy4.e.c(a.b, dy4.a) == 0) {
+                if (i05.e.c(a.b, j05.a) == 0) {
                     z = true;
                 } else {
                     z = false;
@@ -31,7 +31,7 @@ public final class b implements PushListenerController.IPushListenerServiceProvi
                 this.a = valueOf;
                 bool = valueOf;
             } catch (Exception e) {
-                fa4.g(e, true);
+                cc4.g(e, true);
                 bool = Boolean.FALSE;
                 this.a = bool;
             }
@@ -41,11 +41,11 @@ public final class b implements PushListenerController.IPushListenerServiceProvi
 
     @Override
     public final void onRequestPushToken() {
-        if (!TextUtils.isEmpty(gba.f)) {
-            boolean z = w01.a;
-        } else if (w01.a) {
-            fa4.b("FCM Registration not found.");
+        if (!TextUtils.isEmpty(xea.f)) {
+            boolean z = f11.a;
+        } else if (f11.a) {
+            cc4.b("FCM Registration not found.");
         }
-        Utilities.e.c(new sr8(this, (byte) 4));
+        Utilities.e.c(new uk8(this, (byte) 20));
     }
 }

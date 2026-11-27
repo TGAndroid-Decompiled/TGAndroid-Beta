@@ -1,26 +1,40 @@
 package defpackage;
-public final class xtc implements Runnable {
+
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class xtc implements View.OnClickListener {
     public final byte a;
-    public final auc b;
+    public final Object b;
 
-    public xtc(auc aucVar, byte b) {
+    public xtc(Object obj, byte b) {
         this.a = b;
-        this.b = aucVar;
-    }
-
-    private final void a() {
-        auc aucVar = this.b;
-        aucVar.g();
-        synchronized (aucVar.a) {
-            if (aucVar.u) {
-                return;
-            }
-            gl.d3(new xtc(aucVar, (byte) 2), 1000L);
-        }
+        this.b = obj;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xtc.run():void");
+    public final void onClick(View view) {
+        float f;
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                ytc ytcVar = ((duc) obj).c;
+                ytcVar.requestFocus();
+                hl.E3(ytcVar);
+                return;
+            default:
+                exc excVar = (exc) obj;
+                sg2 sg2Var = excVar.a;
+                sg2Var.c(!sg2Var.b(), true);
+                excVar.c.setEnabled(excVar.a.b());
+                ViewPropertyAnimator animate = excVar.c.animate();
+                if (excVar.a.b()) {
+                    f = 1.0f;
+                } else {
+                    f = 0.5f;
+                }
+                animate.alpha(f).start();
+                return;
+        }
     }
 }

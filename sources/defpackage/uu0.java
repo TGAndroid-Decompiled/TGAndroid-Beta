@@ -1,25 +1,60 @@
 package defpackage;
-public final class uu0 implements p8c {
-    public final byte a;
-    public final gt3 b;
 
-    public uu0(gt3 gt3Var, byte b) {
-        this.a = b;
-        this.b = gt3Var;
-    }
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface uu0 {
+    wr0 A();
 
-    @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        gt3 gt3Var = this.b;
-        switch (b) {
-            case 0:
-                gl.t1(gt3Var);
-                gl.d3((Runnable) obj, 80L);
-                return;
-            default:
-                gt3Var.H(((Integer) obj).intValue());
-                return;
-        }
-    }
+    void a();
+
+    void b();
+
+    void c();
+
+    void d(TLRPC.Document document);
+
+    void e(String str);
+
+    void f(ArrayList arrayList);
+
+    String g(boolean z, boolean z2);
+
+    boolean h();
+
+    void i(boolean z);
+
+    void j();
+
+    void k(boolean z);
+
+    void l(boolean z, boolean z2, String str, long j, int i, int i2, boolean z3, boolean z4, String str2);
+
+    void m(int i);
+
+    void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
+
+    void o(int i, boolean z);
+
+    void p(boolean z);
+
+    void q(boolean z, boolean z2, String str, long j, int i, int i2, boolean z3, boolean z4);
+
+    void r(int i);
+
+    void s();
+
+    void t(boolean z);
+
+    void u(int i, int i2, boolean z);
+
+    void v(TLRPC.User user, String str, ArrayList arrayList);
+
+    void w(boolean z);
+
+    void x(int i);
+
+    void y(boolean z);
+
+    void z();
 }

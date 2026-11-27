@@ -1,132 +1,86 @@
 package defpackage;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class sy9 extends ja {
-    public TLRPC.User c;
-    public TLRPC.InputPeer d;
-    public TLRPC.TL_help_country e;
-    public String f;
-    public String g;
-    public byte h;
-    public int i;
-    public boolean j;
-    public int k;
-    public vzb l;
-    public vzb m;
-    public o7c n;
-    public o7c o;
-    public View p;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.HashMap;
+import java.util.WeakHashMap;
+public abstract class sy9 extends View.AccessibilityDelegate {
+    public static final String c = "android.widget.SeekBar";
+    public final HashMap a = new HashMap(4);
+    public final xc b = new xc(this, (byte) 17);
 
-    public sy9(int i, boolean z) {
-        super(i, z);
-        this.k = -1;
+    public boolean a() {
+        return true;
     }
 
-    public static sy9 b(String str) {
-        sy9 sy9Var = new sy9(8, false);
-        sy9Var.f = str;
-        return sy9Var;
+    public boolean b() {
+        return true;
     }
 
-    public static sy9 c(TLRPC.User user, boolean z) {
-        sy9 sy9Var = new sy9(3, true);
-        sy9Var.c = user;
-        sy9Var.d = null;
-        sy9Var.j = z;
-        return sy9Var;
+    public abstract void c(boolean z);
+
+    public CharSequence d() {
+        return null;
+    }
+
+    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        accessibilityNodeInfo.setClassName(c);
+        CharSequence d = d();
+        if (!TextUtils.isEmpty(d)) {
+            accessibilityNodeInfo.setText(d);
+        }
+        if (a()) {
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
+        }
+        if (b()) {
+            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
+        }
+    }
+
+    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
+        e(null, accessibilityNodeInfo);
+    }
+
+    public boolean g(View view, int i, Bundle bundle) {
+        boolean z = false;
+        if (i != 4096 && i != 8192) {
+            return false;
+        }
+        if (i == 8192) {
+            z = true;
+        }
+        c(z);
+        if (view != null) {
+            WeakHashMap weakHashMap = ihc.a;
+            if (view.isAttachedToWindow()) {
+                HashMap hashMap = this.a;
+                Runnable runnable = (Runnable) hashMap.get(view);
+                if (runnable == null) {
+                    runnable = new en9(this, view, (byte) 17);
+                    hashMap.put(view, runnable);
+                    view.addOnAttachStateChangeListener(this.b);
+                } else {
+                    view.removeCallbacks(runnable);
+                }
+                view.postDelayed(runnable, 400L);
+            }
+        }
+        return true;
     }
 
     @Override
-    public final boolean a(ja jaVar) {
-        boolean z;
-        boolean z2;
-        if (this != jaVar) {
-            if (sy9.class == jaVar.getClass()) {
-                sy9 sy9Var = (sy9) jaVar;
-                if (this.j == sy9Var.j) {
-                    if (this.a == 8) {
-                        if (TextUtils.equals(this.g, sy9Var.g)) {
-                            if (this.l == null) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            if (sy9Var.l == null) {
-                                z2 = true;
-                            } else {
-                                z2 = false;
-                            }
-                            if (z != z2) {
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        return true;
+    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        e(view, accessibilityNodeInfo);
     }
 
-    public final boolean equals(Object obj) {
-        long j;
-        if (this != obj) {
-            if (obj != null && sy9.class == obj.getClass()) {
-                sy9 sy9Var = (sy9) obj;
-                int i = this.a;
-                if (i == sy9Var.a) {
-                    if (i != -1 || this.k == sy9Var.k) {
-                        if (i == 3) {
-                            TLRPC.User user = this.c;
-                            long j2 = 0;
-                            if (user != null) {
-                                j = user.id;
-                            } else {
-                                TLRPC.InputPeer inputPeer = this.d;
-                                if (inputPeer != null) {
-                                    j = cf3.m(inputPeer);
-                                } else {
-                                    j = 0;
-                                }
-                            }
-                            TLRPC.User user2 = sy9Var.c;
-                            if (user2 != null) {
-                                j2 = user2.id;
-                            } else {
-                                TLRPC.InputPeer inputPeer2 = sy9Var.d;
-                                if (inputPeer2 != null) {
-                                    j2 = cf3.m(inputPeer2);
-                                }
-                            }
-                            if (j != j2) {
-                                return false;
-                            }
-                        }
-                        int i2 = this.a;
-                        if (i2 != 6 || this.e == sy9Var.e) {
-                            if (i2 != 7 || TextUtils.equals(this.f, sy9Var.f)) {
-                                if (this.a != 8 || TextUtils.equals(this.f, sy9Var.f)) {
-                                    if (this.a != 9 || (TextUtils.equals(this.f, sy9Var.f) && this.h == sy9Var.h && this.i == sy9Var.i)) {
-                                        if (this.a != 10 || this.p == sy9Var.p) {
-                                            return true;
-                                        }
-                                        return false;
-                                    }
-                                    return false;
-                                }
-                                return false;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final boolean performAccessibilityAction(View view, int i, Bundle bundle) {
+        if (super.performAccessibilityAction(view, i, bundle)) {
+            return true;
         }
-        return true;
+        return g(view, i, bundle);
     }
 }

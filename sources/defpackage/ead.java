@@ -1,30 +1,55 @@
 package defpackage;
-public abstract class ead {
-    public static final char[] a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    public static String a(int i, byte[] bArr) {
-        int i2;
-        int length = bArr.length;
-        int i3 = length << 1;
-        if (i > 0) {
-            i2 = length / i;
-        } else {
-            i2 = 0;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class ead extends u3d {
+    public final byte b;
+    public final TaskCompletionSource c;
+
+    public ead(TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 14);
+        this.b = b;
+        this.c = taskCompletionSource;
+    }
+
+    @Override
+    public final void Q(Status status, boolean z) {
+        switch (this.b) {
+            case 1:
+                vze.a(status, Boolean.valueOf(z), this.c);
+                return;
+            default:
+                return;
         }
-        char[] cArr = new char[i3 + i2];
-        int i4 = 0;
-        for (int i5 = 0; i5 < length; i5++) {
-            if (i > 0 && i5 % i == 0 && i4 > 0) {
-                cArr[i4] = '-';
-                i4++;
-            }
-            int i6 = i4 + 1;
-            byte b = bArr[i5];
-            char[] cArr2 = a;
-            cArr[i4] = cArr2[(b & 240) >>> 4];
-            i4 += 2;
-            cArr[i6] = cArr2[b & 15];
+    }
+
+    @Override
+    public final void R(Status status, u18 u18Var) {
+        switch (this.b) {
+            case 0:
+                int i = n70.b;
+                boolean b = status.b();
+                TaskCompletionSource taskCompletionSource = this.c;
+                if (b) {
+                    taskCompletionSource.setResult(u18Var);
+                    return;
+                } else {
+                    taskCompletionSource.setException(sqd.a(status));
+                    return;
+                }
+            default:
+                return;
         }
-        return new String(cArr);
+    }
+
+    @Override
+    public final void S(int i, boolean z) {
+        switch (this.b) {
+            case 1:
+                vze.a(new Status(i, null, null, null), Boolean.valueOf(z), this.c);
+                return;
+            default:
+                return;
+        }
     }
 }

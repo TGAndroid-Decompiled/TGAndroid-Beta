@@ -1,17 +1,10 @@
 package defpackage;
-public final class nyd implements zn7 {
-    public static final nyd a = new Object();
-
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+public abstract class nyd {
+    public static final ki2 a(o8a o8aVar) {
+        o8aVar.getClass();
+        if (o8aVar instanceof p8a) {
+            return a(((p8a) o8aVar).a);
         }
-        throw new ClassCastException();
+        return null;
     }
 }

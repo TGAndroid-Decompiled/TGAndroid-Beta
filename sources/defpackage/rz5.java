@@ -1,74 +1,69 @@
 package defpackage;
+public final class rz5 implements av3 {
+    public final String a;
+    public final int b;
+    public final ey7 c;
+    public final zd1 d;
+    public x1c e;
+    public String f;
+    public ko4 g;
+    public byte h;
+    public int i;
+    public int j;
+    public short k;
+    public long l;
+    public boolean m;
+    public int n;
+    public int o;
+    public int p;
+    public boolean q;
+    public long r;
+    public int s;
+    public long t;
+    public int u;
+    public String v;
 
-import android.os.Bundle;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-public final class rz5 implements ca7 {
-    public final kz5 a;
-    public final String b;
-    public final d c;
-    public final long d;
-    public final Integer e;
-    public final Bundle f;
-    public final LaunchActivity h;
-
-    public rz5(LaunchActivity launchActivity, kz5 kz5Var, String str, d dVar, long j, Integer num, Bundle bundle) {
-        this.h = launchActivity;
-        this.a = kz5Var;
-        this.b = str;
-        this.c = dVar;
-        this.d = j;
-        this.e = num;
-        this.f = bundle;
+    public rz5(String str, int i) {
+        this.a = str;
+        this.b = i;
+        ey7 ey7Var = new ey7(1024);
+        this.c = ey7Var;
+        byte[] bArr = ey7Var.a;
+        this.d = new zd1(bArr.length, bArr);
+        this.l = -9223372036854775807L;
     }
 
     @Override
-    public final void a() {
-        LaunchActivity launchActivity = this.h;
-        if (!launchActivity.isFinishing()) {
-            ij.r0((d) b00.f(1, launchActivity.e0), null, k96.M0(2131748883, null), null);
-        }
-        try {
-            this.a.run();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public final void b(defpackage.ey7 r24) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.rz5.b(ey7):void");
     }
 
     @Override
-    public final void m(boolean z) {
-        try {
-            this.a.run();
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
-        LaunchActivity launchActivity = this.h;
-        if (!launchActivity.isFinishing()) {
-            String str = this.b;
-            long j = this.d;
-            d dVar = this.c;
-            if (str == null || !(dVar instanceof mu1) || ((mu1) dVar).a() != j) {
-                if (dVar instanceof mu1) {
-                    mu1 mu1Var = (mu1) dVar;
-                    if (mu1Var.a() == j && this.e == null) {
-                        gl.A3(5.0f, mu1Var.A0, null);
-                        pw0.APP_ERROR.a();
-                        ar1 ar1Var = mu1Var.a0;
-                        for (int i = 0; i < ar1Var.getChildCount(); i++) {
-                            gl.A3(5.0f, ar1Var.getChildAt(i), null);
-                        }
-                        a actionBar = mu1Var.getActionBar();
-                        for (int i2 = 0; i2 < actionBar.getChildCount(); i2++) {
-                            gl.A3(5.0f, actionBar.getChildAt(i2), null);
-                        }
-                    }
-                }
-                dVar = new mu1(this.f);
-                ((ActionBarLayout) launchActivity.N()).S(dVar);
-            }
-            gl.d3(new m77(this, this.b, this.d, dVar, (byte) 13), 150L);
-        }
+    public final void d() {
+        this.h = (byte) 0;
+        this.l = -9223372036854775807L;
+        this.m = false;
+    }
+
+    @Override
+    public final void g(int i, long j) {
+        this.l = j;
+    }
+
+    @Override
+    public final void h(g84 g84Var, l6c l6cVar) {
+        l6cVar.a();
+        l6cVar.b();
+        this.e = g84Var.e0(l6cVar.d, 1);
+        l6cVar.b();
+        this.f = l6cVar.e;
+    }
+
+    @Override
+    public final void e() {
+    }
+
+    @Override
+    public final void f() {
     }
 }

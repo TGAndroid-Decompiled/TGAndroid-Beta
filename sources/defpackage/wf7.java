@@ -1,14 +1,8 @@
 package defpackage;
+public final class wf7 extends s93 {
+    public long r;
 
-import android.graphics.drawable.Drawable;
-public final class wf7 extends Drawable.ConstantState {
-    @Override
-    public final int getChangingConfigurations() {
-        return 0;
-    }
-
-    @Override
-    public final Drawable newDrawable() {
-        return new xf7();
+    public wf7() {
+        super(1, 0);
     }
 }

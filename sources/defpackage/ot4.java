@@ -1,45 +1,35 @@
 package defpackage;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-public final class ot4 extends nt4 {
-    public final pt4 r;
+import android.text.TextUtils;
+public final class ot4 extends vt4 {
+    public final wt4 y;
 
-    public ot4(pt4 pt4Var, wjb wjbVar) {
-        super(wjbVar);
-        this.r = pt4Var;
+    public ot4(wt4 wt4Var) {
+        super(wt4Var);
+        this.y = wt4Var;
     }
 
     @Override
-    public final void E() {
-        String M0;
-        pt4 pt4Var = this.r;
-        String str = pt4Var.V1;
-        if ((str == null || str.isEmpty()) && pt4Var.S1.to_id == -1) {
-            M0 = k96.M0(2131753331, null);
-        } else {
-            M0 = k96.M0(2131753330, null);
+    public final void F(boolean z) {
+        wt4 wt4Var = this.y;
+        s7 s7Var = wt4Var.H;
+        if (s7Var != null) {
+            s7Var.setShowSearchProgress(z);
         }
-        new u21(pt4Var.c, pt4Var.J0).Q(2131623982, 36, M0).k(true);
+        wt4Var.s.e(z, true);
     }
 
     @Override
-    public final void F(TLObject tLObject) {
-        pt4 pt4Var = this.r;
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = pt4Var.S1;
-        d dVar = pt4Var.r1;
-        pt4Var.dismiss();
-        if (tLObject instanceof TLRPC.Chat) {
-            dVar.presentFragment(mu1.W9(-((TLRPC.Chat) tLObject).id));
-        } else if (tLObject instanceof TLRPC.User) {
-            dVar.presentFragment(mu1.W9(((TLRPC.User) tLObject).id));
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -cf3.n(tL_payments_checkedGiftCode.from_id));
-            bundle.putInt("message_id", tL_payments_checkedGiftCode.giveaway_msg_id);
-            dVar.presentFragment(new mu1(bundle));
+    public final void f() {
+        super.f();
+        boolean isEmpty = TextUtils.isEmpty(this.f);
+        z2b z2bVar = this.y.s;
+        if (isEmpty) {
+            z2bVar.setStickerType(11);
+            z2bVar.d.setText(ob6.M0(2131745488, null));
+            return;
         }
+        z2bVar.setStickerType(1);
+        z2bVar.d.setText(ob6.a0(null, null, 2131747897, this.f));
     }
 }

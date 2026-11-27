@@ -1,38 +1,37 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class cm {
-    public ArrayList a;
-    public HashMap b;
-    public ArrayList c;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.view.View;
+import java.lang.ref.WeakReference;
+public final class cm implements em {
+    public final WeakReference a;
+    public final boolean b;
+    public Layout c;
+    public hm d;
+    public Rect e;
+    public wl f;
+    public lv3 h;
+    public boolean n;
+    public float r;
+    public float s;
+    public boolean w;
 
-    public final void a() {
-        ArrayList arrayList = this.a;
-        for (int i = 0; i < arrayList.size(); i++) {
-            ((bm) arrayList.get(i)).d.spanDrawn = false;
-        }
+    public cm(View view, boolean z) {
+        this.a = new WeakReference(view);
+        this.b = z;
     }
 
-    public final void b(int i) {
-        bm bmVar = (bm) this.a.remove(i);
-        HashMap hashMap = this.b;
-        em emVar = (em) hashMap.get(bmVar.c);
-        if (emVar != null) {
-            ArrayList arrayList = emVar.b;
-            arrayList.remove(bmVar);
-            emVar.a();
-            if (arrayList.isEmpty()) {
-                hashMap.remove(bmVar.c);
-                this.c.remove(emVar);
-            }
-            vl vlVar = bmVar.f;
-            if (vlVar != null) {
-                vlVar.n(bmVar);
-                return;
-            }
+    @Override
+    public final void invalidate() {
+        View view = (View) this.a.get();
+        if (view == null) {
             return;
         }
-        wn4.j("!!!");
+        if (this.b && view.getParent() != null) {
+            ((View) view.getParent()).invalidate();
+        } else {
+            view.invalidate();
+        }
     }
 }

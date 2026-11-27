@@ -1,419 +1,136 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.os.SystemClock;
 import java.io.File;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import org.json.JSONObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ds0 extends fy0 {
-    public final int S1;
-    public final String T1;
-    public l5c U1;
-    public final as0 V1;
-    public boolean W1;
-    public boolean X1;
-    public final p Y1;
-    public int Z1;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.e;
+public final class ds0 implements Runnable {
+    public final byte a = 1;
+    public final long b;
+    public final int c;
+    public final Object d;
+    public final Object e;
+    public final TLObject f;
+    public final Object h;
+    public final Object n;
+    public final Object r;
+    public final Object s;
 
-    public ds0(Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, wjb wjbVar, st0 st0Var, p pVar) {
-        super(context, null, false, false, wjbVar);
-        ?? r11;
-        int i2;
-        cs0 Y0;
-        char c;
-        char c2;
-        TLRPC.TL_document tL_document;
-        TLRPC.TL_photo tL_photo;
-        int i3;
-        TLRPC.TL_photo tL_photo2;
-        this.W1 = false;
-        this.X1 = false;
-        this.S1 = i;
-        this.T1 = l7c.r(na7.q1(i).V1(Long.valueOf(j)));
-        this.Y1 = pVar;
-        T0();
-        this.C1 = gl.L(4.0f);
-        this.D1 = gl.L(-10.0f);
-        TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
-        if (file != null && file.exists() && webPage == null) {
-            String str = botInlineResult.type;
-            String absolutePath = file.getAbsolutePath();
-            str.getClass();
-            boolean z = true;
-            switch (str.hashCode()) {
-                case -1890252483:
-                    if (str.equals("sticker")) {
-                        c = 0;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 102340:
-                    if (str.equals("gif")) {
-                        c = 1;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 3143036:
-                    if (str.equals("file")) {
-                        c = 2;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 93166550:
-                    if (str.equals("audio")) {
-                        c = 3;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 106642994:
-                    if (str.equals("photo")) {
-                        c = 4;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 112202875:
-                    if (str.equals("video")) {
-                        c = 5;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                case 112386354:
-                    if (str.equals("voice")) {
-                        c = 6;
-                        break;
-                    }
-                    c = 65535;
-                    break;
-                default:
-                    c = 65535;
-                    break;
-            }
-            switch (c) {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 5:
-                case 6:
-                    TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.id = 0L;
-                    tL_document2.size = 0L;
-                    tL_document2.dc_id = 0;
-                    tL_document2.mime_type = botInlineResult.content.mime_type;
-                    tL_document2.file_reference = new byte[0];
-                    tL_document2.date = ConnectionsManager.getInstance(i).getCurrentTime();
-                    TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-                    tL_document2.attributes.add(tL_documentAttributeFilename);
-                    switch (str.hashCode()) {
-                        case -1890252483:
-                            if (str.equals("sticker")) {
-                                c2 = 0;
-                                break;
-                            }
-                            c2 = 65535;
-                            break;
-                        case 102340:
-                            if (str.equals("gif")) {
-                                c2 = 1;
-                                break;
-                            }
-                            c2 = 65535;
-                            break;
-                        case 3143036:
-                            if (str.equals("file")) {
-                                c2 = 2;
-                                break;
-                            }
-                            c2 = 65535;
-                            break;
-                        case 93166550:
-                            if (str.equals("audio")) {
-                                c2 = 3;
-                                break;
-                            }
-                            c2 = 65535;
-                            break;
-                        case 112202875:
-                            if (str.equals("video")) {
-                                c2 = 4;
-                                break;
-                            }
-                            c2 = 65535;
-                            break;
-                        case 112386354:
-                            if (str.equals("voice")) {
-                                c2 = 5;
-                                break;
-                            }
-                            c2 = 65535;
-                            break;
-                        default:
-                            c2 = 65535;
-                            break;
-                    }
-                    switch (c2) {
-                        case 0:
-                            TLRPC.TL_documentAttributeSticker tL_documentAttributeSticker = new TLRPC.TL_documentAttributeSticker();
-                            tL_documentAttributeSticker.alt = "";
-                            tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
-                            tL_document2.attributes.add(tL_documentAttributeSticker);
-                            TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
-                            int[] g1 = k27.g1(botInlineResult);
-                            tL_documentAttributeImageSize.w = g1[0];
-                            tL_documentAttributeImageSize.h = g1[1];
-                            tL_document2.attributes.add(tL_documentAttributeImageSize);
-                            tL_documentAttributeFilename.file_name = "sticker.webp";
-                            try {
-                                if (botInlineResult.thumb != null) {
-                                    Bitmap G = fl5.G(new File(ba4.z(4), Utilities.a(botInlineResult.thumb.url) + "." + fl5.x(botInlineResult.thumb.url, "webp")).getAbsolutePath(), null, 90.0f, 90.0f, true);
-                                    if (G != null) {
-                                        TLRPC.PhotoSize U = fl5.U(G, 90.0f, 90.0f, 55, false);
-                                        if (U != null) {
-                                            tL_document2.thumbs.add(U);
-                                            tL_document2.flags |= 1;
-                                        }
-                                        G.recycle();
-                                        break;
-                                    }
-                                }
-                            } catch (Throwable th) {
-                                fa4.g(th, true);
-                                break;
-                            }
-                            break;
-                        case 1:
-                            tL_documentAttributeFilename.file_name = "animation.gif";
-                            if (absolutePath.endsWith("mp4")) {
-                                tL_document2.mime_type = "video/mp4";
-                                tL_document2.attributes.add(new TLRPC.TL_documentAttributeAnimated());
-                                break;
-                            } else {
-                                tL_document2.mime_type = "image/gif";
-                                break;
-                            }
-                        case 2:
-                            int lastIndexOf = botInlineResult.content.mime_type.lastIndexOf(47);
-                            if (lastIndexOf != -1) {
-                                tL_documentAttributeFilename.file_name = "file.".concat(botInlineResult.content.mime_type.substring(lastIndexOf + 1));
-                                break;
-                            } else {
-                                tL_documentAttributeFilename.file_name = "file";
-                                break;
-                            }
-                        case 3:
-                            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
-                            tL_documentAttributeAudio.duration = k27.f1(botInlineResult);
-                            tL_documentAttributeAudio.title = botInlineResult.title;
-                            int i4 = tL_documentAttributeAudio.flags;
-                            tL_documentAttributeAudio.flags = i4 | 1;
-                            String str2 = botInlineResult.description;
-                            if (str2 != null) {
-                                tL_documentAttributeAudio.performer = str2;
-                                tL_documentAttributeAudio.flags = i4 | 3;
-                            }
-                            tL_documentAttributeFilename.file_name = "audio.mp3";
-                            tL_document2.attributes.add(tL_documentAttributeAudio);
-                            break;
-                        case 4:
-                            tL_documentAttributeFilename.file_name = "video.mp4";
-                            TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
-                            int[] g12 = k27.g1(botInlineResult);
-                            tL_documentAttributeVideo.w = g12[0];
-                            tL_documentAttributeVideo.h = g12[1];
-                            tL_documentAttributeVideo.duration = k27.f1(botInlineResult);
-                            tL_documentAttributeVideo.supports_streaming = true;
-                            tL_document2.attributes.add(tL_documentAttributeVideo);
-                            try {
-                                if (botInlineResult.thumb != null) {
-                                    Bitmap G2 = fl5.G(new File(ba4.z(4), Utilities.a(botInlineResult.thumb.url) + "." + fl5.x(botInlineResult.thumb.url, "jpg")).getAbsolutePath(), null, 90.0f, 90.0f, true);
-                                    if (G2 != null) {
-                                        TLRPC.PhotoSize U2 = fl5.U(G2, 90.0f, 90.0f, 55, false);
-                                        if (U2 != null) {
-                                            tL_document2.thumbs.add(U2);
-                                            tL_document2.flags |= 1;
-                                        }
-                                        G2.recycle();
-                                        break;
-                                    }
-                                }
-                            } catch (Throwable th2) {
-                                fa4.g(th2, true);
-                                break;
-                            }
-                            break;
-                        case 5:
-                            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2 = new TLRPC.TL_documentAttributeAudio();
-                            tL_documentAttributeAudio2.duration = k27.f1(botInlineResult);
-                            tL_documentAttributeAudio2.voice = true;
-                            tL_documentAttributeFilename.file_name = "audio.ogg";
-                            tL_document2.attributes.add(tL_documentAttributeAudio2);
-                            break;
-                    }
-                    if (tL_documentAttributeFilename.file_name == null) {
-                        tL_documentAttributeFilename.file_name = "file";
-                    }
-                    if (tL_document2.mime_type == null) {
-                        tL_document2.mime_type = "application/octet-stream";
-                    }
-                    if (tL_document2.thumbs.isEmpty()) {
-                        TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
-                        int[] g13 = k27.g1(botInlineResult);
-                        tL_photoSize.w = g13[0];
-                        z = true;
-                        tL_photoSize.h = g13[1];
-                        tL_photoSize.size = 0;
-                        tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
-                        tL_photoSize.type = "x";
-                        tL_document2.thumbs.add(tL_photoSize);
-                        tL_document2.flags |= 1;
-                    } else {
-                        z = true;
-                    }
-                    tL_document = tL_document2;
-                    tL_photo = null;
-                    break;
-                case 4:
-                    if (file.exists()) {
-                        i3 = 0;
-                        tL_photo2 = z3a.B(i).z(absolutePath, null, false);
-                    } else {
-                        i3 = 0;
-                        tL_photo2 = null;
-                    }
-                    if (tL_photo2 == null) {
-                        tL_photo2 = new TLRPC.TL_photo();
-                        tL_photo2.date = ConnectionsManager.getInstance(i).getCurrentTime();
-                        tL_photo2.file_reference = new byte[i3];
-                        TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
-                        int[] g14 = k27.g1(botInlineResult);
-                        tL_photoSize2.w = g14[i3];
-                        tL_photoSize2.h = g14[1];
-                        tL_photoSize2.size = 1;
-                        tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
-                        tL_photoSize2.type = "x";
-                        tL_photo2.sizes.add(tL_photoSize2);
-                    }
-                    tL_photo = tL_photo2;
-                    tL_document = null;
-                    z = true;
-                    break;
-                default:
-                    tL_photo = null;
-                    tL_document = null;
-                    break;
-            }
-            i2 = i;
-            r11 = z;
-            Y0 = Y0(i2, j, botInlineResult, tL_photo, tL_document, null);
-        } else {
-            r11 = 1;
-            i2 = i;
-            Y0 = Y0(i2, j, botInlineResult, null, null, webPage);
-        }
-        cs0 cs0Var = Y0;
-        uk1 uk1Var = new uk1(wjbVar, context, false);
-        uk1Var.setDelegate(new Object());
-        uk1Var.setCustomText(k96.M0(2131752967, null));
-        gb2 gb2Var = new gb2(context, i2);
-        gb2Var.setDelegate(new Object());
-        gb2Var.z3(cs0Var, null, false, false, false, false);
-        LinearLayout j2 = de9.j(context, r11);
-        j2.addView(uk1Var, nme.o(-1, -2));
-        j2.addView(gb2Var, nme.o(-1, -2));
-        ?? cjaVar = new cja(context, null);
-        this.V1 = cjaVar;
-        cjaVar.U(zi8.d(null, i2, j, bkb.I.o()));
-        cjaVar.addView(j2, nme.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
-        FrameLayout frameLayout = new FrameLayout(context);
-        u41 i5 = yjb.i(24, wjbVar, context, r11);
-        i5.i(k96.M0(2131752966, null), false, r11);
-        i5.setOnClickListener(new qr0(this, tL_messages_preparedInlineMessage, pVar, i2, j, st0Var));
-        frameLayout.addView(i5, nme.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        ViewGroup viewGroup = this.b;
-        int i6 = this.u0;
-        viewGroup.addView(frameLayout, nme.f(-2.0f, -1, 87, i6, 0, i6, 0));
-        o39 o39Var = this.n1;
-        int i7 = this.u0;
-        o39Var.setPadding(i7, 0, i7, gl.L(68.0f) + r11);
-        this.n1.r1();
-        int i8 = bkb.Z6;
-        s0(bkb.v0(i8, this.J0));
-        M(i8);
-        this.U1.O(false);
-    }
-
-    public static defpackage.cs0 Y0(int r4, long r5, org.telegram.tgnet.TLRPC.BotInlineResult r7, org.telegram.tgnet.TLRPC.TL_photo r8, org.telegram.tgnet.TLRPC.TL_document r9, org.telegram.tgnet.TLRPC.WebPage r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ds0.Y0(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):cs0");
-    }
-
-    public static void Z0(Context context, int i, long j, String str, wjb wjbVar, st0 st0Var, p pVar) {
-        hd hdVar = new hd(3, null, context);
-        hdVar.q(500L);
-        TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
-        tL_messages_getPreparedInlineMessage.bot = na7.q1(i).m1(j);
-        tL_messages_getPreparedInlineMessage.id = str;
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getPreparedInlineMessage, new pr0(i, hdVar, context, j, wjbVar, st0Var, pVar));
+    public ds0(id idVar, Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, vnb vnbVar, bu0 bu0Var, p pVar) {
+        this.d = idVar;
+        this.e = context;
+        this.c = i;
+        this.b = j;
+        this.f = tL_messages_preparedInlineMessage;
+        this.h = fileArr;
+        this.n = vnbVar;
+        this.r = bu0Var;
+        this.s = pVar;
     }
 
     @Override
-    public final n39 G0(o39 o39Var) {
-        l5c l5cVar = new l5c(o39Var, getContext(), this.S1, 0, true, new f(this, (byte) 17), this.J0);
-        this.U1 = l5cVar;
-        return l5cVar;
-    }
-
-    @Override
-    public final CharSequence J0() {
-        return k96.M0(2131752969, null);
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        if (!this.W1 && !this.X1) {
-            this.X1 = true;
-            p pVar = this.Y1;
-            if (pVar != null) {
-                pVar.a("USER_DECLINED", null);
-            }
+    public final void run() {
+        String h;
+        w45 w45Var;
+        byte b = this.a;
+        Object obj = this.s;
+        Object obj2 = this.r;
+        Object obj3 = this.e;
+        Object obj4 = this.n;
+        Object obj5 = this.h;
+        TLObject tLObject = this.f;
+        Object obj6 = this.d;
+        switch (b) {
+            case 0:
+                ((id) obj6).dismiss();
+                new ls0((Context) obj3, this.c, this.b, (TLRPC.TL_messages_preparedInlineMessage) tLObject, ((File[]) obj5)[0], null, (vnb) obj4, (bu0) obj2, (p) obj).show();
+                return;
+            case 1:
+                a55 a55Var = (a55) obj6;
+                TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj3;
+                TL_wallet.tonConnectRequest tonconnectrequest = (TL_wallet.tonConnectRequest) tLObject;
+                c35 c35Var = (c35) obj5;
+                String str = (String) obj4;
+                byte[] bArr = (byte[]) obj2;
+                qe2 qe2Var = (qe2) obj;
+                a55Var.getClass();
+                try {
+                } catch (Exception e) {
+                    e = e;
+                }
+                try {
+                    JSONObject f = a55.f(c35Var, tonconnectpending.session, str, bArr, tonconnectrequest.body, a55Var.f.getCurrentTime());
+                    c35Var = c35Var;
+                    h = null;
+                    w45Var = new w45(tonconnectpending, tonconnectrequest, f, str, bArr);
+                } catch (Exception e2) {
+                    e = e2;
+                    c35Var = c35Var;
+                    h = a55.h("decode request", e);
+                    w45Var = null;
+                    hl.c3(new qe(a55Var, w45Var, qe2Var, h, this.b, this.c, c35Var, (byte) 1));
+                    return;
+                }
+                hl.c3(new qe(a55Var, w45Var, qe2Var, h, this.b, this.c, c35Var, (byte) 1));
+                return;
+            default:
+                k5 k5Var = (k5) obj5;
+                zv5 zv5Var = (zv5) obj4;
+                Context context = (Context) obj3;
+                e eVar = (e) obj2;
+                TLRPC.Peer peer = (TLRPC.Peer) obj;
+                try {
+                    ((id) obj6).dismiss();
+                } catch (Exception e3) {
+                    cc4.g(e3, true);
+                }
+                if (tLObject != null) {
+                    TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
+                    if (joinaspeers.peers.size() == 1) {
+                        zv5Var.a(uc7.s1(k5Var.a).j1(r47.B1(joinaspeers.peers.get(0))), false, false, false);
+                        return;
+                    }
+                    bw5.C1 = joinaspeers.peers;
+                    long j = this.b;
+                    bw5.E1 = j;
+                    bw5.D1 = SystemClock.elapsedRealtime();
+                    int i = k5Var.a;
+                    bw5.F1 = i;
+                    uc7.s1(i).c4(joinaspeers.chats, false);
+                    uc7.s1(k5Var.a).j4(joinaspeers.users, false);
+                    bw5.G0(context, j, joinaspeers.peers, eVar, this.c, peer, zv5Var);
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void onCreate(Bundle bundle) {
-        int b;
-        super.onCreate(bundle);
-        o39 o39Var = this.n1;
-        if (o39Var.getAdapter() == null) {
-            b = 0;
-        } else {
-            b = o39Var.getAdapter().b();
-        }
-        o39Var.w0(Math.max(b - 1, 0));
+    public ds0(id idVar, TLObject tLObject, k5 k5Var, zv5 zv5Var, long j, Context context, e eVar, int i, TLRPC.Peer peer) {
+        this.d = idVar;
+        this.f = tLObject;
+        this.h = k5Var;
+        this.n = zv5Var;
+        this.b = j;
+        this.e = context;
+        this.r = eVar;
+        this.c = i;
+        this.s = peer;
     }
 
-    @Override
-    public final void p0() {
-        try {
-            super.p0();
-            int v0 = bkb.v0(bkb.Z6, this.J0);
-            if (v0 != this.Z1) {
-                this.Z1 = v0;
-                s0(v0);
-            }
-        } catch (Exception e) {
-            fa4.g(e, true);
-        }
+    public ds0(a55 a55Var, TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, c35 c35Var, String str, byte[] bArr, qe2 qe2Var, long j, int i) {
+        this.d = a55Var;
+        this.e = tonconnectpending;
+        this.f = tonconnectrequest;
+        this.h = c35Var;
+        this.n = str;
+        this.r = bArr;
+        this.s = qe2Var;
+        this.b = j;
+        this.c = i;
     }
 }

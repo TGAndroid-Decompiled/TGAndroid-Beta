@@ -1,149 +1,185 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.style.ImageSpan;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashMap;
-public final class eva extends LinearLayout {
-    public static HashMap F;
-    public boolean E;
-    public final int a;
-    public final pb0 b;
-    public final be0 c;
-    public final be0 d;
-    public int e;
-    public final TextView f;
-    public final LinearLayout.LayoutParams h;
-    public final l46 n;
-    public final TextView r;
-    public final TextView s;
-    public final SpannableString w;
-    public final SpannableString x;
-    public boolean y;
+import java.util.HashSet;
+public class eva extends View implements snb {
+    public dva a;
+    public final bva b;
+    public int c;
+    public sh9 d;
+    public boolean e;
+    public Paint f;
+    public LinearGradient h;
+    public Matrix n;
 
-    public eva(int i, wjb wjbVar, Context context) {
+    public eva(Context context) {
         super(context);
-        this.e = 1;
-        this.a = i;
-        setOrientation(0);
-        eb0 eb0Var = new eb0(this, context, wjbVar);
-        addView(eb0Var, nme.p(72, -1, 0.0f, 115));
-        be0 be0Var = new be0(context);
-        this.d = be0Var;
-        be0Var.setRoundRadius(gl.L(46.0f));
-        eb0Var.addView(be0Var, nme.d(46, 46.0f, 16, 13.0f, 0.0f, 13.0f, 0.0f));
-        this.b = new pb0((wjb) null);
-        be0 be0Var2 = new be0(context);
-        this.c = be0Var2;
-        be0Var2.setRoundRadius(gl.L(46.0f));
-        eb0Var.addView(be0Var2, nme.d(46, 46.0f, 16, 13.0f, 0.0f, 13.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(19);
-        addView(linearLayout, nme.p(-2, -1, 1.0f, 119));
-        TextView textView = new TextView(context);
-        this.f = textView;
-        textView.setTypeface(gl.o());
-        int i2 = bkb.F6;
-        zkb.X(textView, i2, wjbVar);
-        textView.setTextSize(1, 16.0f);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        textView.setSingleLine(true);
-        LinearLayout.LayoutParams k = nme.k(0.0f, 0.0f, 0.0f, 4.33f, -1, -2);
-        this.h = k;
-        linearLayout.addView(textView, k);
-        l46 l46Var = new l46(context, null);
-        this.n = l46Var;
-        zkb.X(l46Var, i2, wjbVar);
-        l46Var.setTextSize(1, 13.0f);
-        l46Var.setEllipsize(truncateAt);
-        l46Var.setSingleLine(true);
-        linearLayout.addView(l46Var, nme.k(0.0f, 0.0f, 0.0f, 0.33f, -1, -2));
-        TextView textView2 = new TextView(context);
-        this.r = textView2;
-        zkb.X(textView2, bkb.y6, wjbVar);
-        textView2.setTextSize(1, 14.0f);
-        textView2.setEllipsize(truncateAt);
-        textView2.setSingleLine(true);
-        linearLayout.addView(textView2, nme.o(-1, -2));
-        TextView textView3 = new TextView(context);
-        this.s = textView3;
-        textView3.setTypeface(gl.o());
-        textView3.setTextSize(1, 15.3f);
-        textView3.setGravity(5);
-        addView(textView3, nme.q(-2, -2, 0.0f, 21, 8, 0, 20, 0));
-        SpannableString spannableString = new SpannableString("⭐️");
-        this.w = spannableString;
-        Drawable d = b00.d(context, 2131232757);
-        d.setBounds(0, 0, gl.L(21.0f), gl.L(21.0f));
-        spannableString.setSpan(new ImageSpan(d), 0, spannableString.length(), 33);
-        SpannableString spannableString2 = new SpannableString("TON");
-        this.x = spannableString2;
-        cm2 cm2Var = new cm2(0, b00.d(context, 2131231961));
-        cm2Var.d = false;
-        cm2Var.c(gl.L(18.0f));
-        cm2Var.s = gl.L(0.5f);
-        spannableString2.setSpan(cm2Var, 0, spannableString2.length(), 33);
+        int i;
+        if (xea.o() == 2) {
+            i = 200;
+        } else if (xea.o() == 1) {
+            i = 100;
+        } else {
+            i = 50;
+        }
+        this.b = new bva(this, (byte) 0);
+        this.e = true;
+        this.a = new dva(i);
+        a();
     }
 
-    public static fm2 a(int i, String str) {
-        if (i != 44) {
-            return o5a.a(i, str);
+    public void a() {
+        dva dvaVar = this.a;
+        dvaVar.N = 100;
+        dvaVar.L = true;
+        dvaVar.G = true;
+        dvaVar.J = true;
+        dvaVar.H = true;
+        dvaVar.r = (byte) 4;
+        dvaVar.w = 0.98f;
+        dvaVar.v = 0.98f;
+        dvaVar.u = 0.98f;
+        dvaVar.c();
+    }
+
+    public final void b(float f) {
+        float f2;
+        if (f < 60.0f) {
+            f2 = 5.0f;
+        } else if (f < 180.0f) {
+            f2 = 9.0f;
+        } else {
+            f2 = 15.0f;
         }
-        HashMap hashMap = F;
-        if (hashMap == null) {
-            hashMap = new HashMap();
-            F = hashMap;
+        AnimatorSet animatorSet = new AnimatorSet();
+        ija ijaVar = new ija(this, (byte) 6);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f2);
+        ofFloat.addUpdateListener(ijaVar);
+        ofFloat.setDuration(600L);
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f2, 1.0f);
+        ofFloat2.addUpdateListener(ijaVar);
+        ofFloat2.setDuration(2000L);
+        animatorSet.playTogether(ofFloat, ofFloat2);
+        animatorSet.start();
+    }
+
+    public final void c() {
+        Paint paint = new Paint(1);
+        this.f = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, hl.L(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.h = linearGradient;
+        this.f.setShader(linearGradient);
+        this.n = new Matrix();
+    }
+
+    public int getStarsRectWidth() {
+        return hl.L(140.0f);
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        sh9 sh9Var = new sh9(this, (byte) 9);
+        this.d = sh9Var;
+        i86.a(sh9Var);
+        boolean e = i86.e(131072);
+        if (this.e != e) {
+            this.e = e;
+            invalidate();
         }
-        fm2 fm2Var = (fm2) hashMap.get(str);
-        if (fm2Var == null) {
-            HashMap hashMap2 = F;
-            fm2 a = o5a.a(44, str);
-            hashMap2.put(str, a);
-            return a;
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        HashSet hashSet;
+        super.onDetachedFromWindow();
+        sh9 sh9Var = this.d;
+        if (sh9Var != null && (hashSet = i86.n) != null) {
+            hashSet.remove(sh9Var);
         }
-        return fm2Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float L;
-        int i;
+        Canvas canvas2;
         super.onDraw(canvas);
-        if (this.E) {
-            if (k96.a0) {
-                L = 0.0f;
+        if (this.e) {
+            if (this.f != null) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas2 = canvas;
             } else {
-                L = gl.L(72.0f);
+                canvas2 = canvas;
             }
-            float f = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (k96.a0) {
-                i = gl.L(72.0f);
-            } else {
-                i = 0;
+            this.a.d(canvas2);
+            if (this.f != null) {
+                canvas2.save();
+                this.n.reset();
+                this.n.postTranslate(0.0f, (getHeight() + 1) - hl.L(12.0f));
+                this.h.setLocalMatrix(this.n);
+                canvas2.drawRect(0.0f, getHeight() - hl.L(12.0f), getWidth(), getHeight(), this.f);
+                this.n.reset();
+                this.n.postRotate(180.0f);
+                this.n.postTranslate(0.0f, hl.L(12.0f));
+                this.h.setLocalMatrix(this.n);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), hl.L(12.0f), this.f);
+                canvas2.restore();
+                canvas2.restore();
             }
-            canvas.drawRect(f, measuredHeight, measuredWidth - i, getMeasuredHeight(), bkb.j0);
+            if (!this.a.g) {
+                invalidate();
+            }
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        if (this.y) {
-            f = 71.0f;
-        } else {
-            f = 58.0f;
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
+        this.a.a.set(0.0f, 0.0f, getStarsRectWidth(), hl.L(140.0f));
+        this.a.a.offset((getMeasuredWidth() - this.a.a.width()) / 2.0f, (getMeasuredHeight() - this.a.a.height()) / 2.0f);
+        this.a.b.set(-hl.L(15.0f), -hl.L(15.0f), hl.L(15.0f) + getMeasuredWidth(), hl.L(15.0f) + getMeasuredHeight());
+        if (this.c != measuredHeight) {
+            this.c = measuredHeight;
+            this.a.f();
         }
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(gl.L(f), 1073741824));
+    }
+
+    public void setPaused(boolean z) {
+        dva dvaVar = this.a;
+        if (z == dvaVar.g) {
+            return;
+        }
+        dvaVar.g = z;
+        if (z) {
+            dvaVar.Q = System.currentTimeMillis();
+            return;
+        }
+        for (int i = 0; i < this.a.n.size(); i++) {
+            cva cvaVar = (cva) this.a.n.get(i);
+            cvaVar.a = (System.currentTimeMillis() - this.a.Q) + cvaVar.a;
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void updateColors() {
+        bva bvaVar = this.b;
+        removeCallbacks(bvaVar);
+        postDelayed(bvaVar, 150L);
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

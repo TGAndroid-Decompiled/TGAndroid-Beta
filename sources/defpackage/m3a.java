@@ -1,19 +1,37 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m3a implements RequestDelegate {
-    public final TLRPC.TL_messages_initHistoryImport a;
-    public final p3a b;
+import android.content.Context;
+import android.text.TextUtils;
+public final class m3a extends cw9 {
+    public en9 f;
+    public final z3a h;
 
-    public m3a(p3a p3aVar, TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport) {
-        this.b = p3aVar;
-        this.a = tL_messages_initHistoryImport;
+    public m3a(z3a z3aVar, Context context, x53 x53Var) {
+        super(context, 13.0f, x53Var);
+        this.h = z3aVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        gl.c3(new bm8(this, tLObject, this.a, tL_error, (byte) 16));
+    public final void a(String str) {
+        en9 en9Var = this.f;
+        if (en9Var != null) {
+            hl.r(en9Var);
+        }
+        this.f = new en9(this, str, (byte) 21);
+        boolean isEmpty = TextUtils.isEmpty(str);
+        en9 en9Var2 = this.f;
+        if (!isEmpty) {
+            hl.d3(en9Var2, 300L);
+        } else {
+            en9Var2.run();
+        }
+        if (this.f != null) {
+            z3a z3aVar = this.h;
+            if (!z3aVar.R) {
+                z3aVar.R = true;
+                z3aVar.x.E();
+                z3aVar.y.g1(0, -z3aVar.r.getPaddingTop());
+            }
+        }
     }
 }

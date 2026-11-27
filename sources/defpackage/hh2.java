@@ -1,47 +1,290 @@
 package defpackage;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.maps.model.LatLng;
-import java.util.ArrayList;
-public final class hh2 extends b4 {
-    public static final Parcelable.Creator<hh2> CREATOR = new igd((byte) 2);
-    public LatLng a;
-    public double b;
-    public float c;
-    public int d;
-    public int e;
-    public float f;
-    public boolean h;
-    public boolean n;
-    public ArrayList r;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+public final class hh2 extends d2b {
+    public final byte a;
+    public boolean b;
+    public long c;
+    public boolean d;
+    public float e;
+    public int f;
+    public final Paint g;
+    public final Object h;
+
+    public hh2(boolean z) {
+        this.a = (byte) 1;
+        this.b = false;
+        this.c = 0L;
+        this.d = false;
+        this.h = new RectF();
+        this.f = 255;
+        if (z) {
+            Paint paint = new Paint(1);
+            this.g = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeWidth(hl.L(2.0f));
+        }
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.k(parcel, 2, this.a, i);
-        double d = this.b;
-        jte.q(parcel, 3, 8);
-        parcel.writeDouble(d);
-        float f = this.c;
-        jte.q(parcel, 4, 4);
-        parcel.writeFloat(f);
-        int i2 = this.d;
-        jte.q(parcel, 5, 4);
-        parcel.writeInt(i2);
-        int i3 = this.e;
-        jte.q(parcel, 6, 4);
-        parcel.writeInt(i3);
-        float f2 = this.f;
-        jte.q(parcel, 7, 4);
-        parcel.writeFloat(f2);
-        boolean z = this.h;
-        jte.q(parcel, 8, 4);
-        parcel.writeInt(z ? 1 : 0);
-        boolean z2 = this.n;
-        jte.q(parcel, 9, 4);
-        parcel.writeInt(z2 ? 1 : 0);
-        jte.p(parcel, 10, this.r);
-        jte.s(parcel, r);
+    public final void b(int i) {
+        byte b = this.a;
+        Paint paint = this.g;
+        switch (b) {
+            case 0:
+                if (this.f != i) {
+                    ((Paint) this.h).setColor(i);
+                    paint.setColor(i);
+                }
+                this.f = i;
+                return;
+            default:
+                if (paint != null) {
+                    paint.setColor(i);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void c(boolean z) {
+        switch (this.a) {
+            case 0:
+                return;
+            default:
+                this.b = z;
+                return;
+        }
+    }
+
+    @Override
+    public final void d() {
+        switch (this.a) {
+            case 0:
+                this.c = System.currentTimeMillis();
+                this.b = true;
+                invalidateSelf();
+                return;
+            default:
+                this.c = System.currentTimeMillis();
+                this.d = true;
+                invalidateSelf();
+                return;
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f;
+        float f2;
+        float L;
+        float N;
+        long j;
+        byte b = this.a;
+        long j2 = 50;
+        Paint paint = this.g;
+        float f3 = 2.0f;
+        Object obj = this.h;
+        switch (b) {
+            case 0:
+                float min = Math.min(this.e, 1.0f);
+                k43 k43Var = k43.i;
+                int i = (min > 0.3f ? 1 : (min == 0.3f ? 0 : -1));
+                if (i < 0) {
+                    f = min / 0.3f;
+                } else {
+                    f = 1.0f;
+                }
+                float interpolation = k43Var.getInterpolation(f);
+                k43 k43Var2 = k43.g;
+                if (i < 0) {
+                    f2 = 0.0f;
+                } else {
+                    f2 = (min - 0.3f) / 0.7f;
+                }
+                float interpolation2 = k43Var2.getInterpolation(f2);
+                if (this.d) {
+                    L = qd4.A(1.0f, interpolation, hl.L(7.0f) - hl.L(2.1f), hl.L(2.1f) * interpolation);
+                    N = (1.0f - k43Var2.getInterpolation(this.e / 2.0f)) * hl.N(1.5f);
+                } else {
+                    L = ((hl.L(7.0f) - hl.L(2.1f)) * interpolation) + ((1.0f - interpolation) * hl.L(2.1f));
+                    N = hl.N(1.5f) * k43.h.getInterpolation(this.e / 2.0f);
+                }
+                float L2 = hl.L(11.0f) / 2.0f;
+                float N2 = hl.N(2.0f);
+                float N3 = (hl.N(0.5f) * interpolation) - (hl.N(0.5f) * interpolation2);
+                if (paint == null) {
+                    paint = aob.d2;
+                }
+                Paint paint2 = (Paint) obj;
+                if (paint2 == null) {
+                    paint2 = aob.c2;
+                }
+                if (paint.getStrokeWidth() != hl.L(0.8f)) {
+                    paint.setStrokeWidth(hl.L(0.8f));
+                }
+                int i2 = 0;
+                for (int i3 = 2; i2 < i3; i3 = 2) {
+                    canvas.save();
+                    canvas.translate(hl.N(0.2f) + (paint.getStrokeWidth() / 2.0f) + N + (hl.L(9.0f) * i2) + getBounds().left, hl.N(2.0f) + (paint.getStrokeWidth() / 2.0f) + getBounds().top);
+                    RectF rectF = hl.P;
+                    rectF.set(0.0f, N3, hl.L(7.0f), hl.L(11.0f) - N3);
+                    canvas.drawOval(rectF, paint);
+                    canvas.drawCircle(L, L2, N2, paint2);
+                    canvas.restore();
+                    i2++;
+                }
+                if (this.b) {
+                    long currentTimeMillis = System.currentTimeMillis();
+                    long j3 = currentTimeMillis - this.c;
+                    this.c = currentTimeMillis;
+                    if (j3 > 50) {
+                        j = 50;
+                    } else {
+                        j = j3;
+                    }
+                    float f4 = (((float) j) / 500.0f) + this.e;
+                    this.e = f4;
+                    if (f4 >= 2.0f) {
+                        this.e = 0.0f;
+                        this.d = !this.d;
+                    }
+                    a();
+                    return;
+                }
+                return;
+            default:
+                RectF rectF2 = (RectF) obj;
+                if (paint == null) {
+                    paint = aob.d2;
+                }
+                if (paint.getStrokeWidth() != hl.L(2.0f)) {
+                    paint.setStrokeWidth(hl.L(2.0f));
+                }
+                canvas.save();
+                int L3 = hl.L(14.0f) / 2;
+                if (this.b) {
+                    f3 = 1.0f;
+                }
+                canvas.translate(0.0f, hl.L(f3) + L3);
+                for (int i4 = 0; i4 < 4; i4++) {
+                    int i5 = this.f;
+                    if (i4 == 0) {
+                        paint.setAlpha((int) (i5 * this.e));
+                    } else if (i4 == 3) {
+                        paint.setAlpha((int) ((1.0f - this.e) * i5));
+                    } else {
+                        paint.setAlpha(i5);
+                    }
+                    float L4 = (hl.L(4.0f) * this.e) + (hl.L(4.0f) * i4);
+                    float f5 = -L4;
+                    rectF2.set(f5, f5, L4, L4);
+                    canvas.drawArc(rectF2, -15.0f, 30.0f, false, paint);
+                }
+                canvas.restore();
+                if (this.d) {
+                    long currentTimeMillis2 = System.currentTimeMillis();
+                    long j4 = currentTimeMillis2 - this.c;
+                    this.c = currentTimeMillis2;
+                    if (j4 <= 50) {
+                        j2 = j4;
+                    }
+                    this.e = (((float) j2) / 800.0f) + this.e;
+                    while (true) {
+                        float f6 = this.e;
+                        if (f6 > 1.0f) {
+                            this.e = f6 - 1.0f;
+                        } else {
+                            a();
+                            return;
+                        }
+                    }
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final void e() {
+        switch (this.a) {
+            case 0:
+                this.b = false;
+                return;
+            default:
+                this.d = false;
+                return;
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        switch (this.a) {
+            case 0:
+                return hl.L(18.0f);
+            default:
+                return hl.L(14.0f);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        switch (this.a) {
+            case 0:
+                return hl.L(20.0f);
+            default:
+                return hl.L(18.0f);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        byte b = this.a;
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        switch (this.a) {
+            case 0:
+                return;
+            default:
+                this.f = i;
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        byte b = this.a;
+    }
+
+    private final void f(int i) {
+    }
+
+    private final void g(ColorFilter colorFilter) {
+    }
+
+    private final void h(ColorFilter colorFilter) {
+    }
+
+    private final void i(boolean z) {
+    }
+
+    public hh2() {
+        this.a = (byte) 0;
+        this.c = 0L;
+        this.b = false;
+        this.d = true;
+        Paint paint = new Paint(1);
+        this.g = paint;
+        this.h = new Paint(1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(hl.N(1.2f));
     }
 }

@@ -1,39 +1,34 @@
 package defpackage;
-public final class ko1 implements Runnable {
-    public final byte a = 1;
-    public final byte b;
-    public final mu1 c;
-    public final boolean d;
 
-    public ko1(int i, mu1 mu1Var, boolean z) {
-        this.b = i;
-        this.c = mu1Var;
-        this.d = z;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ko1 implements RequestDelegate {
+    public final byte a;
+    public final zu1 b;
+    public final TLRPC.TL_attachMenuBot c;
+    public final TLRPC.User d;
+
+    public ko1(zu1 zu1Var, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, byte b) {
+        this.a = b;
+        this.b = zu1Var;
+        this.c = tL_attachMenuBot;
+        this.d = user;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        boolean z = this.d;
-        mu1 mu1Var = this.c;
-        byte b2 = this.b;
+        TLRPC.User user = this.d;
+        TLRPC.TL_attachMenuBot tL_attachMenuBot = this.c;
+        zu1 zu1Var = this.b;
         switch (b) {
             case 0:
-                mu1Var.Uc(b2, z);
+                hl.c3(new ro1(zu1Var, tL_error, tL_attachMenuBot, user));
                 return;
             default:
-                if (b2 != 2) {
-                    mu1Var.Z9();
-                    mu1Var.rc();
-                }
-                no2.f(u21.b0(mu1Var), b2, z);
+                hl.c3(new ro1(zu1Var, tL_attachMenuBot, tL_error, user));
                 return;
         }
-    }
-
-    public ko1(mu1 mu1Var, boolean z, int i) {
-        this.c = mu1Var;
-        this.d = z;
-        this.b = i;
     }
 }

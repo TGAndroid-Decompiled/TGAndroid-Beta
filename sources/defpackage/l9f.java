@@ -1,51 +1,48 @@
 package defpackage;
+public final class l9f extends ljf {
+    private static final l9f zzb;
+    private int zzd;
+    private int zze;
+    private int zzf;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class l9f extends b4 {
-    public static final Parcelable.Creator<l9f> CREATOR = new c0f((byte) 19);
-    public final long a;
-    public final qae b;
-    public final qae c;
-    public final qae d;
-
-    public l9f(long j, byte[] bArr, byte[] bArr2, byte[] bArr3) {
-        fre.h(bArr);
-        qae o = qae.o(bArr.length, bArr);
-        fre.h(bArr2);
-        qae o2 = qae.o(bArr2.length, bArr2);
-        fre.h(bArr3);
-        qae o3 = qae.o(bArr3.length, bArr3);
-        this.a = j;
-        this.b = o;
-        this.c = o2;
-        this.d = o3;
+    static {
+        ?? ljfVar = new ljf();
+        zzb = ljfVar;
+        ljf.e(l9f.class, ljfVar);
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof l9f) {
-            l9f l9fVar = (l9f) obj;
-            if (this.a == l9fVar.a && cqe.a(this.b, l9fVar.b) && cqe.a(this.c, l9fVar.c) && cqe.a(this.d, l9fVar.d)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    public static j9f l() {
+        return (j9f) zzb.j();
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.a), this.b, this.c, this.d});
+    public static void m(l9f l9fVar, int i) {
+        l9fVar.zzd |= 2;
+        l9fVar.zzf = i;
+    }
+
+    public static void n(l9f l9fVar, int i) {
+        l9fVar.zze = i - 1;
+        l9fVar.zzd |= 1;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 8);
-        parcel.writeLong(this.a);
-        jte.c(parcel, 2, this.b.p());
-        jte.c(parcel, 3, this.c.p());
-        jte.c(parcel, 4, this.d.p());
-        jte.s(parcel, r);
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new kjf(zzb);
+                }
+                return new ljf();
+            }
+            return new ilf(zzb, "\u0001\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001᠌\u0000\u0002င\u0001", new Object[]{"zzd", "zze", faf.y, "zzf"});
+        }
+        return (byte) 1;
     }
 }

@@ -1,64 +1,59 @@
 package defpackage;
-public final class evb extends gb3 {
-    public Runnable F;
-    public int G;
-    public final qvb H;
-
-    public evb(qvb qvbVar) {
-        this.H = qvbVar;
+public enum evb extends rwb {
+    public evb() {
+        super("AfterAttributeName", 35);
     }
 
     @Override
-    public final void F() {
-        if (this.G == -1) {
-            this.G = this.H.getNotificationCenter().q(null, this.G, false);
-            Runnable runnable = this.F;
-            if (runnable != null) {
-                gl.r(runnable);
-                this.F = null;
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        dvb dvbVar = rwb.Y;
+        if (d != 0) {
+            if (d != ' ') {
+                if (d != '\"' && d != '\'') {
+                    if (d != '/') {
+                        mub mubVar = rwb.a;
+                        if (d != 65535) {
+                            if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
+                                switch (d) {
+                                    case '<':
+                                        break;
+                                    case '=':
+                                        bubVar.c = rwb.a0;
+                                        return;
+                                    case '>':
+                                        bubVar.k();
+                                        bubVar.c = mubVar;
+                                        return;
+                                    default:
+                                        bubVar.i.A();
+                                        ik1Var.q();
+                                        bubVar.c = dvbVar;
+                                        return;
+                                }
+                            } else {
+                                return;
+                            }
+                        } else {
+                            bubVar.l(this);
+                            bubVar.c = mubVar;
+                            return;
+                        }
+                    } else {
+                        bubVar.c = rwb.f0;
+                        return;
+                    }
+                }
+                bubVar.m(this);
+                bubVar.i.A();
+                bubVar.i.u(d);
+                bubVar.c = dvbVar;
+                return;
             }
+            return;
         }
-    }
-
-    @Override
-    public final void N() {
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            gl.r(runnable);
-            this.F = null;
-        }
-        dvb dvbVar = new dvb(this, (byte) 0);
-        this.F = dvbVar;
-        gl.c3(dvbVar);
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            gl.r(runnable);
-        }
-        dvb dvbVar = new dvb(this, (byte) 1);
-        this.F = dvbVar;
-        gl.c3(dvbVar);
-    }
-
-    @Override
-    public final void z(s49 s49Var) {
-        qvb qvbVar = this.H;
-        nvb nvbVar = qvbVar.d1;
-        if (nvbVar == s49Var.a) {
-            nvbVar.setTranslationX(0.0f);
-            vub vubVar = qvbVar.P;
-            if (vubVar != null) {
-                vubVar.G.clear();
-            }
-            nvb nvbVar2 = qvbVar.d1;
-            if (ug8.A(nvbVar2)) {
-                nvbVar2.setTopicIcon(nvbVar2.d5);
-            }
-            qvbVar.d1 = null;
-        }
+        bubVar.m(this);
+        bubVar.i.u((char) 65533);
+        bubVar.c = dvbVar;
     }
 }

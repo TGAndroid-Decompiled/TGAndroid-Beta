@@ -1,17 +1,12 @@
 package defpackage;
-public final class bvd implements zn7 {
-    public static final bvd a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import java.util.List;
+public abstract class bvd {
+    public static String a(String str) {
+        if (str != null) {
+            return k7b.u(new k7b(str, (List) null));
         }
-        throw new ClassCastException();
+        lq5.j("applicationId cannot be null");
+        return null;
     }
 }

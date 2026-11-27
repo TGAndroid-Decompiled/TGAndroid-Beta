@@ -1,185 +1,153 @@
 package defpackage;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
+import android.graphics.RectF;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
+import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ProfileActivity;
-public final class bp8 extends View {
-    public static final String[] s = {"🎉", "🎆", "🎈"};
-    public final ProfileActivity a;
-    public yo8 b;
-    public yo8 c;
-    public final PointF d;
-    public boolean e;
-    public boolean f;
-    public float h;
-    public long n;
-    public boolean r;
+public final class bp8 implements kk4, fd, nr7, zo8, t69, s84, iva, lc5, bf7 {
+    public final byte a;
+    public final ProfileActivity b;
 
-    public bp8(ProfileActivity profileActivity, yo8 yo8Var) {
-        super(profileActivity.getParentActivity());
-        this.d = new PointF();
-        this.h = 1.0f;
-        this.r = false;
-        this.a = profileActivity;
-        this.b = yo8Var;
+    public bp8(ProfileActivity profileActivity, byte b) {
+        this.a = b;
+        this.b = profileActivity;
     }
 
-    public final boolean a() {
-        yo8 yo8Var = this.b;
-        if (!yo8Var.b || this.h < 1.0f) {
+    @Override
+    public final void A(boolean z) {
+        RectF rectF = ProfileActivity.Z6;
+        ProfileActivity profileActivity = this.b;
+        profileActivity.J1 = (byte) 0;
+        jn7 notificationCenter = profileActivity.getNotificationCenter();
+        int i = jn7.s;
+        notificationCenter.n(profileActivity, i);
+        profileActivity.getNotificationCenter().k(i, new Object[0]);
+        profileActivity.finishFragment();
+        profileActivity.getNotificationCenter().k(jn7.K2, Long.valueOf(-profileActivity.F2.id), null, profileActivity.F2, Boolean.valueOf(z));
+    }
+
+    @Override
+    public final l2d S(View view, l2d l2dVar) {
+        RectF rectF = ProfileActivity.Z6;
+        int i = l2dVar.a.f(519).d;
+        ProfileActivity profileActivity = this.b;
+        profileActivity.P6 = i;
+        FrameLayout frameLayout = profileActivity.y5;
+        if (frameLayout != null) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
+            int i2 = profileActivity.P6 + profileActivity.O6;
+            if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i2) {
+                marginLayoutParams.bottomMargin = i2;
+                profileActivity.y5.setLayoutParams(marginLayoutParams);
+            }
+        }
+        if (profileActivity.O != null) {
+            profileActivity.z1();
+            cga cgaVar = profileActivity.O.b0;
+            if (cgaVar != null) {
+                cgaVar.setButtonOffset(profileActivity.P6 + profileActivity.O6);
+            }
+        }
+        return l2d.b;
+    }
+
+    @Override
+    public final boolean e(int i, View view) {
+        RectF rectF = ProfileActivity.Z6;
+        ProfileActivity profileActivity = this.b;
+        fs8 fs8Var = profileActivity.e;
+        if (fs8Var.x || fs8Var.w.isEmpty()) {
             return false;
         }
-        if (yo8Var.c.y() != null) {
-            this.b.c.y().I(0, false, false);
-            this.b.c.y().C(true);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, profileActivity.A0, profileActivity.getParentActivity());
+        String M0 = ob6.M0(2131752021, null);
+        id idVar = alertDialog$Builder.a;
+        idVar.S = M0;
+        idVar.U = ob6.M0(2131752026, null);
+        alertDialog$Builder.j(ob6.M0(2131752064, null), new bp8(profileActivity, (byte) 1));
+        alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+        profileActivity.showDialog(idVar);
+        TextView textView = (TextView) idVar.c(-1);
+        if (textView != null) {
+            yob.X(textView, aob.q7, null);
         }
-        this.r = true;
-        this.h = 0.0f;
-        invalidate();
         return true;
     }
 
-    public final void b(yo8 yo8Var) {
-        if (this.b != yo8Var && yo8Var != null) {
-            ArrayList arrayList = yo8Var.e;
-            if (this.r) {
-                this.c = yo8Var;
+    @Override
+    public final void f(int i, ArrayList arrayList) {
+        TLRPC.ChatParticipants chatParticipants;
+        RectF rectF = ProfileActivity.Z6;
+        HashSet hashSet = new HashSet();
+        ArrayList arrayList2 = new ArrayList();
+        ProfileActivity profileActivity = this.b;
+        TLRPC.ChatFull chatFull = profileActivity.v2;
+        if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
+            for (int i2 = 0; i2 < profileActivity.v2.participants.participants.size(); i2++) {
+                hashSet.add(Long.valueOf(profileActivity.v2.participants.participants.get(i2).user_id));
+            }
+        }
+        profileActivity.getMessagesController().l(profileActivity.F2, profileActivity, arrayList, i, new hw(arrayList2, (byte) 13), new hw(profileActivity, (byte) 14), new sa8(profileActivity, arrayList2, hashSet, (byte) 8));
+    }
+
+    @Override
+    public final boolean run() {
+        RectF rectF = ProfileActivity.Z6;
+        ProfileActivity profileActivity = this.b;
+        if (profileActivity.E2 == null && !profileActivity.q2()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void t(int i, float f, float f2, t84 t84Var) {
+        RectF rectF = ProfileActivity.Z6;
+        this.b.J3();
+    }
+
+    @Override
+    public final void w(id idVar, int i) {
+        byte b = this.a;
+        ProfileActivity profileActivity = this.b;
+        switch (b) {
+            case 1:
+                RectF rectF = ProfileActivity.Z6;
+                fs8 fs8Var = profileActivity.e;
+                fs8Var.w.clear();
+                uc7.e1().edit().remove("settingsSearchRecent2").commit();
+                fs8Var.f();
                 return;
-            }
-            if (this.f) {
-                for (int i = 0; i < this.b.e.size(); i++) {
-                    ((ap8) this.b.e.get(i)).p0(null);
+            case 2:
+                RectF rectF2 = ProfileActivity.Z6;
+                profileActivity.getClass();
+                xea.k = null;
+                xea.l = null;
+                xea.x();
+                profileActivity.getConnectionsManager().switchBackend(true);
+                return;
+            default:
+                RectF rectF3 = ProfileActivity.Z6;
+                profileActivity.getMessagesController().u(profileActivity.e1);
+                if (d31.a(profileActivity)) {
+                    d31.d(profileActivity, true).j();
+                    return;
                 }
-                this.f = false;
-            }
-            yo8 yo8Var2 = this.b;
-            ArrayList arrayList2 = yo8Var2.j;
-            arrayList2.remove(this);
-            if (arrayList2.isEmpty() && yo8Var2.i) {
-                yo8Var2.b(true);
-                yo8Var2.i = false;
-            }
-            this.b = yo8Var;
-            if (!this.f) {
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    ((ap8) arrayList.get(i2)).p0(this);
-                }
-                this.f = true;
-            }
+                return;
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.b.j.add(this);
+    public final void d(TLRPC.User user) {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.f) {
-            for (int i = 0; i < this.b.e.size(); i++) {
-                ((ap8) this.b.e.get(i)).p0(null);
-            }
-            this.f = false;
-        }
-        yo8 yo8Var = this.b;
-        ArrayList arrayList = yo8Var.j;
-        arrayList.remove(this);
-        if (arrayList.isEmpty() && yo8Var.i) {
-            yo8Var.b(true);
-            yo8Var.i = false;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.b.b) {
-            boolean z = true;
-            if (!this.f) {
-                for (int i = 0; i < this.b.e.size(); i++) {
-                    ((ap8) this.b.e.get(i)).p0(this);
-                }
-                this.f = true;
-                if (!this.e) {
-                    this.e = true;
-                    post(new w88(this, (byte) 25));
-                }
-            }
-            if (!this.r) {
-                return;
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            this.h = Utilities.i(this.h + (((float) Utilities.k(currentTimeMillis - this.n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
-            this.n = currentTimeMillis;
-            ProfileActivity profileActivity = this.a;
-            om8 om8Var = profileActivity.a;
-            int i2 = profileActivity.V2;
-            PointF pointF = this.d;
-            float f = 2.0f;
-            if (i2 >= 0) {
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= om8Var.getChildCount()) {
-                        break;
-                    }
-                    View childAt = om8Var.getChildAt(i3);
-                    if (i2 == RecyclerView.R(childAt) && (childAt instanceof ghb)) {
-                        wla wlaVar = ((ghb) childAt).a;
-                        pointF.set(wlaVar.getX() + childAt.getX() + om8Var.getX() + gl.L(12.0f), (wlaVar.getMeasuredHeight() / 2.0f) + wlaVar.getY() + childAt.getY() + om8Var.getY());
-                        break;
-                    }
-                    i3++;
-                }
-            }
-            float f2 = zu3.f();
-            this.b.c.i0((getWidth() - gl.L(f2)) / 2.0f, Math.max(0.0f, pointF.y - (gl.L(f2) * 0.5f)), gl.L(f2), gl.L(f2));
-            canvas.save();
-            canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
-            yo8 yo8Var = null;
-            this.b.c.h(canvas, null);
-            this.b.c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
-            canvas.restore();
-            int L = gl.L(110.0f);
-            int size = this.b.d.size() - 1;
-            while (size >= 0) {
-                ap8 ap8Var = (ap8) this.b.d.get(size);
-                float f3 = size;
-                float s2 = gl.s(this.h, f3, this.b.d.size(), 1.8f);
-                float f4 = L;
-                boolean z2 = z;
-                float f5 = f4 * 0.88f;
-                float b = b00.b(f5, this.b.d.size() - 1, getWidth(), f);
-                float f6 = pointF.x;
-                float f7 = f;
-                float f8 = pointF.y;
-                float f9 = ((b - f6) * s2) + (f5 * f3) + f6;
-                double d = this.h;
-                PointF pointF2 = pointF;
-                float interpolation = s33.h.getInterpolation(Utilities.i(s2 / 0.4f, 1.0f, 0.0f));
-                float f10 = (f4 / f7) * interpolation;
-                float f11 = f4 * interpolation;
-                ap8Var.i0(f9 - f10, (f8 - ((f8 + f4) * ((float) Math.pow(d, 2.0d)))) - f10, f11, f11);
-                ap8Var.h(canvas, null);
-                size--;
-                yo8Var = null;
-                pointF = pointF2;
-                z = z2;
-                f = f7;
-            }
-            yo8 yo8Var2 = yo8Var;
-            if (this.h >= 1.0f) {
-                this.r = false;
-                b(this.c);
-                this.c = yo8Var2;
-                return;
-            }
-            invalidate();
-        }
+    public final void v0(float f, int i) {
     }
 }

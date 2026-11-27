@@ -1,17 +1,20 @@
 package defpackage;
-public final class j3e implements zn7 {
-    public static final j3e a = new Object();
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)), 4)), 5)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class j3e extends c4 {
+    public static final Parcelable.Creator<j3e> CREATOR = new g3e((byte) 11);
+    public final int a;
+
+    public j3e(int i) {
+        this.a = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.s(parcel, r);
     }
 }

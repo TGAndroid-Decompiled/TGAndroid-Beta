@@ -1,117 +1,113 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Looper;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.Collections;
-import java.util.Set;
-public abstract class by4 {
-    public final Context a;
-    public final String b;
-    public final gy c;
-    public final yn d;
-    public final vn e;
-    public final go f;
-    public final Looper g;
-    public final int h;
-    public final x1d i;
-    public final eef j;
-    public final hy4 k;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.e;
+public abstract class by4 extends nx0 {
+    public static final int l1 = 0;
 
-    public by4(Context context, yn ynVar, vn vnVar, ay4 ay4Var) {
-        String str;
-        fre.i(context, "Null context is not permitted.");
-        fre.i(ynVar, "Api must not be null.");
-        fre.i(ay4Var, "Settings must not be null; use Settings.DEFAULT_SETTINGS instead.");
-        Context applicationContext = context.getApplicationContext();
-        fre.i(applicationContext, "The provided context did not have an application context.");
-        this.a = applicationContext;
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 30 && i >= 30) {
-            str = context.getAttributionTag();
-        } else {
-            str = null;
+    public by4(Activity activity, e eVar) {
+        super(activity, true);
+        int i;
+        int i2 = 0;
+        this.w0 = false;
+        this.v0 = false;
+        LinearLayout m = bs2.m(activity, 1);
+        this.O = m;
+        ?? imageView = new ImageView(activity);
+        imageView.setAutoRepeat(true);
+        imageView.f(2131624318, 120, 120, null);
+        imageView.d();
+        m.addView((View) imageView, tre.t(160, 160, 49, 17, 30, 17, 0));
+        TextView textView = new TextView(activity);
+        ik8.v(textView, 1, 24.0f);
+        ik8.x(textView, aob.j5, null, null, 2131749325);
+        m.addView(textView, tre.t(-2, -2, 49, 17, 18, 17, 0));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(1);
+        m.addView(linearLayout, tre.t(-2, -2, 1, 0, 12, 0, 0));
+        int i3 = 0;
+        while (true) {
+            if (i3 < 3) {
+                LinearLayout m2 = bs2.m(activity, i2);
+                if (ob6.a0) {
+                    i = 5;
+                } else {
+                    i = 3;
+                }
+                linearLayout.addView(m2, tre.t(-2, -2, i, 0, 8, 0, 0));
+                ImageView imageView2 = new ImageView(activity);
+                int i4 = aob.r5;
+                yob.s(imageView2, i4, null, PorterDuff.Mode.MULTIPLY);
+                imageView2.setImageResource(2131231627);
+                TextView textView2 = new TextView(activity);
+                int i5 = i2;
+                textView2.setTextSize(1, 15.0f);
+                yob.X(textView2, i4, null);
+                textView2.setGravity((ob6.a0 ? 5 : 3) | 16);
+                textView2.setMaxWidth(hl.L(260.0f));
+                if (i3 != 0) {
+                    if (i3 != 1) {
+                        if (i3 == 2) {
+                            textView2.setText(ob6.M0(2131749327, null));
+                        }
+                    } else {
+                        textView2.setText(ob6.M0(2131749328, null));
+                    }
+                } else {
+                    textView2.setText(ob6.M0(2131749329, null));
+                }
+                if (ob6.a0) {
+                    m2.addView(textView2, tre.o(-2, -2));
+                    m2.addView(imageView2, tre.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
+                } else {
+                    m2.addView(imageView2, tre.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
+                    m2.addView(textView2, tre.o(-2, -2));
+                }
+                i3++;
+                i2 = i5;
+            } else {
+                int i6 = i2;
+                ?? frameLayout = new FrameLayout(activity);
+                View view = new View(activity);
+                frameLayout.a = view;
+                int i7 = aob.Fi;
+                float[] fArr = new float[1];
+                fArr[i6] = 4.0f;
+                view.setBackground(rnb.f(i7, fArr));
+                frameLayout.addView(view, tre.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+                TextView textView3 = new TextView(activity);
+                frameLayout.b = textView3;
+                textView3.setLines(1);
+                textView3.setSingleLine(true);
+                textView3.setGravity(1);
+                textView3.setEllipsize(TextUtils.TruncateAt.END);
+                textView3.setGravity(17);
+                qd4.w(textView3, aob.Ji, null, 1, 14.0f);
+                frameLayout.addView(textView3, tre.e(-2, -2, 17));
+                frameLayout.setBackground(null);
+                frameLayout.setText(ob6.M0(2131749326, null));
+                view.setOnClickListener(new lw4(this, activity, eVar, (byte) 2));
+                m.addView((View) frameLayout, tre.t(-1, 50, 51, 0, 29, 0, 0));
+                TextView textView4 = new TextView(activity);
+                textView4.setTextSize(1, 14.0f);
+                ik8.x(textView4, aob.n5, null, null, 2131749331);
+                textView4.setGravity(17);
+                m.addView(textView4, tre.t(-2, 48, 49, 17, 0, 17, 16));
+                textView4.setOnClickListener(new mh3(this, (byte) 26));
+                return;
+            }
         }
-        this.b = str;
-        this.c = i >= 31 ? new gy(context.getAttributionSource()) : null;
-        this.d = ynVar;
-        this.e = vnVar;
-        this.g = ay4Var.b;
-        this.f = new go(ynVar, vnVar, str);
-        this.i = new x1d(this);
-        hy4 e = hy4.e(applicationContext);
-        this.k = e;
-        this.h = e.n.getAndIncrement();
-        this.j = ay4Var.a;
-        o59 o59Var = e.y;
-        o59Var.sendMessage(o59Var.obtainMessage(7, this));
     }
 
-    public final mv6 a() {
-        mv6 mv6Var = new mv6((byte) 24);
-        Set set = Collections.EMPTY_SET;
-        rs rsVar = (rs) mv6Var.b;
-        if (rsVar == null) {
-            rsVar = new rs(0);
-            mv6Var.b = rsVar;
-        }
-        rsVar.addAll(set);
-        Context context = this.a;
-        mv6Var.d = context.getClass().getName();
-        mv6Var.c = context.getPackageName();
-        return mv6Var;
-    }
+    public abstract void F0();
 
-    public final Task b(wk4 wk4Var) {
-        fre.i(((h2d) wk4Var.b).a.b, "Listener has already been released.");
-        v8b v8bVar = (v8b) wk4Var.c;
-        fre.i((u56) v8bVar.b, "Listener has already been released.");
-        h2d h2dVar = (h2d) wk4Var.b;
-        hy4 hy4Var = this.k;
-        hy4Var.getClass();
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        hy4Var.c(taskCompletionSource, h2dVar.d, this);
-        f2d f2dVar = new f2d(new s2d(new g2d(h2dVar, v8bVar), taskCompletionSource), hy4Var.r.get(), this);
-        o59 o59Var = hy4Var.y;
-        o59Var.sendMessage(o59Var.obtainMessage(8, f2dVar));
-        return taskCompletionSource.getTask();
-    }
-
-    public final Task c(u56 u56Var, int i) {
-        fre.i(u56Var, "Listener key cannot be null.");
-        hy4 hy4Var = this.k;
-        hy4Var.getClass();
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        hy4Var.c(taskCompletionSource, i, this);
-        f2d f2dVar = new f2d(new s2d(u56Var, taskCompletionSource), hy4Var.r.get(), this);
-        o59 o59Var = hy4Var.y;
-        o59Var.sendMessage(o59Var.obtainMessage(13, f2dVar));
-        return taskCompletionSource.getTask();
-    }
-
-    public final void d(int i, ig0 ig0Var) {
-        ig0Var.l();
-        hy4 hy4Var = this.k;
-        hy4Var.getClass();
-        f2d f2dVar = new f2d(new o2d(i, ig0Var), hy4Var.r.get(), this);
-        o59 o59Var = hy4Var.y;
-        o59Var.sendMessage(o59Var.obtainMessage(4, f2dVar));
-    }
-
-    public final Task e(int i, bgb bgbVar) {
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        hy4 hy4Var = this.k;
-        hy4Var.getClass();
-        hy4Var.c(taskCompletionSource, bgbVar.c, this);
-        f2d f2dVar = new f2d(new v2d(i, bgbVar, taskCompletionSource, this.j), hy4Var.r.get(), this);
-        o59 o59Var = hy4Var.y;
-        o59Var.sendMessage(o59Var.obtainMessage(4, f2dVar));
-        return taskCompletionSource.getTask();
-    }
-
-    public by4(Context context, yn ynVar, vn vnVar, eef eefVar) {
-        this(context, ynVar, vnVar, new ay4(eefVar, Looper.getMainLooper()));
+    public void E0() {
     }
 }

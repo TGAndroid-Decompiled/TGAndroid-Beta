@@ -1,62 +1,54 @@
 package defpackage;
 
-import android.util.Log;
-import java.util.ArrayDeque;
+import android.os.Bundle;
+import android.os.IBinder;
 import java.util.Arrays;
-import java.util.Iterator;
-public final class k31 implements AutoCloseable {
-    public final String[] a;
-    public final ArrayDeque b;
+public final class k31 {
+    public static final int b = o51.a;
+    public final f31 a;
 
-    public k31(Object obj, String str, ArrayDeque arrayDeque) {
-        this.b = arrayDeque;
-        if (obj != null) {
-            arrayDeque.addFirst(new j31(obj, str));
-            if (Log.isLoggable("CarApp.Bun", 2)) {
-                int min = Math.min(arrayDeque.size(), 11);
-                String[] strArr = this.a;
-                if (strArr == null) {
-                    strArr = new String[12];
-                    this.a = strArr;
+    public k31(byte[] bArr) {
+        mo5 p = po5.p();
+        int length = bArr.length;
+        int i = b;
+        int g = gcc.g(length, i);
+        for (int i2 = 0; i2 < g; i2++) {
+            Bundle bundle = new Bundle();
+            int i3 = i2 * i;
+            bundle.putByteArray("bytes", Arrays.copyOfRange(bArr, i3, Math.min(i3 + i, bArr.length)));
+            p.c(bundle);
+        }
+        this.a = new f31(p.f());
+    }
+
+    public static byte[] a(Bundle bundle) {
+        IBinder binder = bundle.getBinder(l31.g);
+        if (binder != null) {
+            try {
+                po5 a = f31.a(binder);
+                if (a.isEmpty()) {
+                    return gcc.b;
                 }
-                String str2 = strArr[min];
-                if (str2 == null) {
-                    char[] cArr = new char[min];
-                    Arrays.fill(cArr, ' ');
-                    String str3 = new String(cArr);
-                    if (min == 11) {
-                        str2 = str3.concat("...");
-                    } else {
-                        str2 = str3;
+                byte[] byteArray = ((Bundle) dqe.b(a)).getByteArray("bytes");
+                if (byteArray != null) {
+                    int size = a.size() - 1;
+                    int i = b;
+                    int i2 = size * i;
+                    byte[] bArr = new byte[byteArray.length + i2];
+                    System.arraycopy(byteArray, 0, bArr, i2, byteArray.length);
+                    for (int i3 = 0; i3 < size; i3++) {
+                        byte[] byteArray2 = ((Bundle) a.get(i3)).getByteArray("bytes");
+                        if (byteArray2 != null && byteArray2.length == i) {
+                            System.arraycopy(byteArray2, 0, bArr, i3 * i, i);
+                        }
                     }
-                    this.a[min] = str2;
+                    return bArr;
                 }
-                Log.v("CarApp.Bun", str2.concat(m31.i(obj.getClass()) + " " + str));
+            } catch (RuntimeException e) {
+                efd.g("BundleableByteArray", "Failed to read byte array from bundle list retriever", e);
+                return null;
             }
         }
-    }
-
-    public final String a() {
-        StringBuilder sb = new StringBuilder();
-        ArrayDeque arrayDeque = this.b;
-        int min = Math.min(arrayDeque.size(), 8);
-        Iterator descendingIterator = arrayDeque.descendingIterator();
-        while (descendingIterator.hasNext()) {
-            int i = min - 1;
-            if (min <= 0) {
-                break;
-            }
-            sb.append(((j31) descendingIterator.next()).a());
-            min = i;
-        }
-        if (descendingIterator.hasNext()) {
-            sb.append("[...]");
-        }
-        return sb.toString();
-    }
-
-    @Override
-    public final void close() {
-        this.b.removeFirst();
+        return null;
     }
 }

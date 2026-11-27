@@ -1,231 +1,130 @@
 package defpackage;
-public abstract class ug0 implements xc8 {
-    public boolean E;
-    public boolean F;
-    public rx6 H;
-    public sc3 J;
-    public final byte b;
-    public d79 d;
-    public int e;
-    public uc8 f;
-    public adb h;
-    public byte n;
-    public ip9 r;
-    public fm4[] s;
-    public long w;
-    public long x;
-    public final Object a = new Object();
-    public final sk4 c = new sk4((byte) 1, false);
-    public long y = Long.MIN_VALUE;
-    public aob G = aob.a;
-    public long I = -9223372036854775807L;
 
-    public ug0(int i) {
-        this.b = i;
-    }
+import android.text.SpannableStringBuilder;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class ug0 extends jp4 {
+    public int P = -1;
 
-    public final int A(sk4 sk4Var, z83 z83Var, int i) {
+    public final boolean w(int i, String[] strArr, int[] iArr) {
         boolean z;
-        if ((i & 1) != 0) {
+        String M0;
+        if (iArr == null) {
+            iArr = new int[0];
+        }
+        if (strArr == null) {
+            strArr = new String[0];
+        }
+        if (iArr.length > 0 && iArr[0] == 0) {
             z = true;
         } else {
             z = false;
         }
-        ip9 ip9Var = this.r;
-        ip9Var.getClass();
-        int h = ip9Var.h(sk4Var, z83Var, i);
-        if (h == -4) {
-            if (z83Var.isEndOfStream()) {
-                if (!z) {
-                    this.y = Long.MIN_VALUE;
+        if (i == 104) {
+            if (z) {
+                j95 j95Var = j95.s5;
+                if (j95Var != null) {
+                    j95Var.r1.callOnClick();
+                    return true;
                 }
-                if (this.E) {
-                    return -4;
-                }
-                return -3;
-            }
-            long j = z83Var.e + this.w;
-            z83Var.e = j;
-            if (!z) {
-                this.y = Math.max(this.y, j);
-                return h;
-            }
-        } else if (h == -5) {
-            fm4 fm4Var = (fm4) sk4Var.c;
-            fm4Var.getClass();
-            long j2 = fm4Var.y;
-            if (j2 != Long.MAX_VALUE) {
-                em4 a = fm4Var.a();
-                a.x = j2 + this.w;
-                sk4Var.c = new fm4(a);
-            }
-        }
-        return h;
-    }
-
-    public abstract void B(long j, long j2);
-
-    public final void C(fm4[] fm4VarArr, ip9 ip9Var, long j, long j2, rx6 rx6Var) {
-        gre.p(!this.E);
-        this.r = ip9Var;
-        this.H = rx6Var;
-        J();
-        if (this.y == Long.MIN_VALUE) {
-            this.y = j;
-        }
-        this.s = fm4VarArr;
-        this.w = j2;
-        y(fm4VarArr, j, j2, rx6Var);
-    }
-
-    public final void D(long j, boolean z, boolean z2) {
-        this.E = false;
-        this.x = j;
-        this.y = j;
-        if (!z2) {
-            if (F(j) != 0) {
-                z2 = true;
             } else {
-                z2 = false;
+                y(2131624117, ob6.M0(2131742937, null));
+                return true;
             }
-        }
-        s(j, z, z2);
-    }
-
-    public final int F(long j) {
-        ip9 ip9Var = this.r;
-        ip9Var.getClass();
-        return ip9Var.n(j - this.w);
-    }
-
-    public int G(fm4 fm4Var) {
-        if ("application/x-camera-motion".equals(fm4Var.t)) {
-            return ls6.a(4, 0, 0, 0);
-        }
-        return ls6.a(0, 0, 0, 0);
-    }
-
-    public int H() {
-        return 0;
-    }
-
-    public boolean I(long j) {
-        return false;
-    }
-
-    public final void J() {
-        rx6 rx6Var;
-        if (!this.G.p() && (rx6Var = this.H) != null) {
-            int b = this.G.b(rx6Var.a);
-            if (b == -1) {
-                this.I = -9223372036854775807L;
-                return;
+        } else if (i != 4 && i != 151) {
+            if (i == 5) {
+                if (!z) {
+                    y(2131624118, ob6.M0(2131747033, null));
+                    return false;
+                }
+                lv2.r(this.P).l();
+                return true;
+            } else if (i != 3 && i != 150) {
+                if (i != 18 && i != 19 && i != 20 && i != 22) {
+                    int i2 = jn7.z4;
+                    int i3 = jn7.y4;
+                    if (i == 2) {
+                        jn7 e = jn7.e();
+                        if (z) {
+                            i2 = i3;
+                        }
+                        e.k(i2, new Object[0]);
+                        return true;
+                    } else if (i == 211) {
+                        jn7 e2 = jn7.e();
+                        if (z) {
+                            i2 = i3;
+                        }
+                        e2.k(i2, 1);
+                        return true;
+                    }
+                } else if (!z) {
+                    y(2131624117, ob6.M0(2131747035, null));
+                }
+            } else {
+                int min = Math.min(strArr.length, iArr.length);
+                boolean z2 = true;
+                boolean z3 = true;
+                for (int i4 = 0; i4 < min; i4++) {
+                    if ("android.permission.RECORD_AUDIO".equals(strArr[i4])) {
+                        if (iArr[i4] == 0) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                    } else if ("android.permission.CAMERA".equals(strArr[i4])) {
+                        if (iArr[i4] == 0) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                    }
+                }
+                if (i == 150 && (!z2 || !z3)) {
+                    y(2131624117, ob6.M0(2131747036, null));
+                    return true;
+                } else if (!z2) {
+                    y(2131624121, ob6.M0(2131747038, null));
+                    return true;
+                } else if (!z3) {
+                    y(2131624117, ob6.M0(2131747035, null));
+                    return true;
+                } else {
+                    if (xea.v0) {
+                        CameraController.getInstance().initCamera(null);
+                    }
+                    return false;
+                }
             }
-            this.I = this.G.f(b, new xnb(), false).d;
-            int i = rx6Var.b;
-            if (i != -1) {
-                this.I = da.c.a(i).e[rx6Var.c];
-                return;
+        } else if (!z) {
+            if (i == 151) {
+                M0 = ob6.M0(2131747028, null);
+            } else {
+                M0 = ob6.M0(2131747026, null);
             }
-            int i2 = rx6Var.e;
-            if (i2 != -1) {
-                da.c.a(i2).getClass();
-                this.I = 0L;
-                return;
-            }
-            return;
-        }
-        this.I = -9223372036854775807L;
-    }
-
-    public final defpackage.j54 e(java.lang.Throwable r11, defpackage.fm4 r12, boolean r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ug0.e(java.lang.Throwable, fm4, boolean, int):j54");
-    }
-
-    public long j(long j, long j2) {
-        if (this.n == 1) {
-            if (o() || n()) {
-                return 1000000L;
-            }
-            return 10000L;
-        }
-        return 10000L;
-    }
-
-    public ck6 k() {
-        return null;
-    }
-
-    public String l() {
-        return "CameraMotionRenderer";
-    }
-
-    public final boolean m() {
-        if (this.y == Long.MIN_VALUE) {
+            y(2131624119, M0);
+            return true;
+        } else {
+            in5.z().e(null);
             return true;
         }
-        return false;
-    }
-
-    public boolean n() {
-        return m();
-    }
-
-    public boolean o() {
         return true;
     }
 
-    public final boolean p() {
-        if (m()) {
-            return this.E;
-        }
-        ip9 ip9Var = this.r;
-        ip9Var.getClass();
-        return ip9Var.j();
+    public final id x(int i, String str) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
+        int i2 = aob.L5;
+        alertDialog$Builder.l(i, 72, aob.w0(null, i2, false), null);
+        alertDialog$Builder.m(i2, null);
+        SpannableStringBuilder S2 = hl.S2(str);
+        id idVar = alertDialog$Builder.a;
+        idVar.U = S2;
+        alertDialog$Builder.j(ob6.M0(2131747027, null), new tg0(this, (byte) 0));
+        alertDialog$Builder.g(ob6.M0(2131751737, null), null);
+        return idVar;
     }
 
-    public abstract void q();
-
-    public abstract void s(long j, boolean z, boolean z2);
-
-    public final void u() {
-        sc3 sc3Var;
-        synchronized (this.a) {
-            sc3Var = this.J;
-        }
-        if (sc3Var != null) {
-            sc3Var.g.getClass();
-        }
-    }
-
-    public void f() {
-    }
-
-    public void t() {
-    }
-
-    public void v() {
-    }
-
-    public void w() {
-    }
-
-    public void x() {
-    }
-
-    public void z() {
-    }
-
-    public void E(float f, float f2) {
-    }
-
-    @Override
-    public void d(int i, Object obj) {
-    }
-
-    public void r(boolean z, boolean z2) {
-    }
-
-    public void y(fm4[] fm4VarArr, long j, long j2, rx6 rx6Var) {
+    public final void y(int i, String str) {
+        x(i, str).show();
     }
 }

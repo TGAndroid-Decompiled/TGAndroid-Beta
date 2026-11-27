@@ -1,208 +1,98 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.Point;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.ViewConfiguration;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public class b04 extends er9 {
-    public float A0;
-    public boolean B0;
-    public boolean C0;
-    public VelocityTracker D0;
-    public final t14 E0;
-    public final int v0;
-    public boolean w0;
-    public float x0;
-    public boolean y0;
-    public float z0;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e;
+public final class b04 extends w04 {
+    public final e F0;
+    public final boolean G0;
+    public final o24 H0;
 
-    public b04(t14 t14Var, Context context, wjb wjbVar) {
-        super(wjbVar, context, t14Var.j2);
-        this.E0 = t14Var;
-        this.y0 = true;
-        this.v0 = ViewConfiguration.get(context).getScaledTouchSlop();
+    public b04(o24 o24Var, Context context, vnb vnbVar, e eVar, boolean z) {
+        super(o24Var, context, vnbVar);
+        this.H0 = o24Var;
+        this.F0 = eVar;
+        this.G0 = z;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.s != null) {
-            return super.onInterceptTouchEvent(motionEvent);
+    public final void j() {
+        c04 c04Var = this.H0.D0;
+        if (c04Var != null) {
+            c04Var.invalidate();
         }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        if (motionEvent.getAction() == 0) {
-            this.C0 = false;
-            this.B0 = false;
-            this.z0 = motionEvent.getRawX();
-            this.A0 = motionEvent.getRawY();
-        } else if (!this.B0 && !this.C0) {
-            t14 t14Var = this.E0;
-            if (t14Var.P0 != null && Math.abs(motionEvent.getRawY() - this.A0) >= this.v0) {
-                this.B0 = true;
-                this.A0 = motionEvent.getRawY();
-                ((c9c) t14Var.P0).c();
-                if (this.w0) {
-                    t14Var.h.i();
-                    this.w0 = false;
-                }
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i;
-        t14 t14Var = this.E0;
-        ez3 ez3Var = t14Var.g2;
-        iz3 iz3Var = t14Var.h;
-        if (this.s != null) {
-            return super.onTouchEvent(motionEvent);
+    public final void o(int i, int i2) {
+        o24 o24Var = this.H0;
+        zz3 zz3Var = o24Var.g2;
+        int i3 = o24Var.F1;
+        int i4 = i - i3;
+        int i5 = i2 - i3;
+        int i6 = o24Var.d1;
+        ls6 d0 = ls6.d0(i6);
+        ArrayList arrayList = o24Var.e1;
+        arrayList.add(i5, (TLRPC.TL_messages_stickerSet) arrayList.remove(i4));
+        Collections.sort(d0.t0(0), new jz0(this, (byte) 2));
+        ArrayList arrayList2 = o24Var.F2;
+        if (arrayList2 != null) {
+            arrayList2.clear();
+            o24Var.F2.addAll(arrayList);
         }
-        if (this.y0) {
-            this.y0 = false;
-            this.x0 = motionEvent.getX();
+        o24Var.C();
+        hl.r(zz3Var);
+        hl.d3(zz3Var, 1500L);
+        ls6 d02 = ls6.d0(i6);
+        d02.Y[0] = ls6.s(d02.H[0]);
+        TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
+        tL_messages_reorderStickerSets.masks = false;
+        tL_messages_reorderStickerSets.emojis = false;
+        for (int i7 = o24Var.f0; i7 < arrayList.size(); i7 = dze.c(i7, 1, ((TLRPC.TL_messages_stickerSet) arrayList.get(i7)).set.id, tL_messages_reorderStickerSets.order)) {
         }
-        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-            t14Var.X1 = motionEvent.getRawX();
-        }
-        if (motionEvent.getAction() == 0) {
-            this.C0 = false;
-            this.B0 = false;
-            this.z0 = motionEvent.getRawX();
-            this.A0 = motionEvent.getRawY();
-        } else if (!this.B0 && !this.C0 && t14Var.P0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.z0);
-            float f = this.v0;
-            if (abs >= f && canScrollHorizontally((int) (this.z0 - motionEvent.getRawX()))) {
-                this.C0 = true;
-                gl.r(ez3Var);
-                t14Var.Y1 = true;
-                t14Var.Z();
-            } else if (Math.abs(motionEvent.getRawY() - this.A0) >= f) {
-                this.B0 = true;
-                this.A0 = motionEvent.getRawY();
-                ((c9c) t14Var.P0).c();
-                if (this.w0) {
-                    iz3Var.i();
-                    this.w0 = false;
-                }
+        ConnectionsManager.getInstance(i6).sendRequest(tL_messages_reorderStickerSets, new xe2((byte) 0));
+        jn7.f(i6).k(jn7.x0, 0, Boolean.TRUE);
+        o24Var.X(true);
+        if (xea.W) {
+            xea.N();
+            e eVar = this.F0;
+            if (eVar != null) {
+                d31.b0(eVar).L(2131624018, ob6.M0(2131751302, null), ob6.M0(2131751301, null), ob6.N0("Settings"), new yv1(eVar, (byte) 1)).j();
+                return;
+            }
+            FrameLayout frameLayout = o24Var.r;
+            if (frameLayout != null) {
+                new d31(frameLayout, o24Var.a2).I(2131624018, ob6.M0(2131751302, null), ob6.M0(2131751301, null)).j();
             }
         }
-        if (t14Var.Y1 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            gl.d3(ez3Var, 1500L);
+    }
+
+    @Override
+    public final void p() {
+        o24 o24Var = this.H0;
+        o24Var.Y();
+        c04 c04Var = o24Var.D0;
+        if (c04Var != null) {
+            c04Var.invalidate();
         }
-        if (this.B0) {
-            VelocityTracker velocityTracker = this.D0;
-            if (velocityTracker == null) {
-                velocityTracker = VelocityTracker.obtain();
-                this.D0 = velocityTracker;
-            }
-            velocityTracker.addMovement(motionEvent);
-            if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                a04 a04Var = t14Var.P0;
-                int round = Math.round(motionEvent.getRawY() - this.A0);
-                c9c c9cVar = (c9c) a04Var;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) c9cVar.c;
-                if (c9cVar.a()) {
-                    Point point = gl.q;
-                    if (point.x > point.y) {
-                        i = chatActivityEnterView.o3;
-                    } else {
-                        i = chatActivityEnterView.n3;
-                    }
-                    int max = Math.max(Math.min(round + c9cVar.b, 0), -(chatActivityEnterView.t4 - i));
-                    if (chatActivityEnterView.d7 == null) {
-                        float f2 = max;
-                        chatActivityEnterView.V0.setTranslationY(f2);
-                        chatActivityEnterView.setTranslationY(f2);
-                    }
-                    chatActivityEnterView.s4 = max / (-(chatActivityEnterView.t4 - i));
-                    chatActivityEnterView.c2.invalidate();
-                }
-            } else {
-                this.D0.computeCurrentVelocity(1000);
-                float yVelocity = this.D0.getYVelocity();
-                this.D0.recycle();
-                this.D0 = null;
-                int action = motionEvent.getAction();
-                a04 a04Var2 = t14Var.P0;
-                if (action == 1) {
-                    c9c c9cVar2 = (c9c) a04Var2;
-                    ChatActivityEnterView chatActivityEnterView2 = (ChatActivityEnterView) c9cVar2.c;
-                    if (c9cVar2.a()) {
-                        chatActivityEnterView2.u4 = false;
-                        if ((!c9cVar2.a || yVelocity < gl.L(200.0f)) && (c9cVar2.a || yVelocity > gl.L(-200.0f))) {
-                            boolean z = c9cVar2.a;
-                            float f3 = chatActivityEnterView2.s4;
-                            if (!z ? f3 < 0.4f : f3 > 0.6f) {
-                                chatActivityEnterView2.P1(z, true, true, true);
-                            }
-                        }
-                        chatActivityEnterView2.P1(!c9cVar2.a, true, true, true);
-                    }
-                } else {
-                    c9c c9cVar3 = (c9c) a04Var2;
-                    ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) c9cVar3.c;
-                    if (chatActivityEnterView3.n4) {
-                        chatActivityEnterView3.u4 = false;
-                        chatActivityEnterView3.P1(c9cVar3.a, true, false, true);
-                    }
-                }
-                this.y0 = true;
-                this.C0 = false;
-                this.B0 = false;
-            }
-            cancelLongPress();
-            return true;
+        invalidate();
+        p14 p14Var = o24Var.u1;
+        if (p14Var != null) {
+            p14Var.t();
         }
-        float translationX = getTranslationX();
-        if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.w0 && this.x0 - motionEvent.getX() < 0.0f) {
-                if (!iz3Var.N) {
-                    iz3Var.f0 = true;
-                    iz3Var.setScrollState(1);
-                    iz3Var.S = 0.0f;
-                    iz3Var.U = 0.0f;
-                    VelocityTracker velocityTracker2 = iz3Var.a0;
-                    if (velocityTracker2 == null) {
-                        iz3Var.a0 = VelocityTracker.obtain();
-                    } else {
-                        velocityTracker2.clear();
-                    }
-                    long uptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
-                    iz3Var.a0.addMovement(obtain);
-                    obtain.recycle();
-                    this.w0 = true;
-                    getTranslationX();
-                }
-            } else if (this.w0 && this.x0 - motionEvent.getX() > 0.0f && iz3Var.f0) {
-                iz3Var.i();
-                this.w0 = false;
+    }
+
+    @Override
+    public final void setTranslationY(float f) {
+        if (getTranslationY() != f) {
+            super.setTranslationY(f);
+            if (!this.G0) {
+                this.H0.y0.invalidate();
             }
         }
-        if (this.w0) {
-            motionEvent.getX();
-        }
-        this.x0 = motionEvent.getX();
-        if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.y0 = true;
-            this.C0 = false;
-            this.B0 = false;
-            if (this.w0) {
-                iz3Var.i();
-                this.w0 = false;
-            }
-        }
-        if (!this.w0 && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
     }
 }

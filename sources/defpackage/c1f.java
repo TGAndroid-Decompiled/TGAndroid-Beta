@@ -1,15 +1,7 @@
 package defpackage;
 
-import android.os.StrictMode;
-import java.util.concurrent.Callable;
-public abstract class c1f {
-    public static Object a(Callable callable) {
-        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
-        try {
-            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
-            return callable.call();
-        } finally {
-            StrictMode.setThreadPolicy(threadPolicy);
-        }
-    }
+import android.os.Binder;
+import android.os.IInterface;
+public abstract class c1f extends Binder implements jme, IInterface {
+    public static final int a = 0;
 }

@@ -3,202 +3,135 @@ package defpackage;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-public final class v22 extends n39 {
-    public final byte c;
-    public final Context d;
-    public ArrayList e;
-    public final ArrayList f;
-    public Object h;
-    public final Object n;
+import org.telegram.tgnet.TLRPC;
+public final class v22 extends y69 {
+    public final int r = yac.t0;
+    public final Context s;
+    public final b32 w;
 
-    public v22(qx2 qx2Var, Context context, HashMap hashMap) {
-        this.c = (byte) 1;
-        this.n = qx2Var;
-        this.f = new ArrayList();
-        this.d = context;
-        for (List<mx2> list : hashMap.values()) {
-            for (mx2 mx2Var : list) {
-                this.f.add(mx2Var);
-            }
-        }
+    public v22(b32 b32Var, Context context) {
+        this.w = b32Var;
+        this.s = context;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        switch (this.c) {
-            case 0:
-                if (s49Var.f == 1) {
-                    return true;
-                }
-                return false;
-            default:
-                return true;
+    public final int M(int i) {
+        if (i == 0 || i == R() - 1) {
+            return 1;
         }
+        int i2 = i - 1;
+        int i3 = this.r;
+        HashMap hashMap = lv2.r(i3).c0;
+        ArrayList arrayList = lv2.r(i3).d0;
+        if (i2 < arrayList.size()) {
+            return ((ArrayList) hashMap.get(arrayList.get(i2))).size();
+        }
+        return 0;
     }
 
-    public final w22 E(int i) {
-        int k;
-        ArrayList arrayList = (ArrayList) this.h;
-        ArrayList arrayList2 = this.e;
-        int size = arrayList2.size();
-        if (i < size) {
-            return (w22) arrayList2.get(i);
+    @Override
+    public final Object O(int i, int i2) {
+        if (i == 0) {
+            return null;
         }
-        if (this.f.isEmpty() && !arrayList.isEmpty() && i != size && i != size + 1 && (k = ir2.k(2, i, arrayList2)) < arrayList.size()) {
-            return (w22) arrayList.get(k);
+        int i3 = i - 1;
+        int i4 = this.r;
+        HashMap hashMap = lv2.r(i4).c0;
+        ArrayList arrayList = lv2.r(i4).d0;
+        if (i3 < arrayList.size()) {
+            ArrayList arrayList2 = (ArrayList) hashMap.get(arrayList.get(i3));
+            if (i2 < arrayList2.size()) {
+                return arrayList2.get(i2);
+            }
         }
         return null;
     }
 
     @Override
-    public final int b() {
-        switch (this.c) {
-            case 0:
-                ArrayList arrayList = (ArrayList) this.h;
-                int size = this.e.size();
-                if (this.f.isEmpty() && !arrayList.isEmpty()) {
-                    size += arrayList.size() + 2;
-                }
-                return size + 1;
-            default:
-                ArrayList arrayList2 = this.e;
-                if (arrayList2 == null) {
-                    return 0;
-                }
-                return arrayList2.size();
+    public final int P(int i, int i2) {
+        if (i == 0) {
+            return 1;
         }
+        if (i == R() - 1) {
+            return 2;
+        }
+        return 0;
     }
 
     @Override
-    public final int d(int i) {
-        switch (this.c) {
-            case 0:
-                if (i == b() - 1) {
-                    return 3;
+    public final int R() {
+        return lv2.r(this.r).d0.size() + 2;
+    }
+
+    @Override
+    public final boolean V(int i, int i2, f89 f89Var) {
+        if (i != 0 && i != R() - 1) {
+            int i3 = this.r;
+            if (i2 < ((ArrayList) lv2.r(i3).c0.get(lv2.r(i3).d0.get(i - 1))).size()) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void W(int i, int i2, f89 f89Var) {
+        TLRPC.User user;
+        if (f89Var.f == 0) {
+            a32 a32Var = (a32) f89Var.a;
+            Object O = O(i, i2);
+            boolean z = true;
+            if (i == R() - 2 && i2 == M(i) - 1) {
+                z = false;
+            }
+            if (O instanceof iv2) {
+                iv2 iv2Var = (iv2) O;
+                user = iv2Var.m;
+                if (user == null) {
+                    a32Var.setCurrentId(iv2Var.a);
+                    a32Var.a(null, lv2.m(0, iv2Var.i, iv2Var.j), new t22(iv2Var, (byte) 0), z);
+                    user = null;
                 }
-                int size = this.e.size();
-                if (i == size) {
-                    return 2;
-                }
-                if (i == size + 1) {
-                    return 0;
-                }
-                return 1;
-            default:
-                return 0;
+            } else {
+                user = (TLRPC.User) O;
+            }
+            if (user != null) {
+                a32Var.a(user, null, new u22(user, (byte) 0), z);
+            }
+            boolean containsKey = this.w.x.containsKey(r22.a(O));
+            og2 og2Var = a32Var.d;
+            if (og2Var.getVisibility() != 0) {
+                og2Var.setVisibility(0);
+            }
+            og2Var.a(containsKey, false);
         }
     }
 
     @Override
     public final void f() {
-        switch (this.c) {
-            case 0:
-                super.f();
-                ((d32) this.n).Y();
-                return;
-            default:
-                super.f();
-                return;
-        }
+        X(false);
+        this.w.R();
     }
 
     @Override
-    public final void t(s49 s49Var, int i) {
-        boolean z;
-        byte b = this.c;
-        Object obj = this.n;
-        String str = null;
-        switch (b) {
-            case 0:
-                d32 d32Var = (d32) obj;
-                int i2 = s49Var.f;
-                View view = s49Var.a;
-                if (i2 != 0) {
-                    if (i2 == 1) {
-                        w22 E = E(i);
-                        iba ibaVar = (iba) view;
-                        int i3 = E.a;
-                        if (i3 != 0) {
-                            String str2 = E.b;
-                            String str3 = E.c;
-                            if (i != this.e.size() - 1) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            ibaVar.d(str2, str3, null, null, i3, z);
-                        } else {
-                            ibaVar.d(E.b, E.c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.e, 0, false);
-                        }
-                        File file = E.f;
-                        if (file != null) {
-                            ibaVar.b(d32Var.S.containsKey(file.toString()), !d32Var.V);
-                            return;
-                        } else {
-                            ibaVar.b(false, !d32Var.V);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                ld5 ld5Var = (ld5) view;
-                if (d32Var.d0) {
-                    ld5Var.setText(k96.M0(2131746174, null));
-                    return;
-                } else {
-                    ld5Var.setText(k96.M0(2131746175, null));
-                    return;
-                }
-            default:
-                mx2 mx2Var = (mx2) this.e.get(i);
-                uib uibVar = (uib) s49Var.a;
-                CharSequence m = vu3.m(qx2.Z(mx2Var), uibVar.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
-                if (((qx2) obj).h) {
-                    str = "+" + mx2Var.c;
-                }
-                uibVar.c(m, str, false, false);
-                return;
+    public final f89 x(ViewGroup viewGroup, int i) {
+        View a32Var;
+        Context context = this.s;
+        if (i != 0) {
+            if (i != 1) {
+                a32Var = new View(context);
+                a32Var.setTag(-33024);
+            } else {
+                a32Var = new View(context);
+                a32Var.setLayoutParams(new r79(-1, hl.L(56.0f)));
+                a32Var.setTag(-33024);
+            }
+        } else {
+            a32Var = new a32(context, this.w.a);
         }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        View ld5Var;
-        byte b = this.c;
-        Context context = this.d;
-        switch (b) {
-            case 0:
-                wjb wjbVar = ((d32) this.n).a;
-                if (i != 0) {
-                    if (i != 1) {
-                        if (i != 2) {
-                            ld5Var = new View(context);
-                            ld5Var.setTag(-33024);
-                        } else {
-                            ld5Var = new b9a(context, (de9) null);
-                        }
-                    } else {
-                        ld5Var = new iba(1, wjbVar, context);
-                    }
-                } else {
-                    ld5Var = new ld5(context, wjbVar);
-                }
-                return new s49(ld5Var);
-            default:
-                return new s49(qx2.Y(context));
-        }
-    }
-
-    public v22(d32 d32Var, Context context) {
-        this.c = (byte) 0;
-        this.n = d32Var;
-        this.e = new ArrayList();
-        this.f = new ArrayList();
-        this.h = new ArrayList();
-        this.d = context;
+        return new f89(a32Var);
     }
 }

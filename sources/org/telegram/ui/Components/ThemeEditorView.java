@@ -33,14 +33,14 @@ public class ThemeEditorView {
     public WindowManager j;
     public DecelerateInterpolator k;
     public SharedPreferences l;
-    public gl2 m;
+    public am2 m;
     public EditorAlert n;
-    public akb o;
-    public final xia b = new xia(this, (byte) 7);
-    public final int g = gl.L(54.0f);
-    public final int h = gl.L(54.0f);
+    public znb o;
+    public final bva b = new bva(this, (byte) 6);
+    public final int g = hl.L(54.0f);
+    public final int h = hl.L(54.0f);
 
-    public class EditorAlert extends fx0 {
+    public class EditorAlert extends nx0 {
         public static final int G1 = 0;
         public int A1;
         public boolean B1;
@@ -50,9 +50,9 @@ public class ThemeEditorView {
         public final a0 l1;
         public final u m1;
         public final FrameLayout n1;
-        public final g24 o1;
+        public final b34 o1;
         public final g0 p1;
-        public final t26 q1;
+        public final x46 q1;
         public final b0 r1;
         public final c0 s1;
         public final FrameLayout t1;
@@ -67,7 +67,7 @@ public class ThemeEditorView {
             super(context, true);
             this.v1 = new View[2];
             this.w1 = new AnimatorSet[2];
-            this.x1 = b00.d(context, 2131232733);
+            this.x1 = c00.e(context, 2131232744);
             t tVar = new t(this, context);
             this.b = tVar;
             tVar.setWillNotDraw(false);
@@ -79,94 +79,94 @@ public class ThemeEditorView {
             frameLayout.setBackgroundColor(-1);
             g0 g0Var = new g0(this, context);
             this.p1 = g0Var;
-            frameLayout.addView(g0Var, nme.e(-1, -1, 51));
+            frameLayout.addView(g0Var, tre.e(-1, -1, 51));
             u uVar = new u(this, context);
             this.m1 = uVar;
             uVar.setSelectorDrawableColor(251658240);
             float f = 48.0f;
-            uVar.setPadding(0, 0, 0, gl.L(48.0f));
+            uVar.setPadding(0, 0, 0, hl.L(48.0f));
             uVar.setClipToPadding(false);
             getContext();
-            t26 t26Var = new t26();
-            this.q1 = t26Var;
-            uVar.setLayoutManager(t26Var);
+            x46 x46Var = new x46();
+            this.q1 = x46Var;
+            uVar.setLayoutManager(x46Var);
             uVar.setHorizontalScrollBarEnabled(false);
             uVar.setVerticalScrollBarEnabled(false);
-            this.b.addView(uVar, nme.e(-1, -1, 51));
-            ?? w39Var = new w39();
-            w39Var.d = new ArrayList();
-            w39Var.c = context;
+            this.b.addView(uVar, tre.e(-1, -1, 51));
+            ?? j79Var = new j79();
+            j79Var.d = new ArrayList();
+            j79Var.c = context;
             HashMap hashMap = new HashMap();
             int size = arrayList.size();
             int i2 = 0;
             while (i2 < size) {
-                blb blbVar = (blb) arrayList.get(i2);
-                int i3 = blbVar.e;
+                apb apbVar = (apb) arrayList.get(i2);
+                int i3 = apbVar.e;
                 float f2 = f;
                 ArrayList arrayList2 = (ArrayList) hashMap.get(Integer.valueOf(i3));
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
                     hashMap.put(Integer.valueOf(i3), arrayList2);
-                    w39Var.d.add(arrayList2);
+                    j79Var.d.add(arrayList2);
                 }
-                arrayList2.add(blbVar);
+                arrayList2.add(apbVar);
                 i2++;
                 f = f2;
             }
             float f3 = f;
             if (Build.VERSION.SDK_INT >= 26) {
-                int i4 = bkb.Z6;
+                int i4 = aob.a7;
                 if (!hashMap.containsKey(Integer.valueOf(i4))) {
                     ArrayList arrayList3 = new ArrayList();
-                    arrayList3.add(new blb((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, i4));
-                    w39Var.d.add(arrayList3);
+                    arrayList3.add(new apb((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (zob) null, i4));
+                    j79Var.d.add(arrayList3);
                 }
             }
-            this.r1 = w39Var;
-            uVar.setAdapter(w39Var);
+            this.r1 = j79Var;
+            uVar.setAdapter(j79Var);
             this.s1 = new c0(this, context);
             this.m1.setGlowColor(-657673);
             this.m1.setItemAnimator(null);
             this.m1.setLayoutAnimation(null);
-            this.m1.setOnItemClickListener(new f09(this, (byte) 21));
+            this.m1.setOnItemClickListener(new t39(this, (byte) 21));
             this.m1.setOnScrollListener(new v(this));
-            g24 g24Var = new g24(context, null);
-            this.o1 = g24Var;
-            g24Var.setShowAtCenter(true);
-            g24Var.c();
-            g24Var.setText(k96.M0(2131747975, null));
-            this.m1.setEmptyView(g24Var);
-            this.b.addView(g24Var, nme.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, gl.e1(), 51);
-            layoutParams.topMargin = gl.L(58.0f);
+            b34 b34Var = new b34(context, null);
+            this.o1 = b34Var;
+            b34Var.setShowAtCenter(true);
+            b34Var.c();
+            b34Var.setText(ob6.M0(2131747898, null));
+            this.m1.setEmptyView(b34Var);
+            this.b.addView(b34Var, tre.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, hl.e1(), 51);
+            layoutParams.topMargin = hl.L(58.0f);
             this.v1[0] = new View(context);
             this.v1[0].setBackgroundColor(301989888);
             this.v1[0].setAlpha(0.0f);
             this.v1[0].setTag(1);
             this.b.addView(this.v1[0], layoutParams);
-            this.b.addView(this.n1, nme.e(-1, 58, 51));
+            this.b.addView(this.n1, tre.e(-1, 58, 51));
             a0 a0Var = new a0(this, context);
             this.l1 = a0Var;
             a0Var.setVisibility(8);
-            this.b.addView(a0Var, nme.e(-1, -1, 1));
-            FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-1, gl.e1(), 83);
-            layoutParams2.bottomMargin = gl.L(f3);
+            this.b.addView(a0Var, tre.e(-1, -1, 1));
+            FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-1, hl.e1(), 83);
+            layoutParams2.bottomMargin = hl.L(f3);
             this.v1[1] = new View(context);
             this.v1[1].setBackgroundColor(301989888);
             this.b.addView(this.v1[1], layoutParams2);
             FrameLayout frameLayout2 = new FrameLayout(context);
             this.t1 = frameLayout2;
             frameLayout2.setBackgroundColor(-1);
-            this.b.addView(frameLayout2, nme.e(-1, 48, 83));
+            this.b.addView(frameLayout2, tre.e(-1, 48, 83));
             TextView textView = new TextView(context);
             textView.setTextSize(1, 14.0f);
             textView.setTextColor(-15095832);
             textView.setGravity(17);
-            textView.setBackgroundDrawable(bkb.f0(788529152, 0, -1));
-            textView.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
-            textView.setText(k96.M0(2131752028, null).toUpperCase());
-            textView.setTypeface(gl.o());
-            frameLayout2.addView(textView, nme.e(-2, -1, 51));
+            textView.setBackgroundDrawable(aob.f0(788529152, 0, -1));
+            textView.setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
+            textView.setText(ob6.M0(2131752005, null).toUpperCase());
+            textView.setTypeface(hl.o());
+            frameLayout2.addView(textView, tre.e(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener(this) {
                 public final ThemeEditorView.EditorAlert b;
 
@@ -186,7 +186,7 @@ public class ThemeEditorView {
                         case 1:
                             int i6 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            bkb.v1(themeEditorView.o, true, false, false);
+                            aob.v1(themeEditorView.o, true, false, false);
                             editorAlert.setOnDismissListener(null);
                             editorAlert.dismiss();
                             try {
@@ -199,25 +199,25 @@ public class ThemeEditorView {
                             int i7 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
                             for (int i8 = 0; i8 < themeEditorView2.e.size(); i8++) {
-                                blb blbVar2 = (blb) themeEditorView2.e.get(i8);
-                                blbVar2.e(blbVar2.h, blbVar2.i[0], true);
+                                apb apbVar2 = (apb) themeEditorView2.e.get(i8);
+                                apbVar2.e(apbVar2.h, apbVar2.i[0], true);
                             }
                             themeEditorView2.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         case 3:
                             int i9 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
                             for (int i10 = 0; i10 < themeEditorView3.e.size(); i10++) {
-                                blb blbVar3 = (blb) themeEditorView3.e.get(i10);
-                                blbVar3.e(bkb.D0(blbVar3.e), true, true);
+                                apb apbVar3 = (apb) themeEditorView3.e.get(i10);
+                                apbVar3.e(aob.D0(apbVar3.e), true, true);
                             }
                             themeEditorView3.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         default:
                             int i11 = ThemeEditorView.EditorAlert.G1;
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                     }
                 }
@@ -226,11 +226,11 @@ public class ThemeEditorView {
             textView2.setTextSize(1, 14.0f);
             textView2.setTextColor(-15095832);
             textView2.setGravity(17);
-            textView2.setBackgroundDrawable(bkb.f0(788529152, 0, -1));
-            textView2.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
-            textView2.setText(k96.M0(2131745740, null).toUpperCase());
-            textView2.setTypeface(gl.o());
-            frameLayout2.addView(textView2, nme.e(-2, -1, 53));
+            textView2.setBackgroundDrawable(aob.f0(788529152, 0, -1));
+            textView2.setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
+            textView2.setText(ob6.M0(2131745660, null).toUpperCase());
+            textView2.setTypeface(hl.o());
+            frameLayout2.addView(textView2, tre.e(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener(this) {
                 public final ThemeEditorView.EditorAlert b;
 
@@ -250,7 +250,7 @@ public class ThemeEditorView {
                         case 1:
                             int i6 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            bkb.v1(themeEditorView.o, true, false, false);
+                            aob.v1(themeEditorView.o, true, false, false);
                             editorAlert.setOnDismissListener(null);
                             editorAlert.dismiss();
                             try {
@@ -263,25 +263,25 @@ public class ThemeEditorView {
                             int i7 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
                             for (int i8 = 0; i8 < themeEditorView2.e.size(); i8++) {
-                                blb blbVar2 = (blb) themeEditorView2.e.get(i8);
-                                blbVar2.e(blbVar2.h, blbVar2.i[0], true);
+                                apb apbVar2 = (apb) themeEditorView2.e.get(i8);
+                                apbVar2.e(apbVar2.h, apbVar2.i[0], true);
                             }
                             themeEditorView2.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         case 3:
                             int i9 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
                             for (int i10 = 0; i10 < themeEditorView3.e.size(); i10++) {
-                                blb blbVar3 = (blb) themeEditorView3.e.get(i10);
-                                blbVar3.e(bkb.D0(blbVar3.e), true, true);
+                                apb apbVar3 = (apb) themeEditorView3.e.get(i10);
+                                apbVar3.e(aob.D0(apbVar3.e), true, true);
                             }
                             themeEditorView3.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         default:
                             int i11 = ThemeEditorView.EditorAlert.G1;
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                     }
                 }
@@ -290,16 +290,16 @@ public class ThemeEditorView {
             this.u1 = frameLayout3;
             frameLayout3.setVisibility(8);
             frameLayout3.setBackgroundColor(-1);
-            this.b.addView(frameLayout3, nme.e(-1, 48, 83));
+            this.b.addView(frameLayout3, tre.e(-1, 48, 83));
             TextView textView3 = new TextView(context);
             textView3.setTextSize(1, 14.0f);
             textView3.setTextColor(-15095832);
             textView3.setGravity(17);
-            textView3.setBackgroundDrawable(bkb.f0(788529152, 0, -1));
-            textView3.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
-            textView3.setText(k96.M0(2131752577, null).toUpperCase());
-            textView3.setTypeface(gl.o());
-            frameLayout3.addView(textView3, nme.e(-2, -1, 51));
+            textView3.setBackgroundDrawable(aob.f0(788529152, 0, -1));
+            textView3.setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
+            textView3.setText(ob6.M0(2131752570, null).toUpperCase());
+            textView3.setTypeface(hl.o());
+            frameLayout3.addView(textView3, tre.e(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener(this) {
                 public final ThemeEditorView.EditorAlert b;
 
@@ -319,7 +319,7 @@ public class ThemeEditorView {
                         case 1:
                             int i6 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            bkb.v1(themeEditorView.o, true, false, false);
+                            aob.v1(themeEditorView.o, true, false, false);
                             editorAlert.setOnDismissListener(null);
                             editorAlert.dismiss();
                             try {
@@ -332,41 +332,41 @@ public class ThemeEditorView {
                             int i7 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
                             for (int i8 = 0; i8 < themeEditorView2.e.size(); i8++) {
-                                blb blbVar2 = (blb) themeEditorView2.e.get(i8);
-                                blbVar2.e(blbVar2.h, blbVar2.i[0], true);
+                                apb apbVar2 = (apb) themeEditorView2.e.get(i8);
+                                apbVar2.e(apbVar2.h, apbVar2.i[0], true);
                             }
                             themeEditorView2.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         case 3:
                             int i9 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
                             for (int i10 = 0; i10 < themeEditorView3.e.size(); i10++) {
-                                blb blbVar3 = (blb) themeEditorView3.e.get(i10);
-                                blbVar3.e(bkb.D0(blbVar3.e), true, true);
+                                apb apbVar3 = (apb) themeEditorView3.e.get(i10);
+                                apbVar3.e(aob.D0(apbVar3.e), true, true);
                             }
                             themeEditorView3.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         default:
                             int i11 = ThemeEditorView.EditorAlert.G1;
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                     }
                 }
             });
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
-            frameLayout3.addView(linearLayout, nme.e(-2, -1, 53));
+            frameLayout3.addView(linearLayout, tre.e(-2, -1, 53));
             TextView textView4 = new TextView(context);
             textView4.setTextSize(1, 14.0f);
             textView4.setTextColor(-15095832);
             textView4.setGravity(17);
-            textView4.setBackgroundDrawable(bkb.f0(788529152, 0, -1));
-            textView4.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
-            textView4.setText(k96.M0(2131751588, null).toUpperCase());
-            textView4.setTypeface(gl.o());
-            linearLayout.addView(textView4, nme.e(-2, -1, 51));
+            textView4.setBackgroundDrawable(aob.f0(788529152, 0, -1));
+            textView4.setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
+            textView4.setText(ob6.M0(2131751565, null).toUpperCase());
+            textView4.setTypeface(hl.o());
+            linearLayout.addView(textView4, tre.e(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener(this) {
                 public final ThemeEditorView.EditorAlert b;
 
@@ -386,7 +386,7 @@ public class ThemeEditorView {
                         case 1:
                             int i6 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            bkb.v1(themeEditorView.o, true, false, false);
+                            aob.v1(themeEditorView.o, true, false, false);
                             editorAlert.setOnDismissListener(null);
                             editorAlert.dismiss();
                             try {
@@ -399,25 +399,25 @@ public class ThemeEditorView {
                             int i7 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
                             for (int i8 = 0; i8 < themeEditorView2.e.size(); i8++) {
-                                blb blbVar2 = (blb) themeEditorView2.e.get(i8);
-                                blbVar2.e(blbVar2.h, blbVar2.i[0], true);
+                                apb apbVar2 = (apb) themeEditorView2.e.get(i8);
+                                apbVar2.e(apbVar2.h, apbVar2.i[0], true);
                             }
                             themeEditorView2.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         case 3:
                             int i9 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
                             for (int i10 = 0; i10 < themeEditorView3.e.size(); i10++) {
-                                blb blbVar3 = (blb) themeEditorView3.e.get(i10);
-                                blbVar3.e(bkb.D0(blbVar3.e), true, true);
+                                apb apbVar3 = (apb) themeEditorView3.e.get(i10);
+                                apbVar3.e(aob.D0(apbVar3.e), true, true);
                             }
                             themeEditorView3.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         default:
                             int i11 = ThemeEditorView.EditorAlert.G1;
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                     }
                 }
@@ -426,11 +426,11 @@ public class ThemeEditorView {
             textView5.setTextSize(1, 14.0f);
             textView5.setTextColor(-15095832);
             textView5.setGravity(17);
-            textView5.setBackgroundDrawable(bkb.f0(788529152, 0, -1));
-            textView5.setPadding(gl.L(18.0f), 0, gl.L(18.0f), 0);
-            textView5.setText(k96.M0(2131745754, null).toUpperCase());
-            textView5.setTypeface(gl.o());
-            linearLayout.addView(textView5, nme.e(-2, -1, 51));
+            textView5.setBackgroundDrawable(aob.f0(788529152, 0, -1));
+            textView5.setPadding(hl.L(18.0f), 0, hl.L(18.0f), 0);
+            textView5.setText(ob6.M0(2131745674, null).toUpperCase());
+            textView5.setTypeface(hl.o());
+            linearLayout.addView(textView5, tre.e(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener(this) {
                 public final ThemeEditorView.EditorAlert b;
 
@@ -450,7 +450,7 @@ public class ThemeEditorView {
                         case 1:
                             int i6 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView = ThemeEditorView.this;
-                            bkb.v1(themeEditorView.o, true, false, false);
+                            aob.v1(themeEditorView.o, true, false, false);
                             editorAlert.setOnDismissListener(null);
                             editorAlert.dismiss();
                             try {
@@ -463,25 +463,25 @@ public class ThemeEditorView {
                             int i7 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView2 = ThemeEditorView.this;
                             for (int i8 = 0; i8 < themeEditorView2.e.size(); i8++) {
-                                blb blbVar2 = (blb) themeEditorView2.e.get(i8);
-                                blbVar2.e(blbVar2.h, blbVar2.i[0], true);
+                                apb apbVar2 = (apb) themeEditorView2.e.get(i8);
+                                apbVar2.e(apbVar2.h, apbVar2.i[0], true);
                             }
                             themeEditorView2.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         case 3:
                             int i9 = ThemeEditorView.EditorAlert.G1;
                             ThemeEditorView themeEditorView3 = ThemeEditorView.this;
                             for (int i10 = 0; i10 < themeEditorView3.e.size(); i10++) {
-                                blb blbVar3 = (blb) themeEditorView3.e.get(i10);
-                                blbVar3.e(bkb.D0(blbVar3.e), true, true);
+                                apb apbVar3 = (apb) themeEditorView3.e.get(i10);
+                                apbVar3.e(aob.D0(apbVar3.e), true, true);
                             }
                             themeEditorView3.c();
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                         default:
                             int i11 = ThemeEditorView.EditorAlert.G1;
-                            editorAlert.F0(false);
+                            editorAlert.G0(false);
                             return;
                     }
                 }
@@ -493,15 +493,15 @@ public class ThemeEditorView {
             return false;
         }
 
-        public final int D0() {
+        public final int E0() {
             u uVar = this.m1;
             if (uVar.getChildCount() != 0) {
                 int i = 0;
                 View childAt = uVar.getChildAt(0);
-                y29 y29Var = (y29) uVar.G(childAt);
-                if (y29Var != null) {
+                n69 n69Var = (n69) uVar.H(childAt);
+                if (n69Var != null) {
                     int paddingTop = uVar.getPaddingTop();
-                    if (y29Var.b() == 0 && childAt.getTop() >= 0) {
+                    if (n69Var.b() == 0 && childAt.getTop() >= 0) {
                         i = childAt.getTop();
                     }
                     return paddingTop - i;
@@ -511,7 +511,7 @@ public class ThemeEditorView {
             return -1000;
         }
 
-        public final void E0(boolean z) {
+        public final void F0(boolean z) {
             Integer num;
             float f;
             View[] viewArr = this.v1;
@@ -552,9 +552,9 @@ public class ThemeEditorView {
             animatorSetArr[0].start();
         }
 
-        public final void F0(boolean z) {
+        public final void G0(boolean z) {
             ?? r6;
-            g24 g24Var = this.o1;
+            b34 b34Var = this.o1;
             View[] viewArr = this.v1;
             FrameLayout frameLayout = this.n1;
             FrameLayout frameLayout2 = this.t1;
@@ -571,7 +571,7 @@ public class ThemeEditorView {
                 this.A1 = this.y1;
                 AnimatorSet animatorSet = new AnimatorSet();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(a0Var, property, 1.0f), ObjectAnimator.ofFloat(frameLayout3, property, 1.0f), ObjectAnimator.ofFloat(uVar, property, 0.0f), ObjectAnimator.ofFloat(frameLayout, property, 0.0f), ObjectAnimator.ofFloat(viewArr[0], property, 0.0f), ObjectAnimator.ofFloat(g24Var, property, 0.0f), ObjectAnimator.ofFloat(frameLayout2, property, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", uVar.getPaddingTop()));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(a0Var, property, 1.0f), ObjectAnimator.ofFloat(frameLayout3, property, 1.0f), ObjectAnimator.ofFloat(uVar, property, 0.0f), ObjectAnimator.ofFloat(frameLayout, property, 0.0f), ObjectAnimator.ofFloat(viewArr[0], property, 0.0f), ObjectAnimator.ofFloat(b34Var, property, 0.0f), ObjectAnimator.ofFloat(frameLayout2, property, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", uVar.getPaddingTop()));
                 animatorSet.setDuration(150L);
                 animatorSet.setInterpolator(themeEditorView.k);
                 animatorSet.addListener(new x(this));
@@ -586,9 +586,9 @@ public class ThemeEditorView {
             } else {
                 r6 = 0;
             }
-            bkb.v1(themeEditorView.o, r6, r6, r6);
+            aob.v1(themeEditorView.o, r6, r6, r6);
             if (uVar.getAdapter() == this.r1) {
-                gl.t1(getCurrentFocus());
+                hl.t1(getCurrentFocus());
             }
             this.B1 = true;
             uVar.setVisibility(r6);
@@ -619,7 +619,7 @@ public class ThemeEditorView {
             ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(view, property2, fArr5);
             float[] fArr6 = new float[1];
             fArr6[c] = 1.0f;
-            ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(g24Var, property2, fArr6);
+            ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(b34Var, property2, fArr6);
             float[] fArr7 = new float[1];
             fArr7[c] = 1.0f;
             ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(frameLayout2, property2, fArr7);
@@ -641,36 +641,36 @@ public class ThemeEditorView {
             uVar.getAdapter().g(themeEditorView.f);
         }
 
-        public final void G0() {
+        @Override
+        public final void H() {
+            super.H();
+            g0 g0Var = this.p1;
+            if (g0Var.b.isFocused()) {
+                hl.t1(g0Var.b);
+            }
+        }
+
+        public final void H0() {
             int paddingTop;
             u uVar = this.m1;
             if (uVar.getChildCount() > 0 && uVar.getVisibility() == 0 && !this.B1) {
                 int i = 0;
                 View childAt = uVar.getChildAt(0);
-                y29 y29Var = (y29) uVar.G(childAt);
+                n69 n69Var = (n69) uVar.H(childAt);
                 if (uVar.getVisibility() == 0 && !this.B1) {
-                    paddingTop = childAt.getTop() - gl.L(8.0f);
+                    paddingTop = childAt.getTop() - hl.L(8.0f);
                 } else {
                     paddingTop = uVar.getPaddingTop();
                 }
-                if (paddingTop > (-gl.L(1.0f)) && y29Var != null && y29Var.b() == 0) {
-                    E0(false);
+                if (paddingTop > (-hl.L(1.0f)) && n69Var != null && n69Var.b() == 0) {
+                    F0(false);
                     i = paddingTop;
                 } else {
-                    E0(true);
+                    F0(true);
                 }
                 if (this.y1 != i) {
                     setScrollOffsetY(i);
                 }
-            }
-        }
-
-        @Override
-        public final void I() {
-            super.I();
-            g0 g0Var = this.p1;
-            if (g0Var.b.isFocused()) {
-                gl.t1(g0Var.b);
             }
         }
 
@@ -692,18 +692,18 @@ public class ThemeEditorView {
         int i3;
         int round;
         if (z) {
-            i3 = gl.q.x;
+            i3 = hl.q.x;
         } else {
-            i3 = gl.q.y - i2;
+            i3 = hl.q.y - i2;
             i2 = org.telegram.ui.ActionBar.a.getCurrentActionBarHeight();
         }
         int i4 = i3 - i2;
         if (i == 0) {
-            round = gl.L(10.0f);
+            round = hl.L(10.0f);
         } else if (i == 1) {
-            round = i4 - gl.L(10.0f);
+            round = i4 - hl.L(10.0f);
         } else {
-            round = Math.round((i4 - gl.L(20.0f)) * f) + gl.L(10.0f);
+            round = Math.round((i4 - hl.L(20.0f)) * f) + hl.L(10.0f);
         }
         if (!z) {
             return org.telegram.ui.ActionBar.a.getCurrentActionBarHeight() + round;
@@ -719,7 +719,7 @@ public class ThemeEditorView {
                 this.j.removeViewImmediate(rVar);
                 this.c = null;
             } catch (Exception e) {
-                fa4.g(e, false);
+                cc4.g(e, false);
             }
             try {
                 EditorAlert editorAlert = this.n;
@@ -728,7 +728,7 @@ public class ThemeEditorView {
                     this.n = null;
                 }
             } catch (Exception e2) {
-                fa4.g(e2, true);
+                cc4.g(e2, true);
             }
             this.d = null;
             p = null;
@@ -738,15 +738,15 @@ public class ThemeEditorView {
     public final void c() {
         if (!this.a) {
             this.a = true;
-            gl.c3(this.b);
+            hl.c3(this.b);
         }
     }
 
-    public final void d(Activity activity, akb akbVar) {
+    public final void d(Activity activity, znb znbVar) {
         if (p != null) {
             p.a();
         }
-        this.o = akbVar;
+        this.o = znbVar;
         this.c = new r(this, activity);
         this.j = (WindowManager) activity.getSystemService("window");
         SharedPreferences sharedPreferences = org.telegram.messenger.a.b.getSharedPreferences("themeconfig", 0);
@@ -768,19 +768,19 @@ public class ThemeEditorView {
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            gl.s3(this.j, this.c, layoutParams2);
+            hl.s3(this.j, this.c, layoutParams2);
             this.j.addView(this.c, this.i);
-            this.m = new gl2(activity, (WallpapersListActivity) null, new s(this));
+            this.m = new am2(activity, (WallpapersListActivity) null, new s(this));
             p = this;
             this.d = activity;
             e();
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
         }
     }
 
     public final void e() {
-        this.c.setBackgroundResource(2131232783);
+        this.c.setBackgroundResource(2131232802);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.c, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.c, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.c, View.SCALE_Y, 0.0f, 1.0f));
         animatorSet.setInterpolator(this.k);

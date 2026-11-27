@@ -1,29 +1,43 @@
 package defpackage;
-public final class mk3 implements Runnable {
-    public final byte a;
-    public final mt9 b;
-    public final int c;
-    public final String d;
-    public final String e;
 
-    public mk3(mt9 mt9Var, int i, String str, String str2) {
-        this.a = (byte) 1;
-        this.b = mt9Var;
-        this.c = i;
-        this.d = str;
-        this.e = str2;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_bots;
+public final class mk3 {
+    public final int a;
+    public final ik3 b;
+    public boolean c;
+    public boolean d;
+    public boolean e;
+    public long f;
+    public String g;
+    public final ArrayList h = new ArrayList();
+    public boolean i = false;
+
+    public mk3(int i, ik3 ik3Var) {
+        this.a = i;
+        this.b = ik3Var;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.mk3.run():void");
-    }
-
-    public mk3(mt9 mt9Var, String str, int i, String str2, byte b) {
-        this.a = b;
-        this.b = mt9Var;
-        this.d = str;
-        this.c = i;
-        this.e = str2;
+    public final void a() {
+        if (!this.c && !this.e) {
+            this.c = true;
+            boolean z = this.d;
+            int i = this.a;
+            if (!z) {
+                lk3 lk3Var = new lk3(this, (byte) 0);
+                jf7 Y = jf7.Y(i);
+                Y.a.c(new cv2(this, Y, lk3Var, (byte) 7));
+                return;
+            }
+            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
+            getpopularappbots.limit = 20;
+            String str = this.g;
+            if (str == null) {
+                str = "";
+            }
+            getpopularappbots.offset = str;
+            ConnectionsManager.getInstance(i).sendRequest(getpopularappbots, new ye(this, (byte) 18));
+        }
     }
 }

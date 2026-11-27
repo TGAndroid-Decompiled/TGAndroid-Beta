@@ -1,47 +1,46 @@
 package defpackage;
+public final class sna implements sf7 {
+    public final float a;
+    public final short b;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-public final class sna implements k8c {
-    public final byte a;
-    public final vqa b;
-
-    public sna(vqa vqaVar, byte b) {
-        this.a = b;
-        this.b = vqaVar;
+    public sna(float f, int i) {
+        this.a = f;
+        this.b = i;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3) {
-        switch (this.a) {
-            case 0:
-                boolean booleanValue = ((Boolean) obj3).booleanValue();
-                this.b.u2((View) obj2, (CharSequence) obj, booleanValue);
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) obj;
-                i8c i8cVar = (i8c) obj2;
-                Runnable runnable = (Runnable) obj3;
-                vqa vqaVar = this.b;
-                x99 x99Var = vqaVar.R2;
-                if (x99Var != null) {
-                    x99Var.b();
-                    vqaVar.R2 = null;
+    public final ko4 a() {
+        return null;
+    }
+
+    @Override
+    public final byte[] c() {
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && sna.class == obj.getClass()) {
+                sna snaVar = (sna) obj;
+                if (this.a == snaVar.a && this.b == snaVar.b) {
+                    return true;
                 }
-                TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
-                int size = arrayList.size();
-                int i = 0;
-                while (i < size) {
-                    Object obj4 = arrayList.get(i);
-                    i++;
-                    TL_stars.TL_inputSavedStarGiftSlug tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
-                    tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
-                    craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
-                }
-                ConnectionsManager.getInstance(vqaVar.a).sendRequestTyped(craftstargift, new hc((byte) 0), new eu0(vqaVar, i8cVar, arrayList, runnable, (byte) 14));
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((Float.valueOf(this.a).hashCode() + 527) * 31) + this.b;
+    }
+
+    public final String toString() {
+        return "smta: captureFrameRate=" + this.a + ", svcTemporalLayerCount=" + ((int) this.b);
+    }
+
+    @Override
+    public final void b(lt6 lt6Var) {
     }
 }

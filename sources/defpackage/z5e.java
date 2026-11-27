@@ -1,13 +1,18 @@
 package defpackage;
-public final class z5e {
-    public final Throwable a;
+public enum z5e implements sse {
+    LANDMARK_UNKNOWN(0),
+    LANDMARK_NONE(1),
+    LANDMARK_ALL(2),
+    LANDMARK_CONTOUR(3);
+    
+    public final byte a;
 
-    static {
-        new z5e(new i2("Failure occurred while trying to finish a future.", (byte) 3));
+    z5e(int i) {
+        this.a = i;
     }
 
-    public z5e(Throwable th) {
-        boolean z = y4f.d;
-        this.a = th;
+    @Override
+    public final String toString() {
+        return "<" + z5e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
     }
 }

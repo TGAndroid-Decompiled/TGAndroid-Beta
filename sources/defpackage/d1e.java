@@ -1,18 +1,17 @@
 package defpackage;
-public enum d1e implements boe {
-    REASON_UNKNOWN(0),
-    REASON_MISSING(1),
-    REASON_UPGRADE(2),
-    REASON_INVALID(3);
-    
-    public final byte a;
+public final class d1e implements zq7 {
+    public static final d1e a = new Object();
 
-    d1e(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)), 5)), 6)), 7)));
     }
 
     @Override
-    public final String toString() {
-        return "<" + d1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -112,7 +112,7 @@ public final class tq0 {
             jSONObject.put("speed_accuracy", (Object) null);
             return jSONObject;
         } catch (Exception e) {
-            fa4.g(e, true);
+            cc4.g(e, true);
             return jSONObject;
         }
     }
@@ -138,10 +138,10 @@ public final class tq0 {
     public final Activity e() {
         Activity activity = LaunchActivity.H1;
         if (activity == null) {
-            activity = gl.W(this.a);
+            activity = hl.W(this.a);
         }
         if (activity == null) {
-            return gl.W(a.b);
+            return hl.W(a.b);
         }
         return activity;
     }
@@ -153,7 +153,7 @@ public final class tq0 {
         return false;
     }
 
-    public final void h(final pt0 pt0Var) {
+    public final void h(final yt0 yt0Var) {
         Activity e;
         Activity e2 = e();
         if (e2 == null) {
@@ -161,28 +161,28 @@ public final class tq0 {
         }
         if (!c()) {
             Boolean bool = Boolean.FALSE;
-            pt0Var.a(bool, bool);
+            yt0Var.a(bool, bool);
         } else if (a() && (this.d || this.e)) {
-            pt0Var.a(Boolean.FALSE, Boolean.TRUE);
+            yt0Var.a(Boolean.FALSE, Boolean.TRUE);
         } else {
             final boolean[] zArr = new boolean[1];
             int i = this.b;
-            TLRPC.User V1 = na7.q1(i).V1(Long.valueOf(this.c));
+            TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(this.c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, e2);
-            SpannableStringBuilder S2 = gl.S2(k96.a0(null, null, 2131753045, l7c.r(V1), l7c.r(V1)));
-            hd hdVar = alertDialog$Builder.a;
-            hdVar.U = S2;
-            sq0 sq0Var = new sq0(this.a, y6c.h(i).f(), V1);
-            int i2 = bkb.K5;
-            int w0 = bkb.w0(null, i2, false);
-            hdVar.c0 = sq0Var;
-            hdVar.d0 = w0;
-            hdVar.e0 = -1;
+            SpannableStringBuilder S2 = hl.S2(ob6.a0(null, null, 2131753041, lbc.r(X1), lbc.r(X1)));
+            id idVar = alertDialog$Builder.a;
+            idVar.U = S2;
+            sq0 sq0Var = new sq0(this.a, yac.h(i).f(), X1);
+            int i2 = aob.L5;
+            int w0 = aob.w0(null, i2, false);
+            idVar.c0 = sq0Var;
+            idVar.d0 = w0;
+            idVar.e0 = -1;
             alertDialog$Builder.m(i2, null);
             if (!a() && (e = e()) != null && (!e.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !e.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
-                alertDialog$Builder.j(k96.M0(2131753041, null), new ie(e2, zArr, pt0Var, (byte) 5));
+                alertDialog$Builder.j(ob6.M0(2131753037, null), new ie(e2, zArr, yt0Var, (byte) 5));
             } else {
-                alertDialog$Builder.j(k96.M0(2131753047, null), new ed(this) {
+                alertDialog$Builder.j(ob6.M0(2131753043, null), new fd(this) {
                     public final tq0 b;
 
                     {
@@ -190,9 +190,9 @@ public final class tq0 {
                     }
 
                     @Override
-                    public final void u(hd hdVar2, int i3) {
+                    public final void w(id idVar2, int i3) {
                         byte b = r4;
-                        pt0 pt0Var2 = pt0Var;
+                        yt0 yt0Var2 = yt0Var;
                         boolean[] zArr2 = zArr;
                         tq0 tq0Var = this.b;
                         tq0Var.getClass();
@@ -200,7 +200,7 @@ public final class tq0 {
                             case 0:
                                 zArr2[0] = true;
                                 if (!tq0Var.a()) {
-                                    rqe.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new x0(tq0Var, pt0Var2, (byte) 4));
+                                    jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, yt0Var2, (byte) 4));
                                     return;
                                 }
                                 tq0Var.d = true;
@@ -211,7 +211,7 @@ public final class tq0 {
                                     ((Runnable) it.next()).run();
                                 }
                                 Boolean bool2 = Boolean.TRUE;
-                                pt0Var2.a(bool2, bool2);
+                                yt0Var2.a(bool2, bool2);
                                 return;
                             default:
                                 if (!zArr2[0]) {
@@ -223,7 +223,7 @@ public final class tq0 {
                                     while (it2.hasNext()) {
                                         ((Runnable) it2.next()).run();
                                     }
-                                    pt0Var2.a(Boolean.TRUE, Boolean.FALSE);
+                                    yt0Var2.a(Boolean.TRUE, Boolean.FALSE);
                                     return;
                                 }
                                 return;
@@ -231,7 +231,7 @@ public final class tq0 {
                     }
                 });
             }
-            alertDialog$Builder.g(k96.M0(2131753046, null), new ed(this) {
+            alertDialog$Builder.g(ob6.M0(2131753042, null), new fd(this) {
                 public final tq0 b;
 
                 {
@@ -239,9 +239,9 @@ public final class tq0 {
                 }
 
                 @Override
-                public final void u(hd hdVar2, int i3) {
+                public final void w(id idVar2, int i3) {
                     byte b = r4;
-                    pt0 pt0Var2 = pt0Var;
+                    yt0 yt0Var2 = yt0Var;
                     boolean[] zArr2 = zArr;
                     tq0 tq0Var = this.b;
                     tq0Var.getClass();
@@ -249,7 +249,7 @@ public final class tq0 {
                         case 0:
                             zArr2[0] = true;
                             if (!tq0Var.a()) {
-                                rqe.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new x0(tq0Var, pt0Var2, (byte) 4));
+                                jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, yt0Var2, (byte) 4));
                                 return;
                             }
                             tq0Var.d = true;
@@ -260,7 +260,7 @@ public final class tq0 {
                                 ((Runnable) it.next()).run();
                             }
                             Boolean bool2 = Boolean.TRUE;
-                            pt0Var2.a(bool2, bool2);
+                            yt0Var2.a(bool2, bool2);
                             return;
                         default:
                             if (!zArr2[0]) {
@@ -272,19 +272,19 @@ public final class tq0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                pt0Var2.a(Boolean.TRUE, Boolean.FALSE);
+                                yt0Var2.a(Boolean.TRUE, Boolean.FALSE);
                                 return;
                             }
                             return;
                     }
                 }
             });
-            alertDialog$Builder.i(new ag(this, zArr, pt0Var, (byte) 3));
+            alertDialog$Builder.i(new cf(this, zArr, yt0Var, (byte) 3));
             alertDialog$Builder.o();
         }
     }
 
-    public final void i(p8c p8cVar) {
+    public final void i(pcc pccVar) {
         JSONObject jSONObject = new JSONObject();
         if (this.e && a() && c()) {
             LocationManager locationManager = (LocationManager) a.b.getSystemService("location");
@@ -305,52 +305,52 @@ public final class tq0 {
                     if (context != null) {
                         try {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                            int i = bkb.K5;
-                            alertDialog$Builder.l(2131624120, 72, bkb.w0(null, i, false), null);
+                            int i = aob.L5;
+                            alertDialog$Builder.l(2131624120, 72, aob.w0(null, i, false), null);
                             alertDialog$Builder.m(i, null);
-                            alertDialog$Builder.a.U = k96.M0(2131749355, null);
-                            alertDialog$Builder.j(k96.M0(2131751148, null), new od(context, (byte) 2));
-                            alertDialog$Builder.g(k96.M0(2131752577, null), null);
+                            alertDialog$Builder.a.U = ob6.M0(2131749301, null);
+                            alertDialog$Builder.j(ob6.M0(2131751125, null), new qg(context, (byte) 2));
+                            alertDialog$Builder.g(ob6.M0(2131752570, null), null);
                             alertDialog$Builder.o();
                         } catch (Exception e) {
-                            fa4.g(e, true);
+                            cc4.g(e, true);
                         }
                     }
-                    p8cVar.a(g(null));
+                    pccVar.a(g(null));
                     return;
                 }
                 try {
-                    rq0 rq0Var = new rq0(this, locationManager, r0, p8cVar);
+                    rq0 rq0Var = new rq0(this, locationManager, r0, pccVar);
                     LocationListener[] locationListenerArr = {rq0Var};
                     locationManager.requestLocationUpdates("gps", 1L, 0.0f, rq0Var);
                     return;
                 } catch (Exception e2) {
-                    fa4.g(e2, true);
-                    p8cVar.a(g(null));
+                    cc4.g(e2, true);
+                    pccVar.a(g(null));
                     return;
                 }
             }
-            p8cVar.a(g(location));
+            pccVar.a(g(location));
             return;
         }
         try {
             jSONObject.put("available", false);
         } catch (Exception e3) {
-            fa4.g(e3, true);
+            cc4.g(e3, true);
         }
-        p8cVar.a(jSONObject);
+        pccVar.a(jSONObject);
     }
 
     public final void j() {
         SharedPreferences.Editor edit = this.a.getSharedPreferences("botlocation_" + this.b, 0).edit();
         StringBuilder sb = new StringBuilder();
         long j = this.c;
-        edit.putBoolean(ls6.p(sb, j, "_granted"), this.e);
+        edit.putBoolean(qu6.p(sb, j, "_granted"), this.e);
         edit.putBoolean(j + "_requested", this.d);
         edit.apply();
     }
 
-    public final void k(boolean z, final ll8 ll8Var) {
+    public final void k(boolean z, final hp8 hp8Var) {
         this.d = true;
         if (z && !a()) {
             Activity e = e();
@@ -358,21 +358,21 @@ public final class tq0 {
                 return;
             }
             int i = this.b;
-            TLRPC.User V1 = na7.q1(i).V1(Long.valueOf(this.c));
+            TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(this.c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, null, e());
-            SpannableStringBuilder S2 = gl.S2(k96.a0(null, null, 2131753045, l7c.r(V1), l7c.r(V1)));
-            hd hdVar = alertDialog$Builder.a;
-            hdVar.U = S2;
-            sq0 sq0Var = new sq0(this.a, y6c.h(i).f(), V1);
-            int i2 = bkb.K5;
-            int w0 = bkb.w0(null, i2, false);
-            hdVar.c0 = sq0Var;
-            hdVar.d0 = w0;
-            hdVar.e0 = -1;
+            SpannableStringBuilder S2 = hl.S2(ob6.a0(null, null, 2131753041, lbc.r(X1), lbc.r(X1)));
+            id idVar = alertDialog$Builder.a;
+            idVar.U = S2;
+            sq0 sq0Var = new sq0(this.a, yac.h(i).f(), X1);
+            int i2 = aob.L5;
+            int w0 = aob.w0(null, i2, false);
+            idVar.c0 = sq0Var;
+            idVar.d0 = w0;
+            idVar.e0 = -1;
             alertDialog$Builder.m(i2, null);
             Activity e2 = e();
             if (e2 == null || (e2.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && e2.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
-                alertDialog$Builder.j(k96.M0(2131753047, null), new ed(this) {
+                alertDialog$Builder.j(ob6.M0(2131753043, null), new fd(this) {
                     public final tq0 b;
 
                     {
@@ -380,14 +380,14 @@ public final class tq0 {
                     }
 
                     @Override
-                    public final void u(hd hdVar2, int i3) {
+                    public final void w(id idVar2, int i3) {
                         byte b = r3;
-                        ll8 ll8Var2 = ll8Var;
+                        hp8 hp8Var2 = hp8Var;
                         tq0 tq0Var = this.b;
                         switch (b) {
                             case 0:
                                 if (!tq0Var.a()) {
-                                    rqe.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new x0(tq0Var, ll8Var2, (byte) 5));
+                                    jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, hp8Var2, (byte) 5));
                                     return;
                                 }
                                 tq0Var.d = true;
@@ -406,8 +406,8 @@ public final class tq0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                if (ll8Var2 != null) {
-                                    ll8Var2.run();
+                                if (hp8Var2 != null) {
+                                    hp8Var2.run();
                                     return;
                                 }
                                 return;
@@ -415,9 +415,9 @@ public final class tq0 {
                     }
                 });
             } else {
-                alertDialog$Builder.j(k96.M0(2131753041, null), new mh(e, (byte) 1));
+                alertDialog$Builder.j(ob6.M0(2131753037, null), new oe(e, (byte) 1));
             }
-            alertDialog$Builder.g(k96.M0(2131753046, null), new ed(this) {
+            alertDialog$Builder.g(ob6.M0(2131753042, null), new fd(this) {
                 public final tq0 b;
 
                 {
@@ -425,14 +425,14 @@ public final class tq0 {
                 }
 
                 @Override
-                public final void u(hd hdVar2, int i3) {
+                public final void w(id idVar2, int i3) {
                     byte b = r3;
-                    ll8 ll8Var2 = ll8Var;
+                    hp8 hp8Var2 = hp8Var;
                     tq0 tq0Var = this.b;
                     switch (b) {
                         case 0:
                             if (!tq0Var.a()) {
-                                rqe.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new x0(tq0Var, ll8Var2, (byte) 5));
+                                jve.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new y0(tq0Var, hp8Var2, (byte) 5));
                                 return;
                             }
                             tq0Var.d = true;
@@ -451,8 +451,8 @@ public final class tq0 {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            if (ll8Var2 != null) {
-                                ll8Var2.run();
+                            if (hp8Var2 != null) {
+                                hp8Var2.run();
                                 return;
                             }
                             return;
@@ -466,8 +466,8 @@ public final class tq0 {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (ll8Var != null) {
-                ll8Var.run();
+            if (hp8Var != null) {
+                hp8Var.run();
             }
         }
         j();

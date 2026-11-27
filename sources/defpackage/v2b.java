@@ -1,105 +1,141 @@
 package defpackage;
 
-import android.graphics.Paint;
+import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.view.ContextThemeWrapper;
 import android.view.View;
-public final class v2b {
-    public final int a;
-    public final uc b;
-    public final kz4 c;
-    public int d;
-    public int e;
-    public final kl f;
-    public final kl g;
-    public boolean h;
-    public da7 i;
-    public int j;
+public abstract class v2b extends c51 {
+    public final xl0 m0;
+    public final RectF n0;
+    public byte o0;
+    public final k3b p0;
+    public final vnb q0;
+    public int r0;
+    public boolean s0;
 
-    public v2b(View view) {
-        uc ucVar = new uc(view, (byte) 5);
-        this.a = y6c.t0;
-        this.b = ucVar;
-        s33 s33Var = s33.h;
-        this.f = new kl(ucVar, 350L, s33Var);
-        this.g = new kl(ucVar, 350L, s33Var);
-        kz4 kz4Var = new kz4();
-        this.c = kz4Var;
-        kz4Var.a = true;
-        kz4Var.b = true;
-        b(false);
-        float N = gl.N(2.0f);
-        Paint paint = kz4Var.c;
-        paint.setStrokeWidth(N);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    public v2b(k3b k3bVar, ContextThemeWrapper contextThemeWrapper, vnb vnbVar, tl0 tl0Var) {
+        super(vnbVar, contextThemeWrapper, false);
+        this.n0 = new RectF();
+        this.r0 = 8;
+        this.q0 = vnbVar;
+        this.p0 = k3bVar;
+        this.m0 = new xl0(tl0Var, this, 0, true);
+        setWillNotDraw(false);
+        setTextColor(-1);
+        setFlickeringLoading(true);
+        this.d.x(hl.o());
+        removeView(this.r);
+        setForeground(aob.Y(aob.p1(0.08f, -1), 8, 8));
+        setPadding(hl.L(24.0f), 0, hl.L(24.0f), 0);
     }
 
-    public final Paint a(RectF rectF) {
-        int m;
-        int n;
-        int i = this.j;
-        int i2 = zkb.b;
-        kl klVar = this.g;
-        kl klVar2 = this.f;
-        if (i != i2) {
-            this.j = i2;
-            try {
-                if (this.h) {
-                    m = bkb.w0(null, bkb.Xk, false);
-                    n = bkb.w0(null, bkb.Yk, false);
-                } else {
-                    da7 da7Var = this.i;
-                    if (da7Var != null) {
-                        m = da7Var.m(bkb.I.o());
-                        n = this.i.n(bkb.I.o());
-                    }
-                }
-                if (m != this.d || n != this.e) {
-                    this.d = m;
-                    this.e = n;
-                    klVar2.a(m, true);
-                    klVar.a(n, true);
-                }
-            } catch (Exception e) {
-                fa4.g(e, true);
-            }
+    @Override
+    public void onDraw(Canvas canvas) {
+        boolean z = this.i0;
+        RectF rectF = this.n0;
+        if (z) {
+            float c = this.d.c() + getPaddingLeft() + getPaddingRight();
+            rectF.set((getMeasuredWidth() - c) / 2.0f, 0.0f, (getMeasuredWidth() + c) / 2.0f, getMeasuredHeight());
+        } else {
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         }
-        int a = klVar2.a(this.d, false);
-        int a2 = klVar.a(this.e, false);
-        kz4 kz4Var = this.c;
-        kz4Var.d(a, a2, 0, 0);
-        kz4Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return kz4Var.c;
+        super.onDraw(canvas);
     }
 
-    public final void b(boolean z) {
-        this.h = true;
-        this.i = null;
-        this.j = zkb.b;
-        d(bkb.w0(null, bkb.Xk, false), bkb.w0(null, bkb.Yk, false), z);
-    }
-
-    public final void c(da7 da7Var, boolean z) {
-        this.i = da7Var;
-        this.j = zkb.b;
-        if (da7Var != null) {
-            this.h = false;
-            d(da7Var.m(bkb.I.o()), da7Var.n(bkb.I.o()), z);
-            return;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        if (this.s0) {
+            i = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.c()), 1073741824);
         }
-        b(z);
+        super.onMeasure(i, i2);
     }
 
-    public final void d(int i, int i2, boolean z) {
-        this.d = i;
-        this.e = i2;
-        if (!z) {
-            this.f.a(i, true);
-            this.g.a(i2, true);
-        }
-        uc ucVar = this.b;
-        if (ucVar != null) {
-            ucVar.run();
+    @Override
+    public void setAlpha(float f) {
+        h3b[] h3bVarArr;
+        k3b k3bVar = this.p0;
+        super.setAlpha((!k3bVar.E || (h3bVarArr = k3bVar.I) == null || h3bVarArr.length <= 0) ? 0.0f : 0.0f);
+    }
+
+    public void setCancelState(boolean z) {
+        this.o0 = (byte) 2;
+        i(ob6.M0(2131752570, null), z, true);
+    }
+
+    public void setCutOutState(boolean z) {
+        this.o0 = (byte) 0;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        wm2 wm2Var = new wm2(2131231752, 0);
+        wm2Var.c(hl.L(22.0f));
+        wm2Var.r = hl.L(1.0f);
+        wm2Var.s = hl.L(2.0f);
+        wm2Var.H = 1.2f;
+        spannableStringBuilder.setSpan(wm2Var, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ob6.M0(2131745408, null));
+        i(spannableStringBuilder, z, true);
+    }
+
+    public void setEraseState(boolean z) {
+        this.o0 = (byte) 3;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        wm2 wm2Var = new wm2(2131231731, 0);
+        wm2Var.c(hl.L(20.0f));
+        wm2Var.r = hl.L(-3.0f);
+        spannableStringBuilder.setSpan(wm2Var, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ob6.M0(2131745406, null));
+        i(spannableStringBuilder, z, true);
+    }
+
+    public void setOutlineState(boolean z) {
+        this.o0 = (byte) 6;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        wm2 wm2Var = new wm2(2131231762, 0);
+        wm2Var.c(hl.L(20.0f));
+        wm2Var.r = hl.L(-3.0f);
+        spannableStringBuilder.setSpan(wm2Var, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ob6.M0(2131745405, null));
+        i(spannableStringBuilder, z, true);
+    }
+
+    public void setRad(int i) {
+        this.r0 = i;
+        setForeground(aob.Y(aob.v0(aob.i6, this.q0), i, i));
+    }
+
+    public void setRestoreState(boolean z) {
+        this.o0 = (byte) 4;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        wm2 wm2Var = new wm2(2131231732, 0);
+        wm2Var.c(hl.L(20.0f));
+        wm2Var.r = hl.L(-3.0f);
+        spannableStringBuilder.setSpan(wm2Var, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ob6.M0(2131745404, null));
+        i(spannableStringBuilder, z, true);
+    }
+
+    public void setUndoCutState(boolean z) {
+        this.o0 = (byte) 1;
+    }
+
+    public void setUndoState(boolean z) {
+        this.o0 = (byte) 5;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        wm2 wm2Var = new wm2(2131232547, 0);
+        wm2Var.c(hl.L(20.0f));
+        wm2Var.r = hl.L(-3.0f);
+        spannableStringBuilder.setSpan(wm2Var, 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ob6.M0(2131745402, null));
+        i(spannableStringBuilder, z, true);
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        if (Build.VERSION.SDK_INT < 24) {
+            super.setVisibility(8);
+        } else {
+            super.setVisibility(i);
         }
     }
 }

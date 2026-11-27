@@ -1,58 +1,36 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class ee4 extends AnimatorListenerAdapter {
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ee4 implements DialogInterface.OnShowListener {
     public final byte a;
-    public final float b;
-    public final int c;
-    public final View d;
+    public final EditTextBoldCursor b;
 
-    public ee4(yva yvaVar, float f, int i) {
-        this.a = (byte) 1;
-        this.d = yvaVar;
-        this.b = f;
-        this.c = i;
+    public ee4(EditTextBoldCursor editTextBoldCursor, byte b) {
+        this.a = b;
+        this.b = editTextBoldCursor;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f;
+    public final void onShow(DialogInterface dialogInterface) {
         byte b = this.a;
-        float f2 = this.b;
-        int i = this.c;
-        View view = this.d;
+        EditTextBoldCursor editTextBoldCursor = this.b;
         switch (b) {
             case 0:
-                fe4 fe4Var = (fe4) view;
-                if (i == 5) {
-                    f = 0.0f;
-                } else {
-                    f = -f2;
-                }
-                fe4Var.b(f, i + 1);
-                fe4Var.E = 0.0f;
-                fe4Var.invalidate();
+                hl.c3(new l(editTextBoldCursor, (byte) 4));
                 return;
             case 1:
-                yva yvaVar = (yva) view;
-                yvaVar.d0 = f2;
-                if (yvaVar.getValue() != i) {
-                    yvaVar.e(yvaVar.getValue());
-                }
-                yvaVar.invalidate();
+                editTextBoldCursor.requestFocus();
+                hl.E3(editTextBoldCursor);
+                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
+                return;
+            case 2:
+                editTextBoldCursor.requestFocus();
+                hl.E3(editTextBoldCursor);
                 return;
             default:
-                ((nsc) view).c(i, f2, false);
+                hl.c3(new l(editTextBoldCursor, (byte) 10));
                 return;
         }
-    }
-
-    public ee4(View view, int i, float f, byte b) {
-        this.a = b;
-        this.d = view;
-        this.c = i;
-        this.b = f;
     }
 }

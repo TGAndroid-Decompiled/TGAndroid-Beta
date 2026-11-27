@@ -1,17 +1,10 @@
 package defpackage;
-public final class y50 implements zn7 {
+public final class y50 implements zq7 {
     public static final y50 a = new Object();
-
-    static {
-        w84.c("clsId");
-    }
+    public static final sa4 b = sa4.c("trigger");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        ((ar7) obj2).e(b, ((l80) ((gz2) obj)).a);
     }
 }

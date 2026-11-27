@@ -1,17 +1,25 @@
 package defpackage;
-public final class use implements zn7 {
-    public static final use a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)), 4)));
+import java.util.Map;
+public abstract class use {
+    public static int a(int i) {
+        if (i < 3) {
+            awd.b(i, "expectedSize");
+            return i + 1;
+        } else if (i < 1073741824) {
+            return (int) Math.ceil(i / 0.75d);
+        } else {
+            return Integer.MAX_VALUE;
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+    public static boolean b(Map map, Object obj) {
+        if (map == obj) {
+            return true;
         }
-        throw new ClassCastException();
+        if (obj instanceof Map) {
+            return map.entrySet().equals(((Map) obj).entrySet());
+        }
+        return false;
     }
 }

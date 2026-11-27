@@ -1,7 +1,11 @@
 package org.webrtc;
 public class MediaSource {
-    private long nativeSource;
+    final NativeLifecycleLock lifecycleLock;
     private final RefCountDelegate refCountDelegate;
+
+    public interface Natives {
+        State getState(long j);
+    }
 
     public enum State {
         INITIALIZING,
@@ -15,28 +19,28 @@ public class MediaSource {
     }
 
     public MediaSource(long j) {
-        this.refCountDelegate = new RefCountDelegate(new px6((byte) 0, j));
-        this.nativeSource = j;
+        this.refCountDelegate = new RefCountDelegate(new tz6((byte) 0, j));
+        this.lifecycleLock = new NativeLifecycleLock("MediaSource", j);
     }
 
-    private void checkMediaSourceExists() {
-        if (this.nativeSource != 0) {
-            return;
-        }
-        sc8.j("MediaSource has been disposed.");
+    public static State c(long j) {
+        return lambda$state$1(j);
     }
 
-    private static native State nativeGetState(long j);
+    public void lambda$dispose$2(long j) {
+        this.refCountDelegate.release();
+    }
+
+    public static State lambda$state$1(long j) {
+        return MediaSourceJni.get().getState(j);
+    }
 
     public void dispose() {
-        checkMediaSourceExists();
-        this.refCountDelegate.release();
-        this.nativeSource = 0L;
+        this.lifecycleLock.dispose(new bm6(this, (byte) 9));
     }
 
     public long getNativeMediaSource() {
-        checkMediaSourceExists();
-        return this.nativeSource;
+        return this.lifecycleLock.getNativePointer();
     }
 
     public void runWithReference(Runnable runnable) {
@@ -50,7 +54,6 @@ public class MediaSource {
     }
 
     public State state() {
-        checkMediaSourceExists();
-        return nativeGetState(this.nativeSource);
+        return (State) this.lifecycleLock.call(new hz6((byte) 5));
     }
 }

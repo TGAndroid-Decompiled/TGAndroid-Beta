@@ -1,39 +1,35 @@
 package defpackage;
-public final class zo3 implements lt8 {
-    public static final Object c = new Object();
-    public volatile lt8 a;
-    public volatile Object b;
 
-    public static lt8 a(lt8 lt8Var) {
-        if (lt8Var instanceof zo3) {
-            return lt8Var;
-        }
-        ?? obj = new Object();
-        obj.b = c;
-        obj.a = lt8Var;
-        return obj;
+import sun.misc.Unsafe;
+public final class zo3 extends ju9 {
+    public static final long f = fx.a.objectFieldOffset(zo3.class.getDeclaredField("_decision$volatile"));
+    private volatile int _decision$volatile;
+
+    @Override
+    public final void f(Object obj) {
+        g(obj);
     }
 
     @Override
-    public final Object mo9get() {
-        Object obj;
-        Object obj2 = this.b;
-        Object obj3 = c;
-        if (obj2 == obj3) {
-            synchronized (this) {
-                obj = this.b;
-                if (obj == obj3) {
-                    obj = this.a.mo9get();
-                    Object obj4 = this.b;
-                    if (obj4 != obj3 && obj4 != obj) {
-                        throw new IllegalStateException("Scoped provider was invoked recursively returning different results: " + obj4 + " & " + obj + ". This is likely due to a circular dependency.");
-                    }
-                    this.b = obj;
-                    this.a = null;
+    public final void g(Object obj) {
+        while (true) {
+            Unsafe unsafe = fx.a;
+            long j = f;
+            int intVolatile = unsafe.getIntVolatile(this, j);
+            if (intVolatile != 0) {
+                if (intVolatile == 1) {
+                    q7c.c(xpe.a(this.e), pxd.a(obj));
+                    return;
+                } else {
+                    grb.i("Already resumed");
+                    return;
                 }
             }
-            return obj;
+            zo3 zo3Var = this;
+            if (unsafe.compareAndSwapInt(zo3Var, j, 0, 2)) {
+                return;
+            }
+            this = zo3Var;
         }
-        return obj2;
     }
 }

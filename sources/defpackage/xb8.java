@@ -1,71 +1,35 @@
 package defpackage;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-public final class xb8 extends Drawable {
-    public final Paint a;
-    public final int b;
-    public boolean c;
-    public float d;
-    public long e;
-    public View f;
-    public int g = 255;
-    public float h = 300.0f;
+import org.telegram.ui.PhotoViewer;
+public final class xb8 extends wk4 {
+    public final kj4 e;
+    public final PhotoViewer f;
 
-    public xb8(int i) {
-        this.b = gl.L(i);
-        Paint paint = new Paint(1);
-        this.a = paint;
-        paint.setColor(-1);
-    }
-
-    public final void a(boolean z, boolean z2) {
-        float f;
-        if (this.c != z) {
-            this.c = z;
-            if (!z2) {
-                if (z) {
-                    f = 1.0f;
-                } else {
-                    f = 0.0f;
-                }
-                this.d = f;
-            }
-            this.e = AnimationUtils.currentAnimationTimeMillis();
-            invalidateSelf();
-        }
+    public xb8(PhotoViewer photoViewer, kj4 kj4Var) {
+        super(false);
+        this.f = photoViewer;
+        this.e = kj4Var;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xb8.draw(android.graphics.Canvas):void");
+    public final CharSequence d() {
+        PhotoViewer photoViewer = this.f;
+        int[] iArr = photoViewer.m3;
+        String str = ob6.G(iArr[0], "Minutes", new Object[0]) + ' ' + ob6.G(iArr[1], "Seconds", new Object[0]);
+        int[] iArr2 = photoViewer.n3;
+        return ob6.a0("AccDescrPlayerDuration", null, 2131754801, str, ob6.G(iArr2[0], "Minutes", new Object[0]) + ' ' + ob6.G(iArr2[1], "Seconds", new Object[0]));
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.b;
+    public final float k() {
+        return this.f.q3.c();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i) {
-        this.g = i;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.a.setColorFilter(colorFilter);
+    public final void l(float f) {
+        this.e.g(f);
+        PhotoViewer photoViewer = this.f;
+        photoViewer.q3.h(false, f);
+        photoViewer.r3.invalidate();
     }
 }

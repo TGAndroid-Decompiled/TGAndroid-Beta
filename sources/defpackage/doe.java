@@ -1,17 +1,12 @@
 package defpackage;
-public final class doe implements zn7 {
-    public static final doe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import java.io.IOException;
+public final class doe extends IOException {
+    public doe(java.lang.String r3, java.lang.IndexOutOfBoundsException r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.doe.<init>(java.lang.String, java.lang.IndexOutOfBoundsException):void");
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public doe(IndexOutOfBoundsException indexOutOfBoundsException) {
+        super("CodedOutputStream was writing to a flat byte array and ran out of space.", indexOutOfBoundsException);
     }
 }

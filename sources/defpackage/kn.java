@@ -1,48 +1,27 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
 public final class kn extends Drawable.ConstantState {
-    public final Drawable.ConstantState a;
-
-    public kn(Drawable.ConstantState constantState) {
-        this.a = constantState;
-    }
-
-    @Override
-    public final boolean canApplyTheme() {
-        return this.a.canApplyTheme();
-    }
+    public rdc a;
+    public AnimatorSet b;
+    public ArrayList c;
+    public qs d;
 
     @Override
     public final int getChangingConfigurations() {
-        return this.a.getChangingConfigurations();
+        return 0;
     }
 
     @Override
     public final Drawable newDrawable() {
-        ln lnVar = new ln(null);
-        Drawable newDrawable = this.a.newDrawable();
-        lnVar.b = newDrawable;
-        newDrawable.setCallback(lnVar.e);
-        return lnVar;
+        throw new IllegalStateException("No constant state support for SDK < 24.");
     }
 
     @Override
     public final Drawable newDrawable(Resources resources) {
-        ln lnVar = new ln(null);
-        Drawable newDrawable = this.a.newDrawable(resources);
-        lnVar.b = newDrawable;
-        newDrawable.setCallback(lnVar.e);
-        return lnVar;
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
-        ln lnVar = new ln(null);
-        Drawable newDrawable = this.a.newDrawable(resources, theme);
-        lnVar.b = newDrawable;
-        newDrawable.setCallback(lnVar.e);
-        return lnVar;
+        throw new IllegalStateException("No constant state support for SDK < 24.");
     }
 }

@@ -1,12 +1,11 @@
 package defpackage;
 
-import android.graphics.drawable.BitmapDrawable;
-public final class bl5 {
-    public final BitmapDrawable a;
-    public final String b;
+import android.os.IBinder;
+public final class bl5 implements cl5 {
+    public IBinder a;
 
-    public bl5(String str, BitmapDrawable bitmapDrawable) {
-        this.b = str;
-        this.a = bitmapDrawable;
+    @Override
+    public final IBinder asBinder() {
+        return this.a;
     }
 }

@@ -1,28 +1,17 @@
 package defpackage;
+public abstract class gi2 extends vu7 {
+    public abstract int j();
 
-import android.view.View;
-public interface gi2 {
-    void D(float f, float f2);
-
-    boolean H0(float f, float f2);
-
-    boolean K0(View view, float f, float f2);
-
-    boolean S();
-
-    void f1(View view, float f, float f2);
-
-    void g(View view, float f, float f2);
-
-    long getLongPressDuration();
-
-    void h0();
-
-    void k(float f, float f2);
-
-    void n(View view, float f, float f2);
-
-    void n0();
-
-    boolean s1();
+    public final int k(int i) {
+        int size = ((dt8) this).c.size();
+        int j = j();
+        if (i < j) {
+            return ((size - (j << 1)) - ((j - i) - 1)) - 1;
+        }
+        int i2 = size - j;
+        if (i >= i2) {
+            return i - i2;
+        }
+        return i - j;
+    }
 }

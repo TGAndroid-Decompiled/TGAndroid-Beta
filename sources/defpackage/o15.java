@@ -1,51 +1,135 @@
 package defpackage;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class o15 {
-    public final int a;
-    public final long b;
-    public final p15 c;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import org.telegram.messenger.Utilities;
+public class o15 {
+    public boolean a;
+    public boolean b;
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public Shader i;
+    public boolean m;
+    public final Paint c = new Paint(1);
+    public final RectF h = new RectF();
+    public final Matrix j = new Matrix();
+    public Bitmap k = null;
+    public final int[] l = new int[4];
 
-    public o15(p15 p15Var, int i, long j) {
-        this.c = p15Var;
-        this.a = i;
-        this.b = j;
+    public final int a() {
+        int i = this.d;
+        int i2 = this.e;
+        if (i2 != 0) {
+            i = vm2.f(0.5f, i, i2);
+        }
+        int i3 = this.f;
+        if (i3 != 0) {
+            i = vm2.f(0.5f, i, i3);
+        }
+        int i4 = this.g;
+        if (i4 != 0) {
+            return vm2.f(0.5f, i, i4);
+        }
+        return i;
     }
 
-    public final void a(buc bucVar, fuc fucVar, fuc fucVar2, boolean z) {
-        Integer valueOf;
-        StringBuilder sb = new StringBuilder("websocket disconnected; closedByServer=");
-        sb.append(z);
-        sb.append(", serverCloseCode=");
-        Object obj = "none";
-        if (fucVar == null) {
-            valueOf = "none";
+    public final void b(float f, float f2, float f3, float f4) {
+        RectF rectF = hl.P;
+        rectF.set(f, f2, f3, f4);
+        c(rectF);
+    }
+
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.h;
+        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+            return;
+        }
+        rectF2.set(rectF);
+        e();
+    }
+
+    public final void d(int i, int i2, int i3, int i4) {
+        float f;
+        float f2;
+        if (this.i != null && this.d == i && this.e == i2 && this.f == i3 && this.g == i4) {
+            return;
+        }
+        this.d = i;
+        int[] iArr = this.l;
+        iArr[0] = i;
+        this.e = i2;
+        iArr[1] = i2;
+        this.f = i3;
+        iArr[2] = i3;
+        this.g = i4;
+        iArr[3] = i4;
+        Paint paint = this.c;
+        if (i2 == 0) {
+            this.i = null;
+            paint.setShader(null);
+            paint.setColor(i);
+        } else if (i3 == 0) {
+            if (this.a && this.b) {
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2}, (float[]) null, Shader.TileMode.CLAMP);
+                this.i = linearGradient;
+                paint.setShader(linearGradient);
+            } else {
+                if (this.a) {
+                    f2 = 80.0f;
+                } else {
+                    f2 = 0.0f;
+                }
+                LinearGradient linearGradient2 = new LinearGradient(f2, 0.0f, 0.0f, 80.0f, new int[]{i, i2}, (float[]) null, Shader.TileMode.CLAMP);
+                this.i = linearGradient2;
+                paint.setShader(linearGradient2);
+            }
+        } else if (this.m) {
+            if (this.a && this.b) {
+                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+                this.i = linearGradient3;
+                paint.setShader(linearGradient3);
+            } else {
+                if (this.a) {
+                    f = 80.0f;
+                } else {
+                    f = 0.0f;
+                }
+                LinearGradient linearGradient4 = new LinearGradient(f, 0.0f, 0.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+                this.i = linearGradient4;
+                paint.setShader(linearGradient4);
+            }
         } else {
-            valueOf = Integer.valueOf(fucVar.b());
+            Bitmap bitmap = this.k;
+            if (bitmap == null) {
+                bitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+                this.k = bitmap;
+            }
+            Utilities.generateGradient(bitmap, 0, 0.0f, iArr);
+            Bitmap bitmap2 = this.k;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+            this.i = bitmapShader;
+            paint.setShader(bitmapShader);
         }
-        sb.append(valueOf);
-        sb.append(", clientCloseCode=");
-        if (fucVar2 != null) {
-            obj = Integer.valueOf(fucVar2.b());
-        }
-        sb.append(obj);
-        gl.c3(new tn6(this.c, bucVar, this.a, sb.toString(), (byte) 24));
+        e();
     }
 
-    public final void b(buc bucVar, String str) {
-        StringBuilder sb = new StringBuilder("[gram-wallet-streaming] account=");
-        sb.append(this.c.a);
-        sb.append(" generation=");
-        int i = this.a;
-        sb.append(i);
-        sb.append(" receive <- ");
-        sb.append(str);
-        fa4.b(sb.toString());
-        try {
-            gl.c3(new tn6(this, bucVar, i, new JSONObject(str), (byte) 25));
-        } catch (JSONException unused) {
-            gl.c3(new va7(this, bucVar, i, (byte) 29));
+    public void e() {
+        if (this.i == null) {
+            return;
         }
+        RectF rectF = this.h;
+        Matrix matrix = this.j;
+        matrix.reset();
+        matrix.postTranslate(rectF.left, rectF.top);
+        matrix.preScale(rectF.width() / 60.0f, rectF.height() / 80.0f);
+        this.i.setLocalMatrix(matrix);
     }
 }

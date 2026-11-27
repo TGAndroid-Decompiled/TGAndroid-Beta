@@ -1,39 +1,41 @@
 package defpackage;
 
-import android.graphics.drawable.GradientDrawable;
-public abstract class ud0 {
-    public static final int[] a;
+import android.graphics.Bitmap;
+import org.telegram.messenger.Utilities;
+public final class ud0 implements xd0 {
+    public final yd0 a;
+    public final ksd[] b;
+    public final Runnable[] c;
+    public final lr5[] d;
 
-    static {
-        int[] iArr = new int[GradientDrawable.Orientation.values().length];
-        a = iArr;
-        try {
-            iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
+    public ud0(yd0 yd0Var, ksd[] ksdVarArr, Runnable[] runnableArr, lr5[] lr5VarArr) {
+        this.a = yd0Var;
+        this.b = ksdVarArr;
+        this.c = runnableArr;
+        this.d = lr5VarArr;
+    }
+
+    @Override
+    public final void dispose() {
+        yd0 yd0Var = this.a;
+        ksd[] ksdVarArr = this.b;
+        Runnable[] runnableArr = this.c;
+        lr5[] lr5VarArr = this.d;
+        ksdVarArr[0] = null;
+        if (yd0Var.e.contains(runnableArr)) {
+            to3 to3Var = Utilities.e;
+            to3Var.getClass();
+            for (Runnable runnable : runnableArr) {
+                to3Var.a(runnable);
+            }
+            yd0Var.e.remove(runnableArr);
         }
-        try {
-            a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
+        for (lr5 lr5Var : lr5VarArr) {
+            Bitmap bitmap = (Bitmap) yd0Var.b.remove(lr5Var);
+            yd0Var.c.remove(lr5Var);
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
         }
     }
 }

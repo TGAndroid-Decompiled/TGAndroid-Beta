@@ -1,5 +1,12 @@
 package defpackage;
 
-import java.io.IOException;
-public final class jf5 extends IOException {
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class jf5 extends ViewOutlineProvider {
+    @Override
+    public final void getOutline(View view, Outline outline) {
+        float L = hl.L(12.0f);
+        outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + L), L);
+    }
 }

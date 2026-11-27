@@ -1,37 +1,17 @@
 package defpackage;
+public final class khf extends p9f {
+    public final yif n;
 
-import java.util.Iterator;
-public final class khf extends tcf {
-    public final transient aif h;
-    public final transient thf n;
-
-    public khf(aif aifVar, thf thfVar) {
-        super((byte) 2);
-        this.h = aifVar;
-        this.n = thfVar;
+    public khf(yif yifVar) {
+        this.n = yifVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.h.get(obj) != null) {
-            return true;
+    public final String a() {
+        ybf ybfVar = (ybf) this.n.a.get();
+        if (ybfVar == null) {
+            return "Completer object has been garbage collected, future will fail soon";
         }
-        return false;
-    }
-
-    @Override
-    public final int h(Object[] objArr) {
-        return this.n.h(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.n.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        this.h.getClass();
-        return 1;
+        return qd4.y("tag=[", String.valueOf(ybfVar.a), "]");
     }
 }

@@ -1,116 +1,118 @@
 package defpackage;
 
-import j$.util.Map;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-public final class ps extends aia implements Map, j$.util.Map {
-    public ls d;
-    public ns e;
-    public js f;
+public final class ps implements Iterator, Map.Entry {
+    public int a;
+    public int b = -1;
+    public boolean c;
+    public final qs d;
 
-    @Override
-    public final Object compute(Object obj, BiFunction biFunction) {
-        return Map.CC.$default$compute(this, obj, biFunction);
+    public ps(qs qsVar) {
+        this.d = qsVar;
+        this.a = qsVar.c - 1;
     }
 
     @Override
-    public final Object computeIfAbsent(Object obj, Function function) {
-        return Map.CC.$default$computeIfAbsent(this, obj, function);
-    }
-
-    @Override
-    public final Object computeIfPresent(Object obj, BiFunction biFunction) {
-        return Map.CC.$default$computeIfPresent(this, obj, biFunction);
-    }
-
-    @Override
-    public final Set entrySet() {
-        ls lsVar = this.d;
-        if (lsVar == null) {
-            ls lsVar2 = new ls(this, (byte) 0);
-            this.d = lsVar2;
-            return lsVar2;
-        }
-        return lsVar;
-    }
-
-    @Override
-    public final void forEach(BiConsumer biConsumer) {
-        Map.CC.$default$forEach(this, biConsumer);
-    }
-
-    public final boolean j(Collection collection) {
-        for (Object obj : collection) {
-            if (!super.containsKey(obj)) {
-                return false;
+    public final boolean equals(Object obj) {
+        if (this.c) {
+            if (obj instanceof Map.Entry) {
+                Map.Entry entry = (Map.Entry) obj;
+                Object key = entry.getKey();
+                int i = this.b;
+                qs qsVar = this.d;
+                if (ur5.a(key, qsVar.f(i)) && ur5.a(entry.getValue(), qsVar.i(this.b))) {
+                    return true;
+                }
             }
+            return false;
         }
-        return true;
+        grb.i("This container does not support retaining Map.Entry objects");
+        return false;
     }
 
-    public final boolean k(Collection collection) {
-        int i = this.c;
-        for (Object obj : collection) {
-            super.remove(obj);
+    @Override
+    public final Object getKey() {
+        if (this.c) {
+            return this.d.f(this.b);
         }
-        if (i != this.c) {
+        grb.i("This container does not support retaining Map.Entry objects");
+        return null;
+    }
+
+    @Override
+    public final Object getValue() {
+        if (this.c) {
+            return this.d.i(this.b);
+        }
+        grb.i("This container does not support retaining Map.Entry objects");
+        return null;
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.b < this.a) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final Set keySet() {
-        ns nsVar = this.e;
-        if (nsVar == null) {
-            ns nsVar2 = new ns(this);
-            this.e = nsVar2;
-            return nsVar2;
-        }
-        return nsVar;
-    }
-
-    @Override
-    public final Object merge(Object obj, Object obj2, BiFunction biFunction) {
-        return Map.CC.$default$merge(this, obj, obj2, biFunction);
-    }
-
-    @Override
-    public final void putAll(java.util.Map map) {
-        int size = map.size() + this.c;
-        int i = this.c;
-        int[] iArr = this.a;
-        if (iArr.length < size) {
-            this.a = Arrays.copyOf(iArr, size);
-            this.b = Arrays.copyOf(this.b, size << 1);
-        }
-        if (this.c == i) {
-            for (Map.Entry entry : map.entrySet()) {
-                put(entry.getKey(), entry.getValue());
+    public final int hashCode() {
+        int hashCode;
+        int i = 0;
+        if (this.c) {
+            int i2 = this.b;
+            qs qsVar = this.d;
+            Object f = qsVar.f(i2);
+            Object i3 = qsVar.i(this.b);
+            if (f == null) {
+                hashCode = 0;
+            } else {
+                hashCode = f.hashCode();
             }
+            if (i3 != null) {
+                i = i3.hashCode();
+            }
+            return hashCode ^ i;
+        }
+        grb.i("This container does not support retaining Map.Entry objects");
+        return 0;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            this.b++;
+            this.c = true;
+            return this;
+        }
+        lq5.n();
+        return null;
+    }
+
+    @Override
+    public final void remove() {
+        if (this.c) {
+            this.d.g(this.b);
+            this.b--;
+            this.a--;
+            this.c = false;
             return;
         }
-        zf.b();
+        grb.g();
     }
 
     @Override
-    public final void replaceAll(BiFunction biFunction) {
-        Map.CC.$default$replaceAll(this, biFunction);
-    }
-
-    @Override
-    public final Collection values() {
-        js jsVar = this.f;
-        if (jsVar == null) {
-            js jsVar2 = new js(this);
-            this.f = jsVar2;
-            return jsVar2;
+    public final Object setValue(Object obj) {
+        if (this.c) {
+            return this.d.h(this.b, obj);
         }
-        return jsVar;
+        grb.i("This container does not support retaining Map.Entry objects");
+        return null;
+    }
+
+    public final String toString() {
+        return getKey() + "=" + getValue();
     }
 }

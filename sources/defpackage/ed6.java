@@ -1,29 +1,40 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ed6 implements RequestDelegate {
+import java.util.ArrayList;
+public final class ed6 implements Runnable {
     public final byte a;
-    public final gd6 b;
-    public final String c;
-    public final String d;
+    public final id6 b;
+    public final ArrayList c;
 
-    public ed6(gd6 gd6Var, String str, String str2, byte b) {
+    public ed6(id6 id6Var, ArrayList arrayList, byte b) {
         this.a = b;
-        this.b = gd6Var;
-        this.c = str;
-        this.d = str2;
+        this.b = id6Var;
+        this.c = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.a) {
+    public final void run() {
+        byte b = this.a;
+        ArrayList arrayList = this.c;
+        id6 id6Var = this.b;
+        switch (b) {
             case 0:
-                gl.c3(new bd6(this.b, tL_error, this.c, this.d, tLObject));
+                ArrayList arrayList2 = id6Var.b;
+                arrayList2.addAll(arrayList);
+                for (int i = 0; i < arrayList2.size(); i++) {
+                    hd6 hd6Var = (hd6) arrayList2.get(i);
+                    id6Var.a.k(hd6Var.a, hd6Var);
+                }
+                hl.c3(new ed6(id6Var, arrayList, (byte) 1));
                 return;
             default:
-                gl.c3(new bd6(this.b, tL_error, tLObject, this.c, this.d));
+                id6Var.J.addAll(arrayList);
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    hd6 hd6Var2 = (hd6) arrayList.get(i2);
+                    id6Var.K.k(hd6Var2.a, hd6Var2);
+                }
+                id6.q();
+                jn7.e().k(284, new Object[0]);
                 return;
         }
     }

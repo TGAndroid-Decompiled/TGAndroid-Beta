@@ -1,41 +1,57 @@
 package defpackage;
-public final class qa0 {
-    public final String a;
-    public final long b;
-    public final int c;
 
-    public qa0(String str, long j, int i) {
-        this.a = str;
-        this.b = j;
-        this.c = i;
+import android.os.Build;
+public final class qa0 {
+    public final int a;
+    public final int b;
+    public final long c;
+    public final long d;
+    public final boolean e;
+    public final int f;
+
+    public qa0(int i, int i2, int i3, long j, long j2, boolean z) {
+        String str = Build.MODEL;
+        String str2 = Build.MANUFACTURER;
+        String str3 = Build.PRODUCT;
+        this.a = i;
+        if (str != null) {
+            this.b = i2;
+            this.c = j;
+            this.d = j2;
+            this.e = z;
+            this.f = i3;
+            if (str2 != null) {
+                if (str3 != null) {
+                    return;
+                }
+                p3d.h("Null modelClass");
+                throw null;
+            }
+            p3d.h("Null manufacturer");
+            throw null;
+        }
+        p3d.h("Null model");
+        throw null;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof qa0) {
                 qa0 qa0Var = (qa0) obj;
-                String str = qa0Var.a;
-                String str2 = this.a;
-                if (str2 == null) {
-                    if (str != null) {
-                        return false;
-                    }
-                } else if (!str2.equals(str)) {
-                    return false;
-                }
-                if (this.b == qa0Var.b) {
-                    int i = qa0Var.c;
-                    int i2 = this.c;
-                    if (i2 == 0) {
-                        if (i == 0) {
-                            return true;
+                if (this.a == qa0Var.a) {
+                    String str = Build.MODEL;
+                    if (str.equals(str) && this.b == qa0Var.b && this.c == qa0Var.c && this.d == qa0Var.d && this.e == qa0Var.e && this.f == qa0Var.f) {
+                        String str2 = Build.MANUFACTURER;
+                        if (str2.equals(str2)) {
+                            String str3 = Build.PRODUCT;
+                            if (str3.equals(str3)) {
+                                return true;
+                            }
+                            return false;
                         }
                         return false;
-                    } else if (ug8.c(i2, i)) {
-                        return true;
-                    } else {
-                        return false;
                     }
+                    return false;
                 }
                 return false;
             }
@@ -45,46 +61,36 @@ public final class qa0 {
     }
 
     public final int hashCode() {
-        int hashCode;
-        int i = 0;
-        String str = this.a;
-        if (str == null) {
-            hashCode = 0;
+        int i;
+        long j = this.c;
+        long j2 = this.d;
+        int hashCode = (((((((((this.a ^ 1000003) * 1000003) ^ Build.MODEL.hashCode()) * 1000003) ^ this.b) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003) ^ ((int) ((j2 >>> 32) ^ j2))) * 1000003;
+        if (this.e) {
+            i = 1231;
         } else {
-            hashCode = str.hashCode();
+            i = 1237;
         }
-        long j = this.b;
-        int i2 = (((hashCode ^ 1000003) * 1000003) ^ ((int) ((j >>> 32) ^ j))) * 1000003;
-        int i3 = this.c;
-        if (i3 != 0) {
-            i = ug8.F(i3);
-        }
-        return i2 ^ i;
+        return ((((((hashCode ^ i) * 1000003) ^ this.f) * 1000003) ^ Build.MANUFACTURER.hashCode()) * 1000003) ^ Build.PRODUCT.hashCode();
     }
 
     public final String toString() {
-        String str;
-        StringBuilder sb = new StringBuilder("TokenResult{token=");
+        StringBuilder sb = new StringBuilder("DeviceData{arch=");
         sb.append(this.a);
-        sb.append(", tokenExpirationTimestamp=");
+        sb.append(", model=");
+        sb.append(Build.MODEL);
+        sb.append(", availableProcessors=");
         sb.append(this.b);
-        sb.append(", responseCode=");
-        int i = this.c;
-        if (i != 1) {
-            if (i != 2) {
-                if (i != 3) {
-                    str = "null";
-                } else {
-                    str = "AUTH_ERROR";
-                }
-            } else {
-                str = "BAD_CONFIG";
-            }
-        } else {
-            str = "OK";
-        }
-        sb.append(str);
-        sb.append("}");
-        return sb.toString();
+        sb.append(", totalRam=");
+        sb.append(this.c);
+        sb.append(", diskSpace=");
+        sb.append(this.d);
+        sb.append(", isEmulator=");
+        sb.append(this.e);
+        sb.append(", state=");
+        sb.append(this.f);
+        sb.append(", manufacturer=");
+        sb.append(Build.MANUFACTURER);
+        sb.append(", modelClass=");
+        return c00.k(sb, Build.PRODUCT, "}");
     }
 }

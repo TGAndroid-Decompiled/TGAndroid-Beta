@@ -18,7 +18,7 @@ public class StatsReport {
             StringBuilder sb = new StringBuilder("[");
             sb.append(this.name);
             sb.append(": ");
-            return b00.j(sb, this.value, "]");
+            return c00.k(sb, this.value, "]");
         }
     }
 

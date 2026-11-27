@@ -1,35 +1,43 @@
 package defpackage;
-public enum bsb extends qsb {
-    public bsb() {
-        super("DoctypePublicIdentifier_singleQuoted", 57);
+public final class bsb implements Runnable {
+    public final byte a;
+    public final ksb b;
+
+    public bsb(ksb ksbVar, byte b) {
+        this.a = b;
+        this.b = ksbVar;
     }
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        rpb rpbVar = aqbVar.m;
-        char d = zj1Var.d();
-        if (d != 0) {
-            if (d != '\'') {
-                lqb lqbVar = qsb.a;
-                if (d != '>') {
-                    if (d != 65535) {
-                        rpbVar.f.append(d);
+    public final void run() {
+        byte b = this.a;
+        ksb ksbVar = this.b;
+        switch (b) {
+            case 0:
+                isb isbVar = ksbVar.N;
+                if (isbVar != null) {
+                    long j = isbVar.a;
+                    if (j > 0) {
+                        ksbVar.I = j;
                         return;
                     }
-                    aqbVar.l(this);
-                    aqbVar.j();
-                    aqbVar.c = lqbVar;
                     return;
                 }
-                aqbVar.m(this);
-                aqbVar.j();
-                aqbVar.c = lqbVar;
                 return;
-            }
-            aqbVar.c = qsb.w0;
-            return;
+            case 1:
+                esb esbVar = ksbVar.a;
+                if (esbVar != null) {
+                    esbVar.S1();
+                    return;
+                }
+                return;
+            default:
+                esb esbVar2 = ksbVar.a;
+                if (esbVar2 != null) {
+                    esbVar2.V();
+                    return;
+                }
+                return;
         }
-        aqbVar.m(this);
-        rpbVar.f.append((char) 65533);
     }
 }

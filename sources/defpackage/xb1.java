@@ -1,28 +1,26 @@
 package defpackage;
 
-import android.widget.FrameLayout;
-public interface xb1 {
-    FrameLayout E();
+import android.content.Context;
+import org.telegram.messenger.camera.CameraController;
+public final class xb1 extends qo9 {
+    public final zb1 G;
 
-    long I();
+    public xb1(zb1 zb1Var, Context context) {
+        super(context);
+        this.G = zb1Var;
+    }
 
-    long J();
-
-    void L(cc1 cc1Var);
-
-    void M(long j);
-
-    void R(l34 l34Var);
-
-    void l(boolean z);
-
-    FrameLayout m();
-
-    wjb o();
-
-    cc1 p();
-
-    cc1 t();
-
-    long v();
+    @Override
+    public final void c() {
+        hl.r(this.h);
+        if (this.c <= 0) {
+            a(true);
+        } else {
+            CameraController.getInstance().stopVideoRecording(this.a.getCameraSessionRecording(), false, false);
+        }
+        zb1 zb1Var = this.G;
+        if (zb1Var.O1) {
+            zb1Var.z(true, false);
+        }
+    }
 }

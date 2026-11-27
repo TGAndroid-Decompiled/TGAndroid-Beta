@@ -1,49 +1,66 @@
 package defpackage;
 
-import android.view.KeyEvent;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stars;
-public final class jq5 implements p8c {
-    public final byte a;
-    public final Object b;
-    public final long c;
-    public final Object d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
+import android.graphics.Bitmap;
+import android.os.SystemClock;
+import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+public final class jq5 {
+    public volatile Bitmap a;
+    public final int b;
+    public final int c;
+    public final int d;
 
-    public jq5(na7 na7Var, hd hdVar, mu1 mu1Var, vm1 vm1Var, long j, my myVar) {
-        this.a = (byte) 1;
-        this.d = na7Var;
-        this.b = hdVar;
-        this.e = mu1Var;
-        this.f = vm1Var;
-        this.c = j;
-        this.g = myVar;
+    public jq5(int i, Bitmap bitmap) {
+        xve.h(bitmap);
+        this.a = bitmap;
+        this.b = bitmap.getWidth();
+        this.c = bitmap.getHeight();
+        boolean z = true;
+        if (i != 0 && i != 90 && i != 180 && i != 270) {
+            z = false;
+        }
+        xve.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z);
+        this.d = i;
     }
 
-    @Override
-    public final void a(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.jq5.a(java.lang.Object):void");
-    }
-
-    public jq5(vqa vqaVar, boolean[] zArr, hd hdVar, xu4 xu4Var, long j, TL_stars.starGiftDepositPayload stargiftdepositpayload) {
-        this.a = (byte) 2;
-        this.d = vqaVar;
-        this.e = zArr;
-        this.b = hdVar;
-        this.f = xu4Var;
-        this.c = j;
-        this.g = stargiftdepositpayload;
-    }
-
-    public jq5(KeyEvent.Callback callback, Object obj, Object obj2, long j, TLObject tLObject, TLObject tLObject2, byte b) {
-        this.a = b;
-        this.d = callback;
-        this.b = obj;
-        this.e = obj2;
-        this.c = j;
-        this.f = tLObject;
-        this.g = tLObject2;
+    public static jq5 a(int i, Bitmap bitmap) {
+        w5f a;
+        String a2;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        jq5 jq5Var = new jq5(i, bitmap);
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
+        int allocationByteCount = bitmap.getAllocationByteCount();
+        synchronized (q6f.class) {
+            a = q6f.a(new Object());
+        }
+        long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
+        lqe lqeVar = lqe.INPUT_IMAGE_CONSTRUCTION;
+        Task task = a.e;
+        long elapsedRealtime3 = SystemClock.elapsedRealtime();
+        HashMap hashMap = a.i;
+        if (hashMap.get(lqeVar) != null && elapsedRealtime3 - ((Long) hashMap.get(lqeVar)).longValue() <= 30000) {
+            return jq5Var;
+        }
+        hashMap.put(lqeVar, Long.valueOf(elapsedRealtime3));
+        ?? obj = new Object();
+        obj.c = eoe.BITMAP;
+        obj.b = fpe.BITMAP;
+        obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
+        obj.f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
+        obj.a = Long.valueOf(elapsedRealtime2 & Long.MAX_VALUE);
+        obj.g = Integer.valueOf(i & Integer.MAX_VALUE);
+        ope opeVar = new ope(obj);
+        htd htdVar = new htd((byte) 7);
+        htdVar.d = opeVar;
+        zhc zhcVar = new zhc(htdVar);
+        if (task.isSuccessful()) {
+            a2 = (String) task.getResult();
+        } else {
+            a2 = v26.c.a(a.g);
+        }
+        xnb.c(1, new uy1(a, zhcVar, a2));
+        return jq5Var;
     }
 }

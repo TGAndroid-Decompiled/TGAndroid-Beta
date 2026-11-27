@@ -113,8 +113,13 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new wm3(countDownLatch, (byte) 1), false);
+        releaseEglSurface(new nn3(countDownLatch, (byte) 1));
         ThreadUtils.awaitUninterruptibly(countDownLatch);
+    }
+
+    public SurfaceEglRenderer(String str, VideoFrameDrawer videoFrameDrawer) {
+        super(str, videoFrameDrawer);
+        this.layoutLock = new Object();
     }
 
     @Override

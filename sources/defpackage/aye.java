@@ -1,50 +1,297 @@
 package defpackage;
 
-import java.nio.charset.StandardCharsets;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
 public abstract class aye {
-    public static int a(int i) {
-        int i2 = 0;
-        while (i > 0) {
-            i2++;
-            i >>>= 1;
+    public static void A(Parcel parcel, int i, int i2) {
+        int x = x(parcel, i);
+        if (x == i2) {
+            return;
         }
-        return i2;
+        String hexString = Integer.toHexString(x);
+        int length = String.valueOf(i2).length();
+        int length2 = String.valueOf(x).length();
+        StringBuilder sb = new StringBuilder(String.valueOf(hexString).length() + length + 19 + length2 + 4 + 1);
+        sb.append("Expected size ");
+        sb.append(i2);
+        sb.append(" got ");
+        sb.append(x);
+        throw new zp2(qu6.o(" (0x", hexString, ")", sb), parcel);
     }
 
-    public static ln8 b(xu7 xu7Var, boolean z, boolean z2) {
-        if (z) {
-            c(3, xu7Var, false);
+    public static void B(Parcel parcel, int i, int i2) {
+        if (i == i2) {
+            return;
         }
-        xu7Var.y((int) xu7Var.r(), StandardCharsets.UTF_8);
-        long r = xu7Var.r();
-        String[] strArr = new String[(int) r];
-        for (int i = 0; i < r; i++) {
-            strArr[i] = xu7Var.y((int) xu7Var.r(), StandardCharsets.UTF_8);
-        }
-        if (z2 && (xu7Var.A() & 1) == 0) {
-            throw av7.a("framing bit expected to be set", null);
-        }
-        return new ln8(strArr, (byte) 23);
+        String hexString = Integer.toHexString(i);
+        int length = String.valueOf(i2).length();
+        int length2 = String.valueOf(i).length();
+        StringBuilder sb = new StringBuilder(String.valueOf(hexString).length() + length + 19 + length2 + 4 + 1);
+        sb.append("Expected size ");
+        sb.append(i2);
+        sb.append(" got ");
+        sb.append(i);
+        throw new zp2(qu6.o(" (0x", hexString, ")", sb), parcel);
     }
 
-    public static boolean c(int i, xu7 xu7Var, boolean z) {
-        if (xu7Var.a() < 7) {
-            if (!z) {
-                throw av7.a("too short header: " + xu7Var.a(), null);
-            }
-            return false;
-        } else if (xu7Var.A() != i) {
-            if (!z) {
-                throw av7.a("expected header type " + Integer.toHexString(i), null);
-            }
-            return false;
-        } else if (xu7Var.A() == 118 && xu7Var.A() == 111 && xu7Var.A() == 114 && xu7Var.A() == 98 && xu7Var.A() == 105 && xu7Var.A() == 115) {
+    public static Bundle a(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        Bundle readBundle = parcel.readBundle();
+        parcel.setDataPosition(dataPosition + x);
+        return readBundle;
+    }
+
+    public static byte[] b(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        byte[] createByteArray = parcel.createByteArray();
+        parcel.setDataPosition(dataPosition + x);
+        return createByteArray;
+    }
+
+    public static byte[][] c(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        int readInt = parcel.readInt();
+        byte[][] bArr = new byte[readInt];
+        for (int i2 = 0; i2 < readInt; i2++) {
+            bArr[i2] = parcel.createByteArray();
+        }
+        parcel.setDataPosition(dataPosition + x);
+        return bArr;
+    }
+
+    public static int[] d(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        int[] createIntArray = parcel.createIntArray();
+        parcel.setDataPosition(dataPosition + x);
+        return createIntArray;
+    }
+
+    public static ArrayList e(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        ArrayList arrayList = new ArrayList();
+        int readInt = parcel.readInt();
+        for (int i2 = 0; i2 < readInt; i2++) {
+            arrayList.add(Integer.valueOf(parcel.readInt()));
+        }
+        parcel.setDataPosition(dataPosition + x);
+        return arrayList;
+    }
+
+    public static long[] f(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        long[] createLongArray = parcel.createLongArray();
+        parcel.setDataPosition(dataPosition + x);
+        return createLongArray;
+    }
+
+    public static Parcelable g(Parcel parcel, int i, Parcelable.Creator creator) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        Parcelable parcelable = (Parcelable) creator.createFromParcel(parcel);
+        parcel.setDataPosition(dataPosition + x);
+        return parcelable;
+    }
+
+    public static String h(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        String readString = parcel.readString();
+        parcel.setDataPosition(dataPosition + x);
+        return readString;
+    }
+
+    public static String[] i(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        String[] createStringArray = parcel.createStringArray();
+        parcel.setDataPosition(dataPosition + x);
+        return createStringArray;
+    }
+
+    public static ArrayList j(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        ArrayList<String> createStringArrayList = parcel.createStringArrayList();
+        parcel.setDataPosition(dataPosition + x);
+        return createStringArrayList;
+    }
+
+    public static Object[] k(Parcel parcel, int i, Parcelable.Creator creator) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        Object[] createTypedArray = parcel.createTypedArray(creator);
+        parcel.setDataPosition(dataPosition + x);
+        return createTypedArray;
+    }
+
+    public static ArrayList l(Parcel parcel, int i, Parcelable.Creator creator) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        ArrayList createTypedArrayList = parcel.createTypedArrayList(creator);
+        parcel.setDataPosition(dataPosition + x);
+        return createTypedArrayList;
+    }
+
+    public static void m(Parcel parcel, int i) {
+        if (parcel.dataPosition() == i) {
+            return;
+        }
+        StringBuilder sb = new StringBuilder(String.valueOf(i).length() + 26);
+        sb.append("Overread allowed size end=");
+        sb.append(i);
+        throw new zp2(sb.toString(), parcel);
+    }
+
+    public static boolean n(Parcel parcel, int i) {
+        A(parcel, i, 4);
+        if (parcel.readInt() != 0) {
             return true;
-        } else {
-            if (z) {
-                return false;
-            }
-            throw av7.a("expected characters 'vorbis'", null);
         }
+        return false;
+    }
+
+    public static Boolean o(Parcel parcel, int i) {
+        boolean z;
+        int x = x(parcel, i);
+        if (x == 0) {
+            return null;
+        }
+        B(parcel, x, 4);
+        if (parcel.readInt() != 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        return Boolean.valueOf(z);
+    }
+
+    public static byte p(Parcel parcel, int i) {
+        A(parcel, i, 4);
+        return (byte) parcel.readInt();
+    }
+
+    public static double q(Parcel parcel, int i) {
+        A(parcel, i, 8);
+        return parcel.readDouble();
+    }
+
+    public static float r(Parcel parcel, int i) {
+        A(parcel, i, 4);
+        return parcel.readFloat();
+    }
+
+    public static Float s(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        if (x == 0) {
+            return null;
+        }
+        B(parcel, x, 4);
+        return Float.valueOf(parcel.readFloat());
+    }
+
+    public static IBinder t(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        int dataPosition = parcel.dataPosition();
+        if (x == 0) {
+            return null;
+        }
+        IBinder readStrongBinder = parcel.readStrongBinder();
+        parcel.setDataPosition(dataPosition + x);
+        return readStrongBinder;
+    }
+
+    public static int u(Parcel parcel, int i) {
+        A(parcel, i, 4);
+        return parcel.readInt();
+    }
+
+    public static Integer v(Parcel parcel, int i) {
+        int x = x(parcel, i);
+        if (x == 0) {
+            return null;
+        }
+        B(parcel, x, 4);
+        return Integer.valueOf(parcel.readInt());
+    }
+
+    public static long w(Parcel parcel, int i) {
+        A(parcel, i, 8);
+        return parcel.readLong();
+    }
+
+    public static int x(Parcel parcel, int i) {
+        if ((i & (-65536)) != -65536) {
+            return (char) (i >> 16);
+        }
+        return parcel.readInt();
+    }
+
+    public static void y(Parcel parcel, int i) {
+        parcel.setDataPosition(parcel.dataPosition() + x(parcel, i));
+    }
+
+    public static int z(Parcel parcel) {
+        int readInt = parcel.readInt();
+        int x = x(parcel, readInt);
+        char c = (char) readInt;
+        int dataPosition = parcel.dataPosition();
+        if (c == 20293) {
+            int i = x + dataPosition;
+            if (i >= dataPosition && i <= parcel.dataSize()) {
+                return i;
+            }
+            StringBuilder sb = new StringBuilder(String.valueOf(dataPosition).length() + 32 + String.valueOf(i).length());
+            sb.append("Size read is invalid start=");
+            sb.append(dataPosition);
+            sb.append(" end=");
+            sb.append(i);
+            throw new zp2(sb.toString(), parcel);
+        }
+        throw new zp2("Expected object header. Got 0x".concat(String.valueOf(Integer.toHexString(readInt))), parcel);
     }
 }

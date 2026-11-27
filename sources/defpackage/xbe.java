@@ -1,17 +1,14 @@
 package defpackage;
-public final class xbe implements zn7 {
-    public static final xbe a = new Object();
+public enum xbe {
+    DEFAULT(0),
+    UNMETERED_ONLY(1),
+    UNMETERED_OR_DAILY(2),
+    FAST_IF_RADIO_AWAKE(3),
+    NEVER(4);
+    
+    public final byte a;
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    xbe(int i) {
+        this.a = i;
     }
 }

@@ -1,154 +1,79 @@
 package defpackage;
 
-import android.text.InputFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class hn9 extends c6 {
-    public final on9 a;
+import android.os.Handler;
+public final class hn9 implements Runnable {
+    public final byte a;
+    public final on9 b;
+    public final rn9 c;
 
-    public hn9(on9 on9Var) {
-        this.a = on9Var;
+    public hn9(on9 on9Var, rn9 rn9Var, byte b) {
+        this.a = b;
+        this.b = on9Var;
+        this.c = rn9Var;
     }
 
     @Override
-    public final void b(int i) {
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        String str;
-        final on9 on9Var = this.a;
-        fc2 fc2Var = on9Var.c;
-        on9Var.j();
-        if (i == -1) {
-            on9Var.onBackPressed();
-        } else if (i == 1) {
-            sn9.d(on9Var.a);
-        } else if (i == 9) {
-            on9Var.f();
-        } else if (i == 10) {
-            AlertDialog$Builder c = on9Var.c();
-            hd hdVar = c.a;
-            if (hc2.W(on9Var.d)) {
-                i5 = 2131743211;
-            } else {
-                i5 = 2131743078;
-            }
-            hdVar.S = k96.M0(i5, null);
-            TLRPC.Chat chat = on9Var.d;
-            if (chat != null) {
-                str = chat.title;
-            } else {
-                str = "";
-            }
-            final EditTextBoldCursor d = on9Var.d(c, str);
-            d.setFilters(new InputFilter[]{new InputFilter.LengthFilter(40)});
-            if (!TextUtils.isEmpty(fc2Var.b.title)) {
-                d.setText(fc2Var.b.title);
-                d.setSelection(d.length());
-            }
-            c.j(k96.M0(2131745754, null), new ed() {
-                @Override
-                public final void u(hd hdVar2, int i6) {
-                    byte b = r3;
-                    EditTextBoldCursor editTextBoldCursor = d;
-                    on9 on9Var2 = on9Var;
-                    switch (b) {
-                        case 0:
-                            gl.t1(editTextBoldCursor);
-                            on9Var2.c.C(2, editTextBoldCursor.getText().toString());
-                            on9Var2.J.j(100, 0L, null);
-                            if (VoIPService.getSharedInstance() != null) {
-                                VoIPService.getSharedInstance().playStartRecordSound();
-                                return;
-                            }
-                            return;
-                        default:
-                            gl.t1(editTextBoldCursor);
-                            on9Var2.c.z(editTextBoldCursor.getText().toString());
-                            return;
-                    }
+    public final void run() {
+        xn9 xn9Var;
+        switch (this.a) {
+            case 0:
+                on9 on9Var = this.b;
+                hn9 hn9Var = new hn9(on9Var, this.c, (byte) 3);
+                Handler handler = on9Var.n;
+                if (handler != null) {
+                    handler.post(hn9Var);
+                    return;
                 }
-            });
-            c.g(k96.M0(2131752577, null), new kt3(d, (byte) 5));
-            hdVar.setOnShowListener(new hc4(d, (byte) 2));
-            d.setOnEditorActionListener(new cn9(hdVar, (byte) 0));
-            on9.o(hdVar);
-        } else if (i == 11) {
-            AlertDialog$Builder c2 = on9Var.c();
-            hd hdVar2 = c2.a;
-            if (fc2Var.w) {
-                boolean z = fc2Var.b.record_video_active;
-                hdVar2.S = k96.M0(2131743079, null);
-                if (hc2.W(on9Var.d)) {
-                    i4 = 2131743212;
-                } else {
-                    i4 = 2131743080;
-                }
-                hdVar2.U = k96.M0(i4, null);
-                c2.j(k96.M0(2131744604, null), new l41((byte) 13, on9Var, z));
-                c2.g(k96.M0(2131752577, null), null);
-                on9.o(hdVar2);
                 return;
-            }
-            hdVar2.S = k96.M0(2131743084, null);
-            hdVar2.U = k96.M0(2131743086, null);
-            final EditTextBoldCursor d2 = on9Var.d(c2, k96.M0(2131743101, null));
-            c2.j(k96.M0(2131744678, null), new ed() {
-                @Override
-                public final void u(hd hdVar22, int i6) {
-                    byte b = r3;
-                    EditTextBoldCursor editTextBoldCursor = d2;
-                    on9 on9Var2 = on9Var;
-                    switch (b) {
-                        case 0:
-                            gl.t1(editTextBoldCursor);
-                            on9Var2.c.C(2, editTextBoldCursor.getText().toString());
-                            on9Var2.J.j(100, 0L, null);
-                            if (VoIPService.getSharedInstance() != null) {
-                                VoIPService.getSharedInstance().playStartRecordSound();
-                                return;
-                            }
+            case 1:
+                on9 on9Var2 = this.b;
+                hn9 hn9Var2 = new hn9(on9Var2, this.c, (byte) 2);
+                Handler handler2 = on9Var2.n;
+                if (handler2 != null) {
+                    handler2.post(hn9Var2);
+                    return;
+                }
+                return;
+            case 2:
+                on9 on9Var3 = this.b;
+                rn9 rn9Var = this.c;
+                if (on9Var3.U && !on9Var3.Y && on9Var3.w == rn9Var) {
+                    on9Var3.f();
+                    if (on9Var3.f0 == 0) {
+                        on9Var3.f0 = rn9Var.e;
+                    }
+                    sn9 sn9Var = on9Var3.j;
+                    sn9Var.b("common A/V start completed: segmentElapsedMs=" + on9.x(on9Var3.C0));
+                    jp9 jp9Var = (jp9) on9Var3.k.b;
+                    jp9Var.i.post(new uo9(jp9Var, (byte) 2));
+                    return;
+                }
+                return;
+            default:
+                on9 on9Var4 = this.b;
+                rn9 rn9Var2 = this.c;
+                if (on9Var4.U && !on9Var4.Y && on9Var4.w == rn9Var2 && on9Var4.z != null && (xn9Var = on9Var4.v) != null) {
+                    try {
+                        long j = rn9Var2.F;
+                        if (j > 0) {
+                            xn9Var.p = j;
+                            xn9Var.Q = -1L;
+                            xn9Var.R = 0L;
+                            xn9Var.S = -1L;
+                            xn9Var.q = Long.MAX_VALUE;
+                            xn9Var.t0 = true;
+                            sn9 sn9Var2 = on9Var4.j;
+                            sn9Var2.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + on9.x(on9Var4.C0));
                             return;
-                        default:
-                            gl.t1(editTextBoldCursor);
-                            on9Var2.c.z(editTextBoldCursor.getText().toString());
-                            return;
+                        }
+                        throw new IllegalArgumentException("Invalid recording time origin");
+                    } catch (RuntimeException e) {
+                        on9Var4.f();
+                        on9Var4.M(e);
+                        return;
                     }
                 }
-            });
-            c2.g(k96.M0(2131752577, null), new kt3(d2, (byte) 4));
-            hdVar2.setOnShowListener(new hc4(d2, (byte) 2));
-            d2.setOnEditorActionListener(new cn9(hdVar2, (byte) 0));
-            on9.o(hdVar2);
-        } else if (i == 12) {
-            AlertDialog$Builder c3 = on9Var.c();
-            hd hdVar3 = c3.a;
-            boolean W = hc2.W(on9Var.d);
-            if (W) {
-                i2 = 2131743240;
-            } else {
-                i2 = 2131743139;
-            }
-            hdVar3.S = k96.M0(i2, null);
-            if (W) {
-                i3 = 2131743241;
-            } else {
-                i3 = 2131743140;
-            }
-            hdVar3.U = k96.M0(i3, null);
-            c3.j(k96.M0(2131743141, null), new an9(on9Var));
-            c3.g(k96.M0(2131752577, null), null);
-            on9.o(hdVar3);
-            View c4 = hdVar3.c(-1);
-            if (c4 instanceof TextView) {
-                ((TextView) c4).setTextColor(bkb.w0(null, bkb.lh, false));
-            }
+                return;
         }
     }
 }

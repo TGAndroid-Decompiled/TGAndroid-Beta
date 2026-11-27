@@ -1,4 +1,11 @@
 package defpackage;
-public final class oq9 {
-    public final byte a;
+
+import java.util.function.IntSupplier;
+public final class oq9 implements IntSupplier {
+    public final int a;
+
+    @Override
+    public final int getAsInt() {
+        return this.a;
+    }
 }

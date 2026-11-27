@@ -1,113 +1,54 @@
 package defpackage;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-public abstract class s83 {
-    public static final Object[] a = new Object[0];
+import android.text.TextUtils;
+public final class s83 extends ka {
+    public final int c;
+    public final int d;
+    public final int e;
+    public final CharSequence f;
+    public final String g;
+    public final int h;
 
-    public static final String a(Object obj) {
-        return Integer.toHexString(System.identityHashCode(obj));
+    public s83(int i, int i2, int i3, int i4, CharSequence charSequence, String str) {
+        super(2, false);
+        this.h = i;
+        this.c = i2;
+        this.d = i3;
+        this.e = i4;
+        this.f = charSequence;
+        this.g = str;
     }
 
-    public static final Object[] b(Collection collection) {
-        int size = collection.size();
-        if (size != 0) {
-            Iterator it = collection.iterator();
-            if (it.hasNext()) {
-                Object[] objArr = new Object[size];
-                int i = 0;
-                while (true) {
-                    int i2 = i + 1;
-                    objArr[i] = it.next();
-                    if (i2 >= objArr.length) {
-                        if (!it.hasNext()) {
-                            return objArr;
-                        }
-                        int i3 = ((i2 * 3) + 1) >>> 1;
-                        if (i3 <= i2) {
-                            i3 = 2147483645;
-                            if (i2 >= 2147483645) {
-                                throw new OutOfMemoryError();
-                            }
-                        }
-                        objArr = Arrays.copyOf(objArr, i3);
-                    } else if (!it.hasNext()) {
-                        return Arrays.copyOf(objArr, i2);
-                    }
-                    i = i2;
-                }
-            }
-        }
-        return a;
+    public static s83 b(CharSequence charSequence, String str) {
+        return new s83(-1, 0, 0, 0, charSequence, str);
     }
 
-    public static final Object[] c(Collection collection, Object[] objArr) {
-        Object[] objArr2;
-        int size = collection.size();
-        int i = 0;
-        if (size == 0) {
-            if (objArr.length > 0) {
-                objArr[0] = null;
-                return objArr;
-            }
-        } else {
-            Iterator it = collection.iterator();
-            if (!it.hasNext()) {
-                if (objArr.length > 0) {
-                    objArr[0] = null;
-                }
-            } else {
-                if (size <= objArr.length) {
-                    objArr2 = objArr;
-                } else {
-                    Object newInstance = Array.newInstance(objArr.getClass().getComponentType(), size);
-                    newInstance.getClass();
-                    objArr2 = (Object[]) newInstance;
-                }
-                while (true) {
-                    int i2 = i + 1;
-                    objArr2[i] = it.next();
-                    if (i2 >= objArr2.length) {
-                        if (!it.hasNext()) {
-                            return objArr2;
-                        }
-                        int i3 = ((i2 * 3) + 1) >>> 1;
-                        if (i3 <= i2) {
-                            i3 = 2147483645;
-                            if (i2 >= 2147483645) {
-                                throw new OutOfMemoryError();
-                            }
-                        }
-                        objArr2 = Arrays.copyOf(objArr2, i3);
-                    } else if (!it.hasNext()) {
-                        if (objArr2 == objArr) {
-                            objArr[i2] = null;
-                            return objArr;
-                        }
-                        return Arrays.copyOf(objArr2, i2);
-                    }
-                    i = i2;
-                }
-            }
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof s83)) {
+            return false;
         }
-        return objArr;
+        s83 s83Var = (s83) obj;
+        CharSequence charSequence = s83Var.f;
+        int i = s83Var.a;
+        int i2 = this.a;
+        if (i != i2) {
+            return false;
+        }
+        CharSequence charSequence2 = this.f;
+        if (i2 != 1 && i2 != 4 && i2 != 3 && i2 != 5) {
+            if (i2 != 2) {
+                return true;
+            }
+            if (s83Var.h != this.h || !TextUtils.equals(charSequence2, charSequence) || s83Var.d != this.d || s83Var.e != this.e || s83Var.c != this.c) {
+                return false;
+            }
+            return true;
+        }
+        return TextUtils.equals(charSequence2, charSequence);
     }
 
-    public static final String d(fw2 fw2Var) {
-        Object sa9Var;
-        if (fw2Var instanceof ho3) {
-            return ((ho3) fw2Var).toString();
-        }
-        try {
-            sa9Var = fw2Var + '@' + a(fw2Var);
-        } catch (Throwable th) {
-            sa9Var = new sa9(th);
-        }
-        if (ta9.a(sa9Var) != null) {
-            sa9Var = fw2Var.getClass().getName() + '@' + a(fw2Var);
-        }
-        return (String) sa9Var;
+    public s83(int i, String str) {
+        super(i, false);
+        this.f = str;
     }
 }

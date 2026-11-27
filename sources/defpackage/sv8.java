@@ -1,422 +1,478 @@
 package defpackage;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.animation.ValueAnimator;
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
+import android.widget.TextView;
+import java.math.BigDecimal;
+import java.util.Locale;
+import java.util.WeakHashMap;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public abstract class sv8 extends FrameLayout implements gk7 {
-    public static final long[] L = {5449505950283078474L, 5420315771991497307L, 5373141891321699086L, 5373026167722876724L, 5435957248314579621L, 5440354006335495210L, 5436040291507247633L, 5445284980978621387L, 5442983582882601962L, 5409008750893734809L, 5371017798065592581L, 5472030678633684592L, 5467583879948803288L, 5471952986970267163L, 5415696465945173620L, 5397915559037785261L, 5283020991981693429L, 5283051451889756068L, 5282816560128336499L, 5465449362807070392L, 5470012829983580233L};
-    public static final PorterDuffColorFilter M = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-    public TLRPC.TL_messages_stickerSet E;
-    public boolean F;
-    public boolean G;
-    public final HashSet H;
-    public final HashSet I;
-    public ArrayList J;
-    public boolean K;
-    public final int a;
-    public final dw8 b;
-    public final nv8 c;
-    public final r35 d;
-    public final lv8 e;
-    public final cu6 f;
-    public final rv8 h;
-    public final ArrayList n;
-    public int r;
-    public int s;
-    public boolean w;
-    public final boolean x;
-    public int y;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Wallet.c;
+public final class sv8 extends Dialog {
+    public final RectF E;
+    public final nz4 F;
+    public final ll0 G;
+    public Bitmap H;
+    public mq5 I;
+    public float J;
+    public float K;
+    public boolean L;
+    public final pm3 M;
+    public final RectF N;
+    public final RectF O;
+    public ValueAnimator P;
+    public ValueAnimator Q;
+    public float R;
+    public boolean S;
+    public boolean T;
+    public boolean U;
+    public Runnable V;
+    public final int[] W;
+    public final e a;
+    public final js8 b;
+    public final boolean c;
+    public final boolean d;
+    public final boolean e;
+    public final RectF f;
+    public final qv8 h;
+    public final rv8 n;
+    public final frc r;
+    public final wsc s;
+    public final ir8 w;
+    public final TextView x;
+    public final Paint y;
 
-    public sv8(Activity activity, int i, dw8 dw8Var) {
-        super(activity);
-        ew8 ew8Var = (ew8) this;
-        lv8 lv8Var = new lv8(ew8Var);
-        this.e = lv8Var;
-        this.n = new ArrayList();
-        this.r = 7;
-        this.y = -1711276033;
-        this.H = new HashSet();
-        this.I = new HashSet();
-        this.a = i;
-        this.b = dw8Var;
-        this.x = y6c.h(i).p();
-        ?? o39Var = new o39(activity, null);
-        this.c = o39Var;
-        r35 r35Var = new r35(this.r);
-        this.d = r35Var;
-        r35Var.O = new nq1(ew8Var, (byte) 13);
-        o39Var.setLayoutManager(r35Var);
-        cu6 cu6Var = new cu6(o39Var, r35Var);
-        this.f = cu6Var;
-        cu6Var.r = new fv3(ew8Var, (byte) 1);
-        o39Var.setAdapter(lv8Var);
-        o39Var.setSelectorDrawableColor(0);
-        o39Var.setOnItemClickListener(new bf4(dw8Var, (byte) 28));
-        o39Var.setItemAnimator(null);
-        o39Var.setOverScrollMode(2);
-        o39Var.setVerticalScrollBarEnabled(false);
-        o39Var.setClipToPadding(false);
-        o39Var.j(new n58(ew8Var, (byte) 7));
-        addView((View) o39Var, nme.c(-1.0f, -1));
-        rv8 rv8Var = new rv8(ew8Var, activity);
-        this.h = rv8Var;
-        addView(rv8Var, nme.e(-1, 36, 48));
-        e();
-    }
-
-    public static void b(Canvas canvas, Drawable drawable) {
-        boolean d = d(drawable);
-        if (d) {
-            drawable.setColorFilter(M);
+    public sv8(final e eVar, js8 js8Var, TLRPC.User user, final TL_wallet.card cardVar) {
+        super(eVar.getParentActivity(), 2131755352);
+        String a0;
+        RectF rectF = new RectF();
+        this.f = rectF;
+        this.y = new Paint(3);
+        this.E = new RectF();
+        nz4 nz4Var = new nz4();
+        this.F = nz4Var;
+        this.I = mq5.e;
+        this.M = new pm3((byte) 7);
+        this.N = new RectF();
+        this.O = new RectF();
+        this.W = new int[2];
+        this.a = eVar;
+        this.b = js8Var;
+        boolean z = user != null && user.id == yac.h(eVar.getCurrentAccount()).e();
+        this.e = z;
+        boolean z2 = (user == null || z || !uc7.s1(eVar.getCurrentAccount()).k4.v0.f) ? false : true;
+        this.c = z2;
+        this.d = (user == null || z || z2) ? false : true;
+        int[] iArr = new int[2];
+        js8Var.getLocationOnScreen(iArr);
+        rectF.set(js8Var.w);
+        rectF.offset(iArr[0], iArr[1]);
+        hl.S(getWindow());
+        qv8 qv8Var = new qv8(this, getContext());
+        this.h = qv8Var;
+        rv8 rv8Var = new rv8(this, getContext());
+        this.n = rv8Var;
+        rv8Var.setAlpha(0.0f);
+        qv8Var.addView(rv8Var, tre.c(-1.0f, -1));
+        qv8Var.setClipChildren(false);
+        qv8Var.setClipToPadding(false);
+        qv8Var.setOnClickListener(new jn8(this, (byte) 4));
+        jz7 jz7Var = new jz7(this, (byte) 20);
+        WeakHashMap weakHashMap = ihc.a;
+        ahc.i(qv8Var, jz7Var);
+        frc frcVar = new frc(getContext());
+        this.r = frcVar;
+        frcVar.setDiamondOnCard(true);
+        int currentAccount = eVar.getCurrentAccount();
+        String r = lbc.r(user);
+        Locale locale = Locale.ROOT;
+        frcVar.setCardHolder(r.toUpperCase(locale));
+        if (!TextUtils.isEmpty(cardVar.address)) {
+            frcVar.setCardNumber(frc.d(cardVar.address.toUpperCase(locale)));
         }
-        drawable.draw(canvas);
-        if (d) {
-            drawable.setColorFilter(null);
+        frcVar.j(currentAccount, cardVar.balance);
+        CharSequence q = c.C(currentAccount).q(cardVar.balance, false);
+        if (!TextUtils.isEmpty(q)) {
+            frcVar.P.c(q, false, true);
         }
-    }
+        frcVar.setCardOnClickListener(new View.OnClickListener(this) {
+            public final sv8 b;
 
-    public static boolean d(Drawable drawable) {
-        if ((drawable instanceof vl) && k27.B4(((vl) drawable).e)) {
-            return true;
-        }
-        return false;
-    }
+            {
+                this.b = this;
+            }
 
-    public final ArrayList a() {
-        String[] split;
-        if (this.J == null) {
-            this.J = new ArrayList();
-            for (String str : na7.q1(this.a).X3.getString("qrAppliedEmoji", "").split(",")) {
-                try {
-                    if (!str.isEmpty()) {
-                        this.J.add(Long.valueOf(Long.parseLong(str)));
-                    }
-                } catch (NumberFormatException unused) {
+            @Override
+            public final void onClick(View view) {
+                sa8 sa8Var;
+                byte b = r4;
+                TL_wallet.card cardVar2 = cardVar;
+                e eVar2 = eVar;
+                sv8 sv8Var = this.b;
+                switch (b) {
+                    case 0:
+                        if (!sv8Var.S) {
+                            if (sv8Var.e) {
+                                uqc.L0(eVar2.getCurrentAccount(), eVar2.getResourceProvider(), sv8Var.getContext());
+                                return;
+                            } else if (!TextUtils.isEmpty(cardVar2.address)) {
+                                Context context = sv8Var.getContext();
+                                int currentAccount2 = eVar2.getCurrentAccount();
+                                String str = cardVar2.address;
+                                if (!sv8Var.c) {
+                                    sa8Var = null;
+                                } else {
+                                    sa8Var = new sa8(sv8Var, eVar2, cardVar2, (byte) 13);
+                                }
+                                uqc.M0(context, currentAccount2, str, false, sa8Var, eVar2.getResourceProvider());
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                        return;
+                    default:
+                        if (!sv8Var.S) {
+                            if (sv8Var.e) {
+                                sv8Var.V = new ds8(eVar2, (byte) 22);
+                            } else if (sv8Var.d) {
+                                sv8Var.V = new ds8(eVar2, (byte) 23);
+                            } else if (sv8Var.c && !TextUtils.isEmpty(cardVar2.address)) {
+                                sv8Var.V = new mv8(eVar2, cardVar2, (byte) 1);
+                            } else {
+                                return;
+                            }
+                            sv8Var.dismiss();
+                            return;
+                        }
+                        return;
                 }
             }
+        });
+        frcVar.setOnClickListener(new y00((byte) 1));
+        frcVar.setAlpha(0.0f);
+        qv8Var.addView(frcVar, tre.c(-2.0f, -2));
+        wsc wscVar = new wsc(eVar, frcVar, null, cardVar);
+        this.s = wscVar;
+        qv8Var.addView(wscVar, tre.c(-1.0f, -1));
+        ll0 ll0Var = new ll0(nz4Var, nz4Var, nz4Var);
+        this.G = ll0Var;
+        ll0Var.h = new yic(qv8Var);
+        ll0Var.i = qv8Var;
+        ir8 ir8Var = new ir8(getContext());
+        this.w = ir8Var;
+        jl0 c = ll0Var.c(ir8Var, new cl0(aob.d6, eVar.getResourceProvider()), false);
+        c.q(hl.L(8.0f));
+        c.r(hl.L(22.0f));
+        ir8Var.setBackground(c);
+        iye.b(ir8Var, 0.02f, 1.2f);
+        c51 c51Var = new c51(eVar.getResourceProvider(), getContext(), true);
+        c51Var.setUseWrapContent(true);
+        c51Var.setPadding(hl.L(16.0f), 0, hl.L(16.0f), 0);
+        c51Var.setRoundRadius(19);
+        CharSequence M0 = ob6.M0(z ? 2131742692 : z2 ? 2131742648 : 2131749030, null);
+        if (!z2) {
+            c51Var.i(M0, false, true);
+        } else {
+            SpannableStringBuilder append = new SpannableStringBuilder("G  ").append(M0);
+            wm2 wm2Var = new wm2(2131231960, 0);
+            wm2Var.c(hl.L(20.0f));
+            wm2Var.y = -1;
+            append.setSpan(wm2Var, 0, 1, 33);
+            c51Var.i(append, false, true);
         }
-        return this.J;
+        c51Var.setStateListAnimator(null);
+        ir8Var.addView(c51Var, tre.e(-2, -1, 17));
+        ir8Var.setContentDescription(M0);
+        ir8Var.setOnClickListener(new View.OnClickListener(this) {
+            public final sv8 b;
+
+            {
+                this.b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                sa8 sa8Var;
+                byte b = r4;
+                TL_wallet.card cardVar2 = cardVar;
+                e eVar2 = eVar;
+                sv8 sv8Var = this.b;
+                switch (b) {
+                    case 0:
+                        if (!sv8Var.S) {
+                            if (sv8Var.e) {
+                                uqc.L0(eVar2.getCurrentAccount(), eVar2.getResourceProvider(), sv8Var.getContext());
+                                return;
+                            } else if (!TextUtils.isEmpty(cardVar2.address)) {
+                                Context context = sv8Var.getContext();
+                                int currentAccount2 = eVar2.getCurrentAccount();
+                                String str = cardVar2.address;
+                                if (!sv8Var.c) {
+                                    sa8Var = null;
+                                } else {
+                                    sa8Var = new sa8(sv8Var, eVar2, cardVar2, (byte) 13);
+                                }
+                                uqc.M0(context, currentAccount2, str, false, sa8Var, eVar2.getResourceProvider());
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                        return;
+                    default:
+                        if (!sv8Var.S) {
+                            if (sv8Var.e) {
+                                sv8Var.V = new ds8(eVar2, (byte) 22);
+                            } else if (sv8Var.d) {
+                                sv8Var.V = new ds8(eVar2, (byte) 23);
+                            } else if (sv8Var.c && !TextUtils.isEmpty(cardVar2.address)) {
+                                sv8Var.V = new mv8(eVar2, cardVar2, (byte) 1);
+                            } else {
+                                return;
+                            }
+                            sv8Var.dismiss();
+                            return;
+                        }
+                        return;
+                }
+            }
+        });
+        ir8Var.setAlpha(0.0f);
+        ir8Var.setVisibility(c() ? 0 : 8);
+        qv8Var.addView(ir8Var, tre.e(-2, 60, 81));
+        TextView textView = new TextView(getContext());
+        this.x = textView;
+        textView.setTextSize(14.0f);
+        textView.setTypeface(hl.o());
+        textView.setGravity(17);
+        textView.setLineSpacing(hl.L(18.0f) - textView.getPaint().getFontMetricsInt(null), 1.0f);
+        d();
+        textView.setAlpha(0.0f);
+        if (z) {
+            textView.setText(ob6.M0(2131742674, null));
+        } else if (user != null) {
+            String k = lbc.k(user, true);
+            if (new BigDecimal(c.t(cardVar.balance, false)).signum() == 0) {
+                a0 = ob6.a0(null, null, 2131742676, k);
+            } else {
+                a0 = ob6.a0(null, null, 2131742677, k, c.p("Grams", frc.e(cardVar.balance).toString(), 2131749261).toString().replace(' ', (char) 160));
+            }
+            textView.setText(kg5.b(a0, textView.getPaint()));
+        }
+        textView.setVisibility(user == null ? 8 : 0);
+        qv8Var.addView(textView, tre.e(-2, -2, 49));
     }
 
-    public final int c() {
-        int R;
-        nv8 nv8Var = this.c;
-        int paddingTop = nv8Var.getPaddingTop();
-        int i = Integer.MAX_VALUE;
-        int i2 = -1;
-        for (int i3 = 0; i3 < nv8Var.getChildCount(); i3++) {
-            View childAt = nv8Var.getChildAt(i3);
-            this.d.getClass();
-            int y = d49.y(childAt);
-            if (y >= paddingTop && y < i && (R = RecyclerView.R(childAt)) != -1) {
-                i2 = R;
-                i = y;
+    public final void a(float f) {
+        boolean z;
+        long j;
+        ValueAnimator valueAnimator = this.P;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        int i = (f > 1.0f ? 1 : (f == 1.0f ? 0 : -1));
+        if (i == 0) {
+            if (this.U) {
+                return;
+            }
+            this.U = true;
+            z = true;
+        } else {
+            z = false;
+        }
+        this.L = z;
+        frc frcVar = this.r;
+        frcVar.getClass();
+        frcVar.setLayerType(2, null);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.J, f);
+        this.P = ofFloat;
+        if (i == 0) {
+            j = 650;
+        } else {
+            j = 380;
+        }
+        ofFloat.setDuration(j);
+        this.P.setInterpolator(new LinearInterpolator());
+        this.P.addUpdateListener(new nv8(this, (byte) 1));
+        this.P.addListener(new u7(this, f, (byte) 5));
+        this.P.start();
+    }
+
+    public final void b() {
+        if (!this.T) {
+            this.T = true;
+            this.r.setLayerType(0, null);
+            this.b.setEjectProgress(0.0f);
+            super.dismiss();
+            this.s.p();
+            this.F.a(null);
+            this.H = null;
+            if (this.V != null && this.a.getParentActivity() != null) {
+                Runnable runnable = this.V;
+                this.V = null;
+                hl.c3(runnable);
             }
         }
-        if (i2 == -1) {
-            return 0;
+    }
+
+    public final boolean c() {
+        if (!this.c && !this.d && !this.e) {
+            return false;
         }
-        return i2;
+        return true;
+    }
+
+    public final void d() {
+        int i;
+        boolean o = aob.I.o();
+        Bitmap bitmap = this.H;
+        TextView textView = this.x;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            qv8 qv8Var = this.h;
+            if (qv8Var.getWidth() > 0 && qv8Var.getHeight() > 0) {
+                o = hl.B(this.H.getPixel(Utilities.j((int) (((((float) (textView.getRight() + textView.getLeft())) / 2.0f) / ((float) qv8Var.getWidth())) * ((float) this.H.getWidth())), this.H.getWidth() - 1, 0), Utilities.j((int) (((((float) (textView.getBottom() + textView.getTop())) / 2.0f) / ((float) qv8Var.getHeight())) * ((float) this.H.getHeight())), this.H.getHeight() - 1, 0))) < 0.5f;
+            }
+        }
+        if (o) {
+            i = -1;
+        } else {
+            i = -16777216;
+        }
+        textView.setTextColor(aob.p1(0.41f, i));
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == kk7.w0 && objArr.length > 0) {
-            Object obj = objArr[0];
-            if ((obj instanceof Integer) && ((Integer) obj).intValue() != 5) {
-                return;
+    public final void dismiss() {
+        if (!this.T && !this.S) {
+            this.S = true;
+            ValueAnimator valueAnimator = this.Q;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.w.setEnabled(false);
+            if (this.h.isAttachedToWindow() && this.J != 0.0f) {
+                a(0.0f);
+            } else {
+                b();
             }
         }
-        e();
     }
 
     public final void e() {
-        String str;
-        String str2;
-        long j;
-        long j2;
-        long j3;
-        ArrayList<TLRPC.TL_stickerPack> arrayList;
-        ArrayList<Long> arrayList2;
-        ArrayList<TLRPC.Document> arrayList3;
-        int i;
-        int i2;
-        boolean z;
-        ArrayList arrayList4;
-        int i3;
-        TLRPC.Document document;
-        ArrayList<TLRPC.Document> arrayList5;
-        int i4 = this.a;
-        hq6 d0 = hq6.d0(i4);
-        ArrayList<pv8> arrayList6 = this.n;
-        arrayList6.clear();
-        ArrayList arrayList7 = new ArrayList();
-        ArrayList t0 = d0.t0(5);
-        int size = t0.size();
-        int i5 = 0;
-        while (true) {
-            str = "application/x-tgsticker";
-            if (i5 >= size) {
-                break;
-            }
-            Object obj = t0.get(i5);
-            i5++;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-            if (tL_messages_stickerSet != null && tL_messages_stickerSet.set != null && tL_messages_stickerSet.documents != null) {
-                ArrayList arrayList8 = new ArrayList();
-                ArrayList<TLRPC.Document> arrayList9 = tL_messages_stickerSet.documents;
-                int size2 = arrayList9.size();
-                int i6 = 0;
-                while (i6 < size2) {
-                    TLRPC.Document document2 = arrayList9.get(i6);
-                    i6++;
-                    TLRPC.Document document3 = document2;
-                    if (document3 != null && "application/x-tgsticker".equals(document3.mime_type)) {
-                        arrayList8.add(document3);
-                    }
-                }
-                if (!arrayList8.isEmpty()) {
-                    arrayList7.add(new pv8(2, tL_messages_stickerSet.set.title, arrayList8));
-                }
-            }
-        }
-        if (this.E == null && !this.F) {
-            this.F = true;
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-            TLRPC.TL_messages_stickerSet m0 = hq6.d0(i4).m0(tL_inputStickerSetShortName, null, false, true, new zf7(this, (byte) 20));
-            if (m0 != null && (arrayList5 = m0.documents) != null && !arrayList5.isEmpty()) {
-                this.E = m0;
-            }
-        }
-        ArrayList arrayList10 = new ArrayList(21);
-        HashSet hashSet = this.I;
-        hashSet.clear();
-        if (this.E == null && !this.G) {
-            for (int i7 = 0; i7 < 21; i7++) {
-                arrayList10.add(new TLRPC.TL_documentEmpty());
-            }
-            str2 = "application/x-tgsticker";
+        float f;
+        float f2;
+        float interpolation = k43.g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
+        float max = Math.max(0.0f, Math.min(1.0f, (this.J - 0.3f) / 0.7f));
+        float interpolation2 = k43.h.getInterpolation(max);
+        if (this.L) {
+            double d = 6.614378f * max;
+            f = 1.0f - (((1.1338935f * ((float) Math.sin(d))) + ((float) Math.cos(d))) * ((float) Math.exp((-7.5f) * max)));
         } else {
-            HashMap hashMap = new HashMap();
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = this.E;
-            if (tL_messages_stickerSet2 != null && (arrayList3 = tL_messages_stickerSet2.documents) != null) {
-                int size3 = arrayList3.size();
-                int i8 = 0;
-                while (i8 < size3) {
-                    TLRPC.Document document4 = arrayList3.get(i8);
-                    i8++;
-                    TLRPC.Document document5 = document4;
-                    String str3 = str;
-                    if (document5 != null) {
-                        hashMap.put(Long.valueOf(document5.id), document5);
-                    }
-                    str = str3;
-                }
-            }
-            str2 = str;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = this.E;
-            if (tL_messages_stickerSet3 != null && (arrayList = tL_messages_stickerSet3.packs) != null) {
-                int size4 = arrayList.size();
-                int i9 = 0;
-                while (i9 < size4) {
-                    TLRPC.TL_stickerPack tL_stickerPack = arrayList.get(i9);
-                    i9++;
-                    TLRPC.TL_stickerPack tL_stickerPack2 = tL_stickerPack;
-                    if (tL_stickerPack2 != null) {
-                        j = 0;
-                        String str4 = tL_stickerPack2.emoticon;
-                        if (str4 != null && str4.replace("️", "").equals("❄") && (arrayList2 = tL_stickerPack2.documents) != null && !arrayList2.isEmpty()) {
-                            j2 = tL_stickerPack2.documents.get(0).longValue();
-                            break;
-                        }
-                    }
-                }
-            }
-            j = 0;
-            j2 = 0;
-            for (int i10 = 0; i10 < 21; i10++) {
-                if (i10 == 4 && j2 != j && hashMap.containsKey(Long.valueOf(j2))) {
-                    j3 = j2;
-                } else {
-                    j3 = L[i10];
-                }
-                TLRPC.Document document6 = (TLRPC.Document) hashMap.get(Long.valueOf(j3));
-                if (document6 == null) {
-                    document6 = vl.e(i4, j3);
-                }
-                if (document6 != null) {
-                    arrayList10.add(document6);
-                    hashSet.add(Long.valueOf(document6.id));
-                } else if (this.H.add(Long.valueOf(j3))) {
-                    vl.g(i4).b(j3, new a27(this, (byte) 1));
-                }
-            }
+            f = interpolation2;
         }
-        if (!arrayList10.isEmpty()) {
-            arrayList6.add(new pv8(0, k96.M0(2131746304, null), arrayList10));
-        }
-        ArrayList arrayList11 = new ArrayList();
-        HashSet hashSet2 = new HashSet();
-        int i11 = this.r * 3;
-        ArrayList a = a();
-        int i12 = 0;
-        while (i12 < a.size() && arrayList11.size() < i11) {
-            long longValue = ((Long) a.get(i12)).longValue();
-            int size5 = arrayList10.size();
-            int i13 = 0;
-            while (true) {
-                if (i13 < size5) {
-                    Object obj2 = arrayList10.get(i13);
-                    i13++;
-                    document = (TLRPC.Document) obj2;
-                    arrayList4 = a;
-                    i3 = i12;
-                    if (document.id == longValue) {
-                        break;
-                    }
-                    a = arrayList4;
-                    i12 = i3;
-                } else {
-                    arrayList4 = a;
-                    i3 = i12;
-                    document = null;
-                    break;
-                }
-            }
-            if (document == null) {
-                document = vl.e(i4, longValue);
-            }
-            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.id))) {
-                arrayList11.add(document);
-            }
-            i12 = i3 + 1;
-            a = arrayList4;
-        }
-        int i14 = 0;
-        while (true) {
-            ArrayList arrayList12 = vu3.i;
-            if (i14 >= arrayList12.size() || arrayList11.size() >= i11) {
-                break;
-            }
-            String str5 = (String) arrayList12.get(i14);
-            if (str5 != null && str5.startsWith("animated_")) {
-                try {
-                    TLRPC.Document e = vl.e(i4, Long.parseLong(str5.substring(9)));
-                    if (e != null && str2.equals(e.mime_type)) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    if (z && hashSet2.add(Long.valueOf(e.id))) {
-                        arrayList11.add(e);
-                    }
-                } catch (NumberFormatException unused) {
-                }
-            }
-            i14++;
-        }
-        if (!arrayList11.isEmpty()) {
-            i = 1;
-            arrayList6.add(new pv8(1, k96.M0(2131746168, null), arrayList11));
+        frc frcVar = this.r;
+        float width = frcVar.getWidth();
+        float height = frcVar.getHeight();
+        RectF rectF = this.f;
+        float max2 = Math.max(0.2f, Math.min(1.0f, rectF.width() / Math.max(1.0f, height)));
+        float R1 = hl.R1(max2, 1.0f, f);
+        float centerY = rectF.centerY();
+        int[] iArr = this.W;
+        float f3 = centerY - iArr[1];
+        float f4 = max2 * width;
+        float centerX = rectF.centerX() - iArr[0];
+        float f5 = width / 2.0f;
+        float f6 = height / 2.0f;
+        float R12 = hl.R1(centerX, frcVar.getLeft() + f5, f);
+        float R13 = hl.R1((f4 * interpolation) + (f3 - (f4 / 2.0f)), frcVar.getTop() + f6, f);
+        float f7 = 1.0f - f;
+        float f8 = (-90.0f) * f7;
+        double d2 = f8;
+        float cos = (float) Math.cos(Math.toRadians(d2));
+        float sin = (float) Math.sin(Math.toRadians(d2));
+        float f9 = centerX - R12;
+        float f10 = f3 - R13;
+        float R14 = hl.R1((((sin * f10) + (cos * f9)) / R1) + f5, f5, interpolation2);
+        float R15 = hl.R1((((cos * f10) + ((-sin) * f9)) / R1) + f6, f6, interpolation2);
+        float f11 = R14 - f5;
+        float f12 = R15 - f6;
+        frcVar.setPivotX(R14);
+        frcVar.setPivotY(R15);
+        frcVar.setScaleX(R1);
+        frcVar.setScaleY(R1);
+        frcVar.setRotation(f8);
+        frcVar.setRotationX(35.0f * f7);
+        frcVar.setTranslationX((((cos * f11) - (sin * f12)) * R1) + ((R12 - frcVar.getLeft()) - R14));
+        frcVar.setTranslationY(bp1.g(cos, f12, sin * f11, R1, (R13 - frcVar.getTop()) - R15));
+        if (this.J > 0.0f) {
+            f2 = 1.0f;
         } else {
-            i = 1;
+            f2 = 0.0f;
         }
-        arrayList6.addAll(arrayList7);
-        int size6 = arrayList6.size();
-        int i15 = 0;
-        int i16 = 0;
-        while (i15 < size6) {
-            pv8 pv8Var = arrayList6.get(i15);
-            i15++;
-            pv8 pv8Var2 = pv8Var;
-            pv8Var2.d = i16;
-            if (pv8Var2.b != null) {
-                i2 = i;
-            } else {
-                i2 = 0;
-            }
-            i16 += pv8Var2.c.size() + i2;
-        }
-        this.s = i16;
-        this.e.f();
-        rv8 rv8Var = this.h;
-        rv8Var.setSections(arrayList6);
-        rv8Var.a(f(c()), false);
-    }
-
-    public final int f(int i) {
-        ArrayList arrayList = this.n;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (((pv8) arrayList.get(size)).d <= i) {
-                return size;
-            }
-        }
-        return 0;
-    }
-
-    public nv8 getGrid() {
-        return this.c;
-    }
-
-    public rv8 getTabs() {
-        return this.h;
+        frcVar.setAlpha(f2);
+        frcVar.setUseGyroscope(this.R * interpolation2);
+        float f13 = 1.0f - interpolation2;
+        this.K = Math.max(0.0f, f3 * f13);
+        this.b.setEjectProgress(interpolation);
+        this.n.setAlpha(this.J);
+        this.s.setAlpha(interpolation2);
+        ir8 ir8Var = this.w;
+        ir8Var.setAlpha(interpolation2);
+        TextView textView = this.x;
+        textView.setAlpha(interpolation2);
+        textView.setTranslationY((-hl.L(8.0f)) * f13);
+        ir8Var.setTranslationY(hl.L(16.0f) * f13);
+        ir8Var.setScaleX(hl.R1(0.8f, 1.0f, interpolation2));
+        ir8Var.setScaleY(hl.R1(0.8f, 1.0f, interpolation2));
+        this.h.invalidate();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        int i = this.a;
-        kk7.f(i).b(this, kk7.w0);
-        kk7.f(i).b(this, kk7.A0);
-        e();
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        window.setWindowAnimations(2131755178);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
+        qv8 qv8Var = this.h;
+        setContentView(qv8Var, layoutParams);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.height = -1;
+        attributes.width = -1;
+        attributes.gravity = 119;
+        attributes.dimAmount = 0.0f;
+        attributes.flags = (attributes.flags & (-3)) | (-2147286784);
+        window.setAttributes(attributes);
+        window.setStatusBarColor(0);
+        window.setNavigationBarColor(0);
+        qv8Var.setSystemUiVisibility(1792);
+        hl.j3(qv8Var, !aob.I.o());
+        hl.n3(window, !aob.I.o());
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        int i = this.a;
-        kk7.f(i).n(this, kk7.w0);
-        kk7.f(i).n(this, kk7.A0);
-    }
-
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        nv8 nv8Var = this.c;
-        int max = Math.max(5, ((i - nv8Var.getPaddingLeft()) - nv8Var.getPaddingRight()) / gl.L(46.0f));
-        if (max != this.r) {
-            this.r = max;
-            this.d.x1(max);
-            post(new iv8(this));
+    public final void show() {
+        if (!hl.K1(getContext())) {
+            return;
         }
-    }
-
-    public void setHeaderColor(int i) {
-        if (this.y != i) {
-            this.y = i;
-            int i2 = 0;
-            while (true) {
-                nv8 nv8Var = this.c;
-                if (i2 < nv8Var.getChildCount()) {
-                    View childAt = nv8Var.getChildAt(i2);
-                    if (childAt instanceof ov8) {
-                        ((ov8) childAt).a.setTextColor(i);
-                    }
-                    i2++;
-                } else {
-                    return;
-                }
-            }
-        }
+        mu9.d(new hj8(this, (byte) 5));
+        super.show();
+        WeakHashMap weakHashMap = ihc.a;
+        ygc.c(this.h);
     }
 }

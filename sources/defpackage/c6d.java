@@ -1,19 +1,19 @@
 package defpackage;
-public final class c6d extends f7d {
-    public final transient Object[] e;
 
-    public c6d(Object[] objArr) {
-        super((byte) 6);
-        this.e = objArr;
+import java.lang.ref.WeakReference;
+public final class c6d extends p3f {
+    public final WeakReference a;
+
+    public c6d(d6d d6dVar) {
+        this.a = new WeakReference(d6dVar);
     }
 
     @Override
-    public final java.lang.Object get(java.lang.Object r3) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.c6d.get(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public final int size() {
-        return 1;
+    public final void a() {
+        d6d d6dVar = (d6d) this.a.get();
+        if (d6dVar == null) {
+            return;
+        }
+        d6dVar.g();
     }
 }

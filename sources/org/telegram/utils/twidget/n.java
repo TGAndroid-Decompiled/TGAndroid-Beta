@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.SystemClock;
 import android.util.Log;
 import java.nio.charset.StandardCharsets;
-public final class n extends Binder implements hj5 {
+public final class n extends Binder implements jl5 {
     public static final int b = 0;
     public final WidgetEngineService a;
 
@@ -28,20 +28,20 @@ public final class n extends Binder implements hj5 {
     }
 
     @Override
-    public final long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, jj5 jj5Var) {
+    public final long G(byte[] bArr, byte[] bArr2, float f, float f2, int i, byte[] bArr3, byte[] bArr4, byte[] bArr5, byte[] bArr6, boolean z, ll5 ll5Var) {
         if (!WidgetEngineService.e) {
             SystemClock.uptimeMillis();
-            String f3 = WidgetEngineService.f(new dkc(this.a.getAssets(), (byte) 8));
+            String f3 = WidgetEngineService.f(new ftb(this.a.getAssets(), (byte) 22));
             SystemClock.uptimeMillis();
-            long create = WidgetSandboxNative.create(f3.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f, f2, i, bArr3, bArr4, bArr5, bArr6, z, new WidgetEngineBackend(jj5Var, f2));
-            Object obj = odd.a;
+            long create = WidgetSandboxNative.create(f3.getBytes(StandardCharsets.UTF_8), bArr, bArr2, f, f2, i, bArr3, bArr4, bArr5, bArr6, z, new WidgetEngineBackend(ll5Var, f2));
+            Object obj = gid.a;
             synchronized (obj) {
-                odd.b++;
+                gid.b++;
                 obj.notifyAll();
             }
             return create;
         }
-        sc8.j("Widget engine: no seccomp filter on this device");
+        grb.i("Widget engine: no seccomp filter on this device");
         return 0L;
     }
 
@@ -62,7 +62,7 @@ public final class n extends Binder implements hj5 {
         }
         SystemClock.uptimeMillis();
         try {
-            String f = WidgetEngineService.f(new dkc(this.a.getAssets(), (byte) 8));
+            String f = WidgetEngineService.f(new ftb(this.a.getAssets(), (byte) 22));
             SystemClock.uptimeMillis();
             WidgetEngineBackend.warmFonts(this.a.getResources().getDisplayMetrics().density);
             SystemClock.uptimeMillis();
@@ -90,7 +90,7 @@ public final class n extends Binder implements hj5 {
     @Override
     public final boolean onTransact(int i, Parcel parcel, Parcel parcel2, int i2) {
         Parcel parcel3;
-        jj5 jj5Var;
+        ll5 ll5Var;
         boolean z;
         boolean z2;
         boolean z3;
@@ -123,18 +123,18 @@ public final class n extends Binder implements hj5 {
                 }
                 IBinder readStrongBinder = parcel.readStrongBinder();
                 if (readStrongBinder == null) {
-                    jj5Var = null;
+                    ll5Var = null;
                 } else {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("org.telegram.utils.twidget.IWidgetEngineCallback");
-                    if (queryLocalInterface != null && (queryLocalInterface instanceof jj5)) {
-                        jj5Var = (jj5) queryLocalInterface;
+                    if (queryLocalInterface != null && (queryLocalInterface instanceof ll5)) {
+                        ll5Var = (ll5) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
                         obj.a = readStrongBinder;
-                        jj5Var = obj;
+                        ll5Var = obj;
                     }
                 }
-                long G = G(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z6, jj5Var);
+                long G = G(createByteArray, createByteArray2, readFloat, readFloat2, readInt, createByteArray3, createByteArray4, createByteArray5, createByteArray6, z6, ll5Var);
                 parcel2.writeNoException();
                 parcel2.writeLong(G);
                 break;
@@ -235,8 +235,8 @@ public final class n extends Binder implements hj5 {
             @Override
             public final void run() {
                 WidgetSandboxNative.destroy(j);
-                synchronized (odd.a) {
-                    odd.b = Math.max(0, odd.b - 1);
+                synchronized (gid.a) {
+                    gid.b = Math.max(0, gid.b - 1);
                 }
             }
         });

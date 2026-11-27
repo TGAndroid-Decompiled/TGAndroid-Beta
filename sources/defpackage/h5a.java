@@ -1,19 +1,32 @@
 package defpackage;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class h5a implements View.OnLongClickListener {
-    public final TLRPC.TL_authorization a;
-    public final n5a b;
+import org.telegram.tgnet.tl.TL_update;
+public final class h5a implements Runnable {
+    public final byte a;
+    public final r7a b;
+    public final TL_update.TL_updateNewMessage c;
 
-    public h5a(n5a n5aVar, TLRPC.TL_authorization tL_authorization) {
-        this.b = n5aVar;
-        this.a = tL_authorization;
+    public h5a(r7a r7aVar, TL_update.TL_updateNewMessage tL_updateNewMessage, byte b) {
+        this.a = b;
+        this.b = r7aVar;
+        this.c = tL_updateNewMessage;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        this.b.D0(this.a.country);
-        return true;
+    public final void run() {
+        byte b = this.a;
+        TL_update.TL_updateNewMessage tL_updateNewMessage = this.c;
+        r7a r7aVar = this.b;
+        switch (b) {
+            case 0:
+                r7aVar.getMessagesController().W3(tL_updateNewMessage.pts, -1, tL_updateNewMessage.pts_count);
+                return;
+            case 1:
+                r7aVar.getMessagesController().W3(tL_updateNewMessage.pts, -1, tL_updateNewMessage.pts_count);
+                return;
+            default:
+                r7aVar.getMessagesController().W3(tL_updateNewMessage.pts, -1, tL_updateNewMessage.pts_count);
+                return;
+        }
     }
 }

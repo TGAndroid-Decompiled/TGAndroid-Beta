@@ -1,25 +1,10 @@
 package defpackage;
+public final class p20 extends Exception {
+    public p20(String str, m20 m20Var) {
+        super(str + " " + m20Var);
+    }
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public interface p20 {
-    public static final ByteBuffer a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
-
-    boolean a();
-
-    ByteBuffer b();
-
-    void c(n20 n20Var);
-
-    void d(ByteBuffer byteBuffer);
-
-    l20 e(l20 l20Var);
-
-    void f();
-
-    long g(long j);
-
-    boolean isActive();
-
-    void reset();
+    public p20(m20 m20Var) {
+        this("Unhandled input format:", m20Var);
+    }
 }

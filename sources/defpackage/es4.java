@@ -1,6 +1,6 @@
 package defpackage;
-public final class es4 implements zu7 {
-    static {
-        b74.a();
-    }
+public interface es4 {
+    Object apply(Object obj);
+
+    boolean equals(Object obj);
 }

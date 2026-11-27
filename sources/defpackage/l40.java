@@ -1,237 +1,233 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.media.AudioAttributes;
-import android.media.AudioDeviceInfo;
-import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.media.metrics.LogSessionId;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import j$.util.Objects;
-import java.util.List;
-public final class l40 implements s00 {
-    public static final qbb k = vue.a(new k40((byte) 0));
-    public final Context a;
-    public final ie7 b;
-    public final m93 c;
-    public final l69 d;
-    public a66 e;
-    public adb f;
-    public rz g;
-    public uz h;
-    public Looper i;
-    public Context j;
+import java.math.RoundingMode;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.concurrent.ScheduledExecutorService;
+public final class l40 {
+    public static final Object s = new Object();
+    public static ScheduledExecutorService t;
+    public static int u;
+    public final AudioTrack a;
+    public final s00 b;
+    public final ri6 c;
+    public g40 d;
+    public final o40 e;
+    public final boolean f;
+    public final int g;
+    public final k40 h;
+    public final e86 i = new e86(Thread.currentThread());
+    public boolean j;
+    public long k;
+    public long l;
+    public long m;
+    public ByteBuffer n;
+    public int o;
+    public int p;
+    public int q;
+    public boolean r;
 
-    public l40(wtc wtcVar) {
-        l69 l69Var;
-        Context context = (Context) wtcVar.a;
-        this.a = context;
-        m93 m93Var = (m93) wtcVar.b;
-        m93Var.getClass();
-        this.c = m93Var;
-        this.b = (ie7) wtcVar.c;
-        this.g = (rz) wtcVar.d;
-        if (context == null) {
-            l69Var = null;
+    public l40(AudioTrack audioTrack, s00 s00Var, ri6 ri6Var, vgb vgbVar) {
+        int i;
+        k40 k40Var;
+        this.a = audioTrack;
+        this.b = s00Var;
+        this.c = ri6Var;
+        int i2 = s00Var.a;
+        boolean N = gcc.N(i2);
+        this.f = N;
+        if (N) {
+            i = gcc.u(i2) * Integer.bitCount(s00Var.c);
+            this.g = i;
         } else {
-            l69Var = new l69(this, (byte) 8);
+            i = -1;
+            this.g = -1;
         }
-        this.d = l69Var;
-        this.f = adb.a;
-    }
-
-    public final j40 a(r00 r00Var) {
-        Context context;
-        AudioAttributes b;
-        Context context2;
-        try {
-            int i = r00Var.h;
-            int i2 = r00Var.i;
-            if (i2 != -1 && (context2 = this.a) != null && Build.VERSION.SDK_INT >= 34) {
-                Context context3 = this.j;
-                if (context3 == null || context3.getDeviceId() != i2) {
-                    this.j = context2.createDeviceContext(i2);
-                }
-                context = this.j;
-                i = 0;
-            } else {
-                context = null;
-            }
-            AudioFormat build = new AudioFormat.Builder().setSampleRate(r00Var.b).setChannelMask(r00Var.c).setEncoding(r00Var.a).build();
-            nz nzVar = r00Var.g;
-            if (r00Var.d) {
-                b = new AudioAttributes.Builder().setContentType(3).setFlags(16).setUsage(1).build();
-            } else {
-                b = nzVar.b();
-            }
-            AudioTrack.Builder sessionId = new AudioTrack.Builder().setAudioAttributes(b).setAudioFormat(build).setTransferMode(1).setBufferSizeInBytes(r00Var.f).setSessionId(i);
-            int i3 = Build.VERSION.SDK_INT;
-            if (i3 >= 29) {
-                sessionId.setOffloadedPlayback(r00Var.e);
-            }
-            if (i3 >= 34 && context != null) {
-                sessionId.setContext(context);
-            }
-            AudioTrack build2 = sessionId.build();
-            if (build2.getState() == 1) {
-                return new j40(build2, r00Var, this.d, this.f);
-            }
-            try {
-                build2.release();
-            } catch (Exception unused) {
-            }
-            throw new Exception();
-        } catch (IllegalArgumentException | UnsupportedOperationException e) {
-            throw new Exception(e);
+        this.e = new o40(new wz4(this), vgbVar, audioTrack, s00Var.a, i, s00Var.f);
+        if (Build.VERSION.SDK_INT >= 24 && ri6Var != null) {
+            this.d = new g40(audioTrack, ri6Var);
         }
-    }
-
-    public final o00 b(n00 n00Var) {
-        e(n00Var);
-        fm4 fm4Var = (fm4) n00Var.a;
-        nz nzVar = (nz) n00Var.b;
-        k00 a = this.c.a(nzVar, fm4Var);
-        ?? obj = new Object();
-        byte b = 0;
-        obj.d = (byte) 0;
-        String str = fm4Var.t;
-        int i = fm4Var.Q;
-        if (!Objects.equals(str, "audio/raw") ? this.g.c(nzVar, fm4Var) != null : i == 2) {
-            b = 2;
-        }
-        obj.d = b;
-        boolean z = a.a;
-        obj.a = z;
-        boolean z2 = a.b;
-        obj.b = z2;
-        boolean z3 = a.c;
-        obj.c = z3;
-        if (!z && (z2 || z3)) {
-            sc8.j("Secondary offload attribute fields are true but primary isFormatSupportedForOffload is false");
-            return null;
-        }
-        ?? obj2 = new Object();
-        obj2.a = obj.a;
-        obj2.b = obj.b;
-        obj2.c = obj.c;
-        obj2.d = obj.d;
-        return obj2;
-    }
-
-    public final defpackage.r00 c(defpackage.n00 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.l40.c(n00):r00");
-    }
-
-    public final void d() {
-        ska skaVar;
-        a66 a66Var = this.e;
-        if (a66Var != null) {
-            a66Var.d();
-        }
-        uz uzVar = this.h;
-        if (uzVar != null) {
-            Context context = uzVar.a;
-            if (uzVar.k) {
-                uzVar.h = null;
-                i00.e(context).unregisterAudioDeviceCallback(uzVar.d);
-                if (Build.VERSION.SDK_INT >= 32 && (skaVar = uzVar.g) != null) {
-                    skaVar.e();
-                    uzVar.g = null;
-                }
-                context.unregisterReceiver(uzVar.e);
-                tz tzVar = uzVar.f;
-                if (tzVar != null) {
-                    tzVar.a.unregisterContentObserver(tzVar);
-                }
-                uzVar.k = false;
-            }
-        }
-    }
-
-    public final void e(n00 n00Var) {
-        rz b;
-        AudioDeviceInfo audioDeviceInfo = (AudioDeviceInfo) n00Var.c;
-        nz nzVar = (nz) n00Var.b;
-        f();
-        uz uzVar = this.h;
-        if (uzVar == null) {
-            Context context = this.a;
-            if (context != null) {
-                uz uzVar2 = new uz(context, new l0(this, (byte) 23), nzVar, audioDeviceInfo);
-                this.h = uzVar2;
-                if (uzVar2.k) {
-                    b = uzVar2.h;
-                    b.getClass();
-                } else {
-                    uzVar2.k = true;
-                    tz tzVar = uzVar2.f;
-                    if (tzVar != null) {
-                        tzVar.a.registerContentObserver(tzVar.b, false, tzVar);
-                    }
-                    Context context2 = uzVar2.a;
-                    AudioManager e = i00.e(context2);
-                    sz szVar = uzVar2.d;
-                    Handler handler = uzVar2.c;
-                    e.registerAudioDeviceCallback(szVar, handler);
-                    if (Build.VERSION.SDK_INT >= 32 && uzVar2.g == null) {
-                        uzVar2.g = new ska(context2, new oz(uzVar2, (byte) 1), Boolean.valueOf(g8c.Q(context2)));
-                    }
-                    b = rz.b(context2, context2.registerReceiver(uzVar2.e, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG"), null, handler), uzVar2.j, uzVar2.i, uzVar2.a());
-                    uzVar2.h = b;
-                }
-                this.g = b;
-            }
+        if (c()) {
+            k40Var = new k40(this);
         } else {
-            if (audioDeviceInfo != null && !audioDeviceInfo.equals(uzVar.i)) {
-                uzVar.i = audioDeviceInfo;
-                Context context3 = uzVar.a;
-                nz nzVar2 = uzVar.j;
-                List a = uzVar.a();
-                w59 w59Var = rz.e;
-                uzVar.b(rz.b(context3, context3.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), nzVar2, audioDeviceInfo, a));
-            }
-            uz uzVar3 = this.h;
-            if (!Objects.equals(nzVar, uzVar3.j)) {
-                uzVar3.j = nzVar;
-                Context context4 = uzVar3.a;
-                AudioDeviceInfo audioDeviceInfo2 = uzVar3.i;
-                List a2 = uzVar3.a();
-                w59 w59Var2 = rz.e;
-                uzVar3.b(rz.b(context4, context4.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), nzVar, audioDeviceInfo2, a2));
-            }
+            k40Var = null;
         }
-        this.g.getClass();
+        this.h = k40Var;
     }
 
-    public final void f() {
-        boolean z;
-        String name;
-        if (this.a == null) {
+    public final long a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.l40.a():long");
+    }
+
+    public final long b() {
+        if (this.f) {
+            long j = this.k;
+            long j2 = this.g;
+            String str = gcc.a;
+            return ((j + j2) - 1) / j2;
+        }
+        return this.l;
+    }
+
+    public final boolean c() {
+        if (Build.VERSION.SDK_INT >= 29 && this.a.isOffloadedPlayback()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d(int i, int i2) {
+        if (Build.VERSION.SDK_INT < 29) {
             return;
         }
-        Looper myLooper = Looper.myLooper();
-        Looper looper = this.i;
-        if (looper != null && looper != myLooper) {
-            z = false;
+        this.a.setOffloadDelayPadding(i, i2);
+    }
+
+    public final void e() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            AudioTrack audioTrack = this.a;
+            if (audioTrack.getPlayState() != 3) {
+                return;
+            }
+            audioTrack.setOffloadEndOfStream();
+            o40 o40Var = this.e;
+            o40Var.A = true;
+            o40Var.h.a.f = true;
+        }
+    }
+
+    public final void f(ig8 ig8Var) {
+        LogSessionId logSessionId;
+        if (Build.VERSION.SDK_INT >= 31) {
+            LogSessionId a = ig8Var.a();
+            logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
+            if (!a.equals(logSessionId)) {
+                this.a.setLogSessionId(a);
+            }
+        }
+    }
+
+    public final boolean g(long j, int i, ByteBuffer byteBuffer) {
+        AudioTrack audioTrack;
+        int write;
+        ri6 ri6Var;
+        n40 n40Var;
+        vz vzVar;
+        boolean z;
+        int i2;
+        boolean z2;
+        long j2 = j;
+        s00 s00Var = this.b;
+        boolean z3 = this.f;
+        if (!z3 && this.p == 0) {
+            this.p = ja3.k(s00Var.a, byteBuffer);
+        }
+        e86 e86Var = this.i;
+        e86Var.getClass();
+        Thread currentThread = Thread.currentThread();
+        Thread thread = e86Var.a;
+        AudioTrack audioTrack2 = this.a;
+        boolean z4 = false;
+        if (currentThread == thread) {
+            long b = b();
+            if (Build.VERSION.SDK_INT >= 24) {
+                i2 = audioTrack2.getUnderrunCount();
+                audioTrack = audioTrack2;
+            } else {
+                boolean z5 = this.r;
+                audioTrack = audioTrack2;
+                if (b > gcc.b0(a(), audioTrack2.getSampleRate(), 1000000L, RoundingMode.UP)) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                this.r = z;
+                if (z5 && !z && audioTrack.getPlayState() != 1) {
+                    i2 = this.q + 1;
+                } else {
+                    i2 = this.q;
+                }
+            }
+            if (i2 > this.q) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            this.q = i2;
+            if (z2) {
+                e86Var.e(-1, new xz((byte) 2));
+            }
         } else {
-            z = true;
+            audioTrack = audioTrack2;
         }
-        String str = "null";
-        if (looper == null) {
-            name = "null";
+        int remaining = byteBuffer.remaining();
+        if (s00Var.d) {
+            if (j2 == Long.MIN_VALUE) {
+                j2 = this.m;
+            } else {
+                this.m = j2;
+            }
+            int remaining2 = byteBuffer.remaining();
+            if (Build.VERSION.SDK_INT >= 26) {
+                write = audioTrack.write(byteBuffer, remaining2, 1, j2 * 1000);
+            } else {
+                AudioTrack audioTrack3 = audioTrack;
+                if (this.n == null) {
+                    ByteBuffer allocate = ByteBuffer.allocate(16);
+                    this.n = allocate;
+                    allocate.order(ByteOrder.BIG_ENDIAN);
+                    this.n.putInt(1431633921);
+                }
+                if (this.o == 0) {
+                    this.n.putInt(4, remaining2);
+                    this.n.putLong(8, j2 * 1000);
+                    this.n.position(0);
+                    this.o = remaining2;
+                }
+                int remaining3 = this.n.remaining();
+                if (remaining3 > 0) {
+                    int write2 = audioTrack3.write(this.n, remaining3, 1);
+                    if (write2 < 0) {
+                        this.o = 0;
+                        write = write2;
+                    } else if (write2 < remaining3) {
+                        write = 0;
+                    }
+                }
+                write = audioTrack3.write(byteBuffer, remaining2, 1);
+                if (write < 0) {
+                    this.o = 0;
+                } else {
+                    this.o -= write;
+                }
+            }
         } else {
-            name = looper.getThread().getName();
+            write = audioTrack.write(byteBuffer, byteBuffer.remaining(), 1);
         }
-        if (myLooper != null) {
-            str = myLooper.getThread().getName();
+        if (write < 0) {
+            if ((Build.VERSION.SDK_INT >= 24 && write == -6) || write == -32) {
+                z4 = true;
+            }
+            if (z4 && (ri6Var = this.c) != null && (vzVar = (n40Var = (n40) ri6Var.b).h) != null) {
+                sz szVar = sz.f;
+                n40Var.g = szVar;
+                vzVar.k(szVar);
+            }
+            throw new m00(write, z4);
         }
-        if (z) {
-            this.i = myLooper;
-        } else {
-            sc8.j(nue.a("AudioTrackAudioOutputProvider accessed on multiple threads: %s and %s", name, str));
+        if (write == remaining) {
+            z4 = true;
         }
+        if (z3) {
+            this.k += write;
+            return z4;
+        }
+        if (z4) {
+            this.l = (this.p * i) + this.l;
+        }
+        return z4;
     }
 }

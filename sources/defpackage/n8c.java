@@ -1,6 +1,4 @@
 package defpackage;
-
-import java.io.Serializable;
-public interface n8c {
-    void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2);
+public final class n8c extends i0b {
+    public static final n8c b = new i0b(-1);
 }

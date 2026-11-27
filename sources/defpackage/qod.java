@@ -1,17 +1,13 @@
 package defpackage;
-public final class qod implements zn7 {
-    public static final qod a = new Object();
+public abstract class qod {
+    public static final a94 a;
+    public static final a94[] b;
 
     static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        a94 a94Var = new a94("wallet", 1L);
+        a94 a94Var2 = new a94("wallet_biometric_auth_keys", 1L);
+        a94 a94Var3 = new a94("wallet_payment_dynamic_update", 2L);
+        a = a94Var3;
+        b = new a94[]{a94Var, a94Var2, a94Var3, new a94("wallet_1p_initialize_buyflow", 1L), new a94("wallet_warm_up_ui_process", 1L), new a94("wallet_get_setup_wizard_intent", 4L), new a94("wallet_get_payment_card_recognition_intent", 1L)};
     }
 }

@@ -1,24 +1,41 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-public final class lh4 {
-    public static final lh4 a = new Object();
-    public static final Map b = DesugarCollections.synchronizedMap(new LinkedHashMap());
-
-    public static jh4 a(q6a q6aVar) {
-        Map map = b;
-        map.getClass();
-        Object obj = map.get(q6aVar);
-        if (obj != null) {
-            return (jh4) obj;
-        }
-        w44.d(q6aVar, ". Dependencies should be added at class load time.", "Cannot get dependency ");
-        return null;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class lh4 extends zb3 {
+    @Override
+    public final void D(f89 f89Var) {
+        View view = f89Var.a;
+        ViewPropertyAnimator animate = view.animate();
+        this.A.add(f89Var);
+        animate.setDuration(this.d).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new wa2(this, f89Var, animate, view)).start();
     }
 
-    public final java.lang.Object b(defpackage.fw2 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.lh4.b(fw2):java.lang.Object");
+    @Override
+    public final long K(long j, long j2, long j3) {
+        return 0L;
+    }
+
+    @Override
+    public final long L() {
+        return 0L;
+    }
+
+    @Override
+    public final long h() {
+        return 220L;
+    }
+
+    @Override
+    public final long j() {
+        return 220L;
+    }
+
+    @Override
+    public final void p(f89 f89Var) {
+        super.p(f89Var);
+        View view = f89Var.a;
+        view.setScaleX(0.0f);
+        view.setScaleY(0.0f);
     }
 }

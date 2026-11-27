@@ -1,4 +1,6 @@
 package defpackage;
-public final class gg4 {
-    public final jg4 a;
+
+import java.util.List;
+public interface gg4 {
+    Object a(List list);
 }

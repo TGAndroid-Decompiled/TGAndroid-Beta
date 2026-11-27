@@ -1,71 +1,49 @@
 package defpackage;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.ActionMode;
-import android.view.Menu;
 import android.view.MotionEvent;
-import org.telegram.ui.ActionBar.d;
-public final class b02 extends rt3 {
-    public final x02 W;
-
-    public b02(x02 x02Var, Context context, k02 k02Var, wjb wjbVar) {
-        super(context, k02Var, null, 1, true, wjbVar);
-        this.W = x02Var;
-    }
+import android.view.View;
+import org.telegram.ui.PopupNotificationActivity;
+public final class b02 implements View.OnTouchListener {
+    public final byte a;
 
     @Override
-    public final void f() {
-        super.f();
-        t14 emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.x0 = false;
-            emojiView.x2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(gl.n);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.a) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+                break;
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            default:
+                return true;
+            case 21:
+                int i = PopupNotificationActivity.c0;
+                break;
         }
-    }
-
-    @Override
-    public final void i(ActionMode actionMode, Menu menu) {
-        d dVar = this.W.Z1;
-        if (dVar instanceof mu1) {
-            mu1.x6(menu, ((mu1) dVar).h, true, true, true, true);
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        x02 x02Var = this.W;
-        b02 b02Var = x02Var.M2;
-        if (!x02Var.r3) {
-            if (motionEvent.getX() > b02Var.getEditText().getLeft() && motionEvent.getX() < b02Var.getEditText().getRight() && motionEvent.getY() > b02Var.getEditText().getTop() && motionEvent.getY() < b02Var.getEditText().getBottom()) {
-                x02Var.c1(b02Var.getEditText(), true);
-            } else {
-                x02Var.c1(b02Var.getEditText(), false);
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.W.L1();
-    }
-
-    @Override
-    public final void q(int i, int i2) {
-        boolean z;
-        x02 x02Var = this.W;
-        x02Var.L1();
-        if (x02Var.W1) {
-            if (i2 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
-                z = true;
-            } else {
-                z = false;
-            }
-            x02Var.w1(z);
-        }
+        return true;
     }
 }

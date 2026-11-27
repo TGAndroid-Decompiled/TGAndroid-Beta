@@ -1,25 +1,32 @@
 package defpackage;
 
-import android.content.Context;
-public final class ne4 extends pi4 {
-    public final byte V;
-    public final Object W;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class ne4 implements pcc {
+    public final byte a;
+    public final nf4 b;
 
-    public ne4(byte b, Context context, Object obj) {
-        super(context, null);
-        this.V = b;
-        this.W = obj;
+    public ne4(nf4 nf4Var, byte b) {
+        this.a = b;
+        this.b = nf4Var;
     }
 
     @Override
-    public final int getColumnsCount() {
-        byte b = this.V;
-        Object obj = this.W;
+    public final void a(Object obj) {
+        byte b = this.a;
+        nf4 nf4Var = this.b;
         switch (b) {
             case 0:
-                return ((af4) obj).s;
+                Boolean bool = (Boolean) obj;
+                nf4Var.finishFragment();
+                return;
+            case 1:
+            case 3:
+                nf4Var.r0((TL_chatlists.TL_exportedChatlistInvite) obj);
+                return;
+            case 2:
             default:
-                return ((ye4) obj).d.s;
+                nf4Var.q0((TL_chatlists.TL_exportedChatlistInvite) obj);
+                return;
         }
     }
 }

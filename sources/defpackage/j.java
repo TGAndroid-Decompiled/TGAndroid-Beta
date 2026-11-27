@@ -18,10 +18,10 @@ public final class j implements TextView.OnEditorActionListener {
 
     @Override
     public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        sha shaVar;
-        gb2 gb2Var;
-        sha shaVar2;
-        lc9 lc9Var;
+        nla nlaVar;
+        wb2 wb2Var;
+        nla nlaVar2;
+        cg9 cg9Var;
         byte b = this.a;
         Object obj = this.b;
         switch (b) {
@@ -30,133 +30,133 @@ public final class j implements TextView.OnEditorActionListener {
                 if (i != 3) {
                     return false;
                 }
-                gl.t1(editTextBoldCursor);
+                hl.t1(editTextBoldCursor);
                 return true;
             case 1:
-                r7 r7Var = (r7) obj;
+                s7 s7Var = (s7) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(r7Var.e);
-                    n7 n7Var = r7Var.I;
-                    if (n7Var != null) {
-                        n7Var.k(r7Var.e);
+                    hl.t1(s7Var.e);
+                    o7 o7Var = s7Var.I;
+                    if (o7Var != null) {
+                        o7Var.k(s7Var.e);
                     }
                 }
                 return false;
             case 2:
-                s67 s67Var = (s67) obj;
+                o97 o97Var = (o97) obj;
                 if (i != 6) {
                     return false;
                 }
-                s67Var.run();
+                o97Var.run();
                 return true;
             case 3:
-                ss0 ss0Var = (ss0) obj;
+                at0 at0Var = (at0) obj;
                 if (i != 5) {
                     return false;
                 }
-                ss0Var.y0();
+                at0Var.z0();
                 return true;
             case 4:
-                ge1 ge1Var = (ge1) obj;
-                if (i != 6 || (shaVar = ge1Var.c.a) == null) {
+                pe1 pe1Var = (pe1) obj;
+                if (i != 6 || (nlaVar = pe1Var.c.a) == null) {
                     return false;
                 }
-                shaVar.performClick();
+                nlaVar.performClick();
                 return true;
             case 5:
-                mu1 mu1Var = (mu1) obj;
+                zu1 zu1Var = (zu1) obj;
                 if (i == 6) {
-                    jd8 jd8Var = mu1Var.ld;
-                    if (jd8Var != null && (gb2Var = jd8Var.n) != null) {
-                        mu1Var.Aa(gb2Var);
+                    xg8 xg8Var = zu1Var.yd;
+                    if (xg8Var != null && (wb2Var = xg8Var.n) != null) {
+                        zu1Var.La(wb2Var);
                         return true;
                     }
                 } else {
-                    mu1Var.getClass();
+                    zu1Var.getClass();
                 }
                 return false;
             case 6:
-                r32 r32Var = (r32) obj;
+                h42 h42Var = (h42) obj;
                 if (i == 6) {
-                    u41 u41Var = r32Var.p0;
-                    if (u41Var.e0) {
-                        u41Var.performClick();
+                    c51 c51Var = h42Var.p0;
+                    if (c51Var.e0) {
+                        c51Var.performClick();
                         return true;
                     }
                 }
                 return false;
             case 7:
-                p82 p82Var = (p82) obj;
-                if (i != 6 || (shaVar2 = p82Var.a) == null) {
+                g92 g92Var = (g92) obj;
+                if (i != 6 || (nlaVar2 = g92Var.a) == null) {
                     return false;
                 }
-                shaVar2.performClick();
+                nlaVar2.performClick();
                 return true;
             case 8:
-                uf2 uf2Var = (uf2) obj;
-                of2 of2Var = uf2Var.G;
+                mg2 mg2Var = (mg2) obj;
+                fg2 fg2Var = mg2Var.G;
                 if (i != 6) {
                     return false;
                 }
-                uf2Var.y = false;
-                gl.r(of2Var);
-                if (TextUtils.isEmpty(uf2Var.f.getText())) {
-                    uf2Var.E = null;
-                    uf2Var.d.b();
-                    uf2Var.c.g3.O(true);
+                mg2Var.y = false;
+                hl.r(fg2Var);
+                if (TextUtils.isEmpty(mg2Var.f.getText())) {
+                    mg2Var.E = null;
+                    mg2Var.d.b();
+                    mg2Var.c.g3.O(true);
                 } else {
-                    gl.c3(of2Var);
+                    hl.c3(fg2Var);
                 }
-                uf2Var.f0();
+                mg2Var.f0();
                 return true;
             case 9:
-                fj2 fj2Var = (fj2) obj;
+                bk2 bk2Var = (bk2) obj;
                 if (i != 5) {
                     return false;
                 }
-                fj2Var.a();
+                bk2Var.a();
                 return true;
             case 10:
-                ht3 ht3Var = ((it3) obj).d;
+                yt3 yt3Var = ((zt3) obj).d;
                 if (i != 5) {
                     return false;
                 }
-                ht3Var.requestFocus();
-                ht3Var.setSelection(ht3Var.length());
+                yt3Var.requestFocus();
+                yt3Var.setSelection(yt3Var.length());
                 return true;
             case 11:
-                xz2 xz2Var = (xz2) obj;
+                q03 q03Var = (q03) obj;
                 if (i != 6) {
                     return false;
                 }
-                xz2Var.run();
+                q03Var.run();
                 return true;
             case 12:
-                qa5 qa5Var = (qa5) obj;
-                if (i == 6 && qa5Var.r0()) {
+                rc5 rc5Var = (rc5) obj;
+                if (i == 6 && rc5Var.r0()) {
                     return true;
                 }
                 return false;
             case 13:
-                jd6 jd6Var = (jd6) obj;
+                lf6 lf6Var = (lf6) obj;
                 if (i != 5) {
                     return false;
                 }
-                jd6Var.h(null);
+                lf6Var.h(null);
                 return true;
             case 14:
-                qd6 qd6Var = (qd6) obj;
+                sf6 sf6Var = (sf6) obj;
                 if (i != 5) {
                     return false;
                 }
-                qd6Var.h(null);
+                sf6Var.h(null);
                 return true;
             case 15:
-                de6 de6Var = (de6) obj;
+                fg6 fg6Var = (fg6) obj;
                 if (i != 5) {
                     return false;
                 }
-                de6Var.h(null);
+                fg6Var.h(null);
                 return true;
             case 16:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
@@ -171,24 +171,24 @@ public final class j implements TextView.OnEditorActionListener {
                     return true;
                 }
             case 17:
-                yv7 yv7Var = (yv7) obj;
+                fz7 fz7Var = (fz7) obj;
                 if (i != 6) {
                     return false;
                 }
-                yv7Var.n(false);
+                fz7Var.n(false);
                 return true;
             case 18:
-                rx7 rx7Var = (rx7) obj;
+                x08 x08Var = (x08) obj;
                 if (i != 5) {
                     return false;
                 }
-                rx7Var.h(null);
+                x08Var.h(null);
                 return true;
             case 19:
-                fu8 fu8Var = (fu8) obj;
+                ox8 ox8Var = (ox8) obj;
                 if (i == 5) {
                     int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = fu8Var.a;
+                    EditTextBoldCursor[] editTextBoldCursorArr = ox8Var.a;
                     if (intValue >= editTextBoldCursorArr.length) {
                         return true;
                     }
@@ -197,53 +197,53 @@ public final class j implements TextView.OnEditorActionListener {
                 } else if (i != 6) {
                     return false;
                 } else {
-                    fu8Var.finishFragment();
+                    ox8Var.finishFragment();
                     return true;
                 }
             case 20:
-                wi wiVar = (wi) obj;
+                xi xiVar = (xi) obj;
                 if (i != 6) {
                     return false;
                 }
-                wiVar.l1.a.callOnClick();
+                xiVar.l1.a.callOnClick();
                 return true;
             case 21:
-                mc9 mc9Var = (mc9) obj;
-                if (i != 5 || (lc9Var = mc9Var.e2) == null || mc9Var.n2) {
+                dg9 dg9Var = (dg9) obj;
+                if (i != 5 || (cg9Var = dg9Var.f2) == null || dg9Var.o2) {
                     return false;
                 }
-                if (mc9Var.k2) {
-                    mc9Var.M();
+                if (dg9Var.l2) {
+                    dg9Var.M();
                     return true;
                 }
-                lc9Var.Y(mc9Var);
+                cg9Var.U(dg9Var);
                 return true;
             case 22:
-                ps0 ps0Var = ((js9) obj).d;
+                xs0 xs0Var = ((cw9) obj).d;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    ps0Var.m();
-                    gl.t1(ps0Var);
+                    xs0Var.m();
+                    hl.t1(xs0Var);
                 }
                 return false;
             case 23:
-                iy9 iy9Var = (iy9) obj;
+                b2a b2aVar = (b2a) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(iy9Var.X1);
+                    hl.t1(b2aVar.X1);
                 }
                 return false;
             case 24:
-                taa taaVar = (taa) obj;
+                kea keaVar = (kea) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(taaVar.t2.r);
+                    hl.t1(keaVar.t2.r);
                 }
                 return false;
             case 25:
-                ((pha) obj).A(i, keyEvent);
+                ((jla) obj).D(i, keyEvent);
                 return false;
             case 26:
                 g0 g0Var = (g0) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(g0Var.b);
+                    hl.t1(g0Var.b);
                 }
                 return false;
             case 27:
@@ -251,20 +251,20 @@ public final class j implements TextView.OnEditorActionListener {
                 if (i != 5 && i != 6) {
                     return false;
                 }
-                twoStepVerificationActivity.x0();
+                twoStepVerificationActivity.y0();
                 return true;
             case 28:
-                w7c w7cVar = (w7c) obj;
+                wbc wbcVar = (wbc) obj;
                 if (keyEvent != null && ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66))) {
-                    gl.t1(w7cVar.K);
+                    hl.t1(wbcVar.L);
                 }
                 return false;
             default:
-                zoc zocVar = (zoc) obj;
+                ltc ltcVar = (ltc) obj;
                 if (i != 3) {
                     return false;
                 }
-                gl.t1(zocVar.b);
+                hl.t1(ltcVar.b);
                 return true;
         }
     }

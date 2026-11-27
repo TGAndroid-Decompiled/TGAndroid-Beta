@@ -1,50 +1,20 @@
 package defpackage;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLRPC;
-public abstract class u75 extends w39 implements GroupCallMessagesController.CallMessageListener {
-    public List c;
-    public boolean d;
-    public int e;
-    public TLRPC.InputGroupCall f;
+import android.graphics.Paint;
+import android.view.ViewGroup;
+public final class u75 extends Paint {
+    public final j95 a;
 
-    @Override
-    public final int b() {
-        List list = this.c;
-        if (list != null) {
-            return list.size();
-        }
-        return 0;
+    public u75(j95 j95Var) {
+        this.a = j95Var;
     }
 
     @Override
-    public final void onNewGroupCallMessage(long j, GroupCallMessage groupCallMessage) {
-        if (this.c == null) {
-            this.c = new ArrayList();
-        }
-        this.c.add(0, groupCallMessage);
-        i(0);
-    }
-
-    @Override
-    public final void onPopGroupCallMessage() {
-        List list = this.c;
-        if (list != null && !list.isEmpty()) {
-            int size = this.c.size() - 1;
-            this.c.remove(size);
-            r(size);
-        }
-    }
-
-    @Override
-    public final void t(s49 s49Var, int i) {
-        s75 s75Var = (s75) s49Var;
-        List list = this.c;
-        if (list != null && list.size() > i) {
-            ((t75) s75Var.a).set((GroupCallMessage) this.c.get(i));
+    public final void setAlpha(int i) {
+        super.setAlpha(i);
+        ViewGroup viewGroup = this.a.b;
+        if (viewGroup != null) {
+            viewGroup.invalidate();
         }
     }
 }

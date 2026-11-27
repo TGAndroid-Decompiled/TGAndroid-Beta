@@ -1,44 +1,36 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-public final class na5 extends zya {
-    public final byte L;
+import android.animation.ValueAnimator;
+public final class na5 implements ValueAnimator.AnimatorUpdateListener {
+    public final byte a;
+    public final ra5 b;
 
-    public na5(Context context, View view, int i, wjb wjbVar, byte b) {
-        super(context, view, i, wjbVar);
-        this.L = b;
+    public na5(ra5 ra5Var, byte b) {
+        this.a = b;
+        this.b = ra5Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        switch (this.L) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        ra5 ra5Var = this.b;
+        switch (b) {
             case 0:
-                super.onAttachedToWindow();
-                this.b.getImageReceiver().w0(false);
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                this.b.getImageReceiver().w0(false);
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void setVisibility(int i) {
-        switch (this.L) {
-            case 2:
-                super.setVisibility(i);
-                if (i != 0) {
-                    e(false, false);
+                ra5Var.s.x = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ra5Var.i();
+                pa5 pa5Var = ra5Var.a;
+                if (pa5Var.getParent() != null) {
+                    ra5Var.n.updateViewLayout(pa5Var, ra5Var.s);
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i);
+                ra5Var.s.y = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pa5 pa5Var2 = ra5Var.a;
+                if (pa5Var2.getParent() != null) {
+                    ra5Var.n.updateViewLayout(pa5Var2, ra5Var.s);
+                    return;
+                }
                 return;
         }
     }

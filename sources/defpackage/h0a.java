@@ -1,51 +1,72 @@
 package defpackage;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.view.GestureDetector;
-import android.view.animation.OvershootInterpolator;
-import android.widget.Scroller;
-import java.util.ArrayList;
-public final class h0a extends nz9 {
-    public final m8b O;
-    public final n0a P;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class h0a extends FrameLayout {
+    public final Path a;
+    public final Paint b;
+    public final boolean c;
+    public final boolean d;
+    public final vnb e;
+    public final Integer f;
+    public final n1a h;
 
-    public h0a(n0a n0aVar, m8b m8bVar, Context context) {
+    public h0a(n1a n1aVar, Context context, boolean z, boolean z2, vnb vnbVar, Integer num) {
         super(context);
-        this.P = n0aVar;
-        this.O = m8bVar;
-        this.x = -1;
-        this.F = new ArrayList();
-        this.G = new ArrayList();
-        this.H = new ArrayList();
-        this.J = new GestureDetector(new lz9(this));
-        this.d = new Scroller(context, new OvershootInterpolator());
-        this.I = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, bm2.o(-16777216, 160)});
+        this.h = n1aVar;
+        this.c = z;
+        this.d = z2;
+        this.e = vnbVar;
+        this.f = num;
+        this.a = new Path();
+        this.b = new Paint(1);
     }
 
     @Override
-    public final void b(int i) {
-        i8b i8bVar;
-        n0a n0aVar = this.P;
-        i0a i0aVar = n0aVar.F;
-        if (!n0aVar.x) {
-            if (i0aVar.getCurrentItem() != i) {
-                try {
-                    i0aVar.x(i, false);
-                } catch (Throwable th) {
-                    fa4.g(th, true);
-                    i0aVar.getAdapter().g();
-                    i0aVar.x(i, false);
-                }
+    public final void dispatchDraw(Canvas canvas) {
+        float intValue;
+        RectF rectF;
+        n1a n1aVar = this.h;
+        if (!n1aVar.R0) {
+            super.dispatchDraw(canvas);
+        } else if (this.c) {
+            canvas.save();
+            boolean z = this.d;
+            Paint paint = this.b;
+            if (z) {
+                aob.m(paint);
             }
-            m8b m8bVar = this.O;
-            if (m8bVar.O0 != null && (i8bVar = m8bVar.u0) != null) {
-                if (i < 10) {
-                    i8bVar.i(false);
-                } else if (i >= this.F.size() - 10) {
-                    m8bVar.u0.i(true);
-                }
+            paint.setColor(aob.v0(aob.G8, this.e));
+            paint.setAlpha((int) (getAlpha() * 255.0f));
+            Integer num = this.f;
+            if (num == null) {
+                intValue = getWidth() / 2.0f;
+            } else {
+                intValue = num.intValue();
             }
+            float L = intValue + hl.L(20.0f);
+            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
+            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
+            if (n1aVar.m()) {
+                rectF = hl.P;
+                rectF.set((L - (n1aVar.b1 * L)) + getPaddingLeft(), qd4.A(1.0f, n1aVar.c1, height, getPaddingTop()), ((width - L) * n1aVar.b1) + getPaddingLeft() + L, getPaddingTop() + height);
+            } else {
+                rectF = hl.P;
+                rectF.set((L - (n1aVar.b1 * L)) + getPaddingLeft(), getPaddingTop(), ((width - L) * n1aVar.b1) + getPaddingLeft() + L, (height * n1aVar.c1) + getPaddingTop());
+            }
+            Path path = this.a;
+            path.rewind();
+            path.addRoundRect(rectF, hl.L(12.0f), hl.L(12.0f), Path.Direction.CW);
+            canvas.drawPath(path, paint);
+            canvas.clipPath(path);
+            super.dispatchDraw(canvas);
+            canvas.restore();
+        } else {
+            super.dispatchDraw(canvas);
         }
     }
 }

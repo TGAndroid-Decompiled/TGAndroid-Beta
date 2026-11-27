@@ -1,22 +1,27 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_iv;
+import java.util.ArrayList;
+import java.util.HashMap;
 public final class vi9 {
-    public final TL_iv.PageBlock a;
-    public final int b;
-    public final int c;
-    public final boolean d;
-    public final boolean e;
+    public String a;
+    public boolean b;
+    public String c;
+    public HashMap d;
+    public final ArrayList e = new ArrayList();
 
-    public vi9(TL_iv.PageBlock pageBlock, int i, int i2, boolean z, boolean z2) {
-        this.a = pageBlock;
-        this.b = i;
-        this.c = i2;
-        this.d = z;
-        this.e = z2;
+    public final String a(String str) {
+        HashMap hashMap = this.d;
+        if (hashMap == null) {
+            return null;
+        }
+        return (String) hashMap.get(str);
     }
 
-    public vi9(TL_iv.PageBlock pageBlock, int i, int i2) {
-        this(pageBlock, i, i2, false, false);
+    public final boolean b(String str) {
+        HashMap hashMap = this.d;
+        if (hashMap != null && hashMap.containsKey(str)) {
+            return true;
+        }
+        return false;
     }
 }

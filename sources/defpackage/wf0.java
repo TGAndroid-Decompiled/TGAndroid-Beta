@@ -1,36 +1,27 @@
 package defpackage;
-
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.ProfileActivity;
-public final class wf0 implements h8c {
-    public final byte a;
-    public final Object b;
-
-    public wf0(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+public final class wf0 extends xf0 {
+    public wf0(java.lang.String r2, java.lang.String r3) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.wf0.<init>(java.lang.String, java.lang.String):void");
     }
 
     @Override
-    public final Object run() {
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                return ((d) obj).getSimpleMenuOverlay();
-            case 1:
-                return Boolean.valueOf(((EditTextBoldCursor) obj).w());
-            case 2:
-                return ((vl5) obj).getCloseIntoObject();
-            case 3:
-                return Boolean.valueOf(((gt3) obj).w());
-            case 4:
-                return ((ProfileActivity) obj).getSimpleMenuOverlay();
-            case 5:
-                return ((on9) obj).K;
-            default:
-                return ((vqa) obj).j();
+    public final void b(StringBuilder sb, byte[] bArr, int i) {
+        int i2 = 0;
+        yve.n(0, i, bArr.length);
+        for (int i3 = i; i3 >= 3; i3 -= 3) {
+            int i4 = i2 + 2;
+            i2 += 3;
+            int i5 = ((bArr[i2] & 255) << 16) | ((bArr[i2 + 1] & 255) << 8) | (bArr[i4] & 255);
+            uf0 uf0Var = this.a;
+            char[] cArr = uf0Var.b;
+            char[] cArr2 = uf0Var.b;
+            sb.append(cArr[i5 >>> 18]);
+            sb.append(cArr2[(i5 >>> 12) & 63]);
+            sb.append(cArr2[(i5 >>> 6) & 63]);
+            sb.append(cArr2[i5 & 63]);
+        }
+        if (i2 < i) {
+            a(i2, i - i2, sb, bArr);
         }
     }
 }

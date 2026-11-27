@@ -1,24 +1,17 @@
 package defpackage;
+public final class cqd implements zq7 {
+    public static final cqd a = new Object();
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-public abstract class cqd {
-    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
-        inputStream.getClass();
-        byte[] bArr = new byte[8192];
-        int read = inputStream.read(bArr);
-        while (read >= 0) {
-            byteArrayOutputStream.write(bArr, 0, read);
-            read = inputStream.read(bArr);
-        }
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)));
     }
 
-    public static final byte[] b(InputStream inputStream) {
-        inputStream.getClass();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(Math.max(8192, inputStream.available()));
-        a(inputStream, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        byteArray.getClass();
-        return byteArray;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

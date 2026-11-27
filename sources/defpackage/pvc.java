@@ -1,112 +1,56 @@
 package defpackage;
 
-import android.os.SystemClock;
-import java.nio.charset.StandardCharsets;
-import org.json.JSONObject;
-public final class pvc {
-    public static final String[] m = {"t.me", "telegram.me", "telegram.dog"};
-    public final boolean a;
-    public final boolean b;
-    public final boolean c;
-    public int d;
-    public int e;
-    public boolean i;
-    public boolean j;
-    public int l;
-    public long f = -4611686018427387904L;
-    public long g = -4611686018427387904L;
-    public long h = -4611686018427387904L;
-    public final long[] k = new long[10];
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.view.WindowManager;
+public final class pvc implements SensorEventListener {
+    public final float[] a = new float[3];
+    public final float[] b = new float[3];
+    public int c;
+    public final WindowManager d;
+    public final SensorManager e;
+    public final Sensor f;
+    public boolean h;
+    public ovc n;
 
-    public pvc(JSONObject jSONObject) {
-        boolean z;
-        boolean z2;
-        boolean z3;
-        boolean z4 = false;
-        if (jSONObject != null && jSONObject.optBoolean("preview")) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (jSONObject != null && !z && jSONObject.optBoolean("canQuery")) {
-            z2 = true;
-        } else {
-            z2 = false;
-        }
-        this.a = z2;
-        if (z2 && jSONObject.optBoolean("backgroundQuery")) {
-            z3 = true;
-        } else {
-            z3 = false;
-        }
-        this.b = z3;
-        if (z2 && jSONObject.has("wallet") && !jSONObject.isNull("wallet")) {
-            z4 = true;
-        }
-        this.c = z4;
+    public pvc(Context context) {
+        this.d = (WindowManager) context.getSystemService("window");
+        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
+        this.e = sensorManager;
+        this.f = sensorManager.getDefaultSensor(1);
     }
 
-    public final synchronized boolean a(boolean z) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (z) {
-            long[] jArr = this.k;
-            int i = this.l;
-            if (elapsedRealtime - jArr[i] >= 1000) {
-                jArr[i] = elapsedRealtime;
-                this.l = (i + 1) % jArr.length;
-                return true;
+    public static float a(int i, int i2) {
+        float f = i;
+        float L = hl.L(16.0f) << 1;
+        float f2 = (f + L) / f;
+        float f3 = i2;
+        return Math.max(f2, (L + f3) / f3);
+    }
+
+    public final void b(boolean z) {
+        if (this.h != z) {
+            this.h = z;
+            Sensor sensor = this.f;
+            if (sensor != null) {
+                SensorManager sensorManager = this.e;
+                if (z) {
+                    sensorManager.registerListener(this, sensor, 1);
+                } else {
+                    sensorManager.unregisterListener(this);
+                }
             }
         }
-        return false;
     }
 
-    public final boolean b(long j) {
-        if (this.e < this.d && j - this.f <= 10000) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void onSensorChanged(android.hardware.SensorEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.pvc.onSensorChanged(android.hardware.SensorEvent):void");
     }
 
-    public final synchronized boolean c(boolean z) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (z && b(elapsedRealtime)) {
-            this.e = this.d;
-            return true;
-        }
-        return false;
-    }
-
-    public final synchronized boolean d(String str, boolean z, boolean z2) {
-        if (!this.a || this.i || str == null || str.getBytes(StandardCharsets.UTF_8).length > 64 || (z && !this.c)) {
-            return false;
-        }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (z2 && b(elapsedRealtime)) {
-            this.e = this.d;
-            this.h = -4611686018427387904L;
-            this.j = true;
-        } else if (!this.b || z || elapsedRealtime - this.g < 1000) {
-            return false;
-        } else {
-            this.g = elapsedRealtime;
-        }
-        this.i = true;
-        return true;
-    }
-
-    public final synchronized boolean e(String str, boolean z) {
-        if (!this.c || this.i || str == null || str.length() > 262144 || !z) {
-            return false;
-        }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (b(elapsedRealtime)) {
-            this.e = this.d;
-        } else if (elapsedRealtime - this.h > 10000) {
-            return false;
-        }
-        this.h = -4611686018427387904L;
-        this.j = true;
-        this.i = true;
-        return true;
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i) {
     }
 }

@@ -1,57 +1,29 @@
 package defpackage;
 
-import java.io.InputStream;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-public abstract class b51 {
-    public static byte[] a(ArrayDeque arrayDeque, int i) {
-        if (arrayDeque.isEmpty()) {
-            return new byte[0];
-        }
-        byte[] bArr = (byte[]) arrayDeque.remove();
-        if (bArr.length == i) {
-            return bArr;
-        }
-        int length = i - bArr.length;
-        byte[] copyOf = Arrays.copyOf(bArr, i);
-        while (length > 0) {
-            byte[] bArr2 = (byte[]) arrayDeque.remove();
-            int min = Math.min(length, bArr2.length);
-            System.arraycopy(bArr2, 0, copyOf, i - length, min);
-            length -= min;
-        }
-        return copyOf;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class b51 extends AnimatorListenerAdapter {
+    public final byte a;
+    public final c51 b;
+
+    public b51(c51 c51Var, byte b) {
+        this.a = b;
+        this.b = c51Var;
     }
 
-    public static byte[] b(InputStream inputStream) {
-        int i;
-        inputStream.getClass();
-        ArrayDeque arrayDeque = new ArrayDeque(20);
-        int i2 = 128;
-        int i3 = 0;
-        while (i3 < 2147483639) {
-            int min = Math.min(i2, 2147483639 - i3);
-            byte[] bArr = new byte[min];
-            arrayDeque.add(bArr);
-            int i4 = 0;
-            while (i4 < min) {
-                int read = inputStream.read(bArr, i4, min - i4);
-                if (read == -1) {
-                    return a(arrayDeque, i3);
-                }
-                i4 += read;
-                i3 += read;
-            }
-            if (i2 < 4096) {
-                i = 4;
-            } else {
-                i = 2;
-            }
-            i2 = gle.d(i2 * i);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        byte b = this.a;
+        c51 c51Var = this.b;
+        switch (b) {
+            case 0:
+                c51Var.N = false;
+                c51Var.e.t(null, false, true);
+                return;
+            default:
+                c51Var.U = 1.0f;
+                c51Var.invalidate();
+                return;
         }
-        if (inputStream.read() == -1) {
-            return a(arrayDeque, 2147483639);
-        }
-        throw new OutOfMemoryError("input is too large to fit in a byte array");
     }
 }

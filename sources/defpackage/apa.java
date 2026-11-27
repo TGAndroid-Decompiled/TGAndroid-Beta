@@ -1,19 +1,39 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class apa implements RequestDelegate {
-    public final byte a;
-    public final Object b;
-    public final Object c;
+import android.graphics.RectF;
+import org.telegram.messenger.Utilities;
+public final class apa {
+    public float a;
+    public float b;
+    public float c;
+    public float d;
+    public long e;
+    public float f;
+    public final bpa g;
 
-    public apa(Object obj, Object obj2, byte b) {
-        this.a = b;
-        this.b = obj;
-        this.c = obj2;
+    public apa(bpa bpaVar) {
+        this.g = bpaVar;
     }
 
-    @Override
-    public final void run(org.telegram.tgnet.TLObject r13, org.telegram.tgnet.TLRPC.TL_error r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.apa.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void a(long j, boolean z) {
+        RectF rectF;
+        bpa bpaVar = this.g;
+        RectF rectF2 = bpaVar.a;
+        o3d o3dVar = Utilities.c;
+        this.e = j + 2000 + o3dVar.nextInt(1000);
+        if (z) {
+            rectF = bpaVar.b;
+        } else {
+            rectF = rectF2;
+        }
+        float abs = Math.abs(((int) o3dVar.nextLong()) % rectF.width()) + rectF.left;
+        float f = rectF.top;
+        this.a = abs;
+        this.b = Math.abs(((int) o3dVar.nextLong()) % rectF.height()) + f;
+        double atan2 = Math.atan2(abs - rectF2.centerX(), this.b - rectF2.centerY());
+        this.c = (float) Math.sin(atan2);
+        this.d = (float) Math.cos(atan2);
+        o3dVar.nextInt(50);
+        this.f = 0.0f;
     }
 }

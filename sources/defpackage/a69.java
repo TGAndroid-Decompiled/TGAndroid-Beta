@@ -1,32 +1,14 @@
 package defpackage;
+public final class a69 {
+    public float a;
+    public float b;
+    public float c;
+    public float d;
 
-import j$.util.Objects;
-public final class a69 extends mm5 {
-    public final transient Object[] c;
-    public final transient boolean d;
-    public final transient int e;
-
-    public a69(int i, int i2, Object[] objArr) {
-        this.c = objArr;
-        this.d = i;
-        this.e = i2;
-    }
-
-    @Override
-    public final Object get(int i) {
-        gre.j(i, this.e);
-        Object obj = this.c[(i << 1) + (this.d ? 1 : 0)];
-        Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final boolean m() {
-        return true;
-    }
-
-    @Override
-    public final int size() {
-        return this.e;
+    public a69(float f, float f2, float f3, float f4) {
+        this.a = f;
+        this.b = f2;
+        this.c = f3;
+        this.d = f4;
     }
 }

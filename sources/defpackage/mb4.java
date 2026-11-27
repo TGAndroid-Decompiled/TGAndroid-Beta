@@ -1,52 +1,77 @@
 package defpackage;
 
-import android.util.SparseIntArray;
+import java.io.File;
+import java.util.ArrayList;
 import org.telegram.messenger.a;
-import org.telegram.tgnet.ConnectionsManager;
 public final class mb4 implements Runnable {
-    public final byte a;
-    public final qb4 b;
+    public final byte a = 1;
+    public final int b;
+    public final ArrayList c;
 
-    public mb4(qb4 qb4Var, byte b) {
-        this.a = b;
-        this.b = qb4Var;
+    public mb4(int i, ArrayList arrayList) {
+        this.b = i;
+        this.c = arrayList;
     }
 
     @Override
     public final void run() {
-        byte b = this.a;
-        int i = 0;
-        int i2 = 1;
-        qb4 qb4Var = this.b;
-        switch (b) {
+        switch (this.a) {
             case 0:
-                qb4Var.L = a.b.getSharedPreferences("uploadinfo", 0);
-                qb4Var.i = a.p();
-                if (w01.a) {
-                    fa4.b("start upload on slow network = " + qb4Var.i);
+                ArrayList arrayList = this.c;
+                int i = this.b;
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    File file = (File) arrayList.get(i2);
+                    File file2 = new File(file.getAbsolutePath() + ".enc");
+                    if (file2.exists()) {
+                        try {
+                            if (!file2.delete()) {
+                                file2.deleteOnExit();
+                            }
+                        } catch (Exception e) {
+                            cc4.g(e, true);
+                        }
+                        try {
+                            File cacheDir = a.b.getCacheDir();
+                            File file3 = new File(cacheDir, file.getName() + ".enc.key");
+                            if (!file3.delete()) {
+                                file3.deleteOnExit();
+                            }
+                        } catch (Exception e2) {
+                            cc4.g(e2, true);
+                        }
+                    } else if (file.exists()) {
+                        try {
+                            if (!file.delete()) {
+                                file.deleteOnExit();
+                            }
+                        } catch (Exception e3) {
+                            cc4.g(e3, true);
+                        }
+                    }
+                    try {
+                        File parentFile = file.getParentFile();
+                        File file4 = new File(parentFile, "q_" + file.getName());
+                        if (file4.exists() && !file4.delete()) {
+                            file4.deleteOnExit();
+                        }
+                    } catch (Exception e4) {
+                        cc4.g(e4, true);
+                    }
                 }
-                if (!qb4Var.i) {
-                    i2 = 8;
+                if (i == 2) {
+                    in5.z().f();
+                    return;
                 }
-                while (i < i2) {
-                    qb4Var.d();
-                    i++;
-                }
-                qb4Var.e();
-                return;
-            case 1:
-                SparseIntArray sparseIntArray = qb4Var.p;
-                while (i < sparseIntArray.size()) {
-                    ConnectionsManager.getInstance(qb4Var.a).cancelRequest(sparseIntArray.valueAt(i), true);
-                    i++;
-                }
-                return;
-            case 2:
-                qb4Var.q.clear();
                 return;
             default:
-                qb4Var.e();
+                int i3 = this.b;
+                uc7.s1(i3).j4(this.c, true);
                 return;
         }
+    }
+
+    public mb4(ArrayList arrayList, int i) {
+        this.c = arrayList;
+        this.b = i;
     }
 }

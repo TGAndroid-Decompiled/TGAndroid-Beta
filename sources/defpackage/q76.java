@@ -1,48 +1,40 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
+import java.util.WeakHashMap;
 public final class q76 implements Runnable {
     public final byte a;
-    public final int b;
-    public final Object c;
-    public final Object d;
-    public final Object e;
+    public final s76 b;
 
-    public q76(int i, TLRPC.TL_error tL_error, d dVar, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
-        this.a = (byte) 19;
-        this.b = i;
-        this.e = tL_error;
-        this.c = dVar;
-        this.d = tL_payments_assignPlayMarketTransaction;
+    public q76(s76 s76Var, byte b) {
+        this.a = b;
+        this.b = s76Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.q76.run():void");
-    }
-
-    public q76(Object obj, int i, Object obj2, Object obj3, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = i;
-        this.d = obj2;
-        this.e = obj3;
-    }
-
-    public q76(Object obj, Object obj2, int i, Object obj3, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.b = i;
-        this.e = obj3;
-    }
-
-    public q76(Object obj, Object obj2, Object obj3, int i, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.b = i;
+        byte b = this.a;
+        s76 s76Var = this.b;
+        switch (b) {
+            case 0:
+                vr3 vr3Var = s76Var.c;
+                if (vr3Var != null) {
+                    vr3Var.setListSelectionHidden(true);
+                    vr3Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                vr3 vr3Var2 = s76Var.c;
+                if (vr3Var2 != null) {
+                    WeakHashMap weakHashMap = ihc.a;
+                    if (vr3Var2.isAttachedToWindow() && s76Var.c.getCount() > s76Var.c.getChildCount() && s76Var.c.getChildCount() <= s76Var.y) {
+                        s76Var.P.setInputMethodMode(2);
+                        s76Var.g();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

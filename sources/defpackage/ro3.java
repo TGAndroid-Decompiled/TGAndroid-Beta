@@ -1,3 +1,10 @@
 package defpackage;
-public final class ro3 extends gk0 {
+
+import android.os.Handler;
+import android.os.Message;
+public final class ro3 implements Handler.Callback {
+    @Override
+    public final boolean handleMessage(Message message) {
+        return true;
+    }
 }

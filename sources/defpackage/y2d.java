@@ -1,3 +1,3 @@
 package defpackage;
-public final class y2d extends ezc {
+public enum y2d extends a3d {
 }

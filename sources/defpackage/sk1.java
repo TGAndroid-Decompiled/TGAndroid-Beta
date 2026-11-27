@@ -1,39 +1,26 @@
 package defpackage;
 
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
+import android.animation.ValueAnimator;
 public final class sk1 {
-    public float a;
-    public float b;
-    public int c;
-    public StaticLayout d;
-    public TextPaint e;
-    public final ArrayList f = new ArrayList();
-    public final AtomicReference g = new AtomicReference();
-    public cm h;
-    public final uk1 i;
+    public final byte a;
+    public int b;
+    public float c;
+    public float d;
+    public ValueAnimator e;
+    public float f = 0.0f;
+    public final uk1 g;
 
-    public sk1(uk1 uk1Var) {
-        this.i = uk1Var;
+    public sk1(uk1 uk1Var, int i) {
+        this.g = uk1Var;
+        this.a = i;
     }
 
-    public final void a(int i, TextPaint textPaint, CharSequence charSequence) {
-        this.e = textPaint;
-        this.c = i;
-        StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i, Layout.Alignment.ALIGN_CENTER, 1.1f, 0.0f, false);
-        this.d = staticLayout;
-        uk1 uk1Var = this.i;
-        k27 k27Var = uk1Var.Q0;
-        ArrayList arrayList = this.f;
-        if (k27Var != null && k27Var.N0) {
-            arrayList.clear();
-        } else {
-            qla.b(uk1Var, staticLayout, -1, i, null, arrayList);
-        }
-        this.h = gm.update(0, (View) uk1Var, false, this.h, this.d);
+    public final void a() {
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.e = ofFloat;
+        ofFloat.setDuration(600L);
+        this.e.setInterpolator(pf0.D1);
+        this.e.addUpdateListener(new g0(this, (byte) 27));
+        this.e.start();
     }
 }

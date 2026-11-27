@@ -1,19 +1,20 @@
 package defpackage;
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
-public final class h59 implements Serializable {
-    public final Pattern a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h59 extends AnimatorListenerAdapter {
+    public final g59 a;
+    public final i59 b;
 
-    public h59(String str) {
-        Pattern compile = Pattern.compile(str);
-        compile.getClass();
-        this.a = compile;
+    public h59(i59 i59Var, g59 g59Var) {
+        this.b = i59Var;
+        this.a = g59Var;
     }
 
-    public final String toString() {
-        String pattern = this.a.toString();
-        pattern.getClass();
-        return pattern;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        g59 g59Var = this.a;
+        g59Var.setLayerType(0, null);
+        this.b.d.removeView(g59Var);
     }
 }

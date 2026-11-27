@@ -1,98 +1,143 @@
 package defpackage;
 
-import java.util.Arrays;
-public final class pj0 implements Cloneable {
-    public static final int[] c = new int[0];
-    public int b = 0;
-    public int[] a = c;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class pj0 {
+    public static volatile pj0[] f = new pj0[4];
+    public static final Object[] g = new Object[4];
+    public final int a;
+    public long b;
+    public nj0 c;
+    public final Set d;
+    public boolean e;
 
-    public final void a(boolean z) {
-        c(this.b + 1);
-        if (z) {
-            int[] iArr = this.a;
-            int i = this.b;
-            int i2 = i / 32;
-            iArr[i2] = iArr[i2] | (1 << (i & 31));
+    static {
+        for (int i = 0; i < 4; i++) {
+            g[i] = new Object();
         }
-        this.b++;
     }
 
-    public final void b(int i, int i2) {
-        if (i2 >= 0 && i2 <= 32) {
-            int i3 = this.b;
-            c(i3 + i2);
-            for (int i4 = i2 - 1; i4 >= 0; i4--) {
-                if (((1 << i4) & i) != 0) {
-                    int[] iArr = this.a;
-                    int i5 = i3 / 32;
-                    iArr[i5] = iArr[i5] | (1 << (i3 & 31));
+    public pj0(int i) {
+        pj0 pj0Var;
+        Exception exc;
+        oj0 oj0Var;
+        this.a = i;
+        SharedPreferences sharedPreferences = uc7.s1(i).X3;
+        this.b = sharedPreferences.getLong("bday_check", 0L);
+        oj0 oj0Var2 = null;
+        String string = sharedPreferences.getString("bday_contacts", null);
+        if (string != null) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.v(string));
+                int readInt32 = serializedData.readInt32(true);
+                if (readInt32 != 290452237) {
+                    try {
+                        int i2 = oj0.b;
+                    } catch (Exception e) {
+                        exc = e;
+                        pj0Var = this;
+                        cc4.g(exc, true);
+                        pj0Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+                    }
+                } else {
+                    try {
+                        oj0Var2 = new oj0();
+                    } catch (Exception e2) {
+                        pj0Var = this;
+                        exc = e2;
+                        cc4.g(exc, true);
+                        pj0Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+                    }
                 }
-                i3++;
+                oj0Var = (oj0) TLObject.TLdeserialize(oj0.class, oj0Var2, serializedData, readInt32, true);
+            } catch (Exception e3) {
+                e = e3;
+                pj0Var = this;
             }
-            this.b = i3;
-            return;
+            if (oj0Var != null && !oj0Var.a.isEmpty()) {
+                ArrayList arrayList = new ArrayList();
+                for (int i3 = 0; i3 < oj0Var.a.size(); i3++) {
+                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) oj0Var.a.get(i3)).contact_id));
+                }
+                pj0Var = this;
+                try {
+                    jf7.Y(i).a.c(new gp6(pj0Var, i, arrayList, oj0Var, (byte) 6));
+                } catch (Exception e4) {
+                    e = e4;
+                    exc = e;
+                    cc4.g(exc, true);
+                    pj0Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+                }
+                pj0Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
+            }
         }
-        w26.j("Num bits must be between 0 and 32");
+        pj0Var = this;
+        pj0Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
     }
 
-    public final void c(int i) {
-        if (i > (this.a.length << 5)) {
-            int[] iArr = new int[(((int) Math.ceil(i / 0.75f)) + 31) / 32];
-            int[] iArr2 = this.a;
-            System.arraycopy(iArr2, 0, iArr, 0, iArr2.length);
-            this.a = iArr;
+    public static pj0 a(int i) {
+        pj0 pj0Var;
+        pj0 pj0Var2 = f[i];
+        if (pj0Var2 == null) {
+            synchronized (g[i]) {
+                pj0Var = f[i];
+                if (pj0Var == null) {
+                    pj0[] pj0VarArr = f;
+                    pj0 pj0Var3 = new pj0(i);
+                    pj0VarArr[i] = pj0Var3;
+                    pj0Var = pj0Var3;
+                }
+            }
+            return pj0Var;
         }
+        return pj0Var2;
     }
 
-    public final Object clone() {
-        int i = this.b;
-        ?? obj = new Object();
-        obj.a = (int[]) this.a.clone();
-        obj.b = i;
-        return obj;
-    }
-
-    public final boolean d(int i) {
-        if ((this.a[i / 32] & (1 << (i & 31))) != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int e() {
-        return (this.b + 7) / 8;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof pj0)) {
-            return false;
-        }
-        pj0 pj0Var = (pj0) obj;
-        if (this.b != pj0Var.b || !Arrays.equals(this.a, pj0Var.a)) {
+    public static boolean d(TLRPC.UserFull userFull) {
+        if (userFull == null || !e(userFull.birthday) || lbc.c(userFull)) {
             return false;
         }
         return true;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(this.a) + (this.b * 31);
+    public static boolean e(TL_account.TL_birthday tL_birthday) {
+        if (tL_birthday == null) {
+            return false;
+        }
+        Calendar calendar = Calendar.getInstance();
+        int i = calendar.get(5);
+        int i2 = calendar.get(2) + 1;
+        if (tL_birthday.day != i || tL_birthday.month != i2) {
+            return false;
+        }
+        return true;
     }
 
-    public final String toString() {
-        char c2;
-        int i = this.b;
-        StringBuilder sb = new StringBuilder((i / 8) + i + 1);
-        for (int i2 = 0; i2 < this.b; i2++) {
-            if ((i2 & 7) == 0) {
-                sb.append(' ');
-            }
-            if (d(i2)) {
-                c2 = 'X';
-            } else {
-                c2 = '.';
-            }
-            sb.append(c2);
+    public final nj0 b() {
+        nj0 nj0Var = this.c;
+        if (nj0Var == null || this.d.contains(nj0Var.a)) {
+            return null;
         }
-        return sb.toString();
+        return this.c;
+    }
+
+    public final boolean c(long j) {
+        nj0 nj0Var = this.c;
+        if (nj0Var != null && nj0Var.a(j)) {
+            return true;
+        }
+        TLRPC.UserFull Y1 = uc7.s1(this.a).Y1(j);
+        if (Y1 != null && e(Y1.birthday) && !lbc.c(Y1)) {
+            return true;
+        }
+        return false;
     }
 }

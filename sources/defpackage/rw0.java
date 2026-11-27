@@ -1,54 +1,31 @@
 package defpackage;
 
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class rw0 implements Runnable {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rw0 implements RequestDelegate {
     public final byte a;
-    public final fx0 b;
+    public final sw0 b;
 
-    public rw0(fx0 fx0Var, byte b) {
+    public rw0(sw0 sw0Var, byte b) {
         this.a = b;
-        this.b = fx0Var;
+        this.b = sw0Var;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         byte b = this.a;
-        fx0 fx0Var = this.b;
+        sw0 sw0Var = this.b;
         switch (b) {
             case 0:
-                ww0 ww0Var = fx0Var.c;
-                gl.B2(ww0Var);
-                fx0Var.i1.getLayoutContainer().addView(ww0Var);
-                return;
-            case 1:
-                fx0Var.dismiss();
-                return;
-            case 2:
-                try {
-                    fx0Var.I();
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
+                xw0 xw0Var = sw0Var.d;
+                if (tLObject instanceof TLRPC.TL_updates) {
+                    uc7.s1(xw0Var.I).Y3((TLRPC.TL_updates) tLObject, false);
                 }
-            case 3:
-                fx0Var.dismiss();
-                d S = LaunchActivity.S();
-                if (S != null) {
-                    S.presentFragment(new PremiumPreviewFragment(0, "create_bot"));
-                    return;
-                }
-                return;
-            case 4:
-                fx0Var.dismiss();
-                kk7.f(y6c.t0).k(191, new Object[0]);
-                gl.d3(new am6((byte) 15), 220L);
+                hl.c3(new wv0(xw0Var, (byte) 16));
                 return;
             default:
-                fx0Var.c0 = true;
-                fx0Var.d0 = true;
+                hl.c3(new tu0(sw0Var, tLObject, tL_error, (byte) 2));
                 return;
         }
     }

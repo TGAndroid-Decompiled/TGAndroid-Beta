@@ -1,43 +1,29 @@
 package defpackage;
 public final class qeb {
-    public final byte a;
+    public static final qeb c = new qeb(-9223372036854775807L, false);
+    public long a;
+    public boolean b;
 
-    public qeb(byte b) {
-        this.a = b;
+    public qeb(long j, boolean z) {
+        this.a = j;
+        this.b = z;
     }
 
-    public final int a(xeb xebVar, int i) {
-        switch (this.a) {
-            case 0:
-            case 3:
-            default:
-                return Integer.MIN_VALUE;
-            case 1:
-                return 0;
-            case 2:
-                return i;
-        }
+    public final void a(long j) {
+        this.a = ls6.r(this.a, j);
     }
 
-    public final int b(xeb xebVar, int i) {
-        switch (this.a) {
-            case 0:
-                return Integer.MIN_VALUE;
-            case 1:
-            case 3:
-            default:
-                return 0;
-            case 2:
-                return i;
+    public final void b(boolean z) {
+        long j;
+        if (z) {
+            j = 1;
+        } else {
+            j = 0;
         }
+        a(j);
     }
 
-    public final int c(int i, int i2) {
-        switch (this.a) {
-            case 4:
-                return i2;
-            default:
-                return i;
-        }
+    public final void c(float f) {
+        a(Float.floatToIntBits(f));
     }
 }

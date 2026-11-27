@@ -1,44 +1,31 @@
 package defpackage;
+public final class ul8 implements Runnable {
+    public final byte a;
+    public final wl8 b;
 
-import android.graphics.RectF;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.ProfileActivity;
-public final class ul8 implements sc7, ht2 {
-    public final ProfileActivity a;
-    public final TLRPC.User b;
-
-    public ul8(ProfileActivity profileActivity, TLRPC.User user) {
-        this.a = profileActivity;
-        this.b = user;
+    public ul8(wl8 wl8Var, byte b) {
+        this.a = b;
+        this.b = wl8Var;
     }
 
     @Override
-    public final void a() {
-        RectF rectF = ProfileActivity.Z6;
-        this.a.G2(this.b);
-    }
-
-    @Override
-    public final void k(boolean z) {
-        d dVar;
-        RectF rectF = ProfileActivity.Z6;
-        ProfileActivity profileActivity = this.a;
-        if (profileActivity.getParentLayout() != null) {
-            List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
-            if (fragmentStack != null && fragmentStack.size() >= 2) {
-                dVar = (d) oo1.m(2, fragmentStack);
-            } else {
-                dVar = null;
-            }
-            if (dVar instanceof mu1) {
-                ((ActionBarLayout) profileActivity.getParentLayout()).a0(fragmentStack.size() - 2);
-            }
+    public final void run() {
+        byte b = this.a;
+        wl8 wl8Var = this.b;
+        switch (b) {
+            case 0:
+                uj3 uj3Var = new uj3(qd4.j(3, "onlySelect", "dialogsType", true));
+                uj3Var.E2 = new m88(wl8Var, "https://t.me/giftcode/" + wl8Var.M2, (byte) 9);
+                wl8Var.r1.presentFragment(uj3Var);
+                wl8Var.dismiss();
+                return;
+            default:
+                kl8 kl8Var = new kl8(wl8Var.r1, yac.t0, null, null, null, wl8Var.J0);
+                kl8Var.E2 = true;
+                kl8Var.F2 = true;
+                kl8Var.X1 = true;
+                wl8Var.r1.showDialog(kl8Var);
+                return;
         }
-        profileActivity.N1 = true;
-        profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().k(kk7.J2, Long.valueOf(profileActivity.i1), this.b, profileActivity.F2, Boolean.valueOf(z));
     }
 }

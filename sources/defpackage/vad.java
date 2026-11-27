@@ -1,41 +1,19 @@
 package defpackage;
+public final class vad extends ybd {
+    public final transient Object[] e;
 
-import java.util.Set;
-public abstract class vad extends x8d implements Set {
-    public transient aad f;
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
-        }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
+    public vad(Object[] objArr) {
+        super((byte) 6);
+        this.e = objArr;
     }
 
     @Override
-    public final int hashCode() {
-        int i;
-        int i2 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i = obj.hashCode();
-            } else {
-                i = 0;
-            }
-            i2 += i;
-        }
-        return i2;
+    public final java.lang.Object get(java.lang.Object r3) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vad.get(java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public final int size() {
+        return 1;
     }
 }

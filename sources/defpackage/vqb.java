@@ -1,33 +1,24 @@
 package defpackage;
-public enum vqb extends qsb {
-    public vqb() {
-        super("ScriptDataDoubleEscaped", 28);
-    }
+
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.UndoView;
+public final class vqb implements View.OnTouchListener {
+    public final byte a;
 
     @Override
-    public final void c(aqb aqbVar, zj1 zj1Var) {
-        char i = zj1Var.i();
-        if (i != 0) {
-            if (i != '-') {
-                if (i != '<') {
-                    if (i != 65535) {
-                        aqbVar.h(zj1Var.g('-', '<', 0));
-                        return;
-                    }
-                    aqbVar.l(this);
-                    aqbVar.c = qsb.a;
-                    return;
-                }
-                aqbVar.f(i);
-                aqbVar.a(qsb.V);
-                return;
-            }
-            aqbVar.f(i);
-            aqbVar.a(qsb.T);
-            return;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.a) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                break;
+            case 4:
+            default:
+                int i = UndoView.j0;
+                break;
         }
-        aqbVar.m(this);
-        zj1Var.a();
-        aqbVar.f((char) 65533);
+        return true;
     }
 }

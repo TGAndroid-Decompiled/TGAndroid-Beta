@@ -1,6 +1,17 @@
 package defpackage;
-public abstract class ide {
-    public static defpackage.rl4 a(android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.ide.a(android.content.Context):rl4");
+public final class ide implements zq7 {
+    public static final ide a = new Object();
+
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -1,36 +1,52 @@
 package defpackage;
-public final class ze0 {
-    public static final ze0 a;
-    public static final ze0 b;
-    public static final ze0 c;
-    public static final ze0 d;
-    public static final ze0[] e;
 
-    static {
-        ?? r0 = new Enum("AZTEC", 0);
-        a = r0;
-        Enum r1 = new Enum("CODABAR", 1);
-        Enum r3 = new Enum("CODE_39", 2);
-        Enum r5 = new Enum("CODE_93", 3);
-        ?? r7 = new Enum("CODE_128", 4);
-        b = r7;
-        Enum r9 = new Enum("DATA_MATRIX", 5);
-        Enum r11 = new Enum("EAN_8", 6);
-        Enum r13 = new Enum("EAN_13", 7);
-        Enum r15 = new Enum("ITF", 8);
-        Enum r2 = new Enum("MAXICODE", 9);
-        ?? r4 = new Enum("PDF_417", 10);
-        c = r4;
-        ?? r6 = new Enum("QR_CODE", 11);
-        d = r6;
-        e = new ze0[]{r0, r1, r3, r5, r7, r9, r11, r13, r15, r2, r4, r6, new Enum("RSS_14", 12), new Enum("RSS_EXPANDED", 13), new Enum("UPC_A", 14), new Enum("UPC_E", 15), new Enum("UPC_EAN_EXTENSION", 16)};
-    }
+import android.graphics.Point;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ze0 extends c4 {
+    public static final Parcelable.Creator<ze0> CREATOR = new ced((byte) 14);
+    public re0 E;
+    public byte[] F;
+    public boolean G;
+    public int a;
+    public String b;
+    public String c;
+    public int d;
+    public Point[] e;
+    public se0 f;
+    public ve0 h;
+    public we0 n;
+    public ye0 r;
+    public xe0 s;
+    public te0 w;
+    public pe0 x;
+    public qe0 y;
 
-    public static ze0 valueOf(String str) {
-        return (ze0) Enum.valueOf(ze0.class, str);
-    }
-
-    public static ze0[] values() {
-        return (ze0[]) e.clone();
+    @Override
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        int i2 = this.a;
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(i2);
+        bye.l(parcel, 3, this.b);
+        bye.l(parcel, 4, this.c);
+        int i3 = this.d;
+        bye.q(parcel, 5, 4);
+        parcel.writeInt(i3);
+        bye.o(parcel, 6, this.e, i);
+        bye.k(parcel, 7, this.f, i);
+        bye.k(parcel, 8, this.h, i);
+        bye.k(parcel, 9, this.n, i);
+        bye.k(parcel, 10, this.r, i);
+        bye.k(parcel, 11, this.s, i);
+        bye.k(parcel, 12, this.w, i);
+        bye.k(parcel, 13, this.x, i);
+        bye.k(parcel, 14, this.y, i);
+        bye.k(parcel, 15, this.E, i);
+        bye.c(parcel, 16, this.F);
+        boolean z = this.G;
+        bye.q(parcel, 17, 4);
+        parcel.writeInt(z ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

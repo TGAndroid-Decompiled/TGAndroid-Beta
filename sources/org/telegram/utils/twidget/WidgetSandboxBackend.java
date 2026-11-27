@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
-public final class WidgetSandboxBackend implements dwc, hvc {
+public final class WidgetSandboxBackend implements s0d, wzc {
     private static final int MAX_CANVAS_WORDS = 2097152;
     private static final int MAX_COMPOSITION_LAYERS = 256;
     private static final int MAX_DISPLAY_OPS = 200000;
@@ -39,16 +39,16 @@ public final class WidgetSandboxBackend implements dwc, hvc {
     private int nextRecord;
     private final z owner;
     private long pendingLayerBytes;
-    private rwc text;
+    private h1d text;
     private final Object recordLock = new Object();
     private final long[] recordTimes = new long[240];
     private final ConcurrentHashMap<Integer, Paint> fonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Paint> deviceFonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Bitmap> images = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, ivc> canvases = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Integer, xzc> canvases = new ConcurrentHashMap<>();
     private final Object canvasLock = new Object();
-    private final HashMap<Integer, jvc> pendingLayers = new HashMap<>();
-    private HashMap<Long, zvc> layerContents = new HashMap<>();
+    private final HashMap<Integer, yzc> pendingLayers = new HashMap<>();
+    private HashMap<Long, o0d> layerContents = new HashMap<>();
     private final y painter = new y();
 
     public WidgetSandboxBackend(z zVar) {
@@ -59,7 +59,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             return;
         }
-        sc8.j("Native layout and recording must run off UI");
+        grb.i("Native layout and recording must run off UI");
     }
 
     public static void checkJsonDepth(String str) {
@@ -80,7 +80,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
             } else if (charAt != '[' && charAt != '{') {
                 if (charAt != ']' && charAt != '}') {
                     if (charAt == '\'' || charAt == '/' || charAt == '#') {
-                        w26.j("Not JSON");
+                        lq5.j("Not JSON");
                         return;
                     }
                 } else if (i2 > 0) {
@@ -89,7 +89,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
             } else {
                 i2++;
                 if (i2 > 32) {
-                    w26.j("JSON nests too deep");
+                    lq5.j("JSON nests too deep");
                     return;
                 }
             }
@@ -149,8 +149,8 @@ public final class WidgetSandboxBackend implements dwc, hvc {
         return true;
     }
 
-    private defpackage.lwc[] layers(org.json.JSONObject r42, float r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.layers(org.json.JSONObject, float):lwc[]");
+    private defpackage.b1d[] layers(org.json.JSONObject r42, float r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.layers(org.json.JSONObject, float):b1d[]");
     }
 
     public static float[] metrics(int i, Paint paint, float f, Rect rect) {
@@ -189,7 +189,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
     private void recordLocked(byte[] bArr, byte[] bArr2, double d, int i, int i2, float f, float f2, int i3, int i4) {
         int i5;
         int i6;
-        ovc nvcVar;
+        d0d c0dVar;
         ?? r1 = bArr;
         if (r1.length <= 8388608) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -207,38 +207,38 @@ public final class WidgetSandboxBackend implements dwc, hvc {
             long nanoTime = System.nanoTime();
             double d2 = d - (nanoTime / 1.0E9d);
             if (Build.VERSION.SDK_INT >= 29) {
-                nvcVar = new mvc(0, 0, i, i2, "widget-sandbox-content");
+                c0dVar = new b0d(0, 0, i, i2, "widget-sandbox-content");
                 i5 = i;
                 i6 = i2;
             } else {
                 i5 = i;
                 i6 = i2;
-                nvcVar = new nvc(0, 0, i5, i6);
+                c0dVar = new c0d(0, 0, i5, i6);
             }
-            ovc ovcVar = nvcVar;
+            d0d d0dVar = c0dVar;
             try {
                 try {
                     try {
-                        jvc b = jvc.b(r1);
+                        yzc b = yzc.b(r1);
                         String text = text(bArr2);
                         checkJsonDepth(text);
                         JSONObject jSONObject = new JSONObject(text);
                         System.nanoTime();
                         this.painter.b(i5, i6);
-                        Canvas a = ovcVar.a();
+                        Canvas a = d0dVar.a();
                         try {
                             a.scale(f, f);
                             this.painter.f(a, b, this, f, 0.0f, 0.0f, i5 / f, i6 / f);
-                            ovcVar.d();
-                            lwc[] layers = layers(jSONObject, f);
+                            d0dVar.d();
+                            b1d[] layers = layers(jSONObject, f);
                             z zVar = this.owner;
                             System.nanoTime();
                             zVar.getClass();
                             zVar.S = null;
-                            this.owner.c(ovcVar, layers, d2, i, i6, f2, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i3, i4, b.b, this.text);
+                            this.owner.c(d0dVar, layers, d2, i, i6, f2, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i3, i4, b.b, this.text);
                             return;
                         } catch (Throwable th) {
-                            ovcVar.d();
+                            d0dVar.d();
                             throw th;
                         }
                     } finally {
@@ -247,7 +247,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                     }
                 } catch (Exception e) {
                     e = e;
-                    r1 = ovcVar;
+                    r1 = d0dVar;
                     r1.b();
                     throw e;
                 }
@@ -258,35 +258,35 @@ public final class WidgetSandboxBackend implements dwc, hvc {
             }
         }
         clearPendingLayers();
-        w26.j("Display list");
+        lq5.j("Display list");
     }
 
-    private ivc reserveCanvas(int i, int i2, int i3) {
-        ivc ivcVar;
+    private xzc reserveCanvas(int i, int i2, int i3) {
+        xzc xzcVar;
         long j = i2 * i3;
         if (j <= 4194304) {
             synchronized (this.canvasLock) {
                 long j2 = j << 3;
                 long imageBytes = imageBytes() + j2;
-                for (Map.Entry<Integer, ivc> entry : this.canvases.entrySet()) {
+                for (Map.Entry<Integer, xzc> entry : this.canvases.entrySet()) {
                     if (entry.getKey().intValue() != i) {
                         imageBytes += entry.getValue().W;
                     }
                 }
                 if (imageBytes <= 33554432) {
-                    ivcVar = this.canvases.get(Integer.valueOf(i));
-                    if (ivcVar == null) {
-                        ivcVar = new ivc(i);
-                        this.canvases.put(Integer.valueOf(i), ivcVar);
+                    xzcVar = this.canvases.get(Integer.valueOf(i));
+                    if (xzcVar == null) {
+                        xzcVar = new xzc(i);
+                        this.canvases.put(Integer.valueOf(i), xzcVar);
                     }
-                    ivcVar.W = j2;
+                    xzcVar.W = j2;
                 } else {
                     throw new IllegalArgumentException("Canvas memory budget");
                 }
             }
-            return ivcVar;
+            return xzcVar;
         }
-        w26.j("Canvas dimensions");
+        lq5.j("Canvas dimensions");
         return null;
     }
 
@@ -303,44 +303,44 @@ public final class WidgetSandboxBackend implements dwc, hvc {
 
     @Override
     public Bitmap canvas(int i) {
-        ivc ivcVar = this.canvases.get(Integer.valueOf(i));
-        if (ivcVar == null) {
+        xzc xzcVar = this.canvases.get(Integer.valueOf(i));
+        if (xzcVar == null) {
             return null;
         }
-        return ivcVar.j();
+        return xzcVar.j();
     }
 
     @Override
     public Bitmap canvasBitmap(int i) {
-        ivc ivcVar = this.canvases.get(Integer.valueOf(i));
-        if (ivcVar == null) {
+        xzc xzcVar = this.canvases.get(Integer.valueOf(i));
+        if (xzcVar == null) {
             return null;
         }
-        return ivcVar.j();
+        return xzcVar.j();
     }
 
     public byte[] canvasRead(int i, int i2, int i3, int i4, int i5) {
         int i6 = i2;
         assertWorker();
         if (i4 > 0 && i5 > 0 && i4 * i5 <= 4194304) {
-            ivc ivcVar = this.canvases.get(Integer.valueOf(i));
-            if (ivcVar == null) {
+            xzc xzcVar = this.canvases.get(Integer.valueOf(i));
+            if (xzcVar == null) {
                 return new byte[(i4 * i5) << 2];
             }
-            synchronized (ivcVar) {
+            synchronized (xzcVar) {
                 byte[] bArr = new byte[(Math.max(i4, 0) * Math.max(i5, 0)) << 2];
-                if (ivcVar.o == null) {
+                if (xzcVar.o == null) {
                     return bArr;
                 }
                 int max = Math.max(0, i6);
                 int max2 = Math.max(0, i3);
-                int min = Math.min(ivcVar.o.getWidth(), i6 + i4);
-                int min2 = Math.min(ivcVar.o.getHeight(), i5 + i3);
+                int min = Math.min(xzcVar.o.getWidth(), i6 + i4);
+                int min2 = Math.min(xzcVar.o.getHeight(), i5 + i3);
                 if (min > max && min2 > max2) {
                     int i7 = min - max;
                     int i8 = min2 - max2;
                     int[] iArr = new int[i7 * i8];
-                    ivcVar.o.getPixels(iArr, 0, i7, max, max2, i7, i8);
+                    xzcVar.o.getPixels(iArr, 0, i7, max, max2, i7, i8);
                     int i9 = max2;
                     while (i9 < min2) {
                         int i10 = max;
@@ -366,7 +366,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
     }
 
     public void canvasRelease(int i) {
-        ivc remove;
+        xzc remove;
         assertWorker();
         synchronized (this.canvasLock) {
             remove = this.canvases.remove(Integer.valueOf(i));
@@ -380,7 +380,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
         assertWorker();
         if (i2 > 0 && i3 > 0) {
             if (iArr.length <= 2097152) {
-                ivc reserveCanvas = reserveCanvas(i, i2, i3);
+                xzc reserveCanvas = reserveCanvas(i, i2, i3);
                 synchronized (reserveCanvas) {
                     Bitmap bitmap = reserveCanvas.o;
                     if (bitmap == null || bitmap.getWidth() != i2 || reserveCanvas.o.getHeight() != i3) {
@@ -412,7 +412,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                 }
                 return;
             }
-            w26.j("Canvas batch");
+            lq5.j("Canvas batch");
             return;
         }
         canvasRelease(i);
@@ -427,7 +427,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
 
     public float[] defineFont(int i, byte[] bArr, float f, int i2, boolean z, byte[] bArr2) {
         if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i))) {
-            w26.j("Too many fonts");
+            lq5.j("Too many fonts");
             return null;
         }
         Paint[] paints = paints(text(bArr), f, i2, z, text(bArr2), this.owner.l);
@@ -484,7 +484,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
     }
 
     public byte[] formatIntl(byte[] bArr) {
-        return i00.d(text(bArr)).getBytes(StandardCharsets.UTF_8);
+        return j00.d(text(bArr)).getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
@@ -512,7 +512,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
         assertWorker();
         long nanoTime = System.nanoTime();
         if (i >= 0 && i < 256 && bArr.length <= 8388608) {
-            jvc b = jvc.b(bArr);
+            yzc b = yzc.b(bArr);
             synchronized (this.recordLock) {
                 long j = this.pendingLayerBytes;
                 if (bArr.length + j <= 16777216) {
@@ -526,23 +526,23 @@ public final class WidgetSandboxBackend implements dwc, hvc {
             }
             return;
         }
-        w26.j("Layer");
+        lq5.j("Layer");
     }
 
     public void selectableText(byte[] bArr) {
-        rwc rwcVar;
+        h1d h1dVar;
         assertWorker();
         String text = text(bArr);
         checkJsonDepth(text);
         try {
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            rwcVar = rwc.a(text, new dkc(concurrentHashMap, (byte) 9), this.owner.l);
+            h1dVar = h1d.a(text, new ftb(concurrentHashMap, (byte) 23), this.owner.l);
         } catch (Exception unused) {
-            rwcVar = null;
+            h1dVar = null;
         }
         synchronized (this.recordLock) {
-            this.text = rwcVar;
+            this.text = h1dVar;
         }
     }
 
@@ -554,13 +554,13 @@ public final class WidgetSandboxBackend implements dwc, hvc {
         JSONObject jSONObject;
         String string;
         boolean optBoolean;
-        long j;
         boolean d;
         byte b;
         boolean z;
         boolean z2;
         boolean z3;
         boolean z4;
+        float f;
         boolean isEmpty;
         String text = text(bArr);
         if (jsonSignal(i)) {
@@ -584,7 +584,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                             hashMap.put(optString, optJSONObject);
                         }
                         if (isEmpty) {
-                            zVar.a.post(new iwc(zVar, (byte) 6));
+                            zVar.a.post(new x0d(zVar, (byte) 6));
                         }
                     }
                 }
@@ -592,9 +592,9 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                 if (i != 12 && i != 19) {
                     if (i != 13) {
                         if (i == 14) {
-                            b = 6;
+                            b = 7;
                         } else if (i == 11) {
-                            zVar.a.post(new isc(zVar, text, (byte) 15));
+                            zVar.a.post(new cxc(zVar, text, (byte) 15));
                             return;
                         } else if (i == 18) {
                             JSONObject jSONObject3 = new JSONObject(text);
@@ -603,23 +603,28 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                         } else if (i != 16 && i != 17 && i != 9) {
                             if (i == 3) {
                                 JSONObject jSONObject4 = new JSONObject(text);
-                                zVar.a.post(new sd4(zVar, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), (byte) 1));
+                                zVar.a.post(new qf4(zVar, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), (byte) 1));
                                 return;
                             } else if (i == 4) {
                                 JSONObject jSONObject5 = new JSONObject(text);
                                 if (jSONObject5.optBoolean("loaded")) {
                                     zVar.B = true;
                                 }
-                                if (!zVar.e0 && jSONObject5.has("engine")) {
-                                    zVar.e0 = true;
-                                    if (w01.a) {
-                                        fa4.b("widget engine: " + jSONObject5.optString("engine") + ", " + jSONObject5.optString("boot"));
+                                if (!zVar.f0 && jSONObject5.has("engine")) {
+                                    zVar.f0 = true;
+                                    if (f11.a) {
+                                        cc4.b("widget engine: " + jSONObject5.optString("engine") + ", " + jSONObject5.optString("boot"));
                                     }
                                 }
                                 zVar.G = "bottom".equals(jSONObject5.optString("resizeAnchor"));
                                 if (jSONObject5.optBoolean("rendered") && !zVar.E) {
                                     double optDouble = jSONObject5.optDouble("height", -1.0d);
-                                    double min = Math.min(600.0f, Math.max(50.0f, zVar.t / zVar.l));
+                                    if (zVar.e0) {
+                                        f = 4000.0f;
+                                    } else {
+                                        f = 600.0f;
+                                    }
+                                    double min = Math.min(f, Math.max(50.0f, zVar.t / zVar.l));
                                     if (zVar.u && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
                                         zVar.F = true;
                                         if (zVar.D == 0) {
@@ -685,7 +690,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                                                         i3++;
                                                     } else {
                                                         z = false;
-                                                        String[] strArr = pvc.m;
+                                                        String[] strArr = e0d.m;
                                                         boolean z5 = false;
                                                         for (int i5 = 0; i5 < 3; i5++) {
                                                             String str2 = strArr[i5];
@@ -716,7 +721,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                                     z3 = z2;
                                 }
                                 if (z3) {
-                                    zVar.a.post(new isc(zVar, jSONObject6, (byte) 16));
+                                    zVar.a.post(new cxc(zVar, jSONObject6, (byte) 16));
                                     return;
                                 }
                                 return;
@@ -727,42 +732,40 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                             return;
                         }
                     } else {
-                        b = 6;
+                        b = 7;
                         if (text == null || text.length() > 256 || !zVar.d.c(zVar.L)) {
                             return;
                         }
                     }
-                    zVar.a.post(new clc(zVar, i, text, b));
+                    zVar.a.post(new mpc(zVar, i, text, b));
                     return;
                 }
                 JSONObject jSONObject7 = new JSONObject(text);
-                long j2 = jSONObject7.getLong("id");
+                long j = jSONObject7.getLong("id");
                 if (i == 19) {
                     string = null;
                     jSONObject = jSONObject7.getJSONObject("call");
-                    j = j2;
                     optBoolean = false;
                 } else {
                     jSONObject = null;
                     string = jSONObject7.getString("data");
                     optBoolean = jSONObject7.optBoolean("wallet");
-                    j = j2;
                 }
-                pvc pvcVar = zVar.d;
+                e0d e0dVar = zVar.d;
                 if (i == 19) {
-                    d = pvcVar.e(jSONObject.toString(), zVar.L);
+                    d = e0dVar.e(jSONObject.toString(), zVar.L);
                 } else {
-                    d = pvcVar.d(string, optBoolean, zVar.L);
+                    d = e0dVar.d(string, optBoolean, zVar.L);
                 }
                 if (!d) {
-                    long j3 = zVar.v;
-                    if (j3 != 0) {
-                        zVar.c.a(j3, j, 3, null);
+                    long j2 = zVar.v;
+                    if (j2 != 0) {
+                        zVar.c.a(j2, j, 3, null);
                         return;
                     }
                     return;
                 }
-                zVar.a.post(new gj2(zVar, i, j, jSONObject, string, optBoolean));
+                zVar.a.post(new ck2(zVar, i, j, jSONObject, string, optBoolean));
             }
         } catch (Exception unused) {
         }
@@ -782,7 +785,7 @@ public final class WidgetSandboxBackend implements dwc, hvc {
                 atomicBoolean.set(z);
                 zVar.x = f;
                 if (zVar.y.compareAndSet(false, true)) {
-                    zVar.a.post(new iwc(zVar, (byte) 5));
+                    zVar.a.post(new x0d(zVar, (byte) 5));
                 }
             }
             if ((i & 4) != 0) {

@@ -3,7 +3,7 @@ package org.telegram.messenger.video;
 import java.nio.ByteBuffer;
 import java.util.List;
 import org.telegram.messenger.video.HevcDecoderConfigurationRecord;
-public class HevcConfigurationBox extends y1 {
+public class HevcConfigurationBox extends z1 {
     public static final String TYPE = "hvcC";
     private HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord;
 

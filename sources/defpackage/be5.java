@@ -1,55 +1,52 @@
 package defpackage;
+public final class be5 {
+    public final x1c a;
+    public boolean b;
+    public boolean c;
+    public boolean d;
+    public int e;
+    public int f;
+    public long g;
+    public long h;
 
-import android.content.Context;
-import android.text.SpannableString;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class be5 implements p8c {
-    public final byte a = 1;
-    public final int b;
-    public final Object c;
-    public final View d;
-    public final Object e;
-    public final Object f;
-    public final Object g;
-    public final ViewGroup h;
-    public final Object i;
-    public final Object j;
-    public final Object k;
-    public final Object l;
-
-    public be5(LinearLayout linearLayout, llc llcVar, wjb wjbVar, int i, TextView textView, cj7[] cj7VarArr, mfb mfbVar, k8c k8cVar, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
-        this.c = linearLayout;
-        this.d = llcVar;
-        this.e = wjbVar;
-        this.b = i;
-        this.f = textView;
-        this.g = cj7VarArr;
-        this.h = mfbVar;
-        this.i = k8cVar;
-        this.j = context;
-        this.k = textViewArr;
-        this.l = spannableStringArr;
+    public be5(x1c x1cVar) {
+        this.a = x1cVar;
     }
 
-    @Override
-    public final void a(java.lang.Object r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.be5.a(java.lang.Object):void");
+    public final void a(int i, int i2, byte[] bArr) {
+        boolean z;
+        if (this.c) {
+            int i3 = this.f;
+            int i4 = (i + 1) - i3;
+            if (i4 < i2) {
+                if (((bArr[i4] & 192) >> 6) == 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                this.d = z;
+                this.c = false;
+                return;
+            }
+            this.f = (i2 - i) + i3;
+        }
     }
 
-    public be5(long[] jArr, u41 u41Var, cm2[] cm2VarArr, i76 i76Var, d76 d76Var, int i, yc ycVar, yc ycVar2, yc ycVar3, ce5 ce5Var, boolean[] zArr) {
-        this.c = jArr;
-        this.d = u41Var;
-        this.e = cm2VarArr;
-        this.f = i76Var;
-        this.g = d76Var;
-        this.b = i;
-        this.h = ycVar;
-        this.i = ycVar2;
-        this.j = ycVar3;
-        this.k = ce5Var;
-        this.l = zArr;
+    public final void b(int i, long j, boolean z) {
+        boolean z2;
+        if (this.h != -9223372036854775807L) {
+            z2 = true;
+        } else {
+            z2 = false;
+        }
+        yve.p(z2);
+        if (this.e == 182 && z && this.b) {
+            boolean z3 = this.d;
+            long j2 = this.h;
+            this.a.a(j2, z3 ? 1 : 0, (int) (j - this.g), i, null);
+        }
+        if (this.e != 179) {
+            this.g = j;
+        }
     }
 }

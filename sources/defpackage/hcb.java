@@ -1,12 +1,8 @@
 package defpackage;
+public interface hcb {
+    void f(boolean z);
 
-import android.graphics.RectF;
-public final class hcb {
-    public final RectF a;
-    public final float b;
+    boolean j(long j, int i, int i2, int i3, icb icbVar);
 
-    public hcb(RectF rectF, float f) {
-        this.a = rectF;
-        this.b = f;
-    }
+    void x(long j, int i, x58 x58Var);
 }

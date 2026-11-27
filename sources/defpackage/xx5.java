@@ -1,93 +1,58 @@
 package defpackage;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.LaunchActivity;
-public final class xx5 implements wi3 {
-    public final byte a = 0;
-    public final LaunchActivity b;
-    public final TLRPC.User c;
-    public final String d;
-    public final int e;
+import android.view.View;
+public final class xx5 implements View.OnClickListener {
+    public final byte a;
+    public final wy5 b;
 
-    public xx5(LaunchActivity launchActivity, String str, int i, TLRPC.User user) {
-        this.b = launchActivity;
-        this.d = str;
-        this.e = i;
-        this.c = user;
+    public xx5(wy5 wy5Var, byte b) {
+        this.a = b;
+        this.b = wy5Var;
     }
 
     @Override
-    public final boolean G() {
+    public final void onClick(View view) {
         byte b = this.a;
-        return false;
-    }
-
-    @Override
-    public final boolean r(cj3 cj3Var, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, qvb qvbVar) {
-        byte b = this.a;
-        int i3 = this.e;
-        String str = this.d;
-        TLRPC.User user = this.c;
-        LaunchActivity launchActivity = this.b;
+        wy5 wy5Var = this.b;
         switch (b) {
             case 0:
-                String str2 = LaunchActivity.C1;
-                long j = ((zc7) arrayList.get(0)).a;
-                TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
-                TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.id = tL_inputGameShortName;
-                tL_inputGameShortName.short_name = str;
-                tL_inputGameShortName.bot_id = na7.q1(i3).o1(user);
-                z3a.B(i3).o0(na7.q1(i3).h1(j), tL_inputMediaGame, 0L, 0L);
-                Bundle l = ir2.l("scrollToTopOnResume", true);
-                if (cf3.B(j)) {
-                    l.putInt("enc_id", (int) (j & 4294967295L));
-                } else if (cf3.D(j)) {
-                    l.putLong("user_id", j);
+                if (wy5Var.D0) {
+                    wy5Var.t0(null, true);
+                    return;
                 } else {
-                    l.putLong("chat_id", -j);
+                    wy5Var.E0(0);
+                    return;
                 }
-                if (na7.q1(i3).A(l, cj3Var, null, null)) {
-                    kk7.f(i3).k(4, new Object[0]);
-                    ((ActionBarLayout) launchActivity.N()).U(new mu1(l), true, false);
+            case 1:
+                int i = wy5Var.Q0;
+                wy5Var.E0(1);
+                wy5Var.postDelayed(new by5(wy5Var, (byte) 1), 350L);
+                ly5 ly5Var = new ly5(wy5Var, wy5Var.getContext(), wy5Var.A1);
+                wy5Var.K1 = ly5Var;
+                ly5Var.y1 = new ey5(wy5Var);
+                ly5Var.K0(new p12(wy5Var, (byte) 4));
+                ly5Var.setOnDismissListener(new gy5(wy5Var, ly5Var, i, (byte) 0));
+                ly5Var.show();
+                wy5Var.q0(true);
+                return;
+            case 2:
+                wy5Var.g0();
+                n8 n8Var = wy5Var.B1;
+                if (n8Var != null && n8Var.isShowing()) {
+                    wy5Var.B1.d(true);
+                    return;
                 }
-                return true;
+                return;
+            case 3:
+                wy5Var.n0();
+                return;
             default:
-                String str3 = LaunchActivity.C1;
-                long j2 = ((zc7) arrayList.get(0)).a;
-                Bundle l2 = ir2.l("scrollToTopOnResume", true);
-                if (cf3.B(j2)) {
-                    l2.putInt("enc_id", (int) (j2 & 4294967295L));
-                } else if (cf3.D(j2)) {
-                    l2.putLong("user_id", j2);
-                } else {
-                    l2.putLong("chat_id", -j2);
+                wy5Var.E0(2);
+                if (!(wy5Var.C0 instanceof rlb)) {
+                    wy5Var.f0(true);
+                    return;
                 }
-                l2.putString("attach_bot", l7c.p(user));
-                if (str != null) {
-                    l2.putString("attach_bot_start_command", str);
-                }
-                if (na7.q1(i3).A(l2, cj3Var, null, null)) {
-                    kk7.f(i3).k(4, new Object[0]);
-                    ((ActionBarLayout) launchActivity.N()).U(new mu1(l2), true, false);
-                }
-                return true;
+                return;
         }
-    }
-
-    @Override
-    public final boolean t(cj3 cj3Var) {
-        byte b = this.a;
-        return false;
-    }
-
-    public xx5(LaunchActivity launchActivity, TLRPC.User user, String str, int i) {
-        this.b = launchActivity;
-        this.c = user;
-        this.d = str;
-        this.e = i;
     }
 }

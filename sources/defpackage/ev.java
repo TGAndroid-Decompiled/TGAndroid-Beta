@@ -1,48 +1,43 @@
 package defpackage;
 
-import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
-import org.telegram.tgnet.tl.TL_iv;
-public final class ev extends HorizontalScrollView {
-    public final vg5 a;
-    public final gv b;
+import org.telegram.ui.o;
+public final class ev implements View.OnScrollChangeListener {
+    public final byte a;
+    public final Object b;
 
-    public ev(gv gvVar, Activity activity, vg5 vg5Var) {
-        super(activity);
-        this.b = gvVar;
-        this.a = vg5Var;
+    public ev(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
     @Override
-    public final void onScrollChanged(int i, int i2, int i3, int i4) {
-        gv gvVar;
-        TL_iv.pageBlockPreformatted pageblockpreformatted;
-        super.onScrollChanged(i, i2, i3, i4);
-        vg5 vg5Var = this.a;
-        if (vg5Var.d != null) {
-            vg5Var.d = null;
-            vg5Var.f = null;
-        }
-        gv gvVar2 = this.b;
-        TL_iv.pageBlockPreformatted pageblockpreformatted2 = gvVar2.f;
-        if (pageblockpreformatted2 != null && pageblockpreformatted2.diff && !gvVar2.n) {
-            dx dxVar = gvVar2.b;
-            if (dxVar != null) {
-                dxVar.I = i;
-            }
-            if (gvVar2.getParent() instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) gvVar2.getParent();
-                for (int i5 = 0; i5 < viewGroup.getChildCount(); i5++) {
-                    View childAt = viewGroup.getChildAt(i5);
-                    if (childAt != gvVar2 && (childAt instanceof gv) && (pageblockpreformatted = (gvVar = (gv) childAt).f) != null && pageblockpreformatted.diff) {
-                        gvVar.n = true;
-                        gvVar.d.scrollTo(i, 0);
-                        gvVar.n = false;
-                    }
+    public final void onScrollChange(View view, int i, int i2, int i3, int i4) {
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                amb ambVar = ((o) ((xi5) obj)).Q0;
+                if (ambVar != null && ambVar.w()) {
+                    ambVar.v();
+                    return;
                 }
-            }
+                return;
+            default:
+                v94 v94Var = (v94) obj;
+                float f = v94Var.R;
+                if (f <= 0.0f || f >= 1.0f) {
+                    if (f >= 1.0f) {
+                        for (int i5 = 0; i5 < v94Var.O; i5++) {
+                            if (v94Var.i(i5)) {
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
+                v94Var.requestLayout();
+                return;
         }
     }
 }

@@ -1,18 +1,25 @@
 package defpackage;
 
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-public final class gyb extends ShapeDrawable.ShaderFactory {
-    public final mj5 a;
+import java.util.ArrayList;
+public final class gyb implements Runnable {
+    public final byte a;
+    public final qyb b;
+    public final long c;
+    public final ArrayList d;
+    public final boolean e;
+    public final long f;
 
-    public gyb(mj5 mj5Var) {
-        this.a = mj5Var;
+    public gyb(qyb qybVar, long j, ArrayList arrayList, boolean z, long j2, byte b) {
+        this.a = b;
+        this.b = qybVar;
+        this.c = j;
+        this.d = arrayList;
+        this.e = z;
+        this.f = j2;
     }
 
     @Override
-    public final Shader resize(int i, int i2) {
-        mj5 mj5Var = this.a;
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, mj5Var.a, mj5Var.b, Shader.TileMode.CLAMP);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gyb.run():void");
     }
 }

@@ -1,39 +1,35 @@
 package defpackage;
+public final class ycf extends ljf {
+    private static final ycf zzb;
+    private int zzd;
+    private int zze;
+    private long zzf;
+    private int zzg;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-public final class ycf extends b4 {
-    public static final Parcelable.Creator<ycf> CREATOR = new c0f((byte) 25);
-    public final ArrayList a;
-
-    public ycf(ArrayList arrayList) {
-        fre.h(arrayList);
-        this.a = arrayList;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof ycf) {
-            ArrayList arrayList = ((ycf) obj).a;
-            ArrayList arrayList2 = this.a;
-            if (arrayList2.containsAll(arrayList) && arrayList.containsAll(arrayList2)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{new HashSet(this.a)});
+    static {
+        ?? ljfVar = new ljf();
+        zzb = ljfVar;
+        ljf.e(ycf.class, ljfVar);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.p(parcel, 1, this.a);
-        jte.s(parcel, r);
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new kjf(zzb);
+                }
+                return new ljf();
+            }
+            return new ilf(zzb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0000\u0000\u0001᠌\u0000\u0002ဂ\u0001\u0003᠌\u0002", new Object[]{"zzd", "zze", rg7.s, "zzf", "zzg", uif.h});
+        }
+        return (byte) 1;
     }
 }

@@ -1,197 +1,210 @@
 package defpackage;
 
-import android.util.SparseIntArray;
+import android.content.Context;
 import android.view.View;
-public final class hxa extends zde {
-    public int a;
-    public final ywa b;
-    public final t26 c;
-    public final SparseIntArray d = new SparseIntArray();
-    public int e = -1;
-    public int f = -1;
-    public int g = -1;
-    public int h = -1;
-    public int i = -1;
-    public int j = -1;
-    public int k = -1;
-    public int l = -1;
-    public int m = -1;
-    public int n = -1;
-    public int o = -1;
-    public int p = -1;
-    public int q = -1;
-    public int r = -1;
-    public int s = -1;
-    public int t = -1;
-    public int u = -1;
-    public int v = -1;
-    public int w = -1;
-    public int x = -1;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.LaunchActivity;
+public final class hxa {
+    public final cxa a;
+    public final r47 b;
+    public final zu1 c;
+    public final v21 d;
+    public final p21 e;
+    public final ixa f;
+    public final boolean g;
+    public long h;
+    public long k;
+    public boolean l;
+    public boolean m;
+    public lva o;
+    public final fxa p;
+    public final jxa q;
+    public boolean i = false;
+    public boolean j = false;
+    public Long n = null;
 
-    public hxa(ywa ywaVar, t26 t26Var) {
-        this.b = ywaVar;
-        this.c = t26Var;
-    }
-
-    @Override
-    public final boolean a(int i, int i2) {
-        if (this.d.get(i) == this.b.d(i2)) {
-            return true;
+    public hxa(jxa jxaVar, cxa cxaVar, r47 r47Var, zu1 zu1Var, boolean z) {
+        this.q = jxaVar;
+        boolean z2 = false;
+        fxa fxaVar = new fxa(this, (byte) 0);
+        this.p = fxaVar;
+        this.a = cxaVar;
+        this.b = r47Var;
+        this.c = zu1Var;
+        Context q = jxa.q(zu1Var);
+        p21 p21Var = new p21(q, zu1Var.Ba);
+        this.e = p21Var;
+        p21Var.a.f(2131624221, 32, 32, null);
+        p21Var.b.setText(d());
+        t21 t21Var = new t21(zu1Var.Ba, q, true, false);
+        t21Var.e(ob6.M0(2131744680, null));
+        t21Var.b = new fxa(this, (byte) 1);
+        ?? o21Var = new o21(q, zu1Var.Ba);
+        this.f = o21Var;
+        o21Var.b = 5000L;
+        int i = aob.xj;
+        xu1 xu1Var = zu1Var.Ba;
+        vr9 vr9Var = new vr9((byte) 28);
+        vr9 vr9Var2 = new vr9((byte) 29);
+        int P = yob.P(i, -1, 0, 0.0f, xu1Var);
+        vr9Var2.e(P, o21Var);
+        sob w = yob.w(101, o21Var);
+        w.c(i, -1, 0, 0.0f, xu1Var);
+        w.n = vr9Var;
+        w.o = vr9Var2;
+        w.m = false;
+        w.g = P;
+        t21Var.addView((View) o21Var, tre.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        t21Var.e.setPadding(hl.L(12.0f), hl.L(8.0f), hl.L(30.0f), hl.L(8.0f));
+        p21Var.setButton(t21Var);
+        v21 b = d31.b0(zu1Var).b(p21Var, -1);
+        this.d = b;
+        b.s = false;
+        if (z) {
+            b.k(true);
+            this.m = true;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean b(int i, int i2) {
-        SparseIntArray sparseIntArray = this.d;
-        int i3 = sparseIntArray.get(i);
-        ywa ywaVar = this.b;
-        if (i3 == 13 && ywaVar.d(i2) == 13) {
-            return true;
-        }
-        if (sparseIntArray.get(i) == 10 && ywaVar.d(i2) == 10) {
-            return true;
-        }
-        int i4 = this.w;
-        if (i >= i4 && i <= this.x) {
-            if (i - i4 == i2 - ywaVar.J) {
-                return true;
-            }
-            return false;
-        } else if (i == this.e && i2 == ywaVar.e) {
-            return true;
-        } else {
-            if (i == this.f && i2 == ywaVar.h) {
-                return true;
-            }
-            if (i == this.g && i2 == ywaVar.r) {
-                return true;
-            }
-            if (i == this.h && i2 == ywaVar.s) {
-                return true;
-            }
-            if (i == this.i && i2 == ywaVar.w) {
-                return true;
-            }
-            if (i == this.j && i2 == ywaVar.x) {
-                return true;
-            }
-            if (i == this.k && i2 == ywaVar.y) {
-                return true;
-            }
-            if (i == this.l && i2 == ywaVar.n) {
-                return true;
-            }
-            if (i == this.m && i2 == ywaVar.E) {
-                return true;
-            }
-            if (i == this.q && i2 == ywaVar.L) {
-                return true;
-            }
-            if (i == this.r && i2 == ywaVar.M) {
-                return true;
-            }
-            if (i == this.s && i2 == ywaVar.N) {
-                return true;
-            }
-            if (i == this.t && i2 == ywaVar.O) {
-                return true;
-            }
-            if (i == this.u && i2 == ywaVar.P) {
-                return true;
-            }
-            if (i == this.v && i2 == ywaVar.Q) {
-                return true;
-            }
-            if (i == this.n && i2 == ywaVar.F) {
-                return true;
-            }
-            if (i == this.o && i2 == ywaVar.G) {
-                return true;
-            }
-            if (i == this.p && i2 == ywaVar.H) {
-                return true;
-            }
-            return false;
-        }
-    }
-
-    @Override
-    public final int c() {
-        return this.b.d0;
-    }
-
-    @Override
-    public final int d() {
-        return this.a;
-    }
-
-    public final void e() {
-        int i;
-        long j;
-        View m;
-        SparseIntArray sparseIntArray = this.d;
-        sparseIntArray.clear();
-        ywa ywaVar = this.b;
-        this.a = ywaVar.d0;
-        int i2 = 0;
-        for (int i3 = 0; i3 < this.a; i3++) {
-            sparseIntArray.put(i3, ywaVar.d(i3));
-        }
-        this.e = ywaVar.e;
-        this.f = ywaVar.h;
-        this.g = ywaVar.r;
-        this.h = ywaVar.s;
-        this.i = ywaVar.w;
-        this.j = ywaVar.x;
-        this.k = ywaVar.y;
-        this.l = ywaVar.n;
-        this.m = ywaVar.E;
-        this.w = ywaVar.J;
-        this.x = ywaVar.K;
-        this.n = ywaVar.F;
-        this.o = ywaVar.G;
-        this.p = ywaVar.H;
-        this.q = ywaVar.L;
-        this.r = ywaVar.M;
-        this.s = ywaVar.N;
-        this.t = ywaVar.O;
-        this.u = ywaVar.P;
-        this.v = ywaVar.Q;
-        ywaVar.E();
-        t26 t26Var = this.c;
-        int K0 = t26Var.K0();
-        int M0 = t26Var.M0();
-        while (true) {
-            if (K0 <= M0) {
-                if (ywaVar.c(K0) != -1 && (m = t26Var.m(K0)) != null) {
-                    j = ywaVar.c(K0);
-                    i = m.getTop();
-                    break;
-                }
-                K0++;
-            } else {
-                i = 0;
-                j = -1;
-                break;
-            }
-        }
-        vu7.a(this, true).c(ywaVar);
-        if (j != -1) {
+        b.w = fxaVar;
+        this.h = 0L;
+        System.currentTimeMillis();
+        if (r47Var.k.reactions != null) {
+            int i2 = 0;
             while (true) {
-                if (i2 < ywaVar.d0) {
-                    if (ywaVar.c(i2) == j) {
-                        break;
-                    }
-                    i2++;
-                } else {
-                    i2 = -1;
+                if (i2 >= r47Var.k.reactions.results.size()) {
                     break;
+                } else if (r47Var.k.reactions.results.get(i2).reaction instanceof TLRPC.TL_reactionPaid) {
+                    z2 = r47Var.k.reactions.results.get(i2).chosen;
+                    break;
+                } else {
+                    i2++;
                 }
             }
-            if (i2 > 0) {
-                t26Var.g1(i2, i);
-            }
         }
+        this.g = z2;
+    }
+
+    public final void a() {
+        jxa jxaVar = this.q;
+        int i = jxaVar.a;
+        hl.r(this.p);
+        this.j = true;
+        this.d.b();
+        lva lvaVar = this.o;
+        if (lvaVar != null) {
+            lvaVar.c();
+        }
+        boolean z = this.g;
+        long c = c();
+        r47 r47Var = this.b;
+        r47Var.f((int) (-this.h), c, z);
+        jxaVar.g -= this.h;
+        jn7.f(i).k(jn7.A3, new Object[0]);
+        jn7.f(i).k(jn7.o1, Long.valueOf(r47.B0(r47Var.k)), Integer.valueOf(r47Var.e1()), r47Var.k.reactions);
+        if (jxaVar.B == this) {
+            jxaVar.B = null;
+        }
+    }
+
+    public final void b() {
+        r47 r47Var;
+        String str;
+        int i = jn7.A3;
+        hl.r(this.p);
+        if (this.l) {
+            if (!this.i && !this.j) {
+                jxa v = jxa.v(this.q.a, false);
+                uc7 s1 = uc7.s1(this.q.a);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.q.a);
+                long j = this.h;
+                if (v.e && v.n(null, false, false).amount < j) {
+                    this.j = true;
+                    this.b.f((int) (-this.h), c(), this.g);
+                    jxa jxaVar = this.q;
+                    jxaVar.g = 0L;
+                    jn7.f(jxaVar.a).k(i, new Object[0]);
+                    jn7.f(this.q.a).k(jn7.o1, Long.valueOf(r47.B0(this.b.k)), Integer.valueOf(this.b.e1()), this.b.k.reactions);
+                    int i2 = (this.a.a > 0L ? 1 : (this.a.a == 0L ? 0 : -1));
+                    zu1 zu1Var = this.c;
+                    if (i2 >= 0) {
+                        str = lbc.l(zu1Var.getMessagesController().X1(Long.valueOf(this.a.a)));
+                    } else {
+                        TLRPC.Chat M0 = zu1Var.getMessagesController().M0(Long.valueOf(-this.a.a));
+                        if (M0 == null) {
+                            str = "";
+                        } else {
+                            str = M0.title;
+                        }
+                    }
+                    String str2 = str;
+                    Context parentActivity = this.c.getParentActivity();
+                    if (parentActivity == null) {
+                        parentActivity = LaunchActivity.H1;
+                    }
+                    if (parentActivity == null) {
+                        parentActivity = a.b;
+                    }
+                    new dza(parentActivity, this.c.getResourceProvider(), j, 5, str2, new gxa(this, j, (byte) 0), 0L).show();
+                } else {
+                    this.i = true;
+                    TLRPC.TL_messages_sendPaidReaction tL_messages_sendPaidReaction = new TLRPC.TL_messages_sendPaidReaction();
+                    tL_messages_sendPaidReaction.peer = s1.j1(this.a.a);
+                    tL_messages_sendPaidReaction.msg_id = this.a.b;
+                    tL_messages_sendPaidReaction.random_id = (Utilities.b.nextLong() & 4294967295L) | (connectionsManager.getCurrentTime() << 32);
+                    tL_messages_sendPaidReaction.count = (int) this.h;
+                    tL_messages_sendPaidReaction.flags |= 1;
+                    long c = c();
+                    if (c != 0 && c != yac.h(this.q.a).e()) {
+                        if (c == 2666000) {
+                            tL_messages_sendPaidReaction.privacy = new TL_stars.paidReactionPrivacyAnonymous();
+                        } else {
+                            TL_stars.paidReactionPrivacyPeer paidreactionprivacypeer = new TL_stars.paidReactionPrivacyPeer();
+                            tL_messages_sendPaidReaction.privacy = paidreactionprivacypeer;
+                            paidreactionprivacypeer.peer = s1.j1(c);
+                        }
+                    } else {
+                        tL_messages_sendPaidReaction.privacy = new TL_stars.paidReactionPrivacyDefault();
+                    }
+                    this.q.L();
+                    connectionsManager.sendRequest(tL_messages_sendPaidReaction, new p87(this, s1, j));
+                }
+            }
+        } else {
+            this.j = true;
+            this.b.f((int) (-this.h), c(), this.g);
+            jxa jxaVar2 = this.q;
+            jxaVar2.g -= this.h;
+            jn7.f(jxaVar2.a).k(i, new Object[0]);
+        }
+        this.d.b();
+        lva lvaVar = this.o;
+        if (lvaVar != null && (r47Var = this.b) != null && r47Var.e1() == lvaVar.c) {
+            this.o.c();
+        }
+        jxa jxaVar3 = this.q;
+        if (jxaVar3.B == this) {
+            jxaVar3.B = null;
+        }
+    }
+
+    public final long c() {
+        Long l = this.n;
+        if (l != null) {
+            return l.longValue();
+        }
+        return this.q.x(this.b);
+    }
+
+    public final String d() {
+        if (c() == 2666000) {
+            return ob6.M0(2131744686, null);
+        }
+        if (c() != 0 && c() != yac.h(this.q.a).e()) {
+            return ob6.a0(null, null, 2131744681, wf3.s(c()));
+        }
+        return ob6.M0(2131744682, null);
     }
 }

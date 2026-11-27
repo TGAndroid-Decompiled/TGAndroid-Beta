@@ -1,30 +1,36 @@
 package defpackage;
-public final class agf implements dgf {
-    public final dgf[] a;
+public final class agf extends ljf {
+    private static final agf zzb;
+    private int zzd;
+    private String zze = "";
+    private long zzf;
+    private long zzg;
+    private bgf zzh;
 
-    public agf(dgf... dgfVarArr) {
-        this.a = dgfVarArr;
+    static {
+        agf agfVar = new agf();
+        zzb = agfVar;
+        ljf.e(agf.class, agfVar);
     }
 
     @Override
-    public final sgf zzb(Class cls) {
-        for (int i = 0; i < 2; i++) {
-            dgf dgfVar = this.a[i];
-            if (dgfVar.zzc(cls)) {
-                return dgfVar.zzb(cls);
+    public final Object h(int i, ljf ljfVar) {
+        int i2 = i - 1;
+        if (i2 != 0) {
+            if (i2 != 2) {
+                if (i2 != 3) {
+                    if (i2 != 4) {
+                        if (i2 != 5) {
+                            return null;
+                        }
+                        return zzb;
+                    }
+                    return new kjf(zzb);
+                }
+                return new agf();
             }
+            return new ilf(zzb, "\u0001\u0004\u0000\u0001\u0001\u0004\u0004\u0000\u0000\u0000\u0001ဈ\u0000\u0002ဂ\u0001\u0003ဂ\u0002\u0004ဉ\u0003", new Object[]{"zzd", "zze", "zzf", "zzg", "zzh"});
         }
-        fyb.i("No factory is available for message type: ".concat(cls.getName()));
-        return null;
-    }
-
-    @Override
-    public final boolean zzc(Class cls) {
-        for (int i = 0; i < 2; i++) {
-            if (this.a[i].zzc(cls)) {
-                return true;
-            }
-        }
-        return false;
+        return (byte) 1;
     }
 }

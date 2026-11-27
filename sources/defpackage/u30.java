@@ -1,26 +1,9 @@
 package defpackage;
-public interface u30 {
-    void A2(long j, int i, long j2);
+public final class u30 extends Exception {
+    public final boolean a;
+    public final ko4 b;
 
-    void D(pd5 pd5Var);
-
-    void E1();
-
-    void L();
-
-    void S();
-
-    void d(int i);
-
-    void f1();
-
-    void h(boolean z);
-
-    void o(long j);
-
-    void p2();
-
-    void t0(pd5 pd5Var);
-
-    void w1(Exception exc);
+    public u30(int r3, int r4, int r5, int r6, defpackage.ko4 r7, boolean r8, defpackage.q00 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.u30.<init>(int, int, int, int, ko4, boolean, q00):void");
+    }
 }

@@ -1,18 +1,32 @@
 package defpackage;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class hzb extends rzb {
-    public final Runnable T1;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class hzb extends v79 {
+    public final byte a;
+    public final tzb b;
 
-    public hzb(Activity activity, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i, boolean z, Runnable runnable) {
-        super(activity, str, str2, charSequence, inputPeer, i, z, null);
-        this.T1 = runnable;
+    public hzb(tzb tzbVar, byte b) {
+        this.a = b;
+        this.b = tzbVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T1.run();
+    public final void b(RecyclerView recyclerView, int i, int i2) {
+        tq3 tq3Var;
+        byte b = this.a;
+        tzb tzbVar = this.b;
+        switch (b) {
+            case 0:
+                tzbVar.z0();
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (tq3Var = tzbVar.i1) != null) {
+                    tq3Var.f(i, i2);
+                    tzbVar.y0();
+                    return;
+                }
+                return;
+        }
     }
 }

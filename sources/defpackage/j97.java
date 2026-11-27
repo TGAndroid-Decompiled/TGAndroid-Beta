@@ -1,17 +1,17 @@
 package defpackage;
-public final class j97 implements Runnable {
-    public final byte a;
-    public final int b;
-    public final e c;
 
-    public j97(int i, e eVar, byte b) {
+import java.util.Comparator;
+public final class j97 implements Comparator {
+    public final byte a;
+    public final uc7 b;
+
+    public j97(uc7 uc7Var, byte b) {
         this.a = b;
-        this.b = i;
-        this.c = eVar;
+        this.b = uc7Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.j97.run():void");
+    public final int compare(java.lang.Object r12, java.lang.Object r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.j97.compare(java.lang.Object, java.lang.Object):int");
     }
 }

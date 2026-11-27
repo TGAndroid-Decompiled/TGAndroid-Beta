@@ -28,17 +28,17 @@ public final class g extends AnimatorListenerAdapter {
             oVar.i0.i();
             oVar.b1.a(oVar.v0[0].getBackgroundColor(), true);
             oVar.c1.a(oVar.v0[1].getBackgroundColor(), true);
-            sw swVar = oVar.L;
-            if (swVar != null) {
-                swVar.y();
+            tw twVar = oVar.L;
+            if (twVar != null) {
+                twVar.y();
             }
             for (int size = arrayList.size() - 1; size > this.a; size--) {
                 arrayList2.add(arrayList.remove(size));
             }
             oVar.Q0.Q(oVar.v0[0].b);
-            fib fibVar = oVar.Q0;
-            fibVar.z0 = oVar.v0[0].d;
-            fibVar.e(true);
+            amb ambVar = oVar.Q0;
+            ambVar.z0 = oVar.v0[0].d;
+            ambVar.e(true);
             oVar.g0(false);
             oVar.d0();
             oVar.v0[1].a();
@@ -48,11 +48,11 @@ public final class g extends AnimatorListenerAdapter {
             while (i < size2) {
                 Object obj = arrayList2.get(i);
                 i++;
-                if (obj instanceof zv) {
-                    ((zv) obj).a();
+                if (obj instanceof aw) {
+                    ((aw) obj).a();
                 }
                 if (obj instanceof TLRPC.WebPage) {
-                    ctc.o((TLRPC.WebPage) obj);
+                    rxc.o((TLRPC.WebPage) obj);
                 }
             }
         } else {

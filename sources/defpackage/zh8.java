@@ -1,314 +1,792 @@
 package defpackage;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Property;
+import android.view.ActionMode;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.a;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class zh8 extends FrameLayout {
-    public boolean a;
-    public boolean b;
-    public final Paint c;
-    public final PremiumPreviewFragment d;
+import org.telegram.ui.ActionBar.e;
+import org.telegram.ui.Components.CheckBoxBase;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public class zh8 extends FrameLayout implements xeb, s84 {
+    public final iz1 E;
+    public Integer F;
+    public final fm0 a;
+    public final fm0 b;
+    public final vnb c;
+    public final qy d;
+    public yg8 e;
+    public final ImageView f;
+    public final ImageView h;
+    public ema n;
+    public final og2 r;
+    public boolean s;
+    public boolean w;
+    public AnimatorSet x;
+    public boolean y;
 
-    public zh8(PremiumPreviewFragment premiumPreviewFragment, Context context) {
+    public zh8(Context context, int i, View.OnClickListener onClickListener, vnb vnbVar) {
         super(context);
-        this.d = premiumPreviewFragment;
-        this.c = new Paint(1);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        View view;
-        int bottom;
-        a aVar;
-        a aVar2;
-        a aVar3;
+        int i2;
+        int i3;
         float f;
-        a aVar4;
+        int i4;
         float f2;
-        cra craVar;
+        int i5;
+        int i6;
+        int i7;
         float f3;
-        ?? r11;
-        Canvas canvas2;
-        ui5 ui5Var;
-        ui5 ui5Var2;
-        a aVar5;
-        a aVar6;
-        a aVar7;
-        PremiumPreviewFragment premiumPreviewFragment = this.d;
-        boolean z = premiumPreviewFragment.i0;
-        mh8 mh8Var = premiumPreviewFragment.n0;
-        if (Build.VERSION.SDK_INT >= 31 && premiumPreviewFragment.x0 != null) {
-            premiumPreviewFragment.m0();
-        }
-        if (!premiumPreviewFragment.a0) {
-            boolean z2 = premiumPreviewFragment.b0;
-            float f4 = premiumPreviewFragment.c0;
+        float f4;
+        int i8;
+        int i9;
+        float f5;
+        float f6;
+        int i10;
+        int i11;
+        float f7;
+        float f8;
+        int i12;
+        k43 k43Var = k43.h;
+        this.a = new fm0(0, this, k43Var, 380L, false);
+        this.b = new fm0(1, this, k43Var, 380L, false);
+        this.c = vnbVar;
+        qy qyVar = new qy(this, context, vnbVar, (byte) 2);
+        this.d = qyVar;
+        qyVar.setAllowTextEntitiesIntersection(true);
+        yob.X(qyVar, aob.G6, vnbVar);
+        yob.G(qyVar, aob.Xc, vnbVar);
+        yob.D(qyVar, aob.H6, vnbVar);
+        qyVar.setTextSize(1, 16.0f);
+        qyVar.setMaxLines(Integer.MAX_VALUE);
+        qyVar.setBackground(null);
+        qyVar.setImeOptions(qyVar.getImeOptions() | 268435456);
+        qyVar.setInputType(qyVar.getInputType() | 16384);
+        qyVar.setPadding(hl.L(4.0f), hl.L(10.0f), hl.L(4.0f), hl.L(11.0f));
+        if (onClickListener != null) {
+            if (i == 1) {
+                i6 = 92;
+            } else {
+                i6 = 58;
+            }
+            boolean z = ob6.a0;
+            if (z) {
+                i7 = 5;
+            } else {
+                i7 = 3;
+            }
+            int i13 = i7 | 16;
+            if (z) {
+                f3 = i6;
+            } else {
+                f3 = 54.0f;
+            }
+            if (!z) {
+                f4 = i6;
+            } else {
+                f4 = 54.0f;
+            }
+            addView(qyVar, tre.d(-1, -2.0f, i13, f3, 0.0f, f4, 0.0f));
+            ImageView imageView = new ImageView(context);
+            this.h = imageView;
+            imageView.setFocusable(false);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
+            imageView.setImageResource(2131231853);
+            int i14 = aob.m6;
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            yob.s(imageView, i14, vnbVar, mode);
+            if (ob6.a0) {
+                i8 = 5;
+            } else {
+                i8 = 3;
+            }
+            addView(imageView, tre.d(48, 48.0f, i8 | 48, 6.0f, 2.0f, 6.0f, 0.0f));
+            ImageView imageView2 = new ImageView(context);
+            this.f = imageView2;
+            imageView2.setFocusable(false);
+            imageView2.setScaleType(scaleType);
+            int i15 = aob.Mi;
+            hf0 f0 = aob.f0(aob.v0(i15, vnbVar), 1, -1);
+            uob M = yob.M(i15);
+            imageView2.setBackground(f0);
+            yob.j(imageView2, f0, null, M, vnbVar);
+            imageView2.setImageResource(2131232577);
+            imageView2.setOnClickListener(onClickListener);
+            yob.s(imageView2, i14, vnbVar, mode);
+            imageView2.setContentDescription(ob6.M0(2131751563, null));
+            boolean z2 = ob6.a0;
             if (z2) {
-                float f5 = f4 + 0.016f;
-                premiumPreviewFragment.c0 = f5;
-                if (f5 > 3.0f) {
-                    premiumPreviewFragment.b0 = false;
-                }
+                i9 = 3;
             } else {
-                float f6 = f4 - 0.016f;
-                premiumPreviewFragment.c0 = f6;
-                if (f6 < 1.0f) {
-                    premiumPreviewFragment.b0 = true;
-                }
+                i9 = 5;
             }
-        }
-        if (premiumPreviewFragment.a.getLayoutManager() != null) {
-            view = premiumPreviewFragment.a.getLayoutManager().m(0);
+            int i16 = i9 | 48;
+            if (z2) {
+                f5 = 3.0f;
+            } else {
+                f5 = 0.0f;
+            }
+            if (z2) {
+                f6 = 0.0f;
+            } else {
+                f6 = 3.0f;
+            }
+            addView(imageView2, tre.d(48, 50.0f, i16, f5, 0.0f, f6, 0.0f));
+            ema emaVar = new ema(context);
+            this.n = emaVar;
+            emaVar.setTextSize(13);
+            ema emaVar2 = this.n;
+            if (ob6.a0) {
+                i10 = 3;
+            } else {
+                i10 = 5;
+            }
+            emaVar2.setGravity(i10 | 48);
+            View view = this.n;
+            boolean z3 = ob6.a0;
+            if (z3) {
+                i11 = 3;
+            } else {
+                i11 = 5;
+            }
+            int i17 = i11 | 48;
+            if (z3) {
+                f7 = 20.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            if (z3) {
+                f8 = 0.0f;
+            } else {
+                f8 = 20.0f;
+            }
+            addView(view, tre.d(48, 24.0f, i17, f7, 43.0f, f8, 0.0f));
+            og2 og2Var = new og2(21, vnbVar, context);
+            this.r = og2Var;
+            og2Var.b(-1, i14, aob.k7);
+            og2Var.setContentDescription(ob6.M0(2131754791, null));
+            og2Var.setDrawUnchecked(true);
+            og2Var.a(true, false);
+            og2Var.setAlpha(0.0f);
+            og2Var.setDrawBackgroundAsArc(8);
+            if (ob6.a0) {
+                i12 = 5;
+            } else {
+                i12 = 3;
+            }
+            addView(og2Var, tre.d(48, 48.0f, i12 | 48, 6.0f, 2.0f, 6.0f, 0.0f));
+            og2Var.setOnClickListener(new View.OnClickListener(this) {
+                public final zh8 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void onClick(View view2) {
+                    byte b = r2;
+                    zh8 zh8Var = this.b;
+                    switch (b) {
+                        case 0:
+                            og2 og2Var2 = zh8Var.r;
+                            if (og2Var2.getTag() != null) {
+                                zh8Var.i(zh8Var, !og2Var2.a.q);
+                                return;
+                            }
+                            return;
+                        default:
+                            zh8Var.k(zh8Var);
+                            return;
+                    }
+                }
+            });
         } else {
-            view = null;
+            if (i == 1) {
+                i2 = 70;
+            } else {
+                i2 = 19;
+            }
+            boolean z4 = ob6.a0;
+            if (z4) {
+                i3 = 5;
+            } else {
+                i3 = 3;
+            }
+            int i18 = i3 | 16;
+            if (z4) {
+                f = i2;
+            } else {
+                f = 19.0f;
+            }
+            addView(qyVar, tre.d(-1, -2.0f, i18, f, 0.0f, z4 ? 19.0f : i2, 0.0f));
         }
-        if (view == null) {
-            bottom = 0;
-        } else {
-            bottom = view.getBottom();
+        if (i == 1) {
+            iz1 iz1Var = new iz1(context);
+            this.E = iz1Var;
+            yob.s(iz1Var, aob.m6, vnbVar, PorterDuff.Mode.SRC_IN);
+            iz1Var.j(gz1.e, false);
+            int L = hl.L(9.5f);
+            iz1Var.setPadding(L, L, L, L);
+            iz1Var.setVisibility(8);
+            if (this.f == null) {
+                i4 = 3;
+            } else {
+                i4 = 38;
+            }
+            boolean z5 = ob6.a0;
+            if (z5) {
+                f2 = i4;
+                i5 = 3;
+            } else {
+                f2 = 0.0f;
+                i5 = 5;
+            }
+            addView(iz1Var, tre.d(48, 48.0f, i5, f2, 0.0f, z5 ? 0.0f : i4, 0.0f));
+            int i19 = aob.Mi;
+            hf0 f02 = aob.f0(aob.v0(i19, vnbVar), 1, -1);
+            uob M2 = yob.M(i19);
+            iz1Var.setBackground(f02);
+            yob.j(iz1Var, f02, null, M2, vnbVar);
+            iz1Var.setOnClickListener(new View.OnClickListener(this) {
+                public final zh8 b;
+
+                {
+                    this.b = this;
+                }
+
+                @Override
+                public final void onClick(View view2) {
+                    byte b = r2;
+                    zh8 zh8Var = this.b;
+                    switch (b) {
+                        case 0:
+                            og2 og2Var2 = zh8Var.r;
+                            if (og2Var2.getTag() != null) {
+                                zh8Var.i(zh8Var, !og2Var2.a.q);
+                                return;
+                            }
+                            return;
+                        default:
+                            zh8Var.k(zh8Var);
+                            return;
+                    }
+                }
+            });
+            iz1Var.setContentDescription(ob6.M0(2131751161, null));
         }
-        premiumPreviewFragment.d0 = bottom;
-        aVar = ((d) premiumPreviewFragment).actionBar;
-        float f7 = 16.0f;
-        int L = gl.L(16.0f) + aVar.getBottom();
-        float f8 = 1.0f - ((premiumPreviewFragment.d0 - L) / (premiumPreviewFragment.Z - L));
-        premiumPreviewFragment.g0 = f8;
-        premiumPreviewFragment.g0 = Utilities.i(f8, 1.0f, 0.0f);
-        aVar2 = ((d) premiumPreviewFragment).actionBar;
-        int L2 = gl.L(16.0f) + aVar2.getBottom();
-        int i = premiumPreviewFragment.d0;
-        if (i < L2) {
-            premiumPreviewFragment.d0 = L2;
-            i = L2;
+    }
+
+    @Override
+    public final boolean a() {
+        return false;
+    }
+
+    public final yg8 b() {
+        int i;
+        float f;
+        float f2;
+        int i2;
+        int i3;
+        float f3;
+        int i4;
+        float f4;
+        float f5;
+        ImageView imageView = this.f;
+        if (imageView != null) {
+            imageView.setVisibility(8);
         }
-        float f9 = premiumPreviewFragment.r0;
-        premiumPreviewFragment.r0 = 0.0f;
-        if (i < gl.L(30.0f) + L2) {
-            premiumPreviewFragment.r0 = ((gl.L(30.0f) + L2) - premiumPreviewFragment.d0) / gl.L(30.0f);
-        }
-        if (premiumPreviewFragment.X) {
-            premiumPreviewFragment.r0 = 1.0f;
-            premiumPreviewFragment.g0 = 1.0f;
-        }
-        if (f9 != premiumPreviewFragment.r0) {
-            premiumPreviewFragment.a.invalidate();
-        }
-        int i2 = premiumPreviewFragment.d0;
-        aVar3 = ((d) premiumPreviewFragment).actionBar;
-        int measuredHeight = i2 - ((premiumPreviewFragment.V.getMeasuredHeight() + aVar3.getMeasuredHeight()) - premiumPreviewFragment.Y);
-        if (premiumPreviewFragment.V.e.getVisibility() == 0) {
-            f = 24.0f;
-        } else {
-            f = 16.0f;
-        }
-        int L3 = gl.L(f) + measuredHeight;
-        aVar4 = ((d) premiumPreviewFragment).actionBar;
-        float max = Math.max((((((aVar4.getMeasuredHeight() - premiumPreviewFragment.Y) - premiumPreviewFragment.V.a.getMeasuredHeight()) / 2.0f) + premiumPreviewFragment.Y) - premiumPreviewFragment.V.getTop()) - premiumPreviewFragment.V.a.getTop(), gl.L(24.0f) + L3);
-        float L4 = ((-max) / 4.0f) + gl.L(16.0f);
-        premiumPreviewFragment.V.setTranslationY(max);
-        n84 n84Var = premiumPreviewFragment.V.d;
-        if (premiumPreviewFragment.h0) {
-            f7 = 9.0f;
-        }
-        n84Var.setTranslationY(L4 + gl.L(f7));
-        float f10 = premiumPreviewFragment.g0;
-        float A = tb4.A(1.0f, f10, 0.4f, 0.6f);
-        if (f10 > 0.5f) {
-            f2 = (f10 - 0.5f) / 0.5f;
-        } else {
-            f2 = 0.0f;
-        }
-        float f11 = 1.0f - f2;
-        premiumPreviewFragment.V.d.setScaleX(A);
-        premiumPreviewFragment.V.d.setScaleY(A);
-        premiumPreviewFragment.V.d.setAlpha(f11);
-        premiumPreviewFragment.V.b.setAlpha(f11);
-        premiumPreviewFragment.V.e.setAlpha(f11);
-        premiumPreviewFragment.W.setAlpha(1.0f - premiumPreviewFragment.g0);
-        premiumPreviewFragment.W.setTranslationY(premiumPreviewFragment.V.c.getY() + premiumPreviewFragment.V.getY() + ((-(craVar.getMeasuredHeight() - premiumPreviewFragment.V.d.getMeasuredWidth())) / 2.0f));
-        float L5 = gl.L(72.0f) - premiumPreviewFragment.V.a.getLeft();
-        float f12 = premiumPreviewFragment.g0;
-        if (f12 > 0.3f) {
-            f3 = (f12 - 0.3f) / 0.7f;
-        } else {
-            f3 = 0.0f;
-        }
-        premiumPreviewFragment.V.a.setTranslationX((1.0f - s33.h.getInterpolation(1.0f - f3)) * L5);
-        ei8 ei8Var = premiumPreviewFragment.V;
-        ei8Var.d.b.s = (((getMeasuredWidth() * 0.1f) * premiumPreviewFragment.c0) + (premiumPreviewFragment.V.c.getX() + ei8Var.getX())) / getMeasuredWidth();
-        ei8 ei8Var2 = premiumPreviewFragment.V;
-        ei8Var2.d.b.t = (premiumPreviewFragment.V.c.getY() + ei8Var2.getY()) / getMeasuredHeight();
-        if (!premiumPreviewFragment.a0) {
-            invalidate();
-            premiumPreviewFragment.L.invalidate();
-            premiumPreviewFragment.K.invalidate();
-        }
-        mh8Var.d(0, (-getMeasuredWidth()) * 0.1f * premiumPreviewFragment.c0, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+        yg8 yg8Var = new yg8(getContext(), 38);
+        this.e = yg8Var;
+        yg8Var.setFocusable(false);
+        yg8 yg8Var2 = this.e;
+        int i5 = aob.Mi;
+        vnb vnbVar = this.c;
+        yob.R(yg8Var2, aob.f0(aob.v0(i5, vnbVar), 1, -1), null, yob.M(i5), vnbVar);
+        iye.a(this.e);
+        yg8 yg8Var3 = this.e;
+        boolean z = ob6.a0;
+        int i6 = 5;
         if (z) {
-            int i3 = bkb.Z6;
-            int themedColor = premiumPreviewFragment.getThemedColor(i3);
-            Paint paint = this.c;
-            paint.setColor(themedColor);
-            boolean z3 = false;
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-            if (premiumPreviewFragment.r0 > 0.0f) {
-                aVar6 = ((d) premiumPreviewFragment).actionBar;
-                if (aVar6 != null) {
-                    paint.setColor(bm2.f(premiumPreviewFragment.r0, premiumPreviewFragment.getThemedColor(i3), premiumPreviewFragment.getThemedColor(bkb.c6)));
-                    float measuredWidth = getMeasuredWidth();
-                    aVar7 = ((d) premiumPreviewFragment).actionBar;
-                    float height = aVar7.getHeight();
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, measuredWidth, height, paint);
-                    r11 = z3;
-                }
-            }
-            canvas2 = canvas;
-            r11 = z3;
+            i = 3;
         } else {
-            r11 = 0;
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), mh8Var.f);
+            i = 5;
         }
-        super.dispatchDraw(canvas);
-        if (premiumPreviewFragment.K.getVisibility() != 0) {
-            premiumPreviewFragment.w0.b(premiumPreviewFragment.p0.d, r11);
-            premiumPreviewFragment.w0.setBounds(r11, getHeight() - premiumPreviewFragment.p0.d, getWidth(), getHeight());
-            premiumPreviewFragment.w0.draw(canvas2);
-        }
-        ui5Var = ((d) premiumPreviewFragment).parentLayout;
-        if (ui5Var != null && z) {
-            ui5Var2 = ((d) premiumPreviewFragment).parentLayout;
-            int i4 = (int) (premiumPreviewFragment.r0 * 255.0f);
-            aVar5 = ((d) premiumPreviewFragment).actionBar;
-            ((ActionBarLayout) ui5Var2).n(canvas2, i4, aVar5.getBottom());
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int measuredWidth;
-        int measuredHeight;
-        PremiumPreviewFragment premiumPreviewFragment = this.d;
-        float x = premiumPreviewFragment.V.c.getX() + premiumPreviewFragment.V.getX();
-        float y = premiumPreviewFragment.V.c.getY() + premiumPreviewFragment.V.getY();
-        RectF rectF = gl.P;
-        n84 n84Var = premiumPreviewFragment.V.d;
-        if (n84Var == null) {
-            measuredWidth = 0;
+        int i7 = i | 48;
+        if (z) {
+            f = 4.0f;
         } else {
-            measuredWidth = n84Var.getMeasuredWidth();
+            f = 0.0f;
         }
-        float f = measuredWidth + x;
-        n84 n84Var2 = premiumPreviewFragment.V.d;
-        if (n84Var2 == null) {
-            measuredHeight = 0;
+        if (z) {
+            f2 = 0.0f;
         } else {
-            measuredHeight = n84Var2.getMeasuredHeight();
+            f2 = 4.0f;
         }
-        rectF.set(x, y, f, measuredHeight + y);
-        if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.a) && !premiumPreviewFragment.a.J1) {
-            motionEvent.offsetLocation(-x, -y);
-            if (motionEvent.getAction() != 0 && motionEvent.getAction() != 2) {
-                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    this.a = false;
-                }
+        addView(yg8Var3, tre.d(48, 50.0f, i7, f, 0.0f, f2, 0.0f));
+        iz1 iz1Var = this.E;
+        if (iz1Var != null) {
+            boolean z2 = ob6.a0;
+            if (z2) {
+                i4 = 3;
             } else {
-                this.a = true;
+                i4 = 5;
             }
-            premiumPreviewFragment.V.d.dispatchTouchEvent(motionEvent);
-            return true;
+            int i8 = i4 | 48;
+            if (z2) {
+                f4 = 44.0f;
+            } else {
+                f4 = 0.0f;
+            }
+            if (z2) {
+                f5 = 0.0f;
+            } else {
+                f5 = 44.0f;
+            }
+            iz1Var.setLayoutParams(tre.d(48, 48.0f, i8, f4, 1.0f, f5, 0.0f));
         }
-        float x2 = premiumPreviewFragment.V.e.getX() + premiumPreviewFragment.V.getX();
-        float y2 = premiumPreviewFragment.V.e.getY() + premiumPreviewFragment.V.getY();
-        rectF.set(x2, y2, premiumPreviewFragment.V.e.getWidth() + x2, premiumPreviewFragment.V.e.getHeight() + y2);
-        if (premiumPreviewFragment.r0 < 1.0f && ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.b) && !premiumPreviewFragment.a.J1)) {
-            motionEvent.offsetLocation(-x2, -y2);
-            if (motionEvent.getAction() == 0) {
-                this.b = true;
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                this.b = false;
+        qy qyVar = this.d;
+        if (qyVar != null) {
+            if (ob6.a0) {
+                i2 = ((ViewGroup.MarginLayoutParams) qyVar.getLayoutParams()).rightMargin;
+            } else {
+                i2 = ((ViewGroup.MarginLayoutParams) qyVar.getLayoutParams()).leftMargin;
             }
-            premiumPreviewFragment.V.e.dispatchTouchEvent(motionEvent);
-            if (this.b) {
-                return true;
+            float f6 = i2 / hl.p;
+            if (iz1Var != null) {
+                i3 = 70;
+            } else {
+                i3 = 19;
             }
+            int i9 = i3 + 24;
+            boolean z3 = ob6.a0;
+            if (!z3) {
+                i6 = 3;
+            }
+            int i10 = i6 | 16;
+            if (z3) {
+                f3 = i9;
+            } else {
+                f3 = f6;
+            }
+            if (!z3) {
+                f6 = i9;
+            }
+            qyVar.setLayoutParams(tre.d(-1, -2.0f, i10, f3, 0.0f, f6, 0.0f));
         }
-        return super.dispatchTouchEvent(motionEvent);
+        return this.e;
+    }
+
+    public final void c(TextWatcher textWatcher) {
+        this.d.addTextChangedListener(textWatcher);
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        PremiumPreviewFragment premiumPreviewFragment = this.d;
-        n84 n84Var = premiumPreviewFragment.V.d;
-        n84Var.b.u = n84Var.getMeasuredWidth() / getMeasuredWidth();
-        n84 n84Var2 = premiumPreviewFragment.V.d;
-        n84Var2.b.v = n84Var2.getMeasuredHeight() / getMeasuredHeight();
-        ei8 ei8Var = premiumPreviewFragment.V;
-        ei8Var.d.b.s = (premiumPreviewFragment.V.d.getX() + ei8Var.getX()) / getMeasuredWidth();
-        ei8 ei8Var2 = premiumPreviewFragment.V;
-        ei8Var2.d.b.t = (premiumPreviewFragment.V.d.getY() + ei8Var2.getY()) / getMeasuredHeight();
+    public final void d(TextWatcher textWatcher) {
+        this.d.addTextChangedListener(textWatcher);
+    }
+
+    public final void e() {
+        int i;
+        float f;
+        float f2;
+        this.y = true;
+        ema emaVar = new ema(getContext());
+        this.n = emaVar;
+        emaVar.setTextSize(13);
+        ema emaVar2 = this.n;
+        int i2 = 5;
+        if (ob6.a0) {
+            i = 3;
+        } else {
+            i = 5;
+        }
+        emaVar2.setGravity(i | 48);
+        ema emaVar3 = this.n;
+        boolean z = ob6.a0;
+        if (z) {
+            i2 = 3;
+        }
+        int i3 = i2 | 48;
+        if (z) {
+            f = 20.0f;
+        } else {
+            f = 0.0f;
+        }
+        if (z) {
+            f2 = 0.0f;
+        } else {
+            f2 = 20.0f;
+        }
+        addView(emaVar3, tre.d(48, 24.0f, i3, f, 17.0f, f2, 0.0f));
+    }
+
+    public boolean f() {
+        return true;
+    }
+
+    public boolean g(zh8 zh8Var) {
+        return false;
+    }
+
+    public og2 getCheckBox() {
+        return this.r;
+    }
+
+    @Override
+    public EditTextBoldCursor getEditField() {
+        return this.d;
+    }
+
+    @Override
+    public float getEditFieldBottomOffset() {
+        return 0.0f;
+    }
+
+    @Override
+    public Editable getEditText() {
+        return this.d.getText();
+    }
+
+    public iz1 getEmojiButton() {
+        return this.E;
+    }
+
+    @Override
+    public CharSequence getFieldText() {
+        qy qyVar = this.d;
+        if (qyVar.length() > 0) {
+            return qyVar.getText();
+        }
+        return null;
+    }
+
+    @Override
+    public e getParentFragment() {
+        return null;
+    }
+
+    public String getText() {
+        return this.d.getText().toString();
+    }
+
+    public EditTextBoldCursor getTextView() {
+        return this.d;
+    }
+
+    public ema getTextView2() {
+        return this.n;
+    }
+
+    public void i(zh8 zh8Var, boolean z) {
+        this.r.a(z, true);
+    }
+
+    public boolean m(ArrayList arrayList) {
+        return false;
+    }
+
+    public final void n(boolean z, boolean z2) {
+        boolean z3;
+        float f;
+        float f2;
+        og2 og2Var = this.r;
+        if (og2Var.getTag() != null) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        if (z == z3) {
+            return;
+        }
+        AnimatorSet animatorSet = this.x;
+        Integer num = null;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.x = null;
+        }
+        if (z) {
+            num = 1;
+        }
+        og2Var.setTag(num);
+        ImageView imageView = this.h;
+        float f3 = 0.0f;
+        if (z2) {
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.x = animatorSet2;
+            if (z) {
+                f2 = 1.0f;
+            } else {
+                f2 = 0.0f;
+            }
+            float[] fArr = {f2};
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(og2Var, property, fArr);
+            if (!z) {
+                f3 = 1.0f;
+            }
+            animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(imageView, property, f3));
+            this.x.setDuration(180L);
+            this.x.start();
+            return;
+        }
+        if (z) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
+        }
+        og2Var.setAlpha(f);
+        if (!z) {
+            f3 = 1.0f;
+        }
+        imageView.setAlpha(f3);
+    }
+
+    public final void o(CharSequence charSequence, String str, boolean z) {
+        ImageView imageView = this.f;
+        if (imageView != null) {
+            imageView.setTag(null);
+        }
+        qy qyVar = this.d;
+        qyVar.setText(charSequence);
+        if (!TextUtils.isEmpty(charSequence)) {
+            qyVar.setSelection(qyVar.length());
+        }
+        qyVar.setHint(str);
+        this.w = z;
+        setWillNotDraw(!z);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        og2 og2Var = this.r;
+        if (og2Var != null) {
+            n(p(), false);
+            og2Var.a(g(this), false);
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f;
+        float L;
+        int i;
+        if (this.w && f()) {
+            boolean z = ob6.a0;
+            float f2 = 20.0f;
+            ImageView imageView = this.h;
+            if (z) {
+                L = 0.0f;
+            } else {
+                if (imageView != null) {
+                    f = 58.0f;
+                } else {
+                    f = 20.0f;
+                }
+                L = hl.L(f);
+            }
+            float f3 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (ob6.a0) {
+                if (imageView != null) {
+                    f2 = 58.0f;
+                }
+                i = hl.L(f2);
+            } else {
+                i = 0;
+            }
+            canvas.drawLine(f3, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, aob.j0);
+        }
     }
 
     @Override
     public final void onMeasure(int i, int i2) {
-        boolean z;
-        int i3 = 0;
-        if (View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2)) {
-            z = true;
+        iz1 iz1Var;
+        ImageView imageView;
+        qy qyVar;
+        int i3;
+        float f;
+        int size = View.MeasureSpec.getSize(i);
+        int i4 = 0;
+        while (true) {
+            int childCount = getChildCount();
+            iz1Var = this.E;
+            imageView = this.f;
+            qyVar = this.d;
+            if (i4 >= childCount) {
+                break;
+            }
+            View childAt = getChildAt(i4);
+            if (childAt != qyVar) {
+                if (childAt == imageView) {
+                    imageView.measure(View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                } else if (childAt == iz1Var) {
+                    iz1Var.measure(View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                } else {
+                    ImageView imageView2 = this.h;
+                    if (childAt == imageView2) {
+                        imageView2.measure(View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                    } else {
+                        ema emaVar = this.n;
+                        if (childAt == emaVar) {
+                            emaVar.measure(View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(24.0f), 1073741824));
+                        } else {
+                            og2 og2Var = this.r;
+                            if (childAt == og2Var) {
+                                og2Var.measure(View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(hl.L(48.0f), 1073741824));
+                            } else {
+                                ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+                                if (layoutParams != null) {
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824), View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824));
+                                } else {
+                                    childAt.measure(i, i2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            i4++;
+        }
+        Integer num = this.F;
+        if (num != null) {
+            i3 = num.intValue();
+        } else if (this.n == null) {
+            i3 = 42;
+        } else if (imageView == null) {
+            i3 = 70;
+        } else if (iz1Var != null) {
+            i3 = 144;
         } else {
-            z = false;
+            i3 = 122;
         }
-        PremiumPreviewFragment premiumPreviewFragment = this.d;
-        premiumPreviewFragment.X = z;
-        premiumPreviewFragment.Y = gl.m;
-        premiumPreviewFragment.V.measure(i, 0);
-        premiumPreviewFragment.W.getLayoutParams().height = premiumPreviewFragment.V.getMeasuredHeight();
-        FrameLayout frameLayout = premiumPreviewFragment.K;
-        if (frameLayout != null && frameLayout.getVisibility() != 8) {
-            i3 = gl.L(68.0f);
-        }
-        wb4 wb4Var = premiumPreviewFragment.Q;
-        wb4Var.M = (premiumPreviewFragment.Y + i3) - gl.L(16.0f);
-        wb4Var.o1();
-        premiumPreviewFragment.Q.S = i3;
-        super.onMeasure(i, i2);
-        if (((getMeasuredWidth() + getMeasuredHeight()) << 16) != 0) {
-            premiumPreviewFragment.w0();
+        qyVar.measure(View.MeasureSpec.makeMeasureSpec(((size - getPaddingLeft()) - getPaddingRight()) - hl.L(i3), 1073741824), 0);
+        int measuredHeight = qyVar.getMeasuredHeight();
+        setMeasuredDimension(size, Math.max(hl.L(50.0f), qyVar.getMeasuredHeight()) + (this.w ? 1 : 0));
+        ema emaVar2 = this.n;
+        if (emaVar2 != null && !this.y) {
+            if (measuredHeight >= hl.L(52.0f)) {
+                f = 1.0f;
+            } else {
+                f = 0.0f;
+            }
+            emaVar2.setAlpha(f);
         }
     }
 
+    public boolean p() {
+        return false;
+    }
+
+    public void setEmojiButtonVisibility(boolean z) {
+        this.b.a(z, true);
+    }
+
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        PremiumPreviewFragment premiumPreviewFragment = this.d;
-        ArrayList arrayList = premiumPreviewFragment.c;
-        ArrayList arrayList2 = premiumPreviewFragment.b;
-        int i5 = 0;
-        for (int i6 = 0; i6 < arrayList2.size(); i6++) {
-            premiumPreviewFragment.M.a((fi8) arrayList2.get(i6), false);
-            premiumPreviewFragment.M.measure(View.MeasureSpec.makeMeasureSpec(i, 1073741824), View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
-            ((fi8) arrayList2.get(i6)).e = i5;
-            i5 += premiumPreviewFragment.M.getMeasuredHeight();
+    public void setFieldText(CharSequence charSequence) {
+        this.d.setText(charSequence);
+    }
+
+    public void setIconsColor(int i) {
+        vnb vnbVar = this.c;
+        ImageView imageView = this.h;
+        if (imageView != null) {
+            yob.s(imageView, i, vnbVar, PorterDuff.Mode.MULTIPLY);
         }
-        for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            premiumPreviewFragment.M.a((fi8) arrayList.get(i7), false);
-            premiumPreviewFragment.M.measure(View.MeasureSpec.makeMeasureSpec(i, 1073741824), View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
-            ((fi8) arrayList.get(i7)).e = i5;
-            i5 += premiumPreviewFragment.M.getMeasuredHeight();
+        ImageView imageView2 = this.f;
+        if (imageView2 != null) {
+            yob.s(imageView2, i, vnbVar, PorterDuff.Mode.MULTIPLY);
         }
-        premiumPreviewFragment.O = i5;
+        iz1 iz1Var = this.E;
+        if (iz1Var != null) {
+            yob.s(iz1Var, i, vnbVar, PorterDuff.Mode.SRC_IN);
+        }
+    }
+
+    public void setShowNextButton(boolean z) {
+        this.s = z;
+    }
+
+    public void setText2(String str) {
+        ema emaVar = this.n;
+        if (emaVar == null) {
+            return;
+        }
+        emaVar.l(str, false);
+    }
+
+    public void setTextColor(int i) {
+        this.d.setTextColor(i);
+    }
+
+    public void setTextRight(int i) {
+        this.F = Integer.valueOf(i);
+    }
+
+    @Override
+    public final void t(int i, float f, float f2, t84 t84Var) {
+        iz1 iz1Var;
+        int i2;
+        if (i == 0) {
+            og2 og2Var = this.r;
+            if (og2Var != null) {
+                CheckBoxBase checkBoxBase = og2Var.getCheckBoxBase();
+                float f3 = this.a.e;
+                if (checkBoxBase.w != f3) {
+                    checkBoxBase.w = f3;
+                    checkBoxBase.b();
+                }
+                og2Var.invalidate();
+            }
+        } else if (i == 1 && (iz1Var = this.E) != null) {
+            float f4 = this.b.e;
+            float f5 = 0.85f * f4;
+            iz1Var.setScaleX(f5);
+            iz1Var.setScaleY(f5);
+            iz1Var.setAlpha(f4);
+            if (f4 > 0.0f) {
+                i2 = 0;
+            } else {
+                i2 = 8;
+            }
+            iz1Var.setVisibility(i2);
+            ema emaVar = this.n;
+            if (emaVar != null && this.f == null && emaVar.getVisibility() == 0) {
+                yg8 yg8Var = this.e;
+                ema emaVar2 = this.n;
+                if (yg8Var != null) {
+                    emaVar2.setTranslationY(hl.L(36.0f));
+                } else {
+                    emaVar2.setTranslationY(hl.L(26.0f) * f4);
+                }
+            }
+        }
+    }
+
+    public void j(boolean z) {
+    }
+
+    public void k(zh8 zh8Var) {
+    }
+
+    public void l(qy qyVar) {
+    }
+
+    public void h(qy qyVar, ActionMode actionMode) {
+    }
+
+    @Override
+    public final void v0(float f, int i) {
     }
 }

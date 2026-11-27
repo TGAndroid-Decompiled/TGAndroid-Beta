@@ -1,26 +1,24 @@
 package defpackage;
-public final class dta implements Runnable {
-    public final byte a;
-    public final eta b;
-    public final long c;
 
-    public dta(eta etaVar, long j, byte b) {
-        this.a = b;
-        this.b = etaVar;
-        this.c = j;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class dta extends ClickableSpan {
+    public final long a;
+    public final wua b;
+
+    public dta(wua wuaVar, long j) {
+        this.b = wuaVar;
+        this.a = j;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        eta etaVar = this.b;
-        switch (b) {
-            case 0:
-                etaVar.q.b0(etaVar.b, etaVar.c, this.c, true, true, etaVar.n);
-                return;
-            default:
-                etaVar.q.b0(etaVar.b, etaVar.c, this.c, true, true, etaVar.n);
-                return;
-        }
+    public final void onClick(View view) {
+        this.b.Z1(this.a);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(textPaint.linkColor);
     }
 }

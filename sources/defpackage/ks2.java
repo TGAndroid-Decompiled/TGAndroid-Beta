@@ -1,52 +1,55 @@
 package defpackage;
 
-import java.util.concurrent.ExecutorService;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Dictation.DictationAsr;
-import org.telegram.ui.Dictation.DictationLid;
-public final class ks2 implements Runnable {
-    public final byte a;
-    public final Runnable b;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import org.telegram.tgnet.TLRPC;
+public final class ks2 extends yr2 {
+    public final String d;
+    public final int e;
+    public volatile String f;
 
-    public ks2(Runnable runnable, byte b) {
-        this.a = b;
-        this.b = runnable;
+    public ks2(int i, String str, String str2) {
+        super(str);
+        this.d = str2;
+        this.e = i;
+        this.f = str2;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        Runnable runnable = this.b;
-        switch (b) {
-            case 0:
-                ConnectionsManager.lambda$cancelRequest$9(runnable);
-                return;
-            case 1:
-                runnable.run();
-                return;
-            case 2:
-                ExecutorService executorService = DictationLid.a;
-                DictationAsr.O();
-                runnable.run();
-                return;
-            case 3:
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 4:
-                gl.r(runnable);
-                gl.c3(runnable);
-                return;
-            case 5:
-                gl.r(runnable);
-                gl.c3(runnable);
-                return;
-            default:
-                gl.r(runnable);
-                gl.c3(runnable);
-                return;
+    public final boolean b(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+        if (!(jSONValue instanceof TLRPC.TL_jsonString)) {
+            return false;
         }
+        String str = ((TLRPC.TL_jsonString) jSONValue).value;
+        if (TextUtils.equals(str, this.f)) {
+            return false;
+        }
+        this.f = str;
+        editor.putString(e(), str);
+        return true;
+    }
+
+    @Override
+    public final boolean c(SharedPreferences.Editor editor) {
+        if (this.e == 2 && !TextUtils.equals(this.f, this.d)) {
+            this.f = this.d;
+            editor.remove(e());
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void d(SharedPreferences sharedPreferences) {
+        try {
+            this.f = sharedPreferences.getString(e(), this.d);
+        } catch (ClassCastException e) {
+            cc4.g(e, true);
+            this.f = this.d;
+        }
+    }
+
+    public final String toString() {
+        return this.a + "=" + this.f;
     }
 }

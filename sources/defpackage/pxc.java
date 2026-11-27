@@ -1,57 +1,80 @@
 package defpackage;
 
-import android.view.WindowInsets;
-public class pxc extends oxc {
-    public io5 o;
-    public io5 p;
-    public io5 q;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class pxc {
+    public final int a;
+    public boolean b;
+    public boolean c;
+    public String d;
+    public float e;
+    public boolean f;
+    public boolean g;
+    public TLRPC.WebPage h;
+    public boolean i;
+    public TLRPC.TL_webPage j;
+    public int k;
+    public om1 l;
+    public final ArrayList m = new ArrayList();
 
-    public pxc(vxc vxcVar, WindowInsets windowInsets) {
-        super(vxcVar, windowInsets);
-        this.o = null;
-        this.p = null;
-        this.q = null;
+    public pxc(int i) {
+        this.a = i;
     }
 
-    @Override
-    public io5 h() {
-        io5 io5Var = this.p;
-        if (io5Var == null) {
-            io5 c = io5.c(this.c.getMandatorySystemGestureInsets());
-            this.p = c;
-            return c;
+    public final void a() {
+        om1 om1Var;
+        if (!this.c) {
+            this.c = true;
+            if (!this.g) {
+                ConnectionsManager.getInstance(this.a).cancelRequest(this.k, true);
+            }
+            if (!this.i && (om1Var = this.l) != null) {
+                om1Var.run();
+            }
         }
-        return io5Var;
     }
 
-    @Override
-    public io5 j() {
-        io5 io5Var = this.o;
-        if (io5Var == null) {
-            io5 c = io5.c(this.c.getSystemGestureInsets());
-            this.o = c;
-            return c;
+    public final TLRPC.WebPage b() {
+        TLRPC.WebPage webPage;
+        if (!xea.t0 && (webPage = this.h) != null) {
+            return webPage;
         }
-        return io5Var;
-    }
-
-    @Override
-    public io5 l() {
-        io5 io5Var = this.q;
-        if (io5Var == null) {
-            io5 c = io5.c(this.c.getTappableElementInsets());
-            this.q = c;
-            return c;
+        TLRPC.TL_webPage tL_webPage = this.j;
+        if (tL_webPage != null) {
+            return tL_webPage;
         }
-        return io5Var;
+        return null;
     }
 
-    @Override
-    public vxc m(int i, int i2, int i3, int i4) {
-        return vxc.h(null, this.c.inset(i, i2, i3, i4));
+    public final void c() {
+        ArrayList arrayList = this.m;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((Runnable) obj).run();
+        }
     }
 
-    @Override
-    public void s(io5 io5Var) {
+    public final void d(nv0 nv0Var) {
+        if (this.c) {
+            return;
+        }
+        TLRPC.TL_webPage tL_webPage = this.j;
+        if (tL_webPage != null) {
+            rxc.o(tL_webPage);
+            this.j = null;
+        }
+        this.i = false;
+        this.d = nv0Var.getUrl();
+        this.e = nv0Var.getProgress();
+        this.f = nv0Var.b;
+        om1 om1Var = this.l;
+        if (om1Var != null) {
+            om1Var.run();
+        }
+        this.l = rxc.e(nv0Var, new oxc(this, (byte) 1));
     }
 }

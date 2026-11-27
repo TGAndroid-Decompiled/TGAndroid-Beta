@@ -1,18 +1,8 @@
 package defpackage;
+public interface und {
+    public static final int D = 0;
 
-import android.util.Base64;
-public abstract class und {
-    public static byte[] a(String str) {
-        if (str == null) {
-            return null;
-        }
-        return Base64.decode(str, 11);
-    }
-
-    public static String b(byte[] bArr) {
-        if (bArr == null) {
-            return null;
-        }
-        return Base64.encodeToString(bArr, 11);
+    static {
+        hnd.c(3, new Object[]{"com.android.vending.billing.PURCHASES_UPDATED", uoe.PURCHASES_UPDATED_ACTION, "com.android.vending.billing.LOCAL_BROADCAST_PURCHASES_UPDATED", uoe.LOCAL_PURCHASES_UPDATED_ACTION, "com.android.vending.billing.ALTERNATIVE_BILLING", uoe.ALTERNATIVE_BILLING_ACTION}, null);
     }
 }

@@ -1,128 +1,200 @@
 package defpackage;
 
-import android.content.Context;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.locks.ReentrantLock;
-public final class g1d implements Runnable {
-    public final j1d a;
-    public final byte b;
-    public final j1d c;
-    public final Object d;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.Layout;
+public final class g1d extends Layout {
+    public final f1d a;
 
-    public g1d(j1d j1dVar, Object obj, byte b) {
-        this.b = b;
-        this.c = j1dVar;
-        this.a = j1dVar;
-        this.d = obj;
+    public g1d(f1d f1dVar) {
+        super(f1dVar.a, h1d.b, Math.max(1, f1dVar.d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f);
+        this.a = f1dVar;
     }
 
-    public final void a() {
-        eha ehaVar;
-        Set set;
-        byte b = this.b;
-        int i = 0;
-        Object obj = this.d;
-        j1d j1dVar = this.c;
-        switch (b) {
-            case 0:
-                dy4 dy4Var = j1dVar.d;
-                k1d k1dVar = j1dVar.a.e;
-                Context context = j1dVar.c;
-                aec aecVar = new aec(dy4Var);
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                HashMap hashMap = (HashMap) obj;
-                for (xx4 xx4Var : hashMap.keySet()) {
-                    if (xx4Var.v() && !((e1d) hashMap.get(xx4Var)).c) {
-                        arrayList.add(xx4Var);
-                    } else {
-                        arrayList2.add(xx4Var);
-                    }
+    @Override
+    public final int getBottomPadding() {
+        return 0;
+    }
+
+    @Override
+    public final int getEllipsisCount(int i) {
+        return 0;
+    }
+
+    @Override
+    public final int getEllipsisStart(int i) {
+        return 0;
+    }
+
+    @Override
+    public final boolean getLineContainsTab(int i) {
+        return false;
+    }
+
+    @Override
+    public final int getLineCount() {
+        return this.a.g.length;
+    }
+
+    @Override
+    public final int getLineDescent(int i) {
+        return 0;
+    }
+
+    @Override
+    public final Layout.Directions getLineDirections(int i) {
+        return null;
+    }
+
+    @Override
+    public final int getLineForOffset(int i) {
+        int i2 = 0;
+        while (true) {
+            f1d f1dVar = this.a;
+            float[][] fArr = f1dVar.g;
+            if (i2 < fArr.length) {
+                int i3 = i2 + 1;
+                if (i < f1dVar.e[i3]) {
+                    return i2;
                 }
-                int i2 = -1;
-                if (arrayList.isEmpty()) {
-                    int size = arrayList2.size();
-                    while (i < size) {
-                        i2 = aecVar.e(context, (xx4) arrayList2.get(i));
-                        i++;
-                        if (i2 == 0) {
-                        }
-                    }
-                } else {
-                    int size2 = arrayList.size();
-                    while (i < size2) {
-                        i2 = aecVar.e(context, (xx4) arrayList.get(i));
-                        i++;
-                        if (i2 != 0) {
-                        }
-                    }
-                }
-                if (i2 != 0) {
-                    k1dVar.sendMessage(k1dVar.obtainMessage(1, new f1d(this, j1dVar, new ds2(i2, null, null))));
-                    return;
-                }
-                if (j1dVar.y && (ehaVar = j1dVar.w) != null) {
-                    ehaVar.a(new fg0(ehaVar));
-                }
-                for (xx4 xx4Var2 : hashMap.keySet()) {
-                    eg0 eg0Var = (eg0) hashMap.get(xx4Var2);
-                    if (xx4Var2.v() && aecVar.e(context, xx4Var2) != 0) {
-                        k1dVar.sendMessage(k1dVar.obtainMessage(1, new c1d(this, j1dVar, eg0Var)));
-                    } else {
-                        xx4Var2.a(eg0Var);
-                    }
-                }
-                return;
-            default:
-                r1d r1dVar = j1dVar.a;
-                m1d m1dVar = r1dVar.o;
-                ntb ntbVar = j1dVar.I;
-                if (ntbVar == null) {
-                    set = Collections.EMPTY_SET;
-                } else {
-                    HashSet hashSet = new HashSet((Set) ntbVar.a);
-                    Map map = (Map) ntbVar.c;
-                    for (yn ynVar : map.keySet()) {
-                        if (!r1dVar.i.containsKey(ynVar.b)) {
-                            map.get(ynVar).getClass();
-                            fyb.g();
-                            return;
-                        }
-                    }
-                    set = hashSet;
-                }
-                m1dVar.G = set;
-                ArrayList arrayList3 = (ArrayList) obj;
-                int size3 = arrayList3.size();
-                while (i < size3) {
-                    ((xx4) arrayList3.get(i)).j(j1dVar.F, r1dVar.o.G);
-                    i++;
-                }
-                return;
+                i2 = i3;
+            } else {
+                return fArr.length - 1;
+            }
         }
     }
 
     @Override
-    public final void run() {
-        j1d j1dVar = this.a;
-        ReentrantLock reentrantLock = j1dVar.b;
-        reentrantLock.lock();
-        try {
-            try {
-                if (!Thread.interrupted()) {
-                    a();
+    public final float getLineLeft(int i) {
+        float[][] fArr = this.a.g;
+        return fArr[Math.max(0, Math.min(i, fArr.length - 1))][0];
+    }
+
+    @Override
+    public final float getLineMax(int i) {
+        return getLineRight(i);
+    }
+
+    @Override
+    public final float getLineRight(int i) {
+        float[][] fArr = this.a.g;
+        float[] fArr2 = fArr[Math.max(0, Math.min(i, fArr.length - 1))];
+        return fArr2[fArr2.length - 1];
+    }
+
+    @Override
+    public final int getLineStart(int i) {
+        f1d f1dVar = this.a;
+        return f1dVar.e[Math.max(0, Math.min(i, f1dVar.g.length))];
+    }
+
+    @Override
+    public final int getLineTop(int i) {
+        f1d f1dVar = this.a;
+        return f1dVar.f[Math.max(0, Math.min(i, f1dVar.g.length))];
+    }
+
+    @Override
+    public final float getLineWidth(int i) {
+        return getLineRight(i) - getLineLeft(i);
+    }
+
+    @Override
+    public final int getOffsetForHorizontal(int i, float f) {
+        float[][] fArr;
+        f1d f1dVar = this.a;
+        int max = Math.max(0, Math.min(i, f1dVar.g.length - 1));
+        float[] fArr2 = f1dVar.g[max];
+        int[] iArr = f1dVar.e;
+        int i2 = iArr[max + 1] - iArr[max];
+        int i3 = 0;
+        for (int i4 = 0; i4 <= i2 && i4 < fArr2.length; i4++) {
+            if (i4 < i2) {
+                int i5 = i4 + 1;
+                if (f >= (fArr2[i4] + fArr2[i5]) / 2.0f) {
+                    i3 = i5;
                 }
-            } catch (RuntimeException e) {
-                k1d k1dVar = j1dVar.a.e;
-                k1dVar.sendMessage(k1dVar.obtainMessage(2, e));
             }
-        } finally {
-            reentrantLock.unlock();
         }
+        if (i3 == i2 && i2 > 0 && max < fArr.length - 1 && Character.isWhitespace(f1dVar.a.charAt((iArr[max] + i2) - 1))) {
+            i3--;
+        }
+        return iArr[max] + i3;
+    }
+
+    @Override
+    public final int getParagraphDirection(int i) {
+        return 1;
+    }
+
+    @Override
+    public final float getPrimaryHorizontal(int i) {
+        int lineForOffset = getLineForOffset(i);
+        f1d f1dVar = this.a;
+        float[] fArr = f1dVar.g[lineForOffset];
+        return fArr[Math.max(0, Math.min(i - f1dVar.e[lineForOffset], fArr.length - 1))];
+    }
+
+    @Override
+    public final float getSecondaryHorizontal(int i) {
+        return getPrimaryHorizontal(i);
+    }
+
+    @Override
+    public final void getSelectionPath(int i, int i2, Path path) {
+        float lineLeft;
+        float lineRight;
+        Path path2;
+        path.reset();
+        if (i != i2) {
+            if (i2 < i) {
+                i2 = i;
+                i = i2;
+            }
+            int lineForOffset = getLineForOffset(i);
+            int lineForOffset2 = getLineForOffset(i2);
+            int i3 = lineForOffset;
+            while (i3 <= lineForOffset2) {
+                if (i3 == lineForOffset) {
+                    lineLeft = getPrimaryHorizontal(i);
+                } else {
+                    lineLeft = getLineLeft(i3);
+                }
+                float f = lineLeft;
+                if (i3 == lineForOffset2) {
+                    lineRight = getPrimaryHorizontal(i2);
+                } else {
+                    lineRight = getLineRight(i3);
+                }
+                float f2 = lineRight;
+                if (f2 > f) {
+                    path2 = path;
+                    path2.addRect(f, getLineTop(i3), f2, getLineTop(i3 + 1), Path.Direction.CW);
+                } else {
+                    path2 = path;
+                }
+                i3++;
+                path = path2;
+            }
+        }
+    }
+
+    @Override
+    public final int getTopPadding() {
+        return 0;
+    }
+
+    @Override
+    public final boolean isRtlCharAt(int i) {
+        return false;
+    }
+
+    @Override
+    public final void draw(Canvas canvas, Path path, Paint paint, int i) {
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
     }
 }

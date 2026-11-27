@@ -1,162 +1,219 @@
 package defpackage;
 
-import android.content.Context;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.graphics.drawable.ShapeDrawable;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.Components.FragmentContextView;
-public final class mn4 extends FrameLayout {
-    public final RectF a;
-    public final FragmentContextView b;
+import java.util.HashSet;
+public final class mn4 extends FrameLayout implements snb {
+    public float E;
+    public boolean F;
+    public ValueAnimator G;
+    public di2 H;
+    public int I;
+    public boolean J;
+    public Paint a;
+    public hn b;
+    public hn c;
+    public float d;
+    public mm e;
+    public View f;
+    public ShapeDrawable h;
+    public float n;
+    public boolean r;
+    public ValueAnimator s;
+    public float w;
+    public ValueAnimator x;
+    public int y;
 
-    public mn4(FragmentContextView fragmentContextView, Context context) {
-        super(context);
-        this.b = fragmentContextView;
-        this.a = new RectF();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void a(boolean z) {
         float f;
-        int L;
-        super.dispatchDraw(canvas);
-        FragmentContextView fragmentContextView = this.b;
-        d dVar = fragmentContextView.h;
-        gn gnVar = fragmentContextView.j0;
-        if (fragmentContextView.U == 4 && fragmentContextView.h0) {
-            int L2 = gl.L(24.0f) + ((int) Math.ceil(gnVar.c()));
-            if (L2 != fragmentContextView.f0) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L2, 0.0f, new int[]{-10121218, -6983683}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                fragmentContextView.d0 = linearGradient;
-                fragmentContextView.c0.setShader(linearGradient);
-                fragmentContextView.f0 = L2;
+        if (this.r != z) {
+            ValueAnimator valueAnimator = this.s;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.s = null;
             }
-            fc2 groupCall = fragmentContextView.n.getGroupCall();
-            if (dVar != null && groupCall != null && groupCall.k()) {
-                long currentTimeMillis = (groupCall.b.schedule_date * 1000) - dVar.getConnectionsManager().getCurrentTimeMillis();
+            float f2 = this.n;
+            this.r = z;
+            if (z) {
                 f = 1.0f;
-                if (currentTimeMillis >= 0) {
-                    if (currentTimeMillis < 5000) {
-                        f = 1.0f - (((float) currentTimeMillis) / 5000.0f);
-                    } else {
-                        f = 0.0f;
-                    }
-                }
-                if (currentTimeMillis < 6000) {
-                    invalidate();
-                }
             } else {
                 f = 0.0f;
             }
-            fragmentContextView.e0.reset();
-            fragmentContextView.e0.postTranslate((-fragmentContextView.f0) * 0.7f * f, 0.0f);
-            fragmentContextView.d0.setLocalMatrix(fragmentContextView.e0);
-            int measuredWidth = (getMeasuredWidth() - L2) - gl.L(10.0f);
-            float f2 = measuredWidth;
-            float L3 = gl.L(10.0f);
-            RectF rectF = this.a;
-            rectF.set(f2, L3, measuredWidth + L2, gl.L(28.0f) + L);
-            canvas.save();
-            float a = fragmentContextView.k0.a(0.1f);
-            canvas.scale(a, a, rectF.centerX(), rectF.centerY());
-            canvas.translate(f2, L3);
-            RectF rectF2 = gl.P;
-            rectF2.set(0.0f, 0.0f, L2, gl.L(28.0f));
-            canvas.drawRoundRect(rectF2, gl.L(16.0f), gl.L(16.0f), fragmentContextView.c0);
-            canvas.translate(gl.L(12.0f), gl.L(6.0f));
-            gnVar.setBounds(0, 0, gl.q.x, gl.L(16.0f));
-            gnVar.draw(canvas);
-            canvas.restore();
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+            this.s = ofFloat;
+            ofFloat.addUpdateListener(new kn4(this, (byte) 2));
+            this.s.addListener(new gf4((byte) 2, this, z));
+            this.s.setDuration(320L);
+            this.s.setInterpolator(k43.h);
+            this.s.start();
         }
     }
 
+    public final void b(CharSequence charSequence, boolean z) {
+        hn hnVar = this.b;
+        if (z) {
+            hnVar.a();
+        }
+        hnVar.t(charSequence, z, true);
+        invalidate();
+    }
+
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        sy1 sy1Var;
-        fc2 groupCall;
-        int i;
-        int i2;
-        FragmentContextView fragmentContextView = this.b;
-        if (fragmentContextView.U == 4 && fragmentContextView.h0 && fragmentContextView.k0 != null) {
-            boolean contains = this.a.contains(motionEvent.getX(), motionEvent.getY());
-            if (motionEvent.getAction() == 0) {
-                fragmentContextView.k0.c(contains);
-            } else if (motionEvent.getAction() == 2) {
-                if (!contains) {
-                    fragmentContextView.k0.c(false);
-                }
-            } else if (motionEvent.getAction() == 1) {
-                if (contains) {
-                    ln4 ln4Var = fragmentContextView.m0;
-                    d dVar = fragmentContextView.h;
-                    if (dVar != null && (sy1Var = fragmentContextView.n) != null && (groupCall = sy1Var.getGroupCall()) != null && groupCall.b != null) {
-                        if (fragmentContextView.S0 != 0) {
-                            dVar.getConnectionsManager().cancelRequest(fragmentContextView.S0, true);
-                            fragmentContextView.S0 = 0;
-                        }
-                        TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
-                        togglegroupcallstartsubscription.call = groupCall.h(groupCall.a);
-                        TLRPC.GroupCall groupCall2 = groupCall.b;
-                        boolean z = !fragmentContextView.i0;
-                        fragmentContextView.i0 = z;
-                        groupCall2.schedule_start_subscribed = z;
-                        togglegroupcallstartsubscription.subscribed = z;
-                        fragmentContextView.S0 = dVar.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, null);
-                        if (fragmentContextView.l0) {
-                            gl.r(ln4Var);
-                            fragmentContextView.l0 = false;
-                        }
-                        ln4Var.run();
-                        u21 b0 = u21.b0(dVar);
-                        if (fragmentContextView.i0) {
-                            i = 2131624189;
-                            i2 = 2131748588;
-                        } else {
-                            i = 2131624188;
-                            i2 = 2131748589;
-                        }
-                        ir2.v(null, i2, b0, i, 36);
-                    }
-                }
-                fragmentContextView.k0.c(false);
-            } else if (motionEvent.getAction() == 3) {
-                fragmentContextView.k0.c(false);
-            }
-        } else {
-            n41 n41Var = fragmentContextView.k0;
-            if (n41Var != null) {
-                n41Var.c(false);
-            }
-        }
-        n41 n41Var2 = fragmentContextView.k0;
-        if ((n41Var2 != null && n41Var2.i) || super.dispatchTouchEvent(motionEvent)) {
-            return true;
-        }
+    public final boolean drawChild(Canvas canvas, View view, long j) {
         return false;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        FragmentContextView fragmentContextView = this.b;
-        hc0 hc0Var = fragmentContextView.b0;
-        if (hc0Var != null && hc0Var.getVisibility() == 0) {
-            fragmentContextView.b0.invalidate();
+    public final void onDraw(Canvas canvas) {
+        boolean z;
+        Paint paint = this.a;
+        hn hnVar = this.c;
+        hn hnVar2 = this.b;
+        this.f.draw(canvas);
+        if (this.n > 0.0f) {
+            if (this.H == null) {
+                this.H = new di2(hnVar2.a.getColor());
+            }
+            int L = (int) ((1.0f - this.n) * hl.L(24.0f));
+            this.H.setBounds(0, L, getWidth(), getHeight() + L);
+            this.H.setAlpha((int) (this.n * 255.0f));
+            this.H.draw(canvas);
+            invalidate();
+        }
+        float f = this.n;
+        if (f < 1.0f) {
+            if (f != 0.0f) {
+                canvas.save();
+                canvas.translate(0.0f, (int) (this.n * hl.L(-24.0f)));
+                canvas.scale(1.0f, 1.0f - (this.n * 0.4f));
+                z = true;
+            } else {
+                z = false;
+            }
+            float c = hnVar2.c();
+            float e = this.e.e(false, this.d);
+            float c2 = ((hnVar.c() + hl.L(15.66f)) * e) + c;
+            Rect rect = hl.Q;
+            rect.set((int) (((getMeasuredWidth() - c2) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - hnVar2.e) / 2.0f) - hl.L(1.0f)), (int) qd4.e(getMeasuredWidth() - c2, getWidth(), 2.0f, c), (int) (((getMeasuredHeight() + hnVar2.e) / 2.0f) - hl.L(1.0f)));
+            hnVar2.C = (int) (hl.R1(0.5f, 1.0f, this.E) * (1.0f - this.n) * 255.0f);
+            hnVar2.setBounds(rect);
+            hnVar2.draw(canvas);
+            rect.set((int) (bp1.z(getMeasuredWidth(), c2, 2.0f, c) + hl.L(5.0f)), (int) ((getMeasuredHeight() - hl.L(18.0f)) / 2.0f), (int) (Math.max(hl.L(9.0f), hnVar.c()) + bp1.z(getMeasuredWidth(), c2, 2.0f, c) + hl.L(13.0f)), (int) ((hl.L(18.0f) + getMeasuredHeight()) / 2.0f));
+            RectF rectF = hl.P;
+            rectF.set(rect);
+            if (this.w != 1.0f) {
+                canvas.save();
+                float f2 = this.w;
+                canvas.scale(f2, f2, rect.centerX(), rect.centerY());
+            }
+            paint.setAlpha((int) ((1.0f - this.n) * 255.0f * e * e));
+            canvas.drawRoundRect(rectF, hl.L(10.0f), hl.L(10.0f), paint);
+            rect.offset(-hl.L(0.3f), -hl.L(0.4f));
+            hnVar.C = (int) qd4.z(1.0f, this.n, 255.0f, e);
+            hnVar.setBounds(rect);
+            hnVar.draw(canvas);
+            if (this.w != 1.0f) {
+                canvas.restore();
+            }
+            if (z) {
+                canvas.restore();
+            }
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String str;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+        StringBuilder sb = new StringBuilder();
+        sb.append((Object) this.b.i);
+        if (this.y > 0) {
+            str = ", ".concat(ob6.G(this.y, "Chats", new Object[0]));
+        } else {
+            str = "";
+        }
+        sb.append(str);
+        accessibilityNodeInfo.setContentDescription(sb.toString());
+    }
+
+    @Override
+    public final void setEnabled(boolean z) {
+        float f;
+        if (this.F != z) {
+            ValueAnimator valueAnimator = this.G;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.G = null;
+            }
+            float f2 = this.E;
+            this.F = z;
+            if (z) {
+                f = 1.0f;
+            } else {
+                f = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f2, f);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new kn4(this, (byte) 0));
+            this.G.addListener(new AnimatorListenerAdapter());
+            this.G.start();
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        ShapeDrawable shapeDrawable = this.h;
+        hn hnVar = this.b;
+        Paint paint = this.a;
+        if (paint != null && hnVar != null) {
+            int i = aob.Fi;
+            int w0 = aob.w0(null, i, false);
+            if (w0 != this.I || this.J != aob.I.o()) {
+                this.I = w0;
+                this.J = aob.I.o();
+                View view = this.f;
+                if (view != null) {
+                    view.setBackground(rnb.d(0, rnb.b(w0), 8.0f));
+                }
+                if (shapeDrawable != null) {
+                    shapeDrawable.getPaint().setColor(w0);
+                    shapeDrawable.invalidateSelf();
+                }
+            }
+            int i2 = aob.Ji;
+            paint.setColor(aob.w0(null, i2, false));
+            hnVar.u(aob.w0(null, i2, false));
+            try {
+                hn hnVar2 = this.c;
+                if (hnVar2 != null) {
+                    hnVar2.u(aob.w0(null, i, false));
+                }
+            } catch (Exception e) {
+                cc4.g(e, true);
+            }
+            invalidate();
         }
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.b.j0 && !super.verifyDrawable(drawable)) {
+        if (this.b != drawable && this.c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

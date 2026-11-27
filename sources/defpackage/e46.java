@@ -1,11 +1,11 @@
 package defpackage;
-public final class e46 extends tg6 {
-    public String g;
-    public String h;
-    public String i;
+public final class e46 extends f46 {
+    public final int g;
+    public final boolean h;
 
-    @Override
-    public final void a(ild ildVar) {
-        ildVar.v(this);
+    public e46(int i, boolean z) {
+        super(-1, -1, -1, null, null);
+        this.g = i;
+        this.h = z;
     }
 }

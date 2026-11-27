@@ -1,13 +1,15 @@
 package defpackage;
+public final class bc8 implements Runnable {
+    public final byte a;
+    public final n31 b;
 
-import android.media.session.PlaybackState;
-import android.os.Bundle;
-public abstract class bc8 {
-    public static Bundle a(PlaybackState playbackState) {
-        return playbackState.getExtras();
+    public bc8(n31 n31Var, byte b) {
+        this.a = b;
+        this.b = n31Var;
     }
 
-    public static void b(PlaybackState.Builder builder, Bundle bundle) {
-        builder.setExtras(bundle);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.bc8.run():void");
     }
 }

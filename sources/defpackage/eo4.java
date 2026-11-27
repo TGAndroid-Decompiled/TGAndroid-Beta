@@ -1,23 +1,16 @@
 package defpackage;
+public final class eo4 implements bo4 {
+    public final un4 a;
+    public final un4 b;
+    public final int c;
+    public final int d;
+    public final String e;
 
-import java.util.ArrayList;
-public final class eo4 implements do4 {
-    public final int a;
-    public final go4 b;
-
-    public eo4(go4 go4Var, int i) {
-        this.b = go4Var;
-        this.a = i;
-    }
-
-    @Override
-    public final boolean a(ArrayList arrayList, ArrayList arrayList2) {
-        go4 go4Var = this.b;
-        bn4 bn4Var = go4Var.z;
-        int i = this.a;
-        if (bn4Var != null && i < 0 && bn4Var.l().T(-1, 0)) {
-            return false;
-        }
-        return go4Var.U(arrayList, arrayList2, i, 1);
+    public eo4(un4 un4Var, un4 un4Var2, int i, int i2, String str) {
+        this.a = un4Var;
+        this.b = un4Var2;
+        this.d = i;
+        this.c = i2;
+        this.e = str;
     }
 }

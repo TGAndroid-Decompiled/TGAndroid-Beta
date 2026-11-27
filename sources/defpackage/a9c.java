@@ -1,43 +1,34 @@
 package defpackage;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 public final class a9c {
-    public float a;
-    public float b;
-    public float c;
+    public z8c a;
+    public final HashMap b = new HashMap();
+    public final ArrayList c = new ArrayList();
 
-    public a9c(float f) {
-        d(f);
+    public final boolean a() {
+        return !this.c.isEmpty();
     }
 
-    public final boolean a(float f) {
-        float f2 = this.b;
-        float A = tb4.A(this.c, f2, f, f2);
-        if (this.a != A) {
-            this.a = A;
-            return true;
-        }
-        return false;
+    public final void b(UUID uuid, Runnable runnable) {
+        this.b.put(uuid, runnable);
+        this.c.add(uuid);
+        hl.c3(new azb(this, (byte) 7));
     }
 
-    public final boolean b(float f) {
-        if (this.c != f) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void c(boolean z) {
-        if (z) {
-            float f = this.c;
-            this.a = f;
-            this.b = f;
+    public final void c() {
+        ArrayList arrayList = this.c;
+        if (arrayList.size() == 0) {
             return;
         }
-        this.b = this.a;
-    }
-
-    public final void d(float f) {
-        this.b = f;
-        this.c = f;
-        this.a = f;
+        int size = arrayList.size() - 1;
+        UUID uuid = (UUID) arrayList.get(size);
+        HashMap hashMap = this.b;
+        hashMap.remove(uuid);
+        arrayList.remove(size);
+        ((Runnable) hashMap.get(uuid)).run();
+        hl.c3(new azb(this, (byte) 7));
     }
 }

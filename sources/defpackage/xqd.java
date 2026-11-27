@@ -1,17 +1,15 @@
 package defpackage;
+
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.TextView;
 public abstract class xqd {
-    public static final boolean a(char c, char c2, boolean z) {
-        if (c == c2) {
-            return true;
+    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
+        if (inputConnection != null && editorInfo.hintText == null) {
+            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
+            }
         }
-        if (!z) {
-            return false;
-        }
-        char upperCase = Character.toUpperCase(c);
-        char upperCase2 = Character.toUpperCase(c2);
-        if (upperCase == upperCase2 || Character.toLowerCase(upperCase) == Character.toLowerCase(upperCase2)) {
-            return true;
-        }
-        return false;
     }
 }

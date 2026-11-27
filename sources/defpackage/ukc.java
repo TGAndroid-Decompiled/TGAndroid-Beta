@@ -1,45 +1,30 @@
 package defpackage;
 
-import android.text.TextUtils;
-public final class ukc implements p8c {
+import android.app.Activity;
+import android.content.Intent;
+public final class ukc implements fd {
     public final byte a;
-    public final u41 b;
-    public final fx0 c;
-    public final wjb d;
+    public final Activity b;
+    public final Intent c;
 
-    public ukc(u41 u41Var, fx0 fx0Var, wjb wjbVar, byte b) {
+    public ukc(Activity activity, Intent intent, byte b) {
         this.a = b;
-        this.b = u41Var;
-        this.c = fx0Var;
-        this.d = wjbVar;
+        this.b = activity;
+        this.c = intent;
     }
 
     @Override
-    public final void a(Object obj) {
+    public final void w(id idVar, int i) {
         byte b = this.a;
-        wjb wjbVar = this.d;
-        fx0 fx0Var = this.c;
-        u41 u41Var = this.b;
-        String str = (String) obj;
+        Intent intent = this.c;
+        Activity activity = this.b;
         switch (b) {
             case 0:
-                u41Var.setLoading(false);
-                if (!TextUtils.isEmpty(str)) {
-                    new u21(fx0Var.F, wjbVar).f0(str, false);
-                    return;
-                } else {
-                    fx0Var.dismiss();
-                    return;
-                }
+                activity.startActivity(intent);
+                return;
             default:
-                u41Var.setLoading(false);
-                if (str != null) {
-                    new u21(fx0Var.F, wjbVar).f0(str, false);
-                    return;
-                } else {
-                    fx0Var.dismiss();
-                    return;
-                }
+                activity.startActivity(intent);
+                return;
         }
     }
 }

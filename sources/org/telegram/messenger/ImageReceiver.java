@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public class ImageReceiver implements gk7, dm {
+public class ImageReceiver implements fn7, em {
     public static final PorterDuffColorFilter H1;
     public static final PorterDuffColorFilter I1;
     public static final float[] J1;
@@ -36,10 +36,10 @@ public class ImageReceiver implements gk7, dm {
     public int D1;
     public int E;
     public String E0;
-    public wtc E1;
-    public nl5 F;
+    public u8a E1;
+    public qn5 F;
     public BitmapShader F0;
-    public yr8 F1;
+    public hv8 F1;
     public Object G;
     public boolean G0;
     public boolean G1;
@@ -57,9 +57,9 @@ public class ImageReceiver implements gk7, dm {
     public float M0;
     public Paint N;
     public float N0;
-    public gl5 O;
+    public jn5 O;
     public float O0;
-    public gl5 P;
+    public jn5 P;
     public float P0;
     public String Q;
     public String R;
@@ -72,7 +72,7 @@ public class ImageReceiver implements gk7, dm {
     public int V;
     public boolean V0;
     public int W;
-    public gl5 X;
+    public jn5 X;
     public String Y;
     public String Z;
     public Integer Z0;
@@ -88,11 +88,11 @@ public class ImageReceiver implements gk7, dm {
     public int f;
     public int f0;
     public int f1;
-    public gl5 g0;
+    public jn5 g0;
     public boolean g1;
     public Object h;
     public String h0;
-    public ll5 h1;
+    public on5 h1;
     public String i0;
     public float i1;
     public int j0;
@@ -147,7 +147,7 @@ public class ImageReceiver implements gk7, dm {
     public boolean A1 = false;
     public boolean C1 = true;
     public final Paint a1 = new Paint(3);
-    public int d = y6c.t0;
+    public int d = yac.t0;
 
     static {
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
@@ -192,14 +192,14 @@ public class ImageReceiver implements gk7, dm {
     }
 
     public final boolean E() {
-        if (this.T == null && this.k0 == null && !(this.n0 instanceof i9c)) {
+        if (this.T == null && this.k0 == null && !(this.n0 instanceof idc)) {
             return false;
         }
         return true;
     }
 
     public final boolean F() {
-        km m = m();
+        lm m = m();
         if (m != null && m.c0) {
             return true;
         }
@@ -228,25 +228,25 @@ public class ImageReceiver implements gk7, dm {
     public final boolean I() {
         if (!this.y1) {
             this.y1 = true;
-            this.E = kk7.e().p & (~this.x);
+            this.E = jn7.e().p & (~this.x);
             boolean z = this.y;
-            int i = kk7.i1;
+            int i = jn7.j1;
             if (!z) {
-                wtc wtcVar = this.E1;
-                if (wtcVar != null) {
-                    wtcVar.a();
+                u8a u8aVar = this.E1;
+                if (u8aVar != null) {
+                    u8aVar.a();
                     this.E1 = null;
                 }
-                wtc wtcVar2 = (wtc) new fu0(kk7.e(), this).b;
-                wtcVar2.b(kk7.o4);
-                wtcVar2.b(i);
-                wtcVar2.b(kk7.j1);
-                this.E1 = wtcVar2;
+                u8a u8aVar2 = (u8a) new ou0(jn7.e(), this).b;
+                u8aVar2.b(jn7.p4);
+                u8aVar2.b(i);
+                u8aVar2.b(jn7.k1);
+                this.E1 = u8aVar2;
             }
             if (O()) {
                 return true;
             }
-            oy8 y = y();
+            b29 y = y();
             if (y != null) {
                 y.J0.add(this);
                 y.F = this.t0;
@@ -254,7 +254,7 @@ public class ImageReceiver implements gk7, dm {
                     y.start();
                 }
             }
-            km m = m();
+            lm m = m();
             if (m != null) {
                 m.e(this);
                 if (this.u0 && this.E == 0) {
@@ -262,20 +262,20 @@ public class ImageReceiver implements gk7, dm {
                     invalidate();
                 }
             }
-            vl l = l();
+            wl l = l();
             if (l != null) {
                 l.a(this);
             }
-            if (kk7.e().g()) {
+            if (jn7.e().g()) {
                 didReceivedNotification(i, this.d, 512);
             }
             Drawable drawable = this.n0;
-            if (drawable instanceof yx) {
-                ((yx) drawable).c(this);
+            if (drawable instanceof zx) {
+                ((zx) drawable).c(this);
             }
             if (this.c != null) {
                 for (int i2 = 0; i2 < this.c.size(); i2++) {
-                    ((kl5) this.c.get(i2)).a(this);
+                    ((nn5) this.c.get(i2)).a(this);
                 }
             }
         }
@@ -284,50 +284,50 @@ public class ImageReceiver implements gk7, dm {
 
     public final void J(Drawable drawable) {
         if (drawable == this.k0 && this.i0 != null) {
-            fl5.z().M(this.i0);
+            in5.z().M(this.i0);
             this.i0 = null;
         } else if (drawable == this.T && this.R != null) {
-            fl5.z().M(this.R);
+            in5.z().M(this.R);
             this.R = null;
         } else if (drawable == this.b0 && this.Z != null) {
-            fl5.z().M(this.Z);
+            in5.z().M(this.Z);
             this.Z = null;
         }
         Y(this.g0, this.h0, this.P, this.Q, this.X, this.Y, this.b0, this.r0, this.o0, this.h, this.s0);
     }
 
     public final void K() {
-        wtc wtcVar;
+        u8a u8aVar;
         if (this.y1) {
             this.y1 = false;
-            gl5 gl5Var = this.P;
-            if (gl5Var != null || this.g0 != null || this.X != null || this.n0 != null) {
-                nl5 nl5Var = this.F;
-                nl5 nl5Var2 = nl5Var;
-                if (nl5Var == null) {
+            jn5 jn5Var = this.P;
+            if (jn5Var != null || this.g0 != null || this.X != null || this.n0 != null) {
+                qn5 qn5Var = this.F;
+                qn5 qn5Var2 = qn5Var;
+                if (qn5Var == null) {
                     ?? obj = new Object();
                     this.F = obj;
-                    nl5Var2 = obj;
+                    qn5Var2 = obj;
                 }
-                nl5Var2.e = this.g0;
-                nl5Var2.f = this.h0;
-                nl5Var2.a = gl5Var;
-                nl5Var2.b = this.Q;
-                nl5Var2.c = this.X;
-                nl5Var2.d = this.Y;
-                nl5Var2.g = this.n0;
-                nl5Var2.h = this.r0;
-                nl5Var2.k = this.o0;
-                nl5Var2.i = this.s0;
-                nl5Var2.j = this.h;
+                qn5Var2.e = this.g0;
+                qn5Var2.f = this.h0;
+                qn5Var2.a = jn5Var;
+                qn5Var2.b = this.Q;
+                qn5Var2.c = this.X;
+                qn5Var2.d = this.Y;
+                qn5Var2.g = this.n0;
+                qn5Var2.h = this.r0;
+                qn5Var2.k = this.o0;
+                qn5Var2.i = this.s0;
+                qn5Var2.j = this.h;
             }
-            if (!this.y && (wtcVar = this.E1) != null) {
-                wtcVar.a();
+            if (!this.y && (u8aVar = this.E1) != null) {
+                u8aVar.a();
                 this.E1 = null;
             }
             Drawable drawable = this.n0;
-            if (drawable instanceof yx) {
-                ((yx) drawable).b(this);
+            if (drawable instanceof zx) {
+                ((zx) drawable).b(this);
             }
             if (this.n0 != null) {
                 u0(null);
@@ -338,24 +338,24 @@ public class ImageReceiver implements gk7, dm {
             if (this.f1 == 0) {
                 this.u1 = 0.0f;
             }
-            vl l = l();
+            wl l = l();
             if (l != null) {
                 l.n(this);
             }
-            km m = m();
+            lm m = m();
             if (m != null) {
                 m.v(this);
             }
-            oy8 y = y();
+            b29 y = y();
             if (y != null) {
                 y.A(this);
             }
             if (this.c != null) {
                 for (int i = 0; i < this.c.size(); i++) {
-                    ArrayList arrayList = ((r8b) ((kl5) this.c.get(i))).a;
+                    ArrayList arrayList = ((qcb) ((nn5) this.c.get(i))).a;
                     if (arrayList != null) {
                         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            ((n8b) arrayList.get(i2)).b(false);
+                            ((mcb) arrayList.get(i2)).b(false);
                         }
                     }
                 }
@@ -380,46 +380,46 @@ public class ImageReceiver implements gk7, dm {
             str2 = this.R;
             drawable = this.T;
         }
-        if (str2 != null && ((str2.startsWith("-") || str2.startsWith("strippedmessage-")) && (str3 = (String) fl5.z().t.get(str2)) != null)) {
+        if (str2 != null && ((str2.startsWith("-") || str2.startsWith("strippedmessage-")) && (str3 = (String) in5.z().t.get(str2)) != null)) {
             str2 = str3;
         }
-        if (drawable instanceof oy8) {
-            ((oy8) drawable).A(this);
+        if (drawable instanceof b29) {
+            ((b29) drawable).A(this);
         }
-        if (drawable instanceof km) {
-            ((km) drawable).v(this);
+        if (drawable instanceof lm) {
+            ((lm) drawable).v(this);
         }
-        if (drawable instanceof vl) {
-            ((vl) drawable).n(this);
+        if (drawable instanceof wl) {
+            ((wl) drawable).n(this);
         }
         if (str2 != null && ((str == null || !str.equals(str2)) && drawable != null)) {
-            if (drawable instanceof oy8) {
-                oy8 oy8Var = (oy8) drawable;
-                boolean l = fl5.z().l(str2);
-                if (!fl5.z().F(str2, true) && l) {
-                    oy8Var.x(false);
+            if (drawable instanceof b29) {
+                b29 b29Var = (b29) drawable;
+                boolean l = in5.z().l(str2);
+                if (!in5.z().F(str2, true) && l) {
+                    b29Var.x(false);
                 }
-            } else if (drawable instanceof km) {
-                km kmVar = (km) drawable;
-                if (kmVar.o0) {
-                    boolean l2 = fl5.z().l(str2);
-                    if (!fl5.z().F(str2, true)) {
+            } else if (drawable instanceof lm) {
+                lm lmVar = (lm) drawable;
+                if (lmVar.o0) {
+                    boolean l2 = in5.z().l(str2);
+                    if (!in5.z().F(str2, true)) {
                         if (l2) {
-                            kmVar.u();
+                            lmVar.u();
                         }
                     } else if (l2) {
-                        kmVar.stop();
+                        lmVar.stop();
                     }
-                } else if (kmVar.u0.isEmpty()) {
-                    kmVar.u();
+                } else if (lmVar.u0.isEmpty()) {
+                    lmVar.u();
                 }
             } else if (drawable instanceof BitmapDrawable) {
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-                boolean l3 = fl5.z().l(str2);
-                if (!fl5.z().F(str2, false) && l3) {
+                boolean l3 = in5.z().l(str2);
+                if (!in5.z().F(str2, false) && l3) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(bitmap);
-                    gl.x2(arrayList);
+                    hl.x2(arrayList);
                 }
             }
         }
@@ -444,7 +444,7 @@ public class ImageReceiver implements gk7, dm {
 
     public final void M(int i) {
         this.y0 = i;
-        oy8 y = y();
+        b29 y = y();
         if (y != null) {
             y.F(i);
         }
@@ -463,24 +463,24 @@ public class ImageReceiver implements gk7, dm {
     }
 
     public final boolean O() {
-        nl5 nl5Var = this.F;
-        if (nl5Var != null) {
-            if (nl5Var.a != null || nl5Var.c != null || nl5Var.e != null || nl5Var.g != null) {
+        qn5 qn5Var = this.F;
+        if (qn5Var != null) {
+            if (qn5Var.a != null || qn5Var.c != null || qn5Var.e != null || qn5Var.g != null) {
                 this.F = null;
-                Drawable drawable = nl5Var.g;
+                Drawable drawable = qn5Var.g;
                 if (drawable instanceof BitmapDrawable) {
                     BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-                    if (!(bitmapDrawable instanceof oy8) && !(bitmapDrawable instanceof km) && bitmapDrawable.getBitmap() != null && bitmapDrawable.getBitmap().isRecycled()) {
-                        nl5Var.g = null;
+                    if (!(bitmapDrawable instanceof b29) && !(bitmapDrawable instanceof lm) && bitmapDrawable.getBitmap() != null && bitmapDrawable.getBitmap().isRecycled()) {
+                        qn5Var.g = null;
                     }
                 }
-                Y(nl5Var.e, nl5Var.f, nl5Var.a, nl5Var.b, nl5Var.c, nl5Var.d, nl5Var.g, nl5Var.h, nl5Var.k, nl5Var.j, nl5Var.i);
-                nl5Var.a = null;
-                nl5Var.c = null;
-                nl5Var.e = null;
-                nl5Var.g = null;
-                this.F = nl5Var;
-                oy8 y = y();
+                Y(qn5Var.e, qn5Var.f, qn5Var.a, qn5Var.b, qn5Var.c, qn5Var.d, qn5Var.g, qn5Var.h, qn5Var.k, qn5Var.j, qn5Var.i);
+                qn5Var.a = null;
+                qn5Var.c = null;
+                qn5Var.e = null;
+                qn5Var.g = null;
+                this.F = qn5Var;
+                b29 y = y();
                 if (y != null) {
                     y.F = this.t0;
                     if (this.v0) {
@@ -504,47 +504,47 @@ public class ImageReceiver implements gk7, dm {
         invalidate();
     }
 
-    public final il5 Q(il5 il5Var, int i) {
-        oy8 oy8Var;
-        il5 il5Var2 = il5Var;
-        if (il5Var == null) {
+    public final ln5 Q(ln5 ln5Var, int i) {
+        b29 b29Var;
+        ln5 ln5Var2 = ln5Var;
+        if (ln5Var == null) {
             ?? obj = new Object();
             obj.h = new int[4];
             obj.y = new RectF();
-            il5Var2 = obj;
+            ln5Var2 = obj;
         }
-        il5Var2.d = i;
-        il5Var2.f = m();
-        il5Var2.g = y();
+        ln5Var2.d = i;
+        ln5Var2.f = m();
+        ln5Var2.g = y();
         boolean z = false;
         for (int i2 = 0; i2 < 4; i2++) {
-            il5Var2.h[i2] = this.X0[i2];
+            ln5Var2.h[i2] = this.X0[i2];
         }
-        il5Var2.j = this.k0;
-        il5Var2.i = this.l0;
-        il5Var2.l = this.T;
-        il5Var2.k = this.U;
-        il5Var2.m = this.b0;
-        il5Var2.n = this.c0;
-        il5Var2.e = this.d0;
-        il5Var2.o = this.n0;
-        il5Var2.x = this.D0;
-        il5Var2.z = this.p1;
-        il5Var2.w = this.C0;
-        il5Var2.p = this.i1;
-        il5Var2.q = this.j1;
-        il5Var2.r = this.F0;
-        km kmVar = il5Var2.f;
-        if ((kmVar != null && !kmVar.s()) || ((oy8Var = il5Var2.g) != null && !oy8Var.p())) {
+        ln5Var2.j = this.k0;
+        ln5Var2.i = this.l0;
+        ln5Var2.l = this.T;
+        ln5Var2.k = this.U;
+        ln5Var2.m = this.b0;
+        ln5Var2.n = this.c0;
+        ln5Var2.e = this.d0;
+        ln5Var2.o = this.n0;
+        ln5Var2.x = this.D0;
+        ln5Var2.z = this.p1;
+        ln5Var2.w = this.C0;
+        ln5Var2.p = this.i1;
+        ln5Var2.q = this.j1;
+        ln5Var2.r = this.F0;
+        lm lmVar = ln5Var2.f;
+        if ((lmVar != null && !lmVar.s()) || ((b29Var = ln5Var2.g) != null && !b29Var.p())) {
             z = true;
         }
-        il5Var2.a = z;
-        il5Var2.u = this.L0;
-        il5Var2.v = this.M0;
-        il5Var2.t = this.N0;
-        il5Var2.s = this.O0;
-        il5Var2.b = this.e1;
-        return il5Var2;
+        ln5Var2.a = z;
+        ln5Var2.u = this.L0;
+        ln5Var2.v = this.M0;
+        ln5Var2.t = this.N0;
+        ln5Var2.s = this.O0;
+        ln5Var2.b = this.e1;
+        return ln5Var2;
     }
 
     public final void R(Drawable drawable, BitmapShader bitmapShader) {
@@ -589,7 +589,7 @@ public class ImageReceiver implements gk7, dm {
         if (this.G1 != z) {
             this.G1 = z;
             this.v0 = !z;
-            oy8 y = y();
+            b29 y = y();
             if (y != null) {
                 if (z) {
                     y.stop();
@@ -604,8 +604,8 @@ public class ImageReceiver implements gk7, dm {
         if (this.w != i) {
             this.w = i;
             if (this.y1 && D()) {
-                fl5 z = fl5.z();
-                z.s.c(new o94(z, this, this.w, (byte) 3));
+                in5 z = in5.z();
+                z.s.c(new sb4(z, this, this.w, (byte) 3));
             }
         }
     }
@@ -640,67 +640,67 @@ public class ImageReceiver implements gk7, dm {
         this.H = bitmap;
     }
 
-    public final void X(int i, long j, gl5 gl5Var, gl5 gl5Var2, Object obj, String str, String str2, String str3) {
-        Z(gl5Var, str, gl5Var2, str2, null, j, str3, obj, i);
+    public final void X(int i, long j, jn5 jn5Var, jn5 jn5Var2, Object obj, String str, String str2, String str3) {
+        Z(jn5Var, str, jn5Var2, str2, null, j, str3, obj, i);
     }
 
-    public final void Y(defpackage.gl5 r20, java.lang.String r21, defpackage.gl5 r22, java.lang.String r23, defpackage.gl5 r24, java.lang.String r25, android.graphics.drawable.Drawable r26, long r27, java.lang.String r29, java.lang.Object r30, int r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.Y(gl5, java.lang.String, gl5, java.lang.String, gl5, java.lang.String, android.graphics.drawable.Drawable, long, java.lang.String, java.lang.Object, int):void");
+    public final void Y(defpackage.jn5 r20, java.lang.String r21, defpackage.jn5 r22, java.lang.String r23, defpackage.jn5 r24, java.lang.String r25, android.graphics.drawable.Drawable r26, long r27, java.lang.String r29, java.lang.Object r30, int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.Y(jn5, java.lang.String, jn5, java.lang.String, jn5, java.lang.String, android.graphics.drawable.Drawable, long, java.lang.String, java.lang.Object, int):void");
     }
 
-    public final void Z(gl5 gl5Var, String str, gl5 gl5Var2, String str2, Drawable drawable, long j, String str3, Object obj, int i) {
-        Y(null, null, gl5Var, str, gl5Var2, str2, drawable, j, str3, obj, i);
+    public final void Z(jn5 jn5Var, String str, jn5 jn5Var2, String str2, Drawable drawable, long j, String str3, Object obj, int i) {
+        Y(null, null, jn5Var, str, jn5Var2, str2, drawable, j, str3, obj, i);
     }
 
-    public final void a(r8b r8bVar) {
+    public final void a(qcb qcbVar) {
         ArrayList arrayList = this.c;
         if (arrayList == null) {
             arrayList = new ArrayList();
             this.c = arrayList;
         }
-        arrayList.add(r8bVar);
+        arrayList.add(qcbVar);
         if (this.y1) {
-            r8bVar.a(this);
+            qcbVar.a(this);
         }
     }
 
-    public final void a0(gl5 gl5Var, String str, gl5 gl5Var2, String str2, Drawable drawable, Object obj, int i) {
-        Y(null, null, gl5Var, str, gl5Var2, str2, drawable, 0L, null, obj, i);
+    public final void a0(jn5 jn5Var, String str, jn5 jn5Var2, String str2, Drawable drawable, Object obj, int i) {
+        Y(null, null, jn5Var, str, jn5Var2, str2, drawable, 0L, null, obj, i);
     }
 
     public final void b() {
-        fl5 z = fl5.z();
-        z.s.c(new o94(z, this, this.w, (byte) 3));
+        in5 z = in5.z();
+        z.s.c(new sb4(z, this, this.w, (byte) 3));
     }
 
-    public final void b0(gl5 gl5Var, String str, gl5 gl5Var2, String str2, String str3, Object obj, int i) {
-        Z(gl5Var, str, gl5Var2, str2, null, 0L, str3, obj, i);
+    public final void b0(jn5 jn5Var, String str, jn5 jn5Var2, String str2, String str3, Object obj, int i) {
+        Z(jn5Var, str, jn5Var2, str2, null, 0L, str3, obj, i);
     }
 
     public final void c() {
         this.r = false;
-        fl5.z().d(this, true);
+        in5.z().d(this, true);
         this.n = true;
     }
 
-    public final void c0(gl5 gl5Var, String str, Drawable drawable, long j, String str2, Object obj, int i) {
-        Z(gl5Var, str, null, null, drawable, j, str2, obj, i);
+    public final void c0(jn5 jn5Var, String str, Drawable drawable, long j, String str2, Object obj, int i) {
+        Z(jn5Var, str, null, null, drawable, j, str2, obj, i);
     }
 
-    public final void d(boolean z, il5 il5Var) {
+    public final void d(boolean z, ln5 ln5Var) {
         float f;
         if (!this.m1) {
             float f2 = this.i1;
             if (f2 != 1.0f) {
                 if (!z) {
-                    if (il5Var != null) {
+                    if (ln5Var != null) {
                         long currentTimeMillis = System.currentTimeMillis();
                         long j = this.k1;
                         long j2 = currentTimeMillis - j;
                         if (j == 0) {
                             j2 = 16;
                         }
-                        if (j2 > 30 && gl.r > 60.0f) {
+                        if (j2 > 30 && hl.r > 60.0f) {
                             j2 = 30;
                         }
                         f = (((float) j2) / this.t1) + this.i1;
@@ -718,8 +718,8 @@ public class ImageReceiver implements gk7, dm {
                         }
                     }
                 }
-                if (il5Var != null) {
-                    gl.c3(new iu4(this, (byte) 27));
+                if (ln5Var != null) {
+                    hl.c3(new ea5(this, (byte) 12));
                 } else {
                     invalidate();
                 }
@@ -727,75 +727,75 @@ public class ImageReceiver implements gk7, dm {
         }
     }
 
-    public final void d0(gl5 gl5Var, String str, Drawable drawable, String str2, Object obj, int i) {
-        Z(gl5Var, str, null, null, drawable, 0L, str2, obj, i);
+    public final void d0(jn5 jn5Var, String str, Drawable drawable, String str2, Object obj, int i) {
+        Z(jn5Var, str, null, null, drawable, 0L, str2, obj, i);
     }
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         int i3;
-        if (i == kk7.o4) {
+        if (i == jn7.p4) {
             String str = (String) objArr[0];
             String str2 = this.i0;
             if (str2 != null && str2.equals(str)) {
                 this.i0 = (String) objArr[1];
-                gl5 gl5Var = (gl5) objArr[2];
-                this.g0 = gl5Var;
-                nl5 nl5Var = this.F;
-                if (nl5Var != null) {
-                    nl5Var.e = gl5Var;
+                jn5 jn5Var = (jn5) objArr[2];
+                this.g0 = jn5Var;
+                qn5 qn5Var = this.F;
+                if (qn5Var != null) {
+                    qn5Var.e = jn5Var;
                 }
             }
             String str3 = this.R;
             if (str3 != null && str3.equals(str)) {
                 this.R = (String) objArr[1];
-                gl5 gl5Var2 = (gl5) objArr[2];
-                this.P = gl5Var2;
-                nl5 nl5Var2 = this.F;
-                if (nl5Var2 != null) {
-                    nl5Var2.a = gl5Var2;
+                jn5 jn5Var2 = (jn5) objArr[2];
+                this.P = jn5Var2;
+                qn5 qn5Var2 = this.F;
+                if (qn5Var2 != null) {
+                    qn5Var2.a = jn5Var2;
                 }
             }
             String str4 = this.Z;
             if (str4 != null && str4.equals(str)) {
                 this.Z = (String) objArr[1];
-                gl5 gl5Var3 = (gl5) objArr[2];
-                this.X = gl5Var3;
-                nl5 nl5Var3 = this.F;
-                if (nl5Var3 != null) {
-                    nl5Var3.c = gl5Var3;
+                jn5 jn5Var3 = (jn5) objArr[2];
+                this.X = jn5Var3;
+                qn5 qn5Var3 = this.F;
+                if (qn5Var3 != null) {
+                    qn5Var3.c = jn5Var3;
                 }
             }
-        } else if (i == kk7.i1) {
+        } else if (i == jn7.j1) {
             Integer num = (Integer) objArr[0];
             if (this.x < num.intValue()) {
                 int intValue = this.E | num.intValue();
                 this.E = intValue;
                 if (intValue != 0) {
-                    oy8 y = y();
+                    b29 y = y();
                     if (y != null && y.u()) {
                         y.stop();
                     }
-                    km m = m();
+                    lm m = m();
                     if (m != null) {
                         m.stop();
                     }
                 }
             }
-        } else if (i == kk7.j1) {
+        } else if (i == jn7.k1) {
             Integer num2 = (Integer) objArr[0];
             if (this.x < num2.intValue() && (i3 = this.E) != 0) {
                 int i4 = i3 & (~num2.intValue());
                 this.E = i4;
                 if (i4 == 0) {
-                    oy8 y2 = y();
+                    b29 y2 = y();
                     if (y2 != null) {
                         y2.F = this.t0;
                     }
                     if (this.v0 && y2 != null && y2.u()) {
                         y2.start();
                     }
-                    km m2 = m();
+                    lm m2 = m();
                     if (this.u0 && m2 != null) {
                         m2.j();
                         invalidate();
@@ -809,10 +809,10 @@ public class ImageReceiver implements gk7, dm {
         if (this.c != null) {
             if (this.y1) {
                 for (int i = 0; i < this.c.size(); i++) {
-                    ArrayList arrayList = ((r8b) ((kl5) this.c.get(i))).a;
+                    ArrayList arrayList = ((qcb) ((nn5) this.c.get(i))).a;
                     if (arrayList != null) {
                         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            ((n8b) arrayList.get(i2)).b(false);
+                            ((mcb) arrayList.get(i2)).b(false);
                         }
                     }
                 }
@@ -822,14 +822,14 @@ public class ImageReceiver implements gk7, dm {
     }
 
     public final void e0(String str, String str2, Drawable drawable, String str3, long j) {
-        Z(gl5.g(str), str2, null, null, drawable, j, str3, null, 1);
+        Z(jn5.g(str), str2, null, null, drawable, j, str3, null, 1);
     }
 
     public final void f() {
         for (int i = 0; i < 4; i++) {
             L(i, null);
         }
-        fl5.z().d(this, true);
+        in5.z().d(this, true);
     }
 
     public final void f0(Bitmap bitmap) {
@@ -848,7 +848,7 @@ public class ImageReceiver implements gk7, dm {
         boolean z;
         boolean z2;
         boolean z3 = true;
-        fl5.z().d(this, true);
+        in5.z().d(this, true);
         if (this.B0) {
             if (this.T != null) {
                 L(1, null);
@@ -887,52 +887,52 @@ public class ImageReceiver implements gk7, dm {
             }
         }
         Drawable drawable2 = this.n0;
-        if (drawable2 instanceof n29) {
-            cr7 cr7Var = (cr7) ((n29) drawable2);
-            up3.q(cr7Var.r.K1).v(cr7Var);
-            cr7Var.n = null;
-            cr7Var.r = null;
+        if (drawable2 instanceof c69) {
+            iu7 iu7Var = (iu7) ((c69) drawable2);
+            lq3.q(iu7Var.r.K1).v(iu7Var);
+            iu7Var.n = null;
+            iu7Var.r = null;
         }
-        if (drawable instanceof vl) {
-            vl vlVar = (vl) drawable;
+        if (drawable instanceof wl) {
+            wl wlVar = (wl) drawable;
             if (this.y1) {
-                vlVar.a(this);
+                wlVar.a(this);
             }
-        } else if (drawable instanceof km) {
-            km kmVar = (km) drawable;
+        } else if (drawable instanceof lm) {
+            lm lmVar = (lm) drawable;
             View view = this.e;
-            if (kmVar.s0 == null) {
-                kmVar.s0 = new WeakReference(view);
+            if (lmVar.s0 == null) {
+                lmVar.s0 = new WeakReference(view);
             }
             if (this.y1) {
-                kmVar.e(this);
+                lmVar.e(this);
             }
-            if (!this.w0 && !kmVar.o0) {
+            if (!this.w0 && !lmVar.o0) {
                 z = false;
             } else {
                 z = true;
             }
-            if (!kmVar.o0) {
-                kmVar.w0 = z;
+            if (!lmVar.o0) {
+                lmVar.w0 = z;
             }
             if (this.u0 && this.E == 0) {
-                kmVar.j();
+                lmVar.j();
             }
             boolean z4 = this.x0;
-            kmVar.E = z4;
+            lmVar.E = z4;
             if (z4) {
-                kmVar.x(false);
+                lmVar.x(false);
             }
-        } else if (drawable instanceof oy8) {
-            oy8 oy8Var = (oy8) drawable;
+        } else if (drawable instanceof b29) {
+            b29 b29Var = (b29) drawable;
             if (this.y1) {
-                oy8Var.J0.add(this);
+                b29Var.J0.add(this);
             }
-            oy8Var.F = this.t0;
-            if (this.v0 && (!oy8Var.u() || this.E == 0)) {
-                oy8Var.start();
+            b29Var.F = this.t0;
+            if (this.v0 && (!b29Var.u() || this.E == 0)) {
+                b29Var.start();
             }
-            oy8Var.E(true);
+            b29Var.E(true);
         }
         this.d0 = null;
         this.c0 = null;
@@ -942,8 +942,8 @@ public class ImageReceiver implements gk7, dm {
         this.g0 = null;
         this.h0 = null;
         Drawable drawable3 = this.k0;
-        if (drawable3 instanceof km) {
-            ((km) drawable3).v(this);
+        if (drawable3 instanceof lm) {
+            ((lm) drawable3).v(this);
         }
         this.k0 = null;
         this.i0 = null;
@@ -970,21 +970,21 @@ public class ImageReceiver implements gk7, dm {
         this.s0 = 0;
         this.i1 = 1.0f;
         this.j1 = 1.0f;
-        nl5 nl5Var = this.F;
-        if (nl5Var != null) {
-            nl5Var.a = null;
-            nl5Var.c = null;
-            nl5Var.e = null;
-            nl5Var.g = null;
+        qn5 qn5Var = this.F;
+        if (qn5Var != null) {
+            qn5Var.a = null;
+            qn5Var.c = null;
+            qn5Var.e = null;
+            qn5Var.g = null;
         }
-        ll5 ll5Var = this.h1;
-        if (ll5Var != null) {
+        on5 on5Var = this.h1;
+        if (on5Var != null) {
             if (this.b0 == null && this.n0 == null) {
                 z2 = false;
             } else {
                 z2 = true;
             }
-            ll5Var.C(this, z2, true, false);
+            on5Var.v(this, z2, true, false);
         }
         invalidate();
         if (this.V0 && this.B0 && this.D0 != null) {
@@ -1001,26 +1001,26 @@ public class ImageReceiver implements gk7, dm {
         return this.e1;
     }
 
-    public final boolean h(android.graphics.Canvas r32, defpackage.il5 r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.h(android.graphics.Canvas, il5):boolean");
+    public final boolean h(android.graphics.Canvas r32, defpackage.ln5 r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.h(android.graphics.Canvas, ln5):boolean");
     }
 
     public boolean h0(android.graphics.drawable.Drawable r8, java.lang.String r9, int r10, boolean r11, int r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.h0(android.graphics.drawable.Drawable, java.lang.String, int, boolean, int):boolean");
     }
 
-    public final void i(Canvas canvas, BitmapDrawable bitmapDrawable, il5 il5Var, int i) {
-        if (il5Var != null) {
-            if (bitmapDrawable instanceof oy8) {
-                oy8 oy8Var = (oy8) bitmapDrawable;
-                float f = il5Var.u;
-                float f2 = il5Var.v;
-                float f3 = il5Var.t;
-                float f4 = il5Var.s;
-                ColorFilter colorFilter = il5Var.z;
-                int i2 = il5Var.d;
-                Paint[] paintArr = oy8Var.k0;
-                RectF[] rectFArr = oy8Var.j0;
+    public final void i(Canvas canvas, BitmapDrawable bitmapDrawable, ln5 ln5Var, int i) {
+        if (ln5Var != null) {
+            if (bitmapDrawable instanceof b29) {
+                b29 b29Var = (b29) bitmapDrawable;
+                float f = ln5Var.u;
+                float f2 = ln5Var.v;
+                float f3 = ln5Var.t;
+                float f4 = ln5Var.s;
+                ColorFilter colorFilter = ln5Var.z;
+                int i2 = ln5Var.d;
+                Paint[] paintArr = b29Var.k0;
+                RectF[] rectFArr = b29Var.j0;
                 if (rectFArr[i2] == null) {
                     rectFArr[i2] = new RectF();
                     Paint paint = new Paint(1);
@@ -1030,18 +1030,18 @@ public class ImageReceiver implements gk7, dm {
                 paintArr[i2].setAlpha(i);
                 paintArr[i2].setColorFilter(colorFilter);
                 rectFArr[i2].set(f, f2, f + f3, f4 + f2);
-                oy8Var.l(canvas, null, true, 0L, i2);
+                b29Var.l(canvas, null, true, 0L, i2);
                 return;
-            } else if (bitmapDrawable instanceof km) {
-                km kmVar = (km) bitmapDrawable;
-                float f5 = il5Var.u;
-                float f6 = il5Var.v;
-                float f7 = il5Var.t;
-                float f8 = il5Var.s;
-                ColorFilter colorFilter2 = il5Var.z;
-                int i3 = il5Var.d;
-                Paint[] paintArr2 = kmVar.r0;
-                RectF[] rectFArr2 = kmVar.q0;
+            } else if (bitmapDrawable instanceof lm) {
+                lm lmVar = (lm) bitmapDrawable;
+                float f5 = ln5Var.u;
+                float f6 = ln5Var.v;
+                float f7 = ln5Var.t;
+                float f8 = ln5Var.s;
+                ColorFilter colorFilter2 = ln5Var.z;
+                int i3 = ln5Var.d;
+                Paint[] paintArr2 = lmVar.r0;
+                RectF[] rectFArr2 = lmVar.q0;
                 if (rectFArr2[i3] == null) {
                     rectFArr2[i3] = new RectF();
                     Paint paint2 = new Paint();
@@ -1051,22 +1051,22 @@ public class ImageReceiver implements gk7, dm {
                 paintArr2[i3].setAlpha(i);
                 paintArr2[i3].setColorFilter(colorFilter2);
                 rectFArr2[i3].set(f5, f6, f7 + f5, f8 + f6);
-                kmVar.l(canvas, true, 0L, i3);
+                lmVar.l(canvas, true, 0L, i3);
                 return;
             } else {
                 Bitmap bitmap = bitmapDrawable.getBitmap();
                 if (bitmap != null) {
-                    Paint paint3 = il5Var.A;
+                    Paint paint3 = ln5Var.A;
                     if (paint3 == null) {
                         paint3 = new Paint(1);
-                        il5Var.A = paint3;
+                        ln5Var.A = paint3;
                     }
                     paint3.setAlpha(i);
-                    il5Var.A.setColorFilter(il5Var.z);
+                    ln5Var.A.setColorFilter(ln5Var.z);
                     canvas.save();
-                    canvas.translate(il5Var.u, il5Var.v);
-                    canvas.scale(il5Var.t / bitmap.getWidth(), il5Var.s / bitmap.getHeight());
-                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, il5Var.A);
+                    canvas.translate(ln5Var.u, ln5Var.v);
+                    canvas.scale(ln5Var.t / bitmap.getWidth(), ln5Var.s / bitmap.getHeight());
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, ln5Var.A);
                     canvas.restore();
                     return;
                 }
@@ -1074,10 +1074,10 @@ public class ImageReceiver implements gk7, dm {
             }
         }
         bitmapDrawable.setAlpha(i);
-        if (bitmapDrawable instanceof oy8) {
-            ((oy8) bitmapDrawable).l(canvas, null, false, this.s, 0);
-        } else if (bitmapDrawable instanceof km) {
-            ((km) bitmapDrawable).l(canvas, false, this.s, 0);
+        if (bitmapDrawable instanceof b29) {
+            ((b29) bitmapDrawable).l(canvas, null, false, this.s, 0);
+        } else if (bitmapDrawable instanceof lm) {
+            ((lm) bitmapDrawable).l(canvas, false, this.s, 0);
         } else {
             bitmapDrawable.draw(canvas);
         }
@@ -1104,8 +1104,8 @@ public class ImageReceiver implements gk7, dm {
         view.invalidate((int) f, (int) f2, (int) (f + this.N0), (int) (f2 + this.O0));
     }
 
-    public final void j(android.graphics.Canvas r40, android.graphics.drawable.Drawable r41, int r42, android.graphics.BitmapShader r43, int r44, int r45, int r46, defpackage.il5 r47) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.j(android.graphics.Canvas, android.graphics.drawable.Drawable, int, android.graphics.BitmapShader, int, int, int, il5):void");
+    public final void j(android.graphics.Canvas r40, android.graphics.drawable.Drawable r41, int r42, android.graphics.BitmapShader r43, int r44, int r45, int r46, defpackage.ln5 r47) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.j(android.graphics.Canvas, android.graphics.drawable.Drawable, int, android.graphics.BitmapShader, int, int, int, ln5):void");
     }
 
     public final void j0(Rect rect) {
@@ -1117,7 +1117,7 @@ public class ImageReceiver implements gk7, dm {
         }
     }
 
-    public final void k(Canvas canvas, Drawable drawable, int i, BitmapShader bitmapShader, int i2, int i3, il5 il5Var) {
+    public final void k(Canvas canvas, Drawable drawable, int i, BitmapShader bitmapShader, int i2, int i3, ln5 ln5Var) {
         if (this.f1 == 0) {
             float f = this.u1;
             if (f != 0.0f) {
@@ -1136,11 +1136,11 @@ public class ImageReceiver implements gk7, dm {
         }
         float f3 = this.u1;
         if (f3 != 0.0f && f3 != 1.0f) {
-            j(canvas, drawable, i, bitmapShader, i2, i3, i4, il5Var);
-            j(canvas, drawable, (int) (i * this.u1), bitmapShader, i2, i3, this.v1, il5Var);
+            j(canvas, drawable, i, bitmapShader, i2, i3, i4, ln5Var);
+            j(canvas, drawable, (int) (i * this.u1), bitmapShader, i2, i3, this.v1, ln5Var);
             return;
         }
-        j(canvas, drawable, i, bitmapShader, i2, i3, i4, il5Var);
+        j(canvas, drawable, i, bitmapShader, i2, i3, i4, ln5Var);
     }
 
     public final void k0(RectF rectF) {
@@ -1152,22 +1152,22 @@ public class ImageReceiver implements gk7, dm {
         }
     }
 
-    public final vl l() {
+    public final wl l() {
         Drawable drawable = this.k0;
-        if (drawable instanceof vl) {
-            return (vl) drawable;
+        if (drawable instanceof wl) {
+            return (wl) drawable;
         }
         Drawable drawable2 = this.T;
-        if (drawable2 instanceof vl) {
-            return (vl) drawable2;
+        if (drawable2 instanceof wl) {
+            return (wl) drawable2;
         }
         Drawable drawable3 = this.b0;
-        if (drawable3 instanceof vl) {
-            return (vl) drawable3;
+        if (drawable3 instanceof wl) {
+            return (wl) drawable3;
         }
         Drawable drawable4 = this.n0;
-        if (drawable4 instanceof vl) {
-            return (vl) drawable4;
+        if (drawable4 instanceof wl) {
+            return (wl) drawable4;
         }
         return null;
     }
@@ -1176,22 +1176,22 @@ public class ImageReceiver implements gk7, dm {
         this.N0 = i;
     }
 
-    public final km m() {
+    public final lm m() {
         Drawable drawable = this.k0;
-        if (drawable instanceof km) {
-            return (km) drawable;
+        if (drawable instanceof lm) {
+            return (lm) drawable;
         }
         Drawable drawable2 = this.T;
-        if (drawable2 instanceof km) {
-            return (km) drawable2;
+        if (drawable2 instanceof lm) {
+            return (lm) drawable2;
         }
         Drawable drawable3 = this.b0;
-        if (drawable3 instanceof km) {
-            return (km) drawable3;
+        if (drawable3 instanceof lm) {
+            return (lm) drawable3;
         }
         Drawable drawable4 = this.n0;
-        if (drawable4 instanceof km) {
-            return (km) drawable4;
+        if (drawable4 instanceof lm) {
+            return (lm) drawable4;
         }
         return null;
     }
@@ -1199,12 +1199,12 @@ public class ImageReceiver implements gk7, dm {
     public final void m0(int i) {
         this.x = i;
         if (this.y1) {
-            this.E = kk7.e().p & (~this.x);
+            this.E = jn7.e().p & (~this.x);
         }
     }
 
     public final Bitmap n() {
-        oy8 y = y();
+        b29 y = y();
         if (y != null && y.p()) {
             if (y.R != null) {
                 return y.R;
@@ -1214,20 +1214,20 @@ public class ImageReceiver implements gk7, dm {
             }
             return y.S;
         }
-        km m = m();
+        lm m = m();
         if (m != null && m.s()) {
             return m.m();
         }
         Drawable drawable = this.k0;
-        if ((drawable instanceof BitmapDrawable) && !(drawable instanceof km) && !(drawable instanceof oy8)) {
+        if ((drawable instanceof BitmapDrawable) && !(drawable instanceof lm) && !(drawable instanceof b29)) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
         Drawable drawable2 = this.T;
-        if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof km) && !(drawable instanceof oy8)) {
+        if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof lm) && !(drawable instanceof b29)) {
             return ((BitmapDrawable) drawable2).getBitmap();
         }
         Drawable drawable3 = this.b0;
-        if ((drawable3 instanceof BitmapDrawable) && !(drawable3 instanceof km) && !(drawable instanceof oy8)) {
+        if ((drawable3 instanceof BitmapDrawable) && !(drawable3 instanceof lm) && !(drawable instanceof b29)) {
             return ((BitmapDrawable) drawable3).getBitmap();
         }
         Drawable drawable4 = this.n0;
@@ -1241,13 +1241,13 @@ public class ImageReceiver implements gk7, dm {
         this.r1 = j;
         this.s1 = j2;
         Drawable drawable = this.k0;
-        if (drawable instanceof km) {
-            ((km) drawable).C(j, j2);
+        if (drawable instanceof lm) {
+            ((lm) drawable).C(j, j2);
         }
     }
 
     public final int o() {
-        km m = m();
+        lm m = m();
         if (m != null) {
             int i = this.V;
             if (i % 360 != 0 && i % 360 != 180) {
@@ -1255,7 +1255,7 @@ public class ImageReceiver implements gk7, dm {
             }
             return m.getIntrinsicHeight();
         }
-        oy8 y = y();
+        b29 y = y();
         if (y != null) {
             return y.c;
         }
@@ -1288,13 +1288,13 @@ public class ImageReceiver implements gk7, dm {
         this.g1 = z;
     }
 
-    public final defpackage.jl5 p() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.p():jl5");
+    public final defpackage.mn5 p() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.p():mn5");
     }
 
     public final void p0(View view) {
         this.e = view;
-        km m = m();
+        lm m = m();
         if (m != null && this.y1) {
             View view2 = this.e;
             if (m.s0 == null) {
@@ -1304,7 +1304,7 @@ public class ImageReceiver implements gk7, dm {
     }
 
     public final int q() {
-        km m = m();
+        lm m = m();
         if (m != null) {
             int i = this.V;
             if (i % 360 != 0 && i % 360 != 180) {
@@ -1312,7 +1312,7 @@ public class ImageReceiver implements gk7, dm {
             }
             return m.getIntrinsicWidth();
         }
-        oy8 y = y();
+        b29 y = y();
         if (y != null) {
             return y.b;
         }
@@ -1434,18 +1434,18 @@ public class ImageReceiver implements gk7, dm {
         }
     }
 
-    public final jl5 u() {
+    public final mn5 u() {
         String str;
         Drawable drawable = this.k0;
-        if ((drawable instanceof BitmapDrawable) && !(drawable instanceof km) && !(drawable instanceof oy8)) {
+        if ((drawable instanceof BitmapDrawable) && !(drawable instanceof lm) && !(drawable instanceof b29)) {
             str = this.i0;
         } else {
             Drawable drawable2 = this.T;
-            if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof km) && !(drawable instanceof oy8)) {
+            if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof lm) && !(drawable instanceof b29)) {
                 str = this.R;
             } else {
                 drawable2 = this.b0;
-                if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof km) && !(drawable instanceof oy8)) {
+                if ((drawable2 instanceof BitmapDrawable) && !(drawable2 instanceof lm) && !(drawable instanceof b29)) {
                     str = this.Z;
                 } else {
                     drawable = this.n0;
@@ -1467,30 +1467,30 @@ public class ImageReceiver implements gk7, dm {
         obj.a = str;
         obj.e = 0;
         if (str != null) {
-            fl5.z().D(obj.a);
+            in5.z().D(obj.a);
         }
         return obj;
     }
 
     public final void u0(Drawable drawable) {
-        yx yxVar;
+        zx zxVar;
         Drawable drawable2 = this.n0;
         if (drawable != drawable2) {
-            if (drawable2 instanceof yx) {
+            if (drawable2 instanceof zx) {
                 if (!drawable2.equals(drawable)) {
-                    yxVar = (yx) this.n0;
+                    zxVar = (zx) this.n0;
                 } else {
                     return;
                 }
             } else {
-                yxVar = null;
+                zxVar = null;
             }
             this.n0 = drawable;
-            if (this.y1 && (drawable instanceof yx)) {
-                ((yx) drawable).c(this);
+            if (this.y1 && (drawable instanceof zx)) {
+                ((zx) drawable).c(this);
             }
-            if (this.y1 && yxVar != null) {
-                yxVar.b(this);
+            if (this.y1 && zxVar != null) {
+                zxVar.b(this);
             }
         }
     }
@@ -1515,9 +1515,9 @@ public class ImageReceiver implements gk7, dm {
             this.R0 = z;
             if (z2) {
                 invalidate();
-                yr8 yr8Var = this.F1;
-                if (yr8Var != null) {
-                    yr8Var.run();
+                hv8 hv8Var = this.F1;
+                if (hv8Var != null) {
+                    hv8Var.run();
                 }
             }
         }
@@ -1528,7 +1528,7 @@ public class ImageReceiver implements gk7, dm {
     }
 
     public final void w0(boolean z) {
-        km m = m();
+        lm m = m();
         if (m != null) {
             boolean z2 = this.w0;
             if (!m.o0) {
@@ -1537,7 +1537,7 @@ public class ImageReceiver implements gk7, dm {
             m.start();
             return;
         }
-        oy8 y = y();
+        b29 y = y();
         if (y != null && !y.l0) {
             y.C(z);
         }
@@ -1548,33 +1548,33 @@ public class ImageReceiver implements gk7, dm {
     }
 
     public final void x0() {
-        km m = m();
+        lm m = m();
         if (m != null) {
             m.stop();
             return;
         }
-        oy8 y = y();
+        b29 y = y();
         if (y != null) {
             y.stop();
         }
     }
 
-    public final oy8 y() {
+    public final b29 y() {
         Drawable drawable = this.k0;
-        if (drawable instanceof oy8) {
-            return (oy8) drawable;
+        if (drawable instanceof b29) {
+            return (b29) drawable;
         }
         Drawable drawable2 = this.T;
-        if (drawable2 instanceof oy8) {
-            return (oy8) drawable2;
+        if (drawable2 instanceof b29) {
+            return (b29) drawable2;
         }
         Drawable drawable3 = this.b0;
-        if (drawable3 instanceof oy8) {
-            return (oy8) drawable3;
+        if (drawable3 instanceof b29) {
+            return (b29) drawable3;
         }
         Drawable drawable4 = this.n0;
-        if (drawable4 instanceof oy8) {
-            return (oy8) drawable4;
+        if (drawable4 instanceof b29) {
+            return (b29) drawable4;
         }
         return null;
     }
@@ -1583,13 +1583,13 @@ public class ImageReceiver implements gk7, dm {
         if (drawable != null) {
             int[] z = z();
             boolean z2 = false;
-            if (drawable instanceof ni2) {
-                ni2 ni2Var = (ni2) drawable;
+            if (drawable instanceof jj2) {
+                jj2 jj2Var = (jj2) drawable;
                 float f = z[0];
                 float f2 = z[1];
                 float f3 = z[2];
                 float f4 = z[3];
-                float[] fArr = ni2Var.f;
+                float[] fArr = jj2Var.f;
                 float max = Math.max(0.0f, f);
                 fArr[1] = max;
                 fArr[0] = max;
@@ -1605,17 +1605,17 @@ public class ImageReceiver implements gk7, dm {
                 if (f > 0.0f || f2 > 0.0f || f3 > 0.0f || f4 > 0.0f) {
                     z2 = true;
                 }
-                ni2Var.e = z2;
-                ni2Var.a();
-            } else if (!(drawable instanceof BitmapDrawable) && !(drawable instanceof pb0)) {
+                jj2Var.e = z2;
+                jj2Var.a();
+            } else if (!(drawable instanceof BitmapDrawable) && !(drawable instanceof rb0)) {
                 R(drawable, null);
-            } else if (drawable instanceof pb0) {
-                ((pb0) drawable).r = z[0];
+            } else if (drawable instanceof rb0) {
+                ((rb0) drawable).r = z[0];
             } else {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-                if (!(bitmapDrawable instanceof oy8)) {
-                    if (bitmapDrawable instanceof km) {
-                        ((km) drawable).B(z);
+                if (!(bitmapDrawable instanceof b29)) {
+                    if (bitmapDrawable instanceof lm) {
+                        ((lm) drawable).B(z);
                     } else if (bitmapDrawable.getBitmap() != null && !bitmapDrawable.getBitmap().isRecycled()) {
                         Bitmap bitmap = bitmapDrawable.getBitmap();
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;

@@ -1,12 +1,17 @@
 package defpackage;
-public final class ssd {
-    public final isd a;
-    public final Integer b;
-    public final d3f c;
+public final class ssd implements zq7 {
+    public static final ssd a = new Object();
 
-    public ssd(rod rodVar) {
-        this.a = (isd) rodVar.b;
-        this.b = (Integer) rodVar.c;
-        this.c = (d3f) rodVar.d;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

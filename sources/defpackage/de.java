@@ -1,54 +1,101 @@
 package defpackage;
-public final class de implements dn7 {
-    public final byte a;
-    public final int[] b;
 
-    public de(int[] iArr, byte b) {
+import android.view.View;
+public final class de implements View.OnClickListener {
+    public final byte a;
+    public final boolean[] b;
+
+    public de(boolean[] zArr, byte b) {
         this.a = b;
-        this.b = iArr;
+        this.b = zArr;
     }
 
     @Override
-    public final String c(int i) {
+    public final void onClick(View view) {
         byte b = this.a;
-        int[] iArr = this.b;
+        boolean[] zArr = this.b;
         switch (b) {
             case 0:
-                int i2 = iArr[i];
-                if (i2 == 0) {
-                    return k96.M0(2131748115, null);
+                boolean z = !zArr[0];
+                zArr[0] = z;
+                ((sg2) view).c(z, true);
+                return;
+            case 1:
+                boolean z2 = !zArr[0];
+                zArr[0] = z2;
+                ((sg2) view).c(z2, true);
+                return;
+            case 2:
+                boolean z3 = !zArr[0];
+                zArr[0] = z3;
+                ((sg2) view).c(z3, true);
+                return;
+            case 3:
+                boolean z4 = !zArr[0];
+                zArr[0] = z4;
+                ((sg2) view).c(z4, true);
+                return;
+            case 4:
+                boolean z5 = !zArr[0];
+                zArr[0] = z5;
+                ((sg2) view).c(z5, true);
+                return;
+            case 5:
+                boolean z6 = !zArr[0];
+                zArr[0] = z6;
+                ((sg2) view).c(z6, true);
+                return;
+            case 6:
+                boolean z7 = !zArr[0];
+                zArr[0] = z7;
+                ((sg2) view).c(z7, true);
+                return;
+            case 7:
+                boolean z8 = !zArr[1];
+                zArr[1] = z8;
+                ((sg2) view).c(z8, true);
+                return;
+            case 8:
+                boolean z9 = !zArr[0];
+                zArr[0] = z9;
+                ((sg2) view).c(z9, true);
+                return;
+            case 9:
+                boolean z10 = !zArr[0];
+                zArr[0] = z10;
+                ((sg2) view).c(z10, true);
+                return;
+            case 10:
+                boolean z11 = !zArr[0];
+                zArr[0] = z11;
+                ((sg2) view).c(z11, true);
+                return;
+            case 11:
+                if (view.isEnabled()) {
+                    boolean z12 = !zArr[0];
+                    zArr[0] = z12;
+                    ((sg2) view).c(z12, true);
+                    return;
                 }
-                if (i2 < 60) {
-                    return k96.G(i2, "Minutes", new Object[0]);
+                return;
+            case 12:
+                boolean z13 = !zArr[0];
+                zArr[0] = z13;
+                ((sg2) view).c(z13, true);
+                return;
+            case 13:
+                if (view.isEnabled()) {
+                    boolean z14 = !zArr[0];
+                    zArr[0] = z14;
+                    ((sg2) view).c(z14, true);
+                    return;
                 }
-                if (i2 < 1440) {
-                    return k96.G(i2 / 60, "Hours", new Object[0]);
-                }
-                if (i2 < 10080) {
-                    return k96.G(i2 / 1440, "Days", new Object[0]);
-                }
-                if (i2 < 44640) {
-                    return k96.G(i2 / 10080, "Weeks", new Object[0]);
-                }
-                if (i2 < 525600) {
-                    return k96.G(i2 / 44640, "Months", new Object[0]);
-                }
-                return k96.G(i2 / 525600, "Years", new Object[0]);
+                return;
             default:
-                int i3 = iArr[i];
-                if (i3 == 0) {
-                    return k96.M0(2131753846, null);
-                }
-                if (i3 < 10080) {
-                    return k96.G(i3 / 1440, "Days", new Object[0]);
-                }
-                if (i3 < 44640) {
-                    return k96.G(i3 / 10080, "Weeks", new Object[0]);
-                }
-                if (i3 < 525600) {
-                    return k96.G(i3 / 44640, "Months", new Object[0]);
-                }
-                return k96.G(i3 / 525600, "Years", new Object[0]);
+                boolean z15 = !zArr[0];
+                zArr[0] = z15;
+                ((sg2) view).c(z15, true);
+                return;
         }
     }
 }

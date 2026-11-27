@@ -1,11 +1,6 @@
 package defpackage;
-
-import android.os.IInterface;
-import android.support.v4.media.session.PlaybackStateCompat;
-public interface ii5 extends IInterface {
-    void N(PlaybackStateCompat playbackStateCompat);
-
-    void g(int i);
-
-    void i(int i);
+public final class ii5 extends ji5 {
+    public final String toString() {
+        return "InlineImpl{name='" + this.a + "', start=" + this.b + ", end=" + this.d + ", attributes=" + this.c + '}';
+    }
 }

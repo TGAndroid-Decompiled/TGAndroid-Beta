@@ -1,18 +1,11 @@
 package defpackage;
-public final class xx3 extends oh8 {
-    @Override
-    public final void invalidate() {
-        if (pg5.b(this)) {
-            return;
-        }
-        super.invalidate();
-    }
 
-    @Override
-    public final void invalidate(int i, int i2, int i3, int i4) {
-        if (pg5.b(this)) {
-            return;
-        }
-        super.invalidate(i, i2, i3, i4);
+import java.util.ArrayList;
+public final class xx3 extends jy3 {
+    public final ly3 h;
+
+    public xx3(ly3 ly3Var, int i, ArrayList arrayList) {
+        super(ly3Var, i, arrayList);
+        this.h = ly3Var;
     }
 }

@@ -1,97 +1,124 @@
 package defpackage;
 
-import android.os.SystemClock;
-public final class ly0 implements lo7 {
-    public long a;
-    public long b;
-    public Object c;
-    public Object d;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class ly0 extends c79 {
+    public final byte c;
+    public final Context d;
+    public final Object e;
+    public final KeyEvent.Callback f;
 
-    public ly0(long j, int i) {
-        boolean z;
-        if (((mj) this.c) == null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        gre.p(z);
-        this.a = j;
-        this.b = j + i;
+    public ly0(m22 m22Var, Context context) {
+        this.c = (byte) 1;
+        this.f = m22Var;
+        this.e = new ArrayList();
+        this.d = context;
     }
 
-    public final void a(Exception exc) {
-        boolean z;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (((Exception) this.c) == null) {
-            this.c = exc;
+    @Override
+    public final void B(l79 l79Var) {
+        switch (this.c) {
+            case 0:
+                ((c79) this.e).B(new ky0(this, l79Var));
+                return;
+            default:
+                super.B(l79Var);
+                return;
         }
-        if (this.a == -9223372036854775807L) {
-            ((l40) ((q93) this.d).r).getClass();
-            synchronized (j40.s) {
-                if (j40.u > 0) {
-                    z = true;
-                } else {
-                    z = false;
+    }
+
+    @Override
+    public final boolean D(f89 f89Var) {
+        switch (this.c) {
+            case 0:
+                return ((c79) this.e).D(f89Var);
+            default:
+                if (f89Var.f == 0) {
+                    return true;
                 }
-            }
-            if (!z) {
-                this.a = 200 + elapsedRealtime;
-            }
+                return false;
         }
-        long j = this.a;
-        if (j != -9223372036854775807L && elapsedRealtime >= j) {
-            Exception exc2 = (Exception) this.c;
-            if (exc2 != exc) {
-                exc2.addSuppressed(exc);
-            }
-            Exception exc3 = (Exception) this.c;
-            this.c = null;
-            this.a = -9223372036854775807L;
-            this.b = -9223372036854775807L;
-            throw exc3;
-        }
-        this.b = elapsedRealtime + 50;
     }
 
     @Override
-    public final void b0(long j) {
-        long[] jArr = (long[]) ((lv6) this.d).b;
-        this.b = jArr[g8c.f(jArr, j, true)];
+    public final int b() {
+        byte b = this.c;
+        Object obj = this.e;
+        switch (b) {
+            case 0:
+                return ((c79) obj).b() + 1;
+            default:
+                return ((ArrayList) obj).size();
+        }
     }
 
     @Override
-    public final long h(ja3 ja3Var) {
-        long j = this.b;
-        if (j < 0) {
-            return -1L;
+    public final int d(int i) {
+        int i2 = 0;
+        switch (this.c) {
+            case 0:
+                ny0 ny0Var = (ny0) this.f;
+                if (ny0Var.J1) {
+                    i2 = b() - 1;
+                }
+                if (i == i2) {
+                    return -1000;
+                }
+                return ((c79) this.e).d(i - (!ny0Var.J1 ? 1 : 0));
+            default:
+                return 0;
         }
-        long j2 = -(j + 2);
-        this.b = -1L;
-        return j2;
     }
 
     @Override
-    public final fv9 k() {
-        boolean z;
-        if (this.a != -1) {
-            z = true;
-        } else {
-            z = false;
+    public final void t(f89 f89Var, int i) {
+        byte b = this.c;
+        Object obj = this.e;
+        KeyEvent.Callback callback = this.f;
+        int i2 = 0;
+        switch (b) {
+            case 0:
+                ny0 ny0Var = (ny0) callback;
+                if (ny0Var.J1) {
+                    i2 = b() - 1;
+                }
+                if (i != i2) {
+                    ((c79) obj).t(f89Var, i - (!ny0Var.J1 ? 1 : 0));
+                    return;
+                }
+                return;
+            default:
+                evc evcVar = (evc) f89Var.a;
+                evcVar.d(1, false, false);
+                evcVar.setSize(((m22) callback).r);
+                evcVar.e(((ArrayList) obj).get(i), 1, 0, null);
+                return;
         }
-        gre.p(z);
-        return new oc0((ci4) this.c, this.a, (byte) 1);
     }
 
-    public ly0(q93 q93Var) {
-        this.d = q93Var;
-        this.a = -9223372036854775807L;
-        this.b = -9223372036854775807L;
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        byte b = this.c;
+        Context context = this.d;
+        switch (b) {
+            case 0:
+                if (i == -1000) {
+                    return new f89(new tb((ny0) this.f, context));
+                }
+                return ((c79) this.e).x(viewGroup, i);
+            default:
+                l22 l22Var = new l22(this, context);
+                l22Var.b = false;
+                return new f89(l22Var);
+        }
     }
 
-    public ly0(String str, byte[] bArr, long j, long j2) {
-        this.c = str;
-        this.d = bArr;
-        this.a = j;
-        this.b = j2;
+    public ly0(ny0 ny0Var, c79 c79Var, Context context) {
+        this.c = (byte) 0;
+        this.f = ny0Var;
+        this.e = c79Var;
+        this.d = context;
     }
 }

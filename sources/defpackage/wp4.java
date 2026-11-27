@@ -1,3 +1,3 @@
 package defpackage;
-public interface wp4 extends fq4 {
+public interface wp4 {
 }

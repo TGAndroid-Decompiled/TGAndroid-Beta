@@ -1,48 +1,175 @@
 package defpackage;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-public final class b08 implements no7, ed {
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class b08 extends FrameLayout {
     public final byte a;
-    public final a18 b;
+    public Object b;
+    public float c;
+    public final KeyEvent.Callback d;
 
-    public b08(a18 a18Var, byte b) {
-        this.a = b;
-        this.b = a18Var;
+    public b08(ky8 ky8Var, Context context, d41 d41Var) {
+        super(context);
+        this.a = (byte) 3;
+        this.d = ky8Var;
+        this.b = d41Var;
     }
 
     @Override
-    public final vxc W(View view, vxc vxcVar) {
-        io5 H0 = gl.H0(vxcVar, false);
-        a18 a18Var = this.b;
-        a18Var.c0 = H0;
-        j08 j08Var = a18Var.h.b;
-        int i = H0.a;
-        int paddingTop = j08Var.getPaddingTop();
-        io5 io5Var = a18Var.c0;
-        j08Var.setPadding(i, paddingTop, io5Var.c, gl.L(72.0f) + io5Var.d);
-        j08 j08Var2 = a18Var.n.b;
-        int i2 = a18Var.c0.a;
-        int paddingTop2 = j08Var2.getPaddingTop();
-        io5 io5Var2 = a18Var.c0;
-        j08Var2.setPadding(i2, paddingTop2, io5Var2.c, gl.L(72.0f) + io5Var2.d);
-        FrameLayout frameLayout = a18Var.Q;
-        io5 io5Var3 = a18Var.c0;
-        frameLayout.setPadding(io5Var3.a, 0, io5Var3.c, io5Var3.d);
-        return vxc.b;
-    }
-
-    @Override
-    public final void u(hd hdVar, int i) {
+    public final void onDraw(Canvas canvas) {
         byte b = this.a;
-        a18 a18Var = this.b;
+        KeyEvent.Callback callback = this.d;
         switch (b) {
+            case 0:
+                if (((StaticLayout) this.b) != null) {
+                    canvas.save();
+                    canvas.translate(hl.L(21.0f) + this.c, ((EditTextBoldCursor) callback).getLineY() + hl.L(3.0f));
+                    ((StaticLayout) this.b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
             case 1:
-                a18Var.finishFragment();
+                if (((StaticLayout) this.b) != null) {
+                    canvas.save();
+                    canvas.translate(hl.L(21.0f) + this.c, ((EditTextBoldCursor) callback).getLineY() + hl.L(3.0f));
+                    ((StaticLayout) this.b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            case 2:
+                if (((StaticLayout) this.b) != null) {
+                    canvas.save();
+                    canvas.translate(hl.L(21.0f) + this.c, ((EditTextBoldCursor) callback).getLineY() + hl.L(3.0f));
+                    ((StaticLayout) this.b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
                 return;
             default:
-                a18Var.A0();
+                super.onDraw(canvas);
                 return;
         }
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        ky8 ky8Var;
+        byte b = this.a;
+        int i3 = 0;
+        KeyEvent.Callback callback = this.d;
+        switch (b) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i) - hl.L(34.0f);
+                StaticLayout p = ((EditTextBoldCursor) callback).p(size);
+                this.b = p;
+                if (p != null) {
+                    int lineCount = p.getLineCount();
+                    if (lineCount > 1) {
+                        i2 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.b).getLineBottom(lineCount - 1) - ((StaticLayout) this.b).getLineBottom(0)) + hl.L(64.0f), 1073741824);
+                    }
+                    if (ob6.a0) {
+                        float f = 0.0f;
+                        while (true) {
+                            if (i3 < lineCount) {
+                                if (((StaticLayout) this.b).getLineLeft(i3) != 0.0f) {
+                                    this.c = 0.0f;
+                                } else {
+                                    f = Math.max(f, ((StaticLayout) this.b).getLineWidth(i3));
+                                    if (i3 == lineCount - 1) {
+                                        this.c = size - f;
+                                    }
+                                    i3++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i, i2);
+                return;
+            case 1:
+                int size2 = View.MeasureSpec.getSize(i) - hl.L(34.0f);
+                StaticLayout p2 = ((EditTextBoldCursor) callback).p(size2);
+                this.b = p2;
+                if (p2 != null) {
+                    int lineCount2 = p2.getLineCount();
+                    if (lineCount2 > 1) {
+                        i2 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.b).getLineBottom(0)) + hl.L(64.0f), 1073741824);
+                    }
+                    if (ob6.a0) {
+                        float f2 = 0.0f;
+                        while (true) {
+                            if (i3 < lineCount2) {
+                                if (((StaticLayout) this.b).getLineLeft(i3) != 0.0f) {
+                                    this.c = 0.0f;
+                                } else {
+                                    f2 = Math.max(f2, ((StaticLayout) this.b).getLineWidth(i3));
+                                    if (i3 == lineCount2 - 1) {
+                                        this.c = size2 - f2;
+                                    }
+                                    i3++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i, i2);
+                return;
+            case 2:
+                int size3 = View.MeasureSpec.getSize(i) - hl.L(34.0f);
+                StaticLayout p3 = ((EditTextBoldCursor) callback).p(size3);
+                this.b = p3;
+                if (p3 != null) {
+                    int lineCount3 = p3.getLineCount();
+                    if (lineCount3 > 1) {
+                        i2 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.b).getLineBottom(0)) + hl.L(64.0f), 1073741824);
+                    }
+                    if (ob6.a0) {
+                        float f3 = 0.0f;
+                        while (true) {
+                            if (i3 < lineCount3) {
+                                if (((StaticLayout) this.b).getLineLeft(i3) != 0.0f) {
+                                    this.c = 0.0f;
+                                } else {
+                                    f3 = Math.max(f3, ((StaticLayout) this.b).getLineWidth(i3));
+                                    if (i3 == lineCount3 - 1) {
+                                        this.c = size3 - f3;
+                                    }
+                                    i3++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i, i2);
+                return;
+            default:
+                super.onMeasure(i, i2);
+                e29 e29Var = ((ky8) callback).q1;
+                float measuredHeight = (ky8Var.p1 / 768.0f) * ((d41) this.b).getMeasuredHeight();
+                if (this.c != measuredHeight) {
+                    this.c = measuredHeight;
+                    ViewGroup.LayoutParams layoutParams = e29Var.getLayoutParams();
+                    int i4 = (int) measuredHeight;
+                    e29Var.getLayoutParams().width = i4;
+                    layoutParams.height = i4;
+                    super.onMeasure(i, i2);
+                    return;
+                }
+                return;
+        }
+    }
+
+    public b08(Context context, EditTextBoldCursor editTextBoldCursor, byte b) {
+        super(context);
+        this.a = b;
+        this.d = editTextBoldCursor;
     }
 }

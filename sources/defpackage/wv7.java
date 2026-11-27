@@ -1,4 +1,18 @@
 package defpackage;
-public interface wv7 {
-    void b(yv7 yv7Var);
+
+import java.io.RandomAccessFile;
+public final class wv7 {
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+
+    public wv7(RandomAccessFile randomAccessFile) {
+        randomAccessFile.readUnsignedShort();
+        this.a = randomAccessFile.readUnsignedShort();
+        randomAccessFile.readUnsignedShort();
+        this.b = randomAccessFile.readUnsignedShort();
+        this.c = randomAccessFile.readUnsignedShort();
+        this.d = randomAccessFile.readUnsignedShort();
+    }
 }

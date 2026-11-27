@@ -1,249 +1,180 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import org.telegram.messenger.a;
-public final class k38 {
-    public static final List m;
-    public static final List n;
-    public static final int o;
-    public static final int p;
-    public static final int q;
-    public static final k38[] r;
-    public final SharedPreferences a;
-    public final ArrayList b;
-    public final HashMap c;
-    public List d;
-    public boolean e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
+import android.graphics.Typeface;
+import android.view.View;
+public class k38 extends View {
+    public final Paint E;
+    public boolean F;
+    public boolean G;
+    public int a;
+    public final vnb b;
+    public float c;
+    public boolean d;
+    public int e;
     public int f;
-    public int g;
-    public int h;
-    public float i;
-    public String j;
-    public boolean k;
-    public boolean l;
+    public final ll h;
+    public final ll n;
+    public int r;
+    public int s;
+    public int w;
+    public int x;
+    public RadialGradient y;
 
-    static {
-        List asList = Arrays.asList(-2645892, -8409090, -5926949, -2386514, -4531041);
-        m = asList;
-        List asList2 = Arrays.asList(-47814, -30208, -10742, -13318311, -10230046, -16087809, -4236558, -16777216, -1);
-        n = asList2;
-        int size = asList.size();
-        o = size;
-        int size2 = asList2.size();
-        p = size2;
-        q = size + size2;
-        r = new k38[4];
+    public k38(Context context, vnb vnbVar) {
+        super(context);
+        this.c = 0.0f;
+        k43 k43Var = k43.h;
+        this.h = new ll(this, 350L, k43Var);
+        this.n = new ll(this, 350L, k43Var);
+        this.E = new Paint(1);
+        this.b = vnbVar;
+        this.a = aob.v0(aob.s8, vnbVar);
+        b(-1, -1, false);
     }
 
-    public k38(int i) {
-        List list;
-        int i2 = q;
-        this.b = new ArrayList(i2);
-        HashMap hashMap = new HashMap(m01.a.size());
-        this.c = hashMap;
-        this.d = new ArrayList(i2);
-        int i3 = 0;
-        SharedPreferences sharedPreferences = a.b.getSharedPreferences("photo_color_palette_" + i, 0);
-        this.a = sharedPreferences;
-        this.f = sharedPreferences.getInt("brush", 0);
-        this.i = sharedPreferences.getFloat("weight", 0.5f);
-        this.j = sharedPreferences.getString("typeface", "roboto");
-        this.g = sharedPreferences.getInt("text_alignment", 0);
-        this.h = sharedPreferences.getInt("text_type", 0);
-        this.k = sharedPreferences.getBoolean("fill_shapes", false);
-        int i4 = 0;
-        while (i4 < o) {
-            i4 = tb4.g((int) sharedPreferences.getLong(de9.k(i4, "color_"), ((Integer) m.get(i4)).intValue()), i4, 1, this.b);
+    public final void b(int i, int i2, boolean z) {
+        lc7 lc7Var;
+        kc7 kc7Var = null;
+        if (i2 >= 0 && i >= 0 && (lc7Var = uc7.s1(i).F3) != null) {
+            kc7Var = lc7Var.d(i2);
         }
-        while (true) {
-            if (i3 < m01.a.size()) {
-                hashMap.put(Integer.valueOf(i3), Integer.valueOf((int) sharedPreferences.getLong(de9.k(i3, "brush_color_"), ((m01) list.get(i3)).b())));
-                i3++;
+        c(kc7Var, z);
+    }
+
+    public final void c(kc7 kc7Var, boolean z) {
+        boolean o;
+        this.d = false;
+        vnb vnbVar = this.b;
+        if (kc7Var == null) {
+            this.d = true;
+            int v0 = aob.v0(aob.s8, vnbVar);
+            this.f = v0;
+            this.e = v0;
+        } else {
+            if (vnbVar != null) {
+                o = vnbVar.a();
             } else {
-                hashMap.put(-1, Integer.valueOf((int) sharedPreferences.getLong("brush_color_-1", -1L)));
-                return;
+                o = aob.I.o();
             }
+            this.e = kc7Var.c(o);
+            this.f = kc7Var.d(o);
+        }
+        if (!z) {
+            this.h.a(this.e, true);
+            this.n.a(this.f, true);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        int i;
+        int v0;
+        boolean z = this.d;
+        ll llVar = this.n;
+        ll llVar2 = this.h;
+        if (z && (this.e != (v0 = aob.v0(aob.s8, this.b)) || this.f != v0)) {
+            this.f = v0;
+            this.e = v0;
+            llVar2.a(v0, true);
+            llVar.a(v0, true);
+        }
+        int a = llVar2.a(this.e, false);
+        int a2 = llVar.a(this.f, false);
+        RadialGradient radialGradient = this.y;
+        Paint paint = this.E;
+        if (radialGradient == null || this.r != a || this.s != a2 || this.w != getWidth() || this.x != getHeight()) {
+            this.w = getWidth();
+            this.x = getHeight();
+            float f = this.w;
+            float f2 = f / 2.0f;
+            float f3 = this.x;
+            float f4 = f3 * 0.4f;
+            Typeface typeface = hl.a;
+            float f5 = f - 0.0f;
+            float f6 = f3 - 0.0f;
+            this.s = a2;
+            this.r = a;
+            RadialGradient radialGradient2 = new RadialGradient(f2, f4, ((float) Math.sqrt((f6 * f6) + (f5 * f5))) * 0.75f, new int[]{a2, a}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+            this.y = radialGradient2;
+            paint.setShader(radialGradient2);
+            a();
+        }
+        if (this.c < 1.0f && !this.F) {
+            canvas2 = canvas;
+            canvas2.drawColor(this.a);
+        } else {
+            canvas2 = canvas;
+        }
+        if (this.F) {
+            i = 255;
+        } else {
+            i = (int) (this.c * 255.0f);
+        }
+        paint.setAlpha(i);
+        canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+    }
+
+    public int getActionBarButtonColor() {
+        int i;
+        int i2 = aob.v8;
+        vnb vnbVar = this.b;
+        int v0 = aob.v0(i2, vnbVar);
+        if (this.d) {
+            i = aob.v0(i2, vnbVar);
+        } else {
+            i = -1;
+        }
+        return vm2.f(this.c, v0, i);
+    }
+
+    public int getColor() {
+        return vm2.f(this.c, aob.v0(aob.s8, this.b), vm2.f(0.75f, this.h.c, this.n.c));
+    }
+
+    public int getTabsViewBackgroundColor() {
+        int a;
+        int a2;
+        int i = aob.s8;
+        vnb vnbVar = this.b;
+        if (hl.B(aob.v0(i, vnbVar)) > 0.721f) {
+            a = aob.v0(aob.v8, vnbVar);
+        } else {
+            a = aob.a(0.08f, -0.08f, aob.v0(i, vnbVar));
+        }
+        ll llVar = this.h;
+        int i2 = llVar.c;
+        ll llVar2 = this.n;
+        if (hl.B(vm2.f(0.75f, i2, llVar2.c)) > 0.721f) {
+            a2 = aob.v0(aob.v6, vnbVar);
+        } else {
+            a2 = aob.a(0.08f, -0.08f, vm2.f(0.75f, llVar.c, llVar2.c));
+        }
+        return vm2.f(this.c, a, a2);
+    }
+
+    @Override
+    public final void onMeasure(int i, int i2) {
+        if (!this.G) {
+            i2 = ik8.E(230.0f, hl.m, 1073741824);
+        }
+        super.onMeasure(i, i2);
+    }
+
+    public void setProgressToGradient(float f) {
+        if (Math.abs(this.c - f) > 0.001f) {
+            this.c = f;
+            a();
+            invalidate();
         }
     }
 
-    public static k38 e(int i) {
-        k38[] k38VarArr = r;
-        if (k38VarArr[i] == null) {
-            k38VarArr[i] = new k38(i);
-        }
-        return k38VarArr[i];
-    }
-
-    public final void a() {
-        this.d.clear();
-        this.d.addAll(m);
-        SharedPreferences.Editor edit = this.a.edit();
-        for (int i = 0; i < m01.a.size(); i++) {
-            edit.remove("brush_color_" + i);
-        }
-        edit.remove("brush_color_-1");
-        this.c.clear();
-        edit.apply();
-        g();
-    }
-
-    public final int b(int i) {
-        int i2 = q;
-        if (i >= 0 && i < i2) {
-            List list = n;
-            ArrayList arrayList = new ArrayList(list);
-            arrayList.addAll(this.b);
-            if (i >= arrayList.size()) {
-                int i3 = p;
-                if (i < i3) {
-                    return ((Integer) list.get(i)).intValue();
-                }
-                return ((Integer) m.get(i - i3)).intValue();
-            }
-            return ((Integer) arrayList.get(i)).intValue();
-        }
-        k93.i(de9.k(i2, "Color palette index should be in range 0 ... "));
-        return 0;
-    }
-
-    public final int c() {
-        long b;
-        Integer valueOf = Integer.valueOf(this.f);
-        HashMap hashMap = this.c;
-        Integer num = (Integer) hashMap.get(valueOf);
-        if (num == null) {
-            String str = "brush_color_" + this.f;
-            int i = this.f;
-            if (i == -1) {
-                b = -1;
-            } else {
-                b = ((m01) m01.a.get(i)).b();
-            }
-            num = Integer.valueOf((int) this.a.getLong(str, b));
-            hashMap.put(Integer.valueOf(this.f), num);
-        }
-        return num.intValue();
-    }
-
-    public final int d() {
-        int c = c();
-        ArrayList arrayList = new ArrayList(n);
-        arrayList.addAll(this.b);
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (((Integer) arrayList.get(i)).intValue() == c) {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    public final float f(String str, float f) {
-        return this.a.getFloat("weight_" + str, f);
-    }
-
-    public final void g() {
-        Integer num;
-        List list;
-        if (this.d.isEmpty() && !this.e) {
-            return;
-        }
-        SharedPreferences.Editor edit = this.a.edit();
-        if (!this.d.isEmpty()) {
-            for (int i = 0; i < o; i++) {
-                String k = de9.k(i, "color_");
-                if (i < this.d.size()) {
-                    list = this.d;
-                } else {
-                    list = m;
-                }
-                edit.putLong(k, ((Integer) list.get(i)).intValue());
-            }
-            ArrayList arrayList = this.b;
-            arrayList.clear();
-            arrayList.addAll(this.d);
-            this.d.clear();
-        }
-        if (this.e) {
-            if (((Integer) this.c.get(Integer.valueOf(this.f))) != null) {
-                edit.putLong("brush_color_" + this.f, num.intValue());
-            }
-            this.e = false;
-        }
-        edit.apply();
-    }
-
-    public final void h(int i, boolean z) {
-        List list;
-        ArrayList arrayList = new ArrayList(n);
-        Collection collection = this.b;
-        arrayList.addAll(collection);
-        int indexOf = arrayList.indexOf(Integer.valueOf(i));
-        HashMap hashMap = this.c;
-        if (indexOf != -1) {
-            if (z) {
-                hashMap.put(Integer.valueOf(this.f), Integer.valueOf(b(indexOf)));
-                this.e = true;
-                return;
-            }
-            return;
-        }
-        if (!this.d.isEmpty()) {
-            collection = this.d;
-        }
-        ArrayList arrayList2 = new ArrayList(collection);
-        this.d.clear();
-        this.d.add(Integer.valueOf(i));
-        int i2 = 0;
-        while (true) {
-            int size = arrayList2.size() - 1;
-            list = this.d;
-            if (i2 >= size) {
-                break;
-            }
-            list.add((Integer) arrayList2.get(i2));
-            i2++;
-        }
-        int size2 = list.size();
-        List list2 = m;
-        int size3 = list2.size();
-        List list3 = this.d;
-        if (size2 < size3) {
-            for (int size4 = list3.size(); size4 < list2.size(); size4++) {
-                this.d.add((Integer) list2.get(size4));
-            }
-        } else if (list3.size() > list2.size()) {
-            this.d = this.d.subList(0, list2.size());
-        }
-        if (z) {
-            hashMap.put(Integer.valueOf(this.f), Integer.valueOf(i));
-            this.e = true;
-        }
-    }
-
-    public final void i(int i, boolean z) {
-        this.f = i;
-        if (z) {
-            this.a.edit().putInt("brush", i).apply();
-        }
-        Integer num = (Integer) this.c.get(Integer.valueOf(i));
-        if (num != null) {
-            h(num.intValue(), false);
-            g();
-        }
-    }
-
-    public final void j(float f) {
-        this.i = f;
-        this.a.edit().putFloat("weight", f).apply();
-    }
-
-    public final void k(String str, float f) {
-        SharedPreferences.Editor edit = this.a.edit();
-        edit.putFloat("weight_" + str, f).apply();
+    public void a() {
     }
 }

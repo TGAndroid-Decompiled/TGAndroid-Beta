@@ -1,27 +1,58 @@
 package defpackage;
-
-import android.content.Context;
-import java.util.ArrayList;
-public final class cvb extends ovb {
-    public final qvb p3;
-
-    public cvb(qvb qvbVar, Context context) {
-        super(qvbVar, context);
-        this.p3 = qvbVar;
+public enum cvb extends rwb {
+    public cvb() {
+        super("BeforeAttributeName", 33);
     }
 
     @Override
-    public final boolean S0() {
-        ArrayList arrayList = this.p3.b;
-        if (getAdapter() == null || this.W1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((ivb) arrayList.get(0)).c == null || ((ivb) arrayList.get(0)).c.id != 1 ? getAdapter().b() > 1 : getAdapter().b() > 2)) {
-            return false;
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char d = ik1Var.d();
+        dvb dvbVar = rwb.Y;
+        if (d != 0) {
+            if (d != ' ') {
+                if (d != '\"' && d != '\'') {
+                    if (d != '/') {
+                        mub mubVar = rwb.a;
+                        if (d != 65535) {
+                            if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
+                                switch (d) {
+                                    case '<':
+                                    case '=':
+                                        break;
+                                    case '>':
+                                        bubVar.k();
+                                        bubVar.c = mubVar;
+                                        return;
+                                    default:
+                                        bubVar.i.A();
+                                        ik1Var.q();
+                                        bubVar.c = dvbVar;
+                                        return;
+                                }
+                            } else {
+                                return;
+                            }
+                        } else {
+                            bubVar.l(this);
+                            bubVar.c = mubVar;
+                            return;
+                        }
+                    } else {
+                        bubVar.c = rwb.f0;
+                        return;
+                    }
+                }
+                bubVar.m(this);
+                bubVar.i.A();
+                bubVar.i.u(d);
+                bubVar.c = dvbVar;
+                return;
+            }
+            return;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        this.p3.y0();
+        bubVar.m(this);
+        bubVar.i.A();
+        ik1Var.q();
+        bubVar.c = dvbVar;
     }
 }

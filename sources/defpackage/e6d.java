@@ -1,32 +1,35 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.util.Log;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.SuccessContinuation;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import java.util.Arrays;
-public final class e6d implements SuccessContinuation, ohe, OnFailureListener {
-    public static final e6d a = new Object();
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class e6d extends c4 {
+    public static final Parcelable.Creator<e6d> CREATOR = new s5d((byte) 4);
+    public final int a;
+    public final String b;
+    public final long c;
+    public final int d;
+    public final boolean e;
 
-    @Override
-    public final byte[] a(int i, int i2, byte[] bArr) {
-        return Arrays.copyOfRange(bArr, i, i2 + i);
+    public e6d(int i, int i2, long j, String str, boolean z) {
+        this.a = i;
+        this.b = str;
+        this.c = j;
+        this.d = i2;
+        this.e = z;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        Log.e("OptionalModuleUtils", "Failed to check feature availability", exc);
-    }
-
-    @Override
-    public final Task then(Object obj) {
-        Bundle bundle = (Bundle) obj;
-        int i = fm9.h;
-        if (bundle != null && bundle.containsKey("google.messenger")) {
-            return Tasks.forResult(null);
-        }
-        return Tasks.forResult(bundle);
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        bye.l(parcel, 2, this.b);
+        bye.q(parcel, 3, 8);
+        parcel.writeLong(this.c);
+        bye.q(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        bye.q(parcel, 5, 4);
+        parcel.writeInt(this.e ? 1 : 0);
+        bye.s(parcel, r);
     }
 }

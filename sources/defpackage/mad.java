@@ -1,15 +1,29 @@
 package defpackage;
+public final class mad extends jp2 {
+    public final byte f;
+    public final lp2 h;
 
-import android.os.SystemClock;
-public final class mad {
-    public final byte a;
+    public mad(lp2 lp2Var, byte b) {
+        super(lp2Var, (byte) 0);
+        this.f = b;
+        this.h = lp2Var;
+    }
 
-    public final long a() {
-        switch (this.a) {
+    @Override
+    public final Object b(int i) {
+        byte b = this.f;
+        lp2 lp2Var = this.h;
+        switch (b) {
             case 0:
-                return SystemClock.elapsedRealtimeNanos();
+                Object[] objArr = lp2Var.d;
+                objArr.getClass();
+                return objArr[i];
+            case 1:
+                return new dcd(lp2Var, i);
             default:
-                return SystemClock.elapsedRealtime() * 1000000;
+                Object[] objArr2 = lp2Var.e;
+                objArr2.getClass();
+                return objArr2[i];
         }
     }
 }

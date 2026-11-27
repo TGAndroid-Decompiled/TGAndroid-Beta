@@ -1,18 +1,17 @@
 package defpackage;
-public enum dke {
-    BROADCAST_ACTION_UNSPECIFIED(0),
-    PURCHASES_UPDATED_ACTION(1),
-    LOCAL_PURCHASES_UPDATED_ACTION(2),
-    ALTERNATIVE_BILLING_ACTION(3);
-    
-    public final byte a;
+public final class dke implements zq7 {
+    public static final dke a = new Object();
 
-    dke(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)));
     }
 
     @Override
-    public final String toString() {
-        return Integer.toString(this.a);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

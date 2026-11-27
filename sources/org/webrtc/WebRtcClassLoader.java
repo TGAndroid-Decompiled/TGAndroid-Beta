@@ -5,7 +5,7 @@ class WebRtcClassLoader {
         if (classLoader != null) {
             return classLoader;
         }
-        wn4.j("Failed to get WebRTC class loader.");
+        xi4.l("Failed to get WebRTC class loader.");
         return null;
     }
 }

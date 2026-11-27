@@ -1,23 +1,17 @@
 package defpackage;
+public final class xvd implements zq7 {
+    public static final xvd a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class xvd extends b4 {
-    public static final Parcelable.Creator<xvd> CREATOR = new rpd((byte) 25);
-    public final int a;
-    public final String b;
-
-    public xvd(int i, String str) {
-        this.a = i;
-        this.b = str;
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.a);
-        jte.l(parcel, 3, this.b);
-        jte.s(parcel, r);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

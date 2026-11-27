@@ -1,13 +1,16 @@
 package org.webrtc;
 
+import org.webrtc.NativeLifecycleLock;
 import org.webrtc.VideoEncoder;
-public class VideoEncoderWrapper {
-    public static void a(long j, EncodedImage encodedImage, VideoEncoder.CodecSpecificInfo codecSpecificInfo) {
-        nativeOnEncodedFrame(j, encodedImage);
+import org.webrtc.VideoEncoderWrapper;
+class VideoEncoderWrapper {
+
+    public interface Natives {
+        void onEncodedFrame(long j, EncodedImage encodedImage);
     }
 
-    public static VideoEncoder.Callback createEncoderCallback(long j) {
-        return new f(j);
+    public static NativeEncoderCallback createEncoderCallback(long j) {
+        return new NativeEncoderCallback(j);
     }
 
     public static Integer getScalingSettingsHigh(VideoEncoder.ScalingSettings scalingSettings) {
@@ -22,5 +25,32 @@ public class VideoEncoderWrapper {
         return scalingSettings.on;
     }
 
-    public static native void nativeOnEncodedFrame(long j, EncodedImage encodedImage);
+    static class NativeEncoderCallback implements VideoEncoder.Callback {
+        private final NativeLifecycleLock lifecycleLock;
+
+        public NativeEncoderCallback(long j) {
+            this.lifecycleLock = new NativeLifecycleLock("VideoEncoderWrapper", j);
+        }
+
+        public static void lambda$onEncodedFrame$0(EncodedImage encodedImage, long j) {
+            VideoEncoderWrapperJni.get().onEncodedFrame(j, encodedImage);
+        }
+
+        public void invalidate() {
+            this.lifecycleLock.dispose(new g((byte) 1));
+        }
+
+        @Override
+        public void onEncodedFrame(final EncodedImage encodedImage, VideoEncoder.CodecSpecificInfo codecSpecificInfo) {
+            this.lifecycleLock.runIfAlive(new NativeLifecycleLock.NativePointerRunnable() {
+                @Override
+                public final void run(long j) {
+                    VideoEncoderWrapper.NativeEncoderCallback.lambda$onEncodedFrame$0(EncodedImage.this, j);
+                }
+            });
+        }
+
+        public static void lambda$invalidate$1(long j) {
+        }
+    }
 }

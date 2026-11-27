@@ -1,53 +1,19 @@
 package defpackage;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.UserManager;
-public abstract class g5d {
-    public static volatile UserManager a;
-    public static volatile boolean b;
-
-    static {
-        boolean z;
-        if (Build.VERSION.SDK_INT >= 24) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = !z;
-    }
-
-    public static boolean a(Context context) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            boolean z = b;
-            if (!z) {
-                UserManager userManager = a;
-                if (userManager == null) {
-                    synchronized (g5d.class) {
-                        userManager = a;
-                        if (userManager == null) {
-                            UserManager userManager2 = (UserManager) context.getSystemService(UserManager.class);
-                            a = userManager2;
-                            if (userManager2 == null) {
-                                b = true;
-                                z = true;
-                            } else {
-                                userManager = userManager2;
-                            }
-                        }
-                    }
-                }
-                z = userManager.isUserUnlocked();
-                b = z;
-                if (z) {
-                    a = null;
-                }
-            }
-            if (!z) {
-                return true;
-            }
-            return false;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class g5d extends k4d {
+    @Override
+    public final boolean a(int i, Parcel parcel, Parcel parcel2, int i2) {
+        if (i == 2) {
+            Parcelable.Creator creator = Bundle.CREATOR;
+            p4d.b(parcel);
+            b((Bundle) p4d.a(parcel));
+            return true;
         }
         return false;
     }
+
+    public abstract void b(Bundle bundle);
 }

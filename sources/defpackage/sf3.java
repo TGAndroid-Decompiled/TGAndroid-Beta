@@ -1,25 +1,42 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class sf3 extends ja {
-    public final long c;
+import android.app.Dialog;
+import android.view.View;
+public final class sf3 extends ane {
+    public final byte a = 1;
+    public final gp4 b;
 
-    public sf3(long j) {
-        super(0, false);
-        this.c = j;
+    public sf3(tf3 tf3Var, sf3 sf3Var) {
+        this.b = tf3Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final View b(int i) {
+        byte b = this.a;
+        gp4 gp4Var = this.b;
+        switch (b) {
+            case 0:
+                Dialog dialog = ((tf3) gp4Var).w0;
+                if (dialog != null) {
+                    return dialog.findViewById(i);
+                }
+                return null;
+            default:
+                throw new IllegalStateException("Fragment " + gp4Var + " does not have a view");
         }
-        if ((obj instanceof sf3) && this.c == ((sf3) obj).c) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.c));
+    @Override
+    public final boolean c() {
+        switch (this.a) {
+            case 0:
+                return ((tf3) this.b).A0;
+            default:
+                return false;
+        }
+    }
+
+    public sf3(gp4 gp4Var) {
+        this.b = gp4Var;
     }
 }

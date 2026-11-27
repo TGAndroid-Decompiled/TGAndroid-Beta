@@ -1,24 +1,20 @@
 package defpackage;
-public enum nje implements w6d {
-    UNKNOWN_FORMAT(0),
-    NV16(1),
-    NV21(2),
-    YV12(3),
-    YUV_420_888(7),
-    JPEG(8),
-    BITMAP(4),
-    CM_SAMPLE_BUFFER_REF(5),
-    UI_IMAGE(6),
-    CV_PIXEL_BUFFER_REF(9);
-    
-    public final byte a;
 
-    nje(int i) {
-        this.a = i;
+import android.os.Build;
+import android.widget.EdgeEffect;
+public abstract class nje {
+    public static float a(EdgeEffect edgeEffect) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            return ft3.b(edgeEffect);
+        }
+        return 0.0f;
     }
 
-    @Override
-    public final int zza() {
-        return this.a;
+    public static float b(EdgeEffect edgeEffect, float f, float f2) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            return ft3.c(edgeEffect, f, f2);
+        }
+        et3.a(edgeEffect, f, f2);
+        return f;
     }
 }

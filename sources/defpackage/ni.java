@@ -1,7 +1,12 @@
 package defpackage;
-public final class ni extends hn7 {
+
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+public final class ni extends ij {
     @Override
-    public final CharSequence d(int i) {
-        return k96.G(i, "Hours", new Object[0]);
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        editorInfo.imeOptions &= -1073741825;
+        return onCreateInputConnection;
     }
 }

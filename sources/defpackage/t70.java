@@ -1,24 +1,18 @@
 package defpackage;
-public final class t70 implements zn7 {
+public final class t70 implements zq7 {
     public static final t70 a = new Object();
-    public static final w84 b = w84.c("sessionId");
-    public static final w84 c = w84.c("firstSessionId");
-    public static final w84 d = w84.c("sessionIndex");
-    public static final w84 e = w84.c("eventTimestampUs");
-    public static final w84 f = w84.c("dataCollectionStatus");
-    public static final w84 g = w84.c("firebaseInstallationId");
-    public static final w84 h = w84.c("firebaseAuthenticationToken");
+    public static final sa4 b = sa4.c("processName");
+    public static final sa4 c = sa4.c("pid");
+    public static final sa4 d = sa4.c("importance");
+    public static final sa4 e = sa4.c("defaultProcess");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        i6a i6aVar = (i6a) obj;
-        ao7 ao7Var = (ao7) obj2;
-        ao7Var.a(b, i6aVar.a);
-        ao7Var.a(c, i6aVar.b);
-        ao7Var.e(d, i6aVar.c);
-        ao7Var.g(e, i6aVar.d);
-        ao7Var.a(f, i6aVar.e);
-        ao7Var.a(g, i6aVar.f);
-        ao7Var.a(h, i6aVar.g);
+        mo8 mo8Var = (mo8) obj;
+        ar7 ar7Var = (ar7) obj2;
+        ar7Var.a(b, mo8Var.a);
+        ar7Var.e(c, mo8Var.b);
+        ar7Var.e(d, mo8Var.c);
+        ar7Var.d(e, mo8Var.d);
     }
 }

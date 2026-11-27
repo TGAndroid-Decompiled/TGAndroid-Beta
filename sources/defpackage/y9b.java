@@ -1,72 +1,156 @@
 package defpackage;
 
-import android.os.SystemClock;
-import j$.util.Objects;
-public final class y9b {
-    public final int a;
-    public Object b;
-    public int c;
-    public int d;
-    public boolean e;
-    public long f;
-    public final o90 g;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public abstract class y9b extends View {
+    public static final int a = 0;
 
-    public y9b(o90 o90Var, int i) {
-        this.g = o90Var;
-        this.a = i;
+    public static void a(int i, c8b c8bVar) {
+        u9b u9bVar;
+        if (c8bVar != null) {
+            try {
+                String string = uc7.s1(i).X3.getString("story_privacy2", null);
+                if (string == null) {
+                    u9bVar = new u9b();
+                } else {
+                    SerializedData serializedData = new SerializedData(Utilities.v(string));
+                    u9bVar = b(serializedData);
+                    serializedData.cleanup();
+                    if (u9bVar.f.isEmpty() && u9bVar.b.isEmpty()) {
+                        u9bVar = new u9b();
+                    } else {
+                        HashSet hashSet = new HashSet();
+                        hashSet.addAll(u9bVar.c);
+                        for (ArrayList arrayList : u9bVar.d.values()) {
+                            hashSet.addAll(arrayList);
+                        }
+                        if (!hashSet.isEmpty()) {
+                            jf7 Y = jf7.Y(i);
+                            Y.a.c(new a39(Y, hashSet, i, (byte) 20));
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                cc4.g(e, true);
+                u9bVar = new u9b();
+            }
+            c8bVar.E0 = u9bVar;
+            c8bVar.F0.clear();
+            c8bVar.F0.addAll(c8bVar.E0.b);
+            if (yac.h(i).p()) {
+                c8bVar.I0 = uc7.s1(i).X3.getInt("story_period", 86400);
+            } else {
+                c8bVar.I0 = 86400;
+            }
+        }
     }
 
-    public final void a() {
-        Object l;
-        long j;
-        o90 o90Var = this.g;
-        xnb xnbVar = (xnb) o90Var.e;
-        cdb cdbVar = (cdb) o90Var.f;
-        y54 y54Var = (y54) o90Var.a;
-        aob y0 = y54Var.y0();
-        if (y0.p()) {
-            l = null;
-        } else {
-            l = y0.l(y54Var.A());
-        }
-        int k0 = y54Var.k0();
-        int L = y54Var.L();
-        long m = y54Var.m();
-        if (l != null && k0 == -1) {
-            y0.g(l, xnbVar);
-            m -= g8c.i0(xnbVar.e);
-            j = g8c.i0(xnbVar.d);
-        } else if (k0 != -1) {
-            j = y54Var.getDuration();
-        } else {
-            j = -9223372036854775807L;
-        }
-        boolean j2 = y54Var.j();
-        if (j2 && j != -9223372036854775807L && m >= j) {
-            ((adb) o90Var.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            boolean z = this.e;
-            int i = this.a;
-            if (z && Objects.equals(l, this.b) && k0 == this.c && L == this.d) {
-                if (elapsedRealtime - this.f >= i) {
-                    ((t54) o90Var.c).a.t1(new j54(2, new aab(3, i), 1003));
-                    return;
-                }
-                return;
+    public static u9b b(SerializedData serializedData) {
+        boolean z = true;
+        int readInt32 = serializedData.readInt32(true);
+        if (serializedData.readInt32(true) == 481674261) {
+            int readInt322 = serializedData.readInt32(true);
+            ArrayList arrayList = new ArrayList(readInt322);
+            for (int i = 0; i < readInt322; i++) {
+                arrayList.add(TLRPC.InputUser.TLdeserialize(serializedData, serializedData.readInt32(true), true));
             }
-            this.e = true;
-            this.f = elapsedRealtime;
-            this.b = l;
-            this.c = k0;
-            this.d = L;
-            cdbVar.g(3);
-            cdbVar.a.sendEmptyMessageDelayed(3, i);
-            return;
+            if (serializedData.readInt32(true) == 481674261) {
+                int readInt323 = serializedData.readInt32(true);
+                ArrayList arrayList2 = new ArrayList(readInt323);
+                for (int i2 = 0; i2 < readInt323; i2++) {
+                    arrayList2.add(Long.valueOf(serializedData.readInt64(true)));
+                }
+                if (serializedData.readInt32(true) == 481674261) {
+                    int readInt324 = serializedData.readInt32(true);
+                    HashMap hashMap = new HashMap();
+                    int i3 = 0;
+                    while (i3 < readInt324) {
+                        long readInt64 = serializedData.readInt64(z);
+                        if (serializedData.readInt32(z) == 481674261) {
+                            int readInt325 = serializedData.readInt32(z);
+                            ArrayList arrayList3 = new ArrayList(readInt325);
+                            int i4 = 0;
+                            while (i4 < readInt325) {
+                                arrayList3.add(Long.valueOf(serializedData.readInt64(z)));
+                                i4++;
+                                z = true;
+                            }
+                            hashMap.put(Long.valueOf(readInt64), arrayList3);
+                            i3++;
+                            z = true;
+                        } else {
+                            xi4.l("wrong Vector magic in TL_StoryPrivacy (4)");
+                            return null;
+                        }
+                    }
+                    HashSet hashSet = new HashSet();
+                    hashSet.addAll(arrayList2);
+                    for (ArrayList arrayList4 : hashMap.values()) {
+                        hashSet.addAll(arrayList4);
+                    }
+                    u9b u9bVar = new u9b(readInt32, arrayList, 0);
+                    ArrayList arrayList5 = u9bVar.c;
+                    arrayList5.clear();
+                    arrayList5.addAll(arrayList2);
+                    HashMap hashMap2 = u9bVar.d;
+                    hashMap2.clear();
+                    hashMap2.putAll(hashMap);
+                    return u9bVar;
+                }
+                xi4.l("wrong Vector magic in TL_StoryPrivacy (3)");
+                return null;
+            }
+            xi4.l("wrong Vector magic in TL_StoryPrivacy (2)");
+            return null;
         }
-        cdbVar.g(3);
-        if (j2 && j != -9223372036854775807L) {
-            cdbVar.a.sendEmptyMessageDelayed(3, (int) Math.ceil(((float) (j - m)) / y54Var.g().a));
+        xi4.l("wrong Vector magic in TL_StoryPrivacy");
+        return null;
+    }
+
+    public static void c(SerializedData serializedData, u9b u9bVar) {
+        int i = u9bVar.a;
+        HashMap hashMap = u9bVar.d;
+        ArrayList arrayList = u9bVar.c;
+        serializedData.writeInt32(i);
+        serializedData.writeInt32(481674261);
+        ArrayList arrayList2 = u9bVar.e;
+        serializedData.writeInt32(arrayList2.size());
+        int size = arrayList2.size();
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList2.get(i2);
+            i2++;
+            ((TLRPC.InputUser) obj).serializeToStream(serializedData);
         }
-        this.e = false;
+        serializedData.writeInt32(481674261);
+        serializedData.writeInt32(arrayList.size());
+        int size2 = arrayList.size();
+        int i3 = 0;
+        while (i3 < size2) {
+            Object obj2 = arrayList.get(i3);
+            i3++;
+            serializedData.writeInt64(((Long) obj2).longValue());
+        }
+        serializedData.writeInt32(481674261);
+        serializedData.writeInt32(hashMap.size());
+        for (Map.Entry entry : hashMap.entrySet()) {
+            serializedData.writeInt64(((Long) entry.getKey()).longValue());
+            serializedData.writeInt32(481674261);
+            serializedData.writeInt32(((ArrayList) entry.getValue()).size());
+            ArrayList arrayList3 = (ArrayList) entry.getValue();
+            int size3 = arrayList3.size();
+            int i4 = 0;
+            while (i4 < size3) {
+                Object obj3 = arrayList3.get(i4);
+                i4++;
+                serializedData.writeInt64(((Long) obj3).longValue());
+            }
+        }
     }
 }

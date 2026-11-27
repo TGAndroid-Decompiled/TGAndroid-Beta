@@ -1,38 +1,44 @@
 package defpackage;
 
-import java.nio.ByteBuffer;
-public final class kwa extends bh2 {
-    public static final z24 h;
-    public static final z24 n;
-    public long[] f;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
+public final class kwa implements Runnable {
+    public final byte a = 0;
+    public final boolean b;
+    public final long c;
+    public final boolean d;
+    public final Object e;
+    public final Object f;
+    public final TLObject h;
+    public final TLObject n;
+    public final Object r;
 
-    static {
-        z74 z74Var = new z74(kwa.class, "StaticChunkOffsetBox.java");
-        h = z74Var.e(z74Var.d("getChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "", "", "[J"));
-        n = z74Var.e(z74Var.d("setChunkOffsets", "com.coremedia.iso.boxes.StaticChunkOffsetBox", "[J", "chunkOffsets", "void"));
+    public kwa(jxa jxaVar, boolean[] zArr, TL_stars.StarGift starGift, boolean z, boolean z2, long j, TLRPC.TL_textWithEntities tL_textWithEntities, p4a p4aVar) {
+        this.e = jxaVar;
+        this.f = zArr;
+        this.h = starGift;
+        this.b = z;
+        this.d = z2;
+        this.c = j;
+        this.n = tL_textWithEntities;
+        this.r = p4aVar;
     }
 
     @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        f(byteBuffer);
-        int a = mqd.a(hle.g(byteBuffer));
-        this.f = new long[a];
-        for (int i = 0; i < a; i++) {
-            this.f[i] = hle.g(byteBuffer);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.kwa.run():void");
     }
 
-    @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        i(byteBuffer);
-        byteBuffer.putInt(this.f.length);
-        for (long j : this.f) {
-            byteBuffer.putInt((int) j);
-        }
-    }
-
-    @Override
-    public final long getContentSize() {
-        return (this.f.length << 2) + 8;
+    public kwa(rbb rbbVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z, long j, boolean z2, TLRPC.TL_error tL_error, s8b s8bVar) {
+        this.e = rbbVar;
+        this.f = tLObject;
+        this.h = tL_startLive;
+        this.b = z;
+        this.c = j;
+        this.d = z2;
+        this.n = tL_error;
+        this.r = s8bVar;
     }
 }

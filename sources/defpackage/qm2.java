@@ -1,78 +1,95 @@
 package defpackage;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class qm2 extends fy0 {
-    public l5c S1;
-    public boolean T1;
-    public final FrameLayout U1;
-    public final boolean V1;
-    public final boolean W1;
-    public int X1;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class qm2 extends FrameLayout {
+    public final TextView a;
+    public final nm2 b;
+    public final EditTextBoldCursor c;
+    public byte d;
+    public boolean e;
+    public final sm2 f;
 
-    public qm2(android.content.Context r17, org.telegram.tgnet.TLRPC.Chat r18, long r19, defpackage.p8c r21) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.qm2.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, p8c):void");
+    public qm2(sm2 sm2Var, Context context) {
+        super(context);
+        this.f = sm2Var;
+        TextView textView = new TextView(context);
+        this.a = textView;
+        textView.setTextColor(-1711276033);
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(hl.o());
+        addView(textView, tre.d(-2, -2.0f, 3, 8.0f, 0.0f, 8.0f, 0.0f));
+        nm2 nm2Var = new nm2(sm2Var, context);
+        this.b = nm2Var;
+        addView(nm2Var, tre.d(-1, -1.0f, 3, 0.0f, 16.0f, 78.0f, 0.0f));
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.c = editTextBoldCursor;
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        editTextBoldCursor.setBackground(aob.b0(hl.L(10.0f), 436207615));
+        editTextBoldCursor.setPadding(0, 0, 0, 0);
+        editTextBoldCursor.setTextColor(-1);
+        editTextBoldCursor.setGravity(17);
+        editTextBoldCursor.setSingleLine();
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setImeActionLabel(ob6.M0(2131751319, null), 6);
+        editTextBoldCursor.setInputType(2);
+        editTextBoldCursor.setTypeface(hl.o());
+        editTextBoldCursor.addTextChangedListener(new ry(this));
+        editTextBoldCursor.setOnFocusChangeListener(new ts0(this, (byte) 2));
+        editTextBoldCursor.setOnEditorActionListener(new mh((byte) 2));
+        addView(editTextBoldCursor, tre.e(72, 36, 85));
     }
 
-    @Override
-    public final n39 G0(o39 o39Var) {
-        l5c l5cVar = new l5c(this.n1, getContext(), this.a, 0, false, new w72(this, (byte) 7), this.J0);
-        this.S1 = l5cVar;
-        l5cVar.r = false;
-        return l5cVar;
-    }
-
-    @Override
-    public final CharSequence J0() {
-        int i;
-        if (this.W1) {
-            i = 2131751970;
+    public final void a(int i) {
+        this.d = i;
+        this.b.c = i;
+        TextView textView = this.a;
+        if (i != 0) {
+            if (i != 1) {
+                if (i == 2) {
+                    textView.setText(ob6.M0(2131747394, null).toUpperCase());
+                }
+            } else {
+                textView.setText(ob6.M0(2131747393, null).toUpperCase());
+            }
         } else {
-            i = 2131751965;
+            textView.setText(ob6.M0(2131747391, null).toUpperCase());
         }
-        return k96.M0(i, null);
+        b();
     }
 
-    public final void Y0(p8c p8cVar, boolean z, boolean z2) {
-        int i;
-        if (z2 && !z && !this.W1) {
-            Context context = getContext();
-            wjb wjbVar = this.J0;
-            String M0 = k96.M0(2131751958, null);
-            if (this.V1) {
-                i = 2131751961;
+    public final void b() {
+        this.e = true;
+        nm2 nm2Var = this.b;
+        nm2Var.d = vm2.o(nm2Var.e.p1, 255);
+        nm2Var.a();
+        nm2Var.invalidate();
+        EditTextBoldCursor editTextBoldCursor = this.c;
+        int selectionStart = editTextBoldCursor.getSelectionStart();
+        int selectionEnd = editTextBoldCursor.getSelectionEnd();
+        byte b = this.d;
+        sm2 sm2Var = this.f;
+        if (b != 0) {
+            if (b != 1) {
+                if (b == 2) {
+                    editTextBoldCursor.setText(String.valueOf(Color.blue(sm2Var.p1)));
+                }
             } else {
-                i = 2131751960;
+                editTextBoldCursor.setText(String.valueOf(Color.green(sm2Var.p1)));
             }
-            ij.M(context, wjbVar, M0, k96.M0(i, null), k96.M0(2131754483, null), new mn6(this, p8cVar, z, (byte) 16)).show();
-            return;
+        } else {
+            editTextBoldCursor.setText(String.valueOf(Color.red(sm2Var.p1)));
         }
-        p8cVar.a(Boolean.valueOf(z));
-        dismiss();
+        editTextBoldCursor.setSelection(selectionStart, selectionEnd);
+        this.e = false;
     }
 
-    public final void Z0(boolean z) {
-        boolean z2;
-        if (this.T1 != z) {
-            this.T1 = z;
-            o39 o39Var = this.n1;
-            View U0 = o39Var.U0(this.X1 + 1);
-            if (U0 instanceof uy8) {
-                ((uy8) U0).a(!z);
-                z2 = false;
-            } else {
-                z2 = true;
-            }
-            View U02 = o39Var.U0(this.X1 + 2);
-            if (U02 instanceof uy8) {
-                ((uy8) U02).a(z);
-            } else {
-                z2 = true;
-            }
-            if (z2) {
-                this.S1.O(true);
-            }
-        }
+    @Override
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(hl.L(52.0f), 1073741824));
     }
 }

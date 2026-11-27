@@ -1,20 +1,33 @@
 package defpackage;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class py8 extends ImageReceiver {
-    public final ry8 K1;
+import android.util.SparseArray;
+public final class py8 {
+    public static final py8 a;
+    public static final py8[] b;
 
-    public py8(ry8 ry8Var) {
-        super(null);
-        this.K1 = ry8Var;
+    static {
+        ?? r0 = new Enum("DEFAULT", 0);
+        a = r0;
+        Enum r1 = new Enum("UNMETERED_ONLY", 1);
+        Enum r3 = new Enum("UNMETERED_OR_DAILY", 2);
+        Enum r5 = new Enum("FAST_IF_RADIO_AWAKE", 3);
+        Enum r7 = new Enum("NEVER", 4);
+        Enum r9 = new Enum("UNRECOGNIZED", 5);
+        b = new py8[]{r0, r1, r3, r5, r7, r9};
+        SparseArray sparseArray = new SparseArray();
+        sparseArray.put(0, r0);
+        sparseArray.put(1, r1);
+        sparseArray.put(2, r3);
+        sparseArray.put(3, r5);
+        sparseArray.put(4, r7);
+        sparseArray.put(-1, r9);
     }
 
-    @Override
-    public final boolean h0(Drawable drawable, String str, int i, boolean z, int i2) {
-        if (drawable != null) {
-            this.K1.c();
-        }
-        return super.h0(drawable, str, i, z, i2);
+    public static py8 valueOf(String str) {
+        return (py8) Enum.valueOf(py8.class, str);
+    }
+
+    public static py8[] values() {
+        return (py8[]) b.clone();
     }
 }

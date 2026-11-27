@@ -1,82 +1,40 @@
 package defpackage;
 
-import java.util.Arrays;
-import java.util.Random;
-public final class wga {
-    public final Random a;
-    public final int[] b;
-    public final int[] c;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+public final class wga extends vea {
+    public final eja m0;
 
-    public wga(int[] iArr, Random random) {
-        this.b = iArr;
-        this.a = random;
-        this.c = new int[iArr.length];
-        for (int i = 0; i < iArr.length; i++) {
-            this.c[iArr[i]] = i;
-        }
+    public wga(eja ejaVar, Context context) {
+        super(context);
+        this.m0 = ejaVar;
     }
 
-    public final wga a() {
-        return new wga(new Random(this.a.nextLong()));
-    }
-
-    public final wga b(int i, int i2) {
-        int[] iArr;
-        Random random;
-        int[] iArr2 = new int[i2];
-        int[] iArr3 = new int[i2];
-        int i3 = 0;
-        while (true) {
-            iArr = this.b;
-            random = this.a;
-            if (i3 >= i2) {
-                break;
+    @Override
+    public final boolean d(r47 r47Var) {
+        ArrayList arrayList;
+        long playlistTopicId;
+        eja ejaVar = this.m0;
+        tia[] tiaVarArr = ejaVar.w1;
+        if (!r47.Q4(r47Var.k) && !r47Var.g4()) {
+            if (!r47Var.I3()) {
+                return false;
             }
-            iArr2[i3] = random.nextInt(iArr.length + 1);
-            int i4 = i3 + 1;
-            int nextInt = random.nextInt(i4);
-            iArr3[i3] = iArr3[nextInt];
-            iArr3[nextInt] = i3 + i;
-            i3 = i4;
+            MediaController z = MediaController.z();
+            ArrayList arrayList2 = tiaVarArr[4].a;
+            long j = ejaVar.f1;
+            playlistTopicId = ejaVar.getPlaylistTopicId();
+            return z.q0(arrayList2, r47Var, j, true, null, playlistTopicId);
         }
-        Arrays.sort(iArr2);
-        int[] iArr4 = new int[iArr.length + i2];
-        int i5 = 0;
-        int i6 = 0;
-        for (int i7 = 0; i7 < iArr.length + i2; i7++) {
-            if (i5 < i2 && i6 == iArr2[i5]) {
-                iArr4[i7] = iArr3[i5];
-                i5++;
-            } else {
-                int i8 = i6 + 1;
-                int i9 = iArr[i6];
-                iArr4[i7] = i9;
-                if (i9 >= i) {
-                    iArr4[i7] = i9 + i2;
-                }
-                i6 = i8;
-            }
+        boolean V = MediaController.z().V(r47Var);
+        MediaController z2 = MediaController.z();
+        if (V) {
+            arrayList = tiaVarArr[4].a;
+        } else {
+            arrayList = null;
         }
-        return new wga(iArr4, new Random(random.nextLong()));
-    }
-
-    public final int c() {
-        return this.b.length;
-    }
-
-    public final int d(int i) {
-        int i2 = this.c[i] - 1;
-        if (i2 < 0) {
-            return -1;
-        }
-        return this.b[i2];
-    }
-
-    public wga() {
-        this(new Random());
-    }
-
-    public wga(Random random) {
-        this(new int[0], random);
+        z2.u0(arrayList, false);
+        return V;
     }
 }

@@ -1,43 +1,34 @@
 package defpackage;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class w1c extends i49 {
-    public final d2c a;
+import java.util.Arrays;
+public final class w1c {
+    public final byte a;
+    public final byte[] b;
+    public final int c;
+    public final int d;
 
-    public w1c(d2c d2cVar) {
-        this.a = d2cVar;
+    public w1c(int i, int i2, int i3, byte[] bArr) {
+        this.a = i;
+        this.b = bArr;
+        this.c = i2;
+        this.d = i3;
     }
 
-    @Override
-    public final void a(RecyclerView recyclerView, int i) {
-        i49 i49Var = this.a.E;
-        if (i49Var != null) {
-            i49Var.a(recyclerView, i);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i, int i2) {
-        d2c d2cVar = this.a;
-        c2c c2cVar = d2cVar.s;
-        t1c t1cVar = d2cVar.n;
-        i49 i49Var = d2cVar.E;
-        if (i49Var != null) {
-            i49Var.b(t1cVar, i, i2);
-        }
-        if (i2 > 0 && t1cVar.getAdapter() == c2cVar && d2cVar.K && !c2cVar.r && !c2cVar.s) {
-            if (d2cVar.r.M0() >= ((c2cVar.x + 1) - ((c2cVar.w + 1) * 10)) - 1) {
-                d2c d2cVar2 = c2cVar.y;
-                if (d2cVar2.K && !c2cVar.r && !c2cVar.s) {
-                    c2cVar.r = true;
-                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = c2cVar.n.size();
-                    tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(d2cVar2.a).sendRequest(tL_messages_getOldFeaturedStickers, new wx9(c2cVar, (byte) 17));
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && w1c.class == obj.getClass()) {
+                w1c w1cVar = (w1c) obj;
+                if (this.a == w1cVar.a && this.c == w1cVar.c && this.d == w1cVar.d && Arrays.equals(this.b, w1cVar.b)) {
+                    return true;
                 }
+                return false;
             }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((((Arrays.hashCode(this.b) + (this.a * 31)) * 31) + this.c) * 31) + this.d;
     }
 }

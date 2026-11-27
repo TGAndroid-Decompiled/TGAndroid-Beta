@@ -1,17 +1,11 @@
 package defpackage;
-public final class cod implements zn7 {
-    public static final cod a = new Object();
+public final class cod {
+    public static final cod b = new cod(new bod("Failure occurred while trying to finish a future.", (byte) 0));
+    public static final cod c = new cod(new bod("Failure.exception is unexpectedly null.", (byte) 1));
+    public final Throwable a;
 
-    static {
-        yjb.y(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, yjb.s(yjb.o(i8d.class, new b7d(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public cod(Throwable th) {
+        th.getClass();
+        this.a = th;
     }
 }

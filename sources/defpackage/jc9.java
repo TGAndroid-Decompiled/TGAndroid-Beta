@@ -1,41 +1,44 @@
 package defpackage;
 
-import android.os.SystemClock;
-public final class jc9 implements Runnable {
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+public final class jc9 implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final mc9 b;
+    public final nd9 b;
 
-    public jc9(mc9 mc9Var, byte b) {
+    public jc9(nd9 nd9Var, byte b) {
         this.a = b;
-        this.b = mc9Var;
+        this.b = nd9Var;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i;
         byte b = this.a;
-        mc9 mc9Var = this.b;
+        nd9 nd9Var = this.b;
         switch (b) {
             case 0:
-                if (mc9Var.z2 >= 0) {
-                    long uptimeMillis = (mc9Var.y2 + 500) - SystemClock.uptimeMillis();
-                    if (uptimeMillis > 0 && mc9Var.isFocused()) {
-                        mc9Var.postDelayed(this, uptimeMillis);
-                        return;
-                    }
-                    int i = mc9Var.z2;
-                    mc9Var.z2 = -1;
-                    mc9Var.setInputType(i);
-                    return;
-                }
+                nd9Var.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                nd9Var.t0();
                 return;
             default:
-                if (bkb.f1()) {
-                    mc9Var.postDelayed(this, 100L);
-                    return;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                nd9Var.U = floatValue;
+                nd9Var.S.setAlpha(floatValue);
+                nd9Var.S.setScaleX(hl.R1(0.6f, 1.0f, floatValue));
+                nd9Var.S.setScaleY(hl.R1(0.6f, 1.0f, floatValue));
+                FrameLayout frameLayout = nd9Var.S;
+                if (floatValue > 0.0f) {
+                    i = 0;
                 } else {
-                    mc9Var.J();
-                    return;
+                    i = 4;
                 }
+                frameLayout.setVisibility(i);
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) nd9Var.S.getLayoutParams();
+                layoutParams.rightMargin = hl.U1(floatValue, -nd9Var.S.getMeasuredWidth(), hl.L(-4.0f));
+                nd9Var.S.setLayoutParams(layoutParams);
+                return;
         }
     }
 }

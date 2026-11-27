@@ -1,3 +1,3 @@
 package defpackage;
-public final class vp0 extends cm2 {
+public final class vp0 extends wm2 {
 }

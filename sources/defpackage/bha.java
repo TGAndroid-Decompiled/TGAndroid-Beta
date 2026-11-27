@@ -1,11 +1,17 @@
 package defpackage;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public interface bha {
-    float c(RecyclerView recyclerView);
+import android.content.Context;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+public final class bha extends ScrollSlidingTextTabStrip {
+    public final eja q0;
 
-    RecyclerView h(View view);
+    public bha(eja ejaVar, Context context, vnb vnbVar) {
+        super(context, vnbVar);
+        this.q0 = ejaVar;
+    }
 
-    void t(RecyclerView recyclerView);
+    @Override
+    public final int e(int i) {
+        return this.q0.c1(i);
+    }
 }

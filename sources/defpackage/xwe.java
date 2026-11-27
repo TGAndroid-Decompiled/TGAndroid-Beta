@@ -1,20 +1,8 @@
 package defpackage;
-public interface xwe {
-    boolean a(Object obj);
 
-    void b(Object obj);
+import android.os.IInterface;
+public interface xwe extends IInterface {
+    void t(mae maeVar);
 
-    void c(Object obj, byte[] bArr, int i, int i2, sad sadVar);
-
-    void d(Object obj, g6e g6eVar);
-
-    void e(nne nneVar, nne nneVar2);
-
-    boolean f(nne nneVar, nne nneVar2);
-
-    int g(nne nneVar);
-
-    Object zza();
-
-    int zzb(Object obj);
+    void zze();
 }

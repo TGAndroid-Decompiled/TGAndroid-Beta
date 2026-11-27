@@ -1,44 +1,30 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.view.PixelCopy;
-import java.util.concurrent.CountDownLatch;
-public final class ok implements PixelCopy.OnPixelCopyFinishedListener {
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class ok implements ValueAnimator.AnimatorUpdateListener {
     public final byte a;
-    public final Object b;
-    public final Object c;
+    public final View b;
 
-    public ok(Object obj, Object obj2, byte b) {
+    public ok(View view, byte b) {
         this.a = b;
-        this.b = obj;
-        this.c = obj2;
+        this.b = view;
     }
 
     @Override
-    public final void onPixelCopyFinished(int i) {
-        boolean z;
-        switch (this.a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        byte b = this.a;
+        View view = this.b;
+        switch (b) {
             case 0:
-                boolean[] zArr = (boolean[]) this.b;
-                CountDownLatch countDownLatch = (CountDownLatch) this.c;
-                if (i == 0) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                zArr[0] = z;
-                countDownLatch.countDown();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                double sin = Math.sin(floatValue * 3.141592653589793d * 4.0d);
+                view.setTranslationX((float) (sin * (1.0f - floatValue) * floatValue * 4.0f * hl.L(4.0f)));
                 return;
             default:
-                fi6 fi6Var = (fi6) this.b;
-                Bitmap bitmap = (Bitmap) this.c;
-                fi6Var.h = false;
-                if (!fi6Var.i && i == 0) {
-                    fi6Var.f = fi6Var.e;
-                    fi6Var.e = bitmap;
-                    fi6Var.a.run();
-                    return;
-                }
+                float sin2 = (((float) Math.sin(((Float) valueAnimator.getAnimatedValue()).floatValue() * 3.141592653589793d)) * 0.03f) + 1.0f;
+                view.setScaleX(sin2);
+                view.setScaleY(sin2);
                 return;
         }
     }

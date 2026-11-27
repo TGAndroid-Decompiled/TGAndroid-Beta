@@ -1,59 +1,15 @@
 package defpackage;
+public final class k6d implements pd0 {
+    public final n05 a;
 
-import java.util.List;
-import java.util.ListIterator;
-public final class k6d extends c3 implements ListIterator {
-    public final l3 e;
-
-    public k6d(l3 l3Var, int i) {
-        super(l3Var, ((List) l3Var.c).listIterator(i), (byte) 0);
-        this.e = l3Var;
+    public k6d(n05 n05Var) {
+        this.a = n05Var;
     }
 
     @Override
-    public final void add(Object obj) {
-        l3 l3Var = this.e;
-        boolean isEmpty = l3Var.isEmpty();
-        b();
-        ((ListIterator) this.b).add(obj);
-        ((j7d) l3Var.h).d++;
-        if (isEmpty) {
-            l3Var.k();
-        }
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        b();
-        return ((ListIterator) this.b).hasPrevious();
-    }
-
-    @Override
-    public final int nextIndex() {
-        b();
-        return ((ListIterator) this.b).nextIndex();
-    }
-
-    @Override
-    public final Object previous() {
-        b();
-        return ((ListIterator) this.b).previous();
-    }
-
-    @Override
-    public final int previousIndex() {
-        b();
-        return ((ListIterator) this.b).previousIndex();
-    }
-
-    @Override
-    public final void set(Object obj) {
-        b();
-        ((ListIterator) this.b).set(obj);
-    }
-
-    public k6d(l3 l3Var) {
-        super(l3Var, (byte) 0);
-        this.e = l3Var;
+    public final void a(boolean z) {
+        Boolean valueOf = Boolean.valueOf(z);
+        b99 b99Var = this.a.y;
+        b99Var.sendMessage(b99Var.obtainMessage(1, valueOf));
     }
 }

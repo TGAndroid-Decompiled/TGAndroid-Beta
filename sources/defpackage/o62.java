@@ -1,5 +1,136 @@
 package defpackage;
 
-import android.widget.FrameLayout;
-public abstract class o62 extends FrameLayout {
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class o62 implements p14 {
+    public final pcc a;
+    public final f41 b;
+
+    public o62(pcc pccVar, f41 f41Var) {
+        this.a = pccVar;
+        this.b = f41Var;
+    }
+
+    @Override
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final float o() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        this.a.a(new jh8(null, document));
+        this.b.a(true);
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, n47 n47Var, boolean z, int i) {
+        this.a.a(new jh8(obj, document));
+        this.b.a(true);
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void g(d6c d6cVar) {
+    }
+
+    @Override
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void j(int i) {
+    }
+
+    @Override
+    public final void m(String str) {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+    }
 }

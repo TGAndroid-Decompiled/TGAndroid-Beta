@@ -1,48 +1,125 @@
 package defpackage;
-public final class m76 extends n76 implements b16 {
-    public final e16 e;
-    public final hh7 f;
 
-    public m76(hh7 hh7Var, e16 e16Var, co7 co7Var) {
-        super(hh7Var, co7Var);
-        this.f = hh7Var;
-        this.e = e16Var;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import androidx.appcompat.view.menu.ExpandedMenuView;
+public final class m76 implements z27, AdapterView.OnItemClickListener {
+    public Context a;
+    public LayoutInflater b;
+    public f27 c;
+    public ExpandedMenuView d;
+    public y27 e;
+    public l76 f;
+
+    public m76(ContextWrapper contextWrapper) {
+        this.a = contextWrapper;
+        this.b = LayoutInflater.from(contextWrapper);
     }
 
     @Override
-    public final void b(e16 e16Var, u06 u06Var) {
-        e16 e16Var2 = this.e;
-        v06 v06Var = e16Var2.m().b;
-        if (v06Var == v06.a) {
-            this.f.h(this.a);
-            return;
+    public final boolean b(zdb zdbVar) {
+        boolean hasVisibleItems = zdbVar.hasVisibleItems();
+        Context context = zdbVar.a;
+        if (!hasVisibleItems) {
+            return false;
         }
-        v06 v06Var2 = null;
-        while (v06Var2 != v06Var) {
-            a(e());
-            v06Var2 = v06Var;
-            v06Var = e16Var2.m().b;
+        ?? obj = new Object();
+        obj.a = zdbVar;
+        ed edVar = new ed(context, (byte) 0);
+        qc qcVar = (qc) edVar.c;
+        m76 m76Var = new m76((ContextThemeWrapper) qcVar.c);
+        obj.c = m76Var;
+        m76Var.e = obj;
+        zdbVar.b(m76Var, context);
+        m76 m76Var2 = obj.c;
+        l76 l76Var = m76Var2.f;
+        if (l76Var == null) {
+            l76Var = new l76(m76Var2);
+            m76Var2.f = l76Var;
         }
-    }
-
-    @Override
-    public final void c() {
-        this.e.m().b(this);
-    }
-
-    @Override
-    public final boolean d(e16 e16Var) {
-        if (this.e == e16Var) {
+        qcVar.l = l76Var;
+        qcVar.m = obj;
+        View view = zdbVar.o;
+        if (view != null) {
+            qcVar.h = view;
+        } else {
+            qcVar.e = zdbVar.n;
+            qcVar.f = zdbVar.m;
+        }
+        qcVar.k = obj;
+        jd a0 = edVar.a0();
+        obj.b = a0;
+        a0.setOnDismissListener(obj);
+        WindowManager.LayoutParams attributes = obj.b.getWindow().getAttributes();
+        attributes.type = 1003;
+        attributes.flags |= 131072;
+        obj.b.show();
+        y27 y27Var = this.e;
+        if (y27Var != null) {
+            y27Var.z0(zdbVar);
             return true;
         }
+        return true;
+    }
+
+    @Override
+    public final boolean c() {
         return false;
     }
 
     @Override
-    public final boolean e() {
-        if (this.e.m().b.compareTo(v06.d) >= 0) {
-            return true;
-        }
+    public final boolean e(j27 j27Var) {
         return false;
+    }
+
+    @Override
+    public final void f(f27 f27Var, boolean z) {
+        y27 y27Var = this.e;
+        if (y27Var != null) {
+            y27Var.f(f27Var, z);
+        }
+    }
+
+    @Override
+    public final void h(y27 y27Var) {
+        throw null;
+    }
+
+    @Override
+    public final boolean i(j27 j27Var) {
+        return false;
+    }
+
+    @Override
+    public final void j() {
+        l76 l76Var = this.f;
+        if (l76Var != null) {
+            l76Var.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public final void k(Context context, f27 f27Var) {
+        if (this.a != null) {
+            this.a = context;
+            if (this.b == null) {
+                this.b = LayoutInflater.from(context);
+            }
+        }
+        this.c = f27Var;
+        l76 l76Var = this.f;
+        if (l76Var != null) {
+            l76Var.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public final void onItemClick(AdapterView adapterView, View view, int i, long j) {
+        this.c.q(this.f.getItem(i), this, 0);
     }
 }

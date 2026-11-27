@@ -14,6 +14,10 @@ class H264Utils {
     public static final String H264_PROFILE_CONSTRAINED_BASELINE = "42e0";
     public static final String H264_PROFILE_CONSTRAINED_HIGH = "640c";
 
+    public interface Natives {
+        boolean isSameH264Profile(Map<String, String> map, Map<String, String> map2);
+    }
+
     public static Map<String, String> getDefaultH264Params(boolean z) {
         String str;
         HashMap hashMap = new HashMap();
@@ -29,8 +33,6 @@ class H264Utils {
     }
 
     public static boolean isSameH264Profile(Map<String, String> map, Map<String, String> map2) {
-        return nativeIsSameH264Profile(map, map2);
+        return H264UtilsJni.get().isSameH264Profile(map, map2);
     }
-
-    private static native boolean nativeIsSameH264Profile(Map<String, String> map, Map<String, String> map2);
 }

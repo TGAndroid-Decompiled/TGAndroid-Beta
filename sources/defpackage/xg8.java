@@ -1,131 +1,195 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.view.View;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class xg8 extends FrameLayout implements qr7 {
-    public final wjb a;
-    public final ArrayList b;
-    public final wg8 c;
-    public final wg8 d;
-    public final wg8 e;
-    public final boolean f;
+import java.util.HashSet;
+public final class xg8 extends FrameLayout implements ViewTreeObserver.OnPreDrawListener, snb {
+    public final int[] E;
+    public final Rect F;
+    public ViewTreeObserver G;
+    public int H;
+    public final fm0 I;
+    public final fm0 J;
+    public final qy a;
+    public final vl4 b;
+    public final yg8 c;
+    public final zu1 d;
+    public final FrameLayout.LayoutParams e;
+    public final ema f;
+    public zg8 h;
+    public wb2 n;
+    public int r;
+    public gn1 s;
+    public final b6 w;
+    public final b6 x;
+    public final int y;
 
-    public xg8(Context context, wjb wjbVar) {
-        super(context);
-        c06[] values;
-        this.b = new ArrayList();
-        this.a = wjbVar;
-        for (c06 c06Var : c06.values()) {
-            if (c06Var.e) {
-                this.b.add(c06Var);
-            }
-            if (this.b.size() == 3) {
-                break;
-            }
-        }
-        if (this.b.size() < 3) {
-            fa4.g(new IllegalArgumentException("There should be at least 3 premium icons!"), true);
-            this.f = true;
-            return;
-        }
-        this.c = a(context, 0);
-        this.d = a(context, 1);
-        this.e = a(context, 2);
-        setClipChildren(false);
-    }
-
-    public final wg8 a(Context context, int i) {
-        c06 c06Var = (c06) this.b.get(i);
-        ?? mrVar = new mr(context);
-        bra braVar = new bra(20);
-        mrVar.e = braVar;
-        Paint paint = new Paint(1);
-        mrVar.f = paint;
-        braVar.r = (byte) 12;
-        braVar.s = (byte) 8;
-        braVar.t = (byte) 6;
-        if (i == 1) {
-            braVar.N = 1001;
-        }
-        if (i == 0) {
-            braVar.N = 1002;
-        }
-        braVar.O = this.a;
-        braVar.P = bkb.Pk;
-        braVar.c();
-        paint.setColor(-1);
-        mrVar.setLayoutParams(nme.d(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
-        mrVar.setForeground(c06Var.c);
-        mrVar.setBackgroundResource(c06Var.b);
-        mrVar.setPadding(gl.L(8.0f));
-        mrVar.setBackgroundOuterPadding(gl.L(32.0f));
-        addView(mrVar);
-        return mrVar;
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        if (this.f) {
-            return;
-        }
-        int min = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-        int L = gl.L(76.0f);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.c.getLayoutParams();
-        layoutParams.height = L;
-        layoutParams.width = L;
-        float f = L;
-        layoutParams.bottomMargin = (int) ((min * 0.1f) + f);
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.d.getLayoutParams();
-        layoutParams2.height = L;
-        layoutParams2.width = L;
-        int i3 = (int) (f * 0.95f);
-        layoutParams2.rightMargin = i3;
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.e.getLayoutParams();
-        layoutParams3.height = L;
-        layoutParams3.width = L;
-        layoutParams3.leftMargin = i3;
+    public xg8(zu1 zu1Var, vnb vnbVar, Activity activity) {
+        super(activity);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(0, -2);
+        this.e = layoutParams;
+        this.E = new int[2];
+        this.F = new Rect();
+        jz7 jz7Var = new jz7(this, (byte) 8);
+        k43 k43Var = k43.h;
+        this.I = new fm0(0, jz7Var, k43Var, 380L, false);
+        this.J = new fm0(0, new jz7(this, (byte) 8), k43Var, 380L, false);
+        this.d = zu1Var;
+        this.y = zu1Var.getMessagesController().k4.T.f();
+        qy qyVar = new qy(this, activity, vnbVar, (byte) 1);
+        this.a = qyVar;
+        qyVar.setAllowTextEntitiesIntersection(true);
+        yob.X(qyVar, aob.G6, vnbVar);
+        yob.G(qyVar, aob.Xc, vnbVar);
+        yob.D(qyVar, aob.H6, vnbVar);
+        qyVar.setHint(ob6.M0(2131746910, null));
+        qyVar.setTextSize(1, 15.0f);
+        qyVar.setMaxLines(Integer.MAX_VALUE);
+        qyVar.setBackground(null);
+        qyVar.setImeOptions(268435462);
+        qyVar.setInputType(qyVar.getInputType() | 16384);
+        qyVar.addTextChangedListener(new nh6(this, (byte) 7));
+        vl4 vl4Var = new vl4(activity);
+        this.b = vl4Var;
+        int i = aob.Mi;
+        hf0 f0 = aob.f0(aob.v0(i, vnbVar), 1, -1);
+        uob M = yob.M(i);
+        vl4Var.setBackground(f0);
+        yob.j(vl4Var, f0, null, M, vnbVar);
+        iye.a(vl4Var);
+        yg8 yg8Var = new yg8(getContext(), 36);
+        this.c = yg8Var;
+        hf0 f02 = aob.f0(aob.v0(i, vnbVar), 1, -1);
+        uob M2 = yob.M(i);
+        yg8Var.setBackground(f02);
+        yob.j(yg8Var, f02, null, M2, vnbVar);
+        yg8Var.setOnClickListener(new uv5(this, zu1Var, (byte) 22));
+        iye.a(yg8Var);
+        ema emaVar = new ema(getContext());
+        this.f = emaVar;
+        emaVar.setTextSize(13);
+        emaVar.setGravity(17);
+        emaVar.setTranslationY(hl.L(44.0f));
+        emaVar.setVisibility(8);
+        b6 b6Var = new b6(activity, (byte) 28);
+        this.x = b6Var;
+        addView(b6Var, layoutParams);
+        b6 b6Var2 = new b6(activity, (byte) 27);
+        this.w = b6Var2;
+        b6Var.addView(b6Var2, tre.c(-2.0f, -1));
+        b6Var2.addView(emaVar, tre.e(54, 24, 53));
+        b6Var2.addView(vl4Var, tre.e(44, 44, 51));
+        b6Var2.addView(yg8Var, tre.d(44, 44.0f, 53, 0.0f, 0.0f, 5.0f, 0.0f));
+        b6Var2.addView(qyVar, tre.d(-1, -2.0f, 119, 39.0f, 0.0f, 47.0f, 0.0f));
+        qyVar.setPadding(hl.L(5.0f), hl.L(11.0f), hl.L(5.0f), hl.L(11.0f));
     }
 
     @Override
-    public void setOffset(float f) {
-        if (this.f) {
-            return;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(aob.A6));
+        hashSet.add(Integer.valueOf(aob.p7));
+    }
+
+    public zg8 getAttachedMedia() {
+        return this.h;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
+        this.G = viewTreeObserver;
+        viewTreeObserver.addOnPreDrawListener(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        ViewTreeObserver viewTreeObserver = this.G;
+        if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
+            this.G.removeOnPreDrawListener(this);
         }
-        float abs = Math.abs(f / getMeasuredWidth());
-        float interpolation = s33.i.getInterpolation(abs);
-        int right = getRight();
-        wg8 wg8Var = this.e;
-        wg8Var.setTranslationX(((wg8Var.getWidth() * 1.5f) + (right - wg8Var.getRight()) + gl.L(32.0f)) * interpolation);
-        wg8Var.setTranslationY(gl.L(16.0f) * interpolation);
-        float f2 = 1.0f;
-        float i = Utilities.i(gl.R1(1.0f, 1.5f, interpolation), 1.0f, 0.0f);
-        wg8Var.setScaleX(i);
-        wg8Var.setScaleY(i);
-        int top = getTop();
-        wg8 wg8Var2 = this.c;
-        wg8Var2.setTranslationY((((top - wg8Var2.getTop()) - (wg8Var2.getHeight() * 1.8f)) - gl.L(32.0f)) * abs);
-        wg8Var2.setTranslationX(gl.L(16.0f) * abs);
-        float i2 = Utilities.i(gl.R1(1.0f, 1.8f, abs), 1.0f, 0.0f);
-        wg8Var2.setScaleX(i2);
-        wg8Var2.setScaleY(i2);
-        float interpolation2 = s33.g.getInterpolation(abs);
-        int left = getLeft();
-        wg8 wg8Var3 = this.d;
-        wg8Var3.setTranslationX((((left - wg8Var3.getLeft()) - (wg8Var3.getWidth() * 2.5f)) + gl.L(32.0f)) * interpolation2);
-        wg8Var3.setTranslationY(((wg8Var3.getHeight() * 2.5f) + (getBottom() - wg8Var3.getBottom()) + gl.L(32.0f)) * interpolation2);
-        float i3 = Utilities.i(gl.R1(1.0f, 2.5f, abs), 1.0f, 0.0f);
-        wg8Var3.setScaleX(i3);
-        wg8Var3.setScaleY(i3);
-        if (abs < 0.4f) {
-            f2 = abs / 0.4f;
+        this.G = null;
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final boolean onPreDraw() {
+        cc2 cc2Var;
+        wg8 wg8Var;
+        wb2 wb2Var = this.n;
+        if (wb2Var != null) {
+            int e1 = wb2Var.getMessageObject().e1();
+            if (this.n.isAttachedToWindow() && this.r == e1 && (cc2Var = this.n.x2) != null && (wg8Var = cc2Var.l) != null && cc2Var.s) {
+                Rect bounds = wg8Var.getBounds();
+                Rect rect = this.F;
+                rect.set(bounds);
+                wb2 wb2Var2 = this.n;
+                int[] iArr = this.E;
+                wb2Var2.getLocationInWindow(iArr);
+                int i = iArr[0];
+                int i2 = iArr[1];
+                getLocationInWindow(iArr);
+                rect.offset(i - iArr[0], i2 - iArr[1]);
+                int width = rect.width();
+                FrameLayout.LayoutParams layoutParams = this.e;
+                int i3 = layoutParams.width;
+                b6 b6Var = this.x;
+                if (i3 != width) {
+                    layoutParams.width = width;
+                    b6Var.setLayoutParams(layoutParams);
+                }
+                b6Var.setTranslationX(rect.left);
+                b6Var.setTranslationY(hl.L(0.66f) + rect.top);
+                return true;
+            }
+            gn1 gn1Var = this.s;
+            if (gn1Var != null) {
+                gn1Var.run();
+                this.s = null;
+            }
         }
-        wg8Var.h = f2;
-        wg8Var2.h = f2;
-        wg8Var3.h = f2;
+        return true;
+    }
+
+    public void setAnimatedVisibility(float f) {
+        this.w.setAlpha(f);
+    }
+
+    public void setCellToWatch(wb2 wb2Var) {
+        this.n = wb2Var;
+        this.r = wb2Var.getMessageObject().e1();
+    }
+
+    public void setColor(int i) {
+        if (this.H != i) {
+            this.H = i;
+            PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+            vl4 vl4Var = this.b;
+            ((Drawable) vl4Var.c).setColorFilter(porterDuffColorFilter);
+            ((Drawable) vl4Var.d).setColorFilter(porterDuffColorFilter);
+            this.c.a.setColorFilter(porterDuffColorFilter);
+            qy qyVar = this.a;
+            qyVar.setCursorColor(i);
+            qyVar.setHandlesColor(i);
+            qyVar.setHintTextColor(i);
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        zu1 zu1Var;
+        try {
+            ema emaVar = this.f;
+            if (emaVar != null && (zu1Var = this.d) != null) {
+                emaVar.setTextColor(vm2.f(this.J.e, aob.v0(aob.A6, zu1Var.getResourceProvider()), aob.v0(aob.p7, zu1Var.getResourceProvider())));
+            }
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
     }
 }

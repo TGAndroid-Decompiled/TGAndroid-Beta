@@ -1,16 +1,33 @@
 package defpackage;
+public final class ymc implements Runnable {
+    public final byte a;
+    public final dnc b;
+    public final int c;
 
-import android.content.Context;
-public final class ymc extends fnc {
-    public final anc E;
-
-    public ymc(anc ancVar, Context context, wmc wmcVar) {
-        super(context, wmcVar, 2);
-        this.E = ancVar;
+    public ymc(dnc dncVar, int i, byte b) {
+        this.a = b;
+        this.b = dncVar;
+        this.c = i;
     }
 
     @Override
-    public final void a() {
-        this.E.s = true;
+    public final void run() {
+        byte b = this.a;
+        int i = this.c;
+        dnc dncVar = this.b;
+        switch (b) {
+            case 0:
+                hl.c3(new ymc(dncVar, i, (byte) 2));
+                return;
+            case 1:
+                hl.c3(new ymc(dncVar, i, (byte) 3));
+                return;
+            case 2:
+                dncVar.c(i);
+                return;
+            default:
+                dncVar.a(i);
+                return;
+        }
     }
 }

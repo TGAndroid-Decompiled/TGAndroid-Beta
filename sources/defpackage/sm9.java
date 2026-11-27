@@ -1,20 +1,69 @@
 package defpackage;
 
-import java.util.ArrayList;
-public final class sm9 implements un9 {
-    public final um9 a;
+import java.util.Iterator;
+public final class sm9 implements Iterator {
+    public byte a;
+    public Object b;
+    public int c;
+    public int d;
+    public final tm9 e;
 
-    public sm9(um9 um9Var) {
-        this.a = um9Var;
+    public sm9(tm9 tm9Var) {
+        this.e = tm9Var;
+        this.c = tm9Var.d;
+        this.d = tm9Var.c;
+    }
+
+    public final boolean a() {
+        this.a = (byte) 3;
+        int i = this.c;
+        if (i == 0) {
+            this.a = (byte) 2;
+            return false;
+        }
+        tm9 tm9Var = this.e;
+        Object[] objArr = tm9Var.a;
+        int i2 = this.d;
+        this.b = objArr[i2];
+        this.a = (byte) 1;
+        this.d = (i2 + 1) % tm9Var.b;
+        this.c = i - 1;
+        return true;
     }
 
     @Override
-    public final void onRejoinRequested() {
-        gl.c3(new zk9(this, (byte) 4));
+    public final boolean hasNext() {
+        byte b = this.a;
+        if (b != 0) {
+            if (b == 1) {
+                return true;
+            }
+            if (b == 2) {
+                return false;
+            }
+            lq5.j("hasNext called when the iterator is in the FAILED state.");
+            return false;
+        }
+        return a();
     }
 
     @Override
-    public final void onStreamChannels(ArrayList arrayList) {
-        gl.c3(new tj9(this, arrayList, (byte) 9));
+    public final Object next() {
+        byte b = this.a;
+        if (b == 1) {
+            this.a = (byte) 0;
+            return this.b;
+        } else if (b != 2 && a()) {
+            this.a = (byte) 0;
+            return this.b;
+        } else {
+            lq5.n();
+            return null;
+        }
+    }
+
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

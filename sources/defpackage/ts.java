@@ -1,98 +1,105 @@
 package defpackage;
 
-import android.view.WindowManager;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.a;
-import org.telegram.ui.o;
-public final class ts implements Runnable {
-    public final byte a;
-    public final o b;
-
-    public ts(o oVar, byte b) {
-        this.a = b;
-        this.b = oVar;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+public abstract class ts extends ird {
+    public static boolean a(Object[] objArr, Object obj) {
+        int i;
+        objArr.getClass();
+        if (obj == null) {
+            int length = objArr.length;
+            i = 0;
+            while (i < length) {
+                if (objArr[i] == null) {
+                    break;
+                }
+                i++;
+            }
+            i = -1;
+        } else {
+            int length2 = objArr.length;
+            for (int i2 = 0; i2 < length2; i2++) {
+                if (obj.equals(objArr[i2])) {
+                    i = i2;
+                    break;
+                }
+            }
+            i = -1;
+        }
+        if (i < 0) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public final void run() {
-        float f;
-        byte b = this.a;
-        o oVar = this.b;
-        switch (b) {
-            case 0:
-                oVar.d0();
-                return;
-            case 1:
-                float currentProgress = 0.7f - oVar.i0.e0.getCurrentProgress();
-                if (currentProgress > 0.0f) {
-                    if (currentProgress < 0.25f) {
-                        f = 0.01f;
-                    } else {
-                        f = 0.02f;
-                    }
-                    j26 j26Var = oVar.i0.e0;
-                    j26Var.a(true, j26Var.getCurrentProgress() + f);
-                    gl.d3(oVar.k0, 100L);
-                    return;
-                }
-                return;
-            case 2:
-                gl.c3(new ts(oVar, (byte) 0));
-                return;
-            case 3:
-                gl.c3(new ts(oVar, (byte) 0));
-                return;
-            case 4:
-                oVar.L.a(true);
-                return;
-            case 5:
-                oVar.L.a(true);
-                return;
-            case 6:
-                try {
-                    if (oVar.g0.getParent() != null) {
-                        ((WindowManager) oVar.M.getSystemService("window")).removeView(oVar.g0);
-                        return;
-                    }
-                    return;
-                } catch (Exception e) {
-                    fa4.g(e, true);
-                    return;
-                }
-            case 7:
-                oVar.a0();
-                return;
-            case 8:
-                oVar.f0();
-                return;
-            case 9:
-                a aVar = oVar.h0;
-                if (aVar != null) {
-                    aVar.setLayerType(0, null);
-                    oVar.a0 = (byte) 0;
-                    oVar.K();
-                    return;
-                }
-                return;
-            case 10:
-                d S = LaunchActivity.S();
-                if (S != 0) {
-                    ?? obj = new Object();
-                    obj.a = true;
-                    S.showAsSheet(new tsc(new ws(oVar, (byte) 3)), obj);
-                    return;
-                }
-                return;
-            default:
-                a aVar2 = oVar.h0;
-                if (aVar2 != null && oVar.g0 != null) {
-                    aVar2.setLayerType(0, null);
-                    oVar.a0 = (byte) 0;
-                    gl.t1(oVar.M.getCurrentFocus());
-                    return;
-                }
-                return;
+    public static void b(int i, int i2, int i3, int[] iArr, int[] iArr2) {
+        iArr.getClass();
+        iArr2.getClass();
+        System.arraycopy(iArr, i2, iArr2, i, i3 - i2);
+    }
+
+    public static void c(int i, int i2, int i3, Object[] objArr, Object[] objArr2) {
+        objArr.getClass();
+        objArr2.getClass();
+        System.arraycopy(objArr, i2, objArr2, i, i3 - i2);
+    }
+
+    public static void d(int i, int i2, int i3, Object[] objArr, Object[] objArr2) {
+        if ((i3 & 4) != 0) {
+            i = 0;
         }
+        c(0, i, i2, objArr, objArr2);
+    }
+
+    public static final void e(int i, int i2, Object[] objArr) {
+        objArr.getClass();
+        Arrays.fill(objArr, i, i2, (Object) null);
+    }
+
+    public static String f(Object[] objArr) {
+        objArr.getClass();
+        StringBuilder sb = new StringBuilder();
+        sb.append((CharSequence) "[");
+        int i = 0;
+        for (Object obj : objArr) {
+            i++;
+            if (i > 1) {
+                sb.append((CharSequence) ",");
+            }
+            edb.a(sb, obj, null);
+        }
+        sb.append((CharSequence) "]");
+        return sb.toString();
+    }
+
+    public static List g(long[] jArr) {
+        jArr.getClass();
+        int length = jArr.length;
+        if (length != 0) {
+            int i = 0;
+            if (length != 1) {
+                ArrayList arrayList = new ArrayList(jArr.length);
+                int length2 = jArr.length;
+                while (i < length2) {
+                    i = dze.c(i, 1, jArr[i], arrayList);
+                }
+                return arrayList;
+            }
+            return tl2.a(Long.valueOf(jArr[0]));
+        }
+        return x24.a;
+    }
+
+    public static List h(Object[] objArr) {
+        objArr.getClass();
+        int length = objArr.length;
+        if (length != 0) {
+            if (length != 1) {
+                return new ArrayList(new ks(objArr));
+            }
+            return tl2.a(objArr[0]);
+        }
+        return x24.a;
     }
 }

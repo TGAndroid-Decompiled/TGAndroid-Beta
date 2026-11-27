@@ -1,72 +1,43 @@
 package defpackage;
-public abstract class n76 {
-    public final co7 a;
-    public boolean b;
-    public int c = -1;
-    public final hh7 d;
 
-    public n76(hh7 hh7Var, co7 co7Var) {
-        this.d = hh7Var;
-        this.a = co7Var;
+import android.view.View;
+import android.widget.AdapterView;
+import androidx.appcompat.widget.SearchView;
+public final class n76 implements AdapterView.OnItemSelectedListener {
+    public final byte a;
+    public final Object b;
+
+    public n76(Object obj, byte b) {
+        this.a = b;
+        this.b = obj;
     }
 
-    public final void a(boolean z) {
-        int i;
-        boolean z2;
-        boolean z3;
-        if (z != this.b) {
-            this.b = z;
-            if (z) {
-                i = 1;
-            } else {
-                i = -1;
-            }
-            hh7 hh7Var = this.d;
-            int i2 = hh7Var.c;
-            hh7Var.c = i + i2;
-            if (!hh7Var.d) {
-                hh7Var.d = true;
-                while (true) {
-                    try {
-                        int i3 = hh7Var.c;
-                        if (i2 == i3) {
-                            break;
-                        }
-                        if (i2 == 0 && i3 > 0) {
-                            z2 = true;
-                        } else {
-                            z2 = false;
-                        }
-                        if (i2 > 0 && i3 == 0) {
-                            z3 = true;
-                        } else {
-                            z3 = false;
-                        }
-                        if (z2) {
-                            hh7Var.e();
-                        } else if (z3) {
-                            hh7Var.f();
-                        }
-                        i2 = i3;
-                    } finally {
-                        hh7Var.d = false;
-                    }
+    @Override
+    public final void onItemSelected(AdapterView adapterView, View view, int i, long j) {
+        vr3 vr3Var;
+        byte b = this.a;
+        Object obj = this.b;
+        switch (b) {
+            case 0:
+                if (i != -1 && (vr3Var = ((s76) obj).c) != null) {
+                    vr3Var.setListSelectionHidden(false);
+                    return;
                 }
-            }
-            if (this.b) {
-                hh7Var.c(this);
-            }
+                return;
+            default:
+                ((SearchView) obj).n(i);
+                return;
         }
     }
 
-    public boolean d(e16 e16Var) {
-        return false;
+    @Override
+    public final void onNothingSelected(AdapterView adapterView) {
+        byte b = this.a;
     }
 
-    public boolean e() {
-        return true;
+    private final void a(AdapterView adapterView) {
     }
 
-    public void c() {
+    private final void b(AdapterView adapterView) {
     }
 }

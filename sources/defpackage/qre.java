@@ -1,17 +1,32 @@
 package defpackage;
-public final class qre implements zn7 {
-    public static final qre a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)));
+import android.os.IBinder;
+import android.os.IInterface;
+public final class qre extends d05 {
+    @Override
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.clearcut.internal.IClearcutLoggerService");
+        if (queryLocalInterface instanceof aaf) {
+            return (aaf) queryLocalInterface;
+        }
+        return new aaf(iBinder);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int i() {
+        return 11925000;
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.android.gms.clearcut.internal.IClearcutLoggerService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.clearcut.service.START";
     }
 }

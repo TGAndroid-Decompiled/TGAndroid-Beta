@@ -1,21 +1,17 @@
 package defpackage;
+public final class sje implements zq7 {
+    public static final sje a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class sje {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
-        }
-        return null;
+    static {
+        xnb.y(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, xnb.u(xnb.q(bpd.class, new tnd(1)), 2)), 3)), 4)), 5)));
     }
 
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable != null) {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
-            return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        parcel.writeInt(0);
+        throw new ClassCastException();
     }
 }

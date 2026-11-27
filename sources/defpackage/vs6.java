@@ -1,106 +1,62 @@
 package defpackage;
+public class vs6 {
+    public static final vs6 i = new vs6(new us6());
+    public static final String j = "0";
+    public static final String k = "1";
+    public static final String l = "2";
+    public static final String m = "3";
+    public static final String n = "4";
+    public static final String o = "5";
+    public static final String p = "6";
+    public static final String q = "7";
+    public final long a;
+    public final long b;
+    public final long c;
+    public final long d;
+    public final boolean e;
+    public final boolean f;
+    public final boolean g;
+    public final boolean h;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.mediarouter.app.MediaRouteVolumeSlider;
-import androidx.mediarouter.app.OverlayListView;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class vs6 extends ArrayAdapter {
-    public final float a;
-    public final ws6 b;
-
-    public vs6(ws6 ws6Var, Context context, ArrayList arrayList) {
-        super(context, 0, arrayList);
-        this.b = ws6Var;
-        this.a = voe.c(context);
+    public vs6(us6 us6Var) {
+        this.a = gcc.i0(us6Var.a);
+        this.c = gcc.i0(us6Var.b);
+        this.b = us6Var.a;
+        this.d = us6Var.b;
+        this.e = us6Var.c;
+        this.f = us6Var.d;
+        this.g = us6Var.e;
+        this.h = us6Var.f;
     }
 
-    @Override
-    public final View getView(int i, View view, ViewGroup viewGroup) {
-        int i2;
-        int i3 = 0;
-        ws6 ws6Var = this.b;
-        if (view == null) {
-            view = LayoutInflater.from(viewGroup.getContext()).inflate(2131492931, viewGroup, false);
-        } else {
-            ws6.o(ws6Var.f0, (LinearLayout) view.findViewById(2131296736));
-            View findViewById = view.findViewById(2131296577);
-            ViewGroup.LayoutParams layoutParams = findViewById.getLayoutParams();
-            int i4 = ws6Var.e0;
-            layoutParams.width = i4;
-            layoutParams.height = i4;
-            findViewById.setLayoutParams(layoutParams);
-        }
-        eu6 eu6Var = (eu6) getItem(i);
-        if (eu6Var != null) {
-            boolean z = eu6Var.g;
-            TextView textView = (TextView) view.findViewById(2131296566);
-            textView.setEnabled(z);
-            textView.setText(eu6Var.d);
-            MediaRouteVolumeSlider mediaRouteVolumeSlider = (MediaRouteVolumeSlider) view.findViewById(2131296578);
-            Context context = viewGroup.getContext();
-            OverlayListView overlayListView = ws6Var.V;
-            int b = voe.b(context);
-            int i5 = 255;
-            if (Color.alpha(b) != 255) {
-                b = bm2.k(b, ((Integer) overlayListView.getTag()).intValue());
-            }
-            mediaRouteVolumeSlider.a(b, b);
-            mediaRouteVolumeSlider.setTag(eu6Var);
-            ws6Var.i0.put(eu6Var, mediaRouteVolumeSlider);
-            mediaRouteVolumeSlider.b(!z);
-            mediaRouteVolumeSlider.setEnabled(z);
-            if (z) {
-                if (ws6Var.P) {
-                    if (eu6Var.e() && !gu6.g()) {
-                        i2 = 0;
-                    } else {
-                        i2 = eu6Var.o;
-                    }
-                    if (i2 == 1) {
-                        mediaRouteVolumeSlider.setMax(eu6Var.q);
-                        mediaRouteVolumeSlider.setProgress(eu6Var.p);
-                        mediaRouteVolumeSlider.setOnSeekBarChangeListener(ws6Var.c0);
-                    }
-                }
-                mediaRouteVolumeSlider.setMax(100);
-                mediaRouteVolumeSlider.setProgress(100);
-                mediaRouteVolumeSlider.setEnabled(false);
-            }
-            ImageView imageView = (ImageView) view.findViewById(2131296577);
-            if (!z) {
-                i5 = (int) (this.a * 255.0f);
-            }
-            imageView.setAlpha(i5);
-            LinearLayout linearLayout = (LinearLayout) view.findViewById(2131296736);
-            if (ws6Var.a0.contains(eu6Var)) {
-                i3 = 4;
-            }
-            linearLayout.setVisibility(i3);
-            HashSet hashSet = ws6Var.Y;
-            if (hashSet != null && hashSet.contains(eu6Var)) {
-                AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 0.0f);
-                alphaAnimation.setDuration(0L);
-                alphaAnimation.setFillEnabled(true);
-                alphaAnimation.setFillAfter(true);
-                view.clearAnimation();
-                view.startAnimation(alphaAnimation);
-            }
-        }
-        return view;
+    public final us6 a() {
+        ?? obj = new Object();
+        obj.a = this.b;
+        obj.b = this.d;
+        obj.c = this.e;
+        obj.d = this.f;
+        obj.e = this.g;
+        obj.f = this.h;
+        return obj;
     }
 
-    @Override
-    public final boolean isEnabled(int i) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof vs6)) {
+            return false;
+        }
+        vs6 vs6Var = (vs6) obj;
+        if (this.b == vs6Var.b && this.d == vs6Var.d && this.e == vs6Var.e && this.f == vs6Var.f && this.g == vs6Var.g && this.h == vs6Var.h) {
+            return true;
+        }
         return false;
+    }
+
+    public final int hashCode() {
+        long j2 = this.b;
+        long j3 = this.d;
+        return (((((((((((int) (j2 ^ (j2 >>> 32))) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + (this.e ? 1 : 0)) * 31) + (this.f ? 1 : 0)) * 31) + (this.g ? 1 : 0)) * 31) + (this.h ? 1 : 0);
     }
 }

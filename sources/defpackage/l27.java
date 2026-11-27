@@ -1,29 +1,24 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class l27 extends k27 {
-    public final byte u3;
-    public final o27 v3;
+import android.view.CollapsibleActionView;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class l27 extends FrameLayout implements ml2 {
+    public final CollapsibleActionView a;
 
-    public l27(o27 o27Var, int i, TLRPC.TL_message tL_message, int i2) {
-        super(i, tL_message, true, false);
-        this.v3 = o27Var;
-        this.u3 = i2;
+    public l27(View view) {
+        super(view.getContext());
+        this.a = (CollapsibleActionView) view;
+        addView(view);
     }
 
     @Override
-    public final boolean m5() {
-        if (this.v3.k) {
-            return false;
-        }
-        return super.m5();
+    public final void onActionViewCollapsed() {
+        this.a.onActionViewCollapsed();
     }
 
     @Override
-    public final void n0(TLRPC.User user) {
-        super.n0(user);
-        if (this.u3 == 2) {
-            this.v3.b(this);
-        }
+    public final void onActionViewExpanded() {
+        this.a.onActionViewExpanded();
     }
 }

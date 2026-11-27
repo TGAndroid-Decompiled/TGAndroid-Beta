@@ -1,17 +1,19 @@
 package defpackage;
-public final class dod implements zn7 {
-    public static final dod a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, yjb.r(yjb.n(g7d.class, new d6d(1)), 2)), 3)));
+import java.util.concurrent.Executor;
+public final class dod {
+    public static final dod d = new dod();
+    public final Runnable a;
+    public final Executor b;
+    public dod c;
+
+    public dod() {
+        this.a = null;
+        this.b = null;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public dod(Runnable runnable, Executor executor) {
+        this.a = runnable;
+        this.b = executor;
     }
 }

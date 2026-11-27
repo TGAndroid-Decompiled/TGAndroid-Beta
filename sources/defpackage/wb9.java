@@ -1,10 +1,9 @@
 package defpackage;
-public final class wb9 {
-    public static long a = 1;
 
-    public static long a() {
-        long j = a;
-        a = 1 + j;
-        return j;
+import java.util.concurrent.ThreadFactory;
+public final class wb9 implements ThreadFactory {
+    @Override
+    public final Thread newThread(Runnable runnable) {
+        return new vb9(runnable);
     }
 }

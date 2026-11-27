@@ -1,10 +1,12 @@
 package defpackage;
-public final class bv9 {
-    public float a;
-    public float b;
-    public float c;
-    public float d;
-    public float e;
-    public float f;
-    public float g;
+
+import android.view.View;
+public interface bv9 {
+    boolean B0(int i, View view);
+
+    void a(float f);
+
+    void c(int i, boolean z);
+
+    void e();
 }

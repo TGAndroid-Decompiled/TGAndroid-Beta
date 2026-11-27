@@ -1,53 +1,68 @@
 package defpackage;
-public final class lra implements i8c {
-    public final byte a = 0;
-    public final boolean[] b;
-    public final i8c c;
-    public final p8c d;
+public final class lra implements Runnable {
+    public final byte a;
+    public final wua b;
+    public final long c;
 
-    public lra(p8c p8cVar, boolean[] zArr, i8c i8cVar) {
-        this.d = p8cVar;
-        this.b = zArr;
-        this.c = i8cVar;
+    public lra(wua wuaVar, long j, byte b) {
+        this.a = b;
+        this.b = wuaVar;
+        this.c = j;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
+    public final void run() {
         byte b = this.a;
-        String str = "failed";
-        p8c p8cVar = this.d;
-        i8c i8cVar = this.c;
-        boolean[] zArr = this.b;
-        Long l = (Long) obj;
-        Boolean bool = (Boolean) obj2;
+        long j = this.c;
+        wua wuaVar = this.b;
         switch (b) {
             case 0:
-                if (p8cVar != null) {
-                    p8cVar.a(Boolean.TRUE);
-                }
-                zArr[0] = true;
-                if (bool.booleanValue()) {
-                    str = "paid";
-                }
-                i8cVar.a(str, l);
+                wuaVar.Z1(j);
                 return;
-            default:
-                zArr[0] = true;
-                if (bool.booleanValue()) {
-                    str = "paid";
-                }
-                i8cVar.a(str, l);
-                if (p8cVar != null) {
-                    p8cVar.a(Boolean.TRUE);
+            case 1:
+                wuaVar.Z1(j);
+                return;
+            case 2:
+                jra jraVar = wuaVar.s3;
+                wuaVar.A2(1, true, null);
+                if (j > 0) {
+                    hl.r(jraVar);
+                    hl.c3(jraVar);
                     return;
                 }
                 return;
+            case 3:
+                wuaVar.Z1(j);
+                return;
+            case 4:
+                wuaVar.Z1(j);
+                return;
+            case 5:
+                dza dzaVar = new dza(wuaVar.getContext(), wuaVar.J0, this.c, 10, null, new ida(wuaVar, new boolean[]{false}, (byte) 16), 0L);
+                dzaVar.setOnDismissListener(new rsa(wuaVar, (byte) 0));
+                dzaVar.show();
+                return;
+            case 6:
+                wuaVar.V1(j);
+                return;
+            case 7:
+                wuaVar.Z1(j);
+                return;
+            case 8:
+                wuaVar.V1(j);
+                return;
+            case 9:
+                wuaVar.Z1(j);
+                return;
+            case 10:
+                wuaVar.V1(j);
+                return;
+            case 11:
+                wuaVar.Z1(j);
+                return;
+            default:
+                wuaVar.V1(j);
+                return;
         }
-    }
-
-    public lra(boolean[] zArr, i8c i8cVar, p8c p8cVar) {
-        this.b = zArr;
-        this.c = i8cVar;
-        this.d = p8cVar;
     }
 }

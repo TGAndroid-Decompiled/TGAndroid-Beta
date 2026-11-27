@@ -3,21 +3,21 @@ package defpackage;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-public final class ar0 extends r35 {
+public final class ar0 extends u55 {
     public final byte Q;
     public final KeyEvent.Callback R;
 
-    public ar0(u0b u0bVar) {
+    public ar0(s4b s4bVar) {
         super(5);
         this.Q = (byte) 4;
-        this.R = u0bVar;
+        this.R = s4bVar;
     }
 
     @Override
     public final boolean X0() {
         switch (this.Q) {
             case 4:
-                if (((u0b) this.R).Q1 != null && k96.a0) {
+                if (((s4b) this.R).Q1 != null && ob6.a0) {
                     return true;
                 }
                 return false;
@@ -27,51 +27,51 @@ public final class ar0 extends r35 {
     }
 
     @Override
-    public final void a0(wg2 wg2Var, p49 p49Var) {
+    public final void a0(oh2 oh2Var, c89 c89Var) {
         switch (this.Q) {
             case 3:
-                super.a0(wg2Var, p49Var);
-                sr4 sr4Var = (sr4) this.R;
-                if (sr4Var.V) {
-                    sr4Var.V = false;
-                    sr4Var.a();
+                super.a0(oh2Var, c89Var);
+                wt4 wt4Var = (wt4) this.R;
+                if (wt4Var.V) {
+                    wt4Var.V = false;
+                    wt4Var.a();
                     return;
                 }
                 return;
             default:
-                super.a0(wg2Var, p49Var);
+                super.a0(oh2Var, c89Var);
                 return;
         }
     }
 
     @Override
-    public final int n0(int i, wg2 wg2Var, p49 p49Var) {
+    public final int n0(int i, oh2 oh2Var, c89 c89Var) {
         switch (this.Q) {
             case 0:
                 if (((gr0) this.R).b) {
                     i = 0;
                 }
-                return super.n0(i, wg2Var, p49Var);
+                return super.n0(i, oh2Var, c89Var);
             default:
-                return super.n0(i, wg2Var, p49Var);
+                return super.n0(i, oh2Var, c89Var);
         }
     }
 
     @Override
-    public final void u0(RecyclerView recyclerView, p49 p49Var, int i) {
+    public final void u0(RecyclerView recyclerView, c89 c89Var, int i) {
         switch (this.Q) {
             case 1:
-                t12 t12Var = new t12(this, recyclerView.getContext());
-                t12Var.a = i;
-                v0(t12Var);
+                k22 k22Var = new k22(this, recyclerView.getContext());
+                k22Var.a = i;
+                v0(k22Var);
                 return;
             case 2:
-                y42 y42Var = new y42(this, recyclerView.getContext());
-                y42Var.a = i;
-                v0(y42Var);
+                o52 o52Var = new o52(this, recyclerView.getContext());
+                o52Var.a = i;
+                v0(o52Var);
                 return;
             default:
-                super.u0(recyclerView, p49Var, i);
+                super.u0(recyclerView, c89Var, i);
                 return;
         }
     }
@@ -94,9 +94,9 @@ public final class ar0 extends r35 {
         this.R = frameLayout;
     }
 
-    public ar0(p02 p02Var, int i, byte b) {
+    public ar0(f12 f12Var, int i, byte b) {
         super(i);
         this.Q = b;
-        this.R = p02Var;
+        this.R = f12Var;
     }
 }

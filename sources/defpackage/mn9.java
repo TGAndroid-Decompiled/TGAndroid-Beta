@@ -1,55 +1,30 @@
 package defpackage;
 
-import android.widget.OverScroller;
-import org.telegram.ui.ActionBar.a;
-public final class mn9 implements Runnable {
-    public final byte a;
-    public final nn9 b;
+import android.hardware.camera2.CameraCharacteristics;
+import android.util.Range;
+import android.util.Size;
+public final class mn9 {
+    public final String a;
+    public final cp9 b;
+    public final CameraCharacteristics c;
+    public final Size d;
+    public final int e;
+    public final dp9 f;
+    public final ep9 g;
+    public final Range h;
+    public final lp i;
+    public final float j;
 
-    public mn9(nn9 nn9Var, byte b) {
-        this.a = b;
-        this.b = nn9Var;
-    }
-
-    @Override
-    public final void run() {
-        float f;
-        byte b = this.a;
-        nn9 nn9Var = this.b;
-        switch (b) {
-            case 0:
-                nn9Var.requestLayout();
-                return;
-            default:
-                on9 on9Var = nn9Var.P;
-                OverScroller overScroller = nn9Var.r;
-                float f2 = 0.0f;
-                if (overScroller.computeScrollOffset()) {
-                    int currY = overScroller.getCurrY();
-                    float f3 = -nn9Var.f();
-                    float f4 = currY;
-                    nn9Var.k(f4);
-                    if ((f4 <= f3 || currY >= 0) && !overScroller.isFinished()) {
-                        if (currY >= 0) {
-                            f = Math.min(overScroller.getCurrVelocity(), gl.L(1200.0f));
-                        } else {
-                            f = -Math.min(overScroller.getCurrVelocity(), gl.L(2400.0f));
-                        }
-                        overScroller.abortAnimation();
-                        if (currY < 0) {
-                            f2 = f3;
-                        }
-                        nn9Var.l(f2, f, 380.0f);
-                        return;
-                    }
-                    nn9Var.postOnAnimation(nn9Var.s);
-                    return;
-                }
-                if (on9Var.e0 + on9Var.i0 < a.getCurrentActionBarHeight() + on9Var.R.b && on9Var.i0 > (-nn9Var.f())) {
-                    nn9Var.l(-nn9Var.f(), 0.0f, 180.0f);
-                    return;
-                }
-                return;
-        }
+    public mn9(String str, cp9 cp9Var, CameraCharacteristics cameraCharacteristics, Size size, int i, dp9 dp9Var, ep9 ep9Var, Range range, lp lpVar, float f) {
+        this.a = str;
+        this.b = cp9Var;
+        this.c = cameraCharacteristics;
+        this.d = size;
+        this.e = i;
+        this.f = dp9Var;
+        this.g = ep9Var;
+        this.h = range;
+        this.i = lpVar;
+        this.j = f;
     }
 }

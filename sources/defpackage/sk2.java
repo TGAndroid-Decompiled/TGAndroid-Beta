@@ -1,6 +1,8 @@
 package defpackage;
-public interface sk2 {
-    void onActionViewCollapsed();
+public abstract class sk2 {
+    public static final int a = 0;
 
-    void onActionViewExpanded();
+    static {
+        sk2.class.getClassLoader();
+    }
 }

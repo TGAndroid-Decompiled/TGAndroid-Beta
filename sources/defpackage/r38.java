@@ -1,15 +1,15 @@
 package defpackage;
-public final class r38 implements pi7, gj {
-    public final b48 a;
+public final class r38 implements pcc {
+    public final byte a;
+    public final s38 b;
 
-    public r38(b48 b48Var) {
-        this.a = b48Var;
+    public r38(s38 s38Var, byte b) {
+        this.a = b;
+        this.b = s38Var;
     }
 
     @Override
-    public final void s(int i, int i2, boolean z) {
-        b48 b48Var = this.a;
-        b48Var.E1.b(b48Var.H1, z, i, 0L);
-        b48Var.dismiss();
+    public final void a(java.lang.Object r9) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.r38.a(java.lang.Object):void");
     }
 }

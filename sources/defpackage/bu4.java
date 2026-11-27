@@ -1,17 +1,10 @@
 package defpackage;
-public final class bu4 extends ky1 {
-    @Override
-    public final boolean b() {
-        return false;
-    }
 
-    @Override
-    public final boolean d() {
-        return true;
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
-    }
+import androidx.recyclerview.widget.RecyclerView;
+public final class bu4 {
+    public boolean a;
+    public int b;
+    public int c;
+    public RecyclerView d;
+    public int e;
 }

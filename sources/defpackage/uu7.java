@@ -1,43 +1,51 @@
 package defpackage;
-public final class uu7 extends x1 {
-    public final tu7 a = new tg6();
-    public final f46 b = new f46();
+
+import android.view.ViewGroup;
+public final class uu7 extends c79 {
+    public r17 c;
+    public Integer d;
+    public tb e;
+    public boolean f;
+    public int h;
 
     @Override
-    public final void a(java.lang.CharSequence r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.uu7.a(java.lang.CharSequence):void");
+    public final boolean D(f89 f89Var) {
+        if (f89Var.b() == 0) {
+            return false;
+        }
+        return this.c.D(f89Var);
     }
 
     @Override
-    public final boolean c() {
-        return true;
+    public final int b() {
+        r17 r17Var = this.c;
+        int K = r17Var.K();
+        r17Var.N0 = K;
+        return K + 1;
     }
 
     @Override
-    public final void d() {
-        if (this.b.b.length() == 0) {
-            this.a.g();
+    public final int d(int i) {
+        if (i == 0) {
+            return -983904;
+        }
+        return this.c.d(i - 1);
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        if (i > 0) {
+            this.c.t(f89Var, i - 1);
         }
     }
 
     @Override
-    public final gk0 e() {
-        return this.a;
-    }
-
-    @Override
-    public final void g(qn5 qn5Var) {
-        StringBuilder sb = this.b.b;
-        if (sb.length() > 0) {
-            qn5Var.a(sb.toString(), this.a);
+    public final f89 x(ViewGroup viewGroup, int i) {
+        if (i == -983904) {
+            tb tbVar = new tb((byte) 22, viewGroup.getContext(), this);
+            this.e = tbVar;
+            return new f89(tbVar);
         }
-    }
-
-    @Override
-    public final vj2 h(vo3 vo3Var) {
-        if (!vo3Var.h) {
-            return vj2.a(vo3Var.b);
-        }
-        return null;
+        return this.c.x(viewGroup, i);
     }
 }

@@ -1,50 +1,55 @@
 package defpackage;
 
-import java.util.HashMap;
-public final class ny1 extends HashMap {
-    public final byte a;
-    public final Object b;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ny1 implements hj, fd {
+    public final String a;
+    public final boolean b;
+    public final Object c;
+    public final Object d;
+    public final Object e;
+    public final Object f;
+    public final Object h;
 
-    public ny1(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    public ny1(qy1 qy1Var, View view, Object obj, String str, Object obj2, no6 no6Var, boolean z) {
+        this.c = qy1Var;
+        this.d = view;
+        this.e = obj;
+        this.a = str;
+        this.f = obj2;
+        this.h = no6Var;
+        this.b = z;
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.a) {
-            case 0:
-                byte b = ((qy1) this.b).w;
-                oy8 oy8Var = (oy8) super.get(obj);
-                if (oy8Var == null) {
-                    py1 py1Var = (py1) obj;
-                    oy8 oy8Var2 = new oy8(py1Var.c, gl.L(b), gl.L(b));
-                    put(py1Var, oy8Var2);
-                    return oy8Var2;
-                }
-                return oy8Var;
-            default:
-                return super.get(obj);
+    public final void w(id idVar, int i) {
+        bg2 bg2Var = (bg2) this.c;
+        TLObject tLObject = (TLObject) this.e;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.h;
+        bg2Var.getClass();
+        long j = ((TLRPC.User) this.d).id;
+        int i2 = 1;
+        if (bg2Var.e1 == 1) {
+            i2 = 0;
         }
+        bg2Var.x0(j, tLObject, tL_chatAdminRights, tL_chatBannedRights, this.a, this.b, i2, false);
     }
 
     @Override
-    public final Object put(Object obj, Object obj2) {
-        String lowerCase;
-        switch (this.a) {
-            case 1:
-                String str = (String) obj;
-                String str2 = (String) obj2;
-                HashMap hashMap = ((ci7) this.b).f;
-                if (str == null) {
-                    lowerCase = str;
-                } else {
-                    lowerCase = str.toLowerCase();
-                }
-                hashMap.put(lowerCase, str2);
-                return (String) super.put(str, str2);
-            default:
-                return super.put(obj, obj2);
-        }
+    public final void y(int i, int i2, boolean z) {
+        boolean z2 = this.b;
+        ((qy1) this.c).B((View) this.d, this.e, this.a, this.f, z, i, i2, (no6) this.h, z2);
+    }
+
+    public ny1(bg2 bg2Var, TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z) {
+        this.c = bg2Var;
+        this.d = user;
+        this.e = tLObject;
+        this.f = tL_chatAdminRights;
+        this.h = tL_chatBannedRights;
+        this.a = str;
+        this.b = z;
     }
 }

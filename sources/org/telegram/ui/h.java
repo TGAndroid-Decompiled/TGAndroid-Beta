@@ -43,7 +43,7 @@ public final class h implements Runnable {
                         pVar.y0 = jSONObject.getString("title");
                     } catch (Throwable th) {
                         pVar.x0 = str;
-                        fa4.g(th, true);
+                        cc4.g(th, true);
                     }
                     pVar.h0();
                     return;

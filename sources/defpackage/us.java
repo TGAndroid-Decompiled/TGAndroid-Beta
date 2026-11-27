@@ -1,29 +1,31 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.WindowInsets;
 import org.telegram.ui.o;
-public final class us implements ValueAnimator.AnimatorUpdateListener {
+public final class us implements View.OnApplyWindowInsetsListener {
     public final byte a;
-    public final o b;
 
-    public us(o oVar, byte b) {
-        this.a = b;
-        this.b = oVar;
+    public us(c0a c0aVar) {
+        this.a = (byte) 3;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        o oVar = this.b;
-        switch (b) {
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.a) {
             case 0:
-                oVar.V(((Integer) valueAnimator.getAnimatedValue()).intValue());
-                return;
+                return o.J(windowInsets);
+            case 1:
+                return tx0.c(view, windowInsets);
+            case 2:
+                view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+                return windowInsets;
             default:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                oVar.a1 = floatValue;
-                oVar.r0.setTranslationY(((1.0f - floatValue) * gl.L(51.0f)) + oVar.q0);
-                return;
+                return j1a.e(view, windowInsets);
         }
+    }
+
+    public us(byte b) {
+        this.a = b;
     }
 }

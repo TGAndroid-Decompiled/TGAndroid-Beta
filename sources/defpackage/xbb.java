@@ -1,73 +1,56 @@
 package defpackage;
+public final class xbb implements r11 {
+    public final float[] a = new float[2];
+    public final ybb b;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.res.XmlResourceParser;
-import android.util.Xml;
-import android.view.InflateException;
-import android.view.Menu;
-import android.view.MenuInflater;
-import java.io.IOException;
-import org.xmlpull.v1.XmlPullParserException;
-public final class xbb extends MenuInflater {
-    public static final Class[] e;
-    public static final Class[] f;
-    public final Object[] a;
-    public final Object[] b;
-    public final Context c;
-    public Object d;
-
-    static {
-        Class[] clsArr = {Context.class};
-        e = clsArr;
-        f = clsArr;
-    }
-
-    public xbb(Context context) {
-        super(context);
-        this.c = context;
-        Object[] objArr = {context};
-        this.a = objArr;
-        this.b = objArr;
-    }
-
-    public static Object a(Object obj) {
-        if (obj instanceof Activity) {
-            return obj;
-        }
-        if (obj instanceof ContextWrapper) {
-            return a(((ContextWrapper) obj).getBaseContext());
-        }
-        return obj;
-    }
-
-    public final void b(android.content.res.XmlResourceParser r17, android.util.AttributeSet r18, android.view.Menu r19) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.xbb.b(android.content.res.XmlResourceParser, android.util.AttributeSet, android.view.Menu):void");
+    public xbb(ybb ybbVar) {
+        this.b = ybbVar;
     }
 
     @Override
-    public final void inflate(int i, Menu menu) {
-        if (!(menu instanceof yz6)) {
-            super.inflate(i, menu);
-            return;
+    public final boolean a() {
+        return true;
+    }
+
+    @Override
+    public final boolean d() {
+        return true;
+    }
+
+    @Override
+    public final int e(int i) {
+        ybb ybbVar = this.b;
+        lcb lcbVar = ybbVar.s0;
+        o68 w = lcbVar.w();
+        if (w == null) {
+            return 0;
         }
-        XmlResourceParser xmlResourceParser = null;
-        try {
-            try {
-                xmlResourceParser = this.c.getResources().getLayout(i);
-                b(xmlResourceParser, Xml.asAttributeSet(xmlResourceParser), menu);
-                xmlResourceParser.close();
-            } catch (IOException e2) {
-                throw new InflateException("Error inflating menu XML", e2);
-            } catch (XmlPullParserException e3) {
-                throw new InflateException("Error inflating menu XML", e3);
-            }
-        } catch (Throwable th) {
-            if (xmlResourceParser != null) {
-                xmlResourceParser.close();
-            }
-            throw th;
-        }
+        t58 t58Var = w.M0;
+        ybb ybbVar2 = lcbVar.s;
+        float[] fArr = this.a;
+        hl.p1(t58Var, ybbVar2, fArr);
+        return (int) (ybbVar.getMeasuredHeight() - (fArr[1] + t58Var.getMeasuredHeight()));
+    }
+
+    @Override
+    public final boolean f(int i) {
+        return false;
+    }
+
+    @Override
+    public final int h(int i) {
+        return 0;
+    }
+
+    @Override
+    public final void b(float f) {
+    }
+
+    @Override
+    public final void c(v21 v21Var) {
+    }
+
+    @Override
+    public final void g(v21 v21Var) {
     }
 }

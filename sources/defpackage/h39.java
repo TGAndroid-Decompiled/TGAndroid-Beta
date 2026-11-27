@@ -1,132 +1,75 @@
 package defpackage;
 
-import android.view.MotionEvent;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewConfiguration;
-public final class h39 extends ps4 {
-    public View a;
-    public final ds5 b;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.TLRPC;
+public final class h39 extends j79 {
+    public final int c;
+    public final Context d;
+    public final vnb e;
+    public final boolean f;
+    public final o39 h;
 
-    public h39(ds5 ds5Var) {
-        this.b = ds5Var;
+    public h39(o39 o39Var, int i, Context context, vnb vnbVar, boolean z) {
+        this.h = o39Var;
+        this.c = i;
+        this.d = context;
+        this.e = vnbVar;
+        this.f = z;
     }
 
     @Override
-    public final boolean a() {
-        if (((o39) this.b.b).X0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void b(View view, MotionEvent motionEvent) {
-        o39 o39Var = (o39) this.b.b;
-        if (view != null) {
-            if (o39Var.U0 != null || o39Var.V0 != null) {
-                float x = motionEvent.getX();
-                float y = motionEvent.getY();
-                o39Var.k1(view, x, y, true);
-                int i = o39Var.N1;
-                if (o39Var.Q1 && i != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    c39 c39Var = o39Var.U0;
-                    if (c39Var != null) {
-                        c39Var.d(i, view);
-                    } else {
-                        d39 d39Var = o39Var.V0;
-                        if (d39Var != null) {
-                            d39Var.e(x - view.getX(), y - view.getY(), i, view);
-                        }
-                    }
-                }
-                g39 g39Var = new g39(this, view, i, x, y);
-                o39Var.R1 = g39Var;
-                gl.d3(g39Var, ViewConfiguration.getPressedStateDuration());
-                yq4 yq4Var = o39Var.d1;
-                if (yq4Var != null) {
-                    gl.r(yq4Var);
-                    o39Var.d1 = null;
-                    o39Var.M1 = null;
-                    o39Var.O1 = false;
-                    o39Var.n1(view, motionEvent);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        d39 d39Var;
-        o39 o39Var = (o39) this.b.b;
-        View view = this.a;
-        if (view != null && (d39Var = o39Var.V0) != null && d39Var.q(view)) {
-            o39Var.V0.l(this.a, motionEvent.getX(), motionEvent.getY());
-            this.a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
+    public final int b() {
         int i;
-        o39 o39Var = (o39) this.b.b;
-        View view = o39Var.M1;
-        if (view != null && (i = o39Var.N1) != -1) {
-            e39 e39Var = o39Var.W0;
-            if (e39Var == null) {
-                f39 f39Var = o39Var.X0;
-                if (f39Var != null && f39Var.mo8e(motionEvent.getX() - o39Var.M1.getX(), motionEvent.getY() - o39Var.M1.getY(), i, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    o39Var.Y0 = true;
-                }
-            } else if (e39Var.d(i, view)) {
-                try {
-                    view.performHapticFeedback(0);
-                } catch (Exception unused2) {
-                }
-                view.sendAccessibilityEvent(2);
-            }
+        o39 o39Var = this.h;
+        int size = o39Var.n.size();
+        if (!o39Var.I.isEmpty() && !uc7.s1(this.c).M3()) {
+            i = 1;
+        } else {
+            i = 0;
+        }
+        return size + i;
+    }
+
+    @Override
+    public final int d(int i) {
+        if (i < this.h.n.size()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void t(f89 f89Var, int i) {
+        if (f89Var.f == 0) {
+            ((e39) f89Var.a).setUserReaction((TLRPC.MessagePeerReaction) this.h.n.get(i));
         }
     }
 
     @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        d39 d39Var;
-        View view = this.a;
-        if (view != null && (d39Var = ((o39) this.b.b).V0) != null && d39Var.q(view)) {
-            b(this.a, motionEvent);
-            this.a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        o39 o39Var = (o39) this.b.b;
-        View view = o39Var.M1;
-        if (view != null) {
-            d39 d39Var = o39Var.V0;
-            if (d39Var != null && d39Var.q(view)) {
-                this.a = o39Var.M1;
-                return false;
+    public final f89 x(ViewGroup viewGroup, int i) {
+        FrameLayout e39Var;
+        if (i != 0) {
+            o39 o39Var = this.h;
+            q37 q37Var = o39Var.K;
+            if (q37Var != null) {
+                if (q37Var.getParent() != null) {
+                    ((ViewGroup) o39Var.K.getParent()).removeView(o39Var.K);
+                }
+            } else {
+                o39Var.e();
             }
-            b(o39Var.M1, motionEvent);
+            Context context = this.d;
+            e39Var = new FrameLayout(context);
+            View view = new View(context);
+            yob.i(view, yob.K(0.06f, aob.E8), this.e);
+            e39Var.addView(view, tre.c(8.0f, -1));
+            e39Var.addView(o39Var.K, tre.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
+        } else {
+            e39Var = new e39(0, this.c, this.e, this.d, true, this.f);
         }
-        return false;
+        return new f89(e39Var);
     }
 }

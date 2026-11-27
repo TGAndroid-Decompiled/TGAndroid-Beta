@@ -1,136 +1,128 @@
 package defpackage;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.d;
-public final class vb extends l5c {
-    public final byte Q;
-    public final Object R;
+public final class vb extends eva {
+    public final byte r;
 
-    public vb(KeyEvent.Callback callback, o39 o39Var, Context context, int i, i8c i8cVar, wjb wjbVar, byte b) {
-        super(o39Var, context, i, 0, false, i8cVar, wjbVar);
-        this.Q = b;
-        this.R = callback;
+    public vb(Context context, byte b) {
+        super(context);
+        this.r = b;
     }
 
     @Override
-    public final void t(s49 s49Var, int i) {
-        d76 d76Var;
-        i76 i76Var;
-        switch (this.Q) {
-            case 2:
-                super.t(s49Var, i);
-                l18 l18Var = (l18) this.R;
-                if (l18Var.E) {
-                    View view = s49Var.a;
-                    if ((view instanceof d76) && (i76Var = (d76Var = (d76) view).L) != null && i76Var.a == l18Var.y) {
-                        d76Var.a();
-                        l18Var.E = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.t(s49Var, i);
-                return;
-        }
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        wjb wjbVar;
-        wjb wjbVar2;
-        wjb wjbVar3;
-        byte b = this.Q;
-        Object obj = this.R;
-        switch (b) {
+    public final void a() {
+        switch (this.r) {
             case 0:
-                bc bcVar = (bc) obj;
-                if (i == 42) {
-                    Activity parentActivity = bcVar.getParentActivity();
-                    int i2 = bkb.K6;
-                    wjbVar = ((d) bcVar).resourceProvider;
-                    ld5 ld5Var = new ld5(parentActivity, i2, 21, 0, false, wjbVar);
-                    ld5Var.setHeight(25);
-                    return new s49(ld5Var);
-                }
-                return super.x(viewGroup, i);
+                super.a();
+                dva dvaVar = this.a;
+                dvaVar.q = true;
+                dvaVar.J = false;
+                dvaVar.K = true;
+                dvaVar.H = true;
+                dvaVar.c();
+                return;
             case 1:
-                eg1 eg1Var = (eg1) obj;
-                if (i == 42) {
-                    ld5 ld5Var2 = new ld5(eg1Var.getParentActivity(), bkb.K6, 21, 0, false, eg1.B0(eg1Var));
-                    ld5Var2.setHeight(25);
-                    return new s49(ld5Var2);
-                }
-                return super.x(viewGroup, i);
+                super.a();
+                dva dvaVar2 = this.a;
+                dvaVar2.q = true;
+                dvaVar2.J = false;
+                dvaVar2.K = true;
+                dvaVar2.H = true;
+                dvaVar2.c();
+                return;
             case 2:
-            default:
-                return super.x(viewGroup, i);
+                dva dvaVar3 = this.a;
+                dvaVar3.q = true;
+                dvaVar3.J = false;
+                dvaVar3.H = true;
+                dvaVar3.I = true;
+                dvaVar3.k = hl.L(-14.0f);
+                dva dvaVar4 = this.a;
+                dvaVar4.x = (short) 2000;
+                dvaVar4.y = (short) 3000;
+                dvaVar4.r = (byte) 16;
+                dvaVar4.G = false;
+                dvaVar4.N = 28;
+                dvaVar4.P = aob.Dk;
+                dvaVar4.c();
+                return;
             case 3:
-                y99 y99Var = (y99) obj;
-                if (i == 0) {
-                    return new s49(new ld5(y99Var.getContext(), bkb.K6, 13, 12, 4, false, false, y99Var.J0));
-                }
-                if (i == 42) {
-                    return new s49(new ld5(y99Var.getContext(), bkb.K6, 13, 12, 4, false, true, y99Var.J0));
-                }
-                return super.x(viewGroup, i);
+                dva dvaVar5 = new dva(50);
+                this.a = dvaVar5;
+                dvaVar5.N = 100;
+                dvaVar5.L = false;
+                dvaVar5.G = false;
+                dvaVar5.J = true;
+                dvaVar5.H = true;
+                dvaVar5.I = false;
+                dvaVar5.r = (byte) 4;
+                dvaVar5.w = 0.98f;
+                dvaVar5.v = 0.98f;
+                dvaVar5.u = 0.98f;
+                dvaVar5.c();
+                return;
             case 4:
-                jva jvaVar = (jva) obj;
-                if (i == 42) {
-                    Activity parentActivity2 = jvaVar.getParentActivity();
-                    int i3 = bkb.K6;
-                    wjbVar2 = ((d) jvaVar).resourceProvider;
-                    ld5 ld5Var3 = new ld5(parentActivity2, i3, 21, 0, false, wjbVar2);
-                    ld5Var3.setHeight(25);
-                    return new s49(ld5Var3);
-                }
-                return super.x(viewGroup, i);
-            case 5:
-                ydb ydbVar = (ydb) obj;
-                if (i == 42) {
-                    Activity parentActivity3 = ydbVar.getParentActivity();
-                    int i4 = bkb.K6;
-                    wjbVar3 = ((d) ydbVar).resourceProvider;
-                    ld5 ld5Var4 = new ld5(parentActivity3, i4, 21, 0, false, wjbVar3);
-                    ld5Var4.setHeight(25);
-                    return new s49(ld5Var4);
-                }
-                return super.x(viewGroup, i);
+                dva dvaVar6 = this.a;
+                dvaVar6.q = true;
+                dvaVar6.J = false;
+                dvaVar6.H = true;
+                dvaVar6.I = true;
+                dvaVar6.k = hl.L(-14.0f);
+                dva dvaVar7 = this.a;
+                dvaVar7.x = (short) 2000;
+                dvaVar7.y = (short) 3000;
+                dvaVar7.r = (byte) 16;
+                dvaVar7.G = false;
+                dvaVar7.N = 28;
+                dvaVar7.P = aob.Dk;
+                dvaVar7.c();
+                return;
+            default:
+                super.a();
+                dva dvaVar8 = this.a;
+                dvaVar8.q = true;
+                dvaVar8.J = false;
+                dvaVar8.K = true;
+                dvaVar8.H = true;
+                dvaVar8.c();
+                return;
         }
     }
 
     @Override
-    public final void y(s49 s49Var) {
-        d76 d76Var;
-        i76 i76Var;
-        switch (this.Q) {
+    public final int getStarsRectWidth() {
+        switch (this.r) {
+            case 0:
+                return getMeasuredWidth();
+            case 1:
+                return getMeasuredWidth();
             case 2:
-                super.y(s49Var);
-                l18 l18Var = (l18) this.R;
-                if (l18Var.E) {
-                    View view = s49Var.a;
-                    if ((view instanceof d76) && (i76Var = (d76Var = (d76) view).L) != null && i76Var.a == l18Var.y) {
-                        d76Var.a();
-                        l18Var.E = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
             default:
-                super.y(s49Var);
-                return;
+                return super.getStarsRectWidth();
+            case 3:
+                return getMeasuredWidth();
         }
     }
 
-    public vb(iz4 iz4Var, o39 o39Var, Activity activity, int i, int i2, i8c i8cVar, wjb wjbVar, byte b) {
-        super(o39Var, activity, i, i2, true, i8cVar, wjbVar);
-        this.Q = b;
-        this.R = iz4Var;
+    @Override
+    public final void onMeasure(int i, int i2) {
+        switch (this.r) {
+            case 2:
+                super.onMeasure(i, i2);
+                this.a.b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - hl.L(52.0f));
+                return;
+            case 3:
+            default:
+                super.onMeasure(i, i2);
+                return;
+            case 4:
+                super.onMeasure(i, i2);
+                this.a.b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - hl.L(52.0f));
+                return;
+            case 5:
+                super.onMeasure(i, i2);
+                this.a.b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - hl.L(52.0f));
+                return;
+        }
     }
 }

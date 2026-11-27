@@ -1,435 +1,381 @@
 package defpackage;
 
-import android.graphics.Color;
-import android.util.LruCache;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-public abstract class znc {
-    public static final LruCache a = new LruCache(128);
-    public static final float[] b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] c = {0.0f, 0.47809f, 1.0f};
-    public static final LruCache d = new LruCache(64);
-    public static final int e;
+import android.graphics.BlendMode;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.RuntimeShader;
+import android.graphics.Shader;
+import android.os.Build;
+import java.lang.reflect.Array;
+import java.util.Random;
+public final class znc {
+    public static final int[] x = {-13669377, -13384961, -11887617};
+    public final Object a;
+    public float c;
+    public long d;
+    public long e;
+    public float p;
+    public final Paint t;
+    public long u;
+    public final float[] v;
+    public float w;
+    public final Paint b = new Paint();
+    public final float[] f = new float[160];
+    public final float[] g = new float[160];
+    public final float[] h = new float[160];
+    public final float[] i = new float[160];
+    public final float[] j = new float[160];
+    public final float[] k = new float[160];
+    public final float[] l = new float[160];
+    public final int[] m = new int[160];
+    public final int[] n = new int[160];
+    public final boolean[] o = new boolean[160];
+    public final Random q = new Random();
+    public final float[][] r = (float[][]) Array.newInstance(Float.TYPE, 18, 320);
+    public final int[] s = new int[18];
 
-    static {
-        float[] j = j(-16748084);
-        float f = j[0] * 0.876903f;
-        float f2 = j[2];
-        float e2 = e(f, f2);
-        float f3 = f2;
-        for (int i = -15; i <= 15; i++) {
-            float radians = ((float) Math.toRadians(i)) + f2;
-            float e3 = e(f, radians);
-            if (e3 > 0.002f + e2) {
-                f3 = radians;
-                e2 = e3;
+    public znc() {
+        BlendMode blendMode;
+        BlendMode blendMode2;
+        Paint paint = new Paint(1);
+        this.t = paint;
+        this.v = new float[2];
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 29) {
+            blendMode2 = BlendMode.PLUS;
+            paint.setBlendMode(blendMode2);
+        }
+        this.w = 1.0f;
+        if (i >= 33) {
+            try {
+                fn3.c();
+                Shader runtimeShader = new RuntimeShader("uniform float2 uSize;\nuniform float2 uOrigin;\nuniform float uRadius;\nuniform float uDp;\nuniform float uTime;\nuniform float uK;\nuniform float uLv;\nuniform float uB;\nuniform float3 uC0;\nuniform float3 uC1;\nuniform float3 uC2;\nfloat sdRound(float2 p, float2 b, float r) {\n  float2 q = abs(p) - b + r;\n  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;\n}\nfloat3 pal(float x) {\n  float3 c = mix(uC0, uC1, 0.5 + 0.5 * sin(6.2832 * x));\n  float v = fract(x * 0.37 + uTime * 0.03) - 0.5;\n  return mix(c, uC2, 0.8 * exp(-v * v / 0.0072));\n}\nhalf4 main(float2 fc) {\n  float2 hs = uSize * 0.5;\n  float2 p = fc - (uOrigin + hs);\n  float R = min(uRadius, hs.y);\n  float d = sdRound(p, hs, R);\n  if (abs(d) > 24.0 * uDp) return half4(0.0);\n  float cr = hs.x - R;\n  float s0 = p.x > cr ? R * atan(abs(p.y), p.x - cr) : R * 1.5708 + (cr - p.x);\n  float sb = uB >= cr ? 0.0 : R * 1.5708 + (cr - uB);\n  float s = s0 >= sb ? s0 - sb : (sb - s0) * 3.0;\n  float L = uSize.x;\n  float fadeLen = (0.55 + 0.15 * uLv) * L;\n  float decay = 1.0 - smoothstep(0.0, fadeLen, s);\n  float pn = 1.0 - smoothstep(0.0, 0.4 * L, s);\n  float2 hp = p - float2(min(uB, hs.x), 0.0);\n  float halo = (0.18 + 0.4 * uLv) * exp(-dot(hp, hp) / (196.0 * uDp * uDp));\n  if (decay <= 0.0 && halo < 0.002) return half4(0.0);\n  float ad = abs(d);\n  float core = exp(-ad / ((0.75 + 0.35 * pn) * uDp));\n  float glow = (0.3 + 0.45 * pn) * exp(-ad / ((2.0 + 3.0 * pn) * uDp));\n  float a = min(1.0, core + glow) * max(decay, 0.0) * (0.2 + 0.25 * pn + (0.8 - 0.25 * pn) * uLv) * (1.0 + 0.9 * pn) * uK;\n  a += halo * uK;\n  float3 col = pal(s / max(fadeLen, 1.0) * 0.6 + uTime * 0.04);\n  a = min(a, 0.85 / max(max(col.r, col.g), max(col.b, 0.001)));\n  return half4(half3(col * a), half(a));\n}\n");
+                for (int i2 = 0; i2 < 3; i2++) {
+                    int i3 = x[i2];
+                    runtimeShader.setFloatUniform("uC" + i2, ((i3 >> 16) & 255) / 255.0f, ((i3 >> 8) & 255) / 255.0f, (i3 & 255) / 255.0f);
+                }
+                this.a = runtimeShader;
+                this.b.setShader(runtimeShader);
+                Paint paint2 = this.b;
+                blendMode = BlendMode.PLUS;
+                paint2.setBlendMode(blendMode);
+            } catch (Throwable unused) {
+                this.a = null;
             }
         }
-        float A = tb4.A(f3, f2, 0.723f, f2);
-        e = l(f, e(f, A), A);
     }
 
-    public static int a(int i, float[] fArr) {
+    public static float b(float f, float f2) {
+        float max = Math.max(0.0f, Math.min(1.0f, (f2 - 0.0f) / (f - 0.0f)));
+        return xnb.B(max, 2.0f, 3.0f, max * max);
+    }
+
+    public final void a(Canvas canvas, RectF rectF, float f, float f2, long j, float f3) {
+        float min;
+        float f4;
+        float f5;
+        boolean z;
+        int[] iArr;
+        float[][] fArr;
+        int i;
         int i2;
-        int o;
-        if (i == -16216082) {
-            i2 = -14456619;
-        } else {
-            i2 = -14184457;
-        }
-        if (fArr != null && fArr.length >= 18) {
-            float f = fArr[10];
-            if (f < 0.0f) {
-                o = i2;
-            } else {
-                o = o(i, (int) f, (int) fArr[11]);
-            }
-            float f2 = fArr[14];
-            if (f2 >= 0.0f) {
-                i2 = o(i, (int) f2, (int) fArr[15]);
-            }
-            return bm2.f(fArr[8], o, i2);
-        }
-        return i2;
-    }
-
-    public static int b(int i, float[] fArr) {
-        int i2 = i << 2;
-        int i3 = i2 + 10;
-        int i4 = e;
-        if (fArr != null && fArr.length >= 18) {
-            float f = fArr[i3];
-            float f2 = 0.0f;
-            if (f >= 0.0f) {
-                int n = n(-16216082, (int) f, (int) fArr[i2 + 11]);
-                Integer valueOf = Integer.valueOf(n);
-                LruCache lruCache = d;
-                Integer num = (Integer) lruCache.get(valueOf);
-                if (num != null) {
-                    return num.intValue();
-                }
-                float[] j = j(n);
-                float d2 = (d(-16216082) + 0.05f) / (d(i4) + 0.05f);
-                float d3 = d(n);
-                float f3 = ((d3 + 0.05f) / d2) - 0.05f;
-                if (f3 < 0.004f) {
-                    f3 = d3 * 0.3f;
-                }
-                float f4 = 1.0f;
-                float w = ls6.w(j[1], 0.1f, 1.0f, 0.0f);
-                for (int i5 = 0; i5 < 18; i5++) {
-                    float f5 = (f2 + f4) / 2.0f;
-                    if (d(l(f5, e(f5, j[2]) * w, j[2])) < f3) {
-                        f2 = f5;
-                    } else {
-                        f4 = f5;
-                    }
-                }
-                float f6 = (f2 + f4) / 2.0f;
-                int l = l(f6, e(f6, j[2]) * w, j[2]);
-                lruCache.put(Integer.valueOf(n), Integer.valueOf(l));
-                return l;
-            }
-        }
-        return i4;
-    }
-
-    public static int c(float f) {
-        float pow;
-        float max = Math.max(0.0f, Math.min(1.0f, f));
-        if (max <= 0.0031308f) {
-            pow = max * 12.92f;
-        } else {
-            pow = (((float) Math.pow(max, 0.4166666666666667d)) * 1.055f) - 0.055f;
-        }
-        return Math.max(0, Math.min(255, (int) ((pow * 255.0f) + 0.5f)));
-    }
-
-    public static float d(int i) {
-        float h = h(i, 8) * 0.7152f;
-        return (h(i, 0) * 0.0722f) + h + (h(i, 16) * 0.2126f);
-    }
-
-    public static float e(float f, float f2) {
-        float f3 = 0.5f;
-        float f4 = 0.0f;
-        for (int i = 0; i < 18; i++) {
-            float f5 = (f4 + f3) / 2.0f;
-            float[] k = k(f, f5, f2);
-            float f6 = k[0];
-            if (f6 >= 0.0f) {
-                float f7 = k[1];
-                if (f7 >= 0.0f) {
-                    float f8 = k[2];
-                    if (f8 >= 0.0f && f6 <= 1.0f && f7 <= 1.0f && f8 <= 1.0f) {
-                        f4 = f5;
-                    }
-                }
-            }
-            f3 = f5;
-        }
-        return f4;
-    }
-
-    public static float[] f(int i) {
-        float radians;
-        double[] c2 = bbd.c(bbd.d(bbd.b(i)));
-        float f = (float) c2[0];
-        float f2 = (float) c2[1];
-        if (Double.isNaN(c2[2])) {
-            radians = 0.0f;
-        } else {
-            radians = (float) Math.toRadians(c2[2]);
-        }
-        return new float[]{f, f2, radians};
-    }
-
-    public static float g(float f) {
-        if (f <= 0.04045f) {
-            return f / 12.92f;
-        }
-        return (float) Math.pow((f + 0.055f) / 1.055f, 2.4d);
-    }
-
-    public static float h(int i, int i2) {
-        float f = ((i >> i2) & 255) / 255.0f;
-        if (f <= 0.04045f) {
-            return f / 12.92f;
-        }
-        return (float) Math.pow((f + 0.055f) / 1.055f, 2.4d);
-    }
-
-    public static float[] i(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        if (stargiftattributebackdrop == null) {
-            return new float[]{0.0f, 1.0f, 1.0f};
-        }
-        float[] f = f(bm2.f(0.5f, stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)));
-        float[] f2 = f(-16216082);
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(f[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        return new float[]{f[2] - f2[2], Math.min(yjb.z(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (f[1] * 1.5f) / 0.155f))), (f(stargiftattributebackdrop.center_color)[1] * 1.2f) / 0.173f), ((((Math.max(0.1f, f[0] - 0.02f) / f2[0]) - 1.0f) * Math.max(0.0f, Math.min(1.0f, (0.6f - f[0]) / 0.15f))) + 1.0f) - (exp * 0.025f)};
-    }
-
-    public static float[] j(int i) {
-        float g = g(Color.red(i) / 255.0f);
-        float g2 = g(Color.green(i) / 255.0f);
-        float g3 = g(Color.blue(i) / 255.0f);
-        float cbrt = (float) Math.cbrt((0.051445995f * g3) + (0.53633255f * g2) + (0.41222146f * g));
-        float cbrt2 = (float) Math.cbrt((0.10739696f * g3) + (0.6806995f * g2) + (0.2119035f * g));
-        float cbrt3 = (float) Math.cbrt((g3 * 0.6299787f) + (g2 * 0.28171885f) + (g * 0.08830246f));
-        double d2 = (0.4505937f * cbrt3) + ((1.9779985f * cbrt) - (2.4285922f * cbrt2));
-        double d3 = ((cbrt2 * 0.78277177f) + (cbrt * 0.025904037f)) - (cbrt3 * 0.80867577f);
-        return new float[]{((0.7936178f * cbrt2) + (0.21045426f * cbrt)) - (0.004072047f * cbrt3), (float) Math.hypot(d2, d3), (float) Math.atan2(d3, d2)};
-    }
-
-    public static float[] k(float f, float f2, float f3) {
-        double d2 = f3;
-        float cos = ((float) Math.cos(d2)) * f2;
-        float sin = f2 * ((float) Math.sin(d2));
-        float f4 = (0.21580376f * sin) + (0.39633778f * cos) + f;
-        float f5 = (f - (0.105561346f * cos)) - (0.06385417f * sin);
-        float f6 = (f - (cos * 0.08948418f)) - (sin * 1.2914855f);
-        float f7 = f4 * f4 * f4;
-        float f8 = f5 * f5 * f5;
-        float f9 = f6 * f6 * f6;
-        return new float[]{(0.23096994f * f9) + ((4.0767417f * f7) - (3.3077116f * f8)), ((2.6097574f * f8) + ((-1.268438f) * f7)) - (0.34131938f * f9), (f9 * 1.7076147f) + ((f7 * (-0.0041960864f)) - (f8 * 0.7034186f))};
-    }
-
-    public static int l(float f, float f2, float f3) {
-        float[] k = k(f, f2, f3);
-        loop0: for (int i = 0; i < 40; i++) {
-            for (float f4 : k) {
-                if (f4 < -0.001f || f4 > 1.001f) {
-                    f2 *= 0.95f;
-                    k = k(f, f2, f3);
-                }
-            }
-        }
-        return Color.rgb(c(k[0]), c(k[1]), c(k[2]));
-    }
-
-    public static void m(float[] fArr, int i, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        float f;
-        float f2;
-        float f3;
-        int i2 = i << 2;
-        int i3 = i2 + 10;
-        float f4 = -1.0f;
-        if (stargiftattributebackdrop == null) {
-            f = -1.0f;
-        } else {
-            f = stargiftattributebackdrop.center_color & 16777215;
-        }
-        fArr[i3] = f;
-        int i4 = i2 + 11;
-        if (stargiftattributebackdrop == null) {
-            f2 = -1.0f;
-        } else {
-            f2 = stargiftattributebackdrop.edge_color & 16777215;
-        }
-        fArr[i4] = f2;
-        int i5 = i2 + 12;
-        if (stargiftattributebackdrop == null) {
-            f3 = -1.0f;
-        } else {
-            f3 = stargiftattributebackdrop.pattern_color & 16777215;
-        }
-        fArr[i5] = f3;
-        int i6 = i2 + 13;
-        if (stargiftattributebackdrop != null) {
-            f4 = stargiftattributebackdrop.text_color & 16777215;
-        }
-        fArr[i6] = f4;
-    }
-
-    public static int n(int i, int i2, int i3) {
-        int i4 = i2 | (-16777216);
-        int i5 = i3 | (-16777216);
-        float[] j = j(bm2.f(0.5f, i4, i5));
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(j[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        float z = yjb.z(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (j[1] * 1.5f) / 0.155f)));
-        float[] j2 = j(i4);
-        float[] j3 = j(i5);
-        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((j2[0] + j3[0]) / 2.0f)) / 0.15f));
-        float f = j(-16216082)[0];
-        float f2 = j(-15291399)[0];
-        float[] j4 = j(i);
-        float max2 = Math.max(-2.0f, Math.min(3.0f, (j4[0] - f) / (f2 - f)));
-        float f3 = j3[0];
-        float A = tb4.A(j2[0], f3, max2, f3 - 0.02f);
-        float f4 = j4[0];
-        float f5 = ((A - f4) * max) + f4 + (exp * (-0.025f));
-        float f6 = j4[1];
-        float f7 = f6 / 0.173f;
-        float f8 = 1.0f - max;
-        return l(Math.max(0.05f, Math.min(0.97f, f5)), b00.w(j2[1], 1.1f, max, f8 * Math.min(f6 * z, f7 * j2[1] * 1.2f)), j[2]);
-    }
-
-    public static int o(int i, int i2, int i3) {
-        float[] fArr;
-        float f;
-        String str = i + ":" + i2 + ":" + i3;
-        LruCache lruCache = a;
-        Integer num = (Integer) lruCache.get(str);
-        if (num != null) {
-            return num.intValue();
-        }
-        int i4 = i2 | (-16777216);
-        int i5 = i3 | (-16777216);
-        float[] j = j(bm2.f(0.7f, i4, i5));
-        float[] j2 = j(i4);
-        float[] j3 = j(i5);
-        float[] j4 = j(i);
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(j[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        float z = yjb.z(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (j[1] * 1.5f) / 0.155f)));
-        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((j2[0] + j3[0]) / 2.0f)) / 0.15f));
-        float f2 = j(-16216082)[0];
-        float max2 = Math.max(-2.0f, Math.min(3.0f, (j4[0] - f2) / (j(-15291399)[0] - f2)));
-        float f3 = j3[0];
-        float A = tb4.A(j2[0], f3, max2, f3 - 0.02f);
-        float f4 = j4[0];
-        float A2 = tb4.A(A, f4, max, f4) - (exp * 0.025f);
-        float f5 = j4[1];
-        float w = b00.w(j2[1], 1.1f, max, (1.0f - max) * Math.min(z * f5, (f5 / 0.173f) * j2[1] * 1.2f));
-        if (i == -15291399) {
-            fArr = j(bm2.f(0.5f, i4, i5));
-        } else {
-            fArr = j3;
-        }
-        float A3 = tb4.A(fArr[0], A2, 0.399f, A2);
-        float A4 = tb4.A(fArr[1], w, 0.399f, w);
-        float atan2 = (((float) Math.atan2(Math.sin(fArr[2] - f), Math.cos(fArr[2] - j[2]))) * 0.399f) + j[2];
-        float max3 = (1.0f - Math.max(0.0f, Math.min(1.0f, (j[1] - 0.125f) / 0.015f))) * Math.max(0.0f, Math.min(1.0f, (j[1] - 0.06f) / 0.055f));
-        float exp2 = (float) Math.exp(-Math.pow(((((Math.toDegrees(atan2) % 360.0d) + 360.0d) % 360.0d) - 70.0d) / 35.0d, 2.0d));
-        float f6 = (((1.0f - (0.75f * exp2)) * max3 * 0.35f) + 1.0f) * A4;
-        float B = yjb.B(exp2, 0.15f, 1.0f, Math.max(j2[1], j3[1]) * 1.3f);
-        if (f6 > B && B > 0.0f) {
-            f6 = tb4.A(B, f6, 0.8f, f6);
-        }
-        int l = l(Math.max(0.05f, Math.min(0.97f, A3 - (exp2 * 0.025f))), f6, atan2);
-        lruCache.put(str, Integer.valueOf(l));
-        return l;
-    }
-
-    public static int p(int i, int i2, float[] fArr) {
-        double d2;
+        float f6;
+        float f7;
         int i3;
+        float f8;
         int i4;
-        char c2;
-        double d3;
+        float[] fArr2;
+        float f9;
         int i5;
-        double cos;
-        double sin;
-        int i6 = 2;
-        int i7 = ((i2 / 3) << 2) + 10;
-        char c3 = 0;
-        if (fArr.length >= 18 && fArr[i7] >= 0.0f) {
-            int i8 = i & 16777215;
-            if (i8 != 165332) {
-                if (i8 != 29132 && i8 != 561134) {
-                    if (i8 != 2267888 && i8 != 1485817) {
-                        i6 = 3;
-                    } else {
-                        i6 = 0;
-                    }
+        Random random;
+        Object obj = this.a;
+        if (obj != null && Build.VERSION.SDK_INT >= 33 && f2 > 0.003f) {
+            float f10 = 0.0f;
+            if (rectF.width() > 0.0f) {
+                float f11 = hl.p;
+                RuntimeShader runtimeShader = (RuntimeShader) obj;
+                runtimeShader.setFloatUniform("uSize", rectF.width(), rectF.height());
+                runtimeShader.setFloatUniform("uOrigin", rectF.left, rectF.top);
+                runtimeShader.setFloatUniform("uRadius", Math.min(f, rectF.height() / 2.0f));
+                runtimeShader.setFloatUniform("uDp", f11);
+                runtimeShader.setFloatUniform("uTime", ((float) ((j - this.e) % 3600000)) / 1000.0f);
+                runtimeShader.setFloatUniform("uK", f2);
+                runtimeShader.setFloatUniform("uLv", this.c);
+                runtimeShader.setFloatUniform("uB", Math.min(0.0f, f3) + (rectF.width() / 2.0f));
+                float f12 = 24.0f * f11;
+                canvas.drawRect(rectF.left - f12, rectF.top - f12, rectF.right + f12, rectF.bottom + f12, this.b);
+                float min2 = Math.min(f, rectF.height() / 2.0f);
+                long j2 = this.u;
+                if (j2 == 0) {
+                    min = 0.0f;
                 } else {
-                    i6 = 1;
+                    min = Math.min(0.05f, ((float) (j - j2)) / 1000.0f);
                 }
-            }
-            return (Color.alpha(i) << 24) | (((int) fArr[i7 + i6]) & 16777215);
-        } else if (fArr[i2] == 0.0f && fArr[i2 + 1] == 1.0f && fArr[i2 + 2] == 1.0f) {
-            return i;
-        } else {
-            double[] c4 = bbd.c(bbd.d(bbd.b(i)));
-            double d4 = c4[0];
-            double d5 = 0.8d;
-            if (d4 < 0.8d) {
-                d5 = 0.0d;
-            }
-            c4[0] = Math.max(d5, d4 * fArr[i2 + 2]);
-            c4[1] = c4[1] * fArr[i2 + 1];
-            if (Double.isNaN(c4[2])) {
-                d2 = 0.0d;
-            } else {
-                d2 = c4[2];
-            }
-            c4[2] = Math.toDegrees(fArr[i2]) + d2;
-            double[] dArr = null;
-            int i9 = 0;
-            while (true) {
-                if (i9 < 40) {
-                    double d6 = c4[0];
-                    double d7 = c4[1];
-                    double d8 = c4[i6];
-                    if (Double.isNaN(d8)) {
-                        cos = 0.0d;
-                    } else {
-                        cos = Math.cos((d8 * 3.141592653589793d) / 180.0d) * d7;
-                    }
-                    if (Double.isNaN(d8)) {
-                        sin = 0.0d;
-                    } else {
-                        sin = Math.sin((d8 * 3.141592653589793d) / 180.0d) * d7;
-                    }
-                    double[] dArr2 = new double[3];
-                    dArr2[0] = d6;
-                    dArr2[1] = cos;
-                    dArr2[i6] = sin;
-                    double[] a2 = bbd.a(bbd.f, dArr2);
-                    int i10 = 0;
-                    while (i10 < 3) {
-                        a2[i10] = Math.pow(a2[i10], 3.0d);
-                        i10++;
-                        i6 = i6;
-                        i9 = i9;
-                    }
-                    i3 = i6;
-                    int i11 = i9;
-                    dArr = bbd.a(bbd.h, bbd.a(bbd.d, a2));
-                    double d9 = dArr[0];
-                    if (d9 >= 0.0d) {
-                        double d10 = dArr[1];
-                        if (d10 >= 0.0d) {
-                            double d11 = dArr[i3];
-                            if (d11 >= 0.0d && d9 <= 1.0d && d10 <= 1.0d && d11 <= 1.0d) {
+                this.u = j;
+                float width = rectF.width();
+                float z2 = xnb.z(this.c, 0.15f, 0.55f, width);
+                float f13 = 1.0f;
+                this.w = Math.max(1.0f, width);
+                float f14 = this.c;
+                int i6 = (f14 > 0.06f ? 1 : (f14 == 0.06f ? 0 : -1));
+                int i7 = 160;
+                boolean[] zArr = this.o;
+                if (i6 > 0 && min > 0.0f) {
+                    f4 = 0.3f;
+                    this.p = c00.x(f14, 110.0f, min, this.p);
+                    while (true) {
+                        float f15 = this.p;
+                        if (f15 < 1.0f) {
+                            break;
+                        }
+                        this.p = f15 - 1.0f;
+                        int i8 = 0;
+                        while (true) {
+                            if (i8 < 160) {
+                                if (!zArr[i8]) {
+                                    break;
+                                }
+                                i8++;
+                            } else {
+                                i8 = -1;
                                 break;
                             }
-                        } else {
-                            continue;
+                        }
+                        if (i8 >= 0) {
+                            float f16 = 0.0f;
+                            float f17 = 0.0f;
+                            int i9 = 0;
+                            while (true) {
+                                random = this.q;
+                                if (i9 >= 6) {
+                                    break;
+                                }
+                                f16 = random.nextFloat() * z2;
+                                f17 = 1.0f - b(z2, f16);
+                                if (random.nextFloat() < f17) {
+                                    break;
+                                }
+                                i9++;
+                            }
+                            float f18 = f17;
+                            c(f16, f18, f11, i8);
+                            if (random.nextFloat() < (1.0f - b(this.w * 0.3f, f16)) * 0.5f) {
+                                int i10 = 0;
+                                while (true) {
+                                    if (i10 >= 160) {
+                                        break;
+                                    } else if (!zArr[i10]) {
+                                        c(((random.nextFloat() - 0.5f) * 4.0f * f11) + f16, f18, f11, i10);
+                                        break;
+                                    } else {
+                                        i10++;
+                                    }
+                                }
+                            }
                         }
                     }
-                    c4[1] = c4[1] * 0.95d;
-                    i9 = i11 + 1;
-                    i6 = i3;
+                    f5 = 0.5f;
+                    z = false;
                 } else {
-                    i3 = i6;
-                    break;
+                    f4 = 0.3f;
+                    f5 = 0.5f;
+                    z = false;
+                    this.p = 0.0f;
                 }
-            }
-            double[] dArr3 = new double[3];
-            int i12 = 0;
-            while (i12 < dArr.length) {
-                if (Math.abs(dArr[i12]) > 0.0031308d) {
-                    double d12 = dArr[i12];
-                    if (d12 < 0.0d) {
-                        i5 = -1;
-                    } else {
-                        i5 = 1;
+                int i11 = z ? 1 : 0;
+                while (true) {
+                    iArr = this.s;
+                    if (i11 >= iArr.length) {
+                        break;
                     }
-                    double d13 = i5;
-                    i4 = i3;
-                    c2 = c3;
-                    d3 = ((Math.pow(Math.abs(d12), 0.4166666666666667d) * 1.055d) - 0.055d) * d13;
-                } else {
-                    i4 = i3;
-                    c2 = c3;
-                    d3 = 12.92d * dArr[i12];
+                    iArr[i11] = z ? 1 : 0;
+                    i11++;
                 }
-                dArr3[i12] = d3;
-                i12++;
-                i3 = i4;
-                c3 = c2;
+                int i12 = z ? 1 : 0;
+                int i13 = i12;
+                while (true) {
+                    fArr = this.r;
+                    float f19 = f10;
+                    if (i12 >= i7) {
+                        break;
+                    }
+                    if (zArr[i12]) {
+                        float[] fArr3 = this.j;
+                        float f20 = fArr3[i12] + min;
+                        fArr3[i12] = f20;
+                        float f21 = f20 / this.k[i12];
+                        if (f21 >= f13) {
+                            zArr[i12] = z;
+                        } else {
+                            float f22 = f13 - f21;
+                            float f23 = f22 * f22 * this.l[i12];
+                            if (f23 < 0.02f) {
+                                f8 = min2;
+                                i4 = i12;
+                            } else {
+                                float max = Math.max((-2.0f) * f11, this.h[i12] * ((f13 - ((float) Math.exp((-3.0f) * f20))) / 3.0f));
+                                float f24 = (this.i[i12] * fArr3[i12]) + this.f[i12];
+                                float f25 = this.g[i12];
+                                float centerY = rectF.centerY();
+                                float f26 = rectF.right - min2;
+                                float f27 = 1.5708f * min2;
+                                int i14 = (f24 > f27 ? 1 : (f24 == f27 ? 0 : -1));
+                                float[] fArr4 = this.v;
+                                if (i14 < 0) {
+                                    fArr2 = fArr4;
+                                    i4 = i12;
+                                    double max2 = f24 / Math.max(min2, 1.0f);
+                                    f8 = min2;
+                                    float sin = ((float) Math.sin(max2)) * (-f25);
+                                    float f28 = f8 + max;
+                                    fArr2[z ? 1 : 0] = (((float) Math.cos(max2)) * f28) + f26;
+                                    fArr2[1] = (f28 * sin) + centerY;
+                                } else {
+                                    f8 = min2;
+                                    fArr2 = fArr4;
+                                    i4 = i12;
+                                    fArr2[z ? 1 : 0] = f26 - (f24 - f27);
+                                    if (f25 > f19) {
+                                        f9 = rectF.top - max;
+                                    } else {
+                                        f9 = rectF.bottom + max;
+                                    }
+                                    fArr2[1] = f9;
+                                }
+                                if (f23 > 0.6f) {
+                                    i5 = 2;
+                                } else if (f23 > f4) {
+                                    i5 = 1;
+                                } else {
+                                    i5 = z ? 1 : 0;
+                                }
+                                int i15 = (((this.n[i4] * 3) + i5) << 1) + this.m[i4];
+                                int i16 = iArr[i15];
+                                float[] fArr5 = fArr[i15];
+                                int i17 = i16 << 1;
+                                fArr5[i17] = fArr2[z ? 1 : 0];
+                                fArr5[i17 + 1] = fArr2[1];
+                                iArr[i15] = i16 + 1;
+                            }
+                            i13 = 1;
+                            i12 = i4 + 1;
+                            f10 = f19;
+                            min2 = f8;
+                            f13 = 1.0f;
+                            i7 = 160;
+                        }
+                    }
+                    f8 = min2;
+                    i4 = i12;
+                    i12 = i4 + 1;
+                    f10 = f19;
+                    min2 = f8;
+                    f13 = 1.0f;
+                    i7 = 160;
+                }
+                int i18 = 1;
+                if (i13 != 0) {
+                    int i19 = z ? 1 : 0;
+                    boolean z3 = z;
+                    while (i19 < 3) {
+                        int i20 = z3;
+                        boolean z4 = z3;
+                        while (i20 < 3) {
+                            int i21 = z4 ? 1 : 0;
+                            int i22 = 2;
+                            boolean z5 = z4;
+                            while (i21 < i22) {
+                                int i23 = (((i19 * 3) + i20) << 1) + i21;
+                                int i24 = iArr[i23];
+                                if (i24 == 0) {
+                                    i3 = z5 ? 1 : 0;
+                                    i2 = i18;
+                                    i = 2;
+                                } else {
+                                    int i25 = x[i19];
+                                    Paint paint = this.t;
+                                    paint.setColor(i25);
+                                    float f29 = 255.0f * f2;
+                                    i = 2;
+                                    if (i20 == 2) {
+                                        f6 = 0.85f;
+                                        i2 = i18;
+                                    } else {
+                                        i2 = i18;
+                                        if (i20 == i2) {
+                                            f6 = f5;
+                                        } else {
+                                            f6 = 0.22f;
+                                        }
+                                    }
+                                    paint.setAlpha((int) (f29 * f6));
+                                    if (i21 == i2) {
+                                        f7 = 1.8f;
+                                    } else {
+                                        f7 = 0.8f;
+                                    }
+                                    paint.setStrokeWidth(f7 * f11);
+                                    i3 = z5 ? 1 : 0;
+                                    canvas.drawPoints(fArr[i23], i3, i24 << 1, paint);
+                                }
+                                i21++;
+                                i22 = i;
+                                i18 = i2;
+                                z5 = i3;
+                            }
+                            i20++;
+                            z4 = z5;
+                        }
+                        i19++;
+                        z3 = z4;
+                    }
+                }
             }
-            return bm2.o(Color.rgb((int) Math.round(Utilities.h(dArr3[c3], 1.0d) * 255.0d), (int) Math.round(Utilities.h(dArr3[1], 1.0d) * 255.0d), (int) Math.round(Utilities.h(dArr3[i3], 1.0d) * 255.0d)), Color.alpha(i));
         }
+    }
+
+    public final void c(float f, float f2, float f3, int i) {
+        float f4;
+        boolean z;
+        int i2;
+        int i3 = 1;
+        this.o[i] = true;
+        this.f[i] = Math.max(0.0f, f);
+        Random random = this.q;
+        float f5 = -1.0f;
+        if (random.nextBoolean()) {
+            f4 = 1.0f;
+        } else {
+            f4 = -1.0f;
+        }
+        this.g[i] = f4;
+        if (random.nextFloat() < 0.1f) {
+            z = true;
+        } else {
+            z = false;
+        }
+        if (!z) {
+            f5 = 1.0f;
+        }
+        this.h[i] = ((random.nextFloat() * 0.6f) + 0.7f) * (((1.0f - b(this.w * 0.3f, f)) * 0.3f) + 1.0f) * xnb.z(this.c, 48.0f, 12.0f, f5) * f3;
+        this.i[i] = ((random.nextFloat() * 12.0f) + 8.0f) * f3;
+        this.j[i] = 0.0f;
+        this.k[i] = ik8.e(random, 0.5f, 0.5f);
+        if (random.nextFloat() < (this.c * 0.6f) + 0.25f) {
+            i2 = 1;
+        } else {
+            i2 = 0;
+        }
+        this.m[i] = i2;
+        float nextFloat = random.nextFloat();
+        if (nextFloat < 0.6f) {
+            i3 = 0;
+        } else if (nextFloat >= 0.92f) {
+            i3 = 2;
+        }
+        this.n[i] = i3;
+        this.l[i] = Math.max(0.25f, f2);
     }
 }

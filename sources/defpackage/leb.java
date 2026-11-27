@@ -1,25 +1,15 @@
 package defpackage;
-public final class leb {
-    public static final leb a;
-    public static final leb b;
-    public static final leb c;
-    public static final leb[] d;
+public final class leb implements Comparable {
+    public final long a;
+    public final byte[] b;
 
-    static {
-        ?? r0 = new Enum("LEFT", 0);
-        a = r0;
-        ?? r1 = new Enum("CENTER", 1);
-        b = r1;
-        ?? r3 = new Enum("RIGHT", 2);
-        c = r3;
-        d = new leb[]{r0, r1, r3};
+    public leb(long j, byte[] bArr) {
+        this.a = j;
+        this.b = bArr;
     }
 
-    public static leb valueOf(String str) {
-        return (leb) Enum.valueOf(leb.class, str);
-    }
-
-    public static leb[] values() {
-        return (leb[]) d.clone();
+    @Override
+    public final int compareTo(Object obj) {
+        return Long.compare(this.a, ((leb) obj).a);
     }
 }

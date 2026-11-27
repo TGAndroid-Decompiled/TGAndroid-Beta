@@ -1,164 +1,585 @@
 package defpackage;
 
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.opengl.Matrix;
+import android.graphics.Region;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.style.ForegroundColorSpan;
+import android.view.Choreographer;
+import android.view.View;
+import android.widget.TextView;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-public final class npa {
-    public final opa a;
-    public bm8 d;
-    public int f;
-    public byte g;
-    public float j;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Stack;
+import java.util.WeakHashMap;
+import java.util.concurrent.atomic.AtomicReference;
+public final class npa extends Drawable {
+    public static final short A;
+    public static final byte B;
+    public static final float[] C;
+    public static final float[][] D;
+    public static final Path E;
+    public static Paint F;
+    public static WeakHashMap G;
+    public final Paint[] a;
+    public final float[] b;
+    public final Stack c;
+    public int d;
+    public final float[] e;
+    public final int[] f;
+    public RectF g;
+    public final ArrayList h;
+    public View i;
+    public long j;
     public float k;
-    public final ArrayList b = new ArrayList();
-    public int c = 0;
-    public boolean e = false;
-    public final float[] h = new float[16];
-    public float[] i = new float[16];
-    public boolean l = false;
+    public float l;
+    public float m;
+    public float n;
+    public boolean o;
+    public boolean p;
+    public Runnable q;
+    public ValueAnimator r;
+    public int s;
+    public TimeInterpolator t;
+    public boolean u;
+    public PorterDuffColorFilter v;
+    public int w;
+    public int x;
+    public boolean y;
+    public final RectF z;
 
-    public npa(opa opaVar) {
-        this.a = opaVar;
+    static {
+        short s;
+        byte b;
+        if (xea.o() != 2) {
+            s = 100;
+        } else {
+            s = 150;
+        }
+        A = s;
+        if (xea.o() != 2) {
+            b = 10;
+        } else {
+            b = 30;
+        }
+        B = b;
+        C = new float[]{0.3f, 0.6f, 1.0f};
+        D = (float[][]) Array.newInstance(Float.TYPE, 3, s * 5);
+        E = new Path();
     }
 
-    public final void a(int i) {
-        this.b.add(new mpa(3, 0.0f, 0.0f, i, -1, 0.0f, null, null));
+    public npa() {
+        float[] fArr = C;
+        this.a = new Paint[fArr.length];
+        this.b = new float[fArr.length];
+        this.c = new Stack();
+        this.e = new float[14];
+        this.f = new int[fArr.length];
+        this.h = new ArrayList();
+        this.n = -1.0f;
+        this.s = 255;
+        this.t = new ab1((byte) 1);
+        this.z = new RectF();
+        for (int i = 0; i < fArr.length; i++) {
+            this.a[i] = new Paint();
+            Paint[] paintArr = this.a;
+            if (i == 0) {
+                paintArr[i].setStrokeWidth(hl.L(1.4f));
+                this.a[i].setStyle(Paint.Style.STROKE);
+                this.a[i].setStrokeCap(Paint.Cap.ROUND);
+            } else {
+                paintArr[i].setStrokeWidth(hl.L(1.2f));
+                this.a[i].setStyle(Paint.Style.STROKE);
+                this.a[i].setStrokeCap(Paint.Cap.ROUND);
+            }
+            this.b[i] = this.a[i].getStrokeWidth() * 0.5f;
+        }
+        xea.o();
+        h(0);
     }
 
-    public final void b() {
-        bm8 bm8Var;
-        boolean z = this.e;
-        opa opaVar = this.a;
-        if (!z) {
-            int i = this.c;
-            ArrayList arrayList = this.b;
-            if (i < arrayList.size()) {
-                mpa mpaVar = (mpa) arrayList.get(this.c);
-                boolean z2 = true;
-                this.c++;
-                int i2 = mpaVar.a;
-                int i3 = mpaVar.e;
-                float f = mpaVar.b;
-                byte b = mpaVar.d;
-                int F = ug8.F(i2);
-                if (F != 0) {
-                    if (F != 1) {
-                        if (F != 2) {
-                            if (F != 3) {
-                                if (F != 4) {
-                                    if (F == 5) {
-                                        if (f <= 0.0f) {
-                                            z2 = false;
-                                        }
-                                        opaVar.f = z2;
-                                        b();
-                                        return;
-                                    }
-                                    return;
-                                }
-                                this.l = true;
-                                spa spaVar = mpaVar.g;
-                                int i4 = opa.K;
-                                ValueAnimator valueAnimator = opaVar.H;
-                                if (valueAnimator != null) {
-                                    valueAnimator.cancel();
-                                    opaVar.H = null;
-                                }
-                                RectF rectF = new RectF();
-                                rectF.left = spaVar.getX() - opaVar.getX();
-                                rectF.top = spaVar.getY() - opaVar.getY();
-                                rectF.right = rectF.left + spaVar.getWidth();
-                                rectF.bottom = rectF.top + spaVar.getHeight();
-                                gl.B2(spaVar);
-                                int childCount = opaVar.getChildCount();
-                                opaVar.addView(spaVar, nme.e(64, 64, 17));
-                                opaVar.w.add(Integer.valueOf(i3));
-                                opaVar.x.put(Integer.valueOf(childCount), Integer.valueOf(i3));
-                                opaVar.y.put(Integer.valueOf(childCount), rectF);
-                                opaVar.G = childCount;
-                                opaVar.F = 0.0f;
-                                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                                opaVar.H = ofFloat;
-                                ofFloat.addUpdateListener(new gja(opaVar, (byte) 3));
-                                opaVar.H.addListener(new ng9(opaVar, (byte) 19));
-                                opaVar.H.setDuration(b << 4);
-                                opaVar.H.setInterpolator(s33.h);
-                                opaVar.H.start();
-                                return;
-                            }
-                            System.arraycopy(opaVar.c, 0, this.h, 0, 16);
-                            float f2 = mpaVar.f;
-                            float[] fArr = new float[16];
-                            Matrix.setIdentityM(fArr, 0);
-                            if (f2 != 0.0f) {
-                                Matrix.rotateM(fArr, 0, -f2, 0.0f, 0.0f, 1.0f);
-                            }
-                            if (i3 != 0) {
-                                if (i3 != 1) {
-                                    if (i3 != 2) {
-                                        if (i3 != 3) {
-                                            if (i3 == 4) {
-                                                Matrix.rotateM(fArr, 0, 180.0f, 0.0f, 1.0f, 0.0f);
-                                            }
-                                        } else {
-                                            Matrix.rotateM(fArr, 0, -90.0f, 1.0f, 0.0f, 0.0f);
-                                        }
-                                    } else {
-                                        Matrix.rotateM(fArr, 0, 90.0f, 1.0f, 0.0f, 0.0f);
-                                    }
-                                } else {
-                                    Matrix.rotateM(fArr, 0, -90.0f, 0.0f, 1.0f, 0.0f);
-                                }
-                            } else {
-                                Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
-                            }
-                            this.i = fArr;
-                            this.g = b;
-                            this.f = b;
-                            this.j = opaVar.d;
-                            this.k = opaVar.e;
-                            return;
+    public static void a(View view, Layout layout, int i, int i2, Spanned spanned, Stack stack, ArrayList arrayList, ArrayList arrayList2) {
+        int i3;
+        int i4;
+        if (layout != null) {
+            Object[] objArr = (smb[]) spanned.getSpans(0, layout.getText().length(), smb.class);
+            for (int i5 = 0; i5 < Math.min(100, objArr.length); i5++) {
+                if (objArr[i5].b()) {
+                    int spanStart = spanned.getSpanStart(objArr[i5]);
+                    int spanEnd = spanned.getSpanEnd(objArr[i5]);
+                    if (i == -1 && i2 == -1) {
+                        int lineForOffset = layout.getLineForOffset(spanEnd);
+                        int i6 = Integer.MAX_VALUE;
+                        int i7 = Integer.MIN_VALUE;
+                        for (int lineForOffset2 = layout.getLineForOffset(spanStart); lineForOffset2 <= lineForOffset; lineForOffset2++) {
+                            i6 = Math.min(i6, (int) layout.getLineLeft(lineForOffset2));
+                            i7 = Math.max(i7, (int) layout.getLineRight(lineForOffset2));
                         }
-                        this.f = b;
-                        this.g = b;
-                        return;
+                        i3 = i6;
+                        i4 = i7;
+                    } else {
+                        i3 = i;
+                        i4 = i2;
                     }
-                    opaVar.d = (mpaVar.c * 0.01f) + opaVar.d;
-                    opaVar.e = (f * 0.01f) + opaVar.e;
-                    this.f = 1;
-                    this.g = (byte) 1;
+                    layout.getSelectionPath(spanStart, spanEnd, new ipa(view, layout, stack, arrayList, i3, i4, arrayList2));
+                }
+            }
+            if ((view instanceof TextView) && stack != null) {
+                stack.clear();
+            }
+        }
+    }
+
+    public static void b(View view, Layout layout, int i, int i2, Stack stack, ArrayList arrayList) {
+        if (layout.getText() instanceof Spanned) {
+            a(view, layout, i, i2, (Spanned) layout.getText(), stack, arrayList, null);
+        }
+    }
+
+    public static void c(View view, Layout layout, Stack stack, ArrayList arrayList) {
+        if (layout.getText() instanceof Spanned) {
+            a(view, layout, -1, -1, (Spanned) layout.getText(), stack, arrayList, null);
+        }
+    }
+
+    public static void d(Canvas canvas, ArrayList arrayList) {
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        Path path = E;
+        path.rewind();
+        for (int i = 0; i < arrayList.size(); i++) {
+            Rect bounds = ((npa) arrayList.get(i)).getBounds();
+            path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+        }
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+    }
+
+    public static void f(Canvas canvas, Layout layout) {
+        if (canvas instanceof uma) {
+            int alpha = layout.getPaint().getAlpha();
+            layout.getPaint().setAlpha((int) (alpha * 0.4f));
+            WeakHashMap weakHashMap = G;
+            if (weakHashMap == null) {
+                weakHashMap = new WeakHashMap();
+                G = weakHashMap;
+            }
+            ArrayList arrayList = (ArrayList) weakHashMap.get(layout);
+            if (arrayList == null) {
+                arrayList = new ArrayList();
+                int lineCount = layout.getLineCount();
+                for (int i = 0; i < lineCount; i++) {
+                    arrayList.add(new RectF(layout.getLineLeft(i), layout.getLineTop(i), layout.getLineRight(i), layout.getLineBottom(i)));
+                }
+                G.put(layout, arrayList);
+            }
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                canvas.drawRect((RectF) arrayList.get(i2), layout.getPaint());
+            }
+            layout.getPaint().setAlpha(alpha);
+            return;
+        }
+        layout.draw(canvas);
+    }
+
+    public static void g(View view, boolean z, int i, int i2, AtomicReference atomicReference, int i3, Layout layout, List list, Canvas canvas, boolean z2) {
+        StaticLayout staticLayout;
+        AtomicReference atomicReference2;
+        smb[] smbVarArr;
+        int i4;
+        boolean z3;
+        TextPaint textPaint;
+        if (list != null && !list.isEmpty()) {
+            StaticLayout staticLayout2 = (Layout) atomicReference.get();
+            int i5 = 0;
+            if (staticLayout2 == null || !layout.getText().toString().equals(staticLayout2.getText().toString()) || layout.getWidth() != staticLayout2.getWidth() || layout.getHeight() != staticLayout2.getHeight()) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(layout.getText());
+                if (layout.getText() instanceof Spanned) {
+                    Spanned spanned = (Spanned) layout.getText();
+                    smb[] smbVarArr2 = (smb[]) spanned.getSpans(0, spanned.length(), smb.class);
+                    int i6 = 0;
+                    while (i6 < Math.min(100, smbVarArr2.length)) {
+                        smb smbVar = smbVarArr2[i6];
+                        if (smbVar.b()) {
+                            int spanStart = spanned.getSpanStart(smbVar);
+                            int spanEnd = spanned.getSpanEnd(smbVar);
+                            mv3[] mv3VarArr = (mv3[]) spanned.getSpans(spanStart, spanEnd, mv3.class);
+                            int length = mv3VarArr.length;
+                            while (true) {
+                                smbVarArr = smbVarArr2;
+                                if (i5 >= length) {
+                                    break;
+                                }
+                                mv3 mv3Var = mv3VarArr[i5];
+                                spannableStringBuilder.setSpan(new tg2(mv3Var, (byte) 3), spanned.getSpanStart(mv3Var), spanned.getSpanEnd(mv3Var), spanned.getSpanFlags(smbVar));
+                                spannableStringBuilder.removeSpan(mv3Var);
+                                i5++;
+                                smbVarArr2 = smbVarArr;
+                                i6 = i6;
+                                length = length;
+                                mv3VarArr = mv3VarArr;
+                            }
+                            i4 = i6;
+                            spannableStringBuilder.setSpan(new ForegroundColorSpan(0), spanStart, spanEnd, spanned.getSpanFlags(smbVar));
+                            spannableStringBuilder.removeSpan(smbVar);
+                        } else {
+                            smbVarArr = smbVarArr2;
+                            i4 = i6;
+                        }
+                        i6 = i4 + 1;
+                        smbVarArr2 = smbVarArr;
+                        i5 = 0;
+                    }
+                }
+                if (i3 == 1) {
+                    staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, hl.L(1.66f), false);
+                } else if (Build.VERSION.SDK_INT >= 24) {
+                    staticLayout2 = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(layout.getAlignment()).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
+                    atomicReference2 = atomicReference;
+                    atomicReference2.set(staticLayout2);
+                } else {
+                    staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
+                }
+                atomicReference2 = atomicReference;
+                staticLayout2 = staticLayout;
+                atomicReference2.set(staticLayout2);
+            }
+            if (!list.isEmpty()) {
+                canvas.save();
+                canvas.translate(0.0f, i2);
+                staticLayout2.draw(canvas);
+                canvas.restore();
+            } else {
+                f(canvas, layout);
+            }
+            if (!list.isEmpty()) {
+                Path path = E;
+                path.rewind();
+                Iterator it = list.iterator();
+                while (it.hasNext()) {
+                    Rect bounds = ((npa) it.next()).getBounds();
+                    path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+                }
+                int i7 = 0;
+                if (!list.isEmpty() && ((npa) list.get(0)).n != -1.0f) {
+                    canvas.save();
+                    canvas.clipPath(path);
+                    path.rewind();
+                    if (!list.isEmpty()) {
+                        ((npa) list.get(0)).e(path);
+                    }
+                    canvas.clipPath(path);
+                    canvas.translate(0.0f, -view.getPaddingTop());
+                    f(canvas, layout);
+                    canvas.restore();
+                    i7 = 0;
+                }
+                if (((npa) list.get(i7)).n != -1.0f) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                if (z3) {
+                    int measuredWidth = view.getMeasuredWidth();
+                    if (z2 && (view.getParent() instanceof View)) {
+                        measuredWidth = ((View) view.getParent()).getMeasuredWidth();
+                    }
+                    canvas.saveLayer(0.0f, 0.0f, measuredWidth, view.getMeasuredHeight(), null, 31);
+                } else {
+                    canvas.save();
+                }
+                canvas.translate(0.0f, -view.getPaddingTop());
+                Iterator it2 = list.iterator();
+                while (it2.hasNext()) {
+                    npa npaVar = (npa) it2.next();
+                    npaVar.u = z;
+                    if (npaVar.i != view) {
+                        npaVar.i = view;
+                    }
+                    boolean z4 = npaVar.p;
+                    npaVar.p = false;
+                    if (z4) {
+                        if (i3 == 1) {
+                            textPaint = layout.getPaint();
+                        } else {
+                            textPaint = aob.o2;
+                        }
+                        npaVar.h(vm2.f(Math.max(0.0f, npaVar.n), i, textPaint.getColor()));
+                    } else {
+                        npaVar.h(i);
+                    }
+                    npaVar.draw(canvas);
+                }
+                if (z3) {
+                    path.rewind();
+                    ((npa) list.get(0)).e(path);
+                    if (F == null) {
+                        Paint paint = new Paint(1);
+                        F = paint;
+                        paint.setColor(-16777216);
+                        F.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                    }
+                    canvas.drawPath(path, F);
+                }
+                canvas.restore();
+                return;
+            }
+            return;
+        }
+        f(canvas, layout);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i;
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty()) {
+            ppa ppaVar = ppa.q;
+            if (ppaVar == null) {
+                ppaVar = new ppa();
+                ppa.q = ppaVar;
+            }
+            int i2 = ppaVar.k;
+            ym4[] ym4VarArr = ppaVar.c;
+            if (ym4VarArr[0] == null) {
+                ym4VarArr[0] = new ym4(i2);
+                ppaVar.g = new Paint();
+                ppaVar.i = new ArrayList(100);
+                float f = i2;
+                int i3 = (int) (f / 10.0f);
+                int L = (int) ((f / hl.L(200.0f)) * 60.0f);
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= 10) {
+                        break;
+                    }
+                    int i5 = 0;
+                    for (int i6 = 10; i5 < i6; i6 = 10) {
+                        npa npaVar = new npa();
+                        npaVar.x = i2;
+                        int i7 = i3 * i4;
+                        int i8 = i3 * i5;
+                        npaVar.setBounds(i7, i8 - hl.L(5.0f), hl.L(3.0f) + i7 + i3, hl.L(5.0f) + i8 + i3);
+                        int min = Math.min(A * 5, L);
+                        npaVar.d = min;
+                        while (true) {
+                            Stack stack = npaVar.c;
+                            if (npaVar.h.size() + stack.size() < min) {
+                                stack.push(new Object());
+                            }
+                        }
+                        npaVar.h(-1);
+                        ppaVar.i.add(npaVar);
+                        i5++;
+                    }
+                    i4++;
+                }
+                i = 128;
+                ppaVar.a(new Canvas((Bitmap) ym4VarArr[0].b), new Rect(0, 0, i2, i2));
+                ppaVar.g.setShader((BitmapShader) ym4VarArr[0].c);
+                ppaVar.h = System.currentTimeMillis();
+            } else {
+                i = 128;
+                if (ppaVar.p && !i86.e(128)) {
+                    ppaVar.d = 0;
+                    ppaVar.a(new Canvas((Bitmap) ym4VarArr[0].b), new Rect(0, 0, i2, i2));
+                    ppaVar.g.setShader((BitmapShader) ym4VarArr[0].c);
+                    ppaVar.h = System.currentTimeMillis();
+                    ppaVar.p = false;
+                }
+            }
+            Paint paint = ppaVar.g;
+            paint.setColorFilter(this.v);
+            canvas.drawRect(bounds, paint);
+            if (i86.e(i)) {
+                jh2 d = jh2.d();
+                jh2.c();
+                d.c.add(this);
+                ppa ppaVar2 = ppa.q;
+                if (ppaVar2 == null) {
+                    ppaVar2 = new ppa();
+                    ppa.q = ppaVar2;
+                }
+                int i9 = bounds.left;
+                int i10 = ppaVar2.k;
+                int i11 = ((i9 % i10) + i10) % i10;
+                int i12 = ((bounds.top % i10) + i10) % i10;
+                int min2 = Math.min(bounds.width(), i10) + i11;
+                int min3 = Math.min(bounds.height(), i10) + i12;
+                Rect rect = ppaVar2.m;
+                rect.union(i11, i12, Math.min(min2, i10), Math.min(min3, i10));
+                if (min2 > i10) {
+                    rect.union(0, i12, min2 - i10, Math.min(min3, i10));
+                }
+                if (min3 > i10) {
+                    rect.union(i11, 0, Math.min(min2, i10), min3 - i10);
+                }
+                if (min2 > i10 && min3 > i10) {
+                    rect.union(0, 0, min2 - i10, min3 - i10);
+                }
+                if (!ppaVar2.l && !rect.isEmpty()) {
+                    ppaVar2.l = true;
+                    Choreographer.getInstance().postFrameCallback(ppaVar2.n);
+                }
+            }
+        }
+    }
+
+    public final void e(Path path) {
+        path.addCircle(this.k, this.l, ete.a(this.n, 0.0f, 1.0f) * this.m, Path.Direction.CW);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public final void h(int i) {
+        if (this.w != i) {
+            int i2 = 0;
+            while (true) {
+                float[] fArr = C;
+                if (i2 < fArr.length) {
+                    this.a[i2].setColor(vm2.o(i, (int) (this.s * fArr[i2])));
+                    i2++;
+                } else {
+                    this.v = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+                    this.w = i;
                     return;
                 }
-                t79 t79Var = mpaVar.h;
-                if (t79Var != null) {
-                    t79Var.run();
-                }
-                b();
+            }
+        }
+    }
+
+    public final void i(float f, float f2, float f3) {
+        RectF rectF = this.g;
+        if (rectF == null) {
+            rectF = new RectF();
+            this.g = rectF;
+        }
+        if (rectF.left == 0.0f && rectF.right == f2 && rectF.top == f && rectF.bottom == f3) {
+            return;
+        }
+        rectF.left = 0.0f;
+        rectF.top = f;
+        rectF.right = f2;
+        rectF.bottom = f3;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        View view = this.i;
+        if (view != null) {
+            if (view.getParent() != null && this.u) {
+                ((View) view.getParent()).invalidate();
+            } else if (view instanceof jf0) {
+                ((jf0) view).p();
+            } else {
+                view.invalidate();
+            }
+        }
+    }
+
+    public final void j(float f, float f2, float f3, boolean z) {
+        float f4;
+        int alpha;
+        this.k = f;
+        this.l = f2;
+        this.m = f3;
+        float f5 = 0.0f;
+        if (z) {
+            f4 = 1.0f;
+        } else {
+            f4 = 0.0f;
+        }
+        this.n = f4;
+        this.o = z;
+        ValueAnimator valueAnimator = this.r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (this.o) {
+            alpha = 255;
+        } else {
+            alpha = this.a[C.length - 1].getAlpha();
+        }
+        float f6 = this.n;
+        if (!z) {
+            f5 = 1.0f;
+        }
+        ValueAnimator duration = ValueAnimator.ofFloat(f6, f5).setDuration(ete.a(this.m * 0.3f, 250.0f, 550.0f));
+        this.r = duration;
+        duration.setInterpolator(this.t);
+        this.r.addUpdateListener(new dx0(this, alpha, (byte) 4));
+        this.r.addListener(new po9(this, (byte) 17));
+        this.r.start();
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        RectF rectF = this.z;
+        rectF.set(rect);
+        rectF.inset(0.0f, hl.L(2.5f));
+    }
+
+    @Override
+    public final void setAlpha(int i) {
+        this.s = i;
+        int i2 = 0;
+        while (true) {
+            float[] fArr = C;
+            if (i2 < fArr.length) {
+                this.a[i2].setAlpha((int) (fArr[i2] * i));
+                i2++;
+            } else {
                 return;
             }
         }
-        opaVar.I = null;
-        if (!this.e && (bm8Var = this.d) != null) {
-            bm8Var.run();
+    }
+
+    @Override
+    public final void setBounds(int i, int i2, int i3, int i4) {
+        super.setBounds(i, i2, i3, i4);
+        Iterator it = this.h.iterator();
+        while (it.hasNext()) {
+            jpa jpaVar = (jpa) it.next();
+            if (!getBounds().contains((int) jpaVar.a, (int) jpaVar.b)) {
+                it.remove();
+            }
+            Stack stack = this.c;
+            if (stack.size() < this.d) {
+                stack.push(jpaVar);
+            }
         }
     }
 
-    public final void c(float f, float f2) {
-        this.b.add(new mpa(2, f, f2, 0, -1, 0.0f, null, null));
-    }
-
-    public final void d(boolean z) {
-        float f;
-        if (z) {
-            f = 1.0f;
-        } else {
-            f = -1.0f;
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        for (Paint paint : this.a) {
+            paint.setColorFilter(colorFilter);
         }
-        this.b.add(new mpa(6, f, 0.0f, 0, -1, 0.0f, null, null));
-    }
-
-    public final void e(spa spaVar, int i, float f) {
-        this.b.add(new mpa(5, 0.0f, 0.0f, 32, i, f, spaVar, null));
     }
 }

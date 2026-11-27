@@ -79,7 +79,7 @@ public class RtpCapabilities {
             return this.numChannels;
         }
 
-        public Map getParameters() {
+        public Map<String, String> getParameters() {
             return this.parameters;
         }
 

@@ -1,13 +1,17 @@
 package defpackage;
+public final class x0f implements zq7 {
+    public static final x0f a = new Object();
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public abstract class x0f {
-    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, akd akdVar, Object obj, Object obj2) {
-        while (!atomicReferenceFieldUpdater.compareAndSet(akdVar, obj, obj2)) {
-            if (atomicReferenceFieldUpdater.get(akdVar) != obj && atomicReferenceFieldUpdater.get(akdVar) != obj) {
-                return false;
-            }
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)), 10)), 11)), 12)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return true;
+        throw new ClassCastException();
     }
 }

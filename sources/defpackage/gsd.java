@@ -1,17 +1,16 @@
 package defpackage;
-public final class gsd implements zn7 {
-    public static final gsd a = new Object();
 
-    static {
-        yjb.y(yjb.n(g7d.class, new d6d(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
+import android.os.IBinder;
+import android.os.IInterface;
+public abstract class gsd extends wfd implements rxd {
+    public static rxd asInterface(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
         }
-        throw new ClassCastException();
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.flags.IFlagProvider");
+        if (queryLocalInterface instanceof rxd) {
+            return (rxd) queryLocalInterface;
+        }
+        return new zld(iBinder);
     }
 }

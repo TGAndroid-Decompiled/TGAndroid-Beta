@@ -1,34 +1,32 @@
 package defpackage;
-public final class h90 extends az2 {
-    public final String a;
-    public final String b;
+public final class h90 {
+    public j90 a;
+    public String b;
+    public String c;
+    public long d;
+    public byte e;
 
-    public h90(String str, String str2) {
-        this.a = str;
-        this.b = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final i90 a() {
+        j90 j90Var;
+        String str;
+        String str2;
+        if (this.e == 1 && (j90Var = this.a) != null && (str = this.b) != null && (str2 = this.c) != null) {
+            return new i90(j90Var, str, str2, this.d);
         }
-        if (obj instanceof az2) {
-            h90 h90Var = (h90) ((az2) obj);
-            if (this.a.equals(h90Var.a) && this.b.equals(h90Var.b)) {
-                return true;
-            }
+        StringBuilder sb = new StringBuilder();
+        if (this.a == null) {
+            sb.append(" rolloutVariant");
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((this.a.hashCode() ^ 1000003) * 1000003) ^ this.b.hashCode();
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("RolloutVariant{rolloutId=");
-        sb.append(this.a);
-        sb.append(", variantId=");
-        return b00.j(sb, this.b, "}");
+        if (this.b == null) {
+            sb.append(" parameterKey");
+        }
+        if (this.c == null) {
+            sb.append(" parameterValue");
+        }
+        if ((this.e & 1) == 0) {
+            sb.append(" templateVersion");
+        }
+        grb.i(bs2.o("Missing required properties:", sb));
+        return null;
     }
 }

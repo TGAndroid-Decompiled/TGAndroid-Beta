@@ -1,40 +1,23 @@
 package defpackage;
+public final class gc4 implements Runnable {
+    public final ic4 a;
+    public final long b;
+    public final int c;
+    public final byte d;
+    public final String e;
+    public final boolean f;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class gc4 implements TextView.OnEditorActionListener {
-    public final byte a;
-    public final AlertDialog$Builder b;
-
-    public gc4(AlertDialog$Builder alertDialog$Builder, byte b) {
-        this.a = b;
-        this.b = alertDialog$Builder;
+    public gc4(ic4 ic4Var, long j, int i, int i2, String str, int i3) {
+        this.a = ic4Var;
+        this.b = j;
+        this.c = i;
+        this.d = i2;
+        this.e = str;
+        this.f = i3;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        byte b = this.a;
-        AlertDialog$Builder alertDialog$Builder = this.b;
-        switch (b) {
-            case 0:
-                gl.t1(textView);
-                alertDialog$Builder.a.c(-1).callOnClick();
-                return false;
-            case 1:
-                gl.t1(textView);
-                alertDialog$Builder.a.c(-1).callOnClick();
-                return false;
-            case 2:
-                gl.t1(textView);
-                alertDialog$Builder.a.c(-1).callOnClick();
-                return false;
-            default:
-                if (i != 5) {
-                    return false;
-                }
-                alertDialog$Builder.a.c(-1).callOnClick();
-                return true;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gc4.run():void");
     }
 }

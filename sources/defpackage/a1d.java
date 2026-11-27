@@ -1,37 +1,35 @@
 package defpackage;
+public final class a1d {
+    public final d0d a;
+    public final b1d[] b;
+    public final double c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final h1d g;
+    public final boolean h;
+    public final boolean i;
 
-import android.content.Intent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.common.api.Status;
-public final class a1d extends b4 implements ua9 {
-    public static final Parcelable.Creator<a1d> CREATOR = new b1d((byte) 2);
-    public final int a;
-    public final int b;
-    public final Intent c;
-
-    public a1d(int i, int i2, Intent intent) {
-        this.a = i;
-        this.b = i2;
-        this.c = intent;
+    public a1d(d0d d0dVar, b1d[] b1dVarArr, double d, int i, int i2, float f, float f2, int i3, int i4, int i5, h1d h1dVar, boolean z, boolean z2) {
+        this.g = h1dVar;
+        this.h = z;
+        this.i = z2;
+        this.a = d0dVar;
+        this.b = b1dVarArr;
+        this.c = d;
+        this.d = i;
+        this.e = i2;
+        this.f = i5;
     }
 
-    @Override
-    public final Status a() {
-        if (this.b == 0) {
-            return Status.e;
+    public final boolean a() {
+        if (this.a.e()) {
+            for (b1d b1dVar : this.b) {
+                if (b1dVar.a.e()) {
+                }
+            }
+            return true;
         }
-        return Status.r;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.q(parcel, 1, 4);
-        parcel.writeInt(this.a);
-        jte.q(parcel, 2, 4);
-        parcel.writeInt(this.b);
-        jte.k(parcel, 3, this.c, i);
-        jte.s(parcel, r);
+        return false;
     }
 }

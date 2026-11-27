@@ -13,7 +13,6 @@ import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegateTimestamp;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLObject;
@@ -26,7 +25,7 @@ import org.telegram.ui.Components.AnimatedArrowDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.m;
-public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c, dz0, hz0, RequestDelegateTimestamp {
+public final class o implements fd, RequestTimeDelegate, es, s69, wic, z28, bf7, b7c, lz0, pz0, RequestDelegateTimestamp {
     public final byte a;
     public final Object b;
     public final Object c;
@@ -38,8 +37,25 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
     }
 
     @Override
+    public final void A(boolean z) {
+        rr0 rr0Var = (rr0) this.b;
+        TLRPC.User user = (TLRPC.User) this.c;
+        zu1 i0 = rr0Var.i0();
+        if (i0 != null) {
+            i0.removeSelfFromStack();
+        }
+        rr0Var.finishFragment();
+        rr0Var.getNotificationCenter().k(jn7.K2, Long.valueOf(rr0Var.a), user, null, Boolean.valueOf(z));
+    }
+
+    @Override
+    public final boolean C(View view) {
+        return false;
+    }
+
+    @Override
     public final void a(View view, RectF rectF) {
-        ((il0) this.b).i(rectF.left, rectF.top);
+        ((jl0) this.b).i(rectF.left, rectF.top);
         View view2 = (View) ((WeakReference) this.c).get();
         if (view2 != null) {
             view2.invalidate();
@@ -47,21 +63,21 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
     }
 
     @Override
-    public final void b(gz0 gz0Var) {
+    public final void b(oz0 oz0Var) {
         String str;
         int i;
-        gz0 gz0Var2;
-        iz0 iz0Var = (iz0) this.b;
-        hz0 hz0Var = (hz0) this.c;
-        if (gz0Var.a == 0 && iz0Var.b == 0) {
-            int i2 = gz0Var.c;
+        oz0 oz0Var2;
+        qz0 qz0Var = (qz0) this.b;
+        pz0 pz0Var = (pz0) this.c;
+        if (oz0Var.a == 0 && qz0Var.b == 0) {
+            int i2 = oz0Var.c;
             if (i2 > 0) {
-                str = NativeInstance.probeListenerAudio(gz0Var.b, i2);
+                str = NativeInstance.probeListenerAudio(oz0Var.b, i2);
             } else {
                 str = null;
             }
             if (str == null) {
-                gz0Var2 = new gz0(gz0Var.a, gz0Var.b, gz0Var.c, gz0Var.d, 0, gz0Var.f);
+                oz0Var2 = new oz0(oz0Var.a, oz0Var.b, oz0Var.c, oz0Var.d, 0, oz0Var.f);
             } else {
                 String[] split = str.split("\n");
                 try {
@@ -79,12 +95,12 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                         }
                     }
                 }
-                gz0Var2 = new gz0(gz0Var.a, gz0Var.b, gz0Var.c, gz0Var.d, Math.max(i, 0), hashMap);
+                oz0Var2 = new oz0(oz0Var.a, oz0Var.b, oz0Var.c, oz0Var.d, Math.max(i, 0), hashMap);
             }
-            hz0Var.b(gz0Var2);
+            pz0Var.b(oz0Var2);
             return;
         }
-        hz0Var.b(gz0Var);
+        pz0Var.b(oz0Var);
     }
 
     @Override
@@ -106,13 +122,13 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                     return;
                 }
             default:
-                p8c p8cVar = (p8c) obj2;
-                p8c p8cVar2 = (p8c) obj;
+                pcc pccVar = (pcc) obj2;
+                pcc pccVar2 = (pcc) obj;
                 if (i == 1) {
-                    p8cVar.a(null);
+                    pccVar.a(null);
                     return;
                 } else if (i != 3) {
-                    p8cVar2.a(null);
+                    pccVar2.a(null);
                     return;
                 } else {
                     return;
@@ -122,58 +138,58 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
 
     @Override
     public final void cancel() {
-        ((yz0) this.b).b.removeCallbacks((z20) this.c);
+        ((g01) this.b).b.removeCallbacks((a30) this.c);
     }
 
     @Override
-    public final void e(float f, float f2, int i, View view) {
+    public final void d(float f, float f2, int i, View view) {
         float f3;
         org.telegram.ui.o oVar = (org.telegram.ui.o) this.b;
         m mVar = (m) this.c;
         if (oVar.L == null || i - 1 >= 0) {
-            fib fibVar = oVar.Q0;
-            if (fibVar != null) {
-                boolean w = fibVar.w();
-                fib fibVar2 = oVar.Q0;
+            amb ambVar = oVar.Q0;
+            if (ambVar != null) {
+                boolean w = ambVar.w();
+                amb ambVar2 = oVar.Q0;
                 if (w) {
-                    fibVar2.e(false);
+                    ambVar2.e(false);
                     return;
                 }
-                fibVar2.e(false);
+                ambVar2.e(false);
             }
-            dx adapter = mVar.getAdapter();
-            if ((view instanceof mw) && adapter.F != null) {
-                mw mwVar = (mw) view;
+            ex adapter = mVar.getAdapter();
+            if ((view instanceof nw) && adapter.F != null) {
+                nw nwVar = (nw) view;
                 if (oVar.I0 == 0) {
-                    if ((!mwVar.c || f >= view.getMeasuredWidth() / 2) && !mwVar.d) {
-                        TLObject a2 = na7.q1(oVar.Y).a2("previews");
-                        if (a2 instanceof TLRPC.TL_user) {
-                            oVar.N(adapter.F.id, (TLRPC.User) a2);
+                    if ((!nwVar.c || f >= view.getMeasuredWidth() / 2) && !nwVar.d) {
+                        TLObject c2 = uc7.s1(oVar.Y).c2("previews");
+                        if (c2 instanceof TLRPC.TL_user) {
+                            oVar.N(adapter.F.id, (TLRPC.User) c2);
                             return;
                         }
-                        int i2 = y6c.t0;
+                        int i2 = yac.t0;
                         long j = adapter.F.id;
                         oVar.Z(true);
                         TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                         tL_contacts_resolveUsername.username = "previews";
-                        oVar.I0 = ConnectionsManager.getInstance(i2).sendRequest(tL_contacts_resolveUsername, new jt(oVar, i2, j));
+                        oVar.I0 = ConnectionsManager.getInstance(i2).sendRequest(tL_contacts_resolveUsername, new nt(oVar, i2, j));
                     }
                 }
             } else if (i >= 0 && i < adapter.d.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) adapter.d.get(i);
                 TL_iv.PageBlock w2 = org.telegram.ui.o.w(pageBlock);
-                if (w2 instanceof tw) {
-                    w2 = ((tw) w2).b;
+                if (w2 instanceof uw) {
+                    w2 = ((uw) w2).b;
                 }
                 if (w2 instanceof TL_iv.pageBlockChannel) {
-                    na7.q1(oVar.Y).A3(hc2.K(((TL_iv.pageBlockChannel) w2).channel, false), oVar.N, 2, null);
+                    uc7.s1(oVar.Y).H3(xc2.K(((TL_iv.pageBlockChannel) w2).channel, false), oVar.N, 2, null);
                     oVar.l(false, true);
-                } else if (w2 instanceof zw) {
-                    zw zwVar = (zw) w2;
-                    oVar.O(zwVar.a.articles.get(zwVar.b).url, null, null);
+                } else if (w2 instanceof ax) {
+                    ax axVar = (ax) w2;
+                    oVar.O(axVar.a.articles.get(axVar.b).url, null, null);
                 } else if (w2 instanceof TL_iv.pageBlockDetails) {
                     View v = org.telegram.ui.o.v(view);
-                    if (v instanceof ou) {
+                    if (v instanceof pu) {
                         oVar.d = null;
                         oVar.f = null;
                         if (adapter.e.indexOf(pageBlock) >= 0) {
@@ -182,15 +198,15 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                             int b = adapter.b();
                             adapter.M();
                             int abs = Math.abs(adapter.b() - b);
-                            ou ouVar = (ou) v;
-                            AnimatedArrowDrawable animatedArrowDrawable = ouVar.f;
+                            pu puVar = (pu) v;
+                            AnimatedArrowDrawable animatedArrowDrawable = puVar.f;
                             if (pageblockdetails.open) {
                                 f3 = 0.0f;
                             } else {
                                 f3 = 1.0f;
                             }
                             animatedArrowDrawable.a(f3);
-                            ouVar.invalidate();
+                            puVar.invalidate();
                             if (abs != 0) {
                                 int i3 = i + 1;
                                 if (pageblockdetails.open) {
@@ -207,80 +223,29 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
     }
 
     @Override
-    public final void g(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((ss0) this.b).o0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.c);
-    }
-
-    @Override
-    public final boolean q(View view) {
-        return false;
+    public final void h(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+        ((at0) this.b).o0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.c);
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error, long j) {
         ArrayList<TL_phone.TL_groupCallStreamChannel> arrayList;
-        gz0 gz0Var;
-        gz0 gz0Var2;
-        int i;
-        byte b = this.a;
-        Object obj = this.c;
-        Object obj2 = this.b;
-        switch (b) {
-            case 28:
-                zz0 zz0Var = (zz0) obj2;
-                vy0 vy0Var = (vy0) obj;
-                long j2 = 0;
-                if (tLObject instanceof TL_phone.groupCallStreamChannels) {
-                    arrayList = ((TL_phone.groupCallStreamChannels) tLObject).channels;
-                    if (!arrayList.isEmpty() && arrayList.get(0).last_timestamp_ms > 0) {
-                        j2 = arrayList.get(0).last_timestamp_ms + 1000;
-                    }
-                } else {
-                    arrayList = null;
-                }
-                zz0Var.e.execute(new m77(zz0Var, arrayList, vy0Var, j2, (byte) 3));
-                return;
-            default:
-                zz0 zz0Var2 = (zz0) obj2;
-                hz0 hz0Var = (hz0) obj;
-                if (tLObject instanceof TLRPC.TL_upload_file) {
-                    TLRPC.TL_upload_file tL_upload_file = (TLRPC.TL_upload_file) tLObject;
-                    NativeByteBuffer nativeByteBuffer = tL_upload_file.bytes;
-                    if (nativeByteBuffer != null) {
-                        i = nativeByteBuffer.limit();
-                    } else {
-                        i = 0;
-                    }
-                    byte[] bArr = new byte[i];
-                    if (i > 0) {
-                        tL_upload_file.bytes.position(0);
-                        tL_upload_file.bytes.readBytes(bArr, false);
-                    }
-                    gz0Var2 = new gz0(j, bArr, 0, i);
-                } else {
-                    if (tLObject instanceof TLRPC.TL_upload_fileCdnRedirect) {
-                        gz0Var = new gz0(j, null, 1, 0);
-                    } else {
-                        String str = (tL_error == null || (str = tL_error.text) == null) ? "" : "";
-                        if (!str.startsWith("FLOOD_WAIT") && !"TIME_TOO_BIG".equals(str)) {
-                            if ("GROUPCALL_JOIN_MISSING".equals(str)) {
-                                gz0Var2 = new gz0(0L, null, 3, 0);
-                            } else {
-                                gz0Var = new gz0(j, null, 2, 0);
-                            }
-                        } else {
-                            gz0Var = new gz0(j, null, 1, 0);
-                        }
-                    }
-                    gz0Var2 = gz0Var;
-                }
-                zz0Var2.e.execute(new z20(hz0Var, gz0Var2, (byte) 27));
-                return;
+        i01 i01Var = (i01) this.b;
+        dz0 dz0Var = (dz0) this.c;
+        long j2 = 0;
+        if (tLObject instanceof TL_phone.groupCallStreamChannels) {
+            arrayList = ((TL_phone.groupCallStreamChannels) tLObject).channels;
+            if (!arrayList.isEmpty() && arrayList.get(0).last_timestamp_ms > 0) {
+                j2 = arrayList.get(0).last_timestamp_ms + 1000;
+            }
+        } else {
+            arrayList = null;
         }
+        i01Var.e.execute(new ba7(i01Var, arrayList, dz0Var, j2, (byte) 3));
     }
 
     @Override
-    public final void u(hd hdVar, int i) {
+    public final void w(id idVar, int i) {
         String str;
         byte b = this.a;
         int i2 = 3600;
@@ -289,16 +254,16 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
         Object obj2 = this.b;
         switch (b) {
             case 0:
-                a1 a1Var = (a1) obj2;
+                b1 b1Var = (b1) obj2;
                 TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) obj;
-                c01 g = hdVar.g(-1, true, true);
+                l01 g = idVar.g(-1, true, true);
                 g.d();
                 TL_aicompose.deleteTone deletetone = new TL_aicompose.deleteTone();
                 deletetone.tone = TL_aicompose.InputAiComposeTone.from(tL_aiComposeTone);
-                ConnectionsManager.getInstance(a1Var.a).sendRequestTyped(deletetone, new hc((byte) 0), new p(a1Var, g, tL_aiComposeTone, (byte) 0));
+                ConnectionsManager.getInstance(b1Var.a).sendRequestTyped(deletetone, new ic((byte) 0), new p(b1Var, g, tL_aiComposeTone, (byte) 0));
                 return;
             case 1:
-                ((zm) obj2).k(((boolean[]) obj)[0]);
+                ((an) obj2).A(((boolean[]) obj)[0]);
                 return;
             case 2:
                 TLRPC.TL_langPackLanguage tL_langPackLanguage = (TLRPC.TL_langPackLanguage) obj2;
@@ -310,8 +275,8 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                 } else {
                     str = "unofficial_";
                 }
-                i96 F0 = k96.D0().F0(b00.h(str, str2));
-                i96 i96Var = F0;
+                mb6 F0 = ob6.D0().F0(c00.i(str, str2));
+                mb6 mb6Var = F0;
                 if (F0 == null) {
                     ?? obj3 = new Object();
                     obj3.a = tL_langPackLanguage.native_name;
@@ -322,42 +287,52 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                     obj3.g = tL_langPackLanguage.rtl;
                     if (tL_langPackLanguage.official) {
                         obj3.d = "remote";
-                        i96Var = obj3;
+                        mb6Var = obj3;
                     } else {
                         obj3.d = "unofficial";
-                        i96Var = obj3;
+                        mb6Var = obj3;
                     }
                 }
-                k96.D0().c(i96Var, true, false, false, true, y6c.t0, null);
+                ob6.D0().c(mb6Var, true, false, false, true, yac.t0, null);
                 launchActivity.y0(true);
                 return;
             case 3:
-                v82 v82Var = (v82) obj2;
+                q72 q72Var = (q72) obj2;
                 boolean[] zArr = (boolean[]) obj;
                 boolean z3 = zArr[0];
                 boolean z4 = zArr[1];
-                cj3 cj3Var = (cj3) v82Var.b;
-                ArrayList arrayList = (ArrayList) v82Var.c;
+                uj3 uj3Var = (uj3) q72Var.b;
+                ArrayList arrayList = (ArrayList) q72Var.c;
                 int size = arrayList.size();
                 for (int i3 = 0; i3 < size; i3++) {
                     Long l = (Long) arrayList.get(i3);
                     long longValue = l.longValue();
                     if (z3) {
-                        cj3Var.getMessagesController().r4(longValue, cj3Var.getMessagesController().V1(l), null, null, false);
+                        uj3Var.getMessagesController().z4(longValue, uj3Var.getMessagesController().X1(l), null, null, false);
                     }
                     if (z4) {
-                        cj3Var.getMessagesController().T(0, longValue, true);
+                        uj3Var.getMessagesController().V(0, longValue, true);
                     }
-                    cj3Var.getMessagesController().t(longValue);
+                    uj3Var.getMessagesController().u(longValue);
                 }
-                cj3Var.y3(false);
+                uj3Var.A3(false);
                 return;
             case 4:
-                hdVar.dismiss();
-                ((x0) obj2).a(((EditText) obj).getText().toString());
+                idVar.dismiss();
+                ((y0) obj2).a(((EditText) obj).getText().toString());
                 return;
             case 5:
-                uc7 uc7Var = (uc7) obj;
+                SharedPreferences.Editor edit = uc7.s1(yac.t0).W3.edit();
+                edit.remove("color_" + ((String) obj2));
+                edit.commit();
+                ((Runnable) obj).run();
+                return;
+            case 6:
+                ((AtomicBoolean) obj2).set(true);
+                ((pt2) obj).accept(Boolean.FALSE);
+                return;
+            case 7:
+                df7 df7Var = (df7) obj;
                 int i4 = ((int[]) obj2)[0];
                 if (i4 == 0) {
                     i2 = 900;
@@ -368,30 +343,26 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                         i2 = Integer.MAX_VALUE;
                     }
                 }
-                uc7Var.a(i2);
-                return;
-            case 6:
-                ((AtomicBoolean) obj2).set(true);
-                ((vs2) obj).accept(Boolean.FALSE);
-                return;
-            case 7:
-                mi miVar = (mi) obj2;
-                p8c p8cVar = (p8c) obj;
-                String trim = miVar.getText().toString().trim();
-                if (!TextUtils.isEmpty(trim)) {
-                    z = ij.a.matcher(trim.trim()).matches();
-                }
-                if (!z) {
-                    gl.z3(miVar);
-                    return;
-                }
-                p8cVar.a(trim);
-                hdVar.dismiss();
+                df7Var.a(i2);
                 return;
             case 8:
+                ni niVar = (ni) obj2;
+                pcc pccVar = (pcc) obj;
+                String trim = niVar.getText().toString().trim();
+                if (!TextUtils.isEmpty(trim)) {
+                    z = jj.a.matcher(trim.trim()).matches();
+                }
+                if (!z) {
+                    hl.z3(niVar);
+                    return;
+                }
+                pccVar.a(trim);
+                idVar.dismiss();
+                return;
+            case 9:
                 TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) obj2;
                 int i5 = encryptedChat.ttl;
-                int value = ((hn7) obj).getValue();
+                int value = ((hq7) obj).getValue();
                 if (value >= 0 && value < 16) {
                     encryptedChat.ttl = value;
                 } else if (value == 16) {
@@ -406,24 +377,18 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                     encryptedChat.ttl = 604800;
                 }
                 if (i5 != encryptedChat.ttl) {
-                    bu9.i(y6c.t0).z(encryptedChat, null);
-                    ad7 Y = ad7.Y(y6c.t0);
-                    Y.a.c(new fb7(Y, encryptedChat, (byte) 0));
+                    wx9.i(yac.t0).z(encryptedChat, null);
+                    jf7 Y = jf7.Y(yac.t0);
+                    Y.a.c(new id7(Y, encryptedChat, (byte) 0));
                     return;
                 }
                 return;
-            case 9:
-                SharedPreferences.Editor edit = na7.q1(y6c.t0).W3.edit();
-                edit.remove("color_" + ((String) obj2));
-                edit.commit();
-                ((Runnable) obj).run();
-                return;
             case 10:
-                ((sc7) obj2).k(((boolean[]) obj)[0]);
+                ((bf7) obj2).A(((boolean[]) obj)[0]);
                 return;
             case 11:
                 ((SharedPreferences) obj2).edit().putBoolean("proxycheckstatusip", true).apply();
-                ((nn6) obj).run();
+                ((es6) obj).run();
                 return;
             case 12:
             case 13:
@@ -432,6 +397,7 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
             case 21:
             case 22:
             case 23:
+            case 24:
             default:
                 boolean[] zArr2 = (boolean[]) obj2;
                 JsPromptResult jsPromptResult = (JsPromptResult) obj;
@@ -442,48 +408,48 @@ public final class o implements ed, RequestTimeDelegate, ds, d39, xec, tz7, b3c,
                 }
                 return;
             case 15:
-                ty tyVar = (ty) obj2;
-                py pyVar = (py) obj;
+                uy uyVar = (uy) obj2;
+                qy qyVar = (qy) obj;
                 try {
-                    int parseInt = Integer.parseInt(pyVar.getText().toString().trim());
-                    tyVar.b1(parseInt);
-                    tyVar.X1.setValue(parseInt);
-                    hdVar.dismiss();
+                    int parseInt = Integer.parseInt(qyVar.getText().toString().trim());
+                    uyVar.c1(parseInt);
+                    uyVar.X1.setValue(parseInt);
+                    idVar.dismiss();
                     return;
                 } catch (Throwable th) {
-                    gl.z3(pyVar);
-                    fa4.g(th, true);
+                    hl.z3(qyVar);
+                    cc4.g(th, true);
                     return;
                 }
             case 16:
-                hdVar.dismiss();
-                ((v60) obj2).a0((View) obj, true);
+                idVar.dismiss();
+                ((x60) obj2).a0((View) obj, true);
                 return;
             case 18:
                 ((dm0) obj2).i0((HashSet) obj);
                 return;
             case 19:
                 ((AtomicBoolean) obj2).set(true);
-                ((uy9) obj).run();
+                ((o2a) obj).run();
                 return;
             case 20:
                 ((tn0) obj2).a((TLRPC.TL_premiumGiftCodeOption) obj);
                 return;
-            case 24:
-                hv0 hv0Var = (hv0) obj2;
+            case 25:
+                rv0 rv0Var = (rv0) obj2;
                 TL_bots.allowSendMessage allowsendmessage = new TL_bots.allowSendMessage();
-                allowsendmessage.bot = na7.q1(hv0Var.N).o1(hv0Var.V);
-                ConnectionsManager.getInstance(hv0Var.N).sendRequest(allowsendmessage, new en0(hv0Var, (String[]) obj, hdVar, (byte) 8));
+                allowsendmessage.bot = uc7.s1(rv0Var.N).q1(rv0Var.V);
+                ConnectionsManager.getInstance(rv0Var.N).sendRequest(allowsendmessage, new fn0(rv0Var, (String[]) obj, idVar, (byte) 8));
                 return;
         }
     }
 
     @Override
-    public final void l(View view, float f, float f2) {
+    public final void run(long j) {
+        hl.c3(new ue2((boolean[]) this.b, j, (y41[]) this.c, (byte) 10));
     }
 
     @Override
-    public final void run(long j) {
-        gl.c3(new de2((boolean[]) this.b, j, (q41[]) this.c, (byte) 10));
+    public final void u(View view, float f, float f2) {
     }
 }

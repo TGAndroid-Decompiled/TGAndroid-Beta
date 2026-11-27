@@ -37,7 +37,7 @@ public class ClippingImageView extends View {
     public int n;
     public final RectF r;
     public final Paint s;
-    public jl5 w;
+    public mn5 w;
     public final Matrix x;
     public boolean y;
 
@@ -61,14 +61,14 @@ public class ClippingImageView extends View {
     }
 
     public Bitmap getBitmap() {
-        jl5 jl5Var = this.w;
-        if (jl5Var != null) {
-            return jl5Var.c;
+        mn5 mn5Var = this.w;
+        if (mn5Var != null) {
+            return mn5Var.c;
         }
         return null;
     }
 
-    public jl5 getBitmapHolder() {
+    public mn5 getBitmapHolder() {
         return this.w;
     }
 
@@ -121,7 +121,7 @@ public class ClippingImageView extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        jl5 jl5Var;
+        mn5 mn5Var;
         Bitmap bitmap;
         int i;
         int i2;
@@ -130,7 +130,7 @@ public class ClippingImageView extends View {
         float height2;
         boolean z;
         float[] fArr;
-        if (getVisibility() == 0 && (jl5Var = this.w) != null && (bitmap = jl5Var.c) != null && !bitmap.isRecycled()) {
+        if (getVisibility() == 0 && (mn5Var = this.w) != null && (bitmap = mn5Var.c) != null && !bitmap.isRecycled()) {
             float scaleY = getScaleY();
             canvas.save();
             boolean z2 = this.y;
@@ -157,7 +157,7 @@ public class ClippingImageView extends View {
                 rectF.set(0.0f, 0.0f, f, i2);
                 int i4 = this.e;
                 int i5 = this.f;
-                Typeface typeface = gl.a;
+                Typeface typeface = hl.a;
                 if (i4 != 90 && i4 != 270) {
                     height = rectF2.width() / rectF.width();
                     width = rectF2.height();
@@ -269,7 +269,7 @@ public class ClippingImageView extends View {
                 try {
                     canvas.drawBitmap(this.w.c, matrix2, this.s);
                 } catch (Exception e) {
-                    fa4.g(e, true);
+                    cc4.g(e, true);
                 }
             }
             canvas.restore();
@@ -372,20 +372,20 @@ public class ClippingImageView extends View {
         invalidate();
     }
 
-    public void setImageBitmap(jl5 jl5Var) {
+    public void setImageBitmap(mn5 mn5Var) {
         Bitmap bitmap;
         int i;
         Bitmap bitmap2;
-        jl5 jl5Var2 = this.w;
-        if (jl5Var2 != null) {
-            jl5Var2.a();
+        mn5 mn5Var2 = this.w;
+        if (mn5Var2 != null) {
+            mn5Var2.a();
             this.F = null;
         }
-        if (jl5Var != null && ((bitmap2 = jl5Var.c) == null || bitmap2.isRecycled())) {
-            jl5Var = null;
+        if (mn5Var != null && ((bitmap2 = mn5Var.c) == null || bitmap2.isRecycled())) {
+            mn5Var = null;
         }
-        this.w = jl5Var;
-        if (jl5Var != null && (bitmap = jl5Var.c) != null) {
+        this.w = mn5Var;
+        if (mn5Var != null && (bitmap = mn5Var.c) != null) {
             int i2 = 0;
             if (bitmap != null) {
                 i = bitmap.getWidth();
@@ -393,7 +393,7 @@ public class ClippingImageView extends View {
                 i = 0;
             }
             float f = i;
-            Bitmap bitmap3 = jl5Var.c;
+            Bitmap bitmap3 = mn5Var.c;
             if (bitmap3 != null) {
                 i2 = bitmap3.getHeight();
             }

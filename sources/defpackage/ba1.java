@@ -1,201 +1,154 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.view.MotionEvent;
-import android.widget.TextView;
-public final class ba1 extends TextView {
-    public final byte a = 0;
-    public final Paint b;
-    public Path c;
-    public Object d;
+import android.os.Handler;
+import android.text.TextUtils;
+import j$.util.Objects;
+import java.io.File;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Wallet.c;
+public final class ba1 implements Runnable {
+    public final byte a;
+    public final boolean b;
+    public final boolean c;
+    public final Object d;
     public final Object e;
 
-    public ba1(vs9 vs9Var, Context context) {
-        super(context);
-        this.e = vs9Var;
-        this.c = new Path();
-        this.d = new RectF();
-        this.b = new Paint();
+    public ba1(tw2 tw2Var, String str, File file, boolean z, boolean z2) {
+        this.a = (byte) 1;
+        this.d = tw2Var;
+        this.e = str;
+        this.b = z;
+        this.c = z2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.a) {
-            case 1:
-                int p1 = bkb.p1(0.15f, bkb.v0(bkb.n6, ((vs9) this.e).c));
-                Paint paint = this.b;
-                paint.setColor(p1);
-                RectF rectF = (RectF) this.d;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                Path path = this.c;
-                Paint paint2 = i19.S;
-                i19.h(rectF, gl.P, path);
-                canvas.drawPath(path, paint);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public final void run() {
+        nd4 nd4Var;
+        nd4 nd4Var2;
+        NativeInstance nativeInstance;
         switch (this.a) {
             case 0:
-                b46 b46Var = (b46) this.c;
-                if (b46Var != null) {
-                    canvas.drawPath(b46Var, this.b);
-                }
-                if (((i46) this.e).g(canvas)) {
-                    invalidate();
-                }
-                super.onDraw(canvas);
+                ((CameraController) this.d).lambda$stopVideoRecording$17(this.e, this.b, this.c);
                 return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        switch (this.a) {
             case 1:
-                vs9 vs9Var = (vs9) this.e;
-                super.onLayout(z, i, i2, i3, i4);
-                int width = getWidth();
-                int i5 = 0;
-                for (int i6 = 0; i6 < vs9Var.getChildCount(); i6++) {
-                    width = Math.min(width, vs9Var.getChildAt(i6).getLeft());
-                    i5 = Math.max(i5, vs9Var.getChildAt(i6).getRight());
+                String str = (String) this.e;
+                boolean z = this.b;
+                boolean z2 = this.c;
+                vw2 vw2Var = ((tw2) this.d).b;
+                vw2Var.f0 = false;
+                vw2Var.g0 = str;
+                if (str == null) {
+                    vw2Var.g0 = "";
                 }
-                setPivotX((width + i5) / 2.0f);
+                vw2Var.h0 = z;
+                vw2Var.f(z2, true);
                 return;
-            default:
-                super.onLayout(z, i, i2, i3, i4);
-                return;
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        int i3;
-        int i4;
-        float f;
-        switch (this.a) {
-            case 0:
-                super.onMeasure(i, i2);
-                if (getText() instanceof Spanned) {
-                    Spanned spanned = (Spanned) getText();
-                    g4c[] g4cVarArr = (g4c[]) spanned.getSpans(0, spanned.length(), g4c.class);
-                    if (g4cVarArr != null && g4cVarArr.length > 0) {
-                        b46 b46Var = new b46(0);
-                        this.c = b46Var;
-                        b46Var.n = false;
-                        for (int i5 = 0; i5 < g4cVarArr.length; i5++) {
-                            int spanStart = spanned.getSpanStart(g4cVarArr[i5]);
-                            int spanEnd = spanned.getSpanEnd(g4cVarArr[i5]);
-                            ((b46) this.c).d(getLayout(), spanStart, 0.0f);
-                            if (getText() != null) {
-                                i3 = getPaint().baselineShift;
-                            } else {
-                                i3 = 0;
-                            }
-                            b46 b46Var2 = (b46) this.c;
-                            if (i3 != 0) {
-                                if (i3 > 0) {
-                                    f = 5.0f;
-                                } else {
-                                    f = -2.0f;
-                                }
-                                i4 = gl.L(f) + i3;
-                            } else {
-                                i4 = 0;
-                            }
-                            b46Var2.o = i4;
-                            getLayout().getSelectionPath(spanStart, spanEnd, (b46) this.c);
-                        }
-                        ((b46) this.c).n = true;
+            case 2:
+                ub4 ub4Var = (ub4) this.d;
+                boolean z3 = this.b;
+                String str2 = (String) this.e;
+                boolean z4 = this.c;
+                xb4 xb4Var = ub4Var.d;
+                if (z3) {
+                    xb4Var.n.remove(str2);
+                } else {
+                    xb4Var.h.remove(str2);
+                }
+                sm5 sm5Var = ub4Var.d.F;
+                if (sm5Var != null) {
+                    Utilities.d.c(new ps1(sm5Var, sm5Var.a, str2, z3, (byte) 5));
+                }
+                xb4 xb4Var2 = ub4Var.d;
+                if (z4) {
+                    int i = xb4Var2.s - 1;
+                    xb4Var2.s = i;
+                    if (i < 1 && (nd4Var2 = (nd4) xb4Var2.f.poll()) != null) {
+                        ub4Var.d.s++;
+                        nd4Var2.c();
                         return;
                     }
                     return;
                 }
+                int i2 = xb4Var2.r - 1;
+                xb4Var2.r = i2;
+                if (i2 < 1 && (nd4Var = (nd4) xb4Var2.e.poll()) != null) {
+                    ub4Var.d.r++;
+                    nd4Var.c();
+                    return;
+                }
                 return;
-            default:
-                super.onMeasure(i, i2);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.a) {
-            case 0:
-                i46 i46Var = (i46) this.e;
-                Layout layout = getLayout();
-                int x = (int) (motionEvent.getX() - 0.0f);
-                int y = (int) (motionEvent.getY() - 0.0f);
-                if (motionEvent.getAction() == 0 || motionEvent.getAction() == 1) {
-                    int lineForVertical = layout.getLineForVertical(y);
-                    float f = x;
-                    int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f);
-                    float lineLeft = layout.getLineLeft(lineForVertical);
-                    if (lineLeft <= f && layout.getLineWidth(lineForVertical) + lineLeft >= f && y >= 0 && y <= layout.getHeight()) {
-                        Spannable spannable = (Spannable) layout.getText();
-                        ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-                        if (clickableSpanArr.length != 0) {
-                            i46Var.e(true);
-                            if (motionEvent.getAction() == 0) {
-                                m46 m46Var = new m46(clickableSpanArr[0], null, motionEvent.getX(), motionEvent.getY(), 0);
-                                this.d = m46Var;
-                                m46Var.d(771751935);
-                                i46Var.a((m46) this.d, null);
-                                int spanStart = spannable.getSpanStart(((m46) this.d).i);
-                                int spanEnd = spannable.getSpanEnd(((m46) this.d).i);
-                                b46 b = ((m46) this.d).b();
-                                b.d(layout, spanStart, 0.0f);
-                                layout.getSelectionPath(spanStart, spanEnd, b);
-                                return true;
-                            } else if (motionEvent.getAction() != 1) {
-                                return true;
-                            } else {
-                                m46 m46Var2 = (m46) this.d;
-                                if (m46Var2 != null) {
-                                    CharacterStyle characterStyle = m46Var2.i;
-                                    ClickableSpan clickableSpan = clickableSpanArr[0];
-                                    if (characterStyle == clickableSpan) {
-                                        clickableSpan.onClick(this);
-                                    }
-                                }
-                                this.d = null;
-                                return true;
-                            }
+            case 3:
+                c cVar = (c) this.d;
+                pcc pccVar = (pcc) this.e;
+                boolean z5 = this.b;
+                boolean z6 = this.c;
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) cVar.e;
+                k35 k35Var = cVar.c;
+                if (k35Var != null && TextUtils.equals(k35Var.c, tL_walletState.address) && cVar.c.f(tL_walletState.public_key)) {
+                    pccVar.a(null);
+                    return;
+                } else {
+                    cVar.E(z5, z6, false, new p(cVar, pccVar, tL_walletState, (byte) 14));
+                    return;
+                }
+            case 4:
+                dq9 dq9Var = (dq9) this.d;
+                NativeInstance nativeInstance2 = (NativeInstance) this.e;
+                boolean z7 = this.b;
+                boolean z8 = this.c;
+                boolean z9 = dq9Var.w;
+                if (!z9 && (nativeInstance = dq9Var.P) == nativeInstance2 && !z7 && !dq9Var.h) {
+                    if (z8) {
+                        if (!z9 && nativeInstance != null && dq9Var.Y == null) {
+                            g01 g01Var = new g01(dq9Var.e, dq9Var.f, dq9Var.k(), dq9Var.P, new wp9(dq9Var, nativeInstance));
+                            dq9Var.Y = g01Var;
+                            g01Var.b.post(new xac((byte) 6, g01Var, a.o()));
+                            dq9Var.N();
+                            g01 g01Var2 = dq9Var.Y;
+                            Handler handler = g01Var2.b;
+                            xz0 xz0Var = g01Var2.d;
+                            Objects.requireNonNull(xz0Var);
+                            handler.post(new gz0(xz0Var, (byte) 6));
+                            return;
                         }
+                        return;
                     }
+                    g01 g01Var3 = dq9Var.Y;
+                    if (g01Var3 != null) {
+                        g01Var3.k();
+                        dq9Var.Y = null;
+                    }
+                    dq9Var.Z = false;
+                    return;
                 }
-                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    i46Var.e(true);
-                    this.d = null;
-                }
-                return super.onTouchEvent(motionEvent);
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                boolean z10 = this.b;
+                boolean z11 = this.c;
+                ((AtomicBoolean) this.e).set(false);
+                ((zhc) ((qoc) this.d).c).d(z10, z11);
+                return;
         }
     }
 
-    public ba1(Context context, Paint paint) {
-        super(context);
-        this.b = paint;
-        this.e = new i46(this);
+    public ba1(ub4 ub4Var, boolean z, String str, boolean z2) {
+        this.a = (byte) 2;
+        this.d = ub4Var;
+        this.b = z;
+        this.e = str;
+        this.c = z2;
+    }
+
+    public ba1(Object obj, Object obj2, boolean z, boolean z2, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = obj2;
+        this.b = z;
+        this.c = z2;
     }
 }

@@ -1,27 +1,7 @@
 package defpackage;
-
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-public final class w75 implements Runnable {
-    public final byte a;
-    public final GroupCallMessage b;
-
-    public w75(GroupCallMessage groupCallMessage, byte b) {
-        this.a = b;
-        this.b = groupCallMessage;
-    }
-
+public final class w75 extends hq7 {
     @Override
-    public final void run() {
-        byte b = this.a;
-        GroupCallMessage groupCallMessage = this.b;
-        switch (b) {
-            case 0:
-                groupCallMessage.notifyStateUpdate();
-                return;
-            default:
-                GroupCallMessagesController.lambda$sendCallMessage$4(groupCallMessage);
-                return;
-        }
+    public final CharSequence d(int i) {
+        return ob6.G(i, "Minutes", new Object[0]);
     }
 }

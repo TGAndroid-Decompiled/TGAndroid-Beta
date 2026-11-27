@@ -1,32 +1,34 @@
 package defpackage;
-public enum nl8 {
-    d(2131231156, 2131232499, "MESSAGE"),
-    e(2131231157, 2131232500, "NOTIFICATION_MUTE"),
-    f(2131231163, 2131232505, "NOTIFICATION_UNMUTE"),
-    h(2131231156, 2131232499, "DISCUSS"),
-    n(2131231219, 2131231507, "GIFT"),
-    r(2131230863, 2131232368, "SHARE"),
-    s(2131231153, 2131232496, "CALL"),
-    w(2131231164, 2131232506, "VIDEO"),
-    x(2131231155, 2131232498, "JOIN"),
-    y(2131232680, 2131232338, "REPORT"),
-    E(2131231624, 2131231624, "LEAVE"),
-    F(2131231637, 2131231637, "VOICE_CHAT"),
-    G(2131231637, 2131231637, "STREAM"),
-    H(2131231162, 2131232504, "STORY"),
-    I(2131231161, 2131232503, "STOP"),
-    J(2131231158, 2131232501, "SET_PHOTO"),
-    EF16(2131231154, 2131232497, "EDIT_USERNAME"),
-    K(2131231154, 2131232497, "EDIT_INFO"),
-    L(2131231160, 2131232502, "SETTINGS");
-    
-    public final int a;
-    public final int b;
-    public final int c;
 
-    nl8(int i, int i2, String str) {
-        this.a = r2;
-        this.b = i;
-        this.c = i2;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class nl8 extends n1a {
+    public final ia7 f2;
+    public final d1a[] g2;
+    public final PremiumPreviewFragment h2;
+
+    public nl8(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i, vnb vnbVar, int i2, ia7 ia7Var, d1a[] d1aVarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i, true, vnbVar, i2);
+        this.h2 = premiumPreviewFragment;
+        this.f2 = ia7Var;
+        this.g2 = d1aVarArr;
+    }
+
+    @Override
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void o(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        this.f2.a(l, num);
+        d1a d1aVar = this.g2[0];
+        if (d1aVar != null) {
+            this.h2.v0 = null;
+            d1aVar.dismiss();
+        }
     }
 }

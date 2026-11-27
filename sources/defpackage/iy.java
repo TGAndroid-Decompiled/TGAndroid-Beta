@@ -1,36 +1,19 @@
 package defpackage;
+public final class iy implements s84, ay2 {
+    public final uy a;
 
-import android.view.View;
-public final class iy implements View.OnClickListener {
-    public final byte a;
-    public final ty b;
-
-    public iy(ty tyVar, byte b) {
-        this.a = b;
-        this.b = tyVar;
+    @Override
+    public final void l(long j) {
+        uy uyVar = this.a;
+        uyVar.g1(j, uyVar.r2);
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        ty tyVar = this.b;
-        switch (b) {
-            case 0:
-                tyVar.dismiss();
-                return;
-            case 1:
-                int value = tyVar.X1.getValue();
-                int e = (int) tyVar.g2.e();
-                if (value < e) {
-                    gl.z3(tyVar.V1);
-                    b00.u(k96.G(e, "Gift2AuctionMinimumBidIncreased", new Object[0]), new u21(tyVar.c, tyVar.J0), 2131624068, 36);
-                    return;
-                }
-                tyVar.b1(value);
-                return;
-            default:
-                tyVar.X1.setValueAnimated((int) tyVar.g2.e());
-                return;
-        }
+    public final void t(int i, float f, float f2, t84 t84Var) {
+        this.a.f1();
+    }
+
+    @Override
+    public final void v0(float f, int i) {
     }
 }

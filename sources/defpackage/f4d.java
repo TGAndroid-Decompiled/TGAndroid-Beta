@@ -1,52 +1,36 @@
 package defpackage;
 
-import android.os.Parcel;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Status;
-public final class f4d extends ig0 {
-    public final byte q;
+import j$.util.Objects;
+public final class f4d extends e4d {
+    public static final f4d s = new f4d(new Object[0]);
+    public final transient Object[] r;
 
-    public f4d(x1d x1dVar, byte b) {
-        super(o40.a, x1dVar);
-        this.q = b;
+    public f4d(Object[] objArr) {
+        super((byte) 0);
+        this.r = objArr;
     }
 
     @Override
-    public final void a(ua9 ua9Var) {
-        a(ua9Var);
+    public final Object get(int i) {
+        i3f.a(i, 0);
+        Object obj = this.r[i];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
     @Override
-    public final ua9 d(Status status) {
-        byte b = this.q;
-        return status;
+    public final int h(Object[] objArr) {
+        System.arraycopy(this.r, 0, objArr, 0, 0);
+        return 0;
     }
 
     @Override
-    public final void n(xx4 xx4Var) {
-        switch (this.q) {
-            case 0:
-                z3d z3dVar = (z3d) xx4Var;
-                j4d j4dVar = (j4d) z3dVar.k();
-                c4d c4dVar = new c4d(this, (byte) 0);
-                GoogleSignInOptions googleSignInOptions = z3dVar.F;
-                Parcel e = j4dVar.e();
-                int i = w3d.a;
-                e.writeStrongBinder(c4dVar);
-                w3d.c(e, googleSignInOptions);
-                j4dVar.f(e, 102);
-                return;
-            default:
-                z3d z3dVar2 = (z3d) xx4Var;
-                j4d j4dVar2 = (j4d) z3dVar2.k();
-                c4d c4dVar2 = new c4d(this, (byte) 1);
-                GoogleSignInOptions googleSignInOptions2 = z3dVar2.F;
-                Parcel e2 = j4dVar2.e();
-                int i2 = w3d.a;
-                e2.writeStrongBinder(c4dVar2);
-                w3d.c(e2, googleSignInOptions2);
-                j4dVar2.f(e2, 103);
-                return;
-        }
+    public final Object[] k() {
+        return this.r;
+    }
+
+    @Override
+    public final int size() {
+        return 0;
     }
 }

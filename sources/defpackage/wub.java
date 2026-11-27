@@ -1,22 +1,33 @@
 package defpackage;
-
-import android.view.View;
-public final class wub implements View.OnClickListener {
-    public final qvb a;
-
-    public wub(qvb qvbVar) {
-        this.a = qvbVar;
+public enum wub extends rwb {
+    public wub() {
+        super("ScriptDataDoubleEscaped", 28);
     }
 
     @Override
-    public final void onClick(View view) {
-        qvb qvbVar = this.a;
-        if (qvbVar.N) {
-            ij.g0(qvbVar, -qvbVar.a, null, qvbVar.f(), null, false, qvbVar.K, new re1(this, (byte) 7), qvbVar.getResourceProvider());
+    public final void c(bub bubVar, ik1 ik1Var) {
+        char i = ik1Var.i();
+        if (i != 0) {
+            if (i != '-') {
+                if (i != '<') {
+                    if (i != 65535) {
+                        bubVar.h(ik1Var.g('-', '<', 0));
+                        return;
+                    }
+                    bubVar.l(this);
+                    bubVar.c = rwb.a;
+                    return;
+                }
+                bubVar.f(i);
+                bubVar.a(rwb.V);
+                return;
+            }
+            bubVar.f(i);
+            bubVar.a(rwb.T);
             return;
         }
-        qvbVar.getMessagesController().j(qvbVar.a, qvbVar.getUserConfig().f(), 0, null, qvbVar, false, new km4(qvbVar, (byte) 3), new rub(qvbVar), null);
-        kk7.e().k(kk7.K4, new Object[0]);
-        qvbVar.R0(false);
+        bubVar.m(this);
+        ik1Var.a();
+        bubVar.f((char) 65533);
     }
 }

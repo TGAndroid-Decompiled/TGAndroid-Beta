@@ -1,42 +1,17 @@
 package defpackage;
+public final class jle implements zq7 {
+    public static final jle a = new Object();
 
-import java.util.AbstractCollection;
-import java.util.Iterator;
-import java.util.List;
-public abstract class jle {
-    public static Object a(AbstractCollection abstractCollection, String str) {
-        Iterator it = abstractCollection.iterator();
-        if (it.hasNext()) {
-            return it.next();
-        }
-        return str;
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 3)), 4)), 5)), 6)), 7)));
     }
 
-    public static Object b(Iterable iterable) {
-        Object next;
-        if (iterable instanceof List) {
-            List list = (List) iterable;
-            if (!list.isEmpty()) {
-                return oo1.m(1, list);
-            }
-            w26.g();
-            return null;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        Iterator it = iterable.iterator();
-        do {
-            next = it.next();
-        } while (it.hasNext());
-        return next;
-    }
-
-    public static void c(List list, bg8 bg8Var, int i, int i2) {
-        for (int size = list.size() - 1; size > i2; size--) {
-            if (bg8Var.apply(list.get(size))) {
-                list.remove(size);
-            }
-        }
-        for (int i3 = i2 - 1; i3 >= i; i3--) {
-            list.remove(i3);
-        }
+        throw new ClassCastException();
     }
 }

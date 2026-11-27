@@ -1,46 +1,64 @@
 package defpackage;
 
-import org.telegram.tgnet.TLRPC;
-public final class ps1 extends i98 {
-    public final k27 a;
-    public final jm6 b;
-    public final qs1 c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+public final class ps1 implements Runnable {
+    public final byte a;
+    public final int b;
+    public final boolean c;
+    public final Object d;
+    public final Object e;
 
-    public ps1(qs1 qs1Var, k27 k27Var, jm6 jm6Var) {
-        this.c = qs1Var;
-        this.a = k27Var;
-        this.b = jm6Var;
+    public ps1(lna lnaVar, boolean z, int i, wb2 wb2Var) {
+        this.a = (byte) 9;
+        this.d = lnaVar;
+        this.c = z;
+        this.b = i;
+        this.e = wb2Var;
     }
 
     @Override
-    public final void L(int i, oac oacVar, boolean z, int i2, int i3, boolean z2) {
-        vs1 vs1Var = this.c.a;
-        k27 k27Var = this.a;
-        k27Var.q = true;
-        jm6 jm6Var = this.b;
-        if (jm6Var.h == null && !jm6Var.b) {
-            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
-            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_photos_updateProfilePhoto.id = tL_inputPhoto;
-            TLRPC.Photo photo = k27Var.k.action.photo;
-            tL_inputPhoto.id = photo.id;
-            tL_inputPhoto.access_hash = photo.access_hash;
-            tL_inputPhoto.file_reference = photo.file_reference;
-            vs1Var.R.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new pl(this, k27Var, (byte) 17));
-            return;
-        }
-        mu1 mu1Var = vs1Var.R;
-        os1 os1Var = new os1(k27Var, (byte) 0);
-        ui5 parentLayout = mu1Var.getParentLayout();
-        int currentAccount = mu1Var.getCurrentAccount();
-        wl5 wl5Var = new wl5(0, true, true);
-        wl5Var.a = mu1Var;
-        wl5Var.s(jm6Var);
-        wl5Var.b = new zm(currentAccount, os1Var, parentLayout, wl5Var);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.ps1.run():void");
     }
 
-    @Override
-    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        return this.c.a.R.db.M(this.a, fileLocation, i, z, false);
+    public ps1(ls6 ls6Var, int i, boolean z, pcc pccVar) {
+        this.a = (byte) 7;
+        this.d = ls6Var;
+        this.b = i;
+        this.c = z;
+        this.e = pccVar;
+    }
+
+    public ps1(qs1 qs1Var, boolean z, ArrayList arrayList, int i) {
+        this.a = (byte) 0;
+        this.d = qs1Var;
+        this.c = z;
+        this.e = arrayList;
+        this.b = i;
+    }
+
+    public ps1(Object obj, int i, Object obj2, boolean z, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.b = i;
+        this.e = obj2;
+        this.c = z;
+    }
+
+    public ps1(Object obj, Object obj2, int i, boolean z, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = obj2;
+        this.b = i;
+        this.c = z;
+    }
+
+    public ps1(Object obj, TLObject tLObject, boolean z, int i, byte b) {
+        this.a = b;
+        this.d = obj;
+        this.e = tLObject;
+        this.c = z;
+        this.b = i;
     }
 }

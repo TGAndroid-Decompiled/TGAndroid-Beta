@@ -1,4 +1,5 @@
 package defpackage;
-public interface sc7 {
-    void k(boolean z);
+
+import org.telegram.tgnet.TLRPC;
+public final class sc7 extends TLRPC.Updates {
 }

@@ -1,181 +1,168 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class kv4 extends Drawable {
-    public static rv4 E = new rv4();
-    public long A;
-    public Bitmap B;
-    public Paint C;
-    public int D;
-    public final ViewGroup a;
-    public final wjb b;
-    public final Paint c;
-    public final Paint d;
-    public final RectF e;
-    public final Path f;
-    public final boolean g;
-    public TL_stars.starGiftAttributeBackdrop h;
+public final class kv4 {
+    public final int a;
+    public final long b;
+    public final long c;
+    public TL_stars.StarGift d;
+    public TL_stars.TL_StarGiftAuctionUserState e;
+    public TL_stars.TL_starGiftAuctionState f;
+    public TL_stars.TL_starGiftAuctionStateFinished g;
+    public ArrayList h;
     public int i;
-    public RadialGradient j;
-    public final Matrix k;
-    public final jv4 l;
-    public int[] m;
-    public LinearGradient n;
-    public final Matrix o;
-    public boolean p;
-    public final Paint q;
-    public final lm r;
-    public float s;
-    public boolean t;
-    public int u;
-    public boolean v;
-    public boolean w;
-    public int x;
-    public int y;
-    public Integer z;
 
-    public kv4(ViewGroup viewGroup, wjb wjbVar, boolean z) {
-        Paint paint = new Paint(1);
-        this.c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.e = new RectF();
-        this.f = new Path();
-        this.k = new Matrix();
-        this.o = new Matrix();
-        Paint paint3 = new Paint(1);
-        this.q = paint3;
-        this.r = new lm(new iu4(this, (byte) 2), 320L, s33.h);
-        this.s = gl.L(11.0f);
-        this.v = true;
-        this.w = false;
-        int i = bkb.c6;
-        this.y = i;
-        this.a = viewGroup;
-        this.b = wjbVar;
-        jv4 jv4Var = new jv4(this, viewGroup, gl.L(28.0f));
-        this.l = jv4Var;
-        viewGroup.addOnAttachStateChangeListener(new wc(this, (byte) 9));
-        if (viewGroup.isAttachedToWindow()) {
-            jv4Var.a();
-        }
-        this.g = z;
-        int v0 = bkb.v0(i, wjbVar);
-        this.x = v0;
-        paint.setColor(v0);
-        a(z);
-        Paint.Style style = Paint.Style.STROKE;
-        paint3.setStyle(style);
-        paint2.setStyle(style);
-    }
-
-    public final void a(boolean z) {
-        int i;
-        if (z) {
-            i = bkb.v0(bkb.Z5, this.b);
-        } else {
-            i = 0;
-        }
-        if (this.t == z && (!z || this.u == i)) {
-            return;
-        }
-        this.t = z;
-        Paint paint = this.c;
-        if (z) {
-            this.u = i;
-            paint.setShadowLayer(gl.L(1.66f), 0.0f, gl.L(0.33f), i);
-            return;
-        }
-        paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-    }
-
-    public final void b(android.graphics.Canvas r33, float r34) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.kv4.b(android.graphics.Canvas, float):void");
-    }
-
-    public final void c() {
-        this.a.invalidate();
-        if (getCallback() != null) {
-            getCallback().invalidateDrawable(this);
-        }
-    }
-
-    public final void d(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        if (this.h != stargiftattributebackdrop) {
-            this.j = null;
-        }
-        this.h = stargiftattributebackdrop;
-        c();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        b(canvas, 0.0f);
-    }
-
-    public final void e(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.A = 0L;
-        jv4 jv4Var = this.l;
-        if (stargiftattributepattern == null) {
-            jv4Var.g(null, false);
-            return;
-        }
-        jv4Var.i(stargiftattributepattern.document, false);
-        TLRPC.Document document = stargiftattributepattern.document;
+    public kv4(int i, TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
+        long j;
+        this.a = i;
+        this.d = starGift;
+        this.e = tL_StarGiftAuctionUserState;
+        this.b = starGift.id;
+        TLRPC.Document document = starGift.sticker;
         if (document != null) {
-            this.A = document.id;
+            j = document.id;
+        } else {
+            j = 0;
         }
+        this.c = j;
+        a(starGiftAuctionState);
     }
 
-    public final void f(boolean z, boolean z2) {
-        if (this.p == z) {
-            return;
+    public final boolean a(TL_stars.StarGiftAuctionState starGiftAuctionState) {
+        int i;
+        if (starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionState) {
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = (TL_stars.TL_starGiftAuctionState) starGiftAuctionState;
+            if (f()) {
+                i = Integer.MAX_VALUE;
+            } else {
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.f;
+                if (tL_starGiftAuctionState2 != null) {
+                    i = tL_starGiftAuctionState2.version;
+                } else {
+                    i = 0;
+                }
+            }
+            if (tL_starGiftAuctionState.version > i) {
+                this.f = tL_starGiftAuctionState;
+                h();
+                return true;
+            }
+        } else if ((starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionStateFinished) && !f()) {
+            this.g = (TL_stars.TL_starGiftAuctionStateFinished) starGiftAuctionState;
+            return true;
         }
-        this.p = z;
-        if (!z2) {
-            this.r.a(z);
+        return false;
+    }
+
+    public final long b(int i) {
+        ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
+            int size = arrayList.size();
+            int i2 = 0;
+            while (i2 < size) {
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel = arrayList.get(i2);
+                i2++;
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel2 = tL_AuctionBidLevel;
+                if (i <= tL_AuctionBidLevel2.pos) {
+                    return tL_AuctionBidLevel2.amount;
+                }
+            }
+            return e();
         }
-        c();
+        return e();
     }
 
-    public final void g(int[] iArr) {
-        if (this.m == iArr) {
-            return;
+    public final int c(int i, long j) {
+        ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
+            int size = arrayList.size();
+            int i2 = 0;
+            int i3 = 0;
+            while (i3 < size) {
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel = arrayList.get(i3);
+                i3++;
+                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel2 = tL_AuctionBidLevel;
+                long j2 = tL_AuctionBidLevel2.amount;
+                if (j <= j2 && (j != j2 || i > tL_AuctionBidLevel2.date)) {
+                    i2 = tL_AuctionBidLevel2.pos;
+                } else {
+                    return tL_AuctionBidLevel2.pos;
+                }
+            }
+            return i2 + 1;
         }
-        this.m = iArr;
-        this.n = null;
-        c();
+        return -1;
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public final int d() {
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.e;
+        if (tL_StarGiftAuctionUserState.returned) {
+            return 3;
+        }
+        if (tL_StarGiftAuctionUserState.bid_amount == 0) {
+            return 4;
+        }
+        if (this.i <= this.d.gifts_per_round) {
+            return 1;
+        }
+        return 2;
     }
 
-    @Override
-    public final boolean getPadding(Rect rect) {
-        rect.set(gl.L(3.33f), gl.L(4.0f), gl.L(3.33f), gl.L(4.0f));
-        return true;
+    public final long e() {
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        if (tL_starGiftAuctionState != null) {
+            long j = this.e.min_bid_amount;
+            if (j > 0) {
+                return Math.max(tL_starGiftAuctionState.min_bid_amount, j);
+            }
+        }
+        long j2 = this.e.min_bid_amount;
+        if (j2 > 0) {
+            return j2;
+        }
+        if (tL_starGiftAuctionState == null) {
+            return 0L;
+        }
+        return tL_starGiftAuctionState.min_bid_amount;
     }
 
-    @Override
-    public final void setAlpha(int i) {
+    public final boolean f() {
+        if (this.g != null) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final boolean g(int i) {
+        if (this.d.auction_start_date > i) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void h() {
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f;
+        int i = -1;
+        if (tL_starGiftAuctionState != null) {
+            if (tL_starGiftAuctionState.top_bidders != null) {
+                long e = yac.h(this.a).e();
+                for (int i2 = 0; i2 < this.f.top_bidders.size(); i2++) {
+                    if (e == this.f.top_bidders.get(i2).longValue()) {
+                        i = i2 + 1;
+                        break;
+                    }
+                }
+            }
+            TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.e;
+            long j = tL_StarGiftAuctionUserState.bid_amount;
+            if (j > 0 && !tL_StarGiftAuctionUserState.returned) {
+                i = c(tL_StarGiftAuctionUserState.bid_date, j);
+            }
+        }
+        this.i = i;
     }
 }

@@ -1,85 +1,60 @@
 package defpackage;
 
-import android.view.View;
-public final class ud9 implements Runnable {
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.util.Log;
+public final class ud9 {
     public final byte a;
-    public final ye9 b;
-    public final lk0 c;
-    public final int d;
 
-    public ud9(ye9 ye9Var, lk0 lk0Var, int i, byte b) {
+    public ud9(byte b) {
         this.a = b;
-        this.b = ye9Var;
-        this.c = lk0Var;
-        this.d = i;
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        View view = null;
-        int i = this.d;
-        lk0 lk0Var = this.c;
-        ye9 ye9Var = this.b;
-        switch (b) {
+    public final Drawable a(Context context, XmlResourceParser xmlResourceParser, AttributeSet attributeSet, Resources.Theme theme) {
+        switch (this.a) {
             case 0:
-                if (lk0Var != null) {
-                    view = ye9Var.C1(lk0Var);
+                String classAttribute = attributeSet.getClassAttribute();
+                if (classAttribute == null) {
+                    return null;
                 }
-                if (view instanceof wi9) {
-                    wi9 wi9Var = (wi9) view;
-                    wi9Var.A();
-                    wi9Var.getEditText().setSelection(Math.min(i, wi9Var.getEditText().length()));
-                    return;
+                try {
+                    Drawable drawable = (Drawable) ud9.class.getClassLoader().loadClass(classAttribute).asSubclass(Drawable.class).getDeclaredConstructor(null).newInstance(null);
+                    tp2.c(drawable, context.getResources(), xmlResourceParser, attributeSet, theme);
+                    return drawable;
+                } catch (Exception e) {
+                    Log.e("DrawableDelegate", "Exception while inflating <drawable>", e);
+                    return null;
                 }
-                return;
             case 1:
-                if (lk0Var != null) {
-                    view = ye9Var.C1(lk0Var);
+                try {
+                    return ym.c(context, context.getResources(), xmlResourceParser, attributeSet, theme);
+                } catch (Exception e2) {
+                    Log.e("AsldcInflateDelegate", "Exception while inflating <animated-selector>", e2);
+                    return null;
                 }
-                if (view instanceof wi9) {
-                    wi9 wi9Var2 = (wi9) view;
-                    wi9Var2.A();
-                    wi9Var2.getEditText().setSelection(Math.min(i, wi9Var2.getEditText().length()));
-                    return;
-                }
-                return;
             case 2:
-                View C1 = ye9Var.C1(lk0Var);
-                if (C1 instanceof wi9) {
-                    wi9 wi9Var3 = (wi9) C1;
-                    wi9Var3.A();
-                    wi9Var3.getEditText().setSelection(Math.max(0, Math.min(i, wi9Var3.getEditText().length())));
-                    return;
+                try {
+                    Resources resources = context.getResources();
+                    mn mnVar = new mn(context);
+                    mnVar.inflate(resources, xmlResourceParser, attributeSet, theme);
+                    return mnVar;
+                } catch (Exception e3) {
+                    Log.e("AvdcInflateDelegate", "Exception while inflating <animated-vector>", e3);
+                    return null;
                 }
-                return;
-            case 3:
-                View C12 = ye9Var.C1(lk0Var);
-                if (C12 instanceof wi9) {
-                    wi9 wi9Var4 = (wi9) C12;
-                    wi9Var4.A();
-                    wi9Var4.getEditText().setSelection(Math.max(0, Math.min(i, wi9Var4.getEditText().length())));
-                    return;
-                }
-                return;
-            case 4:
-                View C13 = ye9Var.C1(lk0Var);
-                if (C13 instanceof wi9) {
-                    wi9 wi9Var5 = (wi9) C13;
-                    wi9Var5.A();
-                    wi9Var5.getEditText().setSelection(Math.max(0, Math.min(i, wi9Var5.getEditText().length())));
-                    return;
-                }
-                return;
             default:
-                View C14 = ye9Var.C1(lk0Var);
-                if (C14 instanceof wi9) {
-                    wi9 wi9Var6 = (wi9) C14;
-                    wi9Var6.A();
-                    wi9Var6.getEditText().setSelection(Math.max(0, Math.min(i, wi9Var6.getEditText().length())));
-                    return;
+                try {
+                    Resources resources2 = context.getResources();
+                    rdc rdcVar = new rdc();
+                    rdcVar.inflate(resources2, xmlResourceParser, attributeSet, theme);
+                    return rdcVar;
+                } catch (Exception e4) {
+                    Log.e("VdcInflateDelegate", "Exception while inflating <vector>", e4);
+                    return null;
                 }
-                return;
         }
     }
 }

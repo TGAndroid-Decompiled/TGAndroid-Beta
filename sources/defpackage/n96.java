@@ -1,134 +1,68 @@
 package defpackage;
 
+import android.graphics.Typeface;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Locale;
-public final class n96 implements o96 {
-    public static final Locale[] c = new Locale[0];
-    public final Locale[] a;
-    public final String b;
+import org.telegram.tgnet.ConnectionsManager;
+public final class n96 {
+    public int a;
+    public long b;
+    public int c;
+    public long d;
+    public int e;
+    public ArrayList f;
 
-    static {
-        new Locale("en", "XA");
-        new Locale("ar", "XB");
-        m96 m96Var = m96.b;
-        String[] split = "en-Latn".split("-", -1);
-        if (split.length > 2) {
-            new Locale(split[0], split[1], split[2]);
-        } else if (split.length > 1) {
-            new Locale(split[0], split[1]);
-        } else if (split.length == 1) {
-            new Locale(split[0]);
-        } else {
-            w26.j("Can not parse language tag: [en-Latn]");
-        }
-    }
-
-    public n96(Locale... localeArr) {
-        if (localeArr.length == 0) {
-            this.a = c;
-            this.b = "";
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        HashSet hashSet = new HashSet();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < localeArr.length; i++) {
-            Locale locale = localeArr[i];
-            if (locale != null) {
-                if (!hashSet.contains(locale)) {
-                    Locale locale2 = (Locale) locale.clone();
-                    arrayList.add(locale2);
-                    sb.append(locale2.getLanguage());
-                    String country = locale2.getCountry();
-                    if (country != null && !country.isEmpty()) {
-                        sb.append('-');
-                        sb.append(locale2.getCountry());
-                    }
-                    if (i < localeArr.length - 1) {
-                        sb.append(',');
-                    }
-                    hashSet.add(locale2);
-                }
-            } else {
-                fvc.f(tb4.n(i, "list[", "] is null"));
-                throw null;
+    public final float a() {
+        int currentTime = ConnectionsManager.getInstance(this.a).getCurrentTime();
+        ArrayList arrayList = this.f;
+        int size = arrayList.size();
+        int i = currentTime;
+        int i2 = 0;
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            m96 m96Var = (m96) obj;
+            if (m96Var.g > 0) {
+                i = Math.min(i, m96Var.d);
+                i2 = Math.max(i2, eg5.b(this.a, (int) m96Var.g, 0) + m96Var.d);
             }
         }
-        this.a = (Locale[]) arrayList.toArray(new Locale[0]);
-        this.b = sb.toString();
+        Typeface typeface = hl.a;
+        return (currentTime - i2) / (i - i2);
     }
 
-    @Override
-    public final String a() {
-        return this.b;
-    }
-
-    @Override
-    public final Object b() {
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof n96)) {
-            return false;
-        }
-        Locale[] localeArr = ((n96) obj).a;
-        Locale[] localeArr2 = this.a;
-        if (localeArr2.length != localeArr.length) {
-            return false;
-        }
-        for (int i = 0; i < localeArr2.length; i++) {
-            if (!localeArr2[i].equals(localeArr[i])) {
-                return false;
+    public final int b() {
+        int currentTime = ConnectionsManager.getInstance(this.a).getCurrentTime();
+        ArrayList arrayList = this.f;
+        int size = arrayList.size();
+        int i = 0;
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList.get(i2);
+            i2++;
+            m96 m96Var = (m96) obj;
+            long j = m96Var.g;
+            if (j > 0 && currentTime - m96Var.d <= eg5.b(this.a, (int) j, 0)) {
+                i += (int) m96Var.g;
             }
         }
-        return true;
-    }
-
-    @Override
-    public final Locale get(int i) {
-        if (i >= 0) {
-            Locale[] localeArr = this.a;
-            if (i < localeArr.length) {
-                return localeArr[i];
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final int hashCode() {
-        int i = 1;
-        for (Locale locale : this.a) {
-            i = (i * 31) + locale.hashCode();
-        }
+        this.d = Math.max(this.d, i);
         return i;
     }
 
-    @Override
-    public final int size() {
-        return this.a.length;
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("[");
+    public final void c() {
+        int currentTime = ConnectionsManager.getInstance(this.a).getCurrentTime();
+        ArrayList arrayList = this.f;
+        int size = arrayList.size();
         int i = 0;
-        while (true) {
-            Locale[] localeArr = this.a;
-            if (i < localeArr.length) {
-                sb.append(localeArr[i]);
-                if (i < localeArr.length - 1) {
-                    sb.append(',');
-                }
-                i++;
-            } else {
-                sb.append("]");
-                return sb.toString();
+        while (i < size) {
+            Object obj = arrayList.get(i);
+            i++;
+            m96 m96Var = (m96) obj;
+            if (m96Var.g > 0) {
+                currentTime = Math.min(currentTime, m96Var.d);
             }
         }
+        this.c = currentTime;
     }
 }

@@ -1,40 +1,32 @@
 package defpackage;
 
-import android.util.Base64;
-import android.util.Log;
-import java.io.IOException;
-public final class a8d extends g6d {
-    public final Object i;
-    public String j;
-    public gbe k;
+import android.accounts.Account;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+public final class a8d extends c4 {
+    public static final Parcelable.Creator<a8d> CREATOR = new s5d((byte) 14);
+    public final int a;
+    public final Account b;
+    public final int c;
+    public final GoogleSignInAccount d;
 
-    public a8d(vk9 vk9Var, String str, gbe gbeVar) {
-        super(vk9Var, str, gbeVar);
-        this.i = new Object();
+    public a8d(int i, Account account, int i2, GoogleSignInAccount googleSignInAccount) {
+        this.a = i;
+        this.b = account;
+        this.c = i2;
+        this.d = googleSignInAccount;
     }
 
     @Override
-    public final Object d(String str) {
-        gbe gbeVar;
-        try {
-            synchronized (this.i) {
-                if (!str.equals(this.j)) {
-                    gbe g = gbe.g(Base64.decode(str, 3));
-                    this.j = str;
-                    this.k = g;
-                }
-                gbeVar = this.k;
-            }
-            return gbeVar;
-        } catch (IOException | IllegalArgumentException unused) {
-            String str2 = this.b;
-            StringBuilder sb = new StringBuilder(String.valueOf(str).length() + str2.length() + 27);
-            sb.append("Invalid byte[] value for ");
-            sb.append(str2);
-            sb.append(": ");
-            sb.append(str);
-            Log.e("PhenotypeFlag", sb.toString());
-            return null;
-        }
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 1, 4);
+        parcel.writeInt(this.a);
+        bye.k(parcel, 2, this.b, i);
+        bye.q(parcel, 3, 4);
+        parcel.writeInt(this.c);
+        bye.k(parcel, 4, this.d, i);
+        bye.s(parcel, r);
     }
 }

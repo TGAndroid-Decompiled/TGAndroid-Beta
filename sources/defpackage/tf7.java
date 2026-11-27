@@ -1,81 +1,115 @@
 package defpackage;
-public final class tf7 {
-    public int a;
-    public String b;
-    public int c;
-    public int d;
-    public byte e;
-    public int f;
-    public int g;
 
-    public final boolean a(int i) {
-        int i2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        int i7;
-        if ((i & (-2097152)) != -2097152 || (i2 = (i >>> 19) & 3) == 1 || (i3 = (i >>> 17) & 3) == 0 || (i4 = (i >>> 12) & 15) == 0 || i4 == 15 || (i5 = (i >>> 10) & 3) == 3) {
-            return false;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.util.Log;
+import java.util.List;
+public final class tf7 {
+    public byte a;
+    public int b;
+    public String c;
+    public Object d;
+    public Object e;
+
+    public static String b(ji4 ji4Var) {
+        ji4Var.a();
+        yi4 yi4Var = ji4Var.c;
+        String str = yi4Var.e;
+        if (str != null) {
+            return str;
         }
-        this.a = i2;
-        this.b = uad.a[3 - i3];
-        int i8 = uad.b[i5];
-        this.d = i8;
-        byte b = 2;
-        if (i2 == 2) {
-            i8 /= 2;
-            this.d = i8;
-        } else if (i2 == 0) {
-            i8 /= 4;
-            this.d = i8;
+        ji4Var.a();
+        String str2 = yi4Var.b;
+        if (!str2.startsWith("1:")) {
+            return str2;
         }
-        int i9 = (i >>> 9) & 1;
-        int i10 = 1152;
-        if (i3 != 1) {
-            if (i3 != 2) {
-                if (i3 == 3) {
-                    i10 = 384;
+        String[] split = str2.split(":");
+        if (split.length < 2) {
+            return null;
+        }
+        String str3 = split[1];
+        if (str3.isEmpty()) {
+            return null;
+        }
+        return str3;
+    }
+
+    public final synchronized String a() {
+        if (this.c == null) {
+            f();
+        }
+        return this.c;
+    }
+
+    public final synchronized int c() {
+        PackageInfo d;
+        if (this.b == 0 && (d = d("com.google.android.gms")) != null) {
+            this.b = d.versionCode;
+        }
+        return this.b;
+    }
+
+    public final PackageInfo d(String str) {
+        try {
+            return ((Context) this.d).getPackageManager().getPackageInfo(str, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w("FirebaseMessaging", "Failed to find package " + e);
+            return null;
+        }
+    }
+
+    public final boolean e() {
+        byte b;
+        synchronized (this) {
+            b = this.a;
+            if (b == 0) {
+                PackageManager packageManager = ((Context) this.d).getPackageManager();
+                if (packageManager.checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+                    Log.e("FirebaseMessaging", "Google Play services missing or without correct permission.");
+                    b = 0;
                 } else {
-                    sc8.e();
-                    return false;
+                    if (!rve.a()) {
+                        Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
+                        intent.setPackage("com.google.android.gms");
+                        List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
+                        if (queryIntentServices != null && queryIntentServices.size() > 0) {
+                            this.a = (byte) 1;
+                            b = 1;
+                        }
+                    }
+                    Intent intent2 = new Intent("com.google.iid.TOKEN_REQUEST");
+                    intent2.setPackage("com.google.android.gms");
+                    List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
+                    if (queryBroadcastReceivers != null && queryBroadcastReceivers.size() > 0) {
+                        this.a = (byte) 2;
+                        b = 2;
+                    } else {
+                        Log.w("FirebaseMessaging", "Failed to resolve IID implementation package, falling back");
+                        if (rve.a()) {
+                            this.a = (byte) 2;
+                            b = 2;
+                        } else {
+                            this.a = (byte) 1;
+                            b = 1;
+                        }
+                    }
                 }
             }
-        } else if (i2 != 3) {
-            i10 = 576;
         }
-        this.g = i10;
-        if (i3 == 3) {
-            if (i2 == 3) {
-                i7 = uad.c[i4 - 1];
-            } else {
-                i7 = uad.d[i4 - 1];
-            }
-            this.f = i7;
-            this.c = ls6.y(i7, 12, i8, i9) << 2;
-        } else {
-            int i11 = 144;
-            if (i2 == 3) {
-                if (i3 == 2) {
-                    i6 = uad.e[i4 - 1];
-                } else {
-                    i6 = uad.f[i4 - 1];
-                }
-                this.f = i6;
-                this.c = ls6.y(i6, 144, i8, i9);
-            } else {
-                int i12 = uad.g[i4 - 1];
-                this.f = i12;
-                if (i3 == 1) {
-                    i11 = 72;
-                }
-                this.c = ls6.y(i11, i12, i8, i9);
-            }
+        if (b != 0) {
+            return true;
         }
-        if (((i >> 6) & 3) == 3) {
-            b = 1;
+        return false;
+    }
+
+    public final synchronized void f() {
+        PackageInfo d = d(((Context) this.d).getPackageName());
+        if (d != null) {
+            this.c = Integer.toString(d.versionCode);
+            this.e = d.versionName;
         }
-        this.e = b;
-        return true;
     }
 }

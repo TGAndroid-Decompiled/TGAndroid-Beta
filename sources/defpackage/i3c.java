@@ -1,33 +1,19 @@
 package defpackage;
-public final class i3c implements Runnable {
-    public final byte a;
-    public final p3c b;
-    public final byte[] c;
 
-    public i3c(p3c p3cVar, byte[] bArr, byte b) {
-        this.a = b;
-        this.b = p3cVar;
-        this.c = bArr;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class i3c extends r3c {
+    public final gn1 T1;
+
+    public i3c(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i, TL_iv.RichMessage richMessage, gn1 gn1Var) {
+        super(activity, str, str2, null, inputPeer, i, false, richMessage);
+        this.T1 = gn1Var;
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        byte[] bArr = this.c;
-        p3c p3cVar = this.b;
-        switch (b) {
-            case 0:
-                p3cVar.r0(bArr);
-                return;
-            default:
-                p3cVar.A0();
-                p3cVar.W = bArr;
-                p3cVar.getMessagesController().n4(0L, "VALIDATE_PASSWORD");
-                p3c p3cVar2 = new p3c(9, p3cVar.V);
-                p3cVar2.I = p3cVar.I;
-                p3cVar2.H = p3cVar.H;
-                p3cVar.presentFragment(p3cVar2, true);
-                return;
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.T1.run();
     }
 }

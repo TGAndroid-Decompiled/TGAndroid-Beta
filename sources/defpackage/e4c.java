@@ -1,29 +1,44 @@
 package defpackage;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class e4c extends URLSpan {
-    public final vib a;
-
-    public e4c(String str, vib vibVar) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.a = vibVar;
-    }
+import android.widget.ScrollView;
+public final class e4c extends ScrollView {
+    public Drawable a;
+    public mm b;
+    public boolean c;
 
     @Override
-    public final void onClick(View view) {
-        d01.q(view.getContext(), Uri.parse(getURL()), true, true);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        vib vibVar = this.a;
-        if (vibVar != null) {
-            vibVar.a(textPaint);
+    public final void dispatchDraw(Canvas canvas) {
+        float f;
+        super.dispatchDraw(canvas);
+        mm mmVar = this.b;
+        if (canScrollVertically(-1)) {
+            f = 1.0f;
+        } else {
+            f = 0.0f;
         }
-        textPaint.setUnderlineText(true);
+        float e = mmVar.e(false, f) * 0.5f;
+        if (e > 0.0f) {
+            Drawable drawable = this.a;
+            if (drawable == null) {
+                drawable = getContext().getResources().getDrawable(2131231240);
+                this.a = drawable;
+            }
+            drawable.setBounds(0, getScrollY(), getWidth(), this.a.getIntrinsicHeight() + getScrollY());
+            this.a.setAlpha((int) (e * 255.0f));
+            this.a.draw(canvas);
+        }
+    }
+
+    @Override
+    public final void onNestedScroll(View view, int i, int i2, int i3, int i4) {
+        super.onNestedScroll(view, i, i2, i3, i4);
+        boolean canScrollVertically = canScrollVertically(-1);
+        if (this.c != canScrollVertically) {
+            invalidate();
+            this.c = canScrollVertically;
+        }
     }
 }

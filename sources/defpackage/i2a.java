@@ -1,70 +1,100 @@
 package defpackage;
 
-import java.util.HashMap;
-import java.util.List;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class i2a implements RequestDelegate {
-    public final byte a = 2;
-    public final z3a b;
-    public final Object c;
-    public final k27 d;
-    public final String e;
-    public final Object f;
-    public final boolean g;
-    public final Object h;
-    public final Object i;
-    public final Object j;
-    public final boolean k;
-    public final Object l;
+public final class i2a extends FrameLayout {
+    public final int a;
+    public final rb0 b;
+    public final de0 c;
+    public final TextView d;
+    public ViewPropertyAnimator e;
 
-    public i2a(z3a z3aVar, String str, List list, boolean z, k27 k27Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto, mu1 mu1Var, TwoStepVerificationActivity twoStepVerificationActivity, TLObject[] tLObjectArr, TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP, boolean z2) {
-        this.b = z3aVar;
-        this.e = str;
-        this.l = list;
-        this.g = z;
-        this.d = k27Var;
-        this.c = keyboardButtonProto;
-        this.f = mu1Var;
-        this.h = twoStepVerificationActivity;
-        this.i = tLObjectArr;
-        this.j = tL_inputCheckPasswordSRP;
-        this.k = z2;
+    public i2a(Activity activity, int i) {
+        super(activity);
+        this.a = i;
+        this.b = new rb0((vnb) null);
+        de0 de0Var = new de0(activity);
+        this.c = de0Var;
+        de0Var.setRoundRadius(hl.L(15.0f));
+        addView(de0Var, tre.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(activity);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(-1);
+        textView.setTypeface(hl.o());
+        textView.setSingleLine();
+        textView.setLines(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, tre.d(-1, -2.0f, 51, 53.0f, 11.33f, 12.0f, 0.0f));
+        TextView textView2 = new TextView(activity);
+        textView2.setTextSize(1, 12.0f);
+        textView2.setTextColor(aob.p1(0.85f, -1));
+        addView(textView2, tre.d(-1, -2.0f, 51, 53.0f, 29.33f, 12.0f, 0.0f));
+        textView2.setText(hl.F2(ob6.M0(2131748561, null), false, hl.L(2.6666667f), hl.L(0.33f), 1.0f, 2131232246));
+        set(null);
     }
 
-    @Override
-    public final void run(final org.telegram.tgnet.TLObject r21, final org.telegram.tgnet.TLRPC.TL_error r22) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.i2a.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void a(boolean z, boolean z2) {
+        ViewPropertyAnimator viewPropertyAnimator = this.e;
+        if (viewPropertyAnimator != null) {
+            viewPropertyAnimator.cancel();
+            this.e = null;
+        }
+        float f = 0.0f;
+        int i = 0;
+        if (z2) {
+            setVisibility(0);
+            ViewPropertyAnimator animate = animate();
+            if (z) {
+                f = 1.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f).setInterpolator(k43.h).withEndAction(new q38((byte) 11, this, z)).setDuration(320L);
+            this.e = duration;
+            duration.start();
+            return;
+        }
+        if (!z) {
+            i = 8;
+        }
+        setVisibility(i);
+        if (z) {
+            f = 1.0f;
+        }
+        setAlpha(f);
     }
 
-    public i2a(z3a z3aVar, TLObject tLObject, k27 k27Var, String str, k3a k3aVar, boolean z, k3a k3aVar2, Object obj, HashMap hashMap, boolean z2, TLRPC.Message message) {
-        this.b = z3aVar;
-        this.c = tLObject;
-        this.d = k27Var;
-        this.e = str;
-        this.f = k3aVar;
-        this.g = z;
-        this.h = k3aVar2;
-        this.i = obj;
-        this.j = hashMap;
-        this.k = z2;
-        this.l = message;
-    }
-
-    public i2a(z3a z3aVar, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLObject tLObject, k27 k27Var, String str, k3a k3aVar, boolean z, k3a k3aVar2, Object obj, HashMap hashMap, boolean z2) {
-        this.b = z3aVar;
-        this.l = tL_messages_addPollAnswer;
-        this.c = tLObject;
-        this.d = k27Var;
-        this.e = str;
-        this.f = k3aVar;
-        this.g = z;
-        this.h = k3aVar2;
-        this.i = obj;
-        this.j = hashMap;
-        this.k = z2;
+    public void set(TLRPC.InputPeer inputPeer) {
+        long m;
+        String str;
+        int i = this.a;
+        if (inputPeer == null) {
+            m = yac.h(i).e();
+        } else {
+            m = wf3.m(inputPeer);
+        }
+        int i2 = (m > 0L ? 1 : (m == 0L ? 0 : -1));
+        TextView textView = this.d;
+        de0 de0Var = this.c;
+        rb0 rb0Var = this.b;
+        if (i2 >= 0) {
+            TLRPC.User X1 = uc7.s1(i).X1(Long.valueOf(m));
+            rb0Var.q(X1);
+            de0Var.f(X1, rb0Var);
+            textView.setText(lbc.r(X1));
+            return;
+        }
+        TLRPC.Chat M0 = uc7.s1(i).M0(Long.valueOf(-m));
+        rb0Var.p(M0);
+        de0Var.f(M0, rb0Var);
+        if (M0 == null) {
+            str = "";
+        } else {
+            str = M0.title;
+        }
+        textView.setText(str);
     }
 }

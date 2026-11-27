@@ -1,17 +1,23 @@
 package defpackage;
-public final class p8e implements zn7 {
-    public static final p8e a = new Object();
+public enum p8e {
+    VOID(Void.class),
+    INT(Integer.class),
+    LONG(Long.class),
+    FLOAT(Float.class),
+    DOUBLE(Double.class),
+    BOOLEAN(Boolean.class),
+    STRING(String.class),
+    BYTE_STRING(pzd.class),
+    ENUM(Integer.class),
+    MESSAGE(Object.class);
+    
+    public final Class a;
 
     static {
-        yjb.y(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, yjb.u(yjb.q(kkd.class, new cjd(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)));
+        pzd pzdVar = pzd.c;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    p8e(Class cls) {
+        this.a = cls;
     }
 }

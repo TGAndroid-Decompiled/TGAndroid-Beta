@@ -1,18 +1,17 @@
 package defpackage;
-public abstract class lue {
-    public static String a(String str, String str2) {
-        int length = str.length() - str2.length();
-        if (length >= 0 && length <= 1) {
-            StringBuilder sb = new StringBuilder(str2.length() + str.length());
-            for (int i = 0; i < str.length(); i++) {
-                sb.append(str.charAt(i));
-                if (str2.length() > i) {
-                    sb.append(str2.charAt(i));
-                }
-            }
-            return sb.toString();
+public final class lue implements zq7 {
+    public static final lue a = new Object();
+
+    static {
+        xnb.y(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, xnb.t(xnb.p(xmd.class, new skd(1)), 2)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        w26.j("Invalid input received");
-        return null;
+        throw new ClassCastException();
     }
 }

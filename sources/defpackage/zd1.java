@@ -1,237 +1,282 @@
 package defpackage;
+public final class zd1 {
+    public final byte a;
+    public byte[] b;
+    public int c;
+    public int d;
+    public int e;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.d;
-public final class zd1 extends d {
-    public yd1 a;
-    public yd1 b;
-    public r7 c;
-    public wjb d;
-
-    public final void Y() {
-        String str;
-        TLRPC.User f = y6c.h(this.currentAccount).f();
-        if (f != null && this.b.getText() != null && this.a.getText() != null) {
-            String obj = this.a.getText().toString();
-            String obj2 = this.b.getText().toString();
-            String str2 = f.first_name;
-            if (str2 == null || !str2.equals(obj) || (str = f.last_name) == null || !str.equals(obj2)) {
-                TL_account.updateProfile updateprofile = new TL_account.updateProfile();
-                updateprofile.flags = 3;
-                updateprofile.first_name = obj;
-                f.first_name = obj;
-                updateprofile.last_name = obj2;
-                f.last_name = obj2;
-                TLRPC.User V1 = na7.q1(this.currentAccount).V1(Long.valueOf(y6c.h(this.currentAccount).e()));
-                if (V1 != null) {
-                    V1.first_name = updateprofile.first_name;
-                    V1.last_name = updateprofile.last_name;
-                }
-                y6c.h(this.currentAccount).u(true);
-                kk7.f(this.currentAccount).k(kk7.i0, new Object[0]);
-                kk7.f(this.currentAccount).k(2, 1);
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateprofile, new ce2((byte) 0));
-            }
-        }
+    public zd1(int i, int i2) {
+        this.a = (byte) 0;
+        this.c = i;
+        this.d = i2;
+        this.b = new byte[(i2 << 1) - 1];
+        this.e = 0;
     }
 
-    @Override
-    public final void addThemeColorKeys(HashSet hashSet) {
-        super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(bkb.s8));
-        hashSet.add(Integer.valueOf(bkb.z8));
-        hashSet.add(Integer.valueOf(bkb.r8));
-        hashSet.add(Integer.valueOf(bkb.c6));
-    }
-
-    @Override
-    public final View createView(Context context) {
+    public final void a() {
+        boolean z;
         int i;
+        int i2 = this.c;
+        if (i2 >= 0 && (i2 < (i = this.e) || (i2 == i && this.d == 0))) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.p(z);
+    }
+
+    public final int b() {
+        return ((this.e - this.c) << 3) - this.d;
+    }
+
+    public final void c() {
+        if (this.d == 0) {
+            return;
+        }
+        this.d = 0;
+        this.c++;
+        a();
+    }
+
+    public final int d() {
+        boolean z;
+        if (this.d == 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.p(z);
+        return this.c;
+    }
+
+    public final boolean e() {
+        boolean z;
+        boolean z2;
+        switch (this.a) {
+            case 1:
+                if ((this.b[this.c] & (128 >> this.d)) != 0) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                m();
+                return z;
+            default:
+                if ((((this.b[this.d] & 255) >> this.e) & 1) == 1) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+                n(1);
+                return z2;
+        }
+    }
+
+    public final int f(int i) {
+        switch (this.a) {
+            case 1:
+                if (i == 0) {
+                    return 0;
+                }
+                this.d += i;
+                int i2 = 0;
+                while (true) {
+                    int i3 = this.d;
+                    if (i3 > 8) {
+                        int i4 = i3 - 8;
+                        this.d = i4;
+                        byte[] bArr = this.b;
+                        int i5 = this.c;
+                        this.c = i5 + 1;
+                        i2 |= (bArr[i5] & 255) << i4;
+                    } else {
+                        byte[] bArr2 = this.b;
+                        int i6 = this.c;
+                        int i7 = (i2 | ((bArr2[i6] & 255) >> (8 - i3))) & ((-1) >>> (32 - i));
+                        if (i3 == 8) {
+                            this.d = 0;
+                            this.c = i6 + 1;
+                        }
+                        a();
+                        return i7;
+                    }
+                }
+            default:
+                int i8 = this.d;
+                int min = Math.min(i, 8 - this.e);
+                byte[] bArr3 = this.b;
+                int i9 = i8 + 1;
+                int i10 = ((bArr3[i8] & 255) >> this.e) & (255 >> (8 - min));
+                while (min < i) {
+                    i10 |= (bArr3[i9] & 255) << min;
+                    min += 8;
+                    i9++;
+                }
+                int i11 = i10 & ((-1) >>> (32 - i));
+                n(i);
+                return i11;
+        }
+    }
+
+    public final void g(int i, byte[] bArr) {
+        int i2 = i >> 3;
+        for (int i3 = 0; i3 < i2; i3++) {
+            byte[] bArr2 = this.b;
+            int i4 = this.c;
+            int i5 = i4 + 1;
+            this.c = i5;
+            byte b = bArr2[i4];
+            int i6 = this.d;
+            byte b2 = (byte) (b << i6);
+            bArr[i3] = b2;
+            bArr[i3] = (byte) (b2 | ((bArr2[i5] & 255) >> (8 - i6)));
+        }
+        int i7 = i & 7;
+        if (i7 == 0) {
+            return;
+        }
+        byte b3 = (byte) (bArr[i2] & (255 >> i7));
+        bArr[i2] = b3;
+        int i8 = this.d;
+        if (i8 + i7 > 8) {
+            byte[] bArr3 = this.b;
+            int i9 = this.c;
+            this.c = i9 + 1;
+            bArr[i2] = (byte) (b3 | ((bArr3[i9] & 255) << i8));
+            i8 -= 8;
+            this.d = i8;
+        }
+        int i10 = i8 + i7;
+        this.d = i10;
+        byte[] bArr4 = this.b;
+        int i11 = this.c;
+        bArr[i2] = (byte) (bArr[i2] | ((byte) (((bArr4[i11] & 255) >> (8 - i10)) << (8 - i7))));
+        if (i10 == 8) {
+            this.d = 0;
+            this.c = i11 + 1;
+        }
+        a();
+    }
+
+    public final long h(int i) {
+        if (i <= 32) {
+            int f = f(i);
+            String str = gcc.a;
+            return f & 4294967295L;
+        }
+        int f2 = f(i - 32);
+        int f3 = f(32);
+        String str2 = gcc.a;
+        return ((f2 & 4294967295L) << 32) | (f3 & 4294967295L);
+    }
+
+    public final void i(int i, byte[] bArr) {
+        boolean z;
+        if (this.d == 0) {
+            z = true;
+        } else {
+            z = false;
+        }
+        yve.p(z);
+        System.arraycopy(this.b, this.c, bArr, 0, i);
+        this.c += i;
+        a();
+    }
+
+    public final void j(int i, byte[] bArr) {
+        this.b = bArr;
+        this.c = 0;
+        this.d = 0;
+        this.e = i;
+    }
+
+    public final void k(ey7 ey7Var) {
+        j(ey7Var.c, ey7Var.a);
+        l(ey7Var.b << 3);
+    }
+
+    public final void l(int i) {
+        int i2 = i / 8;
+        this.c = i2;
+        this.d = i - (i2 << 3);
+        a();
+    }
+
+    public final void m() {
+        int i = this.d + 1;
+        this.d = i;
+        if (i == 8) {
+            this.d = 0;
+            this.c++;
+        }
+        a();
+    }
+
+    public final void n(int i) {
+        boolean z;
         int i2;
-        wjb wjbVar = this.d;
-        zkb.l(this.actionBar, 3, bkb.e8, wjbVar);
-        zkb.l(this.actionBar, 1, bkb.u8, wjbVar);
-        this.actionBar.setBackButtonImage(2131231243);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(k96.M0(2131751252, null));
-        this.actionBar.setActionBarMenuOnItemClick(new r8(this, (byte) 17));
-        this.c = this.actionBar.t().h(1, 2131231245, gl.L(56.0f), k96.M0(2131751342, null));
-        TLRPC.User V1 = na7.q1(this.currentAccount).V1(Long.valueOf(y6c.h(this.currentAccount).e()));
-        if (V1 == null) {
-            V1 = y6c.h(this.currentAccount).f();
-        }
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.fragmentView = linearLayout;
-        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-        ((LinearLayout) this.fragmentView).setOrientation(1);
-        this.fragmentView.setOnTouchListener(new p8((byte) 22));
-        yd1 yd1Var = new yd1(this, context, (byte) 0);
-        this.a = yd1Var;
-        yd1Var.setTextSize(1, 18.0f);
-        yd1 yd1Var2 = this.a;
-        int i3 = bkb.G6;
-        zkb.D(yd1Var2, i3, wjbVar);
-        yd1 yd1Var3 = this.a;
-        int i4 = bkb.F6;
-        zkb.X(yd1Var3, i4, wjbVar);
-        this.a.setBackgroundDrawable(null);
-        yd1 yd1Var4 = this.a;
-        int i5 = bkb.j6;
-        int i6 = bkb.k6;
-        int i7 = bkb.o7;
-        zkb.F(yd1Var4, i5, i6, i7, wjbVar);
-        this.a.setMaxLines(1);
-        this.a.setLines(1);
-        this.a.setSingleLine(true);
-        yd1 yd1Var5 = this.a;
-        if (k96.a0) {
-            i = 5;
-        } else {
-            i = 3;
-        }
-        yd1Var5.setGravity(i);
-        this.a.setInputType(49152);
-        this.a.setImeOptions(5);
-        this.a.setHint(k96.M0(2131750677, null));
-        zkb.v(this.a, i4, wjbVar);
-        this.a.setCursorSize(gl.L(20.0f));
-        this.a.setCursorWidth(1.5f);
-        linearLayout.addView(this.a, nme.k(24.0f, 24.0f, 24.0f, 0.0f, -1, 36));
-        this.a.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final zd1 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final boolean onEditorAction(TextView textView, int i8, KeyEvent keyEvent) {
-                byte b = r2;
-                zd1 zd1Var = this.b;
-                switch (b) {
-                    case 0:
-                        if (i8 != 5) {
-                            return false;
-                        }
-                        zd1Var.b.requestFocus();
-                        yd1 yd1Var6 = zd1Var.b;
-                        yd1Var6.setSelection(yd1Var6.length());
-                        return true;
-                    default:
-                        if (i8 != 6) {
-                            return false;
-                        }
-                        zd1Var.c.performClick();
-                        return true;
+        switch (this.a) {
+            case 1:
+                int i3 = i / 8;
+                int i4 = this.c + i3;
+                this.c = i4;
+                int i5 = (i - (i3 << 3)) + this.d;
+                this.d = i5;
+                if (i5 > 7) {
+                    this.c = i4 + 1;
+                    this.d = i5 - 8;
                 }
-            }
-        });
-        yd1 yd1Var6 = new yd1(this, context, (byte) 1);
-        this.b = yd1Var6;
-        yd1Var6.setTextSize(1, 18.0f);
-        zkb.D(this.b, i3, wjbVar);
-        zkb.X(this.b, i4, wjbVar);
-        this.b.setBackgroundDrawable(null);
-        zkb.F(this.b, i5, i6, i7, wjbVar);
-        this.b.setMaxLines(1);
-        this.b.setLines(1);
-        this.b.setSingleLine(true);
-        yd1 yd1Var7 = this.b;
-        if (k96.a0) {
-            i2 = 5;
-        } else {
-            i2 = 3;
-        }
-        yd1Var7.setGravity(i2);
-        this.b.setInputType(49152);
-        this.b.setImeOptions(6);
-        this.b.setHint(k96.M0(2131748840, null));
-        zkb.v(this.b, i4, wjbVar);
-        this.b.setCursorSize(gl.L(20.0f));
-        this.b.setCursorWidth(1.5f);
-        linearLayout.addView(this.b, nme.k(24.0f, 16.0f, 24.0f, 0.0f, -1, 36));
-        this.b.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
-            public final zd1 b;
-
-            {
-                this.b = this;
-            }
-
-            @Override
-            public final boolean onEditorAction(TextView textView, int i8, KeyEvent keyEvent) {
-                byte b = r2;
-                zd1 zd1Var = this.b;
-                switch (b) {
-                    case 0:
-                        if (i8 != 5) {
-                            return false;
-                        }
-                        zd1Var.b.requestFocus();
-                        yd1 yd1Var62 = zd1Var.b;
-                        yd1Var62.setSelection(yd1Var62.length());
-                        return true;
-                    default:
-                        if (i8 != 6) {
-                            return false;
-                        }
-                        zd1Var.c.performClick();
-                        return true;
+                a();
+                return;
+            default:
+                int i6 = i / 8;
+                int i7 = this.d + i6;
+                this.d = i7;
+                int i8 = (i - (i6 << 3)) + this.e;
+                this.e = i8;
+                if (i8 > 7) {
+                    i7++;
+                    this.d = i7;
+                    i8 -= 8;
+                    this.e = i8;
                 }
-            }
-        });
-        if (V1 != null) {
-            this.a.setText(V1.first_name);
-            yd1 yd1Var8 = this.a;
-            yd1Var8.setSelection(yd1Var8.length());
-            this.b.setText(V1.last_name);
-        }
-        return this.fragmentView;
-    }
-
-    @Override
-    public final wjb getResourceProvider() {
-        return this.d;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        yd1 yd1Var = this.a;
-        int i = bkb.j6;
-        arrayList.add(new blb(yd1Var, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, i));
-        yd1 yd1Var2 = this.a;
-        int i2 = bkb.k6;
-        arrayList.add(new blb(yd1Var2, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, i2));
-        arrayList.add(new blb(this.b, 32, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, i));
-        arrayList.add(new blb(this.b, 65568, (Class[]) null, (Paint) null, (Drawable[]) null, (alb) null, i2));
-        return arrayList;
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        if (!na7.c1().getBoolean("view_animations", true)) {
-            this.a.requestFocus();
-            gl.E3(this.a);
+                if (i7 >= 0 && (i7 < (i2 = this.c) || (i7 == i2 && i8 == 0))) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                yve.p(z);
+                return;
         }
     }
 
-    @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
-        if (z) {
-            gl.d3(new nv0(this, (byte) 19), 100L);
+    public final void o(int i) {
+        boolean z;
+        if (this.d == 0) {
+            z = true;
+        } else {
+            z = false;
         }
+        yve.p(z);
+        this.c += i;
+        a();
+    }
+
+    public zd1(byte[] bArr) {
+        this.a = (byte) 2;
+        this.b = bArr;
+        this.c = bArr.length;
+    }
+
+    public zd1(int i, byte[] bArr) {
+        this.a = (byte) 1;
+        this.b = bArr;
+        this.e = i;
+    }
+
+    public zd1() {
+        this.a = (byte) 1;
+        this.b = gcc.b;
     }
 }

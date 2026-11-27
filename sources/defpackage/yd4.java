@@ -1,28 +1,16 @@
 package defpackage;
 
-import android.animation.ValueAnimator;
-public final class yd4 implements ValueAnimator.AnimatorUpdateListener {
-    public final byte a;
-    public final fe4 b;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class yd4 extends FrameLayout {
+    public tpa a;
 
-    public yd4(fe4 fe4Var, byte b) {
-        this.a = b;
-        this.b = fe4Var;
+    public tpa getSubtitleTextView() {
+        return this.a;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        byte b = this.a;
-        fe4 fe4Var = this.b;
-        switch (b) {
-            case 0:
-                fe4Var.y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fe4Var.invalidate();
-                return;
-            default:
-                fe4Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fe4Var.invalidate();
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
     }
 }

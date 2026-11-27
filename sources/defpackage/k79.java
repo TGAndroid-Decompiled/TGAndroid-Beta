@@ -1,28 +1,38 @@
 package defpackage;
 
-import android.view.animation.Interpolator;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-public final class k79 implements Iterable {
-    public final x46 a;
-
-    public k79(j79 j79Var, Interpolator interpolator, long j) {
-        this.a = new x46(new wk4(this, j79Var, false, (byte) 23), interpolator, j);
+import android.database.Observable;
+public final class k79 extends Observable {
+    public final boolean a() {
+        return !((Observable) this).mObservers.isEmpty();
     }
 
-    public final void h(Object obj, boolean z) {
-        List list;
-        if (obj != null) {
-            list = Collections.singletonList(obj);
-        } else {
-            list = null;
+    public final void b() {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((l79) ((Observable) this).mObservers.get(size)).a();
         }
-        this.a.m(list, z);
     }
 
-    @Override
-    public final Iterator iterator() {
-        return this.a.b.iterator();
+    public final void c(int i, int i2) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((l79) ((Observable) this).mObservers.get(size)).e(i, i2);
+        }
+    }
+
+    public final void d(int i, int i2, Object obj) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((l79) ((Observable) this).mObservers.get(size)).c(i, i2, obj);
+        }
+    }
+
+    public final void e(int i, int i2) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((l79) ((Observable) this).mObservers.get(size)).d(i, i2);
+        }
+    }
+
+    public final void f(int i, int i2) {
+        for (int size = ((Observable) this).mObservers.size() - 1; size >= 0; size--) {
+            ((l79) ((Observable) this).mObservers.get(size)).f(i, i2);
+        }
     }
 }

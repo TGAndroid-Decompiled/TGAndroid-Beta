@@ -1,16 +1,17 @@
 package defpackage;
-public abstract class fod {
-    public static boolean a(int i, int i2) {
-        if ((i & i2) != 0) {
-            return true;
-        }
-        return false;
+public final class fod implements zq7 {
+    public static final fod a = new Object();
+
+    static {
+        xnb.y(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, xnb.s(xnb.o(bdd.class, new ubd(1)), 2)), 3)), 4)));
     }
 
-    public static int b(int i, int i2, boolean z) {
-        if (z) {
-            return i | i2;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return i & (~i2);
+        throw new ClassCastException();
     }
 }

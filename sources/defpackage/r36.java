@@ -1,11 +1,12 @@
 package defpackage;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public interface r36 {
-    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
-
-    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
-
-    void c(TLObject tLObject);
+import android.animation.ValueAnimator;
+import java.util.ArrayList;
+public final class r36 {
+    public boolean a;
+    public final ArrayList b = new ArrayList();
+    public float c;
+    public boolean d;
+    public float e;
+    public ValueAnimator f;
 }

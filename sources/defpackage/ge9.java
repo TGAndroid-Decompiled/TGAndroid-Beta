@@ -1,17 +1,29 @@
 package defpackage;
-public final class ge9 {
-    public final ye9 a;
 
-    public ge9(ye9 ye9Var) {
-        this.a = ye9Var;
+import java.io.Serializable;
+public final class ge9 implements Serializable {
+    public final Throwable a;
+
+    public ge9(Throwable th) {
+        th.getClass();
+        this.a = th;
     }
 
-    public final void a() {
-        ye9 ye9Var = this.a;
-        ld9 ld9Var = ye9Var.R3;
-        if (ld9Var != null) {
-            ld9Var.g();
+    public final boolean equals(Object obj) {
+        if (obj instanceof ge9) {
+            if (ur5.a(this.a, ((ge9) obj).a)) {
+                return true;
+            }
+            return false;
         }
-        ye9Var.p3.onContentChanged();
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.a.hashCode();
+    }
+
+    public final String toString() {
+        return "Failure(" + this.a + ')';
     }
 }

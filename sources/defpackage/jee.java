@@ -1,34 +1,17 @@
 package defpackage;
-public abstract class jee {
-    public static final Class a;
-    public static final boolean b;
+public final class jee implements zq7 {
+    public static final jee a = new Object();
 
     static {
-        Class<?> cls;
-        boolean z;
-        Class<?> cls2 = null;
-        try {
-            cls = Class.forName("libcore.io.Memory");
-        } catch (Throwable unused) {
-            cls = null;
-        }
-        a = cls;
-        try {
-            cls2 = Class.forName("org.robolectric.Robolectric");
-        } catch (Throwable unused2) {
-        }
-        if (cls2 != null) {
-            z = true;
-        } else {
-            z = false;
-        }
-        b = z;
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)));
     }
 
-    public static boolean a() {
-        if (a != null && !b) {
-            return true;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
-        return false;
+        throw new ClassCastException();
     }
 }

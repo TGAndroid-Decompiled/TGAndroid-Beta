@@ -1,17 +1,23 @@
 package defpackage;
-public final class mfe implements zn7 {
-    public static final mfe a = new Object();
 
-    static {
-        yjb.y(yjb.p(gid.class, yjb.t(yjb.p(gid.class, yjb.t(yjb.p(gid.class, new bgd(1)), 2)), 3)));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class mfe extends c4 {
+    public static final Parcelable.Creator<mfe> CREATOR = new g3e((byte) 17);
+    public final int a;
+    public final aud b;
+
+    public mfe(int i, aud audVar) {
+        this.a = i;
+        this.b = audVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ao7 ao7Var = (ao7) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final void writeToParcel(Parcel parcel, int i) {
+        int r = bye.r(parcel, 20293);
+        bye.q(parcel, 2, 4);
+        parcel.writeInt(this.a);
+        bye.k(parcel, 3, this.b, i);
+        bye.s(parcel, r);
     }
 }

@@ -1,71 +1,72 @@
 package defpackage;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-public final class aj6 {
-    public static final Set e = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
-    public static final Set f = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
-    public static final Set g = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
-    public final ArrayList a = new ArrayList(0);
-    public fg5 b = new fg5("", 0, Collections.EMPTY_MAP, null);
-    public boolean c;
-    public boolean d;
+import android.os.Build;
+public final class aj6 implements Runnable {
+    public final byte a;
+    public final fj6 b;
 
-    public aj6(o5f o5fVar, vi2 vi2Var) {
+    public aj6(fj6 fj6Var, byte b) {
+        this.a = b;
+        this.b = fj6Var;
     }
 
-    public static Map a(upb upbVar) {
-        boolean z;
-        fy fyVar = upbVar.m;
-        int i = fyVar.a;
-        if (i > 0) {
-            HashMap hashMap = new HashMap(i);
-            int i2 = 0;
-            while (true) {
-                if (i2 < fyVar.a) {
-                    z = true;
-                } else {
-                    z = false;
+    @Override
+    public final void run() {
+        rz4 rz4Var;
+        uz4[] uz4VarArr;
+        byte b = this.a;
+        fj6 fj6Var = this.b;
+        switch (b) {
+            case 0:
+                if (Build.VERSION.SDK_INT >= 31 && (rz4Var = fj6Var.V) != null) {
+                    rz4Var.c.d = 0L;
+                    fj6Var.W.c.d = 0L;
+                    fj6Var.c0();
+                    return;
                 }
-                if (z) {
-                    String str = fyVar.c[i2];
-                    String str2 = fyVar.b[i2];
-                    if (str == null) {
-                        str = "";
-                    }
-                    ?? obj = new Object();
-                    if (str2 != null) {
-                        obj.a = str2.trim();
-                        if (str2.length() != 0) {
-                            obj.b = str;
-                            obj.c = fyVar;
-                            i2++;
-                            hashMap.put(obj.a.toLowerCase(Locale.US), obj.b);
-                        } else {
-                            w26.j("String must not be empty");
-                            return null;
-                        }
-                    } else {
-                        w26.j("Object must not be null");
-                        return null;
-                    }
-                } else {
-                    return DesugarCollections.unmodifiableMap(hashMap);
+                return;
+            case 1:
+                fj6Var.o0();
+                return;
+            case 2:
+                i91.j0(fj6Var);
+                return;
+            case 3:
+                fj6Var.p0();
+                return;
+            case 4:
+                new rl7(fj6Var, fj6Var.getParentActivity()).show();
+                return;
+            case 5:
+                fj6Var.presentFragment(new i91(bs2.l("needFinishFragment", false)));
+                return;
+            case 6:
+                fj6Var.h0(false);
+                return;
+            case 7:
+                if (fj6Var.getParentActivity() != null && (uz4VarArr = fj6Var.N) != null) {
+                    uz4 uz4Var = uz4VarArr[5];
+                    float width = ((uz4Var.getWidth() / 2.0f) + (fj6Var.b.getWidth() - ((uz4Var.getX() + fj6Var.I.getX()) + uz4Var.getWidth()))) / hl.p;
+                    kg5 kg5Var = new kg5(fj6Var.getParentActivity(), 3);
+                    fj6Var.S = kg5Var;
+                    kg5Var.setTranslationY(hl.L(4.0f) + (-fj6Var.O));
+                    fj6Var.S.setPadding(hl.L(7.33f), 0, hl.L(7.33f), 0);
+                    fj6Var.S.p(false);
+                    fj6Var.S.j(true);
+                    fj6Var.S.t(ob6.M0(2131743954, null));
+                    fj6Var.S.n(1.0f, (-width) + 7.33f);
+                    fj6Var.b.addView(fj6Var.S, tre.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
+                    kg5 kg5Var2 = fj6Var.S;
+                    kg5Var2.r0 = new aj6(fj6Var, (byte) 8);
+                    kg5Var2.d = 8000L;
+                    kg5Var2.v();
+                    mg5.r.b();
+                    return;
                 }
-            }
-        } else {
-            return Collections.EMPTY_MAP;
+                return;
+            default:
+                hl.B2(fj6Var.S);
+                return;
         }
-    }
-
-    public final void b(java.lang.Appendable r17, java.lang.String r18) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.aj6.b(java.lang.Appendable, java.lang.String):void");
     }
 }

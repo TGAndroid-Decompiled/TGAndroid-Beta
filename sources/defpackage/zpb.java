@@ -1,48 +1,18 @@
 package defpackage;
+public final class zpb extends pqb {
+    public final zu1 m2;
+    public final boolean n2;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-public final class zpb extends b4 {
-    public static final Parcelable.Creator<zpb> CREATOR = new j9d((byte) 9);
-    public final xpb a;
-    public final String b;
-
-    static {
-        new zpb("supported", null);
-        new zpb("not-supported", null);
-    }
-
-    public zpb(String str, String str2) {
-        fre.h(str);
-        try {
-            this.a = xpb.a(str);
-            this.b = str2;
-        } catch (ypb e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof zpb)) {
-            return false;
-        }
-        zpb zpbVar = (zpb) obj;
-        if (!vze.a(this.a, zpbVar.a) || !vze.a(this.b, zpbVar.b)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.a, this.b});
+    public zpb(Object obj, zu1 zu1Var, boolean z) {
+        super(obj, null, true);
+        this.m2 = zu1Var;
+        this.n2 = z;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i) {
-        int r = jte.r(parcel, 20293);
-        jte.l(parcel, 2, this.a.a);
-        jte.l(parcel, 3, this.b);
-        jte.s(parcel, r);
+    public final void onFragmentClosed() {
+        super.onFragmentClosed();
+        xu1 xu1Var = this.m2.Ba;
+        xu1Var.q(xu1Var.f, xu1Var.g, false, Boolean.valueOf(this.n2), false);
     }
 }

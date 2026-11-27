@@ -1,25 +1,57 @@
 package defpackage;
 
-import android.os.Bundle;
-public final class iu6 {
+import android.media.MediaRouter2$RouteCallback;
+import java.util.List;
+public final class iu6 extends MediaRouter2$RouteCallback {
     public final byte a;
-    public final boolean b;
-    public final boolean c;
-    public final boolean d;
-    public final Bundle e;
+    public final ku6 b;
 
-    public iu6(hu6 hu6Var) {
-        Bundle bundle;
-        this.a = hu6Var.a;
-        this.b = hu6Var.b;
-        this.c = hu6Var.c;
-        this.d = hu6Var.d;
-        Bundle bundle2 = hu6Var.e;
-        if (bundle2 == null) {
-            bundle = Bundle.EMPTY;
-        } else {
-            bundle = new Bundle(bundle2);
+    public iu6(ku6 ku6Var, byte b) {
+        this.a = b;
+        this.b = ku6Var;
+    }
+
+    public final void onRoutesAdded(List list) {
+        switch (this.a) {
+            case 0:
+                this.b.q();
+                return;
+            default:
+                super.onRoutesAdded(list);
+                return;
         }
-        this.e = bundle;
+    }
+
+    public final void onRoutesChanged(List list) {
+        switch (this.a) {
+            case 0:
+                this.b.q();
+                return;
+            default:
+                super.onRoutesChanged(list);
+                return;
+        }
+    }
+
+    public final void onRoutesRemoved(List list) {
+        switch (this.a) {
+            case 0:
+                this.b.q();
+                return;
+            default:
+                super.onRoutesRemoved(list);
+                return;
+        }
+    }
+
+    public final void onRoutesUpdated(List list) {
+        switch (this.a) {
+            case 1:
+                this.b.q();
+                return;
+            default:
+                super.onRoutesUpdated(list);
+                return;
+        }
     }
 }

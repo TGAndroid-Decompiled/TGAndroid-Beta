@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import android.os.Bundle;
 import java.util.Arrays;
 import java.util.List;
-public class NotificationBadge$HuaweiHomeBadger implements yj7 {
+public class NotificationBadge$HuaweiHomeBadger implements xm7 {
     @Override
     public final void a(int i) {
         Bundle bundle = new Bundle();
         bundle.putString("package", a.b.getPackageName());
-        bundle.putString("class", ak7.d.getClassName());
+        bundle.putString("class", zm7.d.getClassName());
         bundle.putInt("badgenumber", i);
-        gl.c3(new vl6(bundle, (byte) 24));
+        hl.c3(new fe7(bundle, (byte) 9));
     }
 
     @Override

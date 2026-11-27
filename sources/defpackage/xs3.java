@@ -1,25 +1,28 @@
 package defpackage;
-public final class xs3 extends gn {
-    public final byte e0;
-    public final gt3 f0;
 
-    public xs3(gt3 gt3Var, byte b) {
-        super(false, false, false);
-        this.e0 = b;
-        this.f0 = gt3Var;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+import java.nio.charset.UnsupportedCharsetException;
+import java.util.ArrayList;
+public final class xs3 {
+    public static final ArrayList c = new ArrayList();
+    public final CharsetEncoder[] a;
+    public final int b;
+
+    static {
+        String[] strArr = {"IBM437", "ISO-8859-2", "ISO-8859-3", "ISO-8859-4", "ISO-8859-5", "ISO-8859-6", "ISO-8859-7", "ISO-8859-8", "ISO-8859-9", "ISO-8859-10", "ISO-8859-11", "ISO-8859-13", "ISO-8859-14", "ISO-8859-15", "ISO-8859-16", "windows-1250", "windows-1251", "windows-1252", "windows-1256", "Shift_JIS"};
+        for (int i = 0; i < 20; i++) {
+            String str = strArr[i];
+            if (((jk1) jk1.d.get(str)) != null) {
+                try {
+                    c.add(Charset.forName(str).newEncoder());
+                } catch (UnsupportedCharsetException unused) {
+                }
+            }
+        }
     }
 
-    @Override
-    public final void invalidateSelf() {
-        byte b = this.e0;
-        gt3 gt3Var = this.f0;
-        switch (b) {
-            case 0:
-                gt3Var.invalidate();
-                return;
-            default:
-                gt3Var.invalidate();
-                return;
-        }
+    public xs3(java.lang.String r12, java.nio.charset.Charset r13) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.xs3.<init>(java.lang.String, java.nio.charset.Charset):void");
     }
 }

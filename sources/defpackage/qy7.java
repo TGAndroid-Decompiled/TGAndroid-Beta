@@ -1,65 +1,60 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.p;
-public final class qy7 implements RequestDelegate {
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.PasscodeActivity;
+public final class qy7 implements TextWatcher {
     public final byte a;
-    public final p b;
+    public final PasscodeActivity b;
 
-    public qy7(p pVar, byte b) {
+    public qy7(PasscodeActivity passcodeActivity, byte b) {
         this.a = b;
-        this.b = pVar;
+        this.b = passcodeActivity;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void afterTextChanged(Editable editable) {
         byte b = this.a;
-        final p pVar = this.b;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+        PasscodeActivity passcodeActivity = this.b;
         switch (b) {
             case 0:
-                gl.c3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r3;
-                        TLObject tLObject2 = tLObject;
-                        p pVar2 = pVar;
-                        switch (b2) {
-                            case 0:
-                                pVar2.r0(tLObject2);
-                                return;
-                            default:
-                                pVar2.p0(tLObject2);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                gl.c3(new bj7(pVar, tL_error, (byte) 26));
-                return;
-            case 2:
-                gl.c3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        byte b2 = r3;
-                        TLObject tLObject2 = tLObject;
-                        p pVar2 = pVar;
-                        switch (b2) {
-                            case 0:
-                                pVar2.r0(tLObject2);
-                                return;
-                            default:
-                                pVar2.p0(tLObject2);
-                                return;
-                        }
-                    }
-                });
+                ly7 ly7Var = passcodeActivity.T;
+                if (passcodeActivity.S) {
+                    passcodeActivity.n.removeCallbacks(ly7Var);
+                    ly7Var.run();
+                    return;
+                }
                 return;
             default:
-                gl.c3(new xy7(pVar, tL_error, tLObject, (byte) 0));
+                ly7 ly7Var2 = passcodeActivity.T;
+                if (passcodeActivity.S) {
+                    passcodeActivity.n.removeCallbacks(ly7Var2);
+                    ly7Var2.run();
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        byte b = this.a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i, int i2, int i3, CharSequence charSequence) {
+    }
+
+    private final void d(int i, int i2, int i3, CharSequence charSequence) {
     }
 }

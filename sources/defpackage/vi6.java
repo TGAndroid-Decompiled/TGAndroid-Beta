@@ -1,22 +1,14 @@
 package defpackage;
 
-import java.util.regex.Pattern;
-public final class vi6 extends tn5 {
-    public static final Pattern e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+import java.util.logging.Logger;
+public final class vi6 extends h00 {
+    public static final Logger r = Logger.getLogger(vi6.class.getName());
 
-    @Override
-    public final tg6 b() {
-        String a = a(e);
-        if (a == null) {
-            return null;
-        }
-        ?? tg6Var = new tg6();
-        tg6Var.g = ir2.n(1, 1, a);
-        return tg6Var;
+    public vi6(java.io.BufferedInputStream r28, long r29) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vi6.<init>(java.io.BufferedInputStream, long):void");
     }
 
-    @Override
-    public final char c() {
-        return '$';
+    public static long b(defpackage.wi6 r29, long r30, defpackage.v11 r32) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.vi6.b(wi6, long, v11):long");
     }
 }

@@ -1,43 +1,9 @@
 package defpackage;
-
-import android.content.DialogInterface;
-import android.view.View;
-public final class b41 implements DialogInterface.OnDismissListener {
-    public final byte a;
-    public final View b;
-
-    public b41(View view, byte b) {
-        this.a = b;
-        this.b = view;
-    }
-
+public final class b41 extends y92 {
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        byte b = this.a;
-        View view = this.b;
-        switch (b) {
-            case 0:
-                f41.e = null;
-                if (view != null) {
-                    view.requestFocus();
-                    return;
-                }
-                return;
-            case 1:
-                v74.i = null;
-                view.requestFocus();
-                return;
-            case 2:
-                kx8.f = null;
-                if (view != null) {
-                    view.requestFocus();
-                    return;
-                }
-                return;
-            default:
-                vs9.I = null;
-                view.requestFocus();
-                return;
-        }
+    public final void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        setPivotX(getMeasuredWidth() / 2.0f);
+        setPivotY(getMeasuredHeight());
     }
 }

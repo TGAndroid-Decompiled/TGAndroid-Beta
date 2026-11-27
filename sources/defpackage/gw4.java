@@ -1,4 +1,6 @@
 package defpackage;
-public final class gw4 {
-    public final qw4 a;
+
+import org.telegram.tgnet.TLRPC;
+public interface gw4 {
+    void b(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z);
 }

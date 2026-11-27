@@ -1,32 +1,27 @@
 package defpackage;
 
-import android.os.Bundle;
-import android.text.Spanned;
-public abstract class w43 {
-    public static final String a;
-    public static final String b;
-    public static final String c;
-    public static final String d;
-    public static final String e;
+import android.database.Cursor;
+import android.widget.Filter;
+public final class w43 extends Filter {
+    public v43 a;
 
-    static {
-        String str = g8c.a;
-        a = "0";
-        b = "1";
-        c = "2";
-        d = "3";
-        e = "4";
+    @Override
+    public final CharSequence convertResultToString(Object obj) {
+        return this.a.c((Cursor) obj);
     }
 
-    public static Bundle a(Spanned spanned, Object obj, int i, Bundle bundle) {
-        Bundle bundle2 = new Bundle();
-        bundle2.putInt(a, spanned.getSpanStart(obj));
-        bundle2.putInt(b, spanned.getSpanEnd(obj));
-        bundle2.putInt(c, spanned.getSpanFlags(obj));
-        bundle2.putInt(d, i);
-        if (bundle != null) {
-            bundle2.putBundle(e, bundle);
+    @Override
+    public final android.widget.Filter.FilterResults performFiltering(java.lang.CharSequence r4) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.w43.performFiltering(java.lang.CharSequence):android.widget.Filter$FilterResults");
+    }
+
+    @Override
+    public final void publishResults(CharSequence charSequence, Filter.FilterResults filterResults) {
+        v43 v43Var = this.a;
+        Cursor cursor = v43Var.c;
+        Object obj = filterResults.values;
+        if (obj != null && obj != cursor) {
+            v43Var.b((Cursor) obj);
         }
-        return bundle2;
     }
 }

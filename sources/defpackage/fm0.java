@@ -2,21 +2,21 @@ package defpackage;
 
 import android.view.View;
 import android.view.animation.Interpolator;
-public final class fm0 implements x74 {
+public final class fm0 implements s84 {
     public final int a;
-    public final x74 b;
-    public final Interpolator c;
-    public final short d;
+    public final s84 b;
+    public Interpolator c;
+    public long d;
     public float e;
     public boolean f;
-    public y74 h;
+    public t84 h;
 
-    public fm0(int i, x74 x74Var, Interpolator interpolator, long j, boolean z) {
+    public fm0(int i, s84 s84Var, Interpolator interpolator, long j, boolean z) {
         float f;
         this.a = i;
-        this.b = x74Var;
+        this.b = s84Var;
         this.c = interpolator;
-        this.d = (int) j;
+        this.d = j;
         this.f = z;
         if (z) {
             f = 1.0f;
@@ -24,11 +24,6 @@ public final class fm0 implements x74 {
             f = 0.0f;
         }
         this.e = f;
-    }
-
-    @Override
-    public final void F(float f, int i) {
-        this.b.F(f, this.a);
     }
 
     public final void a(boolean z, boolean z2) {
@@ -40,44 +35,48 @@ public final class fm0 implements x74 {
             } else {
                 f = 0.0f;
             }
-            y74 y74Var = this.h;
+            t84 t84Var = this.h;
             if (z2) {
-                if (y74Var == null) {
-                    float f2 = this.e;
-                    y74 y74Var2 = new y74(0, this, this.c, this.d, f2);
-                    this.h = y74Var2;
-                    y74Var = y74Var2;
+                if (t84Var == null) {
+                    t84 t84Var2 = new t84(0, this, this.c, this.d, this.e);
+                    this.h = t84Var2;
+                    t84Var = t84Var2;
                 }
-                y74Var.a(f);
+                t84Var.a(f);
                 return;
             }
-            if (y74Var != null) {
-                y74Var.c(f);
+            if (t84Var != null) {
+                t84Var.c(f);
             }
-            float f3 = this.e;
-            if (f3 != f) {
-                int i = (f3 > f ? 1 : (f3 == f ? 0 : -1));
+            float f2 = this.e;
+            if (f2 != f) {
+                int i = (f2 > f ? 1 : (f2 == f ? 0 : -1));
                 int i2 = this.a;
-                x74 x74Var = this.b;
+                s84 s84Var = this.b;
                 if (i != 0) {
                     this.e = f;
-                    x74Var.p(i2, f, -1.0f, null);
+                    s84Var.t(i2, f, -1.0f, null);
                 }
-                x74Var.F(f, i2);
+                s84Var.v0(f, i2);
             }
         }
     }
 
     @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
+    public final void t(int i, float f, float f2, t84 t84Var) {
         if (this.e != f) {
             this.e = f;
-            this.b.p(this.a, f, -1.0f, null);
+            this.b.t(this.a, f, -1.0f, null);
         }
     }
 
-    public fm0(int i, x74 x74Var, s33 s33Var, long j) {
-        this(i, x74Var, s33Var, j, false);
+    @Override
+    public final void v0(float f, int i) {
+        this.b.v0(f, this.a);
+    }
+
+    public fm0(int i, s84 s84Var, k43 k43Var, long j) {
+        this(i, s84Var, k43Var, j, false);
     }
 
     public fm0(long j, View view, Interpolator interpolator) {

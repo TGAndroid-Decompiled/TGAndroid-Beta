@@ -1,50 +1,38 @@
 package defpackage;
 
-import j$.util.Objects;
-public final class q7d extends a7d {
-    public static final q7d w = new q7d(0, new Object[0]);
-    public final transient Object[] r;
-    public final transient int s;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class q7d extends q5d {
+    public final byte c;
+    public final TaskCompletionSource d;
 
-    public q7d(int i, Object[] objArr) {
-        super((byte) 3);
-        this.r = objArr;
-        this.s = i;
+    public q7d(qa4 qa4Var, TaskCompletionSource taskCompletionSource, byte b) {
+        super((byte) 0);
+        this.c = b;
+        this.d = taskCompletionSource;
     }
 
     @Override
-    public final Object get(int i) {
-        u3f.a(i, this.s);
-        Object obj = this.r[i];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final void T(Status status, vg7 vg7Var) {
+        switch (this.c) {
+            case 0:
+                vze.b(status, vg7Var, this.d);
+                return;
+            default:
+                super.T(status, vg7Var);
+                return;
+        }
     }
 
     @Override
-    public final Object[] r() {
-        return this.r;
-    }
-
-    @Override
-    public final int s() {
-        return 0;
-    }
-
-    @Override
-    public final int size() {
-        return this.s;
-    }
-
-    @Override
-    public final int t() {
-        return this.s;
-    }
-
-    @Override
-    public final int w(Object[] objArr) {
-        Object[] objArr2 = this.r;
-        int i = this.s;
-        System.arraycopy(objArr2, 0, objArr, 0, i);
-        return i;
+    public final void V(Status status, xg7 xg7Var) {
+        switch (this.c) {
+            case 1:
+                vze.b(status, xg7Var, this.d);
+                return;
+            default:
+                super.V(status, xg7Var);
+                return;
+        }
     }
 }

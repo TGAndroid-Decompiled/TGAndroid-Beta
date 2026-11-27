@@ -1,317 +1,136 @@
 package defpackage;
 
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.a;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-public final class cd5 {
-    public static volatile cd5[] g = new cd5[4];
-    public static final Object[] h = new Object[4];
-    public final int a;
-    public final bd5 b;
-    public final bd5 c;
-    public final bd5 d;
-    public final SharedPreferences e;
-    public final ArrayList f;
+public final class cd5 extends c79 {
+    public final Context c;
+    public final dd5 d;
 
-    static {
-        for (int i = 0; i < 4; i++) {
-            h[i] = new Object();
-        }
+    public cd5(dd5 dd5Var, Context context) {
+        this.d = dd5Var;
+        this.c = context;
     }
 
-    public cd5(int i) {
-        ArrayList arrayList = new ArrayList();
-        this.f = arrayList;
-        this.a = i;
-        this.b = new bd5(i);
-        this.c = new bd5(i);
-        this.d = new bd5(i);
-        SharedPreferences sharedPreferences = a.b.getSharedPreferences("hashtag_search_history" + i, 0);
-        this.e = sharedPreferences;
-        int i2 = sharedPreferences.getInt("count", 0);
-        arrayList.clear();
-        arrayList.ensureCapacity(i2);
-        for (int i3 = 0; i3 < i2; i3++) {
-            String string = sharedPreferences.getString("e_" + i3, "");
-            if (!string.startsWith("#") && !string.startsWith("$")) {
-                string = "#".concat(string);
-            }
-            arrayList.add(string);
+    @Override
+    public final boolean D(f89 f89Var) {
+        int b = f89Var.b();
+        dd5 dd5Var = this.d;
+        if (b != dd5Var.r && b != dd5Var.n && b != dd5Var.s && b != 0) {
+            return false;
         }
+        return true;
     }
 
-    public static cd5 a(int i) {
-        cd5 cd5Var;
-        cd5 cd5Var2 = g[i];
-        if (cd5Var2 == null) {
-            synchronized (h[i]) {
-                cd5Var = g[i];
-                if (cd5Var == null) {
-                    cd5[] cd5VarArr = g;
-                    cd5 cd5Var3 = new cd5(i);
-                    cd5VarArr[i] = cd5Var3;
-                    cd5Var = cd5Var3;
+    @Override
+    public final int b() {
+        dd5 dd5Var = this.d;
+        if (dd5Var.e) {
+            return 0;
+        }
+        return dd5Var.x;
+    }
+
+    @Override
+    public final int d(int i) {
+        dd5 dd5Var = this.d;
+        if (i != dd5Var.n && i != dd5Var.s && i != dd5Var.r) {
+            if (i != dd5Var.w && i != dd5Var.h) {
+                if (i == 0) {
+                    return 2;
                 }
+                return 0;
             }
-            return cd5Var;
+            return 1;
         }
-        return cd5Var2;
+        return 0;
     }
 
-    public final bd5 b(int i) {
-        if (i == 1) {
-            return this.b;
-        }
-        if (i == 2) {
-            return this.c;
-        }
-        if (i == 3) {
-            return this.d;
-        }
-        wn4.j("Unknown search type");
-        return null;
-    }
-
-    public final void c(String str) {
-        if (str.startsWith("#") || str.startsWith("$")) {
-            ArrayList arrayList = this.f;
-            int indexOf = arrayList.indexOf(str);
-            if (indexOf != -1) {
-                if (indexOf == 0) {
+    @Override
+    public final void t(f89 f89Var, int i) {
+        String str;
+        int i2 = f89Var.f;
+        View view = f89Var.a;
+        dd5 dd5Var = this.d;
+        if (i2 != 0) {
+            if (i2 != 1) {
+                if (i2 == 2) {
+                    rkb rkbVar = (rkb) view;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = dd5Var.f;
+                    if (tL_chatInviteExported != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        str = "error";
+                    }
+                    rkbVar.a.setText(str);
+                    rkbVar.setWillNotDraw(true);
                     return;
                 }
-                arrayList.remove(indexOf);
+                return;
             }
-            arrayList.add(0, str);
-            if (arrayList.size() >= 100) {
-                arrayList.subList(99, arrayList.size()).clear();
-            }
-            d();
-        }
-    }
-
-    public final void d() {
-        SharedPreferences.Editor edit = this.e.edit();
-        edit.clear();
-        ArrayList arrayList = this.f;
-        edit.putInt("count", arrayList.size());
-        for (int i = 0; i < arrayList.size(); i++) {
-            edit.putString(de9.k(i, "e_"), (String) arrayList.get(i));
-        }
-        edit.apply();
-    }
-
-    public final void e(final int i, final int i2, final int i3, String str) {
-        final String str2;
-        String str3;
-        final String str4;
-        final cd5 cd5Var;
-        TLRPC.TL_channels_searchPosts tL_channels_searchPosts;
-        final bd5 b = b(i2);
-        String str5 = b.k;
-        if (str5 != null || str != null) {
-            if (str != null) {
-                if (!str.isEmpty()) {
-                    if (!TextUtils.equals(str, b.k)) {
-                        b.a();
-                    } else if (b.f) {
-                        return;
-                    }
-                    str2 = str;
+            ilb ilbVar = (ilb) view;
+            if (i == dd5Var.w) {
+                ilbVar.setText("");
+                return;
+            } else if (i == dd5Var.h) {
+                TLRPC.Chat M0 = dd5Var.getMessagesController().M0(Long.valueOf(dd5Var.d));
+                if (xc2.T(M0) && !M0.megagroup) {
+                    ilbVar.setText(ob6.M0(2131752358, null));
+                    return;
                 } else {
+                    ilbVar.setText(ob6.M0(2131748665, null));
                     return;
                 }
             } else {
-                str2 = str5;
+                return;
             }
-            b.k = str2;
-            int indexOf = str2.indexOf(64);
-            TLObject tLObject = null;
-            if (indexOf >= 0) {
-                String substring = str2.substring(indexOf + 1);
-                str3 = str2.substring(0, indexOf);
-                str4 = substring;
-            } else {
-                str3 = str2;
-                str4 = null;
-            }
-            b.f = true;
-            boolean isEmpty = TextUtils.isEmpty(str4);
-            int i4 = this.a;
-            if (!isEmpty) {
-                TLObject a2 = na7.q1(i4).a2(str4);
-                if (a2 == null) {
-                    t79 a = na7.q1(i4).Y1().a(str4, null, new p8c() {
-                        @Override
-                        public final void a(Object obj) {
-                            Long l = (Long) obj;
-                            cd5 cd5Var2 = cd5.this;
-                            int i5 = cd5Var2.a;
-                            bd5 bd5Var = b;
-                            String str6 = bd5Var.k;
-                            String str7 = str2;
-                            if (TextUtils.equals(str6, str7)) {
-                                TLObject a22 = na7.q1(i5).a2(str4);
-                                int i6 = i;
-                                if (a22 == null) {
-                                    if (r5[0] == bd5Var.e) {
-                                        bd5Var.e = null;
-                                        bd5Var.f = false;
-                                        bd5Var.n = true;
-                                        bd5Var.m = 0;
-                                        kk7.f(i5).k(kk7.H0, Integer.valueOf(i6), Integer.valueOf(bd5Var.m), Boolean.valueOf(bd5Var.n), Integer.valueOf(bd5Var.b()), Integer.valueOf(bd5Var.l), 0);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                cd5Var2.e(i6, i2, i3, str7);
-                            }
-                        }
-                    });
-                    b.e = a;
-                    final Runnable[] runnableArr = {a};
-                    return;
-                }
-                cd5Var = this;
-                tLObject = a2;
-            } else {
-                cd5Var = this;
-            }
-            if (i2 == 1) {
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
-                tL_messages_searchGlobal.limit = 21;
-                tL_messages_searchGlobal.q = str2;
-                tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-                tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                tL_channels_searchPosts = tL_messages_searchGlobal;
-                if (b.i != null) {
-                    tL_messages_searchGlobal.offset_rate = b.g;
-                    tL_messages_searchGlobal.offset_id = b.h;
-                    tL_messages_searchGlobal.offset_peer = na7.q1(i4).k1(b.i);
-                    tL_channels_searchPosts = tL_messages_searchGlobal;
-                }
-            } else if (tLObject != null) {
-                TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
-                tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-                tL_messages_search.peer = na7.i1(tLObject);
-                tL_messages_search.q = str3;
-                tL_messages_search.limit = 21;
-                int i5 = b.h;
-                tL_channels_searchPosts = tL_messages_search;
-                if (i5 != 0) {
-                    tL_messages_search.offset_id = i5;
-                    tL_channels_searchPosts = tL_messages_search;
-                }
-            } else {
-                TLRPC.TL_channels_searchPosts tL_channels_searchPosts2 = new TLRPC.TL_channels_searchPosts();
-                tL_channels_searchPosts2.flags |= 1;
-                tL_channels_searchPosts2.hashtag = str2;
-                tL_channels_searchPosts2.limit = 21;
-                tL_channels_searchPosts2.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                tL_channels_searchPosts = tL_channels_searchPosts2;
-                if (b.i != null) {
-                    tL_channels_searchPosts2.offset_rate = b.g;
-                    tL_channels_searchPosts2.offset_id = b.h;
-                    tL_channels_searchPosts2.offset_peer = na7.q1(i4).k1(b.i);
-                    tL_channels_searchPosts = tL_channels_searchPosts2;
-                }
-            }
-            int sendRequest = ConnectionsManager.getInstance(i4).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
-                    if (tLObject2 instanceof TLRPC.messages_Messages) {
-                        final TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
-                        final ArrayList arrayList = new ArrayList();
-                        ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
-                        int size = arrayList2.size();
-                        int i6 = 0;
-                        while (true) {
-                            final cd5 cd5Var2 = cd5.this;
-                            if (i6 < size) {
-                                TLRPC.Message message = arrayList2.get(i6);
-                                i6++;
-                                k27 k27Var = new k27(cd5Var2.a, message, null, null, null, null, null, true, true, 0L, false, false, false, i2);
-                                if (k27Var.z2()) {
-                                    k27Var.S2 = true;
-                                }
-                                k27Var.J5(str2, false);
-                                arrayList.add(k27Var);
-                            } else {
-                                final int[] iArr = r4;
-                                final bd5 bd5Var = b;
-                                final int i7 = i;
-                                final int i8 = i3;
-                                gl.c3(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        boolean z;
-                                        int i9 = cd5.this.a;
-                                        int i10 = iArr[0];
-                                        bd5 bd5Var2 = bd5Var;
-                                        int i11 = bd5Var2.d;
-                                        HashMap hashMap = bd5Var2.b;
-                                        if (i10 == i11) {
-                                            bd5Var2.d = -1;
-                                            bd5Var2.f = false;
-                                            TLRPC.messages_Messages messages_messages2 = messages_messages;
-                                            bd5Var2.g = messages_messages2.next_rate;
-                                            ArrayList arrayList3 = arrayList;
-                                            int size2 = arrayList3.size();
-                                            int i12 = 0;
-                                            while (i12 < size2) {
-                                                Object obj = arrayList3.get(i12);
-                                                i12++;
-                                                k27 k27Var2 = (k27) obj;
-                                                ad5 ad5Var = new ad5(k27Var2.k);
-                                                Integer num = (Integer) hashMap.get(ad5Var);
-                                                if (num == null) {
-                                                    int i13 = bd5Var2.j;
-                                                    bd5Var2.j = i13 - 1;
-                                                    num = Integer.valueOf(i13);
-                                                    hashMap.put(ad5Var, num);
-                                                    bd5Var2.a.add(k27Var2);
-                                                }
-                                                TLRPC.Message message2 = k27Var2.k;
-                                                message2.realId = message2.id;
-                                                message2.id = num.intValue();
-                                            }
-                                            if (!messages_messages2.messages.isEmpty()) {
-                                                TLRPC.Message message3 = (TLRPC.Message) b00.f(1, messages_messages2.messages);
-                                                bd5Var2.h = message3.realId;
-                                                bd5Var2.i = message3.peer_id;
-                                            }
-                                            ad7.Y(i9).j1(messages_messages2.users, messages_messages2.chats, true, true);
-                                            na7.q1(i9).b4(messages_messages2.users, false);
-                                            na7.q1(i9).V3(messages_messages2.chats, false);
-                                            if (messages_messages2.messages.size() < 21) {
-                                                z = true;
-                                            } else {
-                                                z = false;
-                                            }
-                                            bd5Var2.n = z;
-                                            bd5Var2.m = Math.max(messages_messages2.count, messages_messages2.messages.size());
-                                            kk7 f = kk7.f(i9);
-                                            Integer valueOf = Integer.valueOf(arrayList3.size());
-                                            int i14 = i7;
-                                            f.k(kk7.C, 0L, valueOf, arrayList3, Boolean.FALSE, 0, 0, 0, 0, 2, Boolean.TRUE, Integer.valueOf(i14), Integer.valueOf(i8), 0, 0, 7);
-                                            kk7.f(i9).k(kk7.H0, Integer.valueOf(i14), Integer.valueOf(bd5Var2.m), Boolean.valueOf(bd5Var2.n), Integer.valueOf(bd5Var2.b()), Integer.valueOf(bd5Var2.l), 0);
-                                        }
-                                    }
-                                });
-                                return;
-                            }
-                        }
-                    }
-                }
-            });
-            b.d = sendRequest;
-            final int[] iArr = {sendRequest};
         }
+        qmb qmbVar = (qmb) view;
+        if (i == dd5Var.n) {
+            qmbVar.b(ob6.M0(2131751727, null), true);
+        } else if (i == dd5Var.s) {
+            qmbVar.b(ob6.M0(2131745186, null), false);
+        } else if (i == dd5Var.r) {
+            qmbVar.b(ob6.M0(2131745750, null), true);
+        }
+    }
+
+    @Override
+    public final f89 x(ViewGroup viewGroup, int i) {
+        FrameLayout frameLayout;
+        int i2;
+        Context context = this.c;
+        if (i != 0) {
+            if (i != 1) {
+                ?? frameLayout2 = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout2.a = textView;
+                yob.X(textView, aob.G6, null);
+                textView.setTextSize(1, 16.0f);
+                int i3 = 3;
+                if (ob6.a0) {
+                    i2 = 5;
+                } else {
+                    i2 = 3;
+                }
+                textView.setGravity(i2 | 16);
+                if (ob6.a0) {
+                    i3 = 5;
+                }
+                frameLayout2.addView(textView, tre.d(-1, -2.0f, i3 | 48, 23.0f, 10.0f, 23.0f, 10.0f));
+                yob.h(aob.d6, null, frameLayout2);
+                frameLayout = frameLayout2;
+            } else {
+                frameLayout = new ilb(context);
+            }
+        } else {
+            FrameLayout qmbVar = new qmb(context);
+            yob.h(aob.d6, null, qmbVar);
+            frameLayout = qmbVar;
+        }
+        return new f89(frameLayout);
     }
 }

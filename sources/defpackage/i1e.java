@@ -1,17 +1,17 @@
 package defpackage;
-public enum i1e implements boe {
-    CLASSIFICATION_UNKNOWN(0),
-    CLASSIFICATION_NONE(1),
-    CLASSIFICATION_ALL(2);
-    
-    public final byte a;
+public final class i1e implements zq7 {
+    public static final i1e a = new Object();
 
-    i1e(int i) {
-        this.a = i;
+    static {
+        xnb.y(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, xnb.r(xnb.n(zbd.class, new wad(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)));
     }
 
     @Override
-    public final String toString() {
-        return "<" + i1e.class.getName() + '@' + Integer.toHexString(System.identityHashCode(this)) + " number=" + ((int) this.a) + " name=" + name() + '>';
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

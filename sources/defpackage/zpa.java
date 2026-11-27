@@ -1,35 +1,28 @@
 package defpackage;
+public final class zpa {
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final int f;
+    public final int g;
+    public final int h;
+    public final int i;
+    public final int j;
+    public final int k;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class zpa extends FrameLayout {
-    public final int[] a;
-    public final aqa b;
-
-    public zpa(aqa aqaVar, Context context) {
-        super(context);
-        this.b = aqaVar;
-        this.a = new int[2];
-    }
-
-    @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        FrameLayout frameLayout;
-        super.onLayout(z, i, i2, i3, i4);
-        aqa aqaVar = this.b;
-        xf5 xf5Var = aqaVar.i;
-        if (xf5Var != null && xf5Var.d.getChildCount() >= 2 && aqaVar.t != null && (frameLayout = aqaVar.m) != null) {
-            int[] iArr = this.a;
-            frameLayout.getLocationInWindow(iArr);
-            float translationX = iArr[0] - aqaVar.m.getTranslationX();
-            float translationY = iArr[1] - aqaVar.m.getTranslationY();
-            View childAt = xf5Var.d.getChildAt(1);
-            childAt.getLocationInWindow(iArr);
-            float translationY2 = iArr[1] - childAt.getTranslationY();
-            je5 je5Var = aqaVar.t;
-            je5Var.setTranslationY(((translationY2 - translationY) - je5Var.getMeasuredHeight()) - xf5Var.getMeasuredHeight());
-            aqaVar.t.o(0.0f, ((childAt.getMeasuredWidth() / 2.0f) + ((iArr[0] - childAt.getTranslationX()) - translationX)) - gl.L(12.0f));
-        }
+    public zpa(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11) {
+        this.a = i;
+        this.b = i2;
+        this.c = i3;
+        this.d = i4;
+        this.e = i5;
+        this.f = i6;
+        this.g = i7;
+        this.h = i8;
+        this.i = i9;
+        this.j = i10;
+        this.k = i11;
     }
 }

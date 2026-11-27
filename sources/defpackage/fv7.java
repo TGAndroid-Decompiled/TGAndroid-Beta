@@ -1,41 +1,38 @@
 package defpackage;
 
-import org.telegram.ui.PasscodeActivity;
-public final class fv7 implements Runnable {
-    public final byte a;
-    public final PasscodeActivity b;
-    public final boolean c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class fv7 extends View {
+    public int a;
+    public float b;
+    public final gv7 c;
 
-    public fv7(PasscodeActivity passcodeActivity, boolean z, byte b) {
-        this.a = b;
-        this.b = passcodeActivity;
-        this.c = z;
+    public fv7(gv7 gv7Var, Context context) {
+        super(context);
+        this.c = gv7Var;
+        setPadding(hl.L(4.0f), hl.L(4.0f), hl.L(4.0f), hl.L(4.0f));
+        setLayoutParams(new r79(-2, 0));
     }
 
     @Override
-    public final void run() {
-        byte b = this.a;
-        boolean z = this.c;
-        PasscodeActivity passcodeActivity = this.b;
-        switch (b) {
-            case 0:
-                passcodeActivity.getMediaDataController().o();
-                if (z) {
-                    passcodeActivity.presentFragment(new PasscodeActivity(0), true);
-                    t36 t36Var = passcodeActivity.V;
-                    if (t36Var != null) {
-                        gl.c3(t36Var);
-                        passcodeActivity.V = null;
-                    }
-                } else {
-                    passcodeActivity.finishFragment();
-                }
-                kk7.e().k(50, new Object[0]);
-                return;
-            default:
-                passcodeActivity.x.e(true, z);
-                gl.r(passcodeActivity.U);
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        gv7 gv7Var = this.c;
+        Paint paint = gv7Var.g3;
+        gv7Var.f3.setColor(this.a);
+        float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
+        if (this.b != 0.0f) {
+            min -= (paint.getStrokeWidth() + hl.L(3.0f)) * this.b;
+        }
+        float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
+        float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
+        gv7.B1(width, height, min, this.a, canvas);
+        if (this.b != 0.0f) {
+            paint.setColor(this.a);
+            paint.setAlpha(255);
+            canvas.drawCircle(width, height, (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - hl.L(2.0f), paint);
         }
     }
 }

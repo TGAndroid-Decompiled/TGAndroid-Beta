@@ -1,36 +1,42 @@
 package defpackage;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-public abstract class rrd {
-    protected int zza;
-
-    public final byte[] a() {
-        try {
-            c2e c2eVar = (c2e) this;
-            int e = c2eVar.e();
-            byte[] bArr = new byte[e];
-            cwd cwdVar = new cwd(e, bArr);
-            bbe a = jae.c.a(c2eVar.getClass());
-            xdd xddVar = cwdVar.a;
-            xdd xddVar2 = xddVar;
-            if (xddVar == null) {
-                ?? obj = new Object();
-                Charset charset = h3e.a;
-                obj.a = cwdVar;
-                cwdVar.a = obj;
-                xddVar2 = obj;
-            }
-            a.f(c2eVar, xddVar2);
-            if (e - cwdVar.d == 0) {
-                return bArr;
-            }
-            throw new IllegalStateException("Did not write as much data as expected.");
-        } catch (IOException e2) {
-            fyb.j(tb4.y("Serializing ", getClass().getName(), " to a byte array threw an IOException (should never happen)."), e2);
+import android.os.IBinder;
+import android.os.IInterface;
+public final class rrd extends d05 {
+    @Override
+    public final IInterface b(IBinder iBinder) {
+        if (iBinder == null) {
             return null;
         }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cloudmessaging.internal.ICloudMessagingService");
+        if (queryLocalInterface instanceof sxd) {
+            return (sxd) queryLocalInterface;
+        }
+        return new sxd(iBinder);
     }
 
-    public abstract int b(bbe bbeVar);
+    @Override
+    public final a94[] f() {
+        return fmd.b;
+    }
+
+    @Override
+    public final int i() {
+        return 261200000;
+    }
+
+    @Override
+    public final String l() {
+        return "com.google.android.gms.cloudmessaging.internal.ICloudMessagingService";
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.cloudmessaging.service.START";
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
+    }
 }

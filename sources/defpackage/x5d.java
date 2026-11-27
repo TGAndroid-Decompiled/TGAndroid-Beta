@@ -1,100 +1,128 @@
 package defpackage;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class x5d extends ndd {
-    public final byte r;
-    public final i69 s;
+import android.content.Context;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.locks.ReentrantLock;
+public final class x5d implements Runnable {
+    public final a6d a;
+    public final byte b;
+    public final a6d c;
+    public final Object d;
 
-    public x5d(i69 i69Var) {
-        super(i69Var, true);
-        this.r = (byte) 4;
-        this.s = i69Var;
+    public x5d(a6d a6dVar, Object obj, byte b) {
+        this.b = b;
+        this.c = a6dVar;
+        this.a = a6dVar;
+        this.d = obj;
     }
 
-    @Override
-    public final void n() {
-        byte b = this.r;
-        i69 i69Var = this.s;
+    public final void a() {
+        xka xkaVar;
+        Set set;
+        byte b = this.b;
+        int i = 0;
+        Object obj = this.d;
+        a6d a6dVar = this.c;
         switch (b) {
             case 0:
-                y8d y8dVar = i69Var.c;
-                f9d o = o();
-                y8dVar.getClass();
-                JSONObject jSONObject = new JSONObject();
-                long l = y8dVar.l();
-                try {
-                    jSONObject.put("requestId", l);
-                    jSONObject.put("type", "GET_STATUS");
-                    fy6 fy6Var = y8dVar.f;
-                    if (fy6Var != null) {
-                        jSONObject.put("mediaSessionId", fy6Var.b);
+                j05 j05Var = a6dVar.d;
+                b6d b6dVar = a6dVar.a.e;
+                Context context = a6dVar.c;
+                zhc zhcVar = new zhc(j05Var);
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                HashMap hashMap = (HashMap) obj;
+                for (d05 d05Var : hashMap.keySet()) {
+                    if (d05Var.v() && !((v5d) hashMap.get(d05Var)).c) {
+                        arrayList.add(d05Var);
+                    } else {
+                        arrayList2.add(d05Var);
                     }
-                } catch (JSONException unused) {
                 }
-                y8dVar.n(l, jSONObject.toString());
-                y8dVar.p.a(l, o);
-                return;
-            case 1:
-                i69Var.c.a(o(), -1, null);
-                return;
-            case 2:
-                i69Var.c.a(o(), 1, null);
-                return;
-            case 3:
-                i69Var.c.a(o(), 0, 2);
-                return;
-            case 4:
-                y8d y8dVar2 = i69Var.c;
-                f9d o2 = o();
-                y8dVar2.getClass();
-                JSONObject jSONObject2 = new JSONObject();
-                long l2 = y8dVar2.l();
-                try {
-                    jSONObject2.put("requestId", l2);
-                    jSONObject2.put("type", "QUEUE_GET_ITEM_IDS");
-                    jSONObject2.put("mediaSessionId", y8dVar2.p());
-                } catch (JSONException unused2) {
+                int i2 = -1;
+                if (arrayList.isEmpty()) {
+                    int size = arrayList2.size();
+                    while (i < size) {
+                        i2 = zhcVar.e(context, (d05) arrayList2.get(i));
+                        i++;
+                        if (i2 == 0) {
+                        }
+                    }
+                } else {
+                    int size2 = arrayList.size();
+                    while (i < size2) {
+                        i2 = zhcVar.e(context, (d05) arrayList.get(i));
+                        i++;
+                        if (i2 != 0) {
+                        }
+                    }
                 }
-                y8dVar2.n(l2, jSONObject2.toString());
-                y8dVar2.r.a(l2, o2);
-                return;
-            case 5:
-                y8d y8dVar3 = i69Var.c;
-                f9d o3 = o();
-                y8dVar3.getClass();
-                JSONObject jSONObject3 = new JSONObject();
-                long l3 = y8dVar3.l();
-                try {
-                    jSONObject3.put("requestId", l3);
-                    jSONObject3.put("type", "PAUSE");
-                    jSONObject3.put("mediaSessionId", y8dVar3.p());
-                } catch (JSONException unused3) {
+                if (i2 != 0) {
+                    b6dVar.sendMessage(b6dVar.obtainMessage(1, new w5d(this, a6dVar, new ws2(i2, null, null))));
+                    return;
                 }
-                y8dVar3.n(l3, jSONObject3.toString());
-                y8dVar3.k.a(l3, o3);
+                if (a6dVar.y && (xkaVar = a6dVar.w) != null) {
+                    xkaVar.a(new gg0(xkaVar));
+                }
+                for (d05 d05Var2 : hashMap.keySet()) {
+                    fg0 fg0Var = (fg0) hashMap.get(d05Var2);
+                    if (d05Var2.v() && zhcVar.e(context, d05Var2) != 0) {
+                        b6dVar.sendMessage(b6dVar.obtainMessage(1, new t5d(this, a6dVar, fg0Var)));
+                    } else {
+                        d05Var2.a(fg0Var);
+                    }
+                }
                 return;
             default:
-                y8d y8dVar4 = i69Var.c;
-                f9d o4 = o();
-                y8dVar4.getClass();
-                JSONObject jSONObject4 = new JSONObject();
-                long l4 = y8dVar4.l();
-                try {
-                    jSONObject4.put("requestId", l4);
-                    jSONObject4.put("type", "PLAY");
-                    jSONObject4.put("mediaSessionId", y8dVar4.p());
-                } catch (JSONException unused4) {
+                i6d i6dVar = a6dVar.a;
+                d6d d6dVar = i6dVar.o;
+                oxb oxbVar = a6dVar.I;
+                if (oxbVar == null) {
+                    set = Collections.EMPTY_SET;
+                } else {
+                    HashSet hashSet = new HashSet((Set) oxbVar.a);
+                    Map map = (Map) oxbVar.c;
+                    for (zn znVar : map.keySet()) {
+                        if (!i6dVar.i.containsKey(znVar.b)) {
+                            map.get(znVar).getClass();
+                            grb.o();
+                            return;
+                        }
+                    }
+                    set = hashSet;
                 }
-                y8dVar4.n(l4, jSONObject4.toString());
-                y8dVar4.l.a(l4, o4);
+                d6dVar.G = set;
+                ArrayList arrayList3 = (ArrayList) obj;
+                int size3 = arrayList3.size();
+                while (i < size3) {
+                    ((d05) arrayList3.get(i)).j(a6dVar.F, i6dVar.o.G);
+                    i++;
+                }
                 return;
         }
     }
 
-    public x5d(i69 i69Var, byte b) {
-        super(i69Var, false);
-        this.r = b;
-        this.s = i69Var;
+    @Override
+    public final void run() {
+        a6d a6dVar = this.a;
+        ReentrantLock reentrantLock = a6dVar.b;
+        reentrantLock.lock();
+        try {
+            try {
+                if (!Thread.interrupted()) {
+                    a();
+                }
+            } catch (RuntimeException e) {
+                b6d b6dVar = a6dVar.a.e;
+                b6dVar.sendMessage(b6dVar.obtainMessage(2, e));
+            }
+        } finally {
+            reentrantLock.unlock();
+        }
     }
 }

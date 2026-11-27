@@ -1,82 +1,70 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.d;
-public final class i24 extends q5c {
-    public final byte n3;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+public final class i24 implements Runnable {
+    public String a;
+    public int b;
+    public final ArrayList c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final HashMap e = new HashMap();
+    public final HashMap f = new HashMap();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList n = new ArrayList();
+    public final ArrayList r = new ArrayList(0);
+    public final ArrayList s = new ArrayList(0);
+    public final LongSparseArray w = new LongSparseArray(0);
+    public final j24 x;
 
-    public i24(Context context, int i, int i2, boolean z, i8c i8cVar, n8c n8cVar, o8c o8cVar, wjb wjbVar, int i3, int i4) {
-        super(context, i, i2, z, i8cVar, n8cVar, o8cVar, wjbVar, i3, i4);
-        this.n3 = (byte) 8;
+    public i24(j24 j24Var) {
+        this.x = j24Var;
+    }
+
+    public final void a(Runnable runnable, boolean z) {
+        String str;
+        String[] F0 = hl.F0();
+        if (F0.length == 0) {
+            str = "";
+        } else {
+            str = F0[0];
+        }
+        ls6.d0(this.x.R.d1).b2(false, str, this.a, new e52(this, z, runnable, (byte) 1), z);
     }
 
     @Override
-    public final Integer W0(int i) {
-        switch (this.n3) {
-            case 0:
-                c4c G = this.g3.G(i);
-                if (G != null && G.d == 2) {
-                    return 0;
-                }
-                return super.W0(i);
-            case 1:
-                return 0;
-            default:
-                return super.W0(i);
+    public final void run() {
+        j24 j24Var = this.x;
+        o24 o24Var = j24Var.R;
+        if (TextUtils.isEmpty(j24Var.O)) {
+            j79 adapter = o24Var.E0.getAdapter();
+            g24 g24Var = o24Var.z0;
+            if (adapter != g24Var) {
+                o24Var.E0.setAdapter(g24Var);
+            }
+            j24Var.f();
+            return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i, int i2) {
-        switch (this.n3) {
-            case 2:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            case 3:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            case 4:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            case 5:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            case 6:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            case 7:
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min((int) (gl.q.y * 0.35f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
-                return;
-            default:
-                super.onMeasure(i, i2);
-                return;
+        int i = j24Var.N + 1;
+        j24Var.N = i;
+        this.b = i;
+        this.a = j24Var.O;
+        j24Var.E = false;
+        this.c.clear();
+        this.d.clear();
+        this.e.clear();
+        this.f.clear();
+        this.h.clear();
+        this.r.clear();
+        this.s.clear();
+        this.w.clear();
+        o24Var.H0.d(true);
+        if ("premium".equalsIgnoreCase(this.a)) {
+            Utilities.B(new vz3(this, (byte) 1), new h24(this, (byte) 1));
+        } else {
+            Utilities.B(new vz3(this, (byte) 1), new h24(this, (byte) 2), new h24(this, (byte) 3), new h24(this, (byte) 4), new h24(this, (byte) 5), new h24(this, (byte) 6), new h24(this, (byte) 7));
         }
-    }
-
-    @Override
-    public final boolean u1(View view) {
-        switch (this.n3) {
-            case 8:
-                if (view instanceof lyb) {
-                    lyb lybVar = (lyb) view;
-                    if (lybVar.G > 0.0f || lybVar.J.q()) {
-                        return false;
-                    }
-                }
-                return true;
-            default:
-                return super.u1(view);
-        }
-    }
-
-    public i24(Context context, int i, int i2, boolean z, i8c i8cVar, n8c n8cVar, o8c o8cVar, wjb wjbVar, byte b) {
-        super(context, i, i2, z, i8cVar, n8cVar, o8cVar, wjbVar);
-        this.n3 = b;
-    }
-
-    public i24(d dVar, i8c i8cVar, n8c n8cVar, o8c o8cVar, byte b) {
-        super(dVar, i8cVar, n8cVar, o8cVar);
-        this.n3 = b;
     }
 }

@@ -1,37 +1,52 @@
 package defpackage;
-
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class f22 implements Runnable {
+public final class f22 implements ps3 {
     public final byte a;
-    public final g22 b;
-    public final String c;
-    public final int d;
+    public final float b;
+    public final Object c;
 
-    public f22(g22 g22Var, String str, int i, byte b) {
+    public f22(Object obj, float f, byte b) {
         this.a = b;
-        this.b = g22Var;
-        this.c = str;
-        this.d = i;
+        this.c = obj;
+        this.b = f;
     }
 
     @Override
-    public final void run() {
-        switch (this.a) {
+    public final void a(vpa vpaVar, boolean z, float f, float f2) {
+        byte b = this.a;
+        float f3 = this.b;
+        Object obj = this.c;
+        switch (b) {
             case 0:
-                g22 g22Var = this.b;
-                String str = this.c;
-                int i = this.d;
-                g22Var.getClass();
-                gl.c3(new f22(g22Var, str, i, (byte) 1));
+                i22 i22Var = (i22) obj;
+                i22Var.w = null;
+                if (!z) {
+                    i22Var.f = f3;
+                    i22Var.c();
+                    return;
+                }
+                i22Var.h = f3;
+                return;
+            case 1:
+                dr9 dr9Var = (dr9) obj;
+                er9 er9Var = dr9Var.P;
+                if (er9Var.l0 == vpaVar) {
+                    er9Var.l0 = null;
+                    if (!z) {
+                        dr9Var.k(f3);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                g22 g22Var2 = this.b;
-                String str2 = this.c;
-                int i2 = this.d;
-                g22Var2.getClass();
-                int i3 = y6c.t0;
-                Utilities.g.c(new az0(g22Var2, str2, new ArrayList(qu2.r(i3).Z.values()), new ArrayList(qu2.r(i3).f0), i3, i2));
+                rbb rbbVar = (rbb) obj;
+                if (!z) {
+                    rbbVar.N0.setTranslationY(f3);
+                    rbbVar.N0.L = false;
+                    rbbVar.p2 = null;
+                    rbbVar.q2 = null;
+                    return;
+                }
                 return;
         }
     }

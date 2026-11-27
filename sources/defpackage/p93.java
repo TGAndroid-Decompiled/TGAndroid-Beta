@@ -1,13 +1,44 @@
 package defpackage;
-public final class p93 {
-    public final zb8 a;
-    public final long b;
-    public final long c;
-    public long d;
 
-    public p93(zb8 zb8Var, long j, long j2) {
-        this.a = zb8Var;
-        this.b = j;
-        this.c = j2;
+import java.util.Locale;
+public final class p93 {
+    public int a;
+    public int b;
+    public int c;
+    public int d;
+    public int e;
+    public int f;
+    public int g;
+    public int h;
+    public int i;
+    public int j;
+    public long k;
+    public int l;
+
+    public final String toString() {
+        int i = this.a;
+        int i2 = this.b;
+        int i3 = this.c;
+        int i4 = this.d;
+        int i5 = this.e;
+        int i6 = this.f;
+        int i7 = this.g;
+        int i8 = this.h;
+        int i9 = this.i;
+        int i10 = this.j;
+        long j = this.k;
+        int i11 = this.l;
+        String str = gcc.a;
+        Locale locale = Locale.US;
+        StringBuilder p = bs2.p("DecoderCounters {\n decoderInits=", i, ",\n decoderReleases=", i2, "\n queuedInputBuffers=");
+        bs2.w(p, i3, "\n skippedInputBuffers=", i4, "\n renderedOutputBuffers=");
+        bs2.w(p, i5, "\n skippedOutputBuffers=", i6, "\n droppedBuffers=");
+        bs2.w(p, i7, "\n droppedInputBuffers=", i8, "\n maxConsecutiveDroppedBuffers=");
+        bs2.w(p, i9, "\n droppedToKeyframeEvents=", i10, "\n totalVideoFrameProcessingOffsetUs=");
+        p.append(j);
+        p.append("\n videoFrameProcessingOffsetCount=");
+        p.append(i11);
+        p.append("\n}");
+        return p.toString();
     }
 }

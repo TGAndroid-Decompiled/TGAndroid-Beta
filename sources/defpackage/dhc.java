@@ -1,30 +1,28 @@
 package defpackage;
 
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-public final class dhc implements Runnable {
-    public final byte a;
-    public final VoIPService b;
-    public final TLRPC.GroupCallParticipant c;
-
-    public dhc(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant, byte b) {
-        this.a = b;
-        this.b = voIPService;
-        this.c = groupCallParticipant;
+import android.view.View;
+public abstract class dhc {
+    public static CharSequence a(View view) {
+        return view.getAccessibilityPaneTitle();
     }
 
-    @Override
-    public final void run() {
-        byte b = this.a;
-        TLRPC.GroupCallParticipant groupCallParticipant = this.c;
-        VoIPService voIPService = this.b;
-        switch (b) {
-            case 0:
-                voIPService.lambda$startGroupCall$29(groupCallParticipant);
-                return;
-            default:
-                voIPService.lambda$startConferenceGroupCall$40(groupCallParticipant);
-                return;
-        }
+    public static boolean b(View view) {
+        return view.isAccessibilityHeading();
+    }
+
+    public static boolean c(View view) {
+        return view.isScreenReaderFocusable();
+    }
+
+    public static void d(View view, boolean z) {
+        view.setAccessibilityHeading(z);
+    }
+
+    public static void e(View view, CharSequence charSequence) {
+        view.setAccessibilityPaneTitle(charSequence);
+    }
+
+    public static void f(View view, boolean z) {
+        view.setScreenReaderFocusable(z);
     }
 }

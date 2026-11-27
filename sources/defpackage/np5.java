@@ -1,36 +1,33 @@
 package defpackage;
-public final class np5 extends uj5 {
-    public final String b;
-    public final String c;
-    public final String d;
+public final class np5 extends po5 {
+    public final yo5 c;
 
-    public np5(String str, String str2, String str3) {
-        super("----");
-        this.b = str;
-        this.c = str2;
-        this.d = str3;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && np5.class == obj.getClass()) {
-                np5 np5Var = (np5) obj;
-                if (this.c.equals(np5Var.c) && this.b.equals(np5Var.b) && this.d.equals(np5Var.d)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return this.d.hashCode() + ir2.j(ir2.j(527, 31, this.b), 31, this.c);
+    public np5(yo5 yo5Var) {
+        this.c = yo5Var;
     }
 
     @Override
-    public final String toString() {
-        return this.a + ": domain=" + this.b + ", description=" + this.c;
+    public final Object get(int i) {
+        yo5 yo5Var = this.c;
+        switch (yo5Var.d) {
+            case 0:
+                wq7 wq7Var = ((p99) yo5Var.e).e;
+                yve.j(i, wq7Var.c);
+                return new vq7(wq7Var, i);
+            default:
+                wq7 wq7Var2 = ((p99) yo5Var.e).e;
+                yve.j(i, wq7Var2.c);
+                return wq7Var2.a[i];
+        }
+    }
+
+    @Override
+    public final boolean m() {
+        return this.c.m();
+    }
+
+    @Override
+    public final int size() {
+        return this.c.size();
     }
 }

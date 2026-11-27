@@ -1,61 +1,31 @@
 package defpackage;
 
-import android.content.LocusId;
-import android.os.Build;
-import android.text.TextUtils;
+import android.util.SparseArray;
+import j$.util.Comparator$CC;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 public final class ub6 {
-    public final String a;
-    public final LocusId b;
+    public SparseArray a;
 
-    public ub6(String str) {
-        if (!TextUtils.isEmpty(str)) {
-            this.a = str;
-            if (Build.VERSION.SDK_INT >= 29) {
-                this.b = rr.c(str);
-                return;
-            } else {
-                this.b = null;
-                return;
+    public final void a(HashMap hashMap) {
+        if (this.a == null) {
+            this.a = new SparseArray(hashMap.size());
+            ArrayList arrayList = new ArrayList(hashMap.entrySet());
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new nm((byte) 6)));
+            int size = arrayList.size();
+            int i = 0;
+            while (i < size) {
+                Object obj = arrayList.get(i);
+                i++;
+                Map.Entry entry = (Map.Entry) obj;
+                this.a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
             }
+            return;
         }
-        w26.j("id cannot be empty");
-        throw null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        for (Map.Entry entry2 : hashMap.entrySet()) {
+            this.a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
         }
-        if (obj == null || ub6.class != obj.getClass()) {
-            return false;
-        }
-        String str = ((ub6) obj).a;
-        String str2 = this.a;
-        if (str2 == null) {
-            if (str == null) {
-                return true;
-            }
-            return false;
-        }
-        return str2.equals(str);
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        String str = this.a;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        return 31 + hashCode;
-    }
-
-    public final String toString() {
-        StringBuilder sb = new StringBuilder("LocusIdCompat[");
-        int length = this.a.length();
-        sb.append(length + "_chars");
-        sb.append("]");
-        return sb.toString();
     }
 }

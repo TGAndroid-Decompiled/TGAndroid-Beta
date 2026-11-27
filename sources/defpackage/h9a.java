@@ -1,139 +1,75 @@
 package defpackage;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import android.os.Bundle;
+import android.text.TextUtils;
+import j$.util.Objects;
 public final class h9a {
-    public static final do3 m = new do3("ShapeDetector", true);
-    public static final double n = 176.7766952966369d;
-    public int a;
-    public ArrayList b;
-    public ArrayList c;
-    public boolean d;
-    public hj3 e;
-    public Context f;
-    public SharedPreferences g;
-    public boolean h;
-    public ArrayList i;
-    public AtomicBoolean j;
-    public AtomicBoolean k;
-    public e9a l;
+    public static final j99 d;
+    public static final j99 e;
+    public static final j99 f;
+    public static final j99 g;
+    public static final String h;
+    public static final String i;
+    public static final String j;
+    public final int a;
+    public final String b;
+    public final Bundle c;
 
-    public static kx5 a(ArrayList arrayList) {
-        if (arrayList.size() <= 0) {
-            return null;
-        }
-        double d = ((f9a) arrayList.get(0)).a;
-        double d2 = ((f9a) arrayList.get(0)).b;
-        kx5 kx5Var = new kx5((byte) 1);
-        kx5Var.b = d;
-        kx5Var.c = d2;
-        kx5Var.d = d;
-        kx5Var.e = d2;
-        for (int i = 1; i < arrayList.size(); i++) {
-            f9a f9aVar = (f9a) arrayList.get(i);
-            double d3 = f9aVar.a;
-            double d4 = f9aVar.b;
-            if (kx5Var.b >= d3) {
-                kx5Var.b = d3;
-            }
-            if (kx5Var.c >= d4) {
-                kx5Var.c = d4;
-            }
-            if (kx5Var.d <= d3) {
-                kx5Var.d = d3;
-            }
-            if (kx5Var.e <= d4) {
-                kx5Var.e = d4;
-            }
-        }
-        return kx5Var;
+    static {
+        no5 no5Var = po5.b;
+        j99 j99Var = j99.e;
+        d = j99Var;
+        e = po5.u(40010);
+        Object[] objArr = {50000, 50001, 50002, 50003, 50004, 50005, 50006};
+        rue.a(7, objArr);
+        f = po5.o(7, objArr);
+        g = j99Var;
+        String str = gcc.a;
+        h = "0";
+        i = "1";
+        j = "2";
     }
 
-    public static f9a b(ArrayList arrayList) {
-        f9a f9aVar = new f9a(0.0d, 0.0d);
-        for (int i = 0; i < arrayList.size(); i++) {
-            f9a f9aVar2 = (f9a) arrayList.get(i);
-            f9aVar.a += f9aVar2.a;
-            f9aVar.b += f9aVar2.b;
+    public h9a(int i2) {
+        boolean z;
+        if (i2 != 0) {
+            z = true;
+        } else {
+            z = false;
         }
-        f9aVar.a /= arrayList.size();
-        f9aVar.b /= arrayList.size();
-        return f9aVar;
+        yve.e("commandCode shouldn't be COMMAND_CODE_CUSTOM", z);
+        this.a = i2;
+        this.b = "";
+        this.c = Bundle.EMPTY;
     }
 
-    public static double d(ArrayList arrayList, f9a f9aVar, ArrayList arrayList2, double d) {
-        f9a f9aVar2 = f9aVar;
-        double cos = Math.cos(d);
-        double sin = Math.sin(d);
-        int min = Math.min(arrayList.size(), arrayList2.size());
-        double d2 = 0.0d;
-        int i = 0;
-        while (i < min) {
-            f9a f9aVar3 = (f9a) arrayList.get(i);
-            double d3 = f9aVar3.a;
-            double d4 = cos;
-            double d5 = f9aVar2.a;
-            double d6 = d3 - d5;
-            double d7 = f9aVar3.b;
-            double d8 = f9aVar2.b;
-            double d9 = d7 - d8;
-            d2 += ((f9a) arrayList2.get(i)).a(((d6 * d4) - (d9 * sin)) + d5, (d9 * d4) + (d6 * sin) + d8);
-            i++;
-            f9aVar2 = f9aVar;
-            cos = d4;
-        }
-        return d2 / arrayList.size();
+    public final Bundle a() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(h, this.a);
+        bundle.putString(i, this.b);
+        bundle.putBundle(j, this.c);
+        return bundle;
     }
 
-    public static int e(int i, ArrayList arrayList) {
-        int max = Math.max(1, arrayList.size() / 4);
-        while (max < arrayList.size() - 1) {
-            f9a f9aVar = (f9a) arrayList.get(max - 1);
-            f9a f9aVar2 = (f9a) arrayList.get(max);
-            int i2 = max + 1;
-            f9a f9aVar3 = (f9a) arrayList.get(i2);
-            f9aVar.getClass();
-            double a = f9aVar.a(f9aVar2.a, f9aVar2.b);
-            double a2 = f9aVar.a(f9aVar3.a, f9aVar3.b);
-            double a3 = f9aVar2.a(f9aVar3.a, f9aVar3.b);
-            if ((Math.acos((((a2 * a2) + (a * a)) - (a3 * a3)) / ((a * 2.0d) * a2)) / 3.141592653589793d) * 180.0d > 18.0d) {
-                if (i > 0) {
-                    i--;
-                } else {
-                    return max;
-                }
+    public final boolean equals(Object obj) {
+        if (obj instanceof h9a) {
+            h9a h9aVar = (h9a) obj;
+            if (this.a == h9aVar.a && TextUtils.equals(this.b, h9aVar.b)) {
+                return true;
             }
-            max = i2;
+            return false;
         }
-        return -1;
+        return false;
     }
 
-    public static ArrayList f(ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        for (int i = 0; i < arrayList.size(); i++) {
-            f9a f9aVar = (f9a) arrayList.get(i);
-            arrayList2.add(new f9a(f9aVar.a, f9aVar.b));
-        }
-        return arrayList2;
+    public final int hashCode() {
+        return Objects.hash(this.b, Integer.valueOf(this.a));
     }
 
-    public final void c() {
-        ArrayList arrayList;
-        synchronized (this) {
-            this.b.clear();
-        }
-        m.cancelRunnable(this.l);
-        this.k.set(false);
-        this.d = false;
-        if (this.h && (arrayList = this.i) != null) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f);
-            alertDialog$Builder.a.S = "Shape?";
-            alertDialog$Builder.e(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new fe((Object) this, arrayList, (byte) 12));
-            alertDialog$Builder.o();
-            this.i = null;
-        }
+    public h9a(String str, Bundle bundle) {
+        this.a = 0;
+        this.b = str;
+        bundle.getClass();
+        this.c = new Bundle(bundle);
     }
 }

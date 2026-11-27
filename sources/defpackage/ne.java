@@ -1,53 +1,33 @@
 package defpackage;
 
-import android.app.Activity;
-import android.content.Context;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class ne implements Runnable {
     public final byte a;
-    public final hd b;
-    public final Context c;
+    public final int b;
+    public final TLRPC.Updates c;
 
-    public ne(hd hdVar, Context context) {
-        this.a = (byte) 2;
-        this.c = context;
-        this.b = hdVar;
+    public ne(int i, TLRPC.Updates updates, byte b) {
+        this.a = b;
+        this.b = i;
+        this.c = updates;
     }
 
     @Override
     public final void run() {
         byte b = this.a;
-        hd hdVar = this.b;
-        Context context = this.c;
+        TLRPC.Updates updates = this.c;
+        int i = this.b;
         switch (b) {
             case 0:
-                if (hdVar != null) {
-                    hdVar.dismiss();
-                }
-                d01.t(context, k96.M0(2131752883, null));
+                uc7.s1(i).Y3(updates, false);
                 return;
             case 1:
-                if (hdVar != null) {
-                    hdVar.dismiss();
-                }
-                d01.t(context, k96.M0(2131752883, null));
+                ConnectionsManager.lambda$onUnparsedMessageReceived$12(i, updates);
                 return;
             default:
-                if (!((Activity) context).isFinishing()) {
-                    try {
-                        hdVar.dismiss();
-                        return;
-                    } catch (Exception e) {
-                        fa4.g(e, true);
-                        return;
-                    }
-                }
+                uc7.s1(i).Y3(updates, false);
                 return;
         }
-    }
-
-    public ne(hd hdVar, Context context, byte b) {
-        this.a = b;
-        this.b = hdVar;
-        this.c = context;
     }
 }

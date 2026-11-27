@@ -1,125 +1,109 @@
 package defpackage;
 
-import android.content.Context;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Region;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.HashSet;
-public final class otb extends LinearLayout implements tjb {
-    public final wjb a;
-    public final be0 b;
-    public final l46 c;
-    public final l46 d;
-    public int e;
-    public int f;
+public final class otb extends View implements qk4 {
+    public final Drawable a;
+    public final int b;
+    public Bitmap c;
+    public final Paint d;
+    public final Paint e;
+    public float f;
+    public final mm h;
+    public final Path n;
 
-    public otb(Context context, wjb wjbVar) {
-        super(context);
-        this.e = 90;
-        this.a = wjbVar;
-        setOrientation(1);
-        be0 be0Var = new be0(context);
-        this.b = be0Var;
-        be0Var.getImageReceiver().N(1);
-        be0Var.getImageReceiver().M(1);
-        be0Var.setOnClickListener(new bna(this, (byte) 22));
-        addView(be0Var, nme.t(90, 90, 17, 0, 9, 0, 9));
-        l46 l46Var = new l46(context, null);
-        this.c = l46Var;
-        l46Var.setTextSize(1, 20.0f);
-        l46Var.setGravity(17);
-        l46Var.setTypeface(gl.o());
-        l46Var.setTextAlignment(4);
-        addView(l46Var, nme.t(-1, -2, 17, 48, 0, 48, 10));
-        l46 l46Var2 = new l46(context, null);
-        this.d = l46Var2;
-        l46Var2.setTextSize(1, 14.0f);
-        l46Var2.setGravity(17);
-        l46Var2.setTextAlignment(4);
-        addView(l46Var2, nme.t(-1, -2, 17, 48, 0, 48, 17));
-        updateColors();
-    }
-
-    public final void a(CharSequence charSequence, CharSequence charSequence2) {
-        l46 l46Var = this.c;
-        l46Var.setText(charSequence);
-        l46Var.setVisibility(0);
-        l46 l46Var2 = this.d;
-        l46Var2.setText(charSequence2);
-        l46Var2.setMaxWidth(je5.a(charSequence2, l46Var2.getPaint()));
-        l46Var2.requestLayout();
-        updateColors();
+    public otb(Activity activity) {
+        super(activity);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        Paint paint2 = new Paint(3);
+        this.e = paint2;
+        this.h = new mm(this, 0L, 350L, k43.h);
+        this.n = new Path();
+        this.a = activity.getResources().getDrawable(2131231745).mutate();
+        this.b = 2131231744;
+        paint.setColor(-1);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(bkb.F6));
-        hashSet.add(Integer.valueOf(bkb.Wc));
-        hashSet.add(Integer.valueOf(bkb.A6));
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.c == null) {
+            this.c = BitmapFactory.decodeResource(getResources(), this.b);
+        }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-    }
-
-    public void setEmoji(int i) {
-        if (this.f != i) {
-            this.f = i;
-            oy8 oy8Var = new oy8(i, gl.L(90.0f), gl.L(90.0f));
-            be0 be0Var = this.b;
-            be0Var.setImageDrawable(oy8Var);
-            be0Var.getImageReceiver().M(2);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Bitmap bitmap = this.c;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.c = null;
         }
-    }
-
-    public void setEmojiSize(int i) {
-        if (this.e != i) {
-            this.e = i;
-            updateColors();
-        }
-    }
-
-    public void setEmojiStatic(int i) {
-        if (this.f != i) {
-            be0 be0Var = this.b;
-            be0Var.b();
-            this.f = i;
-            be0Var.setImageResource(i);
-        }
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.c.setVisibility(8);
-        l46 l46Var = this.d;
-        l46Var.setText(charSequence);
-        l46Var.setMaxWidth(je5.a(charSequence, l46Var.getPaint()));
-        l46Var.requestLayout();
-        updateColors();
     }
 
     @Override
-    public final void updateColors() {
-        int i;
-        int i2 = bkb.F6;
-        wjb wjbVar = this.a;
-        int v0 = bkb.v0(i2, wjbVar);
-        l46 l46Var = this.c;
-        l46Var.setTextColor(v0);
-        int i3 = bkb.Wc;
-        l46Var.setLinkTextColor(bkb.v0(i3, wjbVar));
-        if (l46Var.getVisibility() != 0) {
-            i2 = bkb.A6;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float e = this.h.e(false, this.f);
+        Drawable drawable = this.a;
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int intrinsicHeight = drawable.getIntrinsicHeight();
+        Rect rect = hl.Q;
+        rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
+        if (e <= 0.0f) {
+            drawable.setBounds(rect);
+            drawable.draw(canvas);
+        } else if (e < 1.0f) {
+            canvas.save();
+            Path path = this.n;
+            path.rewind();
+            path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, hl.L(16.0f) * e, Path.Direction.CW);
+            canvas.clipPath(path, Region.Op.DIFFERENCE);
+            drawable.setBounds(rect);
+            drawable.draw(canvas);
+            canvas.restore();
         }
-        int v02 = bkb.v0(i2, wjbVar);
-        l46 l46Var2 = this.d;
-        l46Var2.setTextColor(v02);
-        l46Var2.setLinkTextColor(bkb.v0(i3, wjbVar));
-        int i4 = this.e;
-        if (l46Var.getVisibility() == 0) {
-            i = 0;
+        if (e > 0.0f) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, hl.L(16.0f) * e, this.d);
+            canvas.save();
+            Bitmap bitmap = this.c;
+            if (bitmap != null) {
+                canvas.drawBitmap(bitmap, (Rect) null, rect, this.e);
+            }
+            canvas.restore();
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public void setInvert(float f) {
+        this.a.setColorFilter(new PorterDuffColorFilter(vm2.f(f, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.d.setColor(vm2.f(f, -1, -16777216));
+    }
+
+    public void setValue(boolean z) {
+        float f;
+        if (z) {
+            f = 1.0f;
         } else {
-            i = 9;
+            f = 0.0f;
         }
-        this.b.setLayoutParams(nme.t(i4, i4, 17, 0, i, 0, 9));
+        this.f = f;
+        invalidate();
     }
 }

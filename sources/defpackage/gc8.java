@@ -1,12 +1,13 @@
 package defpackage;
-public final class gc8 {
-    public final fc8 a = new Object();
 
-    public final void a() {
-        try {
-            ((gc8) Class.forName("androidx.media3.effect.SingleInputVideoGraph$Factory").getConstructor(fc8.class).newInstance(this.a)).a();
-        } catch (Exception e) {
-            ho9.n(e);
-        }
+import android.content.Context;
+import android.graphics.Bitmap;
+import org.telegram.ui.PhotoViewer;
+public final class gc8 extends il6 {
+    public final PhotoViewer L;
+
+    public gc8(PhotoViewer photoViewer, Context context, int i, Bitmap bitmap, Bitmap bitmap2, int i2, fo6 fo6Var) {
+        super(context, i, bitmap, bitmap2, i2, fo6Var);
+        this.L = photoViewer;
     }
 }

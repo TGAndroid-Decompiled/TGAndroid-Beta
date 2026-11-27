@@ -1,23 +1,22 @@
 package defpackage;
 
-import android.content.Intent;
-import android.os.Bundle;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-public final class y5d implements Continuation, yyb, zef {
-    public static final y5d a = new Object();
+import java.lang.ref.WeakReference;
+public final class y5d extends q5d {
+    public final WeakReference c;
 
-    @Override
-    public final Object apply(Object obj) {
-        return ((toe) obj).a();
+    public y5d(a6d a6dVar) {
+        super((byte) 1);
+        this.c = new WeakReference(a6dVar);
     }
 
     @Override
-    public final Object then(Task task) {
-        Intent intent = (Intent) ((Bundle) task.getResult()).getParcelable("notification_data");
-        if (intent != null) {
-            return new aj2(intent);
+    public final void U(t7d t7dVar) {
+        a6d a6dVar = (a6d) this.c.get();
+        if (a6dVar == null) {
+            return;
         }
-        return null;
+        w5d w5dVar = new w5d(this, a6dVar, a6dVar, t7dVar);
+        b6d b6dVar = a6dVar.a.e;
+        b6dVar.sendMessage(b6dVar.obtainMessage(1, w5dVar));
     }
 }

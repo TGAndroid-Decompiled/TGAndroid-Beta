@@ -1,222 +1,291 @@
 package defpackage;
 
-import android.content.Context;
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.HashSet;
-public final class ou1 extends FrameLayout implements x74, tjb {
-    public final fm0 a;
-    public final fm0 b;
-    public ImageView c;
-    public ImageView d;
-    public ih2 e;
-    public wjb f;
-    public float h;
-    public int n;
-    public il0 r;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class ou1 {
+    public r47 a;
+    public int b;
+    public int c;
+    public byte[] e;
+    public boolean f;
+    public boolean h;
+    public String i;
+    public ArrayList j;
+    public TLRPC.TodoItem k;
+    public TLRPC.PollAnswer l;
+    public boolean m;
+    public ArrayList n;
+    public int o;
+    public boolean g = false;
+    public int d = -1;
 
-    public ou1(Context context) {
-        super(context);
-        s33 s33Var = s33.h;
-        this.a = new fm0(0, this, s33Var, 320L, false);
-        this.b = new fm0(1, this, s33Var, 320L, true);
-        this.h = 1.0f;
-    }
-
-    public static ou1 c(kl0 kl0Var, wp1 wp1Var, wjb wjbVar, Context context) {
-        int i = bkb.Ml;
-        int v0 = bkb.v0(i, wjbVar);
-        ou1 ou1Var = new ou1(context);
-        ou1Var.f = wjbVar;
-        ou1Var.setBlurredBackgroundDrawable(kl0Var.c(ou1Var, wp1Var, false));
-        ou1Var.setIconColor(v0);
-        int L = gl.L(22.0f);
-        int p1 = bkb.p1(0.15f, v0);
-        int L2 = gl.L(6.0f);
-        ff0 W = bkb.W(L, p1, L2, L2, L2, L2);
-        vkb K = zkb.K(0.15f, i);
-        ou1Var.setBackground(W);
-        zkb.j(ou1Var, W, null, K, wjbVar);
-        return ou1Var;
-    }
-
-    public static ou1 d(Context context, kl0 kl0Var, al0 al0Var, wjb wjbVar, int i, int i2) {
-        int i3 = bkb.Ml;
-        int v0 = bkb.v0(i3, wjbVar);
-        ou1 ou1Var = new ou1(context);
-        ou1Var.f = wjbVar;
-        ou1Var.setBlurredBackgroundDrawable(kl0Var.c(ou1Var, al0Var, false));
-        ou1Var.f(i, i2);
-        ou1Var.setIconColor(v0);
-        int L = gl.L(22.0f);
-        int p1 = bkb.p1(0.15f, v0);
-        int L2 = gl.L(6.0f);
-        ff0 W = bkb.W(L, p1, L2, L2, L2, L2);
-        vkb K = zkb.K(0.15f, i3);
-        ou1Var.setBackground(W);
-        zkb.j(ou1Var, W, null, K, wjbVar);
-        return ou1Var;
-    }
-
-    public final void a() {
-        int i;
-        float f = 1.0f - this.a.e;
-        float R1 = gl.R1(f / 2.0f, f, this.b.e);
-        ImageView imageView = this.c;
-        if (imageView != null) {
-            imageView.setAlpha(R1);
-            this.c.setScaleX(gl.R1(0.4f, 1.0f, f));
-            this.c.setScaleY(gl.R1(0.4f, 1.0f, f) * this.h);
-            ImageView imageView2 = this.c;
-            if (f > 0.0f) {
-                i = 0;
-            } else {
-                i = 8;
-            }
-            imageView2.setVisibility(i);
+    public ou1(int i, int i2, r47 r47Var) {
+        TLRPC.Message message;
+        this.a = r47Var;
+        this.b = i;
+        this.c = i2;
+        boolean z = false;
+        if (r47Var != null && (message = r47Var.k) != null && message.rich_message != null) {
+            z = true;
         }
+        this.m = z;
+        f();
     }
 
-    public final void b() {
-        int i;
-        float f = this.a.e;
-        float R1 = gl.R1(f / 2.0f, f, this.b.e);
-        ImageView imageView = this.d;
-        if (imageView != null) {
-            imageView.setAlpha(R1);
-            this.d.setScaleX(gl.R1(0.4f, 1.0f, f));
-            this.d.setScaleY(gl.R1(0.4f, 1.0f, f));
-            if (f > 0.0f) {
-                i = 0;
-            } else {
-                i = 8;
-            }
-            if (this.d.getVisibility() != i) {
-                this.d.setVisibility(i);
-                this.e.c = -1L;
-            }
+    public static ou1 b(int i, int i2, r47 r47Var) {
+        if (r47Var == null) {
+            return null;
         }
+        r47.B0(r47Var.k);
+        return new ou1(i, i2, r47Var);
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
+    public static ou1 c(r47 r47Var) {
+        TLRPC.Message message = r47Var.k;
+        if (message != null) {
+            if (message.message != null || (message != null && message.rich_message != null)) {
+                return b(0, Math.min(uc7.s1(r47Var.K1).k4.V1.f(), d(r47Var)), r47Var);
+            }
+            return null;
+        }
+        return null;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        this.r.draw(canvas);
-        super.draw(canvas);
+    public static int d(r47 r47Var) {
+        CharSequence charSequence;
+        TLRPC.Message message = r47Var.k;
+        if (message != null) {
+            if (message != null && message.rich_message != null) {
+                hl9 hl9Var = r47Var.y2;
+                if (hl9Var != null && (charSequence = hl9Var.q) != null) {
+                    return charSequence.length();
+                }
+                return 0;
+            }
+            String str = message.message;
+            if (str == null) {
+                return 0;
+            }
+            return str.length();
+        }
+        return 0;
     }
 
-    public final void e(boolean z, boolean z2) {
-        super.setEnabled(z);
-        this.b.a(z, z2);
-    }
-
-    public final void f(int i, int i2) {
-        if (this.c == null) {
-            if (i == 0) {
+    public final void a(r47 r47Var) {
+        String str;
+        int i;
+        int i2;
+        TL_iv.RichMessage richMessage;
+        ll9 ll9Var;
+        int[] iArr;
+        boolean z = this.m;
+        TLRPC.Message message = r47Var.k;
+        if (z) {
+            if (message != null && (richMessage = message.rich_message) != null) {
+                this.a = r47Var;
+                String str2 = this.i;
+                if (str2 != null && !TextUtils.isEmpty(str2)) {
+                    ArrayList e = ll9.e(richMessage);
+                    StringBuilder sb = new StringBuilder();
+                    int i3 = 0;
+                    while (true) {
+                        ll9Var = null;
+                        if (i3 >= e.size()) {
+                            break;
+                        }
+                        if (i3 > 0) {
+                            sb.append('\n');
+                        }
+                        ll9.b((TL_iv.RichText) e.get(i3), sb, null);
+                        i3++;
+                    }
+                    if (sb.indexOf(str2) >= 0) {
+                        if (ll9.c(r47Var)) {
+                            iArr = ll9.f(r47Var, this.i, this.o);
+                        } else {
+                            iArr = null;
+                        }
+                        if (iArr != null) {
+                            ll9Var = ll9.k(iArr[0], iArr[1], r47Var);
+                        }
+                        if (ll9Var != null) {
+                            this.b = iArr[0];
+                            this.c = iArr[1];
+                            e(ll9Var.b, ll9Var.a);
+                        } else {
+                            this.b = -1;
+                            this.c = -1;
+                        }
+                        this.f = false;
+                        return;
+                    }
+                }
+                this.b = 0;
+                this.c = Math.min(uc7.s1(r47Var.K1).k4.V1.f(), d(r47Var));
+                this.f = true;
                 return;
             }
-            ImageView imageView = new ImageView(getContext());
-            this.c = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.c, nme.e(i2, i2, 17));
-            a();
+            cc4.d("ReplyQuote.checkEdit: rich message is null");
+            this.f = false;
+        } else if (message != null && (str = message.message) != null) {
+            int i4 = this.c;
+            if (i4 >= this.b && i4 <= str.length() && this.b <= r47Var.k.message.length() && (i = this.b) >= 0 && (i2 = this.c) >= 0) {
+                if (TextUtils.equals(this.i, r47Var.k.message.substring(i, i2))) {
+                    this.a = r47Var;
+                    f();
+                    this.f = false;
+                    return;
+                }
+                int indexOf = r47Var.k.message.indexOf(this.i);
+                if (indexOf >= 0) {
+                    this.a = r47Var;
+                    this.c = (this.c - this.b) + indexOf;
+                    this.b = indexOf;
+                    f();
+                    this.f = false;
+                    return;
+                }
+                this.a = r47Var;
+                this.b = 0;
+                this.c = r47Var.k.message.length();
+                f();
+                this.f = true;
+                return;
+            }
+            cc4.d("ReplyQuote.checkEdit: start/end are invalid (" + this.b + ", " + this.c + ", len=" + r47Var.k.message.length() + ")");
+            this.f = false;
+        } else {
+            cc4.d("ReplyQuote.checkEdit: message is null");
+            this.f = false;
         }
-        this.c.setImageResource(i);
     }
 
-    @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        this.r.setBounds(0, 0, i, i2);
-    }
-
-    @Override
-    public final void p(int i, float f, float f2, y74 y74Var) {
-        if (i == 0) {
-            a();
-            b();
-        }
-        if (i == 1) {
-            a();
-            b();
-        }
-    }
-
-    public void setBlurredBackgroundDrawable(il0 il0Var) {
-        this.r = il0Var;
-        il0Var.q(gl.L(6.0f));
-        this.r.r(gl.L(22.0f));
-    }
-
-    @Override
-    public void setEnabled(boolean z) {
-        e(z, false);
-    }
-
-    public void setIcon(int i) {
-        f(i, 48);
-    }
-
-    public void setIconColor(int i) {
-        BlendMode blendMode;
-        ImageView imageView = this.c;
-        if (imageView == null) {
+    public final void e(int i, ArrayList arrayList) {
+        this.n = arrayList;
+        this.o = i;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList();
+            this.j = arrayList2;
+            this.i = ll9.h(arrayList, arrayList2);
             return;
         }
-        this.n = i;
-        if (Build.VERSION.SDK_INT >= 29) {
-            mk1.l();
-            blendMode = BlendMode.SRC_IN;
-            imageView.setColorFilter(new BlendModeColorFilter(i, blendMode));
+        this.n = null;
+        this.i = null;
+        this.j = null;
+    }
+
+    public final void f() {
+        TLRPC.Message message;
+        String str;
+        int i;
+        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji;
+        int i2;
+        if (this.m) {
+            int i3 = this.b;
+            if (i3 >= 0 && (i2 = this.c) >= 0) {
+                ll9 k = ll9.k(i3, i2, this.a);
+                if (k == null) {
+                    cc4.d("ReplyQuote: failed to build a rich quote (" + this.b + ", " + this.c + ")");
+                    e(0, null);
+                    return;
+                }
+                e(k.b, k.a);
+                return;
+            }
             return;
         }
-        imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-    }
-
-    public void setIconPadding(int i) {
-        ImageView imageView = this.c;
-        if (imageView != null) {
-            imageView.setPadding(0, i, 0, 0);
+        r47 r47Var = this.a;
+        if (r47Var != null && (message = r47Var.k) != null && (str = message.message) != null) {
+            if (this.g) {
+                TLRPC.TodoItem Z = r47.Z(this.d, r47Var);
+                if (Z == null) {
+                    cc4.d("ReplyQuote: todo task is not found");
+                    return;
+                } else {
+                    this.k = Z;
+                    return;
+                }
+            } else if (this.h) {
+                TLRPC.PollAnswer X = r47.X(r47Var, this.e);
+                if (X == null) {
+                    cc4.d("ReplyQuote: poll item is not found");
+                    return;
+                } else {
+                    this.l = X;
+                    return;
+                }
+            } else {
+                int i4 = this.c;
+                if (i4 >= this.b && i4 <= str.length() && this.b <= this.a.k.message.length() && (i = this.b) >= 0 && this.c >= 0) {
+                    String str2 = this.a.k.message;
+                    int max = Math.max(0, i);
+                    while (max < this.c && Character.isWhitespace(str2.charAt(max))) {
+                        max++;
+                    }
+                    int min = Math.min(this.c, str2.length());
+                    while (min > max && Character.isWhitespace(str2.charAt(min - 1))) {
+                        min--;
+                    }
+                    if (max == min) {
+                        cc4.d("ReplyQuote: message is full of whitespace");
+                        return;
+                    }
+                    this.i = this.a.k.message.substring(max, min);
+                    ArrayList arrayList = this.j;
+                    if (arrayList != null) {
+                        arrayList.clear();
+                    }
+                    ArrayList<TLRPC.MessageEntity> arrayList2 = this.a.k.entities;
+                    if (arrayList2 != null && !arrayList2.isEmpty()) {
+                        for (int i5 = 0; i5 < this.a.k.entities.size(); i5++) {
+                            TLRPC.MessageEntity messageEntity = this.a.k.entities.get(i5);
+                            int i6 = messageEntity.offset;
+                            int i7 = messageEntity.length + i6;
+                            Typeface typeface = hl.a;
+                            if (Math.max(max, min) >= Math.min(i6, i7) && Math.max(i6, i7) >= Math.min(max, min)) {
+                                if (messageEntity instanceof TLRPC.TL_messageEntityBold) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityBold();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityItalic) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityItalic();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityUnderline) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityUnderline();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityStrike) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityStrike();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntitySpoiler) {
+                                    tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntitySpoiler();
+                                } else if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji2 = new TLRPC.TL_messageEntityCustomEmoji();
+                                    TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji3 = (TLRPC.TL_messageEntityCustomEmoji) messageEntity;
+                                    tL_messageEntityCustomEmoji2.document_id = tL_messageEntityCustomEmoji3.document_id;
+                                    tL_messageEntityCustomEmoji2.document = tL_messageEntityCustomEmoji3.document;
+                                    tL_messageEntityCustomEmoji = tL_messageEntityCustomEmoji2;
+                                }
+                                int i8 = messageEntity.offset;
+                                int i9 = i8 - max;
+                                int i10 = (i8 + messageEntity.length) - max;
+                                if ((i9 >= 0 || i10 >= 0) && (i9 <= min || i10 <= min)) {
+                                    tL_messageEntityCustomEmoji.offset = Math.max(0, i9);
+                                    tL_messageEntityCustomEmoji.length = Math.min(i10, min - max) - tL_messageEntityCustomEmoji.offset;
+                                    ArrayList arrayList3 = this.j;
+                                    if (arrayList3 == null) {
+                                        arrayList3 = new ArrayList();
+                                        this.j = arrayList3;
+                                    }
+                                    arrayList3.add(tL_messageEntityCustomEmoji);
+                                }
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
+                cc4.d("ReplyQuote: start/end are invalid (" + this.b + ", " + this.c + ", len=" + this.a.k.message.length() + ")");
+                return;
+            }
         }
-    }
-
-    @Override
-    public final void updateColors() {
-        il0 il0Var = this.r;
-        if (il0Var != null) {
-            il0Var.updateColors();
-            invalidate();
-        }
-        int v0 = bkb.v0(bkb.Ml, this.f);
-        if (this.c != null && v0 != this.n) {
-            setIconColor(v0);
-        }
-        int L = gl.L(22.0f);
-        int p1 = bkb.p1(0.15f, v0);
-        if (getBackground() instanceof RippleDrawable) {
-            bkb.F1(getBackground(), p1, true);
-            return;
-        }
-        int L2 = gl.L(6.0f);
-        setBackground(bkb.W(L, p1, L2, L2, L2, L2));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    @Override
-    public final void F(float f, int i) {
+        cc4.d("ReplyQuote: message is null");
     }
 }

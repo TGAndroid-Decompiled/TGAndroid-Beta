@@ -1,17 +1,22 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import java.util.HashMap;
-public abstract class gb8 {
-    public static do3 a;
-    public static final nr4 b = new nr4(25165824, (byte) 2);
-    public static final np4 c = new np4(16, 0.75f, true, (byte) 2);
-    public static final HashMap d = new HashMap();
+import org.telegram.ui.PhotoViewer;
+public final class gb8 extends d6 {
+    public final vnb a;
+    public final PhotoViewer b;
 
-    public static int a(Bitmap bitmap) {
-        if (bitmap == null) {
-            return 0;
-        }
-        return bitmap.getAllocationByteCount();
+    public gb8(PhotoViewer photoViewer, vnb vnbVar) {
+        this.b = photoViewer;
+        this.a = vnbVar;
+    }
+
+    @Override
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gb8.a():boolean");
+    }
+
+    @Override
+    public final void b(int r34) {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.gb8.b(int):void");
     }
 }

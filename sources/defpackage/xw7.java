@@ -1,93 +1,196 @@
 package defpackage;
 
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class xw7 extends i98 {
-    public final vx7 a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class xw7 implements p14 {
+    public final dx7 a;
 
-    public xw7(vx7 vx7Var) {
-        this.a = vx7Var;
+    public xw7(dx7 dx7Var) {
+        this.a = dx7Var;
     }
 
     @Override
-    public final void A(int i) {
-        uu9 uu9Var;
-        vx7 vx7Var = this.a;
-        byte b = vx7Var.T0;
-        if (b == 1) {
-            uu9Var = vx7Var.k1;
-        } else if (b == 4) {
-            uu9Var = (uu9) vx7Var.l1.get(i);
-        } else if (b == 2) {
-            uu9Var = vx7Var.m1;
-        } else if (b == 3) {
-            uu9Var = vx7Var.n1;
-        } else {
-            uu9Var = (uu9) vx7Var.j1.get(i);
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean l() {
+        ju3 editText = ((rlb) this.a.t0).getEditText();
+        if (editText == null || editText.length() == 0) {
+            return false;
         }
-        tx7 tx7Var = (tx7) vx7Var.o1.remove(uu9Var);
-        if (tx7Var == null) {
+        editText.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void m(String str) {
+        rlb rlbVar;
+        ju3 editText;
+        mv3[] mv3VarArr;
+        h44 h44Var = this.a.t0;
+        if (!(h44Var instanceof rlb) || (editText = (rlbVar = (rlb) h44Var).getEditText()) == null) {
             return;
         }
-        String f1 = vx7.f1(uu9Var);
-        byte b2 = vx7Var.T0;
-        String str = null;
-        if (b2 == 1) {
-            vx7Var.k1 = null;
-            str = b00.h("selfie", f1);
-        } else if (b2 == 4) {
-            str = b00.h("translation", f1);
-        } else if (b2 == 2) {
-            vx7Var.m1 = null;
-            str = b00.h("front", f1);
-        } else if (b2 == 3) {
-            vx7Var.n1 = null;
-            str = b00.h("reverse", f1);
-        } else if (b2 == 0) {
-            str = b00.h("files", f1);
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
         }
-        if (str != null) {
-            HashMap hashMap = vx7Var.y1;
-            if (hashMap != null) {
-                hashMap.remove(str);
+        try {
+            CharSequence m = pv3.m(str, rlbVar.getFontMetricsInt(), false, null, 0);
+            if ((m instanceof Spanned) && (mv3VarArr = (mv3[]) ((Spanned) m).getSpans(0, m.length(), mv3.class)) != null) {
+                for (mv3 mv3Var : mv3VarArr) {
+                    mv3Var.b = 0.85f;
+                }
             }
-            HashMap hashMap2 = vx7Var.z1;
-            if (hashMap2 != null) {
-                hashMap2.remove(str);
-            }
+            editText.setText(editText.getText().insert(selectionEnd, m));
+            int length = selectionEnd + m.length();
+            editText.setSelection(length, length);
+        } catch (Exception e) {
+            cc4.g(e, true);
         }
-        vx7Var.V1(vx7Var.T0);
-        vx7Var.j0.removeView(tx7Var);
     }
 
     @Override
-    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        if (i >= 0) {
-            vx7 vx7Var = this.a;
-            if (i < vx7Var.j0.getChildCount()) {
-                tx7 tx7Var = (tx7) vx7Var.j0.getChildAt(i);
-                int[] iArr = new int[2];
-                tx7Var.c.getLocationInWindow(iArr);
-                p98 p98Var = new p98();
-                p98Var.b = iArr[0];
-                p98Var.c = iArr[1];
-                p98Var.d = vx7Var.j0;
-                ImageReceiver imageReceiver = tx7Var.c.getImageReceiver();
-                p98Var.a = imageReceiver;
-                p98Var.e = imageReceiver.p();
-                return p98Var;
-            }
-            return null;
-        }
-        return null;
+    public final void n() {
+        dx7 dx7Var = this.a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, dx7Var.q1, dx7Var.getContext());
+        String M0 = ob6.M0(2131752033, null);
+        id idVar = alertDialog$Builder.a;
+        idVar.S = M0;
+        idVar.U = ob6.M0(2131752034, null);
+        alertDialog$Builder.j(ob6.M0(2131752064, null), new bm6(this, (byte) 27));
+        alertDialog$Builder.g(ob6.M0(2131752570, null), null);
+        alertDialog$Builder.o();
     }
 
     @Override
-    public final String b0() {
-        if (this.a.T0 == 1) {
-            return k96.a0("PassportDeleteSelfieAlert", null, 2131747388, new Object[0]);
+    public final float o() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void w(long j, TLRPC.Document document, String str, boolean z) {
+        hm hmVar;
+        ju3 editText = ((rlb) this.a.t0).getEditText();
+        if (editText == null) {
+            return;
         }
-        return k96.a0("PassportDeleteScanAlert", null, 2131747390, new Object[0]);
+        int selectionEnd = editText.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                hmVar = new hm(document.id, 1.0f, editText.getPaint().getFontMetricsInt());
+                hmVar.document = document;
+            } else {
+                hmVar = new hm(j, 1.0f, editText.getPaint().getFontMetricsInt());
+            }
+            spannableString.setSpan(hmVar, 0, spannableString.length(), 33);
+            editText.setText(editText.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editText.setSelection(length, length);
+        } catch (Exception e) {
+            cc4.g(e, true);
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v() {
+    }
+
+    @Override
+    public final void g(d6c d6cVar) {
+    }
+
+    @Override
+    public final void i(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void j(int i) {
+    }
+
+    @Override
+    public final void q(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void r(int i) {
+    }
+
+    @Override
+    public final void s(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+    }
+
+    @Override
+    public final void u(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+    }
+
+    @Override
+    public final void x(View view, TLRPC.Document document, String str, Object obj, n47 n47Var, boolean z, int i) {
     }
 }

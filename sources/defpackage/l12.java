@@ -1,25 +1,24 @@
 package defpackage;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class l12 implements RequestDelegate {
-    public final byte a;
-    public final int b;
-    public final Object c;
+import android.text.Editable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public interface l12 {
+    boolean E0();
 
-    public l12(int i, go2 go2Var) {
-        this.a = (byte) 7;
-        this.b = i;
-        this.c = go2Var;
-    }
+    void O0(vq0 vq0Var);
 
-    @Override
-    public final void run(org.telegram.tgnet.TLObject r13, org.telegram.tgnet.TLRPC.TL_error r14) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.l12.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
-    }
+    void R();
 
-    public l12(Object obj, int i, byte b) {
-        this.a = b;
-        this.c = obj;
-        this.b = i;
-    }
+    void V();
+
+    void e0(Object obj);
+
+    void f0(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2);
+
+    void i0(TLRPC.User user);
+
+    boolean o();
+
+    void z0(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2);
 }

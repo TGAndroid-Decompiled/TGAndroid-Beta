@@ -1,49 +1,45 @@
 package defpackage;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class w52 implements p8c {
-    public final byte a;
-    public final p8c b;
+import android.content.Context;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class w52 {
+    public float a;
+    public int b;
+    public int c;
+    public int d;
+    public final Object e;
+    public final Object f;
+    public Object g;
+    public final Object h;
 
-    public w52(p8c p8cVar, byte b) {
-        this.a = b;
-        this.b = p8cVar;
+    public w52(Context context, aj3 aj3Var) {
+        this.b = -1;
+        this.c = -1;
+        this.d = -1;
+        this.h = new int[]{Integer.MAX_VALUE, 0};
+        this.e = context;
+        this.f = aj3Var;
     }
 
-    @Override
-    public final void a(Object obj) {
-        byte b = this.a;
-        p8c p8cVar = this.b;
-        switch (b) {
-            case 0:
-                p8cVar.a(new qd8((String) obj));
-                return;
-            case 1:
-                mqc mqcVar = (mqc) obj;
-                if (mqcVar != null) {
-                    p8cVar.a(mqcVar);
-                    return;
-                }
-                return;
-            case 2:
-                String str = (String) obj;
-                w25.m("disconnect session", str);
-                p8cVar.a(str);
-                return;
-            case 3:
-                int[] iArr = (int[]) obj;
-                boolean z = false;
-                if (iArr.length >= 1 && iArr[0] == 0) {
-                    z = true;
-                }
-                p8cVar.a(Boolean.valueOf(z));
-                return;
-            case 4:
-                p8cVar.a((TL_stars.StarGift) obj);
-                return;
-            default:
-                p8cVar.a((Boolean) obj);
-                return;
+    public static float b(int i, int i2, float[] fArr) {
+        float f = 0.0f;
+        while (i < i2) {
+            f += fArr[i];
+            i++;
         }
+        return 1000.0f / f;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: defpackage.w52.a():void");
+    }
+
+    public w52(c62 c62Var, ArrayList arrayList) {
+        this.h = c62Var;
+        this.e = new ArrayList();
+        this.g = new HashMap();
+        this.f = arrayList;
+        a();
     }
 }

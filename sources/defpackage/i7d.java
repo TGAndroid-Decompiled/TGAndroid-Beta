@@ -1,4 +1,3 @@
 package defpackage;
-public abstract class i7d extends dzc implements m7d {
-    public static final int b = 0;
+public final class i7d extends v3d {
 }

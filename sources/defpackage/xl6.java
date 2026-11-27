@@ -1,23 +1,170 @@
 package defpackage;
 
-import android.util.SparseArray;
 import java.util.ArrayList;
-public final class xl6 {
-    public final int a;
-    public boolean b;
-    public final String c;
-    public final jm6 d;
-    public final ArrayList e = new ArrayList();
-    public final SparseArray f = new SparseArray();
+import java.util.Arrays;
+public final class xl6 implements sf7 {
+    public final String a;
+    public final byte[] b;
+    public final int c;
+    public final int d;
 
-    public xl6(int i, String str, jm6 jm6Var) {
-        this.a = i;
-        this.c = str;
-        this.d = jm6Var;
+    public xl6(String str, byte[] bArr, int i, int i2) {
+        byte b;
+        str.getClass();
+        char c = 65535;
+        switch (str.hashCode()) {
+            case -1949883051:
+                if (str.equals("com.android.capture.fps")) {
+                    c = 0;
+                    break;
+                }
+                break;
+            case -269399509:
+                if (str.equals("auxiliary.tracks.interleaved")) {
+                    c = 1;
+                    break;
+                }
+                break;
+            case 1011693540:
+                if (str.equals("auxiliary.tracks.length")) {
+                    c = 2;
+                    break;
+                }
+                break;
+            case 1098277265:
+                if (str.equals("auxiliary.tracks.offset")) {
+                    c = 3;
+                    break;
+                }
+                break;
+            case 2002123038:
+                if (str.equals("auxiliary.tracks.map")) {
+                    c = 4;
+                    break;
+                }
+                break;
+        }
+        switch (c) {
+            case 0:
+                if (i2 == 23 && bArr.length == 4) {
+                    r2 = true;
+                }
+                yve.f(r2);
+                break;
+            case 1:
+                if (i2 == 75 && bArr.length == 1 && ((b = bArr[0]) == 0 || b == 1)) {
+                    r2 = true;
+                }
+                yve.f(r2);
+                break;
+            case 2:
+            case 3:
+                if (i2 == 78 && bArr.length == 8) {
+                    r2 = true;
+                }
+                yve.f(r2);
+                break;
+            case 4:
+                yve.f(i2 == 0);
+                break;
+        }
+        this.a = str;
+        this.b = bArr;
+        this.c = i;
+        this.d = i2;
     }
 
-    public final void a(jm6 jm6Var) {
-        this.e.add(jm6Var);
-        this.f.put(jm6Var.C, jm6Var);
+    @Override
+    public final ko4 a() {
+        return null;
+    }
+
+    @Override
+    public final byte[] c() {
+        return null;
+    }
+
+    public final ArrayList d() {
+        yve.o("Metadata is not an auxiliary tracks map", this.a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.b;
+        byte b = bArr[1];
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < b; i = qd4.g(bArr[i + 2] & 255, i, 1, arrayList)) {
+        }
+        return arrayList;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && xl6.class == obj.getClass()) {
+                xl6 xl6Var = (xl6) obj;
+                if (this.a.equals(xl6Var.a) && Arrays.equals(this.b, xl6Var.b) && this.c == xl6Var.c && this.d == xl6Var.d) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((((Arrays.hashCode(this.b) + bs2.j(527, 31, this.a)) * 31) + this.c) * 31) + this.d;
+    }
+
+    public final String toString() {
+        String sb;
+        boolean z;
+        boolean z2;
+        String str = this.a;
+        byte[] bArr = this.b;
+        int i = this.d;
+        if (i != 0) {
+            if (i != 1) {
+                if (i != 23) {
+                    if (i != 67) {
+                        if (i != 75) {
+                            if (i == 78) {
+                                sb = String.valueOf(new ey7(bArr).G());
+                            }
+                            sb = gcc.g0(bArr);
+                        } else {
+                            sb = String.valueOf(bArr[0] & 255);
+                        }
+                    } else {
+                        if (bArr.length >= 4) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                        yve.b(bArr.length, 4, "array too small: %s < %s", z2);
+                        sb = String.valueOf(ype.c(bArr[0], bArr[1], bArr[2], bArr[3]));
+                    }
+                } else {
+                    if (bArr.length >= 4) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    yve.b(bArr.length, 4, "array too small: %s < %s", z);
+                    sb = String.valueOf(Float.intBitsToFloat(ype.c(bArr[0], bArr[1], bArr[2], bArr[3])));
+                }
+            } else {
+                sb = gcc.r(bArr);
+            }
+        } else {
+            if (str.equals("auxiliary.tracks.map")) {
+                ArrayList d = d();
+                StringBuilder r = qd4.r("track types = ");
+                new ow5(String.valueOf(','), (byte) 0).a(r, d.iterator());
+                sb = r.toString();
+            }
+            sb = gcc.g0(bArr);
+        }
+        return qd4.q("mdta: key=", str, ", value=", sb);
+    }
+
+    @Override
+    public final void b(lt6 lt6Var) {
     }
 }

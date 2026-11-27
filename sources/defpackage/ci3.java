@@ -1,277 +1,267 @@
 package defpackage;
 
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d;
-import org.telegram.ui.PhotoViewer;
-public final class ci3 extends i98 {
-    public final boolean[] a;
-    public final cj3 b;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ci3 implements xy1, ibb {
+    public final uj3 a;
 
-    public ci3(cj3 cj3Var, boolean[] zArr) {
-        this.b = cj3Var;
-        this.a = zArr;
+    public ci3(uj3 uj3Var) {
+        this.a = uj3Var;
     }
 
     @Override
-    public final CharSequence B(int i) {
-        cj3 cj3Var = this.b;
-        if (i >= 0 && i < cj3Var.F2.size() && ((jm6) cj3Var.F2.get(i)).b) {
-            return null;
-        }
-        return cj3Var.C2();
-    }
-
-    @Override
-    public final void C() {
-        int i;
-        cj3 cj3Var = this.b;
-        bba bbaVar = cj3Var.I2;
-        if (bbaVar != null) {
-            i = ((d) cj3Var).currentAccount;
-            bbaVar.i(i, cj3Var.F2);
-        }
-    }
-
-    @Override
-    public final int G() {
-        ArrayList arrayList = this.b.F2;
-        if (arrayList != null) {
-            return arrayList.size();
-        }
+    public final int E0() {
         return 0;
     }
 
     @Override
-    public final boolean H() {
-        return this.b.E2();
+    public final TL_stories.StoryItem F0() {
+        return null;
     }
 
     @Override
-    public final void L(int i, oac oacVar, boolean z, int i2, int i3, boolean z2) {
-        int i4;
-        ArrayList arrayList;
-        cj3 cj3Var = this.b;
-        ArrayList arrayList2 = cj3Var.K2;
-        if (cj3Var.D1 != null && (arrayList = cj3Var.F2) != null && !arrayList.isEmpty()) {
-            hh3 hh3Var = cj3Var.D1;
-            CharSequence charSequence = ((jm6) cj3Var.F2.get(0)).a;
-            if (charSequence == null) {
-                charSequence = "";
+    public final boolean H0(long j) {
+        return false;
+    }
+
+    @Override
+    public final boolean L0() {
+        return false;
+    }
+
+    @Override
+    public final ou1 R() {
+        return null;
+    }
+
+    @Override
+    public final void R0(CharSequence charSequence, boolean z, boolean z2) {
+        uj3 uj3Var = this.a;
+        hl.d3(new ch3(uj3Var, (byte) 18), 100L);
+        sea seaVar = uj3Var.I2;
+        if (seaVar != null) {
+            if (z) {
+                if (seaVar.h) {
+                    seaVar.e(charSequence, true);
+                    return;
+                }
+                return;
             }
-            hh3Var.setFieldText(charSequence);
-        }
-        bba bbaVar = cj3Var.I2;
-        if (bbaVar != null) {
-            i4 = ((d) cj3Var).currentAccount;
-            bbaVar.i(i4, cj3Var.F2);
-        }
-        if ((!z || i2 != 0 || z2) && cj3Var.E2 != null && !arrayList2.isEmpty()) {
-            cj3Var.L2 = z;
-            cj3Var.M2 = i2;
-            cj3Var.O2 = z2;
-            ArrayList arrayList3 = new ArrayList();
-            for (int i5 = 0; i5 < arrayList2.size(); i5++) {
-                arrayList3.add(zc7.a(((Long) arrayList2.get(i5)).longValue(), 0L));
+            wd3 wd3Var = uj3Var.J2;
+            if (wd3Var != null) {
+                hl.r(wd3Var);
             }
-            PhotoViewer.r0().B(true, false);
-            cj3Var.E2.r(cj3Var, arrayList3, cj3Var.D1.getFieldText(), false, z, i2, i3, null);
+            wd3 wd3Var2 = new wd3(this, charSequence, (byte) 4);
+            uj3Var.J2 = wd3Var2;
+            hl.d3(wd3Var2, 1000L);
+        }
+    }
+
+    @Override
+    public final boolean T0() {
+        return false;
+    }
+
+    @Override
+    public final mbb b(long j) {
+        og3 og3Var;
+        ii3 ii3Var = this.a.F0;
+        if (ii3Var != null) {
+            og3Var = ii3Var.e(j);
+        } else {
+            og3Var = null;
+        }
+        return mbb.c(og3Var);
+    }
+
+    @Override
+    public final void c(long j, pqa pqaVar) {
+        uj3 uj3Var = this.a;
+        if (uj3Var.F0 != null) {
+            uj3Var.R4(false, true);
+            uj3Var.R = true;
+            uj3Var.fragmentView.invalidate();
+            if (j != 0 && j != uj3Var.getUserConfig().e()) {
+                uj3Var.F0.k(j);
+            } else {
+                uj3Var.F0.T.g1(0, 0);
+            }
+            uj3Var.f0[0].a.getViewTreeObserver().addOnPreDrawListener(new z(this, pqaVar, (byte) 2));
             return;
         }
-        PhotoViewer.r0().B(true, false);
+        pqaVar.run();
     }
 
     @Override
-    public final p98 M(k27 k27Var, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-        be0 be0Var;
-        cj3 cj3Var = this.b;
-        bba bbaVar = cj3Var.I2;
-        if (bbaVar != null) {
-            be0Var = bbaVar.f(i);
-        } else {
-            be0Var = null;
-        }
-        if (be0Var == null) {
-            return null;
-        }
-        int[] iArr = new int[2];
-        be0Var.getLocationInWindow(iArr);
-        p98 p98Var = new p98();
-        p98Var.b = iArr[0];
-        p98Var.c = iArr[1];
-        p98Var.d = cj3Var.I2;
-        ImageReceiver imageReceiver = be0Var.getImageReceiver();
-        p98Var.a = imageReceiver;
-        p98Var.e = imageReceiver.p();
-        p98Var.k = be0Var.getScaleX();
-        p98Var.h = new int[]{gl.L(6.0f), gl.L(6.0f), gl.L(6.0f), gl.L(6.0f)};
-        return p98Var;
+    public final boolean e0() {
+        return true;
     }
 
     @Override
-    public final long a() {
-        ArrayList arrayList = this.b.K2;
-        if (arrayList.isEmpty()) {
-            return 0L;
-        }
-        return ((Long) arrayList.get(0)).longValue();
-    }
-
-    @Override
-    public final boolean b() {
-        cj3 cj3Var = this.b;
-        ArrayList arrayList = cj3Var.K2;
-        if (!arrayList.isEmpty()) {
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                long longValue = ((Long) obj).longValue();
-                if (!cf3.B(longValue)) {
-                    if (cj3Var.getMessagesController().K1(longValue) > 0) {
-                    }
-                }
-            }
-            return true;
-        }
+    public final boolean e1() {
         return false;
     }
 
     @Override
-    public final CharSequence c0(int i) {
-        int i2;
-        cj3 cj3Var = this.b;
-        ArrayList arrayList = cj3Var.F2;
-        if (arrayList == null || arrayList.isEmpty()) {
-            return null;
-        }
-        int size = cj3Var.F2.size();
-        ArrayList arrayList2 = cj3Var.F2;
-        if (size == 1) {
-            if (((jm6) arrayList2.get(0)).b) {
-                i2 = 2131753930;
-            } else {
-                i2 = 2131753945;
-            }
-            return k96.M0(i2, null);
-        }
-        int size2 = arrayList2.size();
-        int i3 = 0;
-        int i4 = 0;
-        int i5 = 0;
-        while (i5 < size2) {
-            Object obj = arrayList2.get(i5);
-            i5++;
-            if (((jm6) obj).b) {
-                i3++;
-            } else {
-                i4++;
-            }
-        }
-        if (i3 == 0) {
-            return k96.G(size, "ShareSendPhotos", new Object[0]);
-        }
-        if (i4 == 0) {
-            return k96.G(size, "ShareSendVideos", new Object[0]);
-        }
-        return k96.G(size, "ShareSendItems", new Object[0]);
-    }
-
-    @Override
-    public final void f(CharSequence charSequence) {
-        cj3 cj3Var = this.b;
-        hh3 hh3Var = cj3Var.D1;
-        if (hh3Var != null) {
-            hh3Var.setFieldText(charSequence);
-        }
-        ArrayList arrayList = cj3Var.F2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                ((jm6) obj).a = charSequence;
-            }
-        }
-    }
-
-    @Override
-    public final boolean i() {
-        cj3 cj3Var = this.b;
-        ArrayList arrayList = cj3Var.K2;
-        if (!arrayList.isEmpty()) {
-            na7 messagesController = cj3Var.getMessagesController();
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                Long l = (Long) obj;
-                if (cf3.D(l.longValue())) {
-                    TLRPC.User V1 = messagesController.V1(l);
-                    if (V1 != null) {
-                        if (!V1.bot) {
-                            if (l7c.D(V1)) {
-                            }
-                        }
-                    }
-                }
-            }
-            return true;
-        }
+    public final boolean g() {
         return false;
     }
 
     @Override
-    public final jl5 k(int i) {
-        be0 be0Var;
-        bba bbaVar = this.b.I2;
-        if (bbaVar != null) {
-            be0Var = bbaVar.f(i);
-        } else {
-            be0Var = null;
-        }
-        if (be0Var == null) {
-            return null;
-        }
-        return be0Var.getImageReceiver().p();
+    public final int j() {
+        return 0;
     }
 
     @Override
-    public final void r() {
-        hh3 hh3Var;
-        mb1 d0;
-        PhotoViewer r0 = PhotoViewer.r0();
-        CharSequence charSequence = null;
-        if (r0.V0() && (d0 = r0.d0()) != null) {
-            charSequence = d0.getText();
-        }
-        cj3 cj3Var = this.b;
-        if (charSequence != null && (hh3Var = cj3Var.D1) != null) {
-            hh3Var.setFieldText(charSequence);
-        }
-        ArrayList arrayList = cj3Var.F2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                ((jm6) obj).a = charSequence;
+    public final TLRPC.Peer k() {
+        return null;
+    }
+
+    @Override
+    public final void x(CharSequence charSequence, boolean z, int i, int i2, long j) {
+        uj3 uj3Var = this.a;
+        ArrayList arrayList = uj3Var.K2;
+        if (uj3Var.E2 != null && !arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList();
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                arrayList2.add(if7.a(((Long) uj3Var.K2.get(i3)).longValue(), 0L));
             }
+            uj3Var.E2.q(uj3Var, arrayList2, charSequence, false, z, i, i2, null);
         }
     }
 
     @Override
-    public final boolean w(int i) {
-        return this.a[i];
+    public final TLRPC.TL_channels_sendAsPeers y() {
+        return null;
     }
 
     @Override
-    public final int D(int i, oac oacVar) {
-        return i;
+    public final void B1() {
+    }
+
+    @Override
+    public final void C() {
+    }
+
+    @Override
+    public final void D1() {
+    }
+
+    @Override
+    public final void J() {
+    }
+
+    @Override
+    public final void O1() {
+    }
+
+    @Override
+    public final void P1() {
+    }
+
+    @Override
+    public final void S0() {
+    }
+
+    @Override
+    public final void S1() {
+    }
+
+    @Override
+    public final void V() {
+    }
+
+    @Override
+    public final void W0() {
+    }
+
+    @Override
+    public final void X0() {
+    }
+
+    @Override
+    public final void Z0() {
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void e() {
+    }
+
+    @Override
+    public final void f0() {
+    }
+
+    @Override
+    public final void g1() {
+    }
+
+    @Override
+    public final void i0() {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void p1() {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void t0() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void C1(int i) {
+    }
+
+    @Override
+    public final void D(boolean z) {
+    }
+
+    @Override
+    public final void E1(boolean z) {
+    }
+
+    @Override
+    public final void d1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void o(float f) {
+    }
+
+    @Override
+    public final void p(boolean z) {
+    }
+
+    @Override
+    public final void z0(int i) {
+    }
+
+    @Override
+    public final void B(float f, int i) {
+    }
+
+    @Override
+    public final void b1(View view, CharSequence charSequence, boolean z) {
+    }
+
+    @Override
+    public final void H1(int i, int i2, int i3, long j, long j2, boolean z) {
     }
 }

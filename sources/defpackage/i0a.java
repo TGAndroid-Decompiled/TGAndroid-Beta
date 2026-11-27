@@ -1,83 +1,42 @@
 package defpackage;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class i0a extends gec {
-    public boolean x0;
-    public final n0a y0;
-    public final n0a z0;
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class i0a extends ViewOutlineProvider {
+    public final Rect a = new Rect();
+    public final Integer b;
+    public final n1a c;
 
-    public i0a(n0a n0aVar, Context context) {
-        super(context);
-        this.z0 = n0aVar;
-        this.y0 = n0aVar;
-    }
-
-    public final boolean A(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.x0 = true;
-        }
-        if (this.x0 && this.y0.y <= 0) {
-            try {
-                return super.onInterceptTouchEvent(motionEvent);
-            } catch (Exception unused) {
-            }
-        }
-        return false;
-    }
-
-    public final boolean B(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.x0 = true;
-        }
-        if (this.x0 && this.y0.y <= 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        return false;
+    public i0a(n1a n1aVar, Integer num) {
+        this.c = n1aVar;
+        this.b = num;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float y = motionEvent.getY();
-        currentTopOffset = this.z0.getCurrentTopOffset();
-        if (y < currentTopOffset && motionEvent.getAction() == 0) {
-            return false;
+    public final void getOutline(View view, Outline outline) {
+        float intValue;
+        n1a n1aVar = this.c;
+        byte b = n1aVar.e1;
+        Integer num = this.b;
+        if (num == null) {
+            intValue = view.getWidth() / 2.0f;
+        } else {
+            intValue = num.intValue();
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y = motionEvent.getY();
-        n0a n0aVar = this.z0;
-        currentTopOffset = n0aVar.getCurrentTopOffset();
-        if (y >= currentTopOffset) {
-            currentTopOffset2 = n0aVar.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - n0aVar.d) > gl.L(1.0f)) {
-                return false;
-            }
-            return A(motionEvent);
+        float L = intValue + hl.L(20.0f);
+        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
+        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
+        boolean m = n1aVar.m();
+        Rect rect = this.a;
+        if (m) {
+            int paddingLeft = (int) ((L - (n1aVar.b1 * L)) + view.getPaddingLeft());
+            float A = qd4.A(1.0f, n1aVar.c1, height, view.getPaddingTop());
+            rect.set(paddingLeft, (int) qd4.A(1.0f, n1aVar.c1, hl.L(b), A), (int) (((width - L) * n1aVar.b1) + view.getPaddingLeft() + L), (int) qd4.A(1.0f, n1aVar.c1, hl.L(b), view.getPaddingTop() + height));
+        } else {
+            rect.set((int) ((L - (n1aVar.b1 * L)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - L) * n1aVar.b1) + view.getPaddingLeft() + L), (int) ((height * n1aVar.c1) + view.getPaddingTop()));
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y = motionEvent.getY();
-        n0a n0aVar = this.z0;
-        currentTopOffset = n0aVar.getCurrentTopOffset();
-        if (y >= currentTopOffset) {
-            currentTopOffset2 = n0aVar.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - n0aVar.d) > gl.L(1.0f)) {
-                return false;
-            }
-            return B(motionEvent);
-        }
-        return false;
+        outline.setRoundRect(rect, hl.L(12.0f));
     }
 }

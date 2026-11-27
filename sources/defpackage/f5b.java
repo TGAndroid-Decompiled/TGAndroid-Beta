@@ -1,59 +1,27 @@
 package defpackage;
+public final class f5b implements Runnable {
+    public final byte a;
+    public final c6b b;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class f5b extends n39 {
-    public final g5b c;
-
-    public f5b(g5b g5bVar) {
-        this.c = g5bVar;
+    public f5b(c6b c6bVar, byte b) {
+        this.a = b;
+        this.b = c6bVar;
     }
 
     @Override
-    public final boolean D(s49 s49Var) {
-        if (s49Var.f == 2) {
-            return true;
+    public final void run() {
+        byte b = this.a;
+        c6b c6bVar = this.b;
+        switch (b) {
+            case 0:
+                c6bVar.s = true;
+                c6bVar.l.edit().putBoolean("read_loaded", true).apply();
+                return;
+            case 1:
+            default:
+                c6bVar.R = false;
+                c6bVar.S = null;
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.c.m1.size() + 2;
-    }
-
-    @Override
-    public final int d(int i) {
-        if (i == 0) {
-            return 0;
-        }
-        if (i == 1) {
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void t(defpackage.s49 r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.f5b.t(s49, int):void");
-    }
-
-    @Override
-    public final s49 x(ViewGroup viewGroup, int i) {
-        View view;
-        int L;
-        g5b g5bVar = this.c;
-        if (i != 0 && i != 1) {
-            view = new x5b(g5bVar.getContext(), g5bVar.J0);
-        } else {
-            view = new View(g5bVar.getContext());
-            if (i == 0) {
-                L = (gl.q.y + gl.m) - gl.L(306.0f);
-            } else {
-                L = gl.L(54.0f);
-            }
-            view.setLayoutParams(new e49(-1, L));
-        }
-        return new s49(view);
     }
 }

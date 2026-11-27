@@ -1,25 +1,20 @@
 package defpackage;
-public final class za9 extends ft5 {
-    public final gt5 e;
+public final class za9 {
+    public final float a;
+    public final float b;
+    public final float c;
+    public final float d;
+    public final boolean e;
 
-    public za9(gt5 gt5Var) {
-        this.e = gt5Var;
+    public za9(float f, float f2, float f3, float f4) {
+        this.a = f;
+        this.b = f2;
+        this.c = f3;
+        this.d = f4;
     }
 
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void l(Throwable th) {
-        Object v = j().v();
-        boolean z = v instanceof fp2;
-        gt5 gt5Var = this.e;
-        if (z) {
-            gt5Var.resumeWith(qse.a(((fp2) v).a));
-        } else {
-            gt5Var.resumeWith(fad.a(v));
-        }
+    public za9(float f, float f2, float f3, float f4, int i) {
+        this(f, f2, f3, f4);
+        this.e = true;
     }
 }

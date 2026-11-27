@@ -1,9 +1,8 @@
 package defpackage;
+public interface z66 {
+    int b(boolean z);
 
-import android.view.View;
-public final class z66 extends gb3 {
-    @Override
-    public final float A(View view) {
-        return 0.5f;
-    }
+    int getHeight();
+
+    int getWidth();
 }

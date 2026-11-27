@@ -1,18 +1,57 @@
 package defpackage;
+public final class w56 implements Runnable {
+    public final byte a;
+    public final e66 b;
+    public final String c;
 
-import android.os.Looper;
-public final class w56 {
-    public final mc5 a;
-    public volatile u56 b;
-
-    public w56(Looper looper, Object obj, String str) {
-        this.a = new mc5(looper);
-        fre.i(obj, "Listener must not be null");
-        fre.f(str);
-        this.b = new u56(obj, str);
+    public w56(e66 e66Var, String str, byte b) {
+        this.a = b;
+        this.b = e66Var;
+        this.c = str;
     }
 
-    public final void a(v56 v56Var) {
-        this.a.execute(new tq4(this, v56Var, (byte) 15));
+    @Override
+    public final void run() {
+        byte b = this.a;
+        String str = this.c;
+        e66 e66Var = this.b;
+        switch (b) {
+            case 0:
+                if ("disable".equalsIgnoreCase(str)) {
+                    e66Var.x("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    e66Var.x("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str)) {
+                    e66Var.x("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str)) {
+                    e66Var.x("fingerprintRow");
+                    return;
+                }
+                return;
+            case 1:
+                e66Var.w(str);
+                return;
+            case 2:
+                if ("disable".equalsIgnoreCase(str)) {
+                    e66Var.x("turnPasswordOffRow");
+                }
+                if ("change".equalsIgnoreCase(str)) {
+                    e66Var.x("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    e66Var.x("emailRow");
+                    return;
+                }
+                return;
+            default:
+                if (e66Var.a()) {
+                    e66Var.w(str);
+                    return;
+                }
+                return;
+        }
     }
 }

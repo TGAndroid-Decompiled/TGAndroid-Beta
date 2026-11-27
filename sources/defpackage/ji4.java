@@ -1,136 +1,221 @@
 package defpackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.widget.ImageView;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.PhotoViewer;
-public final class ji4 extends AnimatorListenerAdapter {
-    public final byte a;
-    public final float b;
-    public final Runnable c;
-    public final Object d;
+import android.app.Application;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import com.google.firebase.FirebaseCommonRegistrar;
+import com.google.firebase.components.ComponentDiscoveryService;
+import com.google.firebase.concurrent.ExecutorsRegistrar;
+import com.google.firebase.provider.FirebaseInitProvider;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
+public final class ji4 {
+    public static final Object k = new Object();
+    public static final qs l = new vla(0);
+    public final Context a;
+    public final String b;
+    public final yi4 c;
+    public final xq2 d;
+    public final AtomicBoolean e;
+    public final AtomicBoolean f;
+    public final i26 g;
+    public final vw8 h;
+    public final CopyOnWriteArrayList i;
+    public final CopyOnWriteArrayList j;
 
-    public ji4(Object obj, float f, Runnable runnable, byte b) {
-        this.a = b;
-        this.d = obj;
-        this.b = f;
-        this.c = runnable;
+    public ji4(Context context, String str, yi4 yi4Var) {
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        this.e = atomicBoolean;
+        this.f = new AtomicBoolean();
+        CopyOnWriteArrayList copyOnWriteArrayList = new CopyOnWriteArrayList();
+        this.i = copyOnWriteArrayList;
+        this.j = new CopyOnWriteArrayList();
+        this.a = context;
+        xve.f(str);
+        this.b = str;
+        this.c = yi4Var;
+        na0 na0Var = FirebaseInitProvider.a;
+        Trace.beginSection("Firebase");
+        Trace.beginSection("ComponentDiscovery");
+        ArrayList q = new lh2(context, new ri6(ComponentDiscoveryService.class, (byte) 20), (byte) 17).q();
+        Trace.endSection();
+        Trace.beginSection("Runtime");
+        l8c l8cVar = l8c.a;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        arrayList.addAll(q);
+        arrayList.add(new sq2(new FirebaseCommonRegistrar(), (byte) 1));
+        arrayList.add(new sq2(new ExecutorsRegistrar(), (byte) 1));
+        arrayList2.add(fq2.c(context, Context.class, new Class[0]));
+        arrayList2.add(fq2.c(this, ji4.class, new Class[0]));
+        arrayList2.add(fq2.c(yi4Var, yi4.class, new Class[0]));
+        faf fafVar = new faf((byte) 15);
+        if ((Build.VERSION.SDK_INT >= 24 ? lh0.j(context) : true) && FirebaseInitProvider.b.get()) {
+            arrayList2.add(fq2.c(na0Var, na0.class, new Class[0]));
+        }
+        xq2 xq2Var = new xq2(l8cVar, arrayList, arrayList2, fafVar);
+        this.d = xq2Var;
+        Trace.endSection();
+        this.g = new i26(new wq2(this, context, (byte) 2));
+        this.h = xq2Var.d(hb3.class);
+        gi4 gi4Var = new gi4(this);
+        a();
+        if (atomicBoolean.get()) {
+            qd0.e.a.get();
+        }
+        copyOnWriteArrayList.add(gi4Var);
+        Trace.endSection();
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        tr7 tr7Var;
-        ira iraVar;
-        byte b = this.a;
-        Runnable runnable = this.c;
-        float f = this.b;
-        Object obj = this.d;
-        switch (b) {
-            case 0:
-                mi4 mi4Var = (mi4) obj;
-                mi4Var.h = f;
-                mi4Var.i();
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                v65 v65Var = (v65) obj;
-                v65Var.h = f;
-                v65Var.a.invalidate();
-                u65 u65Var = (u65) runnable;
-                if (u65Var != null) {
-                    u65Var.run();
-                    return;
-                }
-                return;
-            case 2:
-                vr7 vr7Var = (vr7) obj;
-                vr7Var.n = f;
-                vr7Var.invalidate();
-                if (animator == vr7Var.r && (tr7Var = (tr7) runnable) != null) {
-                    tr7Var.run();
-                    return;
-                }
-                return;
-            case 3:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                photoViewer.o6 = null;
-                photoViewer.e6 = 0.0f;
-                photoViewer.a6 = 0.0f;
-                photoViewer.f6 = 0.0f;
-                float z1 = photoViewer.z1(false);
-                photoViewer.d6 = z1;
-                photoViewer.Z5 = z1;
-                photoViewer.f0.invalidate();
-                CropAreaView cropAreaView = photoViewer.D1.b.a;
-                float z12 = photoViewer.z1(false);
-                cropAreaView.o0 = 0.0f;
-                cropAreaView.p0 = z12;
-                cropAreaView.q0 = 0.0f;
-                cropAreaView.r0 = 0.0f;
-                cropAreaView.invalidate();
-                photoViewer.D1.c.setRotated(false);
-                if (Math.abs(f) > 0.0f) {
-                    v48 v48Var = photoViewer.D1;
-                    b33 b33Var = v48Var.c;
-                    if (b33Var != null) {
-                        b33Var.b(0.0f);
-                        b33Var.setRotated(false);
-                    }
-                    boolean m = v48Var.b.m(f);
-                    ImageView imageView = photoViewer.c1;
-                    if (m) {
-                        zkb.s(imageView, bkb.pg, photoViewer.w2, PorterDuff.Mode.MULTIPLY);
-                    } else {
-                        imageView.setColorFilter((ColorFilter) null);
-                    }
-                }
-                zl6 zl6Var = photoViewer.W4.c;
-                if (zl6Var != null) {
-                    zl6Var.b = 0.0f;
-                    zl6Var.a = 0.0f;
-                    zl6Var.f = 1.0f;
-                    zl6Var.e = 1.0f;
-                }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 4:
-                jra jraVar = (jra) obj;
-                jraVar.E = f;
-                jraVar.invalidate();
-                if (animator == jraVar.F && (iraVar = (ira) runnable) != null) {
-                    iraVar.run();
-                    return;
-                }
-                return;
-            default:
-                t7b t7bVar = (t7b) obj;
-                t7bVar.M = null;
-                t7bVar.J = f;
-                t7bVar.h();
-                t7bVar.r.invalidate();
-                t7bVar.n.invalidate();
-                runnable.run();
-                t7bVar.Q.e();
-                kk7.e().k(99, 512);
-                kk7.e().o();
-                t7bVar.l();
-                Runnable runnable2 = t7bVar.R;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    t7bVar.R = null;
-                }
-                t7bVar.r.invalidate();
-                t7bVar.i0.invalidate();
-                return;
+    public static ji4 c() {
+        ji4 ji4Var;
+        synchronized (k) {
+            ji4Var = (ji4) l.get("[DEFAULT]");
+            if (ji4Var != null) {
+                ((hb3) ji4Var.h.get()).c();
+            } else {
+                throw new IllegalStateException("Default FirebaseApp is not initialized in this process " + go.j() + ". Make sure to call FirebaseApp.initializeApp(Context) first.");
+            }
         }
+        return ji4Var;
+    }
+
+    public static ji4 f(Context context) {
+        synchronized (k) {
+            if (l.containsKey("[DEFAULT]")) {
+                return c();
+            }
+            yi4 a = yi4.a(context);
+            if (a == null) {
+                Log.w("FirebaseApp", "Default FirebaseApp failed to initialize because no default options were found. This usually means that com.google.gms:google-services was not applied to your gradle project.");
+                return null;
+            }
+            return g(context, a);
+        }
+    }
+
+    public static ji4 g(Context context, yi4 yi4Var) {
+        ji4 ji4Var;
+        AtomicReference atomicReference = hi4.a;
+        if (context.getApplicationContext() instanceof Application) {
+            Application application = (Application) context.getApplicationContext();
+            AtomicReference atomicReference2 = hi4.a;
+            if (atomicReference2.get() == null) {
+                ?? obj = new Object();
+                while (true) {
+                    if (atomicReference2.compareAndSet(null, obj)) {
+                        qd0.b(application);
+                        qd0.e.a(obj);
+                        break;
+                    } else if (atomicReference2.get() != null) {
+                        break;
+                    }
+                }
+            }
+        }
+        if (context.getApplicationContext() != null) {
+            context = context.getApplicationContext();
+        }
+        synchronized (k) {
+            qs qsVar = l;
+            xve.j("FirebaseApp name [DEFAULT] already exists!", !qsVar.containsKey("[DEFAULT]"));
+            xve.i(context, "Application context cannot be null.");
+            ji4Var = new ji4(context, "[DEFAULT]", yi4Var);
+            qsVar.put("[DEFAULT]", ji4Var);
+        }
+        ji4Var.e();
+        return ji4Var;
+    }
+
+    public final void a() {
+        xve.j("FirebaseApp was deleted", !this.f.get());
+    }
+
+    public final Object b(Class cls) {
+        a();
+        return this.d.a(cls);
+    }
+
+    public final String d() {
+        StringBuilder sb = new StringBuilder();
+        a();
+        sb.append(lsd.b(this.b.getBytes(Charset.defaultCharset())));
+        sb.append("+");
+        a();
+        sb.append(lsd.b(this.c.b.getBytes(Charset.defaultCharset())));
+        return sb.toString();
+    }
+
+    public final void e() {
+        boolean z;
+        int i = Build.VERSION.SDK_INT;
+        Context context = this.a;
+        if (i >= 24) {
+            z = lh0.j(context);
+        } else {
+            z = true;
+        }
+        String str = this.b;
+        if (!z) {
+            StringBuilder sb = new StringBuilder("Device in Direct Boot Mode: postponing initialization of Firebase APIs for app ");
+            a();
+            sb.append(str);
+            Log.i("FirebaseApp", sb.toString());
+            AtomicReference atomicReference = ii4.b;
+            if (atomicReference.get() == null) {
+                ii4 ii4Var = new ii4(context);
+                while (!atomicReference.compareAndSet(null, ii4Var)) {
+                    if (atomicReference.get() != null) {
+                        return;
+                    }
+                }
+                context.registerReceiver(ii4Var, new IntentFilter("android.intent.action.USER_UNLOCKED"));
+                return;
+            }
+            return;
+        }
+        StringBuilder sb2 = new StringBuilder("Device unlocked: initializing all Firebase APIs for app ");
+        a();
+        sb2.append(str);
+        Log.i("FirebaseApp", sb2.toString());
+        a();
+        this.d.o("[DEFAULT]".equals(str));
+        ((hb3) this.h.get()).c();
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof ji4)) {
+            return false;
+        }
+        ji4 ji4Var = (ji4) obj;
+        ji4Var.a();
+        return this.b.equals(ji4Var.b);
+    }
+
+    public final boolean h() {
+        boolean z;
+        a();
+        q63 q63Var = (q63) this.g.get();
+        synchronized (q63Var) {
+            z = q63Var.a;
+        }
+        return z;
+    }
+
+    public final int hashCode() {
+        return this.b.hashCode();
+    }
+
+    public final String toString() {
+        um4 um4Var = new um4(this);
+        um4Var.a(this.b, "name");
+        um4Var.a(this.c, "options");
+        return um4Var.toString();
     }
 }

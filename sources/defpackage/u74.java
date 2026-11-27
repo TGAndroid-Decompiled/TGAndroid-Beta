@@ -1,15 +1,14 @@
 package defpackage;
-public final class u74 {
-    public final int a;
-    public final long b;
+public abstract class u74 {
+    public static final Class a;
 
-    public u74(long j, int i, long j2) {
-        this.a = i;
-        this.b = j2;
-    }
-
-    public final int hashCode() {
-        long j = this.b;
-        return (int) (j ^ (j >>> 32));
+    static {
+        Class<?> cls;
+        try {
+            cls = Class.forName("androidx.datastore.preferences.protobuf.ExtensionRegistry");
+        } catch (ClassNotFoundException unused) {
+            cls = null;
+        }
+        a = cls;
     }
 }

@@ -1,8 +1,7 @@
 package defpackage;
 
-import android.widget.PopupWindow;
-public abstract class n07 {
-    public static void a(PopupWindow popupWindow, boolean z) {
-        popupWindow.setTouchModal(z);
-    }
+import android.content.BroadcastReceiver;
+public abstract class n07 extends BroadcastReceiver {
+    public static final int a = 0;
+    public static final int b = 0;
 }

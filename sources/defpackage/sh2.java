@@ -1,62 +1,59 @@
 package defpackage;
 
-import java.io.FilterInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-public final class sh2 extends FilterInputStream {
-    public int a;
-    public int b;
+import java.util.Arrays;
+public final class sh2 implements zy9 {
+    public final int a;
+    public final int[] b;
+    public final long[] c;
+    public final long[] d;
+    public final long[] e;
+    public final long f;
 
-    public sh2(InputStream inputStream) {
-        super(inputStream);
-        this.a = -1;
-        this.b = -1;
+    public sh2(int[] iArr, long[] jArr, long[] jArr2, long[] jArr3) {
+        this.b = iArr;
+        this.c = jArr;
+        this.d = jArr2;
+        this.e = jArr3;
+        int length = iArr.length;
+        this.a = length;
+        if (length > 0) {
+            int i = length - 1;
+            this.f = jArr2[i] + jArr3[i];
+            return;
+        }
+        this.f = 0L;
     }
 
     @Override
-    public final boolean markSupported() {
+    public final boolean c() {
+        return true;
+    }
+
+    @Override
+    public final boolean d() {
         return false;
     }
 
     @Override
-    public final int read(byte[] bArr, int i, int i2) {
-        bArr.getClass();
-        if (i >= 0 && i2 >= 0 && i2 <= bArr.length - i) {
-            if (i2 == 0) {
-                return 0;
-            }
-            int read = read();
-            if (read == -1) {
-                return -1;
-            }
-            bArr[i] = (byte) read;
-            int i3 = 1;
-            while (i3 < i2) {
-                try {
-                    int read2 = read();
-                    if (read2 == -1) {
-                        break;
-                    }
-                    bArr[i + i3] = (byte) read2;
-                    i3++;
-                } catch (IOException unused) {
-                }
-            }
-            return i3;
+    public final yy9 e(long j) {
+        long[] jArr = this.e;
+        int f = gcc.f(jArr, j, true);
+        long j2 = jArr[f];
+        long[] jArr2 = this.c;
+        bz9 bz9Var = new bz9(j2, jArr2[f]);
+        if (j2 < j && f != this.a - 1) {
+            int i = f + 1;
+            return new yy9(bz9Var, new bz9(jArr[i], jArr2[i]));
         }
-        throw new IndexOutOfBoundsException();
+        return new yy9(bz9Var, bz9Var);
     }
 
     @Override
-    public final int read() {
-        int read = super.read();
-        if (read == 3 && this.a == 0 && this.b == 0) {
-            this.a = -1;
-            this.b = -1;
-            read = super.read();
-        }
-        this.a = this.b;
-        this.b = read;
-        return read;
+    public final long h() {
+        return this.f;
+    }
+
+    public final String toString() {
+        return "ChunkIndex(length=" + this.a + ", sizes=" + Arrays.toString(this.b) + ", offsets=" + Arrays.toString(this.c) + ", timeUs=" + Arrays.toString(this.e) + ", durationsUs=" + Arrays.toString(this.d) + ")";
     }
 }

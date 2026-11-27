@@ -1,15 +1,17 @@
 package defpackage;
-public abstract class cie {
-    public final byte a = 1;
+public final class cie implements zq7 {
+    public static final cie a = new Object();
 
-    public abstract Object d();
+    static {
+        xnb.y(xnb.p(xmd.class, new skd(1)));
+    }
 
-    public final String toString() {
-        switch (this.a) {
-            case 1:
-                return d().toString();
-            default:
-                return super.toString();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ar7 ar7Var = (ar7) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

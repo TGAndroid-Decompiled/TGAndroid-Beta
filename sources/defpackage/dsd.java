@@ -1,44 +1,89 @@
 package defpackage;
-public abstract class dsd {
-    public static Object a(int i) {
-        if (i >= 2 && i <= 1073741824 && Integer.highestOneBit(i) == i) {
-            if (i <= 256) {
-                return new byte[i];
-            }
-            if (i <= 65536) {
-                return new short[i];
-            }
-            return new int[i];
+
+import android.content.Intent;
+import android.os.Bundle;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.Map;
+import java.util.WeakHashMap;
+public final class dsd extends gp4 implements g36 {
+    public static final WeakHashMap m0 = new WeakHashMap();
+    public final pe8 l0 = new pe8();
+
+    @Override
+    public final void A() {
+        this.V = true;
+        pe8 pe8Var = this.l0;
+        pe8Var.a = (byte) 5;
+        for (c36 c36Var : ((Map) pe8Var.b).values()) {
+            c36Var.onDestroy();
         }
-        w26.j(de9.k(i, "must be power of 2 between 2^1 and 2^30: "));
-        return null;
     }
 
-    public static int b(int i, int i2, int i3) {
-        return (i & (~i3)) | (i2 & i3);
+    @Override
+    public final void F() {
+        this.V = true;
+        pe8 pe8Var = this.l0;
+        pe8Var.a = (byte) 3;
+        for (c36 c36Var : ((Map) pe8Var.b).values()) {
+            c36Var.onResume();
+        }
     }
 
-    public static int c(java.lang.Object r9, java.lang.Object r10, int r11, java.lang.Object r12, int[] r13, java.lang.Object[] r14, java.lang.Object[] r15) {
-        throw new UnsupportedOperationException("Method not decompiled: defpackage.dsd.c(java.lang.Object, java.lang.Object, int, java.lang.Object, int[], java.lang.Object[], java.lang.Object[]):int");
+    @Override
+    public final void G(Bundle bundle) {
+        this.l0.c(bundle);
     }
 
-    public static int d(int i, Object obj) {
-        if (obj instanceof byte[]) {
-            return ((byte[]) obj)[i] & 255;
+    @Override
+    public final void H() {
+        this.V = true;
+        pe8 pe8Var = this.l0;
+        pe8Var.a = (byte) 2;
+        for (c36 c36Var : ((Map) pe8Var.b).values()) {
+            c36Var.onStart();
         }
-        if (obj instanceof short[]) {
-            return ((short[]) obj)[i] & 65535;
-        }
-        return ((int[]) obj)[i];
     }
 
-    public static void e(int i, int i2, Object obj) {
-        if (obj instanceof byte[]) {
-            ((byte[]) obj)[i] = (byte) i2;
-        } else if (obj instanceof short[]) {
-            ((short[]) obj)[i] = (short) i2;
-        } else {
-            ((int[]) obj)[i] = i2;
+    @Override
+    public final void I() {
+        this.V = true;
+        pe8 pe8Var = this.l0;
+        pe8Var.a = (byte) 4;
+        for (c36 c36Var : ((Map) pe8Var.b).values()) {
+            c36Var.onStop();
         }
+    }
+
+    @Override
+    public final void a(String str, c36 c36Var) {
+        this.l0.a(str, c36Var);
+    }
+
+    @Override
+    public final c36 b(Class cls, String str) {
+        return (c36) cls.cast(((Map) this.l0.b).get(str));
+    }
+
+    @Override
+    public final void i(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+        super.i(str, fileDescriptor, printWriter, strArr);
+        for (c36 c36Var : ((Map) this.l0.b).values()) {
+            c36Var.dump(str, fileDescriptor, printWriter, strArr);
+        }
+    }
+
+    @Override
+    public final void x(int i, int i2, Intent intent) {
+        super.x(i, i2, intent);
+        for (c36 c36Var : ((Map) this.l0.b).values()) {
+            c36Var.onActivityResult(i, i2, intent);
+        }
+    }
+
+    @Override
+    public final void z(Bundle bundle) {
+        super.z(bundle);
+        this.l0.b(bundle);
     }
 }

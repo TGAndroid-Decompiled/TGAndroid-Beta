@@ -1,12 +1,10 @@
 package defpackage;
-public final class s69 {
-    public final qb6 a;
 
-    public s69(qb6 qb6Var) {
-        this.a = qb6Var;
-    }
+import android.view.View;
+public interface s69 {
+    boolean C(View view);
 
-    public final String toString() {
-        return "Removed[" + this.a + ']';
-    }
+    void d(float f, float f2, int i, View view);
+
+    void u(View view, float f, float f2);
 }

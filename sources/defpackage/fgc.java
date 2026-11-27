@@ -1,44 +1,53 @@
 package defpackage;
 
-import android.content.Intent;
-import org.telegram.messenger.voip.VoIPService;
-public final class fgc implements m4 {
-    public final hgc a;
+import android.view.Surface;
+import java.util.List;
+public interface fgc {
+    boolean a();
 
-    public fgc(hgc hgcVar) {
-        this.a = hgcVar;
-    }
+    Surface b();
 
-    public final void a() {
-        hgc hgcVar = this.a;
-        if (hgcVar.p0 == 17) {
-            Intent intent = new Intent(hgcVar.b, VoIPService.class);
-            intent.putExtra("user_id", hgcVar.d.id);
-            intent.putExtra("is_outgoing", true);
-            intent.putExtra("start_incall_activity", false);
-            intent.putExtra("video_call", hgcVar.U0);
-            intent.putExtra("can_video_call", hgcVar.U0);
-            intent.putExtra("account", hgcVar.a);
-            try {
-                hgcVar.b.startService(intent);
-            } catch (Throwable th) {
-                fa4.g(th, true);
-            }
-        } else if (hgcVar.b.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-            hgcVar.b.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 101);
-        } else if (VoIPService.getSharedState() != null) {
-            hgcVar.i(new kbc(this, (byte) 9));
-        }
-    }
+    void c(Surface surface, rma rmaVar);
 
-    public final void b() {
-        hgc hgcVar = this.a;
-        if (hgcVar.p0 == 17) {
-            hgcVar.u0.b();
-        } else if (VoIPService.getSharedState() != null) {
-            VoIPService.getSharedState().declineIncomingCall();
-        } else {
-            hgcVar.u0.b();
-        }
-    }
+    void d(float f);
+
+    void e();
+
+    void f();
+
+    void g(ko4 ko4Var, long j, int i, List list);
+
+    void h(long j);
+
+    void i(v34 v34Var);
+
+    void j();
+
+    void k(int i);
+
+    void l();
+
+    boolean m(long j, ym6 ym6Var);
+
+    boolean n(ko4 ko4Var);
+
+    void o(boolean z);
+
+    void p(List list);
+
+    void q(long j, long j2);
+
+    void r(boolean z);
+
+    void release();
+
+    boolean s(boolean z);
+
+    void t(sec secVar);
+
+    void u();
+
+    boolean v();
+
+    void w();
 }

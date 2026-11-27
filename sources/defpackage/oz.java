@@ -1,175 +1,131 @@
 package defpackage;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import java.util.Collections;
-public final class oz implements Runnable {
-    public final byte a;
-    public final Object b;
+import android.media.AudioAttributes;
+import android.os.Build;
+import android.os.Bundle;
+public final class oz {
+    public static final oz i = new oz(0, 0, 1, 1, false, 0, true);
+    public static final String j;
+    public static final String k;
+    public static final String l;
+    public static final String m;
+    public static final String n;
+    public static final String o;
+    public static final String p;
+    public final int a;
+    public final int b;
+    public final int c;
+    public final int d;
+    public final int e;
+    public final boolean f;
+    public final boolean g;
+    public AudioAttributes h;
 
-    public oz(Object obj, byte b) {
-        this.a = b;
-        this.b = obj;
+    static {
+        String str = gcc.a;
+        j = "0";
+        k = "1";
+        l = "2";
+        m = "3";
+        n = "4";
+        o = "5";
+        p = "6";
     }
 
-    @Override
-    public final void run() {
-        String str;
-        byte b = this.a;
-        Object obj = this.b;
-        switch (b) {
-            case 0:
-                pz pzVar = (pz) obj;
-                if (pzVar.c.a) {
-                    pzVar.a.a.v1(3, false);
-                    return;
-                }
-                return;
-            case 1:
-                ((uz) obj).c();
-                return;
-            case 2:
-                ((h20) obj).n.r1.setVisibility(8);
-                return;
-            case 3:
-                a66 a66Var = (a66) obj;
-                a66Var.getClass();
-                if (Thread.currentThread() == a66Var.a) {
-                    a66Var.e(-1, new wz((byte) 3));
-                    return;
-                }
-                return;
-            case 4:
-                ((y60) ((spc) obj).d).N();
-                return;
-            case 5:
-                bc0 bc0Var = (bc0) obj;
-                if (!bc0Var.x) {
-                    bc0Var.x = true;
-                    tq9.d(new f(bc0Var, (byte) 13));
-                    return;
-                }
-                return;
-            case 6:
-                bd0 bd0Var = (bd0) obj;
-                bd0Var.b.g3.O(true);
-                bd0Var.Y(true);
-                return;
-            case 7:
-                ge0 ge0Var = (ge0) obj;
-                new ava(ge0Var.getContext(), ge0Var.b).show();
-                return;
-            case 8:
-                try {
-                    ((Bitmap) obj).recycle();
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 9:
-                vk0 vk0Var = (vk0) obj;
-                vk0Var.o = true;
-                vk0Var.d.invalidate();
-                return;
-            case 10:
-                uk0 uk0Var = (uk0) obj;
-                if (!uk0Var.a) {
-                    vk0 vk0Var2 = uk0Var.d;
-                    Bitmap[] bitmapArr = vk0Var2.g;
-                    Canvas[] canvasArr = vk0Var2.h;
-                    vk0Var2.g = vk0Var2.f;
-                    vk0Var2.h = vk0Var2.i;
-                    vk0Var2.f = bitmapArr;
-                    vk0Var2.i = canvasArr;
-                    vk0Var2.k = false;
-                    s71 s71Var = vk0Var2.d;
-                    if (s71Var != null) {
-                        s71Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 11:
-                sl0 sl0Var = ((xl0) obj).t;
-                if (sl0Var != null) {
-                    sl0Var.d();
-                    return;
-                }
-                return;
-            case 12:
-                sl0 sl0Var2 = (sl0) obj;
-                sl0Var2.o = (Bitmap) sl0Var2.n.c;
-                sl0Var2.d();
-                return;
-            case 13:
-                cb cbVar = ((dm0) ((cm0) obj).c).f;
-                if (cbVar != null) {
-                    cbVar.d();
-                    return;
-                }
-                return;
-            case 14:
-                ((wn0) obj).a(null);
-                return;
-            case 15:
-                ((x15) obj).a(Collections.EMPTY_LIST);
-                return;
-            case 16:
-                ((tn0) obj).a(null);
-                return;
-            case 17:
-                ((ip0) obj).invalidateSelf();
-                return;
-            case 18:
-                ((jp0) obj).invalidateSelf();
-                return;
-            case 19:
-                ((lp0) obj).d();
-                return;
-            case 20:
-                yp0 yp0Var = (yp0) obj;
-                gl.r(yp0Var.b0);
-                yp0Var.N = false;
-                yp0Var.invalidate();
-                return;
-            case 21:
-                ((xp0) obj).invalidateSelf();
-                return;
-            case 22:
-                gr0 gr0Var = (gr0) obj;
-                kca kcaVar = gr0Var.a0;
-                s1b s1bVar = gr0Var.a;
-                if (s1bVar == null) {
-                    str = "";
-                } else {
-                    str = s1bVar.E;
-                }
-                kcaVar.a(str);
-                return;
-            case 23:
-            case 24:
-                ((lr0) obj).c();
-                return;
-            case 25:
-                ((mr0) obj).a();
-                return;
-            case 26:
-                ((nr0) obj).a();
-                return;
-            case 27:
-                rs0 rs0Var = (rs0) obj;
-                if (rs0Var.isAttachedToWindow() && !rs0Var.c.canScrollVertically(1)) {
-                    rs0Var.a();
-                    return;
-                }
-                return;
-            case 28:
-                ((gt3) obj).requestFocus();
-                return;
-            default:
-                d01.t(((yu0) obj).b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
-                return;
+    public oz(int i2, int i3, int i4, int i5, boolean z, int i6, boolean z2) {
+        this.a = i2;
+        this.b = i3;
+        this.c = i4;
+        this.d = i5;
+        this.e = i6;
+        this.f = z;
+        this.g = z2;
+    }
+
+    public static oz a(Bundle bundle) {
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        String str = j;
+        boolean z = false;
+        if (bundle.containsKey(str)) {
+            i2 = bundle.getInt(str);
+        } else {
+            i2 = 0;
         }
+        String str2 = k;
+        if (bundle.containsKey(str2)) {
+            i3 = bundle.getInt(str2);
+        } else {
+            i3 = 0;
+        }
+        String str3 = l;
+        boolean z2 = true;
+        if (bundle.containsKey(str3)) {
+            i4 = bundle.getInt(str3);
+        } else {
+            i4 = 1;
+        }
+        String str4 = m;
+        if (bundle.containsKey(str4)) {
+            i5 = bundle.getInt(str4);
+        } else {
+            i5 = 1;
+        }
+        String str5 = n;
+        if (bundle.containsKey(str5)) {
+            i6 = bundle.getInt(str5);
+        } else {
+            i6 = 0;
+        }
+        String str6 = o;
+        if (bundle.containsKey(str6)) {
+            z = bundle.getBoolean(str6);
+        }
+        boolean z3 = z;
+        String str7 = p;
+        if (bundle.containsKey(str7)) {
+            z2 = bundle.getBoolean(str7);
+        }
+        return new oz(i2, i3, i4, i5, z3, i6, z2);
+    }
+
+    public final AudioAttributes b() {
+        AudioAttributes audioAttributes = this.h;
+        if (audioAttributes == null) {
+            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.a).setFlags(this.b).setUsage(this.c);
+            int i2 = Build.VERSION.SDK_INT;
+            if (i2 >= 29) {
+                sr.p(usage, this.d);
+                sr.t(usage, this.g);
+            }
+            if (i2 >= 32) {
+                nz.b(usage, this.e);
+                nz.a(usage, this.f);
+            }
+            AudioAttributes build = usage.build();
+            this.h = build;
+            return build;
+        }
+        return audioAttributes;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && oz.class == obj.getClass()) {
+            oz ozVar = (oz) obj;
+            if (this.a == ozVar.a && this.b == ozVar.b && this.c == ozVar.c && this.d == ozVar.d && this.e == ozVar.e && this.f == ozVar.f && this.g == ozVar.g) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return ((((((((((((527 + this.a) * 31) + this.b) * 31) + this.c) * 31) + this.d) * 31) + this.e) * 31) + (this.f ? 1 : 0)) * 31) + (this.g ? 1 : 0);
     }
 }

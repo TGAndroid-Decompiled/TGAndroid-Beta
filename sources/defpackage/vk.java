@@ -1,66 +1,28 @@
 package defpackage;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-public final class vk extends ClickableSpan {
+public final class vk extends AnimatorListenerAdapter {
     public final byte a;
-    public final Runnable b;
+    public final View b;
 
-    public vk(Runnable runnable, byte b) {
+    public vk(View view, byte b) {
         this.a = b;
-        this.b = runnable;
+        this.b = view;
     }
 
     @Override
-    public final void onClick(View view) {
-        byte b = this.a;
-        Runnable runnable = this.b;
-        switch (b) {
-            case 0:
-                runnable.run();
-                return;
-            case 1:
-                runnable.run();
-                return;
-            case 2:
-                runnable.run();
-                return;
-            case 3:
-                runnable.run();
-                return;
-            case 4:
-                runnable.run();
-                return;
-            default:
-                runnable.run();
-                return;
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public final void onAnimationEnd(Animator animator) {
         switch (this.a) {
             case 0:
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(textPaint.linkColor);
+                this.b.setTranslationX(0.0f);
                 return;
             case 1:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 2:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 3:
-                textPaint.setUnderlineText(false);
-                return;
-            case 4:
-                textPaint.setUnderlineText(false);
+                hl.B2(this.b);
                 return;
             default:
-                textPaint.setUnderlineText(false);
+                hl.B2(this.b);
                 return;
         }
     }

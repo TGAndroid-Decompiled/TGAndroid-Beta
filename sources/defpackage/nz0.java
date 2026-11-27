@@ -1,19 +1,33 @@
 package defpackage;
-public final class nz0 {
-    public final String a;
-    public int b;
-    public int c;
-    public dz0 d;
-    public dz0 e;
-    public int f;
-    public long g;
-    public boolean h;
-    public byte[] i;
-    public int j;
 
-    public nz0(String str, int i, int i2) {
-        this.a = str;
-        this.b = i;
-        this.c = i2;
+import java.util.LinkedHashMap;
+public final class nz0 {
+    public final long a;
+    public int b;
+    public lz0 c;
+    public lz0 d;
+    public int e;
+    public long f;
+    public boolean g;
+    public byte[] h;
+    public int i;
+    public int j;
+    public final LinkedHashMap k = new LinkedHashMap();
+    public long l;
+
+    public nz0(long j) {
+        this.a = j;
+    }
+
+    public final boolean a() {
+        if (this.h != null) {
+            for (vz0 vz0Var : this.k.values()) {
+                if (vz0Var.i == null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

@@ -1,3 +1,5 @@
 package defpackage;
-public interface mc1 {
+
+import android.app.Service;
+public abstract class mc1 extends Service {
 }

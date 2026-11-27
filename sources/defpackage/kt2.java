@@ -1,59 +1,55 @@
 package defpackage;
+public final class kt2 extends jt2 implements ez9 {
+    public final long i;
+    public final long j;
 
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ContactsActivity;
-public final class kt2 implements Runnable {
-    public final byte a;
-    public final ContactsActivity b;
-
-    public kt2(ContactsActivity contactsActivity, byte b) {
-        this.a = b;
-        this.b = contactsActivity;
+    public kt2(long j, long j2, int i, int i2, boolean z, boolean z2, long j3) {
+        super(j, j2, i, i2, z, z2);
+        this.i = j3;
+        this.j = j == -1 ? -1L : j;
     }
 
     @Override
-    public final void run() {
-        float f;
-        int i;
-        byte b = this.a;
-        ContactsActivity contactsActivity = this.b;
-        switch (b) {
-            case 0:
-                y74 y74Var = contactsActivity.a;
-                if (contactsActivity.r) {
-                    f = 0.0f;
-                } else {
-                    f = 1.0f;
-                }
-                y74Var.c(f);
-                ot2 ot2Var = contactsActivity.b;
-                float f2 = y74Var.f;
-                ArrayList arrayList = ot2Var.O;
-                ot2Var.M = f2;
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    ((p06) arrayList.get(i2)).setLetterProgress(f2);
-                }
-                ot2 ot2Var2 = contactsActivity.b;
-                if (contactsActivity.r) {
-                    i = 1;
-                } else {
-                    i = 2;
-                }
-                ot2Var2.Y(i, false);
-                contactsActivity.d.w0(0);
-                ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(1.0f).setDuration(220L).setInterpolator(s33.h).withEndAction(new kt2(contactsActivity, (byte) 1));
-                contactsActivity.f0 = withEndAction;
-                withEndAction.start();
-                if (contactsActivity.r) {
-                    y74Var.e = (byte) 80;
-                    y74Var.a(1.0f);
-                    return;
-                }
-                return;
-            default:
-                contactsActivity.f0 = null;
-                return;
+    public final long a() {
+        return this.j;
+    }
+
+    @Override
+    public final long b() {
+        return this.b;
+    }
+
+    @Override
+    public final yy9 e(long j) {
+        long j2 = this.i;
+        if (j2 != -9223372036854775807L && j >= j2) {
+            long j3 = this.j;
+            if (j3 != -1) {
+                long j4 = this.c;
+                long j5 = this.b;
+                bz9 bz9Var = new bz9(Math.max(0L, j2 - (((Math.max(0L, (j4 + j5) - j5) << 3) * 1000000) / this.e)), Math.max(j5, j3 - j4));
+                return new yy9(bz9Var, bz9Var);
+            }
         }
+        return super.e(j);
+    }
+
+    @Override
+    public final long f(long j) {
+        return ((Math.max(0L, j - this.b) << 3) * 1000000) / this.e;
+    }
+
+    @Override
+    public final int g() {
+        return this.e;
+    }
+
+    @Override
+    public final long h() {
+        long j = this.i;
+        if (j != -9223372036854775807L) {
+            return j;
+        }
+        return this.f;
     }
 }
